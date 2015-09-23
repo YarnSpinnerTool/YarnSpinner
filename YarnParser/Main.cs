@@ -28,23 +28,46 @@ namespace YarnParser
 				"this line is at indent 0",
 				"so is this",
 				"    this line is at indent 1",
-				"    and this is at 1 also",
+				"    woo this is at 1 also",
 				"        we need to go deeper", 
 				"back to indent 0"				
 			};
 
 			String[] veryBasicExpressions = {
-				"1",
-				"2 + 1",
-				"3",
-				"4"
+				
+				"whoa what here's some text",
+				"<<if $foo is 1>>",
+				"this should appear",
+				"<<endif>>",
+				"3 * 4",
+				"4 / 2"
 			};
 
 			String[] basicMathLines = {
 				"1 + 2 / 56 - 123 * 2" 
 			};
 
+
 			String[] veryComplicatedTestLines = {
+				"Testing some stuff...",
+				"",
+				"<<if $something_not_one is 1>>",
+				"    First if statement went wrong.",
+				"De-denting??",
+				"<<else>>",
+				"    First if statement went right! :)",
+				"<<endif>>",
+				"",
+				"<<if $something_not_one is 0>>",
+				"    Second if statement went right! :)",
+				"<<else>>",
+				"    Second if statement went wrong. :(",
+				"<<endif>>",
+				"[[Go to branch 1|Branch1]]",
+				"[[Go to branch 2|Branch2]]",
+			};
+
+			String[] veryComplicatedTestLinesWithShortcutOptions = {
 				"Testing some stuff...",
 				"",
 				"<<if $something_not_one is 1>>",
@@ -75,9 +98,10 @@ namespace YarnParser
 			//String[] linesToUse = simpleInputLines;
 			//String[] linesToUse = complexInputLines;
 			//String[] linesToUse = indentTestLines;
-			//String[] linesToUse = veryComplicatedTestLines;
+			//String[] linesToUse = veryComplicatedTestLinesWithShortcutOptions;
+			String[] linesToUse = veryComplicatedTestLines;
 			//String[] linesToUse = basicMathLines;
-			String[] linesToUse = veryBasicExpressions;
+			//String[] linesToUse = veryBasicExpressions;
 
 			// Merge the test array into a big ol string
 			String inputString = string.Join("\n",linesToUse);
@@ -85,9 +109,13 @@ namespace YarnParser
 			// Start building the tokenizer
 			var tokenizer = new Yarn.Tokeniser();
 
+			Console.WriteLine ("Yarn Input:");
+			Console.WriteLine (inputString);
+
 
 			// Tokenise the input
 			var tokens = tokenizer.Tokenise(inputString);
+
 			/*
 			// Sum up the result
 			var tokenSummary = new List<string>();
@@ -98,16 +126,17 @@ namespace YarnParser
 			var tokenSummaryString = string.Join("\n", tokenSummary);
 
 			// Let's see what we got
-			Console.WriteLine("Input:\n{0}", inputString);
-			Console.WriteLine("Tokens:\n{0}", tokenSummaryString);
-			*/
+			Console.WriteLine("Tokens:\n{0}", tokenSummaryString);*/
+
 			// Try to parse it
 			var parser = new Yarn.Parser(tokens);
 
 			var tree = parser.Parse();
 
 			// Dump the parse tree
-			Console.WriteLine(tree.ToString());
+			Console.WriteLine();
+			Console.WriteLine("Parse Tree:");
+			Console.WriteLine(tree.DumpTree(0));
 		}
 	}
 }

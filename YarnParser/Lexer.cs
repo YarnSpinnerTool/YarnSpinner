@@ -201,9 +201,6 @@ namespace Yarn {
 				
 				// Add the list of tokens that were in this line
 				tokens.AddRange(lineTokens);
-				
-				// Add the end of line token manually (it's lost when we split)
-				tokens.Add(new Token(TokenType.EndOfLine));
 
 				// Update line number
 				lineNum++;
@@ -329,7 +326,8 @@ namespace Yarn {
 			AddTokenRule(TokenType.Dedent, null);
 			
 			// Set up the end-of-line token
-			AddTokenRule(TokenType.EndOfLine, "\\n");
+			AddTokenRule (TokenType.EndOfLine, "\\n")
+				.discard = true;
 			
 			// Set up the end-of-file token
 			AddTokenRule(TokenType.EndOfInput, null);
