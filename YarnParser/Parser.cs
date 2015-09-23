@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
+// TODO: Shortcut options
+
 namespace Yarn {
 
 
@@ -61,15 +63,15 @@ namespace Yarn {
 		public abstract class ParseNode {
 
 			// ParseNodes do their parsing by consuming tokens from the Parser.
-			// You parse a piece of grammar using its constructor.
+			// You parse tokens into a ParseNode by using its constructor.
 			public ParseNode(Parser p) { }
 
-			// Recursively prints the ParseNode, and all of its child ParseNodes.
-			public abstract string DumpTree (int indentLevel);
+			// Recursively prints the ParseNode and all of its child ParseNodes.
+			public abstract string PrintTree (int indentLevel);
 
 			public override string ToString ()
 			{
-				return DumpTree (0);
+				return PrintTree (0);
 			}
 		}
 
@@ -88,13 +90,13 @@ namespace Yarn {
 				p.ExpectSymbol(TokenType.EndOfInput);
 			}
 
-			// Dump our statements
-			public override string DumpTree (int indentLevel)
+			// Print the statements we have
+			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
 				sb.Append (Tab (indentLevel, "Node: {"));
 				foreach (var statement in statements) {
-					sb.Append( Tab(indentLevel, statement.DumpTree (indentLevel + 1), newLine: false));
+					sb.Append( Tab(indentLevel, statement.PrintTree (indentLevel + 1), newLine: false));
 				}
 				sb.Append (Tab (indentLevel, "}", newLine: false));
 				return sb.ToString();
@@ -157,16 +159,16 @@ namespace Yarn {
 
 			}
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				if (expression != null) {
-					return expression.DumpTree (indentLevel);
+					return expression.PrintTree (indentLevel);
 				} else if (block != null) {
-					return block.DumpTree (indentLevel);
+					return block.PrintTree (indentLevel);
 				} else if (ifStatement != null) {
-					return ifStatement.DumpTree (indentLevel);
+					return ifStatement.PrintTree (indentLevel);
 				} else if (optionStatement != null) {
-					return optionStatement.DumpTree (indentLevel);
+					return optionStatement.PrintTree (indentLevel);
 				} else if (line != null) {
 					return Tab (indentLevel, line.ToString ());
 				}
@@ -198,12 +200,12 @@ namespace Yarn {
 			}
 
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
 				sb.Append (Tab(indentLevel, "Block {"));
 				foreach (var statement in statements) {
-					sb.Append (statement.DumpTree (indentLevel + 1));
+					sb.Append (statement.PrintTree (indentLevel + 1));
 				}
 				sb.Append (Tab(indentLevel, "}"));
 
@@ -251,7 +253,7 @@ namespace Yarn {
 			}
 
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				if (label != null) {
 					return Tab (indentLevel, string.Format ("Option: \"{0}\" -> {1}", label, destination));
@@ -302,19 +304,19 @@ namespace Yarn {
 
 			}
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
 				sb.Append (Tab (indentLevel, "If:"));
-				sb.Append (expression.DumpTree (indentLevel + 1));
+				sb.Append (expression.PrintTree (indentLevel + 1));
 				sb.Append (Tab (indentLevel, "Then:"));
 				foreach (var statement in statements) {
-					sb.Append (statement.DumpTree (indentLevel + 1));
+					sb.Append (statement.PrintTree (indentLevel + 1));
 				}
 				if (elseStatements.Count > 0) {
 					sb.Append (Tab (indentLevel, "Else:"));
 					foreach (var statement in elseStatements) {
-						sb.Append (statement.DumpTree (indentLevel + 1));
+						sb.Append (statement.PrintTree (indentLevel + 1));
 					}
 				}
 				return sb.ToString ();
@@ -350,7 +352,7 @@ namespace Yarn {
 
 			}
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				switch (type) {
 				case TokenType.Number:
@@ -364,7 +366,7 @@ namespace Yarn {
 		}
 
 		// Expressions are things like "1 + 2 * 5 / 2 - 1"
-		// Expression = Value Operator Value
+		// Expression = Value Operator Value (TODO Remove this)
 		// TODO: Expression = Expression Operator Expression
 		// TODO: Expression = Value
 		// TODO: operator precedence; currently expressions are limited to nothing more
@@ -383,14 +385,14 @@ namespace Yarn {
 
 			}
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				var stringBuilder = new StringBuilder ();
 
 				stringBuilder.Append (Tab (indentLevel, "Expression: {"));
-				stringBuilder.Append (leftHand.DumpTree(indentLevel+1));
-				stringBuilder.Append (exprOperator.DumpTree(indentLevel+1));
-				stringBuilder.Append (rightHand.DumpTree(indentLevel+1));
+				stringBuilder.Append (leftHand.PrintTree(indentLevel+1));
+				stringBuilder.Append (exprOperator.PrintTree(indentLevel+1));
+				stringBuilder.Append (rightHand.PrintTree(indentLevel+1));
 				stringBuilder.Append (Tab (indentLevel, "}"));
 
 				return stringBuilder.ToString ();
@@ -429,7 +431,7 @@ namespace Yarn {
 				operatorType = p.ExpectSymbol(Operator.validTokens).type;
 			}
 
-			public override string DumpTree (int indentLevel)
+			public override string PrintTree (int indentLevel)
 			{
 				return Tab (indentLevel, operatorType.ToString ());
 			}
@@ -500,13 +502,6 @@ namespace Yarn {
 			throw ParseException.Make(t, validTypes);
 		}
 
-		// Do we have tokens left?
-		bool HasTokensRemaining {
-			get {
-				return this.tokens.Count > 0;
-			}
-		}
-
 		// The next two methods allow us to backtrack - 
 		// to speculatively parse some grammar, you
 		// use Fork() to copy the current state of the 
@@ -527,6 +522,4 @@ namespace Yarn {
 		}
 
 	}
-
-
 }

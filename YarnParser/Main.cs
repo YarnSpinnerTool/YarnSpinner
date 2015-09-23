@@ -14,7 +14,7 @@ namespace YarnParser
 			                        "<<set $foo to 2>>",
 									"<<set $bar to 3.0>>",
 									"    Mae: Yeah well this is indented",
-									"    Molly: This isn't!",
+									"Molly: This isn't!",
 									"Mae: Pretty cool. Hey, here's punctuation.",
 
 			};
@@ -136,7 +136,7 @@ namespace YarnParser
 			// Dump the parse tree
 			Console.WriteLine();
 			Console.WriteLine("Parse Tree:");
-			Console.WriteLine(tree.DumpTree(0));
+			Console.WriteLine(tree.PrintTree(0));
 		}
 	}
 }

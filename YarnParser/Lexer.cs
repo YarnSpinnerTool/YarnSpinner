@@ -2,6 +2,9 @@ using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
+// TODO: Comments (// and /*  */)
+// TODO: Convert tabs to spaces
+
 namespace Yarn {
 
 	// save some typing, we deal with lists of tokens a LOT
@@ -49,10 +52,10 @@ namespace Yarn {
 		NotEqualTo, // !=, neq
 
 		// Logical operators
-		Or,
-		And,
-		Xor,
-		Not,
+		Or, // ||, or
+		And, // &&, and
+		Xor, // ^, xor
+		Not, // !, not
 
 
 		// this guy's special because '=' means 'equal to' or 'becomes' depending on context
@@ -133,7 +136,7 @@ namespace Yarn {
 				}
 				// noooooo we forgot to add a rule in PrepareTokenRules()
 				if (found == false)
-					throw new NotImplementedException("Missing rule for token type " + names[i]);
+					throw new ArgumentNullException("Missing rule for token type " + names[i]);
 			}
 
 
@@ -168,7 +171,8 @@ namespace Yarn {
 			
 			// Start by chopping up the input into lines
 			var lines = input.Split(new char[] {'\n'} , StringSplitOptions.RemoveEmptyEntries);
-			
+
+			// Keep track of which column each new indent started
 			var indents = new Stack<int>();
 			
 			// Start at indent 0
