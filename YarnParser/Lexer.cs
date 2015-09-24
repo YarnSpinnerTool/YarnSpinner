@@ -107,6 +107,13 @@ namespace Yarn {
 			public TokenType type; // what token is this rule for?
 			public Regex regex; // what should we look for?
 			public bool discard; // should we throw away this token if we match it?
+
+			// Some tokens are words (like "not", "and", "or") - if these
+			// are the first word in what's otherwise a line of text,
+			// the lexer will read it as "<AND> <TEXT>" instead of "<TEXT>".
+			// So, we need to mark certain rules as "this token can start a line"
+
+			public bool canBeginLine; 
 		}
 		
 		// The list of all known token types
@@ -143,7 +150,7 @@ namespace Yarn {
 		}
 		
 		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule) {
+		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false) {
 			
 			var newTokenRule = new TokenRule();
 			newTokenRule.type = type;
@@ -157,6 +164,8 @@ namespace Yarn {
 				// the string "1 + 2" but it should find it in "+ 2"
 				newTokenRule.regex = new Regex("^"+rule);
 			}
+
+			newTokenRule.canBeginLine = canBeginLine;
 			
 			// Store it in the list and return
 			tokenRules.Add(newTokenRule);
@@ -261,6 +270,12 @@ namespace Yarn {
 					// Is the next chunk of text a token?
 					if (tokenRule.regex != null && 
 					    tokenRule.regex.IsMatch(remainingString)) {
+
+						// Bail out if this is the first token and we aren't allowed to
+						// match this rule at the start
+						if (tokenRule.canBeginLine == false && tokens.Count == 0) {
+							continue;
+						}
 						
 						// Get more detailed info
 						var match = tokenRule.regex.Match(remainingString);
@@ -320,17 +335,17 @@ namespace Yarn {
 			// get matched first.
 
 			// Set up the whitespace token, which is discarded
-			AddTokenRule(TokenType.Whitespace, "\\s+")
+			AddTokenRule(TokenType.Whitespace, "\\s+", canBeginLine:true)
 				.discard = true;
 			
 			// Set up the special begin and end indentation tokens - 
 			// these aren't matched by regexes, but rather emitted
 			// during parsing by keeping track of the number of spaces
-			AddTokenRule(TokenType.Indent, null);
-			AddTokenRule(TokenType.Dedent, null);
+			AddTokenRule(TokenType.Indent, null, canBeginLine:true);
+			AddTokenRule(TokenType.Dedent, null, canBeginLine:true);
 			
 			// Set up the end-of-line token
-			AddTokenRule (TokenType.EndOfLine, "\\n")
+			AddTokenRule (TokenType.EndOfLine, "\\n", canBeginLine:true)
 				.discard = true;
 			
 			// Set up the end-of-file token
@@ -338,13 +353,13 @@ namespace Yarn {
 
 			// Basic syntax
 			AddTokenRule(TokenType.Number, "(\\d+\\.\\d*|\\d+)");
-			AddTokenRule(TokenType.BeginCommand, "\\<\\<");
+			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
 			AddTokenRule(TokenType.EndCommand, "\\>\\>");
 			AddTokenRule(TokenType.Variable, "\\$[A-z]+");
 			
 			// Options
-			AddTokenRule(TokenType.ShortcutOption, "-\\>");
-			AddTokenRule(TokenType.OptionStart, "\\[\\[");
+			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true);
+			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true);
 			AddTokenRule(TokenType.OptionDelimit, "\\|");
 			AddTokenRule(TokenType.OptionEnd, "\\]\\]");
 			
@@ -369,7 +384,7 @@ namespace Yarn {
 			AddTokenRule(TokenType.Xor, "(\\^|xor)");
 			AddTokenRule(TokenType.Not, "(\\!|not)");
 			
-			AddTokenRule(TokenType.EqualToOrAssign, "(=|to)");
+			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)", canBeginLine: true);
 
 			AddTokenRule(TokenType.AddAssign, "\\+=");
 			AddTokenRule(TokenType.MinusAssign, "-=");
@@ -384,7 +399,7 @@ namespace Yarn {
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
 			// match it
-			AddTokenRule(TokenType.Text, "^[^\\<\\>\\[\\]\\|]*");
+			AddTokenRule(TokenType.Text, "^[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
 		}
 	}
 

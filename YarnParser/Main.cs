@@ -36,11 +36,34 @@ namespace YarnParser
 			String[] veryBasicExpressions = {
 				
 				"whoa what here's some text",
+				"<<set $foo to 1>>",
+				"",
 				"<<if $foo is 1>>",
-				"this should appear",
+				"    this should appear :)",
+				"    <<if 1 is 1>>",
+				"        NESTED IF BLOCK WHAAAT",
+				"        <<set $foo += 47 + 6>>",
+				"    <<endif>>",
+				"<<else>>",
+				"    oh noooo it didn't work :(",
 				"<<endif>>",
-				"3 * 4",
-				"4 / 2"
+				"",
+				"<<if $foo is 54>>",
+				"    haha nice now 'set' works even when deeply nested",
+				"<<else>>",
+				"    aaargh :(",
+				"<<endif>>"
+			};
+
+			String[] nestedIfs = {
+				"<<if 1 == 1>>",
+				"<<if 2 == 2>>",
+				"Whoa",
+				"<<endif>>",
+				"<<if 2 == 3>>",
+				"Whoa no :(",
+				"<<endif>>",
+				"<<endif>>"
 			};
 
 			String[] basicMathLines = {
@@ -95,13 +118,16 @@ namespace YarnParser
 				"[[Go to branch 2|Branch2]]",
 			};
 
+
+
 			//String[] linesToUse = simpleInputLines;
 			//String[] linesToUse = complexInputLines;
 			//String[] linesToUse = indentTestLines;
 			//String[] linesToUse = veryComplicatedTestLinesWithShortcutOptions;
-			String[] linesToUse = veryComplicatedTestLines;
+			//String[] linesToUse = veryComplicatedTestLines;
 			//String[] linesToUse = basicMathLines;
-			//String[] linesToUse = veryBasicExpressions;
+			String[] linesToUse = veryBasicExpressions;
+			//String[] linesToUse = nestedIfs;
 
 			// Merge the test array into a big ol string
 			String inputString = string.Join("\n",linesToUse);
@@ -134,9 +160,82 @@ namespace YarnParser
 			var tree = parser.Parse();
 
 			// Dump the parse tree
-			Console.WriteLine();
-			Console.WriteLine("Parse Tree:");
-			Console.WriteLine(tree.PrintTree(0));
+//			Console.WriteLine();
+//			Console.WriteLine("Parse Tree:");
+//			Console.WriteLine(tree.PrintTree(0));
+
+			// Execute the parsed program
+			var r = new Yarn.Runner();
+
+			r.continuity = new SimpleContinuity ();
+
+			// Set up the line handler
+			r.RunLine += delegate(string lineText) {
+				Console.WriteLine (lineText);
+				Console.Read();
+			};
+
+			r.RunOptions += delegate(string[] options) {
+				Console.WriteLine("Options:");
+				for (int i = 0; i < options.Length; i++) {
+					var optionDisplay = string.Format ("{0}. {1}", i + 1, options [i]);
+					Console.WriteLine (optionDisplay);
+				}
+				do {
+					Console.Write ("? ");
+					try {
+						var selectedKey = Console.ReadKey ().KeyChar.ToString();
+						var selection = int.Parse (selectedKey) - 1;
+						Console.WriteLine();
+
+						if (selection > options.Length) {
+							Console.WriteLine ("Invalid option.");
+						} else {							
+							return selection;
+						}
+					} catch (FormatException e) {}
+
+				} while (true);
+
+			};
+
+			r.NodeComplete += delegate(string nextNodeName) {
+				if (nextNodeName != null) {
+					Console.WriteLine("Finished; next node = " + nextNodeName);
+				} else {
+					Console.WriteLine("All done! :)");
+				}
+			};
+
+			Console.WriteLine ("\nRUNNING THE DIALOGUE:");
+			r.RunNode (tree);
+		}
+
+		// Very simple continuity class that keeps all variables in memory
+		private class SimpleContinuity : Yarn.Runner.Continuity {
+			#region Continuity implementation
+
+			Dictionary<string, float> variables = new Dictionary<string, float>();
+
+			void Yarn.Runner.Continuity.SetNumber (float number, string variableName)
+			{
+				variables [variableName] = number;
+			}
+
+			float Yarn.Runner.Continuity.GetNumber (string variableName)
+			{
+				if (variables.ContainsKey(variableName)) {
+					return variables [variableName];
+				} else {
+					return 0.0f;
+				}
+
+			}
+
+			#endregion
 		}
 	}
+
+
+
 }

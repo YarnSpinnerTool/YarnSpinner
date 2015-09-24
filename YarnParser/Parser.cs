@@ -79,14 +79,18 @@ namespace Yarn {
 		// Node = (Statement)* EndOfInput
 		public class Node : ParseNode {
 
+			// Read-only public accessor for statements
+			public IEnumerable<Statement> statements { get { return _statements; }}
+
 			// The statements in this node
-			List<Statement> statements = new List<Statement> ();
+			List<Statement> _statements = new List<Statement> ();
 			
 			public Node(Parser p) : base(p) {
 				// Consume statements until we run out of input
 				while (p.NextSymbolIs(TokenType.EndOfInput) == false) {
-					statements.Add(new Statement(p));
+					_statements.Add(new Statement(p));
 				}
+
 				p.ExpectSymbol(TokenType.EndOfInput);
 			}
 
@@ -95,7 +99,7 @@ namespace Yarn {
 			{
 				var sb = new StringBuilder ();
 				sb.Append (Tab (indentLevel, "Node: {"));
-				foreach (var statement in statements) {
+				foreach (var statement in _statements) {
 					sb.Append( Tab(indentLevel, statement.PrintTree (indentLevel + 1), newLine: false));
 				}
 				sb.Append (Tab (indentLevel, "}", newLine: false));
@@ -105,35 +109,39 @@ namespace Yarn {
 		}
 
 		// Statements are the items of execution in nodes.
-		// Statement = Expression
 		// Statement = Block
 		// Statement = IfStatement
 		// Statement = OptionStatement
 		// Statement = <Text>
-		// TODO: other statements
+		// TODO: set statements
+		// TODO: shortcut options
 		public class Statement : ParseNode {
+
+			public enum Type {
+				Block,
+				IfStatement,
+				OptionStatement,
+				AssignmentStatement,
+				Line
+			}
+
+			public Statement.Type type { get; private set; }
+
 			// The possible types of statements we can have
-			Expression expression;
-			Block block;
-			IfStatement ifStatement;
-			OptionStatement optionStatement;
-			Token line;
+			public Block block { get; private set;}
+			public IfStatement ifStatement {get; private set;}
+			public OptionStatement optionStatement {get; private set;}
+			public AssignmentStatement assignmentStatement {get; private set;}
+			public string line {get; private set;}
 
 			public Statement(Parser p) : base(p) {
 
-				// Try and parse an expression
-				try {
-					var p1 = p.Fork();
-					expression = new Expression(p1);
-					p.MergeWithParser(p1);
-					return;
-				} catch (Yarn.ParseException) {}
-
-				// No? Then try to parse a block
+				// No? Try to parse a block
 				try {
 					var p1 = p.Fork();
 					block = new Block(p1);
 					p.MergeWithParser(p1);
+					type = Type.Block;
 					return;
 				} catch (Yarn.ParseException) {}
 
@@ -142,6 +150,7 @@ namespace Yarn {
 					var p1 = p.Fork();
 					ifStatement = new IfStatement(p1);
 					p.MergeWithParser(p1);
+					type = Type.IfStatement;
 					return;
 				} catch (Yarn.ParseException) {}
 
@@ -150,28 +159,41 @@ namespace Yarn {
 					var p1 = p.Fork();
 					optionStatement = new OptionStatement(p1);
 					p.MergeWithParser(p1);
+					type = Type.OptionStatement;
+
+					return;
+				} catch (Yarn.ParseException) {}
+
+				// Try to parse an assignment
+				try {
+					var p1 = p.Fork();
+					assignmentStatement = new AssignmentStatement(p1);
+					p.MergeWithParser(p1);
+					type = Type.AssignmentStatement;
 					return;
 				} catch (Yarn.ParseException) {}
 
 				// It must be a basic line, then
-				line = p.ExpectSymbol(TokenType.Text);
-
+				line = p.ExpectSymbol(TokenType.Text).value as string;
+				type = Type.Line;
 
 			}
 
 			public override string PrintTree (int indentLevel)
 			{
-				if (expression != null) {
-					return expression.PrintTree (indentLevel);
-				} else if (block != null) {
+				switch (type) {
+				case Type.Block:
 					return block.PrintTree (indentLevel);
-				} else if (ifStatement != null) {
+				case Type.IfStatement:
 					return ifStatement.PrintTree (indentLevel);
-				} else if (optionStatement != null) {
+				case Type.OptionStatement:
 					return optionStatement.PrintTree (indentLevel);
-				} else if (line != null) {
-					return Tab (indentLevel, line.ToString ());
+				case Type.AssignmentStatement:
+					return assignmentStatement.PrintTree (indentLevel);
+				case Type.Line:
+					return Tab (indentLevel, "Line: "+ line);
 				}
+
 				throw new ArgumentNullException ();
 			}
 
@@ -180,7 +202,10 @@ namespace Yarn {
 		// Blocks are indented groups of statements
 		// Block = Indent Statement* Dedent
 		public class Block : ParseNode {
-			List<Statement> statements = new List<Statement> ();
+			
+			public IEnumerable<Statement> statements { get { return _statements; }}
+
+			List<Statement> _statements = new List<Statement> ();
 
 			public Block(Parser p) : base(p) {
 
@@ -191,7 +216,7 @@ namespace Yarn {
 				while (p.NextSymbolIs(TokenType.Dedent) == false) {
 					// fun fact! because Blocks are a type of Statement,
 					// we get nested block parsing for free! \:D/
-					statements.Add(new Statement(p));
+					_statements.Add(new Statement(p));
 				}
 
 				// Tidy up by reading the dedent
@@ -204,7 +229,7 @@ namespace Yarn {
 			{
 				var sb = new StringBuilder ();
 				sb.Append (Tab(indentLevel, "Block {"));
-				foreach (var statement in statements) {
+				foreach (var statement in _statements) {
 					sb.Append (statement.PrintTree (indentLevel + 1));
 				}
 				sb.Append (Tab(indentLevel, "}"));
@@ -217,8 +242,8 @@ namespace Yarn {
 		// OptionStatement = OptionStart <Text> OptionEnd
 		// OptionStatement = OptionStart <Text> OptionDelimit <Text> OptionEnd
 		public class OptionStatement : ParseNode {
-			string destination;
-			string label;
+			public string destination { get; private set;}
+			public string label { get; private set;}
 
 			public OptionStatement(Parser p) : base(p) {
 
@@ -267,11 +292,17 @@ namespace Yarn {
 		// If = BeginCommand If Expression EndCommand Statement* BeginCommand EndIf EndCommand
 		// TODO: elseif
 		public class IfStatement : ParseNode {
-			Expression expression;
-			List<Statement> statements = new List<Statement>();
-			List<Statement> elseStatements = new List<Statement>();
-
+			public Expression expression { get; private set; }
+			
+			public IEnumerable<Statement> statements { get; private set; }
+			public IEnumerable<Statement> elseStatements { get; private set; }
+			
+			public IList f;
 			public IfStatement(Parser p) : base(p) {
+
+				List<Statement> statements = new List<Statement>();
+				List<Statement> elseStatements = new List<Statement>();
+
 
 				p.ExpectSymbol(TokenType.BeginCommand);
 				p.ExpectSymbol(TokenType.If);
@@ -302,6 +333,10 @@ namespace Yarn {
 				p.ExpectSymbol(TokenType.EndIf);
 				p.ExpectSymbol(TokenType.EndCommand);
 
+				this.statements = statements;
+				this.elseStatements = elseStatements;
+
+
 			}
 
 			public override string PrintTree (int indentLevel)
@@ -313,7 +348,7 @@ namespace Yarn {
 				foreach (var statement in statements) {
 					sb.Append (statement.PrintTree (indentLevel + 1));
 				}
-				if (elseStatements.Count > 0) {
+				if ((elseStatements as IList).Count > 0) {
 					sb.Append (Tab (indentLevel, "Else:"));
 					foreach (var statement in elseStatements) {
 						sb.Append (statement.PrintTree (indentLevel + 1));
@@ -329,24 +364,30 @@ namespace Yarn {
 		// Value = <Variable>
 		public class Value : ParseNode {
 
-			TokenType type;
-			float number;
-			string variable;
+			public enum Type {
+				Number,
+				Variable
+			}
+
+			public Value.Type type { get; private set; }
+
+			public float number {get; private set;}
+			public string variableName {get; private set;}
 
 			public Value(Parser p) : base(p) {
 
 				// Parse a number or a variable name
 				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable);
 
-				type = t.type;
-
 				// Store the value depending on type
 				switch (t.type) {
 				case TokenType.Number:
+					type = Type.Number;
 					number = float.Parse(t.value as String);
 					break;
 				case TokenType.Variable:
-					variable = t.value as string;
+					type = Type.Variable;
+					variableName = t.value as string;
 					break;
 				}
 
@@ -355,10 +396,10 @@ namespace Yarn {
 			public override string PrintTree (int indentLevel)
 			{
 				switch (type) {
-				case TokenType.Number:
+				case Type.Number:
 					return Tab (indentLevel, number.ToString());
-				case TokenType.Variable:
-					return Tab (indentLevel, variable);
+				case Type.Variable:
+					return Tab (indentLevel, variableName);
 				}
 				throw new ArgumentException ();
 
@@ -366,22 +407,39 @@ namespace Yarn {
 		}
 
 		// Expressions are things like "1 + 2 * 5 / 2 - 1"
-		// Expression = Value Operator Value (TODO Remove this)
-		// TODO: Expression = Expression Operator Expression
-		// TODO: Expression = Value
+		// Expression = Expression Operator Expression
+		// Expression = Value
 		// TODO: operator precedence; currently expressions are limited to nothing more
 		// complex than "1 + 1"
 		public class Expression : ParseNode {
+
+			public enum Type {
+				PrimitiveValue,
+				Expression
+			}
+
+			public Type type { get; private set; }
+
+			public Value value { get; private set;}
 			
-			Value leftHand;
-			Operator exprOperator;
-			Value rightHand;
+			public Value leftHand { get; private set; }
+			public Operator exprOperator { get; private set; }
+			public Value rightHand { get; private set; }
 
 			public Expression(Parser p) : base(p) {
 
-				leftHand = new Value(p);
-				exprOperator = new Operator(p);
-				rightHand = new Value(p);
+				Value v = new Value(p);
+
+
+				if (p.NextSymbolIs(Operator.validTokens)) {
+					leftHand = v;
+					exprOperator = new Operator(p);
+					rightHand = new Value(p);
+					type = Type.Expression;
+				} else {
+					value = v;
+					type = Type.PrimitiveValue;
+				}
 
 			}
 
@@ -390,18 +448,66 @@ namespace Yarn {
 				var stringBuilder = new StringBuilder ();
 
 				stringBuilder.Append (Tab (indentLevel, "Expression: {"));
-				stringBuilder.Append (leftHand.PrintTree(indentLevel+1));
-				stringBuilder.Append (exprOperator.PrintTree(indentLevel+1));
-				stringBuilder.Append (rightHand.PrintTree(indentLevel+1));
-				stringBuilder.Append (Tab (indentLevel, "}"));
+
+				switch (type) {
+				case Expression.Type.PrimitiveValue:
+					stringBuilder.Append (value.PrintTree (indentLevel + 1));
+					break;
+				case Expression.Type.Expression:
+					stringBuilder.Append (leftHand.PrintTree (indentLevel + 1));
+					stringBuilder.Append (exprOperator.PrintTree (indentLevel + 1));
+					stringBuilder.Append (rightHand.PrintTree (indentLevel + 1));
+					stringBuilder.Append (Tab (indentLevel, "}"));
+					break;
+				}
+
+
 
 				return stringBuilder.ToString ();
 			}
 		}
 
+		// AssignmentStatements are things like <<set $foo = 1>>
+		// AssignmentStatement = BeginCommand Set <variable> <operation> Expression EndCommand
+		public class AssignmentStatement : ParseNode {
+			public string destinationVariableName { get; private set; }
+
+			public Expression valueExpression { get; private set; }
+
+			public TokenType operation { get; private set; }
+
+			private static TokenType[] validOperators = {
+				TokenType.EqualToOrAssign,
+				TokenType.AddAssign,
+				TokenType.MinusAssign,
+				TokenType.DivideAssign,
+				TokenType.MultiplyAssign
+			};
+
+			public AssignmentStatement(Parser p) : base(p) {
+
+				p.ExpectSymbol(TokenType.BeginCommand);
+				p.ExpectSymbol(TokenType.Set);
+				destinationVariableName = p.ExpectSymbol(TokenType.Variable).value as string;
+				operation = p.ExpectSymbol(validOperators).type;
+				valueExpression = new Expression(p);
+				p.ExpectSymbol(TokenType.EndCommand);
+
+			}
+
+			public override string PrintTree (int indentLevel)
+			{
+				var sb = new StringBuilder ();
+				sb.Append (Tab(indentLevel, string.Format("Set {0} {1}", destinationVariableName, operation.ToString())));
+				sb.Append (valueExpression.PrintTree (indentLevel + 1));
+				return sb.ToString ();
+
+			}
+		}
+
 		// Operators are used in expressions - things like + - / * != neq
 		public class Operator : ParseNode {
-			TokenType operatorType;
+			public TokenType operatorType { get; private set; }
 
 			public static  TokenType[] validTokens {
 				get {
@@ -418,11 +524,12 @@ namespace Yarn {
 						TokenType.LessThan,
 						TokenType.LessThanOrEqualTo,
 						TokenType.NotEqualTo,
-						
-						TokenType.AddAssign,
-						TokenType.MinusAssign,
-						TokenType.DivideAssign,
-						TokenType.MultiplyAssign,						
+
+						TokenType.Add,
+						TokenType.Or,
+						TokenType.Not,
+						TokenType.Xor
+												
 					};
 				}
 			}
@@ -523,3 +630,5 @@ namespace Yarn {
 
 	}
 }
+
+
