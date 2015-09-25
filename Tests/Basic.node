@@ -1,0 +1,18 @@
+whoa what here's some text
+<<set $foo to 1>>
+
+<<if $foo is 1>> // testing a comment
+    this should appear :)
+    <<if 1 is 1>>
+        NESTED IF BLOCK WHAAAT
+        <<set $foo += 47 + 6>>
+    <<endif>>
+<<else>>
+    oh noooo it didn't work :(
+<<endif>>
+
+<<if $foo is 54>>
+    haha nice now 'set' works even when deeply nested
+<<else>>
+    aaargh :(
+<<endif>>

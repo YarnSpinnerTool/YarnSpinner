@@ -13,17 +13,25 @@ namespace Yarn {
 	[Serializable]
 	public class ParseException : Exception {
 
+		public int lineNumber = 0;
+
 		public static ParseException Make(Token foundToken, params TokenType[] expectedTypes) {
+
+			var lineNumber = foundToken.lineNumber+1;
+
+
 
 			string possibleValues = string.Join(",", expectedTypes);
 
 			string message = string.Format("{0}:{1}: Expected {2}, but found {3}",
-			                               foundToken.lineNumber,
+			                               lineNumber,
 			                               foundToken.columnNumber,
 			                               possibleValues,
 			                               foundToken.type.ToString()
 			                               );
-			return new ParseException(message);
+			var e = new ParseException (message);
+			e.lineNumber = lineNumber;
+			return e;
 		}
 
 		// Some necessary constructors for the exception
@@ -609,8 +617,8 @@ namespace Yarn {
 			throw ParseException.Make(t, validTypes);
 		}
 
-		// The next two methods allow us to backtrack - 
-		// to speculatively parse some grammar, you
+		// The next two methods allow us to backtrack.
+		// To speculatively parse some grammar, you
 		// use Fork() to copy the current state of the 
 		// parser, try to parse using this new temp parser, 
 		// and if you catch a ParseException, no harm done.

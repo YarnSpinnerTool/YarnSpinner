@@ -1,168 +1,115 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace YarnParser
 {
 	class MainClass
 	{
+
+		static void ShowHelpAndExit() {
+			Console.WriteLine ("YarnParser: Parses Yarn dialog files.");
+			Console.WriteLine ();
+			Console.WriteLine ("Usage:");
+			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] <files>");
+			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
+			Console.WriteLine ("\t-p: Show the parse tree and exit.");
+			Console.WriteLine ("\t-w: After showing a line, wait for the user to press a key.");
+			Console.WriteLine ("\t-h: Show this message and exit.");
+
+			Environment.Exit (0);
+		}
+
 		public static void Main (string[] args)
 		{
 
-			String[] complexInputLines = {
-			                        "Mae: This is a test",
-			                        "Molly: Pretty cool!",
-			                        "<<set $foo to 2>>",
-									"<<set $bar to 3.0>>",
-									"    Mae: Yeah well this is indented",
-									"Molly: This isn't!",
-									"Mae: Pretty cool. Hey, here's punctuation.",
+			if (args.Length == 0) {
+				ShowHelpAndExit ();
+			}
+			bool showTokens = false;
+			bool showParseTree = false;
+			bool waitForLines = false;
 
-			};
-
-			String[] simpleInputLines = {
-				"this is       cool",
-				"yes  it  is"
-			};
-
-			String[] indentTestLines = {
-				"this line is at indent 0",
-				"so is this",
-				"    this line is at indent 1",
-				"    woo this is at 1 also",
-				"        we need to go deeper", 
-				"back to indent 0"				
-			};
-
-			String[] veryBasicExpressions = {
-				
-				"whoa what here's some text",
-				"<<set $foo to 1>>",
-				"",
-				"<<if $foo is 1>> // testing a comment",
-				"    this should appear :)",
-				"    <<if 1 is 1>>",
-				"        NESTED IF BLOCK WHAAAT",
-				"        <<set $foo += 47 + 6>>",
-				"    <<endif>>",
-				"<<else>>",
-				"    oh noooo it didn't work :(",
-				"<<endif>>",
-				"",
-				"<<if $foo is 54>>",
-				"    haha nice now 'set' works even when deeply nested",
-				"<<else>>",
-				"    aaargh :(",
-				"<<endif>>"
-			};
-
-			String[] nestedIfs = {
-				"<<if 1 == 1>>",
-				"<<if 2 == 2>>",
-				"Whoa",
-				"<<endif>>",
-				"<<if 2 == 3>>",
-				"Whoa no :(",
-				"<<endif>>",
-				"<<endif>>"
-			};
-
-			String[] basicMathLines = {
-				"1 + 2 / 56 - 123 * 2" 
-			};
+			var inputFiles = new List<string> ();
 
 
-			String[] veryComplicatedTestLines = {
-				"Testing some stuff...",
-				"",
-				"<<if $something_not_one is 1>>",
-				"    First if statement went wrong.",
-				"De-denting??",
-				"<<else>>",
-				"    First if statement went right! :)",
-				"<<endif>>",
-				"",
-				"<<if $something_not_one is 0>>",
-				"    Second if statement went right! :)",
-				"<<else>>",
-				"    Second if statement went wrong. :(",
-				"<<endif>>",
-				"[[Go to branch 1|Branch1]]",
-				"[[Go to branch 2|Branch2]]",
-			};
+			string[] allowedExtensions = {".node", ".json" };
 
-			String[] veryComplicatedTestLinesWithShortcutOptions = {
-				"Testing some stuff...",
-				"",
-				"<<if $something_not_one is 1>>",
-				"    First if statement went wrong.",
-				"<<else>>",
-				"    First if statement went right! :)",
-				"<<endif>>",
-				"",
-				"<<if $something_not_one is 0>>",
-				"    Second if statement went right! :)",
-				"<<else>>",
-				"    Second if statement went wrong. :(",
-				"<<endif>>",
-				"",
-				"Ready for some options?",
-				"-> This is an option. The next one should say: Yay it worked!",
-				"-> This option shouldn't show up <<if $available is 1>>",
-				"-> Yay it worked! Select this option for sub-options.",
-				"    -> This is nested option 1",
-				"        Oh yes, this me option 1.",
-				"    -> This is nested option 2",
-				"        Oh man, this me option 2.",
-				"Now you should see two branches.",
-				"[[Go to branch 1|Branch1]]",
-				"[[Go to branch 2|Branch2]]",
-			};
+			foreach (var arg in args) {
+				switch (arg) {
+				case "-t":
+					showTokens = true;
+					break;
+				case "-p":
+					showParseTree = true;
+					break;
+				case "-w":
+					waitForLines = true;
+					break;
 
-
-
-			//String[] linesToUse = simpleInputLines;
-			//String[] linesToUse = complexInputLines;
-			//String[] linesToUse = indentTestLines;
-			//String[] linesToUse = veryComplicatedTestLinesWithShortcutOptions;
-			//String[] linesToUse = veryComplicatedTestLines;
-			//String[] linesToUse = basicMathLines;
-			String[] linesToUse = veryBasicExpressions;
-			//String[] linesToUse = nestedIfs;
-
-			// Merge the test array into a big ol string
-			String inputString = string.Join("\n",linesToUse);
-
-			// Start building the tokenizer
-			var tokenizer = new Yarn.Tokeniser();
-
-			Console.WriteLine ("Yarn Input:");
-			Console.WriteLine (inputString);
-
-
-			// Tokenise the input
-			var tokens = tokenizer.Tokenise(inputString);
-
-			/*
-			// Sum up the result
-			var tokenSummary = new List<string>();
-			foreach (var t in tokens) {
-				tokenSummary.Add(t.ToString());
+				case "-h":
+					ShowHelpAndExit ();
+					break;
+				default:
+					var extension = System.IO.Path.GetExtension (arg);
+					if (Array.IndexOf(allowedExtensions, extension) != -1) {
+						inputFiles.Add (arg);
+					}
+					break;
+				}
 			}
 
-			var tokenSummaryString = string.Join("\n", tokenSummary);
+			if (inputFiles.Count == 0) {
+				Console.Error.WriteLine ("Error: No files specified.");
+				Environment.Exit (1);
+			}
 
-			// Let's see what we got
-			Console.WriteLine("Tokens:\n{0}", tokenSummaryString);*/
+			// TODO: use multiple files
+
+			System.IO.StreamReader reader = new System.IO.StreamReader(inputFiles[0]);
+			string inputString = reader.ReadToEnd ();
+			reader.Close ();
+
+			// Tokenise the input
+			var tokenizer = new Yarn.Tokeniser();
+			var tokens = tokenizer.Tokenise(inputString);
+
+			if (showTokens) {
+				// Sum up the result
+				var tokenSummary = new List<string>();
+				foreach (var t in tokens) {
+					tokenSummary.Add(t.ToString());
+				}
+
+				var tokenSummaryString = string.Join("\n", tokenSummary);
+
+				// Let's see what we got
+				Console.WriteLine("Tokens:");
+				Console.WriteLine (tokenSummaryString);
+				Console.WriteLine();
+			}
+
 
 			// Try to parse it
 			var parser = new Yarn.Parser(tokens);
+			Yarn.Parser.Node tree = null;
 
-			var tree = parser.Parse();
+			try {
+				tree = parser.Parse();	
+			} catch (Yarn.ParseException p) {
+				Console.Error.WriteLine(string.Format("Parse error on line {0}",
+					p.lineNumber
+				));
+				Environment.Exit (1);
+			}
 
-			// Dump the parse tree
-//			Console.WriteLine();
-//			Console.WriteLine("Parse Tree:");
-//			Console.WriteLine(tree.PrintTree(0));
+
+			if (showParseTree) {
+				// Dump the parse tree
+				Console.WriteLine("Parse Tree:");
+				Console.WriteLine(tree.PrintTree(0));
+				Console.WriteLine ();
+			}
 
 			// Execute the parsed program
 			var r = new Yarn.Runner();
@@ -172,7 +119,10 @@ namespace YarnParser
 			// Set up the line handler
 			r.RunLine += delegate(string lineText) {
 				Console.WriteLine (lineText);
-				Console.Read();
+				if (waitForLines == true) {
+					Console.Read();
+				}
+
 			};
 
 			r.RunOptions += delegate(string[] options) {
@@ -193,7 +143,7 @@ namespace YarnParser
 						} else {							
 							return selection;
 						}
-					} catch (FormatException e) {}
+					} catch (FormatException) {}
 
 				} while (true);
 
