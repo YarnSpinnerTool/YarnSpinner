@@ -38,7 +38,7 @@ namespace YarnParser
 				"whoa what here's some text",
 				"<<set $foo to 1>>",
 				"",
-				"<<if $foo is 1>>",
+				"<<if $foo is 1>> // testing a comment",
 				"    this should appear :)",
 				"    <<if 1 is 1>>",
 				"        NESTED IF BLOCK WHAAAT",

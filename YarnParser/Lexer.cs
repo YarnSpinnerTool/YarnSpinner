@@ -71,6 +71,8 @@ namespace Yarn {
 		MultiplyAssign, // *=
 		DivideAssign, // /=
 
+		Comment, // a run of text that we ignore
+
 		Text // a run of text until we hit special syntax
 	}
 	
@@ -350,6 +352,10 @@ namespace Yarn {
 			
 			// Set up the end-of-file token
 			AddTokenRule(TokenType.EndOfInput, null);
+
+			// Comments
+			AddTokenRule (TokenType.Comment, "\\/\\/.*", canBeginLine: true)
+				.discard = true;
 
 			// Basic syntax
 			AddTokenRule(TokenType.Number, "(\\d+\\.\\d*|\\d+)");
