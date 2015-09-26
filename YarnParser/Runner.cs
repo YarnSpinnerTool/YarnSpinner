@@ -91,11 +91,23 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.IfStatement:
-				var condition = EvaluateExpression (statement.ifStatement.expression);
+				var condition = EvaluateExpression (statement.ifStatement.primaryClause.expression);
 				if (condition != 0.0f) {
-					RunStatements (statement.ifStatement.statements);
+					RunStatements (statement.ifStatement.primaryClause.statements);
 				} else {
-					RunStatements (statement.ifStatement.elseStatements);
+
+					bool didRunElseIf = false;
+					foreach (var elseIf in statement.ifStatement.elseIfClauses) {
+						if (EvaluateExpression(elseIf.expression) != 0.0f) {
+							RunStatements(elseIf.statements);
+							didRunElseIf = true;
+							break;
+						}
+					}
+
+					if (didRunElseIf) {
+						RunStatements (statement.ifStatement.elseClause.statements);
+					}
 				}
 				break;
 
@@ -116,15 +128,15 @@ namespace Yarn
 		// TODO: more operators
 
 		float EvaluateExpression(Parser.Expression expression) {
-
+			
 			switch (expression.type) {
-			case Parser.Expression.Type.PrimitiveValue:
+			case Parser.Expression.Type.Value:
 				return EvaluateValue (expression.value);
-			case Parser.Expression.Type.Expression:
+			case Parser.Expression.Type.Compound:
 
 				var leftHand = EvaluateExpression (expression.leftHand);
 
-				var operatorType = expression.exprOperator.operatorType;
+				var operatorType = expression.operation.operatorType;
 				var rightHand = EvaluateExpression (expression.rightHand);
 
 				switch (operatorType) {
@@ -163,7 +175,9 @@ namespace Yarn
 				throw new NotImplementedException ("Operator " + operatorType.ToString() + " is not yet implemented");
 			}
 
+
 			return 0.0f;
+
 
 		}
 

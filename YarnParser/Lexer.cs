@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
+
+
 	// save some typing, we deal with lists of tokens a LOT
 	public class TokenList : List<Token> {}
 
@@ -42,6 +44,10 @@ namespace Yarn {
 		Else,
 		EndIf,
 		Set,
+
+		// Parentheses
+		LeftParen,
+		RightParen,
 
 		// Operators
 		EqualTo, // ==, eq, is
@@ -401,6 +407,9 @@ namespace Yarn {
 			AddTokenRule(TokenType.Minus, "-");
 			AddTokenRule(TokenType.Multiply, "\\*");
 			AddTokenRule(TokenType.Divide, "\\/");
+
+			AddTokenRule (TokenType.LeftParen, "\\(");
+			AddTokenRule (TokenType.RightParen, "\\)");
 
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably

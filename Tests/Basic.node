@@ -1,5 +1,6 @@
 whoa what here's some text
-<<set $foo to 1>>
+<<set $foo to (1+3*3/9)-1>>
+//<<set $foo to (1+0)>>
 
 <<if $foo is 1>> // testing a comment
     this should appear :)
