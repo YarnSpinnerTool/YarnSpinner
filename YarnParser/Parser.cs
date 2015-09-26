@@ -75,7 +75,6 @@ namespace Yarn {
 			// ParseNodes do their parsing by consuming tokens from the Parser.
 			// You parse tokens into a ParseNode by using its constructor.
 			public ParseNode(ParseNode parent, Parser p) { this.parent = parent; }
-			public ParseNode(ParseNode parent) { this.parent = parent; }
 
 			// Recursively prints the ParseNode and all of its child ParseNodes.
 			public abstract string PrintTree (int indentLevel);
@@ -113,20 +112,13 @@ namespace Yarn {
 			// The statements in this node
 			List<Statement> _statements = new List<Statement> ();
 			
-			public Node(string name, ParseNode parent, Parser p, string linkAtEnd = null) : base(parent, p) {
+			public Node(string name, ParseNode parent, Parser p) : base(parent, p) {
 				this.name = name;
 				// Consume statements until we run out of input or we hit a dedent
 				while (p.tokens.Count > 0 && p.NextSymbolIs(TokenType.Dedent,TokenType.EndOfInput) == false) {
 					_statements.Add(new Statement(this, p));
 				}
 
-				if (linkAtEnd != null) {
-					// Inject an OptionStatement that links directly to the specified
-					// node
-					var link = new OptionStatement(this, linkAtEnd);
-					var statement = new Statement(this, link);
-					_statements.Add(statement);
-				}
 
 
 			}
@@ -232,13 +224,6 @@ namespace Yarn {
 
 			}
 
-			// Special support for manually creating links to other nodes
-			public Statement(ParseNode parent, OptionStatement optionStatement) : base(parent) {
-				type = Type.OptionStatement;
-				this.optionStatement = optionStatement;
-			}
-
-
 			public override string PrintTree (int indentLevel)
 			{
 				switch (type) {
@@ -267,14 +252,17 @@ namespace Yarn {
 		public class ShortcutOptionGroup : ParseNode {
 			public IEnumerable<ShortcutOption> options { get { return _options; }}
 
+			// The options in this group
 			private List<ShortcutOption> _options = new List<ShortcutOption>();
 
+			// The node that all options link back to - this is actually everything after the options
 			public Node epilogue { get; private set; }
 
 			public ShortcutOptionGroup(ParseNode parent, Parser p) : base(parent, p) {
 
-				// keep parsing options until we can't; expect at least one
-				int shortcutIndex = 1;
+				// keep parsing options until we can't, but expect at least one (otherwise it's
+				// not actually a list of options)
+				int shortcutIndex = 1; // give each option a number so it can name itself
 				do {						
 					_options.Add(new ShortcutOption(shortcutIndex++, this, p));
 				} while (p.NextSymbolIs(TokenType.ShortcutOption));
@@ -320,11 +308,11 @@ namespace Yarn {
 					p.ExpectSymbol(TokenType.EndCommand);
 				}
 
-				// Parse the block if it's there
+				// Parse the node if it's there
 				try {
 					var p1 = p.Fork();
 					p1.ExpectSymbol(TokenType.Indent);
-					optionNode = new Node(NodeParent().name + "." + optionIndex, this, p1, NodeParent().name + ".Epilogue");
+					optionNode = new Node(NodeParent().name + "." + optionIndex, this, p1);
 					p1.ExpectSymbol(TokenType.Dedent);
 
 					p.MergeWithParser(p1);
@@ -400,10 +388,6 @@ namespace Yarn {
 			public string destination { get; private set;}
 			public string label { get; private set;}
 
-			// Special support for manually creating links to other nodes
-			public OptionStatement(ParseNode parent, string destination) : base(parent) {
-				this.destination = destination;
-			}
 
 			public OptionStatement(ParseNode parent, Parser p) : base(parent, p) {
 
