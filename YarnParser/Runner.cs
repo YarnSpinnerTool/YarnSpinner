@@ -132,12 +132,32 @@ namespace Yarn
 					return leftHand + rightHand;
 				case TokenType.Minus:
 					return leftHand - rightHand;
+				case TokenType.Multiply:
+					return leftHand * rightHand;
+				case TokenType.Divide:
+					return leftHand / rightHand;
+
+				case TokenType.GreaterThan:
+					return leftHand > rightHand ? 1.0f : 0.0f;
+				case TokenType.LessThan:
+					return leftHand < rightHand ? 1.0f : 0.0f;
+				case TokenType.GreaterThanOrEqualTo:
+					return leftHand >= rightHand ? 1.0f : 0.0f;
+				case TokenType.LessThanOrEqualTo:
+					return leftHand <= rightHand ? 1.0f : 0.0f;
 
 				case TokenType.EqualToOrAssign:					
 				case TokenType.EqualTo:
 					return leftHand == rightHand ? 1.0f : 0.0f;
 				case TokenType.NotEqualTo:
 					return leftHand != rightHand ? 1.0f : 0.0f;
+
+				case TokenType.And:
+					return (leftHand!=0 && rightHand!=0) ? 1.0f : 0.0f;
+				case TokenType.Or:
+					return (leftHand!=0 || rightHand!=0) ? 1.0f : 0.0f;
+				case TokenType.Xor:
+					return (leftHand!=0 ^ rightHand!=0) ? 1.0f : 0.0f;				
 				}
 
 				throw new NotImplementedException ("Operator " + operatorType.ToString() + " is not yet implemented");
