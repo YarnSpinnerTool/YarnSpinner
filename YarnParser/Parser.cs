@@ -70,9 +70,12 @@ namespace Yarn {
 		// Base class for nodes in th parse tree
 		public abstract class ParseNode {
 
+			private ParseNode parent;
+
 			// ParseNodes do their parsing by consuming tokens from the Parser.
 			// You parse tokens into a ParseNode by using its constructor.
-			public ParseNode(Parser p) { }
+			public ParseNode(ParseNode parent, Parser p) { this.parent = parent; }
+			public ParseNode(ParseNode parent) { this.parent = parent; }
 
 			// Recursively prints the ParseNode and all of its child ParseNodes.
 			public abstract string PrintTree (int indentLevel);
@@ -81,11 +84,28 @@ namespace Yarn {
 			{
 				return PrintTree (0);
 			}
+
+			// The closest parent to this ParseNode that is a Node.
+			public Node NodeParent() {
+				var node = this;
+
+				do {
+					if (node is Node) {
+						return node as Node;
+					}
+					node = node.parent;
+				} while (node 
+					!= null);					
+
+				return null;
+			}
 		}
 
 		// The top-level unit of parsing.
 		// Node = (Statement)* EndOfInput
 		public class Node : ParseNode {
+
+			public string name { get; private set;}
 
 			// Read-only public accessor for statements
 			public IEnumerable<Statement> statements { get { return _statements; }}
@@ -93,24 +113,33 @@ namespace Yarn {
 			// The statements in this node
 			List<Statement> _statements = new List<Statement> ();
 			
-			public Node(Parser p) : base(p) {
-				// Consume statements until we run out of input
-				while (p.NextSymbolIs(TokenType.EndOfInput) == false) {
-					_statements.Add(new Statement(p));
+			public Node(string name, ParseNode parent, Parser p, string linkAtEnd = null) : base(parent, p) {
+				this.name = name;
+				// Consume statements until we run out of input or we hit a dedent
+				while (p.tokens.Count > 0 && p.NextSymbolIs(TokenType.Dedent,TokenType.EndOfInput) == false) {
+					_statements.Add(new Statement(this, p));
 				}
 
-				p.ExpectSymbol(TokenType.EndOfInput);
+				if (linkAtEnd != null) {
+					// Inject an OptionStatement that links directly to the specified
+					// node
+					var link = new OptionStatement(this, linkAtEnd);
+					var statement = new Statement(this, link);
+					_statements.Add(statement);
+				}
+
+
 			}
 
 			// Print the statements we have
 			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
-				sb.Append (Tab (indentLevel, "Node: {"));
+				sb.Append (Tab (indentLevel, "Node "+name+" {"));
 				foreach (var statement in _statements) {
-					sb.Append( Tab(indentLevel, statement.PrintTree (indentLevel + 1), newLine: false));
+					sb.Append( statement.PrintTree (indentLevel + 1));
 				}
-				sb.Append (Tab (indentLevel, "}", newLine: false));
+				sb.Append (Tab (indentLevel, "}"));
 				return sb.ToString();
 			}
 
@@ -120,12 +149,14 @@ namespace Yarn {
 		// Statement = Block
 		// Statement = IfStatement
 		// Statement = OptionStatement
+		// Statement = ShortcutOptionGroup
 		// Statement = <Text>
 		// TODO: set statements
 		// TODO: shortcut options
 		public class Statement : ParseNode {
 
 			public enum Type {
+				ShortcutOptionGroup,
 				Block,
 				IfStatement,
 				OptionStatement,
@@ -142,12 +173,15 @@ namespace Yarn {
 			public AssignmentStatement assignmentStatement {get; private set;}
 			public string line {get; private set;}
 
-			public Statement(Parser p) : base(p) {
+			public ShortcutOptionGroup shortcutOptionGroup { get; private set; }
+
+
+			public Statement(ParseNode parent, Parser p) : base(parent, p) {
 
 				// No? Try to parse a block
 				try {
 					var p1 = p.Fork();
-					block = new Block(p1);
+					block = new Block(this, p1);
 					p.MergeWithParser(p1);
 					type = Type.Block;
 					return;
@@ -156,7 +190,7 @@ namespace Yarn {
 				// Try to parse an if statement
 				try {
 					var p1 = p.Fork();
-					ifStatement = new IfStatement(p1);
+					ifStatement = new IfStatement(this, p1);
 					p.MergeWithParser(p1);
 					type = Type.IfStatement;
 					return;
@@ -165,7 +199,7 @@ namespace Yarn {
 				// Try to parse an option
 				try {
 					var p1 = p.Fork();
-					optionStatement = new OptionStatement(p1);
+					optionStatement = new OptionStatement(this, p1);
 					p.MergeWithParser(p1);
 					type = Type.OptionStatement;
 
@@ -175,17 +209,35 @@ namespace Yarn {
 				// Try to parse an assignment
 				try {
 					var p1 = p.Fork();
-					assignmentStatement = new AssignmentStatement(p1);
+					assignmentStatement = new AssignmentStatement(this, p1);
 					p.MergeWithParser(p1);
 					type = Type.AssignmentStatement;
 					return;
 				} catch (Yarn.ParseException) {}
+
+				// Try to parse a shortcut option group
+				try {
+					var p1 = p.Fork();
+					shortcutOptionGroup = new ShortcutOptionGroup(this, p1);
+					p.MergeWithParser(p1);
+					type = Type.ShortcutOptionGroup;
+					return;
+				} catch (Yarn.ParseException) {}
+
+
 
 				// It must be a basic line, then
 				line = p.ExpectSymbol(TokenType.Text).value as string;
 				type = Type.Line;
 
 			}
+
+			// Special support for manually creating links to other nodes
+			public Statement(ParseNode parent, OptionStatement optionStatement) : base(parent) {
+				type = Type.OptionStatement;
+				this.optionStatement = optionStatement;
+			}
+
 
 			public override string PrintTree (int indentLevel)
 			{
@@ -198,12 +250,107 @@ namespace Yarn {
 					return optionStatement.PrintTree (indentLevel);
 				case Type.AssignmentStatement:
 					return assignmentStatement.PrintTree (indentLevel);
+				case Type.ShortcutOptionGroup:
+					return shortcutOptionGroup.PrintTree (indentLevel);
 				case Type.Line:
 					return Tab (indentLevel, "Line: "+ line);
 				}
 
 				throw new ArgumentNullException ();
 			}
+
+		}
+
+		// Shortcut option groups are groups of shortcut options,
+		// followed by the node that they rejoin.
+		// ShortcutOptionGroup = ShortcutOption+ Node
+		public class ShortcutOptionGroup : ParseNode {
+			public IEnumerable<ShortcutOption> options { get { return _options; }}
+
+			private List<ShortcutOption> _options = new List<ShortcutOption>();
+
+			public Node epilogue { get; private set; }
+
+			public ShortcutOptionGroup(ParseNode parent, Parser p) : base(parent, p) {
+
+				// keep parsing options until we can't; expect at least one
+				int shortcutIndex = 1;
+				do {						
+					_options.Add(new ShortcutOption(shortcutIndex++, this, p));
+				} while (p.NextSymbolIs(TokenType.ShortcutOption));
+
+				// finally parse everything after this option group as the epilogue
+				epilogue = new Node(NodeParent().name+".Epilogue", this, p);
+			}
+
+			public override string PrintTree (int indentLevel)
+			{
+				var sb = new StringBuilder ();
+				sb.Append (Tab (indentLevel, "Option group {"));
+
+				foreach (var option in options) {
+					sb.Append (option.PrintTree (indentLevel + 1));
+				}
+				sb.Append (Tab (indentLevel, "} Epilogue {"));
+				sb.Append (epilogue.PrintTree (indentLevel + 1));
+				sb.Append (Tab (indentLevel, "}"));
+
+				return sb.ToString ();
+			}
+
+
+		}
+
+		// Shortcut options are a convenient way to define new options.
+		// ShortcutOption = -> <text> [BeginCommand If Expression EndCommand] [Block]
+		public class ShortcutOption : ParseNode {
+			public string label { get; private set;}
+			public Expression condition { get; private set;}
+			public Node optionNode { get; private set;}
+
+			public ShortcutOption(int optionIndex, ParseNode parent, Parser p) : base(parent, p) {
+				p.ExpectSymbol(TokenType.ShortcutOption);
+				label = p.ExpectSymbol(TokenType.Text).value as string;
+
+				// Parse the conditional ("<<if $foo>>") if it's there
+				if (p.NextSymbolIs(TokenType.BeginCommand)) {
+					p.ExpectSymbol(TokenType.BeginCommand);
+					p.ExpectSymbol(TokenType.If);
+					condition = new Expression(this, p);
+					p.ExpectSymbol(TokenType.EndCommand);
+				}
+
+				// Parse the block if it's there
+				try {
+					var p1 = p.Fork();
+					p1.ExpectSymbol(TokenType.Indent);
+					optionNode = new Node(NodeParent().name + "." + optionIndex, this, p1, NodeParent().name + ".Epilogue");
+					p1.ExpectSymbol(TokenType.Dedent);
+
+					p.MergeWithParser(p1);
+				} catch (ParseException) {}
+			}
+
+			public override string PrintTree (int indentLevel)
+			{
+				var sb = new StringBuilder ();
+				sb.Append (Tab (indentLevel, "Option \"" +label + "\""));
+
+				if (condition != null) {
+					sb.Append (Tab (indentLevel + 1, "(if"));
+					sb.Append (condition.PrintTree(indentLevel+2));
+					sb.Append (Tab (indentLevel + 1, ")"));
+				}
+
+				if (optionNode != null) {
+					sb.Append (Tab (indentLevel, "{"));
+					sb.Append (optionNode.PrintTree (indentLevel + 1));
+					sb.Append (Tab (indentLevel, "}"));
+				}
+
+				return sb.ToString ();
+			}
+
 
 		}
 
@@ -215,7 +362,7 @@ namespace Yarn {
 
 			List<Statement> _statements = new List<Statement> ();
 
-			public Block(Parser p) : base(p) {
+			public Block(ParseNode parent, Parser p) : base(parent, p) {
 
 				// Read the indent token
 				p.ExpectSymbol(TokenType.Indent);
@@ -224,7 +371,7 @@ namespace Yarn {
 				while (p.NextSymbolIs(TokenType.Dedent) == false) {
 					// fun fact! because Blocks are a type of Statement,
 					// we get nested block parsing for free! \:D/
-					_statements.Add(new Statement(p));
+					_statements.Add(new Statement(this, p));
 				}
 
 				// Tidy up by reading the dedent
@@ -253,7 +400,12 @@ namespace Yarn {
 			public string destination { get; private set;}
 			public string label { get; private set;}
 
-			public OptionStatement(Parser p) : base(p) {
+			// Special support for manually creating links to other nodes
+			public OptionStatement(ParseNode parent, string destination) : base(parent) {
+				this.destination = destination;
+			}
+
+			public OptionStatement(ParseNode parent, Parser p) : base(parent, p) {
 
 				// The meaning of the string(s) we have changes
 				// depending on whether we have one or two, so
@@ -306,7 +458,7 @@ namespace Yarn {
 			public IEnumerable<Statement> elseStatements { get; private set; }
 			
 			public IList f;
-			public IfStatement(Parser p) : base(p) {
+			public IfStatement(ParseNode parent, Parser p) : base(parent, p) {
 
 				List<Statement> statements = new List<Statement>();
 				List<Statement> elseStatements = new List<Statement>();
@@ -314,13 +466,13 @@ namespace Yarn {
 
 				p.ExpectSymbol(TokenType.BeginCommand);
 				p.ExpectSymbol(TokenType.If);
-				expression = new Expression(p);
+				expression = new Expression(this, p);
 				p.ExpectSymbol(TokenType.EndCommand);
 
 				// Keep going until we hit an <<endif or <<else
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false) {
-					statements.Add(new Statement(p));
+					statements.Add(new Statement(this, p));
 				}
 
 				// Handle <<else>> if we have it
@@ -330,7 +482,7 @@ namespace Yarn {
 					p.ExpectSymbol(TokenType.EndCommand);
 
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false) {
-						elseStatements.Add(new Statement(p));
+						elseStatements.Add(new Statement(this, p));
 					}
 				}
 
@@ -382,7 +534,7 @@ namespace Yarn {
 			public float number {get; private set;}
 			public string variableName {get; private set;}
 
-			public Value(Parser p) : base(p) {
+			public Value(ParseNode parent, Parser p) : base(parent, p) {
 
 				// Parse a number or a variable name
 				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable);
@@ -434,15 +586,15 @@ namespace Yarn {
 			public Operator exprOperator { get; private set; }
 			public Value rightHand { get; private set; }
 
-			public Expression(Parser p) : base(p) {
+			public Expression(ParseNode parent, Parser p) : base(parent, p) {
 
-				Value v = new Value(p);
+				Value v = new Value(this, p);
 
 
 				if (p.NextSymbolIs(Operator.validTokens)) {
 					leftHand = v;
-					exprOperator = new Operator(p);
-					rightHand = new Value(p);
+					exprOperator = new Operator(this, p);
+					rightHand = new Value(this, p);
 					type = Type.Expression;
 				} else {
 					value = v;
@@ -492,13 +644,13 @@ namespace Yarn {
 				TokenType.MultiplyAssign
 			};
 
-			public AssignmentStatement(Parser p) : base(p) {
+			public AssignmentStatement(ParseNode parent, Parser p) : base(parent, p) {
 
 				p.ExpectSymbol(TokenType.BeginCommand);
 				p.ExpectSymbol(TokenType.Set);
 				destinationVariableName = p.ExpectSymbol(TokenType.Variable).value as string;
 				operation = p.ExpectSymbol(validOperators).type;
-				valueExpression = new Expression(p);
+				valueExpression = new Expression(this, p);
 				p.ExpectSymbol(TokenType.EndCommand);
 
 			}
@@ -542,7 +694,7 @@ namespace Yarn {
 				}
 			}
 
-			public Operator(Parser p) : base(p) {
+			public Operator(ParseNode parent, Parser p) : base(parent, p) {
 				operatorType = p.ExpectSymbol(Operator.validTokens).type;
 			}
 
@@ -565,7 +717,7 @@ namespace Yarn {
 		public Node Parse() {
 
 			// Kick off the parsing process by trying to parse a whole node
-			return new Node(this);
+			return new Node("Start", null, this);
 		}
 
 		// Returns true if the next symbol is one of 'validTypes'

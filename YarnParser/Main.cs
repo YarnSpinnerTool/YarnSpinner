@@ -94,6 +94,9 @@ namespace YarnParser
 			var parser = new Yarn.Parser(tokens);
 			Yarn.Parser.Node tree = null;
 
+			#if DEBUG
+			tree = parser.Parse();	
+			#else
 			try {
 				tree = parser.Parse();	
 			} catch (Yarn.ParseException p) {
@@ -102,6 +105,7 @@ namespace YarnParser
 				));
 				Environment.Exit (1);
 			}
+			#endif
 
 
 			if (showParseTree) {
