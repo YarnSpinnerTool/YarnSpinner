@@ -2,20 +2,25 @@ using System;
 using System.Collections.Generic;
 
 
-namespace YarnParser
+namespace Yarn
 {
-	class MainClass
+
+	class YarnParser
 	{
 
 		static void ShowHelpAndExit() {
 			Console.WriteLine ("YarnParser: Parses Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] <files>");
+			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] [-s=<start>] [-v<argname>=<value>] <inputfile>");
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
-			Console.WriteLine ("\t-w: After showing a line, wait for the user to press a key.");
+			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
+			Console.WriteLine ("\t-s: Start at the given node, instead of the default of '" + Dialogue.DEFAULT_START + "'.");
+			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
+
 			Console.WriteLine ("\t-h: Show this message and exit.");
+
 
 			Environment.Exit (0);
 		}
@@ -31,11 +36,40 @@ namespace YarnParser
 			bool waitForLines = false;
 
 			var inputFiles = new List<string> ();
-
+			string startNode = Dialogue.DEFAULT_START;
 
 			string[] allowedExtensions = {".node", ".json" };
 
+			var defaultVariables = new Dictionary<string,float> ();
+
 			foreach (var arg in args) {
+
+				// Handle 'start' parameter
+				if (arg.IndexOf("-s=") != -1) {
+					var startArray = arg.Split (new char[]{ '=' });
+					if (startArray.Length != 2) {
+						ShowHelpAndExit ();
+					} else {
+						startNode = startArray [1];
+						continue;
+					}
+				}
+
+				// Handle variable input
+				if (arg.IndexOf("-v") != -1) {
+					var variable = arg.Substring (2);
+					var variableArray = variable.Split (new char[]{ '=' });
+					if (variableArray.Length != 2) {
+						ShowHelpAndExit ();
+					} else {
+						var varName = "$" + variableArray [0];
+						var varValue = float.Parse (variableArray [1]);
+						defaultVariables [varName] = varValue;
+						continue;
+					}
+
+				}
+
 				switch (arg) {
 				case "-t":
 					showTokens = true;
@@ -46,11 +80,17 @@ namespace YarnParser
 				case "-w":
 					waitForLines = true;
 					break;
-
 				case "-h":
 					ShowHelpAndExit ();
 					break;
 				default:
+
+					// only allow one file
+					if (inputFiles.Count > 0) {
+						Console.Error.WriteLine ("Error: Too many files specified.");
+						Environment.Exit (1);
+					}
+
 					var extension = System.IO.Path.GetExtension (arg);
 					if (Array.IndexOf(allowedExtensions, extension) != -1) {
 						inputFiles.Add (arg);
@@ -64,72 +104,47 @@ namespace YarnParser
 				Environment.Exit (1);
 			}
 
-			// TODO: use multiple files
+			// Load nodes
+			var dialogue = new Dialogue();
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree);
 
-			System.IO.StreamReader reader = new System.IO.StreamReader(inputFiles[0]);
-			string inputString = reader.ReadToEnd ();
-			reader.Close ();
+			// Create the object that handles callbacks
+			var impl = new ConsoleRunnerImplementation (continuity:null, waitForLines:waitForLines);
 
-			// Tokenise the input
-			var tokenizer = new Yarn.Tokeniser();
-			var tokens = tokenizer.Tokenise(inputString);
+			// load the default variables we got on the command line
+			foreach (var variable in defaultVariables) {
+				impl.continuity.SetNumber (variable.Value, variable.Key);
+			}
 
-			if (showTokens) {
-				// Sum up the result
-				var tokenSummary = new List<string>();
-				foreach (var t in tokens) {
-					tokenSummary.Add(t.ToString());
+			// Run the conversation
+			dialogue.RunConversation (impl, startNode);
+
+		}
+
+		// A simple Implementation for the command line.
+		private class ConsoleRunnerImplementation : Yarn.Implementation {
+			
+			private bool waitForLines = false;
+
+			public ConsoleRunnerImplementation(Continuity continuity = null, bool waitForLines = false) {
+				if (continuity != null) {
+					this.continuity = continuity;
+				} else {
+					this.continuity = new SimpleContinuity();
 				}
-
-				var tokenSummaryString = string.Join("\n", tokenSummary);
-
-				// Let's see what we got
-				Console.WriteLine("Tokens:");
-				Console.WriteLine (tokenSummaryString);
-				Console.WriteLine();
+				this.waitForLines = waitForLines;
 			}
 
-
-			// Try to parse it
-			var parser = new Yarn.Parser(tokens);
-			Yarn.Parser.Node tree = null;
-
-			#if DEBUG
-			tree = parser.Parse();	
-			#else
-			try {
-				tree = parser.Parse();	
-			} catch (Yarn.ParseException p) {
-				Console.Error.WriteLine(string.Format("Parse error on line {0}",
-					p.lineNumber
-				));
-				Environment.Exit (1);
-			}
-			#endif
-
-
-			if (showParseTree) {
-				// Dump the parse tree
-				Console.WriteLine("Parse Tree:");
-				Console.WriteLine(tree.PrintTree(0));
-				Console.WriteLine ();
-			}
-
-			// Execute the parsed program
-			var r = new Yarn.Runner();
-
-			r.continuity = new SimpleContinuity ();
-
-			// Set up the line handler
-			r.RunLine = delegate(string lineText) {
+			public void RunLine (string lineText)
+			{
 				Console.WriteLine (lineText);
 				if (waitForLines == true) {
 					Console.Read();
 				}
+			}
 
-			};
-
-			r.RunOptions = delegate(string[] options) {
+			public int RunOptions (string[] options)
+			{
 				Console.WriteLine("Options:");
 				for (int i = 0; i < options.Length; i++) {
 					var optionDisplay = string.Format ("{0}. {1}", i + 1, options [i]);
@@ -150,26 +165,36 @@ namespace YarnParser
 					} catch (FormatException) {}
 
 				} while (true);
+			}
 
-			};
+			public void RunCommand (string command)
+			{
+				Console.WriteLine("Command: <<"+command+">>");
+			}
 
-			r.NodeComplete = delegate(string nextNodeName) {
-				if (nextNodeName != null) {
-					Console.WriteLine("Finished; next node = " + nextNodeName);
-				} else {
-					Console.WriteLine("All done! :)");
-				}
-			};
+			public void DialogueComplete (string nextNodeName)
+			{
+				throw new NotImplementedException();
+			}
 
-			r.RunCommand = delegate(string command) {
-				Console.WriteLine("<<"+command+">>");
-			};
+			public Continuity continuity {
+				get; private set;
+			}
 
-			r.RunNode (tree);
+			public void HandleErrorMessage (string error)
+			{
+				Console.WriteLine("Error: " + error);
+			}
+
+			
+			public void HandleDebugMessage (string message)
+			{
+				Console.WriteLine("Debug: " + message);
+			}
 		}
 
 		// Very simple continuity class that keeps all variables in memory
-		private class SimpleContinuity : Yarn.Runner.Continuity {
+		private class SimpleContinuity : Yarn.Continuity {
 			#region Continuity implementation
 
 			bool debug = false;
@@ -180,7 +205,7 @@ namespace YarnParser
 
 			Dictionary<string, float> variables = new Dictionary<string, float>();
 
-			void Yarn.Runner.Continuity.SetNumber (float number, string variableName)
+			void Yarn.Continuity.SetNumber (float number, string variableName)
 			{
 				variables [variableName] = number;
 				if (debug)
@@ -188,7 +213,7 @@ namespace YarnParser
 						variableName, number.ToString ()));
 			}
 
-			float Yarn.Runner.Continuity.GetNumber (string variableName)
+			float Yarn.Continuity.GetNumber (string variableName)
 			{
 				if (debug)
 					Console.Write ("\t("+variableName + " is ");

@@ -4,31 +4,29 @@ using System.Collections.Generic;
 
 namespace Yarn
 {
+	
+
+	public interface Continuity {
+		void SetNumber(float number, string variableName);
+		float GetNumber(string variableName);
+	}
+
 	public class Runner
 	{
 
-		public interface Continuity {
-			void SetNumber(float number, string variableName);
-			float GetNumber(string variableName);
-		}
-			
-		public delegate void RunLineCallback(string lineText);
-		public delegate int RunOptionsCallback(string[] options);
-		public delegate void RunCommandCallback(string command);
-		public delegate void NodeCompleteCallback(string nextNodeName);
 
-
-		// This will be repeatedly called when we encounter
-		public RunLineCallback RunLine;
-		public RunOptionsCallback RunOptions;
-		public RunCommandCallback RunCommand;
-		public NodeCompleteCallback NodeComplete;
 
 		public List<Parser.OptionStatement> currentOptions;
 
-		public Continuity continuity;
-		
-		public void RunNode(Yarn.Parser.Node node)
+		private Implementation implementation;
+
+		public Runner(Implementation implementation) {
+			this.implementation = implementation;
+		}
+
+		// executes a node, and returns either the name of the next node to run
+		// or null (indicating the dialogue is over)
+		public string RunNode(Yarn.Parser.Node node)
 		{
 
 			currentOptions = new List<Parser.OptionStatement> ();
@@ -36,8 +34,7 @@ namespace Yarn
 
 			// If we have no options, all done
 			if (currentOptions.Count == 0) {
-				NodeComplete (null);
-				return;
+				return null;
 			} else {
 
 				// We have options!
@@ -46,8 +43,7 @@ namespace Yarn
 				// label, jump to it
 				if (currentOptions.Count == 1 &&
 					currentOptions[0].label == null) {
-					NodeComplete (currentOptions [0].destination);
-					return;
+					return currentOptions [0].destination;
 				}
 
 				// Otherwise, ask which option to pick
@@ -57,13 +53,13 @@ namespace Yarn
 					var label = option.label ?? option.destination;
 					optionStrings.Add (label);
 				}
-				var selectedOptionNumber = RunOptions (optionStrings.ToArray ());
+				var selectedOptionNumber = implementation.RunOptions (optionStrings.ToArray ());
 
 				// And jump to it!
 				var selectedOption = currentOptions [selectedOptionNumber];
 
-				NodeComplete (selectedOption.destination);
-				return;
+
+				return selectedOption.destination;
 			}
 
 		}
@@ -88,7 +84,7 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.Line:
-				RunLine (statement.line);
+				implementation.RunLine (statement.line);
 				break;
 
 			case Parser.Statement.Type.IfStatement:
@@ -135,9 +131,6 @@ namespace Yarn
 		
 
 		}
-
-		// TODO: assignment (including operators like +=)
-		// TODO: more operators
 
 		float EvaluateExpression(Parser.Expression expression) {
 			
@@ -203,7 +196,7 @@ namespace Yarn
 			case Parser.Value.Type.Number:
 				return value.number;
 			case Parser.Value.Type.Variable:
-				return continuity.GetNumber (value.variableName);
+				return implementation.continuity.GetNumber (value.variableName);
 			}
 			return 0.0f;
 		}
@@ -213,7 +206,7 @@ namespace Yarn
 
 			var computedValue = EvaluateExpression (assignment.valueExpression);
 
-			float originalValue = continuity.GetNumber (variableName);
+			float originalValue = implementation.continuity.GetNumber (variableName);
 
 			float finalValue = 0.0f;
 
@@ -235,7 +228,7 @@ namespace Yarn
 				break;
 			}
 
-			continuity.SetNumber (finalValue, variableName);
+			implementation.continuity.SetNumber (finalValue, variableName);
 		}
 
 		void RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
@@ -261,7 +254,7 @@ namespace Yarn
 					optionStrings.Add(option.label);
 				}
 
-				var selectedIndex = RunOptions(optionStrings.ToArray());
+				var selectedIndex = implementation.RunOptions(optionStrings.ToArray());
 				var selectedOption = optionsToDisplay[selectedIndex];
 
 				if (selectedOption.optionNode != null)
@@ -275,7 +268,7 @@ namespace Yarn
 
 		void RunCustomCommand (Parser.CustomCommand customCommand)
 		{
-			RunCommand (customCommand.command);
+			implementation.RunCommand (customCommand.command);
 		}
 	}
 }

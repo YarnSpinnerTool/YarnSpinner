@@ -21,7 +21,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>True</Externalconsole>
-    <Commandlineparameters>-t -p ../../../Tests/Basic.node</Commandlineparameters>
+    <Commandlineparameters>-t -p ../../../Tests/NITW/Lori.json -vact=2 -vday=1 -s=Lori</Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -39,8 +39,11 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Lexer.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="Runner.cs" />
+    <Compile Include="Loader.cs" />
+    <Compile Include="Dialogue.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="JsonParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

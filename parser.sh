@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-mono YarnParser/bin/Debug/YarnParser.exe $@
+mono YarnParser/bin/Release/YarnParser.exe $@

@@ -7,7 +7,9 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
-
+	public class TokeniserException : InvalidOperationException  {
+		public TokeniserException (string message) : base (message) {}
+	}
 
 	// save some typing, we deal with lists of tokens a LOT
 	public class TokenList : List<Token> {}
@@ -122,6 +124,7 @@ namespace Yarn {
 			// So, we need to mark certain rules as "this token can start a line"
 
 			public bool canBeginLine; 
+			public bool resetsLine;
 
 			public override string ToString ()
 			{
@@ -156,24 +159,24 @@ namespace Yarn {
 				}
 				// noooooo we forgot to add a rule in PrepareTokenRules()
 				if (found == false)
-					throw new ArgumentNullException("Missing rule for token type " + names[i]);
+					throw new TokeniserException("Missing rule for token type " + names[i]);
 			}
 
 
 		}
 		
 		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false) {
+		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false) {
 			
 			var newTokenRule = new TokenRule();
 			newTokenRule.type = type;
-			
+
 			// Set up a regex if we have a rule for it
 			if (rule != null) {
 				
 				newTokenRule.regex = new Regex(rule);
 			}
-
+			newTokenRule.resetsLine = resetsLine;
 			newTokenRule.canBeginLine = canBeginLine;
 			
 			// Store it in the list and return
@@ -191,33 +194,37 @@ namespace Yarn {
 			var lines = input.Split(new char[] {'\n'} , StringSplitOptions.RemoveEmptyEntries);
 
 			// Keep track of which column each new indent started
-			var indents = new Stack<int>();
+			var indentLevels = new Stack<int>();
 			
 			// Start at indent 0
-			indents.Push(0);
+			indentLevels.Push(0);
 
 			var lineNum = 0;
 			foreach (var line in lines) {
 				
-				int newIndent;
+				int newIndentLevel;
 				
 				// Get the tokens, plus the indentation level of this line
-				var lineTokens = TokeniseLine(line, out newIndent, lineNum);
+				var lineTokens = TokeniseLine(line, out newIndentLevel, lineNum);
 				
-				if (newIndent > indents.Peek()) {
+				if (newIndentLevel > indentLevels.Peek()) {
 					// We are now more indented than the last indent.
 					// Emit a "indent" token, and push this new indent onto the stack.
-					tokens.Add(new Token(TokenType.Indent));
-					indents.Push(newIndent);
-				} else if (newIndent < indents.Peek()) {
+					var indent = new Token(TokenType.Indent);
+					indent.lineNumber = lineNum;
+					tokens.Add(indent);
+					indentLevels.Push(newIndentLevel);
+				} else if (newIndentLevel < indentLevels.Peek()) {
 					// We are less indented than the last indent.
 					// We may have indented more than a single indent, though, so
 					// check this against all indents we know about
 					
-					while (newIndent < indents.Peek()) {
+					while (newIndentLevel < indentLevels.Peek()) {
 						// We've gone down an indent, holy crap, dedent it!
-						tokens.Add(new Token(TokenType.Dedent));
-						indents.Pop();
+						var dedent = new Token(TokenType.Dedent);
+						dedent.lineNumber = lineNum;
+						tokens.Add(dedent);
+						indentLevels.Pop();
 					}
 				}
 				
@@ -228,14 +235,17 @@ namespace Yarn {
 				lineNum++;
 				
 			}
-			
+
+
 			// Dedent if there's any indentations left (ie we reached the 
 			// end of the file and it was still indented)
 			// (we stop at the second-last one because we pushed 'indent 0' at the start,
 			// and popping that would emit an unbalanced dedent token
-			while (indents.Count > 1) {
-				indents.Pop();
-				tokens.Add(new Token(TokenType.Dedent));
+			while (indentLevels.Count > 1) {
+				indentLevels.Pop();
+				var dedent = new Token(TokenType.Dedent);
+				dedent.lineNumber = lineNum;
+				tokens.Add(dedent);
 			}
 
 			// Finish up with an ending token
@@ -250,6 +260,9 @@ namespace Yarn {
 			
 			// The tokens we found on this line
 			var tokens = new TokenList();
+
+			// Replace tabs with four spaces
+			input = input.Replace ("\t", "    ");
 			
 			// Find whitespace at the start of a line
 			var initialIndentRule = new Regex("^\\s+");
@@ -269,6 +282,7 @@ namespace Yarn {
 			int columnNumber = lineIndentation;
 			// Consume the string
 
+			bool startOfLine = true;
 			while (columnNumber < input.Length) {
 				
 				// Keep track of whether we successfully found a rule to parse the next token
@@ -279,20 +293,19 @@ namespace Yarn {
 					// Is the next chunk of text a token?
 					if (tokenRule.regex != null) {
 
-						// Get more detailed info
+						// Attempt to match this
 						var match = tokenRule.regex.Match(input, columnNumber);
 
+						// Bail out if this either failed to match, or matched
+						// further out in the text
 						if (match.Success == false || match.Index > columnNumber)
 							continue;
 
 						// Bail out if this is the first token and we aren't allowed to
 						// match this rule at the start
-						if (tokenRule.canBeginLine == false && tokens.Count == 0) {
+						if (tokenRule.canBeginLine == false && startOfLine == true) {
 							continue;
 						}
-						
-
-
 
 						// Record the token only if we care
 						// about it (ie it's not whitespace)
@@ -313,6 +326,17 @@ namespace Yarn {
 
 							// Add it to the token stream
 							tokens.Add(token);
+
+							// If this is a token that 'resets' the fact
+							// that we're at the start of the line (like '->' does),
+							// then record that; otherwise, record that we're past
+							// the start of the line and are now allowed to start
+							// matching additional types of tokens
+							if (tokenRule.resetsLine) {
+								startOfLine = true;
+							} else {
+								startOfLine = false;
+							}
 							
 						}
 
@@ -330,8 +354,8 @@ namespace Yarn {
 				}
 				
 				if (matched == false) {
-					// We've exhausted the list of possible token types - bail out
-					throw new ArgumentException("Failed to interpret token " + input);
+					// We've exhausted the list of possible token types - failed to interpret the string!
+					throw new InvalidOperationException("Failed to interpret token " + input);
 				}
 			}
 			
@@ -351,7 +375,7 @@ namespace Yarn {
 			
 			// Set up the special begin and end indentation tokens - 
 			// these aren't matched by regexes, but rather emitted
-			// during parsing by keeping track of the number of spaces
+			// during lexing by keeping track of the number of spaces
 			AddTokenRule(TokenType.Indent, null, canBeginLine:true);
 			AddTokenRule(TokenType.Dedent, null, canBeginLine:true);
 			
@@ -370,11 +394,11 @@ namespace Yarn {
 			AddTokenRule(TokenType.Number, "((?<!\\[\\[)\\d+)");
 			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
 			AddTokenRule(TokenType.EndCommand, "\\>\\>");
-			AddTokenRule(TokenType.Variable, "\\$[A-z]+");
+			AddTokenRule(TokenType.Variable, "\\$[A-z\\d]+");
 			
 			// Options
-			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true);
-			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true);
+			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true, resetsLine:true);
 			AddTokenRule(TokenType.OptionDelimit, "\\|");
 			AddTokenRule(TokenType.OptionEnd, "\\]\\]");
 			
@@ -388,18 +412,19 @@ namespace Yarn {
 			
 			// Operators
 			AddTokenRule(TokenType.EqualTo, "(==|eq|is)");
-			AddTokenRule(TokenType.GreaterThan, "(\\>|gt)");
 			AddTokenRule(TokenType.GreaterThanOrEqualTo, "(\\>=|gte)");
-			AddTokenRule(TokenType.LessThan, "(\\<|lt)");
 			AddTokenRule(TokenType.LessThanOrEqualTo, "(\\<=|lte)");
+			AddTokenRule(TokenType.GreaterThan, "(\\>|gt)");
+			AddTokenRule(TokenType.LessThan, "(\\<|lt)");
 			AddTokenRule(TokenType.NotEqualTo, "(\\!=|neq)");
 
 			AddTokenRule(TokenType.And, "(\\&\\&|and)");
 			AddTokenRule(TokenType.Or, "(\\|\\||or)");
 			AddTokenRule(TokenType.Xor, "(\\^|xor)");
 			AddTokenRule(TokenType.Not, "(\\!|not)");
-			
-			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)", canBeginLine: true);
+
+			// Assignment operators
+			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)");
 
 			AddTokenRule(TokenType.AddAssign, "\\+=");
 			AddTokenRule(TokenType.MinusAssign, "-=");

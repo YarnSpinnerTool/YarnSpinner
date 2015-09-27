@@ -18,12 +18,8 @@ namespace Yarn {
 		public static ParseException Make(Token foundToken, params TokenType[] expectedTypes) {
 
 			var lineNumber = foundToken.lineNumber+1;
-
-
-
 			string possibleValues = string.Join(",", expectedTypes);
-
-			string message = string.Format("{0}:{1}: Expected {2}, but found {3}",
+			string message = string.Format("Line {0}:{1}: Expected {2}, but found {3}",
 			                               lineNumber,
 			                               foundToken.columnNumber,
 			                               possibleValues,
@@ -36,7 +32,7 @@ namespace Yarn {
 
 		public static ParseException Make(Token mostRecentToken, string message) {
 			var lineNumber = mostRecentToken.lineNumber+1;
-			string theMessage = string.Format ("{0}:{1}: {2}",
+			string theMessage = string.Format ("Line {0}:{1}: {2}",
 				                 lineNumber,
 								mostRecentToken.columnNumber,
 				                 message);
@@ -45,23 +41,14 @@ namespace Yarn {
 			return e;
 		}
 
-		// Some necessary constructors for the exception
-		public ParseException () {}
-		
 		public ParseException (string message) : base(message) {}
 		
-		public ParseException (string message, Exception innerException) : base (message, innerException) {}
-		
-		protected ParseException (SerializationInfo info, StreamingContext context) : base (info, context) {}
 	}
 
 
 	// Magic abstract syntax tree producer - feed it tokens, and it gives you
 	// a tree representation! Or an error!
-	// TODO: actually useful parse errors
 	public class Parser {
-
-
 
 		// Indents the 'input' string 'indentLevel' times
 		private static string Tab(int indentLevel, string input, bool newLine = true) {
@@ -154,6 +141,8 @@ namespace Yarn {
 		// Statement = IfStatement
 		// Statement = OptionStatement
 		// Statement = ShortcutOptionGroup
+		// Statement = CustomCommand
+		// Statement = AssignmentStatement
 		// Statement = <Text>
 		// TODO: set statements
 		// TODO: shortcut options
@@ -178,7 +167,6 @@ namespace Yarn {
 			public AssignmentStatement assignmentStatement {get; private set;}
 			public CustomCommand customCommand {get;private set;}
 			public string line {get; private set;}
-
 			public ShortcutOptionGroup shortcutOptionGroup { get; private set; }
 
 
@@ -208,11 +196,12 @@ namespace Yarn {
 					type = Type.CustomCommand;
 					customCommand = new CustomCommand(this, p);
 					return;
+				} else if (p.NextSymbolIs(TokenType.Text)) {
+					line = p.ExpectSymbol(TokenType.Text).value as string;
+					type = Type.Line;
+				} else {
+					throw ParseException.Make(p.tokens.Peek(), "Expected a statement here (was there an unbalanced if statement earlier?)");
 				}
-				// It must be a basic line, then
-				line = p.ExpectSymbol(TokenType.Text).value as string;
-				type = Type.Line;
-
 			}
 
 			public override string PrintTree (int indentLevel)
@@ -512,7 +501,6 @@ namespace Yarn {
 
 				// Handle <<elseif 
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
-
 					var newElseClause = new IfClause();
 
 					p.ExpectSymbol(TokenType.BeginCommand);
@@ -524,7 +512,7 @@ namespace Yarn {
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
-						statements.Add(new Statement(this, p));
+						elseStatements.Add(new Statement(this, p));
 					}
 
 					newElseClause.statements = elseStatements;
@@ -544,8 +532,6 @@ namespace Yarn {
 					}
 					elseClause.statements = elseStatements;
 				}
-
-				// TODO: elseif
 
 				// Tidy up by reading <<endif>>
 				p.ExpectSymbol(TokenType.BeginCommand);
@@ -747,7 +733,7 @@ namespace Yarn {
 
 						var info = Operator.InfoForOperator(next.type);
 						if (evaluationStack.Count < info.arguments) {
-							throw ParseException.Make(next, "Error parsing exception");
+							throw ParseException.Make(next, "Error parsing expression (not enough arguments for operator "+next.type.ToString()+")");
 						}
 						Expression lhs = null, rhs = null;
 
@@ -774,7 +760,7 @@ namespace Yarn {
 				}
 				// We should now have a single expression in this stack
 				if (evaluationStack.Count != 1) {
-					throw ParseException.Make(firstToken, "Error parsing exception");
+					throw ParseException.Make(firstToken, "Error parsing expression (stack did not reduce)");
 				}
 
 				// Return it
@@ -1022,6 +1008,7 @@ namespace Yarn {
 			}
 			return true;
 		}
+
 
 		// Return the next token, which must be of type 'type',
 		// or throw an exception
