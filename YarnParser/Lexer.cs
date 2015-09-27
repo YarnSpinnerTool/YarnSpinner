@@ -122,6 +122,11 @@ namespace Yarn {
 			// So, we need to mark certain rules as "this token can start a line"
 
 			public bool canBeginLine; 
+
+			public override string ToString ()
+			{
+				return string.Format ("TokenRule: {0}", type.ToString());
+			}
 		}
 		
 		// The list of all known token types
@@ -165,12 +170,8 @@ namespace Yarn {
 			
 			// Set up a regex if we have a rule for it
 			if (rule != null) {
-				// We add a ^ at the start of the regex to ensure that the rule matches
-				// against the start of the text we're trying to evaluate - 
-				// this prevents rules from matching further into the line
-				// (ie a token rule that looks for "+" should not find it in 
-				// the string "1 + 2" but it should find it in "+ 2"
-				newTokenRule.regex = new Regex("^"+rule);
+				
+				newTokenRule.regex = new Regex(rule);
 			}
 
 			newTokenRule.canBeginLine = canBeginLine;
@@ -264,11 +265,11 @@ namespace Yarn {
 			}
 			
 			// Keeps track of how much of the line we have left to parse
-			var remainingString = input;
 
-			int columnNumber = 0;
+			int columnNumber = lineIndentation;
 			// Consume the string
-			while (remainingString.Length > 0) {
+
+			while (columnNumber < input.Length) {
 				
 				// Keep track of whether we successfully found a rule to parse the next token
 				var matched = false;
@@ -276,8 +277,13 @@ namespace Yarn {
 				foreach (var tokenRule in tokenRules) {
 					
 					// Is the next chunk of text a token?
-					if (tokenRule.regex != null && 
-					    tokenRule.regex.IsMatch(remainingString)) {
+					if (tokenRule.regex != null) {
+
+						// Get more detailed info
+						var match = tokenRule.regex.Match(input, columnNumber);
+
+						if (match.Success == false || match.Index > columnNumber)
+							continue;
 
 						// Bail out if this is the first token and we aren't allowed to
 						// match this rule at the start
@@ -285,8 +291,7 @@ namespace Yarn {
 							continue;
 						}
 						
-						// Get more detailed info
-						var match = tokenRule.regex.Match(remainingString);
+
 
 
 						// Record the token only if we care
@@ -314,12 +319,10 @@ namespace Yarn {
 						// Update the column number
 						columnNumber += match.Length;
 
-						// Discard these characters - we're moving on
-						remainingString = remainingString.Remove(0, match.Length);
-						
+
 						// Record that we successfully found a type for this token
 						matched = true;
-						
+
 						// We've matched a token type, stop trying to
 						// match it against others
 						break;
@@ -364,7 +367,7 @@ namespace Yarn {
 				.discard = true;
 
 			// Basic syntax
-			AddTokenRule(TokenType.Number, "(\\d+\\.\\d*|\\d+)");
+			AddTokenRule(TokenType.Number, "((?<!\\[\\[)\\d+)");
 			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
 			AddTokenRule(TokenType.EndCommand, "\\>\\>");
 			AddTokenRule(TokenType.Variable, "\\$[A-z]+");
@@ -414,7 +417,7 @@ namespace Yarn {
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
 			// match it
-			AddTokenRule(TokenType.Text, "^[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
+			AddTokenRule(TokenType.Text, "[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
 		}
 	}
 
