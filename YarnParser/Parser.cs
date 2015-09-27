@@ -919,19 +919,22 @@ namespace Yarn {
 				case TokenType.Add:
 				case TokenType.Minus:
 					return new OperatorInfo(Associativity.Left, 15,2);
-				case TokenType.And:
-				case TokenType.Or:
-				case TokenType.Xor:
-					return new OperatorInfo(Associativity.Left, 10,2);
 				case TokenType.GreaterThan:
 				case TokenType.LessThan:
 				case TokenType.GreaterThanOrEqualTo:
 				case TokenType.LessThanOrEqualTo:
-					return new OperatorInfo(Associativity.Left, 5,2);
+					return new OperatorInfo(Associativity.Left, 10,2);
 				case TokenType.EqualTo:
 				case TokenType.EqualToOrAssign:
 				case TokenType.NotEqualTo:
-					return new OperatorInfo(Associativity.Left, 0,2);
+					return new OperatorInfo(Associativity.Left, 5,2);
+				case TokenType.And:
+					return new OperatorInfo(Associativity.Left, 4,2);
+				case TokenType.Or:
+					return new OperatorInfo(Associativity.Left, 3,2);
+				case TokenType.Xor:
+					return new OperatorInfo(Associativity.Left, 2,2);
+
 				}
 				throw new InvalidOperationException ();
 				
@@ -957,7 +960,7 @@ namespace Yarn {
 						TokenType.LessThanOrEqualTo,
 						TokenType.NotEqualTo,
 
-						TokenType.Add,
+						TokenType.And,
 						TokenType.Or,
 						TokenType.Not,
 						TokenType.Xor
