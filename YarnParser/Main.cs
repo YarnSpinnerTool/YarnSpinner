@@ -121,7 +121,7 @@ namespace YarnParser
 			r.continuity = new SimpleContinuity ();
 
 			// Set up the line handler
-			r.RunLine += delegate(string lineText) {
+			r.RunLine = delegate(string lineText) {
 				Console.WriteLine (lineText);
 				if (waitForLines == true) {
 					Console.Read();
@@ -129,7 +129,7 @@ namespace YarnParser
 
 			};
 
-			r.RunOptions += delegate(string[] options) {
+			r.RunOptions = delegate(string[] options) {
 				Console.WriteLine("Options:");
 				for (int i = 0; i < options.Length; i++) {
 					var optionDisplay = string.Format ("{0}. {1}", i + 1, options [i]);
@@ -153,7 +153,7 @@ namespace YarnParser
 
 			};
 
-			r.NodeComplete += delegate(string nextNodeName) {
+			r.NodeComplete = delegate(string nextNodeName) {
 				if (nextNodeName != null) {
 					Console.WriteLine("Finished; next node = " + nextNodeName);
 				} else {
@@ -161,7 +161,10 @@ namespace YarnParser
 				}
 			};
 
-			Console.WriteLine ("\nRUNNING THE DIALOGUE:");
+			r.RunCommand = delegate(string command) {
+				Console.WriteLine("<<"+command+">>");
+			};
+
 			r.RunNode (tree);
 		}
 
@@ -169,20 +172,38 @@ namespace YarnParser
 		private class SimpleContinuity : Yarn.Runner.Continuity {
 			#region Continuity implementation
 
+			bool debug = false;
+
+			public SimpleContinuity(bool debug = false) {
+				this.debug = debug;
+			}
+
 			Dictionary<string, float> variables = new Dictionary<string, float>();
 
 			void Yarn.Runner.Continuity.SetNumber (float number, string variableName)
 			{
 				variables [variableName] = number;
+				if (debug)
+					Console.WriteLine (string.Format ("\t(set {0} to {1})", 
+						variableName, number.ToString ()));
 			}
 
 			float Yarn.Runner.Continuity.GetNumber (string variableName)
 			{
+				if (debug)
+					Console.Write ("\t("+variableName + " is ");
+				float value = 0.0f;
 				if (variables.ContainsKey(variableName)) {
-					return variables [variableName];
-				} else {
-					return 0.0f;
+					
+					value = variables [variableName];
+
 				}
+
+				if (debug)
+					Console.WriteLine (value.ToString () + ")");
+
+				return value;
+
 
 			}
 
