@@ -14,13 +14,14 @@ namespace Yarn
 			
 		public delegate void RunLineCallback(string lineText);
 		public delegate int RunOptionsCallback(string[] options);
+		public delegate void RunCommandCallback(string command);
 		public delegate void NodeCompleteCallback(string nextNodeName);
+
 
 		// This will be repeatedly called when we encounter
 		public RunLineCallback RunLine;
-
 		public RunOptionsCallback RunOptions;
-
+		public RunCommandCallback RunCommand;
 		public NodeCompleteCallback NodeComplete;
 
 		public List<Parser.OptionStatement> currentOptions;
@@ -105,7 +106,7 @@ namespace Yarn
 						}
 					}
 
-					if (didRunElseIf) {
+					if (didRunElseIf == false) {
 						RunStatements (statement.ifStatement.elseClause.statements);
 					}
 				}
@@ -119,6 +120,17 @@ namespace Yarn
 			case Parser.Statement.Type.AssignmentStatement:
 				RunAssignmentStatement (statement.assignmentStatement);
 				break;
+
+			case Parser.Statement.Type.ShortcutOptionGroup:
+
+				RunShortcutOptionGroup (statement.shortcutOptionGroup);
+				break;
+			case Parser.Statement.Type.CustomCommand:
+				RunCustomCommand (statement.customCommand);
+				break;
+
+			default:
+				throw new NotImplementedException ("Unimplemented statement type " + statement.type);
 			}
 		
 
@@ -224,6 +236,46 @@ namespace Yarn
 			}
 
 			continuity.SetNumber (finalValue, variableName);
+		}
+
+		void RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
+		{
+			var optionsToDisplay = new List<Parser.ShortcutOption> ();
+
+			// Determine which options to present
+			foreach (var option in shortcutOptionGroup.options) {
+				var include = true;
+				if (option.condition != null) {
+					include = EvaluateExpression(option.condition) != 0.0f;
+				}
+				if (include) {
+					optionsToDisplay.Add(option);
+				}
+			}
+
+			if (optionsToDisplay.Count > 0) {
+				// Give this list to our client
+				var optionStrings = new List<string> ();
+
+				foreach (var option in optionsToDisplay) {
+					optionStrings.Add(option.label);
+				}
+
+				var selectedIndex = RunOptions(optionStrings.ToArray());
+				var selectedOption = optionsToDisplay[selectedIndex];
+
+				if (selectedOption.optionNode != null)
+					RunStatements(selectedOption.optionNode.statements);
+			}
+
+			if (shortcutOptionGroup.epilogue != null)
+				RunStatements(shortcutOptionGroup.epilogue.statements);
+
+		}
+
+		void RunCustomCommand (Parser.CustomCommand customCommand)
+		{
+			RunCommand (customCommand.command);
 		}
 	}
 }
