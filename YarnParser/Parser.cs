@@ -295,7 +295,7 @@ namespace Yarn {
 			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
-				sb.Append (Tab (indentLevel, "Option group {"));
+				sb.Append (Tab (indentLevel, "Shortcut option group {"));
 
 				foreach (var option in options) {
 					sb.Append (option.PrintTree (indentLevel + 1));
@@ -664,8 +664,12 @@ namespace Yarn {
 
 			public static Expression Parse(ParseNode parent, Parser p) {
 
-				// Applies Djikstra's "shunting yard" algorithm to convert the 
-				// stream of infix expressions into postfix notation
+				// Applies Djikstra's "shunting-yard" algorithm to convert the 
+				// stream of infix expressions into postfix notation; we then
+				// build a tree of expressions from the result
+
+				// https://en.wikipedia.org/wiki/Shunting-yard_algorithm
+
 				Queue<Token> _expressionRPN = new Queue<Token> ();
 				var operatorStack = new Stack<Token>();
 
@@ -874,7 +878,7 @@ namespace Yarn {
 				var sb = new StringBuilder ();
 				sb.Append (Tab(indentLevel, "Set:"));
 				sb.Append (Tab(indentLevel+1, destinationVariableName));
-				sb.Append (Tab (indentLevel,  operation.ToString() + ":"));
+				sb.Append (Tab (indentLevel+1,  operation.ToString()));
 				sb.Append (valueExpression.PrintTree (indentLevel + 1));
 				return sb.ToString ();
 
