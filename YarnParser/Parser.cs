@@ -504,25 +504,26 @@ namespace Yarn {
 				var statements = new List<Statement>();
 				// Keep going until we hit an <<endif or <<else
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
-						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false) {
+					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
+					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 					statements.Add(new Statement(this, p));
 				}
 				primaryClause.statements = statements;
 
-				// Handle <<else if 
-				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else, TokenType.If)) {
+				// Handle <<elseif 
+				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
 
 					var newElseClause = new IfClause();
 
 					p.ExpectSymbol(TokenType.BeginCommand);
-					p.ExpectSymbol(TokenType.Else);
-					p.ExpectSymbol(TokenType.If);
+					p.ExpectSymbol(TokenType.ElseIf);
 					newElseClause.expression = Expression.Parse(this, p);
 					p.ExpectSymbol(TokenType.EndCommand);
 
 					var elseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
-						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false) {
+						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
+						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 						statements.Add(new Statement(this, p));
 					}
 
