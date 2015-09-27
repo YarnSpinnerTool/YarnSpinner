@@ -184,61 +184,31 @@ namespace Yarn {
 
 			public Statement(ParseNode parent, Parser p) : base(parent, p) {
 
-				// No? Try to parse a block
-				try {
-					var p1 = p.Fork();
-					block = new Block(this, p1);
-					p.MergeWithParser(p1);
+				if (Block.CanParse(p)) {
 					type = Type.Block;
+					block = new Block(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
-				// Try to parse an if statement
-				try {
-					var p1 = p.Fork();
-					ifStatement = new IfStatement(this, p1);
-					p.MergeWithParser(p1);
+				} else if (IfStatement.CanParse(p)) {
 					type = Type.IfStatement;
+					ifStatement = new IfStatement(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
-				// Try to parse an option
-				try {
-					var p1 = p.Fork();
-					optionStatement = new OptionStatement(this, p1);
-					p.MergeWithParser(p1);
+				} else if (OptionStatement.CanParse(p)) {
 					type = Type.OptionStatement;
-
+					optionStatement = new OptionStatement(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
-				// Try to parse an assignment
-				try {
-					var p1 = p.Fork();
-					assignmentStatement = new AssignmentStatement(this, p1);
-					p.MergeWithParser(p1);
+				} else if (AssignmentStatement.CanParse(p)) {
 					type = Type.AssignmentStatement;
+					assignmentStatement = new AssignmentStatement(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
-				// Try to parse a shortcut option group
-				try {
-					var p1 = p.Fork();
-					shortcutOptionGroup = new ShortcutOptionGroup(this, p1);
-					p.MergeWithParser(p1);
+				} else if (ShortcutOptionGroup.CanParse(p)) {
 					type = Type.ShortcutOptionGroup;
+					shortcutOptionGroup = new ShortcutOptionGroup(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
-				// Try to parse a custom command
-				try {
-					var p1 = p.Fork();
-					customCommand = new CustomCommand(this, p1);
-					p.MergeWithParser(p1);
+				} else if (CustomCommand.CanParse(p)) {
 					type = Type.CustomCommand;
+					customCommand = new CustomCommand(this, p);
 					return;
-				} catch (Yarn.ParseException) {}
-
+				}
 				// It must be a basic line, then
 				line = p.ExpectSymbol(TokenType.Text).value as string;
 				type = Type.Line;
@@ -273,6 +243,11 @@ namespace Yarn {
 		// system that owns this dialogue sytem. eg <<stand>>
 		// CustomCommand = BeginCommand <Text> EndCommand
 		public class CustomCommand : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text);
+			}
+
 			public string command { get; private set;}
 
 			public CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
@@ -291,6 +266,11 @@ namespace Yarn {
 		// followed by the node that they rejoin.
 		// ShortcutOptionGroup = ShortcutOption+ Node
 		public class ShortcutOptionGroup : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolIs (TokenType.ShortcutOption);
+			}
+
 			public IEnumerable<ShortcutOption> options { get { return _options; }}
 
 			// The options in this group
@@ -386,6 +366,11 @@ namespace Yarn {
 		// Blocks are indented groups of statements
 		// Block = Indent Statement* Dedent
 		public class Block : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolIs (TokenType.Indent);
+			}
+
 			
 			public IEnumerable<Statement> statements { get { return _statements; }}
 
@@ -426,6 +411,11 @@ namespace Yarn {
 		// OptionStatement = OptionStart <Text> OptionEnd
 		// OptionStatement = OptionStart <Text> OptionDelimit <Text> OptionEnd
 		public class OptionStatement : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolIs (TokenType.OptionStart);
+			}
+
 			public string destination { get; private set;}
 			public string label { get; private set;}
 
@@ -477,6 +467,10 @@ namespace Yarn {
 		// If = BeginCommand If Expression EndCommand Statement* BeginCommand EndIf EndCommand
 		// TODO: elseif
 		public class IfStatement : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.If);
+			}
 
 			public struct IfClause {
 				public Expression expression;
@@ -845,6 +839,11 @@ namespace Yarn {
 		// AssignmentStatements are things like <<set $foo = 1>>
 		// AssignmentStatement = BeginCommand Set <variable> <operation> Expression EndCommand
 		public class AssignmentStatement : ParseNode {
+			public static bool CanParse (Parser p)
+			{
+				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Set);
+			}
+
 			public string destinationVariableName { get; private set; }
 
 			public Expression valueExpression { get; private set; }
