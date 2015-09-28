@@ -580,6 +580,12 @@ namespace Json
                             case '/':
                                 sb.Append(symbol);
                                 break;
+							case 't':
+								sb.Append ("\t");
+								break;
+							case 'r':
+								sb.Append ("\r");
+								break;
 							case 'n':
 								sb.Append ("\n");
 								break;
@@ -589,8 +595,6 @@ namespace Json
                             case 'b':
                             case 'f':
                             
-                            case 'r':
-                            case 't':
                                 break;
                             case 'u': // Unicode literals
                                 if (index < data.Count - 5)
