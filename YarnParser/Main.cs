@@ -104,10 +104,6 @@ namespace Yarn
 				Environment.Exit (1);
 			}
 
-			// Load nodes
-			var dialogue = new Dialogue();
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree);
-
 			// Create the object that handles callbacks
 			var impl = new ConsoleRunnerImplementation (continuity:null, waitForLines:waitForLines);
 
@@ -116,8 +112,13 @@ namespace Yarn
 				impl.continuity.SetNumber (variable.Value, variable.Key);
 			}
 
+			// Load nodes
+			var dialogue = new Dialogue(impl);
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree);
+
+
 			// Run the conversation
-			dialogue.RunConversation (impl, startNode);
+			dialogue.RunConversation (startNode);
 
 		}
 

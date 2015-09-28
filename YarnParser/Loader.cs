@@ -6,6 +6,8 @@ namespace Yarn {
 
 	public class Loader {
 
+		private Implementation implementation;
+
 		// The final parsed nodes that were in the file we were given
 		public Dictionary<string, Yarn.Parser.Node> nodes { get; private set;}
 
@@ -18,16 +20,21 @@ namespace Yarn {
 			}
 
 			// Let's see what we got
-			Console.WriteLine("Tokens:");
-			Console.Write(sb.ToString());
-			Console.WriteLine();
+			implementation.HandleDebugMessage("Tokens:");
+			implementation.HandleDebugMessage(sb.ToString());
+
 		}
 
 		// Prints the parse tree for the node
 		void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
-			Console.WriteLine("Parse Tree:");
-			Console.WriteLine(rootNode.PrintTree(0));
-			Console.WriteLine ();
+			implementation.HandleDebugMessage("Parse Tree:");
+			implementation.HandleDebugMessage(rootNode.PrintTree(0));
+
+		}
+
+		public Loader(Implementation implementation) {
+			this.implementation = implementation;
+			nodes = new Dictionary<string, Parser.Node>();
 		}
 
 		// Erase the collection of nodes.
@@ -36,11 +43,10 @@ namespace Yarn {
 		}
 
 		// Given a bunch of raw text, load all nodes that were inside it.
+		// You can call this multiple times to append to the collection of nodes,
+		// but note that new nodes will replace older ones with the same name.
 		public void Load(string text, bool showTokens = false, bool showParseTree = false) {
-
-			if (nodes == null)
-				nodes = new Dictionary<string, Parser.Node>();
-
+			
 			// Load the raw data and get the array of node title-text pairs
 			var nodeInfos = ParseInput (text);
 
@@ -62,9 +68,9 @@ namespace Yarn {
 					nodes[nodeInfo.title] = node;
 				#if !DEBUG
 				} catch (Yarn.TokeniserException t) {
-					Console.WriteLine (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
+					implementation.HandleErrorMessage (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
 				} catch (Yarn.ParseException p) {
-					Console.WriteLine (string.Format ("Error parsing node {0}: {1}", nodeInfo.title, p.Message));
+					implementation.HandleErrorMessage (string.Format ("Error parsing node {0}: {1}", nodeInfo.title, p.Message));
 				}
 				#endif
 

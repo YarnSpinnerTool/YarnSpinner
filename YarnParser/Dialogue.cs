@@ -22,8 +22,10 @@ namespace Yarn {
 
 		public Loader loader;
 
-		public Dialogue() {
-			
+		private Implementation implementation;
+
+		public Dialogue(Yarn.Implementation implementation) {
+			this.implementation = implementation;
 		}
 
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false) {
@@ -31,20 +33,19 @@ namespace Yarn {
 			string inputString = reader.ReadToEnd ();
 			reader.Close ();
 
-			return LoadString (inputString,showTokens, showParseTree);
-
+			return LoadString (inputString, showTokens, showParseTree);
 
 		}
 
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false) {
 
-			loader = new Loader ();
+			loader = new Loader (implementation);
 			loader.Load(text, showTokens, showParseTree);
 
 			return loader.nodes.Count;
 		}
 
-		public void RunConversation(Yarn.Implementation implementation, string startNode = DEFAULT_START) {
+		public void RunConversation(string startNode = DEFAULT_START) {
 
 			var runner = new Runner (implementation);
 
