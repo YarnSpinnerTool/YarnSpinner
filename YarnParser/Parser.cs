@@ -230,18 +230,26 @@ namespace Yarn {
 
 		// Custom commands are meant to be interpreted by whatever
 		// system that owns this dialogue sytem. eg <<stand>>
-		// CustomCommand = BeginCommand <Text> EndCommand
+		// CustomCommand = BeginCommand <ANY>* EndCommand
 		public class CustomCommand : ParseNode {
 			public static bool CanParse (Parser p)
 			{
-				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text);
+				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
+					p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Identifier);
 			}
 
 			public string command { get; private set;}
 
 			public CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
+
+				// Custom commands can have ANY token in them. Read them all until we hit the
+				// end command.
 				p.ExpectSymbol(TokenType.BeginCommand);
-				command = p.ExpectSymbol(TokenType.Text).value as string;
+				var items = new List<string>();
+				do {
+					items.Add(p.ExpectSymbol().value as string);
+				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
+				command = string.Join(" ", items);
 				p.ExpectSymbol(TokenType.EndCommand);
 			}
 
@@ -396,7 +404,7 @@ namespace Yarn {
 
 		// Options are links to other nodes
 		// OptionStatement = OptionStart <Text> OptionEnd
-		// OptionStatement = OptionStart <Text> OptionDelimit <Text> OptionEnd
+		// OptionStatement = OptionStart <Text> OptionDelimit <Text>|<Identifier> OptionEnd
 		public class OptionStatement : ParseNode {
 			public static bool CanParse (Parser p)
 			{
@@ -425,7 +433,7 @@ namespace Yarn {
 				if (p.NextSymbolIs(TokenType.OptionDelimit)) {
 
 					p.ExpectSymbol(TokenType.OptionDelimit);
-					secondString = p.ExpectSymbol(TokenType.Text).value as String;
+					secondString = p.ExpectSymbol(TokenType.Text, TokenType.Identifier).value as String;
 
 					// Two strings mean that the first is the label, and the second
 					// is the name of the node that we should head to if this option
@@ -1037,6 +1045,15 @@ namespace Yarn {
 				throw ParseException.Make(t, type);
 			}
 			return t;
+		}
+
+		// Return the next token, which can be of any type except EndOfInput.
+		Token ExpectSymbol() {
+			var token = this.tokens.Dequeue ();
+			if (token.type == TokenType.EndOfInput) {
+				throw ParseException.Make (token, "Unexpected end of input");
+			}
+			return token;
 		}
 
 		// Return the next token, which must be one of 'validTypes',

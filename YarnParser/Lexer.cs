@@ -81,7 +81,9 @@ namespace Yarn {
 
 		Comment, // a run of text that we ignore
 
-		Text // a run of text until we hit special syntax
+		Identifier, // a single word (used for functions)
+
+		Text // a run of text until we hit other syntax
 	}
 	
 	// A parsed token.
@@ -438,6 +440,9 @@ namespace Yarn {
 
 			AddTokenRule (TokenType.LeftParen, "\\(");
 			AddTokenRule (TokenType.RightParen, "\\)");
+
+			AddTokenRule (TokenType.Identifier, "(\\w|_)+");
+
 
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
