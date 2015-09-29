@@ -88,24 +88,15 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.IfStatement:
-				var condition = EvaluateExpression (statement.ifStatement.primaryClause.expression);
-				if (condition != 0.0f) {
-					RunStatements (statement.ifStatement.primaryClause.statements);
-				} else {
 
-					bool didRunElseIf = false;
-					foreach (var elseIf in statement.ifStatement.elseIfClauses) {
-						if (EvaluateExpression(elseIf.expression) != 0.0f) {
-							RunStatements(elseIf.statements);
-							didRunElseIf = true;
-							break;
-						}
-					}
-
-					if (didRunElseIf == false) {
-						RunStatements (statement.ifStatement.elseClause.statements);
+				foreach (var clause in statement.ifStatement.clauses) {
+					// if this clause's expression doesn't evaluate to 0, run it; alternatively,
+					// if this clause has no expression (ie it's the 'else' clause) then also run it
+					if (clause.expression == null || EvaluateExpression(clause.expression) != 0.0f) {
+						RunStatements (clause.statements);
 					}
 				}
+
 				break;
 
 

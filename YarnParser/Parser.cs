@@ -318,15 +318,13 @@ namespace Yarn {
 					p.ExpectSymbol(TokenType.EndCommand);
 				}
 
-				// Parse the node if it's there
-				try {
-					var p1 = p.Fork();
-					p1.ExpectSymbol(TokenType.Indent);
-					optionNode = new Node(NodeParent().name + "." + optionIndex, this, p1);
-					p1.ExpectSymbol(TokenType.Dedent);
+				// Parse the statements belonging to this option if it has any
+				if (p.NextSymbolIs(TokenType.Indent)) {
+					p.ExpectSymbol(TokenType.Indent);
+					optionNode = new Node(NodeParent().name + "." + optionIndex, this, p);
+					p.ExpectSymbol(TokenType.Dedent);
+				}
 
-					p.MergeWithParser(p1);
-				} catch (ParseException) {}
 			}
 
 			public override string PrintTree (int indentLevel)
@@ -335,7 +333,7 @@ namespace Yarn {
 				sb.Append (Tab (indentLevel, "Option \"" +label + "\""));
 
 				if (condition != null) {
-					sb.Append (Tab (indentLevel + 1, "(if"));
+					sb.Append (Tab (indentLevel + 1, "(when"));
 					sb.Append (condition.PrintTree(indentLevel+2));
 					sb.Append (Tab (indentLevel + 1, ")"));
 				}
@@ -419,7 +417,7 @@ namespace Yarn {
 				string firstString;
 				string secondString;
 
-				// Parse [[Foo
+				// Parse "[[LABEL"
 				p.ExpectSymbol(TokenType.OptionStart);
 				firstString = p.ExpectSymbol(TokenType.Text).value as String;
 
@@ -429,15 +427,18 @@ namespace Yarn {
 					p.ExpectSymbol(TokenType.OptionDelimit);
 					secondString = p.ExpectSymbol(TokenType.Text).value as String;
 
-					// And now we know what the strings are!
+					// Two strings mean that the first is the label, and the second
+					// is the name of the node that we should head to if this option
+					// is selected
 					label = firstString;
 					destination = secondString;
 				} else {
+					// One string means we don't have a label
 					label = null;
 					destination = firstString;
 				}
 
-				// Parse ]]
+				// Parse the closing ]]
 				p.ExpectSymbol(TokenType.OptionEnd);
 			}
 
@@ -461,7 +462,11 @@ namespace Yarn {
 				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.If);
 			}
 
-			public struct IfClause {
+			// Clauses are collections of statements with an
+			// optional conditional that determines whether they're run
+			// or not. The condition is used by the If and ElseIf parts of 
+			// an if statement, and not used by the Else statement.
+			public struct Clause {
 				public Expression expression;
 				public IEnumerable<Statement> statements;
 				public string PrintTree(int indentLevel) {
@@ -477,21 +482,20 @@ namespace Yarn {
 				}
 			}
 
-			public IfClause primaryClause;
-			public List<IfClause> elseIfClauses = new List<IfClause>(); // TODO: should be read-only
-			public IfClause elseClause;
+			public List<Clause> clauses = new List<Clause>(); 
 
-			public IList f;
 			public IfStatement(ParseNode parent, Parser p) : base(parent, p) {
-				
+
+				// All if statements begin with "<<if EXPRESSION>>", so parse that
+				Clause primaryClause = new Clause();
+
 				p.ExpectSymbol(TokenType.BeginCommand);
 				p.ExpectSymbol(TokenType.If);
-
 				primaryClause.expression = Expression.Parse(this, p);
 				p.ExpectSymbol(TokenType.EndCommand);
 
+				// Read the statements for this clause until  we hit an <<endif or <<else
 				var statements = new List<Statement>();
-				// Keep going until we hit an <<endif or <<else
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
@@ -499,15 +503,19 @@ namespace Yarn {
 				}
 				primaryClause.statements = statements;
 
-				// Handle <<elseif 
-				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
-					var newElseClause = new IfClause();
+				clauses.Add(primaryClause);
 
+				// Handle as many <<elseif clauses as we find
+				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
+					var newElseClause = new Clause();
+
+					// Parse the syntax for this clause's condition
 					p.ExpectSymbol(TokenType.BeginCommand);
 					p.ExpectSymbol(TokenType.ElseIf);
 					newElseClause.expression = Expression.Parse(this, p);
 					p.ExpectSymbol(TokenType.EndCommand);
 
+					// Read statements until we hit an <<endif, <<else or another <<elseif
 					var elseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
@@ -517,15 +525,19 @@ namespace Yarn {
 
 					newElseClause.statements = elseStatements;
 
-						elseIfClauses.Add(newElseClause);
+					clauses.Add(newElseClause);
 				}
 
 				// Handle <<else>> if we have it
 				if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else, TokenType.EndCommand)) {
+
+					// parse the syntax (no expression this time, just "<<else>>"
 					p.ExpectSymbol(TokenType.BeginCommand);
 					p.ExpectSymbol(TokenType.Else);
 					p.ExpectSymbol(TokenType.EndCommand);
 
+					// and parse statements until we hit "<<endif"
+					var elseClause = new Clause();
 					var elseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false) {
 						elseStatements.Add(new Statement(this, p));
@@ -533,26 +545,25 @@ namespace Yarn {
 					elseClause.statements = elseStatements;
 				}
 
-				// Tidy up by reading <<endif>>
+				// Finish up by reading the <<endif>>
 				p.ExpectSymbol(TokenType.BeginCommand);
 				p.ExpectSymbol(TokenType.EndIf);
 				p.ExpectSymbol(TokenType.EndCommand);
-
-
 			}
 
 			public override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
-				sb.Append (Tab (indentLevel, "If:"));
-				sb.Append (primaryClause.PrintTree (indentLevel + 1));
-				foreach (var elseIf in elseIfClauses) {
-					sb.Append (Tab (indentLevel, "Else If:"));
-					sb.Append (elseIf.PrintTree (indentLevel + 1));
-				}
-				if (elseClause.statements != null) {
-					sb.Append (Tab (indentLevel, "Else:"));
-					sb.Append (elseClause.PrintTree (indentLevel + 1));
+				var first = false;
+				foreach (var clause in clauses) {
+					if (first) {
+						sb.Append (Tab (indentLevel, "If:"));
+					} else if (clause.expression != null) {
+						sb.Append (Tab (indentLevel, "Else If:"));
+					} else {
+						sb.Append (Tab (indentLevel, "Else:"));
+					}
+					sb.Append (clause.PrintTree (indentLevel + 1));
 				}
 
 				return sb.ToString ();
@@ -566,21 +577,19 @@ namespace Yarn {
 		public class Value : ParseNode {
 
 			public enum Type {
-				Number,
-				Variable
+				Number, // a constant number
+				Variable // the name of a variable
 			}
 
 			public Value.Type type { get; private set; }
 
+			// The underlying values for this object
 			public float number {get; private set;}
 			public string variableName {get; private set;}
 
-			public Value(ParseNode parent, Token t) : base (parent, null) {
-				UseToken(t);
-			}
 
 			private void UseToken(Token t) {
-				// Store the value depending on type
+				// Store the value depending on token's type
 				switch (t.type) {
 				case TokenType.Number:
 					type = Type.Number;
@@ -595,13 +604,17 @@ namespace Yarn {
 				}
 			}
 
+			// Use a provided token
+			public Value(ParseNode parent, Token t) : base (parent, null) {
+				UseToken(t);
+			}
+
+			// Read a number or a variable name from the parser
 			public Value(ParseNode parent, Parser p) : base(parent, p) {
 
-				// Parse a number or a variable name
 				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable);
 
 				UseToken(t);
-
 			}
 
 			public override string PrintTree (int indentLevel)
@@ -666,6 +679,7 @@ namespace Yarn {
 				allValidTokenTypes.Add(TokenType.LeftParen);
 				allValidTokenTypes.Add(TokenType.RightParen);
 
+				// Read all the contents of the expression
 				while (p.NextSymbolIs(allValidTokenTypes.ToArray())) {
 
 					Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
@@ -705,7 +719,7 @@ namespace Yarn {
 							operatorStack.Pop();
 						} catch (InvalidOperationException) {
 							// we reached the end of the stack prematurely
-							throw ParseException.Make(nextToken, "Unbalanced parameters");
+							throw ParseException.Make(nextToken, "Error parsing expression: unbalanced parentheses");
 						}
 
 					}
@@ -719,7 +733,7 @@ namespace Yarn {
 
 				// If the output queue is empty, then this is not an expression
 				if (_expressionRPN.Count == 0) {
-					throw new ParseException ("Error parsing expression");
+					throw new ParseException ("Error parsing expression: no expression found!");
 				}
 
 				// We've now got this in more easily parsed RPN form; 
@@ -733,7 +747,7 @@ namespace Yarn {
 
 						var info = Operator.InfoForOperator(next.type);
 						if (evaluationStack.Count < info.arguments) {
-							throw ParseException.Make(next, "Error parsing expression (not enough arguments for operator "+next.type.ToString()+")");
+							throw ParseException.Make(next, "Error parsing expression: not enough arguments for operator "+next.type.ToString());
 						}
 						Expression lhs = null, rhs = null;
 
@@ -743,7 +757,7 @@ namespace Yarn {
 							rhs = evaluationStack.Pop();
 							lhs = evaluationStack.Pop();
 						} else {
-							string error = string.Format("Unsupported number of parameters for operator {0} ({1})",
+							string error = string.Format("Error parsing expression: Unsupported number of parameters for operator {0} ({1})",
 								next.type.ToString(),
 								info.arguments
 							);
@@ -758,9 +772,10 @@ namespace Yarn {
 
 					}
 				}
-				// We should now have a single expression in this stack
+				// We should now have a single expression in this stack, which is the root
+				// of the expression's tree. If we have more than one, then we have a problem.
 				if (evaluationStack.Count != 1) {
-					throw ParseException.Make(firstToken, "Error parsing expression (stack did not reduce)");
+					throw ParseException.Make(firstToken, "Error parsing expression (stack did not reduce correctly)");
 				}
 
 				// Return it
@@ -769,6 +784,8 @@ namespace Yarn {
 
 			}
 
+			// Used to determine whether the shunting-yard algorithm should pop operators from
+			// the operator stack.
 			private static bool ShouldApplyPrecedence(TokenType o1, Stack<Token> operatorStack) {
 				
 				if (operatorStack.Count == 0) {
@@ -930,6 +947,7 @@ namespace Yarn {
 				return Array.IndexOf (operatorTypes, type) != -1;
 			}
 
+			// Valid types of operators.
 			public static  TokenType[] operatorTypes {
 				get {
 					return new TokenType[] {

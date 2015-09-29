@@ -9,10 +9,11 @@ namespace Yarn
 	{
 
 		static void ShowHelpAndExit() {
-			Console.WriteLine ("YarnParser: Parses Yarn dialog files.");
+			Console.WriteLine ("YarnParser: Executes Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
 			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] [-s=<start>] [-v<argname>=<value>] <inputfile>");
+			Console.WriteLine ();
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
 			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
@@ -116,7 +117,6 @@ namespace Yarn
 			var dialogue = new Dialogue(impl);
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree);
 
-
 			// Run the conversation
 			dialogue.RunConversation (startNode);
 
@@ -131,7 +131,7 @@ namespace Yarn
 				if (continuity != null) {
 					this.continuity = continuity;
 				} else {
-					this.continuity = new SimpleContinuity();
+					this.continuity = new InMemoryContinuity();
 				}
 				this.waitForLines = waitForLines;
 			}
@@ -195,12 +195,11 @@ namespace Yarn
 		}
 
 		// Very simple continuity class that keeps all variables in memory
-		private class SimpleContinuity : Yarn.Continuity {
-			#region Continuity implementation
-
+		private class InMemoryContinuity : Yarn.Continuity {
+			
 			bool debug = false;
 
-			public SimpleContinuity(bool debug = false) {
+			public InMemoryContinuity(bool debug = false) {
 				this.debug = debug;
 			}
 
@@ -231,12 +230,7 @@ namespace Yarn
 				return value;
 
 
-			}
-
-			#endregion
+			}				
 		}
 	}
-
-
-
 }
