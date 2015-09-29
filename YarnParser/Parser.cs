@@ -341,9 +341,9 @@ namespace Yarn {
 				sb.Append (Tab (indentLevel, "Option \"" +label + "\""));
 
 				if (condition != null) {
-					sb.Append (Tab (indentLevel + 1, "(when"));
+					sb.Append (Tab (indentLevel + 1, "(when:"));
 					sb.Append (condition.PrintTree(indentLevel+2));
-					sb.Append (Tab (indentLevel + 1, ")"));
+					sb.Append (Tab (indentLevel + 1, "),"));
 				}
 
 				if (optionNode != null) {

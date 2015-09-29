@@ -16,7 +16,7 @@ namespace Yarn {
 			// Sum up the result
 			var sb = new System.Text.StringBuilder();
 			foreach (var t in tokenList) {
-				sb.AppendLine (t.ToString ());
+				sb.AppendLine (t.ToString () + " (line "+t.lineNumber+")");
 			}
 
 			// Let's see what we got
