@@ -144,8 +144,6 @@ namespace Yarn {
 		// Statement = CustomCommand
 		// Statement = AssignmentStatement
 		// Statement = <Text>
-		// TODO: set statements
-		// TODO: shortcut options
 		public class Statement : ParseNode {
 
 			public enum Type {
@@ -907,6 +905,7 @@ namespace Yarn {
 				None
 			}
 
+			// Info used during expression parsing
 			public struct OperatorInfo {
 				public Associativity associativity;
 				public int precedence;
@@ -976,7 +975,6 @@ namespace Yarn {
 						TokenType.Or,
 						TokenType.Not,
 						TokenType.Xor
-												
 					};
 				}
 			}

@@ -88,7 +88,8 @@ namespace Yarn {
 	
 	// A parsed token.
 	public class Token {
-		
+
+		// The token itself
 		public TokenType type;
 		public object value; // optional
 
@@ -114,18 +115,23 @@ namespace Yarn {
 	// Lean, mean, string-readin' machine
 	public class Tokeniser {
 
-		// A defined rule for matching a token
+		// A defined rule for matching a type of token
 		public class TokenRule {
 			public TokenType type; // what token is this rule for?
 			public Regex regex; // what should we look for?
 			public bool discard; // should we throw away this token if we match it?
 
-			// Some tokens are words (like "not", "and", "or") - if these
+			// Some tokens are common English words (like "not", "and", "or") - if these
 			// are the first word in what's otherwise a line of text,
 			// the lexer will read it as "<AND> <TEXT>" instead of "<TEXT>".
 			// So, we need to mark certain rules as "this token can start a line"
-
 			public bool canBeginLine; 
+
+			// This flag exists because we don't want to interpret lines like this:
+			// -> And what did they say?
+			// as <ShortcutOption> <And> <Text>. Instead, we say that certain tokens
+			// "reset" the line, making the lexer treat the next token as the "start"
+			// of the line - which means that tokens like "and" will not be interpreted.
 			public bool resetsLine;
 
 			public override string ToString ()
@@ -193,7 +199,7 @@ namespace Yarn {
 			var tokens = new TokenList();
 			
 			// Start by chopping up the input into lines
-			var lines = input.Split(new char[] {'\n'} , StringSplitOptions.RemoveEmptyEntries);
+			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.RemoveEmptyEntries);
 
 			// Keep track of which column each new indent started
 			var indentLevels = new Stack<int>();
@@ -266,10 +272,10 @@ namespace Yarn {
 			// Replace tabs with four spaces
 			input = input.Replace ("\t", "    ");
 			
-			// Find whitespace at the start of a line
+			// Find any whitespace at the start of a line
 			var initialIndentRule = new Regex("^\\s+");
 			
-			// If there's whitespace at the start of the line, it's indented
+			// If there's whitespace at the start of the line, this line is indented
 			if (initialIndentRule.IsMatch(input)) {
 				// Record how indented this line is
 				lineIndentation = initialIndentRule.Match(input).Length;
@@ -280,16 +286,19 @@ namespace Yarn {
 			}
 			
 			// Keeps track of how much of the line we have left to parse
-
 			int columnNumber = lineIndentation;
-			// Consume the string
 
+			// Are we at the start of the line? ie do we disregard rules that
+			// aren't allowed to start a line?
 			bool startOfLine = true;
+
+			// While we have text left to parse in this line..
 			while (columnNumber < input.Length) {
 				
 				// Keep track of whether we successfully found a rule to parse the next token
 				var matched = false;
-				
+
+				// Check each rule to see if it matches
 				foreach (var tokenRule in tokenRules) {
 					
 					// Is the next chunk of text a token?
@@ -342,9 +351,8 @@ namespace Yarn {
 							
 						}
 
-						// Update the column number
+						// We've advanced through the string
 						columnNumber += match.Length;
-
 
 						// Record that we successfully found a type for this token
 						matched = true;
@@ -356,7 +364,8 @@ namespace Yarn {
 				}
 				
 				if (matched == false) {
-					// We've exhausted the list of possible token types - failed to interpret the string!
+					// We've exhausted the list of possible token types, so we've
+					// failed to interpret this string! Bail out!
 					throw new InvalidOperationException("Failed to interpret token " + input);
 				}
 			}
@@ -365,7 +374,7 @@ namespace Yarn {
 			return tokens;
 		}
 
-		// Prepare the rules for matching tokens.
+		// Prepare the regex rules for each possible token.
 		private void PrepareTokenRules() {
 
 			// The order of these rules is important - rules that were added first
@@ -396,8 +405,8 @@ namespace Yarn {
 			AddTokenRule(TokenType.Number, "((?<!\\[\\[)\\d+)");
 			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
 			AddTokenRule(TokenType.EndCommand, "\\>\\>");
-			AddTokenRule(TokenType.Variable, "\\$[A-z\\d]+");
-			
+			AddTokenRule(TokenType.Variable, "\\$([A-z\\d])+");
+
 			// Options
 			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true, resetsLine:true);
 			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true, resetsLine:true);
@@ -441,8 +450,8 @@ namespace Yarn {
 			AddTokenRule (TokenType.LeftParen, "\\(");
 			AddTokenRule (TokenType.RightParen, "\\)");
 
+			// Identifiers (any letter, number or underscore)
 			AddTokenRule (TokenType.Identifier, "(\\w|_)+");
-
 
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
@@ -450,8 +459,5 @@ namespace Yarn {
 			AddTokenRule(TokenType.Text, "[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
 		}
 	}
-
-
-	
 }
 

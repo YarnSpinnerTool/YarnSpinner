@@ -32,6 +32,7 @@ namespace Yarn {
 
 		}
 
+		// Prepares a loader. 'implementation' is used for logging.
 		public Loader(Implementation implementation) {
 			this.implementation = implementation;
 			nodes = new Dictionary<string, Parser.Node>();
@@ -54,6 +55,7 @@ namespace Yarn {
 
 				// Attempt to parse every node; log if we encounter any errors
 				#if !DEBUG
+				// If this is a release build, don't crash on parse errors
 				try {
 				#endif 
 
@@ -78,6 +80,7 @@ namespace Yarn {
 
 		}
 
+		// The raw text of the Yarn node, plus metadata
 		struct NodeInfo {
 			public string title;
 			public string text;
@@ -91,28 +94,47 @@ namespace Yarn {
 		// containing info about the nodes in that file
 		NodeInfo[] ParseInput(string text)
 		{
+			// All the nodes we found in this file
 			var nodes = new List<NodeInfo> ();
 
 			if (text.IndexOf("//") == 0) {
+				// If it starts with a comment, treat it as a single-node file
 				nodes.Add (new NodeInfo ("Node", text));
 			} else {
+				// Blindly assume it's JSON! \:D/
 				try {
+
+					// First, parse the raw text
 					var loadedJSON = JsonParser.FromJson (text);
 
+					// Process each item that was found (probably just a single one)
 					foreach (var item in loadedJSON) {
 
+						// We expect it to be an array of dictionaries
 						var list = item.Value as IList<object>;
 
+						// For each dictionary in the list..
 						foreach (IDictionary<string,object> nodeJSON in list) {
-							nodes.Add(new NodeInfo(nodeJSON["title"] as string, (nodeJSON["body"] as string).Replace('\r','\n')));
+
+							// Pull out the node's title and body, and use that
+							nodes.Add(
+								new NodeInfo(
+									nodeJSON["title"] as string, 
+									nodeJSON["body"] as string
+								)
+							);
 						}
 					}
 
-
-				} catch (InvalidJsonException) {}
-
+				} catch (InvalidCastException) {
+					implementation.HandleErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
+						"it didn't match the data layout I was expecting.");
+				} catch (InvalidJsonException e) {
+					implementation.HandleErrorMessage ("Error parsing Yarn input: " + e.Message);
+				}
 			}
 
+			// hooray we're done
 			return nodes.ToArray();
 		}
 	}
