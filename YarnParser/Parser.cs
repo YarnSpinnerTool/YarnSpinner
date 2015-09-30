@@ -18,7 +18,13 @@ namespace Yarn {
 		public static ParseException Make(Token foundToken, params TokenType[] expectedTypes) {
 
 			var lineNumber = foundToken.lineNumber+1;
-			string possibleValues = string.Join(",", expectedTypes);
+
+			var expectedTypeNames = new List<String> ();
+			foreach (var type in expectedTypes) {
+				expectedTypeNames.Add (type.ToString ());
+			}
+
+			string possibleValues = string.Join(",", expectedTypeNames.ToArray());
 			string message = string.Format("Line {0}:{1}: Expected {2}, but found {3}",
 			                               lineNumber,
 			                               foundToken.columnNumber,
@@ -247,7 +253,7 @@ namespace Yarn {
 				do {
 					items.Add(p.ExpectSymbol().value as string);
 				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
-				command = string.Join(" ", items);
+				command = string.Join(" ", items.ToArray());
 				p.ExpectSymbol(TokenType.EndCommand);
 			}
 

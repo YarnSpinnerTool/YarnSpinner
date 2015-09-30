@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
+	public delegate void OptionChooser (int selectedOptionIndex);
+
 	public interface Implementation {
 		void RunLine (string lineText);
-		void RunOptions(IList<string> options, Runner.OptionChooser optionChooser);
+		void RunOptions(IList<string> options, OptionChooser optionChooser);
 		void RunCommand(string command);
-		void DialogueComplete(string nextNodeName);
+		void DialogueComplete();
 
 		void HandleDebugMessage (string error);
 		void HandleErrorMessage (string message);
@@ -18,6 +20,8 @@ namespace Yarn {
 	}
 
 	public class Dialogue {
+
+
 
 		public const string DEFAULT_START = "Start";
 
@@ -46,24 +50,7 @@ namespace Yarn {
 			return loader.nodes.Count;
 		}
 
-		public void RunConversation(string startNode = DEFAULT_START) {
-
-			foreach (var result in IterateConversation(startNode)) {
-				if (result is Yarn.Runner.YarnLine) {
-					var line = result as Yarn.Runner.YarnLine;
-					implementation.RunLine (line.text);
-				} else if (result is Yarn.Runner.YarnCommand) {
-					var command = result as Yarn.Runner.YarnCommand;
-					implementation.RunCommand (command.command);
-				} else if (result is Yarn.Runner.YarnOptionSet) {
-					var options = result as Yarn.Runner.YarnOptionSet;
-					implementation.RunOptions (options.options, options.chooseResult);
-				}
-			}
-
-		}
-
-		public IEnumerable<Yarn.Runner.YarnResult> IterateConversation(string startNode = DEFAULT_START) {
+		public IEnumerable<Yarn.Runner.RunnerResult> RunConversation(string startNode = DEFAULT_START) {
 
 			var runner = new Runner (implementation);
 
@@ -77,24 +64,37 @@ namespace Yarn {
 				try {
 					node = loader.nodes [nextNode];
 				} catch (KeyNotFoundException) {
-					implementation.HandleErrorMessage ("Can't find a node named " + nextNode);
+					implementation.HandleErrorMessage ("Can't find node " + nextNode);
 					yield break;
 				}
 
 				foreach (var result in runner.RunNode(node)) {
 					
-					if (result is Yarn.Runner.YarnNodeComplete) {
-						var nodeComplete = result as Yarn.Runner.YarnNodeComplete;
+					if (result is Yarn.Runner.NodeCompleteResult) {
+						var nodeComplete = result as Yarn.Runner.NodeCompleteResult;
 						nextNode = nodeComplete.nextNode;
-					} else {
-						yield return result;
+
+						// NodeComplete is not interactive, so skip immediately to next step
+						continue;
+					} else if (result is Yarn.Runner.LineResult) {
+						var line = result as Yarn.Runner.LineResult;
+						implementation.RunLine (line.text);
+					} else if (result is Yarn.Runner.CommandResult) {
+						var command = result as Yarn.Runner.CommandResult;
+						implementation.RunCommand (command.command);
+					} else if (result is Yarn.Runner.OptionSetResult) {
+						var options = result as Yarn.Runner.OptionSetResult;
+						implementation.RunOptions (options.options, options.chooseResult);
 					}
+					yield return result;
 				}
 
 				
 			} while (nextNode != null);
 
 			implementation.HandleDebugMessage ("Run complete.");
+
+			implementation.DialogueComplete ();
 
 		}
 

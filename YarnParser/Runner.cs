@@ -14,46 +14,44 @@ namespace Yarn
 	public class Runner
 	{
 
-		public class YarnResult { }
+		public class RunnerResult { }
 
-		public class YarnLine : YarnResult  {
+		public class LineResult : RunnerResult  {
 			public string text;
 
-			public YarnLine (string text) {
+			public LineResult (string text) {
 				this.text = text;
 			}
 
 		}
 
-		public class YarnCommand: YarnResult {
+		public class CommandResult: RunnerResult {
 			public string command;
 
-			public YarnCommand (string command) {
+			public CommandResult (string command) {
 				this.command = command;
 			}
 
 		}
 
-		public class YarnNodeComplete: YarnResult {
+		public class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
-			public YarnNodeComplete (string nextNode) {
+			public NodeCompleteResult (string nextNode) {
 				this.nextNode = nextNode;
 			}
 		}
 
-		public class YarnOptionSet : YarnResult {
+		public class OptionSetResult : RunnerResult {
 			public IList<string> options;
 			public OptionChooser chooseResult;
 
-			public YarnOptionSet (IList<string> options, OptionChooser chooseResult) {
+			public OptionSetResult (IList<string> options, OptionChooser chooseResult) {
 				this.options = options;
 				this.chooseResult = chooseResult;
 			}
 
 		}
-
-		public delegate void OptionChooser (int selectedOptionIndex);
 
 		// The list of options that this node has currently developed.
 		private List<Parser.OptionStatement> currentOptions;
@@ -67,7 +65,7 @@ namespace Yarn
 
 		// executes a node, and returns either the name of the next node to run
 		// or null (indicating the dialogue is over)
-		public IEnumerable<YarnResult> RunNode(Yarn.Parser.Node node)
+		public IEnumerable<RunnerResult> RunNode(Yarn.Parser.Node node)
 		{
 
 			// Clear the list of options when we start a new node
@@ -80,7 +78,7 @@ namespace Yarn
 
 			// If we have no options, we're all done
 			if (currentOptions.Count == 0) {
-				yield return new YarnNodeComplete (null);
+				yield return new NodeCompleteResult (null);
 				yield break;
 			} else {
 				// We have options!
@@ -88,7 +86,7 @@ namespace Yarn
 				// If we have precisely one option and it's got no label, jump to it
 				if (currentOptions.Count == 1 &&
 					currentOptions[0].label == null) {
-					yield return new YarnNodeComplete (currentOptions [0].destination);
+					yield return new NodeCompleteResult (currentOptions [0].destination);
 					yield break;
 				}
 
@@ -101,19 +99,23 @@ namespace Yarn
 
 				Parser.OptionStatement selectedOption = null;
 
-				yield return new YarnOptionSet (optionStrings, delegate(int selectedOptionIndex) {
+				yield return new OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
 					selectedOption = currentOptions[selectedOptionIndex];
 				});
 
+				if (selectedOption == null) {
+					implementation.HandleErrorMessage ("Option chooser was never called!");
+					yield break;
+				}
 
 				// And jump to its destination!
-				yield return new YarnNodeComplete(selectedOption.destination);
+				yield return new NodeCompleteResult(selectedOption.destination);
 			}
 
 		}
 
 		// Run a list of statements.
-		private IEnumerable<YarnResult> RunStatements(IEnumerable<Parser.Statement> statements) {
+		private IEnumerable<RunnerResult> RunStatements(IEnumerable<Parser.Statement> statements) {
 			
 			if (statements == null) {
 				yield break;
@@ -128,7 +130,7 @@ namespace Yarn
 		}
 
 		// Run a single statement.
-		private IEnumerable<YarnResult> RunStatement (Parser.Statement statement) {
+		private IEnumerable<RunnerResult> RunStatement (Parser.Statement statement) {
 
 
 			switch (statement.type) {
@@ -142,7 +144,7 @@ namespace Yarn
 
 			case Parser.Statement.Type.Line:
 				// Lines get forwarded to the implementation for display
-				yield return new YarnLine(statement.line);
+				yield return new LineResult(statement.line);
 				break;
 
 			case Parser.Statement.Type.IfStatement:
@@ -180,7 +182,7 @@ namespace Yarn
 
 			case Parser.Statement.Type.CustomCommand:
 				// Deal with a custom command
-				yield return new YarnCommand (statement.customCommand.command);
+				yield return new CommandResult (statement.customCommand.command);
 				break;
 
 			default:
@@ -295,7 +297,7 @@ namespace Yarn
 			implementation.continuity.SetNumber (finalValue, variableName);
 		}
 
-		private IEnumerable<YarnResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
+		private IEnumerable<RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
 		{
 			var optionsToDisplay = new List<Parser.ShortcutOption> ();
 
@@ -320,9 +322,14 @@ namespace Yarn
 
 				Parser.ShortcutOption selectedOption = null;
 
-				yield return new YarnOptionSet (optionStrings, delegate(int selectedOptionIndex) {
+				yield return new OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
 					selectedOption = optionsToDisplay[selectedOptionIndex];
 				});
+
+				if (selectedOption == null) {
+					implementation.HandleErrorMessage ("Option chooser was never called!");
+					yield break;
+				}
 
 				if (selectedOption.optionNode != null) {
 					foreach (var command in RunStatements(selectedOption.optionNode.statements)) {
@@ -343,5 +350,27 @@ namespace Yarn
 		}
 
 
+	}
+
+	// Very simple continuity class that keeps all variables in memory
+	public class InMemoryContinuity : Yarn.Continuity {
+
+		Dictionary<string, float> variables = new Dictionary<string, float>();
+
+		void Yarn.Continuity.SetNumber (float number, string variableName)
+		{
+			variables [variableName] = number;
+		}
+
+		float Yarn.Continuity.GetNumber (string variableName)
+		{
+			float value = 0.0f;
+			if (variables.ContainsKey(variableName)) {
+
+				value = variables [variableName];
+
+			}
+			return value;
+		}				
 	}
 }

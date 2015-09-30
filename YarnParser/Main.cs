@@ -131,8 +131,7 @@ namespace Yarn
 
 			if (showTokens == false && showParseTree == false) {
 				// Run the conversation
-				dialogue.RunConversation (startNode);
-
+				foreach (var step in dialogue.RunConversation (startNode));
 			}
 
 		}
@@ -159,7 +158,7 @@ namespace Yarn
 				}
 			}
 
-			public void RunOptions (IList<string> options, Runner.OptionChooser optionChooser)
+			public void RunOptions (IList<string> options, OptionChooser optionChooser)
 			{
 				Console.WriteLine("Options:");
 				for (int i = 0; i < options.Count; i++) {
@@ -189,9 +188,9 @@ namespace Yarn
 				Console.WriteLine("Command: <<"+command+">>");
 			}
 
-			public void DialogueComplete (string nextNodeName)
+			public void DialogueComplete ()
 			{
-				throw new NotImplementedException();
+				Console.WriteLine("Conversation complete.");
 			}
 
 			public Continuity continuity {
@@ -210,43 +209,6 @@ namespace Yarn
 			}
 		}
 
-		// Very simple continuity class that keeps all variables in memory
-		private class InMemoryContinuity : Yarn.Continuity {
-			
-			bool debug = false;
 
-			public InMemoryContinuity(bool debug = false) {
-				this.debug = debug;
-			}
-
-			Dictionary<string, float> variables = new Dictionary<string, float>();
-
-			void Yarn.Continuity.SetNumber (float number, string variableName)
-			{
-				variables [variableName] = number;
-				if (debug)
-					Console.WriteLine (string.Format ("\t(set {0} to {1})", 
-						variableName, number.ToString ()));
-			}
-
-			float Yarn.Continuity.GetNumber (string variableName)
-			{
-				if (debug)
-					Console.Write ("\t("+variableName + " is ");
-				float value = 0.0f;
-				if (variables.ContainsKey(variableName)) {
-					
-					value = variables [variableName];
-
-				}
-
-				if (debug)
-					Console.WriteLine (value.ToString () + ")");
-
-				return value;
-
-
-			}				
-		}
 	}
 }

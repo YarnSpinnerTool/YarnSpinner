@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "A: Hey, I'm a character in a script!\nB: And I am too! You are talking to me!\n-> What's going on\n    A: Why this is a demo of the script system!\n    B: And you're in it!\n-> Um ok\nA: How delightful!\nB: What would you prefer to do next?\n[[Leave|Leave]]\n[[Learn more|LearnMore]]",
+		"position": {
+			"x": 592,
+			"y": 181
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Leave",
+		"tags": "",
+		"body": "A: Oh, goodbye!\nB: You'll be back soon!",
+		"position": {
+			"x": 387,
+			"y": 487
+		},
+		"colorID": 0
+	},
+	{
+		"title": "LearnMore",
+		"tags": "",
+		"body": "A: HAHAHA",
+		"position": {
+			"x": 763,
+			"y": 472
+		},
+		"colorID": 0
+	}
+]
