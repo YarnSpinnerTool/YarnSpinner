@@ -14,6 +14,46 @@ namespace Yarn
 	public class Runner
 	{
 
+		public class YarnResult { }
+
+		public class YarnLine : YarnResult  {
+			public string text;
+
+			public YarnLine (string text) {
+				this.text = text;
+			}
+
+		}
+
+		public class YarnCommand: YarnResult {
+			public string command;
+
+			public YarnCommand (string command) {
+				this.command = command;
+			}
+
+		}
+
+		public class YarnNodeComplete: YarnResult {
+			public string nextNode;
+
+			public YarnNodeComplete (string nextNode) {
+				this.nextNode = nextNode;
+			}
+		}
+
+		public class YarnOptionSet : YarnResult {
+			public IList<string> options;
+			public OptionChooser chooseResult;
+
+			public YarnOptionSet (IList<string> options, OptionChooser chooseResult) {
+				this.options = options;
+				this.chooseResult = chooseResult;
+			}
+
+		}
+
+		public delegate void OptionChooser (int selectedOptionIndex);
 
 		// The list of options that this node has currently developed.
 		private List<Parser.OptionStatement> currentOptions;
@@ -27,25 +67,29 @@ namespace Yarn
 
 		// executes a node, and returns either the name of the next node to run
 		// or null (indicating the dialogue is over)
-		public string RunNode(Yarn.Parser.Node node)
+		public IEnumerable<YarnResult> RunNode(Yarn.Parser.Node node)
 		{
 
 			// Clear the list of options when we start a new node
 			currentOptions = new List<Parser.OptionStatement> ();
 
 			// Run all of the statements in this node
-			RunStatements (node.statements);
+			foreach (var command in RunStatements (node.statements)) {
+				yield return command;
+			}
 
 			// If we have no options, we're all done
 			if (currentOptions.Count == 0) {
-				return null;
+				yield return new YarnNodeComplete (null);
+				yield break;
 			} else {
 				// We have options!
 
 				// If we have precisely one option and it's got no label, jump to it
 				if (currentOptions.Count == 1 &&
 					currentOptions[0].label == null) {
-					return currentOptions [0].destination;
+					yield return new YarnNodeComplete (currentOptions [0].destination);
+					yield break;
 				}
 
 				// Otherwise, ask which option to pick...
@@ -54,41 +98,51 @@ namespace Yarn
 					var label = option.label ?? option.destination;
 					optionStrings.Add (label);
 				}
-				var selectedOptionNumber = implementation.RunOptions (optionStrings.ToArray ());
+
+				Parser.OptionStatement selectedOption = null;
+
+				yield return new YarnOptionSet (optionStrings, delegate(int selectedOptionIndex) {
+					selectedOption = currentOptions[selectedOptionIndex];
+				});
+
 
 				// And jump to its destination!
-				var selectedOption = currentOptions [selectedOptionNumber];
-				return selectedOption.destination;
+				yield return new YarnNodeComplete(selectedOption.destination);
 			}
 
 		}
 
 		// Run a list of statements.
-		private void RunStatements(IEnumerable<Parser.Statement> statements) {
+		private IEnumerable<YarnResult> RunStatements(IEnumerable<Parser.Statement> statements) {
 			
 			if (statements == null) {
-				return;
+				yield break;
 			}
 
 			foreach (var statement in statements) {
-				RunStatement (statement);
+				foreach (var command in RunStatement (statement)) {
+					yield return command;
+				}
+
 			}
 		}
 
 		// Run a single statement.
-		private void RunStatement (Parser.Statement statement) {
+		private IEnumerable<YarnResult> RunStatement (Parser.Statement statement) {
 
 
 			switch (statement.type) {
 
 			case Parser.Statement.Type.Block:
 				// Blocks just contain statements, so run them!
-				RunStatements (statement.block.statements);
+				foreach (var command in RunStatements (statement.block.statements)) {
+					yield return command;
+				}
 				break;
 
 			case Parser.Statement.Type.Line:
 				// Lines get forwarded to the implementation for display
-				implementation.RunLine (statement.line);
+				yield return new YarnLine(statement.line);
 				break;
 
 			case Parser.Statement.Type.IfStatement:
@@ -98,10 +152,13 @@ namespace Yarn
 					// if this clause's expression doesn't evaluate to 0, run it; alternatively,
 					// if this clause has no expression (ie it's the 'else' clause) then also run it
 					if (clause.expression == null || EvaluateExpression(clause.expression) != 0.0f) {
-						RunStatements (clause.statements);
+						foreach (var command in  RunStatements (clause.statements)) {
+							yield return command;
+						}
+						// don't continue on to the other clauses
+						break;
 					}
 				}
-
 				break;
 
 			case Parser.Statement.Type.OptionStatement:
@@ -116,11 +173,14 @@ namespace Yarn
 
 			case Parser.Statement.Type.ShortcutOptionGroup:
 				// Evaluate and present the options, then run the stuff that came after the options
-				RunShortcutOptionGroup (statement.shortcutOptionGroup);
+				foreach (var command in RunShortcutOptionGroup (statement.shortcutOptionGroup)) {
+					yield return command;
+				}
 				break;
+
 			case Parser.Statement.Type.CustomCommand:
 				// Deal with a custom command
-				RunCustomCommand (statement.customCommand);
+				yield return new YarnCommand (statement.customCommand.command);
 				break;
 
 			default:
@@ -231,10 +291,11 @@ namespace Yarn
 				break;
 			}
 
+			implementation.HandleDebugMessage(string.Format("Set {0} to {1}", variableName, finalValue));
 			implementation.continuity.SetNumber (finalValue, variableName);
 		}
 
-		private void RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
+		private IEnumerable<YarnResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
 		{
 			var optionsToDisplay = new List<Parser.ShortcutOption> ();
 
@@ -257,23 +318,30 @@ namespace Yarn
 					optionStrings.Add(option.label);
 				}
 
-				var selectedIndex = implementation.RunOptions(optionStrings.ToArray());
-				var selectedOption = optionsToDisplay[selectedIndex];
+				Parser.ShortcutOption selectedOption = null;
 
-				if (selectedOption.optionNode != null)
-					RunStatements(selectedOption.optionNode.statements);
+				yield return new YarnOptionSet (optionStrings, delegate(int selectedOptionIndex) {
+					selectedOption = optionsToDisplay[selectedOptionIndex];
+				});
+
+				if (selectedOption.optionNode != null) {
+					foreach (var command in RunStatements(selectedOption.optionNode.statements)) {
+						yield return command;
+					}
+				}
+					
 			}
 
 			// Done running these options; run the stuff that came afterwards
-			if (shortcutOptionGroup.epilogue != null)
-				RunStatements(shortcutOptionGroup.epilogue.statements);
+			if (shortcutOptionGroup.epilogue != null) {
+				foreach (var command in RunStatements(shortcutOptionGroup.epilogue.statements)) {
+					yield return command;
+				}
+			}
+				
 
 		}
 
-		// Custom commands are just forwarded to the implementation
-		private void RunCustomCommand (Parser.CustomCommand customCommand)
-		{
-			implementation.RunCommand (customCommand.command);
-		}
+
 	}
 }

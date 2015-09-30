@@ -16,7 +16,7 @@ namespace Yarn {
 			// Sum up the result
 			var sb = new System.Text.StringBuilder();
 			foreach (var t in tokenList) {
-				sb.AppendLine (t.ToString () + " (line "+t.lineNumber+")");
+				sb.AppendLine (string.Format("{0} ({1} line {2})", t.ToString (), t.context, t.lineNumber));
 			}
 
 			// Let's see what we got
@@ -46,12 +46,15 @@ namespace Yarn {
 		// Given a bunch of raw text, load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
-		public void Load(string text, bool showTokens = false, bool showParseTree = false) {
+		public void Load(string text, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			
 			// Load the raw data and get the array of node title-text pairs
 			var nodeInfos = ParseInput (text);
 
 			foreach (NodeInfo nodeInfo in nodeInfos) {
+
+				if (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
+					continue;
 
 				// Attempt to parse every node; log if we encounter any errors
 				#if !DEBUG
@@ -60,7 +63,7 @@ namespace Yarn {
 				#endif 
 
 					var tokeniser = new Tokeniser ();
-					var tokens = tokeniser.Tokenise (nodeInfo.text);
+					var tokens = tokeniser.Tokenise (nodeInfo.title, nodeInfo.text);
 
 					if (showTokens)
 						PrintTokenList (tokens);

@@ -96,6 +96,7 @@ namespace Yarn {
 		// Where we found this token
 		public int lineNumber;
 		public int columnNumber;
+		public string context;
 		
 		public Token(TokenType type, object value=null) {
 			this.type = type;
@@ -193,7 +194,7 @@ namespace Yarn {
 		}
 
 		// Given an input string, parse it and return the list of tokens
-		public TokenList Tokenise(string input) {
+		public TokenList Tokenise(string context, string input) {
 			
 			// The total collection of all tokens in this input
 			var tokens = new TokenList();
@@ -213,13 +214,14 @@ namespace Yarn {
 				int newIndentLevel;
 				
 				// Get the tokens, plus the indentation level of this line
-				var lineTokens = TokeniseLine(line, out newIndentLevel, lineNum);
+				var lineTokens = TokeniseLine(context, line, out newIndentLevel, lineNum);
 				
 				if (newIndentLevel > indentLevels.Peek()) {
 					// We are now more indented than the last indent.
 					// Emit a "indent" token, and push this new indent onto the stack.
 					var indent = new Token(TokenType.Indent);
 					indent.lineNumber = lineNum;
+					indent.context = context;
 					tokens.Add(indent);
 					indentLevels.Push(newIndentLevel);
 				} else if (newIndentLevel < indentLevels.Peek()) {
@@ -232,6 +234,7 @@ namespace Yarn {
 						var dedent = new Token(TokenType.Dedent);
 						dedent.lineNumber = lineNum;
 						tokens.Add(dedent);
+						dedent.context = context;
 						indentLevels.Pop();
 					}
 				}
@@ -253,6 +256,7 @@ namespace Yarn {
 				indentLevels.Pop();
 				var dedent = new Token(TokenType.Dedent);
 				dedent.lineNumber = lineNum;
+				dedent.context = context;
 				tokens.Add(dedent);
 			}
 
@@ -264,7 +268,7 @@ namespace Yarn {
 		}
 
 		// Tokenise a single line, and also report on how indented this line is
-		private TokenList TokeniseLine(string input, out int lineIndentation, int lineNumber) {
+		private TokenList TokeniseLine(string context, string input, out int lineIndentation, int lineNumber) {
 			
 			// The tokens we found on this line
 			var tokens = new TokenList();
@@ -334,6 +338,7 @@ namespace Yarn {
 							// Record where the token was found
 							token.lineNumber = lineNumber;
 							token.columnNumber = columnNumber;
+							token.context = context;
 
 							// Add it to the token stream
 							tokens.Add(token);

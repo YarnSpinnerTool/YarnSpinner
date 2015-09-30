@@ -12,14 +12,14 @@ namespace Yarn
 			Console.WriteLine ("YarnParser: Executes Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] [-s=<start>] [-v<argname>=<value>] <inputfile>");
+			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] [-o=node] [-s=<start>] [-v<argname>=<value>] <inputfile>");
 			Console.WriteLine ();
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
 			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
 			Console.WriteLine ("\t-s: Start at the given node, instead of the default of '" + Dialogue.DEFAULT_START + "'.");
 			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
-
+			Console.WriteLine ("\t-o: Only consider node <node>.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
 
 
@@ -35,6 +35,7 @@ namespace Yarn
 			bool showTokens = false;
 			bool showParseTree = false;
 			bool waitForLines = false;
+			string onlyConsiderNode = null;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -69,6 +70,17 @@ namespace Yarn
 						continue;
 					}
 
+				}
+
+				// Handle 'only this node' parameter
+				if (arg.IndexOf("-o=") != -1) {
+					var startArray = arg.Split (new char[]{ '=' });
+					if (startArray.Length != 2) {
+						ShowHelpAndExit ();
+					} else {
+						onlyConsiderNode = startArray [1];
+						continue;
+					}
 				}
 
 				switch (arg) {
@@ -115,10 +127,13 @@ namespace Yarn
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree);
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 
-			// Run the conversation
-			dialogue.RunConversation (startNode);
+			if (showTokens == false && showParseTree == false) {
+				// Run the conversation
+				dialogue.RunConversation (startNode);
+
+			}
 
 		}
 
@@ -144,10 +159,10 @@ namespace Yarn
 				}
 			}
 
-			public int RunOptions (string[] options)
+			public void RunOptions (IList<string> options, Runner.OptionChooser optionChooser)
 			{
 				Console.WriteLine("Options:");
-				for (int i = 0; i < options.Length; i++) {
+				for (int i = 0; i < options.Count; i++) {
 					var optionDisplay = string.Format ("{0}. {1}", i + 1, options [i]);
 					Console.WriteLine (optionDisplay);
 				}
@@ -158,10 +173,11 @@ namespace Yarn
 						var selection = int.Parse (selectedKey) - 1;
 						Console.WriteLine();
 
-						if (selection > options.Length) {
+						if (selection > options.Count) {
 							Console.WriteLine ("Invalid option.");
 						} else {							
-							return selection;
+							optionChooser(selection);
+							break;
 						}
 					} catch (FormatException) {}
 

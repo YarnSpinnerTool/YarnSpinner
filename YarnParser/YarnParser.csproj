@@ -21,7 +21,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>True</Externalconsole>
-    <Commandlineparameters>-t -p ../../../Tests/NITW/Lori.json -vact=2 -vday=1 -s=Lori</Commandlineparameters>
+    <Commandlineparameters>../../../Tests/NITW/Lori.json -vact=2 -vday=1 -s=Lori </Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
