@@ -11,6 +11,12 @@ public abstract class DialogueUnityImplementation : MonoBehaviour {
 
 public class DialogueRunner : MonoBehaviour {
 
+	[System.Serializable]
+	public class DefaultVariable {
+		public string name;
+		public float value;
+	}
+
 	// The JSON file to load the conversation from
 	public TextAsset sourceText;
 
@@ -26,6 +32,8 @@ public class DialogueRunner : MonoBehaviour {
 	// Where to start from
 	public string startNode = Yarn.Dialogue.DEFAULT_START;
 
+	public DefaultVariable[] defaultVariables;
+
 	// Use this for initialization
 	void Start () {
 
@@ -37,6 +45,7 @@ public class DialogueRunner : MonoBehaviour {
 
 		// Set up the variable store
 		continuity = new Yarn.InMemoryContinuity();
+		ResetContinuityToDefaults();
 
 		// Create the main Dialogue runner, providing ourselves as the
 		// Implementation object
@@ -50,7 +59,26 @@ public class DialogueRunner : MonoBehaviour {
 		dialogue.LoadString(sourceText.text);
 	}
 
+	private void ResetContinuityToDefaults() {
+		continuity.Clear();
+		
+		foreach (var variable in defaultVariables) {
+			continuity.SetNumber("$"+variable.name, variable.value);
+		}
+	}
+
+	public void ResetDialogue() {
+		// Nuke the continuity and start again
+		ResetContinuityToDefaults();
+		StartDialogue();
+	}
+
 	public void StartDialogue() {
+
+		// Stop any processes that might be running already
+		StopAllCoroutines();
+		implementation.StopAllCoroutines();
+
 		// Get it going
 		StartCoroutine(RunDialogue());
 	}
@@ -81,12 +109,24 @@ public class DialogueRunner : MonoBehaviour {
 				// Wait for command to finish running
 				var command = step as Yarn.Dialogue.CommandResult;
 				yield return StartCoroutine(this.implementation.RunCommand(command.command));
-
 			}
 		}
+
+		// No more results! The dialogue is done.
+		yield return StartCoroutine(this.implementation.DialogueComplete());
 	}
 
 
+	public UnityEngine.UI.Text debugTextView;
+	void Update() {
+		if (debugTextView != null) {
+			var stringBuilder = new System.Text.StringBuilder();
+			foreach (KeyValuePair<string,float> item in continuity) {
+				stringBuilder.AppendLine(string.Format("{0} = {1}", item.Key, item.Value));
+			}
+			debugTextView.text = stringBuilder.ToString();
+		}
+	}
 
 
 }

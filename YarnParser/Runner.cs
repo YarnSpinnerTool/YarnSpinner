@@ -6,9 +6,10 @@ namespace Yarn
 {
 	
 	// Where we turn to for storing and loading variable data.
-	public interface Continuity {
-		void SetNumber(float number, string variableName);
+	public interface Continuity : IEnumerable {
+		void SetNumber(string variableName, float number);
 		float GetNumber(string variableName);
+		void Clear();
 	}
 
 
@@ -72,6 +73,7 @@ namespace Yarn
 				// And jump to its destination!
 				yield return new Dialogue.NodeCompleteResult(selectedOption.destination);
 			}
+			yield break;
 
 		}
 
@@ -217,6 +219,7 @@ namespace Yarn
 			case Parser.Value.Type.Number:
 				return value.number;
 			case Parser.Value.Type.Variable:
+				dialogue.LogDebugMessage ("Checking value " + value.variableName);
 				return dialogue.continuity.GetNumber (value.variableName);
 			}
 			return 0.0f;
@@ -255,7 +258,7 @@ namespace Yarn
 			}
 
 			dialogue.LogDebugMessage(string.Format("Set {0} to {1}", variableName, finalValue));
-			dialogue.continuity.SetNumber (finalValue, variableName);
+			dialogue.continuity.SetNumber (variableName, finalValue);
 		}
 
 		private IEnumerable<Dialogue.RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
@@ -313,10 +316,14 @@ namespace Yarn
 
 	// Very simple continuity class that keeps all variables in memory
 	public class InMemoryContinuity : Yarn.Continuity {
+		public IEnumerator GetEnumerator ()
+		{
+			return variables.GetEnumerator ();
+		}
 
 		Dictionary<string, float> variables = new Dictionary<string, float>();
 
-		public void SetNumber (float number, string variableName)
+		public void SetNumber (string variableName, float number)
 		{
 			variables [variableName] = number;
 		}
@@ -331,5 +338,9 @@ namespace Yarn
 			}
 			return value;
 		}				
+
+		public void Clear() {
+			variables.Clear ();
+		}
 	}
 }

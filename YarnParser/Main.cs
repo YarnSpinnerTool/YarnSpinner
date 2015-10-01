@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -123,7 +124,7 @@ namespace Yarn
 			// load the default variables we got on the command line
 			foreach (var variable in defaultVariables) {
 				
-				impl.SetNumber (variable.Value, variable.Key);
+				impl.SetNumber (variable.Key, variable.Value);
 			}
 
 			// Load nodes
@@ -136,31 +137,40 @@ namespace Yarn
 				Console.WriteLine ("ERROR: " + message);
 			};
 
-			if (showTokens == false && showParseTree == false) {
-				// Run the conversation
-				foreach (var step in dialogue.Run (startNode)) {
+			for (var count = 1; count <= 2; count++) {
+				if (showTokens == false && showParseTree == false) {
+					// Run the conversation
+					foreach (var step in dialogue.Run (startNode)) {
 
-					if (step is Dialogue.LineResult) {
-						var line = step as Dialogue.LineResult;
-						impl.RunLine (line.text);
-					} else if (step is Dialogue.OptionSetResult) {
-						var optionSet = step as Dialogue.OptionSetResult;
-						impl.RunOptions (optionSet.options, optionSet.chooseResult);
-					} else if (step is Dialogue.CommandResult) {
-						var command = step as Dialogue.CommandResult;
-						impl.RunCommand (command.command);
+						if (step is Dialogue.LineResult) {
+							var line = step as Dialogue.LineResult;
+							impl.RunLine (line.text);
+						} else if (step is Dialogue.OptionSetResult) {
+							var optionSet = step as Dialogue.OptionSetResult;
+							impl.RunOptions (optionSet.options, optionSet.chooseResult);
+						} else if (step is Dialogue.CommandResult) {
+							var command = step as Dialogue.CommandResult;
+							impl.RunCommand (command.command);
+						}
 					}
+					impl.DialogueComplete ();
 				}
-				impl.DialogueComplete ();
 			}
+
 
 		}
 
 		// A simple Implementation for the command line.
 		private class ConsoleRunnerImplementation : Yarn.Continuity {
-			
+
+
 
 			private bool waitForLines = false;
+
+			public IEnumerator GetEnumerator ()
+			{
+				return this.inMemoryContinuity.GetEnumerator();
+			}
 
 			Yarn.InMemoryContinuity inMemoryContinuity;
 
@@ -222,9 +232,9 @@ namespace Yarn
 				Console.WriteLine("Debug: " + message);
 			}
 
-			public void SetNumber (float number, string variableName)
+			public void SetNumber (string variableName, float number)
 			{				
-				inMemoryContinuity.SetNumber(number, variableName);
+				inMemoryContinuity.SetNumber(variableName, number);
 			}
 
 			public float GetNumber (string variableName)
@@ -232,6 +242,10 @@ namespace Yarn
 				return inMemoryContinuity.GetNumber(variableName);
 			}
 
+			public void Clear()
+			{
+				inMemoryContinuity.Clear();
+			}
 		}
 
 
