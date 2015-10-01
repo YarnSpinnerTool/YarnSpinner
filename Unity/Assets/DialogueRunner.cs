@@ -2,7 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DialogueRunner : MonoBehaviour, Yarn.Implementation {
+public abstract class DialogueUnityImplementation : MonoBehaviour {
+	public abstract IEnumerator RunLine(string text);
+	public abstract IEnumerator RunOptions(IList<string> options, Yarn.OptionChooser optionChooser);
+	public abstract IEnumerator RunCommand(string text);
+	public abstract IEnumerator DialogueComplete();
+}
+
+public class DialogueRunner : MonoBehaviour {
 
 	// The JSON file to load the conversation from
 	public TextAsset sourceText;
@@ -13,89 +20,73 @@ public class DialogueRunner : MonoBehaviour, Yarn.Implementation {
 	// Our variable storage
 	private Yarn.Continuity continuity;
 
+	// The object that will handle the actual display and user input
+	public DialogueUnityImplementation implementation;
+
 	// Where to start from
 	public string startNode = Yarn.Dialogue.DEFAULT_START;
 
 	// Use this for initialization
 	void Start () {
 
+		// Ensure that we have our Implementation object
+		if (implementation == null) {
+			Debug.LogError("Implementation was not set!");
+			return;
+		}
+
 		// Set up the variable store
 		continuity = new Yarn.InMemoryContinuity();
 
 		// Create the main Dialogue runner, providing ourselves as the
 		// Implementation object
-		dialogue = new Yarn.Dialogue(this);
+		dialogue = new Yarn.Dialogue(continuity);
+
+		// Set up the logging system.
+		dialogue.LogDebugMessage = Debug.Log;
+		dialogue.LogErrorMessage = Debug.LogError;
 
 		// Load the JSON for this conversation
 		dialogue.LoadString(sourceText.text);
+	}
 
+	public void StartDialogue() {
 		// Get it going
 		StartCoroutine(RunDialogue());
-
 	}
 
 	IEnumerator RunDialogue() {
 
 		// BOOM. DIALOGUE.
-		foreach (var step in dialogue.RunConversation(startNode)) {
+		foreach (var step in dialogue.Run(startNode)) {
 
-			// The RunLine, RunOptions and RunCommand methods below are 
-			// automatically called as necessary. If you need time to
-			// finish doing something, like waiting for a line to finish 
-			// animating onto the screen, or waiting for the user to select
-			// an option, you can just yield here until you're ready to continue.
+			if (step is Yarn.Dialogue.LineResult) {
 
-			yield return new WaitForSeconds(0.5f);
+				// Wait for line to finish displaying
+				var line = step as Yarn.Dialogue.LineResult;
+				yield return StartCoroutine(this.implementation.RunLine(line.text));
+
+			} else if (step is Yarn.Dialogue.OptionSetResult) {
+
+				// Wait for user to finish picking an option
+				var optionSet = step as Yarn.Dialogue.OptionSetResult;
+				yield return StartCoroutine(
+					this.implementation.RunOptions(
+						optionSet.options, 
+						optionSet.chooseResult
+					));
+
+			} else if (step is Yarn.Dialogue.CommandResult) {
+
+				// Wait for command to finish running
+				var command = step as Yarn.Dialogue.CommandResult;
+				yield return StartCoroutine(this.implementation.RunCommand(command.command));
+
+			}
 		}
 	}
 
-	// Display a line of text on screen
-	void Yarn.Implementation.RunLine (string lineText)
-	{
-		Debug.Log(lineText);
-	}
 
-	// Display a list of options for the user to choose from
-	void Yarn.Implementation.RunOptions (IList<string> options, Yarn.OptionChooser optionChooser)
-	{
-		// "options" is the list of strings to show the user.
-		// "optionChooser" is a delegate that takes one parameter: 
-		// the selected option number. You call it when the user has made 
-		// their selection, eg:
 
-		optionChooser(0); // in this example, just pick the first 
-						  // available option immediately
-	}
-
-	void Yarn.Implementation.RunCommand (string command)
-	{
-		// do whatever the game needs here - this is for commands 
-		// like <<sit>> <<show Lori>>
-		Debug.Log("Command: " + command);
-	}
-
-	void Yarn.Implementation.DialogueComplete ()
-	{
-		// We reached the end of the conversation.
-		// Close the dialogue UI and move on with the game.
-	}
-
-	// Logging methods for both debug-level and error-level stuff
-	void Yarn.Implementation.HandleDebugMessage (string message)
-	{
-		Debug.Log(message);
-	}
-
-	void Yarn.Implementation.HandleErrorMessage (string message)
-	{
-		Debug.LogError(message);
-	}
-
-	// Used to let the Dialogue system know about where the 
-	Yarn.Continuity Yarn.Implementation.continuity {
-		get {
-			return continuity;
-		}
-	}
 
 }

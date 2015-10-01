@@ -118,35 +118,54 @@ namespace Yarn
 			}
 
 			// Create the object that handles callbacks
-			var impl = new ConsoleRunnerImplementation (continuity:null, waitForLines:waitForLines);
+			var impl = new ConsoleRunnerImplementation (waitForLines:waitForLines);
 
 			// load the default variables we got on the command line
 			foreach (var variable in defaultVariables) {
-				impl.continuity.SetNumber (variable.Value, variable.Key);
+				
+				impl.SetNumber (variable.Value, variable.Key);
 			}
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+			dialogue.LogDebugMessage = delegate(string message) {
+				Console.WriteLine ("Debug: " + message);
+			};
+			dialogue.LogErrorMessage = delegate(string message) {
+				Console.WriteLine ("ERROR: " + message);
+			};
 
 			if (showTokens == false && showParseTree == false) {
 				// Run the conversation
-				foreach (var step in dialogue.RunConversation (startNode));
+				foreach (var step in dialogue.Run (startNode)) {
+
+					if (step is Dialogue.LineResult) {
+						var line = step as Dialogue.LineResult;
+						impl.RunLine (line.text);
+					} else if (step is Dialogue.OptionSetResult) {
+						var optionSet = step as Dialogue.OptionSetResult;
+						impl.RunOptions (optionSet.options, optionSet.chooseResult);
+					} else if (step is Dialogue.CommandResult) {
+						var command = step as Dialogue.CommandResult;
+						impl.RunCommand (command.command);
+					}
+				}
+				impl.DialogueComplete ();
 			}
 
 		}
 
 		// A simple Implementation for the command line.
-		private class ConsoleRunnerImplementation : Yarn.Implementation {
+		private class ConsoleRunnerImplementation : Yarn.Continuity {
 			
+
 			private bool waitForLines = false;
 
-			public ConsoleRunnerImplementation(Continuity continuity = null, bool waitForLines = false) {
-				if (continuity != null) {
-					this.continuity = continuity;
-				} else {
-					this.continuity = new InMemoryContinuity();
-				}
+			Yarn.InMemoryContinuity inMemoryContinuity;
+
+			public ConsoleRunnerImplementation(bool waitForLines = false) {
+				this.inMemoryContinuity = new InMemoryContinuity();
 				this.waitForLines = waitForLines;
 			}
 
@@ -193,20 +212,26 @@ namespace Yarn
 				Console.WriteLine("Conversation complete.");
 			}
 
-			public Continuity continuity {
-				get; private set;
-			}
-
 			public void HandleErrorMessage (string error)
 			{
 				Console.WriteLine("Error: " + error);
 			}
-
 			
 			public void HandleDebugMessage (string message)
 			{
 				Console.WriteLine("Debug: " + message);
 			}
+
+			public void SetNumber (float number, string variableName)
+			{				
+				inMemoryContinuity.SetNumber(number, variableName);
+			}
+
+			public float GetNumber (string variableName)
+			{
+				return inMemoryContinuity.GetNumber(variableName);
+			}
+
 		}
 
 

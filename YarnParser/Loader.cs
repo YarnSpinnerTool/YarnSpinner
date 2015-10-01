@@ -6,7 +6,7 @@ namespace Yarn {
 
 	internal class Loader {
 
-		private Implementation implementation;
+		private Dialogue dialogue;
 
 		// The final parsed nodes that were in the file we were given
 		internal Dictionary<string, Yarn.Parser.Node> nodes { get; private set;}
@@ -20,21 +20,21 @@ namespace Yarn {
 			}
 
 			// Let's see what we got
-			implementation.HandleDebugMessage("Tokens:");
-			implementation.HandleDebugMessage(sb.ToString());
+			dialogue.LogDebugMessage("Tokens:");
+			dialogue.LogDebugMessage(sb.ToString());
 
 		}
 
 		// Prints the parse tree for the node
 		void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
-			implementation.HandleDebugMessage("Parse Tree:");
-			implementation.HandleDebugMessage(rootNode.PrintTree(0));
+			dialogue.LogDebugMessage("Parse Tree:");
+			dialogue.LogDebugMessage(rootNode.PrintTree(0));
 
 		}
 
 		// Prepares a loader. 'implementation' is used for logging.
-		public Loader(Implementation implementation) {
-			this.implementation = implementation;
+		public Loader(Dialogue dialogue) {
+			this.dialogue = dialogue;
 			nodes = new Dictionary<string, Parser.Node>();
 		}
 
@@ -73,9 +73,9 @@ namespace Yarn {
 					nodes[nodeInfo.title] = node;
 				#if !DEBUG
 				} catch (Yarn.TokeniserException t) {
-					implementation.HandleErrorMessage (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
+					implementation.LogErrorMessage (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
 				} catch (Yarn.ParseException p) {
-					implementation.HandleErrorMessage (string.Format ("Error parsing node {0}: {1}", nodeInfo.title, p.Message));
+					implementation.LogErrorMessage (string.Format ("Error parsing node {0}: {1}", nodeInfo.title, p.Message));
 				}
 				#endif
 
@@ -130,10 +130,10 @@ namespace Yarn {
 					}
 
 				} catch (InvalidCastException) {
-					implementation.HandleErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
+					dialogue.LogErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
 						"it didn't match the data layout I was expecting.");
 				} catch (InvalidJsonException e) {
-					implementation.HandleErrorMessage ("Error parsing Yarn input: " + e.Message);
+					dialogue.LogErrorMessage ("Error parsing Yarn input: " + e.Message);
 				}
 			}
 

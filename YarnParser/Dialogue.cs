@@ -4,22 +4,17 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
-	public delegate void OptionChooser (int selectedOptionIndex);
-
-	public interface Implementation {
-		void RunLine (string lineText);
-		void RunOptions(IList<string> options, OptionChooser optionChooser);
-		void RunCommand(string command);
-		void DialogueComplete();
-
-		void HandleDebugMessage (string error);
-		void HandleErrorMessage (string message);
-
-		Continuity continuity {get;}
-
+	public  class YarnException : Exception {
+		public YarnException(string message) : base(message) {}
 	}
 
-	public class Dialogue {
+	public delegate void OptionChooser (int selectedOptionIndex);
+	public delegate void Logger(string message);
+
+
+	public class Dialogue  {
+
+		internal Continuity continuity;
 
 		public class RunnerResult { }
 
@@ -60,15 +55,15 @@ namespace Yarn {
 
 		}
 
+		public Logger LogDebugMessage;
+		public Logger LogErrorMessage;
 
 		public const string DEFAULT_START = "Start";
 
 		internal Loader loader;
 
-		private Implementation implementation;
-
-		public Dialogue(Yarn.Implementation implementation) {
-			this.implementation = implementation;
+		public Dialogue(Yarn.Continuity continuity) {
+			this.continuity = continuity;
 		}
 
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
@@ -82,27 +77,35 @@ namespace Yarn {
 
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
-			loader = new Loader (implementation);
+			loader = new Loader (this);
 			loader.Load(text, showTokens, showParseTree, onlyConsiderNode);
 
 			return loader.nodes.Count;
 		}
 
-		public IEnumerable<Yarn.Dialogue.RunnerResult> RunConversation(string startNode = DEFAULT_START) {
+		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
-			var runner = new Runner (implementation);
+			var runner = new Runner (this);
+
+			if (LogDebugMessage == null) {
+				throw new YarnException ("LogDebugMessage must be set before running");
+			}
+
+			if (LogErrorMessage == null) {
+				throw new YarnException ("LogErrorMessage must be set before running");
+			}
 
 			var nextNode = startNode;
 
 			do {
 
-				implementation.HandleDebugMessage ("Running node " + nextNode);	
+				LogDebugMessage ("Running node " + nextNode);	
 				Parser.Node node;
 
 				try {
 					node = loader.nodes [nextNode];
 				} catch (KeyNotFoundException) {
-					implementation.HandleErrorMessage ("Can't find node " + nextNode);
+					LogErrorMessage ("Can't find node " + nextNode);
 					yield break;
 				}
 
@@ -114,25 +117,14 @@ namespace Yarn {
 
 						// NodeComplete is not interactive, so skip immediately to next step
 						continue;
-					} else if (result is Yarn.Dialogue.LineResult) {
-						var line = result as Yarn.Dialogue.LineResult;
-						implementation.RunLine (line.text);
-					} else if (result is Yarn.Dialogue.CommandResult) {
-						var command = result as Yarn.Dialogue.CommandResult;
-						implementation.RunCommand (command.command);
-					} else if (result is Yarn.Dialogue.OptionSetResult) {
-						var options = result as Yarn.Dialogue.OptionSetResult;
-						implementation.RunOptions (options.options, options.chooseResult);
-					}
+					} 
 					yield return result;
 				}
 
 				
 			} while (nextNode != null);
 
-			implementation.HandleDebugMessage ("Run complete.");
-
-			implementation.DialogueComplete ();
+			LogDebugMessage ("Run complete.");
 
 		}
 

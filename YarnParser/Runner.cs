@@ -14,17 +14,14 @@ namespace Yarn
 
 	internal class Runner
 	{
-
-
-
 		// The list of options that this node has currently developed.
 		private List<Parser.OptionStatement> currentOptions;
 
 		// The object that we send our lines, options and commands to for display and input.
-		private Implementation implementation;
+		private Dialogue dialogue;
 
-		internal Runner(Implementation implementation) {
-			this.implementation = implementation;
+		internal Runner(Dialogue dialogue) {
+			this.dialogue = dialogue;
 		}
 
 		// executes a node, and returns either the name of the next node to run
@@ -68,7 +65,7 @@ namespace Yarn
 				});
 
 				if (selectedOption == null) {
-					implementation.HandleErrorMessage ("Option chooser was never called!");
+					dialogue.LogErrorMessage ("Option chooser was never called!");
 					yield break;
 				}
 
@@ -220,7 +217,7 @@ namespace Yarn
 			case Parser.Value.Type.Number:
 				return value.number;
 			case Parser.Value.Type.Variable:
-				return implementation.continuity.GetNumber (value.variableName);
+				return dialogue.continuity.GetNumber (value.variableName);
 			}
 			return 0.0f;
 		}
@@ -235,7 +232,7 @@ namespace Yarn
 			var computedValue = EvaluateExpression (assignment.valueExpression);
 
 			// The current value of this variable.
-			float originalValue = implementation.continuity.GetNumber (variableName);
+			float originalValue = dialogue.continuity.GetNumber (variableName);
 
 			// What shall we do with it?
 			float finalValue = 0.0f;
@@ -257,8 +254,8 @@ namespace Yarn
 				break;
 			}
 
-			implementation.HandleDebugMessage(string.Format("Set {0} to {1}", variableName, finalValue));
-			implementation.continuity.SetNumber (finalValue, variableName);
+			dialogue.LogDebugMessage(string.Format("Set {0} to {1}", variableName, finalValue));
+			dialogue.continuity.SetNumber (finalValue, variableName);
 		}
 
 		private IEnumerable<Dialogue.RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
@@ -291,7 +288,7 @@ namespace Yarn
 				});
 
 				if (selectedOption == null) {
-					implementation.HandleErrorMessage ("Option chooser was never called!");
+					dialogue.LogErrorMessage ("Option chooser was never called!");
 					yield break;
 				}
 
@@ -312,8 +309,6 @@ namespace Yarn
 				
 
 		}
-
-
 	}
 
 	// Very simple continuity class that keeps all variables in memory
@@ -321,12 +316,12 @@ namespace Yarn
 
 		Dictionary<string, float> variables = new Dictionary<string, float>();
 
-		void Yarn.Continuity.SetNumber (float number, string variableName)
+		public void SetNumber (float number, string variableName)
 		{
 			variables [variableName] = number;
 		}
 
-		float Yarn.Continuity.GetNumber (string variableName)
+		public float GetNumber (string variableName)
 		{
 			float value = 0.0f;
 			if (variables.ContainsKey(variableName)) {
