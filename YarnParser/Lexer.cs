@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
-	public class TokeniserException : InvalidOperationException  {
+	internal class TokeniserException : InvalidOperationException  {
 		public TokeniserException (string message) : base (message) {}
 	}
 
 	// save some typing, we deal with lists of tokens a LOT
-	public class TokenList : List<Token> {}
+	internal class TokenList : List<Token> {}
 
-	public enum TokenType {
+	internal enum TokenType {
 		// Special tokens
 		Whitespace,
 		Indent,
@@ -87,7 +87,7 @@ namespace Yarn {
 	}
 	
 	// A parsed token.
-	public class Token {
+	internal class Token {
 
 		// The token itself
 		public TokenType type;
@@ -114,7 +114,7 @@ namespace Yarn {
 
 
 	// Lean, mean, string-readin' machine
-	public class Tokeniser {
+	internal class Tokeniser {
 
 		// A defined rule for matching a type of token
 		public class TokenRule {

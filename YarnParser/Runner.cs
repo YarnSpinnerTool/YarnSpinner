@@ -11,47 +11,11 @@ namespace Yarn
 		float GetNumber(string variableName);
 	}
 
-	public class Runner
+
+	internal class Runner
 	{
 
-		public class RunnerResult { }
 
-		public class LineResult : RunnerResult  {
-			public string text;
-
-			public LineResult (string text) {
-				this.text = text;
-			}
-
-		}
-
-		public class CommandResult: RunnerResult {
-			public string command;
-
-			public CommandResult (string command) {
-				this.command = command;
-			}
-
-		}
-
-		public class NodeCompleteResult: RunnerResult {
-			public string nextNode;
-
-			public NodeCompleteResult (string nextNode) {
-				this.nextNode = nextNode;
-			}
-		}
-
-		public class OptionSetResult : RunnerResult {
-			public IList<string> options;
-			public OptionChooser chooseResult;
-
-			public OptionSetResult (IList<string> options, OptionChooser chooseResult) {
-				this.options = options;
-				this.chooseResult = chooseResult;
-			}
-
-		}
 
 		// The list of options that this node has currently developed.
 		private List<Parser.OptionStatement> currentOptions;
@@ -59,13 +23,13 @@ namespace Yarn
 		// The object that we send our lines, options and commands to for display and input.
 		private Implementation implementation;
 
-		public Runner(Implementation implementation) {
+		internal Runner(Implementation implementation) {
 			this.implementation = implementation;
 		}
 
 		// executes a node, and returns either the name of the next node to run
 		// or null (indicating the dialogue is over)
-		public IEnumerable<RunnerResult> RunNode(Yarn.Parser.Node node)
+		internal IEnumerable<Dialogue.RunnerResult> RunNode(Yarn.Parser.Node node)
 		{
 
 			// Clear the list of options when we start a new node
@@ -78,7 +42,7 @@ namespace Yarn
 
 			// If we have no options, we're all done
 			if (currentOptions.Count == 0) {
-				yield return new NodeCompleteResult (null);
+				yield return new Dialogue.NodeCompleteResult (null);
 				yield break;
 			} else {
 				// We have options!
@@ -86,7 +50,7 @@ namespace Yarn
 				// If we have precisely one option and it's got no label, jump to it
 				if (currentOptions.Count == 1 &&
 					currentOptions[0].label == null) {
-					yield return new NodeCompleteResult (currentOptions [0].destination);
+					yield return new Dialogue.NodeCompleteResult (currentOptions [0].destination);
 					yield break;
 				}
 
@@ -99,7 +63,7 @@ namespace Yarn
 
 				Parser.OptionStatement selectedOption = null;
 
-				yield return new OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
+				yield return new Dialogue.OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
 					selectedOption = currentOptions[selectedOptionIndex];
 				});
 
@@ -109,13 +73,13 @@ namespace Yarn
 				}
 
 				// And jump to its destination!
-				yield return new NodeCompleteResult(selectedOption.destination);
+				yield return new Dialogue.NodeCompleteResult(selectedOption.destination);
 			}
 
 		}
 
 		// Run a list of statements.
-		private IEnumerable<RunnerResult> RunStatements(IEnumerable<Parser.Statement> statements) {
+		private IEnumerable<Dialogue.RunnerResult> RunStatements(IEnumerable<Parser.Statement> statements) {
 			
 			if (statements == null) {
 				yield break;
@@ -130,7 +94,7 @@ namespace Yarn
 		}
 
 		// Run a single statement.
-		private IEnumerable<RunnerResult> RunStatement (Parser.Statement statement) {
+		private IEnumerable<Dialogue.RunnerResult> RunStatement (Parser.Statement statement) {
 
 
 			switch (statement.type) {
@@ -144,7 +108,7 @@ namespace Yarn
 
 			case Parser.Statement.Type.Line:
 				// Lines get forwarded to the implementation for display
-				yield return new LineResult(statement.line);
+				yield return new Dialogue.LineResult(statement.line);
 				break;
 
 			case Parser.Statement.Type.IfStatement:
@@ -182,7 +146,7 @@ namespace Yarn
 
 			case Parser.Statement.Type.CustomCommand:
 				// Deal with a custom command
-				yield return new CommandResult (statement.customCommand.command);
+				yield return new Dialogue.CommandResult (statement.customCommand.command);
 				break;
 
 			default:
@@ -297,7 +261,7 @@ namespace Yarn
 			implementation.continuity.SetNumber (finalValue, variableName);
 		}
 
-		private IEnumerable<RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
+		private IEnumerable<Dialogue.RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
 		{
 			var optionsToDisplay = new List<Parser.ShortcutOption> ();
 
@@ -322,7 +286,7 @@ namespace Yarn
 
 				Parser.ShortcutOption selectedOption = null;
 
-				yield return new OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
+				yield return new Dialogue.OptionSetResult (optionStrings, delegate(int selectedOptionIndex) {
 					selectedOption = optionsToDisplay[selectedOptionIndex];
 				});
 

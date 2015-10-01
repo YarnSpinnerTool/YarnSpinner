@@ -23,3 +23,5 @@
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+/Assets/NITW*
+/Assets/Yarn.dll* # generated as part of build and copied here

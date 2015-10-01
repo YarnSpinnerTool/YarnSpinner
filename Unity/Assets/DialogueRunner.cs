@@ -14,7 +14,7 @@ public class DialogueRunner : MonoBehaviour, Yarn.Implementation {
 	private Yarn.Continuity continuity;
 
 	// Where to start from
-	public string startNode = "Start";
+	public string startNode = Yarn.Dialogue.DEFAULT_START;
 
 	// Use this for initialization
 	void Start () {

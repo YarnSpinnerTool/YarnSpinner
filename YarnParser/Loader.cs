@@ -4,12 +4,12 @@ using Json;
 
 namespace Yarn {
 
-	public class Loader {
+	internal class Loader {
 
 		private Implementation implementation;
 
 		// The final parsed nodes that were in the file we were given
-		public Dictionary<string, Yarn.Parser.Node> nodes { get; private set;}
+		internal Dictionary<string, Yarn.Parser.Node> nodes { get; private set;}
 
 		// Prints out the list of tokens that the tokeniser found for this node
 		void PrintTokenList(IEnumerable<Token> tokenList) {

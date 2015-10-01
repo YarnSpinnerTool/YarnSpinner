@@ -21,11 +21,49 @@ namespace Yarn {
 
 	public class Dialogue {
 
+		public class RunnerResult { }
+
+		public class LineResult : RunnerResult  {
+			public string text;
+
+			public LineResult (string text) {
+				this.text = text;
+			}
+
+		}
+
+		public class CommandResult: RunnerResult {
+			public string command;
+
+			public CommandResult (string command) {
+				this.command = command;
+			}
+
+		}
+
+		public class NodeCompleteResult: RunnerResult {
+			public string nextNode;
+
+			public NodeCompleteResult (string nextNode) {
+				this.nextNode = nextNode;
+			}
+		}
+
+		public class OptionSetResult : RunnerResult {
+			public IList<string> options;
+			public OptionChooser chooseResult;
+
+			public OptionSetResult (IList<string> options, OptionChooser chooseResult) {
+				this.options = options;
+				this.chooseResult = chooseResult;
+			}
+
+		}
 
 
 		public const string DEFAULT_START = "Start";
 
-		public Loader loader;
+		internal Loader loader;
 
 		private Implementation implementation;
 
@@ -50,7 +88,7 @@ namespace Yarn {
 			return loader.nodes.Count;
 		}
 
-		public IEnumerable<Yarn.Runner.RunnerResult> RunConversation(string startNode = DEFAULT_START) {
+		public IEnumerable<Yarn.Dialogue.RunnerResult> RunConversation(string startNode = DEFAULT_START) {
 
 			var runner = new Runner (implementation);
 
@@ -70,20 +108,20 @@ namespace Yarn {
 
 				foreach (var result in runner.RunNode(node)) {
 					
-					if (result is Yarn.Runner.NodeCompleteResult) {
-						var nodeComplete = result as Yarn.Runner.NodeCompleteResult;
+					if (result is Yarn.Dialogue.NodeCompleteResult) {
+						var nodeComplete = result as Yarn.Dialogue.NodeCompleteResult;
 						nextNode = nodeComplete.nextNode;
 
 						// NodeComplete is not interactive, so skip immediately to next step
 						continue;
-					} else if (result is Yarn.Runner.LineResult) {
-						var line = result as Yarn.Runner.LineResult;
+					} else if (result is Yarn.Dialogue.LineResult) {
+						var line = result as Yarn.Dialogue.LineResult;
 						implementation.RunLine (line.text);
-					} else if (result is Yarn.Runner.CommandResult) {
-						var command = result as Yarn.Runner.CommandResult;
+					} else if (result is Yarn.Dialogue.CommandResult) {
+						var command = result as Yarn.Dialogue.CommandResult;
 						implementation.RunCommand (command.command);
-					} else if (result is Yarn.Runner.OptionSetResult) {
-						var options = result as Yarn.Runner.OptionSetResult;
+					} else if (result is Yarn.Dialogue.OptionSetResult) {
+						var options = result as Yarn.Dialogue.OptionSetResult;
 						implementation.RunOptions (options.options, options.chooseResult);
 					}
 					yield return result;

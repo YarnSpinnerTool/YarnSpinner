@@ -8,7 +8,7 @@
     <ProjectGuid>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>YarnParserLibrary</RootNamespace>
-    <AssemblyName>YarnParserLibrary</AssemblyName>
+    <AssemblyName>Yarn</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
