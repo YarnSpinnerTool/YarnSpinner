@@ -119,7 +119,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 70}
-  m_SizeDelta: {x: 0, y: 140}
+  m_SizeDelta: {x: -80, y: 140}
   m_Pivot: {x: .5, y: 0}
 --- !u!1 &488001072
 GameObject:
@@ -602,7 +602,7 @@ RectTransform:
   - {fileID: 674565507}
   - {fileID: 1266842500}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -654,7 +654,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 655981049}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -801,7 +801,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1099977236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1353,51 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1431559587}
+--- !u!1 &1441763635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1441763637}
+  - 114: {fileID: 1441763636}
+  m_Layer: 0
+  m_Name: Variable Storage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1441763636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1441763635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610c541718d694070a21327d1ae62e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultVariables:
+  - name: act
+    value: 2
+  - name: day
+    value: 1
+  debugTextView: {fileID: 1266842501}
+--- !u!4 &1441763637
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1441763635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1466796979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1523,7 @@ GameObject:
   - 4: {fileID: 1491325593}
   - 114: {fileID: 1491325592}
   m_Layer: 0
-  m_Name: Dialogue
+  m_Name: Dialogue Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1492,18 +1537,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491325591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9927834d1b11410e8fba80736609d21, type: 3}
+  m_Script: {fileID: 11500000, guid: 379f6794cfe2043acb06e65f028b88f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceText: {fileID: 4900000, guid: 9e35a757315604a5bb27e67cf42fe72e, type: 3}
-  implementation: {fileID: 1859707865}
+  sourceText: {fileID: 4900000, guid: 7a0cc7e897d6b4bd2a1042f854a75acf, type: 3}
+  variableStorage: {fileID: 1441763636}
+  dialogueUI: {fileID: 1859707865}
   startNode: Lori
-  defaultVariables:
-  - name: act
-    value: 2
-  - name: day
-    value: 1
-  debugTextView: {fileID: 1266842501}
 --- !u!4 &1491325593
 Transform:
   m_ObjectHideFlags: 0
@@ -1526,7 +1566,7 @@ GameObject:
   - 4: {fileID: 1859707866}
   - 114: {fileID: 1859707865}
   m_Layer: 0
-  m_Name: Dialogue Implementation
+  m_Name: Dialogue UI Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1540,11 +1580,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1859707864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8587c09b6614a476b937862ed9ff0ce6, type: 3}
+  m_Script: {fileID: 11500000, guid: 04317fce65da54f4997a5c4465b4e93c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lineText: {fileID: 1233996476}
-  lineContinuePrompt: {fileID: 706698520}
+  continuePrompt: {fileID: 706698520}
   textSpeed: .00999999978
   optionButtons:
   - {fileID: 1389510981}
