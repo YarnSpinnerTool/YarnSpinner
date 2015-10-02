@@ -8,7 +8,7 @@
     <ProjectGuid>{858816BE-870C-40A8-BC22-8EDA51E2F339}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>YarnParser</RootNamespace>
-    <AssemblyName>YarnParser</AssemblyName>
+    <AssemblyName>YarnSpinner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -38,12 +38,12 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Lexer.cs" />
-    <Compile Include="Runner.cs" />
-    <Compile Include="Loader.cs" />
-    <Compile Include="Dialogue.cs" />
-    <Compile Include="Parser.cs" />
-    <Compile Include="JsonParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\YarnParserLibrary\YarnSpinner.csproj">
+      <Project>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</Project>
+      <Name>YarnSpinner</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

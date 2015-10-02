@@ -6,7 +6,7 @@ namespace Yarn
 {
 	
 	// Where we turn to for storing and loading variable data.
-	public interface Continuity : IEnumerable {
+	public interface VariableStorage {
 		void SetNumber(string variableName, float number);
 		float GetNumber(string variableName);
 		void Clear();
@@ -106,7 +106,7 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.Line:
-				// Lines get forwarded to the implementation for display
+				// Lines get forwarded to the client for display
 				yield return new Dialogue.LineResult(statement.line);
 				break;
 
@@ -291,7 +291,7 @@ namespace Yarn
 				});
 
 				if (selectedOption == null) {
-					dialogue.LogErrorMessage ("Option chooser was never called!");
+					dialogue.LogErrorMessage ("setSelectedOption was not called! Exiting run.");
 					yield break;
 				}
 
@@ -315,12 +315,7 @@ namespace Yarn
 	}
 
 	// Very simple continuity class that keeps all variables in memory
-	public class InMemoryContinuity : Yarn.Continuity {
-		public IEnumerator GetEnumerator ()
-		{
-			return variables.GetEnumerator ();
-		}
-
+	public class MemoryVariableStore : Yarn.VariableStorage {
 		Dictionary<string, float> variables = new Dictionary<string, float>();
 
 		public void SetNumber (string variableName, float number)

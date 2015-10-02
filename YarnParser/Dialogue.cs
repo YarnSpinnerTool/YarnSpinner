@@ -14,10 +14,13 @@ namespace Yarn {
 
 	public class Dialogue  {
 
-		internal Continuity continuity;
+		// We'll ask this object for the state of variables
+		internal VariableStorage continuity;
 
-		public class RunnerResult { }
+		// Represents something for the end user ("client") of the Dialogue class to do.
+		public abstract class RunnerResult { }
 
+		// The client should run a line of dialogue.
 		public class LineResult : RunnerResult  {
 			public string text;
 
@@ -27,6 +30,7 @@ namespace Yarn {
 
 		}
 
+		// The client should run a command (it's up to them to parse the string)
 		public class CommandResult: RunnerResult {
 			public string command;
 
@@ -35,8 +39,22 @@ namespace Yarn {
 			}
 
 		}
+			
+		// The client should show a list of options, and call setSelectedOption before
+		// asking for the next line. It's an error if you don't.
+		public class OptionSetResult : RunnerResult {
+			public IList<string> options;
+			public OptionChooser setSelectedOptionDelegate;
 
-		public class NodeCompleteResult: RunnerResult {
+			public OptionSetResult (IList<string> options, OptionChooser setSelectedOption) {
+				this.options = options;
+				this.setSelectedOptionDelegate = setSelectedOption;
+			}
+
+		}
+
+		// We've reached the end of this node. Used internally, and not exposed to clients.
+		internal class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
 			public NodeCompleteResult (string nextNode) {
@@ -44,16 +62,6 @@ namespace Yarn {
 			}
 		}
 
-		public class OptionSetResult : RunnerResult {
-			public IList<string> options;
-			public OptionChooser chooseResult;
-
-			public OptionSetResult (IList<string> options, OptionChooser chooseResult) {
-				this.options = options;
-				this.chooseResult = chooseResult;
-			}
-
-		}
 
 		public Logger LogDebugMessage;
 		public Logger LogErrorMessage;
@@ -62,7 +70,7 @@ namespace Yarn {
 
 		internal Loader loader;
 
-		public Dialogue(Yarn.Continuity continuity) {
+		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
 		}
 
@@ -116,6 +124,7 @@ namespace Yarn {
 						nextNode = nodeComplete.nextNode;
 
 						// NodeComplete is not interactive, so skip immediately to next step
+						// (which should end this loop)
 						continue;
 					} 
 					yield return result;

@@ -4,10 +4,10 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("Yarn")]
-[assembly: AssemblyDescription ("")]
+[assembly: AssemblyTitle ("YarnSpinner")]
+[assembly: AssemblyDescription ("A parser and runtime for the Yarn dialogue system.")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
+[assembly: AssemblyCompany ("Secret Lab")]
 [assembly: AssemblyProduct ("")]
 [assembly: AssemblyCopyright ("© 2015 Jon Manning")]
 [assembly: AssemblyTrademark ("")]

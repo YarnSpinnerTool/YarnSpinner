@@ -6,14 +6,14 @@ using System.Collections.Generic;
 namespace Yarn
 {
 
-	class YarnParser
+	class YarnSpinnerConsole
 	{
 
 		static void ShowHelpAndExit() {
-			Console.WriteLine ("YarnParser: Executes Yarn dialog files.");
+			Console.WriteLine ("YarnSpinner: Executes Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnParser [-t] [-p] [-h] [-w] [-o=node] [-s=<start>] [-v<argname>=<value>] <inputfile>");
+			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=node] [-s=<start>] [-v<argname>=<value>] <inputfile>");
 			Console.WriteLine ();
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
@@ -147,7 +147,7 @@ namespace Yarn
 							impl.RunLine (line.text);
 						} else if (step is Dialogue.OptionSetResult) {
 							var optionSet = step as Dialogue.OptionSetResult;
-							impl.RunOptions (optionSet.options, optionSet.chooseResult);
+							impl.RunOptions (optionSet.options, optionSet.setSelectedOptionDelegate);
 						} else if (step is Dialogue.CommandResult) {
 							var command = step as Dialogue.CommandResult;
 							impl.RunCommand (command.command);
@@ -157,25 +157,17 @@ namespace Yarn
 				}
 			}
 
-
 		}
 
 		// A simple Implementation for the command line.
-		private class ConsoleRunnerImplementation : Yarn.Continuity {
-
-
+		private class ConsoleRunnerImplementation : Yarn.VariableStorage {
 
 			private bool waitForLines = false;
 
-			public IEnumerator GetEnumerator ()
-			{
-				return this.inMemoryContinuity.GetEnumerator();
-			}
-
-			Yarn.InMemoryContinuity inMemoryContinuity;
+			Yarn.MemoryVariableStore variableStore;
 
 			public ConsoleRunnerImplementation(bool waitForLines = false) {
-				this.inMemoryContinuity = new InMemoryContinuity();
+				this.variableStore = new MemoryVariableStore();
 				this.waitForLines = waitForLines;
 			}
 
@@ -234,17 +226,17 @@ namespace Yarn
 
 			public void SetNumber (string variableName, float number)
 			{				
-				inMemoryContinuity.SetNumber(variableName, number);
+				variableStore.SetNumber(variableName, number);
 			}
 
 			public float GetNumber (string variableName)
 			{
-				return inMemoryContinuity.GetNumber(variableName);
+				return variableStore.GetNumber(variableName);
 			}
 
 			public void Clear()
 			{
-				inMemoryContinuity.Clear();
+				variableStore.Clear();
 			}
 		}
 

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnParser", "YarnParser\YarnParser.csproj", "{858816BE-870C-40A8-BC22-8EDA51E2F339}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinnerConsole", "YarnParser\YarnSpinnerConsole.csproj", "{858816BE-870C-40A8-BC22-8EDA51E2F339}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A162B42-C144-4C15-9ABC-BE5898622C32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnParserLibrary", "YarnParserLibrary\YarnParserLibrary.csproj", "{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner", "YarnParserLibrary\YarnSpinner.csproj", "{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

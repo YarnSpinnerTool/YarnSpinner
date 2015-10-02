@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-// TODO: Shortcut options
-
 namespace Yarn {
-
-
+	
 	// An exception representing something going wrong during parsing
 	[Serializable]
 	internal class ParseException : Exception {
