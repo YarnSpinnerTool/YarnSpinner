@@ -51,7 +51,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
 
 	// Show a line of dialogue, gradually
-	public override IEnumerator RunLine (string text)
+	public override IEnumerator RunLine (Yarn.Line line)
 	{
 		// Hide the Talk button until the dialogue is complete
 		talkButton.gameObject.SetActive (false);
@@ -63,14 +63,14 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 			// Display the line one character at a time
 			var stringBuilder = new StringBuilder ();
 
-			foreach (char c in text) {
+			foreach (char c in line.text) {
 				stringBuilder.Append (c);
 				lineText.text = stringBuilder.ToString ();
 				yield return new WaitForSeconds (textSpeed);
 			}
 		} else {
 			// Display the line immediately if textSpeed == 0
-			lineText.text = text;
+			lineText.text = line.text;
 		}
 
 		// Show the 'press any key' prompt when done
@@ -92,19 +92,21 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	}
 
 	// Show a list of options, and wait for the player to make a selection.
-	public override IEnumerator RunOptions (IList<string> options, 
+	public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
 	                                        Yarn.OptionChooser optionChooser)
 	{
 		// Hide the Talk button until the dialogue is complete
 		talkButton.gameObject.SetActive (false);
 
+		// Do a little bit of safety checking
+		if (optionsCollection.options.Count > optionButtons.Count) {
+			Debug.LogWarning("There are more options to present than there are" +
+			                 "buttons to present them in. This will cause problems.");
+		}
+
 		// Display each option in a button, and make it visible
 		int i = 0;
-		if (options.Count > optionButtons.Count) {
-			Debug.LogWarning("There are more options to present than there are" +
-				"buttons to present them in. This will cause problems.");
-		}
-		foreach (var optionString in options) {
+		foreach (var optionString in optionsCollection.options) {
 			optionButtons [i].gameObject.SetActive (true);
 			optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
 			i++;
@@ -137,13 +139,13 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	}
 
 	// Run an internal command.
-	public override IEnumerator RunCommand (string text)
+	public override IEnumerator RunCommand (Yarn.Command command)
 	{
 		// Hide the Talk button until the dialogue is complete
 		talkButton.gameObject.SetActive (false);
 
 		// "Perform" the command
-		Debug.Log ("Command: " + text);
+		Debug.Log ("Command: " + command.text);
 		yield break;
 	}
 

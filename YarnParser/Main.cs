@@ -142,15 +142,18 @@ namespace Yarn
 					// Run the conversation
 					foreach (var step in dialogue.Run (startNode)) {
 
+						// It can be one of three types: a line to show, options
+						// to present to the user, or an internal command to run
+
 						if (step is Dialogue.LineResult) {
-							var line = step as Dialogue.LineResult;
-							impl.RunLine (line.text);
+							var lineResult = step as Dialogue.LineResult;
+							impl.RunLine (lineResult.line);
 						} else if (step is Dialogue.OptionSetResult) {
-							var optionSet = step as Dialogue.OptionSetResult;
-							impl.RunOptions (optionSet.options, optionSet.setSelectedOptionDelegate);
+							var optionsResult = step as Dialogue.OptionSetResult;
+							impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
 						} else if (step is Dialogue.CommandResult) {
-							var command = step as Dialogue.CommandResult;
-							impl.RunCommand (command.command);
+							var commandResult = step as Dialogue.CommandResult;
+							impl.RunCommand (commandResult.command.text);
 						}
 					}
 					impl.DialogueComplete ();
@@ -171,19 +174,19 @@ namespace Yarn
 				this.waitForLines = waitForLines;
 			}
 
-			public void RunLine (string lineText)
+			public void RunLine (Yarn.Line lineText)
 			{
-				Console.WriteLine (lineText);
+				Console.WriteLine (lineText.text);
 				if (waitForLines == true) {
 					Console.Read();
 				}
 			}
 
-			public void RunOptions (IList<string> options, OptionChooser optionChooser)
+			public void RunOptions (Options optionsGroup, OptionChooser optionChooser)
 			{
 				Console.WriteLine("Options:");
-				for (int i = 0; i < options.Count; i++) {
-					var optionDisplay = string.Format ("{0}. {1}", i + 1, options [i]);
+				for (int i = 0; i < optionsGroup.options.Count; i++) {
+					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
 					Console.WriteLine (optionDisplay);
 				}
 				do {
@@ -193,7 +196,7 @@ namespace Yarn
 						var selection = int.Parse (selectedKey) - 1;
 						Console.WriteLine();
 
-						if (selection > options.Count) {
+						if (selection > optionsGroup.options.Count) {
 							Console.WriteLine ("Invalid option.");
 						} else {							
 							optionChooser(selection);

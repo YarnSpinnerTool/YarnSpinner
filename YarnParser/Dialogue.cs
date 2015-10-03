@@ -11,6 +11,9 @@ namespace Yarn {
 	public delegate void OptionChooser (int selectedOptionIndex);
 	public delegate void Logger(string message);
 
+	public struct Line { public string text; }
+	public struct Options { public IList<string> options; }
+	public struct Command { public string text; }
 
 	public class Dialogue  {
 
@@ -22,19 +25,24 @@ namespace Yarn {
 
 		// The client should run a line of dialogue.
 		public class LineResult : RunnerResult  {
-			public string text;
+			
+			public Line line;
 
 			public LineResult (string text) {
-				this.text = text;
+				var line = new Line();
+				line.text = text;
+				this.line = line;
 			}
 
 		}
 
 		// The client should run a command (it's up to them to parse the string)
 		public class CommandResult: RunnerResult {
-			public string command;
+			public Command command;
 
-			public CommandResult (string command) {
+			public CommandResult (string text) {
+				var command = new Command();
+				command.text = text;
 				this.command = command;
 			}
 
@@ -43,10 +51,12 @@ namespace Yarn {
 		// The client should show a list of options, and call setSelectedOption before
 		// asking for the next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
-			public IList<string> options;
+			public Options options;
 			public OptionChooser setSelectedOptionDelegate;
 
-			public OptionSetResult (IList<string> options, OptionChooser setSelectedOption) {
+			public OptionSetResult (IList<string> optionStrings, OptionChooser setSelectedOption) {
+				var options = new Options();
+				options.options = optionStrings;
 				this.options = options;
 				this.setSelectedOptionDelegate = setSelectedOption;
 			}

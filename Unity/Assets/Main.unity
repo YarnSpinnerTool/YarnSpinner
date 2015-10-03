@@ -1543,7 +1543,7 @@ MonoBehaviour:
   sourceText: {fileID: 4900000, guid: 7a0cc7e897d6b4bd2a1042f854a75acf, type: 3}
   variableStorage: {fileID: 1441763636}
   dialogueUI: {fileID: 1859707865}
-  startNode: Lori
+  startNode: Start
 --- !u!4 &1491325593
 Transform:
   m_ObjectHideFlags: 0
