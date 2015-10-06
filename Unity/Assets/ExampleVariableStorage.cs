@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Yarn.Unity;
 
 // An extremely simple implementation of DialogueUnityVariableStorage, which
 // just stores everything in a Dictionary.
-public class ExampleVariableStorage : Yarn.Unity.VariableStorageBehaviour
+public class ExampleVariableStorage : VariableStorageBehaviour
 {
 
 	// Where we actually keeping our variables

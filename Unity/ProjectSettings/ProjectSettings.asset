@@ -8,6 +8,7 @@ PlayerSettings:
   defaultScreenOrientation: 4
   targetDevice: 2
   targetResolution: 0
+  useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Unity
@@ -112,6 +113,7 @@ PlayerSettings:
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
   iPadHighResLandscapeSplashScreen: {fileID: 0}
+  appleTVSplashScreen: {fileID: 0}
   iOSLaunchScreenType: 0
   iOSLaunchScreenPortrait: {fileID: 0}
   iOSLaunchScreenLandscape: {fileID: 0}
@@ -121,6 +123,14 @@ PlayerSettings:
   iOSLaunchScreenFillPct: 100
   iOSLaunchScreenSize: 100
   iOSLaunchScreenCustomXibPath: 
+  iOSLaunchScreeniPadType: 0
+  iOSLaunchScreeniPadImage: {fileID: 0}
+  iOSLaunchScreeniPadBackgroundColor:
+    serializedVersion: 2
+    rgba: 0
+  iOSLaunchScreeniPadFillPct: 100
+  iOSLaunchScreeniPadSize: 100
+  iOSLaunchScreeniPadCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
