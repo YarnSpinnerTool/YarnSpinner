@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty Ltd and Yarn Spinner contributors.
+Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,17 +30,30 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
+	// Represents things that can go wrong while loading or running
+	// a dialogue.
 	public  class YarnException : Exception {
 		public YarnException(string message) : base(message) {}
 	}
+		
+	// Delegates, which are used by the client.
 
+	// OptionChoosers let the client tell the Dialogue about what
+	// response option the user selected.
 	public delegate void OptionChooser (int selectedOptionIndex);
+
+	// Loggers let the client send output to a console, for both debugging
+	// and error logging.
 	public delegate void Logger(string message);
 
+	// Information about stuff that the client should handle.
+	// (Currently this just wraps a single field, but doing it like this
+	// gives us the option to add more stuff later without breaking the API.)
 	public struct Line { public string text; }
 	public struct Options { public IList<string> options; }
 	public struct Command { public string text; }
 
+	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
 		// We'll ask this object for the state of variables
