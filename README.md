@@ -6,12 +6,12 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
-* <a href="http://github.com/infiniteammoinc/Yarn">Learn more about Yarn.</a>
+* [Learn more about Yarn.](http://github.com/infiniteammoinc/Yarn)
+* [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
+* [Learn about contributing to Yarn Spinner.](CONTRIBUTING.md)
 
-<!-- TODO: This should be a link to a more specific page in the Yarn docs -->
+Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
 
-* <a href="TOOD">Learn about using Yarn Spinner in your Unity game.</a>
-
-* <a href="TOOD">Learn about using Yarn Spinner in other engines, or on its own.</a>
+<!-- >* <a href="TOOD">Learn about using Yarn Spinner in other engines, or on its own.</a> -->
 
 <!-- TODO: screenshots; permission for screenshots -->
