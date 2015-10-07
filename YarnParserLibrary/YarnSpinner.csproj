@@ -22,7 +22,7 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="cp ${TargetPath} Unity/Assets/" workingdir="${SolutionDir}" />
+        <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot;" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
