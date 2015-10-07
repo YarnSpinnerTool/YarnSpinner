@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+This file is a modified version of Daniel Crenna's JSON parser, which is in the
+public domain and is available here: https://github.com/danielcrenna/json 
+*/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 #if NET40
