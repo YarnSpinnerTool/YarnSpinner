@@ -23,7 +23,8 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	// Our list of default variables, for debugging.
 	public DefaultVariable[] defaultVariables;
 
-	// A UI.Text that will show the current list of all variables
+	[Header("Optional debugging tools")]
+	// A UI.Text that can show the current list of all variables. Optional.
 	public UnityEngine.UI.Text debugTextView;
 
 	// Reset to our default values when the game starts

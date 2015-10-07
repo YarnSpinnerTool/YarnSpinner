@@ -32,9 +32,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	// The buttons that let the user choose an option
 	public List<Button> optionButtons;
 
-	// The "start talking" button. This just exists to kick stuff off in the demo.
-	public Button talkButton;
-
 	void Start ()
 	{
 		// Start by hiding the line and option buttons
@@ -53,9 +50,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	// Show a line of dialogue, gradually
 	public override IEnumerator RunLine (Yarn.Line line)
 	{
-		// Hide the Talk button until the dialogue is complete
-		talkButton.gameObject.SetActive (false);
-
 		// Show the text
 		lineText.gameObject.SetActive (true);
 
@@ -95,9 +89,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
 	                                        Yarn.OptionChooser optionChooser)
 	{
-		// Hide the Talk button until the dialogue is complete
-		talkButton.gameObject.SetActive (false);
-
 		// Do a little bit of safety checking
 		if (optionsCollection.options.Count > optionButtons.Count) {
 			Debug.LogWarning("There are more options to present than there are" +
@@ -141,9 +132,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	// Run an internal command.
 	public override IEnumerator RunCommand (Yarn.Command command)
 	{
-		// Hide the Talk button until the dialogue is complete
-		talkButton.gameObject.SetActive (false);
-
 		// "Perform" the command
 		Debug.Log ("Command: " + command.text);
 		yield break;
@@ -152,9 +140,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 	// Yay we're done. Called when the dialogue system has finished running.
 	public override IEnumerator DialogueComplete ()
 	{
-		// Show the Talk button again
-		talkButton.gameObject.SetActive (true);
-
 		Debug.Log ("Complete!");
 		yield break;
 	}
