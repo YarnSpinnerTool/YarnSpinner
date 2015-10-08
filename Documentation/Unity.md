@@ -51,7 +51,7 @@ Yarn dialogue is stored in .json files, which you create using the [Yarn editor]
 
 * **Copy your Yarn JSON file into your project.** You're now ready to start using Yarn Spinner.
 
-(gif of dragging in the dialogue file)
+<!-- (gif of dragging in the dialogue file) -->
 
 ### Load your conversation with `DialogueRunner`
 
@@ -63,13 +63,13 @@ We'll start by creating an empty object, and then we'll add the `DialogueRunner`
 
 * With the Dialogue Runner object selected, **open the Component menu, and choose Scripts → Yarn Spinner → Dialogue Runner.**
 
-(gif of adding component)
+<!-- (gif of adding component) -->
 
 Next, you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time; the only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
 
 * **Drag your Yarn JSON file into the `Source Text` array.**
 
-(gif of adding dialogue file)
+<!-- (gif of adding dialogue file) -->
 
 ### Display your conversation with `DialogueUI`
 
