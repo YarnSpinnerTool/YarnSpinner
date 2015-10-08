@@ -30,14 +30,14 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("YarnParser")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("desplesda")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle ("YarnSpinnerConsole")]
+[assembly: AssemblyDescription ("A command-line tool for running Yarn dialogue files.")]
+[assembly: AssemblyConfiguration ("")]
+[assembly: AssemblyCompany ("Secret Lab")]
+[assembly: AssemblyProduct ("")]
+[assembly: AssemblyCopyright ("© 2015 Jon Manning")]
+[assembly: AssemblyTrademark ("")]
+[assembly: AssemblyCulture ("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,

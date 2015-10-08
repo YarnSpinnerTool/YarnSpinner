@@ -7,9 +7,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>YarnParserLibrary</RootNamespace>
+    <RootNamespace>Yarn</RootNamespace>
     <AssemblyName>YarnSpinner</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.9</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,24 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\YarnParser\Dialogue.cs">
-      <Link>Dialogue.cs</Link>
-    </Compile>
-    <Compile Include="..\YarnParser\Runner.cs">
-      <Link>Runner.cs</Link>
-    </Compile>
-    <Compile Include="..\YarnParser\Loader.cs">
-      <Link>Loader.cs</Link>
-    </Compile>
-    <Compile Include="..\YarnParser\Lexer.cs">
-      <Link>Lexer.cs</Link>
-    </Compile>
-    <Compile Include="..\YarnParser\Parser.cs">
-      <Link>Parser.cs</Link>
-    </Compile>
-    <Compile Include="..\YarnParser\JsonParser.cs">
-      <Link>JsonParser.cs</Link>
-    </Compile>
+    <Compile Include="Dialogue.cs" />
+    <Compile Include="JsonParser.cs" />
+    <Compile Include="Lexer.cs" />
+    <Compile Include="Loader.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="Runner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

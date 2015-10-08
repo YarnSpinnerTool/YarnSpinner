@@ -7,9 +7,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{858816BE-870C-40A8-BC22-8EDA51E2F339}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>YarnParser</RootNamespace>
+    <RootNamespace>Yarn</RootNamespace>
     <AssemblyName>YarnSpinner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ReleaseVersion>0.9</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>True</DebugSymbols>
@@ -41,7 +42,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\YarnParserLibrary\YarnSpinner.csproj">
+    <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj">
       <Project>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</Project>
       <Name>YarnSpinner</Name>
     </ProjectReference>
