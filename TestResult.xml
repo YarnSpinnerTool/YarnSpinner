@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="YarnSpinnerTests/bin/Debug/YarnSpinnerTests.dll" total="1" failures="0" not-run="0" date="2015-10-11" time="09:39:27">
+  <environment nunit-version="2.4.8.0" clr-version="4.0.30319.17020" os-version="Unix 14.5.0.0" platform="Unix" cwd="/Users/desplesda/Desktop/Work/YarnSpinner" machine-name="Normandy.local" user="desplesda" user-domain="Normandy.local" />
+  <culture-info current-culture="en-AU" current-uiculture="en-AU" />
+  <test-suite name="YarnSpinnerTests/bin/Debug/YarnSpinnerTests.dll" success="True" time="0.014" asserts="0">
+    <results>
+      <test-suite name="YarnSpinnerTests" success="True" time="0.013" asserts="0">
+        <results>
+          <test-suite name="Test" success="True" time="0.005" asserts="0">
+            <results>
+              <test-case name="YarnSpinnerTests.Test.TestCase" executed="True" success="True" time="0.002" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
