@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -149,7 +149,7 @@ namespace Yarn
 
 			// load the default variables we got on the command line
 			foreach (var variable in defaultVariables) {
-				
+
 				impl.SetNumber (variable.Key, variable.Value);
 			}
 
@@ -163,27 +163,25 @@ namespace Yarn
 				Console.WriteLine ("ERROR: " + message);
 			};
 
-			for (var count = 1; count <= 2; count++) {
-				if (showTokens == false && showParseTree == false) {
-					// Run the conversation
-					foreach (var step in dialogue.Run (startNode)) {
+			if (showTokens == false && showParseTree == false) {
+				// Run the conversation
+				foreach (var step in dialogue.Run (startNode)) {
 
-						// It can be one of three types: a line to show, options
-						// to present to the user, or an internal command to run
+					// It can be one of three types: a line to show, options
+					// to present to the user, or an internal command to run
 
-						if (step is Dialogue.LineResult) {
-							var lineResult = step as Dialogue.LineResult;
-							impl.RunLine (lineResult.line);
-						} else if (step is Dialogue.OptionSetResult) {
-							var optionsResult = step as Dialogue.OptionSetResult;
-							impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
-						} else if (step is Dialogue.CommandResult) {
-							var commandResult = step as Dialogue.CommandResult;
-							impl.RunCommand (commandResult.command.text);
-						}
+					if (step is Dialogue.LineResult) {
+						var lineResult = step as Dialogue.LineResult;
+						impl.RunLine (lineResult.line);
+					} else if (step is Dialogue.OptionSetResult) {
+						var optionsResult = step as Dialogue.OptionSetResult;
+						impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
+					} else if (step is Dialogue.CommandResult) {
+						var commandResult = step as Dialogue.CommandResult;
+						impl.RunCommand (commandResult.command.text);
 					}
-					impl.DialogueComplete ();
 				}
+				impl.DialogueComplete ();
 			}
 
 		}
@@ -247,7 +245,7 @@ namespace Yarn
 			{
 				Console.WriteLine("Error: " + error);
 			}
-			
+
 			public void HandleDebugMessage (string message)
 			{
 				Console.WriteLine("Debug: " + message);
@@ -272,3 +270,4 @@ namespace Yarn
 
 	}
 }
+
