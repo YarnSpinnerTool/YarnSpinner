@@ -732,11 +732,11 @@ namespace Yarn {
 
 						// If this is a Minus, we need to determine if it's a 
 						// unary minus or a binary minus.
-						// Unary minus is stuff like this: -1
-						// Binary minus is stuff like this 2 + 3
-						// It get complex when we say stuff like 1 + -1.
+						// Unary minus looks like this: "-1"
+						// Binary minus looks like this: "2 + 3"
+						// Things get complex when we say stuff like "1 + -1".
 						// But it's easier when we realise that a minus
-						// is only unary when the last token was a left paren,
+						// is ONLY unary when the last token was a left paren,
 						// an operator, or it's the first token.
 
 						if (nextToken.type == TokenType.Minus) {
@@ -763,9 +763,15 @@ namespace Yarn {
 						operatorStack.Push(nextToken);
 
 					} else if (nextToken.type == TokenType.LeftParen) {
+
+						// Record that we have entered a paren-delimited
+						// subexpression
 						operatorStack.Push(nextToken);
 						
 					} else if (nextToken.type == TokenType.RightParen) {
+
+						// We're leaving a subexpression; time to resolve the
+						// order of operations that we saw in between the parens.
 
 						try {
 							// pop operators until we reach a left paren
@@ -776,12 +782,14 @@ namespace Yarn {
 							operatorStack.Pop();
 						} catch (InvalidOperationException) {
 							// we reached the end of the stack prematurely
+							// this means unbalanced parens!
 							throw ParseException.Make(nextToken, "Error parsing expression: unbalanced parentheses");
 						}
 
 					}
 
-
+					// Record this as the last token we saw; we'll use
+					// this to figure out if minuses are unary or not
 					lastToken = nextToken;
 
 				}
@@ -1133,26 +1141,6 @@ namespace Yarn {
 
 			throw ParseException.Make(t, validTypes);
 		}
-
-		// The next two methods allow us to backtrack.
-		// To speculatively parse some grammar, you
-		// use Fork() to copy the current state of the 
-		// parser, try to parse using this new temp parser, 
-		// and if you catch a ParseException, no harm done.
-		// But if you DON'T, then parsing succeeded, so use
-		// MergeWithParser to grab the temporary parser's state
-		// so you can carry from that point
-
-		// Create a copy of ourselves in our current state
-		Parser Fork() {
-			return new Parser (this.tokens.ToArray());
-		}
-			
-		// Take this other parser's state and use that
-		void MergeWithParser(Parser p) {
-			this.tokens = p.tokens;
-		}
-
 	}
 
 
