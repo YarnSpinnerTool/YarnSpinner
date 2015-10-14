@@ -38,6 +38,7 @@ namespace Yarn {
 	internal class TokenList : List<Token> {}
 
 	internal enum TokenType {
+		
 		// Special tokens
 		Whitespace,
 		Indent,
@@ -91,6 +92,9 @@ namespace Yarn {
 
 		// this guy's special because '=' means 'equal to' or 'becomes' depending on context
 		EqualToOrAssign, // =, to
+
+		UnaryMinus, // -
+
 
 		Add, // +
 		Minus, // -
@@ -151,8 +155,8 @@ namespace Yarn {
 			// So, we need to mark certain rules as "this token can start a line"
 			public bool canBeginLine; 
 
-			// This flag exists because we don't want to interpret lines like this:
-			// -> And what did they say?
+			// This flag exists because we DON'T want to interpret lines like this:
+			// "-> And what did they say?"
 			// as <ShortcutOption> <And> <Text>. Instead, we say that certain tokens
 			// "reset" the line, making the lexer treat the next token as the "start"
 			// of the line - which means that tokens like "and" will not be interpreted.
@@ -172,15 +176,17 @@ namespace Yarn {
 			// Load the token rules for this language
 			PrepareTokenRules();
 
-			// Ensure that all token types have a rule
-			// Obtain the string names of all the elements within myEnum 
-			String[] names = Enum.GetNames( typeof( TokenType ) );
+			// Ensure that all token types have a rule:
+
+			// First, obtain the string names of all the elements within myEnum 
+			String[] tokenNames = Enum.GetNames( typeof( TokenType ) );
 			
 			// Obtain the values of all the elements within myEnum 
 			TokenType[] values = (TokenType[])Enum.GetValues( typeof( TokenType ) );
-			
-			// Print the names and values to file
-			for ( int i = 0; i < names.Length; i++ )
+
+			#if DEBUG
+			// Check to ensure that we've got a rule for every token type
+			for ( int i = 0; i < tokenNames.Length; i++ )
 			{
 				bool found = false;
 				foreach (var tokenRule in tokenRules) {
@@ -191,8 +197,9 @@ namespace Yarn {
 				}
 				// noooooo we forgot to add a rule in PrepareTokenRules()
 				if (found == false)
-					throw new TokeniserException("Missing rule for token type " + names[i]);
+					throw new TokeniserException("Missing rule for token type " + tokenNames[i]);
 			}
+			#endif
 
 
 		}
@@ -223,7 +230,7 @@ namespace Yarn {
 			var tokens = new TokenList();
 			
 			// Start by chopping up the input into lines
-			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.RemoveEmptyEntries);
+			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.None);
 
 			// Keep track of which column each new indent started
 			var indentLevels = new Stack<int>();
@@ -474,6 +481,8 @@ namespace Yarn {
 			AddTokenRule(TokenType.Minus, "-");
 			AddTokenRule(TokenType.Multiply, "\\*");
 			AddTokenRule(TokenType.Divide, "\\/");
+
+			AddTokenRule (TokenType.UnaryMinus, null); // this one has special matching rules
 
 			AddTokenRule (TokenType.LeftParen, "\\(");
 			AddTokenRule (TokenType.RightParen, "\\)");

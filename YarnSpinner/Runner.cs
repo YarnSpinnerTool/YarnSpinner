@@ -182,6 +182,9 @@ namespace Yarn
 		}
 
 		private float EvaluateExpression(Parser.Expression expression) {
+
+			if (expression == null)
+				return 0.0f;
 			
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
@@ -192,7 +195,6 @@ namespace Yarn
 
 				// Recursively evaluate the left and right hand expressions
 				var leftHand = EvaluateExpression (expression.leftHand);
-
 				var rightHand = EvaluateExpression (expression.rightHand);
 
 				// And then Do A Thing with the results:
@@ -205,6 +207,9 @@ namespace Yarn
 					return leftHand * rightHand;
 				case TokenType.Divide:
 					return leftHand / rightHand;
+
+				case TokenType.UnaryMinus:
+					return -rightHand;
 
 				case TokenType.GreaterThan:
 					return leftHand > rightHand ? 1.0f : 0.0f;
@@ -227,6 +232,8 @@ namespace Yarn
 					return (leftHand != 0 || rightHand != 0) ? 1.0f : 0.0f;
 				case TokenType.Xor:
 					return (leftHand != 0 ^ rightHand != 0) ? 1.0f : 0.0f;				
+				case TokenType.Not:
+					return !(rightHand != 0) ? 1.0f : 0.0f;
 				}
 
 				// whoa no
@@ -316,7 +323,8 @@ namespace Yarn
 				});
 
 				if (selectedOption == null) {
-					dialogue.LogErrorMessage ("setSelectedOption was not called! Exiting run.");
+					dialogue.LogErrorMessage ("The OptionChooser I provided was not called before the " +
+						"next line was run! Stopping dialogue.");
 					yield break;
 				}
 
@@ -334,8 +342,6 @@ namespace Yarn
 					yield return command;
 				}
 			}
-				
-
 		}
 	}
 

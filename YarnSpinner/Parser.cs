@@ -109,7 +109,7 @@ namespace Yarn {
 
 			public override string ToString ()
 			{
-				return PrintTree (0);
+				return this.GetType ().Name;
 			}
 
 			// The closest parent to this ParseNode that is a Node.
@@ -714,6 +714,8 @@ namespace Yarn {
 				allValidTokenTypes.Add(TokenType.LeftParen);
 				allValidTokenTypes.Add(TokenType.RightParen);
 
+				Token lastToken = null;
+
 				// Read all the contents of the expression
 				while (p.NextSymbolIs(allValidTokenTypes.ToArray())) {
 
@@ -724,10 +726,30 @@ namespace Yarn {
 
 						// Primitive values go straight onto the output
 						_expressionRPN.Enqueue(nextToken);
-						continue;
 
 					} else if (Operator.IsOperator(nextToken.type)) {
 						// This is an operator
+
+						// If this is a Minus, we need to determine if it's a 
+						// unary minus or a binary minus.
+						// Unary minus is stuff like this: -1
+						// Binary minus is stuff like this 2 + 3
+						// It get complex when we say stuff like 1 + -1.
+						// But it's easier when we realise that a minus
+						// is only unary when the last token was a left paren,
+						// an operator, or it's the first token.
+
+						if (nextToken.type == TokenType.Minus) {
+
+							if (lastToken == null || 
+								lastToken.type == TokenType.LeftParen ||
+								Operator.IsOperator(lastToken.type)) {
+
+								// This is actually a unary minus.
+								nextToken.type = TokenType.UnaryMinus;
+							}
+						}
+
 
 						// O1 = this operator
 						// O2 = the token at the top of the stack
@@ -759,6 +781,9 @@ namespace Yarn {
 
 					}
 
+
+					lastToken = nextToken;
+
 				}
 
 				// No more tokens; pop all operators onto the output queue
@@ -782,7 +807,8 @@ namespace Yarn {
 
 						var info = Operator.InfoForOperator(next.type);
 						if (evaluationStack.Count < info.arguments) {
-							throw ParseException.Make(next, "Error parsing expression: not enough arguments for operator "+next.type.ToString());
+							throw ParseException.Make(next, "Error parsing expression: not enough " +
+								"arguments for operator "+next.type.ToString());
 						}
 						Expression lhs = null, rhs = null;
 
@@ -792,7 +818,8 @@ namespace Yarn {
 							rhs = evaluationStack.Pop();
 							lhs = evaluationStack.Pop();
 						} else {
-							string error = string.Format("Error parsing expression: Unsupported number of parameters for operator {0} ({1})",
+							string error = string.Format("Error parsing expression: " +
+								"Unsupported number of parameters for operator {0} ({1})",
 								next.type.ToString(),
 								info.arguments
 							);
@@ -810,7 +837,8 @@ namespace Yarn {
 				// We should now have a single expression in this stack, which is the root
 				// of the expression's tree. If we have more than one, then we have a problem.
 				if (evaluationStack.Count != 1) {
-					throw ParseException.Make(firstToken, "Error parsing expression (stack did not reduce correctly)");
+					throw ParseException.Make(firstToken, "Error parsing expression " +
+						"(stack did not reduce correctly)");
 				}
 
 				// Return it
@@ -952,6 +980,11 @@ namespace Yarn {
 				}
 
 				switch (op) {
+
+				case TokenType.Not:
+				case TokenType.UnaryMinus:
+					return new OperatorInfo (Associativity.Right, 30, 1);
+
 				case TokenType.Multiply:
 				case TokenType.Divide:
 					return new OperatorInfo(Associativity.Left, 20,2);
@@ -987,6 +1020,10 @@ namespace Yarn {
 			internal static  TokenType[] operatorTypes {
 				get {
 					return new TokenType[] {
+
+						TokenType.Not,
+						TokenType.UnaryMinus,
+
 						TokenType.Add,
 						TokenType.Minus,
 						TokenType.Divide,
@@ -1002,7 +1039,7 @@ namespace Yarn {
 
 						TokenType.And,
 						TokenType.Or,
-						TokenType.Not,
+
 						TokenType.Xor
 					};
 				}

@@ -135,7 +135,7 @@ namespace Yarn {
 
 			if (text.IndexOf("//") == 0) {
 				// If it starts with a comment, treat it as a single-node file
-				nodes.Add (new NodeInfo ("Node", text));
+				nodes.Add (new NodeInfo ("Start", text));
 			} else {
 				// Blindly assume it's JSON! \:D/
 				try {
