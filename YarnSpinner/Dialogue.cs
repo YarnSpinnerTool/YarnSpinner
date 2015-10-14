@@ -117,10 +117,11 @@ namespace Yarn {
 
 		public const string DEFAULT_START = "Start";
 
-		internal Loader loader;
+		private Loader loader;
 
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
+			loader = new Loader (this);
 		}
 
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
@@ -134,7 +135,6 @@ namespace Yarn {
 
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
-			loader = new Loader (this);
 			loader.Load(text, showTokens, showParseTree, onlyConsiderNode);
 
 			return loader.nodes.Count;
