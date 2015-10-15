@@ -185,14 +185,13 @@ namespace Yarn {
 			PrepareTokenRules();
 
 			// Ensure that all token types have a rule:
-
+			#if DEBUG
 			// First, obtain the string names of all the elements within myEnum 
 			String[] tokenNames = Enum.GetNames( typeof( TokenType ) );
 			
 			// Obtain the values of all the elements within myEnum 
 			TokenType[] values = (TokenType[])Enum.GetValues( typeof( TokenType ) );
 
-			#if DEBUG
 			// Check to ensure that we've got a rule for every token type
 			for ( int i = 0; i < tokenNames.Length; i++ )
 			{
