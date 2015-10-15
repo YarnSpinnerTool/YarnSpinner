@@ -141,6 +141,15 @@ namespace Yarn {
 
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
+			if (LogDebugMessage == null) {
+				throw new YarnException ("LogDebugMessage must be set before loading");
+			}
+
+			if (LogErrorMessage == null) {
+				throw new YarnException ("LogErrorMessage must be set before loading");
+			}
+
+
 			loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
 
 			return loader.nodes.Count;
