@@ -46,6 +46,7 @@
     <Compile Include="Loader.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Runner.cs" />
+    <Compile Include="Library.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

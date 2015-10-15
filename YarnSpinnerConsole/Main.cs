@@ -155,6 +155,23 @@ namespace Yarn
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
+
+
+			// Add some methods for testing
+			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Object[] parameters) {
+				var f1 = (float)parameters[0];
+				var f2 = (float)parameters[1];
+				var f3 = (float)parameters[2];
+
+				return f1+f2+f3;
+			});
+
+			dialogue.library.RegisterFunction ("last_value", -1, delegate(Object[] parameters) {
+				// return the last value
+				return parameters[parameters.Length-1];
+			});
+
+
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 			dialogue.LogDebugMessage = delegate(string message) {
 				Console.WriteLine ("Debug: " + message);

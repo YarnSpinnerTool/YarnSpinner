@@ -75,6 +75,9 @@ namespace Yarn {
 		LeftParen,
 		RightParen,
 
+		// Parameter delimiters
+		Comma,
+
 		// Operators
 		EqualTo, // ==, eq, is
 		GreaterThan, // >, gt
@@ -90,11 +93,12 @@ namespace Yarn {
 		Not, // !, not
 
 
-		// this guy's special because '=' means 'equal to' or 'becomes' depending on context
+		// this guy's special because '=' can mean either 'equal to' 
+		// or 'becomes' depending on context
 		EqualToOrAssign, // =, to
 
-		UnaryMinus, // -
-
+		UnaryMinus, // -; this is differentiated from Minus 
+					// when parsing expressions
 
 		Add, // +
 		Minus, // -
@@ -124,6 +128,10 @@ namespace Yarn {
 		public int lineNumber;
 		public int columnNumber;
 		public string context;
+
+		// If this is a function in an expression, this is the number
+		// of parameters that were encountered
+		public int parameterCount;
 		
 		public Token(TokenType type, object value=null) {
 			this.type = type;
@@ -489,6 +497,9 @@ namespace Yarn {
 
 			// Identifiers (any letter, number or underscore)
 			AddTokenRule (TokenType.Identifier, "(\\w|_)+");
+
+			// Commas for separating function parameters
+			AddTokenRule (TokenType.Comma, ",");
 
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably

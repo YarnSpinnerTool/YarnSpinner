@@ -72,7 +72,7 @@ namespace Yarn {
 		// Given a bunch of raw text, load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
-		public void Load(string text, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+		public void Load(string text, Library library, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			
 			// Load the raw data and get the array of node title-text pairs
 			var nodeInfos = ParseInput (text);
@@ -99,7 +99,7 @@ namespace Yarn {
 					if (showTokens)
 						PrintTokenList (tokens);
 
-					var node = new Parser (tokens).Parse();
+					var node = new Parser (tokens, library).Parse();
 
 					nodes[nodeInfo.title] = node;
 				#if !DEBUG

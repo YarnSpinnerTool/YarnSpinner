@@ -674,7 +674,8 @@ namespace Yarn {
 
 			internal enum Type {
 				Value,
-				Compound
+				Compound,
+				FunctionCall // TODO: compound expressions should really be functions
 			}
 
 			internal Type type;
@@ -684,6 +685,9 @@ namespace Yarn {
 			internal Expression leftHand;
 			internal Operator operation;
 			internal Expression rightHand;
+			// - or -
+			internal FunctionInfo function;
+			internal List<Expression> parameters;
 
 			internal Expression(ParseNode parent, Value value) : base(parent, null) {
 				this.type = Type.Value;
@@ -697,6 +701,12 @@ namespace Yarn {
 				rightHand = rhs;
 			}
 
+			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters) : base(parent, null) {
+				type = Type.FunctionCall;
+				this.function = function;
+				this.parameters = parameters;
+			}
+
 			internal static Expression Parse(ParseNode parent, Parser p) {
 
 				// Applies Djikstra's "shunting-yard" algorithm to convert the 
@@ -708,11 +718,16 @@ namespace Yarn {
 				Queue<Token> _expressionRPN = new Queue<Token> ();
 				var operatorStack = new Stack<Token>();
 
+				// used for keeping count of parameters for each function
+				var functionStack = new Stack<Token> (); 
+
 				var allValidTokenTypes = new List<TokenType>(Operator.operatorTypes);
 				allValidTokenTypes.Add(TokenType.Number);
 				allValidTokenTypes.Add(TokenType.Variable);
 				allValidTokenTypes.Add(TokenType.LeftParen);
 				allValidTokenTypes.Add(TokenType.RightParen);
+				allValidTokenTypes.Add (TokenType.Identifier);
+				allValidTokenTypes.Add (TokenType.Comma);
 
 				Token lastToken = null;
 
@@ -722,10 +737,51 @@ namespace Yarn {
 					Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
 
 					if (nextToken.type == TokenType.Number ||
-						nextToken.type == TokenType.Variable) {
+					    nextToken.type == TokenType.Variable) {
 
 						// Primitive values go straight onto the output
-						_expressionRPN.Enqueue(nextToken);
+						_expressionRPN.Enqueue (nextToken);
+					} else if (nextToken.type == TokenType.Identifier) {
+						operatorStack.Push (nextToken);
+						functionStack.Push (nextToken);
+
+						// next token must be a left paren, so process that immediately
+						nextToken = p.ExpectSymbol (TokenType.LeftParen);
+						// enter that sub-expression
+						operatorStack.Push (nextToken);
+
+					} else if (nextToken.type == TokenType.Comma) {
+
+						// Resolve this sub-expression before moving on to the
+						// next parameter
+						try {
+							// pop operators until we reach a left paren
+							while (operatorStack.Peek().type != TokenType.LeftParen) {
+								_expressionRPN.Enqueue(operatorStack.Pop());
+							}
+						} catch (InvalidOperationException) {
+							// we reached the end of the stack prematurely
+							// this means unbalanced parens!
+							throw ParseException.Make(nextToken, "Error parsing expression: " +
+								"unbalanced parentheses");
+						}
+
+						// We expect the top of the stack to now contain the left paren that 
+						// began the list of parameters
+						if (operatorStack.Peek().type != TokenType.LeftParen) {
+							throw ParseException.Make (operatorStack.Peek (), "Expression parser got " +
+								"confused dealing with a function");
+						}
+
+						// The next token is not allowed to be a right-paren or a comma
+						// (that is, you can't say "foo(2,,)")
+						if (p.NextSymbolIs(TokenType.RightParen, TokenType.Comma)) {
+							throw ParseException.Make (p.tokens.Peek(), "Expected expression");
+						}
+
+						// Find the closest function on the stack
+						// and increment the number of parameters
+						functionStack.Peek().parameterCount++;
 
 					} else if (Operator.IsOperator(nextToken.type)) {
 						// This is an operator
@@ -733,7 +789,7 @@ namespace Yarn {
 						// If this is a Minus, we need to determine if it's a 
 						// unary minus or a binary minus.
 						// Unary minus looks like this: "-1"
-						// Binary minus looks like this: "2 + 3"
+						// Binary minus looks like this: "2 - 3"
 						// Things get complex when we say stuff like "1 + -1".
 						// But it's easier when we realise that a minus
 						// is ONLY unary when the last token was a left paren,
@@ -786,6 +842,23 @@ namespace Yarn {
 							throw ParseException.Make(nextToken, "Error parsing expression: unbalanced parentheses");
 						}
 
+						if (operatorStack.Peek().type == TokenType.Identifier) {
+							// This whole paren-delimited subexpression is actually
+							// a function call
+
+							// If the last token was a left-paren, then this
+							// was a function with no parameters; otherwise, we 
+							// have an additional parameter (on top of the ones we counted
+							// while encountering commas)
+
+							if (lastToken.type != TokenType.LeftParen) {
+								functionStack.Peek ().parameterCount++;
+							}
+
+							_expressionRPN.Enqueue(operatorStack.Pop());
+							functionStack.Pop ();
+						}
+
 					}
 
 					// Record this as the last token we saw; we'll use
@@ -835,6 +908,31 @@ namespace Yarn {
 						}
 						var expr = new Expression(parent, lhs, new Operator(parent, next.type), rhs);
 						evaluationStack.Push(expr);
+					} else if (next.type == TokenType.Identifier) {
+						// This is a function call
+						var info = p.library.GetFunction(next.value as String);
+
+						// Ensure that this call has the right number of params
+						if (info.IsParameterCountCorrect(next.parameterCount) == false) {
+							string error = string.Format("Error parsing expression: " +
+								"Unsupported number of parameters for function {0} (expected {1}, got {2})",
+								next.value as String,
+								info.paramCount,
+								next.parameterCount
+							);
+							throw ParseException.Make(next, error);
+						}
+
+						var parameterList = new List<Expression> ();
+						for (int i = 0; i < next.parameterCount; i++) {
+							parameterList.Add (evaluationStack.Pop());
+						}
+						parameterList.Reverse ();
+
+						var expr = new Expression (parent, info, parameterList);
+
+						evaluationStack.Push (expr);
+
 					} else {
 						Value v = new Value(parent, next);
 						Expression expr = new Expression(parent, v);
@@ -882,10 +980,7 @@ namespace Yarn {
 				}
 
 				return false;
-
-			
 			}
-
 
 			internal override string PrintTree (int indentLevel)
 			{
@@ -965,9 +1060,9 @@ namespace Yarn {
 			internal TokenType operatorType { get; private set; }
 
 			internal enum Associativity {
-				Left,
-				Right,
-				None
+				Left, // resolve leftmost operand first
+				Right, // resolve rightmost operand first
+				None // special-case
 			}
 
 			// Info used during expression parsing
@@ -987,6 +1082,8 @@ namespace Yarn {
 					throw new ParseException (op.ToString () + " is not a valid operator");
 				}
 
+				// Determine the precendence, associativity and
+				// number of operands that each operator has.
 				switch (op) {
 
 				case TokenType.Not:
@@ -1072,9 +1169,12 @@ namespace Yarn {
 		// we parse
 		Queue<Token> tokens;
 
+		Library library;
+
 		// Take whatever we were given and make a queue out of it
-		internal Parser(ICollection<Token> tokens) {
+		internal Parser(ICollection<Token> tokens, Library library) {
 			this.tokens = new Queue<Token>(tokens);
+			this.library = library;
 		}
 
 		internal Node Parse() {

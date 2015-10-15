@@ -237,8 +237,29 @@ namespace Yarn
 				}
 
 				// whoa no
-				throw new NotImplementedException ("Operator " + expression.operation.operatorType.ToString () 
-					+ " is not yet implemented");
+				throw new NotImplementedException ("Operator " + expression.operation.operatorType.ToString ()
+				+ " is not yet implemented");				
+
+			case Parser.Expression.Type.FunctionCall:
+				// get the function
+				var func = expression.function;
+
+				// evaluate all parameters
+				var evaluatedParameters = new List<Object>();
+
+				foreach (var param in expression.parameters) {
+					var expr = EvaluateExpression (param);
+					evaluatedParameters.Add (expr);
+				}
+
+				var result = func.InvokeWithArray (evaluatedParameters.ToArray() );
+
+				if (result != null) {
+					return (float)result;
+				} else {
+					return 0.0f;
+				}
+				
 			}
 
 			throw new NotImplementedException ("Unimplemented expression type " + expression.type.ToString ());

@@ -87,8 +87,9 @@ namespace Yarn {
 
 		}
 			
-		// The client should show a list of options, and call setSelectedOption before
-		// asking for the next line. It's an error if you don't.
+		// The client should show a list of options, and call 
+		// setSelectedOptionDelegate before asking for the 
+		// next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
 			public Options options;
 			public OptionChooser setSelectedOptionDelegate;
@@ -102,7 +103,8 @@ namespace Yarn {
 
 		}
 
-		// We've reached the end of this node. Used internally, and not exposed to clients.
+		// We've reached the end of this node. Used internally, 
+		// and not exposed to clients.
 		internal class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
@@ -111,17 +113,21 @@ namespace Yarn {
 			}
 		}
 
-
+		// Delegates used for logging.
 		public Logger LogDebugMessage;
 		public Logger LogErrorMessage;
 
+		// The node we start from.
 		public const string DEFAULT_START = "Start";
 
 		private Loader loader;
 
+		public Library library;
+
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
 			loader = new Loader (this);
+			library = new Library ();
 		}
 
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
@@ -135,7 +141,7 @@ namespace Yarn {
 
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
-			loader.Load(text, showTokens, showParseTree, onlyConsiderNode);
+			loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
 
 			return loader.nodes.Count;
 		}
