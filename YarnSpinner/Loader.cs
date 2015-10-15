@@ -101,6 +101,9 @@ namespace Yarn {
 
 					var node = new Parser (tokens, library).Parse();
 
+					if (showParseTree)
+						PrintParseTree(node);
+
 					nodes[nodeInfo.title] = node;
 				#if !DEBUG
 				} catch (Yarn.TokeniserException t) {
