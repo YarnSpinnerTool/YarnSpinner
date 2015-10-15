@@ -88,7 +88,7 @@ namespace Yarn
 		// replaced.
 		public void ImportLibrary(Library otherLibrary) {
 			foreach (var entry in otherLibrary.functions) {
-				functions [entry.Key] = functions [entry.Value];
+				functions [entry.Key] = entry.Value;
 			}
 		}
 
