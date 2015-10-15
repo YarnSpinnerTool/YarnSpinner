@@ -1075,7 +1075,7 @@ namespace Yarn {
 			internal enum Associativity {
 				Left, // resolve leftmost operand first
 				Right, // resolve rightmost operand first
-				None // special-case
+				None // special-case (like "(", ")", ","
 			}
 
 			// Info used during expression parsing

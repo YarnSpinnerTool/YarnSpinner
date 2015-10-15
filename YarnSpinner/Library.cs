@@ -7,14 +7,22 @@ namespace Yarn
 	public delegate void Function (params Object[] parameters);
 
 	public class FunctionInfo {
+
+		// The name of the function, as it exists in the script.
 		public string name { get; private set;}
 
-		// -1 = undefined
+		// The number of parameters this function requires.
+		// -1 = the function will accept any number of params
 		public int paramCount {get; private set;}
 
+		// The actual implementation of the function.
+		// Comes in two flavours: a returning one, and a non-returning one.
+		// Doing this means that you don't have to add "return null"
+		// to the end of a function if it doesn't return values.
 		public Function function { get; private set; }
 		public ReturningFunction returningFunction { get; private set; }
 
+		// Does this function return a value?
 		bool returnsValue {
 			get {
 				return returningFunction != null;
@@ -28,9 +36,9 @@ namespace Yarn
 		public Object InvokeWithArray(Object[] parameters) {
 
 			if (IsParameterCountCorrect(parameters.Length)) {
-				if (returnsValue)
-					return  returningFunction (parameters);
-				else {
+				if (returnsValue) {
+					return returningFunction (parameters);
+				} else {
 					function (parameters);
 					return null;
 				}				
