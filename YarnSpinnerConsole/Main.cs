@@ -172,13 +172,15 @@ namespace Yarn
 			});
 
 
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 			dialogue.LogDebugMessage = delegate(string message) {
 				Console.WriteLine ("Debug: " + message);
 			};
 			dialogue.LogErrorMessage = delegate(string message) {
 				Console.WriteLine ("ERROR: " + message);
 			};
+
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+
 
 			if (showTokens == false && showParseTree == false) {
 				// Run the conversation
