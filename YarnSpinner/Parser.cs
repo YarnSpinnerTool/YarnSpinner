@@ -589,10 +589,11 @@ namespace Yarn {
 			internal override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
-				var first = false;
+				var first = true;
 				foreach (var clause in clauses) {
 					if (first) {
 						sb.Append (Tab (indentLevel, "If:"));
+						first = false;
 					} else if (clause.expression != null) {
 						sb.Append (Tab (indentLevel, "Else If:"));
 					} else {
@@ -668,8 +669,6 @@ namespace Yarn {
 		// Expressions are things like "1 + 2 * 5 / 2 - 1"
 		// Expression = Expression Operator Expression
 		// Expression = Value
-		// TODO: operator precedence; currently expressions are limited to nothing more
-		// complex than "1 + 1"
 		internal class Expression : ParseNode {
 
 			internal enum Type {
@@ -984,26 +983,40 @@ namespace Yarn {
 
 			internal override string PrintTree (int indentLevel)
 			{
-				
+				var stringBuilder = new StringBuilder ();
 				switch (type) {
 				case Type.Value:
 					return value.PrintTree (indentLevel);
 				case Type.Compound:
-					var stringBuilder = new StringBuilder ();
+
 
 					stringBuilder.Append (Tab (indentLevel, "Expression: {"));
 
 					if (leftHand != null)
-						stringBuilder.Append (leftHand.PrintTree (indentLevel + 1));
+						stringBuilder.Append (leftHand.PrintTree (indentLevel + 2));
 
 					stringBuilder.Append (operation.PrintTree (indentLevel + 1));
 
 					if (rightHand != null)
-						stringBuilder.Append (rightHand.PrintTree (indentLevel + 1));
+						stringBuilder.Append (rightHand.PrintTree (indentLevel + 2));
 					
 					stringBuilder.Append (Tab (indentLevel, "}"));
 
 					return stringBuilder.ToString ();
+				case Type.FunctionCall:
+					
+					if (parameters.Count == 0) {
+						stringBuilder.Append(Tab(indentLevel, "Function call to " + function.name + " (no parameters)"));
+					} else {
+						stringBuilder.Append(Tab(indentLevel, "Function call to " + function.name + " (" +parameters.Count+" parameters) {"));
+						foreach (var param in parameters) {
+							stringBuilder.Append(param.PrintTree(indentLevel+1));
+						}
+						stringBuilder.Append(Tab(indentLevel, "}"));
+					}
+					return stringBuilder.ToString();
+
+
 				}
 
 				return Tab(indentLevel, "<error printing expression!>");
