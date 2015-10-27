@@ -38,6 +38,8 @@ namespace Yarn {
 	internal class TokenList : List<Token> {}
 
 	internal enum TokenType {
+
+
 		
 		// Special tokens
 		Whitespace,
@@ -73,6 +75,13 @@ namespace Yarn {
 		Else,
 		EndIf,
 		Set,
+
+		// Boolean values
+		True,
+		False,
+
+		// The null value
+		Null,
 
 		// Parentheses
 		LeftParen,
@@ -479,6 +488,13 @@ namespace Yarn {
 			AddTokenRule(TokenType.EndIf, "endif");
 			
 			AddTokenRule(TokenType.Set, "set");
+
+			// Boolean values
+			AddTokenRule(TokenType.True, "true");
+			AddTokenRule(TokenType.False, "false");
+
+			// Null
+			AddTokenRule(TokenType.Null, "null");
 			
 			// Operators
 			AddTokenRule(TokenType.EqualTo, "(==|eq|is)");

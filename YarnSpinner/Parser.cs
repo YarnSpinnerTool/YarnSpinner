@@ -613,9 +613,11 @@ namespace Yarn {
 		internal class Value : ParseNode {
 
 			internal enum Type {
-				Number, // a constant number
-				String, // a string
-				Variable // the name of a variable
+				Number,  // a constant number
+				String,  // a string
+				Bool,    // a boolean value
+				Variable, // the name of a variable; will be expanded at runtime
+				Null,    // the null value
 			}
 
 			internal Value.Type type { get; private set; }
@@ -624,6 +626,28 @@ namespace Yarn {
 			internal float number {get; private set;}
 			internal string variableName {get; private set;}
 			internal string stringValue {get; private set;}
+			internal bool boolValue {get; private set;}
+
+			public bool AsBool {
+				get {
+					switch (type) {
+					case Type.Number:
+						return number != 0.0f;
+						break;
+					case Type.String:
+						return stringValue.Length > 0;
+						break;
+					case Type.Bool:
+						return boolValue;
+						break;
+					case Type.Null:
+						return false;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException ();
+					}
+				}
+			}
 
 			private void UseToken(Token t) {
 				// Store the value depending on token's type
@@ -636,12 +660,55 @@ namespace Yarn {
 					type = Type.String;
 					stringValue = t.value as string;
 					break;
+				case TokenType.False:
+					type = Type.Bool;
+					boolValue = false;
+					break;
+				case TokenType.True:
+					type = Type.Bool;
+					boolValue = false;
+					break;
 				case TokenType.Variable:
 					type = Type.Variable;
 					variableName = t.value as string;
 					break;
+				case TokenType.Null:
+					type = Type.Null;
+					break;
 				default:
 					throw ParseException.Make (t, "Invalid token type " + t.ToString ());
+				}
+			}
+
+			// Create a null value
+			public Value () : base(null, null)
+			{
+				type  = Type.Null;
+			}
+
+			// Create a value with a C# object
+			public Value (object value) : base(null, null)
+			{
+				if (value == null) {
+					type = Type.Null;
+					return;
+				}
+				if (value.GetType() == typeof(string) ) {
+					type = Type.String;
+					stringValue = (string)value;
+					return;
+				}
+				if (value.GetType() == typeof(int) ||
+					value.GetType() == typeof(float) ||
+					value.GetType() == typeof(double)) {
+					type = Type.Number;
+					number = (float)value;
+					return;
+				}
+				if (value.GetType() == typeof(bool) ) {
+					type = Type.Bool;
+					boolValue = (bool)value;
+					return;
 				}
 			}
 
@@ -664,9 +731,13 @@ namespace Yarn {
 				case Type.Number:
 					return Tab (indentLevel, number.ToString());
 				case Type.String:
-					return Tab(indentLevel, stringValue);
+					return Tab(indentLevel, String.Format("\"{0}\"", stringValue));
+				case Type.Bool:
+					return Tab (indentLevel, boolValue.ToString());
 				case Type.Variable:
 					return Tab (indentLevel, variableName);
+				case Type.Null:
+					return Tab (indentLevel, "(null)");
 				}
 				throw new ArgumentException ();
 

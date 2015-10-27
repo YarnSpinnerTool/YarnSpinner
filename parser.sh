@@ -23,4 +23,4 @@
 # SOFTWARE.
 
 
-mono YarnParser/bin/Debug/YarnParser.exe $@
+mono YarnSpinnerConsole/bin/Debug/YarnSpinnerConsole.exe $@

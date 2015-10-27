@@ -141,7 +141,7 @@ namespace Yarn
 				foreach (var clause in statement.ifStatement.clauses) {
 					// if this clause's expression doesn't evaluate to 0, run it; alternatively,
 					// if this clause has no expression (ie it's the 'else' clause) then also run it
-					if (clause.expression == null || EvaluateExpression(clause.expression) != 0.0f) {
+					if (clause.expression == null || EvaluateExpression(clause.expression).AsBool != false) {
 						foreach (var command in  RunStatements (clause.statements)) {
 							yield return command;
 						}
@@ -181,64 +181,15 @@ namespace Yarn
 
 		}
 
-		private float EvaluateExpression(Parser.Expression expression) {
+		private Yarn.Parser.Value EvaluateExpression(Parser.Expression expression) {
 
 			if (expression == null)
-				return 0.0f;
+				return new Yarn.Parser.Value ();
 			
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
 				// just a regular value? return it
 				return EvaluateValue (expression.value);
-
-			case Parser.Expression.Type.Compound:
-
-				// Recursively evaluate the left and right hand expressions
-				var leftHand = EvaluateExpression (expression.leftHand);
-				var rightHand = EvaluateExpression (expression.rightHand);
-
-				// And then Do A Thing with the results:
-				switch (expression.operation.operatorType) {
-				case TokenType.Add:
-					return leftHand + rightHand;
-				case TokenType.Minus:
-					return leftHand - rightHand;
-				case TokenType.Multiply:
-					return leftHand * rightHand;
-				case TokenType.Divide:
-					return leftHand / rightHand;
-
-				case TokenType.UnaryMinus:
-					return -rightHand;
-
-				case TokenType.GreaterThan:
-					return leftHand > rightHand ? 1.0f : 0.0f;
-				case TokenType.LessThan:
-					return leftHand < rightHand ? 1.0f : 0.0f;
-				case TokenType.GreaterThanOrEqualTo:
-					return leftHand >= rightHand ? 1.0f : 0.0f;
-				case TokenType.LessThanOrEqualTo:
-					return leftHand <= rightHand ? 1.0f : 0.0f;
-
-				case TokenType.EqualToOrAssign:					
-				case TokenType.EqualTo:
-					return leftHand == rightHand ? 1.0f : 0.0f;
-				case TokenType.NotEqualTo:
-					return leftHand != rightHand ? 1.0f : 0.0f;
-
-				case TokenType.And:
-					return (leftHand != 0 && rightHand != 0) ? 1.0f : 0.0f;
-				case TokenType.Or:
-					return (leftHand != 0 || rightHand != 0) ? 1.0f : 0.0f;
-				case TokenType.Xor:
-					return (leftHand != 0 ^ rightHand != 0) ? 1.0f : 0.0f;				
-				case TokenType.Not:
-					return !(rightHand != 0) ? 1.0f : 0.0f;
-				}
-
-				// whoa no
-				throw new NotImplementedException ("Operator " + expression.operation.operatorType.ToString ()
-				+ " is not yet implemented");				
 
 			case Parser.Expression.Type.FunctionCall:
 				// get the function
@@ -254,11 +205,17 @@ namespace Yarn
 
 				var result = func.InvokeWithArray (evaluatedParameters.ToArray() );
 
-				if (result != null) {
-					return (float)result;
+				if (result is float || result == null) {
+					if (result != null) {
+						return new Yarn.Parser.Value (result);
+					} else {
+						return new Yarn.Parser.Value ();
+					}
 				} else {
-					return 0.0f;
+					throw new InvalidOperationException ("Functions may currently only return null or floats.");
 				}
+
+
 				
 			}
 
@@ -267,15 +224,14 @@ namespace Yarn
 		}
 
 		// Returns the actual value of this Value object.
-		private float EvaluateValue(Parser.Value value) {
+		private Yarn.Parser.Value EvaluateValue(Parser.Value value) {
 			switch (value.type) {
-			case Parser.Value.Type.Number:
-				return value.number;
 			case Parser.Value.Type.Variable:
 				dialogue.LogDebugMessage ("Checking value " + value.variableName);
-				return dialogue.continuity.GetNumber (value.variableName);
+				return new Parser.Value(dialogue.continuity.GetNumber (value.variableName));
+			default:
+				return value;
 			}
-			return 0.0f;
 		}
 
 		// Assigns a value to a variable.
@@ -290,23 +246,29 @@ namespace Yarn
 			// The current value of this variable.
 			float originalValue = dialogue.continuity.GetNumber (variableName);
 
+			// TODO: Currently, variables can only be floats
+			if (computedValue.type != Parser.Value.Type.Number) {
+				// TODO: list line number
+				throw new InvalidOperationException("Variables can only be assigned number values");
+			}
+
 			// What shall we do with it?
 			float finalValue = 0.0f;
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
-				finalValue = computedValue;
+				finalValue = computedValue.number;
 				break;
 			case TokenType.AddAssign:
-				finalValue = originalValue + computedValue;
+				finalValue = originalValue + computedValue.number;
 				break;
 			case TokenType.MinusAssign:
-				finalValue = originalValue - computedValue;
+				finalValue = originalValue - computedValue.number;
 				break;
 			case TokenType.MultiplyAssign:
-				finalValue = originalValue * computedValue;
+				finalValue = originalValue * computedValue.number;
 				break;
 			case TokenType.DivideAssign:
-				finalValue = originalValue / computedValue;
+				finalValue = originalValue / computedValue.number;
 				break;
 			}
 
@@ -322,7 +284,7 @@ namespace Yarn
 			foreach (var option in shortcutOptionGroup.options) {
 				var include = true;
 				if (option.condition != null) {
-					include = EvaluateExpression(option.condition) != 0.0f;
+					include = EvaluateExpression(option.condition).AsBool != false;
 				}
 				if (include) {
 					optionsToDisplay.Add(option);

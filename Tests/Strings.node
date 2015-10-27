@@ -1,0 +1,11 @@
+// Strings
+
+<<print("This is a test string")>>
+
+<<print("This is a test string with \"embedded quotes!\". Cool!")>>
+
+<<print("This is a test string with an embedded slash: \\. NICE.")>>
+
+<<if visited("Node")>>
+This was visited!
+<<endif>>

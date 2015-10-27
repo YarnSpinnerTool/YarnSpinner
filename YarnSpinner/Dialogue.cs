@@ -124,10 +124,18 @@ namespace Yarn {
 
 		public Library library;
 
+		private HashSet<String> visitedNodeNames = new HashSet<string>();
+
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
 			loader = new Loader (this);
 			library = new Library ();
+
+			// Register the "visited" method
+			library.RegisterFunction ("visited", new Type[]{typeof(string)}, typeof(bool), delegate(object[] parameters) {
+				var name = parameters[0] as string;
+				return visitedNodeNames.Contains(name) ? 1.0f : 0.0f;
+			});
 		}
 
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
@@ -172,6 +180,7 @@ namespace Yarn {
 			do {
 
 				LogDebugMessage ("Running node " + nextNode);	
+				visitedNodeNames.Add(nextNode);
 				Parser.Node node;
 
 				try {
@@ -200,6 +209,16 @@ namespace Yarn {
 			LogDebugMessage ("Run complete.");
 
 		}
+
+		private class StandardLibrary : Library {
+			public StandardLibrary() {
+				this.RegisterFunction("+", new Type[] { typeof(float), typeof(float) }, delegate(object[] parameters) {
+					
+				});
+			}
+		}
+
+
 
 	}
 }
