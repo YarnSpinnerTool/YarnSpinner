@@ -614,6 +614,7 @@ namespace Yarn {
 
 			internal enum Type {
 				Number, // a constant number
+				String, // a string
 				Variable // the name of a variable
 			}
 
@@ -622,7 +623,7 @@ namespace Yarn {
 			// The underlying values for this object
 			internal float number {get; private set;}
 			internal string variableName {get; private set;}
-
+			internal string stringValue {get; private set;}
 
 			private void UseToken(Token t) {
 				// Store the value depending on token's type
@@ -630,6 +631,10 @@ namespace Yarn {
 				case TokenType.Number:
 					type = Type.Number;
 					number = float.Parse(t.value as String);
+					break;
+				case TokenType.String:
+					type = Type.String;
+					stringValue = t.value as string;
 					break;
 				case TokenType.Variable:
 					type = Type.Variable;
@@ -648,7 +653,7 @@ namespace Yarn {
 			// Read a number or a variable name from the parser
 			internal Value(ParseNode parent, Parser p) : base(parent, p) {
 
-				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable);
+				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable, TokenType.String);
 
 				UseToken(t);
 			}
@@ -658,6 +663,8 @@ namespace Yarn {
 				switch (type) {
 				case Type.Number:
 					return Tab (indentLevel, number.ToString());
+				case Type.String:
+					return Tab(indentLevel, stringValue);
 				case Type.Variable:
 					return Tab (indentLevel, variableName);
 				}
@@ -723,10 +730,11 @@ namespace Yarn {
 				var allValidTokenTypes = new List<TokenType>(Operator.operatorTypes);
 				allValidTokenTypes.Add(TokenType.Number);
 				allValidTokenTypes.Add(TokenType.Variable);
+				allValidTokenTypes.Add(TokenType.String);
 				allValidTokenTypes.Add(TokenType.LeftParen);
 				allValidTokenTypes.Add(TokenType.RightParen);
-				allValidTokenTypes.Add (TokenType.Identifier);
-				allValidTokenTypes.Add (TokenType.Comma);
+				allValidTokenTypes.Add(TokenType.Identifier);
+				allValidTokenTypes.Add(TokenType.Comma);
 
 				Token lastToken = null;
 
@@ -736,7 +744,8 @@ namespace Yarn {
 					Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
 
 					if (nextToken.type == TokenType.Number ||
-					    nextToken.type == TokenType.Variable) {
+					    nextToken.type == TokenType.Variable ||
+						nextToken.type == TokenType.String) {
 
 						// Primitive values go straight onto the output
 						_expressionRPN.Enqueue (nextToken);
@@ -885,6 +894,8 @@ namespace Yarn {
 					var next = _expressionRPN.Dequeue();
 					if (Operator.IsOperator(next.type)) {
 
+						// This is an operation
+
 						var info = Operator.InfoForOperator(next.type);
 						if (evaluationStack.Count < info.arguments) {
 							throw ParseException.Make(next, "Error parsing expression: not enough " +
@@ -933,6 +944,8 @@ namespace Yarn {
 						evaluationStack.Push (expr);
 
 					} else {
+
+						// This is a raw value
 						Value v = new Value(parent, next);
 						Expression expr = new Expression(parent, v);
 						evaluationStack.Push(expr);

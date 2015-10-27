@@ -49,6 +49,9 @@ namespace Yarn {
 		// Numbers. Everybody loves a number
 		Number,
 
+		// Strings. Everybody also loves a string
+		String,
+
 		// Command syntax ("<<foo>>")
 		BeginCommand,
 		EndCommand,
@@ -372,6 +375,17 @@ namespace Yarn {
 								token = new Token(tokenRule.type);
 							}
 
+							// If this was a string, lop off the quotes at the start and
+							// end, and un-escape the quotes and slashes
+							if (token.type == TokenType.String) {
+								string processedString = token.value as string;
+								processedString = processedString.Substring (1, processedString.Length - 2);
+
+								processedString = processedString.Replace ("\\\\", "\\");
+								processedString = processedString.Replace ("\\\"", "\"");
+								token.value = processedString;
+							}
+
 							// Record where the token was found
 							token.lineNumber = lineNumber;
 							token.columnNumber = columnNumber;
@@ -433,27 +447,30 @@ namespace Yarn {
 			AddTokenRule(TokenType.Dedent, null, canBeginLine:true);
 			
 			// Set up the end-of-line token
-			AddTokenRule (TokenType.EndOfLine, "\\n", canBeginLine:true)
+			AddTokenRule (TokenType.EndOfLine, @"\n", canBeginLine:true)
 				.discard = true;
 			
 			// Set up the end-of-file token
 			AddTokenRule(TokenType.EndOfInput, null);
 
 			// Comments
-			AddTokenRule (TokenType.Comment, "\\/\\/.*", canBeginLine: true)
+			AddTokenRule (TokenType.Comment, @"\/\/.*", canBeginLine: true)
 				.discard = true;
 
 			// Basic syntax
-			AddTokenRule(TokenType.Number, "((?<!\\[\\[)\\d+)");
-			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
-			AddTokenRule(TokenType.EndCommand, "\\>\\>");
-			AddTokenRule(TokenType.Variable, "\\$([A-z\\d])+");
+			AddTokenRule(TokenType.Number, @"((?<!\[\[)\d+)");
+			AddTokenRule(TokenType.BeginCommand, @"\<\<", canBeginLine:true);
+			AddTokenRule(TokenType.EndCommand, @"\>\>");
+			AddTokenRule(TokenType.Variable, @"\$([A-z\d])+");
 
+			// Strings
+			AddTokenRule(TokenType.String, @"""[^""\\]*(?:\\.[^""\\]*)*""");
+			
 			// Options
-			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true, resetsLine:true);
-			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true, resetsLine:true);
-			AddTokenRule(TokenType.OptionDelimit, "\\|");
-			AddTokenRule(TokenType.OptionEnd, "\\]\\]");
+			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.OptionStart, @"\[\[", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.OptionDelimit, @"\|");
+			AddTokenRule(TokenType.OptionEnd, @"\]\]");
 			
 			// Reserved words
 			AddTokenRule(TokenType.If, "if");
@@ -465,37 +482,37 @@ namespace Yarn {
 			
 			// Operators
 			AddTokenRule(TokenType.EqualTo, "(==|eq|is)");
-			AddTokenRule(TokenType.GreaterThanOrEqualTo, "(\\>=|gte)");
-			AddTokenRule(TokenType.LessThanOrEqualTo, "(\\<=|lte)");
-			AddTokenRule(TokenType.GreaterThan, "(\\>|gt)");
-			AddTokenRule(TokenType.LessThan, "(\\<|lt)");
-			AddTokenRule(TokenType.NotEqualTo, "(\\!=|neq)");
+			AddTokenRule(TokenType.GreaterThanOrEqualTo, @"(\>=|gte)");
+			AddTokenRule(TokenType.LessThanOrEqualTo, @"(\<=|lte)");
+			AddTokenRule(TokenType.GreaterThan, @"(\>|gt)");
+			AddTokenRule(TokenType.LessThan, @"(\<|lt)");
+			AddTokenRule(TokenType.NotEqualTo, @"(\!=|neq)");
 
-			AddTokenRule(TokenType.And, "(\\&\\&|and)");
-			AddTokenRule(TokenType.Or, "(\\|\\||or)");
-			AddTokenRule(TokenType.Xor, "(\\^|xor)");
-			AddTokenRule(TokenType.Not, "(\\!|not)");
+			AddTokenRule(TokenType.And, @"(\&\&|and)");
+			AddTokenRule(TokenType.Or, @"(\|\||or)");
+			AddTokenRule(TokenType.Xor, @"(\^|xor)");
+			AddTokenRule(TokenType.Not, @"(\!|not)");
 
 			// Assignment operators
 			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)");
 
-			AddTokenRule(TokenType.AddAssign, "\\+=");
+			AddTokenRule(TokenType.AddAssign, @"\+=");
 			AddTokenRule(TokenType.MinusAssign, "-=");
-			AddTokenRule(TokenType.MultiplyAssign, "\\*=");
-			AddTokenRule(TokenType.DivideAssign, "\\/=");
+			AddTokenRule(TokenType.MultiplyAssign, @"\*=");
+			AddTokenRule(TokenType.DivideAssign, @"\/=");
 
-			AddTokenRule(TokenType.Add, "\\+");
+			AddTokenRule(TokenType.Add, @"\+");
 			AddTokenRule(TokenType.Minus, "-");
-			AddTokenRule(TokenType.Multiply, "\\*");
-			AddTokenRule(TokenType.Divide, "\\/");
+			AddTokenRule(TokenType.Multiply, @"\*");
+			AddTokenRule(TokenType.Divide, @"\/");
 
 			AddTokenRule (TokenType.UnaryMinus, null); // this one has special matching rules
 
-			AddTokenRule (TokenType.LeftParen, "\\(");
-			AddTokenRule (TokenType.RightParen, "\\)");
+			AddTokenRule (TokenType.LeftParen, @"\(");
+			AddTokenRule (TokenType.RightParen, @"\)");
 
 			// Identifiers (any letter, number or underscore)
-			AddTokenRule (TokenType.Identifier, "(\\w|_)+");
+			AddTokenRule (TokenType.Identifier, @"(\w|_)+");
 
 			// Commas for separating function parameters
 			AddTokenRule (TokenType.Comma, ",");
@@ -503,7 +520,7 @@ namespace Yarn {
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
 			// match it
-			AddTokenRule(TokenType.Text, "[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
+			AddTokenRule(TokenType.Text, @"[^\<\>\[\]\|]*", canBeginLine:true);
 		}
 	}
 }
