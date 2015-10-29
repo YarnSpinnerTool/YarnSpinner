@@ -705,25 +705,25 @@ namespace Yarn {
 
 				// Handle as many <<elseif clauses as we find
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
-					var newElseClause = new Clause();
+					var elseIfClause = new Clause();
 
 					// Parse the syntax for this clause's condition
 					p.ExpectSymbol(TokenType.BeginCommand);
 					p.ExpectSymbol(TokenType.ElseIf);
-					newElseClause.expression = Expression.Parse(this, p);
+					elseIfClause.expression = Expression.Parse(this, p);
 					p.ExpectSymbol(TokenType.EndCommand);
 
 					// Read statements until we hit an <<endif, <<else or another <<elseif
-					var elseStatements = new List<Statement>();
+					var clauseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
-						elseStatements.Add(new Statement(this, p));
+						clauseStatements.Add(new Statement(this, p));
 					}
 
-					newElseClause.statements = elseStatements;
+					elseIfClause.statements = clauseStatements;
 
-					clauses.Add(newElseClause);
+					clauses.Add(elseIfClause);
 				}
 
 				// Handle <<else>> if we have it
@@ -736,11 +736,13 @@ namespace Yarn {
 
 					// and parse statements until we hit "<<endif"
 					var elseClause = new Clause();
-					var elseStatements = new List<Statement>();
+					var clauseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false) {
-						elseStatements.Add(new Statement(this, p));
+						clauseStatements.Add(new Statement(this, p));
 					}
-					elseClause.statements = elseStatements;
+					elseClause.statements = clauseStatements;
+
+					this.clauses.Add(elseClause);
 				}
 
 				// Finish up by reading the <<endif>>
