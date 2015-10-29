@@ -119,6 +119,29 @@ namespace Yarn {
 		// Create a value with a C# object
 		public Value (object value)
 		{
+			// Copy an existing value
+			if (value.GetType() == typeof(Value)) {
+				var otherValue = value as Value;
+				type = otherValue.type;
+				switch (type) {
+				case Type.Number:
+					numberValue = otherValue.numberValue;
+					break;
+				case Type.String:
+					stringValue = otherValue.stringValue;
+					break;
+				case Type.Bool:
+					boolValue = otherValue.boolValue;
+					break;
+				case Type.Variable:
+					variableName = otherValue.variableName;
+					break;
+				case Type.Null:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException ();
+				}
+			}
 			if (value == null) {
 				type = Type.Null;
 				return;
