@@ -8,7 +8,7 @@ Here's how to quickly jump in to Yarn Spinner, if you're already reasonably comf
 * **Inside the YarnSpinner folder, open the Yarn Spinner Example scene.**
 * **Start the game. Play through the dialogue.**
 
-Once you've played with it, open the Example Script file in the Yarn editor (it's in the Demo Resources folder), and make some changes to the script. Once you've done that, take a look at how `DialogueRunner.cs`, `DialogueUI.cs` and `ExampleVariableStorage.cs` work.
+Once you've played with it, open the Example Script file in the Yarn editor (it's in the Demo Resources folder), and make some changes to the script. Once you've done that, take a look at how `DialogueRunner.cs`, `DialogueUI.cs` and `ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
 
 ## Tutorial
 

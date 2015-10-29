@@ -178,6 +178,10 @@ namespace Yarn
 				return parameters[parameters.Length-1];
 			});
 
+			dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
+				return (int)parameters[0].AsNumber % 2 == 0;
+			});
+
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
 				dialogue.LogDebugMessage = delegate(string message) {

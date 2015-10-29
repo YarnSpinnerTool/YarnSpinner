@@ -7,3 +7,11 @@ SUCCESS: "test" == "test"
 <<if "test" != 1>>
 SUCCESS: "test" != 1
 <<endif>>
+
+<<if "hi" == "hi">>
+	SUCCESS: The two strings are the same!
+<<endif>>
+
+<<if 1+1+"hi" == "2hi">>
+	SUCCESS: Strings get joined together with other values!
+<<endif>>
