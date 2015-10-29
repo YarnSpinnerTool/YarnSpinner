@@ -6,6 +6,10 @@
 
 <<print("This is a test string with an embedded slash: \\. NICE.")>>
 
-<<if visited("Node")>>
-This was visited!
+<<if visited("Start")>>
+Node "Start" was visited!
+<<endif>>
+
+<<if visited("DoesNotExist") == false>>
+Node "DoesNotExist" does not exist
 <<endif>>

@@ -24,6 +24,11 @@ SOFTWARE.
 
 */
 
+// Uncomment to interpret commands as expressions
+// (ie stuff like << do_something() >> will execute the function do_something, rather
+// than pass the text "do_something()" to the client
+//#define COMMANDS_ARE_EXPRESSIONS
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +36,115 @@ using System.Runtime.Serialization;
 using System.Text;
 
 namespace Yarn {
+
+	public class Value {
+		internal enum Type {
+			Number,  // a constant number
+			String,  // a string
+			Bool,    // a boolean value
+			Variable, // the name of a variable; will be expanded at runtime
+			Null,    // the null value
+		}
+
+		internal Value.Type type { get; set; }
+
+		// The underlying values for this object
+		internal float numberValue {get; private set;}
+		internal string variableName {get; set;}
+		internal string stringValue {get; private set;}
+		internal bool boolValue {get; private set;}
+
+		public float AsNumber {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue;
+				case Type.String:						
+					try {
+						return float.Parse (stringValue);
+					}  catch (FormatException) {
+						return 0.0f;
+					}
+				case Type.Bool:
+					return boolValue ? 1.0f : 0.0f;
+
+				default:
+					throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
+				}
+			}
+		}
+
+		public bool AsBool {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue != 0.0f;
+				case Type.String:
+					return stringValue.Length > 0;
+				case Type.Bool:
+					return boolValue;
+				case Type.Null:
+					return false;
+				default:
+					throw new InvalidOperationException ("Cannot cast to bool to " + type.ToString());
+				}
+			}
+		}
+
+		public string AsString {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue.ToString ();
+				case Type.String:
+					return stringValue;
+				case Type.Bool:
+					return boolValue.ToString ();
+				case Type.Null:
+					return "null";
+				default:
+					throw new ArgumentOutOfRangeException ();
+				}
+			}
+		}
+
+
+
+		// Create a null value
+		public Value ()
+		{
+			type  = Type.Null;
+		}
+
+		// Create a value with a C# object
+		public Value (object value)
+		{
+			if (value == null) {
+				type = Type.Null;
+				return;
+			}
+			if (value.GetType() == typeof(string) ) {
+				type = Type.String;
+				stringValue = (string)value;
+				return;
+			}
+			if (value.GetType() == typeof(int) ||
+				value.GetType() == typeof(float) ||
+				value.GetType() == typeof(double)) {
+				type = Type.Number;
+				numberValue = (float)value;
+				return;
+			}
+			if (value.GetType() == typeof(bool) ) {
+				type = Type.Bool;
+				boolValue = (bool)value;
+				return;
+			}
+			var error = string.Format("Attempted to create a Value using a {0}; currently, " +
+				"Values can only be numbers, strings, bools or null.", value.GetType().Name);
+			throw new YarnException(error);
+		}
+	}
 	
 	// An exception representing something going wrong during parsing
 	[Serializable]
@@ -259,30 +373,79 @@ namespace Yarn {
 		// system that owns this dialogue sytem. eg <<stand>>
 		// CustomCommand = BeginCommand <ANY>* EndCommand
 		internal class CustomCommand : ParseNode {
+
+			internal enum Type {
+				Expression,
+				ClientCommand
+			}
+
+			internal Type type;
+
+			internal Expression expression {get; private set;}
+			internal string clientCommand { get; private set;}
+
 			internal static bool CanParse (Parser p)
 			{
 				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
 					p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Identifier);
 			}
 
-			internal string command { get; private set;}
-
 			internal CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
 
 				// Custom commands can have ANY token in them. Read them all until we hit the
 				// end command.
 				p.ExpectSymbol(TokenType.BeginCommand);
-				var items = new List<string>();
+				var commandTokens = new List<Token>();
 				do {
-					items.Add(p.ExpectSymbol().value as string);
+					commandTokens.Add(p.ExpectSymbol());
 				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
-				command = string.Join(" ", items.ToArray());
 				p.ExpectSymbol(TokenType.EndCommand);
+
+				#if COMMANDS_ARE_EXPRESSIONS
+				// Attempt to parse this command as an expression
+
+				var parser = new Parser(commandTokens, p.library);
+
+				try {
+					var expression = Expression.Parse(this, parser);
+					type = Type.Expression;
+					this.expression = expression;
+				} catch (Exception) {
+					// Couldn't parse the expression for some reason. Fall back on passing this whole
+					// string to the client.
+					type = Type.ClientCommand;
+
+					var tokenStrings = new List<string>();
+					foreach (var token in commandTokens) {
+						tokenStrings.Add(token.value as string);
+					}
+					this.clientCommand = string.Join(" ", tokenStrings.ToArray());
+
+				}
+				#else
+				type = Type.ClientCommand;
+
+				var tokenStrings = new List<string>();
+				foreach (var token in commandTokens) {
+					tokenStrings.Add(token.value as string);
+				}
+				this.clientCommand = string.Join(" ", tokenStrings.ToArray());
+
+				#endif
+
+
 			}
 
 			internal override string PrintTree (int indentLevel)
 			{
-				return Tab (indentLevel, "Command: " + command);
+				switch (type) {
+				case Type.Expression:
+					return Tab (indentLevel, "Expression: ") + expression.PrintTree (indentLevel + 1);
+				case Type.ClientCommand:
+					return Tab (indentLevel, "Command: " + clientCommand);
+				}
+				return "";
+
 			}
 		}
 
@@ -606,119 +769,54 @@ namespace Yarn {
 			}
 		}
 
-		// Raw values are either numbers, or variables.
-		// TODO: values can be strings??
-		// Value = <Number>
-		// Value = <Variable>
-		internal class Value : ParseNode {
+		// A value, which forms part of an expression.
+		public class ValueNode : ParseNode {
 
-			internal enum Type {
-				Number,  // a constant number
-				String,  // a string
-				Bool,    // a boolean value
-				Variable, // the name of a variable; will be expanded at runtime
-				Null,    // the null value
-			}
-
-			internal Value.Type type { get; private set; }
-
-			// The underlying values for this object
-			internal float number {get; private set;}
-			internal string variableName {get; private set;}
-			internal string stringValue {get; private set;}
-			internal bool boolValue {get; private set;}
-
-			public bool AsBool {
-				get {
-					switch (type) {
-					case Type.Number:
-						return number != 0.0f;
-						break;
-					case Type.String:
-						return stringValue.Length > 0;
-						break;
-					case Type.Bool:
-						return boolValue;
-						break;
-					case Type.Null:
-						return false;
-						break;
-					default:
-						throw new ArgumentOutOfRangeException ();
-					}
-				}
-			}
+			public Value value { get; private set;}
 
 			private void UseToken(Token t) {
 				// Store the value depending on token's type
 				switch (t.type) {
 				case TokenType.Number:
-					type = Type.Number;
-					number = float.Parse(t.value as String);
+
+					value = new Value (float.Parse (t.value as String));
+
 					break;
 				case TokenType.String:
-					type = Type.String;
-					stringValue = t.value as string;
+
+					value = new Value (t.value as String);
 					break;
+
 				case TokenType.False:
-					type = Type.Bool;
-					boolValue = false;
+
+					value = new Value (false);
+
 					break;
 				case TokenType.True:
-					type = Type.Bool;
-					boolValue = false;
+
+					value = new Value (true);
+
 					break;
 				case TokenType.Variable:
-					type = Type.Variable;
-					variableName = t.value as string;
+					value = new Value ();
+					value.type = Value.Type.Variable;
+					value.variableName = t.value as String;
 					break;
 				case TokenType.Null:
-					type = Type.Null;
+					value = new Value (null);
 					break;
 				default:
 					throw ParseException.Make (t, "Invalid token type " + t.ToString ());
 				}
 			}
 
-			// Create a null value
-			public Value () : base(null, null)
-			{
-				type  = Type.Null;
-			}
-
-			// Create a value with a C# object
-			public Value (object value) : base(null, null)
-			{
-				if (value == null) {
-					type = Type.Null;
-					return;
-				}
-				if (value.GetType() == typeof(string) ) {
-					type = Type.String;
-					stringValue = (string)value;
-					return;
-				}
-				if (value.GetType() == typeof(int) ||
-					value.GetType() == typeof(float) ||
-					value.GetType() == typeof(double)) {
-					type = Type.Number;
-					number = (float)value;
-					return;
-				}
-				if (value.GetType() == typeof(bool) ) {
-					type = Type.Bool;
-					boolValue = (bool)value;
-					return;
-				}
-			}
-
 			// Use a provided token
-			internal Value(ParseNode parent, Token t) : base (parent, null) {
+			internal ValueNode(ParseNode parent, Token t) : base (parent, null) {
 				UseToken(t);
 			}
 
 			// Read a number or a variable name from the parser
-			internal Value(ParseNode parent, Parser p) : base(parent, p) {
+			internal ValueNode(ParseNode parent, Parser p) : base(parent, p) {
 
 				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable, TokenType.String);
 
@@ -727,20 +825,19 @@ namespace Yarn {
 
 			internal override string PrintTree (int indentLevel)
 			{
-				switch (type) {
-				case Type.Number:
-					return Tab (indentLevel, number.ToString());
-				case Type.String:
-					return Tab(indentLevel, String.Format("\"{0}\"", stringValue));
-				case Type.Bool:
-					return Tab (indentLevel, boolValue.ToString());
-				case Type.Variable:
-					return Tab (indentLevel, variableName);
-				case Type.Null:
+				switch (value.type) {
+				case Value.Type.Number:
+					return Tab (indentLevel, value.numberValue.ToString());
+				case Value.Type.String:
+					return Tab(indentLevel, String.Format("\"{0}\"", value.stringValue));
+				case Value.Type.Bool:
+					return Tab (indentLevel, value.boolValue.ToString());
+				case Value.Type.Variable:
+					return Tab (indentLevel, value.variableName);
+				case Value.Type.Null:
 					return Tab (indentLevel, "(null)");
 				}
 				throw new ArgumentException ();
-
 			}
 		}
 
@@ -757,25 +854,14 @@ namespace Yarn {
 
 			internal Type type;
 
-			internal Value value;
-			// - or -
-			internal Expression leftHand;
-			internal Operator operation;
-			internal Expression rightHand;
+			internal ValueNode value;
 			// - or -
 			internal FunctionInfo function;
 			internal List<Expression> parameters;
 
-			internal Expression(ParseNode parent, Value value) : base(parent, null) {
+			internal Expression(ParseNode parent, ValueNode value) : base(parent, null) {
 				this.type = Type.Value;
 				this.value = value;
-			}
-
-			internal Expression(ParseNode parent, Expression lhs, Operator op, Expression rhs) : base(parent,null) {
-				type = Type.Compound;
-				leftHand = lhs;
-				operation = op;
-				rightHand = rhs;
 			}
 
 			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters) : base(parent, null) {
@@ -806,6 +892,8 @@ namespace Yarn {
 				allValidTokenTypes.Add(TokenType.RightParen);
 				allValidTokenTypes.Add(TokenType.Identifier);
 				allValidTokenTypes.Add(TokenType.Comma);
+				allValidTokenTypes.Add(TokenType.True);
+				allValidTokenTypes.Add(TokenType.False);
 
 				Token lastToken = null;
 
@@ -816,7 +904,9 @@ namespace Yarn {
 
 					if (nextToken.type == TokenType.Number ||
 					    nextToken.type == TokenType.Variable ||
-						nextToken.type == TokenType.String) {
+						nextToken.type == TokenType.String ||
+						nextToken.type == TokenType.True ||
+						nextToken.type == TokenType.False) {
 
 						// Primitive values go straight onto the output
 						_expressionRPN.Enqueue (nextToken);
@@ -885,6 +975,13 @@ namespace Yarn {
 							}
 						}
 
+						// We cannot assign values inside an expression. That is,
+						// saying "$foo = 2" in an express does not assign $foo to 2
+						// and then evaluate to 2. Instead, Yarn defines this
+						// to mean "$foo == 2"
+						if (nextToken.type == TokenType.EqualToOrAssign) {
+							nextToken.type = TokenType.EqualTo;
+						}
 
 						// O1 = this operator
 						// O2 = the token at the top of the stack
@@ -972,22 +1069,18 @@ namespace Yarn {
 							throw ParseException.Make(next, "Error parsing expression: not enough " +
 								"arguments for operator "+next.type.ToString());
 						}
-						Expression lhs = null, rhs = null;
 
-						if (info.arguments == 1) {
-							rhs = evaluationStack.Pop();
-						} else if (info.arguments == 2) {
-							rhs = evaluationStack.Pop();
-							lhs = evaluationStack.Pop();
-						} else {
-							string error = string.Format("Error parsing expression: " +
-								"Unsupported number of parameters for operator {0} ({1})",
-								next.type.ToString(),
-								info.arguments
-							);
-							throw ParseException.Make(next, error);
+						var parameters = new List<Expression> ();
+
+						for (int i = 0; i < info.arguments; i++) {
+							parameters.Add (evaluationStack.Pop ());
 						}
-						var expr = new Expression(parent, lhs, new Operator(parent, next.type), rhs);
+						parameters.Reverse ();
+
+						var operatorFunc = p.library.GetFunction (next.type.ToString());
+
+						var expr = new Expression (parent, operatorFunc, parameters);
+
 						evaluationStack.Push(expr);
 					} else if (next.type == TokenType.Identifier) {
 						// This is a function call
@@ -1017,7 +1110,7 @@ namespace Yarn {
 					} else {
 
 						// This is a raw value
-						Value v = new Value(parent, next);
+						var v = new ValueNode(parent, next);
 						Expression expr = new Expression(parent, v);
 						evaluationStack.Push(expr);
 
@@ -1071,22 +1164,6 @@ namespace Yarn {
 				switch (type) {
 				case Type.Value:
 					return value.PrintTree (indentLevel);
-				case Type.Compound:
-
-
-					stringBuilder.Append (Tab (indentLevel, "Expression: {"));
-
-					if (leftHand != null)
-						stringBuilder.Append (leftHand.PrintTree (indentLevel + 2));
-
-					stringBuilder.Append (operation.PrintTree (indentLevel + 1));
-
-					if (rightHand != null)
-						stringBuilder.Append (rightHand.PrintTree (indentLevel + 2));
-					
-					stringBuilder.Append (Tab (indentLevel, "}"));
-
-					return stringBuilder.ToString ();
 				case Type.FunctionCall:
 					
 					if (parameters.Count == 0) {
@@ -1167,7 +1244,7 @@ namespace Yarn {
 				internal Associativity associativity;
 				internal int precedence;
 				internal int arguments;
-				internal OperatorInfo(Associativity associativity, int precedence, int arguments) {
+				internal OperatorInfo(Associativity associativity, int precedence, int arguments) {					
 					this.associativity = associativity;
 					this.precedence = precedence;
 					this.arguments = arguments;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Yarn
 {
-	public delegate Object ReturningFunction (params Object[] parameters);
-	public delegate void Function (params Object[] parameters);
+	public delegate Object ReturningFunction (params Value[] parameters);
+	public delegate void Function (params Value[] parameters);
 
 	public class FunctionInfo {
 
@@ -29,18 +29,18 @@ namespace Yarn
 			}
 		}
 
-		public Object Invoke(params Object[] parameters) {
+		public Value Invoke(params Value[] parameters) {
 			return InvokeWithArray(parameters);
 		}
 
-		public Object InvokeWithArray(Object[] parameters) {
+		public Value InvokeWithArray(Value[] parameters) {
 
 			if (IsParameterCountCorrect(parameters.Length)) {
 				if (returnsValue) {
-					return returningFunction (parameters);
+					return new Value(returningFunction (parameters));
 				} else {
 					function (parameters);
-					return null;
+					return new Value(); // a null Value
 				}				
 			} else {
 				string error = string.Format (
@@ -73,6 +73,10 @@ namespace Yarn
 		{
 			return paramCount == parameterCount || paramCount == -1;
 		}
+
+
+
+
 	}
 
 	// A Library is a collection of callable functions.
@@ -122,6 +126,8 @@ namespace Yarn
 			if (functions.ContainsKey(name))
 				functions.Remove (name);
 		}
+
+
 	}
 }
 

@@ -124,6 +124,8 @@ namespace Yarn {
 
 		public Library library;
 
+		internal bool stopExecuting = false;
+
 		private HashSet<String> visitedNodeNames = new HashSet<string>();
 
 		public Dialogue(Yarn.VariableStorage continuity) {
@@ -131,10 +133,19 @@ namespace Yarn {
 			loader = new Loader (this);
 			library = new Library ();
 
-			// Register the "visited" method
-			library.RegisterFunction ("visited", new Type[]{typeof(string)}, typeof(bool), delegate(object[] parameters) {
-				var name = parameters[0] as string;
+			library.ImportLibrary (new StandardLibrary ());
+
+			// Register the "visited" function
+			library.RegisterFunction ("visited", 1, delegate(Yarn.Value[] parameters) {
+				var name = parameters[0].AsString;
 				return visitedNodeNames.Contains(name) ? 1.0f : 0.0f;
+			});
+
+			// Register the "assert" function
+			library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+				if (parameters[0].AsBool == false) {
+					stopExecuting = true;
+				}
 			});
 		}
 
@@ -165,6 +176,8 @@ namespace Yarn {
 
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
+			stopExecuting = false;
+
 			var runner = new Runner (this);
 
 			if (LogDebugMessage == null) {
@@ -191,9 +204,22 @@ namespace Yarn {
 				}
 
 				foreach (var result in runner.RunNode(node)) {
-					
-					if (result is Yarn.Dialogue.NodeCompleteResult) {
-						var nodeComplete = result as Yarn.Dialogue.NodeCompleteResult;
+
+					// Is it the special command "stop"?
+					if (result is CommandResult && (result as CommandResult).command.text == "stop") {
+						yield break;
+					}
+
+					// Did we get our stop flag set?
+					if (stopExecuting) {
+						yield break;
+					}
+
+					// Are we now done with this node?
+					if (result is NodeCompleteResult) {
+						var nodeComplete = result as NodeCompleteResult;
+
+						// Move to the next node (or to null)
 						nextNode = nodeComplete.nextNode;
 
 						// NodeComplete is not interactive, so skip immediately to next step
@@ -211,10 +237,104 @@ namespace Yarn {
 		}
 
 		private class StandardLibrary : Library {
+
 			public StandardLibrary() {
-				this.RegisterFunction("+", new Type[] { typeof(float), typeof(float) }, delegate(object[] parameters) {
-					
+
+				#region Operators
+
+				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
+
+					// If either of these parameters are strings, concatenate them as strings
+					if (parameters[0].type == Value.Type.String ||
+						parameters[1].type == Value.Type.String) {
+
+						return parameters[0].AsString + parameters[1].AsString;
+					}
+
+					// Otherwise, treat them as numbers
+					return parameters[0].AsNumber + parameters[1].AsNumber;
 				});
+
+				this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber - parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
+					return -parameters[0].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber / parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber * parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
+
+					// Values are not equal if they're different types
+					if (parameters[0].type != parameters[1].type)
+						return false;
+
+					// Compare based on type
+					switch (parameters [0].type) {
+					case Value.Type.Number:
+						return parameters[0].AsNumber == parameters[1].AsNumber;
+					case Value.Type.String:
+						return parameters[0].AsString == parameters[1].AsString;
+					case Value.Type.Bool:
+						return parameters[0].AsBool == parameters[1].AsBool;
+					case Value.Type.Null:
+						return true; // because null == null
+					}
+
+					// Give up and say they're not equal
+					return false;
+
+				});
+
+				this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
+
+					// Return the logical negative of the == operator's result
+					var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
+
+					return !equalTo.Invoke(parameters).AsBool;
+				});
+
+				this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber > parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber >= parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber < parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber <= parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool && parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool || parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool ^ parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) {
+					return !parameters[0].AsBool;
+				});
+
+				#endregion Operators
 			}
 		}
 

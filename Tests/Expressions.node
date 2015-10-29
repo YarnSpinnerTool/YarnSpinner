@@ -32,3 +32,9 @@ SUCCESS: $minus_test == -$test
 <<else>>
 ERROR! $minus_test != -$test
 <<endif>>
+
+<<if assert(false)>>
+ERROR: This line should not appear.
+<<endif>>
+
+ERROR: This line should not appear. Execution should have stopped when "assert" was called with a false parameter.

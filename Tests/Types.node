@@ -1,0 +1,9 @@
+// Testing types
+
+<<if "test" == "test">>
+SUCCESS: "test" == "test"
+<<endif>>
+
+<<if "test" != 1>>
+SUCCESS: "test" != 1
+<<endif>>

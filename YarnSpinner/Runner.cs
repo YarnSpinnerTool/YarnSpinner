@@ -169,8 +169,19 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.CustomCommand:
-				// Deal with a custom command
-				yield return new Dialogue.CommandResult (statement.customCommand.command);
+				// Deal with a custom command - it's either an expression or a client command
+				// If it's an expression, evaluate it
+				// If it's a client command, yield it to the client
+
+				switch (statement.customCommand.type) {
+				case Parser.CustomCommand.Type.Expression:
+					EvaluateExpression (statement.customCommand.expression);
+					break;
+				case Parser.CustomCommand.Type.ClientCommand:
+					yield return new Dialogue.CommandResult (statement.customCommand.clientCommand);
+					break;
+				}
+
 				break;
 
 			default:
@@ -181,42 +192,32 @@ namespace Yarn
 
 		}
 
-		private Yarn.Parser.Value EvaluateExpression(Parser.Expression expression) {
+		private Yarn.Value EvaluateExpression(Parser.Expression expression) {
 
 			if (expression == null)
-				return new Yarn.Parser.Value ();
+				return new Yarn.Value ();
 			
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
 				// just a regular value? return it
-				return EvaluateValue (expression.value);
+				return EvaluateValue (expression.value.value);
 
 			case Parser.Expression.Type.FunctionCall:
 				// get the function
 				var func = expression.function;
 
 				// evaluate all parameters
-				var evaluatedParameters = new List<Object>();
+				var evaluatedParameters = new List<Value> ();
 
 				foreach (var param in expression.parameters) {
 					var expr = EvaluateExpression (param);
 					evaluatedParameters.Add (expr);
 				}
 
-				var result = func.InvokeWithArray (evaluatedParameters.ToArray() );
+				var result = func.InvokeWithArray (evaluatedParameters.ToArray ());
 
-				if (result is float || result == null) {
-					if (result != null) {
-						return new Yarn.Parser.Value (result);
-					} else {
-						return new Yarn.Parser.Value ();
-					}
-				} else {
-					throw new InvalidOperationException ("Functions may currently only return null or floats.");
-				}
+				return result;
 
-
-				
 			}
 
 			throw new NotImplementedException ("Unimplemented expression type " + expression.type.ToString ());
@@ -224,11 +225,11 @@ namespace Yarn
 		}
 
 		// Returns the actual value of this Value object.
-		private Yarn.Parser.Value EvaluateValue(Parser.Value value) {
+		private Yarn.Value EvaluateValue(Value value) {
 			switch (value.type) {
-			case Parser.Value.Type.Variable:
+			case Value.Type.Variable:
 				dialogue.LogDebugMessage ("Checking value " + value.variableName);
-				return new Parser.Value(dialogue.continuity.GetNumber (value.variableName));
+				return new Value(dialogue.continuity.GetNumber (value.variableName));
 			default:
 				return value;
 			}
@@ -241,34 +242,30 @@ namespace Yarn
 			var variableName = assignment.destinationVariableName;
 
 			// The value that's going into this variable.
-			var computedValue = EvaluateExpression (assignment.valueExpression);
+			// TODO: Currently this coerces this into a float. Add support for 
+			// storing different types of data in the client.
+			var computedValue = EvaluateExpression (assignment.valueExpression).AsNumber;
 
 			// The current value of this variable.
 			float originalValue = dialogue.continuity.GetNumber (variableName);
-
-			// TODO: Currently, variables can only be floats
-			if (computedValue.type != Parser.Value.Type.Number) {
-				// TODO: list line number
-				throw new InvalidOperationException("Variables can only be assigned number values");
-			}
 
 			// What shall we do with it?
 			float finalValue = 0.0f;
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
-				finalValue = computedValue.number;
+				finalValue = computedValue;
 				break;
 			case TokenType.AddAssign:
-				finalValue = originalValue + computedValue.number;
+				finalValue = originalValue + computedValue;
 				break;
 			case TokenType.MinusAssign:
-				finalValue = originalValue - computedValue.number;
+				finalValue = originalValue - computedValue;
 				break;
 			case TokenType.MultiplyAssign:
-				finalValue = originalValue * computedValue.number;
+				finalValue = originalValue * computedValue;
 				break;
 			case TokenType.DivideAssign:
-				finalValue = originalValue / computedValue.number;
+				finalValue = originalValue / computedValue;
 				break;
 			}
 
