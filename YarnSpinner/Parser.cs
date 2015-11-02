@@ -37,6 +37,7 @@ using System.Text;
 
 namespace Yarn {
 
+	// A value from inside Yarn.
 	public class Value {
 		internal enum Type {
 			Number,  // a constant number
@@ -67,7 +68,8 @@ namespace Yarn {
 					}
 				case Type.Bool:
 					return boolValue ? 1.0f : 0.0f;
-
+				case Type.Null:
+					return 0.0f;
 				default:
 					throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
 				}
@@ -107,8 +109,6 @@ namespace Yarn {
 				}
 			}
 		}
-
-
 
 		// Create a null value
 		public Value ()
@@ -716,6 +716,7 @@ namespace Yarn {
 				p.ExpectSymbol(TokenType.EndCommand);
 
 				// Read the statements for this clause until  we hit an <<endif or <<else
+				// (which could be an "<<else>>" or an "<<else if"
 				var statements = new List<Statement>();
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
@@ -868,13 +869,13 @@ namespace Yarn {
 
 		// Expressions are things like "1 + 2 * 5 / 2 - 1"
 		// Expression = Expression Operator Expression
+		// Expression = Identifier ( Expression [, Expression]* )
 		// Expression = Value
 		internal class Expression : ParseNode {
 
 			internal enum Type {
 				Value,
-				Compound,
-				FunctionCall // TODO: compound expressions should really be functions
+				FunctionCall
 			}
 
 			internal Type type;
