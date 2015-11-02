@@ -7,9 +7,9 @@
 <<print("This is a test string with an embedded slash: \\. NICE.")>>
 
 <<if visited("Start")>>
-Node "Start" was visited!
+SUCCESS: Node "Start" was visited!
 <<endif>>
 
-<<if visited("DoesNotExist") == false>>
-Node "DoesNotExist" does not exist
+<<if visited("DoesNotExist") is false>>
+SUCCESS: Node "DoesNotExist" does not exist
 <<endif>>
