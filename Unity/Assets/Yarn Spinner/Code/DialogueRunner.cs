@@ -51,7 +51,10 @@ namespace Yarn.Unity
 		// Which node to start from
 		public string startNode = Yarn.Dialogue.DEFAULT_START;
 
+		// Whether we should start dialogue when the scene starts
 		public bool startAutomatically = true;
+
+		public bool isDialogueRunning { get; private set; }
 		
 		void Start ()
 		{
@@ -87,14 +90,22 @@ namespace Yarn.Unity
 			}
 		}
 
+		public void AddScript(TextAsset asset) {
+			dialogue.LoadString(asset.text);
+		}
+
 		// Nuke the variable store and start again
 		public void ResetDialogue ()
 		{
 			variableStorage.ResetToDefaults ();
 			StartDialogue ();
 		}
+
+		public void StartDialogue () {
+			StartDialogue(startNode);
+		}
 		
-		public void StartDialogue ()
+		public void StartDialogue (string startNode)
 		{
 			
 			// Stop any processes that might be running already
@@ -107,6 +118,9 @@ namespace Yarn.Unity
 		
 		IEnumerator RunDialogue (string startNode)
 		{
+			// Mark that we're in conversation.
+			isDialogueRunning = true;
+
 			// Signal that we're starting up.
 			yield return StartCoroutine(this.dialogueUI.DialogueStarted());
 
@@ -140,6 +154,11 @@ namespace Yarn.Unity
 			
 			// No more results! The dialogue is done.
 			yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
+
+			// Clear the 'is running' flag. We do this after DialogueComplete returns,
+			// to allow time for any animations that might run while transitioning
+			// out of a conversation (ie letterboxing going away, etc)
+			isDialogueRunning = false;
 		}
 	}
 

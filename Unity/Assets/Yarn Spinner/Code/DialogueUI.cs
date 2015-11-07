@@ -41,6 +41,11 @@ using System.Collections.Generic;
 public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 {
 
+	// The object that contains the dialogue and the options.
+	// This object will be enabled when conversation starts, and
+	// disabled when it ends.
+	public GameObject dialogueContainer;
+
 	// The UI element that displays lines
 	public Text lineText;
 
@@ -60,7 +65,9 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 
 	void Start ()
 	{
-		// Start by hiding the line and option buttons
+		// Start by hiding the container, line and option buttons
+		dialogueContainer.SetActive(false);
+
 		lineText.gameObject.SetActive (false);
 
 		foreach (var button in optionButtons) {
@@ -93,7 +100,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 			lineText.text = line.text;
 		}
 
-		// Show the 'press any key' prompt when done
+		// Show the 'press any key' prompt when done, if we have one
 		if (continuePrompt != null)
 			continuePrompt.SetActive (true);
 
@@ -163,10 +170,23 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
 		yield break;
 	}
 
+	public override IEnumerator DialogueStarted ()
+	{
+		Debug.Log ("Dialogue starting!");
+
+		// Enable the container.
+		dialogueContainer.SetActive(true);
+
+		yield break;
+	}
+
 	// Yay we're done. Called when the dialogue system has finished running.
 	public override IEnumerator DialogueComplete ()
 	{
 		Debug.Log ("Complete!");
+
+		dialogueContainer.SetActive(false);
+
 		yield break;
 	}
 
