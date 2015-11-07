@@ -597,6 +597,9 @@ namespace Json
 							case '\\':
 								sb.Append ("\\");
 								break;
+							case '\"':
+								sb.Append ("\"");
+								break;
                             case 'b':
                             case 'f':
                             
