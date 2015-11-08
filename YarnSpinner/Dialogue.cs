@@ -135,13 +135,14 @@ namespace Yarn {
 
 			library.ImportLibrary (new StandardLibrary ());
 
-			// Register the "visited" function
+			// Register the "visited" function, which returns true if we've visited
+			// a node previously (nodes are marked as visited when we leave them)
 			library.RegisterFunction ("visited", 1, delegate(Yarn.Value[] parameters) {
 				var name = parameters[0].AsString;
 				return visitedNodeNames.Contains(name);
 			});
 
-			// Register the "assert" function
+			// Register the "assert" function, which stops execution if its parameter evaluates to false
 			library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
 				if (parameters[0].AsBool == false) {
 					stopExecuting = true;

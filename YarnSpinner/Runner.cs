@@ -250,6 +250,8 @@ namespace Yarn
 			float originalValue = dialogue.continuity.GetNumber (variableName);
 
 			// What shall we do with it?
+
+			// TODO: Hmm this should be a function, like the other operators
 			float finalValue = 0.0f;
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
