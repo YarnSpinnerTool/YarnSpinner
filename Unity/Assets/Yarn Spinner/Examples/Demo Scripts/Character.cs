@@ -33,6 +33,8 @@ namespace Yarn.Unity.Example {
 				return;
 			}
 
+			// Move the player, clamping them to within the boundaries 
+			// of the level.
 			var movement = Input.GetAxis("Horizontal") * moveSpeed *Time.deltaTime;
 
 			var newPosition = transform.position;
@@ -41,21 +43,27 @@ namespace Yarn.Unity.Example {
 
 			transform.position = newPosition;
 
+			// Detect if we want to start a conversation
+
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				// Find all DialogueParticipants, and filter them to
-				// those that have a script and in range; then start a conversation
-				// with the first one
+				// those that have a Yarn start node and are in range; 
+				// then start a conversation with the first one
 
 				var allParticipants = 
 					new List<DialogueParticipant>(FindObjectsOfType<DialogueParticipant>());
 
 				var target = allParticipants.Find(delegate(DialogueParticipant p) {
-					return p.script != null &&
-						(p.transform.position - this.transform.position)
+					return string.IsNullOrEmpty(p.startNode) == false && // has a conversation node?
+						(p.transform.position - this.transform.position) // is in range?
 							.magnitude <= interactionRadius;
 				});
 
-				FindObjectOfType<DialogueRunner>().StartDialogue(target.startNode);
+				if (target != null) {
+					// Kick off the dialogue at this node.
+					FindObjectOfType<DialogueRunner>().StartDialogue(target.startNode);
+				}
+
 
 			}
 		}

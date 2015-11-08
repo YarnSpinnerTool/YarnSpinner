@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 659daabc02af74fddaa29582882c0ca7
-timeCreated: 1446892535
+guid: cd962023ce1d84e8aa5f5a552151711c
+timeCreated: 1446964986
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -30,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -49,7 +49,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: 
+  spritePackingTag: YarnSpinnerExample
   userData: 
   assetBundleName: 
   assetBundleVariant: 
