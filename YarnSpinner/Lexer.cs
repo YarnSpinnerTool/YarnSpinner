@@ -533,8 +533,8 @@ namespace Yarn {
 			AddTokenRule (TokenType.LeftParen, @"\(");
 			AddTokenRule (TokenType.RightParen, @"\)");
 
-			// Identifiers (any letter, number or underscore)
-			AddTokenRule (TokenType.Identifier, @"(\w|_)+");
+			// Identifiers (any letter, number, period or underscore)
+			AddTokenRule (TokenType.Identifier, @"(\w|_|\.)+");
 
 			// Commas for separating function parameters
 			AddTokenRule (TokenType.Comma, ",");
