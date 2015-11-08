@@ -39,7 +39,7 @@ namespace Yarn
 			Console.WriteLine ("YarnSpinner: Executes Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-s=<start>] [-v<argname>=<value>] <inputfile>");
+			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-r=<run times>] [-s=<start>] [-v<argname>=<value>] <inputfile>");
 			Console.WriteLine ();
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
@@ -47,6 +47,7 @@ namespace Yarn
 			Console.WriteLine ("\t-s: Start at the given node, instead of the default ('" + Dialogue.DEFAULT_START + "').");
 			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
 			Console.WriteLine ("\t-o: Only consider the node named <node>.");
+			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
 
@@ -65,6 +66,7 @@ namespace Yarn
 			bool waitForLines = false;
 			string onlyConsiderNode = null;
 			bool showDebugging = false;
+			int runTimes = 1;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -111,6 +113,19 @@ namespace Yarn
 						continue;
 					}
 				}
+
+				// Handle 'run times' parameter
+				if (arg.IndexOf("-r=") != -1) {
+					var argArray = arg.Split ('=');
+					if (argArray.Length != 2) {
+						ShowHelpAndExit ();
+					} else {
+						runTimes = int.Parse (argArray [1]);
+						continue;
+					}
+
+				}
+
 
 				switch (arg) {
 				case "-t":
@@ -200,23 +215,28 @@ namespace Yarn
 
 			if (showTokens == false && showParseTree == false) {
 				// Run the conversation
-				foreach (var step in dialogue.Run (startNode)) {
 
-					// It can be one of three types: a line to show, options
-					// to present to the user, or an internal command to run
+				for (int run = 0; run < runTimes; run++) {
+					foreach (var step in dialogue.Run (startNode)) {
 
-					if (step is Dialogue.LineResult) {
-						var lineResult = step as Dialogue.LineResult;
-						impl.RunLine (lineResult.line);
-					} else if (step is Dialogue.OptionSetResult) {
-						var optionsResult = step as Dialogue.OptionSetResult;
-						impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
-					} else if (step is Dialogue.CommandResult) {
-						var commandResult = step as Dialogue.CommandResult;
-						impl.RunCommand (commandResult.command.text);
+						// It can be one of three types: a line to show, options
+						// to present to the user, or an internal command to run
+
+						if (step is Dialogue.LineResult) {
+							var lineResult = step as Dialogue.LineResult;
+							impl.RunLine (lineResult.line);
+						} else if (step is Dialogue.OptionSetResult) {
+							var optionsResult = step as Dialogue.OptionSetResult;
+							impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
+						} else if (step is Dialogue.CommandResult) {
+							var commandResult = step as Dialogue.CommandResult;
+							impl.RunCommand (commandResult.command.text);
+						}
 					}
+					impl.DialogueComplete ();
 				}
-				impl.DialogueComplete ();
+
+
 			}
 
 		}
