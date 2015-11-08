@@ -138,7 +138,7 @@ namespace Yarn {
 			// Register the "visited" function
 			library.RegisterFunction ("visited", 1, delegate(Yarn.Value[] parameters) {
 				var name = parameters[0].AsString;
-				return visitedNodeNames.Contains(name) ? 1.0f : 0.0f;
+				return visitedNodeNames.Contains(name);
 			});
 
 			// Register the "assert" function
@@ -193,7 +193,6 @@ namespace Yarn {
 			do {
 
 				LogDebugMessage ("Running node " + nextNode);	
-				visitedNodeNames.Add(nextNode);
 				Parser.Node node;
 
 				try {
@@ -229,7 +228,13 @@ namespace Yarn {
 					yield return result;
 				}
 
-				
+				// Register that we've finished with this node. We do this
+				// after running the node, not before, so that "visited("Node")" can
+				// be called in "Node" itself, and fail. This lets you check to see
+				// if, for example, this is the first time you've run this node, without
+				// having to add extra variables to keep track of state.
+				visitedNodeNames.Add(node.name);
+
 			} while (nextNode != null);
 
 			LogDebugMessage ("Run complete.");
