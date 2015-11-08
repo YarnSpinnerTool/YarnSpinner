@@ -101,6 +101,8 @@ namespace Yarn {
 
 					var node = new Parser (tokens, library).Parse();
 
+					node.name = nodeInfo.title;
+
 					if (showParseTree)
 						PrintParseTree(node);
 

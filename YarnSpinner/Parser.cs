@@ -269,7 +269,7 @@ namespace Yarn {
 		// Node = (Statement)* EndOfInput
 		internal class Node : ParseNode {
 
-			internal string name { get; private set;}
+			internal string name { get; set;}
 
 			// Read-only internal accessor for statements
 			internal IEnumerable<Statement> statements { get { return _statements; }}
