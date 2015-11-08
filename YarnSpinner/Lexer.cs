@@ -224,10 +224,16 @@ namespace Yarn {
 		}
 		
 		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false) {
+		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false, bool requiresFollowingWhitespace=false) {
 			
 			var newTokenRule = new TokenRule();
 			newTokenRule.type = type;
+
+			if (requiresFollowingWhitespace) {
+				// Look for whitespace following this rule, but don't capture it as part of
+				// the token
+				rule += @"(?=\s+)";
+			}
 
 			// Set up a regex if we have a rule for it
 			if (rule != null) {
@@ -487,7 +493,7 @@ namespace Yarn {
 			AddTokenRule(TokenType.Else, "else");
 			AddTokenRule(TokenType.EndIf, "endif");
 			
-			AddTokenRule(TokenType.Set, "set");
+			AddTokenRule(TokenType.Set, "set", requiresFollowingWhitespace:true);
 
 			// Boolean values
 			AddTokenRule(TokenType.True, "true");
