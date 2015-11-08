@@ -278,12 +278,10 @@ namespace Yarn {
 
 				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
 
-					// Values are not equal if they're different types
-					if (parameters[0].type != parameters[1].type)
-						return false;
+					// TODO: This may not be the greatest way of doing it
 
-					// Compare based on type
-					switch (parameters [0].type) {
+					// Coerce to the type of second operand
+					switch (parameters [1].type) {
 					case Value.Type.Number:
 						return parameters[0].AsNumber == parameters[1].AsNumber;
 					case Value.Type.String:
@@ -291,7 +289,8 @@ namespace Yarn {
 					case Value.Type.Bool:
 						return parameters[0].AsBool == parameters[1].AsBool;
 					case Value.Type.Null:
-						return true; // because null == null
+						// Only null-null comparisons are true.
+						return parameters[0].type == Value.Type.Null;
 					}
 
 					// Give up and say they're not equal
