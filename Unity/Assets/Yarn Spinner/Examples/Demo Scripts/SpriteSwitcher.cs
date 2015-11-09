@@ -28,29 +28,33 @@ using UnityEngine;
 using System.Collections;
 
 namespace Yarn.Unity.Example {
-	
-	public class CameraFollow : MonoBehaviour {
 
-		public Transform target;
+	[RequireComponent (typeof (SpriteRenderer))]
+	public class SpriteSwitcher : MonoBehaviour {
 
-		public float minPosition = -5.3f;
-		public float maxPosition = 5.3f;
-		
-		public float moveSpeed = 1.0f;
+		[System.Serializable]
+		public struct SpriteInfo {
+			public string name;
+			public Sprite sprite;
+		}
 
-		// Update is called once per frame
-		void Update () {
-			if (target == null) {
+		public SpriteInfo[] sprites;
+
+		public void UseSprite(string spriteName) {
+			Sprite s = null;
+			foreach(var info in sprites) {
+				if (info.name == spriteName) {
+					s = info.sprite;
+					break;
+				}
+ 			}
+			if (s == null) {
+				Debug.LogErrorFormat("Can't find sprite named {0}!", spriteName);
 				return;
 			}
-			var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
-			newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
-			newPosition.y = transform.position.y;
-			newPosition.z = transform.position.z;
-
-			transform.position = newPosition;
+			GetComponent<SpriteRenderer>().sprite = s;
 		}
 	}
-}
 
+}
