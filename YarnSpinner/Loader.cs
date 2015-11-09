@@ -72,10 +72,13 @@ namespace Yarn {
 		// Given a bunch of raw text, load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
-		public void Load(string text, Library library, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+		// Returns the number of nodes that were loaded.
+		public int Load(string text, Library library, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			
 			// Load the raw data and get the array of node title-text pairs
 			var nodeInfos = ParseInput (text);
+
+			int nodesLoaded = 0;
 
 			foreach (NodeInfo nodeInfo in nodeInfos) {
 
@@ -107,6 +110,9 @@ namespace Yarn {
 						PrintParseTree(node);
 
 					nodes[nodeInfo.title] = node;
+
+					nodesLoaded++;
+
 				#if !DEBUG
 				} catch (Yarn.TokeniserException t) {
 					this.dialogue.LogErrorMessage (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
@@ -117,7 +123,9 @@ namespace Yarn {
 				}
 				#endif
 
-			} 
+			}
+
+			return nodesLoaded;
 
 		}
 

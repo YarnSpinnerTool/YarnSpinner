@@ -120,12 +120,16 @@ namespace Yarn {
 		// The node we start from.
 		public const string DEFAULT_START = "Start";
 
+		// The loader contains all of the nodes we're going to run.
 		private Loader loader;
 
+		// The library contains all of the functions and operators we know about.
 		public Library library;
 
+		// Should we stop executing lines?
 		internal bool stopExecuting = false;
 
+		// The collection of nodes that we've seen.
 		private HashSet<String> visitedNodeNames = new HashSet<string>();
 
 		public Dialogue(Yarn.VariableStorage continuity) {
@@ -150,6 +154,7 @@ namespace Yarn {
 			});
 		}
 
+		// Load a file from disk.
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
 			string inputString = reader.ReadToEnd ();
@@ -159,6 +164,7 @@ namespace Yarn {
 
 		}
 
+		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
 			if (LogDebugMessage == null) {
@@ -170,11 +176,11 @@ namespace Yarn {
 			}
 
 
-			loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
-
-			return loader.nodes.Count;
+			return loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
 		}
 
+		// Executes a node. Use this in a for-each construct; each time you iterate over it,
+		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
 			stopExecuting = false;
@@ -205,7 +211,7 @@ namespace Yarn {
 
 				foreach (var result in runner.RunNode(node)) {
 
-					// Is it the special command "stop"?
+					// Is it the special custom command "<<stop>>"?
 					if (result is CommandResult && (result as CommandResult).command.text == "stop") {
 						yield break;
 					}
@@ -242,6 +248,7 @@ namespace Yarn {
 
 		}
 
+		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
 
 			public StandardLibrary() {
