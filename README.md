@@ -23,6 +23,6 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 ## Help Us Make Yarn Spinner!
 
-Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/Unity.md), in spreading the word, and in [finding bugs](issues).
+Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/Unity.md), in spreading the word, and in finding bugs.
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
