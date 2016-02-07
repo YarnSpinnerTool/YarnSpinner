@@ -6,6 +6,8 @@
 
 Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a>. 
 
+<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" style="width: 80%; margin: 0 auto;" />
+
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
 * [Download Yarn Spinner.](https://github.com/desplesda/YarnSpinner/releases)
@@ -15,7 +17,7 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 
 Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
 
-<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg" style="width: 80%; margin: 0 auto;" />
+
 
 ## Help Us Make Yarn Spinner!
 
