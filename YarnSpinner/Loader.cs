@@ -60,6 +60,9 @@ namespace Yarn {
 
 		// Prepares a loader. 'implementation' is used for logging.
 		public Loader(Dialogue dialogue) {
+			if (dialogue == null)
+				throw new ArgumentNullException ("dialogue");
+			
 			this.dialogue = dialogue;
 			nodes = new Dictionary<string, Parser.Node>();
 		}
@@ -185,6 +188,23 @@ namespace Yarn {
 
 			// hooray we're done
 			return nodes.ToArray();
+		}
+
+		public Yarn.CodeGenerator.Program Compile() {
+
+			if (nodes.Count == 0) {
+				dialogue.LogErrorMessage ("No nodes to compile!");
+				return null;
+			}
+
+			var compiler = new Yarn.CodeGenerator();
+
+			foreach (var node in nodes) {
+				compiler.CompileNode (node.Value);
+			}
+
+			return compiler.program;
+
 		}
 	}
 

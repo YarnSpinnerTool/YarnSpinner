@@ -179,6 +179,8 @@ namespace Yarn {
 			return loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
 		}
 
+
+
 		// Executes a node. Use this in a for-each construct; each time you iterate over it,
 		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
@@ -247,6 +249,12 @@ namespace Yarn {
 			LogDebugMessage ("Run complete.");
 
 		}
+
+		public String Compile() {
+			var program = loader.Compile();
+			return program.DumpCode ();
+		}
+		
 
 		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
