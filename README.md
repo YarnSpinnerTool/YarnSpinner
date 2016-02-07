@@ -12,9 +12,19 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 * [Learn more about Yarn, and the Yarn editor.](http://github.com/infiniteammoinc/Yarn)
 * [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
 * [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
-* [Learn about contributing to Yarn Spinner.](CONTRIBUTING.md)
 
 Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
+
+<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg" style="width: 80%; margin: 0 auto;" />
+
+## Help Us Make Yarn Spinner!
+
+Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/Unity.md), in spreading the word, and in [finding bugs](issues).
+
+If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
+
+
+
 
 <!-- >* <a href="TOOD">Learn about using Yarn Spinner in other engines, or on its own.</a> -->
 
