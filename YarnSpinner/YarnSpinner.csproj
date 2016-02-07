@@ -52,6 +52,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Library.cs" />
+    <Compile Include="CodeGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
