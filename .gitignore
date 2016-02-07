@@ -52,4 +52,7 @@ NOTES.md
 # Binaries
 Builds/
 
+# WIP logo in .sketch form, will remove this when adding it
+*.sketch
+
 Unity/Assets/Yarn Spinner/Code/*.dll
