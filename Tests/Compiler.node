@@ -1,0 +1,9 @@
+// Compiler tests
+
+This is a line!
+
+<<if false>>
+What what this is also a line!
+<<endif>>
+
+<<this is a custom command>>

@@ -50,6 +50,7 @@ namespace Yarn
 			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
+			Console.WriteLine ("\t-c: Show program bytecode and exit.");
 
 
 			Environment.Exit (0);
@@ -67,6 +68,7 @@ namespace Yarn
 			string onlyConsiderNode = null;
 			bool showDebugging = false;
 			int runTimes = 1;
+			bool compileToBytecodeOnly = false;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -142,6 +144,9 @@ namespace Yarn
 				case "-d":
 					showDebugging = true;
 					break;
+				case "-c":
+					compileToBytecodeOnly = true;
+					break;
 				case "-h":
 					ShowHelpAndExit ();
 					break;
@@ -212,8 +217,18 @@ namespace Yarn
 
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 
+			if (compileToBytecodeOnly) {
+				var result = dialogue.Compile ();
+				Console.WriteLine (result);
+			}
 
-			if (showTokens == false && showParseTree == false) {
+			// Only run the program when we're not emitting debug output of some kind
+			var runProgram = 
+				showTokens == false &&
+				showParseTree == false &&
+				compileToBytecodeOnly == false;
+
+			if (runProgram) {
 				// Run the conversation
 
 				for (int run = 0; run < runTimes; run++) {

@@ -200,7 +200,7 @@ namespace Yarn {
 			var compiler = new Yarn.CodeGenerator();
 
 			foreach (var node in nodes) {
-				compiler.GenerateCode (node.Value);
+				compiler.CompileNode (node.Value);
 			}
 
 			return compiler.program;

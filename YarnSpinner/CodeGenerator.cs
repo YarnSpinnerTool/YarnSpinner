@@ -26,11 +26,17 @@ namespace Yarn
 
 					int instructionCount = 0;
 					foreach (var instruction in entry.Value.instructions) {
-						var instructionText = instruction.ToString ();
+						string instructionText;
+
+						if (instruction.operation == ByteCode.Label) {
+							instructionText = instruction.ToString ();
+						} else {
+							instructionText = "    " + instruction.ToString ();
+						}
 
 						string preface;
 
-						if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Length - 1) {
+						if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1) {
 							preface = string.Format ("{0,6} ", instructionCount);
 						} else {
 							preface = string.Format ("{0,6} ", " ");
@@ -59,7 +65,7 @@ namespace Yarn
 
 		internal class Node {
 			
-			public Instruction[] instructions;
+			public List<Instruction> instructions = new List<Instruction>();
 		}
 
 		internal struct Instruction {
@@ -67,12 +73,20 @@ namespace Yarn
 			internal object operandA;
 			internal object operandB;
 
+			internal string comment;
+
 			public override string ToString() {
+
+				if (operation == ByteCode.Label) {
+					return operandA + ":";
+				}
 
 				var opAString = operandA != null ? operandA.ToString () : "";
 				var opBString = operandB != null ? operandB.ToString () : "";
 
-				return string.Format ("{0} {1} {2}", operation.ToString (), opAString, opBString);
+				var commentString = comment != null ? string.Format("; \"{0}\"", comment) : "";
+
+				return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, commentString);
 			}
 		}
 
@@ -84,7 +98,7 @@ namespace Yarn
 			PushString,		// opA = int: string number in table; push string to stack
 			PushNumber,		// opA = float: number to push to stack
 			PushBool,		// opA = int (0 or 1): bool to push to stack
-			JumpIfTrue,		// opA = string: label nameif top of stack is not null, zero or false, ju
+			JumpIfTrue,		// opA = string: label name if top of stack is not null, zero or false, jumps to that label; pops top of stack
 			Pop,			// discard top of stack
 			CallFunc,		// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
 			Load,			// opA = name of variable to get value of and push to stack
@@ -100,7 +114,7 @@ namespace Yarn
 			program = new Program ();
 		}
 
-		internal IEnumerable<Instruction> GenerateCode(Parser.Node node) {
+		internal void CompileNode(Parser.Node node) {
 
 			if (program.nodes.ContainsKey(node.name)) {
 				throw new ArgumentException ("Duplicate node name " + node.name);
@@ -108,18 +122,14 @@ namespace Yarn
 
 			var compiledNode =  new Node();
 
-			var instructions = new List<Instruction> ();
+			var startLabel = RegisterLabel ();
+			Emit (compiledNode, ByteCode.Label, startLabel);
 
 			foreach (var statement in node.statements) {
-				var statementInstructions = GenerateCode (statement);
-				instructions.AddRange (statementInstructions);
+				GenerateCode (compiledNode, statement);
 			}
 
-			compiledNode.instructions = instructions.ToArray ();
-
 			program.nodes [node.name] = compiledNode;
-
-			return compiledNode.instructions;
 		}
 
 		int RegisterString(string theString) {
@@ -132,6 +142,10 @@ namespace Yarn
 			return program.strings.Count - 1;
 		}
 
+		string GetString(int id) {
+			return program.strings [id];
+		}
+
 
 		private int labelCount = 0;
 
@@ -140,36 +154,58 @@ namespace Yarn
 			return "L" + labelCount++;
 		}
 
-		void Emit(Node node, ByteCode code, object operandA = null, object operandB) {
-			
+		void Emit(Node node, ByteCode code, object operandA = null, object operandB = null) {
+			var instruction = new Instruction();
+			instruction.operation = code;
+			instruction.operandA = operandA;
+			instruction.operandB = operandB;
+
+			switch (code) {
+			case ByteCode.PushString:
+			case ByteCode.RunLine:
+				instruction.comment = GetString ((int)operandA);
+				break;
+			default:
+				break;
+			}
+
+			node.instructions.Add (instruction);
 		}
 
 		// Statements
-		IEnumerable<Instruction> GenerateCode(Parser.Statement statement) {
+		void GenerateCode(Node node, Parser.Statement statement) {
 			switch (statement.type) {
 			case Parser.Statement.Type.CustomCommand:
-				return GenerateCode (statement.customCommand);
+				GenerateCode (node, statement.customCommand);
+				break;
 			case Parser.Statement.Type.ShortcutOptionGroup:
-				return GenerateCode (statement.shortcutOptionGroup);
+				GenerateCode (node, statement.shortcutOptionGroup);
+				break;
 			case Parser.Statement.Type.Block:
 				
 				// Blocks are just groups of statements
-				var blockInstructions = new List<Instruction>();
 				foreach (var blockStatement in statement.block.statements) {
-					blockInstructions.AddRange(GenerateCode(blockStatement));
+					GenerateCode(node, blockStatement);
 				}
-				return blockInstructions;
+
+				break;
+
 
 			case Parser.Statement.Type.IfStatement:
-				return GenerateCode (statement.ifStatement);
+				GenerateCode (node, statement.ifStatement);
+				break;
+
 			case Parser.Statement.Type.OptionStatement:
-				return GenerateCode (statement.optionStatement);
+				GenerateCode (node, statement.optionStatement);
+				break;
 
 			case Parser.Statement.Type.AssignmentStatement:
-				return GenerateCode (statement.assignmentStatement);
+				GenerateCode (node, statement.assignmentStatement);
+				break;
 
 			case Parser.Statement.Type.Line:
-				return GenerateCode (statement.line);
+				GenerateCode (node, statement.line);
+				break;
 
 			default:
 				throw new ArgumentOutOfRangeException ();
@@ -178,67 +214,85 @@ namespace Yarn
 
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.CustomCommand statement) {
+		void GenerateCode(Node node, Parser.CustomCommand statement) {
 
-			Instruction i = new Instruction();
+			Emit (node, ByteCode.RunCommand, statement.clientCommand);
 
-			i.operation = ByteCode.RunCommand;
-			i.operandA = statement.clientCommand;
-
-			return new Instruction[] { i };
 		}
 
-		IEnumerable<Instruction> GenerateCode(string line) {
+		void GenerateCode(Node node, string line) {
 			var num = RegisterString (line);
-			Instruction i = new Instruction ();
-			i.operation = ByteCode.RunLine;
-			i.operandA = num;
-			return new Instruction[] { i };
+
+			Emit (node, ByteCode.RunLine, num);
+
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.ShortcutOptionGroup statement) {
+		void GenerateCode(Node node, Parser.ShortcutOptionGroup statement) {
 
 			throw new NotImplementedException ();
 		}
 
-		IEnumerable<Instruction> GenerateCode(IEnumerable<Yarn.Parser.Statement> statementList) {
-			var instructions = new List<Instruction> ();
+		void GenerateCode(Node node, IEnumerable<Yarn.Parser.Statement> statementList) {
 
 			foreach (var statement in statementList) {
-				var statementInstructions = GenerateCode (statement);
-				instructions.AddRange (statementInstructions);
+				GenerateCode (node, statement);
 			}
-
-			return instructions;
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.IfStatement statement) {
-			var instructions = new List<Instruction> ();
-
+		void GenerateCode(Node node, Parser.IfStatement statement) {
+			
 			foreach (var clause in statement.clauses) {
+				var endOfClauseLabel = RegisterLabel ();
+
 				if (clause.expression != null) {
-					var endOfClauseLabel = RegisterLabel ();
+					
+					GenerateCode (node, clause.expression);
+
+					Emit (node, ByteCode.PushBool, false);
+					Emit (node, ByteCode.CallFunc, "==");
+					Emit (node, ByteCode.JumpIfTrue, endOfClauseLabel);
 
 				}
+
+				GenerateCode (node, clause.statements);
+
+				Emit (node, ByteCode.Label, endOfClauseLabel);
+
 			}
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.OptionStatement statement) {
+		void GenerateCode(Node node, Parser.OptionStatement statement) {
 			throw new NotImplementedException ();
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.AssignmentStatement statement) {
+		void GenerateCode(Node node, Parser.AssignmentStatement statement) {
 			throw new NotImplementedException ();
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.Expression expression) {
+		void GenerateCode(Node node, Parser.Expression expression) {
 			if (expression.type == Parser.Expression.Type.Value) {
-				return GenerateCode (expression.value);
+				GenerateCode (node, expression.value);
 			}
 		}
 
-		IEnumerable<Instruction> GenerateCode(Parser.ValueNode value) {
-			
+		void GenerateCode(Node node, Parser.ValueNode value) {
+			switch (value.value.type) {
+			case Value.Type.Number:
+				Emit (node, ByteCode.PushNumber, value.value.numberValue);
+				break;
+			case Value.Type.String:
+				var id = RegisterString (value.value.stringValue);
+				Emit (node, ByteCode.PushString, id);
+				break;
+			case Value.Type.Bool:
+				break;
+			case Value.Type.Variable:
+				break;
+			case Value.Type.Null:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException ();
+			}
 		}
 
 
