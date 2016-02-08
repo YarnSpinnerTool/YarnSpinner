@@ -29,9 +29,9 @@ namespace Yarn
 						string instructionText;
 
 						if (instruction.operation == ByteCode.Label) {
-							instructionText = instruction.ToString ();
+							instructionText = instruction.ToString (this);
 						} else {
-							instructionText = "    " + instruction.ToString ();
+							instructionText = "    " + instruction.ToString (this);
 						}
 
 						string preface;
@@ -73,9 +73,7 @@ namespace Yarn
 			internal object operandA;
 			internal object operandB;
 
-			internal string comment;
-
-			public override string ToString() {
+			public  string ToString(Program p) {
 
 				if (operation == ByteCode.Label) {
 					return operandA + ":";
@@ -84,9 +82,17 @@ namespace Yarn
 				var opAString = operandA != null ? operandA.ToString () : "";
 				var opBString = operandB != null ? operandB.ToString () : "";
 
-				var commentString = comment != null ? string.Format("; \"{0}\"", comment) : "";
+				string comment = "";
 
-				return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, commentString);
+				switch (operation) {
+				case ByteCode.PushString:
+				case ByteCode.RunLine:
+					var text = p.strings [(int)operandA];
+					comment = string.Format ("; \"{0}\"", text);
+					break;
+				}
+
+				return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, comment);
 			}
 		}
 
@@ -159,15 +165,6 @@ namespace Yarn
 			instruction.operation = code;
 			instruction.operandA = operandA;
 			instruction.operandB = operandB;
-
-			switch (code) {
-			case ByteCode.PushString:
-			case ByteCode.RunLine:
-				instruction.comment = GetString ((int)operandA);
-				break;
-			default:
-				break;
-			}
 
 			node.instructions.Add (instruction);
 		}
