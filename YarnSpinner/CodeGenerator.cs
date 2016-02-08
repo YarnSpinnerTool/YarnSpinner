@@ -37,9 +37,9 @@ namespace Yarn
 						string preface;
 
 						if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1) {
-							preface = string.Format ("{0,6} ", instructionCount);
+							preface = string.Format ("{0,6}   ", instructionCount);
 						} else {
-							preface = string.Format ("{0,6} ", " ");
+							preface = string.Format ("{0,6}   ", " ");
 						}
 
 						sb.AppendLine (preface + instructionText);
