@@ -4,9 +4,11 @@
 
 > ***Important:*** Yarn Spinner is still under development, and we haven't made our 1.0 release yet. It's *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.
 
-Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a>. 
+Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a> and . 
 
-<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" style="width: 80%; margin: 0 auto;" />
+<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
+
+> (Image from "[Night in the Woods](http://nightinthewoods.com)" by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
 
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
