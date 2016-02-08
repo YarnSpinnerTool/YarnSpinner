@@ -285,6 +285,7 @@ namespace Yarn
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:
+				Emit (node, ByteCode.PushBool, value.value.boolValue);
 				break;
 			case Value.Type.Variable:
 				break;
