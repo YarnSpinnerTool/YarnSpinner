@@ -10,7 +10,7 @@ There are many ways you can send your contributions to Yarn Spinner. You can eit
 
 Please [report bugs](https://github.com/desplesda/YarnSpinner/issues) and open issues generously. Don't be afraid that your idea is silly, or you're reporting a duplicate. We're happy to hear from you. Seriously.
 
-> ***Please Note:*** Yarn Spinner is written by volunteers. If you encounter a problem while using it, we'll do our best to help you, but we don't offer any support.
+> ***Please Note:*** Yarn Spinner is written by volunteers. If you encounter a problem while using it, we'll do our best to help you, but neither the authors, or Secret Lab Pty. Ltd. can offer any support.
 
 ### Submitting a pull request
 
