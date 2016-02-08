@@ -8,16 +8,16 @@ There are many ways you can send your contributions to Yarn Spinner. You can eit
 
 ### Reporting bugs and opening issues
 
-Please [report bugs](https://github.com/desplesda/YarnSpinner/issues) and open issues generously. Don't be afraid that your idea is silly, or you're reporting a duplicate. We're happy to hear from you. Seriously.
+Please [report bugs](https://github.com/thesecretlab/YarnSpinner/issues) and open issues generously. Don't be afraid that your idea is silly, or you're reporting a duplicate. We're happy to hear from you. Seriously.
 
 > ***Please Note:*** Yarn Spinner is written by volunteers. If you encounter a problem while using it, we'll do our best to help you, but neither the authors, or Secret Lab Pty. Ltd. can offer any support.
 
 ### Submitting a pull request
 
-* [Fork](https://github.com/desplesda/YarnSpinner/fork) and clone the repository
+* [Fork](https://github.com/thesecretlab/YarnSpinner/fork) and clone the repository
 * Create a new branch: git checkout -b my-branch-name
 * Make your changes
-* Push to your fork and [submit a pull request](https://github.com/desplesda/YarnSpinner/compare)
+* Push to your fork and [submit a pull request](https://github.com/thesecretlab/YarnSpinner/compare)
 * Pat your self on the back and wait for your pull request to be reviewed.
 
 If you're unfamiliar with how pull requests work, [GitHub's documentation on them](https://help.github.com/articles/using-pull-requests/) is very good.
