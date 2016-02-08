@@ -4,7 +4,7 @@
 
 > ***Important:*** Yarn Spinner is still under development, and we haven't made our 1.0 release yet. It's *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.
 
-Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a> and [https://www.kickstarter.com/projects/foamsword/knights-and-bikes](Knights and Bikes). 
+Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a> and [Knights and Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes). 
 
 <img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
 
