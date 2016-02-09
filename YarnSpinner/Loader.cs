@@ -190,7 +190,7 @@ namespace Yarn {
 			return nodes.ToArray();
 		}
 
-		public Yarn.CodeGenerator.Program Compile() {
+		public Yarn.Program Compile() {
 
 			if (nodes.Count == 0) {
 				dialogue.LogErrorMessage ("No nodes to compile!");

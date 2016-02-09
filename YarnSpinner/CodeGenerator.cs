@@ -4,112 +4,114 @@ using System.Collections.Generic;
 namespace Yarn
 {
 	internal class State {
-		int programCounter = 0;
-		string currentNode;
-		Stack<Value> stack = new Stack<Value>();
+		public int programCounter = 0;
+		public string currentNode;
+		public Stack<Value> stack = new Stack<Value>();
 	}
+
+	internal class Program {
+		public List<string> strings = new List<string>();
+
+		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
+
+		public string DumpCode() {
+
+			var sb = new System.Text.StringBuilder ();
+
+			foreach (var entry in nodes) {
+				sb.AppendLine ("Node " + entry.Key + ":");
+
+				int instructionCount = 0;
+				foreach (var instruction in entry.Value.instructions) {
+					string instructionText;
+
+					if (instruction.operation == ByteCode.Label) {
+						instructionText = instruction.ToString (this);
+					} else {
+						instructionText = "    " + instruction.ToString (this);
+					}
+
+					string preface;
+
+					if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1) {
+						preface = string.Format ("{0,6}   ", instructionCount);
+					} else {
+						preface = string.Format ("{0,6}   ", " ");
+					}
+
+					sb.AppendLine (preface + instructionText);
+
+					instructionCount++;
+				}
+
+				sb.AppendLine ();
+			}
+
+			sb.AppendLine ("String table:");
+
+			int stringCount = 0;
+			foreach (var entry in strings) {
+				sb.AppendLine(string.Format("{0, 4}: {1}", stringCount, entry));
+				stringCount++;
+			}
+
+			return sb.ToString ();
+		}
+
+	}
+
+	internal class Node {
+
+		public List<Instruction> instructions = new List<Instruction>();
+	}
+
+	internal struct Instruction {
+		internal ByteCode operation;
+		internal object operandA;
+		internal object operandB;
+
+		public  string ToString(Program p) {
+
+			if (operation == ByteCode.Label) {
+				return operandA + ":";
+			}
+
+			var opAString = operandA != null ? operandA.ToString () : "";
+			var opBString = operandB != null ? operandB.ToString () : "";
+
+			string comment = "";
+
+			switch (operation) {
+			case ByteCode.PushString:
+			case ByteCode.RunLine:
+				var text = p.strings [(int)operandA];
+				comment = string.Format ("; \"{0}\"", text);
+				break;
+			}
+
+			return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, comment);
+		}
+	}
+
+	internal enum ByteCode {
+		Label,			// opA = string: label name
+		Jump,			// opA = string: label name
+		RunLine,		// opA = int: string number
+		RunCommand,		// opA = string: command text
+		PushString,		// opA = int: string number in table; push string to stack
+		PushNumber,		// opA = float: number to push to stack
+		PushBool,		// opA = int (0 or 1): bool to push to stack
+		JumpIfTrue,		// opA = string: label name if top of stack is not null, zero or false, jumps to that label; pops top of stack
+		Pop,			// discard top of stack
+		CallFunc,		// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
+		Load,			// opA = name of variable to get value of and push to stack
+		Store,			// opA = name of variable to store top of stack in
+	}
+
 
 	internal class CodeGenerator
 	{
 
-		internal class Program {
-			public List<string> strings = new List<string>();
-
-			public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
-
-			public string DumpCode() {
-
-				var sb = new System.Text.StringBuilder ();
-
-				foreach (var entry in nodes) {
-					sb.AppendLine ("Node " + entry.Key + ":");
-
-					int instructionCount = 0;
-					foreach (var instruction in entry.Value.instructions) {
-						string instructionText;
-
-						if (instruction.operation == ByteCode.Label) {
-							instructionText = instruction.ToString (this);
-						} else {
-							instructionText = "    " + instruction.ToString (this);
-						}
-
-						string preface;
-
-						if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1) {
-							preface = string.Format ("{0,6}   ", instructionCount);
-						} else {
-							preface = string.Format ("{0,6}   ", " ");
-						}
-
-						sb.AppendLine (preface + instructionText);
-
-						instructionCount++;
-					}
-
-					sb.AppendLine ();
-				}
-
-				sb.AppendLine ("String table:");
-
-				int stringCount = 0;
-				foreach (var entry in strings) {
-					sb.AppendLine(string.Format("{0, 4}: {1}", stringCount, entry));
-					stringCount++;
-				}
-
-				return sb.ToString ();
-			}
-
-		}
-
-		internal class Node {
-			
-			public List<Instruction> instructions = new List<Instruction>();
-		}
-
-		internal struct Instruction {
-			internal ByteCode operation;
-			internal object operandA;
-			internal object operandB;
-
-			public  string ToString(Program p) {
-
-				if (operation == ByteCode.Label) {
-					return operandA + ":";
-				}
-
-				var opAString = operandA != null ? operandA.ToString () : "";
-				var opBString = operandB != null ? operandB.ToString () : "";
-
-				string comment = "";
-
-				switch (operation) {
-				case ByteCode.PushString:
-				case ByteCode.RunLine:
-					var text = p.strings [(int)operandA];
-					comment = string.Format ("; \"{0}\"", text);
-					break;
-				}
-
-				return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, comment);
-			}
-		}
-
-		internal enum ByteCode {
-			Label,			// opA = string: label name
-			Jump,			// opA = string: label name
-			RunLine,		// opA = int: string number
-			RunCommand,		// opA = string: command text
-			PushString,		// opA = int: string number in table; push string to stack
-			PushNumber,		// opA = float: number to push to stack
-			PushBool,		// opA = int (0 or 1): bool to push to stack
-			JumpIfTrue,		// opA = string: label name if top of stack is not null, zero or false, jumps to that label; pops top of stack
-			Pop,			// discard top of stack
-			CallFunc,		// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-			Load,			// opA = name of variable to get value of and push to stack
-			Store,			// opA = name of variable to store top of stack in
-		}
 
 
 
