@@ -13,7 +13,7 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
 * [Download Yarn Spinner.](https://github.com/thesecretlab/YarnSpinner/releases)
-* [Learn how to build Yarn Spinner from source.](Documetation/Building.md)
+* [Learn how to build Yarn Spinner from source.](Documentation/Building.md)
 * [Learn more about Yarn, and the Yarn editor.](https://github.com/infiniteammoinc/Yarn)
 * [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
 * [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
@@ -27,7 +27,7 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 ## Made by Secret Lab!
 
-Yarn Spinner is made by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)!
+Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)!
 
 ## Help Us Make Yarn Spinner!
 
