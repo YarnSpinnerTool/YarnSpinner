@@ -23,7 +23,7 @@ namespace Yarn
 		public ReturningFunction returningFunction { get; private set; }
 
 		// Does this function return a value?
-		bool returnsValue {
+		public bool returnsValue {
 			get {
 				return returningFunction != null;
 			}

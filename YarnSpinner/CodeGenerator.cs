@@ -7,12 +7,39 @@ namespace Yarn
 		public int programCounter = 0;
 		public string currentNode;
 		public Stack<Value> stack = new Stack<Value>();
+
+		public void PushValue(object o) {
+			stack.Push (new Value(o));
+		}
+
+		public Value PopValue() {
+			return stack.Pop ();
+		}
+
+		public Value PeekValue() {
+			return stack.Peek ();
+		}
 	}
 
 	internal class Program {
 		public List<string> strings = new List<string>();
 
 		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
+
+
+		public int RegisterString(string theString) {
+			var index = strings.IndexOf (theString);
+			if (index > 0)
+				return index;
+
+			// It's not in the list; append it
+			strings.Add(theString);
+			return strings.Count - 1;
+		}
+
+		public string GetString(int i) {
+			return strings [i];
+		}
 
 		public string DumpCode() {
 
@@ -84,7 +111,7 @@ namespace Yarn
 			switch (operation) {
 			case ByteCode.PushString:
 			case ByteCode.RunLine:
-				var text = p.strings [(int)operandA];
+				var text = p.GetString((int)operandA);
 				comment = string.Format ("; \"{0}\"", text);
 				break;
 			}
@@ -106,6 +133,8 @@ namespace Yarn
 		CallFunc,		// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
 		Load,			// opA = name of variable to get value of and push to stack
 		Store,			// opA = name of variable to store top of stack in
+		Stop,			// stops execution
+		RunNode			// opA = name of node to start running
 	}
 
 
@@ -139,21 +168,6 @@ namespace Yarn
 
 			program.nodes [node.name] = compiledNode;
 		}
-
-		int RegisterString(string theString) {
-			var index = program.strings.IndexOf (theString);
-			if (index > 0)
-				return index;
-
-			// It's not in the list; append it
-			program.strings.Add(theString);
-			return program.strings.Count - 1;
-		}
-
-		string GetString(int id) {
-			return program.strings [id];
-		}
-
 
 		private int labelCount = 0;
 
@@ -220,7 +234,7 @@ namespace Yarn
 		}
 
 		void GenerateCode(Node node, string line) {
-			var num = RegisterString (line);
+			var num = program.RegisterString (line);
 
 			Emit (node, ByteCode.RunLine, num);
 
@@ -280,7 +294,7 @@ namespace Yarn
 				Emit (node, ByteCode.PushNumber, value.value.numberValue);
 				break;
 			case Value.Type.String:
-				var id = RegisterString (value.value.stringValue);
+				var id = program.RegisterString (value.value.stringValue);
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:
