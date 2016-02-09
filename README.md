@@ -27,7 +27,7 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 ## Made by Secret Lab!
 
-Yarn Spinner is made by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)!
+Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)!
 
 ## Help Us Make Yarn Spinner!
 
