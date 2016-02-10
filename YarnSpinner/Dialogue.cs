@@ -53,6 +53,13 @@ namespace Yarn {
 	public struct Options { public IList<string> options; }
 	public struct Command { public string text; }
 
+	// Where we turn to for storing and loading variable data.
+	public interface VariableStorage {
+		void SetNumber(string variableName, float number);
+		float GetNumber(string variableName);
+		void Clear();
+	}
+
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
@@ -123,6 +130,9 @@ namespace Yarn {
 		// The loader contains all of the nodes we're going to run.
 		private Loader loader;
 
+		// The Program is the compiled Yarn program.
+		private Program program;
+
 		// The library contains all of the functions and operators we know about.
 		public Library library;
 
@@ -176,18 +186,22 @@ namespace Yarn {
 			}
 
 
-			return loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
+			var nodesLoaded = loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
+
+			if (nodesLoaded == 0) {
+				throw new InvalidOperationException ("Attempted to load a Yarn program, but no nodes were loaded");
+			}
+
+			program = loader.Compile ();
+
+			return nodesLoaded;
 		}
-
-
 
 		// Executes a node. Use this in a for-each construct; each time you iterate over it,
 		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
 			stopExecuting = false;
-
-			var runner = new Runner (this);
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before running");
@@ -197,62 +211,51 @@ namespace Yarn {
 				throw new YarnException ("LogErrorMessage must be set before running");
 			}
 
-			var nextNode = startNode;
+			var vm = new VirtualMachine (this, program);
 
+			vm.SetNode (startNode);
+
+			RunnerResult latestResult;
+
+			vm.lineHandler = delegate(LineResult result) {
+				latestResult = result;
+			};
+
+			vm.commandHandler = delegate(CommandResult result) {
+				// Is it the special custom command "<<stop>>"?
+				if (result is CommandResult && (result as CommandResult).command.text == "stop") {
+					vm.Stop();
+				}
+				latestResult = result;
+			};
+
+			vm.nodeCompleteHandler = delegate(NodeCompleteResult result) {
+				visitedNodeNames.Add (vm.currentNode);
+				latestResult = result;
+			};
+
+			vm.optionsHandler = delegate(OptionSetResult result) {
+				latestResult = result;
+			};
+
+			// Run until the program stops, pausing to yield important
+			// results
 			do {
 
-				LogDebugMessage ("Running node " + nextNode);	
-				Parser.Node node;
+				latestResult = null;
+				vm.RunNext ();		
+				if (latestResult != null)
+					yield return latestResult;
+				
+			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped && stopExecuting == false);
 
-				try {
-					node = loader.nodes [nextNode];
-				} catch (KeyNotFoundException) {
-					LogErrorMessage ("Can't find node " + nextNode);
-					yield break;
-				}
 
-				foreach (var result in runner.RunNode(node)) {
-
-					// Is it the special custom command "<<stop>>"?
-					if (result is CommandResult && (result as CommandResult).command.text == "stop") {
-						yield break;
-					}
-
-					// Did we get our stop flag set?
-					if (stopExecuting) {
-						yield break;
-					}
-
-					// Are we now done with this node?
-					if (result is NodeCompleteResult) {
-						var nodeComplete = result as NodeCompleteResult;
-
-						// Move to the next node (or to null)
-						nextNode = nodeComplete.nextNode;
-
-						// NodeComplete is not interactive, so skip immediately to next step
-						// (which should end this loop)
-						continue;
-					} 
-					yield return result;
-				}
-
-				// Register that we've finished with this node. We do this
-				// after running the node, not before, so that "visited("Node")" can
-				// be called in "Node" itself, and fail. This lets you check to see
-				// if, for example, this is the first time you've run this node, without
-				// having to add extra variables to keep track of state.
-				visitedNodeNames.Add(node.name);
-
-			} while (nextNode != null);
-
-			LogDebugMessage ("Run complete.");
 
 		}
 
 		public String Compile() {
 			var program = loader.Compile();
-			return program.DumpCode ();
+			return program.DumpCode (library);
 		}
 		
 

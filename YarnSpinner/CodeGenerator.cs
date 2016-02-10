@@ -6,6 +6,7 @@ namespace Yarn
 	internal class State {
 		public int programCounter = 0;
 		public string currentNode;
+
 		public Stack<Value> stack = new Stack<Value>();
 
 		public void PushValue(object o) {
@@ -41,7 +42,7 @@ namespace Yarn
 			return strings [i];
 		}
 
-		public string DumpCode() {
+		public string DumpCode(Library l) {
 
 			var sb = new System.Text.StringBuilder ();
 
@@ -53,9 +54,9 @@ namespace Yarn
 					string instructionText;
 
 					if (instruction.operation == ByteCode.Label) {
-						instructionText = instruction.ToString (this);
+						instructionText = instruction.ToString (this, l);
 					} else {
-						instructionText = "    " + instruction.ToString (this);
+						instructionText = "    " + instruction.ToString (this, l);
 					}
 
 					string preface;
@@ -97,7 +98,7 @@ namespace Yarn
 		internal object operandA;
 		internal object operandB;
 
-		public  string ToString(Program p) {
+		public  string ToString(Program p, Library l) {
 
 			if (operation == ByteCode.Label) {
 				return operandA + ":";
@@ -108,42 +109,86 @@ namespace Yarn
 
 			string comment = "";
 
+			// Stack manipulation comments
+			var pops = 0;
+			var pushes = 0;
+
 			switch (operation) {
+
+			case ByteCode.PushBool:
+			case ByteCode.PushNull:
+			case ByteCode.PushNumber:
 			case ByteCode.PushString:
-			case ByteCode.RunLine:
-				var text = p.GetString((int)operandA);
-				comment = string.Format ("; \"{0}\"", text);
+			case ByteCode.PushVariable:
+			case ByteCode.ShowOptions:
+				pushes = 1;
+				break;
+
+			case ByteCode.CallFunc:
+				var function = l.GetFunction ((string)operandA);
+
+				pops = function.paramCount;
+
+				if (function.returnsValue)
+					pushes = 1;
+				
+
+				break;
+			
+			case ByteCode.Pop:
+				pops = 1;
 				break;
 			}
 
-			return string.Format ("{0} {1} {2} {3}", operation.ToString (), opAString, opBString, comment);
+			if (pops > 0 || pushes > 0)
+				comment += string.Format ("Pops {0}, Pushes {1}", pops, pushes);
+
+			// String lookup comments
+			switch (operation) {
+			case ByteCode.PushString:
+			case ByteCode.RunLine:
+			case ByteCode.AddOption:
+				var text = p.GetString((int)operandA);
+				comment += string.Format ("\"{0}\"", text);
+				break;
+			
+			}
+
+			if (comment != "") {
+				comment = "; " + comment;
+			}
+
+			return string.Format ("{0,-15} {1,-10} {2,-10} {3, -10}", operation.ToString (), opAString, opBString, comment);
 		}
 	}
 
 	internal enum ByteCode {
-		Label,			// opA = string: label name
-		Jump,			// opA = string: label name
-		RunLine,		// opA = int: string number
-		RunCommand,		// opA = string: command text
-		PushString,		// opA = int: string number in table; push string to stack
-		PushNumber,		// opA = float: number to push to stack
-		PushBool,		// opA = int (0 or 1): bool to push to stack
-		JumpIfTrue,		// opA = string: label name if top of stack is not null, zero or false, jumps to that label; pops top of stack
-		Pop,			// discard top of stack
-		CallFunc,		// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-		Load,			// opA = name of variable to get value of and push to stack
-		Store,			// opA = name of variable to store top of stack in
-		Stop,			// stops execution
-		RunNode			// opA = name of node to start running
+		
+		Label,			    // opA = string: label name
+		JumpTo,			    // opA = string: label name
+		Jump,				// peek string from stack and jump to that label
+		RunLine,		    // opA = int: string number
+		RunCommand,		    // opA = string: command text
+		AddOption,		    // opA = int: string number for option to add
+		ShowOptions,	    // present the current list of options, then clear the list; most recently selected option will be on the top of the stack
+		PushString,		    // opA = int: string number in table; push string to stack
+		PushNumber,		    // opA = float: number to push to stack
+		PushBool,		    // opA = int (0 or 1): bool to push to stack
+		PushNull,		    // pushes a null value onto the stack
+		JumpIfFalse,	    // opA = string: label name if top of stack is not null, zero or false, jumps to that label
+		Pop,			    // discard top of stack
+		CallFunc,		    // opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
+		PushVariable,			    // opA = name of variable to get value of and push to stack
+		StoreVariable,			    // opA = name of variable to store top of stack in
+		Stop,			    // stops execution
+		RunNode			    // run the node whose name is at the top of the stack
+
 	}
 
 
 	internal class CodeGenerator
 	{
-
-
-
-
+		
 		internal Program program { get; private set; }
 
 		internal CodeGenerator ()
@@ -166,14 +211,31 @@ namespace Yarn
 				GenerateCode (compiledNode, statement);
 			}
 
+			// If this compiled node has no AddOption instructions, then stop
+			var hasOptions = false;
+			foreach (var instruction in compiledNode.instructions) {
+				if (instruction.operation == ByteCode.AddOption) {
+					hasOptions = true;
+					break;
+				}
+			}
+
+			if (hasOptions == false) {
+				Emit (compiledNode, ByteCode.Stop);
+			} else {
+				Emit (compiledNode, ByteCode.ShowOptions);
+				Emit (compiledNode, ByteCode.RunNode);
+			}
+
+
 			program.nodes [node.name] = compiledNode;
 		}
 
 		private int labelCount = 0;
 
 		// Generates a unique label name to use
-		string RegisterLabel() {
-			return "L" + labelCount++;
+		string RegisterLabel(string commentary = null) {
+			return "L" + labelCount++ + commentary;
 		}
 
 		void Emit(Node node, ByteCode code, object operandA = null, object operandB = null) {
@@ -229,7 +291,11 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.CustomCommand statement) {
 
-			Emit (node, ByteCode.RunCommand, statement.clientCommand);
+			if (statement.clientCommand == "stop") {
+				Emit (node, ByteCode.Stop);
+			} else {
+				Emit (node, ByteCode.RunCommand, statement.clientCommand);
+			}
 
 		}
 
@@ -242,10 +308,71 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.ShortcutOptionGroup statement) {
 
-			throw new NotImplementedException ();
+			var endOfGroupLabel = RegisterLabel ("group_end");
+
+			var labels = new List<string> ();
+
+			int optionCount = 0;
+			foreach (var shortcutOption in statement.options) {
+
+				var optionDestinationLabel = RegisterLabel ("option_" + (optionCount+1));
+				labels.Add (optionDestinationLabel);
+
+				string endOfClauseLabel = null;
+
+				if (shortcutOption.condition != null) {
+					endOfClauseLabel = RegisterLabel ("conditional_"+optionCount);
+					GenerateCode (node, shortcutOption.condition);
+
+					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
+				}
+
+				var labelStringID = program.RegisterString (shortcutOption.label);
+
+				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
+
+				if (shortcutOption.condition != null) {
+					Emit (node, ByteCode.Label, endOfClauseLabel);
+					Emit (node, ByteCode.Pop);
+				}
+
+				optionCount++;
+			}
+
+			Emit (node, ByteCode.ShowOptions);
+
+			Emit (node, ByteCode.Jump);
+
+			optionCount = 0;
+			foreach (var shortcutOption in statement.options) {
+
+				Emit (node, ByteCode.Label, labels [optionCount]);
+
+				if (shortcutOption.optionNode != null)
+					GenerateCode (node, shortcutOption.optionNode.statements);
+
+				Emit (node, ByteCode.JumpTo, endOfGroupLabel);
+
+				optionCount++;
+
+			}
+
+			// reached the end of the option group
+			Emit (node, ByteCode.Label, endOfGroupLabel);
+
+			// clean up after the jump
+			Emit (node, ByteCode.Pop);
+
+			// generate everything after the option group
+			GenerateCode (node, statement.epilogue.statements);
+
+
 		}
 
 		void GenerateCode(Node node, IEnumerable<Yarn.Parser.Statement> statementList) {
+
+			if (statementList == null)
+				return;
 
 			foreach (var statement in statementList) {
 				GenerateCode (node, statement);
@@ -253,17 +380,17 @@ namespace Yarn
 		}
 
 		void GenerateCode(Node node, Parser.IfStatement statement) {
-			
+
+			var endOfIfStatementLabel = RegisterLabel ("endif");
+
 			foreach (var clause in statement.clauses) {
-				var endOfClauseLabel = RegisterLabel ();
+				var endOfClauseLabel = RegisterLabel ("skipclause");
 
 				if (clause.expression != null) {
 					
 					GenerateCode (node, clause.expression);
 
-					Emit (node, ByteCode.PushBool, false);
-					Emit (node, ByteCode.CallFunc, "==");
-					Emit (node, ByteCode.JumpIfTrue, endOfClauseLabel);
+					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
 
 				}
 
@@ -271,20 +398,90 @@ namespace Yarn
 
 				Emit (node, ByteCode.Label, endOfClauseLabel);
 
+				// Clean up the stack by popping the expression that was tested earlier
+				if (clause.expression != null) {
+					Emit (node, ByteCode.Pop);
+				}
+
+				Emit (node, ByteCode.JumpTo, endOfIfStatementLabel);
+
 			}
+
+			Emit (node, ByteCode.Label, endOfIfStatementLabel);
 		}
 
 		void GenerateCode(Node node, Parser.OptionStatement statement) {
-			throw new NotImplementedException ();
+
+			var stringID = -1;
+
+			if (statement.label != null) {
+				stringID = program.RegisterString (statement.label);
+			}
+
+			Emit (node, ByteCode.AddOption, stringID, statement.destination);
+
 		}
 
 		void GenerateCode(Node node, Parser.AssignmentStatement statement) {
-			throw new NotImplementedException ();
+
+			// Is it a straight assignment?
+			if (statement.operation == TokenType.EqualToOrAssign) {
+				// Evaluate the expression, which will result in a value
+				// on the stack
+				GenerateCode (node, statement.valueExpression);
+
+				// Stack now contains [destinationValue]
+			} else {
+
+				// It's a combined operation plus assignment
+
+				// Get the current value of the variable
+				Emit(node, ByteCode.PushVariable, statement.destinationVariableName);
+
+				// Evaluate the expression, which will result in a value
+				// on the stack
+				GenerateCode (node, statement.valueExpression);
+
+				// Stack now contains [currentValue, expressionValue]
+
+				switch (statement.operation) {
+
+				case TokenType.AddAssign:
+					Emit (node, ByteCode.CallFunc, TokenType.Add.ToString ());
+					break;
+				case TokenType.MinusAssign:
+					Emit (node, ByteCode.CallFunc, TokenType.Minus.ToString ());
+					break;
+				case TokenType.MultiplyAssign:
+					Emit (node, ByteCode.CallFunc, TokenType.Multiply.ToString ());
+					break;
+				case TokenType.DivideAssign:
+					Emit (node, ByteCode.CallFunc, TokenType.Divide.ToString ());
+					break;
+				default:
+					throw new ArgumentOutOfRangeException ();
+				}
+
+				// Stack now contains [destinationValue]
+			}
+
+			// Store the top of the stack in the variable
+			Emit(node, ByteCode.StoreVariable, statement.destinationVariableName);
+			Emit (node, ByteCode.Pop);
+
 		}
 
 		void GenerateCode(Node node, Parser.Expression expression) {
-			if (expression.type == Parser.Expression.Type.Value) {
+			switch (expression.type) {
+			case Parser.Expression.Type.Value:
 				GenerateCode (node, expression.value);
+				break;
+			case Parser.Expression.Type.FunctionCall:
+				foreach (var parameter in expression.parameters) {
+					GenerateCode (node, parameter);
+				}
+				Emit (node, ByteCode.CallFunc, expression.function.name);
+				break;
 			}
 		}
 
@@ -301,8 +498,10 @@ namespace Yarn
 				Emit (node, ByteCode.PushBool, value.value.boolValue);
 				break;
 			case Value.Type.Variable:
+				Emit (node, ByteCode.PushVariable, value.value.variableName);
 				break;
 			case Value.Type.Null:
+				Emit (node, ByteCode.PushNull);
 				break;
 			default:
 				throw new ArgumentOutOfRangeException ();

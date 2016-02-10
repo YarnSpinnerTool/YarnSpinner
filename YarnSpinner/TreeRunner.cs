@@ -31,14 +31,9 @@ using System.Collections.Generic;
 namespace Yarn
 {
 	
-	// Where we turn to for storing and loading variable data.
-	public interface VariableStorage {
-		void SetNumber(string variableName, float number);
-		float GetNumber(string variableName);
-		void Clear();
-	}
 
-	internal class Runner
+
+	internal class TreeRunner
 	{
 		// The list of options that this node has currently developed.
 		private List<Parser.OptionStatement> currentOptions;
@@ -46,7 +41,7 @@ namespace Yarn
 		// The object that we send our lines, options and commands to for display and input.
 		private Dialogue dialogue;
 
-		internal Runner(Dialogue dialogue) {
+		internal TreeRunner(Dialogue dialogue) {
 			this.dialogue = dialogue;
 		}
 

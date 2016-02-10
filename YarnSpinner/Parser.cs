@@ -120,7 +120,7 @@ namespace Yarn {
 		public Value (object value)
 		{
 			// Copy an existing value
-			if (value.GetType() == typeof(Value)) {
+			if (typeof(Value).IsInstanceOfType(value)) {
 				var otherValue = value as Value;
 				type = otherValue.type;
 				switch (type) {
@@ -141,6 +141,7 @@ namespace Yarn {
 				default:
 					throw new ArgumentOutOfRangeException ();
 				}
+				return;
 			}
 			if (value == null) {
 				type = Type.Null;
