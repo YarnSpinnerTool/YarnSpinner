@@ -381,6 +381,7 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.IfStatement statement) {
 
+			// We'll jump to this label at the end of every clause
 			var endOfIfStatementLabel = RegisterLabel ("endif");
 
 			foreach (var clause in statement.clauses) {
@@ -396,15 +397,15 @@ namespace Yarn
 
 				GenerateCode (node, clause.statements);
 
-				Emit (node, ByteCode.Label, endOfClauseLabel);
+				Emit (node, ByteCode.JumpTo, endOfIfStatementLabel);
 
+				if (clause.expression != null) {
+					Emit (node, ByteCode.Label, endOfClauseLabel);
+				}
 				// Clean up the stack by popping the expression that was tested earlier
 				if (clause.expression != null) {
 					Emit (node, ByteCode.Pop);
 				}
-
-				Emit (node, ByteCode.JumpTo, endOfIfStatementLabel);
-
 			}
 
 			Emit (node, ByteCode.Label, endOfIfStatementLabel);
@@ -433,7 +434,7 @@ namespace Yarn
 				// Stack now contains [destinationValue]
 			} else {
 
-				// It's a combined operation plus assignment
+				// It's a combined operation-plus-assignment
 
 				// Get the current value of the variable
 				Emit(node, ByteCode.PushVariable, statement.destinationVariableName);
@@ -467,25 +468,36 @@ namespace Yarn
 
 			// Store the top of the stack in the variable
 			Emit(node, ByteCode.StoreVariable, statement.destinationVariableName);
+
+			// Clean up the stack
 			Emit (node, ByteCode.Pop);
 
 		}
 
 		void GenerateCode(Node node, Parser.Expression expression) {
+
+			// Expressions are either plain values, or function calls
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
+				// Plain value? Emit that
 				GenerateCode (node, expression.value);
 				break;
 			case Parser.Expression.Type.FunctionCall:
+				// Evaluate all parameter expressions (which will
+				// push them to the stack)
 				foreach (var parameter in expression.parameters) {
 					GenerateCode (node, parameter);
 				}
+				// And then call the function
 				Emit (node, ByteCode.CallFunc, expression.function.name);
 				break;
 			}
 		}
 
 		void GenerateCode(Node node, Parser.ValueNode value) {
+
+			// Push a value onto the stack
+
 			switch (value.value.type) {
 			case Value.Type.Number:
 				Emit (node, ByteCode.PushNumber, value.value.numberValue);
