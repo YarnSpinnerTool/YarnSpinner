@@ -1,3 +1,5 @@
+// Basic test stuff from infinite_ammo
+
 Testing some stuff...
 
 <<if $something_not_one is 1>>
