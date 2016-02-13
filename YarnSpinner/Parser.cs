@@ -519,7 +519,7 @@ namespace Yarn {
 				label = p.ExpectSymbol(TokenType.Text).value as string;
 
 				// Parse the conditional ("<<if $foo>>") if it's there
-				if (p.NextSymbolIs(TokenType.BeginCommand)) {
+				if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If)) {
 					p.ExpectSymbol(TokenType.BeginCommand);
 					p.ExpectSymbol(TokenType.If);
 					condition = Expression.Parse(this, p);
