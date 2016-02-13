@@ -7,3 +7,4 @@ script:
   - xbuild /p:Configuration=Release YarnSpinner.sln
   - mono ./testrunner/NUnit.Console.3.0.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
   - ./run-tests.sh
+  
