@@ -1,0 +1,25 @@
+// Function tests
+
+// "add_three_operands" is a function that adds three operands together
+
+<<if add_three_operands(1, 2, 4*1) == 7>>
+SUCCESS: add_three_operands(1, 2, 4*1) == 7
+<<else>>
+ERROR: add_three_operands(1, 2, 4*1) != 7
+<<endif>>
+
+// last_value is a function that returns the last parameter
+
+<<if last_value(1,2,3) == 3>>
+SUCCESS: last_value(1,2,3) == 3
+<<else>>
+ERROR: last_value(1,2,3) != 3
+<<endif>>
+
+// function calls as parameters
+
+<<if last_value(1, last_value(2,3)) == 3>>
+SUCCESS: last_value(1, last_value(2,3)) == 3
+<<else>>
+ERROR: last_value(1, last_value(2,3)) != 3
+<<endif>>

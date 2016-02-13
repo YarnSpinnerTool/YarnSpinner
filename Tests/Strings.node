@@ -1,0 +1,15 @@
+// Strings
+
+<<print("This is a test string")>>
+
+<<print("This is a test string with \"embedded quotes!\". Cool!")>>
+
+<<print("This is a test string with an embedded slash: \\. NICE.")>>
+
+<<if visited("Start")>>
+SUCCESS: Node "Start" was visited!
+<<endif>>
+
+<<if visited("DoesNotExist") is false>>
+SUCCESS: Node "DoesNotExist" does not exist
+<<endif>>

@@ -87,8 +87,9 @@ namespace Yarn {
 
 		}
 			
-		// The client should show a list of options, and call setSelectedOption before
-		// asking for the next line. It's an error if you don't.
+		// The client should show a list of options, and call 
+		// setSelectedOptionDelegate before asking for the 
+		// next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
 			public Options options;
 			public OptionChooser setSelectedOptionDelegate;
@@ -102,7 +103,8 @@ namespace Yarn {
 
 		}
 
-		// We've reached the end of this node. Used internally, and not exposed to clients.
+		// We've reached the end of this node. Used internally, 
+		// and not exposed to clients.
 		internal class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
@@ -111,18 +113,48 @@ namespace Yarn {
 			}
 		}
 
-
+		// Delegates used for logging.
 		public Logger LogDebugMessage;
 		public Logger LogErrorMessage;
 
+		// The node we start from.
 		public const string DEFAULT_START = "Start";
 
-		internal Loader loader;
+		// The loader contains all of the nodes we're going to run.
+		private Loader loader;
+
+		// The library contains all of the functions and operators we know about.
+		public Library library;
+
+		// Should we stop executing lines?
+		internal bool stopExecuting = false;
+
+		// The collection of nodes that we've seen.
+		private HashSet<String> visitedNodeNames = new HashSet<string>();
 
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
+			loader = new Loader (this);
+			library = new Library ();
+
+			library.ImportLibrary (new StandardLibrary ());
+
+			// Register the "visited" function, which returns true if we've visited
+			// a node previously (nodes are marked as visited when we leave them)
+			library.RegisterFunction ("visited", 1, delegate(Yarn.Value[] parameters) {
+				var name = parameters[0].AsString;
+				return visitedNodeNames.Contains(name);
+			});
+
+			// Register the "assert" function, which stops execution if its parameter evaluates to false
+			library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+				if (parameters[0].AsBool == false) {
+					stopExecuting = true;
+				}
+			});
 		}
 
+		// Load a file from disk.
 		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
 			string inputString = reader.ReadToEnd ();
@@ -132,15 +164,26 @@ namespace Yarn {
 
 		}
 
+		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
 		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
-			loader = new Loader (this);
-			loader.Load(text, showTokens, showParseTree, onlyConsiderNode);
+			if (LogDebugMessage == null) {
+				throw new YarnException ("LogDebugMessage must be set before loading");
+			}
 
-			return loader.nodes.Count;
+			if (LogErrorMessage == null) {
+				throw new YarnException ("LogErrorMessage must be set before loading");
+			}
+
+
+			return loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
 		}
 
+		// Executes a node. Use this in a for-each construct; each time you iterate over it,
+		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
+
+			stopExecuting = false;
 
 			var runner = new Runner (this);
 
@@ -167,9 +210,22 @@ namespace Yarn {
 				}
 
 				foreach (var result in runner.RunNode(node)) {
-					
-					if (result is Yarn.Dialogue.NodeCompleteResult) {
-						var nodeComplete = result as Yarn.Dialogue.NodeCompleteResult;
+
+					// Is it the special custom command "<<stop>>"?
+					if (result is CommandResult && (result as CommandResult).command.text == "stop") {
+						yield break;
+					}
+
+					// Did we get our stop flag set?
+					if (stopExecuting) {
+						yield break;
+					}
+
+					// Are we now done with this node?
+					if (result is NodeCompleteResult) {
+						var nodeComplete = result as NodeCompleteResult;
+
+						// Move to the next node (or to null)
 						nextNode = nodeComplete.nextNode;
 
 						// NodeComplete is not interactive, so skip immediately to next step
@@ -179,12 +235,122 @@ namespace Yarn {
 					yield return result;
 				}
 
-				
+				// Register that we've finished with this node. We do this
+				// after running the node, not before, so that "visited("Node")" can
+				// be called in "Node" itself, and fail. This lets you check to see
+				// if, for example, this is the first time you've run this node, without
+				// having to add extra variables to keep track of state.
+				visitedNodeNames.Add(node.name);
+
 			} while (nextNode != null);
 
 			LogDebugMessage ("Run complete.");
 
 		}
+
+		// The standard, built-in library of functions and operators.
+		private class StandardLibrary : Library {
+
+			public StandardLibrary() {
+
+				#region Operators
+
+				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
+
+					// If either of these parameters are strings, concatenate them as strings
+					if (parameters[0].type == Value.Type.String ||
+						parameters[1].type == Value.Type.String) {
+
+						return parameters[0].AsString + parameters[1].AsString;
+					}
+
+					// Otherwise, treat them as numbers
+					return parameters[0].AsNumber + parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber - parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
+					return -parameters[0].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber / parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber * parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
+
+					// TODO: This may not be the greatest way of doing it
+
+					// Coerce to the type of second operand
+					switch (parameters [1].type) {
+					case Value.Type.Number:
+						return parameters[0].AsNumber == parameters[1].AsNumber;
+					case Value.Type.String:
+						return parameters[0].AsString == parameters[1].AsString;
+					case Value.Type.Bool:
+						return parameters[0].AsBool == parameters[1].AsBool;
+					case Value.Type.Null:
+						// Only null-null comparisons are true.
+						return parameters[0].type == Value.Type.Null;
+					}
+
+					// Give up and say they're not equal
+					return false;
+
+				});
+
+				this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
+
+					// Return the logical negative of the == operator's result
+					var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
+
+					return !equalTo.Invoke(parameters).AsBool;
+				});
+
+				this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber > parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber >= parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber < parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsNumber <= parameters[1].AsNumber;
+				});
+
+				this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool && parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool || parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0].AsBool ^ parameters[1].AsBool;
+				});
+
+				this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) {
+					return !parameters[0].AsBool;
+				});
+
+				#endregion Operators
+			}
+		}
+
+
 
 	}
 }

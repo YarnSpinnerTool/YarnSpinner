@@ -141,7 +141,7 @@ namespace Yarn
 				foreach (var clause in statement.ifStatement.clauses) {
 					// if this clause's expression doesn't evaluate to 0, run it; alternatively,
 					// if this clause has no expression (ie it's the 'else' clause) then also run it
-					if (clause.expression == null || EvaluateExpression(clause.expression) != 0.0f) {
+					if (clause.expression == null || EvaluateExpression(clause.expression).AsBool != false) {
 						foreach (var command in  RunStatements (clause.statements)) {
 							yield return command;
 						}
@@ -169,8 +169,19 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.CustomCommand:
-				// Deal with a custom command
-				yield return new Dialogue.CommandResult (statement.customCommand.command);
+				// Deal with a custom command - it's either an expression or a client command
+				// If it's an expression, evaluate it
+				// If it's a client command, yield it to the client
+
+				switch (statement.customCommand.type) {
+				case Parser.CustomCommand.Type.Expression:
+					EvaluateExpression (statement.customCommand.expression);
+					break;
+				case Parser.CustomCommand.Type.ClientCommand:
+					yield return new Dialogue.CommandResult (statement.customCommand.clientCommand);
+					break;
+				}
+
 				break;
 
 			default:
@@ -181,57 +192,32 @@ namespace Yarn
 
 		}
 
-		private float EvaluateExpression(Parser.Expression expression) {
+		private Yarn.Value EvaluateExpression(Parser.Expression expression) {
+
+			if (expression == null)
+				return new Yarn.Value ();
 			
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
 				// just a regular value? return it
-				return EvaluateValue (expression.value);
+				return EvaluateValue (expression.value.value);
 
-			case Parser.Expression.Type.Compound:
+			case Parser.Expression.Type.FunctionCall:
+				// get the function
+				var func = expression.function;
 
-				// Recursively evaluate the left and right hand expressions
-				var leftHand = EvaluateExpression (expression.leftHand);
+				// evaluate all parameters
+				var evaluatedParameters = new List<Value> ();
 
-				var rightHand = EvaluateExpression (expression.rightHand);
-
-				// And then Do A Thing with the results:
-				switch (expression.operation.operatorType) {
-				case TokenType.Add:
-					return leftHand + rightHand;
-				case TokenType.Minus:
-					return leftHand - rightHand;
-				case TokenType.Multiply:
-					return leftHand * rightHand;
-				case TokenType.Divide:
-					return leftHand / rightHand;
-
-				case TokenType.GreaterThan:
-					return leftHand > rightHand ? 1.0f : 0.0f;
-				case TokenType.LessThan:
-					return leftHand < rightHand ? 1.0f : 0.0f;
-				case TokenType.GreaterThanOrEqualTo:
-					return leftHand >= rightHand ? 1.0f : 0.0f;
-				case TokenType.LessThanOrEqualTo:
-					return leftHand <= rightHand ? 1.0f : 0.0f;
-
-				case TokenType.EqualToOrAssign:					
-				case TokenType.EqualTo:
-					return leftHand == rightHand ? 1.0f : 0.0f;
-				case TokenType.NotEqualTo:
-					return leftHand != rightHand ? 1.0f : 0.0f;
-
-				case TokenType.And:
-					return (leftHand != 0 && rightHand != 0) ? 1.0f : 0.0f;
-				case TokenType.Or:
-					return (leftHand != 0 || rightHand != 0) ? 1.0f : 0.0f;
-				case TokenType.Xor:
-					return (leftHand != 0 ^ rightHand != 0) ? 1.0f : 0.0f;				
+				foreach (var param in expression.parameters) {
+					var expr = EvaluateExpression (param);
+					evaluatedParameters.Add (expr);
 				}
 
-				// whoa no
-				throw new NotImplementedException ("Operator " + expression.operation.operatorType.ToString () 
-					+ " is not yet implemented");
+				var result = func.InvokeWithArray (evaluatedParameters.ToArray ());
+
+				return result;
+
 			}
 
 			throw new NotImplementedException ("Unimplemented expression type " + expression.type.ToString ());
@@ -239,15 +225,14 @@ namespace Yarn
 		}
 
 		// Returns the actual value of this Value object.
-		private float EvaluateValue(Parser.Value value) {
+		private Yarn.Value EvaluateValue(Value value) {
 			switch (value.type) {
-			case Parser.Value.Type.Number:
-				return value.number;
-			case Parser.Value.Type.Variable:
+			case Value.Type.Variable:
 				dialogue.LogDebugMessage ("Checking value " + value.variableName);
-				return dialogue.continuity.GetNumber (value.variableName);
+				return new Value(dialogue.continuity.GetNumber (value.variableName));
+			default:
+				return value;
 			}
-			return 0.0f;
 		}
 
 		// Assigns a value to a variable.
@@ -257,12 +242,16 @@ namespace Yarn
 			var variableName = assignment.destinationVariableName;
 
 			// The value that's going into this variable.
-			var computedValue = EvaluateExpression (assignment.valueExpression);
+			// TODO: Currently this coerces this into a float. Add support for 
+			// storing different types of data in the client.
+			var computedValue = EvaluateExpression (assignment.valueExpression).AsNumber;
 
 			// The current value of this variable.
 			float originalValue = dialogue.continuity.GetNumber (variableName);
 
 			// What shall we do with it?
+
+			// TODO: Hmm this should be a function, like the other operators
 			float finalValue = 0.0f;
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
@@ -294,7 +283,7 @@ namespace Yarn
 			foreach (var option in shortcutOptionGroup.options) {
 				var include = true;
 				if (option.condition != null) {
-					include = EvaluateExpression(option.condition) != 0.0f;
+					include = EvaluateExpression(option.condition).AsBool != false;
 				}
 				if (include) {
 					optionsToDisplay.Add(option);
@@ -316,7 +305,8 @@ namespace Yarn
 				});
 
 				if (selectedOption == null) {
-					dialogue.LogErrorMessage ("setSelectedOption was not called! Exiting run.");
+					dialogue.LogErrorMessage ("The OptionChooser I provided was not called before the " +
+						"next line was run! Stopping dialogue.");
 					yield break;
 				}
 
@@ -334,8 +324,6 @@ namespace Yarn
 					yield return command;
 				}
 			}
-				
-
 		}
 	}
 

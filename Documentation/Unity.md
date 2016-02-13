@@ -4,15 +4,15 @@
 
 Here's how to quickly jump in to Yarn Spinner, if you're already reasonably comfortable with Unity.
 
-* **Download and import [the YarnSpinner package](https://github.com/desplesda/YarnSpinner/releases) into your project.**
+* **Download and import [the YarnSpinner package](https://github.com/thesecretlab/YarnSpinner/releases) into your project.**
 * **Inside the YarnSpinner folder, open the Yarn Spinner Example scene.**
 * **Start the game. Play through the dialogue.**
 
-Once you've played with it, open the Example Script file in the Yarn editor (it's in the Demo Resources folder), and make some changes to the script. Once you've done that, take a look at how `DialogueRunner.cs`, `DialogueUI.cs` and `ExampleVariableStorage.cs` work.
+Once you've played with it, open the Example Script file in the Yarn editor (it's in the Demo Resources folder), and make some changes to the script. Once you've done that, take a look at how `DialogueRunner.cs`, `DialogueUI.cs` and `ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
 
 ## Tutorial
 
-**Note:** This tutorial assumes that you know at least a little bit about [Unity](http://www.unity3d.com). In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out [Unity's documentation](http://unity3d.com/learn)!
+> ***Note:*** This tutorial assumes that you know at least a little bit about [Unity](http://www.unity3d.com). In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out [Unity's documentation](http://unity3d.com/learn)!
 
 Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. 
 
@@ -30,7 +30,7 @@ Let's get started with Yarn Spinner!
 
 To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation.
 
-To see the finished project, [download Yarn Spinner](https://github.com/desplesda/YarnSpinner/releases) and open the [Unity folder](https://github.com/desplesda/YarnSpinner/tree/master/Unity) in the Unity editor.
+To see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor.
 
 ### Create the Unity project
 

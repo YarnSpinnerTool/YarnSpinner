@@ -38,6 +38,9 @@ namespace Yarn {
 	internal class TokenList : List<Token> {}
 
 	internal enum TokenType {
+
+
+		
 		// Special tokens
 		Whitespace,
 		Indent,
@@ -47,6 +50,9 @@ namespace Yarn {
 
 		// Numbers. Everybody loves a number
 		Number,
+
+		// Strings. Everybody also loves a string
+		String,
 
 		// Command syntax ("<<foo>>")
 		BeginCommand,
@@ -70,9 +76,19 @@ namespace Yarn {
 		EndIf,
 		Set,
 
+		// Boolean values
+		True,
+		False,
+
+		// The null value
+		Null,
+
 		// Parentheses
 		LeftParen,
 		RightParen,
+
+		// Parameter delimiters
+		Comma,
 
 		// Operators
 		EqualTo, // ==, eq, is
@@ -89,8 +105,12 @@ namespace Yarn {
 		Not, // !, not
 
 
-		// this guy's special because '=' means 'equal to' or 'becomes' depending on context
+		// this guy's special because '=' can mean either 'equal to' 
+		// or 'becomes' depending on context
 		EqualToOrAssign, // =, to
+
+		UnaryMinus, // -; this is differentiated from Minus 
+					// when parsing expressions
 
 		Add, // +
 		Minus, // -
@@ -120,6 +140,10 @@ namespace Yarn {
 		public int lineNumber;
 		public int columnNumber;
 		public string context;
+
+		// If this is a function in an expression, this is the number
+		// of parameters that were encountered
+		public int parameterCount;
 		
 		public Token(TokenType type, object value=null) {
 			this.type = type;
@@ -151,8 +175,8 @@ namespace Yarn {
 			// So, we need to mark certain rules as "this token can start a line"
 			public bool canBeginLine; 
 
-			// This flag exists because we don't want to interpret lines like this:
-			// -> And what did they say?
+			// This flag exists because we DON'T want to interpret lines like this:
+			// "-> And what did they say?"
 			// as <ShortcutOption> <And> <Text>. Instead, we say that certain tokens
 			// "reset" the line, making the lexer treat the next token as the "start"
 			// of the line - which means that tokens like "and" will not be interpreted.
@@ -172,15 +196,16 @@ namespace Yarn {
 			// Load the token rules for this language
 			PrepareTokenRules();
 
-			// Ensure that all token types have a rule
-			// Obtain the string names of all the elements within myEnum 
-			String[] names = Enum.GetNames( typeof( TokenType ) );
+			// Ensure that all token types have a rule:
+			#if DEBUG
+			// First, obtain the string names of all the elements within myEnum 
+			String[] tokenNames = Enum.GetNames( typeof( TokenType ) );
 			
 			// Obtain the values of all the elements within myEnum 
 			TokenType[] values = (TokenType[])Enum.GetValues( typeof( TokenType ) );
-			
-			// Print the names and values to file
-			for ( int i = 0; i < names.Length; i++ )
+
+			// Check to ensure that we've got a rule for every token type
+			for ( int i = 0; i < tokenNames.Length; i++ )
 			{
 				bool found = false;
 				foreach (var tokenRule in tokenRules) {
@@ -191,17 +216,24 @@ namespace Yarn {
 				}
 				// noooooo we forgot to add a rule in PrepareTokenRules()
 				if (found == false)
-					throw new TokeniserException("Missing rule for token type " + names[i]);
+					throw new TokeniserException("Missing rule for token type " + tokenNames[i]);
 			}
+			#endif
 
 
 		}
 		
 		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false) {
+		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false, bool requiresFollowingWhitespace=false) {
 			
 			var newTokenRule = new TokenRule();
 			newTokenRule.type = type;
+
+			if (requiresFollowingWhitespace) {
+				// Look for whitespace following this rule, but don't capture it as part of
+				// the token
+				rule += @"(?=\s+)";
+			}
 
 			// Set up a regex if we have a rule for it
 			if (rule != null) {
@@ -223,7 +255,7 @@ namespace Yarn {
 			var tokens = new TokenList();
 			
 			// Start by chopping up the input into lines
-			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.RemoveEmptyEntries);
+			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.None);
 
 			// Keep track of which column each new indent started
 			var indentLevels = new Stack<int>();
@@ -358,6 +390,17 @@ namespace Yarn {
 								token = new Token(tokenRule.type);
 							}
 
+							// If this was a string, lop off the quotes at the start and
+							// end, and un-escape the quotes and slashes
+							if (token.type == TokenType.String) {
+								string processedString = token.value as string;
+								processedString = processedString.Substring (1, processedString.Length - 2);
+
+								processedString = processedString.Replace ("\\\\", "\\");
+								processedString = processedString.Replace ("\\\"", "\"");
+								token.value = processedString;
+							}
+
 							// Record where the token was found
 							token.lineNumber = lineNumber;
 							token.columnNumber = columnNumber;
@@ -419,27 +462,30 @@ namespace Yarn {
 			AddTokenRule(TokenType.Dedent, null, canBeginLine:true);
 			
 			// Set up the end-of-line token
-			AddTokenRule (TokenType.EndOfLine, "\\n", canBeginLine:true)
+			AddTokenRule (TokenType.EndOfLine, @"\n", canBeginLine:true)
 				.discard = true;
 			
 			// Set up the end-of-file token
 			AddTokenRule(TokenType.EndOfInput, null);
 
 			// Comments
-			AddTokenRule (TokenType.Comment, "\\/\\/.*", canBeginLine: true)
+			AddTokenRule (TokenType.Comment, @"\/\/.*", canBeginLine: true)
 				.discard = true;
 
 			// Basic syntax
-			AddTokenRule(TokenType.Number, "((?<!\\[\\[)\\d+)");
-			AddTokenRule(TokenType.BeginCommand, "\\<\\<", canBeginLine:true);
-			AddTokenRule(TokenType.EndCommand, "\\>\\>");
-			AddTokenRule(TokenType.Variable, "\\$([A-z\\d])+");
+			AddTokenRule(TokenType.Number, @"((?<!\[\[)\d+)");
+			AddTokenRule(TokenType.BeginCommand, @"\<\<", canBeginLine:true);
+			AddTokenRule(TokenType.EndCommand, @"\>\>");
+			AddTokenRule(TokenType.Variable, @"\$([A-z\d])+");
 
+			// Strings
+			AddTokenRule(TokenType.String, @"""[^""\\]*(?:\\.[^""\\]*)*""");
+			
 			// Options
-			AddTokenRule(TokenType.ShortcutOption, "-\\>", canBeginLine:true, resetsLine:true);
-			AddTokenRule(TokenType.OptionStart, "\\[\\[", canBeginLine:true, resetsLine:true);
-			AddTokenRule(TokenType.OptionDelimit, "\\|");
-			AddTokenRule(TokenType.OptionEnd, "\\]\\]");
+			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.OptionStart, @"\[\[", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.OptionDelimit, @"\|");
+			AddTokenRule(TokenType.OptionEnd, @"\]\]");
 			
 			// Reserved words
 			AddTokenRule(TokenType.If, "if");
@@ -447,44 +493,56 @@ namespace Yarn {
 			AddTokenRule(TokenType.Else, "else");
 			AddTokenRule(TokenType.EndIf, "endif");
 			
-			AddTokenRule(TokenType.Set, "set");
+			AddTokenRule(TokenType.Set, "set", requiresFollowingWhitespace:true);
+
+			// Boolean values
+			AddTokenRule(TokenType.True, "true");
+			AddTokenRule(TokenType.False, "false");
+
+			// Null
+			AddTokenRule(TokenType.Null, "null");
 			
 			// Operators
 			AddTokenRule(TokenType.EqualTo, "(==|eq|is)");
-			AddTokenRule(TokenType.GreaterThanOrEqualTo, "(\\>=|gte)");
-			AddTokenRule(TokenType.LessThanOrEqualTo, "(\\<=|lte)");
-			AddTokenRule(TokenType.GreaterThan, "(\\>|gt)");
-			AddTokenRule(TokenType.LessThan, "(\\<|lt)");
-			AddTokenRule(TokenType.NotEqualTo, "(\\!=|neq)");
+			AddTokenRule(TokenType.GreaterThanOrEqualTo, @"(\>=|gte)");
+			AddTokenRule(TokenType.LessThanOrEqualTo, @"(\<=|lte)");
+			AddTokenRule(TokenType.GreaterThan, @"(\>|gt)");
+			AddTokenRule(TokenType.LessThan, @"(\<|lt)");
+			AddTokenRule(TokenType.NotEqualTo, @"(\!=|neq)");
 
-			AddTokenRule(TokenType.And, "(\\&\\&|and)");
-			AddTokenRule(TokenType.Or, "(\\|\\||or)");
-			AddTokenRule(TokenType.Xor, "(\\^|xor)");
-			AddTokenRule(TokenType.Not, "(\\!|not)");
+			AddTokenRule(TokenType.And, @"(\&\&|and)");
+			AddTokenRule(TokenType.Or, @"(\|\||or)");
+			AddTokenRule(TokenType.Xor, @"(\^|xor)");
+			AddTokenRule(TokenType.Not, @"(\!|not)");
 
 			// Assignment operators
 			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)");
 
-			AddTokenRule(TokenType.AddAssign, "\\+=");
+			AddTokenRule(TokenType.AddAssign, @"\+=");
 			AddTokenRule(TokenType.MinusAssign, "-=");
-			AddTokenRule(TokenType.MultiplyAssign, "\\*=");
-			AddTokenRule(TokenType.DivideAssign, "\\/=");
+			AddTokenRule(TokenType.MultiplyAssign, @"\*=");
+			AddTokenRule(TokenType.DivideAssign, @"\/=");
 
-			AddTokenRule(TokenType.Add, "\\+");
+			AddTokenRule(TokenType.Add, @"\+");
 			AddTokenRule(TokenType.Minus, "-");
-			AddTokenRule(TokenType.Multiply, "\\*");
-			AddTokenRule(TokenType.Divide, "\\/");
+			AddTokenRule(TokenType.Multiply, @"\*");
+			AddTokenRule(TokenType.Divide, @"\/");
 
-			AddTokenRule (TokenType.LeftParen, "\\(");
-			AddTokenRule (TokenType.RightParen, "\\)");
+			AddTokenRule (TokenType.UnaryMinus, null); // this one has special matching rules
 
-			// Identifiers (any letter, number or underscore)
-			AddTokenRule (TokenType.Identifier, "(\\w|_)+");
+			AddTokenRule (TokenType.LeftParen, @"\(");
+			AddTokenRule (TokenType.RightParen, @"\)");
+
+			// Identifiers (any letter, number, period or underscore)
+			AddTokenRule (TokenType.Identifier, @"(\w|_|\.)+");
+
+			// Commas for separating function parameters
+			AddTokenRule (TokenType.Comma, ",");
 
 			// Free text - match anything except command or option syntax
 			// This always goes last so that anything else will preferably
 			// match it
-			AddTokenRule(TokenType.Text, "[^\\<\\>\\[\\]\\|]*", canBeginLine:true);
+			AddTokenRule(TokenType.Text, @"[^\<\>\[\]\|]*", canBeginLine:true);
 		}
 	}
 }

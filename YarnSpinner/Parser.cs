@@ -24,6 +24,11 @@ SOFTWARE.
 
 */
 
+// Uncomment to interpret commands as expressions
+// (ie stuff like << do_something() >> will execute the function do_something, rather
+// than pass the text "do_something()" to the client
+//#define COMMANDS_ARE_EXPRESSIONS
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +36,138 @@ using System.Runtime.Serialization;
 using System.Text;
 
 namespace Yarn {
+
+	// A value from inside Yarn.
+	public class Value {
+		internal enum Type {
+			Number,  // a constant number
+			String,  // a string
+			Bool,    // a boolean value
+			Variable, // the name of a variable; will be expanded at runtime
+			Null,    // the null value
+		}
+
+		internal Value.Type type { get; set; }
+
+		// The underlying values for this object
+		internal float numberValue {get; private set;}
+		internal string variableName {get; set;}
+		internal string stringValue {get; private set;}
+		internal bool boolValue {get; private set;}
+
+		public float AsNumber {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue;
+				case Type.String:						
+					try {
+						return float.Parse (stringValue);
+					}  catch (FormatException) {
+						return 0.0f;
+					}
+				case Type.Bool:
+					return boolValue ? 1.0f : 0.0f;
+				case Type.Null:
+					return 0.0f;
+				default:
+					throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
+				}
+			}
+		}
+
+		public bool AsBool {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue != 0.0f;
+				case Type.String:
+					return stringValue.Length > 0;
+				case Type.Bool:
+					return boolValue;
+				case Type.Null:
+					return false;
+				default:
+					throw new InvalidOperationException ("Cannot cast to bool to " + type.ToString());
+				}
+			}
+		}
+
+		public string AsString {
+			get {
+				switch (type) {
+				case Type.Number:
+					return numberValue.ToString ();
+				case Type.String:
+					return stringValue;
+				case Type.Bool:
+					return boolValue.ToString ();
+				case Type.Null:
+					return "null";
+				default:
+					throw new ArgumentOutOfRangeException ();
+				}
+			}
+		}
+
+		// Create a null value
+		public Value ()
+		{
+			type  = Type.Null;
+		}
+
+		// Create a value with a C# object
+		public Value (object value)
+		{
+			// Copy an existing value
+			if (value.GetType() == typeof(Value)) {
+				var otherValue = value as Value;
+				type = otherValue.type;
+				switch (type) {
+				case Type.Number:
+					numberValue = otherValue.numberValue;
+					break;
+				case Type.String:
+					stringValue = otherValue.stringValue;
+					break;
+				case Type.Bool:
+					boolValue = otherValue.boolValue;
+					break;
+				case Type.Variable:
+					variableName = otherValue.variableName;
+					break;
+				case Type.Null:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException ();
+				}
+			}
+			if (value == null) {
+				type = Type.Null;
+				return;
+			}
+			if (value.GetType() == typeof(string) ) {
+				type = Type.String;
+				stringValue = (string)value;
+				return;
+			}
+			if (value.GetType() == typeof(int) ||
+				value.GetType() == typeof(float) ||
+				value.GetType() == typeof(double)) {
+				type = Type.Number;
+				numberValue = (float)value;
+				return;
+			}
+			if (value.GetType() == typeof(bool) ) {
+				type = Type.Bool;
+				boolValue = (bool)value;
+				return;
+			}
+			var error = string.Format("Attempted to create a Value using a {0}; currently, " +
+				"Values can only be numbers, strings, bools or null.", value.GetType().Name);
+			throw new YarnException(error);
+		}
+	}
 	
 	// An exception representing something going wrong during parsing
 	[Serializable]
@@ -109,7 +246,7 @@ namespace Yarn {
 
 			public override string ToString ()
 			{
-				return PrintTree (0);
+				return this.GetType ().Name;
 			}
 
 			// The closest parent to this ParseNode that is a Node.
@@ -132,7 +269,7 @@ namespace Yarn {
 		// Node = (Statement)* EndOfInput
 		internal class Node : ParseNode {
 
-			internal string name { get; private set;}
+			internal string name { get; set;}
 
 			// Read-only internal accessor for statements
 			internal IEnumerable<Statement> statements { get { return _statements; }}
@@ -259,30 +396,79 @@ namespace Yarn {
 		// system that owns this dialogue sytem. eg <<stand>>
 		// CustomCommand = BeginCommand <ANY>* EndCommand
 		internal class CustomCommand : ParseNode {
+
+			internal enum Type {
+				Expression,
+				ClientCommand
+			}
+
+			internal Type type;
+
+			internal Expression expression {get; private set;}
+			internal string clientCommand { get; private set;}
+
 			internal static bool CanParse (Parser p)
 			{
 				return p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
 					p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Identifier);
 			}
 
-			internal string command { get; private set;}
-
 			internal CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
 
 				// Custom commands can have ANY token in them. Read them all until we hit the
 				// end command.
 				p.ExpectSymbol(TokenType.BeginCommand);
-				var items = new List<string>();
+				var commandTokens = new List<Token>();
 				do {
-					items.Add(p.ExpectSymbol().value as string);
+					commandTokens.Add(p.ExpectSymbol());
 				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
-				command = string.Join(" ", items.ToArray());
 				p.ExpectSymbol(TokenType.EndCommand);
+
+				#if COMMANDS_ARE_EXPRESSIONS
+				// Attempt to parse this command as an expression
+
+				var parser = new Parser(commandTokens, p.library);
+
+				try {
+					var expression = Expression.Parse(this, parser);
+					type = Type.Expression;
+					this.expression = expression;
+				} catch (Exception) {
+					// Couldn't parse the expression for some reason. Fall back on passing this whole
+					// string to the client.
+					type = Type.ClientCommand;
+
+					var tokenStrings = new List<string>();
+					foreach (var token in commandTokens) {
+						tokenStrings.Add(token.value as string);
+					}
+					this.clientCommand = string.Join(" ", tokenStrings.ToArray());
+
+				}
+				#else
+				type = Type.ClientCommand;
+
+				var tokenStrings = new List<string>();
+				foreach (var token in commandTokens) {
+					tokenStrings.Add(token.value as string);
+				}
+				this.clientCommand = string.Join(" ", tokenStrings.ToArray());
+
+				#endif
+
+
 			}
 
 			internal override string PrintTree (int indentLevel)
 			{
-				return Tab (indentLevel, "Command: " + command);
+				switch (type) {
+				case Type.Expression:
+					return Tab (indentLevel, "Expression: ") + expression.PrintTree (indentLevel + 1);
+				case Type.ClientCommand:
+					return Tab (indentLevel, "Command: " + clientCommand);
+				}
+				return "";
+
 			}
 		}
 
@@ -530,6 +716,7 @@ namespace Yarn {
 				p.ExpectSymbol(TokenType.EndCommand);
 
 				// Read the statements for this clause until  we hit an <<endif or <<else
+				// (which could be an "<<else>>" or an "<<else if"
 				var statements = new List<Statement>();
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
@@ -542,25 +729,25 @@ namespace Yarn {
 
 				// Handle as many <<elseif clauses as we find
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
-					var newElseClause = new Clause();
+					var elseIfClause = new Clause();
 
 					// Parse the syntax for this clause's condition
 					p.ExpectSymbol(TokenType.BeginCommand);
 					p.ExpectSymbol(TokenType.ElseIf);
-					newElseClause.expression = Expression.Parse(this, p);
+					elseIfClause.expression = Expression.Parse(this, p);
 					p.ExpectSymbol(TokenType.EndCommand);
 
 					// Read statements until we hit an <<endif, <<else or another <<elseif
-					var elseStatements = new List<Statement>();
+					var clauseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
-						elseStatements.Add(new Statement(this, p));
+						clauseStatements.Add(new Statement(this, p));
 					}
 
-					newElseClause.statements = elseStatements;
+					elseIfClause.statements = clauseStatements;
 
-					clauses.Add(newElseClause);
+					clauses.Add(elseIfClause);
 				}
 
 				// Handle <<else>> if we have it
@@ -573,11 +760,13 @@ namespace Yarn {
 
 					// and parse statements until we hit "<<endif"
 					var elseClause = new Clause();
-					var elseStatements = new List<Statement>();
+					var clauseStatements = new List<Statement>();
 					while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.EndIf) == false) {
-						elseStatements.Add(new Statement(this, p));
+						clauseStatements.Add(new Statement(this, p));
 					}
-					elseClause.statements = elseStatements;
+					elseClause.statements = clauseStatements;
+
+					this.clauses.Add(elseClause);
 				}
 
 				// Finish up by reading the <<endif>>
@@ -589,10 +778,11 @@ namespace Yarn {
 			internal override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
-				var first = false;
+				var first = true;
 				foreach (var clause in clauses) {
 					if (first) {
 						sb.Append (Tab (indentLevel, "If:"));
+						first = false;
 					} else if (clause.expression != null) {
 						sb.Append (Tab (indentLevel, "Else If:"));
 					} else {
@@ -605,34 +795,41 @@ namespace Yarn {
 			}
 		}
 
-		// Raw values are either numbers, or variables.
-		// TODO: values can be strings??
-		// Value = <Number>
-		// Value = <Variable>
-		internal class Value : ParseNode {
+		// A value, which forms part of an expression.
+		public class ValueNode : ParseNode {
 
-			internal enum Type {
-				Number, // a constant number
-				Variable // the name of a variable
-			}
-
-			internal Value.Type type { get; private set; }
-
-			// The underlying values for this object
-			internal float number {get; private set;}
-			internal string variableName {get; private set;}
-
+			public Value value { get; private set;}
 
 			private void UseToken(Token t) {
 				// Store the value depending on token's type
 				switch (t.type) {
 				case TokenType.Number:
-					type = Type.Number;
-					number = float.Parse(t.value as String);
+
+					value = new Value (float.Parse (t.value as String));
+
+					break;
+				case TokenType.String:
+
+					value = new Value (t.value as String);
+					break;
+
+				case TokenType.False:
+
+					value = new Value (false);
+
+					break;
+				case TokenType.True:
+
+					value = new Value (true);
+
 					break;
 				case TokenType.Variable:
-					type = Type.Variable;
-					variableName = t.value as string;
+					value = new Value ();
+					value.type = Value.Type.Variable;
+					value.variableName = t.value as String;
+					break;
+				case TokenType.Null:
+					value = new Value (null);
 					break;
 				default:
 					throw ParseException.Make (t, "Invalid token type " + t.ToString ());
@@ -640,61 +837,63 @@ namespace Yarn {
 			}
 
 			// Use a provided token
-			internal Value(ParseNode parent, Token t) : base (parent, null) {
+			internal ValueNode(ParseNode parent, Token t) : base (parent, null) {
 				UseToken(t);
 			}
 
 			// Read a number or a variable name from the parser
-			internal Value(ParseNode parent, Parser p) : base(parent, p) {
+			internal ValueNode(ParseNode parent, Parser p) : base(parent, p) {
 
-				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable);
+				Token t = p.ExpectSymbol(TokenType.Number, TokenType.Variable, TokenType.String);
 
 				UseToken(t);
 			}
 
 			internal override string PrintTree (int indentLevel)
 			{
-				switch (type) {
-				case Type.Number:
-					return Tab (indentLevel, number.ToString());
-				case Type.Variable:
-					return Tab (indentLevel, variableName);
+				switch (value.type) {
+				case Value.Type.Number:
+					return Tab (indentLevel, value.numberValue.ToString());
+				case Value.Type.String:
+					return Tab(indentLevel, String.Format("\"{0}\"", value.stringValue));
+				case Value.Type.Bool:
+					return Tab (indentLevel, value.boolValue.ToString());
+				case Value.Type.Variable:
+					return Tab (indentLevel, value.variableName);
+				case Value.Type.Null:
+					return Tab (indentLevel, "(null)");
 				}
 				throw new ArgumentException ();
-
 			}
 		}
 
 		// Expressions are things like "1 + 2 * 5 / 2 - 1"
 		// Expression = Expression Operator Expression
+		// Expression = Identifier ( Expression [, Expression]* )
 		// Expression = Value
-		// TODO: operator precedence; currently expressions are limited to nothing more
-		// complex than "1 + 1"
 		internal class Expression : ParseNode {
 
 			internal enum Type {
 				Value,
-				Compound
+				FunctionCall
 			}
 
 			internal Type type;
 
-			internal Value value;
+			internal ValueNode value;
 			// - or -
-			internal Expression leftHand;
-			internal Operator operation;
-			internal Expression rightHand;
+			internal FunctionInfo function;
+			internal List<Expression> parameters;
 
-			internal Expression(ParseNode parent, Value value) : base(parent, null) {
+			internal Expression(ParseNode parent, ValueNode value) : base(parent, null) {
 				this.type = Type.Value;
 				this.value = value;
 			}
 
-			internal Expression(ParseNode parent, Expression lhs, Operator op, Expression rhs) : base(parent,null) {
-				type = Type.Compound;
-				leftHand = lhs;
-				operation = op;
-				rightHand = rhs;
+			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters) : base(parent, null) {
+				type = Type.FunctionCall;
+				this.function = function;
+				this.parameters = parameters;
 			}
 
 			internal static Expression Parse(ParseNode parent, Parser p) {
@@ -708,11 +907,21 @@ namespace Yarn {
 				Queue<Token> _expressionRPN = new Queue<Token> ();
 				var operatorStack = new Stack<Token>();
 
+				// used for keeping count of parameters for each function
+				var functionStack = new Stack<Token> (); 
+
 				var allValidTokenTypes = new List<TokenType>(Operator.operatorTypes);
 				allValidTokenTypes.Add(TokenType.Number);
 				allValidTokenTypes.Add(TokenType.Variable);
+				allValidTokenTypes.Add(TokenType.String);
 				allValidTokenTypes.Add(TokenType.LeftParen);
 				allValidTokenTypes.Add(TokenType.RightParen);
+				allValidTokenTypes.Add(TokenType.Identifier);
+				allValidTokenTypes.Add(TokenType.Comma);
+				allValidTokenTypes.Add(TokenType.True);
+				allValidTokenTypes.Add(TokenType.False);
+
+				Token lastToken = null;
 
 				// Read all the contents of the expression
 				while (p.NextSymbolIs(allValidTokenTypes.ToArray())) {
@@ -720,14 +929,85 @@ namespace Yarn {
 					Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
 
 					if (nextToken.type == TokenType.Number ||
-						nextToken.type == TokenType.Variable) {
+					    nextToken.type == TokenType.Variable ||
+						nextToken.type == TokenType.String ||
+						nextToken.type == TokenType.True ||
+						nextToken.type == TokenType.False) {
 
 						// Primitive values go straight onto the output
-						_expressionRPN.Enqueue(nextToken);
-						continue;
+						_expressionRPN.Enqueue (nextToken);
+					} else if (nextToken.type == TokenType.Identifier) {
+						operatorStack.Push (nextToken);
+						functionStack.Push (nextToken);
+
+						// next token must be a left paren, so process that immediately
+						nextToken = p.ExpectSymbol (TokenType.LeftParen);
+						// enter that sub-expression
+						operatorStack.Push (nextToken);
+
+					} else if (nextToken.type == TokenType.Comma) {
+
+						// Resolve this sub-expression before moving on to the
+						// next parameter
+						try {
+							// pop operators until we reach a left paren
+							while (operatorStack.Peek().type != TokenType.LeftParen) {
+								_expressionRPN.Enqueue(operatorStack.Pop());
+							}
+						} catch (InvalidOperationException) {
+							// we reached the end of the stack prematurely
+							// this means unbalanced parens!
+							throw ParseException.Make(nextToken, "Error parsing expression: " +
+								"unbalanced parentheses");
+						}
+
+						// We expect the top of the stack to now contain the left paren that 
+						// began the list of parameters
+						if (operatorStack.Peek().type != TokenType.LeftParen) {
+							throw ParseException.Make (operatorStack.Peek (), "Expression parser got " +
+								"confused dealing with a function");
+						}
+
+						// The next token is not allowed to be a right-paren or a comma
+						// (that is, you can't say "foo(2,,)")
+						if (p.NextSymbolIs(TokenType.RightParen, TokenType.Comma)) {
+							throw ParseException.Make (p.tokens.Peek(), "Expected expression");
+						}
+
+						// Find the closest function on the stack
+						// and increment the number of parameters
+						functionStack.Peek().parameterCount++;
 
 					} else if (Operator.IsOperator(nextToken.type)) {
 						// This is an operator
+
+						// If this is a Minus, we need to determine if it's a 
+						// unary minus or a binary minus.
+						// Unary minus looks like this: "-1"
+						// Binary minus looks like this: "2 - 3"
+						// Things get complex when we say stuff like "1 + -1".
+						// But it's easier when we realise that a minus
+						// is ONLY unary when the last token was a left paren,
+						// an operator, or it's the first token.
+
+						if (nextToken.type == TokenType.Minus) {
+
+							if (lastToken == null || 
+								lastToken.type == TokenType.LeftParen ||
+								Operator.IsOperator(lastToken.type)) {
+
+								// This is actually a unary minus.
+								nextToken.type = TokenType.UnaryMinus;
+							}
+						}
+
+						// We cannot assign values inside an expression. That is,
+						// saying "$foo = 2" in an express does not assign $foo to 2
+						// and then evaluate to 2. Instead, Yarn defines this
+						// to mean "$foo == 2"
+						if (nextToken.type == TokenType.EqualToOrAssign) {
+							nextToken.type = TokenType.EqualTo;
+						}
 
 						// O1 = this operator
 						// O2 = the token at the top of the stack
@@ -741,9 +1021,15 @@ namespace Yarn {
 						operatorStack.Push(nextToken);
 
 					} else if (nextToken.type == TokenType.LeftParen) {
+
+						// Record that we have entered a paren-delimited
+						// subexpression
 						operatorStack.Push(nextToken);
 						
 					} else if (nextToken.type == TokenType.RightParen) {
+
+						// We're leaving a subexpression; time to resolve the
+						// order of operations that we saw in between the parens.
 
 						try {
 							// pop operators until we reach a left paren
@@ -754,10 +1040,32 @@ namespace Yarn {
 							operatorStack.Pop();
 						} catch (InvalidOperationException) {
 							// we reached the end of the stack prematurely
+							// this means unbalanced parens!
 							throw ParseException.Make(nextToken, "Error parsing expression: unbalanced parentheses");
 						}
 
+						if (operatorStack.Peek().type == TokenType.Identifier) {
+							// This whole paren-delimited subexpression is actually
+							// a function call
+
+							// If the last token was a left-paren, then this
+							// was a function with no parameters; otherwise, we 
+							// have an additional parameter (on top of the ones we counted
+							// while encountering commas)
+
+							if (lastToken.type != TokenType.LeftParen) {
+								functionStack.Peek ().parameterCount++;
+							}
+
+							_expressionRPN.Enqueue(operatorStack.Pop());
+							functionStack.Pop ();
+						}
+
 					}
+
+					// Record this as the last token we saw; we'll use
+					// this to figure out if minuses are unary or not
+					lastToken = nextToken;
 
 				}
 
@@ -780,28 +1088,55 @@ namespace Yarn {
 					var next = _expressionRPN.Dequeue();
 					if (Operator.IsOperator(next.type)) {
 
+						// This is an operation
+
 						var info = Operator.InfoForOperator(next.type);
 						if (evaluationStack.Count < info.arguments) {
-							throw ParseException.Make(next, "Error parsing expression: not enough arguments for operator "+next.type.ToString());
+							throw ParseException.Make(next, "Error parsing expression: not enough " +
+								"arguments for operator "+next.type.ToString());
 						}
-						Expression lhs = null, rhs = null;
 
-						if (info.arguments == 1) {
-							rhs = evaluationStack.Pop();
-						} else if (info.arguments == 2) {
-							rhs = evaluationStack.Pop();
-							lhs = evaluationStack.Pop();
-						} else {
-							string error = string.Format("Error parsing expression: Unsupported number of parameters for operator {0} ({1})",
-								next.type.ToString(),
-								info.arguments
+						var parameters = new List<Expression> ();
+
+						for (int i = 0; i < info.arguments; i++) {
+							parameters.Add (evaluationStack.Pop ());
+						}
+						parameters.Reverse ();
+
+						var operatorFunc = p.library.GetFunction (next.type.ToString());
+
+						var expr = new Expression (parent, operatorFunc, parameters);
+
+						evaluationStack.Push(expr);
+					} else if (next.type == TokenType.Identifier) {
+						// This is a function call
+						var info = p.library.GetFunction(next.value as String);
+
+						// Ensure that this call has the right number of params
+						if (info.IsParameterCountCorrect(next.parameterCount) == false) {
+							string error = string.Format("Error parsing expression: " +
+								"Unsupported number of parameters for function {0} (expected {1}, got {2})",
+								next.value as String,
+								info.paramCount,
+								next.parameterCount
 							);
 							throw ParseException.Make(next, error);
 						}
-						var expr = new Expression(parent, lhs, new Operator(parent, next.type), rhs);
-						evaluationStack.Push(expr);
+
+						var parameterList = new List<Expression> ();
+						for (int i = 0; i < next.parameterCount; i++) {
+							parameterList.Add (evaluationStack.Pop());
+						}
+						parameterList.Reverse ();
+
+						var expr = new Expression (parent, info, parameterList);
+
+						evaluationStack.Push (expr);
+
 					} else {
-						Value v = new Value(parent, next);
+
+						// This is a raw value
+						var v = new ValueNode(parent, next);
 						Expression expr = new Expression(parent, v);
 						evaluationStack.Push(expr);
 
@@ -810,7 +1145,8 @@ namespace Yarn {
 				// We should now have a single expression in this stack, which is the root
 				// of the expression's tree. If we have more than one, then we have a problem.
 				if (evaluationStack.Count != 1) {
-					throw ParseException.Make(firstToken, "Error parsing expression (stack did not reduce correctly)");
+					throw ParseException.Make(firstToken, "Error parsing expression " +
+						"(stack did not reduce correctly)");
 				}
 
 				// Return it
@@ -846,33 +1182,28 @@ namespace Yarn {
 				}
 
 				return false;
-
-			
 			}
-
 
 			internal override string PrintTree (int indentLevel)
 			{
-				
+				var stringBuilder = new StringBuilder ();
 				switch (type) {
 				case Type.Value:
 					return value.PrintTree (indentLevel);
-				case Type.Compound:
-					var stringBuilder = new StringBuilder ();
-
-					stringBuilder.Append (Tab (indentLevel, "Expression: {"));
-
-					if (leftHand != null)
-						stringBuilder.Append (leftHand.PrintTree (indentLevel + 1));
-
-					stringBuilder.Append (operation.PrintTree (indentLevel + 1));
-
-					if (rightHand != null)
-						stringBuilder.Append (rightHand.PrintTree (indentLevel + 1));
+				case Type.FunctionCall:
 					
-					stringBuilder.Append (Tab (indentLevel, "}"));
+					if (parameters.Count == 0) {
+						stringBuilder.Append(Tab(indentLevel, "Function call to " + function.name + " (no parameters)"));
+					} else {
+						stringBuilder.Append(Tab(indentLevel, "Function call to " + function.name + " (" +parameters.Count+" parameters) {"));
+						foreach (var param in parameters) {
+							stringBuilder.Append(param.PrintTree(indentLevel+1));
+						}
+						stringBuilder.Append(Tab(indentLevel, "}"));
+					}
+					return stringBuilder.ToString();
 
-					return stringBuilder.ToString ();
+
 				}
 
 				return Tab(indentLevel, "<error printing expression!>");
@@ -929,9 +1260,9 @@ namespace Yarn {
 			internal TokenType operatorType { get; private set; }
 
 			internal enum Associativity {
-				Left,
-				Right,
-				None
+				Left, // resolve leftmost operand first
+				Right, // resolve rightmost operand first
+				None // special-case (like "(", ")", ","
 			}
 
 			// Info used during expression parsing
@@ -939,7 +1270,7 @@ namespace Yarn {
 				internal Associativity associativity;
 				internal int precedence;
 				internal int arguments;
-				internal OperatorInfo(Associativity associativity, int precedence, int arguments) {
+				internal OperatorInfo(Associativity associativity, int precedence, int arguments) {					
 					this.associativity = associativity;
 					this.precedence = precedence;
 					this.arguments = arguments;
@@ -951,7 +1282,14 @@ namespace Yarn {
 					throw new ParseException (op.ToString () + " is not a valid operator");
 				}
 
+				// Determine the precendence, associativity and
+				// number of operands that each operator has.
 				switch (op) {
+
+				case TokenType.Not:
+				case TokenType.UnaryMinus:
+					return new OperatorInfo (Associativity.Right, 30, 1);
+
 				case TokenType.Multiply:
 				case TokenType.Divide:
 					return new OperatorInfo(Associativity.Left, 20,2);
@@ -987,6 +1325,10 @@ namespace Yarn {
 			internal static  TokenType[] operatorTypes {
 				get {
 					return new TokenType[] {
+
+						TokenType.Not,
+						TokenType.UnaryMinus,
+
 						TokenType.Add,
 						TokenType.Minus,
 						TokenType.Divide,
@@ -1002,7 +1344,7 @@ namespace Yarn {
 
 						TokenType.And,
 						TokenType.Or,
-						TokenType.Not,
+
 						TokenType.Xor
 					};
 				}
@@ -1027,9 +1369,12 @@ namespace Yarn {
 		// we parse
 		Queue<Token> tokens;
 
+		Library library;
+
 		// Take whatever we were given and make a queue out of it
-		internal Parser(ICollection<Token> tokens) {
+		internal Parser(ICollection<Token> tokens, Library library) {
 			this.tokens = new Queue<Token>(tokens);
+			this.library = library;
 		}
 
 		internal Node Parse() {
@@ -1096,26 +1441,6 @@ namespace Yarn {
 
 			throw ParseException.Make(t, validTypes);
 		}
-
-		// The next two methods allow us to backtrack.
-		// To speculatively parse some grammar, you
-		// use Fork() to copy the current state of the 
-		// parser, try to parse using this new temp parser, 
-		// and if you catch a ParseException, no harm done.
-		// But if you DON'T, then parsing succeeded, so use
-		// MergeWithParser to grab the temporary parser's state
-		// so you can carry from that point
-
-		// Create a copy of ourselves in our current state
-		Parser Fork() {
-			return new Parser (this.tokens.ToArray());
-		}
-			
-		// Take this other parser's state and use that
-		void MergeWithParser(Parser p) {
-			this.tokens = p.tokens;
-		}
-
 	}
 
 

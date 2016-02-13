@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -39,14 +39,16 @@ namespace Yarn
 			Console.WriteLine ("YarnSpinner: Executes Yarn dialog files.");
 			Console.WriteLine ();
 			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=node] [-s=<start>] [-v<argname>=<value>] <inputfile>");
+			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-r=<run times>] [-s=<start>] [-v<argname>=<value>] <inputfile>");
 			Console.WriteLine ();
 			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
 			Console.WriteLine ("\t-p: Show the parse tree and exit.");
 			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
-			Console.WriteLine ("\t-s: Start at the given node, instead of the default of '" + Dialogue.DEFAULT_START + "'.");
+			Console.WriteLine ("\t-s: Start at the given node, instead of the default ('" + Dialogue.DEFAULT_START + "').");
 			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
-			Console.WriteLine ("\t-o: Only consider node <node>.");
+			Console.WriteLine ("\t-o: Only consider the node named <node>.");
+			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
+			Console.WriteLine ("\t-d: Show debugging information.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
 
 
@@ -63,6 +65,8 @@ namespace Yarn
 			bool showParseTree = false;
 			bool waitForLines = false;
 			string onlyConsiderNode = null;
+			bool showDebugging = false;
+			int runTimes = 1;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -110,15 +114,33 @@ namespace Yarn
 					}
 				}
 
+				// Handle 'run times' parameter
+				if (arg.IndexOf("-r=") != -1) {
+					var argArray = arg.Split ('=');
+					if (argArray.Length != 2) {
+						ShowHelpAndExit ();
+					} else {
+						runTimes = int.Parse (argArray [1]);
+						continue;
+					}
+
+				}
+
+
 				switch (arg) {
 				case "-t":
 					showTokens = true;
+					showDebugging = true;
 					break;
 				case "-p":
 					showParseTree = true;
+					showDebugging = true;
 					break;
 				case "-w":
 					waitForLines = true;
+					break;
+				case "-d":
+					showDebugging = true;
 					break;
 				case "-h":
 					ShowHelpAndExit ();
@@ -149,23 +171,52 @@ namespace Yarn
 
 			// load the default variables we got on the command line
 			foreach (var variable in defaultVariables) {
-				
+
 				impl.SetNumber (variable.Key, variable.Value);
 			}
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
-			dialogue.LogDebugMessage = delegate(string message) {
-				Console.WriteLine ("Debug: " + message);
-			};
+
+
+			// Add some methods for testing
+			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
+				var f1 = parameters[0].AsNumber;
+				var f2 = parameters[1].AsNumber;
+				var f3 = parameters[2].AsNumber;
+
+				return f1+f2+f3;
+			});
+
+			dialogue.library.RegisterFunction ("last_value", -1, delegate(Value[] parameters) {
+				// return the last value
+				return parameters[parameters.Length-1];
+			});
+
+			dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
+				return (int)parameters[0].AsNumber % 2 == 0;
+			});
+
+			// If debugging is enabled, log debug messages; otherwise, ignore them
+			if (showDebugging) {
+				dialogue.LogDebugMessage = delegate(string message) {
+					Console.WriteLine ("Debug: " + message);
+				};
+			} else {
+				dialogue.LogDebugMessage = delegate(string message) {};
+			}
+
 			dialogue.LogErrorMessage = delegate(string message) {
 				Console.WriteLine ("ERROR: " + message);
 			};
 
-			for (var count = 1; count <= 2; count++) {
-				if (showTokens == false && showParseTree == false) {
-					// Run the conversation
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+
+
+			if (showTokens == false && showParseTree == false) {
+				// Run the conversation
+
+				for (int run = 0; run < runTimes; run++) {
 					foreach (var step in dialogue.Run (startNode)) {
 
 						// It can be one of three types: a line to show, options
@@ -184,6 +235,8 @@ namespace Yarn
 					}
 					impl.DialogueComplete ();
 				}
+
+
 			}
 
 		}
@@ -247,7 +300,7 @@ namespace Yarn
 			{
 				Console.WriteLine("Error: " + error);
 			}
-			
+
 			public void HandleDebugMessage (string message)
 			{
 				Console.WriteLine("Debug: " + message);
@@ -272,3 +325,4 @@ namespace Yarn
 
 	}
 }
+

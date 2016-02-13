@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "<<if $seen_sally is 0>>\nPlayer: Hey, Sally.\nSally: Oh, hey.\nSally: You kind of snuck up on me.\n\n<<set $seen_sally to 1>>\n<<else>>\nPlayer: Hey.\nSally: Hey.\n<<endif>>\n\n<<if not visited(\"Watch\")>>\n[[Anything exciting happen on your watch?|Watch]]\n<<endif>>\n[[See you later.|Exit]]",
+		"position": {
+			"x": 505,
+			"y": 192
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Watch",
+		"tags": "",
+		"body": "Sally: No, not really.",
+		"position": {
+			"x": 672,
+			"y": 474
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Exit",
+		"tags": "",
+		"body": "Sally: Bye.",
+		"position": {
+			"x": 340,
+			"y": 478
+		},
+		"colorID": 6
+	}
+]

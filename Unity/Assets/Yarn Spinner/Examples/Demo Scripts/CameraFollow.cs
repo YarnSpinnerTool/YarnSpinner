@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 The MIT License (MIT)
 
@@ -24,30 +24,33 @@ SOFTWARE.
 
 */
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
+using UnityEngine;
+using System.Collections;
 
-// Information about this assembly is defined by the following attributes. 
-// Change them to the values specific to your project.
+namespace Yarn.Unity.Example {
+	
+	public class CameraFollow : MonoBehaviour {
 
-[assembly: AssemblyTitle ("YarnSpinnerConsole")]
-[assembly: AssemblyDescription ("A command-line tool for running Yarn dialogue files.")]
-[assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Secret Lab")]
-[assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("© 2015 Jon Manning")]
-[assembly: AssemblyTrademark ("")]
-[assembly: AssemblyCulture ("")]
+		public Transform target;
 
-// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision,
-// and "{Major}.{Minor}.{Build}.*" will update just the revision.
+		public float minPosition = -5.3f;
+		public float maxPosition = 5.3f;
+		
+		public float moveSpeed = 1.0f;
 
-[assembly: AssemblyVersion("1.0.*")]
+		// Update is called once per frame
+		void Update () {
+			if (target == null) {
+				return;
+			}
+			var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
-// The following attributes are used to specify the signing key for the assembly, 
-// if desired. See the Mono documentation for more information about signing.
+			newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+			newPosition.y = transform.position.y;
+			newPosition.z = transform.position.z;
 
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
+			transform.position = newPosition;
+		}
+	}
+}
 
