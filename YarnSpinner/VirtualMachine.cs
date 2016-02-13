@@ -199,9 +199,19 @@ namespace Yarn
 				var functionName = (string)i.operandA;
 				var function = dialogue.library.GetFunction (functionName);
 				{
+
+					var paramCount = function.paramCount;
+
+					// If this function takes "-1" parameters, it is variadic.
+					// Expect the compiler to have placed the number of parameters
+					// actually passed at the top of the stack.
+					if (paramCount == -1) {
+						paramCount = (int)state.PopValue ().AsNumber;
+					}
+
 					// Get the parameters, which were pushed in reverse
-					Value[] parameters = new Value[function.paramCount];
-					for (int param = function.paramCount - 1; param >= 0; param--) {
+					Value[] parameters = new Value[paramCount];
+					for (int param = paramCount - 1; param >= 0; param--) {
 						parameters [param] = state.PopValue ();
 					}
 

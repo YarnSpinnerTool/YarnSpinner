@@ -538,6 +538,12 @@ namespace Yarn
 				foreach (var parameter in expression.parameters) {
 					GenerateCode (node, parameter);
 				}
+				// If this function has a variable number of parameters, put
+				// the number of parameters that were passed onto the stack
+				if (expression.function.paramCount == -1) {
+					Emit (node, ByteCode.PushNumber, expression.parameters.Count);
+				}
+
 				// And then call the function
 				Emit (node, ByteCode.CallFunc, expression.function.name);
 				break;
