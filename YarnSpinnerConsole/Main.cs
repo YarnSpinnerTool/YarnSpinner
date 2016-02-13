@@ -213,6 +213,13 @@ namespace Yarn
 			});
 
 
+			// Register a function to let test scripts register how many
+			// options they expect to send
+			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Value[] parameters) {
+				impl.numberOfExpectedOptions = (int)parameters [0].AsNumber;
+				impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
+			});
+
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
 				dialogue.LogDebugMessage = delegate(string message) {
@@ -274,6 +281,14 @@ namespace Yarn
 
 			Yarn.MemoryVariableStore variableStore;
 
+			// The number of options we expect to see when we next
+			// receive options. -1 means "don't care"
+			public int numberOfExpectedOptions = -1;
+
+			// The index of the option to automatically select, starting from 0.
+			// -1 means "do not automatically select an option".
+			public int autoSelectOptionNumber = -1;
+
 			public ConsoleRunnerImplementation(bool waitForLines = false) {
 				this.variableStore = new MemoryVariableStore();
 				this.waitForLines = waitForLines;
@@ -289,6 +304,34 @@ namespace Yarn
 
 			public void RunOptions (Options optionsGroup, OptionChooser optionChooser)
 			{
+
+				// Check to see if the number of expected options
+				// is what we're expecting to see
+				if (numberOfExpectedOptions != -1 &&
+					optionsGroup.options.Count != numberOfExpectedOptions) {
+					// TODO: Output diagnostic info here
+					Console.WriteLine (string.Format("ERROR: Expected {0} options, but received {1}", numberOfExpectedOptions, optionsGroup.options.Count));
+					Console.WriteLine ("Received options were:");
+					foreach (string option in optionsGroup.options) {
+						Console.WriteLine (" - " + option);
+					}
+					Environment.Exit (1);
+				}
+
+				// If we were told to automatically select an option, do so
+				if (autoSelectOptionNumber != -1) {
+					optionChooser (autoSelectOptionNumber);
+
+					autoSelectOptionNumber = -1;
+
+					return;
+
+				}
+
+				// Reset the expected options counter
+				numberOfExpectedOptions = -1;
+
+
 				Console.WriteLine("Options:");
 				for (int i = 0; i < optionsGroup.options.Count; i++) {
 					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
