@@ -51,9 +51,9 @@
     <Compile Include="Loader.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Library.cs" />
-    <Compile Include="CodeGenerator.cs" />
     <Compile Include="VirtualMachine.cs" />
     <Compile Include="TreeRunner.cs" />
+    <Compile Include="Compiler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

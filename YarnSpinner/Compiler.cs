@@ -221,12 +221,12 @@ namespace Yarn
 	}
 
 
-	internal class CodeGenerator
+	internal class Compiler
 	{
 		
 		internal Program program { get; private set; }
 
-		internal CodeGenerator ()
+		internal Compiler ()
 		{
 			program = new Program ();
 		}
