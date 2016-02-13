@@ -907,6 +907,7 @@ namespace Yarn {
 				allValidTokenTypes.Add(TokenType.Comma);
 				allValidTokenTypes.Add(TokenType.True);
 				allValidTokenTypes.Add(TokenType.False);
+				allValidTokenTypes.Add(TokenType.Null);
 
 				Token lastToken = null;
 
@@ -919,7 +920,8 @@ namespace Yarn {
 					    nextToken.type == TokenType.Variable ||
 						nextToken.type == TokenType.String ||
 						nextToken.type == TokenType.True ||
-						nextToken.type == TokenType.False) {
+						nextToken.type == TokenType.False ||
+						nextToken.type == TokenType.Null) {
 
 						// Primitive values go straight onto the output
 						_expressionRPN.Enqueue (nextToken);
