@@ -7,13 +7,15 @@ namespace YarnSpinnerTests
 	public class Test
 	{
 
-
+		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
 
 		[SetUp()]
 		public void Init()
 		{
+			var testFolder = Environment.GetEnvironmentVariable ("TEST_DIR");
+
 			var newWorkingDir = 
-				System.IO.Path.Combine (Environment.CurrentDirectory, "../../Tests/");
+				System.IO.Path.Combine (Environment.CurrentDirectory, testFolder);
 			Environment.CurrentDirectory = newWorkingDir;
 		}
 
@@ -21,7 +23,7 @@ namespace YarnSpinnerTests
 		public void TestCase ()
 		{
 
-			var d = new Yarn.Dialogue()
+			var d = new Yarn.Dialogue (storage);
 
 		}
 	}

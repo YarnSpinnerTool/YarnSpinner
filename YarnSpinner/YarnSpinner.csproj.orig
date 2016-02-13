@@ -33,10 +33,17 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+<<<<<<< HEAD
     <ConsolePause>False</ConsolePause>
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot; " workingdir="${SolutionDir}" />
+=======
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot;" workingdir="${SolutionDir}" />
+>>>>>>> master
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
