@@ -146,12 +146,6 @@ namespace Yarn {
 				return visitedNodeNames.Contains(name);
 			});
 
-			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
-				if (parameters[0].AsBool == false) {
-					stopExecuting = true;
-				}
-			});
 		}
 
 		// Load a file from disk.

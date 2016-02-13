@@ -1,0 +1,5 @@
+// Tests a single line
+
+This is a single line of dialogue.
+
+<<assert(true)>>

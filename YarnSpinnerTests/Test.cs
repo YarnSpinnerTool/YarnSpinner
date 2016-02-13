@@ -12,10 +12,8 @@ namespace YarnSpinnerTests
 		[SetUp()]
 		public void Init()
 		{
-			var testFolder = Environment.GetEnvironmentVariable ("TEST_DIR");
-
 			var newWorkingDir = 
-				System.IO.Path.Combine (Environment.CurrentDirectory, testFolder);
+				System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
 			Environment.CurrentDirectory = newWorkingDir;
 		}
 
@@ -24,6 +22,7 @@ namespace YarnSpinnerTests
 		{
 
 			var d = new Yarn.Dialogue (storage);
+
 
 		}
 	}
