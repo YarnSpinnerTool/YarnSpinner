@@ -420,9 +420,12 @@ namespace Yarn {
 				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
 				p.ExpectSymbol(TokenType.EndCommand);
 
-				// If the first token is the special function "assert",
-				// evaluate it as an expression
-				if (commandTokens.Count > 0 && (string)commandTokens[0].value == "assert") {
+				// If the first token is an identifier and the second is
+				// a left paren, it may be a function call expression;
+				// evaluate it as such
+				if (commandTokens.Count > 1 && 
+					commandTokens[0].type == TokenType.Identifier &&
+					commandTokens[1].type == TokenType.LeftParen) {			
 					var parser = new Parser(commandTokens, p.library);
 					var expression = Expression.Parse(this, parser);
 					type = Type.Expression;
