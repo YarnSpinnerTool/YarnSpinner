@@ -4,11 +4,20 @@ using System.Collections.Generic;
 namespace Yarn
 {
 	internal class State {
-		public int programCounter = 0;
+
+		// The name of the node that we're currently in
 		public string currentNode;
 
-		public Stack<Value> stack = new Stack<Value>();
+		// The instruction number in the current node
+		public int programCounter = 0;
 
+		// List of options, where each option = <string id, destination node>
+		public List<KeyValuePair<int,string>> currentOptions = new List<KeyValuePair<int, string>>();
+
+		// The value stack
+		private Stack<Value> stack = new Stack<Value>();
+
+		// Methods for working with the stack
 		public void PushValue(object o) {
 			stack.Push (new Value(o));
 		}
@@ -19,6 +28,10 @@ namespace Yarn
 
 		public Value PeekValue() {
 			return stack.Peek ();
+		}
+
+		public void ClearStack() {
+			stack.Clear ();
 		}
 	}
 
@@ -100,13 +113,16 @@ namespace Yarn
 
 		public  string ToString(Program p, Library l) {
 
+			// Labels are easy: just dump out the name
 			if (operation == ByteCode.Label) {
 				return operandA + ":";
 			}
 
+			// Convert the operands to strings
 			var opAString = operandA != null ? operandA.ToString () : "";
 			var opBString = operandB != null ? operandB.ToString () : "";
 
+			// Generate a comment, if the instruction warrants it
 			string comment = "";
 
 			// Stack manipulation comments
@@ -115,6 +131,7 @@ namespace Yarn
 
 			switch (operation) {
 
+			// These operations all push a single value to the stack
 			case ByteCode.PushBool:
 			case ByteCode.PushNull:
 			case ByteCode.PushNumber:
@@ -124,6 +141,7 @@ namespace Yarn
 				pushes = 1;
 				break;
 
+			// Functions pop 0 or more values, and pop 0 or 1 
 			case ByteCode.CallFunc:
 				var function = l.GetFunction ((string)operandA);
 
@@ -135,21 +153,38 @@ namespace Yarn
 
 				break;
 			
+			// Pop always pops a single value
 			case ByteCode.Pop:
 				pops = 1;
 				break;
+			
+			// Switching to a different node will always clear the stack
+			case ByteCode.RunNode:
+				comment += "Clears stack";
+				break;
 			}
 
-			if (pops > 0 || pushes > 0)
+			// If we had any pushes or pops, report them
+
+			if (pops > 0 && pushes > 0)
 				comment += string.Format ("Pops {0}, Pushes {1}", pops, pushes);
+			else if (pops > 0)
+				comment += string.Format ("Pops {0}", pops);
+			else if (pushes > 0)
+				comment += string.Format ("Pushes {0}", pushes);
 
 			// String lookup comments
 			switch (operation) {
 			case ByteCode.PushString:
 			case ByteCode.RunLine:
 			case ByteCode.AddOption:
-				var text = p.GetString((int)operandA);
-				comment += string.Format ("\"{0}\"", text);
+
+				// Add the string for this option, if it has one
+				if ((int)operandA != -1) {
+					var text = p.GetString((int)operandA);
+					comment += string.Format ("\"{0}\"", text);
+				}
+
 				break;
 			
 			}
@@ -211,7 +246,8 @@ namespace Yarn
 				GenerateCode (compiledNode, statement);
 			}
 
-			// If this compiled node has no AddOption instructions, then stop
+			// Does this node have any way to jump to another node?
+			// i.e. Does it have any AddOption instructions?
 			var hasOptions = false;
 			foreach (var instruction in compiledNode.instructions) {
 				if (instruction.operation == ByteCode.AddOption) {
@@ -220,9 +256,11 @@ namespace Yarn
 				}
 			}
 
+			// If this compiled node has no AddOption instructions, then stop at the end
 			if (hasOptions == false) {
 				Emit (compiledNode, ByteCode.Stop);
 			} else {
+				// Otherwise, show the accumulated nodes and then jump to the selected node
 				Emit (compiledNode, ByteCode.ShowOptions);
 				Emit (compiledNode, ByteCode.RunNode);
 			}
