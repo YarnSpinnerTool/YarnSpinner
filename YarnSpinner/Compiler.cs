@@ -329,11 +329,14 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.CustomCommand statement) {
 
+			// If this command is an evaluable expression, evaluate it
 			if (statement.expression != null) {
 				GenerateCode (node, statement.expression);
 			} else if (statement.clientCommand == "stop") {
+				// If it's the special command "stop", emit the Stop bytecode
 				Emit (node, ByteCode.Stop);
 			} else {
+				// Emit the code that passes the command to the client
 				Emit (node, ByteCode.RunCommand, statement.clientCommand);
 			}
 

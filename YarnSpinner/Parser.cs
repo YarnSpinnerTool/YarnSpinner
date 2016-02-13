@@ -412,7 +412,7 @@ namespace Yarn {
 			internal CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
 
 				// Custom commands can have ANY token in them. Read them all until we hit the
-				// end command.
+				// end command token.
 				p.ExpectSymbol(TokenType.BeginCommand);
 				var commandTokens = new List<Token>();
 				do {
