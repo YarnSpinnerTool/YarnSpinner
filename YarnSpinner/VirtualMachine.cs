@@ -239,11 +239,9 @@ namespace Yarn
 				var topValue = state.PeekValue ();
 				var destinationVariableName = (string)i.operandA;
 
-				if (topValue.type == Value.Type.Number) {
-					dialogue.continuity.SetNumber (destinationVariableName, topValue.AsNumber);
-				} else {
-					throw new NotImplementedException ("Only numbers can be stored in variables.");
-				}
+
+				// TODO: Handle storing values other than numbers
+				dialogue.continuity.SetNumber (destinationVariableName, topValue.AsNumber);
 
 				break;
 			case ByteCode.Stop:
