@@ -153,13 +153,13 @@ namespace Yarn
 			case ByteCode.PushNumber:
 
 				// Pushes a number onto the stack.
-				state.PushValue ((float)i.operandA);
+				state.PushValue (Convert.ToSingle(i.operandA));
 
 				break;
 			case ByteCode.PushBool:
 
 				// Pushes a boolean value onto the stack.
-				state.PushValue ((bool)i.operandA);
+				state.PushValue (Convert.ToBoolean(i.operandA));
 
 				break;
 			case ByteCode.PushNull:
