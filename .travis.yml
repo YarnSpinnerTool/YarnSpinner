@@ -1,10 +1,9 @@
 language: csharp
 solution: YarnSpinner.sln
 install:
-	- nuget restore YarnSpinner.sln
-	- nuget install NUnit.Runners -Version 3.0.1 -OutputDirectory testrunner	
+  - nuget restore YarnSpinner.sln
+  - nuget install NUnit.Runners -Version 3.0.1 -OutputDirectory testrunner	
 script:
   - xbuild /p:Configuration=Release YarnSpinner.sln
   - mono ./testrunner/NUnit.Console.3.0.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
   - ./run-tests.sh
-  
