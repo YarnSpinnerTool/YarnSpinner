@@ -1,3 +1,0 @@
-// Errors
-
-<<set $error to add_three_operands(1,2,3,)>>

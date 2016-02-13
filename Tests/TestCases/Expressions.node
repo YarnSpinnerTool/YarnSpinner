@@ -1,0 +1,18 @@
+// Expression testing
+
+<<set $test to 1>>
+<<assert ($test == 1)>>
+
+// Test unary operators
+
+<<assert (!$test == false)>>
+<<assert (-$test == -1)>>
+<<assert (-$test == 0 - 1)>>
+
+// Test more complex expressions
+<<set $math = 5 * 2 - 2 * -1 >>
+<<assert ($math is 12)>>
+
+
+
+

@@ -1,0 +1,9 @@
+// Testing types
+
+<<assert ("test" == "test")
+
+<<assert ("test" != 1)>>
+
+<<assert ("hi" != "HI")>>
+
+<<assert (1+1+"hi" == "2hi")>>

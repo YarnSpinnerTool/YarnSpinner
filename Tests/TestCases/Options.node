@@ -1,0 +1,13 @@
+// Testing options
+
+// Expect 2 options (the second one in the following group of three
+// will not be run) and select the first one
+<<prepare_for_options(2,0)>>
+
+-> Option 1
+	<<set $selected to 1>>
+-> Option 2 <<if false>>
+-> Option 3
+
+// Check that the stuff attached to Option 1 actually ran
+<<assert($selected == 1)>>
