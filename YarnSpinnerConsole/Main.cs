@@ -202,6 +202,17 @@ namespace Yarn
 				return (int)parameters[0].AsNumber % 2 == 0;
 			});
 
+			// Register the "assert" function, which stops execution if its parameter evaluates to false
+			dialogue.library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+				if (parameters[0].AsBool == false) {
+
+					// TODO: Include file, node and line number
+					dialogue.LogErrorMessage("ASSERTION FAILED");
+					Environment.Exit(1);
+				}
+			});
+
+
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
 				dialogue.LogDebugMessage = delegate(string message) {
@@ -308,7 +319,7 @@ namespace Yarn
 
 			public void DialogueComplete ()
 			{
-				Console.WriteLine("Conversation complete.");
+				// All done
 			}
 
 			public void HandleErrorMessage (string error)

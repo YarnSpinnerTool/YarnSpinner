@@ -33,10 +33,17 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+<<<<<<< HEAD
     <ConsolePause>False</ConsolePause>
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot; " workingdir="${SolutionDir}" />
+=======
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot;" workingdir="${SolutionDir}" />
+>>>>>>> master
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -50,10 +57,8 @@
     <Compile Include="Lexer.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Parser.cs" />
+    <Compile Include="Runner.cs" />
     <Compile Include="Library.cs" />
-    <Compile Include="CodeGenerator.cs" />
-    <Compile Include="VirtualMachine.cs" />
-    <Compile Include="TreeRunner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

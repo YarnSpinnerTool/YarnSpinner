@@ -24,11 +24,6 @@ SOFTWARE.
 
 */
 
-// Uncomment to interpret commands as expressions
-// (ie stuff like << do_something() >> will execute the function do_something, rather
-// than pass the text "do_something()" to the client
-//#define COMMANDS_ARE_EXPRESSIONS
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -425,18 +420,15 @@ namespace Yarn {
 				} while (p.NextSymbolIs(TokenType.EndCommand) == false);
 				p.ExpectSymbol(TokenType.EndCommand);
 
-				#if COMMANDS_ARE_EXPRESSIONS
-				// Attempt to parse this command as an expression
-
-				var parser = new Parser(commandTokens, p.library);
-
-				try {
+				// If the first token is the special function "assert",
+				// evaluate it as an expression
+				if (commandTokens.Count > 0 && (string)commandTokens[0].value == "assert") {
+					var parser = new Parser(commandTokens, p.library);
 					var expression = Expression.Parse(this, parser);
 					type = Type.Expression;
 					this.expression = expression;
-				} catch (Exception) {
-					// Couldn't parse the expression for some reason. Fall back on passing this whole
-					// string to the client.
+				} else {
+					// Otherwise, evaluate it as a command
 					type = Type.ClientCommand;
 
 					var tokenStrings = new List<string>();
@@ -446,16 +438,7 @@ namespace Yarn {
 					this.clientCommand = string.Join(" ", tokenStrings.ToArray());
 
 				}
-				#else
-				type = Type.ClientCommand;
 
-				var tokenStrings = new List<string>();
-				foreach (var token in commandTokens) {
-					tokenStrings.Add(token.value as string);
-				}
-				this.clientCommand = string.Join(" ", tokenStrings.ToArray());
-
-				#endif
 
 
 			}
@@ -925,7 +908,7 @@ namespace Yarn {
 				Token lastToken = null;
 
 				// Read all the contents of the expression
-				while (p.NextSymbolIs(allValidTokenTypes.ToArray())) {
+				while (p.tokens.Count > 0 && p.NextSymbolIs(allValidTokenTypes.ToArray())) {
 
 					Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
 

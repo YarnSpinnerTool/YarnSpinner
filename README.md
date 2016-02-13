@@ -6,6 +6,8 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 > ***Important:*** Yarn Spinner is still under development, and we haven't made our 1.0 release yet. It's *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.
 
+[![Build Status](https://travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)
+
 <img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
 
 > (Image from "[Night in the Woods](http://nightinthewoods.com)" by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
@@ -27,7 +29,7 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 ## Made by Secret Lab!
 
-Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)!
+Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
 
 ## Help Us Make Yarn Spinner!
 

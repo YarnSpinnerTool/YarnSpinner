@@ -56,3 +56,8 @@ Builds/
 *.sketch
 
 Unity/Assets/Yarn Spinner/Code/*.dll
+
+# NUnit test results
+TestResult.xml
+
+packages/

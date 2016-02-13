@@ -1,0 +1,13 @@
+// Tests variable storage.
+
+<<set $foo to 1>>
+
+<<assert($foo == 1)>>
+
+<<set $foo += 1>>
+
+<<assert($foo == 2)>>
+
+<<set $bar = $foo >>
+
+<<assert($bar == $foo)>>
