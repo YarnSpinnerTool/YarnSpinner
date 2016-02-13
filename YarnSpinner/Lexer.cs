@@ -281,8 +281,8 @@ namespace Yarn {
 					indentLevels.Push(newIndentLevel);
 				} else if (newIndentLevel < indentLevels.Peek()) {
 					// We are less indented than the last indent.
-					// We may have indented more than a single indent, though, so
-					// check this against all indents we know about
+					// We may have dedented more than a single indent level, though, so
+					// check this against all indent levels we know about
 					
 					while (newIndentLevel < indentLevels.Peek()) {
 						// We've gone down an indent, holy crap, dedent it!
@@ -347,8 +347,8 @@ namespace Yarn {
 			// Keeps track of how much of the line we have left to parse
 			int columnNumber = lineIndentation;
 
-			// Are we at the start of the line? ie do we disregard rules that
-			// aren't allowed to start a line?
+			// Are we at the start of the line? ie do we disregard token rules that
+			// can't be at the start of a line?
 			bool startOfLine = true;
 
 			// While we have text left to parse in this line..
@@ -492,7 +492,9 @@ namespace Yarn {
 			AddTokenRule(TokenType.ElseIf, "elseif");
 			AddTokenRule(TokenType.Else, "else");
 			AddTokenRule(TokenType.EndIf, "endif");
-			
+
+			// "set" needs following whitespace to avoid matching against 
+			// words like "settings"
 			AddTokenRule(TokenType.Set, "set", requiresFollowingWhitespace:true);
 
 			// Boolean values
