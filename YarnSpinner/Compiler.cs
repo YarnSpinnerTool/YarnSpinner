@@ -329,7 +329,9 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.CustomCommand statement) {
 
-			if (statement.clientCommand == "stop") {
+			if (statement.expression != null) {
+				GenerateCode (node, statement.expression);
+			} else if (statement.clientCommand == "stop") {
 				Emit (node, ByteCode.Stop);
 			} else {
 				Emit (node, ByteCode.RunCommand, statement.clientCommand);
