@@ -6,7 +6,7 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 > ***Important:*** Yarn Spinner is still under development, and we haven't made our 1.0 release yet. It's *probably* fine to use right now, but there are a few bits and pieces that might change between now and first release.
 
-<img src="https://img.shields.io/travis/thesecretlab/YarnSpinner.svg">
+[![Build Status](https://travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)
 
 <img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
 
