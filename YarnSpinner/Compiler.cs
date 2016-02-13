@@ -246,18 +246,25 @@ namespace Yarn
 				GenerateCode (compiledNode, statement);
 			}
 
-			// Does this node have any way to jump to another node?
-			// i.e. Does it have any AddOption instructions?
-			var hasOptions = false;
+			// Does this node end after emitting AddOptions codes
+			// without calling ShowOptions?
+
+			// Note: this only works when we know that we don't have
+			// AddOptions and then Jump up back into the code to run them.
+			// TODO: A better solution would be for the parser to flag
+			// whether a node has Options at the end.
+			var hasRemainingOptions = false;
 			foreach (var instruction in compiledNode.instructions) {
 				if (instruction.operation == ByteCode.AddOption) {
-					hasOptions = true;
-					break;
+					hasRemainingOptions = true;
+				}
+				if (instruction.operation == ByteCode.ShowOptions) {
+					hasRemainingOptions = false;
 				}
 			}
 
-			// If this compiled node has no AddOption instructions, then stop at the end
-			if (hasOptions == false) {
+			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
+			if (hasRemainingOptions == false) {
 				Emit (compiledNode, ByteCode.Stop);
 			} else {
 				// Otherwise, show the accumulated nodes and then jump to the selected node
