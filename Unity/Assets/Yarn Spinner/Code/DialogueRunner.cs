@@ -39,9 +39,6 @@ namespace Yarn.Unity
 		// The JSON files to load the conversation from
 		public TextAsset[] sourceText;
 		
-		// Our conversation engine
-		private Yarn.Dialogue dialogue;
-		
 		// Our variable storage
 		public Yarn.Unity.VariableStorageBehaviour variableStorage;
 		
@@ -55,6 +52,23 @@ namespace Yarn.Unity
 		public bool startAutomatically = true;
 
 		public bool isDialogueRunning { get; private set; }
+
+		// Our conversation engine
+		// Automatically created on first access
+		private Dialogue _dialogue;
+		public Dialogue dialogue {
+			get {
+				if (_dialogue == null) {
+					// Create the main Dialogue runner, and pass our variableStorage to it
+					_dialogue = new Yarn.Dialogue (variableStorage);
+
+					// Set up the logging system.
+					_dialogue.LogDebugMessage = Debug.Log;
+					_dialogue.LogErrorMessage = Debug.LogError;
+				}
+				return _dialogue;
+			}
+		}
 		
 		void Start ()
 		{
@@ -73,12 +87,7 @@ namespace Yarn.Unity
 			// Ensure that the variable storage has the right stuff in it
 			variableStorage.ResetToDefaults ();
 			
-			// Create the main Dialogue runner, and pass our variableStorage to it
-			dialogue = new Yarn.Dialogue (variableStorage);
-			
-			// Set up the logging system.
-			dialogue.LogDebugMessage = Debug.Log;
-			dialogue.LogErrorMessage = Debug.LogError;
+
 
 			// Load all JSON
 			foreach (var source in sourceText) {
