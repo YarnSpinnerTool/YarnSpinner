@@ -63,7 +63,9 @@ namespace Yarn.Unity.Example {
 		
 		// The buttons that let the user choose an option
 		public List<Button> optionButtons;
-		
+
+		public RectTransform gameControlsContainer;
+
 		void Start ()
 		{
 			// Start by hiding the container, line and option buttons
@@ -192,9 +194,14 @@ namespace Yarn.Unity.Example {
 		{
 			Debug.Log ("Dialogue starting!");
 			
-			// Enable the container.
+			// Enable the dialogue controls.
 			if (dialogueContainer != null)
 				dialogueContainer.SetActive(true);
+
+			// Hide the game controls.
+			if (gameControlsContainer != null) {
+				gameControlsContainer.gameObject.SetActive(false);
+			}
 			
 			yield break;
 		}
@@ -204,8 +211,14 @@ namespace Yarn.Unity.Example {
 		{
 			Debug.Log ("Complete!");
 
+			// Hide the dialogue interface.
 			if (dialogueContainer != null)
 				dialogueContainer.SetActive(false);
+
+			// Show the game controls.
+			if (gameControlsContainer != null) {
+				gameControlsContainer.gameObject.SetActive(true);
+			}
 			
 			yield break;
 		}

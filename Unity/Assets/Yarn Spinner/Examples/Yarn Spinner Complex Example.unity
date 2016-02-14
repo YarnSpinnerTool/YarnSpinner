@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Sally
-  scriptToLoad: {fileID: 4900000, guid: b94d5749b2c4646b99ecb6f31d02941f, type: 3}
+  scriptToLoad: {fileID: 0}
   startNode: Sally
 --- !u!212 &463211627
 SpriteRenderer:
@@ -706,6 +706,7 @@ MonoBehaviour:
   - {fileID: 1269959689}
   - {fileID: 2063394888}
   - {fileID: 401260283}
+  gameControlsContainer: {fileID: 0}
 --- !u!114 &627131076
 MonoBehaviour:
   m_ObjectHideFlags: 0

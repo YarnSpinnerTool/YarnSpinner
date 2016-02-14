@@ -29,7 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Yarn.Unity.Example {
-	public class Character : MonoBehaviour {
+	public class PlayerCharacter : MonoBehaviour {
 
 		public float minPosition = -5.3f;
 		public float maxPosition = 5.3f;
@@ -76,17 +76,17 @@ namespace Yarn.Unity.Example {
 				// then start a conversation with the first one
 
 				var allParticipants = 
-					new List<DialogueParticipant>(FindObjectsOfType<DialogueParticipant>());
+					new List<NPC>(FindObjectsOfType<NPC>());
 
-				var target = allParticipants.Find(delegate(DialogueParticipant p) {
-					return string.IsNullOrEmpty(p.startNode) == false && // has a conversation node?
+				var target = allParticipants.Find(delegate(NPC p) {
+					return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
 						(p.transform.position - this.transform.position) // is in range?
 							.magnitude <= interactionRadius;
 				});
 
 				if (target != null) {
 					// Kick off the dialogue at this node.
-					FindObjectOfType<DialogueRunner>().StartDialogue(target.startNode);
+					FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
 				}
 
 

@@ -29,12 +29,15 @@ using System.Collections;
 using UnityEngine.Serialization;
 
 namespace Yarn.Unity.Example {
-	public class DialogueParticipant : MonoBehaviour {
+	public class NPC : MonoBehaviour {
 		
 		public string characterName = "";
 
+		[FormerlySerializedAs("startNode")]
+		public string talkToNode = "";
+
+		[Header("Optional")]
 		public TextAsset scriptToLoad;
-		public string startNode = "";
 
 		
 		// Use this for initialization
