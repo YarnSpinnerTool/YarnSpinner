@@ -61,3 +61,6 @@ Unity/Assets/Yarn Spinner/Code/*.dll
 TestResult.xml
 
 packages/
+
+# Unity Test Tools examples
+Unity/Assets/UnityTestTools/
