@@ -39,7 +39,7 @@ using System.Collections.Generic;
 // and DialogueComplete coroutines; what they do is up to you.
 
 namespace Yarn.Unity.Example {
-	public class DialogueUI : Yarn.Unity.DialogueUIBehaviour
+	public class ExampleDialogueUI : Yarn.Unity.DialogueUIBehaviour
 	{
 		
 		// The object that contains the dialogue and the options.
