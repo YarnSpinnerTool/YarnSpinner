@@ -38,6 +38,8 @@ namespace Yarn.Unity.Example {
 
 		public float interactionRadius = 2.0f;
 
+		public float movementFromButtons {get;set;}
+
 		// Draw the range at which we'll start talking to people.
 		void OnDrawGizmosSelected() {
 			Gizmos.color = Color.blue;
@@ -60,7 +62,10 @@ namespace Yarn.Unity.Example {
 
 			// Move the player, clamping them to within the boundaries 
 			// of the level.
-			var movement = Input.GetAxis("Horizontal") * moveSpeed *Time.deltaTime;
+			var movement = Input.GetAxis("Horizontal");
+			movement += movementFromButtons;
+			movement *= (moveSpeed * Time.deltaTime);
+
 
 			var newPosition = transform.position;
 			newPosition.x += movement;
@@ -71,27 +76,30 @@ namespace Yarn.Unity.Example {
 			// Detect if we want to start a conversation
 
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				// Find all DialogueParticipants, and filter them to
-				// those that have a Yarn start node and are in range; 
-				// then start a conversation with the first one
-
-				var allParticipants = 
-					new List<NPC>(FindObjectsOfType<NPC>());
-
-				var target = allParticipants.Find(delegate(NPC p) {
-					return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
-						(p.transform.position - this.transform.position) // is in range?
-							.magnitude <= interactionRadius;
-				});
-
-				if (target != null) {
-					// Kick off the dialogue at this node.
-					FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
-				}
+				CheckForNearbyNPC ();
+			}
+		}
 
 
+
+		public void CheckForNearbyNPC ()
+		{
+			// Find all DialogueParticipants, and filter them to
+			// those that have a Yarn start node and are in range; 
+			// then start a conversation with the first one
+			var allParticipants = new List<NPC> (FindObjectsOfType<NPC> ());
+			var target = allParticipants.Find (delegate (NPC p) {
+				return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
+				(p.transform.position - this.transform.position)// is in range?
+				.magnitude <= interactionRadius;
+			});
+			if (target != null) {
+				// Kick off the dialogue at this node.
+				FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
 			}
 		}
 	}
+
+
 
 }
