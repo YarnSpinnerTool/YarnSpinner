@@ -1,6 +1,6 @@
-# Yarn Spinner
+<img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
-<img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" style="width: 100px;">
+# Yarn Spinner
 
 **Yarn Spinner** is an interpreter for the [Yarn](https://github.com/infiniteammoinc/Yarn) language, written in C#.
 
@@ -32,6 +32,8 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 ## Made by Secret Lab!
 
 Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
+
+The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent [Rex Smeal](https://twitter.com/RexSmealArt), and is under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Help Us Make Yarn Spinner!
 
