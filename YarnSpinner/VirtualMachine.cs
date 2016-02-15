@@ -6,11 +6,6 @@ namespace Yarn
 	internal class VirtualMachine
 	{
 
-		public delegate void LineHandler(Dialogue.LineResult line);
-		public delegate void OptionsHandler(Dialogue.OptionSetResult options);
-		public delegate void CommandHandler(Dialogue.CommandResult command);
-		public delegate void NodeCompleteHandler(Dialogue.NodeCompleteResult complete);
-
 		internal VirtualMachine (Dialogue d, Program p)
 		{
 			program = p;
@@ -21,6 +16,11 @@ namespace Yarn
 		void Reset() {
 			state = new State();
 		}
+
+		public delegate void LineHandler(Dialogue.LineResult line);
+		public delegate void OptionsHandler(Dialogue.OptionSetResult options);
+		public delegate void CommandHandler(Dialogue.CommandResult command);
+		public delegate void NodeCompleteHandler(Dialogue.NodeCompleteResult complete);
 
 		public LineHandler lineHandler;
 		public OptionsHandler optionsHandler;
@@ -33,7 +33,6 @@ namespace Yarn
 		private State state;
 
 		public string currentNode { get { return state.currentNode; } }
-
 
 		public enum ExecutionState {
 			Stopped,
