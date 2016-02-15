@@ -22,11 +22,13 @@ To use Yarn Spinner, you use three classes:
 * A subclass of `DialogueUIBehaviour`, which is reponsible for displaying the lines and dialogue choices to the player; and
 * A subclass of `VariableStorageBehaviour`, which is responsible for storing the state of the conversation.
 
-Additionally, you store your Yarn files as `.json` assets in your Unity projects.
+Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their Yarn script to the `DialogueRunner`.
+
+<!--
 
 Let's get started with Yarn Spinner!
 
-<!--
+
 ## Tutorial
 
 To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation.
