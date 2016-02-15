@@ -66,7 +66,7 @@ namespace Yarn.Unity.Example {
 
 		public RectTransform gameControlsContainer;
 
-		void Start ()
+		void Awake ()
 		{
 			// Start by hiding the container, line and option buttons
 			if (dialogueContainer != null)
@@ -144,10 +144,8 @@ namespace Yarn.Unity.Example {
 			SetSelectedOption = optionChooser;
 			
 			// Wait until the chooser has been used and then removed (see SetOption below)
-			do { 
-				yield return null;
-			} while (SetSelectedOption != null);
-			
+			yield return new WaitUntil(delegate {return SetSelectedOption == null;});
+				
 			// Hide all the buttons
 			foreach (var button in optionButtons) {
 				button.gameObject.SetActive (false);
