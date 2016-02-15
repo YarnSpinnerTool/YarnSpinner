@@ -1,5 +1,7 @@
 # Yarn Spinner
 
+![Yarn Spinner logo](Documentation/YarnSpinnerLogo.png){: style="float:right"}
+
 **Yarn Spinner** is an interpreter for the [Yarn](https://github.com/infiniteammoinc/Yarn) language, written in C#.
 
 Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. Yarn's used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes). 
