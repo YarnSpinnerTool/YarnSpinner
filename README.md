@@ -1,6 +1,6 @@
 # Yarn Spinner
 
-![Yarn Spinner logo](Documentation/YarnSpinnerLogo.png){: style="float:right"}
+<img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" style="width: 100px;">
 
 **Yarn Spinner** is an interpreter for the [Yarn](https://github.com/infiniteammoinc/Yarn) language, written in C#.
 
