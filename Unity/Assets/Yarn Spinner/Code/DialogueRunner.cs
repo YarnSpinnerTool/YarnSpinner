@@ -99,6 +99,10 @@ namespace Yarn.Unity
 			}
 		}
 
+		public void AddScript(string text) {
+			dialogue.LoadString(text);
+		}
+
 		public void AddScript(TextAsset asset) {
 			dialogue.LoadString(asset.text);
 		}
