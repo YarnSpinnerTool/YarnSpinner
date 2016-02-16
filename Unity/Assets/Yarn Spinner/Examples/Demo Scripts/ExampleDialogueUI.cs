@@ -144,7 +144,9 @@ namespace Yarn.Unity.Example {
 			SetSelectedOption = optionChooser;
 			
 			// Wait until the chooser has been used and then removed (see SetOption below)
-			yield return new WaitUntil(delegate {return SetSelectedOption == null;});
+			while (SetSelectedOption != null) {
+				yield return null;
+			}
 				
 			// Hide all the buttons
 			foreach (var button in optionButtons) {
