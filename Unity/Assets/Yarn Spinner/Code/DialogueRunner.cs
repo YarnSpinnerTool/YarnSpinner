@@ -179,6 +179,10 @@ namespace Yarn.Unity
 			dialogue.UnloadAll();
 		}
 
+		public bool NodeExists(string nodeName) {
+			return dialogue.NodeExists(nodeName);
+		}
+
 	}
 
 	// Scripts that can act as the UI for the conversation should subclass this

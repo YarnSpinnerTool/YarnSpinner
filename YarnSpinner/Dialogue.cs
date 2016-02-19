@@ -275,8 +275,12 @@ namespace Yarn {
 		}
 
 		public String Compile() {
-			var program = loader.Compile();
+			program = loader.Compile();
 			return program.DumpCode (library);
+		}
+
+		public bool NodeExists(string nodeName) {
+			return program.nodes.ContainsKey(nodeName);
 		}
 		
 
