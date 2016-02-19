@@ -258,6 +258,10 @@ namespace Yarn {
 
 		}
 
+		public void Stop() {
+			stopExecuting = true;
+		}
+
 		public IEnumerable<string> visitedNodes {
 			get {
 				return visitedNodeNames;

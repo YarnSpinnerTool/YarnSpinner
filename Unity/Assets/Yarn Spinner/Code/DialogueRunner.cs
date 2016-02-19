@@ -179,6 +179,10 @@ namespace Yarn.Unity
 			dialogue.UnloadAll();
 		}
 
+		public void Stop() {
+			dialogue.Stop();
+		}
+
 		public bool NodeExists(string nodeName) {
 			return dialogue.NodeExists(nodeName);
 		}
