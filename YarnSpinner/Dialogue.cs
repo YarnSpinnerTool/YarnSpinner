@@ -186,7 +186,7 @@ namespace Yarn {
 				throw new InvalidOperationException ("Attempted to load a Yarn program, but no nodes were loaded");
 			}
 
-			program = loader.Compile ();
+
 
 			return nodesLoaded;
 		}
@@ -195,7 +195,6 @@ namespace Yarn {
 		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
-			stopExecuting = false;
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before running");
@@ -204,6 +203,18 @@ namespace Yarn {
 			if (LogErrorMessage == null) {
 				throw new YarnException ("LogErrorMessage must be set before running");
 			}
+
+			if (program == null && loader.nodes.Count > 0) {
+				program = loader.Compile();
+			}
+
+			if (program == null) {
+				LogErrorMessage ("Dialogue.Run was called, but no program was loaded. Stopping.");
+				yield break;
+			}
+
+			stopExecuting = false;
+
 
 			var vm = new VirtualMachine (this, program);
 
@@ -247,9 +258,33 @@ namespace Yarn {
 
 		}
 
+		public void Stop() {
+			stopExecuting = true;
+		}
+
+		public IEnumerable<string> visitedNodes {
+			get {
+				return visitedNodeNames;
+			}
+		}
+
+		// Unloads ALL nodes.
+		public void UnloadAll(bool clearVisitedNodes = true) {
+			if (clearVisitedNodes)
+				visitedNodeNames.Clear();
+
+			program = null;
+			loader.Clear ();
+
+		}
+
 		public String Compile() {
-			var program = loader.Compile();
+			program = loader.Compile();
 			return program.DumpCode (library);
+		}
+
+		public bool NodeExists(string nodeName) {
+			return program.nodes.ContainsKey(nodeName);
 		}
 		
 

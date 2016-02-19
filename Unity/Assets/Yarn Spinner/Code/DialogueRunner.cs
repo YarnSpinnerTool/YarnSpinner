@@ -129,7 +129,7 @@ namespace Yarn.Unity
 			StartCoroutine (RunDialogue (startNode));
 		}
 		
-		IEnumerator RunDialogue (string startNode)
+		IEnumerator RunDialogue (string startNode = "Start")
 		{
 			// Mark that we're in conversation.
 			isDialogueRunning = true;
@@ -173,6 +173,24 @@ namespace Yarn.Unity
 			// out of a conversation (ie letterboxing going away, etc)
 			isDialogueRunning = false;
 		}
+
+		public void Clear() {
+
+			if (isDialogueRunning) {
+				throw new System.InvalidOperationException("You cannot clear the dialogue system while a dialogue is running.");
+			}
+
+			dialogue.UnloadAll();
+		}
+
+		public void Stop() {
+			dialogue.Stop();
+		}
+
+		public bool NodeExists(string nodeName) {
+			return dialogue.NodeExists(nodeName);
+		}
+
 	}
 
 	// Scripts that can act as the UI for the conversation should subclass this
