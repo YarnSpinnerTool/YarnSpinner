@@ -85,6 +85,18 @@ namespace YarnSpinner.Tests
 			dialogue.LoadFile (path);
 			dialogue.Compile ();
 		}
+
+		[Test()]
+		public void TestCommands()
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
+			dialogue.LoadFile (path);
+			dialogue.Compile ();
+
+			foreach (var result in dialogue.Run()) {
+				Console.WriteLine (result);
+			}
+		}
 	}
 
 }
