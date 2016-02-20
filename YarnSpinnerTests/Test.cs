@@ -53,6 +53,14 @@ namespace YarnSpinner.Tests
 			dialogue.library.RegisterFunction ("prepare_for_options", -1, delegate(Yarn.Value[] parameters) {
 				
 			});
+
+			dialogue.library.RegisterFunction ("expect_line", -1, delegate(Yarn.Value[] parameters) {
+
+			});
+
+			dialogue.library.RegisterFunction ("expect_command", -1, delegate(Yarn.Value[] parameters) {
+
+			});
 		}
 
 		[Test ()]
@@ -94,6 +102,18 @@ namespace YarnSpinner.Tests
 			dialogue.Compile ();
 
 			foreach (var result in dialogue.Run()) {
+				Console.WriteLine (result);
+			}
+		}
+
+		[Test()]
+		public void TestMissingNode() 
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
+			dialogue.LoadFile (path);
+			dialogue.Compile ();
+
+			foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
 				Console.WriteLine (result);
 			}
 		}

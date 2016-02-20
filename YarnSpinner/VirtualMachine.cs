@@ -48,11 +48,13 @@ namespace Yarn
 
 		IList<Instruction> currentNodeInstructions;
 
-		public void SetNode(string nodeName) {
+		public bool SetNode(string nodeName) {
 			if (program.nodes.ContainsKey(nodeName) == false) {
-				dialogue.LogErrorMessage("No node named " + nodeName);
+
+				var error = "No node named " + nodeName;
+				dialogue.LogErrorMessage(error);
 				executionState = ExecutionState.Stopped;
-				return;
+				return false;
 			}
 
 			dialogue.LogDebugMessage ("Running node " + nodeName);
@@ -64,6 +66,8 @@ namespace Yarn
 			state.currentNode = nodeName;
 			state.programCounter = 0;
 			state.ClearStack ();
+
+			return true;
 		}
 
 		public void Stop() {

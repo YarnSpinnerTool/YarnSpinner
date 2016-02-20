@@ -218,8 +218,6 @@ namespace Yarn {
 
 			var vm = new VirtualMachine (this, program);
 
-			vm.SetNode (startNode);
-
 			RunnerResult latestResult;
 
 			vm.lineHandler = delegate(LineResult result) {
@@ -242,6 +240,12 @@ namespace Yarn {
 			vm.optionsHandler = delegate(OptionSetResult result) {
 				latestResult = result;
 			};
+
+			if (vm.SetNode (startNode) == false) {
+				yield break;
+			}
+
+
 
 			// Run until the program stops, pausing to yield important
 			// results
