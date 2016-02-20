@@ -2,18 +2,17 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{24F90A1D-B1CA-4E0F-8BD2-A91D8B443855}</ProjectGuid>
+    <ProjectGuid>{20B32C04-790E-4A50-BF32-20EA5C3CB0E2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>YarnSpinnerTests</RootNamespace>
-    <AssemblyName>YarnSpinnerTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Yarn</RootNamespace>
+    <AssemblyName>YarnSpinnerConsole</AssemblyName>
     <ReleaseVersion>0.9</ReleaseVersion>
-    <StartupObject>YarnSpinner.Tests.Program</StartupObject>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,33 +20,33 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeExecute" workingdir="${SolutionDir}" />
-      </CustomCommands>
-    </CustomCommands>
+    <PlatformTarget>x86</PlatformTarget>
+<<<<<<< HEAD
+    <Commandlineparameters>-c ../../../Tests/Compiler.node</Commandlineparameters>
+=======
+    <Commandlineparameters>../../../Tests/TestCases/SingleLine.node</Commandlineparameters>
+    <ConsolePause>false</ConsolePause>
+>>>>>>> master
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunitlite">
-      <HintPath>..\packages\NUnitLite.3.0.1\lib\net45\nunitlite.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,8 +54,5 @@
       <Project>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</Project>
       <Name>YarnSpinner</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

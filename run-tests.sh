@@ -10,7 +10,7 @@ for f in $TESTCASES_DIR/*.node; do
 	./parser.sh $f
 	
 	if [[ $? -ne 0 ]]; then
-		echo "*** ERROR ***"
+		echo "*** ERROR RUNNING $f ***"
 		returncode=1
 	fi
 done

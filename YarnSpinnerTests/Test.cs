@@ -1,11 +1,15 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace YarnSpinnerTests
+namespace YarnSpinner.Tests
 {
+
+
 	[TestFixture ()]
 	public class Test
 	{
+
+
 
 		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
 		Yarn.Dialogue dialogue;
@@ -13,9 +17,19 @@ namespace YarnSpinnerTests
 		[SetUp()]
 		public void Init()
 		{
-			var newWorkingDir = 
-				System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
-			Environment.CurrentDirectory = newWorkingDir;
+
+			if (System.IO.Path.GetFileName(Environment.CurrentDirectory) != "Tests") {
+				if (TestContext.CurrentContext.TestDirectory == Environment.CurrentDirectory) {
+					// Hop up to the folder that contains the Tests folder
+					var topLevelPath = System.IO.Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
+					Environment.CurrentDirectory = topLevelPath;
+				}
+
+				var newWorkingDir = 
+					System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
+				Environment.CurrentDirectory = newWorkingDir;
+			}
+
 
 			dialogue = new Yarn.Dialogue (storage);
 
@@ -35,13 +49,18 @@ namespace YarnSpinnerTests
 				if (parameters[0].AsBool == false)
 					Assert.Fail ("Assertion failed");
 			});
+
+			dialogue.library.RegisterFunction ("prepare_for_options", -1, delegate(Yarn.Value[] parameters) {
+				
+			});
 		}
 
 		[Test ()]
 		public void TestNodeExists ()
 		{
-			
-			dialogue.LoadFile ("Ship.json");
+		
+
+			dialogue.LoadFile ("Space.json");
 
 			dialogue.Compile ();
 
@@ -57,6 +76,14 @@ namespace YarnSpinnerTests
 			Assert.False (dialogue.NodeExists ("Sally"));
 
 
+		}
+
+		[Test()]
+		public void TestParsingSmileys()
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
+			dialogue.LoadFile (path);
+			dialogue.Compile ();
 		}
 	}
 

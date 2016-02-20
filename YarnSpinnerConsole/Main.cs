@@ -220,6 +220,10 @@ namespace Yarn
 				impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
 			});
 
+			dialogue.library.RegisterFunction ("expect_line", 1, delegate(Value[] parameters) {
+				impl.expectedNextLine = parameters[0].AsString;
+			});
+
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
 				dialogue.LogDebugMessage = delegate(string message) {
@@ -289,6 +293,8 @@ namespace Yarn
 			// -1 means "do not automatically select an option".
 			public int autoSelectOptionNumber = -1;
 
+			public string expectedNextLine = null;
+
 			public ConsoleRunnerImplementation(bool waitForLines = false) {
 				this.variableStore = new MemoryVariableStore();
 				this.waitForLines = waitForLines;
@@ -296,6 +302,16 @@ namespace Yarn
 
 			public void RunLine (Yarn.Line lineText)
 			{
+
+				if (expectedNextLine != null && expectedNextLine != lineText.text) {
+					// TODO: Output diagnostic info here
+					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}", 
+						expectedNextLine, lineText.text));
+					Environment.Exit (1);
+				}
+
+				expectedNextLine = null;
+
 				Console.WriteLine (lineText.text);
 				if (waitForLines == true) {
 					Console.Read();

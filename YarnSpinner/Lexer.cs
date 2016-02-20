@@ -165,6 +165,26 @@ namespace Yarn {
 
 		// A defined rule for matching a type of token
 		public class TokenRule {
+
+			public enum FreeTextMode {
+				Begins,
+				Ends,
+				DoNotMatch,
+				AllowMatch
+			}
+
+			public delegate bool FreeTextModeException( TokenList tokens );
+
+			// If the tokenizer is in free text mode and this token would normally
+			// not be matched (ie FreeTextMode == .DoNotMatch), an exception is made
+			// if this function returns true.
+			// This exists to allow tokens to make context-sensitive choices, such as
+			// allowing OptionDelimit to be matched but only if we started an OptionStart 
+			// two tokens ago.
+			// TODO: I can see this slowly turning into a headache. Is there a better way
+			// around this problem?
+			public FreeTextModeException freeTextModeException;
+
 			public TokenType type; // what token is this rule for?
 			public Regex regex; // what should we look for?
 			public bool discard; // should we throw away this token if we match it?
@@ -181,6 +201,12 @@ namespace Yarn {
 			// "reset" the line, making the lexer treat the next token as the "start"
 			// of the line - which means that tokens like "and" will not be interpreted.
 			public bool resetsLine;
+
+			// Free text mode means that only certain tokens are matched. It's
+			// begun when a token is matched whose freeTextMode is Begins, and ends when
+			// a token is matched whose freeTextMode is Ends (typically '<<' and newlines)
+			// When in free text mode, token rules that are DoNotMatch are not used.
+			public FreeTextMode freeTextMode;
 
 			public override string ToString ()
 			{
@@ -224,7 +250,12 @@ namespace Yarn {
 		}
 		
 		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule, bool canBeginLine = false, bool resetsLine = false, bool requiresFollowingWhitespace=false) {
+		public TokenRule AddTokenRule(TokenType type, string rule, 
+			bool canBeginLine = false, 
+			bool resetsLine = false, 
+			bool requiresFollowingWhitespace=false,
+			TokenRule.FreeTextMode freeTextMode = TokenRule.FreeTextMode.DoNotMatch	
+		) {
 			
 			var newTokenRule = new TokenRule();
 			newTokenRule.type = type;
@@ -242,11 +273,14 @@ namespace Yarn {
 			}
 			newTokenRule.resetsLine = resetsLine;
 			newTokenRule.canBeginLine = canBeginLine;
+
+			newTokenRule.freeTextMode = freeTextMode;
 			
 			// Store it in the list and return
 			tokenRules.Add(newTokenRule);
 			return newTokenRule;
 		}
+
 
 		// Given an input string, parse it and return the list of tokens
 		public TokenList Tokenise(string context, string input) {
@@ -330,7 +364,9 @@ namespace Yarn {
 
 			// Replace tabs with four spaces
 			input = input.Replace ("\t", "    ");
-			
+
+			bool freeTextMode = false;
+
 			// Find any whitespace at the start of a line
 			var initialIndentRule = new Regex("^\\s+");
 			
@@ -375,6 +411,29 @@ namespace Yarn {
 						// match this rule at the start
 						if (tokenRule.canBeginLine == false && startOfLine == true) {
 							continue;
+						}
+
+						// Bail out if this match was zero-length
+						if (match.Length == 0) {
+							continue;
+						}
+
+						switch (tokenRule.freeTextMode) {
+						case TokenRule.FreeTextMode.Begins:
+							freeTextMode = true;
+							break;
+						case TokenRule.FreeTextMode.Ends:
+							freeTextMode = false;
+							break;
+						case TokenRule.FreeTextMode.DoNotMatch:
+							if (freeTextMode == true) {
+								// Do not match, UNLESS we should make an exception
+								if (tokenRule.freeTextModeException == null || 
+									tokenRule.freeTextModeException(tokens) == false) {
+									continue;
+								}
+							}
+							break;
 						}
 
 						// Record the token only if we care
@@ -437,12 +496,40 @@ namespace Yarn {
 				if (matched == false) {
 					// We've exhausted the list of possible token types, so we've
 					// failed to interpret this string! Bail out!
+
 					throw new InvalidOperationException("Failed to interpret token " + input);
 				}
 			}
-			
+
+			// Merge multiple runs of text on the same line
+			var tokensToReturn = new TokenList();
+
+			foreach (var token in tokens)  {
+				
+				Token lastToken = null;
+
+				// Did we previously add a token?
+				if (tokensToReturn.Count > 0) {
+					lastToken = tokensToReturn [tokensToReturn.Count - 1];
+				}
+
+				// Was the last token in tokensToReturn a Text, AND
+				// this token is a Text?
+				if (lastToken != null &&
+					lastToken.type == TokenType.Text && 
+					token.type == TokenType.Text) {
+
+					// Merge the texts!
+					var str = (string)tokensToReturn[tokensToReturn.Count - 1].value;
+					str += (string)token.value;
+					lastToken.value = str;
+				} else {
+					tokensToReturn.Add (token);
+				}
+			}
+
 			// Return the list of tokens we found
-			return tokens;
+			return tokensToReturn;
 		}
 
 		// Prepare the regex rules for each possible token.
@@ -466,15 +553,15 @@ namespace Yarn {
 				.discard = true;
 			
 			// Set up the end-of-file token
-			AddTokenRule(TokenType.EndOfInput, null);
+			AddTokenRule(TokenType.EndOfInput, null, freeTextMode:TokenRule.FreeTextMode.Ends);
 
 			// Comments
-			AddTokenRule (TokenType.Comment, @"\/\/.*", canBeginLine: true)
+			AddTokenRule (TokenType.Comment, @"\/\/.*", canBeginLine: true, freeTextMode: TokenRule.FreeTextMode.AllowMatch)
 				.discard = true;
 
 			// Basic syntax
 			AddTokenRule(TokenType.Number, @"((?<!\[\[)\d+)");
-			AddTokenRule(TokenType.BeginCommand, @"\<\<", canBeginLine:true);
+			AddTokenRule(TokenType.BeginCommand, @"\<\<", canBeginLine:true,  freeTextMode: TokenRule.FreeTextMode.Ends);
 			AddTokenRule(TokenType.EndCommand, @"\>\>");
 			AddTokenRule(TokenType.Variable, @"\$([A-z\d])+");
 
@@ -484,8 +571,31 @@ namespace Yarn {
 			// Options
 			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true);
 			AddTokenRule(TokenType.OptionStart, @"\[\[", canBeginLine:true, resetsLine:true);
-			AddTokenRule(TokenType.OptionDelimit, @"\|");
-			AddTokenRule(TokenType.OptionEnd, @"\]\]");
+			AddTokenRule (TokenType.OptionDelimit, @"\|").freeTextModeException = delegate(TokenList tokens) {
+				if (tokens.Count < 2)
+					return false;
+
+				// permitted in free text mode when we saw an OptionStart two tokens ago
+				switch (tokens [tokens.Count - 2].type) {
+				case TokenType.OptionStart:
+					return true;
+				default:
+					return false;
+				}
+			};
+			AddTokenRule(TokenType.OptionEnd, @"\]\]").freeTextModeException = delegate(TokenList tokens) {
+				if (tokens.Count < 2)
+					return false;
+				
+				// permitted in free text mode when we saw either an OptionDelimit or an OptionStart two tokens ago
+				switch (tokens [tokens.Count - 2].type) {
+				case TokenType.OptionStart:
+				case TokenType.OptionDelimit:
+					return true;
+				default:
+					return false;
+				}
+			};
 			
 			// Reserved words
 			AddTokenRule(TokenType.If, "if");
@@ -541,10 +651,10 @@ namespace Yarn {
 			// Commas for separating function parameters
 			AddTokenRule (TokenType.Comma, ",");
 
-			// Free text - match anything except command or option syntax
+			// Free text - match anything except BeginCommand, OptionsDelimit or OptionsEnd
 			// This always goes last so that anything else will preferably
 			// match it
-			AddTokenRule(TokenType.Text, @"[^\<\>\[\]\|]*", canBeginLine:true);
+			AddTokenRule(TokenType.Text, @"(\||\<\<|\]\])*(?:(?!\<\<|\||\]\]).)*", canBeginLine:true, freeTextMode: TokenRule.FreeTextMode.Begins);
 		}
 	}
 }
