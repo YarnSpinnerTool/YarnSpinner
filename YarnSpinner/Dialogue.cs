@@ -291,8 +291,18 @@ namespace Yarn {
 
 		public bool NodeExists(string nodeName) {
 			if (program == null) {
-				LogErrorMessage ("Tried to call NodeExists, but no nodes have been compiled!");
-				return false;
+
+				if (loader.nodes.Count > 0) {
+					LogDebugMessage ("Called NodeExists, but the program hasn't been compiled yet." +
+					"Nodes have been loaded, so I'm going to compile them.");
+					Compile ();
+					if (program == null) {
+						return false;
+					}
+				} else {
+					LogErrorMessage ("Tried to call NodeExists, but no nodes have been compiled!");
+					return false;
+				}
 			}
 			if (program.nodes == null || program.nodes.Count == 0) {
 				LogDebugMessage ("Called NodeExists, but there are zero nodes. This may be an error.");
