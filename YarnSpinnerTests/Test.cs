@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace YarnSpinnerTests
+namespace YarnSpinner.Tests
 {
+
+
 	[TestFixture ()]
 	public class Test
 	{
@@ -13,6 +15,13 @@ namespace YarnSpinnerTests
 		[SetUp()]
 		public void Init()
 		{
+
+			if (TestContext.CurrentContext.TestDirectory == Environment.CurrentDirectory) {
+				// Hop up to the folder that contains the Tests folder
+				var topLevelPath = System.IO.Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
+				Environment.CurrentDirectory = topLevelPath;
+			}
+
 			var newWorkingDir = 
 				System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
 			Environment.CurrentDirectory = newWorkingDir;
@@ -40,7 +49,8 @@ namespace YarnSpinnerTests
 		[Test ()]
 		public void TestNodeExists ()
 		{
-			
+		
+
 			dialogue.LoadFile ("Ship.json");
 
 			dialogue.Compile ();
