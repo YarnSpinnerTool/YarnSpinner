@@ -57,6 +57,9 @@ namespace Yarn
 
 			dialogue.LogDebugMessage ("Running node " + nodeName);
 
+			// Clear the special variables
+			dialogue.continuity.SetNumber(SpecialVariables.ShuffleOptions, 0.0f);
+
 			currentNodeInstructions = program.nodes [nodeName].instructions;
 			state.currentNode = nodeName;
 			state.programCounter = 0;
