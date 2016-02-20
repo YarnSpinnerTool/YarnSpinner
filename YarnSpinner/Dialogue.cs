@@ -268,6 +268,12 @@ namespace Yarn {
 			}
 		}
 
+		public IEnumerable<string> allNodes {
+			get {
+				return loader.nodes.Keys;
+			}
+		}
+
 		// Unloads ALL nodes.
 		public void UnloadAll(bool clearVisitedNodes = true) {
 			if (clearVisitedNodes)
@@ -284,6 +290,14 @@ namespace Yarn {
 		}
 
 		public bool NodeExists(string nodeName) {
+			if (program == null) {
+				LogErrorMessage ("Tried to call NodeExists, but no nodes have been compiled!");
+				return false;
+			}
+			if (program.nodes == null || program.nodes.Count == 0) {
+				LogDebugMessage ("Called NodeExists, but there are zero nodes. This may be an error.");
+				return false;
+			}
 			return program.nodes.ContainsKey(nodeName);
 		}
 		
