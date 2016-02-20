@@ -35,6 +35,8 @@ These options should NOT be shuffled:
 
 These options should be shuffled:
 
+<<shuffleNextOptions>>
+
 [[One|One]]
 [[Two|One]]
 [[Three|One]]
