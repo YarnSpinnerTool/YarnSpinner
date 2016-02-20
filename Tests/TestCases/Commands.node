@@ -1,0 +1,4 @@
+// Testing commands
+
+<<expect_command("flip Harley3 +1")>>
+<<flip Harley3 +1>>

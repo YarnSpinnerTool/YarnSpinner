@@ -224,6 +224,10 @@ namespace Yarn
 				impl.expectedNextLine = parameters[0].AsString;
 			});
 
+			dialogue.library.RegisterFunction ("expect_command", 1, delegate(Value[] parameters) {
+				impl.expectedNextCommand = parameters[0].AsString;
+			});
+
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
 				dialogue.LogDebugMessage = delegate(string message) {
@@ -294,6 +298,8 @@ namespace Yarn
 			public int autoSelectOptionNumber = -1;
 
 			public string expectedNextLine = null;
+
+			public string expectedNextCommand = null;
 
 			public ConsoleRunnerImplementation(bool waitForLines = false) {
 				this.variableStore = new MemoryVariableStore();
@@ -373,6 +379,14 @@ namespace Yarn
 
 			public void RunCommand (string command)
 			{
+
+				if (expectedNextCommand != null && expectedNextCommand != command) {
+					// TODO: Output diagnostic info here
+					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}", 
+						expectedNextCommand, command));
+					Environment.Exit (1);
+				}
+
 				Console.WriteLine("Command: <<"+command+">>");
 			}
 

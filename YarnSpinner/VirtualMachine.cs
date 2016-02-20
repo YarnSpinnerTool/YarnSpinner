@@ -6,6 +6,10 @@ namespace Yarn
 	internal class VirtualMachine
 	{
 
+		internal static class SpecialVariables {
+			public const string ShuffleOptions = "$Yarn.ShuffleOptions";
+		}
+
 		internal VirtualMachine (Dialogue d, Program p)
 		{
 			program = p;
@@ -276,11 +280,25 @@ namespace Yarn
 					break;
 				}
 
+				if (dialogue.continuity.GetNumber(SpecialVariables.ShuffleOptions) != 0.0f) {
+					// Shuffle the dialog options if needed
+					var r = new Random();
+					for (int opt1 = state.currentOptions.Count-1; opt1 >= 0; opt1--) {
+						int opt2 = r.Next(0, state.currentOptions.Count-1);
+						var temp = state.currentOptions [opt2];
+						state.currentOptions [opt2] = state.currentOptions [opt1];
+						state.currentOptions [opt1] = temp;
+					}
+				}
+
 				// Otherwise, present the list of options to the user and let them pick
 				var optionStrings = new List<string> ();
+			
 				foreach (var option in state.currentOptions) {
 					optionStrings.Add (program.GetString (option.Key));
 				}
+
+
 
 				// We can't continue until our client tell us which option to pick
 				executionState = ExecutionState.WaitingOnOptionSelection;

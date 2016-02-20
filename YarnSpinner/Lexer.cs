@@ -141,6 +141,10 @@ namespace Yarn {
 		public int columnNumber;
 		public string context;
 
+		// For <<, we record everything up to the next >> on the line,
+		// so that the parser can get it back for custom commands
+		public string associatedRawText;
+
 		// If this is a function in an expression, this is the number
 		// of parameters that were encountered
 		public int parameterCount;
@@ -525,6 +529,33 @@ namespace Yarn {
 					lastToken.value = str;
 				} else {
 					tokensToReturn.Add (token);
+				}
+			}
+
+			// Attach text between << and >> to the << token
+			for (int i = 0; i < tokensToReturn.Count; i++) {
+				if (i == tokensToReturn.Count - 1) {
+					// don't bother checking if we're the last token in the line
+					continue;
+				}
+				var startToken = tokensToReturn[i];
+				if (startToken.type == TokenType.BeginCommand) {
+					int startIndex = tokensToReturn[i+1].columnNumber;
+					int endIndex = -1;
+					// Find the next >> token
+					for (int j = i; j < tokensToReturn.Count; j++) {
+						var endToken = tokensToReturn [j];
+						if (endToken.type == TokenType.EndCommand) {
+							endIndex = endToken.columnNumber;
+							break;
+						}
+					}
+
+					if (endIndex != -1) {
+						var text = input.Substring (startIndex, endIndex - startIndex);
+						startToken.associatedRawText = text;
+					}
+
 				}
 			}
 

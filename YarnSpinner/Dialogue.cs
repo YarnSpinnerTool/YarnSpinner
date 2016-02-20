@@ -254,8 +254,6 @@ namespace Yarn {
 				
 			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped && stopExecuting == false);
 
-
-
 		}
 
 		public void Stop() {

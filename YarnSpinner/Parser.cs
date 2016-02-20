@@ -413,7 +413,7 @@ namespace Yarn {
 
 				// Custom commands can have ANY token in them. Read them all until we hit the
 				// end command token.
-				p.ExpectSymbol(TokenType.BeginCommand);
+				var beginSymbol = p.ExpectSymbol(TokenType.BeginCommand);
 				var commandTokens = new List<Token>();
 				do {
 					commandTokens.Add(p.ExpectSymbol());
@@ -434,12 +434,7 @@ namespace Yarn {
 					// Otherwise, evaluate it as a command
 					type = Type.ClientCommand;
 
-					var tokenStrings = new List<string>();
-					foreach (var token in commandTokens) {
-						tokenStrings.Add(token.value as string);
-					}
-					this.clientCommand = string.Join(" ", tokenStrings.ToArray());
-
+					this.clientCommand = beginSymbol.associatedRawText;
 				}
 
 
