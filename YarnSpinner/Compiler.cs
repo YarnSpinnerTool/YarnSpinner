@@ -281,11 +281,11 @@ namespace Yarn
 
 				Emit (compiledNode, ByteCode.ShowOptions);
 
-				if (flags.DisableShuffleOptionsAfterNextSet) {
+				if (flags.DisableShuffleOptionsAfterNextSet == true) {
 					Emit (compiledNode, ByteCode.PushBool, false);
 					Emit (compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
 					Emit (compiledNode, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = true;
+					flags.DisableShuffleOptionsAfterNextSet = false;
 				}
 
 				Emit (compiledNode, ByteCode.RunNode);
@@ -421,11 +421,11 @@ namespace Yarn
 
 			Emit (node, ByteCode.ShowOptions);
 
-			if (flags.DisableShuffleOptionsAfterNextSet) {
+			if (flags.DisableShuffleOptionsAfterNextSet == true) {
 				Emit (node, ByteCode.PushBool, false);
 				Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
 				Emit (node, ByteCode.Pop);
-				flags.DisableShuffleOptionsAfterNextSet = true;
+				flags.DisableShuffleOptionsAfterNextSet = false;
 			}
 
 			Emit (node, ByteCode.Jump);
