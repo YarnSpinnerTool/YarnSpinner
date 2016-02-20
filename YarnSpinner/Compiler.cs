@@ -221,9 +221,19 @@ namespace Yarn
 	}
 
 
+
 	internal class Compiler
 	{
 		
+
+		struct CompileFlags {
+			// should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
+			// after the next RunOptions bytecode?
+			public bool DisableShuffleOptionsAfterNextSet;
+		}
+
+		CompileFlags flags;
+
 		internal Program program { get; private set; }
 
 		internal Compiler ()
@@ -268,7 +278,16 @@ namespace Yarn
 				Emit (compiledNode, ByteCode.Stop);
 			} else {
 				// Otherwise, show the accumulated nodes and then jump to the selected node
+
 				Emit (compiledNode, ByteCode.ShowOptions);
+
+				if (flags.DisableShuffleOptionsAfterNextSet) {
+					Emit (compiledNode, ByteCode.PushBool, false);
+					Emit (compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+					Emit (compiledNode, ByteCode.Pop);
+					flags.DisableShuffleOptionsAfterNextSet = true;
+				}
+
 				Emit (compiledNode, ByteCode.RunNode);
 			}
 
@@ -339,12 +358,23 @@ namespace Yarn
 			// If this command is an evaluable expression, evaluate it
 			if (statement.expression != null) {
 				GenerateCode (node, statement.expression);
-			} else if (statement.clientCommand == "stop") {
-				// If it's the special command "stop", emit the Stop bytecode
-				Emit (node, ByteCode.Stop);
 			} else {
-				// Emit the code that passes the command to the client
-				Emit (node, ByteCode.RunCommand, statement.clientCommand);
+				switch (statement.clientCommand) {
+				case "stop":
+					Emit (node, ByteCode.Stop);
+					break;
+				case "shuffleNextOptions":
+					// Emit code that sets "VAR_SHUFFLE_OPTIONS" to true
+					Emit (node, ByteCode.PushBool, true);
+					Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+					Emit (node, ByteCode.Pop);
+					flags.DisableShuffleOptionsAfterNextSet = true;
+					break;
+
+				default:
+					Emit (node, ByteCode.RunCommand, statement.clientCommand);
+					break;
+				}
 			}
 
 		}
@@ -390,6 +420,13 @@ namespace Yarn
 			}
 
 			Emit (node, ByteCode.ShowOptions);
+
+			if (flags.DisableShuffleOptionsAfterNextSet) {
+				Emit (node, ByteCode.PushBool, false);
+				Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+				Emit (node, ByteCode.Pop);
+				flags.DisableShuffleOptionsAfterNextSet = true;
+			}
 
 			Emit (node, ByteCode.Jump);
 
