@@ -262,11 +262,21 @@ namespace Yarn
 
 				break;
 			case ByteCode.RunNode:
-				
-				// Get a string from the stack, and jump to a node with that name.
-				var nodeName = state.PeekValue ().AsString;
+
+				string nodeName;
+
+				if (string.IsNullOrEmpty((string) i.operandA)) {
+					// Get a string from the stack, and jump to a node with that name.
+					 nodeName = state.PeekValue ().AsString;
+				} else {
+					// jump straight to the node
+					nodeName = (string)i.operandA;
+				}
+
 				nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
 				SetNode (nodeName);
+
+
 
 				break;
 			case ByteCode.AddOption:

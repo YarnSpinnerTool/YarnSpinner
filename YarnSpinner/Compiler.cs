@@ -500,13 +500,14 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.OptionStatement statement) {
 
-			var stringID = -1;
+			if (statement.label == null) {
+				// this is a jump to another node
+				Emit(node, ByteCode.RunNode, statement.destination); 
+			} else {
+				var stringID = program.RegisterString (statement.label);
 
-			if (statement.label != null) {
-				stringID = program.RegisterString (statement.label);
+				Emit (node, ByteCode.AddOption, stringID, statement.destination);
 			}
-
-			Emit (node, ByteCode.AddOption, stringID, statement.destination);
 
 		}
 
