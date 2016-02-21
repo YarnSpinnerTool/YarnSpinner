@@ -79,6 +79,7 @@ namespace Yarn
 
 			if (executionState == ExecutionState.WaitingOnOptionSelection) {
 				dialogue.LogErrorMessage ("Cannot continue running dialogue. Still waiting on option selection.");
+				executionState = ExecutionState.Stopped;
 				return;
 			}
 
