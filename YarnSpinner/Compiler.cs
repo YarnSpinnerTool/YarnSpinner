@@ -3,37 +3,7 @@ using System.Collections.Generic;
 
 namespace Yarn
 {
-	internal class State {
-
-		// The name of the node that we're currently in
-		public string currentNode;
-
-		// The instruction number in the current node
-		public int programCounter = 0;
-
-		// List of options, where each option = <string id, destination node>
-		public List<KeyValuePair<int,string>> currentOptions = new List<KeyValuePair<int, string>>();
-
-		// The value stack
-		private Stack<Value> stack = new Stack<Value>();
-
-		// Methods for working with the stack
-		public void PushValue(object o) {
-			stack.Push (new Value(o));
-		}
-
-		public Value PopValue() {
-			return stack.Pop ();
-		}
-
-		public Value PeekValue() {
-			return stack.Peek ();
-		}
-
-		public void ClearStack() {
-			stack.Clear ();
-		}
-	}
+	
 
 	internal class Program {
 		public List<string> strings = new List<string>();

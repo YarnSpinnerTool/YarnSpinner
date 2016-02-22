@@ -136,9 +136,6 @@ namespace Yarn {
 		// The library contains all of the functions and operators we know about.
 		public Library library;
 
-		// Should we stop executing lines?
-		internal bool stopExecuting = false;
-
 		// The collection of nodes that we've seen.
 		private HashSet<String> visitedNodeNames = new HashSet<string>();
 
@@ -191,6 +188,8 @@ namespace Yarn {
 			return nodesLoaded;
 		}
 
+		private VirtualMachine vm;
+
 		// Executes a node. Use this in a for-each construct; each time you iterate over it,
 		// you'll get a line, command, or set of options.
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
@@ -213,10 +212,7 @@ namespace Yarn {
 				yield break;
 			}
 
-			stopExecuting = false;
-
-
-			var vm = new VirtualMachine (this, program);
+			vm = new VirtualMachine (this, program);
 
 			RunnerResult latestResult;
 
@@ -256,12 +252,15 @@ namespace Yarn {
 				if (latestResult != null)
 					yield return latestResult;
 				
-			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped && stopExecuting == false);
+			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped);
+
+			
+
 
 		}
 
 		public void Stop() {
-			stopExecuting = true;
+			vm.Stop();
 		}
 
 		public IEnumerable<string> visitedNodes {
@@ -273,6 +272,17 @@ namespace Yarn {
 		public IEnumerable<string> allNodes {
 			get {
 				return loader.nodes.Keys;
+			}
+		}
+
+		public string currentNode {
+			get {
+				if (vm == null) {
+					return null;
+				} else {
+					return vm.currentNode;
+				}
+
 			}
 		}
 

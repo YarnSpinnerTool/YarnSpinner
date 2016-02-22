@@ -6,6 +6,38 @@ namespace Yarn
 	internal class VirtualMachine
 	{
 
+		internal class State {
+
+			// The name of the node that we're currently in
+			public string currentNode;
+
+			// The instruction number in the current node
+			public int programCounter = 0;
+
+			// List of options, where each option = <string id, destination node>
+			public List<KeyValuePair<int,string>> currentOptions = new List<KeyValuePair<int, string>>();
+
+			// The value stack
+			private Stack<Value> stack = new Stack<Value>();
+
+			// Methods for working with the stack
+			public void PushValue(object o) {
+				stack.Push (new Value(o));
+			}
+
+			public Value PopValue() {
+				return stack.Pop ();
+			}
+
+			public Value PeekValue() {
+				return stack.Peek ();
+			}
+
+			public void ClearStack() {
+				stack.Clear ();
+			}
+		}
+
 		internal static class SpecialVariables {
 			public const string ShuffleOptions = "$Yarn.ShuffleOptions";
 		}
@@ -17,7 +49,7 @@ namespace Yarn
 			state = new State ();
 		}
 
-		void Reset() {
+		void ResetState() {
 			state = new State();
 		}
 
@@ -34,9 +66,13 @@ namespace Yarn
 		private Dialogue dialogue;
 
 		private Program program;
-		private State state;
+		private State state = new State();
 
-		public string currentNode { get { return state.currentNode; } }
+		public string currentNode { 
+			get { 
+				return state.currentNode; 
+			} 
+		}
 
 		public enum ExecutionState {
 			Stopped,
@@ -44,9 +80,20 @@ namespace Yarn
 			Running
 		}
 
-		public ExecutionState executionState { get; private set; }
+		private ExecutionState _executionState;
+		public ExecutionState executionState { 
+			get {
+				return _executionState;
+			}
+			private set {
+				_executionState = value;
+				if (_executionState == ExecutionState.Stopped) {
+					ResetState ();
+				}
+			}
+		}
 
-		IList<Instruction> currentNodeInstructions;
+		List<Instruction> currentNodeInstructions;
 
 		public bool SetNode(string nodeName) {
 			if (program.nodes.ContainsKey(nodeName) == false) {
@@ -63,9 +110,8 @@ namespace Yarn
 			dialogue.continuity.SetNumber(SpecialVariables.ShuffleOptions, 0.0f);
 
 			currentNodeInstructions = program.nodes [nodeName].instructions;
+			ResetState ();
 			state.currentNode = nodeName;
-			state.programCounter = 0;
-			state.ClearStack ();
 
 			return true;
 		}

@@ -9,6 +9,10 @@ namespace YarnSpinner.Tests
 	public class Test
 	{
 
+		string nextExpectedLine = null;
+		int nextExpectedOptionCount = -1;
+		int nextOptionToSelect = -1;
+		string nextExpectedCommand = null;
 
 
 		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
@@ -50,16 +54,17 @@ namespace YarnSpinner.Tests
 					Assert.Fail ("Assertion failed");
 			});
 
-			dialogue.library.RegisterFunction ("prepare_for_options", -1, delegate(Yarn.Value[] parameters) {
-				
+			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Yarn.Value[] parameters) {
+				nextExpectedOptionCount = (int)parameters[0].AsNumber;
+				nextOptionToSelect = (int)parameters[1].AsNumber;
 			});
 
 			dialogue.library.RegisterFunction ("expect_line", -1, delegate(Yarn.Value[] parameters) {
-
+				nextExpectedLine = parameters[0].AsString;
 			});
 
 			dialogue.library.RegisterFunction ("expect_command", -1, delegate(Yarn.Value[] parameters) {
-
+				nextExpectedCommand = parameters[0].AsString;
 			});
 		}
 
@@ -102,7 +107,7 @@ namespace YarnSpinner.Tests
 			dialogue.Compile ();
 
 			foreach (var result in dialogue.Run()) {
-				Console.WriteLine (result);
+				HandleResult (result);
 			}
 		}
 
@@ -114,8 +119,64 @@ namespace YarnSpinner.Tests
 			dialogue.Compile ();
 
 			foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
-				Console.WriteLine (result);
+				
 			}
+		}
+
+		[Test()]
+		public void TestGettingCurrentNodeName()  {
+			dialogue.LoadFile ("Space.json");
+
+			// dialogue should not be running yet
+			Assert.IsNull (dialogue.currentNode);
+
+			foreach (var result in dialogue.Run("Sally")) {
+				// Should now be in the node we requested
+				Assert.AreEqual (dialogue.currentNode, "Sally");
+				// Stop immediately
+				dialogue.Stop ();
+			}
+
+			// Current node should now be null
+			Assert.IsNull (dialogue.currentNode);
+		}
+
+		private void HandleResult(Yarn.Dialogue.RunnerResult result) {
+
+			Console.WriteLine (result);
+
+			if (result is Yarn.Dialogue.LineResult) {
+				var text = (result as Yarn.Dialogue.LineResult).line.text;
+
+				if (nextExpectedLine != null) {
+					Assert.AreEqual (text, nextExpectedLine);
+				}
+			} else if (result is Yarn.Dialogue.OptionSetResult) {
+				var optionCount = (result as Yarn.Dialogue.OptionSetResult).options.options.Count;
+				var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+
+				if (nextExpectedOptionCount != -1) {
+					Assert.AreEqual (nextExpectedOptionCount, optionCount);
+				}
+
+				if (nextOptionToSelect != -1) {
+					resultDelegate (nextOptionToSelect);
+				}
+			} else if (result is Yarn.Dialogue.CommandResult) {
+				var commandText = (result as Yarn.Dialogue.CommandResult).command.text;
+
+				if (nextExpectedCommand != null) {
+					Assert.AreEqual (nextExpectedCommand, commandText);
+				}
+			}
+
+			Console.WriteLine (result.ToString ());
+
+			nextExpectedLine = null;
+			nextExpectedCommand = null;
+			nextExpectedOptionCount = -1;
+			nextOptionToSelect = -1;
+
 		}
 	}
 

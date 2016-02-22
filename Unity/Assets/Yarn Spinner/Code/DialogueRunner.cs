@@ -191,6 +191,12 @@ namespace Yarn.Unity
 			return dialogue.NodeExists(nodeName);
 		}
 
+		public string currentNodeName {
+			get {
+				return dialogue.currentNode;
+			}
+		}
+
 	}
 
 	// Scripts that can act as the UI for the conversation should subclass this
