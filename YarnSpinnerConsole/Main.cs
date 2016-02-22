@@ -382,10 +382,12 @@ namespace Yarn
 
 				if (expectedNextCommand != null && expectedNextCommand != command) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}", 
+					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}", 
 						expectedNextCommand, command));
 					Environment.Exit (1);
 				}
+
+				expectedNextCommand = null;
 
 				Console.WriteLine("Command: <<"+command+">>");
 			}
