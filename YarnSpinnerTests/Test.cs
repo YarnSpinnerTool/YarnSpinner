@@ -73,7 +73,7 @@ namespace YarnSpinner.Tests
 		{
 		
 
-			dialogue.LoadFile ("Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
 
 			dialogue.Compile ();
 
@@ -125,7 +125,7 @@ namespace YarnSpinner.Tests
 
 		[Test()]
 		public void TestGettingCurrentNodeName()  {
-			dialogue.LoadFile ("Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
 
 			// dialogue should not be running yet
 			Assert.IsNull (dialogue.currentNode);
@@ -139,6 +139,19 @@ namespace YarnSpinner.Tests
 
 			// Current node should now be null
 			Assert.IsNull (dialogue.currentNode);
+		}
+
+		[Test()]
+		public void TestGettingRawSource() {
+			dialogue.LoadFile ("Example.json");
+
+			dialogue.Compile ();
+
+			var source = dialogue.GetTextForNode ("LearnMore");
+
+			Assert.IsNotNull (source);
+
+			Assert.AreEqual (source, "A: HAHAHA");
 		}
 
 		private void HandleResult(Yarn.Dialogue.RunnerResult result) {

@@ -107,6 +107,12 @@ namespace Yarn {
 
 					var node = new Parser (tokens, library).Parse();
 
+					// If this node is tagged "rawText", then preserve its source
+					if (string.IsNullOrEmpty(nodeInfo.tags) == false && 
+						nodeInfo.tags.Contains("rawText")) {
+						node.source = nodeInfo.text;
+					}
+
 					node.name = nodeInfo.title;
 
 					if (showParseTree)
@@ -136,9 +142,11 @@ namespace Yarn {
 		struct NodeInfo {
 			public string title;
 			public string text;
-			public NodeInfo(string title, string text) {
+			public string tags;
+			public NodeInfo(string title, string text, string tags) {
 				this.title = title;
 				this.text = text;
+				this.tags = tags;
 			}
 		}
 
@@ -151,7 +159,7 @@ namespace Yarn {
 
 			if (text.IndexOf("//") == 0) {
 				// If it starts with a comment, treat it as a single-node file
-				nodes.Add (new NodeInfo ("Start", text));
+				nodes.Add (new NodeInfo ("Start", text, null));
 			} else {
 				// Blindly assume it's JSON! \:D/
 				try {
@@ -172,7 +180,8 @@ namespace Yarn {
 							nodes.Add(
 								new NodeInfo(
 									nodeJSON["title"] as string, 
-									nodeJSON["body"] as string
+									nodeJSON["body"] as string,
+									nodeJSON["tags"] as string
 								)
 							);
 						}

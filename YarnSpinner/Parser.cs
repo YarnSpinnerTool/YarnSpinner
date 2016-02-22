@@ -267,6 +267,8 @@ namespace Yarn {
 
 			internal string name { get; set;}
 
+			internal string source { get; set; }
+
 			// Read-only internal accessor for statements
 			internal IEnumerable<Statement> statements { get { return _statements; }}
 

@@ -286,6 +286,18 @@ namespace Yarn {
 			}
 		}
 
+		public string GetTextForNode(string nodeName) {
+			if (loader.nodes.Count == 0) {
+				LogErrorMessage ("No nodes are loaded!");
+			}
+			if (loader.nodes.ContainsKey(nodeName)) {
+				return loader.nodes [nodeName].source;
+			} else {
+				LogErrorMessage ("No node named " + nodeName);
+				return null;
+			}
+		}
+
 		// Unloads ALL nodes.
 		public void UnloadAll(bool clearVisitedNodes = true) {
 			if (clearVisitedNodes)
