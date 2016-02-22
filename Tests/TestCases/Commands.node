@@ -2,3 +2,28 @@
 
 <<expect_command("flip Harley3 +1")>>
 <<flip Harley3 +1>>
+
+// Commands that begin with keywords
+<<expect_command("toggle")>>
+<<toggle>>
+
+<<expect_command("settings")>>
+<<settings>>
+
+<<expect_command("iffy")>>
+<<iffy>>
+
+<<expect_command("nulled")>>
+<<nulled>>
+
+<<expect_command("orion")>>
+<<orion>>
+
+<<expect_command("andorian")>>
+<<andorian>>
+
+<<expect_command("note")>>
+<<note>>
+
+<<expect_command("isActive")>>
+<<isActive>>

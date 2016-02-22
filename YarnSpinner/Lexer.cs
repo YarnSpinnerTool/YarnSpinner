@@ -629,10 +629,10 @@ namespace Yarn {
 			};
 			
 			// Reserved words
-			AddTokenRule(TokenType.If, "if");
-			AddTokenRule(TokenType.ElseIf, "elseif");
-			AddTokenRule(TokenType.Else, "else");
-			AddTokenRule(TokenType.EndIf, "endif");
+			AddTokenRule(TokenType.If, @"if(?!\w)");
+			AddTokenRule(TokenType.ElseIf, @"elseif(?!\w)");
+			AddTokenRule(TokenType.Else, @"else(?!\w)");
+			AddTokenRule(TokenType.EndIf, "endif(?!\\w)");
 
 			// "set" needs following whitespace to avoid matching against 
 			// words like "settings"
@@ -643,23 +643,23 @@ namespace Yarn {
 			AddTokenRule(TokenType.False, "false");
 
 			// Null
-			AddTokenRule(TokenType.Null, "null");
+			AddTokenRule(TokenType.Null, @"null(?!\w)");
 			
 			// Operators
-			AddTokenRule(TokenType.EqualTo, "(==|eq|is)");
-			AddTokenRule(TokenType.GreaterThanOrEqualTo, @"(\>=|gte)");
-			AddTokenRule(TokenType.LessThanOrEqualTo, @"(\<=|lte)");
-			AddTokenRule(TokenType.GreaterThan, @"(\>|gt)");
-			AddTokenRule(TokenType.LessThan, @"(\<|lt)");
+			AddTokenRule(TokenType.EqualTo, @"(==|eq(?!\w)|is(?!\w))");
+			AddTokenRule(TokenType.GreaterThanOrEqualTo, @"(\>=|gte(?!\w))");
+			AddTokenRule(TokenType.LessThanOrEqualTo, @"(\<=|lte(?!\w))");
+			AddTokenRule(TokenType.GreaterThan, @"(\>|gt(?!\w))");
+			AddTokenRule(TokenType.LessThan, @"(\<|lt(?!\w))");
 			AddTokenRule(TokenType.NotEqualTo, @"(\!=|neq)");
 
-			AddTokenRule(TokenType.And, @"(\&\&|and)");
-			AddTokenRule(TokenType.Or, @"(\|\||or)");
-			AddTokenRule(TokenType.Xor, @"(\^|xor)");
-			AddTokenRule(TokenType.Not, @"(\!|not)");
+			AddTokenRule(TokenType.And, @"(\&\&|and(?:\s))");
+			AddTokenRule(TokenType.Or, @"(\|\||or(?!\w))");
+			AddTokenRule(TokenType.Xor, @"(\^|xor(?!\w))");
+			AddTokenRule(TokenType.Not, @"(\!|not(?!\w))");
 
 			// Assignment operators
-			AddTokenRule (TokenType.EqualToOrAssign, "(=|to)");
+			AddTokenRule (TokenType.EqualToOrAssign, @"(=|to(?!\w))");
 
 			AddTokenRule(TokenType.AddAssign, @"\+=");
 			AddTokenRule(TokenType.MinusAssign, "-=");
