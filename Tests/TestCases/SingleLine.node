@@ -1,7 +1,0 @@
-// Tests a single line
-
-<<expect_line("This is a single line of dialogue.")>>
-
-This is a single line of dialogue.
-
-<<assert(true)>>
