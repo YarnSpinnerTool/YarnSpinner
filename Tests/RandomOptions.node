@@ -33,6 +33,12 @@ These options should NOT be shuffled:
 -> Three
 -> Four
 
+These options should be shuffled, 50% of the time:
+
+<<shuffleNextOptions>>
+-> One
+-> Two
+
 These options should be shuffled:
 
 <<shuffleNextOptions>>

@@ -354,8 +354,9 @@ namespace Yarn
 				if (dialogue.continuity.GetNumber(SpecialVariables.ShuffleOptions) != 0.0f) {
 					// Shuffle the dialog options if needed
 					var r = new Random();
-					for (int opt1 = state.currentOptions.Count-1; opt1 >= 0; opt1--) {
-						int opt2 = r.Next(0, state.currentOptions.Count-1);
+					var n = state.currentOptions.Count;
+					for (int opt1 = 0; opt1 < n; opt1++) {
+						int opt2 = opt1 + (int)(r.NextDouble () * (n - opt1)); // r.Next(0, state.currentOptions.Count-1);
 						var temp = state.currentOptions [opt2];
 						state.currentOptions [opt2] = state.currentOptions [opt1];
 						state.currentOptions [opt1] = temp;
