@@ -335,6 +335,13 @@ namespace Yarn
 				break;
 			case ByteCode.ShowOptions:
 
+				// If we have no options to show, immediately stop.
+				if (state.currentOptions.Count == 0) {
+					executionState = ExecutionState.Stopped;
+					nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
+					break;
+				}
+
 				// If we have a single option, and it has no label, select it immediately and continue
 				// execution
 				if (state.currentOptions.Count == 1 && state.currentOptions[0].Key == -1) {

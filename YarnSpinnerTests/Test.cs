@@ -18,6 +18,8 @@ namespace YarnSpinner.Tests
 		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
 		Yarn.Dialogue dialogue;
 
+		bool errorsCauseFailures = true;
+
 		[SetUp()]
 		public void Init()
 		{
@@ -45,8 +47,11 @@ namespace YarnSpinner.Tests
 
 			dialogue.LogErrorMessage = delegate(string message) {
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine (message);
+				Console.WriteLine ("ERROR: " + message);
 				Console.ResetColor ();
+
+				if (errorsCauseFailures == true)
+					Assert.Fail();
 			};
 
 			dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
@@ -118,6 +123,8 @@ namespace YarnSpinner.Tests
 			dialogue.LoadFile (path);
 			dialogue.Compile ();
 
+			errorsCauseFailures = false;
+
 			foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
 				
 			}
@@ -152,6 +159,16 @@ namespace YarnSpinner.Tests
 			Assert.IsNotNull (source);
 
 			Assert.AreEqual (source, "A: HAHAHA");
+		}
+
+		[Test()]
+		public void TestEndOfNotesWithOptionsNotAdded() {
+			dialogue.LoadFile ("SkippedOptions.node");
+
+			foreach (var result in dialogue.Run()) {
+				Assert.IsNotInstanceOf<Yarn.Dialogue.OptionSetResult> (result);
+			}
+
 		}
 
 		private void HandleResult(Yarn.Dialogue.RunnerResult result) {
