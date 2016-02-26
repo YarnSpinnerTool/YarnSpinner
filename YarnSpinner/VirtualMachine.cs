@@ -15,7 +15,7 @@ namespace Yarn
 			public int programCounter = 0;
 
 			// List of options, where each option = <string id, destination node>
-			public List<KeyValuePair<int,string>> currentOptions = new List<KeyValuePair<int, string>>();
+			public List<KeyValuePair<string,string>> currentOptions = new List<KeyValuePair<string, string>>();
 
 			// The value stack
 			private Stack<Value> stack = new Stack<Value>();
@@ -186,7 +186,7 @@ namespace Yarn
 				// Looks up a string from the string table and
 				// passes it to the client as a line
 
-				var lineText = program.GetString ((int)i.operandA);
+				var lineText = program.GetString ((string)i.operandA);
 
 				lineHandler (new Dialogue.LineResult (lineText));
 				
@@ -204,7 +204,7 @@ namespace Yarn
 				// Pushes a string value onto the stack; the operand
 				// is an index into the string table, so that's looked up
 				// first.
-				state.PushValue (program.GetString ((int)i.operandA));
+				state.PushValue (program.GetString ((string)i.operandA));
 
 				break;
 			case ByteCode.PushNumber:
@@ -329,7 +329,7 @@ namespace Yarn
 			case ByteCode.AddOption:
 
 				// Add an option to the current state.
-				state.currentOptions.Add (new KeyValuePair<int, string> ((int)i.operandA, (string)i.operandB));
+				state.currentOptions.Add (new KeyValuePair<string, string> ((string)i.operandA, (string)i.operandB));
 
 
 				break;
@@ -344,7 +344,7 @@ namespace Yarn
 
 				// If we have a single option, and it has no label, select it immediately and continue
 				// execution
-				if (state.currentOptions.Count == 1 && state.currentOptions[0].Key == -1) {
+				if (state.currentOptions.Count == 1 && state.currentOptions[0].Key == null) {
 					var destinationNode = state.currentOptions[0].Value;
 					state.PushValue(destinationNode);
 					state.currentOptions.Clear();

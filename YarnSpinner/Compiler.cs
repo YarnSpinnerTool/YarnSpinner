@@ -6,23 +6,27 @@ namespace Yarn
 	
 
 	internal class Program {
-		public List<string> strings = new List<string>();
+
+		public Dictionary<string,string> strings = new Dictionary<string, string> ();
 
 		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
 
+		private int stringCount = 0;
 
-		public int RegisterString(string theString) {
-			var index = strings.IndexOf (theString);
-			if (index > 0)
-				return index;
+		public string RegisterString(string theString, string forNode) {
+
+			var key = string.Format ("{0}-{1}", forNode, stringCount++);
 
 			// It's not in the list; append it
-			strings.Add(theString);
-			return strings.Count - 1;
+			strings.Add(key, theString);
+
+			return key;
 		}
 
-		public string GetString(int i) {
-			return strings [i];
+		public string GetString(string key) {
+			string value = null;
+			strings.TryGetValue (key, out value);
+			return value;
 		}
 
 		public string DumpCode(Library l) {
@@ -74,6 +78,12 @@ namespace Yarn
 	internal class Node {
 
 		public List<Instruction> instructions = new List<Instruction>();
+
+		public string name;
+
+		// the entry in the program's string table that contains
+		// the original text of this node; -1 if this is not available
+		public string sourceTextStringID = null;
 	}
 
 	internal struct Instruction {
@@ -150,8 +160,8 @@ namespace Yarn
 			case ByteCode.AddOption:
 
 				// Add the string for this option, if it has one
-				if ((int)operandA != -1) {
-					var text = p.GetString((int)operandA);
+				if ((string)operandA != null) {
+					var text = p.GetString((string)operandA);
 					comment += string.Format ("\"{0}\"", text);
 				}
 
@@ -219,6 +229,8 @@ namespace Yarn
 
 			var compiledNode =  new Node();
 
+			compiledNode.name = node.name;
+
 			var startLabel = RegisterLabel ();
 			Emit (compiledNode, ByteCode.Label, startLabel);
 
@@ -261,6 +273,9 @@ namespace Yarn
 				Emit (compiledNode, ByteCode.RunNode);
 			}
 
+			if (node.source != null) {
+				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name);
+			}
 
 			program.nodes [node.name] = compiledNode;
 		}
@@ -350,7 +365,7 @@ namespace Yarn
 		}
 
 		void GenerateCode(Node node, string line) {
-			var num = program.RegisterString (line);
+			var num = program.RegisterString (line, node.name);
 
 			Emit (node, ByteCode.RunLine, num);
 
@@ -377,7 +392,7 @@ namespace Yarn
 					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
 				}
 
-				var labelStringID = program.RegisterString (shortcutOption.label);
+				var labelStringID = program.RegisterString (shortcutOption.label, node.name);
 
 				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
@@ -474,7 +489,7 @@ namespace Yarn
 				// this is a jump to another node
 				Emit(node, ByteCode.RunNode, statement.destination); 
 			} else {
-				var stringID = program.RegisterString (statement.label);
+				var stringID = program.RegisterString (statement.label, node.name);
 
 				Emit (node, ByteCode.AddOption, stringID, statement.destination);
 			}
@@ -567,7 +582,7 @@ namespace Yarn
 				Emit (node, ByteCode.PushNumber, value.value.numberValue);
 				break;
 			case Value.Type.String:
-				var id = program.RegisterString (value.value.stringValue);
+				var id = program.RegisterString (value.value.stringValue, node.name);
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:
