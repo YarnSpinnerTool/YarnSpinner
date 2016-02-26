@@ -73,6 +73,19 @@ namespace Yarn
 			return sb.ToString ();
 		}
 
+		public string GetTextForNode(string nodeName) {
+			return this.GetString (nodes [nodeName].sourceTextStringID);
+		}
+
+		public void Include (Program otherProgram)
+		{
+			foreach (var otherNodeName in otherProgram.nodes) {
+				nodes [otherNodeName.Key] = otherNodeName.Value;
+			}
+			foreach (var otherString in otherProgram.strings) {
+				strings [otherString.Key] = otherString.Value;
+			}
+		}
 	}
 
 	internal class Node {

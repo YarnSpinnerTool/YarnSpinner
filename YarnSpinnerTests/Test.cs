@@ -80,8 +80,6 @@ namespace YarnSpinner.Tests
 
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
 
-			dialogue.Compile ();
-
 			Assert.True (dialogue.NodeExists ("Sally"));
 
 			// Test clearing everything
@@ -89,7 +87,6 @@ namespace YarnSpinner.Tests
 
 			// Load an empty node
 			dialogue.LoadString("// Test, this is empty");
-			dialogue.Compile ();
 
 			Assert.False (dialogue.NodeExists ("Sally"));
 
@@ -101,7 +98,31 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
 			dialogue.LoadFile (path);
-			dialogue.Compile ();
+
+		}
+
+		[Test()]
+		public void TestDumpingCode()
+		{
+			var path = "Example.json";
+			dialogue.LoadFile (path);
+
+			var byteCode = dialogue.GetByteCode ();
+			Assert.NotNull (byteCode);
+
+		}
+
+		[Test()]
+		public void TestExampleScript()
+		{
+
+			errorsCauseFailures = false;
+			var path = "Example.json";
+			dialogue.LoadFile (path);
+			
+			foreach (var result in dialogue.Run()) {
+				HandleResult (result);
+			}
 		}
 
 		[Test()]
@@ -109,7 +130,6 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
 			dialogue.LoadFile (path);
-			dialogue.Compile ();
 
 			foreach (var result in dialogue.Run()) {
 				HandleResult (result);
@@ -121,7 +141,6 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
 			dialogue.LoadFile (path);
-			dialogue.Compile ();
 
 			errorsCauseFailures = false;
 
@@ -151,8 +170,6 @@ namespace YarnSpinner.Tests
 		[Test()]
 		public void TestGettingRawSource() {
 			dialogue.LoadFile ("Example.json");
-
-			dialogue.Compile ();
 
 			var source = dialogue.GetTextForNode ("LearnMore");
 

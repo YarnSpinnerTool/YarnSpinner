@@ -34,8 +34,7 @@ namespace Yarn {
 
 		private Dialogue dialogue;
 
-		// The final parsed nodes that were in the file we were given
-		internal Dictionary<string, Yarn.Parser.Node> nodes { get; private set;}
+		public Program program { get; private set; }
 
 		// Prints out the list of tokens that the tokeniser found for this node
 		void PrintTokenList(IEnumerable<Token> tokenList) {
@@ -64,24 +63,24 @@ namespace Yarn {
 				throw new ArgumentNullException ("dialogue");
 			
 			this.dialogue = dialogue;
-			nodes = new Dictionary<string, Parser.Node>();
-		}
 
-		// Erase the collection of nodes.
-		public void Clear() {
-			nodes.Clear ();
 		}
 
 		// Given a bunch of raw text, load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
 		// Returns the number of nodes that were loaded.
-		public int Load(string text, Library library, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
-			
+		public Program Load(string text, Library library, Program includeProgram = null, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+
+			// The final parsed nodes that were in the file we were given
+			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
+
 			// Load the raw data and get the array of node title-text pairs
 			var nodeInfos = ParseInput (text);
 
 			int nodesLoaded = 0;
+
+			Program program;
 
 			foreach (NodeInfo nodeInfo in nodeInfos) {
 
@@ -134,7 +133,17 @@ namespace Yarn {
 
 			}
 
-			return nodesLoaded;
+			var compiler = new Yarn.Compiler();
+
+			foreach (var node in nodes) {
+				compiler.CompileNode (node.Value);
+			}
+
+			if (includeProgram != null) {
+				compiler.program.Include (includeProgram);
+			}
+
+			return compiler.program;
 
 		}
 
@@ -199,22 +208,6 @@ namespace Yarn {
 			return nodes.ToArray();
 		}
 
-		public Yarn.Program Compile() {
-
-			if (nodes.Count == 0) {
-				dialogue.LogErrorMessage ("No nodes to compile!");
-				return null;
-			}
-
-			var compiler = new Yarn.Compiler();
-
-			foreach (var node in nodes) {
-				compiler.CompileNode (node.Value);
-			}
-
-			return compiler.program;
-
-		}
 	}
 
 }

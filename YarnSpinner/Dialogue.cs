@@ -156,17 +156,17 @@ namespace Yarn {
 		}
 
 		// Load a file from disk.
-		public int LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
 			string inputString = reader.ReadToEnd ();
 			reader.Close ();
 
-			return LoadString (inputString, showTokens, showParseTree, onlyConsiderNode);
+			LoadString (inputString, showTokens, showParseTree, onlyConsiderNode);
 
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
-		public int LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
+		public void LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before loading");
@@ -176,16 +176,8 @@ namespace Yarn {
 				throw new YarnException ("LogErrorMessage must be set before loading");
 			}
 
+			program = loader.Load(text, library, program, showTokens, showParseTree, onlyConsiderNode);
 
-			var nodesLoaded = loader.Load(text, library, showTokens, showParseTree, onlyConsiderNode);
-
-			if (nodesLoaded == 0) {
-				throw new InvalidOperationException ("Attempted to load a Yarn program, but no nodes were loaded");
-			}
-
-
-
-			return nodesLoaded;
 		}
 
 		private VirtualMachine vm;
@@ -201,10 +193,6 @@ namespace Yarn {
 
 			if (LogErrorMessage == null) {
 				throw new YarnException ("LogErrorMessage must be set before running");
-			}
-
-			if (program == null && loader.nodes.Count > 0) {
-				program = loader.Compile();
 			}
 
 			if (program == null) {
@@ -271,7 +259,7 @@ namespace Yarn {
 
 		public IEnumerable<string> allNodes {
 			get {
-				return loader.nodes.Keys;
+				return program.nodes.Keys;
 			}
 		}
 
@@ -287,11 +275,11 @@ namespace Yarn {
 		}
 
 		public string GetTextForNode(string nodeName) {
-			if (loader.nodes.Count == 0) {
+			if (program.nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
-			}
-			if (loader.nodes.ContainsKey(nodeName)) {
-				return loader.nodes [nodeName].source;
+				return null;
+			} else if (program.nodes.ContainsKey(nodeName)) {
+				return program.GetTextForNode (nodeName);
 			} else {
 				LogErrorMessage ("No node named " + nodeName);
 				return null;
@@ -304,22 +292,25 @@ namespace Yarn {
 				visitedNodeNames.Clear();
 
 			program = null;
-			loader.Clear ();
 
 		}
 
+		[Obsolete("Calling Compile() is no longer necessary.")]
 		public String Compile() {
-			program = loader.Compile();
+			return program.DumpCode (library);
+		}
+
+		public String GetByteCode() {
 			return program.DumpCode (library);
 		}
 
 		public bool NodeExists(string nodeName) {
 			if (program == null) {
 
-				if (loader.nodes.Count > 0) {
+				if (program.nodes.Count > 0) {
 					LogDebugMessage ("Called NodeExists, but the program hasn't been compiled yet." +
 					"Nodes have been loaded, so I'm going to compile them.");
-					Compile ();
+
 					if (program == null) {
 						return false;
 					}

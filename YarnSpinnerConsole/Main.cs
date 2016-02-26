@@ -244,7 +244,7 @@ namespace Yarn
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 
 			if (compileToBytecodeOnly) {
-				var result = dialogue.Compile ();
+				var result = dialogue.GetByteCode ();
 				Console.WriteLine (result);
 			}
 
