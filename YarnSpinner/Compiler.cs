@@ -59,6 +59,13 @@ namespace Yarn
 					instructionCount++;
 				}
 
+				/* sb.AppendLine ();
+				sb.AppendLine ("Label table:");
+
+				foreach (var label in entry.Value.labels) {
+					sb.AppendLine (string.Format ("{0,12} : {1}", label.Key, label.Value));
+				}*/
+
 				sb.AppendLine ();
 			}
 
@@ -69,6 +76,7 @@ namespace Yarn
 				sb.AppendLine(string.Format("{0, 4}: {1}", stringCount, entry));
 				stringCount++;
 			}
+
 
 			return sb.ToString ();
 		}
@@ -108,6 +116,8 @@ namespace Yarn
 		// the entry in the program's string table that contains
 		// the original text of this node; -1 if this is not available
 		public string sourceTextStringID = null;
+
+		public Dictionary<string, int> labels = new Dictionary<string, int>();
 	}
 
 	internal struct Instruction {
@@ -318,6 +328,11 @@ namespace Yarn
 			instruction.operandB = operandB;
 
 			node.instructions.Add (instruction);
+
+			if (code == ByteCode.Label) {
+				// Add this label to the label table
+				node.labels.Add ((string)instruction.operandA, node.instructions.Count - 1);
+			}
 		}
 
 		// Statements

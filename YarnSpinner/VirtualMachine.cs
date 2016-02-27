@@ -9,7 +9,7 @@ namespace Yarn
 		internal class State {
 
 			// The name of the node that we're currently in
-			public string currentNode;
+			public string currentNodeName;
 
 			// The instruction number in the current node
 			public int programCounter = 0;
@@ -68,9 +68,9 @@ namespace Yarn
 		private Program program;
 		private State state = new State();
 
-		public string currentNode { 
+		public string currentNodeName { 
 			get { 
-				return state.currentNode; 
+				return state.currentNodeName; 
 			} 
 		}
 
@@ -93,7 +93,7 @@ namespace Yarn
 			}
 		}
 
-		List<Instruction> currentNodeInstructions;
+		Node currentNode;
 
 		public bool SetNode(string nodeName) {
 			if (program.nodes.ContainsKey(nodeName) == false) {
@@ -109,9 +109,9 @@ namespace Yarn
 			// Clear the special variables
 			dialogue.continuity.SetNumber(SpecialVariables.ShuffleOptions, 0.0f);
 
-			currentNodeInstructions = program.nodes [nodeName].instructions;
+			currentNode = program.nodes [nodeName];
 			ResetState ();
-			state.currentNode = nodeName;
+			state.currentNodeName = nodeName;
 
 			return true;
 		}
@@ -132,13 +132,13 @@ namespace Yarn
 			if (executionState == ExecutionState.Stopped)
 				executionState = ExecutionState.Running;
 
-			Instruction currentInstruction = currentNodeInstructions [state.programCounter];
+			Instruction currentInstruction = currentNode.instructions [state.programCounter];
 
 			RunInstruction (currentInstruction);
 
 			state.programCounter++;
 
-			if (state.programCounter >= currentNodeInstructions.Count) {
+			if (state.programCounter >= currentNode.instructions.Count) {
 				executionState = ExecutionState.Stopped;
 				nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
 				dialogue.LogDebugMessage ("Run complete.");
@@ -148,23 +148,16 @@ namespace Yarn
 
 		// Looks up the instruction number for a named label in the current node.
 		internal int FindInstructionPointForLabel(string labelName) {
-			int i = 0;
 
-			foreach (Instruction instruction in currentNodeInstructions) {
-
-				// If this instruction is a label and it has the desired
-				// name, return its position in the node
-				if (instruction.operation == ByteCode.Label && 
-					(string)instruction.operandA == labelName) {
-					return i;
-				}
-				i++;
-					
+			if (currentNode.labels.ContainsKey(labelName) == false) {
+				// Couldn't find the node..
+				throw new IndexOutOfRangeException ("Unknown label " + 
+					labelName + " in node " + state.currentNodeName);
 			}
 
-			// Couldn't find the node..
-			throw new IndexOutOfRangeException ("Unknown label " + 
-				labelName + " in node " + state.currentNode);
+			return currentNode.labels [labelName];
+
+
 		}
 
 

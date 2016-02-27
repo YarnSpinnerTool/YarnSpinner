@@ -217,7 +217,7 @@ namespace Yarn {
 			};
 
 			vm.nodeCompleteHandler = delegate(NodeCompleteResult result) {
-				visitedNodeNames.Add (vm.currentNode);
+				visitedNodeNames.Add (vm.currentNodeName);
 				latestResult = result;
 			};
 
@@ -268,7 +268,7 @@ namespace Yarn {
 				if (vm == null) {
 					return null;
 				} else {
-					return vm.currentNode;
+					return vm.currentNodeName;
 				}
 
 			}

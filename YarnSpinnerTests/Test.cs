@@ -161,7 +161,6 @@ namespace YarnSpinner.Tests
 				dialogue.LoadFile ("Example.json");
 				return;
 			});
-
 		}
 
 		[Test()]
