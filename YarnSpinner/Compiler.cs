@@ -80,9 +80,20 @@ namespace Yarn
 		public void Include (Program otherProgram)
 		{
 			foreach (var otherNodeName in otherProgram.nodes) {
+
+				if (nodes.ContainsKey(otherNodeName.Key)) {
+					throw new InvalidOperationException (string.Format ("This program already contains a node named {0}", otherNodeName.Key));
+				}
+
 				nodes [otherNodeName.Key] = otherNodeName.Value;
 			}
+
 			foreach (var otherString in otherProgram.strings) {
+
+				if (nodes.ContainsKey(otherString.Key)) {
+					throw new InvalidOperationException (string.Format ("This program already contains a string with key {0}", otherString.Key));
+				}
+
 				strings [otherString.Key] = otherString.Value;
 			}
 		}

@@ -150,6 +150,21 @@ namespace YarnSpinner.Tests
 		}
 
 		[Test()]
+		public void TestMergingNodes()
+		{
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+
+			dialogue.LoadFile ("Example.json");
+
+			// Loading code with the same contents should throw
+			Assert.Throws <InvalidOperationException> (delegate () {
+				dialogue.LoadFile ("Example.json");
+				return;
+			});
+
+		}
+
+		[Test()]
 		public void TestGettingCurrentNodeName()  {
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
 
