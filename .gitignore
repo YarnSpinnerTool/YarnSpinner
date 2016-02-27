@@ -55,7 +55,7 @@ Builds/
 # WIP logo in .sketch form, will remove this when adding it
 *.sketch
 
-Unity/Assets/Yarn Spinner/Code/*.dll
+Unity/Assets/Yarn Spinner/Code/*.dll*
 
 # NUnit test results
 TestResult.xml
@@ -63,4 +63,7 @@ TestResult.xml
 packages/
 
 # Unity Test Tools examples
-Unity/Assets/UnityTestTools/
+Unity/Assets/UnityTestTools*
+
+# Unity package log
+export.log
