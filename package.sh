@@ -24,32 +24,34 @@
 
 LOGFILE="export.log"
 OUTDIR="`pwd`/Builds"
+SOURCE_FILES="YarnSpinner/*.cs"
 
 NO_EXAMPLES=0
+
+SOURCE_BUILD=0
 
 set -e
 
 function show_help {
 	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
 	echo
-	echo "Usage: package.sh [-hx]"
-	echo "	-h: Show this text and exit"
-	echo "	-x: Do not include example project assets"
+	echo "Usage: package.sh [-hsx]"
+	echo "  -s: Package the source code, not a built DLL"
+	echo "  -h: Show this text and exit"
+	echo "  -x: Do not include example project assets"
 	exit 0
 }
 
-while getopts ":xh" opt; do
+while getopts ":xhs" opt; do
 	
 	case $opt in
 	   x) NO_EXAMPLES=1 ;;
 	   h) show_help ;;
+	   s) SOURCE_BUILD=1 ;;
 	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ;;
 	esac
 
 done
-
-
-echo "NO_EXAMPLES is $NO_EXAMPLES"
 
 if [ `uname -s` != "Darwin" ]; then
 	echo "This script only works on OS X."
@@ -62,12 +64,25 @@ git clean -f -d -X Unity
 # Build the Yarn Spinner DLL
 ./build.sh
 
+if [ $SOURCE_BUILD == 1 ]; then
+	# Remove the built DLL from the Unity project (we built it to ensure that it actually works)
+	rm -v "Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll"
+	
+	# Copy the source files in
+	cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
+	
+fi
+
 # Next, determine what build name this is.
 
 # Strips "v" from tag names
 function strip-v () { echo -n "${1#v}"; }
 
 FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
+
+if [ $SOURCE_BUILD == 1 ]; then
+	FULL_VERSION="$FULL_VERSION-source"
+fi
 
 echo "Packaging Version $FULL_VERSION"
 
@@ -104,6 +119,10 @@ if [[ -f $UNITY ]]; then
 	fi
 	
 	set -e
+	
+	# Tidy up any untracked files (including source files, if this was a source build)
+	git clean -f Unity
+	
 else
 	echo "Error: Unity not found"
 	exit 1
