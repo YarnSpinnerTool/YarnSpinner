@@ -99,6 +99,12 @@ function strip-v () { echo -n "${1#v}"; }
 
 FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
 
+CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
+
+if [ $CURRENT_BRANCH_NAME != "master" ]; then
+	FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
+fi
+
 if [ $SOURCE_BUILD == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-source"
 fi
@@ -106,6 +112,8 @@ fi
 if [ $NO_EXAMPLES == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-minimal"
 fi
+
+
 
 echo "Packaging Version $FULL_VERSION with Unity..."
 
