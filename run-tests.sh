@@ -22,23 +22,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-TESTCASES_DIR="Tests/**"
-
 returncode=0
 
-for f in $TESTCASES_DIR/*.node; do
-	echo "Testing $f"
-	./parser.sh $f $@
-	
-	if [[ $? -ne 0 ]]; then
-		echo "*** ERROR RUNNING $f ***"
-		returncode=1
-	fi
+TESTPATH="Tests"
+ONLY_VERIFY=0
+
+while  getopts ":d:V" opt; do
+	case $opt  in
+		d) TESTPATH="$OPTARG" ;;
+		V) ONLY_VERIFY=1 ;;
+		\?) echo "Unknown option -$OPTARG"; exit 1 ;;
+	esac
 done
 
-for f in $TESTCASES_DIR/*.json; do
+if [ $ONLY_VERIFY == 1 ]; then
+	echo "Performing a verify-only run."
+fi
+
+IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
 	echo "Testing $f"
-	./parser.sh $f $@
+	
+	if [ $ONLY_VERIFY == 1 ]; then
+		./parser.sh -V "$f" 
+	else
+		./parser.sh "$f" 
+	fi
+		
 	
 	if [[ $? -ne 0 ]]; then
 		echo "*** ERROR RUNNING $f ***"

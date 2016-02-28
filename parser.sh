@@ -23,4 +23,4 @@
 # SOFTWARE.
 
 
-mono YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe $@
+mono YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe "$@"

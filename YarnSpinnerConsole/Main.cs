@@ -28,7 +28,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-
 namespace Yarn
 {
 
@@ -63,6 +62,7 @@ namespace Yarn
 			if (args.Length == 0) {
 				ShowHelpAndExit ();
 			}
+
 			bool showTokens = false;
 			bool showParseTree = false;
 			bool waitForLines = false;
@@ -80,7 +80,7 @@ namespace Yarn
 			var defaultVariables = new Dictionary<string,float> ();
 
 			foreach (var arg in args) {
-
+				
 				// Handle 'start' parameter
 				if (arg.IndexOf("-s=") != -1) {
 					var startArray = arg.Split (new char[]{ '=' });
