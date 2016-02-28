@@ -46,6 +46,7 @@ namespace Yarn
 			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
 			Console.WriteLine ("\t-s: Start at the given node, instead of the default ('" + Dialogue.DEFAULT_START + "').");
 			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
+			Console.WriteLine ("\t-V: Verifies the provided script");
 			Console.WriteLine ("\t-o: Only consider the node named <node>.");
 			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
@@ -69,6 +70,7 @@ namespace Yarn
 			bool showDebugging = false;
 			int runTimes = 1;
 			bool compileToBytecodeOnly = false;
+			bool verifyOnly = false;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -130,6 +132,9 @@ namespace Yarn
 
 
 				switch (arg) {
+				case "-V":
+					verifyOnly = true;
+					break;
 				case "-t":
 					showTokens = true;
 					showDebugging = true;
@@ -240,6 +245,15 @@ namespace Yarn
 			dialogue.LogErrorMessage = delegate(string message) {
 				Console.WriteLine ("ERROR: " + message);
 			};
+
+			if (verifyOnly) {
+				try {
+					dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+				} catch (Exception e) {
+					Console.WriteLine ("Error: " + e.Message);
+				}
+				return;
+			}
 
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
 
