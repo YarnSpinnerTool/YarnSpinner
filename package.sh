@@ -37,18 +37,33 @@ function show_help {
 	echo
 	echo "Usage: package.sh [-hsx]"
 	echo "  -s: Package the source code, not a built DLL"
+	echo "  -c: Show the changes since the last tag and exit"
 	echo "  -h: Show this text and exit"
 	echo "  -x: Do not include example project assets"
-	exit 0
 }
 
-while getopts ":xhs" opt; do
+function show_changes {
+	LATEST_TAG=`git describe --abbrev=0 --tags`
+	COMMITS_SINCE_THEN=`git rev-list $LATEST_TAG.. --count`
+
+	if [ $COMMITS_SINCE_THEN -eq "0" ]; then
+		echo "There has been no further work since the last tag."
+	else
+		echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG:"
+
+		git log $LATEST_TAG.. --pretty=format:"* %s"
+	fi
+}
+
+
+while getopts ":xhsc" opt; do
 	
 	case $opt in
 	   x) NO_EXAMPLES=1 ;;
-	   h) show_help ;;
+	   h) show_help ; exit 0 ;;
 	   s) SOURCE_BUILD=1 ;;
-	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ;;
+	   c) show_changes ; exit 0 ;;
+	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ; exit 0 ;;
 	esac
 
 done
@@ -59,9 +74,11 @@ if [ `uname -s` != "Darwin" ]; then
 fi
 
 # Clean the Unity directory of anything ignored
+echo "Cleaning Unity project..."
 git clean -f -d -X Unity
 
 # Build the Yarn Spinner DLL
+echo "Building Yarn Spinner..."
 ./build.sh
 
 if [ $SOURCE_BUILD == 1 ]; then
@@ -84,7 +101,7 @@ if [ $SOURCE_BUILD == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-source"
 fi
 
-echo "Packaging Version $FULL_VERSION"
+echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 
@@ -116,8 +133,10 @@ if [[ -f $UNITY ]]; then
 		echo "Package created in $OUTFILE"		
 	else
 		echo "Error: Unity reported no error, but the package wasn't created. Check $LOGFILE."
+		exit 1
 	fi
 	
+	# Turn stop-on-error back on
 	set -e
 	
 	# Tidy up any untracked files (including source files, if this was a source build)
@@ -128,16 +147,10 @@ else
 	exit 1
 fi
 
+echo
 
-LATEST_TAG=`git describe --abbrev=0 --tags`
-COMMITS_SINCE_THEN=`git rev-list $LATEST_TAG.. --count`
+echo "Build complete!"
 
-if [ $COMMITS_SINCE_THEN -eq "0" ]; then
-	echo "There has been no further work since the last tag."
-else
-	echo
-	echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG:"
+show_changes
 
-	git log $LATEST_TAG.. --pretty=format:"* %s"
-fi
 
