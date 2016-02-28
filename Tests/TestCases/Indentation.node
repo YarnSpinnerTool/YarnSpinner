@@ -1,0 +1,16 @@
+// Testing indentation resilience
+
+ <<if $mom_church is 0>>
+        <<set $mom_church += 1>>
+        Mom: Hey hon.
+        Mae: Hey hon.
+        Mom: How are you feeling?
+        Mae: ok
+        <<if $visited_church_two_or_more_times_in_each_act is 1>>
+            Mom: You come in here a lot and I appreciate that
+            Mae: yeah
+            Mom: Maybe something is drawing you here?
+            [[I don't think so. I wish.|DrawnHere_No]]
+            [[Yeah I think so|DrawnHere_Yes]]
+        <<endif>>
+<<endif>>

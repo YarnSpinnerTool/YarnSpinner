@@ -332,11 +332,7 @@ namespace Yarn {
 
 			internal Statement(ParseNode parent, Parser p) : base(parent, p) {
 
-				if (Block.CanParse(p)) {
-					type = Type.Block;
-					block = new Block(this, p);
-					return;
-				} else if (IfStatement.CanParse(p)) {
+				if (IfStatement.CanParse(p)) {
 					type = Type.IfStatement;
 					ifStatement = new IfStatement(this, p);
 					return;
@@ -704,11 +700,6 @@ namespace Yarn {
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 					statements.Add(new Statement(this, p));
-
-					// Ignore any dedents
-					while (p.NextSymbolIs(TokenType.Dedent)) {
-						p.ExpectSymbol(TokenType.Dedent);
-					}
 				}
 				primaryClause.statements = statements;
 
@@ -731,11 +722,6 @@ namespace Yarn {
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 						clauseStatements.Add(new Statement(this, p));
-
-						// Ignore any dedents
-						while (p.NextSymbolIs(TokenType.Dedent)) {
-							p.ExpectSymbol(TokenType.Dedent);
-						}
 
 					}
 
@@ -762,10 +748,6 @@ namespace Yarn {
 
 					this.clauses.Add(elseClause);
 
-					// Ignore any dedents
-					while (p.NextSymbolIs(TokenType.Dedent)) {
-						p.ExpectSymbol(TokenType.Dedent);
-					}
 
 				}
 
@@ -1387,38 +1369,59 @@ namespace Yarn {
 
 		// Returns true if the next symbol is one of 'validTypes'
 		bool NextSymbolIs(params TokenType[] validTypes) {
-			var t = this.tokens.Peek().type;
 
-			foreach (var validType in validTypes) {
-				if (t == validType) {
-					return true;
+			var tempQueue = new Queue<Token> (tokens);
+
+			// If we're not specifically looking for it, skip all
+			// indents and dedents
+			var validTypesList = new List<TokenType> (validTypes);
+
+			if (validTypesList.Contains(TokenType.Indent) == false &&
+				validTypesList.Contains(TokenType.Dedent) == false) {
+
+				while (tempQueue.Peek().type == TokenType.Indent || 
+					tempQueue.Peek().type == TokenType.Dedent) {
+					Console.WriteLine ("Skipping a dedent at " + tempQueue.Peek ());
+					tempQueue.Dequeue ();
 				}
 			}
-			return false;
+
+			// Is the next item what we're looking for?
+			var t = tempQueue.Peek();
+
+			if (validTypesList.Contains(t.type)) {
+				return true;
+			} else {
+				return false;
+			}
+
 		}
 
 		// Returns true if the next symbols are of the same type as
 		// 'validTypes' - this is used to look further ahead in the 
 		// token stream, eg when we're looking for '<<' 'else' 
 		bool NextSymbolsAre(params TokenType[] validTypes) {
+
 			var tempQueue = new Queue<Token> (tokens);
-			foreach (var type in validTypes) {
+
+			// If we're not specifically looking for it, skip all
+			// indents and dedents
+			var validTypesList = new List<TokenType> (validTypes);
+
+			if (validTypesList.Contains(TokenType.Indent) == false &&
+				validTypesList.Contains(TokenType.Dedent) == false) {
+
+				while (tempQueue.Peek().type == TokenType.Indent || 
+					tempQueue.Peek().type == TokenType.Dedent) {
+					tempQueue.Dequeue ();
+				}
+			}
+
+			foreach (var type in validTypesList) {
 				if (tempQueue.Dequeue ().type != type)
 					return false;
 			}
 			return true;
-		}
-
-
-		// Return the next token, which must be of type 'type',
-		// or throw an exception
-		Token ExpectSymbol(TokenType type) {
-			var t = this.tokens.Dequeue();
-			if (t.type != type) {
-
-				throw ParseException.Make(t, type);
-			}
-			return t;
 		}
 
 		// Return the next token, which can be of any type except EndOfInput.
@@ -1433,15 +1436,32 @@ namespace Yarn {
 		// Return the next token, which must be one of 'validTypes',
 		// or throw an exception
 		Token ExpectSymbol(params TokenType[] validTypes) {
-			var t = this.tokens.Dequeue();
 
-			foreach (var validType in validTypes) {
-				if (t.type == validType) {
+			var typeList = new List<TokenType> (validTypes);
+			
+			do {
+				var t = this.tokens.Dequeue ();
+
+				// Return this token if it's what we're looking for
+				if (typeList.Contains(t.type))
 					return t;
-				}
-			}
 
-			throw ParseException.Make(t, validTypes);
+
+				// Ok, this doesn't match what we're looking for.
+				// If it's an indent or dedent, AND we're not looking for one,
+				// keep going
+
+				if (typeList.Contains(TokenType.Indent) || typeList.Contains(TokenType.Dedent)) {
+					throw ParseException.Make (t, validTypes);
+				} else {
+					continue;
+				}
+
+			} while (this.tokens.Count > 0);
+
+			throw new ParseException ("Ran out of tokens while parsing...");
+
+
 		}
 	}
 

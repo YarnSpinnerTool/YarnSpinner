@@ -156,9 +156,9 @@ namespace Yarn {
 		
 		public override string ToString() {
 			if (this.value != null) {
-				return string.Format("{0} ({1})", type.ToString(), value.ToString());
+				return string.Format("{0} ({1}) at {2}:{3}", type.ToString(), value.ToString(), lineNumber, columnNumber);
 			} else {
-				return type.ToString();
+				return string.Format ("{0} at {1}:{2}", type, lineNumber, columnNumber);
 			}
 		}
 	}

@@ -24,9 +24,13 @@ SOFTWARE.
 
 */
 
+// Comment out to not catch exceptions
+//#define CATCH_EXCEPTIONS 
+
 using System;
 using System.Collections.Generic;
 using Json;
+
 
 namespace Yarn {
 
@@ -86,7 +90,10 @@ namespace Yarn {
 					continue;
 
 				// Attempt to parse every node; log if we encounter any errors
+				#if CATCH_EXCEPTIONS
 				try {
+				#endif 
+					
 					if (nodes.ContainsKey(nodeInfo.title)) {
 						throw new InvalidOperationException("Attempted to load a node called "+
 							nodeInfo.title+", but a node with that name has already been loaded!");
@@ -115,6 +122,7 @@ namespace Yarn {
 
 					nodesLoaded++;
 
+				#if CATCH_EXCEPTIONS
 				} catch (Yarn.TokeniserException t) {
 					// Add file information
 					var message = string.Format ("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
@@ -126,6 +134,7 @@ namespace Yarn {
 					var message = string.Format ("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
 					throw new InvalidOperationException (message);
 				}
+				#endif 
 
 
 			}
