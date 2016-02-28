@@ -22,13 +22,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-TESTCASES_DIR="Tests/TestCases"
+TESTCASES_DIR="Tests/**"
 
 returncode=0
 
 for f in $TESTCASES_DIR/*.node; do
 	echo "Testing $f"
-	./parser.sh $f
+	./parser.sh $f $@
+	
+	if [[ $? -ne 0 ]]; then
+		echo "*** ERROR RUNNING $f ***"
+		returncode=1
+	fi
+done
+
+for f in $TESTCASES_DIR/*.json; do
+	echo "Testing $f"
+	./parser.sh $f $@
 	
 	if [[ $? -ne 0 ]]; then
 		echo "*** ERROR RUNNING $f ***"
