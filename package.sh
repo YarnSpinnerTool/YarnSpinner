@@ -82,9 +82,11 @@ echo "Building Yarn Spinner..."
 ./build.sh
 
 if [ $SOURCE_BUILD == 1 ]; then
+	echo "Removing YarnSpinner.dll..."
 	# Remove the built DLL from the Unity project (we built it to ensure that it actually works)
 	rm -v "Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll"
 	
+	echo "Copying Yarn Spinner source in..."
 	# Copy the source files in
 	cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
 	
@@ -99,6 +101,10 @@ FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty)
 
 if [ $SOURCE_BUILD == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-source"
+fi
+
+if [ $NO_EXAMPLES == 1 ]; then
+	FULL_VERSION="$FULL_VERSION-minimal"
 fi
 
 echo "Packaging Version $FULL_VERSION with Unity..."
