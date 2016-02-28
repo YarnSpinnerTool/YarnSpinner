@@ -49,9 +49,9 @@ namespace Yarn
 			Console.WriteLine ("\t-o: Only consider the node named <node>.");
 			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
-			Console.WriteLine ("\t-h: Show this message and exit.");
 			Console.WriteLine ("\t-c: Show program bytecode and exit.");
-
+			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
+			Console.WriteLine ("\t-h: Show this message and exit.");
 
 			Environment.Exit (0);
 		}
@@ -71,6 +71,7 @@ namespace Yarn
 			int runTimes = 1;
 			bool compileToBytecodeOnly = false;
 			bool verifyOnly = false;
+			bool autoSelectFirstOption = false;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -152,6 +153,9 @@ namespace Yarn
 				case "-c":
 					compileToBytecodeOnly = true;
 					break;
+				case "-1":
+					autoSelectFirstOption = true;
+					break;
 				case "-h":
 					ShowHelpAndExit ();
 					break;
@@ -232,6 +236,10 @@ namespace Yarn
 			dialogue.library.RegisterFunction ("expect_command", 1, delegate(Value[] parameters) {
 				impl.expectedNextCommand = parameters[0].AsString;
 			});
+
+			if (autoSelectFirstOption == true) {
+				impl.autoSelectFirstOption = true;
+			}
 
 			// If debugging is enabled, log debug messages; otherwise, ignore them
 			if (showDebugging) {
@@ -315,6 +323,8 @@ namespace Yarn
 
 			public string expectedNextCommand = null;
 
+			public bool autoSelectFirstOption = false;
+
 			public ConsoleRunnerImplementation(bool waitForLines = false) {
 				this.variableStore = new MemoryVariableStore();
 				this.waitForLines = waitForLines;
@@ -373,6 +383,13 @@ namespace Yarn
 					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
 					Console.WriteLine (optionDisplay);
 				}
+
+				if (autoSelectFirstOption == true) {
+					Console.WriteLine ("(automatically choosing option 1)");
+					optionChooser (0);
+					return;
+				}
+
 				do {
 					Console.Write ("? ");
 					try {

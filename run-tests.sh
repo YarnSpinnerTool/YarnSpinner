@@ -24,13 +24,27 @@
 
 returncode=0
 
-TESTPATH="Tests"
+TESTPATH="."
 ONLY_VERIFY=0
+INTERACTIVE=0
 
-while  getopts ":d:V" opt; do
+function show_help {
+	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
+	echo
+	echo "Usage: package.sh [-d <path>] [-Vih]"
+	echo "  -d <path>: Run the tests in <path> (defaults to '.')"
+	echo "  -i: Run scripts interactively; when presented with options, wait for input."
+	echo "  -V: Verify scripts only; do not run. (Ignores -i.)"
+	echo "  -h: Show this text and exit"
+}
+
+
+while  getopts ":d:Vhi" opt; do
 	case $opt  in
 		d) TESTPATH="$OPTARG" ;;
+		i) INTERACTIVE=1 ;;
 		V) ONLY_VERIFY=1 ;;
+		h) show_help ; exit 1; ;;
 		\?) echo "Unknown option -$OPTARG"; exit 1 ;;
 	esac
 done
@@ -45,10 +59,13 @@ IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
 	if [ $ONLY_VERIFY == 1 ]; then
 		./parser.sh -V "$f" 
 	else
-		./parser.sh "$f" 
+		if [ $INTERACTIVE == 1 ]; then
+			./parser.sh "$f" 
+		else
+			./parser.sh -1 "$f" 
+		fi
 	fi
-		
-	
+
 	if [[ $? -ne 0 ]]; then
 		echo "*** ERROR RUNNING $f ***"
 		returncode=1
