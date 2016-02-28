@@ -101,6 +101,10 @@ if [ $SOURCE_BUILD == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-source"
 fi
 
+if [ $NO_EXAMPLES == 1 ]; then
+	FULL_VERSION="$FULL_VERSION-minimal"
+fi
+
 echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
