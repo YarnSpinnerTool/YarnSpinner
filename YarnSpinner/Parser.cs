@@ -282,8 +282,6 @@ namespace Yarn {
 					_statements.Add(new Statement(this, p));
 				}
 
-
-
 			}
 
 			// Print the statements we have
@@ -706,10 +704,16 @@ namespace Yarn {
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 					statements.Add(new Statement(this, p));
+
+					// Ignore any dedents
+					while (p.NextSymbolIs(TokenType.Dedent)) {
+						p.ExpectSymbol(TokenType.Dedent);
+					}
 				}
 				primaryClause.statements = statements;
 
 				clauses.Add(primaryClause);
+
 
 				// Handle as many <<elseif clauses as we find
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
@@ -727,6 +731,12 @@ namespace Yarn {
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == false &&
 						p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf) == false) {
 						clauseStatements.Add(new Statement(this, p));
+
+						// Ignore any dedents
+						while (p.NextSymbolIs(TokenType.Dedent)) {
+							p.ExpectSymbol(TokenType.Dedent);
+						}
+
 					}
 
 					elseIfClause.statements = clauseStatements;
@@ -751,6 +761,12 @@ namespace Yarn {
 					elseClause.statements = clauseStatements;
 
 					this.clauses.Add(elseClause);
+
+					// Ignore any dedents
+					while (p.NextSymbolIs(TokenType.Dedent)) {
+						p.ExpectSymbol(TokenType.Dedent);
+					}
+
 				}
 
 				// Finish up by reading the <<endif>>
