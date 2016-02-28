@@ -3,11 +3,24 @@
 // Expect 2 options (the second one in the following group of three
 // will not be run) and select the first one
 <<prepare_for_options(2,0)>>
+<<expect_line("This line should appear.")>>
 
 -> Option 1
-	<<set $selected to 1>>
+	<<set $selected += 1>>
+	This line should appear.
+	<<prepare_for_options(2,0)>>
+	-> Sub Option 1
+		<<set $selected += 1>>
+	-> Sub Option 2	
+		// Should be selected
+		<<assert(false)>>
+	-> Sub Option 3 <<if false>>
+		// Should never appear
+		<<assert(false)>>		
 -> Option 2 <<if false>>
+	<<assert(false)>>
 -> Option 3
+	<<assert(false)>>
 
 // Check that the stuff attached to Option 1 actually ran
-<<assert($selected == 1)>>
+<<assert($selected == 2)>>

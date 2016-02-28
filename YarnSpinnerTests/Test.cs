@@ -92,6 +92,20 @@ namespace YarnSpinner.Tests
 
 
 		}
+			
+		[Test()]
+		public void TestIndentation()
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Indentation.node");
+			dialogue.LoadFile (path);
+		}
+
+		[Test()]
+		public void TestOptions()
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Options.node");
+			dialogue.LoadFile (path);
+		}
 
 		[Test()]
 		public void TestParsingSmileys()

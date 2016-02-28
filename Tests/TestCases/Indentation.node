@@ -1,0 +1,28 @@
+// Testing indentation resilience
+
+// Note that this line is indented by one space more than its corresponding <<endif>>
+ <<if $mom_church is 0>>
+        <<set $mom_church += 1>>
+        Mom: Hey hon.
+        Mae: Hey hon.
+        Mom: How are you feeling?
+        Mae: ok
+        <<if $visited_church_two_or_more_times_in_each_act is 1>>
+            Mom: You come in here a lot and I appreciate that
+            Mae: yeah
+            Mom: Maybe something is drawing you here?
+            [[I don't think so. I wish.|DrawnHere_No]]
+            [[Yeah I think so|DrawnHere_Yes]]
+			// this endif is one space further in than its if
+         <<endif>>
+<<endif>>
+
+<<if true>>
+	This is a line.
+	-> Option 1
+		Option 1 Line 1
+        Option 1 Line 2
+	-> Option 2
+		Option 2 Line 1
+		Option 2 Line 2 - EXPECT TWO DEDENTS HERE
+<<endif>>
