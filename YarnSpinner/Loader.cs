@@ -25,7 +25,7 @@ SOFTWARE.
 */
 
 // Comment out to not catch exceptions
-//#define CATCH_EXCEPTIONS 
+#define CATCH_EXCEPTIONS 
 
 using System;
 using System.Collections.Generic;

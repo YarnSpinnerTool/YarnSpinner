@@ -212,6 +212,14 @@ namespace Yarn {
 			// When in free text mode, token rules that are DoNotMatch are not used.
 			public FreeTextMode freeTextMode;
 
+			// When true, the lexer will examine the next line, and see if it's
+			// further indented than the current. If it is, then an Indent token 
+			// is emitted.
+			// This exists for the -> shortcut option syntax, in which following
+			// lines are indented to indicate that they belong to the option.
+			public bool nextLineIsPossiblyIndented;
+
+
 			public override string ToString ()
 			{
 				return string.Format ("TokenRule: {0}", type.ToString());
@@ -252,13 +260,17 @@ namespace Yarn {
 
 
 		}
+
+		bool wasLookingForIndent = false;
+		bool nowLookingForIndent = false;
 		
 		// Define a new token rule, with a name and an optional rule
 		public TokenRule AddTokenRule(TokenType type, string rule, 
 			bool canBeginLine = false, 
 			bool resetsLine = false, 
 			bool requiresFollowingWhitespace=false,
-			TokenRule.FreeTextMode freeTextMode = TokenRule.FreeTextMode.DoNotMatch	
+			TokenRule.FreeTextMode freeTextMode = TokenRule.FreeTextMode.DoNotMatch,
+			bool nextLineIsPossiblyIndented=false
 		) {
 			
 			var newTokenRule = new TokenRule();
@@ -279,7 +291,9 @@ namespace Yarn {
 			newTokenRule.canBeginLine = canBeginLine;
 
 			newTokenRule.freeTextMode = freeTextMode;
-			
+
+			newTokenRule.nextLineIsPossiblyIndented = nextLineIsPossiblyIndented;
+
 			// Store it in the list and return
 			tokenRules.Add(newTokenRule);
 			return newTokenRule;
@@ -305,11 +319,13 @@ namespace Yarn {
 			foreach (var line in lines) {
 				
 				int newIndentLevel;
-				
+
+				nowLookingForIndent = false;
+
 				// Get the tokens, plus the indentation level of this line
 				var lineTokens = TokeniseLine(context, line, out newIndentLevel, lineNum);
-				
-				if (newIndentLevel > indentLevels.Peek()) {
+
+				if (wasLookingForIndent == true || nowLookingForIndent && newIndentLevel > indentLevels.Peek()) {
 					// We are now more indented than the last indent.
 					// Emit a "indent" token, and push this new indent onto the stack.
 					var indent = new Token(TokenType.Indent);
@@ -331,6 +347,8 @@ namespace Yarn {
 						indentLevels.Pop();
 					}
 				}
+
+				wasLookingForIndent = nowLookingForIndent;
 				
 				// Add the list of tokens that were in this line
 				tokens.AddRange(lineTokens);
@@ -492,6 +510,11 @@ namespace Yarn {
 							
 						}
 
+						// Mark that the next line may be indented
+						if (tokenRule.nextLineIsPossiblyIndented) {
+							nowLookingForIndent = true;
+						}
+
 						// We've advanced through the string
 						columnNumber += match.Length;
 
@@ -607,7 +630,7 @@ namespace Yarn {
 			AddTokenRule(TokenType.String, @"""[^""\\]*(?:\\.[^""\\]*)*""");
 			
 			// Options
-			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true);
+			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true, nextLineIsPossiblyIndented:true);
 			AddTokenRule(TokenType.OptionStart, @"\[\[", canBeginLine:true, resetsLine:true);
 			AddTokenRule (TokenType.OptionDelimit, @"\|").freeTextModeException = delegate(TokenList tokens) {
 				if (tokens.Count < 2)
