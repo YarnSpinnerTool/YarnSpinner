@@ -29,7 +29,7 @@ ONLY_VERIFY=0
 INTERACTIVE=0
 
 function show_help {
-	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
+	echo "run-tests.sh: Run all Yarn scripts in a directory"
 	echo
 	echo "Usage: package.sh [-d <path>] [-Vih]"
 	echo "  -d <path>: Run the tests in <path> (defaults to '.')"
