@@ -27,3 +27,11 @@
 
 <<expect_command("isActive")>>
 <<isActive>>
+
+// Commands with punctuation
+<<expect_command("!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+")>>
+//<<!@#$%^&*()⁄€‹›ﬁﬂ‡°·‚‘-=_+>>
+
+// Commands with colons
+<<expect_command("hide Collision:GermOnPorch")>>
+<<hide Collision:GermOnPorch>>
