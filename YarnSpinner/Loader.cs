@@ -80,19 +80,13 @@ namespace Yarn {
 
 			int nodesLoaded = 0;
 
-			Program program;
-
 			foreach (NodeInfo nodeInfo in nodeInfos) {
 
 				if (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
 					continue;
 
 				// Attempt to parse every node; log if we encounter any errors
-				#if !DEBUG
-				// If this is a release build, don't crash on parse errors
 				try {
-				#endif 
-
 					if (nodes.ContainsKey(nodeInfo.title)) {
 						throw new InvalidOperationException("Attempted to load a node called "+
 							nodeInfo.title+", but a node with that name has already been loaded!");
@@ -121,15 +115,18 @@ namespace Yarn {
 
 					nodesLoaded++;
 
-				#if !DEBUG
 				} catch (Yarn.TokeniserException t) {
-					this.dialogue.LogErrorMessage (string.Format ("Error reading node {0}: {1}", nodeInfo.title, t.Message));
+					// Add file information
+					var message = string.Format ("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
+					throw new Yarn.TokeniserException (message);
 				} catch (Yarn.ParseException p) {
-					this.dialogue.LogErrorMessage (string.Format ("Error parsing node {0}: {1}", nodeInfo.title, p.Message));
+					var message = string.Format ("In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
+					throw new Yarn.ParseException (message);
 				} catch (InvalidOperationException e) {
-					this.dialogue.LogErrorMessage(string.Format("Error loading node: {0}", e.Message));
+					var message = string.Format ("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
+					throw new InvalidOperationException (message);
 				}
-				#endif
+
 
 			}
 
