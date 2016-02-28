@@ -11,4 +11,5 @@ if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
 	cp "$BUILD_DIR/$OUTPUT_DLL" "$UNITY_DIR/$OUTPUT_DLL"
 else
 	echo "Build failed."
+	exit 1
 fi
