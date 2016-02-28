@@ -340,6 +340,9 @@ namespace Yarn {
 				
 			}
 
+			// Back up a line - lineNum is now 1 more than the number
+			// of physical lines in the text
+			lineNum--;
 
 			// Dedent if there's any indentations left (ie we reached the 
 			// end of the file and it was still indented)
@@ -353,8 +356,12 @@ namespace Yarn {
 				tokens.Add(dedent);
 			}
 
+			// Emit the end-of-input token
+			var endOfInput = new Token (TokenType.EndOfInput);
+			endOfInput.lineNumber = lineNum;
+
 			// Finish up with an ending token
-			tokens.Add(new Token(TokenType.EndOfInput));
+			tokens.Add(endOfInput);
 
 			// yay we're done
 			return tokens;
