@@ -70,7 +70,7 @@ namespace Yarn {
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
 		// Returns the number of nodes that were loaded.
-		public Program Load(string text, Library library, Program includeProgram = null, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
 
 			// The final parsed nodes that were in the file we were given
 			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();

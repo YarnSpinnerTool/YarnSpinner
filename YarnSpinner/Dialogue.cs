@@ -161,12 +161,12 @@ namespace Yarn {
 			string inputString = reader.ReadToEnd ();
 			reader.Close ();
 
-			LoadString (inputString, showTokens, showParseTree, onlyConsiderNode);
+			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
 
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
-		public void LoadString(string text, bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
+		public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before loading");
@@ -176,7 +176,7 @@ namespace Yarn {
 				throw new YarnException ("LogErrorMessage must be set before loading");
 			}
 
-			program = loader.Load(text, library, program, showTokens, showParseTree, onlyConsiderNode);
+			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode);
 
 		}
 
@@ -229,8 +229,6 @@ namespace Yarn {
 				yield break;
 			}
 
-
-
 			// Run until the program stops, pausing to yield important
 			// results
 			do {
@@ -241,9 +239,6 @@ namespace Yarn {
 					yield return latestResult;
 				
 			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped);
-
-			
-
 
 		}
 

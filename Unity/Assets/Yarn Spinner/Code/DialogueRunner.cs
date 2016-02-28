@@ -86,12 +86,10 @@ namespace Yarn.Unity
 			
 			// Ensure that the variable storage has the right stuff in it
 			variableStorage.ResetToDefaults ();
-			
-
 
 			// Load all JSON
 			foreach (var source in sourceText) {
-				dialogue.LoadString (source.text);
+				dialogue.LoadString (source.text, source.name);
 			}
 
 			if (startAutomatically) {
