@@ -1,5 +1,7 @@
 // Testing smileys
 
+<<prepare_for_options(22, 0)>>
+
 Mae: ¯\_(ツ)_/¯
 Mae: <o>
 Mae: :|
@@ -26,7 +28,7 @@ Mae: ~~
 // Testing in an option group
 
 
-<<prepare_for_options(-1, 0)>>
+<<prepare_for_options(22, 0)>>
 
 -> Mae: ¯\_(ツ)_/¯
 -> Mae: <o>
@@ -53,7 +55,7 @@ Mae: ~~
 
 // Testing in an option group, with conditionals
 
-<<prepare_for_options(-1, 0)>>
+<<prepare_for_options(22, 0)>>
 
 -> Mae: ¯\_(ツ)_/¯ <<if true>>
 -> Mae: <o> <<if true>>

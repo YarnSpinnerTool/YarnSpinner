@@ -325,7 +325,7 @@ namespace Yarn {
 				// Get the tokens, plus the indentation level of this line
 				var lineTokens = TokeniseLine(context, line, out newIndentLevel, lineNum);
 
-				if (wasLookingForIndent == true || nowLookingForIndent && newIndentLevel > indentLevels.Peek()) {
+				if ((wasLookingForIndent == true || nowLookingForIndent == true) && newIndentLevel > indentLevels.Peek()) {
 					// We are now more indented than the last indent.
 					// Emit a "indent" token, and push this new indent onto the stack.
 					var indent = new Token(TokenType.Indent);
