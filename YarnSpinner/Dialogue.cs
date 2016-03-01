@@ -243,7 +243,8 @@ namespace Yarn {
 		}
 
 		public void Stop() {
-			vm.Stop();
+			if (vm != null)
+				vm.Stop();
 		}
 
 		public IEnumerable<string> visitedNodes {
