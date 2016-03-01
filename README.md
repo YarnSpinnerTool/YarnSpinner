@@ -18,6 +18,7 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 
 ## Quick Start
 
+1. Download the [Yarn editor](https://github.com/InfiniteAmmoInc/Yarn), so that you can create and edit Yarn files.
 1. Create a new project in [Unity](https://unity3d.com/get-unity).
 2. Download the [latest release's Unity package](https://github.com/thesecretlab/YarnSpinner/releases).
 3. Import the package.
