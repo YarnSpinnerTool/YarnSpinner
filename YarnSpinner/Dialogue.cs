@@ -110,9 +110,8 @@ namespace Yarn {
 
 		}
 
-		// We've reached the end of this node. Used internally, 
-		// and not exposed to clients.
-		internal class NodeCompleteResult: RunnerResult {
+		// We've reached the end of this node.
+		public class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
 			public NodeCompleteResult (string nextNode) {

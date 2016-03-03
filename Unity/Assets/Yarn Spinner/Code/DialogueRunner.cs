@@ -160,7 +160,12 @@ namespace Yarn.Unity
 					// Wait for command to finish running
 					var commandResult = step as Yarn.Dialogue.CommandResult;
 					yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
-				}
+				} else if(step is Yarn.Dialogue.NodeCompleteResult) {
+
+                    // Wait for post-node action
+                    var nodeResult = step as Yarn.Dialogue.NodeCompleteResult;
+                    yield return StartCoroutine (this.dialogueUI.NodeComplete (nodeResult.nextNode));
+                }
 			}
 			
 			// No more results! The dialogue is done.
@@ -216,8 +221,14 @@ namespace Yarn.Unity
 		// Perform some game-specific command.
 		public abstract IEnumerator RunCommand (Yarn.Command command);
 
-		// The conversation has end.
-		public virtual IEnumerator DialogueComplete () {
+        // The node has ended.
+        public virtual IEnumerator NodeComplete(string nextNode) {
+            // Default implementation does nothing.
+            yield break;
+        }
+
+        // The conversation has ended.
+        public virtual IEnumerator DialogueComplete () {
 			// Default implementation does nothing.
 			yield break;
 		}
