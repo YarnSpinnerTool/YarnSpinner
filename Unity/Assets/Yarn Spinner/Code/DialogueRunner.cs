@@ -145,7 +145,7 @@ namespace Yarn.Unity
                 if(didShowLine && step is Dialogue.LineResult) {
 
                     // If we're about to show another line and the didShowLine flag is set
-                    // fire node complete, reset flags this event cannot consume the step
+                    // fire node complete, reset flags. This event cannot consume the step
                     yield return StartCoroutine(this.dialogueUI.NodeComplete(didShowOptions));
                     didShowLine = false;
                     didShowOptions = false;
