@@ -132,23 +132,37 @@ namespace Yarn.Unity
 			// Mark that we're in conversation.
 			isDialogueRunning = true;
 
-			// Signal that we're starting up.
-			yield return StartCoroutine(this.dialogueUI.DialogueStarted());
+            // Flags for checking if we've completed a node
+            var didShowLine = false;
+            var didShowOptions = false;
+
+            // Signal that we're starting up.
+            yield return StartCoroutine(this.dialogueUI.DialogueStarted());
 
 			// Get lines, options and commands from the Dialogue object,
 			// one at a time.
 			foreach (Yarn.Dialogue.RunnerResult step in dialogue.Run(startNode)) {
-				
-				if (step is Yarn.Dialogue.LineResult) {
-					
-					// Wait for line to finish displaying
-					var lineResult = step as Yarn.Dialogue.LineResult;
+                if(didShowLine && step is Dialogue.LineResult) {
+
+                    // If we're about to show another line and the didShowLine flag is set
+                    // fire node complete, reset flags this event cannot consume the step
+                    yield return StartCoroutine(this.dialogueUI.NodeComplete(didShowOptions));
+                    didShowLine = false;
+                    didShowOptions = false;
+                }
+
+                if (step is Yarn.Dialogue.LineResult) {
+
+                    // Wait for line to finish displaying
+                    didShowLine = true;
+                    var lineResult = step as Yarn.Dialogue.LineResult;
 					yield return StartCoroutine (this.dialogueUI.RunLine (lineResult.line));
 					
 				} else if (step is Yarn.Dialogue.OptionSetResult) {
-					
-					// Wait for user to finish picking an option
-					var optionSetResult = step as Yarn.Dialogue.OptionSetResult;
+
+                    // Wait for user to finish picking an option
+                    didShowOptions = true;
+                    var optionSetResult = step as Yarn.Dialogue.OptionSetResult;
 					yield return StartCoroutine (
 						this.dialogueUI.RunOptions (
 						optionSetResult.options, 
@@ -162,9 +176,13 @@ namespace Yarn.Unity
 					yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
 				}
 			}
-			
-			// No more results! The dialogue is done.
-			yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
+
+            // The last node won't fire the NodeComplete block in the loop
+            // Need to fire it here as well
+            yield return StartCoroutine(this.dialogueUI.NodeComplete(didShowOptions));
+
+            // No more results! The dialogue is done.
+            yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
 
 			// Clear the 'is running' flag. We do this after DialogueComplete returns,
 			// to allow time for any animations that might run while transitioning
@@ -216,8 +234,14 @@ namespace Yarn.Unity
 		// Perform some game-specific command.
 		public abstract IEnumerator RunCommand (Yarn.Command command);
 
-		// The conversation has end.
-		public virtual IEnumerator DialogueComplete () {
+        // The node has ended.
+        public virtual IEnumerator NodeComplete(bool didShowOptions) {
+            // Default implementation does nothing.
+            yield break;
+        }
+
+        // The conversation has ended.
+        public virtual IEnumerator DialogueComplete () {
 			// Default implementation does nothing.
 			yield break;
 		}
