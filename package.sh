@@ -30,6 +30,8 @@ NO_EXAMPLES=0
 
 SOURCE_BUILD=0
 
+CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
+
 set -e
 
 function show_help {
@@ -45,16 +47,17 @@ function show_help {
 function show_changes {
 	LATEST_TAG=`git describe --abbrev=0 --tags`
 	COMMITS_SINCE_THEN=`git rev-list $LATEST_TAG.. --count`
-
+	
+	echo "You are currently on branch $CURRENT_BRANCH_NAME."
+	
 	if [ $COMMITS_SINCE_THEN -eq "0" ]; then
 		echo "There has been no further work since the last tag."
 	else
-		echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG:"
+		echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG on this branch:"
 
 		git log $LATEST_TAG.. --pretty=format:"* %s"
 	fi
 }
-
 
 while getopts ":xhsc" opt; do
 	
@@ -98,8 +101,6 @@ fi
 function strip-v () { echo -n "${1#v}"; }
 
 FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
-
-CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
 
 if [ $CURRENT_BRANCH_NAME != "master" ]; then
 	FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
