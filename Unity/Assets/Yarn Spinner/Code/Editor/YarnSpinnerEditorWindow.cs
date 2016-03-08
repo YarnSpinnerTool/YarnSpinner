@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Yarn.Unity {
-	public class YarnSpinnerChecker : EditorWindow {
+	public class YarnSpinnerEditorWindow : EditorWindow {
 
 		class CheckerResult {
 			public enum State {
@@ -64,7 +64,7 @@ namespace Yarn.Unity {
 
 		[MenuItem("Window/Yarn Spinner %#y", false, 2000)]
 		static void ShowWindow() {
-			EditorWindow.GetWindow(typeof(YarnSpinnerChecker));
+			EditorWindow.GetWindow(typeof(YarnSpinnerEditorWindow));
 		}
 
 		void OnEnable() {
