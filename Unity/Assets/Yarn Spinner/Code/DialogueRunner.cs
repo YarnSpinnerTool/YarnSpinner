@@ -53,6 +53,8 @@ namespace Yarn.Unity
 
 		public bool isDialogueRunning { get; private set; }
 
+		public bool automaticCommands = true;
+
 		// Our conversation engine
 		// Automatically created on first access
 		private Dialogue _dialogue;
@@ -158,8 +160,16 @@ namespace Yarn.Unity
 				} else if (step is Yarn.Dialogue.CommandResult) {
 					
 					// Wait for command to finish running
+
 					var commandResult = step as Yarn.Dialogue.CommandResult;
-					yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
+
+					if (DispatchCommand(commandResult.command.text) == true) {
+						// command was dispatched
+					} else {
+						yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
+					}
+
+
 				} else if(step is Yarn.Dialogue.NodeCompleteResult) {
 
                     // Wait for post-node action
@@ -200,6 +210,107 @@ namespace Yarn.Unity
 			}
 		}
 
+		public bool DispatchCommand(string command) {
+
+			// commands that can be automatically dispatched look like this:
+			// COMMANDNAME OBJECTNAME <param> <param> <param> ...
+
+			// We can dispatch this command if:
+			// 1. it has at least 2 words
+			// 2. the second word is the name of an object
+			// 3. that object has components that have methods 
+			//    with the YarnCommand attribute that have the
+			//    correct commandString set
+
+			var words = command.Split(' ');
+
+			// need 2 parameters in order to have both a command name
+			// and the name of an object to find
+			if (words.Length < 2)
+				return false;
+
+			var commandName = words[0];
+
+			var objectName = words[1];
+
+			var sceneObject = GameObject.Find(objectName);
+
+			int numberOfMethodsFound = 0;
+
+			List<string> parameters;
+
+			if (words.Length > 2) {
+				parameters = new List<string>(words);
+				parameters.RemoveRange(0, 2);
+			} else {
+				parameters = new List<string>();
+			}
+
+			// Find every MonoBehaviour (or subclass) on the object
+			foreach (var component in sceneObject.GetComponents<MonoBehaviour>()) {
+				var type = component.GetType();
+
+				// Find every method in this component
+				foreach (var method in type.GetMethods()) {
+
+					// Find the YarnCommand attributes on this method
+					var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(YarnCommandAttribute), true);
+
+					// Find the YarnCommand whose commandString is equal to the command name
+					foreach (var attribute in attributes) {
+						if (attribute.commandString == commandName) {
+
+							// Verify that this method has the right number of parameters
+							var methodParameters = method.GetParameters();
+
+							if (methodParameters.Length != parameters.Count) {
+								Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but it has a different number of parameters ({2}) to those provided ({3})!", method.Name, commandName, methodParameters.Length, parameters.Count);
+								return false;
+							}
+
+							// Verify that this method has only string parameters (or no parameters)
+							foreach (var paramInfo in methodParameters) {
+								if (paramInfo.ParameterType.IsAssignableFrom(typeof(string)) == false) {
+									Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but not all of its parameters are strings!", method.Name, commandName);
+									return false;
+								}
+							}
+
+							// Cool, we can send the command!
+							method.Invoke(component, parameters.ToArray());
+							numberOfMethodsFound ++;
+						}
+					}
+				} 
+			}
+
+			// Warn if we found multiple things that could respond
+			// to this command.
+			if (numberOfMethodsFound > 1) {
+				Debug.LogWarningFormat(sceneObject, "The command \"{0}\" found {1} targets. " +
+					"You should only have one - check your scripts.");
+			}
+
+			return numberOfMethodsFound > 0;
+		}
+
+	}
+
+	// Apply this attribute to methods in your scripts to expose
+	// them to Yarn.
+
+	// For example:
+	// [YarnCommand("dosomething")]
+	// void Foo() {
+	//    do something!
+	// }
+	public class YarnCommandAttribute : System.Attribute
+	{
+		public string commandString { get; private set; }
+
+		public YarnCommandAttribute(string commandString) {
+			this.commandString = commandString;
+		}
 	}
 
 	// Scripts that can act as the UI for the conversation should subclass this
