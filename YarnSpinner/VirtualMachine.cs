@@ -22,7 +22,11 @@ namespace Yarn
 
 			// Methods for working with the stack
 			public void PushValue(object o) {
-				stack.Push (new Value(o));
+                if( o is Value ) {
+                    stack.Push(o as Value);
+                } else {
+				    stack.Push (new Value(o));
+                }
 			}
 
 			public Value PopValue() {
@@ -107,7 +111,7 @@ namespace Yarn
 			dialogue.LogDebugMessage ("Running node " + nodeName);
 
 			// Clear the special variables
-			dialogue.continuity.SetNumber(SpecialVariables.ShuffleOptions, 0.0f);
+			dialogue.continuity.SetValue(SpecialVariables.ShuffleOptions, new Value(false));
 
 			currentNode = program.nodes [nodeName];
 			ResetState ();
@@ -279,7 +283,7 @@ namespace Yarn
 
 				// Get the contents of a variable, push that onto the stack.
 				var variableName = (string)i.operandA;
-				var loadedValue = dialogue.continuity.GetNumber (variableName);
+				var loadedValue = dialogue.continuity.GetValue (variableName);
 				state.PushValue (loadedValue);
 
 				break;
@@ -344,7 +348,7 @@ namespace Yarn
 					break;
 				}
 
-				if (dialogue.continuity.GetNumber(SpecialVariables.ShuffleOptions) != 0.0f) {
+				if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).boolValue) {
 					// Shuffle the dialog options if needed
 					var r = new Random();
 					var n = state.currentOptions.Count;

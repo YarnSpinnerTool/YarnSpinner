@@ -224,7 +224,7 @@ namespace Yarn
 			switch (value.type) {
 			case Value.Type.Variable:
 				dialogue.LogDebugMessage ("Checking value " + value.variableName);
-				return new Value(dialogue.continuity.GetNumber (value.variableName));
+				return dialogue.continuity.GetValue (value.variableName);
 			default:
 				return value;
 			}
@@ -237,37 +237,34 @@ namespace Yarn
 			var variableName = assignment.destinationVariableName;
 
 			// The value that's going into this variable.
-			// TODO: Currently this coerces this into a float. Add support for 
-			// storing different types of data in the client.
-			var computedValue = EvaluateExpression (assignment.valueExpression).AsNumber;
+			var computedValue = EvaluateExpression (assignment.valueExpression);
 
 			// The current value of this variable.
-			float originalValue = dialogue.continuity.GetNumber (variableName);
+			Value originalValue = dialogue.continuity.GetValue (variableName);
 
 			// What shall we do with it?
 
-			// TODO: Hmm this should be a function, like the other operators
-			float finalValue = 0.0f;
+			Value finalValue = new Value();
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
 				finalValue = computedValue;
 				break;
 			case TokenType.AddAssign:
-				finalValue = originalValue + computedValue;
+				finalValue = originalValue.Add(computedValue);
 				break;
 			case TokenType.MinusAssign:
-				finalValue = originalValue - computedValue;
+				finalValue = originalValue.Subtract(computedValue);
 				break;
 			case TokenType.MultiplyAssign:
-				finalValue = originalValue * computedValue;
+				finalValue = originalValue.Multiply(computedValue);
 				break;
 			case TokenType.DivideAssign:
-				finalValue = originalValue / computedValue;
+				finalValue = originalValue.Divide(computedValue);
 				break;
 			}
 
 			dialogue.LogDebugMessage(string.Format("Set {0} to {1}", variableName, finalValue));
-			dialogue.continuity.SetNumber (variableName, finalValue);
+			dialogue.continuity.SetValue (variableName, finalValue);
 		}
 
 		private IEnumerable<Dialogue.RunnerResult> RunShortcutOptionGroup (Parser.ShortcutOptionGroup shortcutOptionGroup)
@@ -323,17 +320,17 @@ namespace Yarn
 	}
 
 	// Very simple continuity class that keeps all variables in memory
-	public class MemoryVariableStore : Yarn.VariableStorage {
-		Dictionary<string, float> variables = new Dictionary<string, float>();
+	public class MemoryVariableStore : Yarn.BaseVariableStorage {
+		Dictionary<string, Value> variables = new Dictionary<string, Value>();
 
-		public void SetNumber (string variableName, float number)
+		public override void SetValue (string variableName, Value value)
 		{
-			variables [variableName] = number;
+			variables [variableName] = value;
 		}
 
-		public float GetNumber (string variableName)
+		public override Value GetValue (string variableName)
 		{
-			float value = 0.0f;
+			Value value = Value.DEFAULT;
 			if (variables.ContainsKey(variableName)) {
 
 				value = variables [variableName];
@@ -342,7 +339,7 @@ namespace Yarn
 			return value;
 		}				
 
-		public void Clear() {
+		public override void Clear() {
 			variables.Clear ();
 		}
 	}

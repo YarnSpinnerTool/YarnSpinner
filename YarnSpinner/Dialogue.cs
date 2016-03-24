@@ -55,10 +55,27 @@ namespace Yarn {
 
 	// Where we turn to for storing and loading variable data.
 	public interface VariableStorage {
-		void SetNumber(string variableName, float number);
-		float GetNumber(string variableName);
+		
+        [Obsolete] void SetNumber(string variableName, float number);
+		[Obsolete] float GetNumber(string variableName);
+        void SetValue(string variableName, Value value);
+        Value GetValue(string variableName);
 		void Clear();
 	}
+    
+    public abstract class BaseVariableStorage : VariableStorage {
+        public void SetNumber(string variableName, float number) {
+            this.SetValue(variableName, new Value(number));
+        }
+        
+        public float GetNumber(string variableName) {
+            return this.GetValue(variableName).AsNumber;
+        }
+        
+        public abstract void SetValue(string variableName, Value value);
+        public abstract Value GetValue(string variableName);
+        public abstract void Clear();
+    }
 
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
@@ -330,20 +347,12 @@ namespace Yarn {
 				#region Operators
 
 				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
-
-					// If either of these parameters are strings, concatenate them as strings
-					if (parameters[0].type == Value.Type.String ||
-						parameters[1].type == Value.Type.String) {
-
-						return parameters[0].AsString + parameters[1].AsString;
-					}
-
 					// Otherwise, treat them as numbers
-					return parameters[0].AsNumber + parameters[1].AsNumber;
+					return parameters[0].Add(parameters[1]);
 				});
 
 				this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber - parameters[1].AsNumber;
+					return parameters[0].Subtract(parameters[1]);
 				});
 
 				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
@@ -351,11 +360,11 @@ namespace Yarn {
 				});
 
 				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber / parameters[1].AsNumber;
+					return parameters[0].Divide(parameters[1]);
 				});
 
 				this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber * parameters[1].AsNumber;
+					return parameters[0].Multiply(parameters[1]);
 				});
 
 				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
