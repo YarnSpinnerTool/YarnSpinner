@@ -17,16 +17,27 @@ namespace Yarn
 		}
 
 		public Value.Type type { get; internal set; }
-        
-        // this is primarily a debugging property, allowing
-        // for testing between actual and perceived type
-        internal object rawBacking { get; set; }
 
 		// The underlying values for this object
 		internal float numberValue {get; private set;}
 		internal string variableName {get; set;}
 		internal string stringValue {get; private set;}
 		internal bool boolValue {get; private set;}
+        
+        private object backingValue {
+            get {
+                switch( this.type ) {
+                    case Type.Null:
+                    case Type.Undefined: return null;
+                    case Type.String: return this.stringValue;
+                    case Type.Number: return this.numberValue;
+                    case Type.Bool: return this.boolValue;
+                }
+                throw new InvalidOperationException(
+                    string.Format("Can't get good backing type for {0}", this.type) 
+                );
+            }
+        }
 
 		public float AsNumber {
 			get {
@@ -105,29 +116,28 @@ namespace Yarn
         public void Set(object value) {
             this.Clear();
             
-            this.rawBacking = value;
-            
             // Copy an existing value
 			if (typeof(Value).IsInstanceOfType(value)) {
 				var otherValue = value as Value;
 				type = otherValue.type;
 				switch (type) {
-				case Type.Number:
-					numberValue = otherValue.numberValue;
-					break;
-				case Type.String:
-					stringValue = otherValue.stringValue;
-					break;
-				case Type.Bool:
-					boolValue = otherValue.boolValue;
-					break;
-				case Type.Variable:
-					variableName = otherValue.variableName;
-					break;
-				case Type.Null:
-					break;
-				default:
-					throw new ArgumentOutOfRangeException ();
+                    case Type.Number:
+                        numberValue = otherValue.numberValue;
+                        break;
+                    case Type.String:
+                        stringValue = otherValue.stringValue;
+                        break;
+                    case Type.Bool:
+                        boolValue = otherValue.boolValue;
+                        break;
+                    case Type.Variable:
+                        variableName = otherValue.variableName;
+                        break;
+                    case Type.Null:
+                    case Type.Undefined:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException ();
 				}
 				return;
 			}
@@ -158,8 +168,15 @@ namespace Yarn
         }
         
         public virtual int CompareTo(object obj) {
+            if (obj == null) return 1;
+            
+            // soft, fast coercion
             var other = obj as Value;
-            if (other == null) return 1;
+            
+            // not a value
+            if( other == null ) throw new ArgumentException("Object is not a Value");
+            
+            // it is a value!
             return this.CompareTo(other);
         }
         
@@ -168,17 +185,33 @@ namespace Yarn
                 return 1;
             }
             
-            if (other.rawBacking == null && this.rawBacking == null) {
-                return 0;
-            }
-            
             if (other.type == this.type) {
-                return this.AsNumber.CompareTo(other.AsNumber); 
+                if( this.type == Type.Null || this.type == Type.Undefined ) {
+                    return 0;
+                }
+                
+                if( this.type == Type.String ) {
+                    return this.stringValue.CompareTo(other.stringValue);
+                }
+                
+                if( this.type == Type.Number ) {
+                    return this.numberValue.CompareTo(other.numberValue);
+                }
+                
+                if( this.type == Type.Bool ) {
+                    return this.boolValue.CompareTo(other.boolValue);
+                }
             }
             
-            throw new ArgumentException(
-                string.Format("Can't compare types {0} and {1}", this.type, other.type)
-            );
+            if( 
+                (other.type == Type.Undefined && this.type == Type.Null) ||
+                (this.type == Type.Undefined && other.type == Type.Undefined) 
+            ) {
+                return 0; // basically
+            }
+            
+            // try to do a string test at that point!
+            return this.AsString.CompareTo(other.AsString);
         }
         
         public override bool Equals (object obj)
@@ -187,12 +220,13 @@ namespace Yarn
                 return false;
             }
             
+            // so yea this stinks basically
             var other = (Value)obj;
             if (this.type == other.type) {
-                if (this.rawBacking == null) {
-                    return other.rawBacking == null;
+                if (this.type == Type.Null || this.type == Type.Undefined) {
+                    return true;
                 }
-                return this.rawBacking.Equals(other.rawBacking);
+                return this.backingValue.Equals(other.backingValue);
             }
             
             return base.Equals (obj);
@@ -201,16 +235,17 @@ namespace Yarn
         // override object.GetHashCode
         public override int GetHashCode()
         {
+            var backing = this.backingValue;
+            
             // TODO: yeah hay maybe fix this
-            if( this.rawBacking != null ) {
-                return this.rawBacking.GetHashCode();
+            if( backing != null ) {
+                return backing.GetHashCode();
             }
             
             return 0;
         }
         
         private void Clear() {
-            this.rawBacking = null;
             this.numberValue = 0;
             this.variableName = null;
             this.stringValue = null;
@@ -228,7 +263,7 @@ namespace Yarn
             // null + string
             if (a.type == Type.String || b.type == Type.String ) {
                 // we're headed for string town!
-                return new Value( a.stringValue + b.stringValue );
+                return new Value( a.AsString + b.AsString );
             }
             
             // catches:
@@ -251,7 +286,7 @@ namespace Yarn
                 (a.type == Type.Bool && b.type == Type.Bool) ||
                 (a.type == Type.Null && b.type == Type.Null)
             ) {
-                return new Value( a.numberValue + b.numberValue );
+                return new Value( a.AsNumber + b.AsNumber );
             }
             
             throw new System.ArgumentException( 
@@ -263,7 +298,7 @@ namespace Yarn
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
-                return new Value( a.numberValue - b.numberValue );
+                return new Value( a.AsNumber - b.AsNumber );
             }
             
             throw new System.ArgumentException( 
@@ -275,7 +310,7 @@ namespace Yarn
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
-                return new Value( a.numberValue * b.numberValue );
+                return new Value( a.AsNumber * b.AsNumber );
             }
             
             throw new System.ArgumentException( 
@@ -287,7 +322,7 @@ namespace Yarn
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
-                return new Value( a.numberValue / b.numberValue );
+                return new Value( a.AsNumber / b.AsNumber );
             }
             
             throw new System.ArgumentException( 
