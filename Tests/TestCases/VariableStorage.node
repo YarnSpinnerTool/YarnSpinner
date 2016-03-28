@@ -1,31 +1,70 @@
 // Tests variable storage.
 
-// <<set $foo to 1>>
-// <<assert($foo == 1)>>
-//
-// <<set $foo to -1>>
-// <<assert($foo == -1)>>
-//
-// <<set $foo to "foo">>
-// <<assert($foo == "foo")>>
-//
-// <<set $foo to null>>
-// <<assert($foo == null)>>
+<<set $foo to 1>>
+<<assertLog($foo == 1, "set $foo to 1")>>
+
+<<set $foo to -1>>
+<<assertLog($foo == -1, "set $foo to -1")>>
+
+<<set $foo to "foo">>
+<<assertLog($foo == "foo", "set $foo to 'foo'")>>
+
+<<set $foo to null>>
+<<assertLog($foo == null, "set $foo to null")>>
 
 // Test immediate value arithmetic
 
 <<set $foo = 45>>
-<<assert($foo == 45)>>
+<<assertLog($foo == 45, "set $foo = 45")>>
 
 <<set $bar = $foo + 1>>
-<<assert($bar == 46)>>
+<<assertLog($bar == 46, "set $bar = $foo + 1")>>
 
-// <<set $bar = $foo - 1>>
-// <<assert($bar == 44)>>
-//
-// <<set $foo += 1>>
-// <<assert($foo == 46)>>
+<<set $bar = $foo - 1>>
+<<assertLog($bar == 44, "set $bar = $foo - 1")>>
+
+<<set $foo = 46>>
+<<assertLog($foo == 46, "set $foo = 46")>>
+
+<<set $bar = $foo * 2>>
+<<assertLog($bar == 92, "set $bar = $foo * 2")>>
+
+<<set $bar = $foo / 2>>
+<<assertLog($bar == 23, "set $bar = $foo / 2")>>
+
+<<set $foo = 45>>
+<<assertLog($foo == 45, "set $foo = 45")>>
+
+<<set $foo += 1>>
+<<assertLog($foo == 46, "set $foo += 1")>>
+
+<<set $foo *= 2>>
+<<assertLog($foo == 92, "set $foo *= 2")>>
+
+<<set $foo /= 2>>
+<<assertLog($foo == 46, "set $foo /= 2")>>
+
+<<set $foo -= 1>>
+<<assertLog($foo == 45, "set $foo -= 1")>>
 
 // Test variable arithmetic
+
+<<set $foo = 46>>
+<<assertLog($foo == 46, "set $foo = 46")>>
+
+<<set $bar = 1>>
+<<assertLog($bar == 1, "set $bar = 1")>>
+
+<<set $foobar = $foo + $bar>>
+<<assertLog($foobar == 47, "set $foobar = $foo + $bar")>>
+
+<<set $bar = 2>>
+<<assertLog($bar == 2, "set $bar = 2")>>
+
+<<set $foobar = $foo * $bar>>
+<<assertLog($foobar == 92, "set $foobar = $foo * $bar")>>
+
+<<set $foobar = $foo / $bar>>
+<<assertLog($foobar == 46, "set $foobar = $foo / $bar")>>
 
 
