@@ -1,13 +1,31 @@
 // Tests variable storage.
 
-<<set $foo to 1>>
+// <<set $foo to 1>>
+// <<assert($foo == 1)>>
+//
+// <<set $foo to -1>>
+// <<assert($foo == -1)>>
+//
+// <<set $foo to "foo">>
+// <<assert($foo == "foo")>>
+//
+// <<set $foo to null>>
+// <<assert($foo == null)>>
 
-<<assert($foo == 1)>>
+// Test immediate value arithmetic
 
-<<set $foo += 1>>
+<<set $foo = 45>>
+<<assert($foo == 45)>>
 
-<<assert($foo == 2)>>
+<<set $bar = $foo + 1>>
+<<assert($bar == 46)>>
 
-<<set $bar = $foo >>
+// <<set $bar = $foo - 1>>
+// <<assert($bar == 44)>>
+//
+// <<set $foo += 1>>
+// <<assert($foo == 46)>>
 
-<<assert($bar == $foo)>>
+// Test variable arithmetic
+
+
