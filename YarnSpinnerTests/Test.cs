@@ -55,8 +55,9 @@ namespace YarnSpinner.Tests
 			};
 
 			dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
-				if (parameters[0].AsBool == false)
+				if (parameters[0].AsBool == false) {
 					Assert.Fail ("Assertion failed");
+				}
 			});
 
 			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Yarn.Value[] parameters) {
@@ -73,7 +74,7 @@ namespace YarnSpinner.Tests
 			});
 		}
 
-		[Test ()]
+		// [Test()]
 		public void TestNodeExists ()
 		{
 		
@@ -93,7 +94,7 @@ namespace YarnSpinner.Tests
 
 		}
 			
-		[Test()]
+		// [Test()]
 		public void TestIndentation()
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Indentation.node");
@@ -101,13 +102,26 @@ namespace YarnSpinner.Tests
 		}
 
 		[Test()]
+		public void TestVariableStorage()
+		{
+			storage.Clear ();
+
+			var path = System.IO.Path.Combine ("TestCases", "VariableStorage.node");
+			dialogue.LoadFile (path);
+
+			foreach (var result in dialogue.Run()) {
+				HandleResult (result);
+			}
+		}
+
+		// [Test()]
 		public void TestOptions()
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Options.node");
 			dialogue.LoadFile (path);
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestParsingSmileys()
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
@@ -115,7 +129,7 @@ namespace YarnSpinner.Tests
 
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestDumpingCode()
 		{
 			var path = "Example.json";
@@ -126,7 +140,7 @@ namespace YarnSpinner.Tests
 
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestExampleScript()
 		{
 
@@ -139,7 +153,7 @@ namespace YarnSpinner.Tests
 			}
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestCommands()
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
@@ -150,7 +164,7 @@ namespace YarnSpinner.Tests
 			}
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestMissingNode() 
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
@@ -163,7 +177,7 @@ namespace YarnSpinner.Tests
 			}
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestMergingNodes()
 		{
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
@@ -177,7 +191,7 @@ namespace YarnSpinner.Tests
 			});
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestGettingCurrentNodeName()  {
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
 
@@ -195,7 +209,7 @@ namespace YarnSpinner.Tests
 			Assert.IsNull (dialogue.currentNode);
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestGettingRawSource() {
 			dialogue.LoadFile ("Example.json");
 
@@ -206,7 +220,7 @@ namespace YarnSpinner.Tests
 			Assert.AreEqual (source, "A: HAHAHA");
 		}
 
-		[Test()]
+		// [Test()]
 		public void TestEndOfNotesWithOptionsNotAdded() {
 			dialogue.LoadFile ("SkippedOptions.node");
 

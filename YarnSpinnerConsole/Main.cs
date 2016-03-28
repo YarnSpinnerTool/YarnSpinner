@@ -195,11 +195,7 @@ namespace Yarn
 
 			// Add some methods for testing
 			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
-				var f1 = parameters[0].AsNumber;
-				var f2 = parameters[1].AsNumber;
-				var f3 = parameters[2].AsNumber;
-
-				return f1+f2+f3;
+				return parameters[0]+parameters[1]+parameters[2];
 			});
 
 			dialogue.library.RegisterFunction ("last_value", -1, delegate(Value[] parameters) {
@@ -438,14 +434,22 @@ namespace Yarn
 				Console.WriteLine("Debug: " + message);
 			}
 
-			public void SetNumber (string variableName, float number)
+			public virtual void SetNumber (string variableName, float number)
 			{				
 				variableStore.SetNumber(variableName, number);
 			}
 
-			public float GetNumber (string variableName)
+			public virtual float GetNumber (string variableName)
 			{
 				return variableStore.GetNumber(variableName);
+			}
+
+			public virtual void SetValue (string variableName, Value value) {
+				variableStore.SetValue(variableName, value);
+			}
+
+			public virtual Value GetValue (string variableName) {
+				return variableStore.GetValue(variableName);
 			}
 
 			public void Clear()

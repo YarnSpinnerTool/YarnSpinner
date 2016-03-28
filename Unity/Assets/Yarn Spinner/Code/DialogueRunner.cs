@@ -247,6 +247,17 @@ namespace Yarn.Unity
 		{
 			throw new System.NotImplementedException ();
 		}
+        
+        public Value GetValue(string variableName) {
+            return new Yarn.Value(this.GetNumber(variableName));
+        }
+        
+        public void SetValue(string variableName, Value value) {
+            if( value.Type != Value.Type.Number ) {
+                throw new System.InvalidCastException("Cannot coerce to float");
+            }
+            this.SetNumber(variableName, value.AsNumber);
+        }
 		
 		public virtual void Clear ()
 		{
