@@ -292,10 +292,7 @@ namespace Yarn
 				// Store the top value on the stack in a variable.
 				var topValue = state.PeekValue ();
 				var destinationVariableName = (string)i.operandA;
-
-
-				// TODO: Handle storing values other than numbers
-				dialogue.continuity.SetNumber (destinationVariableName, topValue.AsNumber);
+				dialogue.continuity.SetValue (destinationVariableName, topValue);
 
 				break;
 			case ByteCode.Stop:

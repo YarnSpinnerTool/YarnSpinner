@@ -250,16 +250,16 @@ namespace Yarn
 				finalValue = computedValue;
 				break;
 			case TokenType.AddAssign:
-				finalValue = originalValue.Add(computedValue);
+				finalValue = originalValue + computedValue;
 				break;
 			case TokenType.MinusAssign:
-				finalValue = originalValue.Subtract(computedValue);
+				finalValue = originalValue - computedValue;
 				break;
 			case TokenType.MultiplyAssign:
-				finalValue = originalValue.Multiply(computedValue);
+				finalValue = originalValue * computedValue;
 				break;
 			case TokenType.DivideAssign:
-				finalValue = originalValue.Divide(computedValue);
+				finalValue = originalValue / computedValue;
 				break;
 			}
 

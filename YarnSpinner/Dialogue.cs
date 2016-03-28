@@ -64,10 +64,12 @@ namespace Yarn {
 	}
     
     public abstract class BaseVariableStorage : VariableStorage {
+		[Obsolete] 
         public void SetNumber(string variableName, float number) {
             this.SetValue(variableName, new Value(number));
         }
         
+		[Obsolete] 
         public float GetNumber(string variableName) {
             return this.GetValue(variableName).AsNumber;
         }
@@ -347,46 +349,27 @@ namespace Yarn {
 				#region Operators
 
 				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
-					// Otherwise, treat them as numbers
-					return parameters[0].Add(parameters[1]);
+					return parameters[0] + parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].Subtract(parameters[1]);
+					return parameters[0] - parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
-					return -parameters[0].AsNumber;
+                    return -parameters[0];
 				});
 
 				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].Divide(parameters[1]);
+					return parameters[0] / parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].Multiply(parameters[1]);
+					return parameters[0] * parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
-
-					// TODO: This may not be the greatest way of doing it
-
-					// Coerce to the type of second operand
-					switch (parameters [1].type) {
-					case Value.Type.Number:
-						return parameters[0].AsNumber == parameters[1].AsNumber;
-					case Value.Type.String:
-						return parameters[0].AsString == parameters[1].AsString;
-					case Value.Type.Bool:
-						return parameters[0].AsBool == parameters[1].AsBool;
-					case Value.Type.Null:
-						// Only null-null comparisons are true.
-						return parameters[0].type == Value.Type.Null;
-					}
-
-					// Give up and say they're not equal
-					return false;
-
+                    return parameters[0].Equals( parameters[1] );
 				});
 
 				this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
@@ -398,19 +381,19 @@ namespace Yarn {
 				});
 
 				this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber > parameters[1].AsNumber;
+					return parameters[0] > parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber >= parameters[1].AsNumber;
+					return parameters[0] >= parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber < parameters[1].AsNumber;
+					return parameters[0] < parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber <= parameters[1].AsNumber;
+					return parameters[0] <= parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {

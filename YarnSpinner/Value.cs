@@ -4,7 +4,7 @@ using System;
 namespace Yarn
 {
 	// A value from inside Yarn.
-	public class Value {
+	public class Value : IComparable, IComparable<Value> {
         public static readonly Value DEFAULT = new Value();
         
 		public enum Type {
@@ -157,19 +157,28 @@ namespace Yarn
 			throw new YarnException(error);
         }
         
-        public Value Add(Value other) {
-            return Value.AddValues(this,other);
+        public virtual int CompareTo(object obj) {
+            var other = obj as Value;
+            if (other == null) return 1;
+            return this.CompareTo(other);
         }
         
-        public Value Subtract(Value other) {
-            return Value.SubtractValues(this,other);
-        }
-        
-        public Value Multiply(Value other) {
-            return Value.MultiplyValues(this,other);
-        }
-        public Value Divide(Value other) {
-            return Value.DivideValues(this,other);
+        public virtual int CompareTo(Value other) {
+            if (other == null) {
+                return 1;
+            }
+            
+            if (other.rawBacking == null && this.rawBacking == null) {
+                return 0;
+            }
+            
+            if (other.type == this.type) {
+                return this.AsNumber.CompareTo(other.AsNumber); 
+            }
+            
+            throw new ArgumentException(
+                string.Format("Can't compare types {0} and {1}", this.type, other.type)
+            );
         }
         
         public override bool Equals (object obj)
@@ -209,7 +218,8 @@ namespace Yarn
             this.type = Type.Undefined;
         }
         
-        public static Value AddValues(Value a, Value b) {
+        
+        public static Value operator+ (Value a, Value b) {
             // catches:
             // undefined + string
             // number + string
@@ -249,7 +259,7 @@ namespace Yarn
             );
         }
         
-        public static Value SubtractValues(Value a, Value b) {
+        public static Value operator- (Value a, Value b) {
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
@@ -261,7 +271,7 @@ namespace Yarn
             );
         }
         
-        public static Value MultiplyValues(Value a, Value b) {
+        public static Value operator* (Value a, Value b) {
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
@@ -272,7 +282,8 @@ namespace Yarn
                 string.Format("Cannot multiply types {0} and {1}.", a.type, b.type )    
             );
         }
-        public static Value DivideValues(Value a, Value b) {
+        
+        public static Value operator/ (Value a, Value b) {
             if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
                 b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
             ) {
@@ -282,6 +293,42 @@ namespace Yarn
             throw new System.ArgumentException( 
                 string.Format("Cannot divide types {0} and {1}.", a.type, b.type )    
             );
+        }
+        
+        public static Value operator- (Value a) {
+            if( a.type == Type.Number ) {
+                return new Value( -a.AsNumber );
+            }
+            if (a.type == Type.String &&
+               (a.AsString == null || a.AsString.Trim() == "") 
+            ) {
+                return new Value( -0 );
+            }
+            return new Value( float.NaN );
+        }
+        
+        // Define the is greater than operator.
+        public static bool operator >  (Value operand1, Value operand2)
+        {
+            return operand1.CompareTo(operand2) == 1;
+        }
+
+        // Define the is less than operator.
+        public static bool operator <  (Value operand1, Value operand2)
+        {
+            return operand1.CompareTo(operand2) == -1;
+        }
+
+        // Define the is greater than or equal to operator.
+        public static bool operator >=  (Value operand1, Value operand2)
+        {
+            return operand1.CompareTo(operand2) >= 0;
+        }
+
+        // Define the is less than or equal to operator.
+        public static bool operator <=  (Value operand1, Value operand2)
+        {
+            return operand1.CompareTo(operand2) <= 0;
         }
 	}	
 }
