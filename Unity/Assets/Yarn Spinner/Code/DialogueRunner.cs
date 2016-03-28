@@ -38,13 +38,13 @@ namespace Yarn.Unity
 	{
 		// The JSON files to load the conversation from
 		public TextAsset[] sourceText;
-		
+
 		// Our variable storage
 		public Yarn.Unity.VariableStorageBehaviour variableStorage;
-		
+
 		// The object that will handle the actual display and user input
 		public Yarn.Unity.DialogueUIBehaviour dialogueUI;
-		
+
 		// Which node to start from
 		public string startNode = Yarn.Dialogue.DEFAULT_START;
 
@@ -69,7 +69,7 @@ namespace Yarn.Unity
 				return _dialogue;
 			}
 		}
-		
+
 		void Start ()
 		{
 			// Ensure that we have our Implementation object
@@ -77,13 +77,13 @@ namespace Yarn.Unity
 				Debug.LogError ("Implementation was not set! Can't run the dialogue!");
 				return;
 			}
-			
+
 			// And that we have our variable storage object
 			if (variableStorage == null) {
 				Debug.LogError ("Variable storage was not set! Can't run the dialogue!");
 				return;
 			}
-			
+
 			// Ensure that the variable storage has the right stuff in it
 			variableStorage.ResetToDefaults ();
 
@@ -115,18 +115,18 @@ namespace Yarn.Unity
 		public void StartDialogue () {
 			StartDialogue(startNode);
 		}
-		
+
 		public void StartDialogue (string startNode)
 		{
-			
+
 			// Stop any processes that might be running already
 			StopAllCoroutines ();
 			dialogueUI.StopAllCoroutines ();
-			
+
 			// Get it going
 			StartCoroutine (RunDialogue (startNode));
 		}
-		
+
 		IEnumerator RunDialogue (string startNode = "Start")
 		{
 			// Mark that we're in conversation.
@@ -138,36 +138,36 @@ namespace Yarn.Unity
 			// Get lines, options and commands from the Dialogue object,
 			// one at a time.
 			foreach (Yarn.Dialogue.RunnerResult step in dialogue.Run(startNode)) {
-				
+
 				if (step is Yarn.Dialogue.LineResult) {
-					
+
 					// Wait for line to finish displaying
 					var lineResult = step as Yarn.Dialogue.LineResult;
 					yield return StartCoroutine (this.dialogueUI.RunLine (lineResult.line));
-					
+
 				} else if (step is Yarn.Dialogue.OptionSetResult) {
-					
+
 					// Wait for user to finish picking an option
 					var optionSetResult = step as Yarn.Dialogue.OptionSetResult;
 					yield return StartCoroutine (
 						this.dialogueUI.RunOptions (
-						optionSetResult.options, 
+						optionSetResult.options,
 						optionSetResult.setSelectedOptionDelegate
 					));
-					
+
 				} else if (step is Yarn.Dialogue.CommandResult) {
-					
+
 					// Wait for command to finish running
 					var commandResult = step as Yarn.Dialogue.CommandResult;
 					yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
 				} else if(step is Yarn.Dialogue.NodeCompleteResult) {
 
-                    // Wait for post-node action
-                    var nodeResult = step as Yarn.Dialogue.NodeCompleteResult;
-                    yield return StartCoroutine (this.dialogueUI.NodeComplete (nodeResult.nextNode));
-                }
+					// Wait for post-node action
+					var nodeResult = step as Yarn.Dialogue.NodeCompleteResult;
+					yield return StartCoroutine (this.dialogueUI.NodeComplete (nodeResult.nextNode));
+				}
 			}
-			
+
 			// No more results! The dialogue is done.
 			yield return StartCoroutine (this.dialogueUI.DialogueComplete ());
 
@@ -215,57 +215,57 @@ namespace Yarn.Unity
 		public abstract IEnumerator RunLine (Yarn.Line line);
 
 		// Display the options, and call the optionChooser when done.
-		public abstract IEnumerator RunOptions (Yarn.Options optionsCollection, 
-		                                        Yarn.OptionChooser optionChooser);
+		public abstract IEnumerator RunOptions (Yarn.Options optionsCollection,
+												Yarn.OptionChooser optionChooser);
 
 		// Perform some game-specific command.
 		public abstract IEnumerator RunCommand (Yarn.Command command);
 
-        // The node has ended.
-        public virtual IEnumerator NodeComplete(string nextNode) {
-            // Default implementation does nothing.
-            yield break;
-        }
+		// The node has ended.
+		public virtual IEnumerator NodeComplete(string nextNode) {
+			// Default implementation does nothing.
+			yield break;
+		}
 
-        // The conversation has ended.
-        public virtual IEnumerator DialogueComplete () {
+		// The conversation has ended.
+		public virtual IEnumerator DialogueComplete () {
 			// Default implementation does nothing.
 			yield break;
 		}
 	}
-	
+
 	// Scripts that can act as a variable storage should subclass this
 	public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
 	{
-		
+
 		public virtual void SetNumber (string variableName, float number)
 		{
 			throw new System.NotImplementedException ();
 		}
-		
+
 		public virtual float GetNumber (string variableName)
 		{
 			throw new System.NotImplementedException ();
 		}
-        
-        public Value GetValue(string variableName) {
-            return new Yarn.Value(this.GetNumber(variableName));
-        }
-        
-        public void SetValue(string variableName, Value value) {
-            if( value.Type != Value.Type.Number ) {
-                throw new System.InvalidCastException("Cannot coerce to float");
-            }
-            this.SetNumber(variableName, value.AsNumber);
-        }
-		
+
+		public Value GetValue(string variableName) {
+			return new Yarn.Value(this.GetNumber(variableName));
+		}
+
+		public void SetValue(string variableName, Value value) {
+			if( value.Type != Value.Type.Number ) {
+				throw new System.InvalidCastException("Cannot coerce to float");
+			}
+			this.SetNumber(variableName, value.AsNumber);
+		}
+
 		public virtual void Clear ()
 		{
 			throw new System.NotImplementedException ();
 		}
-		
+
 		public abstract void ResetToDefaults ();
-		
+
 	}
 
 }

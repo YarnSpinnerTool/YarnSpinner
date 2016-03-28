@@ -35,7 +35,7 @@ namespace Yarn {
 	public  class YarnException : Exception {
 		public YarnException(string message) : base(message) {}
 	}
-		
+
 	// Delegates, which are used by the client.
 
 	// OptionChoosers let the client tell the Dialogue about what
@@ -55,25 +55,25 @@ namespace Yarn {
 
 	// Where we turn to for storing and loading variable data.
 	public interface VariableStorage {
-		
+
         [Obsolete] void SetNumber(string variableName, float number);
 		[Obsolete] float GetNumber(string variableName);
         void SetValue(string variableName, Value value);
         Value GetValue(string variableName);
 		void Clear();
 	}
-    
+
     public abstract class BaseVariableStorage : VariableStorage {
-		[Obsolete] 
+		[Obsolete]
         public void SetNumber(string variableName, float number) {
             this.SetValue(variableName, new Value(number));
         }
-        
-		[Obsolete] 
+
+		[Obsolete]
         public float GetNumber(string variableName) {
             return this.GetValue(variableName).AsNumber;
         }
-        
+
         public abstract void SetValue(string variableName, Value value);
         public abstract Value GetValue(string variableName);
         public abstract void Clear();
@@ -90,7 +90,7 @@ namespace Yarn {
 
 		// The client should run a line of dialogue.
 		public class LineResult : RunnerResult  {
-			
+
 			public Line line;
 
 			public LineResult (string text) {
@@ -112,9 +112,9 @@ namespace Yarn {
 			}
 
 		}
-			
-		// The client should show a list of options, and call 
-		// setSelectedOptionDelegate before asking for the 
+
+		// The client should show a list of options, and call
+		// setSelectedOptionDelegate before asking for the
 		// next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
 			public Options options;
@@ -252,10 +252,10 @@ namespace Yarn {
 			do {
 
 				latestResult = null;
-				vm.RunNext ();		
+				vm.RunNext ();
 				if (latestResult != null)
 					yield return latestResult;
-				
+
 			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped);
 
 		}
@@ -339,7 +339,7 @@ namespace Yarn {
 			}
 			return program.nodes.ContainsKey(nodeName);
 		}
-		
+
 
 		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
@@ -357,7 +357,7 @@ namespace Yarn {
 				});
 
 				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
-                    return -parameters[0];
+					return -parameters[0];
 				});
 
 				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {

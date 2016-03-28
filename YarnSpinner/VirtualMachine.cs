@@ -22,11 +22,11 @@ namespace Yarn
 
 			// Methods for working with the stack
 			public void PushValue(object o) {
-                if( o is Value ) {
-                    stack.Push(o as Value);
-                } else {
-				    stack.Push (new Value(o));
-                }
+				if( o is Value ) {
+					stack.Push(o as Value);
+				} else {
+					stack.Push (new Value(o));
+				}
 			}
 
 			public Value PopValue() {
@@ -72,10 +72,10 @@ namespace Yarn
 		private Program program;
 		private State state = new State();
 
-		public string currentNodeName { 
-			get { 
-				return state.currentNodeName; 
-			} 
+		public string currentNodeName {
+			get {
+				return state.currentNodeName;
+			}
 		}
 
 		public enum ExecutionState {
@@ -85,7 +85,7 @@ namespace Yarn
 		}
 
 		private ExecutionState _executionState;
-		public ExecutionState executionState { 
+		public ExecutionState executionState {
 			get {
 				return _executionState;
 			}
@@ -155,7 +155,7 @@ namespace Yarn
 
 			if (currentNode.labels.ContainsKey(labelName) == false) {
 				// Couldn't find the node..
-				throw new IndexOutOfRangeException ("Unknown label " + 
+				throw new IndexOutOfRangeException ("Unknown label " +
 					labelName + " in node " + state.currentNodeName);
 			}
 
@@ -169,7 +169,7 @@ namespace Yarn
 		internal void RunInstruction(Instruction i) {
 			switch (i.operation) {
 			case ByteCode.Label:
-				
+
 				// No-op; used as a destination for JumpTo and Jump.
 				break;
 			case ByteCode.JumpTo:
@@ -186,7 +186,7 @@ namespace Yarn
 				var lineText = program.GetString ((string)i.operandA);
 
 				lineHandler (new Dialogue.LineResult (lineText));
-				
+
 				break;
 			case ByteCode.RunCommand:
 
@@ -230,7 +230,7 @@ namespace Yarn
 					state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
 				}
 				break;
-			
+
 			case ByteCode.Jump:
 
 				// Jumps to a label whose name is on the stack.
@@ -238,7 +238,7 @@ namespace Yarn
 				state.programCounter = FindInstructionPointForLabel (jumpDestination);
 
 				break;
-			
+
 			case ByteCode.Pop:
 
 				// Pops a value from the stack.
@@ -359,7 +359,7 @@ namespace Yarn
 
 				// Otherwise, present the list of options to the user and let them pick
 				var optionStrings = new List<string> ();
-			
+
 				foreach (var option in state.currentOptions) {
 					optionStrings.Add (program.GetString (option.Key));
 				}
@@ -397,7 +397,7 @@ namespace Yarn
 			}
 		}
 
-		
+
 	}
 }
 
