@@ -245,6 +245,11 @@ namespace Yarn
 			return 0;
 		}
 
+		public override string ToString ()
+		{
+			return string.Format ("[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]", type, AsNumber, AsBool, AsString);
+		}
+
 		private void Clear() {
 			this.numberValue = 0;
 			this.variableName = null;
