@@ -65,6 +65,6 @@
 <<assertLog($foobar == 92, "set $foobar = $foo * $bar")>>
 
 <<set $foobar = $foo / $bar>>
-<<assertLog($foobar == 46, "set $foobar = $foo / $bar")>>
+<<assertLog($foobar == 23, "set $foobar = $foo / $bar")>>
 
 
