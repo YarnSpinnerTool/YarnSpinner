@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Yarn;
 
 namespace YarnSpinner.Tests
 {
@@ -8,6 +11,40 @@ namespace YarnSpinner.Tests
 	[TestFixture ()]
 	public class Test
 	{
+		// Very simple continuity class that keeps all variables in memory
+		public class DumpableMemoryVariableStore : Yarn.BaseVariableStorage {
+			public Dictionary<string, Value> variables = new Dictionary<string, Value>();
+
+			public override void SetValue (string variableName, Value value)
+			{
+				variables [variableName] = value;
+			}
+
+			public override Value GetValue (string variableName)
+			{
+				Value value = Value.DEFAULT;
+				if (variables.ContainsKey(variableName)) {
+
+					value = variables [variableName];
+
+				}
+				return value;
+			}				
+
+			public override void Clear() {
+				variables.Clear ();
+			}
+
+			public override string ToString ()
+			{
+				var str = string.Format ("[DumpableMemoryVariableStore :");
+				foreach (var entry in variables) {
+					str += string.Format("\n\t[{0}: {1}]", entry.Key, entry.Value); 
+				}
+				str += "\n]";
+				return str;
+			}
+		}
 
 		string nextExpectedLine = null;
 		int nextExpectedOptionCount = -1;
@@ -15,8 +52,8 @@ namespace YarnSpinner.Tests
 		string nextExpectedCommand = null;
 
 
-		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
-		Yarn.Dialogue dialogue;
+		VariableStorage storage = new DumpableMemoryVariableStore();
+		Dialogue dialogue;
 
 		bool errorsCauseFailures = true;
 
@@ -62,7 +99,7 @@ namespace YarnSpinner.Tests
 
 			dialogue.library.RegisterFunction ("assertLog", 2, delegate(Yarn.Value[] parameters) {
 				if (parameters[0].AsBool == false) {
-					Assert.Fail (parameters[1].AsString);
+					Assert.Fail (parameters[1].AsString + "\n" + storage.ToString());
 				}
 			});
 
