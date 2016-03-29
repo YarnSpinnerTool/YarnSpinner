@@ -1,5 +1,6 @@
-// Tests variable storage.
+// Variable testing
 
+Testing variable storage
 <<set $foo to 1>>
 <<assert($foo == 1)>>
 
@@ -12,8 +13,7 @@
 <<set $foo to null>>
 <<assert($foo == null)>>
 
-// Test immediate value arithmetic
-
+Test immediate value arithmetic
 <<set $foo = 45>>
 <<assert($foo == 45)>>
 
@@ -47,8 +47,7 @@
 <<set $foo -= 1>>
 <<assert($foo == 45)>>
 
-// Test variable arithmetic
-
+Testing variable arithmetic
 <<set $foo = 46>>
 <<assert($foo == 46)>>
 
