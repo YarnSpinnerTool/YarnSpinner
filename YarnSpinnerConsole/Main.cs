@@ -81,7 +81,7 @@ namespace Yarn
 			var defaultVariables = new Dictionary<string,float> ();
 
 			foreach (var arg in args) {
-				
+
 				// Handle 'start' parameter
 				if (arg.IndexOf("-s=") != -1) {
 					var startArray = arg.Split (new char[]{ '=' });
@@ -207,15 +207,17 @@ namespace Yarn
 				return (int)parameters[0].AsNumber % 2 == 0;
 			});
 
-			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+			var assert = delegate(Value[] parameters) {
 				if (parameters[0].AsBool == false) {
 
 					// TODO: Include file, node and line number
 					dialogue.LogErrorMessage("ASSERTION FAILED");
 					Environment.Exit(1);
 				}
-			});
+			};
+			// Register the "assert" function, which stops execution if its parameter evaluates to false
+			dialogue.library.RegisterFunction ("assert", 1, assert);
+			dialogue.library.RegisterFunction ("assertLog", 2, assert);
 
 
 			// Register a function to let test scripts register how many
@@ -267,7 +269,7 @@ namespace Yarn
 			}
 
 			// Only run the program when we're not emitting debug output of some kind
-			var runProgram = 
+			var runProgram =
 				showTokens == false &&
 				showParseTree == false &&
 				compileToBytecodeOnly == false;
@@ -331,7 +333,7 @@ namespace Yarn
 
 				if (expectedNextLine != null && expectedNextLine != lineText.text) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}", 
+					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
 						expectedNextLine, lineText.text));
 					Environment.Exit (1);
 				}
@@ -395,7 +397,7 @@ namespace Yarn
 
 						if (selection > optionsGroup.options.Count) {
 							Console.WriteLine ("Invalid option.");
-						} else {							
+						} else {
 							optionChooser(selection);
 							break;
 						}
@@ -409,7 +411,7 @@ namespace Yarn
 
 				if (expectedNextCommand != null && expectedNextCommand != command) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}", 
+					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}",
 						expectedNextCommand, command));
 					Environment.Exit (1);
 				}
@@ -435,7 +437,7 @@ namespace Yarn
 			}
 
 			public virtual void SetNumber (string variableName, float number)
-			{				
+			{
 				variableStore.SetNumber(variableName, number);
 			}
 
