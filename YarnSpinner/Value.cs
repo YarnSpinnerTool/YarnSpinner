@@ -8,7 +8,6 @@ namespace Yarn
 		public static readonly Value DEFAULT = new Value();
 
 		public enum Type {
-			Undefined = 0, // we don't know yet or don't have a value
 			Number,  // a constant number
 			String,  // a string
 			Bool,    // a boolean value
@@ -27,8 +26,7 @@ namespace Yarn
 		private object backingValue {
 			get {
 				switch( this.type ) {
-					case Type.Null:
-					case Type.Undefined: return null;
+					case Type.Null: return null;
 					case Type.String: return this.stringValue;
 					case Type.Number: return this.numberValue;
 					case Type.Bool: return this.boolValue;
@@ -53,7 +51,6 @@ namespace Yarn
 				case Type.Bool:
 					return boolValue ? 1.0f : 0.0f;
 				case Type.Null:
-				case Type.Undefined:
 					return 0.0f;
 				default:
 					throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
@@ -70,7 +67,6 @@ namespace Yarn
 					return !String.IsNullOrEmpty(stringValue);
 				case Type.Bool:
 					return boolValue;
-				case Type.Undefined:
 				case Type.Null:
 					return false;
 				default:
@@ -82,8 +78,6 @@ namespace Yarn
 		public string AsString {
 			get {
 				switch (type) {
-				case Type.Undefined:
-					return "undefined";
 				case Type.Number:
 					if (float.IsNaN(numberValue) ) {
 						return "NaN";
@@ -134,7 +128,6 @@ namespace Yarn
 						variableName = otherValue.variableName;
 						break;
 					case Type.Null:
-					case Type.Undefined:
 						break;
 					default:
 						throw new ArgumentOutOfRangeException ();
@@ -186,7 +179,7 @@ namespace Yarn
 			}
 
 			if (other.type == this.type) {
-				if( this.type == Type.Null || this.type == Type.Undefined ) {
+				if( this.type == Type.Null ) {
 					return 0;
 				}
 
@@ -203,13 +196,6 @@ namespace Yarn
 				}
 			}
 
-			if(
-				(other.type == Type.Undefined && this.type == Type.Null) ||
-				(this.type == Type.Undefined && other.type == Type.Undefined)
-			) {
-				return 0; // basically
-			}
-
 			// try to do a string test at that point!
 			return this.AsString.CompareTo(other.AsString);
 		}
@@ -223,7 +209,7 @@ namespace Yarn
 			// so yea this stinks basically
 			var other = (Value)obj;
 			if (this.type == other.type) {
-				if (this.type == Type.Null || this.type == Type.Undefined) {
+				if (this.type == Type.Null) {
 					return true;
 				}
 				return this.backingValue.Equals(other.backingValue);
@@ -255,7 +241,7 @@ namespace Yarn
 			this.variableName = null;
 			this.stringValue = null;
 			this.boolValue = false;
-			this.type = Type.Undefined;
+			this.type = Type.Null;
 		}
 
 
@@ -269,16 +255,6 @@ namespace Yarn
 			if (a.type == Type.String || b.type == Type.String ) {
 				// we're headed for string town!
 				return new Value( a.AsString + b.AsString );
-			}
-
-			// catches:
-			// undefined + number
-			// undefined + null
-			// (always return NaN)
-			if ((a.type == Type.Undefined && (b.type == Type.Null || b.type == Type.Number)) ||
-				(b.type == Type.Undefined && (a.type == Type.Null || a.type == Type.Number))
-			) {
-				return new Value( float.NaN );
 			}
 
 			// catches:
@@ -300,8 +276,8 @@ namespace Yarn
 		}
 
 		public static Value operator- (Value a, Value b) {
-			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
-				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
+			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
+				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
 			) {
 				return new Value( a.AsNumber - b.AsNumber );
 			}
@@ -312,8 +288,8 @@ namespace Yarn
 		}
 
 		public static Value operator* (Value a, Value b) {
-			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
-				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
+			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
+				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
 			) {
 				return new Value( a.AsNumber * b.AsNumber );
 			}
@@ -324,8 +300,8 @@ namespace Yarn
 		}
 
 		public static Value operator/ (Value a, Value b) {
-			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Undefined || b.type == Type.Null) ||
-				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Undefined || a.type == Type.Null)
+			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
+				b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)
 			) {
 				return new Value( a.AsNumber / b.AsNumber );
 			}
