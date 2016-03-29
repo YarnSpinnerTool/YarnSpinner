@@ -315,7 +315,8 @@ namespace Yarn
 			if( a.type == Type.Number ) {
 				return new Value( -a.AsNumber );
 			}
-			if (a.type == Type.String &&
+			if (a.type == Type.Null &&
+				a.type == Type.String &&
 			   (a.AsString == null || a.AsString.Trim() == "")
 			) {
 				return new Value( -0 );
