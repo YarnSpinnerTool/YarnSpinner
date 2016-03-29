@@ -208,11 +208,15 @@ namespace Yarn
 			});
 
 			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction ("assert", -1, delegate(Value[] parameters) {
 				if (parameters[0].AsBool == false) {
 
 					// TODO: Include file, node and line number
-					dialogue.LogErrorMessage("ASSERTION FAILED");
+					if( parameters.Length > 1 && parameters[1].AsBool ) {
+						dialogue.LogErrorMessage ("ASSERTION FAILED: " + parameters[1].AsString);
+					} else {
+						dialogue.LogErrorMessage ("ASSERTION FAILED");
+					}
 					Environment.Exit(1);
 				}
 			});
