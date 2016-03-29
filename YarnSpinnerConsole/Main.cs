@@ -207,17 +207,15 @@ namespace Yarn
 				return (int)parameters[0].AsNumber % 2 == 0;
 			});
 
-			var assert = delegate(Value[] parameters) {
+			// Register the "assert" function, which stops execution if its parameter evaluates to false
+			dialogue.library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
 				if (parameters[0].AsBool == false) {
 
 					// TODO: Include file, node and line number
 					dialogue.LogErrorMessage("ASSERTION FAILED");
 					Environment.Exit(1);
 				}
-			};
-			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", 1, assert);
-			dialogue.library.RegisterFunction ("assertLog", 2, assert);
+			});
 
 
 			// Register a function to let test scripts register how many
