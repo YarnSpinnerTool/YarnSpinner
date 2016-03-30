@@ -96,41 +96,32 @@ namespace Yarn
 		}
 
 		// Create a null value
-		public Value ()
-		{
-			this.Clear();
-		}
+		public Value () : this(null) { }
 
 		// Create a value with a C# object
 		public Value (object value)
 		{
-			this.Set(value);
-		}
-
-		public void Set(object value) {
-			this.Clear();
-
 			// Copy an existing value
 			if (typeof(Value).IsInstanceOfType(value)) {
 				var otherValue = value as Value;
 				type = otherValue.type;
 				switch (type) {
-					case Type.Number:
-						numberValue = otherValue.numberValue;
-						break;
-					case Type.String:
-						stringValue = otherValue.stringValue;
-						break;
-					case Type.Bool:
-						boolValue = otherValue.boolValue;
-						break;
-					case Type.Variable:
-						variableName = otherValue.variableName;
-						break;
-					case Type.Null:
-						break;
-					default:
-						throw new ArgumentOutOfRangeException ();
+				case Type.Number:
+					numberValue = otherValue.numberValue;
+					break;
+				case Type.String:
+					stringValue = otherValue.stringValue;
+					break;
+				case Type.Bool:
+					boolValue = otherValue.boolValue;
+					break;
+				case Type.Variable:
+					variableName = otherValue.variableName;
+					break;
+				case Type.Null:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException ();
 				}
 				return;
 			}
@@ -235,15 +226,6 @@ namespace Yarn
 		{
 			return string.Format ("[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]", type, AsNumber, AsBool, AsString);
 		}
-
-		private void Clear() {
-			this.numberValue = 0;
-			this.variableName = null;
-			this.stringValue = null;
-			this.boolValue = false;
-			this.type = Type.Null;
-		}
-
 
 		public static Value operator+ (Value a, Value b) {
 			// catches:
