@@ -190,7 +190,7 @@ namespace Yarn
 		private Yarn.Value EvaluateExpression(Parser.Expression expression) {
 
 			if (expression == null)
-				return new Yarn.Value ();
+				return Yarn.Value.NULL;
 			
 			switch (expression.type) {
 			case Parser.Expression.Type.Value:
@@ -244,7 +244,7 @@ namespace Yarn
 
 			// What shall we do with it?
 
-			Value finalValue = new Value();
+			Value finalValue = Value.NULL;
 			switch (assignment.operation) {
 			case TokenType.EqualToOrAssign:
 				finalValue = computedValue;
@@ -330,7 +330,7 @@ namespace Yarn
 
 		public override Value GetValue (string variableName)
 		{
-			Value value = Value.DEFAULT;
+			Value value = Value.NULL;
 			if (variables.ContainsKey(variableName)) {
 
 				value = variables [variableName];

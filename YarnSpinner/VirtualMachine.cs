@@ -219,7 +219,7 @@ namespace Yarn
 			case ByteCode.PushNull:
 
 				// Pushes a null value onto the stack.
-				state.PushValue (new Value ());
+				state.PushValue (Value.NULL);
 
 				break;
 			case ByteCode.JumpIfFalse:

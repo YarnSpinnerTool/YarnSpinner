@@ -696,7 +696,7 @@ namespace Yarn {
 					value.variableName = t.value as String;
 					break;
 				case TokenType.Null:
-					value = new Value (null);
+					value = Value.NULL;
 					break;
 				default:
 					throw ParseException.Make (t, "Invalid token type " + t.ToString ());
