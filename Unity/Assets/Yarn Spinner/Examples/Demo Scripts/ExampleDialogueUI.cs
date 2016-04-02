@@ -171,21 +171,6 @@ namespace Yarn.Unity.Example {
 		{
 			// "Perform" the command
 			Debug.Log ("Command: " + command.text);
-			
-			// Example: forward commands that begin with "set-sprite" to a SpriteSwitcher
-			var commandElements = command.text.Split(' ');
-
-			if (commandElements.Length > 0) {
-				// Syntax for this command = setsprite NAME SPRITENAME
-				// GameObject NAME must have a SpriteSwitcher component
-				// The SpriteSwitcher must have a sprite named SPRITENAME
-				if (commandElements[0] == "setsprite") {
-					var switcher = GameObject.Find(commandElements[1])
-						.GetComponent<SpriteSwitcher>();
-					var spriteName = commandElements[2];
-					switcher.UseSprite(spriteName);
-				}
-			}
 
 			yield break;
 		}

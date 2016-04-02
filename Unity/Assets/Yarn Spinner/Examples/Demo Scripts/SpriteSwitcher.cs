@@ -40,7 +40,9 @@ namespace Yarn.Unity.Example {
 
 		public SpriteInfo[] sprites;
 
+		[YarnCommand("setsprite")]
 		public void UseSprite(string spriteName) {
+
 			Sprite s = null;
 			foreach(var info in sprites) {
 				if (info.name == spriteName) {
