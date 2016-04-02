@@ -120,3 +120,23 @@ There's only one thing left to do: Yarn Spinner just needs to know what node in 
 
 		
 -->
+
+### Respond to commands with `YarnCommand`
+
+In Yarn, you can create *commands* that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this:
+
+	<<move Sally exit>>
+
+For this to work, the game object named "Sally" needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this:
+
+	[YarnCommand("move")]
+	public void MoveCharacter(string destinationName) {
+		// move to the destination
+	}
+
+When Yarn encounters a command that contains two or more words, it looks for a game object with the same name as the second word ("Sally", in the above example), and then searches that object's scripts for any method that has a `YarnCommand` with the same name as the first word (in this case, "move").
+
+Any further words in the command are passed as string parameters to the method ("exit", in this case, which is used as the `destinationName` parameter)
+
+Note that **all** parameters must be strings. `DialogueRunner` will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers.
+
