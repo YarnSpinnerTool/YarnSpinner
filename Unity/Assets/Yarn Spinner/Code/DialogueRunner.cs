@@ -253,9 +253,6 @@ namespace Yarn.Unity
 		}
 
 		public void SetValue(string variableName, Value value) {
-			if( value.Type != Value.Type.Number ) {
-				throw new System.InvalidCastException("Cannot coerce to float");
-			}
 			this.SetNumber(variableName, value.AsNumber);
 		}
 
