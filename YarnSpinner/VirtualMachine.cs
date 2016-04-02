@@ -22,7 +22,11 @@ namespace Yarn
 
 			// Methods for working with the stack
 			public void PushValue(object o) {
-				stack.Push (new Value(o));
+				if( o is Value ) {
+					stack.Push(o as Value);
+				} else {
+					stack.Push (new Value(o));
+				}
 			}
 
 			public Value PopValue() {
@@ -68,10 +72,10 @@ namespace Yarn
 		private Program program;
 		private State state = new State();
 
-		public string currentNodeName { 
-			get { 
-				return state.currentNodeName; 
-			} 
+		public string currentNodeName {
+			get {
+				return state.currentNodeName;
+			}
 		}
 
 		public enum ExecutionState {
@@ -81,7 +85,7 @@ namespace Yarn
 		}
 
 		private ExecutionState _executionState;
-		public ExecutionState executionState { 
+		public ExecutionState executionState {
 			get {
 				return _executionState;
 			}
@@ -107,7 +111,7 @@ namespace Yarn
 			dialogue.LogDebugMessage ("Running node " + nodeName);
 
 			// Clear the special variables
-			dialogue.continuity.SetNumber(SpecialVariables.ShuffleOptions, 0.0f);
+			dialogue.continuity.SetValue(SpecialVariables.ShuffleOptions, new Value(false));
 
 			currentNode = program.nodes [nodeName];
 			ResetState ();
@@ -151,7 +155,7 @@ namespace Yarn
 
 			if (currentNode.labels.ContainsKey(labelName) == false) {
 				// Couldn't find the node..
-				throw new IndexOutOfRangeException ("Unknown label " + 
+				throw new IndexOutOfRangeException ("Unknown label " +
 					labelName + " in node " + state.currentNodeName);
 			}
 
@@ -165,7 +169,7 @@ namespace Yarn
 		internal void RunInstruction(Instruction i) {
 			switch (i.operation) {
 			case ByteCode.Label:
-				
+
 				// No-op; used as a destination for JumpTo and Jump.
 				break;
 			case ByteCode.JumpTo:
@@ -182,7 +186,7 @@ namespace Yarn
 				var lineText = program.GetString ((string)i.operandA);
 
 				lineHandler (new Dialogue.LineResult (lineText));
-				
+
 				break;
 			case ByteCode.RunCommand:
 
@@ -215,7 +219,7 @@ namespace Yarn
 			case ByteCode.PushNull:
 
 				// Pushes a null value onto the stack.
-				state.PushValue (new Value ());
+				state.PushValue (Value.NULL);
 
 				break;
 			case ByteCode.JumpIfFalse:
@@ -226,7 +230,7 @@ namespace Yarn
 					state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
 				}
 				break;
-			
+
 			case ByteCode.Jump:
 
 				// Jumps to a label whose name is on the stack.
@@ -234,7 +238,7 @@ namespace Yarn
 				state.programCounter = FindInstructionPointForLabel (jumpDestination);
 
 				break;
-			
+
 			case ByteCode.Pop:
 
 				// Pops a value from the stack.
@@ -279,7 +283,7 @@ namespace Yarn
 
 				// Get the contents of a variable, push that onto the stack.
 				var variableName = (string)i.operandA;
-				var loadedValue = dialogue.continuity.GetNumber (variableName);
+				var loadedValue = dialogue.continuity.GetValue (variableName);
 				state.PushValue (loadedValue);
 
 				break;
@@ -288,10 +292,7 @@ namespace Yarn
 				// Store the top value on the stack in a variable.
 				var topValue = state.PeekValue ();
 				var destinationVariableName = (string)i.operandA;
-
-
-				// TODO: Handle storing values other than numbers
-				dialogue.continuity.SetNumber (destinationVariableName, topValue.AsNumber);
+				dialogue.continuity.SetValue (destinationVariableName, topValue);
 
 				break;
 			case ByteCode.Stop:
@@ -344,7 +345,7 @@ namespace Yarn
 					break;
 				}
 
-				if (dialogue.continuity.GetNumber(SpecialVariables.ShuffleOptions) != 0.0f) {
+				if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).boolValue) {
 					// Shuffle the dialog options if needed
 					var r = new Random();
 					var n = state.currentOptions.Count;
@@ -358,7 +359,7 @@ namespace Yarn
 
 				// Otherwise, present the list of options to the user and let them pick
 				var optionStrings = new List<string> ();
-			
+
 				foreach (var option in state.currentOptions) {
 					optionStrings.Add (program.GetString (option.Key));
 				}
@@ -396,7 +397,7 @@ namespace Yarn
 			}
 		}
 
-		
+
 	}
 }
 

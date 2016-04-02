@@ -40,7 +40,7 @@ namespace Yarn
 					return new Value(returningFunction (parameters));
 				} else {
 					function (parameters);
-					return new Value(); // a null Value
+					return Value.NULL; // a null Value
 				}				
 			} else {
 				string error = string.Format (

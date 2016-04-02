@@ -32,139 +32,6 @@ using System.Text;
 
 namespace Yarn {
 
-	// A value from inside Yarn.
-	public class Value {
-		internal enum Type {
-			Number,  // a constant number
-			String,  // a string
-			Bool,    // a boolean value
-			Variable, // the name of a variable; will be expanded at runtime
-			Null,    // the null value
-		}
-
-		internal Value.Type type { get; set; }
-
-		// The underlying values for this object
-		internal float numberValue {get; private set;}
-		internal string variableName {get; set;}
-		internal string stringValue {get; private set;}
-		internal bool boolValue {get; private set;}
-
-		public float AsNumber {
-			get {
-				switch (type) {
-				case Type.Number:
-					return numberValue;
-				case Type.String:						
-					try {
-						return float.Parse (stringValue);
-					}  catch (FormatException) {
-						return 0.0f;
-					}
-				case Type.Bool:
-					return boolValue ? 1.0f : 0.0f;
-				case Type.Null:
-					return 0.0f;
-				default:
-					throw new InvalidOperationException ("Cannot cast to number from " + type.ToString());
-				}
-			}
-		}
-
-		public bool AsBool {
-			get {
-				switch (type) {
-				case Type.Number:
-					return numberValue != 0.0f;
-				case Type.String:
-					return stringValue.Length > 0;
-				case Type.Bool:
-					return boolValue;
-				case Type.Null:
-					return false;
-				default:
-					throw new InvalidOperationException ("Cannot cast to bool to " + type.ToString());
-				}
-			}
-		}
-
-		public string AsString {
-			get {
-				switch (type) {
-				case Type.Number:
-					return numberValue.ToString ();
-				case Type.String:
-					return stringValue;
-				case Type.Bool:
-					return boolValue.ToString ();
-				case Type.Null:
-					return "null";
-				default:
-					throw new ArgumentOutOfRangeException ();
-				}
-			}
-		}
-
-		// Create a null value
-		public Value ()
-		{
-			type  = Type.Null;
-		}
-
-		// Create a value with a C# object
-		public Value (object value)
-		{
-			// Copy an existing value
-			if (typeof(Value).IsInstanceOfType(value)) {
-				var otherValue = value as Value;
-				type = otherValue.type;
-				switch (type) {
-				case Type.Number:
-					numberValue = otherValue.numberValue;
-					break;
-				case Type.String:
-					stringValue = otherValue.stringValue;
-					break;
-				case Type.Bool:
-					boolValue = otherValue.boolValue;
-					break;
-				case Type.Variable:
-					variableName = otherValue.variableName;
-					break;
-				case Type.Null:
-					break;
-				default:
-					throw new ArgumentOutOfRangeException ();
-				}
-				return;
-			}
-			if (value == null) {
-				type = Type.Null;
-				return;
-			}
-			if (value.GetType() == typeof(string) ) {
-				type = Type.String;
-				stringValue = (string)value;
-				return;
-			}
-			if (value.GetType() == typeof(int) ||
-				value.GetType() == typeof(float) ||
-				value.GetType() == typeof(double)) {
-				type = Type.Number;
-				numberValue = (float)value;
-				return;
-			}
-			if (value.GetType() == typeof(bool) ) {
-				type = Type.Bool;
-				boolValue = (bool)value;
-				return;
-			}
-			var error = string.Format("Attempted to create a Value using a {0}; currently, " +
-				"Values can only be numbers, strings, bools or null.", value.GetType().Name);
-			throw new YarnException(error);
-		}
-	}
-	
 	// An exception representing something going wrong during parsing
 	[Serializable]
 	internal class ParseException : Exception {
@@ -829,7 +696,7 @@ namespace Yarn {
 					value.variableName = t.value as String;
 					break;
 				case TokenType.Null:
-					value = new Value (null);
+					value = Value.NULL;
 					break;
 				default:
 					throw ParseException.Make (t, "Invalid token type " + t.ToString ());

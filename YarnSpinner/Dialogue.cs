@@ -35,7 +35,7 @@ namespace Yarn {
 	public  class YarnException : Exception {
 		public YarnException(string message) : base(message) {}
 	}
-		
+
 	// Delegates, which are used by the client.
 
 	// OptionChoosers let the client tell the Dialogue about what
@@ -55,10 +55,29 @@ namespace Yarn {
 
 	// Where we turn to for storing and loading variable data.
 	public interface VariableStorage {
-		void SetNumber(string variableName, float number);
-		float GetNumber(string variableName);
+
+        [Obsolete] void SetNumber(string variableName, float number);
+		[Obsolete] float GetNumber(string variableName);
+        void SetValue(string variableName, Value value);
+        Value GetValue(string variableName);
 		void Clear();
 	}
+
+    public abstract class BaseVariableStorage : VariableStorage {
+		[Obsolete]
+        public void SetNumber(string variableName, float number) {
+            this.SetValue(variableName, new Value(number));
+        }
+
+		[Obsolete]
+        public float GetNumber(string variableName) {
+            return this.GetValue(variableName).AsNumber;
+        }
+
+        public abstract void SetValue(string variableName, Value value);
+        public abstract Value GetValue(string variableName);
+        public abstract void Clear();
+    }
 
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
@@ -71,7 +90,7 @@ namespace Yarn {
 
 		// The client should run a line of dialogue.
 		public class LineResult : RunnerResult  {
-			
+
 			public Line line;
 
 			public LineResult (string text) {
@@ -93,9 +112,9 @@ namespace Yarn {
 			}
 
 		}
-			
-		// The client should show a list of options, and call 
-		// setSelectedOptionDelegate before asking for the 
+
+		// The client should show a list of options, and call
+		// setSelectedOptionDelegate before asking for the
 		// next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
 			public Options options;
@@ -233,10 +252,10 @@ namespace Yarn {
 			do {
 
 				latestResult = null;
-				vm.RunNext ();		
+				vm.RunNext ();
 				if (latestResult != null)
 					yield return latestResult;
-				
+
 			} while (vm.executionState != VirtualMachine.ExecutionState.Stopped);
 
 		}
@@ -320,7 +339,7 @@ namespace Yarn {
 			}
 			return program.nodes.ContainsKey(nodeName);
 		}
-		
+
 
 		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
@@ -330,54 +349,27 @@ namespace Yarn {
 				#region Operators
 
 				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
-
-					// If either of these parameters are strings, concatenate them as strings
-					if (parameters[0].type == Value.Type.String ||
-						parameters[1].type == Value.Type.String) {
-
-						return parameters[0].AsString + parameters[1].AsString;
-					}
-
-					// Otherwise, treat them as numbers
-					return parameters[0].AsNumber + parameters[1].AsNumber;
+					return parameters[0] + parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber - parameters[1].AsNumber;
+					return parameters[0] - parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {
-					return -parameters[0].AsNumber;
+					return -parameters[0];
 				});
 
 				this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber / parameters[1].AsNumber;
+					return parameters[0] / parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber * parameters[1].AsNumber;
+					return parameters[0] * parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
-
-					// TODO: This may not be the greatest way of doing it
-
-					// Coerce to the type of second operand
-					switch (parameters [1].type) {
-					case Value.Type.Number:
-						return parameters[0].AsNumber == parameters[1].AsNumber;
-					case Value.Type.String:
-						return parameters[0].AsString == parameters[1].AsString;
-					case Value.Type.Bool:
-						return parameters[0].AsBool == parameters[1].AsBool;
-					case Value.Type.Null:
-						// Only null-null comparisons are true.
-						return parameters[0].type == Value.Type.Null;
-					}
-
-					// Give up and say they're not equal
-					return false;
-
+                    return parameters[0].Equals( parameters[1] );
 				});
 
 				this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {
@@ -389,19 +381,19 @@ namespace Yarn {
 				});
 
 				this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber > parameters[1].AsNumber;
+					return parameters[0] > parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber >= parameters[1].AsNumber;
+					return parameters[0] >= parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber < parameters[1].AsNumber;
+					return parameters[0] < parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {
-					return parameters[0].AsNumber <= parameters[1].AsNumber;
+					return parameters[0] <= parameters[1];
 				});
 
 				this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {

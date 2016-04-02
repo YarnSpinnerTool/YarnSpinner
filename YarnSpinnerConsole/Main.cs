@@ -81,7 +81,7 @@ namespace Yarn
 			var defaultVariables = new Dictionary<string,float> ();
 
 			foreach (var arg in args) {
-				
+
 				// Handle 'start' parameter
 				if (arg.IndexOf("-s=") != -1) {
 					var startArray = arg.Split (new char[]{ '=' });
@@ -195,11 +195,7 @@ namespace Yarn
 
 			// Add some methods for testing
 			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
-				var f1 = parameters[0].AsNumber;
-				var f2 = parameters[1].AsNumber;
-				var f3 = parameters[2].AsNumber;
-
-				return f1+f2+f3;
+				return parameters[0]+parameters[1]+parameters[2];
 			});
 
 			dialogue.library.RegisterFunction ("last_value", -1, delegate(Value[] parameters) {
@@ -212,11 +208,15 @@ namespace Yarn
 			});
 
 			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", 1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction ("assert", -1, delegate(Value[] parameters) {
 				if (parameters[0].AsBool == false) {
 
 					// TODO: Include file, node and line number
-					dialogue.LogErrorMessage("ASSERTION FAILED");
+					if( parameters.Length > 1 && parameters[1].AsBool ) {
+						dialogue.LogErrorMessage ("ASSERTION FAILED: " + parameters[1].AsString);
+					} else {
+						dialogue.LogErrorMessage ("ASSERTION FAILED");
+					}
 					Environment.Exit(1);
 				}
 			});
@@ -271,7 +271,7 @@ namespace Yarn
 			}
 
 			// Only run the program when we're not emitting debug output of some kind
-			var runProgram = 
+			var runProgram =
 				showTokens == false &&
 				showParseTree == false &&
 				compileToBytecodeOnly == false;
@@ -335,7 +335,7 @@ namespace Yarn
 
 				if (expectedNextLine != null && expectedNextLine != lineText.text) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}", 
+					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
 						expectedNextLine, lineText.text));
 					Environment.Exit (1);
 				}
@@ -399,7 +399,7 @@ namespace Yarn
 
 						if (selection > optionsGroup.options.Count) {
 							Console.WriteLine ("Invalid option.");
-						} else {							
+						} else {
 							optionChooser(selection);
 							break;
 						}
@@ -413,7 +413,7 @@ namespace Yarn
 
 				if (expectedNextCommand != null && expectedNextCommand != command) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}", 
+					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}",
 						expectedNextCommand, command));
 					Environment.Exit (1);
 				}
@@ -438,14 +438,22 @@ namespace Yarn
 				Console.WriteLine("Debug: " + message);
 			}
 
-			public void SetNumber (string variableName, float number)
-			{				
+			public virtual void SetNumber (string variableName, float number)
+			{
 				variableStore.SetNumber(variableName, number);
 			}
 
-			public float GetNumber (string variableName)
+			public virtual float GetNumber (string variableName)
 			{
 				return variableStore.GetNumber(variableName);
+			}
+
+			public virtual void SetValue (string variableName, Value value) {
+				variableStore.SetValue(variableName, value);
+			}
+
+			public virtual Value GetValue (string variableName) {
+				return variableStore.GetValue(variableName);
 			}
 
 			public void Clear()

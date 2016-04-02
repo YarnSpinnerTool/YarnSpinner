@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Yarn;
 
 namespace YarnSpinner.Tests
 {
@@ -8,15 +11,14 @@ namespace YarnSpinner.Tests
 	[TestFixture ()]
 	public class Test
 	{
-
 		string nextExpectedLine = null;
 		int nextExpectedOptionCount = -1;
 		int nextOptionToSelect = -1;
 		string nextExpectedCommand = null;
 
 
-		Yarn.MemoryVariableStore storage = new Yarn.MemoryVariableStore();
-		Yarn.Dialogue dialogue;
+		VariableStorage storage = new MemoryVariableStore();
+		Dialogue dialogue;
 
 		bool errorsCauseFailures = true;
 
@@ -54,9 +56,14 @@ namespace YarnSpinner.Tests
 					Assert.Fail();
 			};
 
-			dialogue.library.RegisterFunction ("assert", 1, delegate(Yarn.Value[] parameters) {
-				if (parameters[0].AsBool == false)
-					Assert.Fail ("Assertion failed");
+			dialogue.library.RegisterFunction ("assert", -1, delegate(Yarn.Value[] parameters) {
+				if (parameters[0].AsBool == false) {
+					if( parameters.Length > 1 && parameters[1].AsBool ) {
+						Assert.Fail ("Assertion failed: " + parameters[1].AsString);
+					} else {
+						Assert.Fail ("Assertion failed");
+					}
+				}
 			});
 
 			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Yarn.Value[] parameters) {
@@ -73,7 +80,7 @@ namespace YarnSpinner.Tests
 			});
 		}
 
-		[Test ()]
+		[Test()]
 		public void TestNodeExists ()
 		{
 		
@@ -98,6 +105,17 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Indentation.node");
 			dialogue.LoadFile (path);
+			RunStandardTestcase ();
+		}
+
+		[Test()]
+		public void TestVariableStorage()
+		{
+			storage.Clear ();
+
+			var path = System.IO.Path.Combine ("TestCases", "VariableStorage.node");
+			dialogue.LoadFile (path);
+			RunStandardTestcase ();
 		}
 
 		[Test()]
@@ -105,6 +123,7 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Options.node");
 			dialogue.LoadFile (path);
+			RunStandardTestcase ();
 		}
 
 		[Test()]
@@ -112,7 +131,7 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
 			dialogue.LoadFile (path);
-
+			RunStandardTestcase ();
 		}
 
 		[Test()]
@@ -133,10 +152,7 @@ namespace YarnSpinner.Tests
 			errorsCauseFailures = false;
 			var path = "Example.json";
 			dialogue.LoadFile (path);
-			
-			foreach (var result in dialogue.Run()) {
-				HandleResult (result);
-			}
+			RunStandardTestcase ();
 		}
 
 		[Test()]
@@ -144,10 +160,7 @@ namespace YarnSpinner.Tests
 		{
 			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
 			dialogue.LoadFile (path);
-
-			foreach (var result in dialogue.Run()) {
-				HandleResult (result);
-			}
+			RunStandardTestcase ();
 		}
 
 		[Test()]
@@ -214,6 +227,12 @@ namespace YarnSpinner.Tests
 				Assert.IsNotInstanceOf<Yarn.Dialogue.OptionSetResult> (result);
 			}
 
+		}
+
+		private void RunStandardTestcase() {
+			foreach (var result in dialogue.Run()) {
+				HandleResult (result);
+			}
 		}
 
 		private void HandleResult(Yarn.Dialogue.RunnerResult result) {

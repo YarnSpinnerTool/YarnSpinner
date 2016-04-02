@@ -11,16 +11,16 @@
 	<<prepare_for_options(2,0)>>
 	-> Sub Option 1
 		<<set $selected += 1>>
-	-> Sub Option 2	
+	-> Sub Option 2
 		// Should be selected
-		<<assert(false)>>
+		<<assert(false, "suboption 2")>>
 	-> Sub Option 3 <<if false>>
 		// Should never appear
-		<<assert(false)>>		
+		<<assert(false, "suboption 3")>>
 -> Option 2 <<if false>>
-	<<assert(false)>>
+	<<assert(false, "option 2")>>
 -> Option 3
-	<<assert(false)>>
+	<<assert(false, "option 3")>>
 
 // Check that the stuff attached to Option 1 actually ran
-<<assert($selected == 2)>>
+<<assert($selected == 2, "endcap")>>
