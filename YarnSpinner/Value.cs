@@ -170,20 +170,15 @@ namespace Yarn
 			}
 
 			if (other.type == this.type) {
-				if( this.type == Type.Null ) {
+				switch (this.type) {
+				case Type.Null:
 					return 0;
-				}
-
-				if( this.type == Type.String ) {
-					return this.stringValue.CompareTo(other.stringValue);
-				}
-
-				if( this.type == Type.Number ) {
-					return this.numberValue.CompareTo(other.numberValue);
-				}
-
-				if( this.type == Type.Bool ) {
-					return this.boolValue.CompareTo(other.boolValue);
+				case Type.String:
+					return this.stringValue.CompareTo (other.stringValue);
+				case Type.Number:
+					return this.numberValue.CompareTo (other.numberValue);
+				case Type.Bool:
+					return this.boolValue.CompareTo (other.boolValue);
 				}
 			}
 
@@ -197,16 +192,21 @@ namespace Yarn
 				return false;
 			}
 
-			// so yea this stinks basically
 			var other = (Value)obj;
-			if (this.type == other.type) {
-				if (this.type == Type.Null) {
-					return true;
-				}
-				return this.backingValue.Equals(other.backingValue);
+
+			switch (this.type) {
+			case Type.Number:
+				return this.AsNumber == other.AsNumber;
+			case Type.String:
+				return this.AsString == other.AsString;
+			case Type.Bool:
+				return this.AsBool == other.AsBool;
+			case Type.Null:
+				return other.type == Type.Null;
+			default:
+				throw new ArgumentOutOfRangeException ();
 			}
 
-			return base.Equals (obj);
 		}
 
 		// override object.GetHashCode
