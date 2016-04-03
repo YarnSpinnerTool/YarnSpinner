@@ -310,12 +310,6 @@ namespace Yarn
 					
 			}
 
-			// Done running these options; run the stuff that came afterwards
-			if (shortcutOptionGroup.epilogue != null) {
-				foreach (var command in RunStatements(shortcutOptionGroup.epilogue.statements)) {
-					yield return command;
-				}
-			}
 		}
 	}
 

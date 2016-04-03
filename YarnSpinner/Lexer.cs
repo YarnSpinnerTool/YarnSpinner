@@ -318,11 +318,12 @@ namespace Yarn {
 			patterns[TokenType.Text] = ".*";
 
 			patterns[TokenType.Number] = @"\-?[0-9]+(\.[0-9+])?";
-			patterns[TokenType.String] = @"""[^""\\]*(?:\\.[^""\\]*)*""";
+			patterns[TokenType.String] = @"""([^""\\]*(?:\\.[^""\\]*)*)""";
 			patterns[TokenType.LeftParen] = @"\(";
 			patterns[TokenType.RightParen] = @"\)";
 			patterns[TokenType.EqualTo] = @"(==|is(?!\w)|eq(?!\w))";
 			patterns[TokenType.EqualToOrAssign] = @"(=|to(?!\w))";
+			patterns[TokenType.NotEqualTo] = @"(\!=|neq(?!\w))";
 			patterns[TokenType.GreaterThan] = @"\>";
 			patterns[TokenType.GreaterThanOrEqualTo] = @"\>=";
 			patterns[TokenType.LessThan] = @"\<";
@@ -335,7 +336,7 @@ namespace Yarn {
 			patterns [TokenType.Or] = @"(\|\||or(?!\w))";
 			patterns [TokenType.Xor] = @"(\^|xor(?!\w))";
 			patterns [TokenType.Not] = @"(\!|not(?!\w))";
-			patterns[TokenType.Variable] = @"\$[A-Za-z0-9_\.]+";
+			patterns[TokenType.Variable] = @"\$([A-Za-z0-9_\.])+";
 			patterns[TokenType.Comma] = @",";
 			patterns[TokenType.True] = @"true(?!\w)";
 			patterns[TokenType.False] = @"false(?!\w)";
@@ -367,7 +368,7 @@ namespace Yarn {
 			states ["base"] = new LexerState (patterns);
 			states ["base"].AddTransition(TokenType.BeginCommand, "command", delimitsText:true);
 			states ["base"].AddTransition(TokenType.OptionStart, "link", delimitsText:true);
-			states ["base"].AddTransition(TokenType.ShortcutOption, "shortcut-option", delimitsText:true);
+			states ["base"].AddTransition(TokenType.ShortcutOption, "shortcut-option");
 			states ["base"].AddTextRule (TokenType.Text);
 
 			states ["shortcut-option"] = new LexerState (patterns);
@@ -408,6 +409,7 @@ namespace Yarn {
 			states ["expression"].AddTransition(TokenType.RightParen);
 			states ["expression"].AddTransition(TokenType.EqualTo);
 			states ["expression"].AddTransition(TokenType.EqualToOrAssign);
+			states ["expression"].AddTransition(TokenType.NotEqualTo);
 			states ["expression"].AddTransition(TokenType.GreaterThan);
 			states ["expression"].AddTransition(TokenType.GreaterThanOrEqualTo);
 			states ["expression"].AddTransition(TokenType.LessThan);
@@ -489,6 +491,8 @@ namespace Yarn {
 
 				shouldTrackNextIndentation = false;
 
+				lineTokens.Push (indent);
+
 			} else if (thisIndentation < previousIndentation) {
 
 				// If we are less indented, emit a dedent for every
@@ -510,7 +514,7 @@ namespace Yarn {
 
 			while (columnNumber < line.Length) {
 
-				// If we're about to hit line comment, abort processing line
+				// If we're about to hit a line comment, abort processing line
 				// immediately
 				if (line.Substring(columnNumber).StartsWith(LINE_COMMENT)) {
 					break;
@@ -532,9 +536,9 @@ namespace Yarn {
 						// delimiting token, and treat everything from there as
 						// the text.
 						// we do this because we don't want this:
-						//    <<flip Harley3>>
+						//    <<flip Harley3 +1>>
 						// to get matched as this:
-						//    BeginCommand Identifier("flip") Text("Harley3") EndCommand
+						//    BeginCommand Identifier("flip") Text("Harley3 +1") EndCommand
 						// instead, we want to match it as this:
 						//    BeginCommand Text("flip Harley3 +1") EndCommand
 
@@ -546,8 +550,12 @@ namespace Yarn {
 							}
 
 							var startDelimiterToken = lineTokens.Peek ();
-							textStartIndex = startDelimiterToken.columnNumber + startDelimiterToken.value.Length;
+							textStartIndex = startDelimiterToken.columnNumber;
+							if (startDelimiterToken.type == TokenType.Indent)
+								textStartIndex += startDelimiterToken.value.Length;
 						}
+
+						columnNumber = textStartIndex;
 
 						var textEndIndex = match.Index + match.Length;
 
@@ -557,13 +565,24 @@ namespace Yarn {
 						tokenText = match.Value;
 					}
 
-					var token = new Token (rule.type, lineNumber, columnNumber, match.Value);
+					columnNumber += tokenText.Length;
+
+					// If this was a string, lop off the quotes at the start and
+					// end, and un-escape the quotes and slashes
+					if (rule.type == TokenType.String) {
+						tokenText = tokenText.Substring (1, tokenText.Length - 2);
+
+						tokenText = tokenText.Replace (@"\\", @"\");
+						tokenText = tokenText.Replace (@"\""", @"""");
+					}
+
+					var token = new Token (rule.type, lineNumber, columnNumber, tokenText);
 
 					token.delimitsText = rule.delimitsText;
 
 					lineTokens.Push (token);
 
-					columnNumber += match.Length;
+
 
 					if (rule.entersState != null) {
 						if (states.ContainsKey(rule.entersState) == false) {

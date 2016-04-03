@@ -474,9 +474,6 @@ namespace Yarn
 			// clean up after the jump
 			Emit (node, ByteCode.Pop);
 
-			// generate everything after the option group
-			GenerateCode (node, statement.epilogue.statements);
-
 
 		}
 
