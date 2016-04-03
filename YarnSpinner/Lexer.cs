@@ -324,10 +324,14 @@ namespace Yarn {
 			patterns[TokenType.EqualTo] = @"(==|is(?!\w)|eq(?!\w))";
 			patterns[TokenType.EqualToOrAssign] = @"(=|to(?!\w))";
 			patterns[TokenType.NotEqualTo] = @"(\!=|neq(?!\w))";
-			patterns[TokenType.GreaterThan] = @"\>";
 			patterns[TokenType.GreaterThanOrEqualTo] = @"\>=";
-			patterns[TokenType.LessThan] = @"\<";
+			patterns[TokenType.GreaterThan] = @"\>";
 			patterns[TokenType.LessThanOrEqualTo] = @"\<=";
+			patterns[TokenType.LessThan] = @"\<";
+			patterns[TokenType.AddAssign] = @"\+=";
+			patterns[TokenType.MinusAssign] = @"\-=";
+			patterns[TokenType.MultiplyAssign] = @"\*=";
+			patterns[TokenType.DivideAssign] = @"\/=";
 			patterns[TokenType.Add] = @"\+";
 			patterns[TokenType.Minus] = @"\-";
 			patterns[TokenType.Multiply] = @"\*";
@@ -341,10 +345,6 @@ namespace Yarn {
 			patterns[TokenType.True] = @"true(?!\w)";
 			patterns[TokenType.False] = @"false(?!\w)";
 			patterns[TokenType.Null] = @"null(?!\w)";
-			patterns[TokenType.AddAssign] = @"\+=";
-			patterns[TokenType.MinusAssign] = @"\-=";
-			patterns[TokenType.MultiplyAssign] = @"\*=";
-			patterns[TokenType.DivideAssign] = @"\/=";
 
 			patterns[TokenType.BeginCommand] = @"\<\<";
 			patterns[TokenType.EndCommand] = @"\>\>";
@@ -410,10 +410,10 @@ namespace Yarn {
 			states ["expression"].AddTransition(TokenType.EqualTo);
 			states ["expression"].AddTransition(TokenType.EqualToOrAssign);
 			states ["expression"].AddTransition(TokenType.NotEqualTo);
-			states ["expression"].AddTransition(TokenType.GreaterThan);
 			states ["expression"].AddTransition(TokenType.GreaterThanOrEqualTo);
-			states ["expression"].AddTransition(TokenType.LessThan);
+			states ["expression"].AddTransition(TokenType.GreaterThan);
 			states ["expression"].AddTransition(TokenType.LessThanOrEqualTo);
+			states ["expression"].AddTransition(TokenType.LessThan);
 			states ["expression"].AddTransition(TokenType.Add);
 			states ["expression"].AddTransition(TokenType.Minus);
 			states ["expression"].AddTransition(TokenType.Multiply);
