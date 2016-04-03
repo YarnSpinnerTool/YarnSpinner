@@ -18,11 +18,11 @@
 <<endif>>
 
 <<if true>>
-	This is a line.
-	-> Option 1
-		Option 1 Line 1
+    This is a line.
+    -> Option 1
+        Option 1 Line 1
         Option 1 Line 2
-	-> Option 2
-		Option 2 Line 1
-		Option 2 Line 2 - EXPECT TWO DEDENTS HERE
+    -> Option 2
+        Option 2 Line 1
+        Option 2 Line 2
 <<endif>>
