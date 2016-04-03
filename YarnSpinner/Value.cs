@@ -202,7 +202,7 @@ namespace Yarn
 			case Type.Bool:
 				return this.AsBool == other.AsBool;
 			case Type.Null:
-				return other.type == Type.Null;
+				return other.type == Type.Null || other.AsNumber == 0 || other.AsBool == false;
 			default:
 				throw new ArgumentOutOfRangeException ();
 			}
