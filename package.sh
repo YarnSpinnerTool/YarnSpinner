@@ -30,6 +30,10 @@ NO_EXAMPLES=0
 
 SOURCE_BUILD=0
 
+CLEAN_ONLY=0
+
+COPY_ONLY=0
+
 CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
 
 set -e
@@ -37,9 +41,11 @@ set -e
 function show_help {
 	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
 	echo
-	echo "Usage: package.sh [-hsx]"
+	echo "Usage: package.sh [-hsSxcC]"
 	echo "  -s: Package the source code, not a built DLL"
+    echo "  -S: Copy the files into the Unity project and exit"
 	echo "  -c: Show the changes since the last tag and exit"
+    echo "  -C: Clean the Unity project and exit"
 	echo "  -h: Show this text and exit"
 	echo "  -x: Do not include example project assets"
 }
@@ -59,13 +65,15 @@ function show_changes {
 	fi
 }
 
-while getopts ":xhsc" opt; do
+while getopts ":xhsScC" opt; do
 	
 	case $opt in
 	   x) NO_EXAMPLES=1 ;;
 	   h) show_help ; exit 0 ;;
 	   s) SOURCE_BUILD=1 ;;
+       S) COPY_ONLY=1 ;;
 	   c) show_changes ; exit 0 ;;
+       C) CLEAN_ONLY=1 ;;
 	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ; exit 0 ;;
 	esac
 
@@ -80,6 +88,10 @@ fi
 echo "Cleaning Unity project..."
 git clean -f -d -X Unity
 
+if [ $CLEAN_ONLY == 1 ]; then
+    exit 0
+fi
+
 # Build the Yarn Spinner DLL
 echo "Building Yarn Spinner..."
 ./build.sh
@@ -93,6 +105,10 @@ if [ $SOURCE_BUILD == 1 ]; then
 	# Copy the source files in
 	cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
 	
+fi
+
+if [ $COPY_ONLY == 1 ]; then
+    exit 0;
 fi
 
 # Next, determine what build name this is.
