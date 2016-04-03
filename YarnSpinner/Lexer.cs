@@ -476,6 +476,9 @@ namespace Yarn {
 		{
 			var lineTokens = new Stack<Token> ();
 
+			// Replace tabs with four spaces
+			line = line.Replace ("\t", "    ");
+
 			// Record the indentation level if the previous state wants us to
 
 			var thisIndentation = LineIndentation (line);
