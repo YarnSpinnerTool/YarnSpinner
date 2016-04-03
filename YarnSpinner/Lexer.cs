@@ -31,11 +31,50 @@ using System.Collections.Generic;
 namespace Yarn {
 
 	internal class TokeniserException : InvalidOperationException  {
+
+		public int lineNumber;
+		public int columnNumber;
+
 		public TokeniserException (string message) : base (message) {}
+		public TokeniserException (int lineNumber, int columnNumber, string message)
+			: base(string.Format ("{0}:{1}: {2}", lineNumber, columnNumber, message))
+		{
+			this.lineNumber = lineNumber;
+			this.columnNumber = columnNumber;
+		}
+		
+
+		public static TokeniserException ExpectedTokensFromState (int lineNumber, int columnNumber, Lexer.LexerState state) {
+
+			var names = new List<string> ();
+			foreach (var tokenRule in state.tokenRules) {
+				names.Add (tokenRule.type.ToString ());
+			}
+
+			string nameList;
+			if (names.Count > 1) {
+				nameList = String.Join (", ", names.ToArray (), 0, names.Count - 1);
+				nameList += ", or " + names [names.Count - 1];
+			} else {
+				nameList = names [0];
+			}
+
+			var message = string.Format ("Expected " + nameList);
+			
+			return new TokeniserException (lineNumber, columnNumber, message);
+		}
 	}
 
 	// save some typing, we deal with lists of tokens a LOT
-	internal class TokenList : List<Token> {}
+	internal class TokenList : List<Token> {
+		// quick constructor to make it easier to create 
+		// TokenLists with a list of tokens
+		public TokenList (params Token[] tokens) : base()
+		{
+			AddRange(tokens);
+		}
+
+	}
 
 	internal enum TokenType {
 
@@ -134,24 +173,24 @@ namespace Yarn {
 
 		// The token itself
 		public TokenType type;
-		public object value; // optional
+		public string value; // optional
 
 		// Where we found this token
 		public int lineNumber;
 		public int columnNumber;
 		public string context;
 
-		// For <<, we record everything up to the next >> on the line,
-		// so that the parser can get it back for custom commands
-		public string associatedRawText;
+		public bool delimitsText = false;
 
 		// If this is a function in an expression, this is the number
 		// of parameters that were encountered
 		public int parameterCount;
 		
-		public Token(TokenType type, object value=null) {
+		public Token(TokenType type, int lineNumber = -1, int columnNumber = -1, string value=null) {
 			this.type = type;
 			this.value = value;
+			this.lineNumber = lineNumber;
+			this.columnNumber = columnNumber;			
 		}
 		
 		public override string ToString() {
@@ -163,560 +202,441 @@ namespace Yarn {
 		}
 	}
 
+	internal class Lexer {
 
-	// Lean, mean, string-readin' machine
-	internal class Tokeniser {
+		internal class LexerState {
 
-		// A defined rule for matching a type of token
-		public class TokenRule {
+			private Dictionary<TokenType, string> patterns;
 
-			public enum FreeTextMode {
-				Begins,
-				Ends,
-				DoNotMatch,
-				AllowMatch
+			public LexerState (Dictionary<TokenType, string> patterns)
+			{
+				this.patterns = patterns;
 			}
 
-			public delegate bool FreeTextModeException( TokenList tokens );
+			public List<TokenRule> tokenRules = new List<TokenRule>();
 
-			// If the tokenizer is in free text mode and this token would normally
-			// not be matched (ie FreeTextMode == .DoNotMatch), an exception is made
-			// if this function returns true.
-			// This exists to allow tokens to make context-sensitive choices, such as
-			// allowing OptionDelimit to be matched but only if we started an OptionStart 
-			// two tokens ago.
-			// TODO: I can see this slowly turning into a headache. Is there a better way
-			// around this problem?
-			public FreeTextModeException freeTextModeException;
+			public TokenRule AddTransition(TokenType type, string entersState = null, bool delimitsText = false) {
 
-			public TokenType type; // what token is this rule for?
-			public Regex regex; // what should we look for?
-			public bool discard; // should we throw away this token if we match it?
+				var pattern = string.Format (@"\G{0}", patterns [type]);
 
-			// Some tokens are common English words (like "not", "and", "or") - if these
-			// are the first word in what's otherwise a line of text,
-			// the lexer will read it as "<AND> <TEXT>" instead of "<TEXT>".
-			// So, we need to mark certain rules as "this token can start a line"
-			public bool canBeginLine; 
+				var rule = new TokenRule (type, new Regex(pattern), entersState, delimitsText);
 
-			// This flag exists because we DON'T want to interpret lines like this:
-			// "-> And what did they say?"
-			// as <ShortcutOption> <And> <Text>. Instead, we say that certain tokens
-			// "reset" the line, making the lexer treat the next token as the "start"
-			// of the line - which means that tokens like "and" will not be interpreted.
-			public bool resetsLine;
+				tokenRules.Add(rule);
 
-			// Free text mode means that only certain tokens are matched. It's
-			// begun when a token is matched whose freeTextMode is Begins, and ends when
-			// a token is matched whose freeTextMode is Ends (typically '<<' and newlines)
-			// When in free text mode, token rules that are DoNotMatch are not used.
-			public FreeTextMode freeTextMode;
+				return rule;
+			}
 
-			// When true, the lexer will examine the next line, and see if it's
-			// further indented than the current. If it is, then an Indent token 
-			// is emitted.
-			// This exists for the -> shortcut option syntax, in which following
-			// lines are indented to indicate that they belong to the option.
-			public bool nextLineIsPossiblyIndented;
 
+			// A "text" rule matches everything that it possibly can, up to ANY of
+			// the rules that already exist.
+			public TokenRule AddTextRule (TokenType type, string entersState = null)
+			{
+				if (containsTextRule) {
+					throw new InvalidOperationException ("State already contains a text rule");
+				}
+
+				var delimiterRules = new List<string>();
+
+				foreach (var otherRule in tokenRules) {
+					if (otherRule.delimitsText == true)
+						delimiterRules.Add (string.Format ("({0})", otherRule.regex.ToString().Substring(2)));
+				}
+
+				// Create a regex that matches all text up to but not including
+				// any of the delimiter rules
+				var pattern = string.Format (@"\G((?!{0}).)*", 
+					string.Join ("|", delimiterRules.ToArray()));
+
+				var rule = AddTransition(type, entersState);
+
+				rule.regex = new Regex (pattern);
+				rule.isTextRule = true;
+
+
+				return rule;
+			}
+
+			public bool containsTextRule {
+				get {
+					foreach (var rule in tokenRules) {
+						if (rule.isTextRule)
+							return true;
+					}
+					return false;
+				}
+			}
+
+			public bool setTrackNextIndentation = false;
+
+			
+		}
+		internal class TokenRule {
+			public Regex regex = null;
+
+			// set to null if it should stay in the same state
+			public string entersState; 
+			public TokenType type;
+			public bool isTextRule = false;
+			public bool delimitsText = false;
+
+			public TokenRule (TokenType type, Regex regex, string entersState = null, bool delimitsText = false)
+			{
+				this.regex = regex;
+				this.entersState = entersState;
+				this.type = type;
+				this.delimitsText = delimitsText;
+			}
 
 			public override string ToString ()
 			{
-				return string.Format ("TokenRule: {0}", type.ToString());
+				return string.Format (string.Format ("[TokenRule: {0} - {1}]", type, this.regex));
 			}
-		}
-		
-		// The list of all known token types
-		List<TokenRule> tokenRules = new List<TokenRule>();
-
-		public Tokeniser() {
-
-			// Load the token rules for this language
-			PrepareTokenRules();
-
-			// Ensure that all token types have a rule:
-			#if DEBUG
-			// First, obtain the string names of all the elements within myEnum 
-			String[] tokenNames = Enum.GetNames( typeof( TokenType ) );
-			
-			// Obtain the values of all the elements within myEnum 
-			TokenType[] values = (TokenType[])Enum.GetValues( typeof( TokenType ) );
-
-			// Check to ensure that we've got a rule for every token type
-			for ( int i = 0; i < tokenNames.Length; i++ )
-			{
-				bool found = false;
-				foreach (var tokenRule in tokenRules) {
-					if (tokenRule.type == values[i]) {
-						// Found a match, carry on
-						found = true;
-					}
-				}
-				// noooooo we forgot to add a rule in PrepareTokenRules()
-				if (found == false)
-					throw new TokeniserException("Missing rule for token type " + tokenNames[i]);
-			}
-			#endif
-
 
 		}
 
-		bool wasLookingForIndent = false;
-		bool nowLookingForIndent = false;
-		
-		// Define a new token rule, with a name and an optional rule
-		public TokenRule AddTokenRule(TokenType type, string rule, 
-			bool canBeginLine = false, 
-			bool resetsLine = false, 
-			bool requiresFollowingWhitespace=false,
-			TokenRule.FreeTextMode freeTextMode = TokenRule.FreeTextMode.DoNotMatch,
-			bool nextLineIsPossiblyIndented=false
-		) {
-			
-			var newTokenRule = new TokenRule();
-			newTokenRule.type = type;
+		// Single-line comments. If this is encountered at any point, the rest of the line is skipped.
+		const string LINE_COMMENT = "//";
 
-			if (requiresFollowingWhitespace) {
-				// Look for whitespace following this rule, but don't capture it as part of
-				// the token
-				rule += @"(?=\s+)";
-			}
+		Dictionary<string, LexerState> states;
 
-			// Set up a regex if we have a rule for it
-			if (rule != null) {
-				
-				newTokenRule.regex = new Regex(rule);
-			}
-			newTokenRule.resetsLine = resetsLine;
-			newTokenRule.canBeginLine = canBeginLine;
+		LexerState defaultState;
+		LexerState currentState;
 
-			newTokenRule.freeTextMode = freeTextMode;
+		Stack<int> indentationStack;
+		bool shouldTrackNextIndentation;
 
-			newTokenRule.nextLineIsPossiblyIndented = nextLineIsPossiblyIndented;
-
-			// Store it in the list and return
-			tokenRules.Add(newTokenRule);
-			return newTokenRule;
+		public Lexer ()
+		{
+			CreateStates ();
 		}
 
+		void CreateStates ()
+		{
 
-		// Given an input string, parse it and return the list of tokens
-		public TokenList Tokenise(string context, string input) {
-			
-			// The total collection of all tokens in this input
+			var patterns = new Dictionary<TokenType, string> ();
+
+			patterns[TokenType.Text] = ".*";
+
+			patterns[TokenType.Number] = @"\-?[0-9]+(\.[0-9+])?";
+			patterns[TokenType.String] = @"""([^""\\]*(?:\\.[^""\\]*)*)""";
+			patterns[TokenType.LeftParen] = @"\(";
+			patterns[TokenType.RightParen] = @"\)";
+			patterns[TokenType.EqualTo] = @"(==|is(?!\w)|eq(?!\w))";
+			patterns[TokenType.EqualToOrAssign] = @"(=|to(?!\w))";
+			patterns[TokenType.NotEqualTo] = @"(\!=|neq(?!\w))";
+			patterns[TokenType.GreaterThan] = @"\>";
+			patterns[TokenType.GreaterThanOrEqualTo] = @"\>=";
+			patterns[TokenType.LessThan] = @"\<";
+			patterns[TokenType.LessThanOrEqualTo] = @"\<=";
+			patterns[TokenType.Add] = @"\+";
+			patterns[TokenType.Minus] = @"\-";
+			patterns[TokenType.Multiply] = @"\*";
+			patterns[TokenType.Divide] = @"\/";
+			patterns [TokenType.And] = @"(\&\&|and(?!\w))";
+			patterns [TokenType.Or] = @"(\|\||or(?!\w))";
+			patterns [TokenType.Xor] = @"(\^|xor(?!\w))";
+			patterns [TokenType.Not] = @"(\!|not(?!\w))";
+			patterns[TokenType.Variable] = @"\$([A-Za-z0-9_\.])+";
+			patterns[TokenType.Comma] = @",";
+			patterns[TokenType.True] = @"true(?!\w)";
+			patterns[TokenType.False] = @"false(?!\w)";
+			patterns[TokenType.Null] = @"null(?!\w)";
+			patterns[TokenType.AddAssign] = @"\+=";
+			patterns[TokenType.MinusAssign] = @"\-=";
+			patterns[TokenType.MultiplyAssign] = @"\*=";
+			patterns[TokenType.DivideAssign] = @"\/=";
+
+			patterns[TokenType.BeginCommand] = @"\<\<";
+			patterns[TokenType.EndCommand] = @"\>\>";
+
+			patterns[TokenType.OptionStart] = @"\[\[";
+			patterns[TokenType.OptionEnd] = @"\]\]";
+			patterns[TokenType.OptionDelimit] = @"\|";
+
+			patterns[TokenType.Identifier] = @"[a-zA-Z0-9_:\.]+";
+
+			patterns[TokenType.If] = @"if(?!\w)";
+			patterns[TokenType.Else] = @"else(?!\w)";
+			patterns[TokenType.ElseIf] = @"elseif(?!\w)";
+			patterns[TokenType.EndIf] = @"endif(?!\w)";
+			patterns[TokenType.Set] = @"set(?!\w)";
+
+			patterns[TokenType.ShortcutOption] = @"\-\>";
+
+			states = new Dictionary<string, LexerState> ();
+
+			states ["base"] = new LexerState (patterns);
+			states ["base"].AddTransition(TokenType.BeginCommand, "command", delimitsText:true);
+			states ["base"].AddTransition(TokenType.OptionStart, "link", delimitsText:true);
+			states ["base"].AddTransition(TokenType.ShortcutOption, "shortcut-option");
+			states ["base"].AddTextRule (TokenType.Text);
+
+			states ["shortcut-option"] = new LexerState (patterns);
+			states ["shortcut-option"].setTrackNextIndentation = true;
+			states ["shortcut-option"].AddTransition (TokenType.BeginCommand, "expression", delimitsText: true);
+			states ["shortcut-option"].AddTextRule (TokenType.Text, "base");
+
+			states ["command"] = new LexerState (patterns);
+			states ["command"].AddTransition (TokenType.If, "expression");
+			states ["command"].AddTransition (TokenType.Else);
+			states ["command"].AddTransition (TokenType.ElseIf, "expression");
+			states ["command"].AddTransition (TokenType.EndIf);
+			states ["command"].AddTransition (TokenType.Set, "assignment");
+			states ["command"].AddTransition (TokenType.EndCommand,  "base", delimitsText: true);
+			states ["command"].AddTransition (TokenType.Identifier, "command-or-expression");
+			states ["command"].AddTextRule (TokenType.Text);
+
+			states ["command-or-expression"] = new LexerState (patterns);
+			states ["command-or-expression"].AddTransition (TokenType.LeftParen, "expression");
+			states ["command-or-expression"].AddTransition (TokenType.EndCommand, "base", delimitsText:true);
+			states ["command-or-expression"].AddTextRule (TokenType.Text);
+
+
+			states ["assignment"] = new LexerState (patterns);
+			states ["assignment"].AddTransition(TokenType.Variable);
+			states ["assignment"].AddTransition(TokenType.EqualToOrAssign, "expression");
+			states ["assignment"].AddTransition(TokenType.AddAssign, "expression");
+			states ["assignment"].AddTransition(TokenType.MinusAssign, "expression");
+			states ["assignment"].AddTransition(TokenType.MultiplyAssign, "expression");
+			states ["assignment"].AddTransition(TokenType.DivideAssign, "expression");
+
+
+			states ["expression"] = new LexerState (patterns);
+			states ["expression"].AddTransition(TokenType.EndCommand, "base");
+			states ["expression"].AddTransition(TokenType.Number);
+			states ["expression"].AddTransition(TokenType.String);
+			states ["expression"].AddTransition(TokenType.LeftParen);
+			states ["expression"].AddTransition(TokenType.RightParen);
+			states ["expression"].AddTransition(TokenType.EqualTo);
+			states ["expression"].AddTransition(TokenType.EqualToOrAssign);
+			states ["expression"].AddTransition(TokenType.NotEqualTo);
+			states ["expression"].AddTransition(TokenType.GreaterThan);
+			states ["expression"].AddTransition(TokenType.GreaterThanOrEqualTo);
+			states ["expression"].AddTransition(TokenType.LessThan);
+			states ["expression"].AddTransition(TokenType.LessThanOrEqualTo);
+			states ["expression"].AddTransition(TokenType.Add);
+			states ["expression"].AddTransition(TokenType.Minus);
+			states ["expression"].AddTransition(TokenType.Multiply);
+			states ["expression"].AddTransition(TokenType.Divide);
+			states ["expression"].AddTransition(TokenType.And);
+			states ["expression"].AddTransition(TokenType.Or);
+			states ["expression"].AddTransition(TokenType.Xor);
+			states ["expression"].AddTransition(TokenType.Not);
+			states ["expression"].AddTransition(TokenType.Variable);
+			states ["expression"].AddTransition(TokenType.Comma);
+			states ["expression"].AddTransition(TokenType.True);
+			states ["expression"].AddTransition(TokenType.False);
+			states ["expression"].AddTransition(TokenType.Null);
+			states ["expression"].AddTransition(TokenType.Identifier);
+
+
+			states ["link"] = new LexerState (patterns);
+			states ["link"].AddTransition (TokenType.OptionEnd, "base", delimitsText:true);
+			states ["link"].AddTransition (TokenType.OptionDelimit, "link-destination", delimitsText:true);
+			states ["link"].AddTextRule (TokenType.Text);
+
+			states ["link-destination"] = new LexerState (patterns);
+			states ["link-destination"].AddTransition (TokenType.Identifier);
+			states ["link-destination"].AddTransition (TokenType.OptionEnd, "base");
+
+			defaultState = states ["base"];
+		}
+
+		public TokenList Tokenise (string title, string text)
+		{
+
+			// Do some initial setup
+			indentationStack = new Stack<int> ();
+			indentationStack.Push (0);
+			shouldTrackNextIndentation = false;
+
 			var tokens = new TokenList();
-			
-			// Start by chopping up the input into lines
-			var lines = input.Split(new char[] {'\n','\r'} , StringSplitOptions.None);
 
-			// Keep track of which column each new indent started
-			var indentLevels = new Stack<int>();
-			
-			// Start at indent 0
-			indentLevels.Push(0);
+			currentState = defaultState;
+	
+			// Parse each line
+			var lines = new List<string>(text.Split ('\n'));
+			// Add a blank line to ensure that we end with zero indentation
+			lines.Add("");
 
-			var lineNum = 0;
-			foreach (var line in lines) {
-				
-				int newIndentLevel;
+			int lineNumber = 1;
 
-				nowLookingForIndent = false;
-
-				// Get the tokens, plus the indentation level of this line
-				var lineTokens = TokeniseLine(context, line, out newIndentLevel, lineNum);
-
-				if ((wasLookingForIndent == true || nowLookingForIndent == true) && newIndentLevel > indentLevels.Peek()) {
-					// We are now more indented than the last indent.
-					// Emit a "indent" token, and push this new indent onto the stack.
-					var indent = new Token(TokenType.Indent);
-					indent.lineNumber = lineNum;
-					indent.context = context;
-					tokens.Add(indent);
-					indentLevels.Push(newIndentLevel);
-				} else if (newIndentLevel < indentLevels.Peek()) {
-					// We are less indented than the last indent.
-					// We may have dedented more than a single indent level, though, so
-					// check this against all indent levels we know about
-					
-					while (newIndentLevel < indentLevels.Peek()) {
-						// We've gone down an indent, holy crap, dedent it!
-						var dedent = new Token(TokenType.Dedent);
-						dedent.lineNumber = lineNum;
-						tokens.Add(dedent);
-						dedent.context = context;
-						indentLevels.Pop();
-					}
-				}
-
-				wasLookingForIndent = nowLookingForIndent;
-				
-				// Add the list of tokens that were in this line
-				tokens.AddRange(lineTokens);
-
-				// Update line number
-				lineNum++;
-				
+			foreach (var line in lines) {				
+				tokens.AddRange (this.TokeniseLine (line, lineNumber));
+				lineNumber++;
 			}
 
-			// Back up a line - lineNum is now 1 more than the number
-			// of physical lines in the text
-			lineNum--;
+			var endOfInput = new Token (TokenType.EndOfInput, lineNumber, 0);
+			tokens.Add (endOfInput);
 
-			// Dedent if there's any indentations left (ie we reached the 
-			// end of the file and it was still indented)
-			// (we stop at the second-last one because we pushed 'indent 0' at the start,
-			// and popping that would emit an unbalanced dedent token
-			while (indentLevels.Count > 1) {
-				indentLevels.Pop();
-				var dedent = new Token(TokenType.Dedent);
-				dedent.lineNumber = lineNum;
-				dedent.context = context;
-				tokens.Add(dedent);
-			}
-
-			// Emit the end-of-input token
-			var endOfInput = new Token (TokenType.EndOfInput);
-			endOfInput.lineNumber = lineNum;
-
-			// Finish up with an ending token
-			tokens.Add(endOfInput);
-
-			// yay we're done
 			return tokens;
 		}
 
-		// Tokenise a single line, and also report on how indented this line is
-		private TokenList TokeniseLine(string context, string input, out int lineIndentation, int lineNumber) {
-			
-			// The tokens we found on this line
-			var tokens = new TokenList();
+		TokenList TokeniseLine (string line, int lineNumber)
+		{
+			var lineTokens = new Stack<Token> ();
 
-			// Replace tabs with four spaces
-			input = input.Replace ("\t", "    ");
+			// Record the indentation level if the previous state wants us to
 
-			bool freeTextMode = false;
+			var thisIndentation = LineIndentation (line);
+			var previousIndentation = indentationStack.Peek ();
 
-			// Find any whitespace at the start of a line
-			var initialIndentRule = new Regex("^\\s+");
-			
-			// If there's whitespace at the start of the line, this line is indented
-			if (initialIndentRule.IsMatch(input)) {
-				// Record how indented this line is
-				lineIndentation = initialIndentRule.Match(input).Length;
-			} else {
-				// There's no whitespace at the start of the line,
-				// so this line's indentation level is zero.
-				lineIndentation = 0;
+			if (shouldTrackNextIndentation && thisIndentation > previousIndentation) {
+				// If we are more indented than before, emit an
+				// indent token and record this new indent level
+				indentationStack.Push (thisIndentation);
+
+				var indent = new Token (TokenType.Indent, lineNumber, previousIndentation);
+				indent.value = "".PadLeft (thisIndentation - previousIndentation);
+
+				shouldTrackNextIndentation = false;
+
+				lineTokens.Push (indent);
+
+			} else if (thisIndentation < previousIndentation) {
+
+				// If we are less indented, emit a dedent for every
+				// indentation level that we passed on the way back to 0;
+				// at the same time, remove those indent levels from the stack
+
+				while (thisIndentation < indentationStack.Peek ()) {
+					var dedent = new Token (TokenType.Dedent, lineNumber, 0);
+					lineTokens.Push (dedent);
+					indentationStack.Pop ();
+				}
 			}
-			
-			// Keeps track of how much of the line we have left to parse
-			int columnNumber = lineIndentation;
 
-			// Are we at the start of the line? ie do we disregard token rules that
-			// can't be at the start of a line?
-			bool startOfLine = true;
+			// Now that we're past any initial indentation, start
+			// finding tokens.
+			int columnNumber = thisIndentation;
 
-			// While we have text left to parse in this line..
-			while (columnNumber < input.Length) {
-				
-				// Keep track of whether we successfully found a rule to parse the next token
+			var whitespace = new Regex (@"\s*");
+
+			while (columnNumber < line.Length) {
+
+				// If we're about to hit a line comment, abort processing line
+				// immediately
+				if (line.Substring(columnNumber).StartsWith(LINE_COMMENT)) {
+					break;
+				}
+
 				var matched = false;
 
-				// Check each rule to see if it matches
-				foreach (var tokenRule in tokenRules) {
+				foreach (var rule in currentState.tokenRules) {
 					
-					// Is the next chunk of text a token?
-					if (tokenRule.regex != null) {
+					var match = rule.regex.Match (line, columnNumber);
 
-						// Attempt to match this
-						var match = tokenRule.regex.Match(input, columnNumber);
+					if (match.Success == false || match.Length == 0)
+						continue;
 
-						// Bail out if this either failed to match, or matched
-						// further out in the text
-						if (match.Success == false || match.Index > columnNumber)
-							continue;
+					string tokenText;
 
-						// Bail out if this is the first token and we aren't allowed to
-						// match this rule at the start
-						if (tokenRule.canBeginLine == false && startOfLine == true) {
-							continue;
-						}
+					if (rule.type == TokenType.Text) {
+						// if this is text, then back up to the most recent text 
+						// delimiting token, and treat everything from there as
+						// the text.
+						// we do this because we don't want this:
+						//    <<flip Harley3 +1>>
+						// to get matched as this:
+						//    BeginCommand Identifier("flip") Text("Harley3 +1") EndCommand
+						// instead, we want to match it as this:
+						//    BeginCommand Text("flip Harley3 +1") EndCommand
 
-						// Bail out if this match was zero-length
-						if (match.Length == 0) {
-							continue;
-						}
+						int textStartIndex = thisIndentation;
 
-						switch (tokenRule.freeTextMode) {
-						case TokenRule.FreeTextMode.Begins:
-							freeTextMode = true;
-							break;
-						case TokenRule.FreeTextMode.Ends:
-							freeTextMode = false;
-							break;
-						case TokenRule.FreeTextMode.DoNotMatch:
-							if (freeTextMode == true) {
-								// Do not match, UNLESS we should make an exception
-								if (tokenRule.freeTextModeException == null || 
-									tokenRule.freeTextModeException(tokens) == false) {
-									continue;
-								}
-							}
-							break;
-						}
-
-						// Record the token only if we care
-						// about it (ie it's not whitespace)
-						if (tokenRule.discard == false) {
-							Token token;
-							
-							// If this token type's rule had a capture group,
-							// store that
-							if (match.Captures.Count > 0) {
-								token = new Token(tokenRule.type, match.Captures[0].Value);
-							} else {
-								token = new Token(tokenRule.type);
+						if (lineTokens.Count > 0) {
+							while (lineTokens.Peek().type == TokenType.Identifier) {
+								lineTokens.Pop ();
 							}
 
-							// If this was a string, lop off the quotes at the start and
-							// end, and un-escape the quotes and slashes
-							if (token.type == TokenType.String) {
-								string processedString = token.value as string;
-								processedString = processedString.Substring (1, processedString.Length - 2);
-
-								processedString = processedString.Replace ("\\\\", "\\");
-								processedString = processedString.Replace ("\\\"", "\"");
-								token.value = processedString;
-							}
-
-							// Record where the token was found
-							token.lineNumber = lineNumber;
-							token.columnNumber = columnNumber;
-							token.context = context;
-
-							// Add it to the token stream
-							tokens.Add(token);
-
-							// If this is a token that 'resets' the fact
-							// that we're at the start of the line (like '->' does),
-							// then record that; otherwise, record that we're past
-							// the start of the line and are now allowed to start
-							// matching additional types of tokens
-							if (tokenRule.resetsLine) {
-								startOfLine = true;
-							} else {
-								startOfLine = false;
-							}
-							
+							var startDelimiterToken = lineTokens.Peek ();
+							textStartIndex = startDelimiterToken.columnNumber;
+							if (startDelimiterToken.type == TokenType.Indent)
+								textStartIndex += startDelimiterToken.value.Length;
 						}
 
-						// Mark that the next line may be indented
-						if (tokenRule.nextLineIsPossiblyIndented) {
-							nowLookingForIndent = true;
-						}
+						columnNumber = textStartIndex;
 
-						// We've advanced through the string
-						columnNumber += match.Length;
+						var textEndIndex = match.Index + match.Length;
 
-						// Record that we successfully found a type for this token
-						matched = true;
+						tokenText = line.Substring (textStartIndex, textEndIndex-textStartIndex);
 
-						// We've matched a token type, stop trying to
-						// match it against others
-						break;
+					} else {
+						tokenText = match.Value;
 					}
+
+					columnNumber += tokenText.Length;
+
+					// If this was a string, lop off the quotes at the start and
+					// end, and un-escape the quotes and slashes
+					if (rule.type == TokenType.String) {
+						tokenText = tokenText.Substring (1, tokenText.Length - 2);
+
+						tokenText = tokenText.Replace (@"\\", @"\");
+						tokenText = tokenText.Replace (@"\""", @"""");
+					}
+
+					var token = new Token (rule.type, lineNumber, columnNumber, tokenText);
+
+					token.delimitsText = rule.delimitsText;
+
+					lineTokens.Push (token);
+
+
+
+					if (rule.entersState != null) {
+						if (states.ContainsKey(rule.entersState) == false) {
+							throw new TokeniserException (lineNumber, columnNumber, "Unknown tokeniser state " + rule.entersState);
+						}
+						EnterState (states [rule.entersState]);
+					}
+
+					matched = true;
+
+					break;
 				}
-				
+
 				if (matched == false) {
-					// We've exhausted the list of possible token types, so we've
-					// failed to interpret this string! Bail out!
 
-					throw new InvalidOperationException("Failed to interpret token " + input);
+					throw TokeniserException.ExpectedTokensFromState (lineNumber, columnNumber, currentState);
 				}
+
+				// consume any lingering whitespace before the next token
+				var lastWhitespace = whitespace.Match(line, columnNumber);
+				if (lastWhitespace != null) {
+					columnNumber += lastWhitespace.Length;
+				}
+
 			}
 
-			// Merge multiple runs of text on the same line
-			var tokensToReturn = new TokenList();
+			var listToReturn = new TokenList (lineTokens.ToArray ());
+			listToReturn.Reverse ();
 
-			foreach (var token in tokens)  {
-				
-				Token lastToken = null;
+			return listToReturn;
 
-				// Did we previously add a token?
-				if (tokensToReturn.Count > 0) {
-					lastToken = tokensToReturn [tokensToReturn.Count - 1];
-				}
 
-				// Was the last token in tokensToReturn a Text, AND
-				// this token is a Text?
-				if (lastToken != null &&
-					lastToken.type == TokenType.Text && 
-					token.type == TokenType.Text) {
-
-					// Merge the texts!
-					var str = (string)tokensToReturn[tokensToReturn.Count - 1].value;
-					str += (string)token.value;
-					lastToken.value = str;
-				} else {
-					tokensToReturn.Add (token);
-				}
-			}
-
-			// Attach text between << and >> to the << token
-			for (int i = 0; i < tokensToReturn.Count; i++) {
-				if (i == tokensToReturn.Count - 1) {
-					// don't bother checking if we're the last token in the line
-					continue;
-				}
-				var startToken = tokensToReturn[i];
-				if (startToken.type == TokenType.BeginCommand) {
-					int startIndex = tokensToReturn[i+1].columnNumber;
-					int endIndex = -1;
-					// Find the next >> token
-					for (int j = i; j < tokensToReturn.Count; j++) {
-						var endToken = tokensToReturn [j];
-						if (endToken.type == TokenType.EndCommand) {
-							endIndex = endToken.columnNumber;
-							break;
-						}
-					}
-
-					if (endIndex != -1) {
-						var text = input.Substring (startIndex, endIndex - startIndex);
-						startToken.associatedRawText = text;
-					}
-
-				}
-			}
-
-			// Return the list of tokens we found
-			return tokensToReturn;
 		}
 
-		// Prepare the regex rules for each possible token.
-		private void PrepareTokenRules() {
 
-			// The order of these rules is important - rules that were added first
-			// get matched first.
+		int LineIndentation(string line)
+		{
+			var initialIndentRegex = new Regex (@"^(\s*)");
+			var match = initialIndentRegex.Match (line);
 
-			// Set up the whitespace token, which is discarded
-			AddTokenRule(TokenType.Whitespace, "\\s+", canBeginLine:true)
-				.discard = true;
-			
-			// Set up the special begin and end indentation tokens - 
-			// these aren't matched by regexes, but rather emitted
-			// during lexing by keeping track of the number of spaces
-			AddTokenRule(TokenType.Indent, null, canBeginLine:true);
-			AddTokenRule(TokenType.Dedent, null, canBeginLine:true);
-			
-			// Set up the end-of-line token
-			AddTokenRule (TokenType.EndOfLine, @"\n", canBeginLine:true)
-				.discard = true;
-			
-			// Set up the end-of-file token
-			AddTokenRule(TokenType.EndOfInput, null, freeTextMode:TokenRule.FreeTextMode.Ends);
+			if (match == null || match.Groups [0] == null) {
+				return 0;
+			}
 
-			// Comments
-			AddTokenRule (TokenType.Comment, @"\/\/.*", canBeginLine: true, freeTextMode: TokenRule.FreeTextMode.AllowMatch)
-				.discard = true;
-
-			// Basic syntax
-			AddTokenRule(TokenType.Number, @"((?<!\[\[)\d+)");
-			AddTokenRule(TokenType.BeginCommand, @"\<\<", canBeginLine:true,  freeTextMode: TokenRule.FreeTextMode.Ends);
-			AddTokenRule(TokenType.EndCommand, @"\>\>");
-			AddTokenRule(TokenType.Variable, @"\$([A-z\d])+");
-
-			// Strings
-			AddTokenRule(TokenType.String, @"""[^""\\]*(?:\\.[^""\\]*)*""");
-			
-			// Options
-			AddTokenRule(TokenType.ShortcutOption, @"-\>", canBeginLine:true, resetsLine:true, nextLineIsPossiblyIndented:true);
-			AddTokenRule(TokenType.OptionStart, @"\[\[", canBeginLine:true, resetsLine:true);
-			AddTokenRule (TokenType.OptionDelimit, @"\|").freeTextModeException = delegate(TokenList tokens) {
-				if (tokens.Count < 2)
-					return false;
-
-				// permitted in free text mode when we saw an OptionStart two tokens ago
-				switch (tokens [tokens.Count - 2].type) {
-				case TokenType.OptionStart:
-					return true;
-				default:
-					return false;
-				}
-			};
-			AddTokenRule(TokenType.OptionEnd, @"\]\]").freeTextModeException = delegate(TokenList tokens) {
-				if (tokens.Count < 2)
-					return false;
-				
-				// permitted in free text mode when we saw either an OptionDelimit or an OptionStart two tokens ago
-				switch (tokens [tokens.Count - 2].type) {
-				case TokenType.OptionStart:
-				case TokenType.OptionDelimit:
-					return true;
-				default:
-					return false;
-				}
-			};
-			
-			// Reserved words
-			AddTokenRule(TokenType.If, @"if(?!\w)");
-			AddTokenRule(TokenType.ElseIf, @"elseif(?!\w)");
-			AddTokenRule(TokenType.Else, @"else(?!\w)");
-			AddTokenRule(TokenType.EndIf, "endif(?!\\w)");
-
-			// "set" needs following whitespace to avoid matching against 
-			// words like "settings"
-			AddTokenRule(TokenType.Set, "set", requiresFollowingWhitespace:true);
-
-			// Boolean values
-			AddTokenRule(TokenType.True, "true");
-			AddTokenRule(TokenType.False, "false");
-
-			// Null
-			AddTokenRule(TokenType.Null, @"null(?!\w)");
-			
-			// Operators
-			AddTokenRule(TokenType.EqualTo, @"(==|eq(?!\w)|is(?!\w))");
-			AddTokenRule(TokenType.GreaterThanOrEqualTo, @"(\>=|gte(?!\w))");
-			AddTokenRule(TokenType.LessThanOrEqualTo, @"(\<=|lte(?!\w))");
-			AddTokenRule(TokenType.GreaterThan, @"(\>|gt(?!\w))");
-			AddTokenRule(TokenType.LessThan, @"(\<|lt(?!\w))");
-			AddTokenRule(TokenType.NotEqualTo, @"(\!=|neq)");
-
-			AddTokenRule(TokenType.And, @"(\&\&|and(?:\s))");
-			AddTokenRule(TokenType.Or, @"(\|\||or(?!\w))");
-			AddTokenRule(TokenType.Xor, @"(\^|xor(?!\w))");
-			AddTokenRule(TokenType.Not, @"(\!|not(?!\w))");
-
-			// Assignment operators
-			AddTokenRule (TokenType.EqualToOrAssign, @"(=|to(?!\w))");
-
-			AddTokenRule(TokenType.AddAssign, @"\+=");
-			AddTokenRule(TokenType.MinusAssign, "-=");
-			AddTokenRule(TokenType.MultiplyAssign, @"\*=");
-			AddTokenRule(TokenType.DivideAssign, @"\/=");
-
-			AddTokenRule(TokenType.Add, @"\+");
-			AddTokenRule(TokenType.Minus, "-");
-			AddTokenRule(TokenType.Multiply, @"\*");
-			AddTokenRule(TokenType.Divide, @"\/");
-
-			AddTokenRule (TokenType.UnaryMinus, null); // this one has special matching rules
-
-			AddTokenRule (TokenType.LeftParen, @"\(");
-			AddTokenRule (TokenType.RightParen, @"\)");
-
-			// Identifiers (any letter, number, period or underscore)
-			AddTokenRule (TokenType.Identifier, @"(\w|_|:|\.)+");
-
-			// Commas for separating function parameters
-			AddTokenRule (TokenType.Comma, ",");
-
-			// Free text - match anything except BeginCommand, OptionsDelimit or OptionsEnd
-			// This always goes last so that anything else will preferably
-			// match it
-			AddTokenRule(TokenType.Text, @"(\||\<\<|\]\])*(?:(?!\<\<|\||\]\]).)*", canBeginLine:true, freeTextMode: TokenRule.FreeTextMode.Begins);
+			return match.Groups [0].Length;
 		}
+
+		void EnterState(LexerState state) {
+			currentState = state;
+
+			if (currentState.setTrackNextIndentation)
+				shouldTrackNextIndentation = true;
+		}
+
 	}
 }
 
