@@ -277,7 +277,12 @@ namespace Yarn
 			}
 
 			if (analyseOnly) {
-				foreach (var diagnosis in dialogue.Analyse ()) {
+
+				var context = new Yarn.Analysis.Context ();
+
+				dialogue.Analyse (context);
+
+				foreach (var diagnosis in context.FinishAnalysis()) {
 					Console.WriteLine (diagnosis.ToString(showSeverity:true));
 				}
 				return;

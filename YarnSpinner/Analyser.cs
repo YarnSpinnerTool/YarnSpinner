@@ -78,43 +78,83 @@ namespace Yarn.Analysis
 
 	}
 
-	public interface Analyser {
-		IEnumerable<Diagnosis> Diagnose();
-	}
+	public class Context {
 
-	internal abstract class ASTAnalyser : Analyser {
-		internal Yarn.Parser.Node node;
-		public ASTAnalyser(Yarn.Parser.Node node) {
-			this.node = node;
+		IEnumerable<Type> _defaultAnalyserClasses;
+		internal IEnumerable<Type> defaultAnalyserClasses {
+			get {
+				var classes = new List<Type> ();
+
+				if (_defaultAnalyserClasses == null) {
+					classes = new List<Type> ();
+
+					var assembly = this.GetType().Assembly;
+
+					foreach (var type in assembly.GetTypes()) {
+						if (type.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) &&
+							type.IsAbstract == false) {
+
+							classes.Add (type);
+
+						}
+					}
+					_defaultAnalyserClasses = classes;
+				}
+
+				return _defaultAnalyserClasses;
+			}
 		}
 
-		public abstract IEnumerable<Diagnosis> Diagnose ();
-	}
+		List<CompiledProgramAnalyser> analysers;
 
-	internal abstract class CompiledProgramAnalyser : Analyser {
+		public Context ()
+		{
+			analysers = new List<CompiledProgramAnalyser> ();
 
-		internal Yarn.Program program;
+			foreach (var analyserType in defaultAnalyserClasses) {
+				analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+			}
 
-		public CompiledProgramAnalyser(Yarn.Program program) {
-			this.program = program;
 		}
 
-		public abstract IEnumerable<Diagnosis> Diagnose ();
+		internal void AddProgramToAnalysis(Program program) {
+			foreach (var analyser in analysers) {
+				analyser.Diagnose (program);
+			}
+		}
+
+		public IEnumerable<Diagnosis> FinishAnalysis() {
+			List<Diagnosis> diagnoses = new List<Diagnosis> ();
+
+			foreach (var analyser in analysers) {
+				diagnoses.AddRange (analyser.GatherDiagnoses ());
+			}
+
+			return diagnoses;
+		}
+
+	}
+
+	internal abstract class ASTAnalyser{		
+		public abstract IEnumerable<Diagnosis> Diagnose (Yarn.Parser.Node node);
+	}
+
+	internal abstract class CompiledProgramAnalyser {
+		public abstract void Diagnose (Yarn.Program program);
+		public abstract IEnumerable<Diagnosis> GatherDiagnoses();
 	}
 
 	internal class UnusedVariableChecker : CompiledProgramAnalyser {
 
-		public UnusedVariableChecker (Program program) : base (program)
-		{
-		}
+		HashSet<string> readVariables = new HashSet<string> ();
+		HashSet<string> writtenVariables = new HashSet<string> ();
 
-		public override IEnumerable<Diagnosis> Diagnose ()
-		{
-			var readVariables = new HashSet<string> ();
-			var writtenVariables = new HashSet<string> ();
 
+		public override void Diagnose (Program program)
+		{
+			
 			// In each node, find all reads and writes to variables
-			foreach (var nodeInfo in this.program.nodes) {
+			foreach (var nodeInfo in program.nodes) {
 
 				var nodeName = nodeInfo.Key;
 				var theNode = nodeInfo.Value;
@@ -131,6 +171,12 @@ namespace Yarn.Analysis
 					}
 				}
 			}
+
+
+		}
+
+		public override IEnumerable<Diagnosis> GatherDiagnoses ()
+		{
 
 			// Exclude read variables that are also written
 			var readOnlyVariables = new HashSet<string> (readVariables);
@@ -154,7 +200,6 @@ namespace Yarn.Analysis
 			}
 
 			return diagnoses;
-
 		}
 
 	}

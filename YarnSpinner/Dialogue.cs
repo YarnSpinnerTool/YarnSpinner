@@ -340,25 +340,10 @@ namespace Yarn {
 			return program.nodes.ContainsKey(nodeName);
 		}
 
-		public ICollection<Analysis.Diagnosis> Analyse() {
+		public void Analyse(Analysis.Context context) {
 
-			var diagnoses = new List<Yarn.Analysis.Diagnosis> ();
+			context.AddProgramToAnalysis (this.program);
 
-			var assembly = this.GetType().Assembly;
-
-			foreach (var type in assembly.GetTypes()) {
-				if (type.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) &&
-					type.IsAbstract == false) {
-
-					var analyser = (Analysis.CompiledProgramAnalyser)Activator.CreateInstance(type,this.program);
-
-
-
-					diagnoses.AddRange (analyser.Diagnose ());
-				}
-			}
-
-			return diagnoses;
 		}
 
 

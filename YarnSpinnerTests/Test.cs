@@ -233,6 +233,8 @@ namespace YarnSpinner.Tests
 		public void TestAnalysis() {
 
 			ICollection<Yarn.Analysis.Diagnosis> diagnoses;
+			Yarn.Analysis.Context context;
+
 
 			// this script has the following variables:
 			// $foo is read from and written to
@@ -241,17 +243,19 @@ namespace YarnSpinner.Tests
 			// this means that there should be two diagnosis results
 			var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
 
+			context = new Yarn.Analysis.Context ();
 			dialogue.LoadString (script);
-
-			diagnoses = dialogue.Analyse ();
+			dialogue.Analyse (context);
+			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
 			Assert.IsTrue (diagnoses.Count == 2);
 
 			dialogue.UnloadAll ();
 
+			context = new Yarn.Analysis.Context ();
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
-
-			diagnoses = dialogue.Analyse ();
+			dialogue.Analyse (context);
+			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
 			// This script should contain no unused variables
 			Assert.IsEmpty (diagnoses);

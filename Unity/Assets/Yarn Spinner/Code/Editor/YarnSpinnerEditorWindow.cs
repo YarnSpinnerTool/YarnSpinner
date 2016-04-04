@@ -201,37 +201,34 @@ namespace Yarn.Unity {
 		{
 			UpdateJSONList();
 
-			var storage = new MemoryVariableStore();
-			var entireProgram = new Dialogue(storage);
-			entireProgram.LogDebugMessage = delegate(string message) {};
-			entireProgram.LogErrorMessage = delegate(string message) {};
+			var analysisContext = new Yarn.Analysis.Context();
+
 			bool shouldPerformAnalysis = true;
 
 			foreach (var result in checkResults) {
 
 				CheckerResult.State state;
 
-				var messages = ValidateFile(result.script, out state);
+				var messages = ValidateFile(result.script, analysisContext, out state);
 
 				result.state = state;
 				result.messages = messages;
 
-				if (shouldPerformAnalysis && result.state == CheckerResult.State.Passed) {
-					entireProgram.LoadString(result.script.text, result.script.name);
-				} else {
+				// Don't perform whole-program analysis if any file failed to compile
+				if (result.state != CheckerResult.State.Passed) {
 					shouldPerformAnalysis = false;
 				}
 
 			}
 
 			if (shouldPerformAnalysis)
-				diagnoses = entireProgram.Analyse();
+				diagnoses = analysisContext.FinishAnalysis();
 		}
 
 
 
 		// Validates a single script.
-		ValidationMessage[] ValidateFile(TextAsset script, out CheckerResult.State result) {
+		ValidationMessage[] ValidateFile(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result) {
 
 			var messageList = new List<ValidationMessage>();
 
@@ -264,6 +261,7 @@ namespace Yarn.Unity {
 				dialog.LogErrorMessage(e.Message);
 			}
 
+			dialog.Analyse(analysisContext);
 
 			if (failed) {
 				result = CheckerResult.State.Failed;
