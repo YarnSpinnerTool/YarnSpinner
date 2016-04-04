@@ -1028,7 +1028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceText:
-  - {fileID: 4900000, guid: 6cc57caa70fd04fa9b6eb666a908202b, type: 3}
+  - {fileID: 4900000, guid: 6c4e9acb103274949ae415f4e8c2a362, type: 3}
+  - {fileID: 4900000, guid: 3b228e13166124cce95c83ad7e734183, type: 3}
   variableStorage: {fileID: 627131074}
   dialogueUI: {fileID: 627131075}
   startNode: 
