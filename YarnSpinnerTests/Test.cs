@@ -229,6 +229,36 @@ namespace YarnSpinner.Tests
 
 		}
 
+		[Test()]
+		public void TestAnalysis() {
+
+			ICollection<Yarn.Analysis.Diagnosis> diagnoses;
+
+			// this script has the following variables:
+			// $foo is read from and written to
+			// $bar is written to but never read
+			// $bas is read from but never written to
+			// this means that there should be two diagnosis results
+			var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
+
+			dialogue.LoadString (script);
+
+			diagnoses = dialogue.Analyse ();
+
+			Assert.IsTrue (diagnoses.Count == 2);
+
+			dialogue.UnloadAll ();
+
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+
+			diagnoses = dialogue.Analyse ();
+
+			// This script should contain no unused variables
+			Assert.IsEmpty (diagnoses);
+
+
+		}
+
 		private void RunStandardTestcase() {
 			foreach (var result in dialogue.Run()) {
 				HandleResult (result);
