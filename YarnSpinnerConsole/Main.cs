@@ -50,6 +50,7 @@ namespace Yarn
 			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
 			Console.WriteLine ("\t-c: Show program bytecode and exit.");
+			Console.WriteLine ("\t-a: Show analysis of the program and exit.");
 			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
 
@@ -72,6 +73,7 @@ namespace Yarn
 			bool compileToBytecodeOnly = false;
 			bool verifyOnly = false;
 			bool autoSelectFirstOption = false;
+			bool analyseOnly = false;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -158,6 +160,9 @@ namespace Yarn
 					break;
 				case "-h":
 					ShowHelpAndExit ();
+					break;
+				case "-a":
+					analyseOnly = true;
 					break;
 				default:
 
@@ -268,13 +273,22 @@ namespace Yarn
 			if (compileToBytecodeOnly) {
 				var result = dialogue.GetByteCode ();
 				Console.WriteLine (result);
+				return;
+			}
+
+			if (analyseOnly) {
+				foreach (var diagnosis in dialogue.Analyse ()) {
+					Console.WriteLine (diagnosis.ToString(showSeverity:true));
+				}
+				return;
 			}
 
 			// Only run the program when we're not emitting debug output of some kind
 			var runProgram =
 				showTokens == false &&
 				showParseTree == false &&
-				compileToBytecodeOnly == false;
+				compileToBytecodeOnly == false &&
+				analyseOnly == false;
 
 			if (runProgram) {
 				// Run the conversation

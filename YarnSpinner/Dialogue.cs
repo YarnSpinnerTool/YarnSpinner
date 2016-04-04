@@ -340,6 +340,27 @@ namespace Yarn {
 			return program.nodes.ContainsKey(nodeName);
 		}
 
+		public ICollection<Analysis.Diagnosis> Analyse() {
+
+			var diagnoses = new List<Yarn.Analysis.Diagnosis> ();
+
+			var assembly = this.GetType().Assembly;
+
+			foreach (var type in assembly.GetTypes()) {
+				if (type.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) &&
+					type.IsAbstract == false) {
+
+					var analyser = (Analysis.CompiledProgramAnalyser)Activator.CreateInstance(type,this.program);
+
+
+
+					diagnoses.AddRange (analyser.Diagnose ());
+				}
+			}
+
+			return diagnoses;
+		}
+
 
 		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {

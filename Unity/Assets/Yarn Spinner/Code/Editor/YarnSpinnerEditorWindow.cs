@@ -65,6 +65,7 @@ namespace Yarn.Unity {
 		}
 
 		private List<CheckerResult> checkResults = new List<CheckerResult>();
+		private IEnumerable<Yarn.Analysis.Diagnosis> diagnoses = new List<Yarn.Analysis.Diagnosis>();
 
 		void UpdateJSONList() {
 			// Find all TextAssets
@@ -72,6 +73,7 @@ namespace Yarn.Unity {
 			var list = AssetDatabase.FindAssets("t:textasset");
 
 			checkResults.Clear();
+			diagnoses = new List<Yarn.Analysis.Diagnosis>();;
 
 			foreach (var guid in list) {
 
@@ -85,7 +87,6 @@ namespace Yarn.Unity {
 				}
 
 			}
-
 		}
 
 		[MenuItem("Window/Yarn Spinner %#y", false, 2000)]
@@ -114,6 +115,28 @@ namespace Yarn.Unity {
 
 			foreach (var result in checkResults) {
 				DrawScriptGUI (result);
+			}
+
+			// Draw any diagnoses that resulted
+			foreach (var diagnosis in diagnoses) {
+
+				MessageType messageType;
+
+				switch (diagnosis.severity) {
+				case Yarn.Analysis.Diagnosis.Severity.Error:
+					messageType = MessageType.Error;
+					break;
+				case Yarn.Analysis.Diagnosis.Severity.Warning:
+					messageType = MessageType.Warning;
+					break;
+				case Yarn.Analysis.Diagnosis.Severity.Note:
+					messageType = MessageType.Info;
+					break;
+				default:
+					throw new System.ArgumentOutOfRangeException ();
+				}
+
+				EditorGUILayout.HelpBox(diagnosis.ToString(showSeverity:false), messageType);
 			}
 
 			// Bottom box
@@ -170,12 +193,19 @@ namespace Yarn.Unity {
 
 				EditorGUI.indentLevel -= 2;
 			}
+
 		}
 
 		// Finds all .JSON files, and validates them.
 		void Validate ()
 		{
 			UpdateJSONList();
+
+			var storage = new MemoryVariableStore();
+			var entireProgram = new Dialogue(storage);
+			entireProgram.LogDebugMessage = delegate(string message) {};
+			entireProgram.LogErrorMessage = delegate(string message) {};
+			bool shouldPerformAnalysis = true;
 
 			foreach (var result in checkResults) {
 
@@ -185,8 +215,20 @@ namespace Yarn.Unity {
 
 				result.state = state;
 				result.messages = messages;
+
+				if (shouldPerformAnalysis && result.state == CheckerResult.State.Passed) {
+					entireProgram.LoadString(result.script.text, result.script.name);
+				} else {
+					shouldPerformAnalysis = false;
+				}
+
 			}
+
+			if (shouldPerformAnalysis)
+				diagnoses = entireProgram.Analyse();
 		}
+
+
 
 		// Validates a single script.
 		ValidationMessage[] ValidateFile(TextAsset script, out CheckerResult.State result) {
