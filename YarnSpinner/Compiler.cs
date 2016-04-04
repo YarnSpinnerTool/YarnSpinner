@@ -250,7 +250,7 @@ namespace Yarn
 
 		internal Program program { get; private set; }
 
-		internal Compiler ()
+		internal Compiler (string programName)
 		{
 			program = new Program ();
 		}
@@ -311,7 +311,7 @@ namespace Yarn
 				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name);
 			}
 
-			program.nodes [node.name] = compiledNode;
+			program.nodes [compiledNode.name] = compiledNode;
 		}
 
 		private int labelCount = 0;
@@ -521,13 +521,15 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.OptionStatement statement) {
 
+			var destination = statement.destination;
+
 			if (statement.label == null) {
 				// this is a jump to another node
-				Emit(node, ByteCode.RunNode, statement.destination); 
+				Emit(node, ByteCode.RunNode, destination); 
 			} else {
 				var stringID = program.RegisterString (statement.label, node.name);
 
-				Emit (node, ByteCode.AddOption, stringID, statement.destination);
+				Emit (node, ByteCode.AddOption, stringID, destination);
 			}
 
 		}

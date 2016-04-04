@@ -139,7 +139,7 @@ namespace Yarn {
 
 			}
 
-			var compiler = new Yarn.Compiler();
+			var compiler = new Yarn.Compiler(fileName);
 
 			foreach (var node in nodes) {
 				compiler.CompileNode (node.Value);
