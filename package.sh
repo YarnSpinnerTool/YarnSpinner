@@ -130,7 +130,23 @@ if [ $NO_EXAMPLES == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-minimal"
 fi
 
+# sanity check that the examples folder is where we expect
+expected_examples_location="`pwd`/Unity/Assets/Yarn Spinner/Examples"
 
+if [ ! -d "$expected_examples_location" ]; then
+    echo "Failed to find Examples folder at $expected_examples_location"
+    exit 1
+fi
+
+if [ $NO_EXAMPLES == 1 ]; then
+    # move the Examples folder to a temporary location
+    
+    temp_folder="`mktemp -d`/Examples"
+    
+    echo "Moving Examples out of the way..."
+    mv "$expected_examples_location" "$temp_folder"
+    mv "$expected_examples_location.meta" "$temp_folder/"
+fi
 
 echo "Packaging Version $FULL_VERSION with Unity..."
 
@@ -140,15 +156,13 @@ OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 # version name at the end, then pick the last one
 UNITY="`mdfind "kind:application Unity.app" | sort | tail -n 1`/Contents/MacOS/Unity"
 
+
+
 if [[ -f $UNITY ]]; then
 	echo "Using $UNITY"
 	
-	if [ $NO_EXAMPLES -eq 1 ]; then
-		ASSET_PATH="Assets/Yarn Spinner/Code"
-	else
-		ASSET_PATH="Assets/Yarn Spinner"
-	fi
-	
+	ASSET_PATH="Assets/Yarn Spinner"
+
 	# Disable stop-on-error for this - we want better reporting
 	set +e
 	
@@ -176,6 +190,14 @@ if [[ -f $UNITY ]]; then
 else
 	echo "Error: Unity not found"
 	exit 1
+fi
+
+if [ $NO_EXAMPLES == 1 ]; then
+    # move the Examples folder back into place
+    
+    echo "Moving Examples back into position..."
+    mv "$temp_folder/Examples.meta" "$expected_examples_location.meta" 
+    mv "$temp_folder" "$expected_examples_location"
 fi
 
 echo
