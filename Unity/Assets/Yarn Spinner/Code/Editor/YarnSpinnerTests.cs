@@ -79,7 +79,7 @@ public class YarnSpinnerTests {
 		dialogueRunner = dialogueHost.AddComponent<Yarn.Unity.DialogueRunner>();
 
 		// Create the variable storage
-		variableStorage = dialogueHost.AddComponent<ExampleVariableStorage>();
+		//variableStorage = dialogueHost.AddComponent<ExampleVariableStorage>();
 
 		// Load the test script
 		var text = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
