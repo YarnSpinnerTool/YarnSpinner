@@ -11,6 +11,7 @@
 	<<prepare_for_options(2,0)>>
 	-> Sub Option 1
 		// should be selected
+		This line should also appear.
 		<<set $selected += 1>>
 	-> Sub Option 2
 		// Should not be selected
@@ -36,9 +37,18 @@ Bea: line text
 -> option2
 Bea: line text2
 
+<<prepare_for_options(2,0)>>
+
+	Bea: indented line text
+	-> indented option1
+	-> indented option2
+	Bea: indented line text2
+
+<<prepare_for_options(2,0)>>
+
 Bea: line text
-	->option1
-	->option2
+	->indented option1 following unindented line
+	->indented option2 following unindented line
 		option2.1
 		option2.2
 		option2.3
