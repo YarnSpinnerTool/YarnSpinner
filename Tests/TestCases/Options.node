@@ -27,3 +27,20 @@
 
 // Check that the stuff attached to Option 1 actually ran
 <<assert($selected == 2, "endcap")>>
+
+<<prepare_for_options(2,0)>>
+// Test two shortcut options with no text
+
+Bea: line text
+-> option1
+-> option2
+Bea: line text2
+
+Bea: line text
+	->option1
+	->option2
+		option2.1
+		option2.2
+		option2.3
+		option2.4
+<<command1>>
