@@ -370,21 +370,26 @@ namespace Yarn
 			public void RunOptions (Options optionsGroup, OptionChooser optionChooser)
 			{
 
+				Console.WriteLine("Options:");
+				for (int i = 0; i < optionsGroup.options.Count; i++) {
+					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
+					Console.WriteLine (optionDisplay);
+				}
+
+
 				// Check to see if the number of expected options
 				// is what we're expecting to see
 				if (numberOfExpectedOptions != -1 &&
 					optionsGroup.options.Count != numberOfExpectedOptions) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine (string.Format("ERROR: Expected {0} options, but received {1}", numberOfExpectedOptions, optionsGroup.options.Count));
-					Console.WriteLine ("Received options were:");
-					foreach (string option in optionsGroup.options) {
-						Console.WriteLine (" - " + option);
-					}
+					Console.WriteLine (string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
 					Environment.Exit (1);
 				}
 
 				// If we were told to automatically select an option, do so
 				if (autoSelectOptionNumber != -1) {
+					Console.WriteLine ("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber);
+
 					optionChooser (autoSelectOptionNumber);
 
 					autoSelectOptionNumber = -1;
@@ -397,14 +402,9 @@ namespace Yarn
 				numberOfExpectedOptions = -1;
 
 
-				Console.WriteLine("Options:");
-				for (int i = 0; i < optionsGroup.options.Count; i++) {
-					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
-					Console.WriteLine (optionDisplay);
-				}
 
 				if (autoSelectFirstOption == true) {
-					Console.WriteLine ("(automatically choosing option 1)");
+					Console.WriteLine ("[automatically choosing option 1]");
 					optionChooser (0);
 					return;
 				}
@@ -432,7 +432,7 @@ namespace Yarn
 
 				if (expectedNextCommand != null && expectedNextCommand != command) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected command.\nExpected: {0}\nReceived: {1}",
+					Console.WriteLine(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
 						expectedNextCommand, command));
 					Environment.Exit (1);
 				}
