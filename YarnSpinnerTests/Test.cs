@@ -85,7 +85,7 @@ namespace YarnSpinner.Tests
 		{
 		
 
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			Assert.True (dialogue.NodeExists ("Sally"));
 
@@ -179,7 +179,7 @@ namespace YarnSpinner.Tests
 		[Test()]
 		public void TestMergingNodes()
 		{
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			dialogue.LoadFile ("Example.json");
 
@@ -192,7 +192,7 @@ namespace YarnSpinner.Tests
 
 		[Test()]
 		public void TestGettingCurrentNodeName()  {
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			// dialogue should not be running yet
 			Assert.IsNull (dialogue.currentNode);
@@ -253,7 +253,8 @@ namespace YarnSpinner.Tests
 			dialogue.UnloadAll ();
 
 			context = new Yarn.Analysis.Context ();
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Ship.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 			dialogue.Analyse (context);
 			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
