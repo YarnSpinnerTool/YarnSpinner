@@ -302,7 +302,9 @@ namespace Yarn {
 		LexerState defaultState;
 		LexerState currentState;
 
-		Stack<int> indentationStack;
+		// tracks indentation levels, and whether an 
+		// indent token was emitted for each level
+		Stack<KeyValuePair<int,bool>> indentationStack;
 		bool shouldTrackNextIndentation;
 
 		public Lexer ()
@@ -446,8 +448,8 @@ namespace Yarn {
 		{
 
 			// Do some initial setup
-			indentationStack = new Stack<int> ();
-			indentationStack.Push (0);
+			indentationStack = new Stack<KeyValuePair<int,bool>> ();
+			indentationStack.Push (new KeyValuePair<int, bool>(0, false));
 			shouldTrackNextIndentation = false;
 
 			var tokens = new TokenList();
@@ -487,28 +489,34 @@ namespace Yarn {
 			var thisIndentation = LineIndentation (line);
 			var previousIndentation = indentationStack.Peek ();
 
-			if (shouldTrackNextIndentation && thisIndentation > previousIndentation) {
+			if (shouldTrackNextIndentation && thisIndentation > previousIndentation.Key) {
 				// If we are more indented than before, emit an
 				// indent token and record this new indent level
-				indentationStack.Push (thisIndentation);
+				indentationStack.Push (new KeyValuePair<int, bool>(thisIndentation, true));
 
-				var indent = new Token (TokenType.Indent, lineNumber, previousIndentation);
-				indent.value = "".PadLeft (thisIndentation - previousIndentation);
+				var indent = new Token (TokenType.Indent, lineNumber, previousIndentation.Key);
+				indent.value = "".PadLeft (thisIndentation - previousIndentation.Key);
 
 				shouldTrackNextIndentation = false;
 
 				lineTokens.Push (indent);
 
-			} else if (thisIndentation < previousIndentation) {
+			} else if (thisIndentation < previousIndentation.Key) {
 
 				// If we are less indented, emit a dedent for every
-				// indentation level that we passed on the way back to 0;
+				// indentation level that we passed on the way back to 0 that also
+				// emitted an indentation token.
 				// at the same time, remove those indent levels from the stack
 
-				while (thisIndentation < indentationStack.Peek ()) {
-					var dedent = new Token (TokenType.Dedent, lineNumber, 0);
-					lineTokens.Push (dedent);
-					indentationStack.Pop ();
+				while (thisIndentation < indentationStack.Peek ().Key) {
+
+					var topLevel = indentationStack.Pop ();
+
+					if (topLevel.Value) {
+						var dedent = new Token (TokenType.Dedent, lineNumber, 0);
+						lineTokens.Push (dedent);
+					}
+
 				}
 			}
 
@@ -595,6 +603,13 @@ namespace Yarn {
 							throw new TokeniserException (lineNumber, columnNumber, "Unknown tokeniser state " + rule.entersState);
 						}
 						EnterState (states [rule.entersState]);
+
+						if (shouldTrackNextIndentation == true) {
+							if (indentationStack.Peek().Key < thisIndentation) {
+								indentationStack.Push (new KeyValuePair<int, bool>(thisIndentation, false));
+							}
+								
+						}
 					}
 
 					matched = true;
