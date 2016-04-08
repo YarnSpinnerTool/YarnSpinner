@@ -588,9 +588,6 @@ namespace Json
 							case 't':
 								sb.Append ("\t");
 								break;
-							case 'r':
-								sb.Append ("\r");
-								break;
 							case 'n':
 								sb.Append ("\n");
 								break;
@@ -600,6 +597,8 @@ namespace Json
 							case '\"':
 								sb.Append ("\"");
 								break;
+							case 'r':
+								
                             case 'b':
                             case 'f':
                             
