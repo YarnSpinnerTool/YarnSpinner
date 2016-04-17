@@ -35,7 +35,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 {
 
 	// Where we actually keeping our variables
-	Dictionary<string, float> variables = new Dictionary<string, float> ();
+    Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value> ();
 
 	// A default value to apply when the object wakes up, or 
 	// when ResetToDefaults is called
@@ -43,7 +43,8 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	public class DefaultVariable
 	{
 		public string name;
-		public float value;
+		public string value;
+        public Yarn.Value.Type type;
 	}
 
 	// Our list of default variables, for debugging.
@@ -65,27 +66,70 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 		Clear ();
 		
 		foreach (var variable in defaultVariables) {
-			SetNumber ("$" + variable.name, variable.value);
+
+
+            object value;
+
+            switch (variable.type) {
+            case Yarn.Value.Type.Number:
+                float f = 0.0f;
+
+                float.TryParse(variable.value, out f);
+
+                value = f;
+
+                break;
+
+            case Yarn.Value.Type.String:
+
+                value = variable.value;
+
+                break;
+            case Yarn.Value.Type.Bool:
+
+                bool b = false;
+
+                bool.TryParse(variable.value, out b);
+
+                value = b;
+
+                break;
+            case Yarn.Value.Type.Variable:
+
+                Debug.LogErrorFormat("Can't set variable {0} to {1}: You can't " +
+                    "set a default variable to be another variable, because it " +
+                    "may not have been initialised yet.", variable.name, variable.value);
+                continue;
+
+            case Yarn.Value.Type.Null:
+
+                value = null;
+
+                break;
+            default:
+                throw new System.ArgumentOutOfRangeException ();
+            }
+
+            var v = new Yarn.Value(value);
+
+            SetValue ("$" + variable.name, v);
 		}
 	}
 
 	// Set a variable's value
-	public override void SetNumber (string variableName, float number)
-	{
-		variables [variableName] = number;
-	}
+    public override void SetValue (string variableName, Yarn.Value value)
+    {
+        // Copy this value into our list
+        variables[variableName] = new Yarn.Value(value);
+    }
 
-	// Get a variable's value, or 0.0 if it doesn't exist
-	public override float GetNumber (string variableName)
-	{
-		float value = 0.0f;
-		if (variables.ContainsKey (variableName)) {
-			
-			value = variables [variableName];
-			
-		}
-		return value;
-	}
+    public override Yarn.Value GetValue (string variableName)
+    {
+        if (variables.ContainsKey(variableName) == false)
+            return Yarn.Value.NULL;
+        
+        return variables [variableName];
+    }
 
 	// Erase all variables
 	public override void Clear ()
@@ -98,7 +142,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	{
 		if (debugTextView != null) {
 			var stringBuilder = new System.Text.StringBuilder ();
-			foreach (KeyValuePair<string,float> item in variables) {
+            foreach (KeyValuePair<string,Yarn.Value> item in variables) {
 				stringBuilder.AppendLine (string.Format ("{0} = {1}", 
 				                                         item.Key, 
 				                                         item.Value));

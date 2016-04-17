@@ -333,7 +333,7 @@ namespace Yarn.Unity {
 
                         foreach (var method in type.GetMethods ()) {
                             if (method.Name == deprecation.methodName && method.DeclaringType == type) {
-                                var message = "Class {0} implements the {1} method. {2}";
+                                var message = "{0} implements the {1} method. {2}";
                                 message = string.Format (message, type.Name, deprecation.methodName, deprecation.usageNotes);
                                 var diagnosis = new Yarn.Analysis.Diagnosis (message, Yarn.Analysis.Diagnosis.Severity.Warning);
                                 results.Add (diagnosis);
