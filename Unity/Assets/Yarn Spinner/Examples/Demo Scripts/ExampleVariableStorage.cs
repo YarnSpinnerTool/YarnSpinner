@@ -65,9 +65,10 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	{
 		Clear ();
 		
+        // For each default variable that's been defined, parse the string
+        // that the user typed in in Unity and store the variable
 		foreach (var variable in defaultVariables) {
-
-
+            
             object value;
 
             switch (variable.type) {
@@ -96,6 +97,8 @@ public class ExampleVariableStorage : VariableStorageBehaviour
                 break;
             case Yarn.Value.Type.Variable:
 
+                // We don't support assigning default variables from other variables
+                // yet
                 Debug.LogErrorFormat("Can't set variable {0} to {1}: You can't " +
                     "set a default variable to be another variable, because it " +
                     "may not have been initialised yet.", variable.name, variable.value);
@@ -123,8 +126,10 @@ public class ExampleVariableStorage : VariableStorageBehaviour
         variables[variableName] = new Yarn.Value(value);
     }
 
+    // Get a variable's value
     public override Yarn.Value GetValue (string variableName)
     {
+        // If we don't have a variable with this name, return the null value
         if (variables.ContainsKey(variableName) == false)
             return Yarn.Value.NULL;
         
