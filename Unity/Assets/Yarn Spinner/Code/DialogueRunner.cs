@@ -235,6 +235,10 @@ namespace Yarn.Unity
 
 			var sceneObject = GameObject.Find(objectName);
 
+			// If we can't find an object, we can't dispatch a command
+			if (sceneObject == null)
+				return false;
+
 			int numberOfMethodsFound = 0;
 
 			List<string> parameters;
@@ -279,6 +283,7 @@ namespace Yarn.Unity
 							// Cool, we can send the command!
 							method.Invoke(component, parameters.ToArray());
 							numberOfMethodsFound ++;
+
 						}
 					}
 				} 

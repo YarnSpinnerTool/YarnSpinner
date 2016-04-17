@@ -1,9 +1,9 @@
 // Testing types
 
-<<assert ("test" == "test")
+<<assert ("test" == "test", "string equality")>>
 
-<<assert ("test" != 1)>>
+<<assert ("test" != 1, "string-number inequality")>>
 
-<<assert ("hi" != "HI")>>
+<<assert ("hi" != "HI", "string case sensitivity")>>
 
-<<assert (1+1+"hi" == "2hi")>>
+<<assert (1+1+"hi" == "2hi", "multiple-type concatenation")>>

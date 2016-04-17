@@ -10,17 +10,47 @@
 	This line should appear.
 	<<prepare_for_options(2,0)>>
 	-> Sub Option 1
+		// should be selected
+		This line should also appear.
 		<<set $selected += 1>>
 	-> Sub Option 2
-		// Should be selected
+		// Should not be selected
 		<<assert(false, "suboption 2")>>
 	-> Sub Option 3 <<if false>>
 		// Should never appear
 		<<assert(false, "suboption 3")>>
 -> Option 2 <<if false>>
+	// Should never appear
 	<<assert(false, "option 2")>>
 -> Option 3
+	// Should not be selected
 	<<assert(false, "option 3")>>
 
 // Check that the stuff attached to Option 1 actually ran
 <<assert($selected == 2, "endcap")>>
+
+<<prepare_for_options(2,0)>>
+// Test two shortcut options with no text
+
+Bea: line text
+-> option1
+-> option2
+Bea: line text2
+
+<<prepare_for_options(2,0)>>
+
+	Bea: indented line text
+	-> indented option1
+	-> indented option2
+	Bea: indented line text2
+
+<<prepare_for_options(2,0)>>
+
+Bea: line text
+	->indented option1 following unindented line
+	->indented option2 following unindented line
+		option2.1
+		option2.2
+		option2.3
+		option2.4
+<<command1>>

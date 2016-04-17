@@ -85,7 +85,7 @@ namespace YarnSpinner.Tests
 		{
 		
 
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			Assert.True (dialogue.NodeExists ("Sally"));
 
@@ -179,7 +179,7 @@ namespace YarnSpinner.Tests
 		[Test()]
 		public void TestMergingNodes()
 		{
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			dialogue.LoadFile ("Example.json");
 
@@ -192,7 +192,7 @@ namespace YarnSpinner.Tests
 
 		[Test()]
 		public void TestGettingCurrentNodeName()  {
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
 
 			// dialogue should not be running yet
 			Assert.IsNull (dialogue.currentNode);
@@ -226,6 +226,41 @@ namespace YarnSpinner.Tests
 			foreach (var result in dialogue.Run()) {
 				Assert.IsNotInstanceOf<Yarn.Dialogue.OptionSetResult> (result);
 			}
+
+		}
+
+		[Test()]
+		public void TestAnalysis() {
+
+			ICollection<Yarn.Analysis.Diagnosis> diagnoses;
+			Yarn.Analysis.Context context;
+
+
+			// this script has the following variables:
+			// $foo is read from and written to
+			// $bar is written to but never read
+			// $bas is read from but never written to
+			// this means that there should be two diagnosis results
+			var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
+
+			context = new Yarn.Analysis.Context ();
+			dialogue.LoadString (script);
+			dialogue.Analyse (context);
+			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
+
+			Assert.IsTrue (diagnoses.Count == 2);
+
+			dialogue.UnloadAll ();
+
+			context = new Yarn.Analysis.Context ();
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Ship.json");
+			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			dialogue.Analyse (context);
+			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
+
+			// This script should contain no unused variables
+			Assert.IsEmpty (diagnoses);
+
 
 		}
 

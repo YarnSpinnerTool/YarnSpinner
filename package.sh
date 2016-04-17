@@ -30,6 +30,10 @@ NO_EXAMPLES=0
 
 SOURCE_BUILD=0
 
+CLEAN_ONLY=0
+
+COPY_ONLY=0
+
 CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
 
 set -e
@@ -37,9 +41,11 @@ set -e
 function show_help {
 	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
 	echo
-	echo "Usage: package.sh [-hsx]"
+	echo "Usage: package.sh [-hsSxcC]"
 	echo "  -s: Package the source code, not a built DLL"
+    echo "  -S: Copy the files into the Unity project and exit"
 	echo "  -c: Show the changes since the last tag and exit"
+    echo "  -C: Clean the Unity project and exit"
 	echo "  -h: Show this text and exit"
 	echo "  -x: Do not include example project assets"
 }
@@ -59,13 +65,15 @@ function show_changes {
 	fi
 }
 
-while getopts ":xhsc" opt; do
+while getopts ":xhsScC" opt; do
 	
 	case $opt in
 	   x) NO_EXAMPLES=1 ;;
 	   h) show_help ; exit 0 ;;
 	   s) SOURCE_BUILD=1 ;;
+       S) COPY_ONLY=1 ;;
 	   c) show_changes ; exit 0 ;;
+       C) CLEAN_ONLY=1 ;;
 	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ; exit 0 ;;
 	esac
 
@@ -80,6 +88,10 @@ fi
 echo "Cleaning Unity project..."
 git clean -f -d -X Unity
 
+if [ $CLEAN_ONLY == 1 ]; then
+    exit 0
+fi
+
 # Build the Yarn Spinner DLL
 echo "Building Yarn Spinner..."
 ./build.sh
@@ -93,6 +105,10 @@ if [ $SOURCE_BUILD == 1 ]; then
 	# Copy the source files in
 	cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
 	
+fi
+
+if [ $COPY_ONLY == 1 ]; then
+    exit 0;
 fi
 
 # Next, determine what build name this is.
@@ -114,25 +130,38 @@ if [ $NO_EXAMPLES == 1 ]; then
 	FULL_VERSION="$FULL_VERSION-minimal"
 fi
 
+# sanity check that the examples folder is where we expect
+expected_examples_location="`pwd`/Unity/Assets/Yarn Spinner/Examples"
 
+if [ ! -d "$expected_examples_location" ]; then
+    echo "Failed to find Examples folder at $expected_examples_location"
+    exit 1
+fi
+
+if [ $NO_EXAMPLES == 1 ]; then
+    # move the Examples folder to a temporary location
+    
+    temp_folder="`mktemp -d`/Examples"
+    
+    echo "Moving Examples out of the way..."
+    mv "$expected_examples_location" "$temp_folder"
+    mv "$expected_examples_location.meta" "$temp_folder/"
+fi
 
 echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 
-# Find where Unity is installed; sort it to put the latest 
-# version name at the end, then pick the last one
-UNITY="`mdfind "kind:application Unity.app" | sort | tail -n 1`/Contents/MacOS/Unity"
+# Find where Unity is installed; filter out any copies that include "b[num]"
+# (that is, beta versions); sort it to put the latest version name at the end,
+# then pick the last one
+UNITY="`mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1`/Contents/MacOS/Unity"
 
 if [[ -f $UNITY ]]; then
 	echo "Using $UNITY"
 	
-	if [ $NO_EXAMPLES -eq 1 ]; then
-		ASSET_PATH="Assets/Yarn Spinner/Code"
-	else
-		ASSET_PATH="Assets/Yarn Spinner"
-	fi
-	
+	ASSET_PATH="Assets/Yarn Spinner"
+
 	# Disable stop-on-error for this - we want better reporting
 	set +e
 	
@@ -160,6 +189,14 @@ if [[ -f $UNITY ]]; then
 else
 	echo "Error: Unity not found"
 	exit 1
+fi
+
+if [ $NO_EXAMPLES == 1 ]; then
+    # move the Examples folder back into place
+    
+    echo "Moving Examples back into position..."
+    mv "$temp_folder/Examples.meta" "$expected_examples_location.meta" 
+    mv "$temp_folder" "$expected_examples_location"
 fi
 
 echo

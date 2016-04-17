@@ -99,8 +99,8 @@ namespace Yarn {
 							nodeInfo.title+", but a node with that name has already been loaded!");
 					}
 
-					var tokeniser = new Tokeniser ();
-					var tokens = tokeniser.Tokenise (nodeInfo.title, nodeInfo.text);
+					var lexer = new Lexer ();
+					var tokens = lexer.Tokenise (nodeInfo.title, nodeInfo.text);
 
 					if (showTokens)
 						PrintTokenList (tokens);
@@ -139,7 +139,7 @@ namespace Yarn {
 
 			}
 
-			var compiler = new Yarn.Compiler();
+			var compiler = new Yarn.Compiler(fileName);
 
 			foreach (var node in nodes) {
 				compiler.CompileNode (node.Value);

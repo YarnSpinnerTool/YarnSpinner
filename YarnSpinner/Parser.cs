@@ -278,9 +278,10 @@ namespace Yarn {
 
 			internal CustomCommand(ParseNode parent, Parser p) : base(parent, p) {
 
+				p.ExpectSymbol(TokenType.BeginCommand);
+
 				// Custom commands can have ANY token in them. Read them all until we hit the
 				// end command token.
-				var beginSymbol = p.ExpectSymbol(TokenType.BeginCommand);
 				var commandTokens = new List<Token>();
 				do {
 					commandTokens.Add(p.ExpectSymbol());
@@ -301,7 +302,7 @@ namespace Yarn {
 					// Otherwise, evaluate it as a command
 					type = Type.ClientCommand;
 
-					this.clientCommand = beginSymbol.associatedRawText;
+					this.clientCommand = commandTokens[0].value;
 				}
 
 
@@ -335,9 +336,6 @@ namespace Yarn {
 			// The options in this group
 			private List<ShortcutOption> _options = new List<ShortcutOption>();
 
-			// The node that all options link back to - this is actually everything after the options
-			internal Node epilogue { get; private set; }
-
 			internal ShortcutOptionGroup(ParseNode parent, Parser p) : base(parent, p) {
 
 				// keep parsing options until we can't, but expect at least one (otherwise it's
@@ -347,8 +345,6 @@ namespace Yarn {
 					_options.Add(new ShortcutOption(shortcutIndex++, this, p));
 				} while (p.NextSymbolIs(TokenType.ShortcutOption));
 
-				// finally parse everything after this option group as the epilogue
-				epilogue = new Node(NodeParent().name+".Epilogue", this, p);
 			}
 
 			internal override string PrintTree (int indentLevel)
@@ -359,8 +355,6 @@ namespace Yarn {
 				foreach (var option in options) {
 					sb.Append (option.PrintTree (indentLevel + 1));
 				}
-				sb.Append (Tab (indentLevel, "} Epilogue {"));
-				sb.Append (epilogue.PrintTree (indentLevel + 1));
 				sb.Append (Tab (indentLevel, "}"));
 
 				return sb.ToString ();

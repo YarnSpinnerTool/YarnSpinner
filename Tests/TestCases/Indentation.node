@@ -18,11 +18,23 @@
 <<endif>>
 
 <<if true>>
-	This is a line.
-	-> Option 1
-		Option 1 Line 1
+    This is a line.
+    -> Option 1
+        Option 1 Line 1
         Option 1 Line 2
-	-> Option 2
-		Option 2 Line 1
-		Option 2 Line 2 - EXPECT TWO DEDENTS HERE
+    -> Option 2
+        Option 2 Line 1
+        Option 2 Line 2
+<<endif>>
+
+// When a line is relatively indented, but still absolutely indented, then its text should not include its left-padding
+<<if true>>
+    ->This option is indented 4 spaces.
+        This line is indented 8 spaces; it should be preceded by an Indent
+        ->This option is indented at 8 spaces.
+            This line is indented 12 spaces; it should be preceded by another Indent
+            ->This option is indented at 12 spaces.
+                This line is indented 16 spaces; it should be preceded by yet another Indent            
+                <<expect_line("This line is indented by 4 spaces, but appears with no padding.")>> // with NO left padding
+    This line is indented by 4 spaces, but appears with no padding.
 <<endif>>

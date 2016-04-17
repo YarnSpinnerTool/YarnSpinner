@@ -247,10 +247,12 @@ namespace Yarn
 
 			case ByteCode.CallFunc:
 
+
 				// Call a function, whose parameters are expected to
 				// be on the stack. Pushes the function's return value,
 				// if it returns one.
 				var functionName = (string)i.operandA;
+
 				var function = dialogue.library.GetFunction (functionName);
 				{
 
@@ -298,8 +300,8 @@ namespace Yarn
 			case ByteCode.Stop:
 
 				// Immediately stop execution, and report that fact.
-				executionState = ExecutionState.Stopped;
 				nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
+				executionState = ExecutionState.Stopped;
 
 				break;
 			case ByteCode.RunNode:

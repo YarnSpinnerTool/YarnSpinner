@@ -340,6 +340,12 @@ namespace Yarn {
 			return program.nodes.ContainsKey(nodeName);
 		}
 
+		public void Analyse(Analysis.Context context) {
+
+			context.AddProgramToAnalysis (this.program);
+
+		}
+
 
 		// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
