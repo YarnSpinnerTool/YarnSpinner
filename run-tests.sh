@@ -72,4 +72,12 @@ IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
 	fi
 done
 
+echo
+
+if [ $returncode == 0 ]; then
+    echo "All tests completed successfully."
+else
+    echo "Tests failed!"
+fi
+    
 exit $returncode
