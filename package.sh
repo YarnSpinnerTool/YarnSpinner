@@ -152,11 +152,10 @@ echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 
-# Find where Unity is installed; sort it to put the latest 
-# version name at the end, then pick the last one
-UNITY="`mdfind "kind:application Unity.app" | sort | tail -n 1`/Contents/MacOS/Unity"
-
-
+# Find where Unity is installed; filter out any copies that include "b[num]"
+# (that is, beta versions); sort it to put the latest version name at the end,
+# then pick the last one
+UNITY="`mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1`/Contents/MacOS/Unity"
 
 if [[ -f $UNITY ]]; then
 	echo "Using $UNITY"
