@@ -567,6 +567,8 @@ namespace Yarn {
 							textStartIndex = startDelimiterToken.columnNumber;
 							if (startDelimiterToken.type == TokenType.Indent)
 								textStartIndex += startDelimiterToken.value.Length;
+							if (startDelimiterToken.type == TokenType.Dedent)
+								textStartIndex = thisIndentation;
 						}
 
 						columnNumber = textStartIndex;
