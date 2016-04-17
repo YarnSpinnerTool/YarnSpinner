@@ -354,21 +354,21 @@ namespace Yarn.Unity
 	public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
 	{
 
-		public virtual void SetNumber (string variableName, float number)
+        public virtual void SetNumber (string variableName, float number)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		public virtual float GetNumber (string variableName)
+        public virtual float GetNumber (string variableName)
 		{
 			throw new System.NotImplementedException ();
 		}
 
-		public Value GetValue(string variableName) {
+		public virtual Value GetValue(string variableName) {
 			return new Yarn.Value(this.GetNumber(variableName));
 		}
 
-		public void SetValue(string variableName, Value value) {
+		public virtual void SetValue(string variableName, Value value) {
 			this.SetNumber(variableName, value.AsNumber);
 		}
 
