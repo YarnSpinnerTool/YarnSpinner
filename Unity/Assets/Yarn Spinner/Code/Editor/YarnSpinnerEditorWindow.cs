@@ -35,7 +35,6 @@ namespace Yarn.Unity {
 		class CheckerResult {
 			public enum State {
 				NotTested,
-				Ignored,
 				Passed,
 				Failed
 			}
@@ -64,19 +63,34 @@ namespace Yarn.Unity {
 			}
 		}
 
+        // The list of files that we know about, and their status.
 		private List<CheckerResult> checkResults = new List<CheckerResult>();
+
+        // The list of analysis results that were made as a result of checking
+        // all scripts
 		private IEnumerable<Yarn.Analysis.Diagnosis> diagnoses = new List<Yarn.Analysis.Diagnosis>();
 
-		void UpdateJSONList() {
-			// Find all TextAssets
+        // Current scrolling position
+        Vector2 scrollPos;
 
-			var list = AssetDatabase.FindAssets("t:textasset");
+        // Seconds before the progress bar appears during checking
+        const float timeBeforeProgressBar = 0.1f;
 
-			checkResults.Clear();
-			diagnoses = new List<Yarn.Analysis.Diagnosis>();;
+        // Updates the list of all scripts that should be checked.
+		void UpdateYarnScriptList() {
+
+            // Clear the list of files
+            checkResults.Clear();
+
+            // Clear the list of diagnoses
+            diagnoses = new List<Yarn.Analysis.Diagnosis>();
+
+            // Find all TextAssets
+            var list = AssetDatabase.FindAssets("t:textasset");
 
 			foreach (var guid in list) {
 
+                // Filter the list to only include .json files
 				var path = AssetDatabase.GUIDToAssetPath(guid);
 				if (path.EndsWith(".json")) {
 					var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
@@ -85,100 +99,137 @@ namespace Yarn.Unity {
 
 					checkResults.Add(newResult);
 				}
-
 			}
 		}
 
+        // Shows the window.
 		[MenuItem("Window/Yarn Spinner %#y", false, 2000)]
 		static void ShowWindow() {
-			EditorWindow.GetWindow(typeof(YarnSpinnerEditorWindow));
+            EditorWindow.GetWindow<YarnSpinnerEditorWindow>();
 		}
 
+        // Called when the window first appears.
 		void OnEnable() {
-
+            
 			// Set the window title
 			this.titleContent.text = "Yarn Spinner";
 			this.titleContent.image = Icons.windowIcon;
 
-			Validate();
+            // Update the list of scripts known to the window
+            UpdateYarnScriptList();
 
 		}
-		Vector2 scrollPos;
 
 		void OnGUI() {
 
-			EditorGUILayout.BeginVertical();
+            using (new EditorGUILayout.VerticalScope()) {
+                EditorGUILayout.Space();
 
-			EditorGUILayout.Space();
+                //EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Refresh")) {
 
-			scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+                    // Start checking all files.
 
-			foreach (var result in checkResults) {
-				DrawScriptGUI (result);
-			}
+                    // First, record when we started - we need
+                    // to know if it's time to show a progress
+                    // dialogue
+                    var startTime = EditorApplication.timeSinceStartup;
 
-			// Draw any diagnoses that resulted
-			foreach (var diagnosis in diagnoses) {
+                    // Have we presented a progress bar?
+                    var progressBarVisible = false;
 
-				MessageType messageType;
+                    // Start checking all files; the delegate will be called
+                    // after each file has been checked
+                    CheckAllFiles(delegate(int complete, int total) {
 
-				switch (diagnosis.severity) {
-				case Yarn.Analysis.Diagnosis.Severity.Error:
-					messageType = MessageType.Error;
-					break;
-				case Yarn.Analysis.Diagnosis.Severity.Warning:
-					messageType = MessageType.Warning;
-					break;
-				case Yarn.Analysis.Diagnosis.Severity.Note:
-					messageType = MessageType.Info;
-					break;
-				default:
-					throw new System.ArgumentOutOfRangeException ();
-				}
+                        // How long have we been at this?
+                        var timeSinceStart = EditorApplication.timeSinceStartup - startTime;
 
-				EditorGUILayout.HelpBox(diagnosis.ToString(showSeverity:false), messageType);
-			}
+                        // If longer than 'timeBeforeProgressBar', show the progress bar
+                        if (timeSinceStart > timeBeforeProgressBar) {
 
-			// Bottom box
-			EditorGUILayout.EndScrollView();
+                            // Figure out how much of the progress bar should be filled
+                            var progress = (float)complete / (float)total;
 
-			EditorGUILayout.BeginHorizontal();
-			if (GUILayout.Button("Refresh")) {
-				Validate();
-			}
-			EditorGUILayout.EndHorizontal();
+                            // Describe what we're doing
+                            var info = string.Format("Checking file {0} of {1}...", complete, total);
 
-			EditorGUILayout.EndVertical();
+                            // Display or update the bar 
+                            EditorUtility.DisplayProgressBar("Checking Yarn Files", info, progress);
+
+                            // Record that we need to clear this bar
+                            progressBarVisible = true;
+                        }
+                    });
+
+                    // All done. Get rid of the progress bar if needed.
+                    if (progressBarVisible) {
+                        EditorUtility.ClearProgressBar();
+                    }
+                }
+
+                EditorGUILayout.Space();
+
+                using (var scroll = new EditorGUILayout.ScrollViewScope(scrollPos)) {
+                    scrollPos = scroll.scrollPosition;
+
+                    foreach (var result in checkResults) {
+                        DrawScriptGUI (result);
+                    }
+
+                    // Draw any diagnoses that resulted
+                    foreach (var diagnosis in diagnoses) {
+
+                        MessageType messageType;
+
+                        switch (diagnosis.severity) {
+                        case Yarn.Analysis.Diagnosis.Severity.Error:
+                            messageType = MessageType.Error;
+                            break;
+                        case Yarn.Analysis.Diagnosis.Severity.Warning:
+                            messageType = MessageType.Warning;
+                            break;
+                        case Yarn.Analysis.Diagnosis.Severity.Note:
+                            messageType = MessageType.Info;
+                            break;
+                        default:
+                            throw new System.ArgumentOutOfRangeException ();
+                        }
+
+                        EditorGUILayout.HelpBox(diagnosis.ToString(showSeverity:false), messageType);
+                    }
+
+                }
+
+            }
+
+
 		}
 
 		static void DrawScriptGUI (CheckerResult result)
 		{
-			EditorGUILayout.BeginHorizontal ();
+            using (new EditorGUILayout.HorizontalScope()) {
+                // What icon should we use for this script?
+                Texture image;
+                switch (result.state) {
+                case CheckerResult.State.NotTested:
+                    image = Icons.notTestedIcon;
+                    break;
+                case CheckerResult.State.Passed:
+                    image = Icons.successIcon;
+                    break;
+                case CheckerResult.State.Failed:
+                    image = Icons.failedIcon;
+                    break;
+                default:
+                    throw new System.ArgumentOutOfRangeException ();
+                }
 
-			// What icon should we use for this script?
-			Texture image;
-			switch (result.state) {
-			case CheckerResult.State.NotTested:
-				image = null;
-				break;
-			case CheckerResult.State.Ignored:
-				image = Icons.ignoredIcon;
-				break;
-			case CheckerResult.State.Passed:
-				image = Icons.successIcon;
-				break;
-			case CheckerResult.State.Failed:
-				image = Icons.failedIcon;
-				break;
-			default:
-				throw new System.ArgumentOutOfRangeException ();
-			}
+                // Draw the image and the label name
+                EditorGUILayout.LabelField (new GUIContent (image), GUILayout.Width (20));
+                EditorGUILayout.LabelField (result.script.name);
 
-			// Draw the image and the label name
-			EditorGUILayout.LabelField (new GUIContent (image), GUILayout.Width (20));
-			EditorGUILayout.LabelField (result.script.name);
-
-			EditorGUILayout.EndHorizontal ();
+            }
 
 			// Draw any messages resulting from this script
 			if (result.messages.Length > 0) {
@@ -197,17 +248,31 @@ namespace Yarn.Unity {
 		}
 
 		// Finds all .JSON files, and validates them.
-		void Validate ()
+        delegate void GUICallback(int complete, int total);
+        void CheckAllFiles (GUICallback callback = null)
 		{
-			UpdateJSONList();
-
+            
+			// The shared context for all script analysis.
 			var analysisContext = new Yarn.Analysis.Context();
 
+            // We shouldn't try to perform program analysis if
+            // any of the files fails to compile, because that
+            // analysis would be performed on incomplete data.
 			bool shouldPerformAnalysis = true;
 
-			foreach (var result in checkResults) {
+            // How many files have we finished checking?
+            int complete = 0;
 
-				CheckerResult.State state;
+            // Let's get started!
+
+            // First, ensure that we're looking at all of the scripts.
+            UpdateYarnScriptList();
+
+            // Next, compile each one.
+            foreach (var result in checkResults) {
+
+                // Attempt to compile the file. Record any compiler messages.
+                CheckerResult.State state;
 
 				var messages = ValidateFile(result.script, analysisContext, out state);
 
@@ -219,15 +284,25 @@ namespace Yarn.Unity {
 					shouldPerformAnalysis = false;
 				}
 
+                // We're done with it; if we have a callback to call after
+                // each file is validated, do so.
+                complete++;
+
+                if (callback != null)
+                    callback(complete, checkResults.Count);
+
 			}
 
             var results = new List<Yarn.Analysis.Diagnosis>();
 
+            if (shouldPerformAnalysis) {
+                var scriptAnalyses = analysisContext.FinishAnalysis ();
+                results.AddRange (scriptAnalyses);
+            }
+                
 
-			if (shouldPerformAnalysis)
-                results.AddRange(analysisContext.FinishAnalysis());
-
-            results.AddRange(AnalyseEnvironment());
+            var environmentAnalyses = AnalyseEnvironment ();
+            results.AddRange (environmentAnalyses);
 
             diagnoses = results;
 
@@ -238,14 +313,23 @@ namespace Yarn.Unity {
 		// Validates a single script.
 		ValidationMessage[] ValidateFile(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result) {
 
+            // The list of messages we got from the compiler.
 			var messageList = new List<ValidationMessage>();
 
+            // A dummy variable storage; it won't be used, but Dialogue
+            // needs it.
 			var variableStorage = new Yarn.MemoryVariableStore();
 
+            // The Dialog object is the compiler.
 			var dialog = new Dialogue(variableStorage);
 
+            // Whether compilation failed or not; this will be
+            // set to true if any error messages are returned.
 			bool failed = false;
 
+            // Called when we get an error message. Convert this
+            // message into a ValidationMessage and store it;
+            // additionally, mark that this file failed compilation
 			dialog.LogErrorMessage = delegate (string message) {
 				var msg = new ValidationMessage();
 				msg.type = MessageType.Error;
@@ -256,27 +340,34 @@ namespace Yarn.Unity {
 				failed = true;
 			};
 
-			dialog.LogDebugMessage = delegate (string message) {
+            // Called when we get an error message. Convert this
+            // message into a ValidationMessage and store it
+            dialog.LogDebugMessage = delegate (string message) {
 				var msg = new ValidationMessage();
 				msg.type = MessageType.Info;
 				msg.message = message;
 				messageList.Add(msg);
 			};
 
+            // Attempt to compile this script. Any exceptions will result
+            // in an error message
 			try {
 				dialog.LoadString(script.text,script.name);
 			} catch (System.Exception e) {
 				dialog.LogErrorMessage(e.Message);
 			}
 
+            // Once compilation has finished, run the analysis on it
 			dialog.Analyse(analysisContext);
 
+            // Did it succeed or not?
 			if (failed) {
 				result = CheckerResult.State.Failed;
 			} else {
 				result = CheckerResult.State.Passed;
 			}
 
+            // All done.
 			return messageList.ToArray();
 
 		}
@@ -383,13 +474,13 @@ namespace Yarn.Unity {
 			}
 		}
 
-		static Texture _ignoredIcon;
-		public static Texture ignoredIcon {
+        static Texture _notTestedIcon;
+		public static Texture notTestedIcon {
 			get {
-				if (_ignoredIcon == null) {
-					_ignoredIcon = GetTexture("YarnSpinnerIgnored");
+				if (_notTestedIcon == null) {
+					_notTestedIcon = GetTexture("YarnSpinnerNotTested");
 				}
-				return _ignoredIcon;
+				return _notTestedIcon;
 			}
 		}
 
