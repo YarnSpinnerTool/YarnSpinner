@@ -7,3 +7,8 @@
 <<assert ("hi" != "HI", "string case sensitivity")>>
 
 <<assert (1+1+"hi" == "2hi", "multiple-type concatenation")>>
+
+<<assert (3 gt 2, "gt test")>>
+<<assert (1 lt 2, "lt test")>>
+<<assert (2 lte 2, "lte test")>>
+<<assert (2 gte 2, "gte test")>>

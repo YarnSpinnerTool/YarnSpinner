@@ -177,6 +177,14 @@ namespace YarnSpinner.Tests
 		}
 
 		[Test()]
+		public void TestTypes() 
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Types.node");
+			dialogue.LoadFile (path);
+			RunStandardTestcase ();
+		}
+
+		[Test()]
 		public void TestMergingNodes()
 		{
 			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
