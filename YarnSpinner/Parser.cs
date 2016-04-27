@@ -32,8 +32,10 @@ using System.Text;
 
 namespace Yarn {
 
-	// An exception representing something going wrong during parsing
-	[Serializable]
+    // An exception representing something going wrong during parsing
+#if !NETFX_CORE
+    [Serializable]
+#endif
 	internal class ParseException : Exception {
 
 		internal int lineNumber = 0;
@@ -94,7 +96,7 @@ namespace Yarn {
 			return sb.ToString ();
 		}
 
-		#region Parse Nodes
+#region Parse Nodes
 		// Base class for nodes in th parse tree
 		internal abstract class ParseNode {
 
@@ -1226,7 +1228,7 @@ namespace Yarn {
 				return Tab (indentLevel, operatorType.ToString ());
 			}
 		}
-		#endregion Parse Nodes
+#endregion Parse Nodes
 
 		// Use a queue since we're continuously consuming them as 
 		// we parse
