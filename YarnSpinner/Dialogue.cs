@@ -269,6 +269,9 @@ namespace Yarn {
 			get {
 				return visitedNodeNames;
 			}
+			set {
+				visitedNodeNames = new HashSet<String>(visitedNodes);
+			}
 		}
 
 		public IEnumerable<string> allNodes {
