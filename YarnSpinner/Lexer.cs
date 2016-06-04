@@ -326,10 +326,10 @@ namespace Yarn {
 			patterns[TokenType.EqualTo] = @"(==|is(?!\w)|eq(?!\w))";
 			patterns[TokenType.EqualToOrAssign] = @"(=|to(?!\w))";
 			patterns[TokenType.NotEqualTo] = @"(\!=|neq(?!\w))";
-			patterns[TokenType.GreaterThanOrEqualTo] = @"\>=";
-			patterns[TokenType.GreaterThan] = @"\>";
-			patterns[TokenType.LessThanOrEqualTo] = @"\<=";
-			patterns[TokenType.LessThan] = @"\<";
+			patterns[TokenType.GreaterThanOrEqualTo] = @"(\>=|gte(?!\w))";
+			patterns[TokenType.GreaterThan] = @"(\>|gt(?!\w))";
+			patterns[TokenType.LessThanOrEqualTo] = @"(\<=|lte(?!\w))";
+			patterns[TokenType.LessThan] = @"(\<|lt(?!\w))";
 			patterns[TokenType.AddAssign] = @"\+=";
 			patterns[TokenType.MinusAssign] = @"\-=";
 			patterns[TokenType.MultiplyAssign] = @"\*=";
