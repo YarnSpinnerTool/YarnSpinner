@@ -72,6 +72,9 @@ namespace Yarn
 		private Program program;
 		private State state = new State();
 
+		private Random random = new Random();
+
+
 		public string currentNodeName {
 			get {
 				return state.currentNodeName;
@@ -349,10 +352,9 @@ namespace Yarn
 
 				if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).boolValue) {
 					// Shuffle the dialog options if needed
-					var r = new Random();
 					var n = state.currentOptions.Count;
 					for (int opt1 = 0; opt1 < n; opt1++) {
-						int opt2 = opt1 + (int)(r.NextDouble () * (n - opt1)); // r.Next(0, state.currentOptions.Count-1);
+						int opt2 = opt1 + (int)(random.NextDouble () * (n - opt1)); // r.Next(0, state.currentOptions.Count-1);
 						var temp = state.currentOptions [opt2];
 						state.currentOptions [opt2] = state.currentOptions [opt1];
 						state.currentOptions [opt1] = temp;
