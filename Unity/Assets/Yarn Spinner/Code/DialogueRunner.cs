@@ -90,8 +90,10 @@ namespace Yarn.Unity
 			variableStorage.ResetToDefaults ();
 
 			// Load all JSON
-			foreach (var source in sourceText) {
-				dialogue.LoadString (source.text, source.name);
+			if (sourceText != null) {
+				foreach (var source in sourceText) {
+					dialogue.LoadString (source.text, source.name);
+				}
 			}
 
 			if (startAutomatically) {
