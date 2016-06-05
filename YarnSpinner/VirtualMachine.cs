@@ -350,7 +350,7 @@ namespace Yarn
 					break;
 				}
 
-				if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).boolValue) {
+				if (dialogue.continuity.GetValue(SpecialVariables.ShuffleOptions).AsBool) {
 					// Shuffle the dialog options if needed
 					var n = state.currentOptions.Count;
 					for (int opt1 = 0; opt1 < n; opt1++) {
