@@ -26,7 +26,7 @@ You don't have to provide the label. Instead, you can just provide the node name
 
 	[[GoToCity]]
 	
-If there's only one option, and it has no label, Yarn will automatically jump to that node, and it won't show options to the player.
+If an option has no label, Yarn will automatically jump to that node when that line is run, and it won't show options to the player.
 	
 When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
 
