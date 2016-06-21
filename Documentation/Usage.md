@@ -96,9 +96,9 @@ You can also get fancier, and do stuff like this:
 
 	<<if $hostages_saved == $number_of_hostages and $time_remaining > 0>>
 		You win the game!
-	<<else if $hostages_saved < $number_of_hostages and $time_remaining > 0>>
+	<<elseif $hostages_saved < $number_of_hostages and $time_remaining > 0>>
 		You need to rescue more hostages!
-	<<else if $bomb_has_exploded == 0>>
+	<<elseif $bomb_has_exploded == 0>>
 		You failed to rescue the hostages before time ran out!
 	<<endif>>
 	
