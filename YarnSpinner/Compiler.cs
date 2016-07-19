@@ -128,7 +128,7 @@ namespace Yarn
 		public string name;
 
 		// the entry in the program's string table that contains
-		// the original text of this node; -1 if this is not available
+		// the original text of this node; null if this is not available
 		public string sourceTextStringID = null;
 
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
@@ -419,9 +419,10 @@ namespace Yarn
 
 		void GenerateCode(Node node, Parser.Statement parseNode, string line) {
 
-			// Does this line have a "#line:LINENUM" tag?
+			// Does this line have a "#line:LINENUM" tag? Use it
 			string lineID = null;
 
+			// TODO: This will use only the first #line: tag, ignoring all others
 			foreach (var tag in parseNode.tags) {
 				if (tag.StartsWith("line:")) {
 					lineID = tag;
