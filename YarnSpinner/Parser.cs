@@ -107,6 +107,25 @@ namespace Yarn {
 			// Recursively prints the ParseNode and all of its child ParseNodes.
 			internal abstract string PrintTree (int indentLevel);
 
+			internal string[] tags = {};
+
+			public string TagsToString(int indentLevel)
+			{
+				if (tags.Length > 0) {
+					var s = new StringBuilder ();
+
+					s.Append (Tab (indentLevel + 1, "Tags:"));
+					foreach (var tag in this.tags) {
+						s.Append(Tab (indentLevel + 2, "#" + tag));
+					}
+					return s.ToString ();
+				} else {
+					return "";
+				}
+
+
+			}
+
 			public override string ToString ()
 			{
 				return this.GetType ().Name;
@@ -185,8 +204,6 @@ namespace Yarn {
 				Line
 			}
 
-			internal string[] tags = {};
-
 			internal Statement.Type type { get; private set; }
 
 			// The possible types of statements we can have
@@ -226,9 +243,9 @@ namespace Yarn {
 					throw ParseException.Make(p.tokens.Peek(), "Expected a statement here but got " + p.tokens.Peek().ToString() +" instead (was there an unbalanced if statement earlier?)");
 				}
 
+				// Parse the optional tags that follow this statement
 				var tags = new List<string>();
 
-				// Parse the optional tags that follow this statement
 				while (p.NextSymbolIs(TokenType.TagMarker)) {
 					p.ExpectSymbol(TokenType.TagMarker);
 					var tag = p.ExpectSymbol(TokenType.Identifier).value;
@@ -268,12 +285,7 @@ namespace Yarn {
 					throw new ArgumentNullException ();
 				}
 
-				if (tags.Length > 0)
-					s.Append(Tab (indentLevel + 1, "Tags:"));
-
-				foreach (var tag in this.tags) {
-					s.Append(Tab (indentLevel + 2, "#" + tag));
-				}
+				s.Append (TagsToString (indentLevel));
 
 				return s.ToString ();
 			}
@@ -399,12 +411,27 @@ namespace Yarn {
 				label = p.ExpectSymbol(TokenType.Text).value as string;
 
 				// Parse the conditional ("<<if $foo>>") if it's there
-				if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If)) {
-					p.ExpectSymbol(TokenType.BeginCommand);
-					p.ExpectSymbol(TokenType.If);
-					condition = Expression.Parse(this, p);
-					p.ExpectSymbol(TokenType.EndCommand);
+
+				var tags = new List<string>();
+
+				while (
+					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If) ||
+					p.NextSymbolIs(TokenType.TagMarker)) {
+
+					if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If)) {
+						p.ExpectSymbol(TokenType.BeginCommand);
+						p.ExpectSymbol(TokenType.If);
+						condition = Expression.Parse(this, p);
+						p.ExpectSymbol(TokenType.EndCommand);
+					} else if (p.NextSymbolIs(TokenType.TagMarker)) {
+
+						p.ExpectSymbol(TokenType.TagMarker);
+						var tag = p.ExpectSymbol(TokenType.Identifier).value;
+						tags.Add(tag);
+					}
 				}
+
+				this.tags = tags.ToArray();
 
 				// Parse the statements belonging to this option if it has any
 				if (p.NextSymbolIs(TokenType.Indent)) {
@@ -431,6 +458,8 @@ namespace Yarn {
 					sb.Append (optionNode.PrintTree (indentLevel + 1));
 					sb.Append (Tab (indentLevel, "}"));
 				}
+
+				sb.Append (TagsToString (indentLevel));
 
 				return sb.ToString ();
 			}
