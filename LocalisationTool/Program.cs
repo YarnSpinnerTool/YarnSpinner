@@ -41,11 +41,15 @@ namespace YarnLocalisationTool
 			});
 		}
 
-		static void Error(string message) {
-			Console.ForegroundColor = ConsoleColor.DarkRed;
-			Console.Write ("Error: ");
-			Console.ResetColor ();
-			Console.WriteLine (message);
+		static void Error(params string[] messages) {
+
+			foreach (var message in messages) {
+				Console.ForegroundColor = ConsoleColor.DarkRed;
+				Console.Write ("Error: ");
+				Console.ResetColor ();
+				Console.WriteLine (message);
+			} 
+
 			Environment.Exit (1);
 		}
 
@@ -54,6 +58,54 @@ namespace YarnLocalisationTool
 			Console.Write ("Error: ");
 			Console.ResetColor ();
 			Console.WriteLine (message);
+		}
+
+		static void CheckFileList(IEnumerable<string>paths) {
+			var invalid = new List<string> ();
+
+			foreach (var path in paths) {
+				var exists = System.IO.File.Exists (path);
+				if (exists == false) {
+					invalid.Add (string.Format("\"{0}\"", path));
+				}
+			}
+
+			if (invalid.Count != 0) {
+
+				var isMissing = new List<string> ();
+				var isDirectory = new List<string> ();
+
+				foreach (var entry in invalid) {
+					if (System.IO.Directory.Exists(entry)) {
+						isDirectory.Add (entry);
+					} else {
+						isMissing.Add (entry);
+					}
+				}
+
+				var messages = new List<string> ();
+
+				if (isMissing.Count > 0) {
+					var message = string.Format ("The file{0} {1} {2} not exist.",
+						isMissing.Count == 1 ? "" : "s",
+						string.Join (", ", isMissing),
+						isMissing.Count == 1 ? "does not exist" : "do not exist"
+					);
+					messages.Add (message);
+				}
+
+				if (isDirectory.Count > 0) {
+					var message = string.Format ("The file{0} {1} {2}.",
+						isDirectory.Count == 1 ? "" : "s",
+						string.Join (", ", isDirectory),
+						isDirectory.Count == 1 ? "is a directory" : "are directories"
+					);
+					messages.Add (message);
+				}
+
+
+				Error (messages.ToArray());
+			}
 		}
 
 		static void GenerateStringTableFromFiles(GenerateTableOptions options) {
@@ -69,14 +121,26 @@ namespace YarnLocalisationTool
 			foreach (var file in files) {
 				Console.WriteLine("\t" + file);
 			}
+
+			CheckFileList (files);
 		}
 
-		static void AddLabelsToFiles (AddLabelsOptions obj)
+
+		static void AddLabelsToFiles (AddLabelsOptions options)
 		{
+
+			var files = new List<string> (options.sourceFiles);
+
+			if (files.Count == 0) {
+				Error ("No files provided.");
+			}
+
 			Console.WriteLine ("Adding labels to files:");
-			foreach (var file in obj.sourceFiles) {
+			foreach (var file in files) {
 				Console.WriteLine ("\t" + file);
 			}
+
+			CheckFileList (files);
 		}
 	}
 }
