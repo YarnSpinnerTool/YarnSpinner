@@ -59,7 +59,7 @@ namespace Yarn {
 				nameList = names [0];
 			}
 
-			var message = string.Format ("Expected " + nameList);
+			var message = string.Format ("Expected {0}", nameList);
 			
 			return new TokeniserException (lineNumber, columnNumber, message);
 		}
@@ -188,19 +188,23 @@ namespace Yarn {
 		// If this is a function in an expression, this is the number
 		// of parameters that were encountered
 		public int parameterCount;
+
+		// The state that the lexer was in when this token was emitted
+		public string lexerState; 
 		
-		public Token(TokenType type, int lineNumber = -1, int columnNumber = -1, string value=null) {
+		public Token(TokenType type, Lexer.LexerState lexerState, int lineNumber = -1, int columnNumber = -1, string value=null) {
 			this.type = type;
 			this.value = value;
 			this.lineNumber = lineNumber;
-			this.columnNumber = columnNumber;			
+			this.columnNumber = columnNumber;
+			this.lexerState = lexerState.name;
 		}
 		
 		public override string ToString() {
 			if (this.value != null) {
-				return string.Format("{0} ({1}) at {2}:{3}", type.ToString(), value.ToString(), lineNumber, columnNumber);
+				return string.Format("{0} ({1}) at {2}:{3} (state: {4})", type.ToString(), value.ToString(), lineNumber, columnNumber, lexerState);
 			} else {
-				return string.Format ("{0} at {1}:{2}", type, lineNumber, columnNumber);
+				return string.Format ("{0} at {1}:{2} (state: {3})", type, lineNumber, columnNumber, lexerState);
 			}
 		}
 	}
@@ -208,6 +212,8 @@ namespace Yarn {
 	internal class Lexer {
 
 		internal class LexerState {
+
+			public string name;
 
 			private Dictionary<TokenType, string> patterns;
 
@@ -384,7 +390,11 @@ namespace Yarn {
 			states ["shortcut-option"] = new LexerState (patterns);
 			states ["shortcut-option"].setTrackNextIndentation = true;
 			states ["shortcut-option"].AddTransition (TokenType.BeginCommand, "expression", delimitsText: true);
+			states ["shortcut-option"].AddTransition (TokenType.TagMarker, "shortcut-option-tag", delimitsText: true);
 			states ["shortcut-option"].AddTextRule (TokenType.Text, "base");
+
+			states ["shortcut-option-tag"] = new LexerState (patterns);
+			states ["shortcut-option-tag"].AddTransition (TokenType.Identifier, "shortcut-option");
 
 			states ["command"] = new LexerState (patterns);
 			states ["command"].AddTransition (TokenType.If, "expression");
@@ -450,6 +460,11 @@ namespace Yarn {
 			states ["link-destination"].AddTransition (TokenType.OptionEnd, "base");
 
 			defaultState = states ["base"];
+
+			// Make all states aware of their names
+			foreach (KeyValuePair<string, LexerState> entry in states) {
+				entry.Value.name = entry.Key;
+			}
 		}
 
 		public TokenList Tokenise (string title, string text)
@@ -476,7 +491,7 @@ namespace Yarn {
 				lineNumber++;
 			}
 
-			var endOfInput = new Token (TokenType.EndOfInput, lineNumber, 0);
+			var endOfInput = new Token (TokenType.EndOfInput, currentState, lineNumber, 0);
 			tokens.Add (endOfInput);
 
 			return tokens;
@@ -502,7 +517,7 @@ namespace Yarn {
 				// indent token and record this new indent level
 				indentationStack.Push (new KeyValuePair<int, bool>(thisIndentation, true));
 
-				var indent = new Token (TokenType.Indent, lineNumber, previousIndentation.Key);
+				var indent = new Token (TokenType.Indent, currentState, lineNumber, previousIndentation.Key);
 				indent.value = "".PadLeft (thisIndentation - previousIndentation.Key);
 
 				shouldTrackNextIndentation = false;
@@ -521,7 +536,7 @@ namespace Yarn {
 					var topLevel = indentationStack.Pop ();
 
 					if (topLevel.Value) {
-						var dedent = new Token (TokenType.Dedent, lineNumber, 0);
+						var dedent = new Token (TokenType.Dedent, currentState, lineNumber, 0);
 						lineTokens.Push (dedent);
 					}
 
@@ -600,7 +615,7 @@ namespace Yarn {
 						tokenText = tokenText.Replace (@"\""", @"""");
 					}
 
-					var token = new Token (rule.type, lineNumber, columnNumber, tokenText);
+					var token = new Token (rule.type, currentState, lineNumber, columnNumber, tokenText);
 
 					token.delimitsText = rule.delimitsText;
 
@@ -612,6 +627,7 @@ namespace Yarn {
 						if (states.ContainsKey(rule.entersState) == false) {
 							throw new TokeniserException (lineNumber, columnNumber, "Unknown tokeniser state " + rule.entersState);
 						}
+
 						EnterState (states [rule.entersState]);
 
 						if (shouldTrackNextIndentation == true) {
