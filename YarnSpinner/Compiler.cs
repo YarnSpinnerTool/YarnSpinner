@@ -13,9 +13,14 @@ namespace Yarn
 
 		private int stringCount = 0;
 
-		public string RegisterString(string theString, string forNode) {
+		public string RegisterString(string theString, string forNode, string lineID = null) {
 
-			var key = string.Format ("{0}-{1}", forNode, stringCount++);
+			string key;
+
+			if (lineID == null)
+				key = string.Format ("{0}-{1}", forNode, stringCount++);
+			else
+				key = lineID;
 
 			// It's not in the list; append it
 			strings.Add(key, theString);
@@ -367,7 +372,7 @@ namespace Yarn
 				break;
 
 			case Parser.Statement.Type.Line:
-				GenerateCode (node, statement.line);
+				GenerateCode (node, statement, statement.line);
 				break;
 
 			default:
@@ -378,7 +383,7 @@ namespace Yarn
 		}
 
 		void GenerateCode(Node node, Parser.CustomCommand statement) {
-
+			
 			// If this command is an evaluable expression, evaluate it
 			if (statement.expression != null) {
 				GenerateCode (node, statement.expression);
@@ -403,8 +408,19 @@ namespace Yarn
 
 		}
 
-		void GenerateCode(Node node, string line) {
-			var num = program.RegisterString (line, node.name);
+		void GenerateCode(Node node, Parser.Statement parseNode, string line) {
+
+			// Does this line have a "#line:LINENUM" tag?
+			string lineID = null;
+
+			foreach (var tag in parseNode.tags) {
+				if (tag.StartsWith("line:")) {
+					lineID = tag;
+					break;
+				}
+			}
+
+			var num = program.RegisterString (line, node.name, lineID);
 
 			Emit (node, ByteCode.RunLine, num);
 
