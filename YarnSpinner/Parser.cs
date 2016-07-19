@@ -185,6 +185,8 @@ namespace Yarn {
 				Line
 			}
 
+			internal string[] tags = {};
+
 			internal Statement.Type type { get; private set; }
 
 			// The possible types of statements we can have
@@ -202,55 +204,78 @@ namespace Yarn {
 				if (Block.CanParse(p)) {
 					type = Type.Block;
 					block = new Block(this, p);
-					return;
 				} else if (IfStatement.CanParse(p)) {
 					type = Type.IfStatement;
 					ifStatement = new IfStatement(this, p);
-					return;
 				} else if (OptionStatement.CanParse(p)) {
 					type = Type.OptionStatement;
 					optionStatement = new OptionStatement(this, p);
-					return;
 				} else if (AssignmentStatement.CanParse(p)) {
 					type = Type.AssignmentStatement;
 					assignmentStatement = new AssignmentStatement(this, p);
-					return;
 				} else if (ShortcutOptionGroup.CanParse(p)) {
 					type = Type.ShortcutOptionGroup;
 					shortcutOptionGroup = new ShortcutOptionGroup(this, p);
-					return;
 				} else if (CustomCommand.CanParse(p)) {
 					type = Type.CustomCommand;
 					customCommand = new CustomCommand(this, p);
-					return;
 				} else if (p.NextSymbolIs(TokenType.Text)) {
 					line = p.ExpectSymbol(TokenType.Text).value as string;
 					type = Type.Line;
 				} else {
 					throw ParseException.Make(p.tokens.Peek(), "Expected a statement here but got " + p.tokens.Peek().ToString() +" instead (was there an unbalanced if statement earlier?)");
 				}
+
+				var tags = new List<string>();
+
+				// Parse the optional tags that follow this statement
+				while (p.NextSymbolIs(TokenType.TagMarker)) {
+					p.ExpectSymbol(TokenType.TagMarker);
+					var tag = p.ExpectSymbol(TokenType.Identifier).value;
+					tags.Add(tag);
+				}
+
+				if (tags.Count > 0)
+					this.tags = tags.ToArray();
 			}
 
 			internal override string PrintTree (int indentLevel)
 			{
+				StringBuilder s = new StringBuilder ();
 				switch (type) {
 				case Type.Block:
-					return block.PrintTree (indentLevel);
+					s.Append(block.PrintTree (indentLevel));
+					break;
 				case Type.IfStatement:
-					return ifStatement.PrintTree (indentLevel);
+					s.Append (ifStatement.PrintTree (indentLevel));
+					break;
 				case Type.OptionStatement:
-					return optionStatement.PrintTree (indentLevel);
+					s.Append (optionStatement.PrintTree (indentLevel));
+					break;
 				case Type.AssignmentStatement:
-					return assignmentStatement.PrintTree (indentLevel);
+					s.Append (assignmentStatement.PrintTree (indentLevel));
+					break;
 				case Type.ShortcutOptionGroup:
-					return shortcutOptionGroup.PrintTree (indentLevel);
+					s.Append (shortcutOptionGroup.PrintTree (indentLevel));
+					break;
 				case Type.CustomCommand:
-					return customCommand.PrintTree (indentLevel);
+					s.Append (customCommand.PrintTree (indentLevel));
+					break;
 				case Type.Line:
-					return Tab (indentLevel, "Line: "+ line);
+					s.Append (Tab (indentLevel, "Line: " + line));
+					break;
+				default:
+					throw new ArgumentNullException ();
 				}
 
-				throw new ArgumentNullException ();
+				if (tags.Length > 0)
+					s.Append(Tab (indentLevel + 1, "Tags:"));
+
+				foreach (var tag in this.tags) {
+					s.Append(Tab (indentLevel + 2, "#" + tag));
+				}
+
+				return s.ToString ();
 			}
 
 		}
@@ -344,7 +369,6 @@ namespace Yarn {
 				do {						
 					_options.Add(new ShortcutOption(shortcutIndex++, this, p));
 				} while (p.NextSymbolIs(TokenType.ShortcutOption));
-
 			}
 
 			internal override string PrintTree (int indentLevel)

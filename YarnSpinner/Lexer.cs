@@ -93,6 +93,9 @@ namespace Yarn {
 		// Strings. Everybody also loves a string
 		String,
 
+		// '#'
+		TagMarker,
+
 		// Command syntax ("<<foo>>")
 		BeginCommand,
 		EndCommand,
@@ -321,6 +324,7 @@ namespace Yarn {
 
 			patterns[TokenType.Number] = @"\-?[0-9]+(\.[0-9+])?";
 			patterns[TokenType.String] = @"""([^""\\]*(?:\\.[^""\\]*)*)""";
+			patterns[TokenType.TagMarker] = @"\#";
 			patterns[TokenType.LeftParen] = @"\(";
 			patterns[TokenType.RightParen] = @"\)";
 			patterns[TokenType.EqualTo] = @"(==|is(?!\w)|eq(?!\w))";
@@ -371,7 +375,11 @@ namespace Yarn {
 			states ["base"].AddTransition(TokenType.BeginCommand, "command", delimitsText:true);
 			states ["base"].AddTransition(TokenType.OptionStart, "link", delimitsText:true);
 			states ["base"].AddTransition(TokenType.ShortcutOption, "shortcut-option");
+			states ["base"].AddTransition (TokenType.TagMarker, "tag", delimitsText: true);
 			states ["base"].AddTextRule (TokenType.Text);
+
+			states ["tag"] = new LexerState (patterns);
+			states ["tag"].AddTransition (TokenType.Identifier, "base");
 
 			states ["shortcut-option"] = new LexerState (patterns);
 			states ["shortcut-option"].setTrackNextIndentation = true;

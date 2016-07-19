@@ -12,7 +12,13 @@ namespace YarnSpinner.Tests
 	public class LanguageTests : TestBase
 	{
 		
-			
+		[Test()]
+		public void TestTags() {
+			var path = System.IO.Path.Combine ("TestCases", "Localisation.node");
+			dialogue.LoadFile (path);
+			RunStandardTestcase ();
+		}
+
 		[Test()]
 		public void TestIndentation()
 		{
