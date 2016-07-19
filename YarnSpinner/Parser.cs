@@ -1026,18 +1026,31 @@ namespace Yarn {
 						evaluationStack.Push(expr);
 					} else if (next.type == TokenType.Identifier) {
 						// This is a function call
-						var info = p.library.GetFunction(next.value as String);
 
-						// Ensure that this call has the right number of params
-						if (info.IsParameterCountCorrect(next.parameterCount) == false) {
-							string error = string.Format("Error parsing expression: " +
-								"Unsupported number of parameters for function {0} (expected {1}, got {2})",
-								next.value as String,
-								info.paramCount,
-								next.parameterCount
-							);
-							throw ParseException.Make(next, error);
+						FunctionInfo info = null;
+
+						// If we have a library, use it to check if the
+						// number of parameters provided is correct
+						if (p.library != null) {
+							info = p.library.GetFunction(next.value as String);
+
+							// Ensure that this call has the right number of params
+							if (info.IsParameterCountCorrect(next.parameterCount) == false) {
+								string error = string.Format("Error parsing expression: " +
+									"Unsupported number of parameters for function {0} (expected {1}, got {2})",
+									next.value as String,
+									info.paramCount,
+									next.parameterCount
+								);
+								throw ParseException.Make(next, error);
+							}
+						} else {
+							// Use a dummy FunctionInfo to represent info about the
+							// fact that a function is called; note that
+							// attempting to call this will fail
+							info = new FunctionInfo (next.value, next.parameterCount, (Function)null);
 						}
+
 
 						var parameterList = new List<Expression> ();
 						for (int i = 0; i < next.parameterCount; i++) {
@@ -1287,7 +1300,9 @@ namespace Yarn {
 
 		Library library;
 
-		// Take whatever we were given and make a queue out of it
+		// Take whatever we were given and make a queue out of it.
+		// If library is null, no checks are made to function calls, and 
+		// all function calls are assumed to be valid.
 		internal Parser(ICollection<Token> tokens, Library library) {
 			this.tokens = new Queue<Token>(tokens);
 			this.library = library;
