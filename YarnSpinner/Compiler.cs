@@ -13,6 +13,15 @@ namespace Yarn
 
 		private int stringCount = 0;
 
+		// Loads a new string table into the program. The string table is
+		// merged with any existing strings, with the new table taking
+		// precedence over the old.
+		public void LoadStrings(Dictionary<string,string> newStrings) {
+			foreach (var entry in newStrings) {
+				strings [entry.Key] = entry.Value;
+			}
+		}
+
 		public string RegisterString(string theString, string forNode, string lineID = null) {
 
 			string key;
