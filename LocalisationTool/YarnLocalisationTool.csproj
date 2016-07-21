@@ -40,9 +40,16 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YarnSpinner\YarnSpinner.csproj">
+      <Project>{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}</Project>
+      <Name>YarnSpinner</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

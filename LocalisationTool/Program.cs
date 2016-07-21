@@ -41,7 +41,7 @@ namespace YarnLocalisationTool
 			});
 		}
 
-		static void Error(params string[] messages) {
+		public static void Error(params string[] messages) {
 
 			foreach (var message in messages) {
 				Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -53,11 +53,25 @@ namespace YarnLocalisationTool
 			Environment.Exit (1);
 		}
 
-		static void Warn(string message) {
-			Console.ForegroundColor = ConsoleColor.DarkYellow;
-			Console.Write ("Error: ");
-			Console.ResetColor ();
-			Console.WriteLine (message);
+		public static void Debug(params string[] messages) {
+
+			foreach (var message in messages) {
+				Console.ForegroundColor = ConsoleColor.DarkBlue;
+				Console.Write ("Note: ");
+				Console.ResetColor ();
+				Console.WriteLine (message);
+			} 
+
+
+		}
+
+		public static void Warn(params string[] messages) {
+			foreach (var message in messages) {
+				Console.ForegroundColor = ConsoleColor.DarkYellow;
+				Console.Write ("Warning: ");
+				Console.ResetColor ();
+				Console.WriteLine (message);
+			} 
 		}
 
 		static void CheckFileList(IEnumerable<string>paths) {
@@ -116,13 +130,21 @@ namespace YarnLocalisationTool
 				Error ("No files provided.");
 			}
 
-			Console.WriteLine("Generating from files:");
-
-			foreach (var file in files) {
-				Console.WriteLine("\t" + file);
-			}
-
 			CheckFileList (files);
+
+			var tableGenerator = new TableGenerator ();
+			var result = tableGenerator.GenerateTablesFromFiles (files);
+
+			Console.WriteLine ();
+
+			foreach (var table in result) {
+				var fileName = System.IO.Path.GetFileNameWithoutExtension (table.Key);
+				fileName += ".csv";
+				Console.WriteLine ("Table: " + fileName);
+				Console.WriteLine ("---");
+				Console.WriteLine (table.Value);
+				Console.WriteLine ();
+			}
 		}
 
 
@@ -141,6 +163,7 @@ namespace YarnLocalisationTool
 			}
 
 			CheckFileList (files);
+
 		}
 	}
 }
