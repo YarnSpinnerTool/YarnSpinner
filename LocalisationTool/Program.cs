@@ -16,6 +16,9 @@ namespace YarnLocalisationTool
 		[Option(HelpText="Generate verbose output.")]
 		public bool verbose { get; set; }
 
+		[Option(HelpText="The directory to place output files.", Default=".")]
+		public string outputPath { get; set; }
+	
 	}
 
 	[Verb("add")]
@@ -53,7 +56,7 @@ namespace YarnLocalisationTool
 			Environment.Exit (1);
 		}
 
-		public static void Debug(params string[] messages) {
+		public static void Note(params string[] messages) {
 
 			foreach (var message in messages) {
 				Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -74,55 +77,70 @@ namespace YarnLocalisationTool
 			} 
 		}
 
-		static void CheckFileList(IEnumerable<string>paths) {
-			var invalid = new List<string> ();
+		static void CheckFileList(IEnumerable<string> paths)
+		{
+			var invalid = new List<string>();
 
-			foreach (var path in paths) {
-				var exists = System.IO.File.Exists (path);
-				if (exists == false) {
-					invalid.Add (string.Format("\"{0}\"", path));
+			foreach (var path in paths)
+			{
+				var exists = System.IO.File.Exists(path);
+				if (exists == false)
+				{
+					invalid.Add(string.Format("\"{0}\"", path));
 				}
 			}
 
-			if (invalid.Count != 0) {
+			if (invalid.Count != 0)
+			{
 
-				var isMissing = new List<string> ();
-				var isDirectory = new List<string> ();
+				var isMissing = new List<string>();
+				var isDirectory = new List<string>();
 
-				foreach (var entry in invalid) {
-					if (System.IO.Directory.Exists(entry)) {
-						isDirectory.Add (entry);
-					} else {
-						isMissing.Add (entry);
+				foreach (var entry in invalid)
+				{
+					if (System.IO.Directory.Exists(entry))
+					{
+						isDirectory.Add(entry);
+					}
+					else {
+						isMissing.Add(entry);
 					}
 				}
 
-				var messages = new List<string> ();
+				var messages = new List<string>();
 
-				if (isMissing.Count > 0) {
-					var message = string.Format ("The file{0} {1} {2} not exist.",
+				if (isMissing.Count > 0)
+				{
+					var message = string.Format("The file{0} {1} {2} not exist.",
 						isMissing.Count == 1 ? "" : "s",
-						string.Join (", ", isMissing),
+						string.Join(", ", isMissing),
 						isMissing.Count == 1 ? "does not exist" : "do not exist"
 					);
-					messages.Add (message);
+					messages.Add(message);
 				}
 
-				if (isDirectory.Count > 0) {
-					var message = string.Format ("The file{0} {1} {2}.",
+				if (isDirectory.Count > 0)
+				{
+					var message = string.Format("The file{0} {1} {2}.",
 						isDirectory.Count == 1 ? "" : "s",
-						string.Join (", ", isDirectory),
+						string.Join(", ", isDirectory),
 						isDirectory.Count == 1 ? "is a directory" : "are directories"
 					);
-					messages.Add (message);
+					messages.Add(message);
 				}
 
 
-				Error (messages.ToArray());
+				Error(messages.ToArray());
 			}
 		}
-
+		
 		static void GenerateStringTableFromFiles(GenerateTableOptions options) {
+
+			if (System.IO.Directory.Exists(options.outputPath) == false) {
+				Error(string.Format("The directory \"{0}\" does not exist.",
+									options.outputPath)
+					 );
+			}
 
 			var files = new List<string> (options.sourceFiles);
 
@@ -137,13 +155,19 @@ namespace YarnLocalisationTool
 
 			Console.WriteLine ();
 
+
+
 			foreach (var table in result) {
 				var fileName = System.IO.Path.GetFileNameWithoutExtension (table.Key);
-				fileName += ".csv";
-				Console.WriteLine ("Table: " + fileName);
-				Console.WriteLine ("---");
-				Console.WriteLine (table.Value);
-				Console.WriteLine ();
+
+				fileName = System.IO.Path.ChangeExtension(fileName, "csv");
+				var filePath = System.IO.Path.Combine(options.outputPath, fileName);
+
+				System.IO.File.WriteAllText(filePath, table.Value);
+
+				if (options.verbose) {
+					Note("Wrote " + filePath);
+				}
 			}
 		}
 

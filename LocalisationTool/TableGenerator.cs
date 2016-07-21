@@ -1,9 +1,15 @@
 using System.Collections.Generic;
 using Yarn;
+using CsvHelper;
 
 namespace YarnLocalisationTool
 {
 
+	class Line {
+		public string LineCode { get; set; }
+		public string LineText { get; set; }
+		public string Comment { get; set; }
+	}
 
 	class TableGenerator
 	{
@@ -16,7 +22,7 @@ namespace YarnLocalisationTool
 				Dialogue d = new Dialogue (null);
 
 				d.LogDebugMessage = delegate(string message) {
-					MainClass.Debug(message);	
+					MainClass.Note(message);	
 				};
 
 				d.LogErrorMessage = delegate(string message) {
@@ -47,16 +53,25 @@ namespace YarnLocalisationTool
 
 				// Generate the CSV
 
-				var sb = new System.Text.StringBuilder ();
+				using (var w = new System.IO.StringWriter()) {
+					using (var csv = new CsvWriter(w)) {
 
-				sb.AppendLine (CreateCSVRow ("Key", "Line"));
+						csv.WriteHeader<Line>();
 
-				foreach (var entry in emittedStringTable) {
-					sb.AppendLine (CreateCSVRow (entry));
+						foreach (var entry in emittedStringTable)
+						{
+
+							var l = new Line();
+							l.LineCode = entry.Key;
+							l.LineText = entry.Value;
+							l.Comment = "";
+
+							csv.WriteRecord(l);
+						}
+
+						returnedTables[file] = w.ToString();
+					}					
 				}
-
-				returnedTables [file] = sb.ToString ();
-
 
 			}
 
