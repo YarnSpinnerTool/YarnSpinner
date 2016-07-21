@@ -291,6 +291,21 @@ namespace Yarn {
 			}
 		}
 
+		public Dictionary<string, string> GetTextForAllNodes() {
+			var d = new Dictionary<string,string>();
+
+			foreach (var node in program.nodes) {
+				var text = program.GetTextForNode(node.Key);
+
+				if (text == null)
+					continue;
+
+				d [node.Key] = text;
+			}
+
+			return d;
+		}
+
 		public string GetTextForNode(string nodeName) {
 			if (program.nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
@@ -301,6 +316,10 @@ namespace Yarn {
 				LogErrorMessage ("No node named " + nodeName);
 				return null;
 			}
+		}
+
+		public Dictionary<string,string> GetStringTable() {
+			return program.strings;
 		}
 
 		// Unloads ALL nodes.
