@@ -27,6 +27,7 @@ SOFTWARE.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CsvHelper;
 
 namespace Yarn
 {
@@ -74,6 +75,8 @@ namespace Yarn
 			bool verifyOnly = false;
 			bool autoSelectFirstOption = false;
 			bool analyseOnly = false;
+
+			var stringTables = new List<string>();
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -133,6 +136,24 @@ namespace Yarn
 
 				}
 
+				// Handle string tables
+				if (arg.IndexOf("-T=") != -1) {
+					var argArray = arg.Split('=');
+					if (argArray.Length != 2)
+					{
+						ShowHelpAndExit();
+					}
+					else {
+
+						if (System.IO.File.Exists(argArray[1]) == false) {
+							Console.WriteLine("String table not found: " + argArray[1]);
+							Environment.Exit(1);
+						}
+
+						stringTables.Add(argArray[1]);
+						continue;
+					}
+				}
 
 				switch (arg) {
 				case "-V":
@@ -196,7 +217,6 @@ namespace Yarn
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
-
 
 			// Add some methods for testing
 			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
@@ -269,6 +289,27 @@ namespace Yarn
 			}
 
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+
+			// Load string tables
+			foreach (var table in stringTables) {
+
+				var parsedTable = new Dictionary<string, string>();
+
+				using (var reader = new System.IO.StreamReader(table) ) {
+					using (var csvReader = new CsvReader(reader)) {
+						if (csvReader.ReadHeader() == false) {
+							Console.WriteLine(string.Format("{0} is not a valid string table", table));
+							Environment.Exit(1);
+						}
+
+						foreach (var row in csvReader.GetRecords<LocalisedLine>()) {
+							parsedTable[row.LineCode] = row.LineText;
+						}
+					}
+				}
+
+				dialogue.LoadLocalisedStrings(parsedTable);
+			}
 
 			if (compileToBytecodeOnly) {
 				var result = dialogue.GetByteCode ();
