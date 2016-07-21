@@ -79,6 +79,16 @@ namespace Yarn {
         public abstract void Clear();
     }
 
+	// A line, localised into the current locale.
+	// LocalisedLines are used in both lines, options, and shortcut options - basically,
+	// anything user-facing.
+	public class LocalisedLine
+	{
+		public string LineCode { get; set; }
+		public string LineText { get; set; }
+		public string Comment { get; set; }
+	}
+
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
@@ -316,6 +326,11 @@ namespace Yarn {
 				LogErrorMessage ("No node named " + nodeName);
 				return null;
 			}
+		}
+
+		public void LoadLocalisedStrings(Dictionary<string, string> stringTable)
+		{
+			program.LoadStrings(stringTable);
 		}
 
 		public Dictionary<string,string> GetStringTable() {

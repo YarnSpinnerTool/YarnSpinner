@@ -5,12 +5,6 @@ using CsvHelper;
 namespace YarnLocalisationTool
 {
 
-	class Line {
-		public string LineCode { get; set; }
-		public string LineText { get; set; }
-		public string Comment { get; set; }
-	}
-
 	class TableGenerator
 	{
 		public Dictionary<string,string> GenerateTablesFromFiles (List<string> files)
@@ -56,12 +50,12 @@ namespace YarnLocalisationTool
 				using (var w = new System.IO.StringWriter()) {
 					using (var csv = new CsvWriter(w)) {
 
-						csv.WriteHeader<Line>();
+						csv.WriteHeader<LocalisedLine>();
 
 						foreach (var entry in emittedStringTable)
 						{
 
-							var l = new Line();
+							var l = new LocalisedLine();
 							l.LineCode = entry.Key;
 							l.LineText = entry.Value;
 							l.Comment = "";
