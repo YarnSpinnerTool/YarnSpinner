@@ -21,8 +21,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Commandlineparameters>-T=../../../Localisation.csv ../../../Tests/TestCases/Localisation.node</Commandlineparameters>
-    <ConsolePause>false</ConsolePause>
+    <Commandlineparameters>-T ../../../Localisation.csv ../../../Tests/TestCases/Localisation.node -d</Commandlineparameters>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>true</Optimize>
@@ -40,10 +41,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="CsvHelper">
-      <HintPath>..\packages\CsvHelper.2.16.0.0\lib\net45\CsvHelper.dll</HintPath>
+<HintPath>..\packages\CsvHelper.2.16.0.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Core" />
+    <Reference Include="CommandLine">
+      <HintPath>..\packages\CommandLineParser.2.0.275-beta\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

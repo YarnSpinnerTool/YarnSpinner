@@ -28,219 +28,132 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CsvHelper;
+using CommandLine;
 
 namespace Yarn
 {
 
+	class BaseOptions {
+		[Option('d', "debug", HelpText = "Show debugging information.")]
+		public bool showDebuggingInfo { get; set; }
+
+	}
+
+	class ConsoleOptions : BaseOptions {
+		[Option('t', "show-tokens", HelpText="Show the list of parsed tokens and exit.")]
+		public bool showTokensAndExit { get; set; }
+
+		[Option('p', "show-parse-tree", HelpText="Show the parse tree and exit.")]
+		public bool showParseTreeAndExit { get; set; }
+
+		[Option('w', "wait-for-input", HelpText="After showing each line, wait for the user to press a key.")]
+		public bool waitForInput { get; set; }
+
+		[Option('s', "start-node", Default = Dialogue.DEFAULT_START, HelpText="Start at the given node.")]
+		public string startNode { get; set; }
+
+		[Option('v', "variables", HelpText="Set default variable.")]
+		public IList<string> variables { get; set; }
+
+		[Option('V', "verify-script", HelpText="Verifies the provided script")]
+		public bool verifyAndExit { get; set; }
+
+		[Option('o', "only", HelpText="Only consider this node.")]
+		public string onlyConsiderNode { get; set; }
+
+		[Option('r', "run-times", HelpText="Run the script this many times.", Default=1)]
+		public int runTimes { get; set; }
+
+		[Option('c', "dump-bytecode", HelpText="Show program bytecode and exit.")]
+		public bool compileAndExit { get; set; }
+
+		[Option('a', "analyse", HelpText="Show analysis of the program and exit.")]
+		public bool analyseAndExit { get; set; }
+
+		[Option('1', "select-first-choice", HelpText="Automatically select the the first option when presented with options.")]
+		public bool automaticallySelectFirstOption { get; set; }
+
+		[Option('T', "string-table", HelpText = "The string table to use.")]
+		public string stringTable { get; set; }
+
+		[Value(0, HelpText = "The files to parse.")]
+		public IList<string> files { get; set; }
+
+
+	}
+
 	class YarnSpinnerConsole
 	{
-
-		static void ShowHelpAndExit() {
-			Console.WriteLine ("YarnSpinner: Executes Yarn dialog files.");
-			Console.WriteLine ();
-			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-r=<run times>] [-s=<start>] [-v<argname>=<value>] <inputfile>");
-			Console.WriteLine ();
-			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
-			Console.WriteLine ("\t-p: Show the parse tree and exit.");
-			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
-			Console.WriteLine ("\t-s: Start at the given node, instead of the default ('" + Dialogue.DEFAULT_START + "').");
-			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
-			Console.WriteLine ("\t-V: Verifies the provided script");
-			Console.WriteLine ("\t-o: Only consider the node named <node>.");
-			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
-			Console.WriteLine ("\t-d: Show debugging information.");
-			Console.WriteLine ("\t-c: Show program bytecode and exit.");
-			Console.WriteLine ("\t-a: Show analysis of the program and exit.");
-			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
-			Console.WriteLine ("\t-h: Show this message and exit.");
-
-			Environment.Exit (0);
-		}
 
 		public static void Main (string[] args)
 		{
 
-			if (args.Length == 0) {
-				ShowHelpAndExit ();
-			}
+			var results = CommandLine.Parser.Default.ParseArguments<ConsoleOptions>(args);
 
-			bool showTokens = false;
-			bool showParseTree = false;
-			bool waitForLines = false;
-			string onlyConsiderNode = null;
-			bool showDebugging = false;
-			int runTimes = 1;
-			bool compileToBytecodeOnly = false;
-			bool verifyOnly = false;
-			bool autoSelectFirstOption = false;
-			bool analyseOnly = false;
+			var returnCode = results.MapResult(
+				(ConsoleOptions options) => { Execute(options); return 0; },
+				errors => { Console.WriteLine(errors); return 1; });
 
-			var stringTables = new List<string>();
+			Environment.Exit(returnCode);
 
-			var inputFiles = new List<string> ();
-			string startNode = Dialogue.DEFAULT_START;
 
-			string[] allowedExtensions = {".node", ".json" };
+		}
 
-			var defaultVariables = new Dictionary<string,float> ();
-
-			foreach (var arg in args) {
-
-				// Handle 'start' parameter
-				if (arg.IndexOf("-s=") != -1) {
-					var startArray = arg.Split (new char[]{ '=' });
-					if (startArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						startNode = startArray [1];
-						continue;
-					}
-				}
-
-				// Handle variable input
-				if (arg.IndexOf("-v") != -1) {
-					var variable = arg.Substring (2);
-					var variableArray = variable.Split (new char[]{ '=' });
-					if (variableArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						var varName = "$" + variableArray [0];
-						var varValue = float.Parse (variableArray [1]);
-						defaultVariables [varName] = varValue;
-						continue;
-					}
-
-				}
-
-				// Handle 'only this node' parameter
-				if (arg.IndexOf("-o=") != -1) {
-					var startArray = arg.Split (new char[]{ '=' });
-					if (startArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						onlyConsiderNode = startArray [1];
-						continue;
-					}
-				}
-
-				// Handle 'run times' parameter
-				if (arg.IndexOf("-r=") != -1) {
-					var argArray = arg.Split ('=');
-					if (argArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						runTimes = int.Parse (argArray [1]);
-						continue;
-					}
-
-				}
-
-				// Handle string tables
-				if (arg.IndexOf("-T=") != -1) {
-					var argArray = arg.Split('=');
-					if (argArray.Length != 2)
-					{
-						ShowHelpAndExit();
-					}
-					else {
-
-						if (System.IO.File.Exists(argArray[1]) == false) {
-							Console.WriteLine("String table not found: " + argArray[1]);
-							Environment.Exit(1);
-						}
-
-						stringTables.Add(argArray[1]);
-						continue;
-					}
-				}
-
-				switch (arg) {
-				case "-V":
-					verifyOnly = true;
-					break;
-				case "-t":
-					showTokens = true;
-					showDebugging = true;
-					break;
-				case "-p":
-					showParseTree = true;
-					showDebugging = true;
-					break;
-				case "-w":
-					waitForLines = true;
-					break;
-				case "-d":
-					showDebugging = true;
-					break;
-				case "-c":
-					compileToBytecodeOnly = true;
-					break;
-				case "-1":
-					autoSelectFirstOption = true;
-					break;
-				case "-h":
-					ShowHelpAndExit ();
-					break;
-				case "-a":
-					analyseOnly = true;
-					break;
-				default:
-
-					// only allow one file
-					if (inputFiles.Count > 0) {
-						Console.Error.WriteLine ("Error: Too many files specified.");
-						Environment.Exit (1);
-					}
-
-					var extension = System.IO.Path.GetExtension (arg);
-					if (Array.IndexOf(allowedExtensions, extension) != -1) {
-						inputFiles.Add (arg);
-					}
-					break;
-				}
-			}
-
-			if (inputFiles.Count == 0) {
-				Console.Error.WriteLine ("Error: No files specified.");
-				Environment.Exit (1);
-			}
-
+		static void Execute(ConsoleOptions options)
+		{
+			
 			// Create the object that handles callbacks
-			var impl = new ConsoleRunnerImplementation (waitForLines:waitForLines);
+			var impl = new ConsoleRunnerImplementation(waitForLines:options.waitForInput);
 
 			// load the default variables we got on the command line
-			foreach (var variable in defaultVariables) {
+			foreach (var variable in options.variables)
+			{
+				var entry = variable.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
 
-				impl.SetNumber (variable.Key, variable.Value);
+				float value;
+				// If there aren't two parts to this or the second part isn't a float, fail
+				if (entry.Length != 2 || float.TryParse(entry[1], out value) == false) {
+					Console.WriteLine(string.Format("Skipping invalid variable {0}", variable));
+					continue;
+				}
+				var name = entry[0];
+
+				impl.SetNumber(name, value);
 			}
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
 
 			// Add some methods for testing
-			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
-				return parameters[0]+parameters[1]+parameters[2];
+			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
+			{
+				return parameters[0] + parameters[1] + parameters[2];
 			});
 
-			dialogue.library.RegisterFunction ("last_value", -1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
+			{
 				// return the last value
-				return parameters[parameters.Length-1];
+				return parameters[parameters.Length - 1];
 			});
 
-			dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction("is_even", 1, delegate (Value[] parameters)
+			{
 				return (int)parameters[0].AsNumber % 2 == 0;
 			});
 
 			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", -1, delegate(Value[] parameters) {
-				if (parameters[0].AsBool == false) {
+			dialogue.library.RegisterFunction("assert", -1, delegate (Value[] parameters)
+			{
+				if (parameters[0].AsBool == false)
+				{
 
 					// TODO: Include file, node and line number
-					if( parameters.Length > 1 && parameters[1].AsBool ) {
-						dialogue.LogErrorMessage ("ASSERTION FAILED: " + parameters[1].AsString);
-					} else {
-						dialogue.LogErrorMessage ("ASSERTION FAILED");
+					if (parameters.Length > 1 && parameters[1].AsBool)
+					{
+						dialogue.LogErrorMessage("ASSERTION FAILED: " + parameters[1].AsString);
+					}
+					else {
+						dialogue.LogErrorMessage("ASSERTION FAILED");
 					}
 					Environment.Exit(1);
 				}
@@ -249,60 +162,77 @@ namespace Yarn
 
 			// Register a function to let test scripts register how many
 			// options they expect to send
-			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Value[] parameters) {
-				impl.numberOfExpectedOptions = (int)parameters [0].AsNumber;
+			dialogue.library.RegisterFunction("prepare_for_options", 2, delegate (Value[] parameters)
+			{
+				impl.numberOfExpectedOptions = (int)parameters[0].AsNumber;
 				impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
 			});
 
-			dialogue.library.RegisterFunction ("expect_line", 1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction("expect_line", 1, delegate (Value[] parameters)
+			{
 				impl.expectedNextLine = parameters[0].AsString;
 			});
 
-			dialogue.library.RegisterFunction ("expect_command", 1, delegate(Value[] parameters) {
+			dialogue.library.RegisterFunction("expect_command", 1, delegate (Value[] parameters)
+			{
 				impl.expectedNextCommand = parameters[0].AsString;
 			});
 
-			if (autoSelectFirstOption == true) {
+			if (options.automaticallySelectFirstOption == true)
+			{
 				impl.autoSelectFirstOption = true;
 			}
 
 			// If debugging is enabled, log debug messages; otherwise, ignore them
-			if (showDebugging) {
-				dialogue.LogDebugMessage = delegate(string message) {
-					Console.WriteLine ("Debug: " + message);
+			if (options.showDebuggingInfo)
+			{
+				dialogue.LogDebugMessage = delegate (string message)
+				{
+					Console.WriteLine("Debug: " + message);
 				};
-			} else {
-				dialogue.LogDebugMessage = delegate(string message) {};
+			}
+			else {
+				dialogue.LogDebugMessage = delegate (string message) { };
 			}
 
-			dialogue.LogErrorMessage = delegate(string message) {
-				Console.WriteLine ("ERROR: " + message);
+			dialogue.LogErrorMessage = delegate (string message)
+			{
+				Console.WriteLine("ERROR: " + message);
 			};
 
-			if (verifyOnly) {
-				try {
-					dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
-				} catch (Exception e) {
-					Console.WriteLine ("Error: " + e.Message);
+			if (options.verifyAndExit)
+			{
+				try
+				{
+					dialogue.LoadFile(options.files[0], false, false, options.onlyConsiderNode);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine("Error: " + e.Message);
 				}
 				return;
 			}
 
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+			dialogue.LoadFile(options.files[0], options.showTokensAndExit, options.showParseTreeAndExit, options.onlyConsiderNode);
 
-			// Load string tables
-			foreach (var table in stringTables) {
+			// Load string table
+			if (options.stringTable != null)
+			{
 
 				var parsedTable = new Dictionary<string, string>();
 
-				using (var reader = new System.IO.StreamReader(table) ) {
-					using (var csvReader = new CsvReader(reader)) {
-						if (csvReader.ReadHeader() == false) {
-							Console.WriteLine(string.Format("{0} is not a valid string table", table));
+				using (var reader = new System.IO.StreamReader(options.stringTable))
+				{
+					using (var csvReader = new CsvReader(reader))
+					{
+						if (csvReader.ReadHeader() == false)
+						{
+							Console.WriteLine(string.Format("{0} is not a valid string table", options.stringTable));
 							Environment.Exit(1);
 						}
 
-						foreach (var row in csvReader.GetRecords<LocalisedLine>()) {
+						foreach (var row in csvReader.GetRecords<LocalisedLine>())
+						{
 							parsedTable[row.LineCode] = row.LineText;
 						}
 					}
@@ -311,57 +241,67 @@ namespace Yarn
 				dialogue.AddStringTable(parsedTable);
 			}
 
-			if (compileToBytecodeOnly) {
-				var result = dialogue.GetByteCode ();
-				Console.WriteLine (result);
+			if (options.compileAndExit)
+			{
+				var result = dialogue.GetByteCode();
+				Console.WriteLine(result);
 				return;
 			}
 
-			if (analyseOnly) {
+			if (options.analyseAndExit)
+			{
 
-				var context = new Yarn.Analysis.Context ();
+				var context = new Yarn.Analysis.Context();
 
-				dialogue.Analyse (context);
+				dialogue.Analyse(context);
 
-				foreach (var diagnosis in context.FinishAnalysis()) {
-					Console.WriteLine (diagnosis.ToString(showSeverity:true));
+				foreach (var diagnosis in context.FinishAnalysis())
+				{
+					Console.WriteLine(diagnosis.ToString(showSeverity: true));
 				}
 				return;
 			}
 
 			// Only run the program when we're not emitting debug output of some kind
 			var runProgram =
-				showTokens == false &&
-				showParseTree == false &&
-				compileToBytecodeOnly == false &&
-				analyseOnly == false;
+				options.showTokensAndExit == false &&
+				options.showParseTreeAndExit == false &&
+				options.compileAndExit == false &&
+				options.analyseAndExit == false;
 
-			if (runProgram) {
+			if (runProgram)
+			{
 				// Run the conversation
 
-				for (int run = 0; run < runTimes; run++) {
-					foreach (var step in dialogue.Run (startNode)) {
+				for (int run = 0; run < options.runTimes; run++)
+				{
+					foreach (var step in dialogue.Run(options.startNode))
+					{
 
 						// It can be one of three types: a line to show, options
 						// to present to the user, or an internal command to run
 
-						if (step is Dialogue.LineResult) {
+						if (step is Dialogue.LineResult)
+						{
 							var lineResult = step as Dialogue.LineResult;
-							impl.RunLine (lineResult.line);
-						} else if (step is Dialogue.OptionSetResult) {
+							impl.RunLine(lineResult.line);
+						}
+						else if (step is Dialogue.OptionSetResult)
+						{
 							var optionsResult = step as Dialogue.OptionSetResult;
-							impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
-						} else if (step is Dialogue.CommandResult) {
+							impl.RunOptions(optionsResult.options, optionsResult.setSelectedOptionDelegate);
+						}
+						else if (step is Dialogue.CommandResult)
+						{
 							var commandResult = step as Dialogue.CommandResult;
-							impl.RunCommand (commandResult.command.text);
+							impl.RunCommand(commandResult.command.text);
 						}
 					}
-					impl.DialogueComplete ();
+					impl.DialogueComplete();
 				}
 
 
 			}
-
 		}
 
 		// A simple Implementation for the command line.
@@ -454,15 +394,26 @@ namespace Yarn
 					Console.Write ("? ");
 					try {
 						var selectedKey = Console.ReadKey ().KeyChar.ToString();
-						var selection = int.Parse (selectedKey) - 1;
-						Console.WriteLine();
+						int selection;
 
-						if (selection > optionsGroup.options.Count) {
-							Console.WriteLine ("Invalid option.");
-						} else {
-							optionChooser(selection);
-							break;
+						if (int.TryParse(selectedKey, out selection) == true)
+						{
+							Console.WriteLine();
+
+							// we present the list as 1,2,3, but the API expects
+							// answers as 0,1,2
+							selection -= 1; 
+
+							if (selection > optionsGroup.options.Count)
+							{
+								Console.WriteLine("Invalid option.");
+							}
+							else {
+								optionChooser(selection);
+								break;
+							}
 						}
+
 					} catch (FormatException) {}
 
 				} while (true);
