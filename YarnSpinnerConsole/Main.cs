@@ -102,8 +102,36 @@ namespace Yarn
 		static void Execute(ConsoleOptions options)
 		{
 			
+
+			// Verify that all the files are valid
+			string[] allowedExtensions = { ".node", ".json" };
+
+			var inputFiles = new List<string>();
+
+			foreach (var input in options.files) {
+				var extension = System.IO.Path.GetExtension(input);
+
+				var allowed = true;
+				foreach (var ext in allowedExtensions) {
+					if (extension == ext) {
+						allowed = true;
+						break;
+					}
+				}
+				if (!allowed) {
+					Console.WriteLine(string.Format("File {0} is not a valid Yarn file", input));
+					return;
+				}
+
+				if (System.IO.File.Exists(input) == false) {
+					Console.WriteLine(string.Format("File {0} is not a valid Yarn file", input));
+					return;
+				}
+				inputFiles.Add(input);
+			}
+
 			// Create the object that handles callbacks
-			var impl = new ConsoleRunnerImplementation(waitForLines:options.waitForInput);
+			var impl = new ConsoleRunnerImplementation(waitForLines: options.waitForInput);
 
 			// load the default variables we got on the command line
 			foreach (var variable in options.variables)
