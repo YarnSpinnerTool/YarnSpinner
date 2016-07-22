@@ -3,11 +3,22 @@ using System.Collections.Generic;
 
 namespace Yarn
 {
-	
+
+	internal struct LineInfo {
+		public int lineNumber;
+		public string nodeName;
+
+		public LineInfo(string nodeName, int lineNumber)
+		{
+			this.nodeName = nodeName;
+			this.lineNumber = lineNumber;
+		}
+	}
 
 	internal class Program {
 
 		public Dictionary<string,string> strings = new Dictionary<string, string> ();
+		public Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
 
 		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
 
@@ -22,17 +33,20 @@ namespace Yarn
 			}
 		}
 
-		public string RegisterString(string theString, string forNode, string lineID = null) {
+		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber) {
 
 			string key;
 
 			if (lineID == null)
-				key = string.Format ("{0}-{1}", forNode, stringCount++);
+				key = string.Format ("{0}-{1}", nodeName, stringCount++);
 			else
 				key = lineID;
 
 			// It's not in the list; append it
 			strings.Add(key, theString);
+
+			// Additionally, keep info about this string around
+			lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
 
 			return key;
 		}
@@ -87,7 +101,11 @@ namespace Yarn
 
 			int stringCount = 0;
 			foreach (var entry in strings) {
-				sb.AppendLine(string.Format("{0, 4}: {1}", stringCount, entry));
+
+				var lineInfo = this.lineInfo[entry.Key];
+
+				sb.AppendLine(string.Format("{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
+
 				stringCount++;
 			}
 
@@ -321,8 +339,10 @@ namespace Yarn
 				Emit (compiledNode, ByteCode.RunNode);
 			}
 
+			// Register the entire text of this node if we have it
 			if (node.source != null) {
-				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name);
+				// the line number is 0 because the string starts at the start of the node
+				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name, null, 0);
 			}
 
 			program.nodes [compiledNode.name] = compiledNode;
@@ -434,7 +454,7 @@ namespace Yarn
 			// Does this line have a "#line:LINENUM" tag? Use it
 			string lineID = GetLineIDFromNodeTags(parseNode);
 
-			var num = program.RegisterString (line, node.name, lineID);
+			var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber);
 
 			Emit (node, ByteCode.RunLine, num);
 
@@ -463,7 +483,7 @@ namespace Yarn
 
 				var labelLineID = GetLineIDFromNodeTags(shortcutOption);
 
-				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID);
+				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber);
 
 				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
@@ -552,7 +572,7 @@ namespace Yarn
 		}
 
 		void GenerateCode(Node node, Parser.OptionStatement statement) {
-
+			
 			var destination = statement.destination;
 
 			if (statement.label == null) {
@@ -562,7 +582,7 @@ namespace Yarn
 
 				var lineID = GetLineIDFromNodeTags(statement.parent);
 
-				var stringID = program.RegisterString (statement.label, node.name, lineID);
+				var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber);
 
 				Emit (node, ByteCode.AddOption, stringID, destination);
 			}
@@ -655,7 +675,9 @@ namespace Yarn
 				Emit (node, ByteCode.PushNumber, value.value.numberValue);
 				break;
 			case Value.Type.String:
-				var id = program.RegisterString (value.value.stringValue, node.name);
+				// TODO: we use 'null' as the line ID here because strings used in expressions
+				// don't have a #line: tag we can use
+				var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber);
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:

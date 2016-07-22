@@ -190,8 +190,8 @@ namespace Yarn {
 		public int parameterCount;
 
 		// The state that the lexer was in when this token was emitted
-		public string lexerState; 
-		
+		public string lexerState;
+
 		public Token(TokenType type, Lexer.LexerState lexerState, int lineNumber = -1, int columnNumber = -1, string value=null) {
 			this.type = type;
 			this.value = value;

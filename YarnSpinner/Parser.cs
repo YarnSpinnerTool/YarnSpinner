@@ -100,9 +100,18 @@ namespace Yarn {
 
 			internal ParseNode parent;
 
+			// The line that this parse node begins on.
+			internal int lineNumber;
+
 			// ParseNodes do their parsing by consuming tokens from the Parser.
 			// You parse tokens into a ParseNode by using its constructor.
-			internal ParseNode(ParseNode parent, Parser p) { this.parent = parent; }
+			internal ParseNode(ParseNode parent, Parser p) { 
+				this.parent = parent;
+				if (p.tokens.Count > 0)
+					this.lineNumber = p.tokens.Peek().lineNumber;
+				else
+					this.lineNumber = -1;
+			}
 
 			// Recursively prints the ParseNode and all of its child ParseNodes.
 			internal abstract string PrintTree (int indentLevel);
@@ -751,7 +760,7 @@ namespace Yarn {
 			}
 
 			// Use a provided token
-			internal ValueNode(ParseNode parent, Token t) : base (parent, null) {
+			internal ValueNode(ParseNode parent, Token t, Parser p) : base (parent, p) {
 				UseToken(t);
 			}
 
@@ -799,12 +808,12 @@ namespace Yarn {
 			internal FunctionInfo function;
 			internal List<Expression> parameters;
 
-			internal Expression(ParseNode parent, ValueNode value) : base(parent, null) {
+			internal Expression(ParseNode parent, ValueNode value, Parser p) : base(parent, p) {
 				this.type = Type.Value;
 				this.value = value;
 			}
 
-			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters) : base(parent, null) {
+			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters, Parser p) : base(parent, p) {
 				type = Type.FunctionCall;
 				this.function = function;
 				this.parameters = parameters;
@@ -1021,7 +1030,7 @@ namespace Yarn {
 
 						var operatorFunc = p.library.GetFunction (next.type.ToString());
 
-						var expr = new Expression (parent, operatorFunc, parameters);
+						var expr = new Expression (parent, operatorFunc, parameters, p);
 
 						evaluationStack.Push(expr);
 					} else if (next.type == TokenType.Identifier) {
@@ -1058,15 +1067,15 @@ namespace Yarn {
 						}
 						parameterList.Reverse ();
 
-						var expr = new Expression (parent, info, parameterList);
+						var expr = new Expression (parent, info, parameterList, p);
 
 						evaluationStack.Push (expr);
 
 					} else {
 
 						// This is a raw value
-						var v = new ValueNode(parent, next);
-						Expression expr = new Expression(parent, v);
+						var v = new ValueNode(parent, next, p);
+						Expression expr = new Expression(parent, v, p);
 						evaluationStack.Push(expr);
 
 					}
@@ -1279,7 +1288,7 @@ namespace Yarn {
 				}
 			}
 
-			internal Operator(ParseNode parent, TokenType t) : base(parent, null) {
+			internal Operator(ParseNode parent, TokenType t, Parser p) : base(parent, p) {
 				operatorType = t;
 			}
 
