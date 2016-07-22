@@ -98,7 +98,7 @@ namespace Yarn {
 		// Base class for nodes in th parse tree
 		internal abstract class ParseNode {
 
-			private ParseNode parent;
+			internal ParseNode parent;
 
 			// ParseNodes do their parsing by consuming tokens from the Parser.
 			// You parse tokens into a ParseNode by using its constructor.

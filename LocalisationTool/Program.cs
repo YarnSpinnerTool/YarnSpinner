@@ -113,7 +113,7 @@ namespace YarnLocalisationTool
 				{
 					var message = string.Format("The file{0} {1} {2} not exist.",
 						isMissing.Count == 1 ? "" : "s",
-						string.Join(", ", isMissing),
+					                            string.Join(", ", isMissing.ToArray()),
 						isMissing.Count == 1 ? "does not exist" : "do not exist"
 					);
 					messages.Add(message);
@@ -123,7 +123,7 @@ namespace YarnLocalisationTool
 				{
 					var message = string.Format("The file{0} {1} {2}.",
 						isDirectory.Count == 1 ? "" : "s",
-						string.Join(", ", isDirectory),
+					                            string.Join(", ", isDirectory.ToArray()),
 						isDirectory.Count == 1 ? "is a directory" : "are directories"
 					);
 					messages.Add(message);

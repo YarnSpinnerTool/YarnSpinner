@@ -2,7 +2,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "A: Hey, I'm a character in a script!\nB: And I am too! You are talking to me!\n-> What's going on\n    A: Why this is a demo of the script system!\n    B: And you're in it!\n-> Um ok\nA: How delightful!\nB: What would you prefer to do next?\n[[Leave|Leave]]\n[[Learn more|LearnMore]]",
+		"body": "A: Hey, I'm a character in a script! #line:675d661a\nB: And I am too! You are talking to me! #line:cde582fb\n-> What's going on #line:fa2e1356\n    A: Why this is a demo of the script system! #line:38b2353e\n    B: And you're in it! #line:31ad4160\n-> Um ok #line:6c0fb745\nA: How delightful! #line:036fb4f1\nB: What would you prefer to do next? #line:d35a9665\n[[Leave|Leave]] #line:e6cebba9\n[[Learn more|LearnMore]] #line:30ee1a0e",
 		"position": {
 			"x": 592,
 			"y": 181
@@ -12,7 +12,7 @@
 	{
 		"title": "Leave",
 		"tags": "",
-		"body": "A: Oh, goodbye!\nB: You'll be back soon!",
+		"body": "A: Oh, goodbye! #line:1971e104\nB: You'll be back soon! #line:39d35a39",
 		"position": {
 			"x": 387,
 			"y": 487
@@ -22,7 +22,7 @@
 	{
 		"title": "LearnMore",
 		"tags": "",
-		"body": "A: HAHAHA",
+		"body": "A: HAHAHA #line:a2d211b5",
 		"position": {
 			"x": 763,
 			"y": 472

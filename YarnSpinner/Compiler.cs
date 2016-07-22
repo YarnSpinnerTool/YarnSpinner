@@ -417,18 +417,22 @@ namespace Yarn
 
 		}
 
+		string GetLineIDFromNodeTags(Parser.ParseNode node) {
+			// TODO: This will use only the first #line: tag, ignoring all others
+			foreach (var tag in node.tags)
+			{
+				if (tag.StartsWith("line:"))
+				{
+					return tag;
+				}
+			}
+			return null;
+		}
+
 		void GenerateCode(Node node, Parser.Statement parseNode, string line) {
 
 			// Does this line have a "#line:LINENUM" tag? Use it
-			string lineID = null;
-
-			// TODO: This will use only the first #line: tag, ignoring all others
-			foreach (var tag in parseNode.tags) {
-				if (tag.StartsWith("line:")) {
-					lineID = tag;
-					break;
-				}
-			}
+			string lineID = GetLineIDFromNodeTags(parseNode);
 
 			var num = program.RegisterString (line, node.name, lineID);
 
@@ -457,7 +461,9 @@ namespace Yarn
 					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
 				}
 
-				var labelStringID = program.RegisterString (shortcutOption.label, node.name);
+				var labelLineID = GetLineIDFromNodeTags(shortcutOption);
+
+				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID);
 
 				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
@@ -553,7 +559,10 @@ namespace Yarn
 				// this is a jump to another node
 				Emit(node, ByteCode.RunNode, destination); 
 			} else {
-				var stringID = program.RegisterString (statement.label, node.name);
+
+				var lineID = GetLineIDFromNodeTags(statement.parent);
+
+				var stringID = program.RegisterString (statement.label, node.name, lineID);
 
 				Emit (node, ByteCode.AddOption, stringID, destination);
 			}
