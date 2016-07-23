@@ -33,9 +33,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle ("YarnSpinner")]
 [assembly: AssemblyDescription ("A parser and runtime for the Yarn dialogue system.")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Secret Lab")]
+[assembly: AssemblyCompany ("Secret Lab Pty Ltd")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("© 2015 Jon Manning")]
+[assembly: AssemblyCopyright ("© 2016 Secret Lab Pty Ltd and Yarn Spinner contributors")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
