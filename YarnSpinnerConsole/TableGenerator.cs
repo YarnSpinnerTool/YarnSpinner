@@ -72,7 +72,10 @@ namespace Yarn
 							csv.WriteRecord(l);
 						}
 
-						var filePath = System.IO.Path.ChangeExtension(file, "csv");
+						var dir = System.IO.Path.GetDirectoryName(file);
+						var fileName = System.IO.Path.GetFileNameWithoutExtension(file);
+						fileName += "_lines.csv";
+						var filePath = System.IO.Path.Combine(dir, fileName);
 
 						System.IO.File.WriteAllText(filePath, w.ToString());
 
