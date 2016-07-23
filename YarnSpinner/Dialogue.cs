@@ -469,7 +469,7 @@ namespace Yarn {
 					s.Serialize(bsonWriter, this.program);
 				}
 
-				return outputStream.GetBuffer();
+				return outputStream.ToArray();
 			}
 		}
 
