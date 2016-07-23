@@ -222,6 +222,7 @@ namespace Yarn {
 
 				return;
 			} else {
+				// It's source code, either a single node in text form or a JSON file
 				string inputString;
 				using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
 				{
@@ -234,7 +235,8 @@ namespace Yarn {
 
 		}
 
-		public void LoadCompiledProgram(byte[] bytes, string fileName) {
+		public void LoadCompiledProgram(byte[] bytes, string fileName, CompiledFormat format = LATEST_FORMAT)
+		{
 
 			if (LogDebugMessage == null)
 			{
@@ -246,13 +248,34 @@ namespace Yarn {
 				throw new YarnException("LogErrorMessage must be set before loading");
 			}
 
+			switch (format)
+			{
+				case CompiledFormat.V1:
+					LoadCompiledProgramV1(bytes);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+
+
+		}
+
+		private void LoadCompiledProgramV1(byte[] bytes)
+		{
 			using (var stream = new System.IO.MemoryStream(bytes))
 			{
 				using (var reader = new Newtonsoft.Json.Bson.BsonReader(stream))
 				{
 					var serializer = new Newtonsoft.Json.JsonSerializer();
 
-					this.program = serializer.Deserialize<Program>(reader);
+					try
+					{
+						this.program = serializer.Deserialize<Program>(reader);
+					}
+					catch (Newtonsoft.Json.JsonReaderException e)
+					{
+						LogErrorMessage(string.Format("Cannot load compiled program: {0}", e.Message));
+					}
 				}
 			}
 		}

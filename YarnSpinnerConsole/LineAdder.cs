@@ -104,6 +104,10 @@ namespace Yarn
 					// Remember that we've used this tag, to prevent it from being re-used
 					existingKeys.Add(newTag);
 
+					if (options.verbose) {
+						YarnSpinnerConsole.Note(string.Format("Tagged line with ID \"{0}\" in node {1}: {2}", newTag, node.title, existingLine));
+					}
+
 					// Re-write the line.
 					var newLine = string.Format("{0} #{1}", existingLine, newTag);
 					lines[line.Value.lineNumber - 1] = newLine;

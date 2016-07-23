@@ -59,7 +59,7 @@ namespace Yarn
 			}
 		}
 
-		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber) {
+		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber, bool localisable) {
 
 			string key;
 
@@ -71,8 +71,10 @@ namespace Yarn
 			// It's not in the list; append it
 			strings.Add(key, theString);
 
-			// Additionally, keep info about this string around
-			lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
+			if (localisable) {
+				// Additionally, keep info about this string around
+				lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
+			}
 
 			return key;
 		}
@@ -361,7 +363,7 @@ namespace Yarn
 			// Register the entire text of this node if we have it
 			if (node.source != null) {
 				// the line number is 0 because the string starts at the start of the node
-				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name, null, 0);
+				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name, null, 0, true);
 			}
 
 			program.nodes [compiledNode.name] = compiledNode;
@@ -473,7 +475,7 @@ namespace Yarn
 			// Does this line have a "#line:LINENUM" tag? Use it
 			string lineID = GetLineIDFromNodeTags(parseNode);
 
-			var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber);
+			var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber, true);
 
 			Emit (node, ByteCode.RunLine, num);
 
@@ -502,7 +504,7 @@ namespace Yarn
 
 				var labelLineID = GetLineIDFromNodeTags(shortcutOption);
 
-				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber);
+				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber, true);
 
 				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
@@ -601,7 +603,7 @@ namespace Yarn
 
 				var lineID = GetLineIDFromNodeTags(statement.parent);
 
-				var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber);
+				var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber, true);
 
 				Emit (node, ByteCode.AddOption, stringID, destination);
 			}
@@ -696,7 +698,7 @@ namespace Yarn
 			case Value.Type.String:
 				// TODO: we use 'null' as the line ID here because strings used in expressions
 				// don't have a #line: tag we can use
-				var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber);
+				var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber, false);
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:
