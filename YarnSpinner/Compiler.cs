@@ -87,13 +87,6 @@ namespace Yarn
 					instructionCount++;
 				}
 
-				/* sb.AppendLine ();
-				sb.AppendLine ("Label table:");
-
-				foreach (var label in entry.Value.labels) {
-					sb.AppendLine (string.Format ("{0,12} : {1}", label.Key, label.Value));
-				}*/
-
 				sb.AppendLine ();
 			}
 
@@ -152,10 +145,10 @@ namespace Yarn
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
 	}
 
-	internal struct Instruction {
-		internal ByteCode operation;
-		internal object operandA;
-		internal object operandB;
+	class Instruction {
+		public ByteCode operation;
+		public object operandA;
+		public object operandB;
 
 		public  string ToString(Program p, Library l) {
 

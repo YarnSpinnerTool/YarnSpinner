@@ -10,6 +10,9 @@ namespace Yarn
 
 		static internal int AddLines(AddLabelsOptions options)
 		{
+
+			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
+
 			foreach (var file in options.files) {
 
 				// We can only parse json files at present

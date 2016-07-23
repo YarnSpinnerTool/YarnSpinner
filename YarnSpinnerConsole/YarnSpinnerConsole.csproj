@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -21,7 +20,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Commandlineparameters>run -T ../../../Localisation.csv ../../../Tests/TestCases/Localisation.node -d</Commandlineparameters>
+    <Commandlineparameters>compile ../../../Tests/TestCases/Localisation.node --verbose</Commandlineparameters>
     <ConsolePause>true</ConsolePause>
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
@@ -41,7 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="CsvHelper">
-<HintPath>..\packages\CsvHelper.2.16.0.0\lib\net45\CsvHelper.dll</HintPath>
+      <HintPath>..\packages\CsvHelper.2.16.0.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Core" />
@@ -57,6 +56,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="LineAdder.cs" />
     <Compile Include="TableGenerator.cs" />
+    <Compile Include="ProgramExporter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -10,6 +10,8 @@ namespace Yarn
 		static internal int GenerateTables (GenerateTableOptions options)
 		{
 
+			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
+
 			bool linesWereUntagged = false;
 
 			foreach (var file in options.files) {
