@@ -52,5 +52,5 @@ using System.Runtime.CompilerServices;
 //[assembly: AssemblyKeyFile("")]
 
 // Make internals available to the localisation tool
-[assembly: InternalsVisibleTo("YarnLocalisationTool")]
+[assembly: InternalsVisibleTo("YarnSpinnerConsole")]
 

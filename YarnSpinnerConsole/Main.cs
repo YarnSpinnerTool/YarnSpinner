@@ -33,25 +33,31 @@ using CommandLine;
 namespace Yarn
 {
 
+	// Shared options for all commands
 	class BaseOptions {
 		[Option('d', "debug", HelpText = "Show debugging information.")]
 		public bool showDebuggingInfo { get; set; }
 
-		[Value(0, HelpText = "The files to parse.")]
+
+		[Option('v', "verbose", HelpText = "Be verbose.")]
+		public bool verbose { get; set; }
+
+		[Value(0, MetaName = "source files", HelpText = "The files to use.")]
 		public IList<string> files { get; set; }
-
-		[Option('T', "string-table", HelpText = "The string table to use.")]
-		public string stringTable { get; set; }
-
-
-		[Option('o', "only", HelpText = "Only consider this node.")]
-		public string onlyConsiderNode { get; set; }
-
 
 	}
 
+	// Options that pertain to compilation/execution
+	class ExecutionOptions : BaseOptions {
+		[Option('T', "string-table", HelpText = "The string table to use.")]
+		public string stringTable { get; set; }
+
+		[Option('o', "only", HelpText = "Only consider this node.")]
+		public string onlyConsiderNode { get; set; }
+	}
+
 	[Verb("verify", HelpText="Verifies files.")]
-	class VerifyOptions : BaseOptions {
+	class VerifyOptions : ExecutionOptions {
 		[Option('t', "show-tokens", HelpText = "Show the list of parsed tokens and exit.")]
 		public bool showTokensAndExit { get; set; }
 
@@ -64,7 +70,7 @@ namespace Yarn
 	}
 
 	[Verb("run", HelpText="Runs files.")]
-	class RunOptions : BaseOptions {
+	class RunOptions : ExecutionOptions {
 		
 		[Option('w', "wait-for-input", HelpText="After showing each line, wait for the user to press a key.")]
 		public bool waitForInput { get; set; }
@@ -72,7 +78,7 @@ namespace Yarn
 		[Option('s', "start-node", Default = Dialogue.DEFAULT_START, HelpText="Start at the given node.")]
 		public string startNode { get; set; }
 
-		[Option('v', "variables", HelpText="Set default variable.")]
+		[Option('V', "variables", HelpText="Set default variable.")]
 		public IList<string> variables { get; set; }
 
 		[Option('r', "run-times", HelpText="Run the script this many times.", Default=1)]
@@ -81,9 +87,20 @@ namespace Yarn
 		[Option('1', "select-first-choice", HelpText="Automatically select the the first option when presented with options.")]
 		public bool automaticallySelectFirstOption { get; set; }
 
+	}
 
 
+	[Verb("generate", HelpText = "Generates string tables from provided files.")]
+	class GenerateTableOptions : BaseOptions
+	{
+	}
 
+	[Verb("add", HelpText = "Adds localisation tags to the provided files, where necessary.")]
+	class AddLabelsOptions : BaseOptions
+	{
+
+		[Option("dry-run", HelpText = "Don't actually modify the contents of any files.")]
+		public bool dryRun { get; set; }
 
 	}
 
@@ -162,12 +179,15 @@ namespace Yarn
 		public static void Main (string[] args)
 		{
 
-			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions>(args);
+			// Read and dispatch the appropriate command
+			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions, GenerateTableOptions, AddLabelsOptions>(args);
 
 			var returnCode = results.MapResult(
-				(RunOptions options) => { Run(options); return 0; },
-				(VerifyOptions options) => { return Verify(options); },
-				errors => { Console.WriteLine(errors); return 1; });
+				(RunOptions options) => Run(options),
+				(VerifyOptions options) => Verify(options),
+				(AddLabelsOptions options) => LineAdder.AddLines(options),
+				(GenerateTableOptions options) => TableGenerator.GenerateTables(options),
+				errors => { return 1; });
 
 			Environment.Exit(returnCode);
 
@@ -176,7 +196,7 @@ namespace Yarn
 
 		static List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node" });
 
-		static void Run(RunOptions options)
+		static int Run(RunOptions options)
 		{
 
 			CheckFileList(options.files, ALLOWED_EXTENSIONS);
@@ -193,7 +213,7 @@ namespace Yarn
 				// If there aren't two parts to this or the second part isn't a float, fail
 				if (entry.Length != 2 || float.TryParse(entry[1], out value) == false)
 				{
-					Console.WriteLine(string.Format("Skipping invalid variable {0}", variable));
+					Warn(string.Format("Skipping invalid variable {0}", variable));
 					continue;
 				}
 				var name = entry[0];
@@ -236,10 +256,14 @@ namespace Yarn
 				}
 				impl.DialogueComplete();
 			}
+			return 0;
 		}
 
 		static int Verify(VerifyOptions options)
 		{
+
+			CheckFileList(options.files, ALLOWED_EXTENSIONS);
+
 			Dialogue dialogue;
 			try {
 				dialogue = CreateDialogue(options, null);
@@ -266,7 +290,7 @@ namespace Yarn
 
 		}
 
-		static Dialogue CreateDialogue(BaseOptions options, ConsoleRunnerImplementation impl)
+		static Dialogue CreateDialogue(ExecutionOptions options, ConsoleRunnerImplementation impl)
 		{
 
 			// Load nodes
@@ -331,7 +355,7 @@ namespace Yarn
 			{
 				dialogue.LogDebugMessage = delegate (string message)
 				{
-					Console.WriteLine("Debug: " + message);
+					Note(message);
 				};
 			}
 			else {
@@ -340,7 +364,7 @@ namespace Yarn
 
 			dialogue.LogErrorMessage = delegate (string message)
 			{
-				Console.WriteLine("ERROR: " + message);
+				Warn("Yarn Error: " + message);
 			};
 
 
@@ -358,8 +382,7 @@ namespace Yarn
 					{
 						if (csvReader.ReadHeader() == false)
 						{
-							Console.WriteLine(string.Format("{0} is not a valid string table", options.stringTable));
-							Environment.Exit(1);
+							Error(string.Format("{0} is not a valid string table", options.stringTable));
 						}
 
 						foreach (var row in csvReader.GetRecords<LocalisedLine>())
@@ -406,9 +429,9 @@ namespace Yarn
 
 				if (expectedNextLine != null && expectedNextLine != lineText.text) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
+					Error(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
 						expectedNextLine, lineText.text));
-					Environment.Exit (1);
+					
 				}
 
 				expectedNextLine = null;
@@ -434,13 +457,13 @@ namespace Yarn
 				if (numberOfExpectedOptions != -1 &&
 					optionsGroup.options.Count != numberOfExpectedOptions) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine (string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
-					Environment.Exit (1);
+					Error (string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
+
 				}
 
 				// If we were told to automatically select an option, do so
 				if (autoSelectOptionNumber != -1) {
-					Console.WriteLine ("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber);
+					Note (string.Format("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
 
 					optionChooser (autoSelectOptionNumber);
 
@@ -456,7 +479,7 @@ namespace Yarn
 
 
 				if (autoSelectFirstOption == true) {
-					Console.WriteLine ("[automatically choosing option 1]");
+					Note ("[automatically choosing option 1]");
 					optionChooser (0);
 					return;
 				}

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinner", "YarnSpinner\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnSpinnerTests", "YarnSpinnerTests\YarnSpinnerTests.csproj", "{24F90A1D-B1CA-4E0F-8BD2-A91D8B443855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YarnLocalisationTool", "LocalisationTool\YarnLocalisationTool.csproj", "{3973565C-E22E-4E52-8A9A-D45AF29FEDA7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,10 +23,6 @@ Global
 		{24F90A1D-B1CA-4E0F-8BD2-A91D8B443855}.Debug|x86.Build.0 = Debug|Any CPU
 		{24F90A1D-B1CA-4E0F-8BD2-A91D8B443855}.Release|x86.ActiveCfg = Release|Any CPU
 		{24F90A1D-B1CA-4E0F-8BD2-A91D8B443855}.Release|x86.Build.0 = Release|Any CPU
-		{3973565C-E22E-4E52-8A9A-D45AF29FEDA7}.Debug|x86.ActiveCfg = Debug|x86
-		{3973565C-E22E-4E52-8A9A-D45AF29FEDA7}.Debug|x86.Build.0 = Debug|x86
-		{3973565C-E22E-4E52-8A9A-D45AF29FEDA7}.Release|x86.ActiveCfg = Release|x86
-		{3973565C-E22E-4E52-8A9A-D45AF29FEDA7}.Release|x86.Build.0 = Release|x86
 		{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}.Debug|x86.Build.0 = Debug|Any CPU
 		{6C3B03D2-2E89-4EC3-A022-E84053A7B17F}.Release|x86.ActiveCfg = Release|Any CPU

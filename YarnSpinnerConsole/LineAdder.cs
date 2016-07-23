@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Yarn;
 using Newtonsoft.Json;
 
-namespace YarnLocalisationTool
+namespace Yarn
 {
 	class LineAdder
 	{
 
-		internal void AddLinesToFiles(AddLabelsOptions options, List<string> files)
+		static internal int AddLines(AddLabelsOptions options)
 		{
-			foreach (var file in files) {
+			foreach (var file in options.files) {
 
 				// We can only parse json files at present
 				if (System.IO.Path.GetExtension(file) != ".json") {
-					MainClass.Warn("Skipping non-JSON file " + file);
+					YarnSpinnerConsole.Warn("Skipping non-JSON file " + file);
 					continue;
 				}
 
@@ -22,13 +22,13 @@ namespace YarnLocalisationTool
 
 				d.LogDebugMessage = delegate (string message)
 				{
-					MainClass.Note(message);
+					YarnSpinnerConsole.Note(message);
 				};
 
 				d.LogErrorMessage = delegate (string message)
 				{
 					// Warn, don't error - Erroring terminates the program
-					MainClass.Warn(message);
+					YarnSpinnerConsole.Warn(message);
 				};
 
 				try
@@ -36,7 +36,7 @@ namespace YarnLocalisationTool
 					// First, we need to ensure that this file compiles.
 					d.LoadFile(file);
 				} catch {
-					MainClass.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
+					YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
 					continue;
 				}
 
@@ -53,7 +53,7 @@ namespace YarnLocalisationTool
 
 				if (linesWithNoTag.Count == 0) {
 					var message = string.Format("{0} had no untagged lines. Either they're all tagged already, or it has no localisable text.", file);
-					MainClass.Note(message);
+					YarnSpinnerConsole.Note(message);
 					continue;
 				}
 
@@ -120,7 +120,7 @@ namespace YarnLocalisationTool
 				if (options.dryRun) {
 					// Then bail out at this point, before we start
 					// modifying files
-					MainClass.Note("Would have written to file " + file);
+					YarnSpinnerConsole.Note("Would have written to file " + file);
 					continue;
 				}
 
@@ -134,6 +134,7 @@ namespace YarnLocalisationTool
 
 
 			}
+			return 0;
 		}
 
 

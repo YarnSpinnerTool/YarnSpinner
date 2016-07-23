@@ -2,25 +2,25 @@ using System.Collections.Generic;
 using Yarn;
 using CsvHelper;
 
-namespace YarnLocalisationTool
+namespace Yarn
 {
 
 	class TableGenerator
 	{
-		public void GenerateTablesFromFiles (GenerateTableOptions options, List<string> files)
+		static internal int GenerateTables (GenerateTableOptions options)
 		{
 
 			bool linesWereUntagged = false;
 
-			foreach (var file in files) {
+			foreach (var file in options.files) {
 				var dialogue = new Dialogue (null);
 
 				dialogue.LogDebugMessage = delegate(string message) {
-					MainClass.Note(message);	
+					YarnSpinnerConsole.Note(message);	
 				};
 
 				dialogue.LogErrorMessage = delegate(string message) {
-					MainClass.Error (message);
+					YarnSpinnerConsole.Error (message);
 				};
 
 				dialogue.LoadFile (file);
@@ -40,7 +40,7 @@ namespace YarnLocalisationTool
 				}
 
 				if (anyLinesAreUntagged) {
-					MainClass.Warn(string.Format("Untagged lines in {0}", file));
+					YarnSpinnerConsole.Warn(string.Format("Untagged lines in {0}", file));
 					linesWereUntagged = true;
 				}
 
@@ -68,7 +68,7 @@ namespace YarnLocalisationTool
 
 						if (options.verbose)
 						{
-							MainClass.Note("Wrote " + filePath);
+							YarnSpinnerConsole.Note("Wrote " + filePath);
 						}
 					}					
 				}
@@ -76,9 +76,11 @@ namespace YarnLocalisationTool
 			}
 
 			if (linesWereUntagged) {
-				MainClass.Warn("Some lines were not tagged, so they weren't added to the " +
+				YarnSpinnerConsole.Warn("Some lines were not tagged, so they weren't added to the " +
 				               "string file. Use this tool's 'generate' action to add them.");
 			}
+
+			return 0;
 
 		}
 
