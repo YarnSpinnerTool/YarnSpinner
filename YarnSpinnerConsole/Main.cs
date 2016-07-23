@@ -518,9 +518,8 @@ namespace Yarn
 
 				if (expectedNextCommand != null && expectedNextCommand != command) {
 					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
-						expectedNextCommand, command));
-					Environment.Exit (1);
+					Error(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
+					                    expectedNextCommand, command));
 				}
 
 				expectedNextCommand = null;
@@ -535,22 +534,22 @@ namespace Yarn
 
 			public void HandleErrorMessage (string error)
 			{
-				Console.WriteLine("Error: " + error);
+				Error(error);
 			}
 
 			public void HandleDebugMessage (string message)
 			{
-				Console.WriteLine("Debug: " + message);
+				Note(message);
 			}
 
 			public virtual void SetNumber (string variableName, float number)
 			{
-				variableStore.SetNumber(variableName, number);
+				variableStore.SetValue(variableName, new Value(number));
 			}
 
 			public virtual float GetNumber (string variableName)
 			{
-				return variableStore.GetNumber(variableName);
+				return variableStore.GetValue(variableName).AsNumber;
 			}
 
 			public virtual void SetValue (string variableName, Value value) {
