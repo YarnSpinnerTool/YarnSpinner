@@ -318,55 +318,71 @@ namespace Yarn
 
 			compiledNode.name = node.name;
 
-			var startLabel = RegisterLabel ();
-			Emit (compiledNode, ByteCode.Label, startLabel);
-
-			foreach (var statement in node.statements) {
-				GenerateCode (compiledNode, statement);
-			}
-
-			// Does this node end after emitting AddOptions codes
-			// without calling ShowOptions?
-
-			// Note: this only works when we know that we don't have
-			// AddOptions and then Jump up back into the code to run them.
-			// TODO: A better solution would be for the parser to flag
-			// whether a node has Options at the end.
-			var hasRemainingOptions = false;
-			foreach (var instruction in compiledNode.instructions) {
-				if (instruction.operation == ByteCode.AddOption) {
-					hasRemainingOptions = true;
-				}
-				if (instruction.operation == ByteCode.ShowOptions) {
-					hasRemainingOptions = false;
-				}
-			}
-
-			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
-			if (hasRemainingOptions == false) {
-				Emit (compiledNode, ByteCode.Stop);
-			} else {
-				// Otherwise, show the accumulated nodes and then jump to the selected node
-
-				Emit (compiledNode, ByteCode.ShowOptions);
-
-				if (flags.DisableShuffleOptionsAfterNextSet == true) {
-					Emit (compiledNode, ByteCode.PushBool, false);
-					Emit (compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-					Emit (compiledNode, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = false;
-				}
-
-				Emit (compiledNode, ByteCode.RunNode);
-			}
-
 			// Register the entire text of this node if we have it
-			if (node.source != null) {
+			if (node.source != null)
+			{
+				// Dump the entire contents of this node into the string table 
+				// instead of compiling its contents.
+
 				// the line number is 0 because the string starts at the start of the node
-				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name, null, 0, true);
+				compiledNode.sourceTextStringID = program.RegisterString(node.source, node.name, "line:"+node.name, 0, true);
+			} else {
+
+				// Compile the node.
+
+				var startLabel = RegisterLabel();
+				Emit(compiledNode, ByteCode.Label, startLabel);
+
+				foreach (var statement in node.statements)
+				{
+					GenerateCode(compiledNode, statement);
+				}
+
+				// Does this node end after emitting AddOptions codes
+				// without calling ShowOptions?
+
+				// Note: this only works when we know that we don't have
+				// AddOptions and then Jump up back into the code to run them.
+				// TODO: A better solution would be for the parser to flag
+				// whether a node has Options at the end.
+				var hasRemainingOptions = false;
+				foreach (var instruction in compiledNode.instructions)
+				{
+					if (instruction.operation == ByteCode.AddOption)
+					{
+						hasRemainingOptions = true;
+					}
+					if (instruction.operation == ByteCode.ShowOptions)
+					{
+						hasRemainingOptions = false;
+					}
+				}
+
+				// If this compiled node has no lingering options to show at the end of the node, then stop at the end
+				if (hasRemainingOptions == false)
+				{
+					Emit(compiledNode, ByteCode.Stop);
+				}
+				else {
+					// Otherwise, show the accumulated nodes and then jump to the selected node
+
+					Emit(compiledNode, ByteCode.ShowOptions);
+
+					if (flags.DisableShuffleOptionsAfterNextSet == true)
+					{
+						Emit(compiledNode, ByteCode.PushBool, false);
+						Emit(compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+						Emit(compiledNode, ByteCode.Pop);
+						flags.DisableShuffleOptionsAfterNextSet = false;
+					}
+
+					Emit(compiledNode, ByteCode.RunNode);
+				}
+
 			}
 
-			program.nodes [compiledNode.name] = compiledNode;
+			program.nodes[compiledNode.name] = compiledNode;
+
 		}
 
 		private int labelCount = 0;

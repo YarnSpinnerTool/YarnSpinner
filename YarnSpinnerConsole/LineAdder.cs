@@ -92,6 +92,13 @@ namespace Yarn
 					// Get the node that this line is in.
 					var node = nodes[line.Value.nodeName];
 
+					// Is this line contained within a rawText node?
+					if (node.tagsList.FindIndex(i => i == "rawText") != -1) {
+						// We don't need to add a tag to it - genstrings will export
+						// the whole thing for us.
+						continue;
+					}
+
 					// Split this node's source by newlines
 					var lines = node.body.Split(new string[] { "\r\n", "\n"}, StringSplitOptions.None);
 

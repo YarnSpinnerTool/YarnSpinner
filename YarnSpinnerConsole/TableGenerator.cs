@@ -42,6 +42,7 @@ namespace Yarn
 				var anyLinesAreUntagged = false;
 
 				foreach (var entry in stringTable) {
+
 					if (entry.Key.StartsWith("line:") == false) {
 						anyLinesAreUntagged = true;
 					} else {
