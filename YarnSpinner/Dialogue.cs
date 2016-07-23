@@ -270,7 +270,17 @@ namespace Yarn {
 
 					try
 					{
-						this.program = serializer.Deserialize<Program>(reader);
+						// Load the stored program
+						var newProgram = serializer.Deserialize<Program>(reader);
+
+						// Merge it with our existing one, if present
+						if (program != null)
+						{
+							program.Include(newProgram);
+						}
+						else {
+							program = newProgram;
+						}
 					}
 					catch (Newtonsoft.Json.JsonReaderException e)
 					{
