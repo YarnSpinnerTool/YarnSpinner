@@ -188,6 +188,11 @@ namespace Yarn
 
 				var lineText = program.GetString ((string)i.operandA);
 
+				if (lineText == null) {
+					dialogue.LogErrorMessage("No loaded string table includes line " + i.operandA);
+					break;
+				}
+
 				lineHandler (new Dialogue.LineResult (lineText));
 
 				break;

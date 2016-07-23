@@ -95,6 +95,8 @@ namespace Yarn
 
 	[Verb("compile")]
 	class CompileOptions : BaseOptions{
+		[Option("format", HelpText = "The file format version to use.")]
+		public Dialogue.CompiledFormat format { get; set; }
 	}
 
 	[Verb("genstrings", HelpText = "Generates string tables from provided files.")]
@@ -163,8 +165,8 @@ namespace Yarn
 				var exists = System.IO.File.Exists(path);
 
 				// Does this file have the right extension?
-				var extension = System.IO.Path.GetExtension(path);
-				var hasAllowedExtension = allowedExtensions.FindIndex(item => item == extension) != -1;
+
+				var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item)) != -1;
 
 				if (!exists || !hasAllowedExtension) {
 					invalid.Add(string.Format("\"{0}\"", path));
@@ -203,7 +205,7 @@ namespace Yarn
 
 		}
 
-		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node" });
+		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes" });
 
 		static int Run(RunOptions options)
 		{

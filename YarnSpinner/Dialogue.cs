@@ -213,12 +213,48 @@ namespace Yarn {
 
 		// Load a file from disk.
 		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
-			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
-			string inputString = reader.ReadToEnd ();
-			reader.Close ();
 
-			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
+			// Is this a compiled program file?
+			if (fileName.EndsWith(".yarn.bytes")) {
 
+				var bytes = System.IO.File.ReadAllBytes(fileName);
+				LoadCompiledProgram(bytes, fileName);
+
+				return;
+			} else {
+				string inputString;
+				using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
+				{
+					inputString = reader.ReadToEnd();
+				}
+
+				LoadString(inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
+			}
+
+
+		}
+
+		public void LoadCompiledProgram(byte[] bytes, string fileName) {
+
+			if (LogDebugMessage == null)
+			{
+				throw new YarnException("LogDebugMessage must be set before loading");
+			}
+
+			if (LogErrorMessage == null)
+			{
+				throw new YarnException("LogErrorMessage must be set before loading");
+			}
+
+			using (var stream = new System.IO.MemoryStream(bytes))
+			{
+				using (var reader = new Newtonsoft.Json.Bson.BsonReader(stream))
+				{
+					var serializer = new Newtonsoft.Json.JsonSerializer();
+
+					this.program = serializer.Deserialize<Program>(reader);
+				}
+			}
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
@@ -369,6 +405,39 @@ namespace Yarn {
 
 		internal Dictionary<string,LineInfo> GetStringInfoTable() {
 			return program.lineInfo;
+		}
+
+		public enum CompiledFormat
+		{
+			V1
+		}
+
+		public const CompiledFormat LATEST_FORMAT = CompiledFormat.V1;
+
+		public byte[] GetCompiledProgram(CompiledFormat format = LATEST_FORMAT)
+		{
+
+			switch (format)
+			{
+				case CompiledFormat.V1:
+					return GetCompiledProgramV1();
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		private byte[] GetCompiledProgramV1()
+		{
+			using (var outputStream = new System.IO.MemoryStream())
+			{
+				using (var bsonWriter = new Newtonsoft.Json.Bson.BsonWriter(outputStream))
+				{
+					var s = new Newtonsoft.Json.JsonSerializer();
+					s.Serialize(bsonWriter, this.program);
+				}
+
+				return outputStream.GetBuffer();
+			}
 		}
 
 		// Unloads ALL nodes.

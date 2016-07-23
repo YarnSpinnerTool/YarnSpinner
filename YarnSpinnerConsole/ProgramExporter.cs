@@ -16,6 +16,14 @@ namespace Yarn
 
 			foreach (var file in options.files) {
 
+				// Note that we're passing in with a null library - this means
+				// that all function checking will be disabled, and missing funcs
+				// will not cause a compile error. If a func IS missing at runtime,
+				// THAT will throw an exception.
+
+				// We do this because this tool has no idea about any of the custom
+				// functions that you might be using.
+
 				var dialogue = new Dialogue(null);
 
 				dialogue.LogDebugMessage = (string message) => YarnSpinnerConsole.Note(message);
@@ -34,21 +42,12 @@ namespace Yarn
 				}
 
 				// Convert the program into BSON
+				var compiledProgram = dialogue.GetCompiledProgram(options.format);
+
 				var outputPath = System.IO.Path.ChangeExtension(file, "yarn.bytes");
 
-				var outputStream = new System.IO.FileStream(outputPath, System.IO.FileMode.OpenOrCreate);
-
 				try {
-					using (var bsonWriter = new Newtonsoft.Json.Bson.BsonWriter(outputStream))
-					{
-						JsonSerializer s = new JsonSerializer();
-						s.Serialize(bsonWriter, dialogue.program);
-
-						if (options.verbose)
-						{
-							YarnSpinnerConsole.Note(string.Format("Wrote {0}", outputPath));
-						}
-					}
+					System.IO.File.WriteAllBytes(outputPath, compiledProgram);
 				} catch (Exception e) {
 					YarnSpinnerConsole.Error(string.Format("Error writing {0}: {1}", outputPath, e.Message));
 				}

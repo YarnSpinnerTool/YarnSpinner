@@ -20,7 +20,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Commandlineparameters>compile ../../../Tests/TestCases/Localisation.node --verbose</Commandlineparameters>
+    <Commandlineparameters>run --string-table ../../../Tests/LocalisationTests/Lori.csv ../../../Tests/LocalisationTests/Lori.yarn.bytes -s Lori</Commandlineparameters>
     <ConsolePause>true</ConsolePause>
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>

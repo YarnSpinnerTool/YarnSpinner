@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Yarn
 {
@@ -15,12 +16,37 @@ namespace Yarn
 		}
 	}
 
+
+	[JsonObject(MemberSerialization.OptIn)] // properties must opt-in to JSON serialization
 	internal class Program {
 
-		public Dictionary<string,string> strings = new Dictionary<string, string> ();
-		public Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
+		internal Dictionary<string,string> strings = new Dictionary<string, string> ();
+		internal Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
 
-		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
+		[JsonProperty]
+		internal Dictionary<string, Node> nodes = new Dictionary<string, Node>();
+
+		// When saving programs, we want to save only lines that do NOT have a line: key.
+		// This is because these lines will be loaded from a string table.
+		// However, because certain strings (like those used in expressions) won't have tags,
+		// they won't be included in generated string tables, so we need to export them here.
+
+		// We do this by NOT including the main strings list, and providing a property
+		// that gets serialised as "strings" in the output, which includes all untagged strings.
+
+		[JsonProperty("strings")]
+		internal Dictionary<string, string> untaggedStrings {
+			get {
+				var result = new Dictionary<string, string>();
+				foreach (var line in strings) {
+					if (line.Key.StartsWith("line:")) {
+						continue;
+					}
+					result.Add(line.Key, line.Value);
+				}
+				return result;
+			}
+		}
 
 		private int stringCount = 0;
 
@@ -145,7 +171,7 @@ namespace Yarn
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
 	}
 
-	class Instruction {
+	struct Instruction {
 		public ByteCode operation;
 		public object operandA;
 		public object operandB;
