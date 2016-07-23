@@ -10,6 +10,8 @@ namespace YarnLocalisationTool
 		public Dictionary<string,string> GenerateTablesFromFiles (List<string> files)
 		{
 
+			bool linesWereUntagged = true;
+
 			var returnedTables = new Dictionary<string, string> ();
 
 			foreach (var file in files) {
@@ -40,9 +42,8 @@ namespace YarnLocalisationTool
 				}
 
 				if (warnUntaggedLines) {
-					MainClass.Warn("In \"" + file + "\":");
-					MainClass.Warn("Not all lines and options have a #line: tag. " +
-						"They will not be present in the string table.");
+					MainClass.Warn(string.Format("Untagged lines in {0}", file));
+					linesWereUntagged = true;
 				}
 
 				// Generate the CSV
@@ -67,6 +68,11 @@ namespace YarnLocalisationTool
 					}					
 				}
 
+			}
+
+			if (linesWereUntagged) {
+				MainClass.Warn("Some lines were not tagged, so they weren't added to the " +
+				               "string file. Use this tool's 'generate' action to add them.");
 			}
 
 			return returnedTables;

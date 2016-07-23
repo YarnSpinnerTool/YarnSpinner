@@ -25,7 +25,10 @@ namespace YarnLocalisationTool
 	class AddLabelsOptions {
 
 		[Value(0)]
-		public IEnumerable<string> sourceFiles { get; set; } 
+		public IEnumerable<string> sourceFiles { get; set; }
+
+		[Option("dry-run")]
+		public bool dryRun { get; set; }
 
 	}
 
@@ -35,13 +38,9 @@ namespace YarnLocalisationTool
 		{
 			var result = CommandLine.Parser.Default.ParseArguments<AddLabelsOptions, GenerateTableOptions> (args);
 
-			result.WithParsed<GenerateTableOptions> (options => {
-				GenerateStringTableFromFiles(options);
-			});
+			result.WithParsed<GenerateTableOptions> (GenerateStringTableFromFiles);
 
-			result.WithParsed<AddLabelsOptions> (options => {
-				AddLabelsToFiles (options);
-			});
+			result.WithParsed<AddLabelsOptions> (AddLabelsToFiles);
 		}
 
 		public static void Error(params string[] messages) {
@@ -181,12 +180,10 @@ namespace YarnLocalisationTool
 				Error ("No files provided.");
 			}
 
-			Console.WriteLine ("Adding labels to files:");
-			foreach (var file in files) {
-				Console.WriteLine ("\t" + file);
-			}
-
 			CheckFileList (files);
+
+			var lineAdder = new LineAdder();
+			lineAdder.AddLinesToFiles(options, files);
 
 		}
 	}
