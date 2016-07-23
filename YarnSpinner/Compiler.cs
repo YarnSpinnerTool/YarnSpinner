@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Yarn
 {
@@ -15,12 +16,37 @@ namespace Yarn
 		}
 	}
 
+
+	[JsonObject(MemberSerialization.OptIn)] // properties must opt-in to JSON serialization
 	internal class Program {
 
-		public Dictionary<string,string> strings = new Dictionary<string, string> ();
-		public Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
+		internal Dictionary<string,string> strings = new Dictionary<string, string> ();
+		internal Dictionary<string, LineInfo> lineInfo = new Dictionary<string, LineInfo>();
 
-		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
+		[JsonProperty]
+		internal Dictionary<string, Node> nodes = new Dictionary<string, Node>();
+
+		// When saving programs, we want to save only lines that do NOT have a line: key.
+		// This is because these lines will be loaded from a string table.
+		// However, because certain strings (like those used in expressions) won't have tags,
+		// they won't be included in generated string tables, so we need to export them here.
+
+		// We do this by NOT including the main strings list, and providing a property
+		// that gets serialised as "strings" in the output, which includes all untagged strings.
+
+		[JsonProperty("strings")]
+		internal Dictionary<string, string> untaggedStrings {
+			get {
+				var result = new Dictionary<string, string>();
+				foreach (var line in strings) {
+					if (line.Key.StartsWith("line:")) {
+						continue;
+					}
+					result.Add(line.Key, line.Value);
+				}
+				return result;
+			}
+		}
 
 		private int stringCount = 0;
 
@@ -33,7 +59,7 @@ namespace Yarn
 			}
 		}
 
-		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber) {
+		public string RegisterString(string theString, string nodeName, string lineID, int lineNumber, bool localisable) {
 
 			string key;
 
@@ -45,8 +71,10 @@ namespace Yarn
 			// It's not in the list; append it
 			strings.Add(key, theString);
 
-			// Additionally, keep info about this string around
-			lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
+			if (localisable) {
+				// Additionally, keep info about this string around
+				lineInfo.Add(key, new LineInfo(nodeName, lineNumber));
+			}
 
 			return key;
 		}
@@ -86,13 +114,6 @@ namespace Yarn
 
 					instructionCount++;
 				}
-
-				/* sb.AppendLine ();
-				sb.AppendLine ("Label table:");
-
-				foreach (var label in entry.Value.labels) {
-					sb.AppendLine (string.Format ("{0,12} : {1}", label.Key, label.Value));
-				}*/
 
 				sb.AppendLine ();
 			}
@@ -152,10 +173,10 @@ namespace Yarn
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
 	}
 
-	internal struct Instruction {
-		internal ByteCode operation;
-		internal object operandA;
-		internal object operandB;
+	struct Instruction {
+		public ByteCode operation;
+		public object operandA;
+		public object operandB;
 
 		public  string ToString(Program p, Library l) {
 
@@ -297,55 +318,71 @@ namespace Yarn
 
 			compiledNode.name = node.name;
 
-			var startLabel = RegisterLabel ();
-			Emit (compiledNode, ByteCode.Label, startLabel);
-
-			foreach (var statement in node.statements) {
-				GenerateCode (compiledNode, statement);
-			}
-
-			// Does this node end after emitting AddOptions codes
-			// without calling ShowOptions?
-
-			// Note: this only works when we know that we don't have
-			// AddOptions and then Jump up back into the code to run them.
-			// TODO: A better solution would be for the parser to flag
-			// whether a node has Options at the end.
-			var hasRemainingOptions = false;
-			foreach (var instruction in compiledNode.instructions) {
-				if (instruction.operation == ByteCode.AddOption) {
-					hasRemainingOptions = true;
-				}
-				if (instruction.operation == ByteCode.ShowOptions) {
-					hasRemainingOptions = false;
-				}
-			}
-
-			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
-			if (hasRemainingOptions == false) {
-				Emit (compiledNode, ByteCode.Stop);
-			} else {
-				// Otherwise, show the accumulated nodes and then jump to the selected node
-
-				Emit (compiledNode, ByteCode.ShowOptions);
-
-				if (flags.DisableShuffleOptionsAfterNextSet == true) {
-					Emit (compiledNode, ByteCode.PushBool, false);
-					Emit (compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-					Emit (compiledNode, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = false;
-				}
-
-				Emit (compiledNode, ByteCode.RunNode);
-			}
-
 			// Register the entire text of this node if we have it
-			if (node.source != null) {
+			if (node.source != null)
+			{
+				// Dump the entire contents of this node into the string table 
+				// instead of compiling its contents.
+
 				// the line number is 0 because the string starts at the start of the node
-				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name, null, 0);
+				compiledNode.sourceTextStringID = program.RegisterString(node.source, node.name, "line:"+node.name, 0, true);
+			} else {
+
+				// Compile the node.
+
+				var startLabel = RegisterLabel();
+				Emit(compiledNode, ByteCode.Label, startLabel);
+
+				foreach (var statement in node.statements)
+				{
+					GenerateCode(compiledNode, statement);
+				}
+
+				// Does this node end after emitting AddOptions codes
+				// without calling ShowOptions?
+
+				// Note: this only works when we know that we don't have
+				// AddOptions and then Jump up back into the code to run them.
+				// TODO: A better solution would be for the parser to flag
+				// whether a node has Options at the end.
+				var hasRemainingOptions = false;
+				foreach (var instruction in compiledNode.instructions)
+				{
+					if (instruction.operation == ByteCode.AddOption)
+					{
+						hasRemainingOptions = true;
+					}
+					if (instruction.operation == ByteCode.ShowOptions)
+					{
+						hasRemainingOptions = false;
+					}
+				}
+
+				// If this compiled node has no lingering options to show at the end of the node, then stop at the end
+				if (hasRemainingOptions == false)
+				{
+					Emit(compiledNode, ByteCode.Stop);
+				}
+				else {
+					// Otherwise, show the accumulated nodes and then jump to the selected node
+
+					Emit(compiledNode, ByteCode.ShowOptions);
+
+					if (flags.DisableShuffleOptionsAfterNextSet == true)
+					{
+						Emit(compiledNode, ByteCode.PushBool, false);
+						Emit(compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+						Emit(compiledNode, ByteCode.Pop);
+						flags.DisableShuffleOptionsAfterNextSet = false;
+					}
+
+					Emit(compiledNode, ByteCode.RunNode);
+				}
+
 			}
 
-			program.nodes [compiledNode.name] = compiledNode;
+			program.nodes[compiledNode.name] = compiledNode;
+
 		}
 
 		private int labelCount = 0;
@@ -454,7 +491,7 @@ namespace Yarn
 			// Does this line have a "#line:LINENUM" tag? Use it
 			string lineID = GetLineIDFromNodeTags(parseNode);
 
-			var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber);
+			var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber, true);
 
 			Emit (node, ByteCode.RunLine, num);
 
@@ -483,7 +520,7 @@ namespace Yarn
 
 				var labelLineID = GetLineIDFromNodeTags(shortcutOption);
 
-				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber);
+				var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber, true);
 
 				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
@@ -582,7 +619,7 @@ namespace Yarn
 
 				var lineID = GetLineIDFromNodeTags(statement.parent);
 
-				var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber);
+				var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber, true);
 
 				Emit (node, ByteCode.AddOption, stringID, destination);
 			}
@@ -677,7 +714,7 @@ namespace Yarn
 			case Value.Type.String:
 				// TODO: we use 'null' as the line ID here because strings used in expressions
 				// don't have a #line: tag we can use
-				var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber);
+				var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber, false);
 				Emit (node, ByteCode.PushString, id);
 				break;
 			case Value.Type.Bool:

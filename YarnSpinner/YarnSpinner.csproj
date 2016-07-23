@@ -54,7 +54,6 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="VirtualMachine.cs" />
-    <Compile Include="TreeRunner.cs" />
     <Compile Include="Compiler.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Analyser.cs" />

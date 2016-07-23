@@ -163,8 +163,17 @@ namespace Yarn {
 			public string title { get; set; }
 			public string body { get; set; }
 			public string tags { get; set; }
+
 			public int colorID { get; set; }
 			public Position position { get; set; }
+
+			public List<string> tagsList
+			{
+				get
+				{
+					return new List<string>(tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+				}
+			}
 
 		}
 

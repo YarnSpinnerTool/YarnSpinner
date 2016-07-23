@@ -10,9 +10,19 @@ namespace Yarn
 		static internal int GenerateTables (GenerateTableOptions options)
 		{
 
+			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
+
 			bool linesWereUntagged = false;
 
 			foreach (var file in options.files) {
+
+				// Note that we're passing in with a null library - this means
+				// that all function checking will be disabled, and missing funcs
+				// will not cause a compile error. If a func IS missing at runtime,
+				// THAT will throw an exception.
+
+				// We do this because this tool has no idea about any of the custom
+				// functions that you might be using.
 				var dialogue = new Dialogue (null);
 
 				dialogue.LogDebugMessage = delegate(string message) {
@@ -32,6 +42,7 @@ namespace Yarn
 				var anyLinesAreUntagged = false;
 
 				foreach (var entry in stringTable) {
+
 					if (entry.Key.StartsWith("line:") == false) {
 						anyLinesAreUntagged = true;
 					} else {
@@ -62,7 +73,10 @@ namespace Yarn
 							csv.WriteRecord(l);
 						}
 
-						var filePath = System.IO.Path.ChangeExtension(file, "csv");
+						var dir = System.IO.Path.GetDirectoryName(file);
+						var fileName = System.IO.Path.GetFileNameWithoutExtension(file);
+						fileName += "_lines.csv";
+						var filePath = System.IO.Path.Combine(dir, fileName);
 
 						System.IO.File.WriteAllText(filePath, w.ToString());
 

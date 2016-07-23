@@ -34,7 +34,8 @@ namespace Yarn
 {
 
 	// Shared options for all commands
-	class BaseOptions {
+	class BaseOptions
+	{
 		[Option('d', "debug", HelpText = "Show debugging information.")]
 		public bool showDebuggingInfo { get; set; }
 
@@ -48,7 +49,8 @@ namespace Yarn
 	}
 
 	// Options that pertain to compilation/execution
-	class ExecutionOptions : BaseOptions {
+	class ExecutionOptions : BaseOptions
+	{
 		[Option('T', "string-table", HelpText = "The string table to use.")]
 		public string stringTable { get; set; }
 
@@ -56,8 +58,9 @@ namespace Yarn
 		public string onlyConsiderNode { get; set; }
 	}
 
-	[Verb("verify", HelpText="Verifies files.")]
-	class VerifyOptions : ExecutionOptions {
+	[Verb("verify", HelpText = "Verifies files.")]
+	class VerifyOptions : ExecutionOptions
+	{
 		[Option('t', "show-tokens", HelpText = "Show the list of parsed tokens and exit.")]
 		public bool showTokensAndExit { get; set; }
 
@@ -69,33 +72,39 @@ namespace Yarn
 
 	}
 
-	[Verb("run", HelpText="Runs files.")]
-	class RunOptions : ExecutionOptions {
-		
-		[Option('w', "wait-for-input", HelpText="After showing each line, wait for the user to press a key.")]
+	[Verb("run", HelpText = "Runs files.")]
+	class RunOptions : ExecutionOptions
+	{
+
+		[Option('w', "wait-for-input", HelpText = "After showing each line, wait for the user to press a key.")]
 		public bool waitForInput { get; set; }
 
-		[Option('s', "start-node", Default = Dialogue.DEFAULT_START, HelpText="Start at the given node.")]
+		[Option('s', "start-node", Default = Dialogue.DEFAULT_START, HelpText = "Start at the given node.")]
 		public string startNode { get; set; }
 
-		[Option('V', "variables", HelpText="Set default variable.")]
+		[Option('V', "variables", HelpText = "Set default variable.")]
 		public IList<string> variables { get; set; }
 
-		[Option('r', "run-times", HelpText="Run the script this many times.", Default=1)]
+		[Option('r', "run-times", HelpText = "Run the script this many times.", Default = 1)]
 		public int runTimes { get; set; }
 
-		[Option('1', "select-first-choice", HelpText="Automatically select the the first option when presented with options.")]
+		[Option('1', "select-first-choice", HelpText = "Automatically select the the first option when presented with options.")]
 		public bool automaticallySelectFirstOption { get; set; }
 
 	}
 
+	[Verb("compile")]
+	class CompileOptions : BaseOptions{
+		[Option("format", HelpText = "The file format version to use.")]
+		public Dialogue.CompiledFormat format { get; set; }
+	}
 
-	[Verb("generate", HelpText = "Generates string tables from provided files.")]
+	[Verb("genstrings", HelpText = "Generates string tables from provided files.")]
 	class GenerateTableOptions : BaseOptions
 	{
 	}
 
-	[Verb("add", HelpText = "Adds localisation tags to the provided files, where necessary.")]
+	[Verb("tag", HelpText = "Adds localisation tags to the provided files, where necessary.")]
 	class AddLabelsOptions : BaseOptions
 	{
 
@@ -146,7 +155,7 @@ namespace Yarn
 			}
 		}
 
-		static void CheckFileList(IEnumerable<string> paths, List<string> allowedExtensions)
+		static internal void CheckFileList(IEnumerable<string> paths, List<string> allowedExtensions)
 		{
 			var invalid = new List<string>();
 
@@ -156,8 +165,8 @@ namespace Yarn
 				var exists = System.IO.File.Exists(path);
 
 				// Does this file have the right extension?
-				var extension = System.IO.Path.GetExtension(path);
-				var hasAllowedExtension = allowedExtensions.FindIndex(item => item == extension) != -1;
+
+				var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item)) != -1;
 
 				if (!exists || !hasAllowedExtension) {
 					invalid.Add(string.Format("\"{0}\"", path));
@@ -180,13 +189,15 @@ namespace Yarn
 		{
 
 			// Read and dispatch the appropriate command
-			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions, GenerateTableOptions, AddLabelsOptions>(args);
+			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions, CompileOptions, GenerateTableOptions, AddLabelsOptions>(args);
 
 			var returnCode = results.MapResult(
 				(RunOptions options) => Run(options),
 				(VerifyOptions options) => Verify(options),
+				(CompileOptions options) => ProgramExporter.Export(options),
 				(AddLabelsOptions options) => LineAdder.AddLines(options),
 				(GenerateTableOptions options) => TableGenerator.GenerateTables(options),
+
 				errors => { return 1; });
 
 			Environment.Exit(returnCode);
@@ -194,7 +205,7 @@ namespace Yarn
 
 		}
 
-		static List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node" });
+		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes" });
 
 		static int Run(RunOptions options)
 		{
@@ -290,7 +301,7 @@ namespace Yarn
 
 		}
 
-		static Dialogue CreateDialogue(ExecutionOptions options, ConsoleRunnerImplementation impl)
+		static internal Dialogue CreateDialogue(ExecutionOptions options, ConsoleRunnerImplementation impl)
 		{
 
 			// Load nodes
@@ -399,7 +410,7 @@ namespace Yarn
 		}
 
 		// A simple Implementation for the command line.
-		private class ConsoleRunnerImplementation : Yarn.VariableStorage {
+		internal class ConsoleRunnerImplementation : Yarn.VariableStorage {
 
 			private bool waitForLines = false;
 

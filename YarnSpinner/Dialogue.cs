@@ -89,6 +89,34 @@ namespace Yarn {
 		public string Comment { get; set; }
 	}
 
+	// Very simple continuity class that keeps all variables in memory
+	public class MemoryVariableStore : Yarn.BaseVariableStorage
+	{
+		Dictionary<string, Value> variables = new Dictionary<string, Value>();
+
+		public override void SetValue(string variableName, Value value)
+		{
+			variables[variableName] = value;
+		}
+
+		public override Value GetValue(string variableName)
+		{
+			Value value = Value.NULL;
+			if (variables.ContainsKey(variableName))
+			{
+
+				value = variables[variableName];
+
+			}
+			return value;
+		}
+
+		public override void Clear()
+		{
+			variables.Clear();
+		}
+	}
+
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
@@ -185,12 +213,81 @@ namespace Yarn {
 
 		// Load a file from disk.
 		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
-			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
-			string inputString = reader.ReadToEnd ();
-			reader.Close ();
 
-			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
+			// Is this a compiled program file?
+			if (fileName.EndsWith(".yarn.bytes")) {
 
+				var bytes = System.IO.File.ReadAllBytes(fileName);
+				LoadCompiledProgram(bytes, fileName);
+
+				return;
+			} else {
+				// It's source code, either a single node in text form or a JSON file
+				string inputString;
+				using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
+				{
+					inputString = reader.ReadToEnd();
+				}
+
+				LoadString(inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
+			}
+
+
+		}
+
+		public void LoadCompiledProgram(byte[] bytes, string fileName, CompiledFormat format = LATEST_FORMAT)
+		{
+
+			if (LogDebugMessage == null)
+			{
+				throw new YarnException("LogDebugMessage must be set before loading");
+			}
+
+			if (LogErrorMessage == null)
+			{
+				throw new YarnException("LogErrorMessage must be set before loading");
+			}
+
+			switch (format)
+			{
+				case CompiledFormat.V1:
+					LoadCompiledProgramV1(bytes);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+
+
+		}
+
+		private void LoadCompiledProgramV1(byte[] bytes)
+		{
+			using (var stream = new System.IO.MemoryStream(bytes))
+			{
+				using (var reader = new Newtonsoft.Json.Bson.BsonReader(stream))
+				{
+					var serializer = new Newtonsoft.Json.JsonSerializer();
+
+					try
+					{
+						// Load the stored program
+						var newProgram = serializer.Deserialize<Program>(reader);
+
+						// Merge it with our existing one, if present
+						if (program != null)
+						{
+							program.Include(newProgram);
+						}
+						else {
+							program = newProgram;
+						}
+					}
+					catch (Newtonsoft.Json.JsonReaderException e)
+					{
+						LogErrorMessage(string.Format("Cannot load compiled program: {0}", e.Message));
+					}
+				}
+			}
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
@@ -341,6 +438,39 @@ namespace Yarn {
 
 		internal Dictionary<string,LineInfo> GetStringInfoTable() {
 			return program.lineInfo;
+		}
+
+		public enum CompiledFormat
+		{
+			V1
+		}
+
+		public const CompiledFormat LATEST_FORMAT = CompiledFormat.V1;
+
+		public byte[] GetCompiledProgram(CompiledFormat format = LATEST_FORMAT)
+		{
+
+			switch (format)
+			{
+				case CompiledFormat.V1:
+					return GetCompiledProgramV1();
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		private byte[] GetCompiledProgramV1()
+		{
+			using (var outputStream = new System.IO.MemoryStream())
+			{
+				using (var bsonWriter = new Newtonsoft.Json.Bson.BsonWriter(outputStream))
+				{
+					var s = new Newtonsoft.Json.JsonSerializer();
+					s.Serialize(bsonWriter, this.program);
+				}
+
+				return outputStream.ToArray();
+			}
 		}
 
 		// Unloads ALL nodes.

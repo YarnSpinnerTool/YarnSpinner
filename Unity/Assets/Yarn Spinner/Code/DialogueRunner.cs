@@ -81,8 +81,12 @@ namespace Yarn.Unity
 					_dialogue = new Yarn.Dialogue (variableStorage);
 
 					// Set up the logging system.
-					_dialogue.LogDebugMessage = Debug.Log;
-					_dialogue.LogErrorMessage = Debug.LogError;
+                    _dialogue.LogDebugMessage = delegate (string message) {
+                        Debug.Log (message);
+                    };
+                    _dialogue.LogErrorMessage = delegate (string message) {
+                        Debug.LogError (message);
+                    };
 				}
 				return _dialogue;
 			}
@@ -105,10 +109,19 @@ namespace Yarn.Unity
 			// Ensure that the variable storage has the right stuff in it
 			variableStorage.ResetToDefaults ();
 
-			// Load all JSON
+			// Load all scripts
 			if (sourceText != null) {
 				foreach (var source in sourceText) {
-					dialogue.LoadString (source.text, source.name);
+
+                    // Is this a compiled script?
+                    if (source.name.EndsWith(".yarn")) {
+                        // load the raw bytes
+                        dialogue.LoadCompiledProgram(source.bytes, source.name);
+                    } else {
+                        // load and compile the text
+                        dialogue.LoadString (source.text, source.name);
+                    }
+					
 				}
 			}
 
