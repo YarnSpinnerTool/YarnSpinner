@@ -57,12 +57,12 @@ IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
 	echo "Testing $f"
 	
 	if [ $ONLY_VERIFY == 1 ]; then
-		./parser.sh -V "$f" 
+		./parser.sh verify "$f" 
 	else
 		if [ $INTERACTIVE == 1 ]; then
-			./parser.sh "$f" 
+			./parser.sh run "$f" 
 		else
-			./parser.sh -1 "$f" 
+			./parser.sh run --select-first-choice "$f" 
 		fi
 	fi
 
