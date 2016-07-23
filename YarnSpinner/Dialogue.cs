@@ -89,6 +89,34 @@ namespace Yarn {
 		public string Comment { get; set; }
 	}
 
+	// Very simple continuity class that keeps all variables in memory
+	public class MemoryVariableStore : Yarn.BaseVariableStorage
+	{
+		Dictionary<string, Value> variables = new Dictionary<string, Value>();
+
+		public override void SetValue(string variableName, Value value)
+		{
+			variables[variableName] = value;
+		}
+
+		public override Value GetValue(string variableName)
+		{
+			Value value = Value.NULL;
+			if (variables.ContainsKey(variableName))
+			{
+
+				value = variables[variableName];
+
+			}
+			return value;
+		}
+
+		public override void Clear()
+		{
+			variables.Clear();
+		}
+	}
+
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
