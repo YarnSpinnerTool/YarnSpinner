@@ -156,10 +156,10 @@ namespace Yarn {
 		public const string DEFAULT_START = "Start";
 
 		// The loader contains all of the nodes we're going to run.
-		private Loader loader;
+		internal Loader loader;
 
 		// The Program is the compiled Yarn program.
-		private Program program;
+		internal Program program;
 
 		// The library contains all of the functions and operators we know about.
 		public Library library;
@@ -335,6 +335,10 @@ namespace Yarn {
 
 		public Dictionary<string,string> GetStringTable() {
 			return program.strings;
+		}
+
+		internal Dictionary<string,LineInfo> GetStringInfoTable() {
+			return program.lineInfo;
 		}
 
 		// Unloads ALL nodes.
