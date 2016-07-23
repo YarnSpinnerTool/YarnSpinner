@@ -79,6 +79,16 @@ namespace Yarn {
         public abstract void Clear();
     }
 
+	// A line, localised into the current locale.
+	// LocalisedLines are used in both lines, options, and shortcut options - basically,
+	// anything user-facing.
+	public class LocalisedLine
+	{
+		public string LineCode { get; set; }
+		public string LineText { get; set; }
+		public string Comment { get; set; }
+	}
+
 	// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
@@ -146,16 +156,16 @@ namespace Yarn {
 		public const string DEFAULT_START = "Start";
 
 		// The loader contains all of the nodes we're going to run.
-		private Loader loader;
+		internal Loader loader;
 
 		// The Program is the compiled Yarn program.
-		private Program program;
+		internal Program program;
 
 		// The library contains all of the functions and operators we know about.
 		public Library library;
 
 		// The collection of nodes that we've seen.
-		private HashSet<String> visitedNodeNames = new HashSet<string>();
+		public HashSet<String> visitedNodeNames = new HashSet<string>();
 
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
@@ -291,6 +301,23 @@ namespace Yarn {
 			}
 		}
 
+		public Dictionary<string, string> GetTextForAllNodes() {
+			var d = new Dictionary<string,string>();
+
+			foreach (var node in program.nodes) {
+				var text = program.GetTextForNode(node.Key);
+
+				if (text == null)
+					continue;
+
+				d [node.Key] = text;
+			}
+
+			return d;
+		}
+
+		// Returns the source code for the node 'nodeName', 
+		// if that node was tagged with rawText.
 		public string GetTextForNode(string nodeName) {
 			if (program.nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
@@ -301,6 +328,19 @@ namespace Yarn {
 				LogErrorMessage ("No node named " + nodeName);
 				return null;
 			}
+		}
+
+		public void AddStringTable(Dictionary<string, string> stringTable)
+		{
+			program.LoadStrings(stringTable);
+		}
+
+		public Dictionary<string,string> GetStringTable() {
+			return program.strings;
+		}
+
+		internal Dictionary<string,LineInfo> GetStringInfoTable() {
+			return program.lineInfo;
 		}
 
 		// Unloads ALL nodes.
@@ -325,19 +365,21 @@ namespace Yarn {
 			if (program == null) {
 
 				if (program.nodes.Count > 0) {
-					LogDebugMessage ("Called NodeExists, but the program hasn't been compiled yet." +
-					"Nodes have been loaded, so I'm going to compile them.");
+					LogErrorMessage ("Internal consistency error: Called NodeExists, and " +
+					                 "there are nodes loaded, but the program hasn't " +
+					                 "been compiled yet, somehow?");
 
-					if (program == null) {
-						return false;
-					}
+					return false;
+
 				} else {
-					LogErrorMessage ("Tried to call NodeExists, but no nodes have been compiled!");
+					LogErrorMessage ("Tried to call NodeExists, but no nodes " +
+					                 "have been compiled!");
 					return false;
 				}
 			}
 			if (program.nodes == null || program.nodes.Count == 0) {
-				LogDebugMessage ("Called NodeExists, but there are zero nodes. This may be an error.");
+				LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
+				                 "This may be an error.");
 				return false;
 			}
 			return program.nodes.ContainsKey(nodeName);

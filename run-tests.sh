@@ -31,7 +31,7 @@ INTERACTIVE=0
 function show_help {
 	echo "run-tests.sh: Run all Yarn scripts in a directory"
 	echo
-	echo "Usage: package.sh [-d <path>] [-Vih]"
+	echo "Usage: run-tests.sh [-d <path>] [-Vih]"
 	echo "  -d <path>: Run the tests in <path> (defaults to '.')"
 	echo "  -i: Run scripts interactively; when presented with options, wait for input."
 	echo "  -V: Verify scripts only; do not run. (Ignores -i.)"
@@ -57,12 +57,12 @@ IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
 	echo "Testing $f"
 	
 	if [ $ONLY_VERIFY == 1 ]; then
-		./parser.sh -V "$f" 
+		./yarn verify "$f" 
 	else
 		if [ $INTERACTIVE == 1 ]; then
-			./parser.sh "$f" 
+			./yarn run "$f" 
 		else
-			./parser.sh -1 "$f" 
+			./yarn run --select-first-choice "$f" 
 		fi
 	fi
 

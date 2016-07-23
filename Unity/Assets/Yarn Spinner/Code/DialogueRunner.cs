@@ -27,19 +27,35 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using CsvHelper;
 
 namespace Yarn.Unity
 {
-	// DialogueRunners act as the interface between your game and YarnSpinner.
 
-	// Make our menu item slightly nicer looking
+    [System.Serializable]
+    public class LocalisedStringGroup {
+        public SystemLanguage language;
+        public TextAsset[] stringFiles;
+    }
+
+	// DialogueRunners act as the interface between your game and YarnSpinner.
+    // Make our menu item slightly nicer looking
 	[AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
 	public class DialogueRunner : MonoBehaviour
 	{
 		// The JSON files to load the conversation from
 		public TextAsset[] sourceText;
 
-		// Our variable storage
+        // The group of JSON files to be used for this language
+        public LocalisedStringGroup[] stringGroups;
+
+        // Language debugging options
+        public bool shouldOverrideLanguage = false;
+
+        public SystemLanguage overrideLanguage = SystemLanguage.English;
+
+        // Our variable storage
 		public Yarn.Unity.VariableStorageBehaviour variableStorage;
 
 		// The object that will handle the actual display and user input
@@ -74,7 +90,7 @@ namespace Yarn.Unity
 
 		void Start ()
 		{
-			// Ensure that we have our Implementation object
+            // Ensure that we have our Implementation object
 			if (dialogueUI == null) {
 				Debug.LogError ("Implementation was not set! Can't run the dialogue!");
 				return;
@@ -99,6 +115,19 @@ namespace Yarn.Unity
 			if (startAutomatically) {
 				StartDialogue();
 			}
+
+            // Load the string table for this language, if appropriate
+            var stringsGroup = new List<LocalisedStringGroup>(stringGroups).Find(
+                entry => entry.language == (shouldOverrideLanguage ? overrideLanguage : Application.systemLanguage)
+            );
+
+            if (stringsGroup != null) {
+                foreach (var table in stringsGroup.stringFiles) {
+                    this.AddStringTable(table.text);
+                }
+            }
+
+
 		}
 
 		public void AddScript(string text) {
@@ -108,6 +137,37 @@ namespace Yarn.Unity
 		public void AddScript(TextAsset asset) {
 			dialogue.LoadString(asset.text);
 		}
+
+        // Loads a string table, replacing any existing strings with the same
+        // key.
+        public void AddStringTable(Dictionary<string,string> stringTable) {
+            dialogue.AddStringTable(stringTable);
+        }
+
+        public void AddStringTable(string text) {
+            
+            // Create the dictionary that will contain these values
+            var stringTable = new Dictionary<string,string>();
+
+            using (var reader = new System.IO.StringReader(text)) {
+                using (var csv = new CsvHelper.CsvReader(reader)) {
+
+                    var records = csv.GetRecords<Yarn.LocalisedLine>();
+
+                    foreach (var record in records) {
+                        stringTable[record.LineCode] = record.LineText;
+                    }
+
+                }
+            }
+
+            AddStringTable(stringTable);
+
+        }
+
+        public void AddStringTable(TextAsset text) {
+            AddStringTable(text.text);
+        }
 
 		// Nuke the variable store and start again
 		public void ResetDialogue ()

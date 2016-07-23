@@ -29,7 +29,7 @@ SOFTWARE.
 
 using System;
 using System.Collections.Generic;
-using Json;
+using Newtonsoft.Json;
 
 
 namespace Yarn {
@@ -100,7 +100,7 @@ namespace Yarn {
 					}
 
 					var lexer = new Lexer ();
-					var tokens = lexer.Tokenise (nodeInfo.title, nodeInfo.text);
+					var tokens = lexer.Tokenise (nodeInfo.title, nodeInfo.body);
 
 					if (showTokens)
 						PrintTokenList (tokens);
@@ -110,7 +110,7 @@ namespace Yarn {
 					// If this node is tagged "rawText", then preserve its source
 					if (string.IsNullOrEmpty(nodeInfo.tags) == false && 
 						nodeInfo.tags.Contains("rawText")) {
-						node.source = nodeInfo.text;
+						node.source = nodeInfo.body;
 					}
 
 					node.name = nodeInfo.title;
@@ -154,58 +154,38 @@ namespace Yarn {
 		}
 
 		// The raw text of the Yarn node, plus metadata
-		struct NodeInfo {
-			public string title;
-			public string text;
-			public string tags;
-			public NodeInfo(string title, string text, string tags) {
-				this.title = title;
-				this.text = text;
-				this.tags = tags;
+		public struct NodeInfo {
+			public struct Position {
+				public int x { get; set; }
+				public int y { get; set; }
 			}
+
+			public string title { get; set; }
+			public string body { get; set; }
+			public string tags { get; set; }
+			public int colorID { get; set; }
+			public Position position { get; set; }
+
 		}
 
 		// Given either Twine, JSON or XML input, return an array
 		// containing info about the nodes in that file
-		NodeInfo[] ParseInput(string text)
+		internal NodeInfo[] ParseInput(string text)
 		{
 			// All the nodes we found in this file
 			var nodes = new List<NodeInfo> ();
 
 			if (text.IndexOf("//") == 0) {
 				// If it starts with a comment, treat it as a single-node file
-				nodes.Add (new NodeInfo ("Start", text, null));
+				var nodeInfo = new NodeInfo();
+				nodeInfo.title = "Start";
+				nodeInfo.body = text;
+				nodes.Add (nodeInfo);
 			} else {
-				// Blindly assume it's JSON! \:D/
+				// Parse it as JSON
 				try {
-
-					// First, parse the raw text
-					var loadedJSON = JsonParser.FromJson (text);
-
-					// Process each item that was found (probably just a single one)
-					foreach (var item in loadedJSON) {
-
-						// We expect it to be an array of dictionaries
-						var list = item.Value as IList<object>;
-
-						// For each dictionary in the list..
-						foreach (IDictionary<string,object> nodeJSON in list) {
-
-							// Pull out the node's title and body, and use that
-							nodes.Add(
-								new NodeInfo(
-									nodeJSON["title"] as string, 
-									nodeJSON["body"] as string,
-									nodeJSON["tags"] as string
-								)
-							);
-						}
-					}
-
-				} catch (InvalidCastException) {
-					dialogue.LogErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
-						"it didn't match the data layout I was expecting.");
-				} catch (InvalidJsonException e) {
+					nodes = JsonConvert.DeserializeObject<List<NodeInfo>>(text);
+				} catch (JsonReaderException e) {
 					dialogue.LogErrorMessage ("Error parsing Yarn input: " + e.Message);
 				}
 			}

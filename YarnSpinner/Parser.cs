@@ -98,14 +98,42 @@ namespace Yarn {
 		// Base class for nodes in th parse tree
 		internal abstract class ParseNode {
 
-			private ParseNode parent;
+			internal ParseNode parent;
+
+			// The line that this parse node begins on.
+			internal int lineNumber;
 
 			// ParseNodes do their parsing by consuming tokens from the Parser.
 			// You parse tokens into a ParseNode by using its constructor.
-			internal ParseNode(ParseNode parent, Parser p) { this.parent = parent; }
+			internal ParseNode(ParseNode parent, Parser p) { 
+				this.parent = parent;
+				if (p.tokens.Count > 0)
+					this.lineNumber = p.tokens.Peek().lineNumber;
+				else
+					this.lineNumber = -1;
+			}
 
 			// Recursively prints the ParseNode and all of its child ParseNodes.
 			internal abstract string PrintTree (int indentLevel);
+
+			internal string[] tags = {};
+
+			public string TagsToString(int indentLevel)
+			{
+				if (tags.Length > 0) {
+					var s = new StringBuilder ();
+
+					s.Append (Tab (indentLevel + 1, "Tags:"));
+					foreach (var tag in this.tags) {
+						s.Append(Tab (indentLevel + 2, "#" + tag));
+					}
+					return s.ToString ();
+				} else {
+					return "";
+				}
+
+
+			}
 
 			public override string ToString ()
 			{
@@ -202,55 +230,73 @@ namespace Yarn {
 				if (Block.CanParse(p)) {
 					type = Type.Block;
 					block = new Block(this, p);
-					return;
 				} else if (IfStatement.CanParse(p)) {
 					type = Type.IfStatement;
 					ifStatement = new IfStatement(this, p);
-					return;
 				} else if (OptionStatement.CanParse(p)) {
 					type = Type.OptionStatement;
 					optionStatement = new OptionStatement(this, p);
-					return;
 				} else if (AssignmentStatement.CanParse(p)) {
 					type = Type.AssignmentStatement;
 					assignmentStatement = new AssignmentStatement(this, p);
-					return;
 				} else if (ShortcutOptionGroup.CanParse(p)) {
 					type = Type.ShortcutOptionGroup;
 					shortcutOptionGroup = new ShortcutOptionGroup(this, p);
-					return;
 				} else if (CustomCommand.CanParse(p)) {
 					type = Type.CustomCommand;
 					customCommand = new CustomCommand(this, p);
-					return;
 				} else if (p.NextSymbolIs(TokenType.Text)) {
 					line = p.ExpectSymbol(TokenType.Text).value as string;
 					type = Type.Line;
 				} else {
 					throw ParseException.Make(p.tokens.Peek(), "Expected a statement here but got " + p.tokens.Peek().ToString() +" instead (was there an unbalanced if statement earlier?)");
 				}
+
+				// Parse the optional tags that follow this statement
+				var tags = new List<string>();
+
+				while (p.NextSymbolIs(TokenType.TagMarker)) {
+					p.ExpectSymbol(TokenType.TagMarker);
+					var tag = p.ExpectSymbol(TokenType.Identifier).value;
+					tags.Add(tag);
+				}
+
+				if (tags.Count > 0)
+					this.tags = tags.ToArray();
 			}
 
 			internal override string PrintTree (int indentLevel)
 			{
+				StringBuilder s = new StringBuilder ();
 				switch (type) {
 				case Type.Block:
-					return block.PrintTree (indentLevel);
+					s.Append(block.PrintTree (indentLevel));
+					break;
 				case Type.IfStatement:
-					return ifStatement.PrintTree (indentLevel);
+					s.Append (ifStatement.PrintTree (indentLevel));
+					break;
 				case Type.OptionStatement:
-					return optionStatement.PrintTree (indentLevel);
+					s.Append (optionStatement.PrintTree (indentLevel));
+					break;
 				case Type.AssignmentStatement:
-					return assignmentStatement.PrintTree (indentLevel);
+					s.Append (assignmentStatement.PrintTree (indentLevel));
+					break;
 				case Type.ShortcutOptionGroup:
-					return shortcutOptionGroup.PrintTree (indentLevel);
+					s.Append (shortcutOptionGroup.PrintTree (indentLevel));
+					break;
 				case Type.CustomCommand:
-					return customCommand.PrintTree (indentLevel);
+					s.Append (customCommand.PrintTree (indentLevel));
+					break;
 				case Type.Line:
-					return Tab (indentLevel, "Line: "+ line);
+					s.Append (Tab (indentLevel, "Line: " + line));
+					break;
+				default:
+					throw new ArgumentNullException ();
 				}
 
-				throw new ArgumentNullException ();
+				s.Append (TagsToString (indentLevel));
+
+				return s.ToString ();
 			}
 
 		}
@@ -344,7 +390,6 @@ namespace Yarn {
 				do {						
 					_options.Add(new ShortcutOption(shortcutIndex++, this, p));
 				} while (p.NextSymbolIs(TokenType.ShortcutOption));
-
 			}
 
 			internal override string PrintTree (int indentLevel)
@@ -375,12 +420,27 @@ namespace Yarn {
 				label = p.ExpectSymbol(TokenType.Text).value as string;
 
 				// Parse the conditional ("<<if $foo>>") if it's there
-				if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If)) {
-					p.ExpectSymbol(TokenType.BeginCommand);
-					p.ExpectSymbol(TokenType.If);
-					condition = Expression.Parse(this, p);
-					p.ExpectSymbol(TokenType.EndCommand);
+
+				var tags = new List<string>();
+
+				while (
+					p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If) ||
+					p.NextSymbolIs(TokenType.TagMarker)) {
+
+					if (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.If)) {
+						p.ExpectSymbol(TokenType.BeginCommand);
+						p.ExpectSymbol(TokenType.If);
+						condition = Expression.Parse(this, p);
+						p.ExpectSymbol(TokenType.EndCommand);
+					} else if (p.NextSymbolIs(TokenType.TagMarker)) {
+
+						p.ExpectSymbol(TokenType.TagMarker);
+						var tag = p.ExpectSymbol(TokenType.Identifier).value;
+						tags.Add(tag);
+					}
 				}
+
+				this.tags = tags.ToArray();
 
 				// Parse the statements belonging to this option if it has any
 				if (p.NextSymbolIs(TokenType.Indent)) {
@@ -407,6 +467,8 @@ namespace Yarn {
 					sb.Append (optionNode.PrintTree (indentLevel + 1));
 					sb.Append (Tab (indentLevel, "}"));
 				}
+
+				sb.Append (TagsToString (indentLevel));
 
 				return sb.ToString ();
 			}
@@ -698,7 +760,7 @@ namespace Yarn {
 			}
 
 			// Use a provided token
-			internal ValueNode(ParseNode parent, Token t) : base (parent, null) {
+			internal ValueNode(ParseNode parent, Token t, Parser p) : base (parent, p) {
 				UseToken(t);
 			}
 
@@ -746,12 +808,12 @@ namespace Yarn {
 			internal FunctionInfo function;
 			internal List<Expression> parameters;
 
-			internal Expression(ParseNode parent, ValueNode value) : base(parent, null) {
+			internal Expression(ParseNode parent, ValueNode value, Parser p) : base(parent, p) {
 				this.type = Type.Value;
 				this.value = value;
 			}
 
-			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters) : base(parent, null) {
+			internal Expression(ParseNode parent, FunctionInfo function, List<Expression> parameters, Parser p) : base(parent, p) {
 				type = Type.FunctionCall;
 				this.function = function;
 				this.parameters = parameters;
@@ -968,23 +1030,36 @@ namespace Yarn {
 
 						var operatorFunc = p.library.GetFunction (next.type.ToString());
 
-						var expr = new Expression (parent, operatorFunc, parameters);
+						var expr = new Expression (parent, operatorFunc, parameters, p);
 
 						evaluationStack.Push(expr);
 					} else if (next.type == TokenType.Identifier) {
 						// This is a function call
-						var info = p.library.GetFunction(next.value as String);
 
-						// Ensure that this call has the right number of params
-						if (info.IsParameterCountCorrect(next.parameterCount) == false) {
-							string error = string.Format("Error parsing expression: " +
-								"Unsupported number of parameters for function {0} (expected {1}, got {2})",
-								next.value as String,
-								info.paramCount,
-								next.parameterCount
-							);
-							throw ParseException.Make(next, error);
+						FunctionInfo info = null;
+
+						// If we have a library, use it to check if the
+						// number of parameters provided is correct
+						if (p.library != null) {
+							info = p.library.GetFunction(next.value as String);
+
+							// Ensure that this call has the right number of params
+							if (info.IsParameterCountCorrect(next.parameterCount) == false) {
+								string error = string.Format("Error parsing expression: " +
+									"Unsupported number of parameters for function {0} (expected {1}, got {2})",
+									next.value as String,
+									info.paramCount,
+									next.parameterCount
+								);
+								throw ParseException.Make(next, error);
+							}
+						} else {
+							// Use a dummy FunctionInfo to represent info about the
+							// fact that a function is called; note that
+							// attempting to call this will fail
+							info = new FunctionInfo (next.value, next.parameterCount, (Function)null);
 						}
+
 
 						var parameterList = new List<Expression> ();
 						for (int i = 0; i < next.parameterCount; i++) {
@@ -992,15 +1067,15 @@ namespace Yarn {
 						}
 						parameterList.Reverse ();
 
-						var expr = new Expression (parent, info, parameterList);
+						var expr = new Expression (parent, info, parameterList, p);
 
 						evaluationStack.Push (expr);
 
 					} else {
 
 						// This is a raw value
-						var v = new ValueNode(parent, next);
-						Expression expr = new Expression(parent, v);
+						var v = new ValueNode(parent, next, p);
+						Expression expr = new Expression(parent, v, p);
 						evaluationStack.Push(expr);
 
 					}
@@ -1213,7 +1288,7 @@ namespace Yarn {
 				}
 			}
 
-			internal Operator(ParseNode parent, TokenType t) : base(parent, null) {
+			internal Operator(ParseNode parent, TokenType t, Parser p) : base(parent, p) {
 				operatorType = t;
 			}
 
@@ -1234,7 +1309,9 @@ namespace Yarn {
 
 		Library library;
 
-		// Take whatever we were given and make a queue out of it
+		// Take whatever we were given and make a queue out of it.
+		// If library is null, no checks are made to function calls, and 
+		// all function calls are assumed to be valid.
 		internal Parser(ICollection<Token> tokens, Library library) {
 			this.tokens = new Queue<Token>(tokens);
 			this.library = library;
