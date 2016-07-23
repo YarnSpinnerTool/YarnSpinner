@@ -51,3 +51,6 @@ using System.Runtime.CompilerServices;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+// Make internals available to the localisation tool
+[assembly: InternalsVisibleTo("YarnLocalisationTool")]
+
