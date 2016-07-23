@@ -150,24 +150,9 @@ namespace YarnLocalisationTool
 			CheckFileList (files);
 
 			var tableGenerator = new TableGenerator ();
-			var result = tableGenerator.GenerateTablesFromFiles (files);
-
-			Console.WriteLine ();
+			tableGenerator.GenerateTablesFromFiles (options, files);
 
 
-
-			foreach (var table in result) {
-				var fileName = System.IO.Path.GetFileNameWithoutExtension (table.Key);
-
-				fileName = System.IO.Path.ChangeExtension(fileName, "csv");
-				var filePath = System.IO.Path.Combine(options.outputPath, fileName);
-
-				System.IO.File.WriteAllText(filePath, table.Value);
-
-				if (options.verbose) {
-					Note("Wrote " + filePath);
-				}
-			}
 		}
 
 

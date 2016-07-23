@@ -165,7 +165,7 @@ namespace Yarn {
 		public Library library;
 
 		// The collection of nodes that we've seen.
-		private HashSet<String> visitedNodeNames = new HashSet<string>();
+		public HashSet<String> visitedNodeNames = new HashSet<string>();
 
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
@@ -316,6 +316,8 @@ namespace Yarn {
 			return d;
 		}
 
+		// Returns the source code for the node 'nodeName', 
+		// if that node was tagged with rawText.
 		public string GetTextForNode(string nodeName) {
 			if (program.nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
@@ -328,7 +330,7 @@ namespace Yarn {
 			}
 		}
 
-		public void LoadLocalisedStrings(Dictionary<string, string> stringTable)
+		public void AddStringTable(Dictionary<string, string> stringTable)
 		{
 			program.LoadStrings(stringTable);
 		}
@@ -363,19 +365,21 @@ namespace Yarn {
 			if (program == null) {
 
 				if (program.nodes.Count > 0) {
-					LogDebugMessage ("Called NodeExists, but the program hasn't been compiled yet." +
-					"Nodes have been loaded, so I'm going to compile them.");
+					LogErrorMessage ("Internal consistency error: Called NodeExists, and " +
+					                 "there are nodes loaded, but the program hasn't " +
+					                 "been compiled yet, somehow?");
 
-					if (program == null) {
-						return false;
-					}
+					return false;
+
 				} else {
-					LogErrorMessage ("Tried to call NodeExists, but no nodes have been compiled!");
+					LogErrorMessage ("Tried to call NodeExists, but no nodes " +
+					                 "have been compiled!");
 					return false;
 				}
 			}
 			if (program.nodes == null || program.nodes.Count == 0) {
-				LogDebugMessage ("Called NodeExists, but there are zero nodes. This may be an error.");
+				LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
+				                 "This may be an error.");
 				return false;
 			}
 			return program.nodes.ContainsKey(nodeName);

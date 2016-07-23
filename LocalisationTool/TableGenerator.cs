@@ -7,41 +7,39 @@ namespace YarnLocalisationTool
 
 	class TableGenerator
 	{
-		public Dictionary<string,string> GenerateTablesFromFiles (List<string> files)
+		public void GenerateTablesFromFiles (GenerateTableOptions options, List<string> files)
 		{
 
-			bool linesWereUntagged = true;
-
-			var returnedTables = new Dictionary<string, string> ();
+			bool linesWereUntagged = false;
 
 			foreach (var file in files) {
-				Dialogue d = new Dialogue (null);
+				var dialogue = new Dialogue (null);
 
-				d.LogDebugMessage = delegate(string message) {
+				dialogue.LogDebugMessage = delegate(string message) {
 					MainClass.Note(message);	
 				};
 
-				d.LogErrorMessage = delegate(string message) {
+				dialogue.LogErrorMessage = delegate(string message) {
 					MainClass.Error (message);
 				};
 
-				d.LoadFile (file);
+				dialogue.LoadFile (file);
 
-				var stringTable = d.GetStringTable ();
+				var stringTable = dialogue.GetStringTable ();
 
 				var emittedStringTable = new Dictionary<string,string> ();
 
-				var warnUntaggedLines = false;
+				var anyLinesAreUntagged = false;
 
 				foreach (var entry in stringTable) {
 					if (entry.Key.StartsWith("line:") == false) {
-						warnUntaggedLines = true;
+						anyLinesAreUntagged = true;
 					} else {
 						emittedStringTable [entry.Key] = entry.Value;
 					}
 				}
 
-				if (warnUntaggedLines) {
+				if (anyLinesAreUntagged) {
 					MainClass.Warn(string.Format("Untagged lines in {0}", file));
 					linesWereUntagged = true;
 				}
@@ -64,7 +62,14 @@ namespace YarnLocalisationTool
 							csv.WriteRecord(l);
 						}
 
-						returnedTables[file] = w.ToString();
+						var filePath = System.IO.Path.ChangeExtension(file, "csv");
+
+						System.IO.File.WriteAllText(filePath, w.ToString());
+
+						if (options.verbose)
+						{
+							MainClass.Note("Wrote " + filePath);
+						}
 					}					
 				}
 
@@ -74,8 +79,6 @@ namespace YarnLocalisationTool
 				MainClass.Warn("Some lines were not tagged, so they weren't added to the " +
 				               "string file. Use this tool's 'generate' action to add them.");
 			}
-
-			return returnedTables;
 
 		}
 
@@ -88,8 +91,4 @@ namespace YarnLocalisationTool
 		}
 	}
 
-
-	
-
-	
 }

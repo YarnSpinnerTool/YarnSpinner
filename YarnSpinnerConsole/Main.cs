@@ -308,7 +308,7 @@ namespace Yarn
 					}
 				}
 
-				dialogue.LoadLocalisedStrings(parsedTable);
+				dialogue.AddStringTable(parsedTable);
 			}
 
 			if (compileToBytecodeOnly) {

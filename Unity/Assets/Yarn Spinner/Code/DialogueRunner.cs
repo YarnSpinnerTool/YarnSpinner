@@ -141,7 +141,7 @@ namespace Yarn.Unity
         // Loads a string table, replacing any existing strings with the same
         // key.
         public void AddStringTable(Dictionary<string,string> stringTable) {
-            dialogue.LoadLocalisedStrings(stringTable);
+            dialogue.AddStringTable(stringTable);
         }
 
         public void AddStringTable(string text) {
