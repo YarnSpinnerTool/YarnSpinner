@@ -93,7 +93,7 @@ namespace Yarn
 
 	}
 
-	[Verb("compile")]
+	[Verb("compile", HelpText="Compiles the provided files.")]
 	class CompileOptions : BaseOptions{
 		[Option("format", HelpText = "The file format version to use.")]
 		public Dialogue.CompiledFormat format { get; set; }
@@ -104,7 +104,7 @@ namespace Yarn
 	{
 	}
 
-	[Verb("tag", HelpText = "Adds localisation tags to the provided files, where necessary.")]
+	[Verb("taglines", HelpText = "Adds localisation tags to the provided files, where necessary.")]
 	class AddLabelsOptions : BaseOptions
 	{
 
@@ -155,8 +155,14 @@ namespace Yarn
 			}
 		}
 
-		static internal void CheckFileList(IEnumerable<string> paths, List<string> allowedExtensions)
+		static internal void CheckFileList(IList<string> paths, List<string> allowedExtensions)
 		{
+
+			if (paths.Count == 0) {
+				Warn("No files provided.");
+				return;
+			}
+
 			var invalid = new List<string>();
 
 			foreach (var path in paths)
