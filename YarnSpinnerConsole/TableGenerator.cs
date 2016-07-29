@@ -12,6 +12,10 @@ namespace Yarn
 
 			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
+			if (options.verbose && options.onlyUseTag != null) {
+				YarnSpinnerConsole.Note(string.Format("Only using lines from nodes tagged \"{0}\"", options.onlyUseTag));
+			}
+
 			bool linesWereUntagged = false;
 
 			foreach (var file in options.files) {
@@ -42,6 +46,23 @@ namespace Yarn
 				var anyLinesAreUntagged = false;
 
 				foreach (var entry in stringTable) {
+
+					// If options.onlyUseTag is set, we skip all lines in nodes that
+					// don't have that tag.
+					if (options.onlyUseTag != null) {
+
+						// Find the tags for the node that this string is in
+						var stringInfo = dialogue.program.lineInfo[entry.Key];
+						var node = dialogue.program.nodes[stringInfo.nodeName];
+						var tags = node.tags;
+
+						// If the tags don't include the one we're looking for,
+						// skip this line
+						if (tags.FindIndex(i => i == options.onlyUseTag) == -1) {
+							continue;
+						}
+
+					}
 
 					if (entry.Key.StartsWith("line:") == false) {
 						anyLinesAreUntagged = true;

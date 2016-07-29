@@ -54,7 +54,7 @@ namespace Yarn
 		[Option('T', "string-table", HelpText = "The string table to use.")]
 		public string stringTable { get; set; }
 
-		[Option('o', "only", HelpText = "Only consider this node.")]
+		[Option('o', "only-node", HelpText = "Only consider this node.")]
 		public string onlyConsiderNode { get; set; }
 	}
 
@@ -102,6 +102,8 @@ namespace Yarn
 	[Verb("genstrings", HelpText = "Generates string tables from provided files.")]
 	class GenerateTableOptions : BaseOptions
 	{
+		[Option("only-tag", HelpText = "Only use nodes that have this tag.")]
+		public string onlyUseTag { get; set; }
 	}
 
 	[Verb("taglines", HelpText = "Adds localisation tags to the provided files, where necessary.")]
@@ -110,6 +112,9 @@ namespace Yarn
 
 		[Option("dry-run", HelpText = "Don't actually modify the contents of any files.")]
 		public bool dryRun { get; set; }
+
+		[Option("only-tag", HelpText = "Only use nodes that have this tag.")]
+		public string onlyUseTag { get; set; }
 
 	}
 

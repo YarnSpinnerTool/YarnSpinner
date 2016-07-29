@@ -70,16 +70,18 @@ namespace Yarn
 				}
 
 				// Convert this list into an easier-to-index dictionary
-				var nodes = new Dictionary<string, Loader.NodeInfo>();
+				var lineInfo = new Dictionary<string, Loader.NodeInfo>();
 
 				foreach (var node in nodeInfoList) {
-					nodes[node.title] = node;
+					lineInfo[node.title] = node;
 
 				}
 
 				// Make a list of line codes that we already know about.
 				// This list will be updated as we tag lines, to prevent collisions.
 				var existingKeys = new List<string>(nodes.Keys);
+
+				bool anyNodesModified = false;
 
 				// We now have a list of all strings that do not have a string tag.
 				// Add a new tag to these lines.
@@ -90,17 +92,26 @@ namespace Yarn
 					// to do that only once.
 
 					// Get the node that this line is in.
-					var node = nodes[line.Value.nodeName];
+					var nodeInfo = lineInfo[line.Value.nodeName];
 
 					// Is this line contained within a rawText node?
-					if (node.tagsList.FindIndex(i => i == "rawText") != -1) {
+					if (nodeInfo.tagsList.FindIndex(i => i == "rawText") != -1) {
 						// We don't need to add a tag to it - genstrings will export
 						// the whole thing for us.
 						continue;
 					}
 
+					// If we have a tag to consider, and this node doesn't have that tag,
+					// continue
+					if (options.onlyUseTag != null) {
+						if (nodeInfo.tagsList.FindIndex(i => i == options.onlyUseTag) == -1) {
+							continue;
+						}
+					}
+
+
 					// Split this node's source by newlines
-					var lines = node.body.Split(new string[] { "\r\n", "\n"}, StringSplitOptions.None);
+					var lines = nodeInfo.body.Split(new string[] { "\r\n", "\n"}, StringSplitOptions.None);
 
 					// Get the original line
 					var existingLine = lines[line.Value.lineNumber - 1];
@@ -112,7 +123,7 @@ namespace Yarn
 					existingKeys.Add(newTag);
 
 					if (options.verbose) {
-						YarnSpinnerConsole.Note(string.Format("Tagged line with ID \"{0}\" in node {1}: {2}", newTag, node.title, existingLine));
+						YarnSpinnerConsole.Note(string.Format("Tagged line with ID \"{0}\" in node {1}: {2}", newTag, nodeInfo.title, existingLine));
 					}
 
 					// Re-write the line.
@@ -121,11 +132,18 @@ namespace Yarn
 
 
 					// Pack this all back up into a single string
-					node.body = string.Join("\n", lines);
+					nodeInfo.body = string.Join("\n", lines);
 
 					// Put the updated node in the node collection.
-					nodes[line.Value.nodeName] = node;
+					lineInfo[line.Value.nodeName] = nodeInfo;
 
+					anyNodesModified = true;
+
+				}
+
+				// If we didn't end up changing anything, don't modify the file
+				if (anyNodesModified == false) {
+					continue;
 				}
 
 				// All the nodes have been updated; save this back to disk.
@@ -139,7 +157,7 @@ namespace Yarn
 				}
 
 				// Convert the nodes back into JSON
-				var jsonData = JsonConvert.SerializeObject(nodes.Values, Formatting.Indented);
+				var jsonData = JsonConvert.SerializeObject(lineInfo.Values, Formatting.Indented);
 
 				// Write the file!
 				using (var writer = new System.IO.StreamWriter(file)) {
