@@ -13,6 +13,8 @@ namespace Yarn
 
 			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
+			var existingKeys = new List<string>();
+
 			foreach (var file in options.files) {
 
 				// We can only parse json files at present
@@ -79,7 +81,7 @@ namespace Yarn
 
 				// Make a list of line codes that we already know about.
 				// This list will be updated as we tag lines, to prevent collisions.
-				var existingKeys = new List<string>(nodes.Keys);
+				existingKeys.AddRange(lineInfo.Keys);
 
 				bool anyNodesModified = false;
 
