@@ -115,6 +115,8 @@ namespace Yarn {
 
 					node.name = nodeInfo.title;
 
+					node.nodeTags = nodeInfo.tagsList;
+
 					if (showParseTree)
 						PrintParseTree(node);
 

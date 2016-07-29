@@ -171,6 +171,8 @@ namespace Yarn
 		public string sourceTextStringID = null;
 
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
+
+		public List<string> tags;
 	}
 
 	struct Instruction {
@@ -308,6 +310,9 @@ namespace Yarn
 			program = new Program ();
 		}
 
+
+
+
 		internal void CompileNode(Parser.Node node) {
 
 			if (program.nodes.ContainsKey(node.name)) {
@@ -317,6 +322,8 @@ namespace Yarn
 			var compiledNode =  new Node();
 
 			compiledNode.name = node.name;
+
+			compiledNode.tags = node.nodeTags;
 
 			// Register the entire text of this node if we have it
 			if (node.source != null)

@@ -164,6 +164,9 @@ namespace Yarn {
 
 			internal string source { get; set; }
 
+			// defined in the Yarn editor
+			internal List<string> nodeTags { get; set; }
+
 			// Read-only internal accessor for statements
 			internal IEnumerable<Statement> statements { get { return _statements; }}
 
