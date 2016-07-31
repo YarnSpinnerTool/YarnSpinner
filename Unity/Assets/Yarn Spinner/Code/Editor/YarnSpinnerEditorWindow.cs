@@ -506,13 +506,15 @@ namespace Yarn.Unity {
             deprecations.Add(new Deprecation(
                 typeof(Yarn.Unity.VariableStorageBehaviour),
                 "SetNumber",
-                "This method is obsolete, and will not be called in future versions of Yarn Spinner. Use SetValue instead."
+                "This method is obsolete, and will not be called in future " +
+                "versions of Yarn Spinner. Use SetValue instead."
             ));
 
             deprecations.Add(new Deprecation(
                 typeof(Yarn.Unity.VariableStorageBehaviour),
                 "GetNumber",
-                "This method is obsolete, and will not be called in future versions of Yarn Spinner. Use GetValue instead."
+                "This method is obsolete, and will not be called in future " +
+                "versions of Yarn Spinner. Use GetValue instead."
             ));
 
             var results = new List<Yarn.Analysis.Diagnosis>();
@@ -537,9 +539,6 @@ namespace Yarn.Unity {
                         }
 
                     }
-
-
-
                 }
             }
             return results;
