@@ -52,8 +52,25 @@ namespace Yarn
 					if (options.onlyUseTag != null) {
 
 						// Find the tags for the node that this string is in
-						var stringInfo = dialogue.program.lineInfo[entry.Key];
-						var node = dialogue.program.nodes[stringInfo.nodeName];
+						LineInfo stringInfo;
+
+						try {
+							stringInfo = dialogue.program.lineInfo[entry.Key];
+						} catch (KeyNotFoundException) {
+							YarnSpinnerConsole.Error(string.Format("{0}: lineInfo table does not contain an entry for line {1} (\"{2}\")", file, entry.Key, entry.Value));
+							return 1;
+						}
+
+						Node node;
+
+						try {
+							node = dialogue.program.nodes[stringInfo.nodeName];
+						} catch (KeyNotFoundException) {
+							YarnSpinnerConsole.Error(string.Format("{0}: Line {1}'s lineInfo claims that the line originates in node {2}, but this node is not present in this program.", file, entry.Key, stringInfo.nodeName));
+							return 1;
+						}
+
+
 						var tags = node.tags;
 
 						// If the tags don't include the one we're looking for,
