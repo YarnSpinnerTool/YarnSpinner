@@ -121,6 +121,28 @@ namespace Yarn
 	class YarnSpinnerConsole
 	{
 
+		internal static Dialogue CreateDialogueForUtilities()
+		{
+
+			// Note that we're passing in with a null library - this means
+			// that all function checking will be disabled, and missing funcs
+			// will not cause a compile error. If a func IS missing at runtime,
+			// THAT will throw an exception.
+
+			// We do this because this tool has no idea about any of the custom
+			// functions that you might be using.
+
+			Dialogue d = new Dialogue(null);
+
+			// Debug logging goes to Note
+			d.LogDebugMessage = message => YarnSpinnerConsole.Note(message);
+
+			// When erroring, call Warn, not Error, which terminates the program
+			d.LogErrorMessage = message => YarnSpinnerConsole.Warn(message);
+
+			return d;
+		}
+
 		public static void Error(params string[] messages)
 		{
 

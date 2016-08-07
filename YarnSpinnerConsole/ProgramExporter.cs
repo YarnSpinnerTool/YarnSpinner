@@ -15,19 +15,8 @@ namespace Yarn
 			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
 			foreach (var file in options.files) {
-
-				// Note that we're passing in with a null library - this means
-				// that all function checking will be disabled, and missing funcs
-				// will not cause a compile error. If a func IS missing at runtime,
-				// THAT will throw an exception.
-
-				// We do this because this tool has no idea about any of the custom
-				// functions that you might be using.
-
-				var dialogue = new Dialogue(null);
-
-				dialogue.LogDebugMessage = (string message) => YarnSpinnerConsole.Note(message);
-				dialogue.LogErrorMessage = (string message) => YarnSpinnerConsole.Warn(message);
+				
+				var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
 
 				// Load and compile the program
 				try

@@ -23,18 +23,7 @@ namespace Yarn
 					continue;
 				}
 
-				Dialogue d = new Dialogue(null);
-
-				d.LogDebugMessage = delegate (string message)
-				{
-					YarnSpinnerConsole.Note(message);
-				};
-
-				d.LogErrorMessage = delegate (string message)
-				{
-					// Warn, don't error - Erroring terminates the program
-					YarnSpinnerConsole.Warn(message);
-				};
+				Dialogue d = YarnSpinnerConsole.CreateDialogueForUtilities();
 
 				try
 				{
