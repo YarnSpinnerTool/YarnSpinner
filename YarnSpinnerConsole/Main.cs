@@ -438,8 +438,16 @@ namespace Yarn
 				Warn("Yarn Error: " + message);
 			};
 
+			foreach (var file in options.files) {
+				try {
+					dialogue.LoadFile(file, false, false, options.onlyConsiderNode);
+				} catch (Yarn.TokeniserException e) {
+					Warn(e.Message);
+				} catch (Yarn.ParseException e) {
+					Warn(e.Message);
+				}
 
-			dialogue.LoadFile(options.files[0], false, false, options.onlyConsiderNode);
+			}
 
 			// Load string table
 			if (options.stringTable != null)
