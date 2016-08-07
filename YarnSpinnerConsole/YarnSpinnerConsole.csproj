@@ -56,6 +56,7 @@
     <Compile Include="LineAdder.cs" />
     <Compile Include="TableGenerator.cs" />
     <Compile Include="ProgramExporter.cs" />
+    <Compile Include="FileFormatConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

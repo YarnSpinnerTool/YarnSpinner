@@ -117,6 +117,18 @@ namespace Yarn
 		public string onlyUseTag { get; set; }
 
 	}
+	[Verb("convert", HelpText = "Converts files from one format to another.")]
+	class ConvertFormatOptions : BaseOptions
+	{
+		[Option("json", HelpText = "Convert to JSON", SetName = "format")]
+		public bool convertToJSON { get; set; }
+
+		[Option("yarn", HelpText = "Convert to Yarn", SetName = "format")]
+		public bool convertToYarn { get; set; }
+
+		[Option('o', "output-dir", HelpText = "The destination directory. Defaults to each file's source folder.")]
+		public string outputDirectory { get; set; }
+	}
 
 	class YarnSpinnerConsole
 	{
@@ -222,7 +234,15 @@ namespace Yarn
 		{
 
 			// Read and dispatch the appropriate command
-			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions, CompileOptions, GenerateTableOptions, AddLabelsOptions>(args);
+			var results = CommandLine.Parser.Default.ParseArguments
+			<
+			RunOptions,
+			VerifyOptions,
+			CompileOptions,
+			GenerateTableOptions,
+			AddLabelsOptions,
+			ConvertFormatOptions
+			>(args);
 
 			var returnCode = results.MapResult(
 				(RunOptions options) => Run(options),
@@ -230,6 +250,7 @@ namespace Yarn
 				(CompileOptions options) => ProgramExporter.Export(options),
 				(AddLabelsOptions options) => LineAdder.AddLines(options),
 				(GenerateTableOptions options) => TableGenerator.GenerateTables(options),
+				(ConvertFormatOptions options) => FileFormatConverter.ConvertFormat(options),
 
 				errors => { return 1; });
 
@@ -238,7 +259,7 @@ namespace Yarn
 
 		}
 
-		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes" });
+		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes", ".yarn.txt" });
 
 		static int Run(RunOptions options)
 		{
