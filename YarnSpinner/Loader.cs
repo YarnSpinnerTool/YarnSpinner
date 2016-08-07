@@ -297,40 +297,64 @@ namespace Yarn {
 						string line;
 						while ((line = reader.ReadLine()) != null)
 						{
-							lineNumber++;
-
+							
 							// Create a new node
 							NodeInfo node = new NodeInfo();
 
 							// Read header lines
-							while ((line = reader.ReadLine()) != "---")
+							do
 							{
 								lineNumber++;
+
+								// skip empty lines
+								if (line.Length == 0)
+								{
+									continue;
+								}
+
+								// Attempt to parse the header
 								var headerMatches = headerRegex.Match(line);
+
+								if (headerMatches == null)
+								{
+									dialogue.LogErrorMessage(string.Format("Line {0}: Can't parse header '{1}'", lineNumber, line));
+									continue;
+								}
+
 								var field = headerMatches.Groups["field"].Value;
 								var value = headerMatches.Groups["value"].Value;
 
+								// Attempt to set the appropriate property using this field
 								foreach (var property in nodeProperties)
 								{
+									if (property.Name != field) {
+										continue;
+									}
+
 									// skip properties that can't be written to
-									if (property.CanWrite == false) {
+									if (property.CanWrite == false)
+									{
 										continue;
 									}
 									try
 									{
 										var propertyType = property.PropertyType;
 										object convertedValue;
-										if (propertyType.IsAssignableFrom(typeof(string))) {
+										if (propertyType.IsAssignableFrom(typeof(string)))
+										{
 											convertedValue = value;
 										}
 										else if (propertyType.IsAssignableFrom(typeof(int)))
 										{
 											convertedValue = int.Parse(value);
-										} else if (propertyType.IsAssignableFrom(typeof(NodeInfo.Position))) {
+										}
+										else if (propertyType.IsAssignableFrom(typeof(NodeInfo.Position)))
+										{
 											var components = value.Split(',');
 
 											// we expect 2 components: x and y
-											if (components.Length != 2) {
+											if (components.Length != 2)
+											{
 												throw new FormatException();
 											}
 
@@ -340,25 +364,37 @@ namespace Yarn {
 
 											convertedValue = position;
 										}
-									    else {
+										else {
 											throw new NotSupportedException();
 										}
-									    property.SetValue(node, convertedValue, null);
+										// we need to box this because structs are value types,
+										// so calling SetValue using 'node' would just modify a copy of 'node'
+										object box = node;
+										property.SetValue(box, convertedValue, null);
+										node = (NodeInfo)box;
+										break;
 									}
-									catch (FormatException) {
+									catch (FormatException)
+									{
 										dialogue.LogErrorMessage(string.Format("{0}: Error setting '{1}': invalid value '{2}'", lineNumber, field, value));
-									} catch (NotSupportedException) {
+									}
+									catch (NotSupportedException)
+									{
 										dialogue.LogErrorMessage(string.Format("{0}: Error setting '{1}': This property cannot be set", lineNumber, field));
 									}
 								}
-							}
+							} while ((line = reader.ReadLine()) != "---");
+
+							lineNumber++;
+
 							// We're past the header; read the body
 
 							var lines = new List<string>();
 
-							// Read header lines until we hit the sentinel or the end of the file
-							while ((line = reader.ReadLine()) != "---" && line != null)
+							// Read header lines until we hit the end of node sentinel or the end of the file
+							while ((line = reader.ReadLine()) != "===" && line != null)
 							{
+								lineNumber++;
 								lines.Add(line);	
 							}
 							// We're done reading the lines! Zip 'em up into a string and

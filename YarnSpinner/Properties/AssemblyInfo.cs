@@ -53,4 +53,5 @@ using System.Runtime.CompilerServices;
 
 // Make internals available to the localisation tool
 [assembly: InternalsVisibleTo("YarnSpinnerConsole")]
+[assembly: InternalsVisibleTo("YarnSpinnerTests")]
 
