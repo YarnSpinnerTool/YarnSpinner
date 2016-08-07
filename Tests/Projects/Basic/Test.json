@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Test node",
+    "body": "This is a test node!\n",
+    "tags": null,
+    "colorID": 3,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "title": "Another test node",
+    "body": "This is a second test node!\n\n<<if 1 == 1>>\nThis still works!\n<<set $x to 23>>\n<<endif>>\n",
+    "tags": null,
+    "colorID": 0,
+    "position": {
+      "x": 2,
+      "y": 4
+    }
+  },
+  {
+    "title": "Third node",
+    "body": "",
+    "tags": "multiple tags!",
+    "colorID": 0,
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  }
+]
