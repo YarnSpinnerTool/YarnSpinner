@@ -15,32 +15,25 @@ namespace Yarn
 
 			var existingKeys = new List<string>();
 
-			foreach (var file in options.files) {
+			foreach (var file in options.files)
+			{
 
 				// We can only parse json files at present
-				if (System.IO.Path.GetExtension(file) != ".json") {
+				if (System.IO.Path.GetExtension(file) != ".json")
+				{
 					YarnSpinnerConsole.Warn("Skipping non-JSON file " + file);
 					continue;
 				}
 
-				Dialogue d = new Dialogue(null);
-
-				d.LogDebugMessage = delegate (string message)
-				{
-					YarnSpinnerConsole.Note(message);
-				};
-
-				d.LogErrorMessage = delegate (string message)
-				{
-					// Warn, don't error - Erroring terminates the program
-					YarnSpinnerConsole.Warn(message);
-				};
+				Dialogue d = YarnSpinnerConsole.CreateDialogueForUtilities();
 
 				try
 				{
 					// First, we need to ensure that this file compiles.
 					d.LoadFile(file);
-				} catch {
+				}
+				catch
+				{
 					YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
 					continue;
 				}
@@ -56,7 +49,8 @@ namespace Yarn
 					}
 				}
 
-				if (linesWithNoTag.Count == 0) {
+				if (linesWithNoTag.Count == 0)
+				{
 					var message = string.Format("{0} had no untagged lines. Either they're all tagged already, or it has no localisable text.", file);
 					YarnSpinnerConsole.Note(message);
 					continue;
@@ -67,14 +61,18 @@ namespace Yarn
 
 				Loader.NodeInfo[] nodeInfoList;
 
-				using (var reader = new System.IO.StreamReader(file) ) {
-					nodeInfoList = d.loader.ParseInput(reader.ReadToEnd());
+				var nodeFormat = Loader.GetFormatFromFileName(file);
+
+				using (var reader = new System.IO.StreamReader(file))
+				{
+					nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
 				}
 
 				// Convert this list into an easier-to-index dictionary
 				var lineInfo = new Dictionary<string, Loader.NodeInfo>();
 
-				foreach (var node in nodeInfoList) {
+				foreach (var node in nodeInfoList)
+				{
 					lineInfo[node.title] = node;
 
 				}
@@ -87,7 +85,8 @@ namespace Yarn
 
 				// We now have a list of all strings that do not have a string tag.
 				// Add a new tag to these lines.
-				foreach (var line in linesWithNoTag) {
+				foreach (var line in linesWithNoTag)
+				{
 
 					// TODO: There's quite a bit of redundant work done here in each loop.
 					// We're unzipping and re-combining the node for EACH line. Would be better
@@ -97,7 +96,8 @@ namespace Yarn
 					var nodeInfo = lineInfo[line.Value.nodeName];
 
 					// Is this line contained within a rawText node?
-					if (nodeInfo.tagsList.FindIndex(i => i == "rawText") != -1) {
+					if (nodeInfo.tagsList.FindIndex(i => i == "rawText") != -1)
+					{
 						// We don't need to add a tag to it - genstrings will export
 						// the whole thing for us.
 						continue;
@@ -105,15 +105,17 @@ namespace Yarn
 
 					// If we have a tag to consider, and this node doesn't have that tag,
 					// continue
-					if (options.onlyUseTag != null) {
-						if (nodeInfo.tagsList.FindIndex(i => i == options.onlyUseTag) == -1) {
+					if (options.onlyUseTag != null)
+					{
+						if (nodeInfo.tagsList.FindIndex(i => i == options.onlyUseTag) == -1)
+						{
 							continue;
 						}
 					}
 
 
 					// Split this node's source by newlines
-					var lines = nodeInfo.body.Split(new string[] { "\r\n", "\n"}, StringSplitOptions.None);
+					var lines = nodeInfo.body.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
 					// Get the original line
 					var existingLine = lines[line.Value.lineNumber - 1];
@@ -124,7 +126,8 @@ namespace Yarn
 					// Remember that we've used this tag, to prevent it from being re-used
 					existingKeys.Add(newTag);
 
-					if (options.verbose) {
+					if (options.verbose)
+					{
 						YarnSpinnerConsole.Note(string.Format("Tagged line with ID \"{0}\" in node {1}: {2}", newTag, nodeInfo.title, existingLine));
 					}
 
@@ -144,14 +147,16 @@ namespace Yarn
 				}
 
 				// If we didn't end up changing anything, don't modify the file
-				if (anyNodesModified == false) {
+				if (anyNodesModified == false)
+				{
 					continue;
 				}
 
 				// All the nodes have been updated; save this back to disk.
 
 				// Are we doing a dry run?
-				if (options.dryRun) {
+				if (options.dryRun)
+				{
 					// Then bail out at this point, before we start
 					// modifying files
 					YarnSpinnerConsole.Note("Would have written to file " + file);
@@ -162,7 +167,8 @@ namespace Yarn
 				var jsonData = JsonConvert.SerializeObject(lineInfo.Values, Formatting.Indented);
 
 				// Write the file!
-				using (var writer = new System.IO.StreamWriter(file)) {
+				using (var writer = new System.IO.StreamWriter(file))
+				{
 					writer.Write(jsonData);
 				}
 

@@ -93,8 +93,9 @@ namespace Yarn
 
 	}
 
-	[Verb("compile", HelpText="Compiles the provided files.")]
-	class CompileOptions : BaseOptions{
+	[Verb("compile", HelpText = "Compiles the provided files.")]
+	class CompileOptions : BaseOptions
+	{
 		[Option("format", HelpText = "The file format version to use.")]
 		public Dialogue.CompiledFormat format { get; set; }
 	}
@@ -117,9 +118,43 @@ namespace Yarn
 		public string onlyUseTag { get; set; }
 
 	}
+	[Verb("convert", HelpText = "Converts files from one format to another.")]
+	class ConvertFormatOptions : BaseOptions
+	{
+		[Option("json", HelpText = "Convert to JSON", SetName = "format")]
+		public bool convertToJSON { get; set; }
+
+		[Option("yarn", HelpText = "Convert to Yarn", SetName = "format")]
+		public bool convertToYarn { get; set; }
+
+		[Option('o', "output-dir", HelpText = "The destination directory. Defaults to each file's source folder.")]
+		public string outputDirectory { get; set; }
+	}
 
 	class YarnSpinnerConsole
 	{
+
+		internal static Dialogue CreateDialogueForUtilities()
+		{
+
+			// Note that we're passing in with a null library - this means
+			// that all function checking will be disabled, and missing funcs
+			// will not cause a compile error. If a func IS missing at runtime,
+			// THAT will throw an exception.
+
+			// We do this because this tool has no idea about any of the custom
+			// functions that you might be using.
+
+			Dialogue d = new Dialogue(null);
+
+			// Debug logging goes to Note
+			d.LogDebugMessage = message => YarnSpinnerConsole.Note(message);
+
+			// When erroring, call Warn, not Error, which terminates the program
+			d.LogErrorMessage = message => YarnSpinnerConsole.Warn(message);
+
+			return d;
+		}
 
 		public static void Error(params string[] messages)
 		{
@@ -163,7 +198,8 @@ namespace Yarn
 		static internal void CheckFileList(IList<string> paths, List<string> allowedExtensions)
 		{
 
-			if (paths.Count == 0) {
+			if (paths.Count == 0)
+			{
 				Warn("No files provided.");
 				return;
 			}
@@ -179,28 +215,37 @@ namespace Yarn
 
 				var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item)) != -1;
 
-				if (!exists || !hasAllowedExtension) {
+				if (!exists || !hasAllowedExtension)
+				{
 					invalid.Add(string.Format("\"{0}\"", path));
 				}
 			}
 
 			if (invalid.Count != 0)
 			{
-			
+
 				var message = string.Format("The file{0} {1} {2}.",
 					invalid.Count == 1 ? "" : "s",
-				                            string.Join(", ", invalid.ToArray()),
+											string.Join(", ", invalid.ToArray()),
 					invalid.Count == 1 ? "is not valid" : "are not valid"
 				);
-				
+
 				Error(message);
 			}
 		}
-		public static void Main (string[] args)
+		public static void Main(string[] args)
 		{
 
 			// Read and dispatch the appropriate command
-			var results = CommandLine.Parser.Default.ParseArguments<RunOptions, VerifyOptions, CompileOptions, GenerateTableOptions, AddLabelsOptions>(args);
+			var results = CommandLine.Parser.Default.ParseArguments
+			<
+			RunOptions,
+			VerifyOptions,
+			CompileOptions,
+			GenerateTableOptions,
+			AddLabelsOptions,
+			ConvertFormatOptions
+			>(args);
 
 			var returnCode = results.MapResult(
 				(RunOptions options) => Run(options),
@@ -208,6 +253,7 @@ namespace Yarn
 				(CompileOptions options) => ProgramExporter.Export(options),
 				(AddLabelsOptions options) => LineAdder.AddLines(options),
 				(GenerateTableOptions options) => TableGenerator.GenerateTables(options),
+				(ConvertFormatOptions options) => FileFormatConverter.ConvertFormat(options),
 
 				errors => { return 1; });
 
@@ -216,7 +262,7 @@ namespace Yarn
 
 		}
 
-		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes" });
+		static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes", ".yarn.txt" });
 
 		static int Run(RunOptions options)
 		{
@@ -287,9 +333,12 @@ namespace Yarn
 			CheckFileList(options.files, ALLOWED_EXTENSIONS);
 
 			Dialogue dialogue;
-			try {
+			try
+			{
 				dialogue = CreateDialogue(options, null);
-			} catch {
+			}
+			catch
+			{
 				return 1;
 			}
 
@@ -421,7 +470,8 @@ namespace Yarn
 		}
 
 		// A simple Implementation for the command line.
-		internal class ConsoleRunnerImplementation : Yarn.VariableStorage {
+		internal class ConsoleRunnerImplementation : Yarn.VariableStorage
+		{
 
 			private bool waitForLines = false;
 
@@ -441,53 +491,59 @@ namespace Yarn
 
 			public bool autoSelectFirstOption = false;
 
-			public ConsoleRunnerImplementation(bool waitForLines = false) {
+			public ConsoleRunnerImplementation(bool waitForLines = false)
+			{
 				this.variableStore = new MemoryVariableStore();
 				this.waitForLines = waitForLines;
 			}
 
-			public void RunLine (Yarn.Line lineText)
+			public void RunLine(Yarn.Line lineText)
 			{
 
-				if (expectedNextLine != null && expectedNextLine != lineText.text) {
+				if (expectedNextLine != null && expectedNextLine != lineText.text)
+				{
 					// TODO: Output diagnostic info here
 					Error(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
 						expectedNextLine, lineText.text));
-					
+
 				}
 
 				expectedNextLine = null;
 
-				Console.WriteLine (lineText.text);
-				if (waitForLines == true) {
+				Console.WriteLine(lineText.text);
+				if (waitForLines == true)
+				{
 					Console.Read();
 				}
 			}
 
-			public void RunOptions (Options optionsGroup, OptionChooser optionChooser)
+			public void RunOptions(Options optionsGroup, OptionChooser optionChooser)
 			{
 
 				Console.WriteLine("Options:");
-				for (int i = 0; i < optionsGroup.options.Count; i++) {
-					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
-					Console.WriteLine (optionDisplay);
+				for (int i = 0; i < optionsGroup.options.Count; i++)
+				{
+					var optionDisplay = string.Format("{0}. {1}", i + 1, optionsGroup.options[i]);
+					Console.WriteLine(optionDisplay);
 				}
 
 
 				// Check to see if the number of expected options
 				// is what we're expecting to see
 				if (numberOfExpectedOptions != -1 &&
-					optionsGroup.options.Count != numberOfExpectedOptions) {
+					optionsGroup.options.Count != numberOfExpectedOptions)
+				{
 					// TODO: Output diagnostic info here
-					Error (string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
+					Error(string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
 
 				}
 
 				// If we were told to automatically select an option, do so
-				if (autoSelectOptionNumber != -1) {
-					Note (string.Format("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
+				if (autoSelectOptionNumber != -1)
+				{
+					Note(string.Format("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
 
-					optionChooser (autoSelectOptionNumber);
+					optionChooser(autoSelectOptionNumber);
 
 					autoSelectOptionNumber = -1;
 
@@ -500,16 +556,19 @@ namespace Yarn
 
 
 
-				if (autoSelectFirstOption == true) {
-					Note ("[automatically choosing option 1]");
-					optionChooser (0);
+				if (autoSelectFirstOption == true)
+				{
+					Note("[automatically choosing option 1]");
+					optionChooser(0);
 					return;
 				}
 
-				do {
-					Console.Write ("? ");
-					try {
-						var selectedKey = Console.ReadKey ().KeyChar.ToString();
+				do
+				{
+					Console.Write("? ");
+					try
+					{
+						var selectedKey = Console.ReadKey().KeyChar.ToString();
 						int selection;
 
 						if (int.TryParse(selectedKey, out selection) == true)
@@ -518,7 +577,7 @@ namespace Yarn
 
 							// we present the list as 1,2,3, but the API expects
 							// answers as 0,1,2
-							selection -= 1; 
+							selection -= 1;
 
 							if (selection > optionsGroup.options.Count)
 							{
@@ -530,55 +589,59 @@ namespace Yarn
 							}
 						}
 
-					} catch (FormatException) {}
+					}
+					catch (FormatException) { }
 
 				} while (true);
 			}
 
-			public void RunCommand (string command)
+			public void RunCommand(string command)
 			{
 
-				if (expectedNextCommand != null && expectedNextCommand != command) {
+				if (expectedNextCommand != null && expectedNextCommand != command)
+				{
 					// TODO: Output diagnostic info here
 					Error(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
-					                    expectedNextCommand, command));
+										expectedNextCommand, command));
 				}
 
 				expectedNextCommand = null;
 
-				Console.WriteLine("Command: <<"+command+">>");
+				Console.WriteLine("Command: <<" + command + ">>");
 			}
 
-			public void DialogueComplete ()
+			public void DialogueComplete()
 			{
 				// All done
 			}
 
-			public void HandleErrorMessage (string error)
+			public void HandleErrorMessage(string error)
 			{
 				Error(error);
 			}
 
-			public void HandleDebugMessage (string message)
+			public void HandleDebugMessage(string message)
 			{
 				Note(message);
 			}
 
-			public virtual void SetNumber (string variableName, float number)
+			public virtual void SetNumber(string variableName, float number)
 			{
 				variableStore.SetValue(variableName, new Value(number));
 			}
 
-			public virtual float GetNumber (string variableName)
+			public virtual float GetNumber(string variableName)
 			{
 				return variableStore.GetValue(variableName).AsNumber;
 			}
 
-			public virtual void SetValue (string variableName, Value value) {
+			public virtual void SetValue(string variableName, Value value)
+			{
 				variableStore.SetValue(variableName, value);
 			}
 
-			public virtual Value GetValue (string variableName) {
+			public virtual Value GetValue(string variableName)
+			{
 				return variableStore.GetValue(variableName);
 			}
 

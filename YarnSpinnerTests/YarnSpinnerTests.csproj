@@ -50,6 +50,7 @@
     <Compile Include="LanguageTests.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="DialogueTests.cs" />
+    <Compile Include="ProjectTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
