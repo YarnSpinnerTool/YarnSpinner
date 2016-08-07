@@ -156,23 +156,38 @@ namespace Yarn {
 		}
 
 		// The raw text of the Yarn node, plus metadata
+		// All properties are serialised except tagsList, which is a derived property
+		[JsonObject(MemberSerialization.OptOut)]
 		public struct NodeInfo {
 			public struct Position {
 				public int x { get; set; }
 				public int y { get; set; }
 			}
 
+
 			public string title { get; set; }
 			public string body { get; set; }
+
+
+
+			// The raw "tags" field, containing space-separated tags. This is written
+			// to the file.
 			public string tags { get; set; }
 
 			public int colorID { get; set; }
 			public Position position { get; set; }
 
+			// The tags for this node, as a list of individual strings.
+			[JsonIgnore]
 			public List<string> tagsList
 			{
 				get
 				{
+					// If we have no tags list, or it's empty, return the empty list
+					if (tags == null || tags.Length == 0) {
+						return new List<string>();
+					}
+
 					return new List<string>(tags.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
 				}
 			}
