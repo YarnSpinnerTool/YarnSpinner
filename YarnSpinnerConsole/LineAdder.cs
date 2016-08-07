@@ -67,8 +67,10 @@ namespace Yarn
 
 				Loader.NodeInfo[] nodeInfoList;
 
+				var nodeFormat = Loader.GetFormatFromFileName(file);
+
 				using (var reader = new System.IO.StreamReader(file) ) {
-					nodeInfoList = d.loader.ParseInput(reader.ReadToEnd());
+					nodeInfoList = d.loader.GetNodesFromText(reader.ReadToEnd(), nodeFormat);
 				}
 
 				// Convert this list into an easier-to-index dictionary

@@ -301,7 +301,22 @@ namespace Yarn {
 				throw new YarnException ("LogErrorMessage must be set before loading");
 			}
 
-			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode);
+			// Try to infer the type
+
+			NodeFormat format;
+
+			if (text.StartsWith("[", StringComparison.Ordinal)) {
+				// starts with a {? this is probably a JSON array
+				format = NodeFormat.JSON;				 
+			} else if (text.Contains("---")) {
+				// contains a --- delimiter? probably multi node text
+				format = NodeFormat.Text;
+			} else {
+				// fall back to the single node format
+				format = NodeFormat.SingleNodeText;
+			}
+
+			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format);
 
 		}
 
