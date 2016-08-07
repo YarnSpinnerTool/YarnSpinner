@@ -129,17 +129,18 @@ namespace Yarn.Unity
 				StartDialogue();
 			}
 
-            // Load the string table for this language, if appropriate
-            var stringsGroup = new List<LocalisedStringGroup>(stringGroups).Find(
-                entry => entry.language == (shouldOverrideLanguage ? overrideLanguage : Application.systemLanguage)
-            );
+            if (stringGroups != null) {
+                // Load the string table for this language, if appropriate
+                var stringsGroup = new List<LocalisedStringGroup>(stringGroups).Find(
+                    entry => entry.language == (shouldOverrideLanguage ? overrideLanguage : Application.systemLanguage)
+                );
 
-            if (stringsGroup != null) {
-                foreach (var table in stringsGroup.stringFiles) {
-                    this.AddStringTable(table.text);
+                if (stringsGroup != null) {
+                    foreach (var table in stringsGroup.stringFiles) {
+                        this.AddStringTable(table.text);
+                    }
                 }
             }
-
 
 		}
 
@@ -272,6 +273,7 @@ namespace Yarn.Unity
 		}
 
 		public void Stop() {
+            isDialogueRunning = false;
 			dialogue.Stop();
 		}
 
