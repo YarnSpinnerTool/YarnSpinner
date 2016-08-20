@@ -114,6 +114,7 @@ namespace Yarn.Unity
 				foreach (var source in sourceText) {
 
                     // Is this a compiled script?
+                    // BUG: This will incorrectly detect .yarn.txt files as binary, and try to load them
                     if (source.name.EndsWith(".yarn")) {
                         // load the raw bytes
                         dialogue.LoadCompiledProgram(source.bytes, source.name);

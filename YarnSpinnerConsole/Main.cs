@@ -70,6 +70,9 @@ namespace Yarn
 		[Option('c', "dump-bytecode", HelpText = "Show program bytecode and exit.")]
 		public bool compileAndExit { get; set; }
 
+		[Option('v', "list-variables", HelpText = "List the variables used in the program.")]
+		public bool listVariables { get; set; }
+
 	}
 
 	[Verb("run", HelpText = "Runs files.")]
@@ -355,7 +358,21 @@ namespace Yarn
 
 			foreach (var diagnosis in context.FinishAnalysis())
 			{
-				Note(diagnosis.ToString(showSeverity: true));
+				switch (diagnosis.severity)
+				{
+					case Analysis.Diagnosis.Severity.Error:
+						Error(diagnosis.ToString(showSeverity: false));
+						break;
+					case Analysis.Diagnosis.Severity.Warning:
+						Warn(diagnosis.ToString(showSeverity: false));
+						break;						
+					case Analysis.Diagnosis.Severity.Note:
+						Note(diagnosis.ToString(showSeverity: false));
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
 			}
 			return 0;
 

@@ -144,6 +144,45 @@ namespace Yarn.Analysis
 		public abstract IEnumerable<Diagnosis> GatherDiagnoses();
 	}
 
+	internal class VariableLister : CompiledProgramAnalyser {
+		HashSet<string> variables = new HashSet<string>();
+
+		public override void Diagnose(Program program)
+		{
+			// In each node, find all reads and writes to variables
+			foreach (var nodeInfo in program.nodes)
+			{
+
+				var nodeName = nodeInfo.Key;
+				var theNode = nodeInfo.Value;
+
+				foreach (var instruction in theNode.instructions)
+				{
+
+					switch (instruction.operation)
+					{
+						case ByteCode.PushVariable:
+						case ByteCode.StoreVariable:
+							variables.Add((string)instruction.operandA);
+							break;
+					}
+				}
+			}
+		}
+
+		public override IEnumerable<Diagnosis> GatherDiagnoses()
+		{
+			var diagnoses = new List<Diagnosis>();
+
+			foreach (var variable in variables) {
+				var d = new Diagnosis(variable, Diagnosis.Severity.Note);
+				diagnoses.Add(d);
+			}
+
+			return diagnoses;
+		}
+	}
+
 	internal class UnusedVariableChecker : CompiledProgramAnalyser {
 
 		HashSet<string> readVariables = new HashSet<string> ();
