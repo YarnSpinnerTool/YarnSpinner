@@ -131,19 +131,20 @@ namespace Yarn
 			}
 			if (value.GetType() == typeof(string) ) {
 				type = Type.String;
-				stringValue = (string)value;
+                stringValue = System.Convert.ToString(value);
 				return;
 			}
 			if (value.GetType() == typeof(int) ||
 				value.GetType() == typeof(float) ||
 				value.GetType() == typeof(double)) {
 				type = Type.Number;
-				numberValue = (float)value;
+                numberValue = System.Convert.ToSingle(value);
+				
 				return;
 			}
 			if (value.GetType() == typeof(bool) ) {
 				type = Type.Bool;
-				boolValue = (bool)value;
+                boolValue = System.Convert.ToBoolean(value);
 				return;
 			}
 			var error = string.Format("Attempted to create a Value using a {0}; currently, " +

@@ -273,14 +273,19 @@ namespace Yarn
 						paramCount = (int)state.PopValue ().AsNumber;
 					}
 
-					// Get the parameters, which were pushed in reverse
-					Value[] parameters = new Value[paramCount];
-					for (int param = paramCount - 1; param >= 0; param--) {
-						parameters [param] = state.PopValue ();
-					}
+                    Value result;
+                    if (paramCount == 0) {
+                        result = function.Invoke();
+                    } else {
+                    	// Get the parameters, which were pushed in reverse
+    					Value[] parameters = new Value[paramCount];
+    					for (int param = paramCount - 1; param >= 0; param--) {
+    						parameters [param] = state.PopValue ();
+    					}
 
-					// Invoke the function
-					var result = function.InvokeWithArray (parameters);
+    					// Invoke the function
+    					result = function.InvokeWithArray (parameters);
+                    }
 
 					// If the function returns a value, push it
 					if (function.returnsValue) {

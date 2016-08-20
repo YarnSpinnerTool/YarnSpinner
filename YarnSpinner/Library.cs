@@ -35,7 +35,14 @@ namespace Yarn
 
 		public Value InvokeWithArray(Value[] parameters) {
 
-			if (IsParameterCountCorrect(parameters.Length)) {
+            int length;
+
+            if (parameters != null)
+                length = parameters.Length;
+            else 
+                length = 0;
+
+			if (IsParameterCountCorrect (length)) {
 				if (returnsValue) {
 					return new Value(returningFunction (parameters));
 				} else {

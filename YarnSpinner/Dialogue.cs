@@ -193,7 +193,49 @@ namespace Yarn {
 		public Library library;
 
 		// The collection of nodes that we've seen.
-		public HashSet<String> visitedNodeNames = new HashSet<string>();
+        public Dictionary<String, int> visitedNodeCount = new Dictionary<string, int>();
+		
+        // A function exposed to Yarn that returns the number of times a node has been run.
+        // If no parameters are supplied, returns the number of time the current node
+        // has been run.
+        object YarnFunctionNodeVisitCount (Value[] parameters)
+        {
+            // Determine the node we're checking
+            string nodeName;
+
+            if (parameters.Length == 0) {
+                // No parameters? Check the current node
+                nodeName = vm.currentNodeName;
+            } else if (parameters.Length == 1) {
+                // A parameter? Check the named node
+                nodeName = parameters [0].AsString;
+
+                // Ensure this node exists
+                if (NodeExists (nodeName) == false) {
+                    var errorMessage = string.Format ("The node {0} does not " + "exist.", nodeName);
+                    LogErrorMessage (errorMessage);
+                    return 0;
+                }
+            } else {
+                // We got too many parameters
+                var errorMessage = string.Format ("Incorrect number of parameters to " + "visitCount (expected 0 or 1, got {0})", parameters.Length);
+                LogErrorMessage (errorMessage);
+                return 0;
+            }
+
+            // Figure out how many times this node was run
+            int visitCount = 0;
+            visitedNodeCount.TryGetValue (nodeName, out visitCount);
+
+            return visitCount;
+        }
+
+        // A Yarn function that returns true if the named node, or the current node 
+        // if no parameters were provided, has been visited at least once.
+        object YarnFunctionIsNodeVisited (Value[] parameters)
+        {
+            return (int)YarnFunctionNodeVisitCount(parameters) > 0;
+        }
 
 		public Dialogue(Yarn.VariableStorage continuity) {
 			this.continuity = continuity;
@@ -204,10 +246,12 @@ namespace Yarn {
 
 			// Register the "visited" function, which returns true if we've visited
 			// a node previously (nodes are marked as visited when we leave them)
-			library.RegisterFunction ("visited", 1, delegate(Yarn.Value[] parameters) {
-				var name = parameters[0].AsString;
-				return visitedNodeNames.Contains(name);
-			});
+            library.RegisterFunction ("visited", -1, (ReturningFunction)YarnFunctionIsNodeVisited);
+
+            // Register the "visitCount" function, which returns the number of times
+            // a node has been run (which increments when a node ends). If called with 
+            // no parameters, check the CURRENT node.
+            library.RegisterFunction ("visitCount", -1, (ReturningFunction)YarnFunctionNodeVisitCount);
 
 		}
 
@@ -357,7 +401,12 @@ namespace Yarn {
 			};
 
 			vm.nodeCompleteHandler = delegate(NodeCompleteResult result) {
-				visitedNodeNames.Add (vm.currentNodeName);
+
+                // get the count if it's there, otherwise it defaults to 0
+                int count = 0;
+                visitedNodeCount.TryGetValue(vm.currentNodeName, out count);
+
+                visitedNodeCount[vm.currentNodeName] = count + 1;
 				latestResult = result;
 			};
 
@@ -387,12 +436,15 @@ namespace Yarn {
 				vm.Stop();
 		}
 
-		public IEnumerable<string> visitedNodes {
+        public IEnumerable<string> visitedNodes {
 			get {
-				return visitedNodeNames;
+                return visitedNodeCount.Keys;
 			}
-			set {
-				visitedNodeNames = new HashSet<String>(visitedNodes);
+            set {
+                visitedNodeCount = new Dictionary<string, int>();
+                foreach (var entry in visitedNodes) {
+                    visitedNodeCount[entry] = 1;
+                }				
 			}
 		}
 
@@ -491,7 +543,7 @@ namespace Yarn {
 		// Unloads ALL nodes.
 		public void UnloadAll(bool clearVisitedNodes = true) {
 			if (clearVisitedNodes)
-				visitedNodeNames.Clear();
+                visitedNodeCount.Clear();
 
 			program = null;
 
