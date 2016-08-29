@@ -18,12 +18,27 @@ namespace Yarn
 			foreach (var file in options.files)
 			{
 
-				// We can only parse json files at present
-				if (System.IO.Path.GetExtension(file) != ".json")
+				NodeFormat fileFormat;
+				try
 				{
-					YarnSpinnerConsole.Warn("Skipping non-JSON file " + file);
-					continue;
+					fileFormat = Loader.GetFormatFromFileName(file);
 				}
+				catch (FormatException)
+				{
+					fileFormat = NodeFormat.Unknown;
+				}
+
+				switch (fileFormat)
+				{
+					case NodeFormat.JSON:
+						break;
+					case NodeFormat.Text:
+						break;
+					default:
+						YarnSpinnerConsole.Warn(string.Format("Skipping file {0}, which is in unsupported format '{1}'", file, fileFormat));
+						continue;
+				}
+
 
 				Dialogue d = YarnSpinnerConsole.CreateDialogueForUtilities();
 
@@ -163,13 +178,27 @@ namespace Yarn
 					continue;
 				}
 
-				// Convert the nodes back into JSON
-				var jsonData = JsonConvert.SerializeObject(lineInfo.Values, Formatting.Indented);
+				var format = Loader.GetFormatFromFileName(file);
+
+				switch (format)
+				{
+					case NodeFormat.JSON:
+						break;
+					case NodeFormat.Text:
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
+
+				// Convert the nodes into the correct format
+				var savedData = FileFormatConverter.ConvertNodes(lineInfo.Values, fileFormat);
+
 
 				// Write the file!
 				using (var writer = new System.IO.StreamWriter(file))
 				{
-					writer.Write(jsonData);
+					writer.Write(savedData);
 				}
 
 

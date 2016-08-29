@@ -59,6 +59,18 @@ namespace Yarn
 			return 0;
 		}
 
+		internal static string ConvertNodes(IEnumerable<Loader.NodeInfo> nodes, NodeFormat format) {
+			switch (format)
+			{
+				case NodeFormat.JSON:
+					return JsonConvert.SerializeObject(nodes, Formatting.Indented);
+				case NodeFormat.Text:
+					return ConvertNodesToYarnText(nodes);
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
 		static string ConvertNodesToYarnText(IEnumerable<Loader.NodeInfo> nodes)
 		{
 			var sb = new System.Text.StringBuilder();
