@@ -352,7 +352,7 @@ namespace Yarn.Unity
 									// Cool, we can send the command!
 									string[][] paramWrapper = new string[1][];
 									paramWrapper[0] = parameters.ToArray();
-                                    method.Invoke(component, paramWrapper);
+									method.Invoke(component, paramWrapper);
 									numberOfMethodsFound++;
 									paramsMatch = true;
 								
