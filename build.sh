@@ -10,6 +10,7 @@ fi
 if [ -f YarnSpinner/bin/Release/YarnSpinner.dll ]; then
     xbuild "${XBUILD_ARGS}" /target:clean YarnSpinner.sln
 fi
+xbuild "${XBUILD_ARGS}" YarnSpinner.sln
 
 if [ $? -ne 0 ]; then
     echo "Error during: xbuild ${XBUILD_ARGS}"
@@ -32,10 +33,10 @@ fi
 
 
 # Quick statement to build documents
-if [ $(which doxygen) ]; then
-    rm -fvr Documentation/{docbook,html,latex,rtf,xml}
-    rm -fvr GPATH GRTAGS GTAGS doxygen
-    doxygen Documentation/Doxyfile
-
-fi
+#if [ $(which doxygen) ]; then
+#    rm -fvr Documentation/{docbook,html,latex,rtf,xml}
+#    rm -fvr GPATH GRTAGS GTAGS doxygen
+#    doxygen Documentation/Doxyfile
+#
+#fi
 
