@@ -31,3 +31,11 @@ if [ "${OSTYPE}" != "linux-gnu" ]; then
 fi
 
 
+# Quick statement to build documents
+if [ $(which doxygen) ]; then
+    rm -fvr Documentation/{docbook,html,latex,rtf,xml}
+    rm -fvr GPATH GRTAGS GTAGS doxygen Documentation/Doxyfile
+    doxygen Documentation/Doxyfile
+
+fi
+
