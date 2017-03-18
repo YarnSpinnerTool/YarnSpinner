@@ -19,6 +19,8 @@ bin/
 obj/
 *.userprefs
 
+### Visual Studio ###
+.vs/
 
 ### OSX ###
 .DS_Store

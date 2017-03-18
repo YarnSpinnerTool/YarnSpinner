@@ -120,6 +120,16 @@ namespace Yarn.Unity
 			StartDialogue(startNode);
 		}
 
+		public void Save(string fileName = "main")
+		{
+			variableStorage.SetValue("SaveFile" + fileName, dialogue.SerializeVM());
+		}
+
+		public void Load(string fileName = "main")
+		{
+			variableStorage.GetValue("SaveFile" + fileName);
+		}
+         
 		public void StartDialogue (string startNode)
 		{
 
