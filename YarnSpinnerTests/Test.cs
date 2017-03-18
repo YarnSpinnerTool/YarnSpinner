@@ -217,6 +217,27 @@ namespace YarnSpinner.Tests
 		}
 
 		[Test()]
+		public void TestSaveAndLoad()
+		{
+			Console.WriteLine("entering");
+			var path = System.IO.Path.Combine("TestCases", "SaveTest.json");
+			dialogue.LoadFile(path);
+			var runner = dialogue.Run().GetEnumerator();
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the first line.");
+			string saveState = dialogue.SerializeVM();//save
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the third line.");//make sure leftover Current does not create a false positive
+			dialogue.DeserializeVM(saveState);//load
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+			
+		}
+
+
+		[Test()]
 		public void TestGettingRawSource() {
 			dialogue.LoadFile ("Example.json");
 
