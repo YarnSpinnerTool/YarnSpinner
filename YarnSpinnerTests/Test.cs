@@ -217,6 +217,51 @@ namespace YarnSpinner.Tests
 		}
 
 		[Test()]
+		public void TestSaveAndLoad()
+		{
+			Console.WriteLine("entering");
+			var path = System.IO.Path.Combine("TestCases", "SaveTest.json");
+			dialogue.LoadFile(path);
+			var runn = dialogue.Run();
+			Console.WriteLine("trying...");
+			//foreach(var thing in runn)
+			//{
+			//	Console.WriteLine("lol");
+			//}
+			//var enn = runn.GetEnumerator();
+			//enn.MoveNext();
+			//Assert.NotNull(enn.Current);
+			
+			//Console.WriteLine("two");
+			var runner = dialogue.Run().GetEnumerator();
+			//Console.WriteLine("three");
+			runner.MoveNext();
+			//Console.WriteLine("another!");
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the first line.");
+			//Console.WriteLine("another!");
+			runner.MoveNext();
+			//Console.WriteLine("another!ll");
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+
+			//Console.WriteLine("another!");
+			string saveState = dialogue.SerializeVM();
+			//Console.WriteLine("another!");
+			runner.MoveNext();
+			//Console.WriteLine("another!");
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the third line.");
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the fourth line.");
+			dialogue.DeserializeVM(saveState);
+			//Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the third line.");
+			runner.MoveNext();
+			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the fourth line.");
+			
+		}
+
+
+		[Test()]
 		public void TestGettingRawSource() {
 			dialogue.LoadFile ("Example.json");
 
