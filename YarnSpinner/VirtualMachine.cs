@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Yarn
 {
@@ -125,6 +127,27 @@ namespace Yarn
 
 		public void Stop() {
 			executionState = ExecutionState.Stopped;
+		}
+
+		private const int STATE_VERSION_NUMBER = 1;
+
+		public string SerializeVM()
+		{
+			JObject jstate = JObject.FromObject(state);
+			jstate.Add("version", STATE_VERSION_NUMBER);
+			return jstate.ToString();
+			//return "lol";
+		}
+
+		public void DeserializeVM(string encoded)
+		{
+			JObject jstate = JObject.Parse(encoded);
+			/*int version = jstate.Value<int>("version");//If this ever becomes not a Json object or doesn't have a "version" field we're fucked but it's probably fine! *flails arms*
+			if (version < 2) {
+				//fast-forward from version 1 to 2
+				jstate["version"] = 2;
+			}*///when the State format changes, creat fast-forward code here (1->2, 2->3 etc, so nobody has to figure out how to go from version 1->17 all at once). If it changes a lot, consider making a more intelligent system with a swanky delegate list that calls the appropriate functions to get to STATE_VERSION_NUMBER
+			state = jstate.ToObject<State>();
 		}
 
 		// Executes the next instruction in the current node.

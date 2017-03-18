@@ -260,6 +260,16 @@ namespace Yarn {
 
 		}
 
+        public String SerializeVM()
+        {
+            return vm.SerializeVM();
+        }
+
+        public void DeserializeVM(string encoded)
+        {
+            vm.DeserializeVM(encoded);
+        }
+
 		public void Stop() {
 			if (vm != null)
 				vm.Stop();
