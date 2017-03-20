@@ -52,6 +52,7 @@ init_build () {
                 VERBOSITY=normal ;;
             h)
                 HELP=true ;;
+            \?) echo; show_help ; exit 0 ;;
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
