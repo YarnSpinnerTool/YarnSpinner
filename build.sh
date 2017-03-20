@@ -127,8 +127,8 @@ if [ "$CLEAN" ]; then
     echo "Cleaning Yarn Spinner"
     clean_yarnspinner
 fi
-echo "Building Yarn Spinner"
 if [ "$BUILD" ]; then
+    echo "Building Yarn Spinner"
     build_yarnspinner
 fi
 if [ "$DOCUMENTATION" ]; then
