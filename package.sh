@@ -52,16 +52,16 @@ function show_help {
 
 function show_changes {
 	LATEST_TAG=$(git describe --abbrev=0 --tags)
-	COMMITS_SINCE_THEN=$(git rev-list $LATEST_TAG.. --count)
+	COMMITS_SINCE_THEN=$(git rev-list "$LATEST_TAG".. --count)
 	
 	echo "You are currently on branch $CURRENT_BRANCH_NAME."
 	
-	if [ $COMMITS_SINCE_THEN -eq "0" ]; then
+	if [ "$COMMITS_SINCE_THEN" -eq "0" ]; then
 		echo "There has been no further work since the last tag."
 	else
 		echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG on this branch:"
 
-		git log $LATEST_TAG.. --pretty=format:"* %s"
+		git log "$LATEST_TAG".. --pretty=format:"* %s"
 	fi
 }
 
@@ -103,7 +103,7 @@ if [ $SOURCE_BUILD == 1 ]; then
 	
 	echo "Copying Yarn Spinner source in..."
 	# Copy the source files in
-	cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
+	cp -v "$SOURCE_FILES" "Unity/Assets/Yarn Spinner/Code/"
 	
 fi
 
@@ -118,7 +118,7 @@ function strip-v () { echo -n "${1#v}"; }
 
 FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
 
-if [ $CURRENT_BRANCH_NAME != "master" ]; then
+if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
 	FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
 fi
 
@@ -173,7 +173,7 @@ if [[ -f $UNITY ]]; then
 		exit 1
 	fi
 	
-	if [ -f $OUTFILE ]; then
+	if [ -f "$OUTFILE" ]; then
 		echo "Package created in $OUTFILE"		
 	else
 		echo "Error: Unity reported no error, but the package wasn't created. Check $LOGFILE."
