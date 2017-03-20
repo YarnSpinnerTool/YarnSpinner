@@ -25,4 +25,4 @@
 # Ensure that the app is built first
 ./build.sh
 
-mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe $@
+mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe "$@"
