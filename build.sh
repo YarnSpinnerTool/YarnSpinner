@@ -127,6 +127,10 @@ if [ "$CLEAN" ]; then
     echo "Cleaning Yarn Spinner"
     clean_yarnspinner
 fi
+if [ "$NATIVE" ]; then
+    echo "Building native Yarn Spinner"
+    build_native
+fi
 if [ "$BUILD" ]; then
     echo "Building Yarn Spinner"
     build_yarnspinner
