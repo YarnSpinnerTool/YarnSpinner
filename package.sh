@@ -79,7 +79,7 @@ while getopts ":xhsScC" opt; do
 
 done
 
-if [ $(uname -s) != "Darwin" ]; then
+if [ "$(uname -s)" != "Darwin" ]; then
 	echo "This script only works on OS X."
 	exit 1
 fi
@@ -116,7 +116,7 @@ fi
 # Strips "v" from tag names
 function strip-v () { echo -n "${1#v}"; }
 
-FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
+FULL_VERSION=$(strip-v "$(git describe --tags --match 'v[0-9]*' --always --dirty)")
 
 if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
 	FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
