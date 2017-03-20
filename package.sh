@@ -34,7 +34,7 @@ CLEAN_ONLY=0
 
 COPY_ONLY=0
 
-CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
+CURRENT_BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
 
 set -e
 
@@ -51,8 +51,8 @@ function show_help {
 }
 
 function show_changes {
-	LATEST_TAG=`git describe --abbrev=0 --tags`
-	COMMITS_SINCE_THEN=`git rev-list $LATEST_TAG.. --count`
+	LATEST_TAG=$(git describe --abbrev=0 --tags)
+	COMMITS_SINCE_THEN=$(git rev-list $LATEST_TAG.. --count)
 	
 	echo "You are currently on branch $CURRENT_BRANCH_NAME."
 	
@@ -79,7 +79,7 @@ while getopts ":xhsScC" opt; do
 
 done
 
-if [ `uname -s` != "Darwin" ]; then
+if [ $(uname -s) != "Darwin" ]; then
 	echo "This script only works on OS X."
 	exit 1
 fi
@@ -141,7 +141,7 @@ fi
 if [ $NO_EXAMPLES == 1 ]; then
     # move the Examples folder to a temporary location
     
-    temp_folder="`mktemp -d`/Examples"
+    temp_folder="$(mktemp -d)/Examples"
     
     echo "Moving Examples out of the way..."
     mv "$expected_examples_location" "$temp_folder"
@@ -155,7 +155,7 @@ OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 # Find where Unity is installed; filter out any copies that include "b[num]"
 # (that is, beta versions); sort it to put the latest version name at the end,
 # then pick the last one
-UNITY="`mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1`/Contents/MacOS/Unity"
+UNITY="$(mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1)/Contents/MacOS/Unity"
 
 if [[ -f $UNITY ]]; then
 	echo "Using $UNITY"
