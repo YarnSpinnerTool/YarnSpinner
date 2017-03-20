@@ -53,7 +53,7 @@ if [ $ONLY_VERIFY == 1 ]; then
 	echo "Performing a verify-only run."
 fi
 
-IFS=$'\n';for f in $(find $TESTPATH -name "*.node" -or -name "*.json"); do
+IFS=$'\n';for f in $(find "$TESTPATH" -name "*.node" -or -name "*.json"); do
 	echo "Testing $f"
 	
 	if [ $ONLY_VERIFY == 1 ]; then
