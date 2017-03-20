@@ -27,6 +27,7 @@ show_help () {
     echo " -b: Build Yarn Spinner"
     echo " -c: Clean any pre-existing builds and documentation"
     echo " -d: Build documentation"
+    echo " -n: Build (OSX) native **ONLY WORKS ON OSX**"
     echo " -v: verbose output"
     echo " -h: Show this text and exit"
 }
@@ -40,6 +41,8 @@ init_build () {
                 CLEAN=true ;;
             d)
                 DOCUMENTATION=true ;;
+            n)
+                NATIVE=true ;;
             v)
                 VERBOSITY=normal ;;
             h)
@@ -57,6 +60,7 @@ if [ -f YarnSpinner/bin/Release/YarnSpinner.dll ]; then
     xbuild "${XBUILD_ARGS}" /target:clean YarnSpinner.sln
 fi
 }
+
 
 build_yarnspinner () {
     xbuild "${XBUILD_ARGS}" YarnSpinner.sln
@@ -79,6 +83,25 @@ build_yarnspinner () {
             exit 1
         fi
     fi
+}
+
+build_native () {
+    if [ "$(uname -s)" != "Darwin" ]; then
+        echo "Building native only works on OSX."
+        exit 1
+    fi
+    # Build the product
+    build_yarnspinner
+
+    # Ensure it can find pkg-config:
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig:/Library/Frameworks/Mono.framework/Versions/3.4.0/lib/pkgconfig
+
+    # Manually set some clang linker properties:
+    export AS="as "
+    export CC="cc -lobjc -liconv -framework Foundation"
+
+    # Build:
+    mkbundle YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/Release/*.dll --static --deps -o yarn_native
 }
 
 build_documentation () {
