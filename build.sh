@@ -36,14 +36,18 @@ show_help () {
 init_build () {
     CONFIGURATION="Release"
     VERBOSITY="quiet"
-    while getopts "bcdhv" opt; do
+    while getopts "bcdnuvh" opt; do
         case $opt in
+            b)
+                BUILD=true ;;
             c)
                 CLEAN=true ;;
             d)
                 DOCUMENTATION=true ;;
             n)
                 NATIVE=true ;;
+            u)
+                UNIT=true ;;
             v)
                 VERBOSITY=normal ;;
             h)
