@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 LOGFILE="export.log"
-OUTDIR="`pwd`/Builds"
+OUTDIR="$(pwd)/Builds"
 SOURCE_FILES="YarnSpinner/*.cs"
 
 NO_EXAMPLES=0
@@ -131,7 +131,7 @@ if [ $NO_EXAMPLES == 1 ]; then
 fi
 
 # sanity check that the examples folder is where we expect
-expected_examples_location="`pwd`/Unity/Assets/Yarn Spinner/Examples"
+expected_examples_location="$(pwd)/Unity/Assets/Yarn Spinner/Examples"
 
 if [ ! -d "$expected_examples_location" ]; then
     echo "Failed to find Examples folder at $expected_examples_location"
@@ -165,7 +165,7 @@ if [[ -f $UNITY ]]; then
 	# Disable stop-on-error for this - we want better reporting
 	set +e
 	
-	"$UNITY" -batchmode -projectPath "`pwd`/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
+	"$UNITY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
 	
 	if [ $? -ne 0 ]; then
 		
