@@ -23,11 +23,12 @@
 show_help () {
     echo "build.sh: Build Yarn Spinner"
     echo
-    echo "Usage: build.sh [bcdih]"
+    echo "Usage: build.sh [bcdnuvh]"
     echo " -b: Build Yarn Spinner"
     echo " -c: Clean any pre-existing builds and documentation"
     echo " -d: Build documentation"
     echo " -n: Build (OSX) native **ONLY WORKS ON OSX**"
+    echo " -u: Execute unit tests"
     echo " -v: verbose output"
     echo " -h: Show this text and exit"
 }
