@@ -104,6 +104,14 @@ build_native () {
     mkbundle YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/Release/*.dll --static --deps -o yarn_native
 }
 
+unit_tests () (
+    if [ -x ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe ]; then
+        mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe "$@"
+    else
+        echo "./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe doesn't exist, exiting"; exit 1
+    fi
+)
+
 build_documentation () {
     # Quick statement to build documents
     if [ "$(which doxygen)" ]; then
@@ -134,6 +142,10 @@ fi
 if [ "$BUILD" ]; then
     echo "Building Yarn Spinner"
     build_yarnspinner
+fi
+if [ "$UNIT" ]; then
+    echo "Running Yarn Spinner unit tests"
+    unit_tests
 fi
 if [ "$DOCUMENTATION" ]; then
     echo "Building documentation"
