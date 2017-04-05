@@ -1,8 +1,44 @@
+dist: trusty
+#cache: true
+
+# Blacklist
+#branches:
+#  except:
+#    - gh-pages
+
 language: csharp
 solution: YarnSpinner.sln
+
+# Environment variables
+
+#env:
+#  global:
+#    - GH_REPO_NAME: YarnSpinner
+#    - DOXYFILE: $TRAVIS_BUILD_DIR/Documentation/Doxyfile
+#    - GH_REPO_REF: github.com/SecretLab/YarnSpinner.git
+#    - secure: ""
+
+# Install dependencies
+#addons:
+#  apt:
+#    packages:
+#      When using doxygen
+#      - doxygen
+#      - doxygen-doc
+#      - doxygen-latex
+#      - doxygen-gui
+#      - global
+#      - graphviz
+
 install:
   - nuget restore YarnSpinner.sln
+
 script:	
-  - xbuild /p:Configuration=Release YarnSpinner.sln
-  - mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe
-  - ./run-tests.sh -d Tests/TestCases
+#  - ./build.sh -bcdv
+  - ./build.sh -bcv
+
+# Generate and deploy documentation
+# after_success:
+#   - cd $TRAVIS_BUILD_DIR
+#   - chmod +x DeployDocumentation.sh
+#   - ./DeployDocumentation.sh
