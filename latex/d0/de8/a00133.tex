@@ -1,0 +1,240 @@
+\hypertarget{a00133}{\section{Yarn.\-Parser.\-Shortcut\-Option Class Reference}
+\label{a00133}\index{Yarn.\-Parser.\-Shortcut\-Option@{Yarn.\-Parser.\-Shortcut\-Option}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-Shortcut\-Option\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{dc/d4d/a00620}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Shortcut\-Option\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{dc/db1/a00621}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00133_a2c80b137d65f31b24533987233074605}{Shortcut\-Option} (int option\-Index, \hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00121}{Parser} p)
+\item 
+override string \hyperlink{a00133_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00133_ab43ec731479a56891389f6ece87f5f62}{label}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00080}{Expression} \hyperlink{a00133_a31ece7f65af1e43961b68ba0275cdfaf}{condition}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00133_a33d667370031f58b054b79a39891c3f3}{option\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00133_a2c80b137d65f31b24533987233074605}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Shortcut\-Option@{Shortcut\-Option}}
+\index{Shortcut\-Option@{Shortcut\-Option}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Shortcut\-Option}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option (
+\begin{DoxyParamCaption}
+\item[{int}]{option\-Index, }
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00133_a2c80b137d65f31b24533987233074605}
+
+\begin{DoxyCode}
+421                                                                                  : base(
+      \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+422                 p.ExpectSymbol(TokenType.ShortcutOption);
+423                 \hyperlink{a00133_ab43ec731479a56891389f6ece87f5f62}{label} = p.ExpectSymbol(TokenType.Text).value as \textcolor{keywordtype}{string};
+424 
+425                 \textcolor{comment}{// Parse the conditional ("<<if $foo>>") if it's there}
+426 
+427                 var \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \textcolor{keyword}{new} List<string>();
+428 
+429                 \textcolor{keywordflow}{while} (
+430                     p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.If) ||
+431                     p.NextSymbolIs(TokenType.TagMarker)) \{
+432 
+433                     \textcolor{keywordflow}{if} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.If)) \{
+434                         p.ExpectSymbol(TokenType.BeginCommand);
+435                         p.ExpectSymbol(TokenType.If);
+436                         \hyperlink{a00133_a31ece7f65af1e43961b68ba0275cdfaf}{condition} = Expression.Parse(\textcolor{keyword}{this}, p);
+437                         p.ExpectSymbol(TokenType.EndCommand);
+438                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.TagMarker)) \{
+439 
+440                         p.ExpectSymbol(TokenType.TagMarker);
+441                         var tag = p.ExpectSymbol(TokenType.Identifier).value;
+442                         tags.Add(tag);
+443                     \}
+444                 \}
+445 
+446                 this.tags = tags.ToArray();
+447 
+448                 \textcolor{comment}{// Parse the statements belonging to this option if it has any}
+449                 \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Indent)) \{
+450                     p.ExpectSymbol(TokenType.Indent);
+451                     \hyperlink{a00133_a33d667370031f58b054b79a39891c3f3}{optionNode} = \textcolor{keyword}{new} Node(\hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{NodeParent}().name + \textcolor{stringliteral}{"."} + optionIndex, \textcolor{keyword}{this}, 
+      p);
+452                     p.ExpectSymbol(TokenType.Dedent);
+453                 \}
+454 
+455             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00120_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a580e520a29444fc23ac3660cbe514a09}
+
+\begin{DoxyCode}
+144                                        \{
+145                 var node = \textcolor{keyword}{this};
+146 
+147                 \textcolor{keywordflow}{do} \{
+148                     \textcolor{keywordflow}{if} (node is Node) \{
+149                         \textcolor{keywordflow}{return} node as Node;
+150                     \}
+151                     node = node.parent;
+152                 \} \textcolor{keywordflow}{while} (node 
+153                     != null);                   
+154 
+155                 \textcolor{keywordflow}{return} null;
+156             \}
+\end{DoxyCode}
+\hypertarget{a00133_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00133_a529a2ef1aa6d7226db4ea7f3ea92b8c2}
+
+
+Implements \hyperlink{a00120_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+\begin{DoxyCode}
+458             \{
+459                 var sb = \textcolor{keyword}{new} StringBuilder ();
+460                 sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Option \(\backslash\)""} +\hyperlink{a00133_ab43ec731479a56891389f6ece87f5f62}{label} + \textcolor{stringliteral}{"\(\backslash\)""}));
+461 
+462                 \textcolor{keywordflow}{if} (\hyperlink{a00133_a31ece7f65af1e43961b68ba0275cdfaf}{condition} != null) \{
+463                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"(when:"}));
+464                     sb.Append (condition.PrintTree(indentLevel+2));
+465                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"),"}));
+466                 \}
+467 
+468                 \textcolor{keywordflow}{if} (\hyperlink{a00133_a33d667370031f58b054b79a39891c3f3}{optionNode} != null) \{
+469                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\{"}));
+470                     sb.Append (optionNode.PrintTree (indentLevel + 1));
+471                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+472                 \}
+473 
+474                 sb.Append (\hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{TagsToString} (indentLevel));
+475 
+476                 \textcolor{keywordflow}{return} sb.ToString ();
+477             \}
+\end{DoxyCode}
+\hypertarget{a00120_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a054f36c80d5eeacd569a8859f599af67}
+
+\begin{DoxyCode}
+122             \{
+123                 \textcolor{keywordflow}{if} (\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+124                     var s = \textcolor{keyword}{new} StringBuilder ();
+125 
+126                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+128                         s.Append(\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+129                     \}
+130                     \textcolor{keywordflow}{return} s.ToString ();
+131                 \} \textcolor{keywordflow}{else} \{
+132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+133                 \}
+134 
+135 
+136             \}
+\end{DoxyCode}
+\hypertarget{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+\begin{DoxyCode}
+139             \{
+140                 \textcolor{keywordflow}{return} this.GetType ().Name;
+141             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00120_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a18b493382de0fde5b4299c1bd2250075}
+\hypertarget{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00133_a31ece7f65af1e43961b68ba0275cdfaf}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!condition@{condition}}
+\index{condition@{condition}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{condition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-Shortcut\-Option.\-condition\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00133_a31ece7f65af1e43961b68ba0275cdfaf}
+\hypertarget{a00133_ab43ec731479a56891389f6ece87f5f62}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!label@{label}}
+\index{label@{label}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{label}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Shortcut\-Option.\-label\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00133_ab43ec731479a56891389f6ece87f5f62}
+\hypertarget{a00133_a33d667370031f58b054b79a39891c3f3}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!option\-Node@{option\-Node}}
+\index{option\-Node@{option\-Node}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{option\-Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Shortcut\-Option.\-option\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00133_a33d667370031f58b054b79a39891c3f3}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

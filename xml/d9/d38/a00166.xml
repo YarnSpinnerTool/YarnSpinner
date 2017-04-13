@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d9/d38/a00166" kind="class" prot="public">
+    <compoundname>Yarn::VerifyOptions</compoundname>
+    <basecompoundref refid="d1/d51/a00079" prot="public" virt="non-virtual">Yarn.ExecutionOptions</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d9/d38/a00166_1ab1a387df201e3e136c15e5744219628d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.VerifyOptions.showTokensAndExit</definition>
+        <argsstring></argsstring>
+        <name>showTokensAndExit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d9/d38/a00166_1abef6bf44ae4792d7644b1c02de625208" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.VerifyOptions.showParseTreeAndExit</definition>
+        <argsstring></argsstring>
+        <name>showParseTreeAndExit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d9/d38/a00166_1af9b6917244075618720f2a90bbe6ef56" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.VerifyOptions.compileAndExit</definition>
+        <argsstring></argsstring>
+        <name>compileAndExit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d9/d38/a00166_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.VerifyOptions.listVariables</definition>
+        <argsstring></argsstring>
+        <name>listVariables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d51/a00079_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.stringTable</definition>
+        <argsstring></argsstring>
+        <name>stringTable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d51/a00079_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
+        <argsstring></argsstring>
+        <name>onlyConsiderNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/db2/a00020_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <argsstring></argsstring>
+        <name>showDebuggingInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/db2/a00020_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/db2/a00020_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1646">
+        <label>Yarn.VerifyOptions</label>
+        <link refid="d9/d38/a00166"/>
+        <childnode refid="1647" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1647">
+        <label>ExecutionOptions</label>
+        <link refid="d1/d51/a00079"/>
+        <childnode refid="1648" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1648">
+        <label>BaseOptions</label>
+        <link refid="db/db2/a00020"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1649">
+        <label>Yarn.VerifyOptions</label>
+        <link refid="d9/d38/a00166"/>
+        <childnode refid="1650" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1650">
+        <label>ExecutionOptions</label>
+        <link refid="d1/d51/a00079"/>
+        <childnode refid="1651" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1651">
+        <label>BaseOptions</label>
+        <link refid="db/db2/a00020"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="62" bodyend="76"/>
+    <listofallmembers>
+      <member refid="d9/d38/a00166_1af9b6917244075618720f2a90bbe6ef56" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>compileAndExit</name></member>
+      <member refid="db/db2/a00020_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>files</name></member>
+      <member refid="d9/d38/a00166_1a062775744f2d7144527fa3bca4b9b3ce" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>listVariables</name></member>
+      <member refid="d1/d51/a00079_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>onlyConsiderNode</name></member>
+      <member refid="db/db2/a00020_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="d9/d38/a00166_1abef6bf44ae4792d7644b1c02de625208" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showParseTreeAndExit</name></member>
+      <member refid="d9/d38/a00166_1ab1a387df201e3e136c15e5744219628d" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>showTokensAndExit</name></member>
+      <member refid="d1/d51/a00079_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>stringTable</name></member>
+      <member refid="db/db2/a00020_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::VerifyOptions</scope><name>verbose</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

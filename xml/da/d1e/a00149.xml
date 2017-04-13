@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="da/d1e/a00149" kind="class" prot="package">
+    <compoundname>Yarn::TokenList</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">List&lt; Token &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="da/d1e/a00149_1a9b7cf7c495a19faa91a1b5991d7748ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.TokenList.TokenList</definition>
+        <argsstring>(params Token[] tokens)</argsstring>
+        <name>TokenList</name>
+        <param>
+          <type>params <ref refid="d0/d4a/a00147" kindref="compound">Token</ref>[]</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="72" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1577">
+        <label>Yarn.TokenList</label>
+        <link refid="da/d1e/a00149"/>
+        <childnode refid="1578" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1578">
+        <label>List&lt; Token &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1579">
+        <label>Yarn.TokenList</label>
+        <link refid="da/d1e/a00149"/>
+        <childnode refid="1580" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1580">
+        <label>List&lt; Token &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="69" bodyend="77"/>
+    <listofallmembers>
+      <member refid="da/d1e/a00149_1a9b7cf7c495a19faa91a1b5991d7748ef" prot="public" virt="non-virtual"><scope>Yarn::TokenList</scope><name>TokenList</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

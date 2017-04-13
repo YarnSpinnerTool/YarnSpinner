@@ -1,0 +1,5 @@
+<map id="CsvHelper.CsvSerializer" name="CsvHelper.CsvSerializer">
+<area shape="rect" id="node2" href="$d9/dec/a00090.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="5,469,115,547"/>
+<area shape="rect" id="node4" href="$dd/d32/a00041.html" title="Configuration used for reading and writing CSV data. " alt="" coords="139,235,345,781"/>
+<area shape="rect" id="node5" href="$db/d3a/a00040.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="135,5,351,171"/>
+</map>

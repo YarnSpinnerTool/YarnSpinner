@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d1/dea/a00054" kind="class" prot="public">
+    <compoundname>CsvHelper::Configuration::CsvPropertyReferenceMapData</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d1/dea/a00054_1a24263cbdacd2dd0db9bbe22676a6d989" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvPropertyReferenceMapData.prefix</definition>
+        <argsstring></argsstring>
+        <name>prefix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d1/dea/a00054_1a687fe65f1a2b4301f283e9333c282f9c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>virtual string CsvHelper.Configuration.CsvPropertyReferenceMapData.Prefix</definition>
+        <argsstring></argsstring>
+        <name>Prefix</name>
+        <briefdescription>
+<para>Gets or sets the header prefix to use. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/dea/a00054_1a5386ac40fb3ea290944f05cbee99bfcb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>PropertyInfo</type>
+        <definition>virtual PropertyInfo CsvHelper.Configuration.CsvPropertyReferenceMapData.Property</definition>
+        <argsstring></argsstring>
+        <name>Property</name>
+        <briefdescription>
+<para>Gets the PropertyInfo that the data is associated with. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/dea/a00054_1af2343065df03de92b6b9803ed2bb4f87" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+        <definition>CsvClassMap CsvHelper.Configuration.CsvPropertyReferenceMapData.Mapping</definition>
+        <argsstring></argsstring>
+        <name>Mapping</name>
+        <briefdescription>
+<para>Gets the mapping this is a reference for. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/dea/a00054_1ad6fe2913932a9fe434f8a908dec30e8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvPropertyReferenceMapData.CsvPropertyReferenceMapData</definition>
+        <argsstring>(PropertyInfo property, CsvClassMap mapping)</argsstring>
+        <name>CsvPropertyReferenceMapData</name>
+        <param>
+          <type>PropertyInfo</type>
+          <declname>property</declname>
+        </param>
+        <param>
+          <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+          <declname>mapping</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d1/dea/a00054" kindref="compound">CsvPropertyReferenceMapData</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The property.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mapping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The mapping this is a reference for.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="49" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The configuration data for the reference map. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1038">
+        <label>CsvHelper.Configuration.CsvPropertyReferenceMapData</label>
+        <link refid="d1/dea/a00054"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="13" bodyend="54"/>
+    <listofallmembers>
+      <member refid="d1/dea/a00054_1ad6fe2913932a9fe434f8a908dec30e8b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>CsvPropertyReferenceMapData</name></member>
+      <member refid="d1/dea/a00054_1af2343065df03de92b6b9803ed2bb4f87" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Mapping</name></member>
+      <member refid="d1/dea/a00054_1a687fe65f1a2b4301f283e9333c282f9c" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Prefix</name></member>
+      <member refid="d1/dea/a00054_1a24263cbdacd2dd0db9bbe22676a6d989" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>prefix</name></member>
+      <member refid="d1/dea/a00054_1a5386ac40fb3ea290944f05cbee99bfcb" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Property</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

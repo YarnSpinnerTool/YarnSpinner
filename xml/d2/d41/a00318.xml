@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d2/d41/a00318" kind="struct" prot="public">
+    <compoundname>Yarn::Options</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d2/d41/a00318_1ae8c616d923ceeeed192a9436c55d9917" prot="public" static="no" mutable="no">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.Options.options</definition>
+        <argsstring></argsstring>
+        <name>options</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1422">
+        <label>Yarn.Options</label>
+        <link refid="d2/d41/a00318"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="53"/>
+    <listofallmembers>
+      <member refid="d2/d41/a00318_1ae8c616d923ceeeed192a9436c55d9917" prot="public" virt="non-virtual"><scope>Yarn::Options</scope><name>options</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

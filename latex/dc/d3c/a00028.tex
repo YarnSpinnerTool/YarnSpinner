@@ -1,0 +1,66 @@
+\hypertarget{a00028}{\section{Yarn.\-Parser.\-If\-Statement.\-Clause Struct Reference}
+\label{a00028}\index{Yarn.\-Parser.\-If\-Statement.\-Clause@{Yarn.\-Parser.\-If\-Statement.\-Clause}}
+}
+
+
+Collaboration diagram for Yarn.\-Parser.\-If\-Statement.\-Clause\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d6/d75/a00604}
+\end{center}
+\end{figure}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00028_a7f4fc9399896512b68fdc7bc7cf818c9}{Print\-Tree} (int indent\-Level)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00080}{Expression} \hyperlink{a00028_a1abd1f7c41f68ccdf64074ea49365be9}{expression}
+\item 
+I\-Enumerable$<$ \hyperlink{a00140}{Statement} $>$ \hyperlink{a00028_a6f4765482e98ed042e38a0ede13f171f}{statements}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00028_a7f4fc9399896512b68fdc7bc7cf818c9}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-If\-Statement.\-Clause.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00028_a7f4fc9399896512b68fdc7bc7cf818c9}
+
+\begin{DoxyCode}
+601                                                            \{
+602                     var sb = \textcolor{keyword}{new} StringBuilder ();
+603                     \textcolor{keywordflow}{if} (\hyperlink{a00028_a1abd1f7c41f68ccdf64074ea49365be9}{expression} != null)
+604                         sb.Append (expression.PrintTree (indentLevel));
+605                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\{"}));
+606                     \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} \hyperlink{a00028_a6f4765482e98ed042e38a0ede13f171f}{statements}) \{
+607                         sb.Append (statement.PrintTree (indentLevel + 1));
+608                     \}
+609                     sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+610                     \textcolor{keywordflow}{return} sb.ToString ();
+611                 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00028_a1abd1f7c41f68ccdf64074ea49365be9}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!expression@{expression}}
+\index{expression@{expression}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-If\-Statement.\-Clause.\-expression\hspace{0.3cm}{\ttfamily [package]}}}\label{a00028_a1abd1f7c41f68ccdf64074ea49365be9}
+\hypertarget{a00028_a6f4765482e98ed042e38a0ede13f171f}{\index{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}!statements@{statements}}
+\index{statements@{statements}!Yarn::Parser::IfStatement::Clause@{Yarn\-::\-Parser\-::\-If\-Statement\-::\-Clause}}
+\subsubsection[{statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Statement}$>$ Yarn.\-Parser.\-If\-Statement.\-Clause.\-statements\hspace{0.3cm}{\ttfamily [package]}}}\label{a00028_a6f4765482e98ed042e38a0ede13f171f}
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d4/d7d/a00093" kind="struct" prot="public">
+    <compoundname>Yarn::Instruction</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d4/d7d/a00093_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" static="no" mutable="no">
+        <type><ref refid="d5/d16/a00029_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+        <definition>ByteCode Yarn.Instruction.operation</definition>
+        <argsstring></argsstring>
+        <name>operation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="179" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d7d/a00093_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" static="no" mutable="no">
+        <type>object</type>
+        <definition>object Yarn.Instruction.operandA</definition>
+        <argsstring></argsstring>
+        <name>operandA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d7d/a00093_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" static="no" mutable="no">
+        <type>object</type>
+        <definition>object Yarn.Instruction.operandB</definition>
+        <argsstring></argsstring>
+        <name>operandB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d4/d7d/a00093_1a939d511f211e8a61cfbca902e802564f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Instruction.ToString</definition>
+        <argsstring>(Program p, Library l)</argsstring>
+        <name>ToString</name>
+        <param>
+          <type><ref refid="da/d72/a00124" kindref="compound">Program</ref></type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d3a/a00101" kindref="compound">Library</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="183" bodyend="266"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1294">
+        <label>Yarn.Instruction</label>
+        <link refid="d4/d7d/a00093"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="178" bodyend="267"/>
+    <listofallmembers>
+      <member refid="d4/d7d/a00093_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandA</name></member>
+      <member refid="d4/d7d/a00093_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandB</name></member>
+      <member refid="d4/d7d/a00093_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operation</name></member>
+      <member refid="d4/d7d/a00093_1a939d511f211e8a61cfbca902e802564f" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>ToString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

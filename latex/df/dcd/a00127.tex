@@ -1,0 +1,98 @@
+\hypertarget{a00127}{\section{Yarn.\-Program\-Exporter Class Reference}
+\label{a00127}\index{Yarn.\-Program\-Exporter@{Yarn.\-Program\-Exporter}}
+}
+
+
+Collaboration diagram for Yarn.\-Program\-Exporter\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{d5/d40/a00672}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00127_a2e617f0d69a4a6a1c5307af390067079}{Program\-Exporter} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{a00127_a3679a1f144471ea411fed34f6a79a18d}{Export} (\hyperlink{a00033}{Compile\-Options} options)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00127_a2e617f0d69a4a6a1c5307af390067079}{\index{Yarn\-::\-Program\-Exporter@{Yarn\-::\-Program\-Exporter}!Program\-Exporter@{Program\-Exporter}}
+\index{Program\-Exporter@{Program\-Exporter}!Yarn::ProgramExporter@{Yarn\-::\-Program\-Exporter}}
+\subsubsection[{Program\-Exporter}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Program\-Exporter.\-Program\-Exporter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00127_a2e617f0d69a4a6a1c5307af390067079}
+
+\begin{DoxyCode}
+10         \{
+11         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00127_a3679a1f144471ea411fed34f6a79a18d}{\index{Yarn\-::\-Program\-Exporter@{Yarn\-::\-Program\-Exporter}!Export@{Export}}
+\index{Export@{Export}!Yarn::ProgramExporter@{Yarn\-::\-Program\-Exporter}}
+\subsubsection[{Export}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Program\-Exporter.\-Export (
+\begin{DoxyParamCaption}
+\item[{{\bf Compile\-Options}}]{options}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00127_a3679a1f144471ea411fed34f6a79a18d}
+
+\begin{DoxyCode}
+14         \{
+15             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00169_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+16 
+17             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files) \{
+18                 
+19                 var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
+20 
+21                 \textcolor{comment}{// Load and compile the program}
+22                 \textcolor{keywordflow}{try}
+23                 \{
+24                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
+25                     dialogue.LoadFile(file);
+26                 \}
+27                 \textcolor{keywordflow}{catch}
+28                 \{
+29                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Skipping file \{0\} due to compilation errors."}, 
+      file));
+30                     \textcolor{keywordflow}{continue};
+31                 \}
+32 
+33                 \textcolor{comment}{// Convert the program into BSON}
+34                 var compiledProgram = dialogue.GetCompiledProgram(options.format);
+35 
+36                 var outputPath = System.IO.Path.ChangeExtension(file, \textcolor{stringliteral}{"yarn.bytes"});
+37 
+38                 \textcolor{keywordflow}{try} \{
+39                     System.IO.File.WriteAllBytes(outputPath, compiledProgram);
+40                 \} \textcolor{keywordflow}{catch} (Exception e) \{
+41                     YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"Error writing \{0\}: \{1\}"}, outputPath, e.Message)
+      );
+42                 \}
+43 
+44 
+45 
+46             \}
+47 
+48             \textcolor{keywordflow}{return} 0;
+49         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner\-Console/\hyperlink{a00273}{Program\-Exporter.\-cs}\end{DoxyCompactItemize}

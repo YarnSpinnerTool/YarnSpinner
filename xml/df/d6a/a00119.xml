@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="df/d6a/a00119" kind="class" prot="package">
+    <compoundname>Yarn::ParseException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="df/d6a/a00119_1ab335169367e64fd6d89d58b3ac573751" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.ParseException.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="df/d6a/a00119_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="df/d6a/a00119" kindref="compound">ParseException</ref></type>
+        <definition>static ParseException Yarn.ParseException.Make</definition>
+        <argsstring>(Token foundToken, params TokenType[] expectedTypes)</argsstring>
+        <name>Make</name>
+        <param>
+          <type><ref refid="d0/d4a/a00147" kindref="compound">Token</ref></type>
+          <declname>foundToken</declname>
+        </param>
+        <param>
+          <type>params <ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
+          <declname>expectedTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="41" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="df/d6a/a00119_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="df/d6a/a00119" kindref="compound">ParseException</ref></type>
+        <definition>static ParseException Yarn.ParseException.Make</definition>
+        <argsstring>(Token mostRecentToken, string message)</argsstring>
+        <name>Make</name>
+        <param>
+          <type><ref refid="d0/d4a/a00147" kindref="compound">Token</ref></type>
+          <declname>mostRecentToken</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="62" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="df/d6a/a00119_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.ParseException.ParseException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>ParseException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="73" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1433">
+        <label>Yarn.ParseException</label>
+        <link refid="df/d6a/a00119"/>
+        <childnode refid="1434" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1434">
+        <label>Exception</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1435">
+        <label>Yarn.ParseException</label>
+        <link refid="df/d6a/a00119"/>
+        <childnode refid="1436" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1436">
+        <label>Exception</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="37" bodyend="75"/>
+    <listofallmembers>
+      <member refid="df/d6a/a00119_1ab335169367e64fd6d89d58b3ac573751" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>lineNumber</name></member>
+      <member refid="df/d6a/a00119_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
+      <member refid="df/d6a/a00119_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
+      <member refid="df/d6a/a00119_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>ParseException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

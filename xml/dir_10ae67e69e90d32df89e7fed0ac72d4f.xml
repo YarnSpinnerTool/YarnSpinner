@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_10ae67e69e90d32df89e7fed0ac72d4f" kind="dir">
+    <compoundname>packages/CsvHelper.2.16.0.0/src</compoundname>
+    <innerdir refid="dir_ff1b7618d87d4a640f5aacfdcf4f24c7">packages/CsvHelper.2.16.0.0/src/CsvHelper</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/"/>
+  </compounddef>
+</doxygen>

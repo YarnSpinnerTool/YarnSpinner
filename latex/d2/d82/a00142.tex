@@ -1,0 +1,74 @@
+\hypertarget{a00142}{\section{Csv\-Helper.\-String\-Helper Class Reference}
+\label{a00142}\index{Csv\-Helper.\-String\-Helper@{Csv\-Helper.\-String\-Helper}}
+}
+
+
+Common string tasks.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-String\-Helper\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{d1/d53/a00399}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00142_a40c715a7ebf19c7053c7b10f2b3df80f}{Is\-Null\-Or\-White\-Space} (string s)
+\begin{DoxyCompactList}\small\item\em Tests is a string is null or whitespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Common string tasks. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00142_a40c715a7ebf19c7053c7b10f2b3df80f}{\index{Csv\-Helper\-::\-String\-Helper@{Csv\-Helper\-::\-String\-Helper}!Is\-Null\-Or\-White\-Space@{Is\-Null\-Or\-White\-Space}}
+\index{Is\-Null\-Or\-White\-Space@{Is\-Null\-Or\-White\-Space}!CsvHelper::StringHelper@{Csv\-Helper\-::\-String\-Helper}}
+\subsubsection[{Is\-Null\-Or\-White\-Space}]{\setlength{\rightskip}{0pt plus 5cm}static bool Csv\-Helper.\-String\-Helper.\-Is\-Null\-Or\-White\-Space (
+\begin{DoxyParamCaption}
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00142_a40c715a7ebf19c7053c7b10f2b3df80f}
+
+
+Tests is a string is null or whitespace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to test.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the string is null or whitespace, otherwise false.
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+18         \{
+19             \textcolor{keywordflow}{if}( s == null )
+20             \{
+21                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+22             \}
+23 
+24             \textcolor{keywordflow}{for}( var i = 0; i < s.Length; i++ )
+25             \{
+26                 \textcolor{keywordflow}{if}( !\textcolor{keywordtype}{char}.IsWhiteSpace( s[i] ) )
+27                 \{
+28                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+29                 \}
+30             \}
+31 
+32             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+33         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00219}{String\-Helper.\-cs}\end{DoxyCompactItemize}

@@ -1,0 +1,222 @@
+\hypertarget{a00040}{\section{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection Class Reference}
+\label{a00040}\index{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection@{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection}}
+}
+
+
+Collection that holds Csv\-Class\-Maps for record types.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{d1/d98/a00407}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{a00038}{Csv\-Class\-Map}$<$ T $>$ \hyperlink{a00040_ac75513617b6c256c3d693adf4482e1ed}{Find$<$ T $>$} ()
+\begin{DoxyCompactList}\small\item\em Finds the \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{a00040_aab6a14a4c1a614fac511ddd6af2c9e40}{Add} (\hyperlink{a00038}{Csv\-Class\-Map} map)
+\begin{DoxyCompactList}\small\item\em Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00040_a0b18f7ab62839aa354021986e5a2ef96}{Remove} (Type class\-Map\-Type)
+\begin{DoxyCompactList}\small\item\em Removes the class map. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00040_a91718f9b6527a7f833393d24587716cc}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Removes all maps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{a00038}{Csv\-Class\-Map} \hyperlink{a00040_a58c95d5126b396fcf3f58d7daa59646e}{this\mbox{[}\-Type type\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Type \hyperlink{a00040_a73e02f782a0c35347d7d035bec5deb99}{Get\-Generic\-Csv\-Class\-Map\-Type} (Type type)
+\begin{DoxyCompactList}\small\item\em Goes up the inheritance tree to find the type instance of \hyperlink{a00038}{Csv\-Class\-Map}\{\}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly Dictionary$<$ Type, \\*
+\hyperlink{a00038}{Csv\-Class\-Map} $>$ \hyperlink{a00040_a6402d0986ae539363780f34eefd5fa99}{data} = new Dictionary$<$Type, \hyperlink{a00038}{Csv\-Class\-Map}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Collection that holds Csv\-Class\-Maps for record types. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00040_aab6a14a4c1a614fac511ddd6af2c9e40}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Add@{Add}}
+\index{Add@{Add}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Add (
+\begin{DoxyParamCaption}
+\item[{{\bf Csv\-Class\-Map}}]{map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00040_aab6a14a4c1a614fac511ddd6af2c9e40}
+
+
+Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & The map.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+57         \{
+58             var type = \hyperlink{a00040_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( map.GetType() ).
+      GetGenericArguments().First();
+59 
+60             \textcolor{keywordflow}{if}( \hyperlink{a00040_a6402d0986ae539363780f34eefd5fa99}{data}.ContainsKey( type ) )
+61             \{
+62                 \hyperlink{a00040_a6402d0986ae539363780f34eefd5fa99}{data}[type] = map;
+63             \}
+64             \textcolor{keywordflow}{else}
+65             \{
+66                 data.Add( type, map );
+67             \}
+68         \}
+\end{DoxyCode}
+\hypertarget{a00040_a91718f9b6527a7f833393d24587716cc}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Clear@{Clear}}
+\index{Clear@{Clear}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00040_a91718f9b6527a7f833393d24587716cc}
+
+
+Removes all maps. 
+
+
+\begin{DoxyCode}
+90         \{
+91             data.Clear();
+92         \}
+\end{DoxyCode}
+\hypertarget{a00040_ac75513617b6c256c3d693adf4482e1ed}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Find$<$ T $>$@{Find$<$ T $>$}}
+\index{Find$<$ T $>$@{Find$<$ T $>$}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{Find$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Class\-Map}$<$T$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Find$<$ T $>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00040_ac75513617b6c256c3d693adf4482e1ed}
+
+
+Finds the \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The record type.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type.
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+46         \{
+47             \textcolor{keywordflow}{return} (CsvClassMap<T>)\textcolor{keyword}{this}[typeof( T )];
+48         \}
+\end{DoxyCode}
+\hypertarget{a00040_a73e02f782a0c35347d7d035bec5deb99}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Get\-Generic\-Csv\-Class\-Map\-Type@{Get\-Generic\-Csv\-Class\-Map\-Type}}
+\index{Get\-Generic\-Csv\-Class\-Map\-Type@{Get\-Generic\-Csv\-Class\-Map\-Type}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{Get\-Generic\-Csv\-Class\-Map\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Get\-Generic\-Csv\-Class\-Map\-Type (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00040_a73e02f782a0c35347d7d035bec5deb99}
+
+
+Goes up the inheritance tree to find the type instance of \hyperlink{a00038}{Csv\-Class\-Map}\{\}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type to traverse.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type that is \hyperlink{a00038}{Csv\-Class\-Map}\{\}.
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+100         \{
+101             \textcolor{keywordflow}{if}( type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof( 
+      CsvClassMap<> ) )
+102             \{
+103                 \textcolor{keywordflow}{return} type;
+104             \}
+105 
+106             \textcolor{keywordflow}{return} \hyperlink{a00040_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( type.GetTypeInfo().BaseType );
+107         \}
+\end{DoxyCode}
+\hypertarget{a00040_a0b18f7ab62839aa354021986e5a2ef96}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Remove@{Remove}}
+\index{Remove@{Remove}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{Remove}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Remove (
+\begin{DoxyParamCaption}
+\item[{Type}]{class\-Map\-Type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00040_a0b18f7ab62839aa354021986e5a2ef96}
+
+
+Removes the class map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\-Map\-Type} & The class map type.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+75         \{
+76             \textcolor{keywordflow}{if}( !typeof( CsvClassMap ).IsAssignableFrom( classMapType ) )
+77             \{
+78                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"The class map type must inherit from CsvClassMap."} );
+79             \}
+80 
+81             var type = \hyperlink{a00040_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( classMapType )
+      .GetGenericArguments().First();
+82 
+83             data.Remove( type );
+84         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00040_a6402d0986ae539363780f34eefd5fa99}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!data@{data}}
+\index{data@{data}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf Csv\-Class\-Map}$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-data = new Dictionary$<$Type, {\bf Csv\-Class\-Map}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00040_a6402d0986ae539363780f34eefd5fa99}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00040_a58c95d5126b396fcf3f58d7daa59646e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!this\mbox{[}\-Type type\mbox{]}@{this[Type type]}}
+\index{this\mbox{[}\-Type type\mbox{]}@{this[Type type]}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
+\subsubsection[{this[Type type]}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-this\mbox{[}Type type\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00040_a58c95d5126b396fcf3f58d7daa59646e}
+
+
+Gets the \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type. 
+
+The \hyperlink{a00038}{Csv\-Class\-Map}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The record type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \hyperlink{a00038}{Csv\-Class\-Map} for the specified record type.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00180}{Csv\-Class\-Map\-Collection.\-cs}\end{DoxyCompactItemize}

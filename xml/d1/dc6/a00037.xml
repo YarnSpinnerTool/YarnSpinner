@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d1/dc6/a00037" kind="class" prot="public">
+    <compoundname>CsvHelper::CsvBadDataException</compoundname>
+    <basecompoundref refid="d5/df9/a00044" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/dc6/a00037_1a337ebca212c62127ba837ae726a0cc3a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvBadDataException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d1/dc6/a00037" kindref="compound">CsvBadDataException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dc6/a00037_1a31da9e807053a75e8bd252aa792269eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvBadDataException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d1/dc6/a00037" kindref="compound">CsvBadDataException</ref> class with a specified error message. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dc6/a00037_1a2c210cf80604e58ffecc177f6f7c2547" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvBadDataException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d1/dc6/a00037" kindref="compound">CsvBadDataException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dc6/a00037_1abe956c9c100374953fd899bef2f2489f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvBadDataException.CsvBadDataException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvBadDataException</name>
+        <param>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d5/df9/a00044" kindref="compound">CsvHelperException</ref> class with serialized data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="48" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents errors that occur due to bad data. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="946">
+        <label>Exception</label>
+      </node>
+      <node id="944">
+        <label>CsvHelper.CsvBadDataException</label>
+        <link refid="d1/dc6/a00037"/>
+        <childnode refid="945" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="945">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="946" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="949">
+        <label>Exception</label>
+      </node>
+      <node id="947">
+        <label>CsvHelper.CsvBadDataException</label>
+        <link refid="d1/dc6/a00037"/>
+        <childnode refid="948" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="948">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="949" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvBadDataException.cs" bodystart="18" bodyend="50"/>
+    <listofallmembers>
+      <member refid="d1/dc6/a00037_1a337ebca212c62127ba837ae726a0cc3a" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
+      <member refid="d1/dc6/a00037_1a31da9e807053a75e8bd252aa792269eb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
+      <member refid="d1/dc6/a00037_1a2c210cf80604e58ffecc177f6f7c2547" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
+      <member refid="d1/dc6/a00037_1abe956c9c100374953fd899bef2f2489f" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvBadDataException</name></member>
+      <member refid="d5/df9/a00044_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvBadDataException</scope><name>CsvHelperException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

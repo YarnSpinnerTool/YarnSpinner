@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dd/d42/a00109" kind="class" prot="public">
+    <compoundname>MobileOnly</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="dd/d42/a00109_1acfb1b3a9c8f62b30300331fb84752022" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MobileOnly.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/MobileOnly.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/MobileOnly.cs" bodystart="9" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1387">
+        <label>MobileOnly</label>
+        <link refid="dd/d42/a00109"/>
+        <childnode refid="1388" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1388">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1389">
+        <label>MobileOnly</label>
+        <link refid="dd/d42/a00109"/>
+        <childnode refid="1390" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1390">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/MobileOnly.cs" line="4" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/MobileOnly.cs" bodystart="4" bodyend="19"/>
+    <listofallmembers>
+      <member refid="dd/d42/a00109_1acfb1b3a9c8f62b30300331fb84752022" prot="private" virt="non-virtual"><scope>MobileOnly</scope><name>Awake</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

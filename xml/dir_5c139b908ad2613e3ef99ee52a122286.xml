@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_5c139b908ad2613e3ef99ee52a122286" kind="dir">
+    <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion</compoundname>
+    <innerfile refid="d5/d0b/a00220">BooleanConverter.cs</innerfile>
+    <innerfile refid="dd/d52/a00221">ByteConverter.cs</innerfile>
+    <innerfile refid="d0/d24/a00222">CharConverter.cs</innerfile>
+    <innerfile refid="dc/d28/a00223">CsvTypeConverterException.cs</innerfile>
+    <innerfile refid="d5/ddf/a00224">DateTimeConverter.cs</innerfile>
+    <innerfile refid="dc/d98/a00225">DateTimeOffsetConverter.cs</innerfile>
+    <innerfile refid="dc/d55/a00226">DecimalConverter.cs</innerfile>
+    <innerfile refid="d9/d01/a00227">DefaultTypeConverter.cs</innerfile>
+    <innerfile refid="de/dc2/a00228">DoubleConverter.cs</innerfile>
+    <innerfile refid="dd/d2d/a00229">EnumConverter.cs</innerfile>
+    <innerfile refid="d1/da8/a00230">EnumerableConverter.cs</innerfile>
+    <innerfile refid="df/d17/a00231">GuidConverter.cs</innerfile>
+    <innerfile refid="d0/d53/a00232">Int16Converter.cs</innerfile>
+    <innerfile refid="d6/de1/a00233">Int32Converter.cs</innerfile>
+    <innerfile refid="da/d31/a00234">Int64Converter.cs</innerfile>
+    <innerfile refid="d3/d42/a00235">ITypeConverter.cs</innerfile>
+    <innerfile refid="d7/d40/a00236">NullableConverter.cs</innerfile>
+    <innerfile refid="d4/d08/a00237">SByteConverter.cs</innerfile>
+    <innerfile refid="da/d2e/a00238">SingleConverter.cs</innerfile>
+    <innerfile refid="d0/d27/a00239">StringConverter.cs</innerfile>
+    <innerfile refid="d9/d21/a00240">TimeSpanConverter.cs</innerfile>
+    <innerfile refid="d6/db6/a00241">TypeConverterFactory.cs</innerfile>
+    <innerfile refid="d2/dc8/a00242">TypeConverterOptions.cs</innerfile>
+    <innerfile refid="d6/d82/a00243">TypeConverterOptionsFactory.cs</innerfile>
+    <innerfile refid="d6/d08/a00244">UInt16Converter.cs</innerfile>
+    <innerfile refid="d6/d22/a00245">UInt32Converter.cs</innerfile>
+    <innerfile refid="d4/d9a/a00246">UInt64Converter.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/"/>
+  </compounddef>
+</doxygen>

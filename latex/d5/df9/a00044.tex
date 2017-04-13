@@ -1,0 +1,133 @@
+\hypertarget{a00044}{\section{Csv\-Helper.\-Csv\-Helper\-Exception Class Reference}
+\label{a00044}\index{Csv\-Helper.\-Csv\-Helper\-Exception@{Csv\-Helper.\-Csv\-Helper\-Exception}}
+}
+
+
+Represents errors that occur in \hyperlink{a00281}{Csv\-Helper}.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d10/a00350}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{d0/d48/a00351}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00044_a83571967535529f42bb42b33684e4631}{Csv\-Helper\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00044_a47cbed4fb25c42fd548282b3f8652290}{Csv\-Helper\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00044_ac97c52774cb49f7e5d855b7586cdfa1d}{Csv\-Helper\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00044_a1194d6917d1b52a8e15e3701a6e8264d}{Csv\-Helper\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents errors that occur in \hyperlink{a00281}{Csv\-Helper}. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00044_a83571967535529f42bb42b33684e4631}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00044_a83571967535529f42bb42b33684e4631}
+
+
+Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class. 
+
+
+\begin{DoxyCode}
+23 \{\}
+\end{DoxyCode}
+\hypertarget{a00044_a47cbed4fb25c42fd548282b3f8652290}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00044_a47cbed4fb25c42fd548282b3f8652290}
+
+
+Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+30 : base( message ) \{\}
+\end{DoxyCode}
+\hypertarget{a00044_ac97c52774cb49f7e5d855b7586cdfa1d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00044_ac97c52774cb49f7e5d855b7586cdfa1d}
+
+
+Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+39 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00044_a1194d6917d1b52a8e15e3701a6e8264d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
+\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
+\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00044_a1194d6917d1b52a8e15e3701a6e8264d}
+
+
+Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+48 : base( info, context ) \{\}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00195}{Csv\-Helper\-Exception.\-cs}\end{DoxyCompactItemize}

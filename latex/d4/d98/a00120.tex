@@ -1,0 +1,164 @@
+\hypertarget{a00120}{\section{Yarn.\-Parser.\-Parse\-Node Class Reference}
+\label{a00120}\index{Yarn.\-Parser.\-Parse\-Node@{Yarn.\-Parser.\-Parse\-Node}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-Parse\-Node\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/dc4/a00617}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Parse\-Node\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{de/d85/a00618}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00120_a9e7e90bbaed268529230512e4b5a2f77}{Parse\-Node} (\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00121}{Parser} p)
+\item 
+abstract string \hyperlink{a00120_a0d6611653f20c2e4d90a97a96c657137}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00120_a9e7e90bbaed268529230512e4b5a2f77}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Parse\-Node@{Parse\-Node}}
+\index{Parse\-Node@{Parse\-Node}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Parse\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00120_a9e7e90bbaed268529230512e4b5a2f77}
+
+\begin{DoxyCode}
+108                                                            \{ 
+109                 this.parent = \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent};
+110                 \textcolor{keywordflow}{if} (p.tokens.Count > 0)
+111                     this.lineNumber = p.tokens.Peek().\hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{lineNumber};
+112                 \textcolor{keywordflow}{else}
+113                     this.lineNumber = -1;
+114             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00120_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00120_a580e520a29444fc23ac3660cbe514a09}
+
+\begin{DoxyCode}
+144                                        \{
+145                 var node = \textcolor{keyword}{this};
+146 
+147                 \textcolor{keywordflow}{do} \{
+148                     \textcolor{keywordflow}{if} (node is Node) \{
+149                         \textcolor{keywordflow}{return} node as Node;
+150                     \}
+151                     node = node.parent;
+152                 \} \textcolor{keywordflow}{while} (node 
+153                     != null);                   
+154 
+155                 \textcolor{keywordflow}{return} null;
+156             \}
+\end{DoxyCode}
+\hypertarget{a00120_a0d6611653f20c2e4d90a97a96c657137}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}abstract string Yarn.\-Parser.\-Parse\-Node.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [pure virtual]}}}\label{a00120_a0d6611653f20c2e4d90a97a96c657137}
+
+
+Implemented in \hyperlink{a00115_a0c2ad7c4d6837ffc7b5325bbb8330c51}{Yarn.\-Parser.\-Operator}, \hyperlink{a00018_accb9ddcb472eb035a65188c857b8efd8}{Yarn.\-Parser.\-Assignment\-Statement}, \hyperlink{a00080_a509ba6d93218203bae56a5a7a82e8261}{Yarn.\-Parser.\-Expression}, \hyperlink{a00162_ae4659e4431e9846a45e0d048c960781a}{Yarn.\-Parser.\-Value\-Node}, \hyperlink{a00092_a5494c1daef8e0f3ac3ab68f91db4f332}{Yarn.\-Parser.\-If\-Statement}, \hyperlink{a00118_aafba8c941dbd3d0ef841ac9d472e1ba3}{Yarn.\-Parser.\-Option\-Statement}, \hyperlink{a00022_aaaacfc4e3ff2871fa5e2fb75e48636de}{Yarn.\-Parser.\-Block}, \hyperlink{a00133_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{Yarn.\-Parser.\-Shortcut\-Option}, \hyperlink{a00134_a7b60f85e46b8767db81177ec40e83104}{Yarn.\-Parser.\-Shortcut\-Option\-Group}, \hyperlink{a00061_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Yarn.\-Parser.\-Custom\-Command}, \hyperlink{a00140_aaac6d1e0c3b31f33e1c6f964c205153e}{Yarn.\-Parser.\-Statement}, and \hyperlink{a00110_ab11501ebf251fdaa7cfe44edfa993068}{Yarn.\-Parser.\-Node}.
+
+\hypertarget{a00120_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)}}\label{a00120_a054f36c80d5eeacd569a8859f599af67}
+
+\begin{DoxyCode}
+122             \{
+123                 \textcolor{keywordflow}{if} (\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+124                     var s = \textcolor{keyword}{new} StringBuilder ();
+125 
+126                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+128                         s.Append(\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+129                     \}
+130                     \textcolor{keywordflow}{return} s.ToString ();
+131                 \} \textcolor{keywordflow}{else} \{
+132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+133                 \}
+134 
+135 
+136             \}
+\end{DoxyCode}
+\hypertarget{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+\begin{DoxyCode}
+139             \{
+140                 \textcolor{keywordflow}{return} this.GetType ().Name;
+141             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00120_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}}}\label{a00120_a18b493382de0fde5b4299c1bd2250075}
+\hypertarget{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}}}\label{a00120_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00120_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

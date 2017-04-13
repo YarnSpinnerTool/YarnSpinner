@@ -1,0 +1,146 @@
+\hypertarget{a00093}{\section{Yarn.\-Instruction Struct Reference}
+\label{a00093}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
+}
+
+
+Collaboration diagram for Yarn.\-Instruction\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{d8/d14/a00522}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00093_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00124}{Program} p, \hyperlink{a00101}{Library} l)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00029_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
+\item 
+object \hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
+\item 
+object \hyperlink{a00093_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00093_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Program}}]{p, }
+\item[{{\bf Library}}]{l}
+\end{DoxyParamCaption}
+)}}\label{a00093_a939d511f211e8a61cfbca902e802564f}
+
+\begin{DoxyCode}
+183                                                       \{
+184 
+185             \textcolor{comment}{// Labels are easy: just dump out the name}
+186             \textcolor{keywordflow}{if} (\hyperlink{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00029_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label) \{
+187                 \textcolor{keywordflow}{return} \hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
+188             \}
+189 
+190             \textcolor{comment}{// Convert the operands to strings}
+191             var opAString = \hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? operandA.ToString () : \textcolor{stringliteral}{""};
+192             var opBString = \hyperlink{a00093_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? operandB.ToString () : \textcolor{stringliteral}{""};
+193 
+194             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
+195             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
+196 
+197             \textcolor{comment}{// Stack manipulation comments}
+198             var pops = 0;
+199             var pushes = 0;
+200 
+201             \textcolor{keywordflow}{switch} (\hyperlink{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}) \{
+202 
+203             \textcolor{comment}{// These operations all push a single value to the stack}
+204             \textcolor{keywordflow}{case} ByteCode.PushBool:
+205             \textcolor{keywordflow}{case} ByteCode.PushNull:
+206             \textcolor{keywordflow}{case} ByteCode.PushNumber:
+207             \textcolor{keywordflow}{case} ByteCode.PushString:
+208             \textcolor{keywordflow}{case} ByteCode.PushVariable:
+209             \textcolor{keywordflow}{case} ByteCode.ShowOptions:
+210                 pushes = 1;
+211                 \textcolor{keywordflow}{break};
+212 
+213             \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1 }
+214             \textcolor{keywordflow}{case} ByteCode.CallFunc:
+215                 var \textcolor{keyword}{function} = l.GetFunction ((string)\hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operandA});
+216 
+217                 pops = function.paramCount;
+218 
+219                 \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
+220                     pushes = 1;
+221                 
+222 
+223                 \textcolor{keywordflow}{break};
+224             
+225             \textcolor{comment}{// Pop always pops a single value}
+226             \textcolor{keywordflow}{case} ByteCode.Pop:
+227                 pops = 1;
+228                 \textcolor{keywordflow}{break};
+229             
+230             \textcolor{comment}{// Switching to a different node will always clear the stack}
+231             \textcolor{keywordflow}{case} ByteCode.RunNode:
+232                 comment += \textcolor{stringliteral}{"Clears stack"};
+233                 \textcolor{keywordflow}{break};
+234             \}
+235 
+236             \textcolor{comment}{// If we had any pushes or pops, report them}
+237 
+238             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
+239                 comment += string.Format (\textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes);
+240             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
+241                 comment += string.Format (\textcolor{stringliteral}{"Pops \{0\}"}, pops);
+242             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
+243                 comment += string.Format (\textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
+244 
+245             \textcolor{comment}{// String lookup comments}
+246             \textcolor{keywordflow}{switch} (\hyperlink{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}) \{
+247             \textcolor{keywordflow}{case} ByteCode.PushString:
+248             \textcolor{keywordflow}{case} ByteCode.RunLine:
+249             \textcolor{keywordflow}{case} ByteCode.AddOption:
+250 
+251                 \textcolor{comment}{// Add the string for this option, if it has one}
+252                 \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})\hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null) \{
+253                     var text = p.GetString((string)\hyperlink{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{operandA});
+254                     comment += string.Format (\textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
+255                 \}
+256 
+257                 \textcolor{keywordflow}{break};
+258             
+259             \}
+260 
+261             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""}) \{
+262                 comment = \textcolor{stringliteral}{"; "} + comment;
+263             \}
+264 
+265             \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, operation.ToString (), opAString, 
+      opBString, comment);
+266         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00093_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
+\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00093_ab5d386faa0d3dbc23db80f8e62706afd}
+\hypertarget{a00093_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
+\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00093_a56348c6fe7eb919b7277afc06e5b224a}
+\hypertarget{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
+\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00093_a566bf5f7198cc353ea5c3710cb3a31cb}
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00261}{Compiler.\-cs}\end{DoxyCompactItemize}

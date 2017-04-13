@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_ff1b7618d87d4a640f5aacfdcf4f24c7" kind="dir">
+    <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper</compoundname>
+    <innerdir refid="dir_3401b88f0a1c00c4409faa11193eadf6">packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration</innerdir>
+    <innerdir refid="dir_71f81168fdb7d447b41a115f71f5eda9">packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility</innerdir>
+    <innerdir refid="dir_38e4794d63a36822bec31892cd916c51">packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFrom20</innerdir>
+    <innerdir refid="dir_48a1716f11dda95e9025da5db297b66f">packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFromPcl</innerdir>
+    <innerdir refid="dir_4c151e014849d6a3fd7578456f95c583">packages/CsvHelper.2.16.0.0/src/CsvHelper/Properties</innerdir>
+    <innerdir refid="dir_5c139b908ad2613e3ef99ee52a122286">packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion</innerdir>
+    <innerfile refid="dd/df4/a00193">CsvBadDataException.cs</innerfile>
+    <innerfile refid="dc/d57/a00194">CsvFactory.cs</innerfile>
+    <innerfile refid="d3/d2a/a00195">CsvHelperException.cs</innerfile>
+    <innerfile refid="d7/ded/a00196">CsvMissingFieldException.cs</innerfile>
+    <innerfile refid="de/db1/a00197">CsvParser.cs</innerfile>
+    <innerfile refid="d7/da0/a00198">CsvParserException.cs</innerfile>
+    <innerfile refid="d8/d72/a00199">CsvReader.cs</innerfile>
+    <innerfile refid="d3/db1/a00200">CsvReaderException.cs</innerfile>
+    <innerfile refid="dd/de3/a00201">CsvSerializer.cs</innerfile>
+    <innerfile refid="db/d53/a00202">CsvWriter.cs</innerfile>
+    <innerfile refid="de/d79/a00203">CsvWriterException.cs</innerfile>
+    <innerfile refid="d1/d72/a00204">ExceptionHelper.cs</innerfile>
+    <innerfile refid="d5/d13/a00205">ICsvFactory.cs</innerfile>
+    <innerfile refid="d5/df1/a00206">ICsvParser.cs</innerfile>
+    <innerfile refid="de/dd2/a00207">ICsvReader.cs</innerfile>
+    <innerfile refid="dc/d31/a00208">ICsvReaderRow.cs</innerfile>
+    <innerfile refid="d3/de5/a00209">ICsvSerializer.cs</innerfile>
+    <innerfile refid="da/de7/a00210">ICsvWriter.cs</innerfile>
+    <innerfile refid="dc/d9a/a00218">ReflectionHelper.cs</innerfile>
+    <innerfile refid="dd/df3/a00219">StringHelper.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/"/>
+  </compounddef>
+</doxygen>

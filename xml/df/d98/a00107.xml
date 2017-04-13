@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="df/d98/a00107" kind="namespace">
+    <compoundname>Yarn::Unity</compoundname>
+    <innerclass refid="d3/db8/a00316" prot="public">Yarn::Unity::LocalisedStringGroup</innerclass>
+    <innerclass refid="d0/d89/a00071" prot="public">Yarn::Unity::DialogueRunner</innerclass>
+    <innerclass refid="dc/de6/a00167" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
+    <innerclass refid="d1/d6e/a00073" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
+    <innerclass refid="d0/d48/a00165" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
+    <innerclass refid="de/d38/a00160" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
+    <innerclass refid="df/d13/a00085" prot="package">Yarn::Unity::Icons</innerclass>
+    <innernamespace refid="d2/d71/a00309">Yarn::Unity::Example</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="34" column="1"/>
+  </compounddef>
+</doxygen>

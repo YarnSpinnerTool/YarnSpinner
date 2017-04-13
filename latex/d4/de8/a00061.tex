@@ -1,0 +1,271 @@
+\hypertarget{a00061}{\section{Yarn.\-Parser.\-Custom\-Command Class Reference}
+\label{a00061}\index{Yarn.\-Parser.\-Custom\-Command@{Yarn.\-Parser.\-Custom\-Command}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-Custom\-Command\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d8/de9/a00595}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Custom\-Command\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{dc/d25/a00596}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576}{Type} \{ \hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Type.\-Expression}, 
+\hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Type.\-Client\-Command}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00061_a49150c9046dcad61d61ce35c51816313}{Custom\-Command} (\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00121}{Parser} p)
+\item 
+override string \hyperlink{a00061_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00061_a02ee2902115c823bdb46715041b3a2f6}{Can\-Parse} (\hyperlink{a00121}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576}{Type} \hyperlink{a00061_a5ef3bc96812be224d91548bfcdfd4b92}{type}
+\item 
+\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00080}{Expression} \hyperlink{a00061_a4250d192d5b58e2404a14c68eb616f16}{expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00061_a1a362244273df822233359d8fe4e9f5d}{client\-Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00061_a1d9f9f57c44e1a0d228793b658339576}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Type@{Type}}
+\index{Type@{Type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Custom\-Command.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00061_a1d9f9f57c44e1a0d228793b658339576}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Expression@{Expression}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Expression@{Expression}}\item[{\em 
+\hypertarget{a00061_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression}\label{a00061_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}
+}]\index{Client\-Command@{Client\-Command}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Client\-Command@{Client\-Command}}\item[{\em 
+\hypertarget{a00061_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Client\-Command}\label{a00061_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+312                                \{
+313                 \hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression},
+314                 \hyperlink{a00061_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{ClientCommand}
+315             \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00061_a49150c9046dcad61d61ce35c51816313}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Custom\-Command@{Custom\-Command}}
+\index{Custom\-Command@{Custom\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Custom\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00061_a49150c9046dcad61d61ce35c51816313}
+
+\begin{DoxyCode}
+328                                                                : base(\hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+329 
+330                 p.ExpectSymbol(TokenType.BeginCommand);
+331 
+332                 \textcolor{comment}{// Custom commands can have ANY token in them. Read them all until we hit the}
+333                 \textcolor{comment}{// end command token.}
+334                 var commandTokens = \textcolor{keyword}{new} List<Token>();
+335                 \textcolor{keywordflow}{do} \{
+336                     commandTokens.Add(p.ExpectSymbol());
+337                 \} \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndCommand) == \textcolor{keyword}{false});
+338                 p.ExpectSymbol(TokenType.EndCommand);
+339 
+340                 \textcolor{comment}{// If the first token is an identifier and the second is}
+341                 \textcolor{comment}{// a left paren, it may be a function call expression;}
+342                 \textcolor{comment}{// evaluate it as such}
+343                 \textcolor{keywordflow}{if} (commandTokens.Count > 1 && 
+344                     commandTokens[0].type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier &&
+345                     commandTokens[1].type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen) \{            
+346                     var parser = \textcolor{keyword}{new} \hyperlink{a00121_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser}(commandTokens, p.library);
+347                     var \hyperlink{a00061_a4250d192d5b58e2404a14c68eb616f16}{expression} = Expression.Parse(\textcolor{keyword}{this}, parser);
+348                     \hyperlink{a00061_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.Expression;
+349                     this.expression = \hyperlink{a00061_a4250d192d5b58e2404a14c68eb616f16}{expression};
+350                 \} \textcolor{keywordflow}{else} \{
+351                     \textcolor{comment}{// Otherwise, evaluate it as a command}
+352                     \hyperlink{a00061_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.ClientCommand;
+353 
+354                     this.clientCommand = commandTokens[0].value;
+355                 \}
+356 
+357 
+358 
+359             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00061_a02ee2902115c823bdb46715041b3a2f6}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Custom\-Command.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00061_a02ee2902115c823bdb46715041b3a2f6}
+
+\begin{DoxyCode}
+323             \{
+324                 \textcolor{keywordflow}{return} p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
+325                     p.NextSymbolsAre (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier);
+326             \}
+\end{DoxyCode}
+\hypertarget{a00120_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a580e520a29444fc23ac3660cbe514a09}
+
+\begin{DoxyCode}
+144                                        \{
+145                 var node = \textcolor{keyword}{this};
+146 
+147                 \textcolor{keywordflow}{do} \{
+148                     \textcolor{keywordflow}{if} (node is Node) \{
+149                         \textcolor{keywordflow}{return} node as Node;
+150                     \}
+151                     node = node.parent;
+152                 \} \textcolor{keywordflow}{while} (node 
+153                     != null);                   
+154 
+155                 \textcolor{keywordflow}{return} null;
+156             \}
+\end{DoxyCode}
+\hypertarget{a00061_ad8c821f5f5671cdbac6e4a6fc0b9174b}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00061_ad8c821f5f5671cdbac6e4a6fc0b9174b}
+
+
+Implements \hyperlink{a00120_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+\begin{DoxyCode}
+362             \{
+363                 \textcolor{keywordflow}{switch} (\hyperlink{a00061_a5ef3bc96812be224d91548bfcdfd4b92}{type}) \{
+364                 \textcolor{keywordflow}{case} Type.Expression:
+365                     \textcolor{keywordflow}{return} \hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Expression: "}) + expression.PrintTree (indentLevel + 1);
+366                 \textcolor{keywordflow}{case} Type.ClientCommand:
+367                     \textcolor{keywordflow}{return} \hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Command: "} + \hyperlink{a00061_a1a362244273df822233359d8fe4e9f5d}{clientCommand});
+368                 \}
+369                 \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+370 
+371             \}
+\end{DoxyCode}
+\hypertarget{a00120_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a054f36c80d5eeacd569a8859f599af67}
+
+\begin{DoxyCode}
+122             \{
+123                 \textcolor{keywordflow}{if} (\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+124                     var s = \textcolor{keyword}{new} StringBuilder ();
+125 
+126                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+128                         s.Append(\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+129                     \}
+130                     \textcolor{keywordflow}{return} s.ToString ();
+131                 \} \textcolor{keywordflow}{else} \{
+132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+133                 \}
+134 
+135 
+136             \}
+\end{DoxyCode}
+\hypertarget{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+\begin{DoxyCode}
+139             \{
+140                 \textcolor{keywordflow}{return} this.GetType ().Name;
+141             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00120_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a18b493382de0fde5b4299c1bd2250075}
+\hypertarget{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a58b3a15788fd2d4127d73619dc6d04ae}
+\hypertarget{a00061_a5ef3bc96812be224d91548bfcdfd4b92}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!type@{type}}
+\index{type@{type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Type} Yarn.\-Parser.\-Custom\-Command.\-type\hspace{0.3cm}{\ttfamily [package]}}}\label{a00061_a5ef3bc96812be224d91548bfcdfd4b92}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00061_a1a362244273df822233359d8fe4e9f5d}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!client\-Command@{client\-Command}}
+\index{client\-Command@{client\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{client\-Command}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Custom\-Command.\-client\-Command\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00061_a1a362244273df822233359d8fe4e9f5d}
+\hypertarget{a00061_a4250d192d5b58e2404a14c68eb616f16}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!expression@{expression}}
+\index{expression@{expression}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-Custom\-Command.\-expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00061_a4250d192d5b58e2404a14c68eb616f16}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

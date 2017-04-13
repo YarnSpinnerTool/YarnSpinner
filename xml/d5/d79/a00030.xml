@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d5/d79/a00030" kind="class" prot="public">
+    <compoundname>Yarn::Dialogue::CommandResult</compoundname>
+    <basecompoundref refid="d6/db3/a00130" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d5/d79/a00030_1a420ca0984d6e5c33bb761654305c592e" prot="public" static="no" mutable="no">
+        <type><ref refid="d7/df2/a00312" kindref="compound">Command</ref></type>
+        <definition>Command Yarn.Dialogue.CommandResult.command</definition>
+        <argsstring></argsstring>
+        <name>command</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="144" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/d79/a00030_1a1a553422394fb0c854d1184985f993bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Dialogue.CommandResult.CommandResult</definition>
+        <argsstring>(string text)</argsstring>
+        <name>CommandResult</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="146" bodyend="150"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="915">
+        <label>Yarn.Dialogue.CommandResult</label>
+        <link refid="d5/d79/a00030"/>
+        <childnode refid="916" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="916">
+        <label>RunnerResult</label>
+        <link refid="d6/db3/a00130"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="917">
+        <label>Yarn.Dialogue.CommandResult</label>
+        <link refid="d5/d79/a00030"/>
+        <childnode refid="918" relation="public-inheritance">
+        </childnode>
+        <childnode refid="919" relation="usage">
+          <edgelabel>+command</edgelabel>
+        </childnode>
+      </node>
+      <node id="918">
+        <label>RunnerResult</label>
+        <link refid="d6/db3/a00130"/>
+      </node>
+      <node id="919">
+        <label>Yarn.Command</label>
+        <link refid="d7/df2/a00312"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="143" bodyend="152"/>
+    <listofallmembers>
+      <member refid="d5/d79/a00030_1a420ca0984d6e5c33bb761654305c592e" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>command</name></member>
+      <member refid="d5/d79/a00030_1a1a553422394fb0c854d1184985f993bb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::CommandResult</scope><name>CommandResult</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

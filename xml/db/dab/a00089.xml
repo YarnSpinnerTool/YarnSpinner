@@ -1,0 +1,1628 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="db/dab/a00089" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvReaderRow</compoundname>
+    <derivedcompoundref refid="db/ddf/a00088" prot="public" virt="non-virtual">CsvHelper.ICsvReader</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="db/dab/a00089_1a4e8958e51331591b1d9e811e32bd92d0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string[]</type>
+        <definition>string [] CsvHelper.ICsvReaderRow.CurrentRecord</definition>
+        <argsstring></argsstring>
+        <name>CurrentRecord</name>
+        <briefdescription>
+<para>Get the current record; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/dab/a00089_1ac1bd960358282c70f0b85de90f00b446" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int CsvHelper.ICsvReaderRow.Row</definition>
+        <argsstring></argsstring>
+        <name>Row</name>
+        <briefdescription>
+<para>Gets the current row. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/dab/a00089_1a45d5b14c7382418d90b4c085c2bdc7dc" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+<para>Gets the raw field at position (column) index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/dab/a00089_1a999cf88bd8eb0b59c65b235cfe0e2835" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.this[string name]</definition>
+        <argsstring></argsstring>
+        <name>this[string name]</name>
+        <briefdescription>
+<para>Gets the raw field at position (column) name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/dab/a00089_1abe611a2c471e6f11da579297bb876fb1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.this[string name, int index]</definition>
+        <argsstring></argsstring>
+        <name>this[string name, int index]</name>
+        <briefdescription>
+<para>Gets the raw field at position (column) name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="db/dab/a00089_1a3051b174bf5018e7480e6c4e53fbeeb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1ac1500fd628ea947c3ae05a7ce3fbd01a">GetField</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the raw field at position (column) index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1aef0f82a96420210343b447e7709400ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a2dea592c2879215b86a4e49280492930">GetField</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the raw field at position (column) name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a89d1e21e131f988e0959c5edff4f982f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(string name, int index)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1aa1d5909bc0bb20045ece92b3448a5297">GetField</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the raw field at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The raw field.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="72" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a139fd51e035dc42bfc820371209b9782" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, int index)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a35724e33388ac5772ccfa0526ca812fc">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, string name)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a5e255cb4bfa8d7a9dc364660cb079415">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="90" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ae0128a2e48bd24db451e64b17b4631ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, string name, int index)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a3fb351f9f77bb39bddc05c76691e830f">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1acc16f1e7d5c552c8adb86087c8774b43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, int index, ITypeConverter converter)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1ae574612025171f2169e3e3683067d326">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ad3fce0bfa735dc92844d51d756396892" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, string name, ITypeConverter converter)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a29d9cc37e0a7fd6a08cba9626ebdfe69">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a04389e3edb60cc2ab9760668e7781518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetField</definition>
+        <argsstring>(Type type, string name, int index, ITypeConverter converter)</argsstring>
+        <name>GetField</name>
+        <reimplementedby refid="d4/d6d/a00055_1a08ff19d0e0b2c10b644e14621966f2fa">GetField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Object using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="131" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1af5282bab4799899c6c986fa4189eea0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a6a43cfaf39caea93ecd87e506be7b404">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="139" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1af3b292ed7d991a8e975f67fb8ddde859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a8ebe0d6e7644eebbbbddef3c9d2922be">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1aa8c349da18823eb8c30911d891b3e3bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(string name, int index)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1afd2c85d724fdc84220a15e5f576cb673">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="158" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a8ae4f95a7b9bbbbf2ef19009da81dd18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(int index, ITypeConverter converter)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a2b593a60de4dc4d776abde5c29232d0d">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="168" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a640689c76826aafd8c79ff71d4f0992d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(string name, ITypeConverter converter)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1aadec530254222a2c6fb0e25774a7498b">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="178" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a8851c2bc99ee403fc003f62ae96b090c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T &gt;</definition>
+        <argsstring>(string name, int index, ITypeConverter converter)</argsstring>
+        <name>GetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a607c6c23ce887b6de60f81c1ea2a8348">GetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="190" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a787094f29179fcf06cec6db42fa59de3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1ac989008aec99a6462d9980a1d8a87072">GetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index using the given ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="200" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ae7ea281792a1e0e8f64991062a3acffb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1ac76d4fabc62e9ac896c1b2e6e861ed11">GetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the given ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="210" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a6a55c1b2fc98eb7ef4bdb73e80f4b093" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(string name, int index)</argsstring>
+        <name>GetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a6b77ca85326f76d006935275b46342f0">GetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The field converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="222" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a476c426866e69a8c1b81f40956e0b538" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(int index, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1ae5531b6fa3247cf038ca6a9c20ca43dd">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="231" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a1ac55ecd014a239d9b0b62345637b745" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(string name, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1aab6eff4536568c7c0268616aa2b9a674">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="240" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a4c2667e997378fa984f44d7d5e62492b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(string name, int index, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a6b32f9207db53d8d09598ee2d743d06b">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name and the index instance of that field. The index is used when there are multiple columns with the same header name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="252" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1aa8aaa34c75b213e3774394b3f912842f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(int index, ITypeConverter converter, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1aa8622306f74940386663fa4020eb8971">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="263" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a33e4e39bf2395a79a90cb02554c84d22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(string name, ITypeConverter converter, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1ade47afe2ea6cdd4439265e9364626c6b">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="274" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a2d001b5e65d063db9f102b720da0edf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T &gt;</definition>
+        <argsstring>(string name, int index, ITypeConverter converter, out T field)</argsstring>
+        <name>TryGetField&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a152975903578da620893d21cba2f8afa">TryGetField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d84/a00097" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="286" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a5df5f7bc974ec541c25bf63b29ebf618" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(int index, out T field)</argsstring>
+        <name>TryGetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a58c361c230abb87ae13f97646748be61">TryGetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) index using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="297" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a9bd7b721a7b4acbc21050817aca71f21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(string name, out T field)</argsstring>
+        <name>TryGetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a1ad85089ce2a6eae15c48e21d5da6c47">TryGetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="308" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a8ecc5b03e5e818163aca86b979b01158" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.TryGetField&lt; T, TConverter &gt;</definition>
+        <argsstring>(string name, int index, out T field)</argsstring>
+        <name>TryGetField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1a6665d63535ab6ca768ffbc76c1347e58">TryGetField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>out T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Gets the field converted to Type T at position (column) name using the specified ITypeConverter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ITypeConverter used to convert the field to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named index of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The zero based index of the instance of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field converted to Type T.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if the get was successful.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="320" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a49ad028b358d5a0642d8108b3bb87ff7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.ICsvReaderRow.IsRecordEmpty</definition>
+        <argsstring>()</argsstring>
+        <name>IsRecordEmpty</name>
+        <reimplementedby refid="d4/d6d/a00055_1a9f3f7336e8ceebafbfe0959508a2a9f0">IsRecordEmpty</reimplementedby>
+        <briefdescription>
+<para>Determines whether the current record is empty. A record is considered empty if all fields are empty. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><computeroutput>true</computeroutput> if [is record empty]; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="329" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ae82d451b6e26742a685d652c84c0b807" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>T</type>
+        <definition>T CsvHelper.ICsvReaderRow.GetRecord&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>GetRecord&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1ac607c1182168a5f9c7fa1642670ad320">GetRecord&lt; T &gt;</reimplementedby>
+        <briefdescription>
+<para>Gets the record converted into Type T. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The record converted to Type T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="337" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a911748932ed897a2e7086c0c49bdceea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>object</type>
+        <definition>object CsvHelper.ICsvReaderRow.GetRecord</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetRecord</name>
+        <reimplementedby refid="d4/d6d/a00055_1a10680de48d9c21ef1792661947f9f601">GetRecord</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Gets the record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The record.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="344" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a880d3ee25c0b55bd9a193c61cd116e21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>IEnumerable&lt; T &gt;</type>
+        <definition>IEnumerable&lt;T&gt; CsvHelper.ICsvReaderRow.GetRecords&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>GetRecords&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1afed61bbcd2a120487498acd36e6ae2f2">GetRecords&lt; T &gt;</reimplementedby>
+        <briefdescription>
+<para>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An IList{T} of records.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="344" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a8f1187e434201dc22036f2f48cc4d050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>IEnumerable&lt; object &gt;</type>
+        <definition>IEnumerable&lt;object&gt; CsvHelper.ICsvReaderRow.GetRecords</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>GetRecords</name>
+        <reimplementedby refid="d4/d6d/a00055_1aaa94b8f27e410194fbaadd75f38b030e">GetRecords</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Gets all the records in the CSV file and converts each to Type T. The Read method should not be used when using this. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An IList{Object} of records.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="362" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ae903a343efdafa8b22236184dfcf7a97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvReaderRow.ClearRecordCache&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRecordCache&lt; T &gt;</name>
+        <reimplementedby refid="d4/d6d/a00055_1abc2052d47de1fc745579881daeae8806">ClearRecordCache&lt; T &gt;</reimplementedby>
+        <briefdescription>
+<para>Clears the record cache for the given type. After GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="371" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1aa035080da331f40071b29c17b1f8c228" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvReaderRow.ClearRecordCache</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>ClearRecordCache</name>
+        <reimplementedby refid="d4/d6d/a00055_1a669ecad48ad94b03a06131e78faa767a">ClearRecordCache</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Clears the record cache for the given type. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <ref refid="db/dab/a00089_1aa035080da331f40071b29c17b1f8c228" kindref="member">ClearRecordCache( Type )</ref> needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to invalidate.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="381" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a87251d0ff95c599cf3f6bd1cbb8204d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvReaderRow.ClearRecordCache</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRecordCache</name>
+        <reimplementedby refid="d4/d6d/a00055_1a1e115e1f379009b2b1cb91e7c24fdd02">ClearRecordCache</reimplementedby>
+        <briefdescription>
+<para>Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <ref refid="db/dab/a00089_1a87251d0ff95c599cf3f6bd1cbb8204d8" kindref="member">ClearRecordCache()</ref> needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="390" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines methods used to read parsed data from a CSV file row. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1274">
+        <label>CsvHelper.ICsvReaderRow</label>
+        <link refid="db/dab/a00089"/>
+      </node>
+      <node id="1276">
+        <label>CsvHelper.CsvReader</label>
+        <link refid="d4/d6d/a00055"/>
+        <childnode refid="1275" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1275">
+        <label>CsvHelper.ICsvReader</label>
+        <link refid="db/ddf/a00088"/>
+        <childnode refid="1274" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1277">
+        <label>CsvHelper.ICsvReaderRow</label>
+        <link refid="db/dab/a00089"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvReaderRow.cs" bodystart="16" bodyend="392"/>
+    <listofallmembers>
+      <member refid="db/dab/a00089_1aa035080da331f40071b29c17b1f8c228" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>ClearRecordCache</name></member>
+      <member refid="db/dab/a00089_1a87251d0ff95c599cf3f6bd1cbb8204d8" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>ClearRecordCache</name></member>
+      <member refid="db/dab/a00089_1ae903a343efdafa8b22236184dfcf7a97" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>ClearRecordCache&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a4e8958e51331591b1d9e811e32bd92d0" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>CurrentRecord</name></member>
+      <member refid="db/dab/a00089_1a3051b174bf5018e7480e6c4e53fbeeb5" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1aef0f82a96420210343b447e7709400ae" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1a89d1e21e131f988e0959c5edff4f982f" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1a139fd51e035dc42bfc820371209b9782" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1a3a5e6f3a5713f3fd9a5e3a45c3a7ab1c" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1ae0128a2e48bd24db451e64b17b4631ae" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1acc16f1e7d5c552c8adb86087c8774b43" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1ad3fce0bfa735dc92844d51d756396892" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1a04389e3edb60cc2ab9760668e7781518" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField</name></member>
+      <member refid="db/dab/a00089_1af5282bab4799899c6c986fa4189eea0a" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1af3b292ed7d991a8e975f67fb8ddde859" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1aa8c349da18823eb8c30911d891b3e3bc" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a8ae4f95a7b9bbbbf2ef19009da81dd18" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a640689c76826aafd8c79ff71d4f0992d" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a8851c2bc99ee403fc003f62ae96b090c" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a787094f29179fcf06cec6db42fa59de3" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T, TConverter &gt;</name></member>
+      <member refid="db/dab/a00089_1ae7ea281792a1e0e8f64991062a3acffb" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T, TConverter &gt;</name></member>
+      <member refid="db/dab/a00089_1a6a55c1b2fc98eb7ef4bdb73e80f4b093" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetField&lt; T, TConverter &gt;</name></member>
+      <member refid="db/dab/a00089_1a911748932ed897a2e7086c0c49bdceea" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetRecord</name></member>
+      <member refid="db/dab/a00089_1ae82d451b6e26742a685d652c84c0b807" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetRecord&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a8f1187e434201dc22036f2f48cc4d050" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetRecords</name></member>
+      <member refid="db/dab/a00089_1a880d3ee25c0b55bd9a193c61cd116e21" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>GetRecords&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a49ad028b358d5a0642d8108b3bb87ff7" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>IsRecordEmpty</name></member>
+      <member refid="db/dab/a00089_1ac1bd960358282c70f0b85de90f00b446" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>Row</name></member>
+      <member refid="db/dab/a00089_1a45d5b14c7382418d90b4c085c2bdc7dc" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>this[int index]</name></member>
+      <member refid="db/dab/a00089_1abe611a2c471e6f11da579297bb876fb1" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>this[string name, int index]</name></member>
+      <member refid="db/dab/a00089_1a999cf88bd8eb0b59c65b235cfe0e2835" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>this[string name]</name></member>
+      <member refid="db/dab/a00089_1a476c426866e69a8c1b81f40956e0b538" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a1ac55ecd014a239d9b0b62345637b745" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a4c2667e997378fa984f44d7d5e62492b" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1aa8aaa34c75b213e3774394b3f912842f" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a33e4e39bf2395a79a90cb02554c84d22" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a2d001b5e65d063db9f102b720da0edf2" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T &gt;</name></member>
+      <member refid="db/dab/a00089_1a5df5f7bc974ec541c25bf63b29ebf618" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T, TConverter &gt;</name></member>
+      <member refid="db/dab/a00089_1a9bd7b721a7b4acbc21050817aca71f21" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T, TConverter &gt;</name></member>
+      <member refid="db/dab/a00089_1a8ecc5b03e5e818163aca86b979b01158" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvReaderRow</scope><name>TryGetField&lt; T, TConverter &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

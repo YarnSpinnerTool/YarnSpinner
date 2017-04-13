@@ -1,0 +1,4 @@
+<map id="Yarn.Unity.DialogueUIBehaviour" name="Yarn.Unity.DialogueUIBehaviour">
+<area shape="rect" id="node3" href="$da/ddb/a00145.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="5,346,176,585"/>
+<area shape="rect" id="node4" href="$d1/d09/a00077.html" title="{Yarn.Unity.Example.Example\lDialogueUI\n|+ dialogueContainer\l+ lineText\l+ continuePrompt\l+ textSpeed\l+ optionButtons\l+ gameControlsContainer\l&#45; SetSelectedOption\l|+ RunLine()\l+ RunOptions()\l+ SetOption()\l+ RunCommand()\l+ DialogueStarted()\l+ DialogueComplete()\l&#45; Awake()\l}" alt="" coords="200,331,395,599"/>
+</map>

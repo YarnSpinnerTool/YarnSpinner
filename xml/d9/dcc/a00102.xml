@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d9/dcc/a00102" kind="class" prot="public">
+    <compoundname>Yarn::LineAdder</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="d9/dcc/a00102_1ad887744b1b813fc081be814958742c37" prot="private" static="yes" mutable="no">
+        <type>Random</type>
+        <definition>Random Yarn.LineAdder.random</definition>
+        <argsstring></argsstring>
+        <name>random</name>
+        <initializer>= new Random()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="210" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="d9/dcc/a00102_1aa2b8af349e709b8a45d42af5146ca848" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.LineAdder.AddLines</definition>
+        <argsstring>(AddLabelsOptions options)</argsstring>
+        <name>AddLines</name>
+        <param>
+          <type><ref refid="d4/d51/a00017" kindref="compound">AddLabelsOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="11" bodyend="207"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="d9/dcc/a00102_1a91ad68b679bd3b0bd89fe92ea5068688" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Yarn.LineAdder.GenerateString</definition>
+        <argsstring>(List&lt; string &gt; existingKeys)</argsstring>
+        <name>GenerateString</name>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>existingKeys</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="213" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="213" bodyend="226"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1360">
+        <label>Yarn.LineAdder</label>
+        <link refid="d9/dcc/a00102"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="8" bodyend="227"/>
+    <listofallmembers>
+      <member refid="d9/dcc/a00102_1aa2b8af349e709b8a45d42af5146ca848" prot="package" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>AddLines</name></member>
+      <member refid="d9/dcc/a00102_1a91ad68b679bd3b0bd89fe92ea5068688" prot="private" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>GenerateString</name></member>
+      <member refid="d9/dcc/a00102_1ad887744b1b813fc081be814958742c37" prot="private" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>random</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

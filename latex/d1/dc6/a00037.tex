@@ -1,0 +1,133 @@
+\hypertarget{a00037}{\section{Csv\-Helper.\-Csv\-Bad\-Data\-Exception Class Reference}
+\label{a00037}\index{Csv\-Helper.\-Csv\-Bad\-Data\-Exception@{Csv\-Helper.\-Csv\-Bad\-Data\-Exception}}
+}
+
+
+Represents errors that occur due to bad data.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{d8/d8e/a00344}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{d9/d48/a00345}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00037_a337ebca212c62127ba837ae726a0cc3a}{Csv\-Bad\-Data\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00037_a31da9e807053a75e8bd252aa792269eb}{Csv\-Bad\-Data\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00037_a2c210cf80604e58ffecc177f6f7c2547}{Csv\-Bad\-Data\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00037_abe956c9c100374953fd899bef2f2489f}{Csv\-Bad\-Data\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents errors that occur due to bad data. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00037_a337ebca212c62127ba837ae726a0cc3a}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00037_a337ebca212c62127ba837ae726a0cc3a}
+
+
+Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class. 
+
+
+\begin{DoxyCode}
+23 \{\}
+\end{DoxyCode}
+\hypertarget{a00037_a31da9e807053a75e8bd252aa792269eb}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00037_a31da9e807053a75e8bd252aa792269eb}
+
+
+Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+30 : base( message ) \{\}
+\end{DoxyCode}
+\hypertarget{a00037_a2c210cf80604e58ffecc177f6f7c2547}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00037_a2c210cf80604e58ffecc177f6f7c2547}
+
+
+Initializes a new instance of the \hyperlink{a00037}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+39 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00037_abe956c9c100374953fd899bef2f2489f}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00037_abe956c9c100374953fd899bef2f2489f}
+
+
+Initializes a new instance of the \hyperlink{a00044}{Csv\-Helper\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+48 : base( info, context ) \{\}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00193}{Csv\-Bad\-Data\-Exception.\-cs}\end{DoxyCompactItemize}

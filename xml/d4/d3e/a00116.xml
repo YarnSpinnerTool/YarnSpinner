@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d4/d3e/a00116" kind="struct" prot="package">
+    <compoundname>Yarn::Parser::Operator::OperatorInfo</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="d4/d3e/a00116_1accba40a72d9709ca3c18810b8661afe3" prot="package" static="no" mutable="no">
+        <type><ref refid="d2/da3/a00115_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
+        <definition>Associativity Yarn.Parser.Operator.OperatorInfo.associativity</definition>
+        <argsstring></argsstring>
+        <name>associativity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1211" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d3e/a00116_1a0b2921d7b863e268d33aa15213395093" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.Operator.OperatorInfo.precedence</definition>
+        <argsstring></argsstring>
+        <name>precedence</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1212" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d3e/a00116_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.Operator.OperatorInfo.arguments</definition>
+        <argsstring></argsstring>
+        <name>arguments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1213" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1213" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="d4/d3e/a00116_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Operator.OperatorInfo.OperatorInfo</definition>
+        <argsstring>(Associativity associativity, int precedence, int arguments)</argsstring>
+        <name>OperatorInfo</name>
+        <param>
+          <type><ref refid="d2/da3/a00115_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
+          <declname>associativity</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>precedence</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1214" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1214" bodyend="1218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1420">
+        <label>Yarn.Parser.Operator.OperatorInfo</label>
+        <link refid="d4/d3e/a00116"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1210" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1210" bodyend="1219"/>
+    <listofallmembers>
+      <member refid="d4/d3e/a00116_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>arguments</name></member>
+      <member refid="d4/d3e/a00116_1accba40a72d9709ca3c18810b8661afe3" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>associativity</name></member>
+      <member refid="d4/d3e/a00116_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>OperatorInfo</name></member>
+      <member refid="d4/d3e/a00116_1a0b2921d7b863e268d33aa15213395093" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>precedence</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

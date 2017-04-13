@@ -1,0 +1,299 @@
+\hypertarget{a00092}{\section{Yarn.\-Parser.\-If\-Statement Class Reference}
+\label{a00092}\index{Yarn.\-Parser.\-If\-Statement@{Yarn.\-Parser.\-If\-Statement}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-If\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{d6/db2/a00601}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-If\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{d5/d0a/a00602}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00028}{Clause}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00092_ae534078389e8663edf7660403acf3cbc}{If\-Statement} (\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00121}{Parser} p)
+\item 
+override string \hyperlink{a00092_a5494c1daef8e0f3ac3ab68f91db4f332}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00092_afd6b96e1a27872701c4e6832f17fc3ce}{Can\-Parse} (\hyperlink{a00121}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{a00028}{Clause} $>$ \hyperlink{a00092_a679b1a21582c78ed06df36bccc9c3cbc}{clauses} = new List$<$\hyperlink{a00028}{Clause}$>$()
+\item 
+\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00092_ae534078389e8663edf7660403acf3cbc}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!If\-Statement@{If\-Statement}}
+\index{If\-Statement@{If\-Statement}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{If\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-If\-Statement.\-If\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00092_ae534078389e8663edf7660403acf3cbc}
+
+\begin{DoxyCode}
+616                                                              : base(\hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+617 
+618                 \textcolor{comment}{// All if statements begin with "<<if EXPRESSION>>", so parse that}
+619                 Clause primaryClause = \textcolor{keyword}{new} Clause();
+620 
+621                 p.ExpectSymbol(TokenType.BeginCommand);
+622                 p.ExpectSymbol(TokenType.If);
+623                 primaryClause.expression = Expression.Parse(\textcolor{keyword}{this}, p);
+624                 p.ExpectSymbol(TokenType.EndCommand);
+625 
+626                 \textcolor{comment}{// Read the statements for this clause until  we hit an <<endif or <<else}
+627                 \textcolor{comment}{// (which could be an "<<else>>" or an "<<else if"}
+628                 var statements = \textcolor{keyword}{new} List<Statement>();
+629                 \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false} &&
+630                     p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == \textcolor{keyword}{false} &&
+631                     p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf) == \textcolor{keyword}{false}) 
+      \{
+632                     statements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
+633 
+634                     \textcolor{comment}{// Ignore any dedents}
+635                     \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
+636                         p.ExpectSymbol(TokenType.Dedent);
+637                     \}
+638                 \}
+639                 primaryClause.statements = statements;
+640 
+641                 clauses.Add(primaryClause);
+642 
+643 
+644                 \textcolor{comment}{// Handle as many <<elseif clauses as we find}
+645                 \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf)) \{
+646                     var elseIfClause = \textcolor{keyword}{new} Clause();
+647 
+648                     \textcolor{comment}{// Parse the syntax for this clause's condition}
+649                     p.ExpectSymbol(TokenType.BeginCommand);
+650                     p.ExpectSymbol(TokenType.ElseIf);
+651                     elseIfClause.expression = Expression.Parse(\textcolor{keyword}{this}, p);
+652                     p.ExpectSymbol(TokenType.EndCommand);
+653 
+654                     \textcolor{comment}{// Read statements until we hit an <<endif, <<else or another <<elseif}
+655                     var clauseStatements = \textcolor{keyword}{new} List<Statement>();
+656                     \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false} &&
+657                         p.NextSymbolsAre(TokenType.BeginCommand, TokenType.Else) == \textcolor{keyword}{false} &&
+658                         p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ElseIf) == \textcolor{keyword}{false}) \{
+659                         clauseStatements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
+660 
+661                         \textcolor{comment}{// Ignore any dedents}
+662                         \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
+663                             p.ExpectSymbol(TokenType.Dedent);
+664                         \}
+665 
+666                     \}
+667 
+668                     elseIfClause.statements = clauseStatements;
+669 
+670                     clauses.Add(elseIfClause);
+671                 \}
+672 
+673                 \textcolor{comment}{// Handle <<else>> if we have it}
+674                 \textcolor{keywordflow}{if} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Else, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndCommand)) \{
+675 
+676                     \textcolor{comment}{// parse the syntax (no expression this time, just "<<else>>"}
+677                     p.ExpectSymbol(TokenType.BeginCommand);
+678                     p.ExpectSymbol(TokenType.Else);
+679                     p.ExpectSymbol(TokenType.EndCommand);
+680 
+681                     \textcolor{comment}{// and parse statements until we hit "<<endif"}
+682                     var elseClause = \textcolor{keyword}{new} Clause();
+683                     var clauseStatements = \textcolor{keyword}{new} List<Statement>();
+684                     \textcolor{keywordflow}{while} (p.NextSymbolsAre(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndIf) == \textcolor{keyword}{false}) \{
+685                         clauseStatements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
+686                     \}
+687                     elseClause.statements = clauseStatements;
+688 
+689                     this.clauses.Add(elseClause);
+690 
+691                     \textcolor{comment}{// Ignore any dedents}
+692                     \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)) \{
+693                         p.ExpectSymbol(TokenType.Dedent);
+694                     \}
+695 
+696                 \}
+697 
+698                 \textcolor{comment}{// Finish up by reading the <<endif>>}
+699                 p.ExpectSymbol(TokenType.BeginCommand);
+700                 p.ExpectSymbol(TokenType.EndIf);
+701                 p.ExpectSymbol(TokenType.EndCommand);
+702             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00092_afd6b96e1a27872701c4e6832f17fc3ce}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-If\-Statement.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00092_afd6b96e1a27872701c4e6832f17fc3ce}
+
+\begin{DoxyCode}
+590             \{
+591                 \textcolor{keywordflow}{return} p.NextSymbolsAre (TokenType.BeginCommand, TokenType.If);
+592             \}
+\end{DoxyCode}
+\hypertarget{a00120_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a580e520a29444fc23ac3660cbe514a09}
+
+\begin{DoxyCode}
+144                                        \{
+145                 var node = \textcolor{keyword}{this};
+146 
+147                 \textcolor{keywordflow}{do} \{
+148                     \textcolor{keywordflow}{if} (node is Node) \{
+149                         \textcolor{keywordflow}{return} node as Node;
+150                     \}
+151                     node = node.parent;
+152                 \} \textcolor{keywordflow}{while} (node 
+153                     != null);                   
+154 
+155                 \textcolor{keywordflow}{return} null;
+156             \}
+\end{DoxyCode}
+\hypertarget{a00092_a5494c1daef8e0f3ac3ab68f91db4f332}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-If\-Statement.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00092_a5494c1daef8e0f3ac3ab68f91db4f332}
+
+
+Implements \hyperlink{a00120_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+\begin{DoxyCode}
+705             \{
+706                 var sb = \textcolor{keyword}{new} StringBuilder ();
+707                 var first = \textcolor{keyword}{true};
+708                 \textcolor{keywordflow}{foreach} (var clause \textcolor{keywordflow}{in} \hyperlink{a00092_a679b1a21582c78ed06df36bccc9c3cbc}{clauses}) \{
+709                     \textcolor{keywordflow}{if} (first) \{
+710                         sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"If:"}));
+711                         first = \textcolor{keyword}{false};
+712                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (clause.expression != null) \{
+713                         sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Else If:"}));
+714                     \} \textcolor{keywordflow}{else} \{
+715                         sb.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Else:"}));
+716                     \}
+717                     sb.Append (clause.PrintTree (indentLevel + 1));
+718                 \}
+719 
+720                 \textcolor{keywordflow}{return} sb.ToString ();
+721             \}
+\end{DoxyCode}
+\hypertarget{a00120_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a054f36c80d5eeacd569a8859f599af67}
+
+\begin{DoxyCode}
+122             \{
+123                 \textcolor{keywordflow}{if} (\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+124                     var s = \textcolor{keyword}{new} StringBuilder ();
+125 
+126                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+128                         s.Append(\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+129                     \}
+130                     \textcolor{keywordflow}{return} s.ToString ();
+131                 \} \textcolor{keywordflow}{else} \{
+132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+133                 \}
+134 
+135 
+136             \}
+\end{DoxyCode}
+\hypertarget{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+\begin{DoxyCode}
+139             \{
+140                 \textcolor{keywordflow}{return} this.GetType ().Name;
+141             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00092_a679b1a21582c78ed06df36bccc9c3cbc}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!clauses@{clauses}}
+\index{clauses@{clauses}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{clauses}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Clause}$>$ Yarn.\-Parser.\-If\-Statement.\-clauses = new List$<${\bf Clause}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00092_a679b1a21582c78ed06df36bccc9c3cbc}
+\hypertarget{a00120_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a18b493382de0fde5b4299c1bd2250075}
+\hypertarget{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-If\-Statement@{Yarn\-::\-Parser\-::\-If\-Statement}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::IfStatement@{Yarn\-::\-Parser\-::\-If\-Statement}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

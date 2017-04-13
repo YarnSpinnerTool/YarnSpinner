@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d7/d70/a00106" kind="class" prot="public">
+    <compoundname>Yarn::LocalisedLine</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d7/d70/a00106_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineCode</definition>
+        <argsstring></argsstring>
+        <name>LineCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="87" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d70/a00106_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineText</definition>
+        <argsstring></argsstring>
+        <name>LineText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d70/a00106_1afbfb834bb1623653fa73945c221c4b9d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.Comment</definition>
+        <argsstring></argsstring>
+        <name>Comment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="89" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1378">
+        <label>Yarn.LocalisedLine</label>
+        <link refid="d7/d70/a00106"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="85" bodyend="90"/>
+    <listofallmembers>
+      <member refid="d7/d70/a00106_1afbfb834bb1623653fa73945c221c4b9d" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>Comment</name></member>
+      <member refid="d7/d70/a00106_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineCode</name></member>
+      <member refid="d7/d70/a00106_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineText</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

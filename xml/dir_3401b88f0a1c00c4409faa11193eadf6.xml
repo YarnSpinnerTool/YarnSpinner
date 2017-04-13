@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_3401b88f0a1c00c4409faa11193eadf6" kind="dir">
+    <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration</compoundname>
+    <innerfile refid="d9/d90/a00178">CsvClassMap.cs</innerfile>
+    <innerfile refid="db/dd9/a00179">CsvClassMap`1.cs</innerfile>
+    <innerfile refid="d0/d81/a00180">CsvClassMapCollection.cs</innerfile>
+    <innerfile refid="d8/d64/a00181">CsvConfiguration.cs</innerfile>
+    <innerfile refid="d7/d25/a00182">CsvConfigurationException.cs</innerfile>
+    <innerfile refid="dc/d52/a00183">CsvPropertyMap.cs</innerfile>
+    <innerfile refid="d2/d94/a00184">CsvPropertyMapCollection.cs</innerfile>
+    <innerfile refid="de/df3/a00185">CsvPropertyMapComparer.cs</innerfile>
+    <innerfile refid="d8/d00/a00186">CsvPropertyMapData.cs</innerfile>
+    <innerfile refid="d6/daa/a00187">CsvPropertyNameCollection.cs</innerfile>
+    <innerfile refid="da/d15/a00188">CsvPropertyReferenceMap.cs</innerfile>
+    <innerfile refid="da/deb/a00189">CsvPropertyReferenceMapData.cs</innerfile>
+    <innerfile refid="d7/d6e/a00190">DefaultCsvClassMap`1.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/"/>
+  </compounddef>
+</doxygen>

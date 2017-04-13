@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d2/d04/a00281" kind="namespace">
+    <compoundname>CsvHelper</compoundname>
+    <innerclass refid="d1/dc6/a00037" prot="public">CsvHelper::CsvBadDataException</innerclass>
+    <innerclass refid="d6/d42/a00043" prot="public">CsvHelper::CsvFactory</innerclass>
+    <innerclass refid="d5/df9/a00044" prot="public">CsvHelper::CsvHelperException</innerclass>
+    <innerclass refid="d6/d97/a00045" prot="public">CsvHelper::CsvMissingFieldException</innerclass>
+    <innerclass refid="d3/dea/a00046" prot="public">CsvHelper::CsvParser</innerclass>
+    <innerclass refid="d6/d2d/a00047" prot="public">CsvHelper::CsvParserException</innerclass>
+    <innerclass refid="d4/d6d/a00055" prot="public">CsvHelper::CsvReader</innerclass>
+    <innerclass refid="d9/d2e/a00056" prot="public">CsvHelper::CsvReaderException</innerclass>
+    <innerclass refid="d1/d22/a00057" prot="public">CsvHelper::CsvSerializer</innerclass>
+    <innerclass refid="d3/d8b/a00059" prot="public">CsvHelper::CsvWriter</innerclass>
+    <innerclass refid="d9/d73/a00060" prot="public">CsvHelper::CsvWriterException</innerclass>
+    <innerclass refid="d9/da4/a00078" prot="package">CsvHelper::ExceptionHelper</innerclass>
+    <innerclass refid="da/d2a/a00086" prot="public">CsvHelper::ICsvFactory</innerclass>
+    <innerclass refid="d1/d1e/a00087" prot="public">CsvHelper::ICsvParser</innerclass>
+    <innerclass refid="db/ddf/a00088" prot="public">CsvHelper::ICsvReader</innerclass>
+    <innerclass refid="db/dab/a00089" prot="public">CsvHelper::ICsvReaderRow</innerclass>
+    <innerclass refid="d9/dec/a00090" prot="public">CsvHelper::ICsvSerializer</innerclass>
+    <innerclass refid="da/d82/a00091" prot="public">CsvHelper::ICsvWriter</innerclass>
+    <innerclass refid="d9/d47/a00129" prot="package">CsvHelper::ReflectionHelper</innerclass>
+    <innerclass refid="d2/d82/a00142" prot="package">CsvHelper::StringHelper</innerclass>
+    <innernamespace refid="dc/dc9/a00282">CsvHelper::Configuration</innernamespace>
+    <innernamespace refid="dd/dfe/a00283">CsvHelper::TypeConversion</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="[generated]" line="1" column="1"/>
+  </compounddef>
+</doxygen>

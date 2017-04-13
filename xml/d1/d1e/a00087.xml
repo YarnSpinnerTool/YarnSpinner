@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d1/d1e/a00087" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvParser</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
+    <derivedcompoundref refid="d3/dea/a00046" prot="public" virt="non-virtual">CsvHelper.CsvParser</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d1/d1e/a00087_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="dd/d32/a00041" kindref="compound">CsvConfiguration</ref></type>
+        <definition>CsvConfiguration CsvHelper.ICsvParser.Configuration</definition>
+        <argsstring></argsstring>
+        <name>Configuration</name>
+        <briefdescription>
+<para>Gets the configuration. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d1e/a00087_1a50c0428defc2ada782c6863d72a990e4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int CsvHelper.ICsvParser.FieldCount</definition>
+        <argsstring></argsstring>
+        <name>FieldCount</name>
+        <briefdescription>
+<para>Gets the field count. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d1e/a00087_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>long</type>
+        <definition>long CsvHelper.ICsvParser.CharPosition</definition>
+        <argsstring></argsstring>
+        <name>CharPosition</name>
+        <briefdescription>
+<para>Gets the character position that the parser is currently on. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d1e/a00087_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>long</type>
+        <definition>long CsvHelper.ICsvParser.BytePosition</definition>
+        <argsstring></argsstring>
+        <name>BytePosition</name>
+        <briefdescription>
+<para>Gets the byte position that the parser is currently on. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d1e/a00087_1a0ec83f976594f51a002448fa2fe2e392" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int CsvHelper.ICsvParser.Row</definition>
+        <argsstring></argsstring>
+        <name>Row</name>
+        <briefdescription>
+<para>Gets the row of the CSV file that the parser is currently on. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/d1e/a00087_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string CsvHelper.ICsvParser.RawRecord</definition>
+        <argsstring></argsstring>
+        <name>RawRecord</name>
+        <briefdescription>
+<para>Gets the raw row for the current record that was parsed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d1e/a00087_1a411461b4cd33dce0b42c81715359f687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string[]</type>
+        <definition>string [] CsvHelper.ICsvParser.Read</definition>
+        <argsstring>()</argsstring>
+        <name>Read</name>
+        <reimplementedby refid="d3/dea/a00046_1a8e938842c6267343128babd111df9710">Read</reimplementedby>
+        <briefdescription>
+<para>Reads a record from the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A T:String[] of fields for the record read.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines methods used the parse a CSV file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1263">
+        <label>IDisposable</label>
+      </node>
+      <node id="1264">
+        <label>CsvHelper.CsvParser</label>
+        <link refid="d3/dea/a00046"/>
+        <childnode refid="1262" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1262">
+        <label>CsvHelper.ICsvParser</label>
+        <link refid="d1/d1e/a00087"/>
+        <childnode refid="1263" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1266">
+        <label>IDisposable</label>
+      </node>
+      <node id="1265">
+        <label>CsvHelper.ICsvParser</label>
+        <link refid="d1/d1e/a00087"/>
+        <childnode refid="1266" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="13" bodyend="50"/>
+    <listofallmembers>
+      <member refid="d1/d1e/a00087_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>BytePosition</name></member>
+      <member refid="d1/d1e/a00087_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>CharPosition</name></member>
+      <member refid="d1/d1e/a00087_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Configuration</name></member>
+      <member refid="d1/d1e/a00087_1a50c0428defc2ada782c6863d72a990e4" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>FieldCount</name></member>
+      <member refid="d1/d1e/a00087_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>RawRecord</name></member>
+      <member refid="d1/d1e/a00087_1a411461b4cd33dce0b42c81715359f687" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Read</name></member>
+      <member refid="d1/d1e/a00087_1a0ec83f976594f51a002448fa2fe2e392" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Row</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_b9c11085bcc355d6abe5d870e1c35d61" kind="dir">
+    <compoundname>Unity/Assets/Yarn Spinner</compoundname>
+    <innerdir refid="dir_1af2676c2ee55b9b2722366576e0f3fc">Unity/Assets/Yarn Spinner/Code</innerdir>
+    <innerdir refid="dir_a4445858b53249769cae9fff8b457f6b">Unity/Assets/Yarn Spinner/Examples</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_1eca966f73ceaf9660884e1398ef38ac" kind="dir">
+    <compoundname>YarnSpinner</compoundname>
+    <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
+    <innerfile refid="dd/dd7/a00260">Analyser.cs</innerfile>
+    <innerfile refid="dc/d6a/a00261">Compiler.cs</innerfile>
+    <innerfile refid="d9/d8d/a00262">Dialogue.cs</innerfile>
+    <innerfile refid="df/da9/a00263">Lexer.cs</innerfile>
+    <innerfile refid="d3/dcc/a00264">Library.cs</innerfile>
+    <innerfile refid="da/d53/a00265">Loader.cs</innerfile>
+    <innerfile refid="d5/d35/a00266">Parser.cs</innerfile>
+    <innerfile refid="d1/dd4/a00267">Value.cs</innerfile>
+    <innerfile refid="db/d12/a00268">VirtualMachine.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/"/>
+  </compounddef>
+</doxygen>

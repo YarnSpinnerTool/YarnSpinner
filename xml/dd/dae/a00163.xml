@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dd/dae/a00163" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Analysis::VariableLister</compoundname>
+    <basecompoundref refid="df/d61/a00031" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="dd/dae/a00163_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
+        <type>HashSet&lt; string &gt;</type>
+        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <initializer>= new HashSet&lt;string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="148" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="dd/dae/a00163_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
+        <argsstring>(Program program)</argsstring>
+        <name>Diagnose</name>
+        <param>
+          <type><ref refid="da/d72/a00124" kindref="compound">Program</ref></type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="150" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="150" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/dae/a00163_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerable&lt; <ref refid="d4/d31/a00069" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
+        <argsstring>()</argsstring>
+        <name>GatherDiagnoses</name>
+        <reimplements refid="df/d61/a00031_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="173" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="173" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="df/d61/a00031_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
+        <argsstring>(Yarn.Program program)</argsstring>
+        <name>Diagnose</name>
+        <param>
+          <type><ref refid="da/d72/a00124" kindref="compound">Yarn.Program</ref></type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="143" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1629">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="df/d61/a00031"/>
+      </node>
+      <node id="1628">
+        <label>Yarn.Analysis.VariableLister</label>
+        <link refid="dd/dae/a00163"/>
+        <childnode refid="1629" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1631">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="df/d61/a00031"/>
+      </node>
+      <node id="1630">
+        <label>Yarn.Analysis.VariableLister</label>
+        <link refid="dd/dae/a00163"/>
+        <childnode refid="1631" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="147" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="147" bodyend="184"/>
+    <listofallmembers>
+      <member refid="dd/dae/a00163_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="df/d61/a00031_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="dd/dae/a00163_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
+      <member refid="dd/dae/a00163_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,4 @@
+<map id="YarnSpinnerTests" name="YarnSpinnerTests">
+<area shape="rect" id="node3" href="$da/ddb/a00145.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="79,337,249,575"/>
+<area shape="rect" id="node4" href="$d1/d6e/a00073.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="55,134,273,285"/>
+</map>

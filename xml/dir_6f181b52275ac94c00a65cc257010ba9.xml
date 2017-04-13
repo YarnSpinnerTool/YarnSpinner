@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_6f181b52275ac94c00a65cc257010ba9" kind="dir">
+    <compoundname>YarnSpinnerConsole</compoundname>
+    <innerdir refid="dir_5332b71096d915ae09dfdbe456bbd399">YarnSpinnerConsole/obj</innerdir>
+    <innerdir refid="dir_c5b5245a8d866663393107841a0eecb5">YarnSpinnerConsole/Properties</innerdir>
+    <innerfile refid="d5/d42/a00269">FileFormatConverter.cs</innerfile>
+    <innerfile refid="d9/d2a/a00270">LineAdder.cs</innerfile>
+    <innerfile refid="dd/d86/a00271">Main.cs</innerfile>
+    <innerfile refid="d0/d19/a00273">ProgramExporter.cs</innerfile>
+    <innerfile refid="dd/d56/a00274">TableGenerator.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/"/>
+  </compounddef>
+</doxygen>

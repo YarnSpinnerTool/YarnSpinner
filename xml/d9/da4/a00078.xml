@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d9/da4/a00078" kind="class" prot="package">
+    <compoundname>CsvHelper::ExceptionHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d9/da4/a00078_1a7415ea84b6d462b9d61ecf2128282837" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CsvHelper.ExceptionHelper.AddExceptionDataMessage</definition>
+        <argsstring>(Exception exception, ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>AddExceptionDataMessage</name>
+        <param>
+          <type>Exception</type>
+          <declname>exception</declname>
+        </param>
+        <param>
+          <type><ref refid="d1/d1e/a00087" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
+        </param>
+        <briefdescription>
+<para>Adds <ref refid="d2/d04/a00281" kindref="compound">CsvHelper</ref> specific information to Exception.Data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exception</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception to add the info to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="28" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da4/a00078_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string CsvHelper.ExceptionHelper.GetErrorMessage</definition>
+        <argsstring>(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>GetErrorMessage</name>
+        <param>
+          <type><ref refid="d1/d1e/a00087" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
+        </param>
+        <briefdescription>
+<para>Gets <ref refid="d2/d04/a00281" kindref="compound">CsvHelper</ref> information to be added to an exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="d4/d6d/a00055" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="d2/d04/a00281" kindref="compound">CsvHelper</ref> information.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="57" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Common exception tasks. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1229">
+        <label>CsvHelper.ExceptionHelper</label>
+        <link refid="d9/da4/a00078"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="17" bodyend="101"/>
+    <listofallmembers>
+      <member refid="d9/da4/a00078_1a7415ea84b6d462b9d61ecf2128282837" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>AddExceptionDataMessage</name></member>
+      <member refid="d9/da4/a00078_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>GetErrorMessage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

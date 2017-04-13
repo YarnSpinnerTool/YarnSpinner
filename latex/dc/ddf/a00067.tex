@@ -1,0 +1,317 @@
+\hypertarget{a00067}{\section{Example\-Variable\-Storage Class Reference}
+\label{a00067}\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}}
+}
+
+
+Inheritance diagram for Example\-Variable\-Storage\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{d2/d0a/a00333}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Example\-Variable\-Storage\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d75/a00334}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00067_d0/d39/a00314}{Default\-Variable}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{a00067_a3a05d66cdacadb2e9b618cd0aef45f84}{Reset\-To\-Defaults} ()
+\item 
+override void \hyperlink{a00067_ac4265c1c9da485f13a6b05784b0f668d}{Set\-Value} (string variable\-Name, \hyperlink{a00161}{Yarn.\-Value} value)
+\item 
+override \hyperlink{a00161}{Yarn.\-Value} \hyperlink{a00067_a741593be1a299dcc2136f05b9b4a995a}{Get\-Value} (string variable\-Name)
+\item 
+override void \hyperlink{a00067_a0ce614bee8d5b220500fb765390b4ca3}{Clear} ()
+\item 
+virtual void \hyperlink{a00165_ac0d2f2e081944ad197992a26ad1a833c}{Set\-Number} (string variable\-Name, float number)
+\item 
+virtual float \hyperlink{a00165_add85a45dd65a5d4bd41c9d5ce5f77d19}{Get\-Number} (string variable\-Name)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00067_d0/d39/a00314}{Default\-Variable}\mbox{[}$\,$\mbox{]} \hyperlink{a00067_a464c8a4ff6a3c624602d0adc55dfc59a}{default\-Variables}
+\item 
+Unity\-Engine.\-U\-I.\-Text \hyperlink{a00067_a9893656e3683711eb78441b30c52a600}{debug\-Text\-View}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00067_ab6a56afc687455f360876eff67891163}{Awake} ()
+\item 
+void \hyperlink{a00067_af646a17cfd63039a25149f8fc0776dcb}{Update} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, \hyperlink{a00161}{Yarn.\-Value} $>$ \hyperlink{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{variables} = new Dictionary$<$string, \hyperlink{a00161}{Yarn.\-Value}$>$ ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Class Documentation}
+\index{Example\-Variable\-Storage\-::\-Default\-Variable@{Example\-Variable\-Storage\-::\-Default\-Variable}}\label{d0/d39/a00314}
+\hypertarget{a00067_d0/d39/a00314}{}
+\subsubsection{class Example\-Variable\-Storage\-:\-:Default\-Variable}
+
+
+Collaboration diagram for Example\-Variable\-Storage.\-Default\-Variable\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{d4/d8f/a00324}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00067_a609feaa53936e7dc42248ff2ba68454a}{string}\label{a00067_a609feaa53936e7dc42248ff2ba68454a}
+&
+name&
+\\
+\hline
+
+\hypertarget{a00067_a904347efdca12f40243c7dedb646153d}{Value}\label{a00067_a904347efdca12f40243c7dedb646153d}
+&
+type&
+\\
+\hline
+
+\hypertarget{a00067_a0f00ecb21b58aa754a4bbb61edf62818}{string}\label{a00067_a0f00ecb21b58aa754a4bbb61edf62818}
+&
+value&
+\\
+\hline
+
+\end{DoxyFields}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00067_ab6a56afc687455f360876eff67891163}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Awake@{Awake}}
+\index{Awake@{Awake}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Example\-Variable\-Storage.\-Awake (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00067_ab6a56afc687455f360876eff67891163}
+
+\begin{DoxyCode}
+59     \{
+60         \hyperlink{a00067_a3a05d66cdacadb2e9b618cd0aef45f84}{ResetToDefaults} ();
+61     \}
+\end{DoxyCode}
+\hypertarget{a00067_a0ce614bee8d5b220500fb765390b4ca3}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00067_a0ce614bee8d5b220500fb765390b4ca3}
+
+
+Reimplemented from \hyperlink{a00165_a587fe10b367ace190e10f3bcb590a53c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+\begin{DoxyCode}
+141     \{
+142         variables.Clear ();
+143     \}
+\end{DoxyCode}
+\hypertarget{a00165_add85a45dd65a5d4bd41c9d5ce5f77d19}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00165_add85a45dd65a5d4bd41c9d5ce5f77d19}
+
+
+Implements \hyperlink{a00164_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+
+
+\begin{DoxyCode}
+467         \{
+468             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+469         \}
+\end{DoxyCode}
+\hypertarget{a00067_a741593be1a299dcc2136f05b9b4a995a}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Yarn.\-Value} Example\-Variable\-Storage.\-Get\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00067_a741593be1a299dcc2136f05b9b4a995a}
+
+
+Reimplemented from \hyperlink{a00165_ac6ebafcbebc2b2d71eba8562490a2f1e}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+\begin{DoxyCode}
+131     \{
+132         \textcolor{comment}{// If we don't have a variable with this name, return the null value}
+133         \textcolor{keywordflow}{if} (\hyperlink{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{variables}.ContainsKey(variableName) == \textcolor{keyword}{false})
+134             \textcolor{keywordflow}{return} Yarn.Value.NULL;
+135         
+136         \textcolor{keywordflow}{return} \hyperlink{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{variables} [variableName];
+137     \}
+\end{DoxyCode}
+\hypertarget{a00067_a3a05d66cdacadb2e9b618cd0aef45f84}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
+\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Reset\-To\-Defaults (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00067_a3a05d66cdacadb2e9b618cd0aef45f84}
+
+
+Implements \hyperlink{a00165_a33fcbff56561e53e0a70b59c56f0c3af}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+\begin{DoxyCode}
+65     \{
+66         \hyperlink{a00067_a0ce614bee8d5b220500fb765390b4ca3}{Clear} ();
+67         
+68         \textcolor{comment}{// For each default variable that's been defined, parse the string}
+69         \textcolor{comment}{// that the user typed in in Unity and store the variable}
+70         \textcolor{keywordflow}{foreach} (var variable \textcolor{keywordflow}{in} \hyperlink{a00067_a464c8a4ff6a3c624602d0adc55dfc59a}{defaultVariables}) \{
+71             
+72             \textcolor{keywordtype}{object} value;
+73 
+74             \textcolor{keywordflow}{switch} (variable.type) \{
+75             \textcolor{keywordflow}{case} Yarn.Value.Type.Number:
+76                 \textcolor{keywordtype}{float} f = 0.0f;
+77 
+78                 float.TryParse(variable.value, out f);
+79 
+80                 value = f;
+81 
+82                 \textcolor{keywordflow}{break};
+83 
+84             \textcolor{keywordflow}{case} Yarn.Value.Type.String:
+85 
+86                 value = variable.value;
+87 
+88                 \textcolor{keywordflow}{break};
+89             \textcolor{keywordflow}{case} Yarn.Value.Type.Bool:
+90 
+91                 \textcolor{keywordtype}{bool} b = \textcolor{keyword}{false};
+92 
+93                 bool.TryParse(variable.value, out b);
+94 
+95                 value = b;
+96 
+97                 \textcolor{keywordflow}{break};
+98             \textcolor{keywordflow}{case} Yarn.Value.Type.Variable:
+99 
+100                 \textcolor{comment}{// We don't support assigning default variables from other variables}
+101                 \textcolor{comment}{// yet}
+102                 Debug.LogErrorFormat(\textcolor{stringliteral}{"Can't set variable \{0\} to \{1\}: You can't "} +
+103                     \textcolor{stringliteral}{"set a default variable to be another variable, because it "} +
+104                     \textcolor{stringliteral}{"may not have been initialised yet."}, variable.name, variable.value);
+105                 \textcolor{keywordflow}{continue};
+106 
+107             \textcolor{keywordflow}{case} Yarn.Value.Type.Null:
+108 
+109                 value = null;
+110 
+111                 \textcolor{keywordflow}{break};
+112             \textcolor{keywordflow}{default}:
+113                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
+114             \}
+115 
+116             var v = \textcolor{keyword}{new} \hyperlink{a00161}{Yarn.Value}(value);
+117 
+118             \hyperlink{a00067_ac4265c1c9da485f13a6b05784b0f668d}{SetValue} (\textcolor{stringliteral}{"$"} + variable.name, v);
+119         \}
+120     \}
+\end{DoxyCode}
+\hypertarget{a00165_ac0d2f2e081944ad197992a26ad1a833c}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00165_ac0d2f2e081944ad197992a26ad1a833c}
+
+
+Implements \hyperlink{a00164_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+
+
+\begin{DoxyCode}
+462         \{
+463             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+464         \}
+\end{DoxyCode}
+\hypertarget{a00067_ac4265c1c9da485f13a6b05784b0f668d}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override void Example\-Variable\-Storage.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Yarn.\-Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00067_ac4265c1c9da485f13a6b05784b0f668d}
+
+
+Reimplemented from \hyperlink{a00165_a25f979b062d63c9e886fe7070ce4561b}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}.
+
+
+\begin{DoxyCode}
+124     \{
+125         \textcolor{comment}{// Copy this value into our list}
+126         \hyperlink{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{variables}[variableName] = \textcolor{keyword}{new} \hyperlink{a00161}{Yarn.Value}(value);
+127     \}
+\end{DoxyCode}
+\hypertarget{a00067_af646a17cfd63039a25149f8fc0776dcb}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!Update@{Update}}
+\index{Update@{Update}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Example\-Variable\-Storage.\-Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00067_af646a17cfd63039a25149f8fc0776dcb}
+
+\begin{DoxyCode}
+147     \{
+148         \textcolor{keywordflow}{if} (\hyperlink{a00067_a9893656e3683711eb78441b30c52a600}{debugTextView} != null) \{
+149             var stringBuilder = \textcolor{keyword}{new} System.Text.StringBuilder ();
+150             \textcolor{keywordflow}{foreach} (KeyValuePair<string,Yarn.Value> item \textcolor{keywordflow}{in} \hyperlink{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{variables}) \{
+151                 stringBuilder.AppendLine (string.Format (\textcolor{stringliteral}{"\{0\} = \{1\}"}, 
+152                                                          item.Key, 
+153                                                          item.Value));
+154             \}
+155             debugTextView.text = stringBuilder.ToString ();
+156         \}
+157     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00067_a9893656e3683711eb78441b30c52a600}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!debug\-Text\-View@{debug\-Text\-View}}
+\index{debug\-Text\-View@{debug\-Text\-View}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{debug\-Text\-View}]{\setlength{\rightskip}{0pt plus 5cm}Unity\-Engine.\-U\-I.\-Text Example\-Variable\-Storage.\-debug\-Text\-View}}\label{a00067_a9893656e3683711eb78441b30c52a600}
+\hypertarget{a00067_a464c8a4ff6a3c624602d0adc55dfc59a}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!default\-Variables@{default\-Variables}}
+\index{default\-Variables@{default\-Variables}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{default\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Default\-Variable} \mbox{[}$\,$\mbox{]} Example\-Variable\-Storage.\-default\-Variables}}\label{a00067_a464c8a4ff6a3c624602d0adc55dfc59a}
+\hypertarget{a00067_a4a4fec7b4ad707cd0603393dd57de96c}{\index{Example\-Variable\-Storage@{Example\-Variable\-Storage}!variables@{variables}}
+\index{variables@{variables}!ExampleVariableStorage@{Example\-Variable\-Storage}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Yarn.\-Value}$>$ Example\-Variable\-Storage.\-variables = new Dictionary$<$string, {\bf Yarn.\-Value}$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00067_a4a4fec7b4ad707cd0603393dd57de96c}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00255}{Example\-Variable\-Storage.\-cs}\end{DoxyCompactItemize}

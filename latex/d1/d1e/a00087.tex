@@ -1,0 +1,124 @@
+\hypertarget{a00087}{\section{Csv\-Helper.\-I\-Csv\-Parser Interface Reference}
+\label{a00087}\index{Csv\-Helper.\-I\-Csv\-Parser@{Csv\-Helper.\-I\-Csv\-Parser}}
+}
+
+
+Defines methods used the parse a C\-S\-V file.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/d45/a00382}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{da/dee/a00383}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00087_a411461b4cd33dce0b42c81715359f687}{Read} ()
+\begin{DoxyCompactList}\small\item\em Reads a record from the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00041}{Csv\-Configuration} \hyperlink{a00087_af1303d18a827bf46a56f9cb6ba05ed64}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\item 
+int \hyperlink{a00087_a50c0428defc2ada782c6863d72a990e4}{Field\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the field count. \end{DoxyCompactList}\item 
+long \hyperlink{a00087_aa47c7ce6c764dddc78bb4d3ee83714eb}{Char\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the character position that the parser is currently on. \end{DoxyCompactList}\item 
+long \hyperlink{a00087_a23dee37412eeb387df1d336e7bf07cc2}{Byte\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the byte position that the parser is currently on. \end{DoxyCompactList}\item 
+int \hyperlink{a00087_a0ec83f976594f51a002448fa2fe2e392}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the row of the C\-S\-V file that the parser is currently on. \end{DoxyCompactList}\item 
+string \hyperlink{a00087_a1b238e3bb053f2f6c122ee0d77bb48d7}{Raw\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw row for the current record that was parsed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines methods used the parse a C\-S\-V file. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00087_a411461b4cd33dce0b42c81715359f687}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Read@{Read}}
+\index{Read@{Read}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Read}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-I\-Csv\-Parser.\-Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00087_a411461b4cd33dce0b42c81715359f687}
+
+
+Reads a record from the C\-S\-V file. 
+
+\begin{DoxyReturn}{Returns}
+A T\-:\-String\mbox{[}$\,$\mbox{]} of fields for the record read.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00046_a8e938842c6267343128babd111df9710}{Csv\-Helper.\-Csv\-Parser}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00087_a23dee37412eeb387df1d336e7bf07cc2}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Byte\-Position@{Byte\-Position}}
+\index{Byte\-Position@{Byte\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Byte\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Byte\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_a23dee37412eeb387df1d336e7bf07cc2}
+
+
+Gets the byte position that the parser is currently on. 
+
+\hypertarget{a00087_aa47c7ce6c764dddc78bb4d3ee83714eb}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Char\-Position@{Char\-Position}}
+\index{Char\-Position@{Char\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Char\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Char\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_aa47c7ce6c764dddc78bb4d3ee83714eb}
+
+
+Gets the character position that the parser is currently on. 
+
+\hypertarget{a00087_af1303d18a827bf46a56f9cb6ba05ed64}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Parser.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_af1303d18a827bf46a56f9cb6ba05ed64}
+
+
+Gets the configuration. 
+
+\hypertarget{a00087_a50c0428defc2ada782c6863d72a990e4}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Field\-Count@{Field\-Count}}
+\index{Field\-Count@{Field\-Count}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Field\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Field\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_a50c0428defc2ada782c6863d72a990e4}
+
+
+Gets the field count. 
+
+\hypertarget{a00087_a1b238e3bb053f2f6c122ee0d77bb48d7}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Raw\-Record@{Raw\-Record}}
+\index{Raw\-Record@{Raw\-Record}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Raw\-Record}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Parser.\-Raw\-Record\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_a1b238e3bb053f2f6c122ee0d77bb48d7}
+
+
+Gets the raw row for the current record that was parsed. 
+
+\hypertarget{a00087_a0ec83f976594f51a002448fa2fe2e392}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Row@{Row}}
+\index{Row@{Row}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
+\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00087_a0ec83f976594f51a002448fa2fe2e392}
+
+
+Gets the row of the C\-S\-V file that the parser is currently on. 
+
+
+
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00206}{I\-Csv\-Parser.\-cs}\end{DoxyCompactItemize}

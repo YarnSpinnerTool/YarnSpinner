@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$d5/df9/a00044.html" title="Represents errors that occur in CsvHelper. " alt="" coords="133,147,341,173"/>
+<area shape="rect" id="node10" href="$df/d6a/a00119.html" title="Yarn.ParseException" alt="" coords="165,197,310,224"/>
+<area shape="rect" id="node11" href="$dd/da7/a00168.html" title="Yarn.YarnException" alt="" coords="168,248,307,275"/>
+<area shape="rect" id="node3" href="$d5/db6/a00042.html" title="Represents configuration errors that occur. " alt="" coords="409,5,591,46"/>
+<area shape="rect" id="node4" href="$d1/dc6/a00037.html" title="Represents errors that occur due to bad data. " alt="" coords="389,71,611,97"/>
+<area shape="rect" id="node5" href="$d6/d2d/a00047.html" title="Represents errors that occur while parsing a CSV file. " alt="" coords="396,121,604,148"/>
+<area shape="rect" id="node6" href="$d9/d2e/a00056.html" title="Represents errors that occur while reading a CSV file. " alt="" coords="394,172,606,199"/>
+<area shape="rect" id="node8" href="$d9/d73/a00060.html" title="Represents errors that occur while writing a CSV file. " alt="" coords="397,223,603,249"/>
+<area shape="rect" id="node9" href="$d7/df7/a00058.html" title="Represents errors that occur while reading a CSV file. " alt="" coords="405,274,595,315"/>
+<area shape="rect" id="node7" href="$d6/d97/a00045.html" title="Represents an error caused because a field is missing in the header while reading a CSV file..." alt="" coords="659,165,845,206"/>
+</map>

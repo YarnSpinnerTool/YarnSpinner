@@ -1,0 +1,7 @@
+<map id="CsvHelper.CsvReader" name="CsvHelper.CsvReader">
+<area shape="rect" id="node2" href="$db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="23,581,137,702"/>
+<area shape="rect" id="node3" href="$db/dab/a00089.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
+<area shape="rect" id="node7" href="$d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. " alt="" coords="161,566,315,717"/>
+<area shape="rect" id="node5" href="$dd/d32/a00041.html" title="Configuration used for reading and writing CSV data. " alt="" coords="341,368,547,915"/>
+<area shape="rect" id="node6" href="$db/d3a/a00040.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="336,72,552,237"/>
+</map>

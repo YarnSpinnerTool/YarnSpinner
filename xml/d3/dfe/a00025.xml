@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d3/dfe/a00025" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::CameraFollow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d3/dfe/a00025_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform Yarn.Unity.Example.CameraFollow.target</definition>
+        <argsstring></argsstring>
+        <name>target</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/dfe/a00025_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.minPosition</definition>
+        <argsstring></argsstring>
+        <name>minPosition</name>
+        <initializer>= -5.3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/dfe/a00025_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.maxPosition</definition>
+        <argsstring></argsstring>
+        <name>maxPosition</name>
+        <initializer>= 5.3f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/dfe/a00025_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.moveSpeed</definition>
+        <argsstring></argsstring>
+        <name>moveSpeed</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d3/dfe/a00025_1a592ddbf8e493bde0a6536c0234869217" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.CameraFollow.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="42" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="894">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="893">
+        <label>Yarn.Unity.Example.CameraFollow</label>
+        <link refid="d3/dfe/a00025"/>
+        <childnode refid="894" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="896">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="895">
+        <label>Yarn.Unity.Example.CameraFollow</label>
+        <link refid="d3/dfe/a00025"/>
+        <childnode refid="896" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="32" bodyend="54"/>
+    <listofallmembers>
+      <member refid="d3/dfe/a00025_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>maxPosition</name></member>
+      <member refid="d3/dfe/a00025_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>minPosition</name></member>
+      <member refid="d3/dfe/a00025_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>moveSpeed</name></member>
+      <member refid="d3/dfe/a00025_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>target</name></member>
+      <member refid="d3/dfe/a00025_1a592ddbf8e493bde0a6536c0234869217" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

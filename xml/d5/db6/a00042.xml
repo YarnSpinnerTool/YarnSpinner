@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d5/db6/a00042" kind="class" prot="public">
+    <compoundname>CsvHelper::Configuration::CsvConfigurationException</compoundname>
+    <basecompoundref refid="d5/df9/a00044" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/db6/a00042_1a26b35b967f6c7e409dd84bdb60619993" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvConfigurationException.CsvConfigurationException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvConfigurationException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d5/db6/a00042" kindref="compound">CsvConfigurationException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/db6/a00042_1a77c920cd1ce043a9494cd19cb074f84e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvConfigurationException.CsvConfigurationException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvConfigurationException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d5/db6/a00042" kindref="compound">CsvConfigurationException</ref> class with a specified error message. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/db6/a00042_1a2dee1f8508b1411b8dc4d369abfd04aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvConfigurationException.CsvConfigurationException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvConfigurationException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d5/db6/a00042" kindref="compound">CsvConfigurationException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/db6/a00042_1af53550f7b533e7878e010c4048e6686c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvConfigurationException.CsvConfigurationException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvConfigurationException</name>
+        <param>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d5/db6/a00042" kindref="compound">CsvConfigurationException</ref> class with serialized data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents configuration errors that occur. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="968">
+        <label>CsvHelper.Configuration.CsvConfigurationException</label>
+        <link refid="d5/db6/a00042"/>
+        <childnode refid="969" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="970">
+        <label>Exception</label>
+      </node>
+      <node id="969">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="970" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="971">
+        <label>CsvHelper.Configuration.CsvConfigurationException</label>
+        <link refid="d5/db6/a00042"/>
+        <childnode refid="972" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="973">
+        <label>Exception</label>
+      </node>
+      <node id="972">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="973" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfigurationException.cs" bodystart="15" bodyend="47"/>
+    <listofallmembers>
+      <member refid="d5/db6/a00042_1a26b35b967f6c7e409dd84bdb60619993" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvConfigurationException</name></member>
+      <member refid="d5/db6/a00042_1a77c920cd1ce043a9494cd19cb074f84e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvConfigurationException</name></member>
+      <member refid="d5/db6/a00042_1a2dee1f8508b1411b8dc4d369abfd04aa" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvConfigurationException</name></member>
+      <member refid="d5/db6/a00042_1af53550f7b533e7878e010c4048e6686c" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvConfigurationException</name></member>
+      <member refid="d5/df9/a00044_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfigurationException</scope><name>CsvHelperException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

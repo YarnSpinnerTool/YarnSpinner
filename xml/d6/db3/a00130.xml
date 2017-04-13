@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d6/db3/a00130" kind="class" prot="public">
+    <compoundname>Yarn::Dialogue::RunnerResult</compoundname>
+    <derivedcompoundref refid="d5/d79/a00030" prot="public" virt="non-virtual">Yarn.Dialogue.CommandResult</derivedcompoundref>
+    <derivedcompoundref refid="d0/dc2/a00104" prot="public" virt="non-virtual">Yarn.Dialogue.LineResult</derivedcompoundref>
+    <derivedcompoundref refid="dd/d6d/a00111" prot="public" virt="non-virtual">Yarn.Dialogue.NodeCompleteResult</derivedcompoundref>
+    <derivedcompoundref refid="d9/d4b/a00117" prot="public" virt="non-virtual">Yarn.Dialogue.OptionSetResult</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1484">
+        <label>Yarn.Dialogue.LineResult</label>
+        <link refid="d0/dc2/a00104"/>
+        <childnode refid="1482" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1485">
+        <label>Yarn.Dialogue.NodeCompleteResult</label>
+        <link refid="dd/d6d/a00111"/>
+        <childnode refid="1482" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1483">
+        <label>Yarn.Dialogue.CommandResult</label>
+        <link refid="d5/d79/a00030"/>
+        <childnode refid="1482" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1482">
+        <label>Yarn.Dialogue.RunnerResult</label>
+        <link refid="d6/db3/a00130"/>
+      </node>
+      <node id="1486">
+        <label>Yarn.Dialogue.OptionSetResult</label>
+        <link refid="d9/d4b/a00117"/>
+        <childnode refid="1482" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1487">
+        <label>Yarn.Dialogue.RunnerResult</label>
+        <link refid="d6/db3/a00130"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="127" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="127" bodyend="127"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1019 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dd/d32/a00041" kind="class" prot="public">
+    <compoundname>CsvHelper::Configuration::CsvConfiguration</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="dd/d32/a00041_1af18fcf1e16dcd7c277cc9b636afe3cc4" prot="private" static="no" mutable="no">
+        <type>BindingFlags</type>
+        <definition>BindingFlags CsvHelper.Configuration.CsvConfiguration.propertyBindingFlags</definition>
+        <argsstring></argsstring>
+        <name>propertyBindingFlags</name>
+        <initializer>= BindingFlags.Public | BindingFlags.Instance</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ad70ea02838356e66476cc0c7151c17aa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.hasHeaderRecord</definition>
+        <argsstring></argsstring>
+        <name>hasHeaderRecord</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1af557edd010ae706ffb850decbfc5f774" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.willThrowOnMissingField</definition>
+        <argsstring></argsstring>
+        <name>willThrowOnMissingField</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ae3ac37138febea53e79c1a3c6ad273b9" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvConfiguration.delimiter</definition>
+        <argsstring></argsstring>
+        <name>delimiter</name>
+        <initializer>= &quot;,&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ab4d958f45281a8e148ca80f4c838e3b5" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CsvHelper.Configuration.CsvConfiguration.quote</definition>
+        <argsstring></argsstring>
+        <name>quote</name>
+        <initializer>= &apos;&quot;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ab8f4f364475aa0f0a65b238ef004baf0" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvConfiguration.quoteString</definition>
+        <argsstring></argsstring>
+        <name>quoteString</name>
+        <initializer>= &quot;\&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a345c1d99f9fd609a1e1eea0476dd5dae" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvConfiguration.doubleQuoteString</definition>
+        <argsstring></argsstring>
+        <name>doubleQuoteString</name>
+        <initializer>= &quot;\&quot;\&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a7e097358e5aaaba864411fd08a358230" prot="private" static="no" mutable="no">
+        <type>char[]</type>
+        <definition>char [] CsvHelper.Configuration.CsvConfiguration.quoteRequiredChars</definition>
+        <argsstring></argsstring>
+        <name>quoteRequiredChars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ab4c21ea2d42a1e3ee29b66cc2cf2a949" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CsvHelper.Configuration.CsvConfiguration.comment</definition>
+        <argsstring></argsstring>
+        <name>comment</name>
+        <initializer>= &apos;#&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a6dc7c575ccfe2270a472f327d5768120" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvConfiguration.bufferSize</definition>
+        <argsstring></argsstring>
+        <name>bufferSize</name>
+        <initializer>= 2048</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a71902bcac3d0ed9fdb1d53eb7f97867e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.isHeaderCaseSensitive</definition>
+        <argsstring></argsstring>
+        <name>isHeaderCaseSensitive</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1ad562fa0e6e495a39cf5e7d5df0a03d23" prot="private" static="no" mutable="no">
+        <type><ref refid="dd/d32/a00041_1a28a7819a63acdc5982093ce3b84102d8" kindref="member">Encoding</ref></type>
+        <definition>Encoding CsvHelper.Configuration.CsvConfiguration.encoding</definition>
+        <argsstring></argsstring>
+        <name>encoding</name>
+        <initializer>= Encoding.UTF8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1adfad028f0055932b37b4c06bf9e1eab9" prot="private" static="no" mutable="no">
+        <type><ref refid="dd/d32/a00041_1ad04ccfdd3cbc265f527ee5baa2e08508" kindref="member">CultureInfo</ref></type>
+        <definition>CultureInfo CsvHelper.Configuration.CsvConfiguration.cultureInfo</definition>
+        <argsstring></argsstring>
+        <name>cultureInfo</name>
+        <initializer>= CultureInfo.CurrentCulture</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1afc0e3610a56af5e12b0177215fe5248e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.quoteAllFields</definition>
+        <argsstring></argsstring>
+        <name>quoteAllFields</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a81d9e64909dd0742ccc0c0d4cdf148ac" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.quoteNoFields</definition>
+        <argsstring></argsstring>
+        <name>quoteNoFields</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1aaaa11cc9c2e4f1affb48844f9c76c81d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.ignoreBlankLines</definition>
+        <argsstring></argsstring>
+        <name>ignoreBlankLines</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a764e14e2b3a5620f5598393c746a8df3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.Configuration.CsvConfiguration.useNewObjectForNullReferenceProperties</definition>
+        <argsstring></argsstring>
+        <name>useNewObjectForNullReferenceProperties</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d32/a00041_1a1c353c85dc21a4c5632e6184685e234c" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="db/d3a/a00040" kindref="compound">CsvClassMapCollection</ref></type>
+        <definition>readonly CsvClassMapCollection CsvHelper.Configuration.CsvConfiguration.maps</definition>
+        <argsstring></argsstring>
+        <name>maps</name>
+        <initializer>= new <ref refid="db/d3a/a00040" kindref="compound">CsvClassMapCollection</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="dd/d32/a00041_1a9119c99f5dafba985718f631f7bfa16a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="db/d3a/a00040" kindref="compound">CsvClassMapCollection</ref></type>
+        <definition>virtual CsvClassMapCollection CsvHelper.Configuration.CsvConfiguration.Maps</definition>
+        <argsstring></argsstring>
+        <name>Maps</name>
+        <briefdescription>
+<para>The configured <ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref>s. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1ab5bd1a14758b0c6b84ca3544784a18dd" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>BindingFlags</type>
+        <definition>virtual BindingFlags CsvHelper.Configuration.CsvConfiguration.PropertyBindingFlags</definition>
+        <argsstring></argsstring>
+        <name>PropertyBindingFlags</name>
+        <briefdescription>
+<para>Gets or sets the property binding flags. This determines what properties on the custom class are used. Default is Public | Instance. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a9e439f90bfac500d24d6e2e731240439" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.HasHeaderRecord</definition>
+        <argsstring></argsstring>
+        <name>HasHeaderRecord</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if the CSV file has a header record. Default is true. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a1ec30ebdadc1050686b22d1f518df042" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.HasExcelSeparator</definition>
+        <argsstring></argsstring>
+        <name>HasExcelSeparator</name>
+        <briefdescription>
+<para>Gets or sets a value indicating the if the CSV file contains the Excel &quot;sep=delimeter&quot; config option in the first row. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a13cb7999b190a01177134faa52dfa3db" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.WillThrowOnMissingField</definition>
+        <argsstring></argsstring>
+        <name>WillThrowOnMissingField</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if an exception will be thrown if a field defined in a mapping is missing. True to throw an exception, otherwise false. Default is true. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a615120d2e42818bc37d87181b72d4ad3" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.DetectColumnCountChanges</definition>
+        <argsstring></argsstring>
+        <name>DetectColumnCountChanges</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether changes in the column count should be detected. If true, a <ref refid="d1/dc6/a00037" kindref="compound">CsvBadDataException</ref> will be thrown if a different column count is detected. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if [detect column count changes]; otherwise, <computeroutput>false</computeroutput>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1aeee80e98871bbc6fe74b87be1c616a8d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IsHeaderCaseSensitive</definition>
+        <argsstring></argsstring>
+        <name>IsHeaderCaseSensitive</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether matching header column names is case sensitive. True for case sensitive matching, otherwise false. Default is true. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a509e336bfd99b45feb55acddeda4df24" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreHeaderWhiteSpace</definition>
+        <argsstring></argsstring>
+        <name>IgnoreHeaderWhiteSpace</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether matcher header column names will ignore white space. True to ignore white space, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a27a2d1b69b3025969a94cd903db9d00a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreReferences</definition>
+        <argsstring></argsstring>
+        <name>IgnoreReferences</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether references should be ignored when auto mapping. True to ignore references, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a65704a34f96194fb1a4ed55e60c3b24f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.TrimHeaders</definition>
+        <argsstring></argsstring>
+        <name>TrimHeaders</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether headers should be trimmed. True to trim headers, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a100f3a2268218bfba3088f4ca1d6a7ad" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.TrimFields</definition>
+        <argsstring></argsstring>
+        <name>TrimFields</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether fields should be trimmed. True to trim fields, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="139" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a611063826803f98b7cfc275247c1d883" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>virtual string CsvHelper.Configuration.CsvConfiguration.Delimiter</definition>
+        <argsstring></argsstring>
+        <name>Delimiter</name>
+        <briefdescription>
+<para>Gets or sets the delimiter used to separate fields. Default is &apos;,&apos;; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="145" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a2a8217dbd09f7d7e4c2895893743e25f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>char</type>
+        <definition>virtual char CsvHelper.Configuration.CsvConfiguration.Quote</definition>
+        <argsstring></argsstring>
+        <name>Quote</name>
+        <briefdescription>
+<para>Gets or sets the character used to quote fields. Default is &apos;&quot;&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a8816c29ce809570b4db6bc438f5e0204" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>virtual string CsvHelper.Configuration.CsvConfiguration.QuoteString</definition>
+        <argsstring></argsstring>
+        <name>QuoteString</name>
+        <briefdescription>
+<para>Gets a string representation of the currently configured Quote character. </para>        </briefdescription>
+        <detaileddescription>
+<para>The new quote string. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a5f5825f9343c21ef968486cef817e11d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>virtual string CsvHelper.Configuration.CsvConfiguration.DoubleQuoteString</definition>
+        <argsstring></argsstring>
+        <name>DoubleQuoteString</name>
+        <briefdescription>
+<para>Gets a string representation of two of the currently configured Quote characters. </para>        </briefdescription>
+        <detaileddescription>
+<para>The new double quote string. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="229" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a6a01a3fdad14994f306530cdce2db6f6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>char[]</type>
+        <definition>virtual char [] CsvHelper.Configuration.CsvConfiguration.QuoteRequiredChars</definition>
+        <argsstring></argsstring>
+        <name>QuoteRequiredChars</name>
+        <briefdescription>
+<para>Gets an array characters that require the field to be quoted. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="238" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a7df1aa9462eff1da4a271cb3a53feb95" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>char</type>
+        <definition>virtual char CsvHelper.Configuration.CsvConfiguration.Comment</definition>
+        <argsstring></argsstring>
+        <name>Comment</name>
+        <briefdescription>
+<para>Gets or sets the character used to denote a line that is commented out. Default is &apos;#&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="247" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a0799eaadd40d70a70cb2d50a3f6f5836" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.AllowComments</definition>
+        <argsstring></argsstring>
+        <name>AllowComments</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if comments are allowed. True to allow commented out lines, otherwise false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="257" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="257" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1ae477580df84900b3fad796a14fad7620" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>virtual int CsvHelper.Configuration.CsvConfiguration.BufferSize</definition>
+        <argsstring></argsstring>
+        <name>BufferSize</name>
+        <briefdescription>
+<para>Gets or sets the size of the buffer used for reading and writing CSV files. Default is 2048. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="264" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a04022216f3e425eddb2eea8b78425066" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.QuoteAllFields</definition>
+        <argsstring></argsstring>
+        <name>QuoteAllFields</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to be. <ref refid="dd/d32/a00041_1a04022216f3e425eddb2eea8b78425066" kindref="member">QuoteAllFields</ref> and <ref refid="dd/d32/a00041_1aa9d54725d696095030d1f4c94825f438" kindref="member">QuoteNoFields</ref> cannot be true at the same time. Turning one on will turn the other off. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if all fields should be quoted; otherwise, <computeroutput>false</computeroutput>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="279" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1aa9d54725d696095030d1f4c94825f438" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.QuoteNoFields</definition>
+        <argsstring></argsstring>
+        <name>QuoteNoFields</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether no fields are quoted when writing. <ref refid="dd/d32/a00041_1a04022216f3e425eddb2eea8b78425066" kindref="member">QuoteAllFields</ref> and <ref refid="dd/d32/a00041_1aa9d54725d696095030d1f4c94825f438" kindref="member">QuoteNoFields</ref> cannot be true at the same time. Turning one on will turn the other off. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if [quote no fields]; otherwise, <computeroutput>false</computeroutput>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="301" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="302" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1af774e3cb6d18788006deec71879f54a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.CountBytes</definition>
+        <argsstring></argsstring>
+        <name>CountBytes</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether the number of bytes should be counted while parsing. Default is false. This will slow down parsing because it needs to get the byte count of every char for the given encoding. The <ref refid="dd/d32/a00041_1a28a7819a63acdc5982093ce3b84102d8" kindref="member">Encoding</ref> needs to be set correctly for this to be accurate. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="321" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="321" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a28a7819a63acdc5982093ce3b84102d8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Encoding</type>
+        <definition>virtual Encoding CsvHelper.Configuration.CsvConfiguration.Encoding</definition>
+        <argsstring></argsstring>
+        <name>Encoding</name>
+        <briefdescription>
+<para>Gets or sets the encoding used when counting bytes. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="326" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="327" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1ad04ccfdd3cbc265f527ee5baa2e08508" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>CultureInfo</type>
+        <definition>virtual CultureInfo CsvHelper.Configuration.CsvConfiguration.CultureInfo</definition>
+        <argsstring></argsstring>
+        <name>CultureInfo</name>
+        <briefdescription>
+<para>Gets or sets the culture info used to read an write CSV files. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="335" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="336" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a416ecf54fed4d9c3e90ebfd0b352663d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.SkipEmptyRecords</definition>
+        <argsstring></argsstring>
+        <name>SkipEmptyRecords</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether empty rows should be skipped when reading. A record is considered empty if all fields are empty. </para>        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>true</computeroutput> if [skip empty rows]; otherwise, <computeroutput>false</computeroutput>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="348" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="348" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a04c1a9d83f8fe89a23c86def5b8558fb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Func&lt; string[], bool &gt;</type>
+        <definition>virtual Func&lt;string[], bool&gt; CsvHelper.Configuration.CsvConfiguration.ShouldSkipRecord</definition>
+        <argsstring></argsstring>
+        <name>ShouldSkipRecord</name>
+        <briefdescription>
+<para>Gets or sets the callback that will be called to determine whether to skip the given record or not. This overrides the <ref refid="dd/d32/a00041_1a416ecf54fed4d9c3e90ebfd0b352663d" kindref="member">SkipEmptyRecords</ref> setting. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="355" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1abb9b54f3fb2aefa066598d74f01d00d8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreQuotes</definition>
+        <argsstring></argsstring>
+        <name>IgnoreQuotes</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if quotes should be ingored when parsing and treated like any other character. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="361" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="361" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a21b79b0f10ef0a156bd5993300d26b4d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnorePrivateAccessor</definition>
+        <argsstring></argsstring>
+        <name>IgnorePrivateAccessor</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if private get and set property accessors should be ignored when reading and writing. True to ignore, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="369" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="369" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1abec66869c9418966fe5bbf74e32b46a2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreBlankLines</definition>
+        <argsstring></argsstring>
+        <name>IgnoreBlankLines</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if blank lines should be ignored when reading. True to ignore, otherwise false. Default is true. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="376" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a5d2eed13b8836f0397f8c39a709de1cc" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.UseExcelLeadingZerosFormatForNumerics</definition>
+        <argsstring></argsstring>
+        <name>UseExcelLeadingZerosFormatForNumerics</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if an Excel specific format should be used when writing fields containing numeric values. e.g. 00001 -&gt; =&quot;00001&quot; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="387" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="387" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1aa4ec3b1cbc0dd97e69b0b7cf7225c2e9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.PrefixReferenceHeaders</definition>
+        <argsstring></argsstring>
+        <name>PrefixReferenceHeaders</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if headers of reference properties should get prefixed by the parent property name when automapping. True to prefix, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="395" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1ac20c0f1cc282f4b13ce15b6a91305c10" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.ThrowOnBadData</definition>
+        <argsstring></argsstring>
+        <name>ThrowOnBadData</name>
+        <briefdescription>
+<para>Gets or sets a value indicating if an exception should be thrown when bad field data is detected. True to throw, otherwise false. Default is false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="402" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="402" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a1a59e8f40f9629658d47a6f163dda8ed" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Action&lt; string &gt;</type>
+        <definition>virtual Action&lt;string&gt; CsvHelper.Configuration.CsvConfiguration.BadDataCallback</definition>
+        <argsstring></argsstring>
+        <name>BadDataCallback</name>
+        <briefdescription>
+<para>Gets or sets a method that gets called when bad data is detected. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="408" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a8645dbd4fe2a9c443910695a93b1027f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreReadingExceptions</definition>
+        <argsstring></argsstring>
+        <name>IgnoreReadingExceptions</name>
+        <briefdescription>
+<para>Gets or sets a value indicating whether exceptions that occur duruing reading should be ignored. True to ignore exceptions, otherwise false. Default is false. This is only applicable when during ICsvReaderRow.GetRecords{T}. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="419" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1ae7257970a1b5bfb9f2ddfdc61a70fe34" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Action&lt; Exception, <ref refid="db/ddf/a00088" kindref="compound">ICsvReader</ref> &gt;</type>
+        <definition>virtual Action&lt;Exception, ICsvReader&gt; CsvHelper.Configuration.CsvConfiguration.ReadingExceptionCallback</definition>
+        <argsstring></argsstring>
+        <name>ReadingExceptionCallback</name>
+        <briefdescription>
+<para>Gets or sets the callback that is called when a reading exception occurs. This will only happen when <ref refid="dd/d32/a00041_1a8645dbd4fe2a9c443910695a93b1027f" kindref="member">IgnoreReadingExceptions</ref> is true, and when calling ICsvReaderRow.GetRecords{T}. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="427" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="427" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="dd/d32/a00041_1a87c533a0dbaf65dca68233356310cab0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.Configuration.CsvConfiguration.UseNewObjectForNullReferenceProperties</definition>
+        <argsstring></argsstring>
+        <name>UseNewObjectForNullReferenceProperties</name>
+        <briefdescription>
+<para>Gets or sets a value indicating that during writing if a new object should be created when a reference property is null. True to create a new object and use it&apos;s defaults for the fields, or false to leave the fields empty for all the reference property&apos;s properties. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="436" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="437" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="dd/d32/a00041_1a448b87850bf2a1d6f92cda4576bbeb34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>TMap</type>
+        <definition>virtual TMap CsvHelper.Configuration.CsvConfiguration.RegisterClassMap&lt; TMap &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>RegisterClassMap&lt; TMap &gt;</name>
+        <briefdescription>
+<para>Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>TMap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of mapping class to use.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="448" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="448" bodyend="454"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1adf4b355d089af6f33b90f17a689b0084" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+        <definition>virtual CsvClassMap CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</definition>
+        <argsstring>(Type classMapType)</argsstring>
+        <name>RegisterClassMap</name>
+        <param>
+          <type>Type</type>
+          <declname>classMapType</declname>
+        </param>
+        <briefdescription>
+<para>Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>classMapType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of mapping class to use.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="462" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="462" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1a0cd9dc588cc7967d56cee7da5c903aee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</definition>
+        <argsstring>(CsvClassMap map)</argsstring>
+        <name>RegisterClassMap</name>
+        <param>
+          <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+          <declname>map</declname>
+        </param>
+        <briefdescription>
+<para>Registers the class map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The class map to register.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="479" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="479" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1aaca7cdbf63b8b4d487dcce537a68e26c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap&lt; TMap &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>UnregisterClassMap&lt; TMap &gt;</name>
+        <briefdescription>
+<para>Unregisters the class map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>TMap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The map type to unregister.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="495" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="495" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1af587ccc1a28c8ced6cc2f51e184fb131" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap</definition>
+        <argsstring>(Type classMapType)</argsstring>
+        <name>UnregisterClassMap</name>
+        <param>
+          <type>Type</type>
+          <declname>classMapType</declname>
+        </param>
+        <briefdescription>
+<para>Unregisters the class map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>classMapType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The map type to unregister.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="505" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="505" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1aaa50df217bfacab62eff54cd781ada32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap</definition>
+        <argsstring>()</argsstring>
+        <name>UnregisterClassMap</name>
+        <briefdescription>
+<para>Unregisters all class maps. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="513" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="513" bodyend="516"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1a64cca27e888eda0ca43e638a2576ebef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+        <definition>virtual CsvClassMap CsvHelper.Configuration.CsvConfiguration.AutoMap&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>AutoMap&lt; T &gt;</name>
+        <briefdescription>
+<para>Generates a <ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref> for the type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to generate the map for.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The generate map.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="523" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="523" bodyend="526"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1ad9c837ded7144bbd2f5a991dc1ae68c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
+        <definition>virtual CsvClassMap CsvHelper.Configuration.CsvConfiguration.AutoMap</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>AutoMap</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Generates a <ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref> for the type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to generate for the map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The generate map.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="533" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="533" bodyend="540"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1acd54e348b2781917a5d791a8a91c319d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.Configuration.CsvConfiguration.CsvConfiguration</definition>
+        <argsstring>()</argsstring>
+        <name>CsvConfiguration</name>
+        <briefdescription>
+<para>Creates a new <ref refid="dd/d32/a00041" kindref="compound">CsvConfiguration</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="546" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="546" bodyend="549"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="dd/d32/a00041_1ac0f0c61962cfd710e73753d7bc7be4bf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvConfiguration.BuildRequiredQuoteChars</definition>
+        <argsstring>()</argsstring>
+        <name>BuildRequiredQuoteChars</name>
+        <briefdescription>
+<para>Builds the values for the RequiredQuoteChars property. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="554" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="554" bodyend="559"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="dc/dc9/a00282" kindref="compound">Configuration</ref> used for reading and writing CSV data. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="966">
+        <label>CsvHelper.Configuration.CsvConfiguration</label>
+        <link refid="dd/d32/a00041"/>
+        <childnode refid="967" relation="usage">
+          <edgelabel>-maps</edgelabel>
+        </childnode>
+      </node>
+      <node id="967">
+        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
+        <link refid="db/d3a/a00040"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" bodystart="18" bodyend="560"/>
+    <listofallmembers>
+      <member refid="dd/d32/a00041_1a0799eaadd40d70a70cb2d50a3f6f5836" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>AllowComments</name></member>
+      <member refid="dd/d32/a00041_1ad9c837ded7144bbd2f5a991dc1ae68c1" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>AutoMap</name></member>
+      <member refid="dd/d32/a00041_1a64cca27e888eda0ca43e638a2576ebef" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>AutoMap&lt; T &gt;</name></member>
+      <member refid="dd/d32/a00041_1a1a59e8f40f9629658d47a6f163dda8ed" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>BadDataCallback</name></member>
+      <member refid="dd/d32/a00041_1a6dc7c575ccfe2270a472f327d5768120" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>bufferSize</name></member>
+      <member refid="dd/d32/a00041_1ae477580df84900b3fad796a14fad7620" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>BufferSize</name></member>
+      <member refid="dd/d32/a00041_1ac0f0c61962cfd710e73753d7bc7be4bf" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>BuildRequiredQuoteChars</name></member>
+      <member refid="dd/d32/a00041_1ab4c21ea2d42a1e3ee29b66cc2cf2a949" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>comment</name></member>
+      <member refid="dd/d32/a00041_1a7df1aa9462eff1da4a271cb3a53feb95" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>Comment</name></member>
+      <member refid="dd/d32/a00041_1af774e3cb6d18788006deec71879f54a1" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>CountBytes</name></member>
+      <member refid="dd/d32/a00041_1acd54e348b2781917a5d791a8a91c319d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>CsvConfiguration</name></member>
+      <member refid="dd/d32/a00041_1ad04ccfdd3cbc265f527ee5baa2e08508" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>CultureInfo</name></member>
+      <member refid="dd/d32/a00041_1adfad028f0055932b37b4c06bf9e1eab9" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>cultureInfo</name></member>
+      <member refid="dd/d32/a00041_1ae3ac37138febea53e79c1a3c6ad273b9" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>delimiter</name></member>
+      <member refid="dd/d32/a00041_1a611063826803f98b7cfc275247c1d883" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>Delimiter</name></member>
+      <member refid="dd/d32/a00041_1a615120d2e42818bc37d87181b72d4ad3" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>DetectColumnCountChanges</name></member>
+      <member refid="dd/d32/a00041_1a5f5825f9343c21ef968486cef817e11d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>DoubleQuoteString</name></member>
+      <member refid="dd/d32/a00041_1a345c1d99f9fd609a1e1eea0476dd5dae" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>doubleQuoteString</name></member>
+      <member refid="dd/d32/a00041_1a28a7819a63acdc5982093ce3b84102d8" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>Encoding</name></member>
+      <member refid="dd/d32/a00041_1ad562fa0e6e495a39cf5e7d5df0a03d23" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>encoding</name></member>
+      <member refid="dd/d32/a00041_1a1ec30ebdadc1050686b22d1f518df042" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>HasExcelSeparator</name></member>
+      <member refid="dd/d32/a00041_1ad70ea02838356e66476cc0c7151c17aa" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>hasHeaderRecord</name></member>
+      <member refid="dd/d32/a00041_1a9e439f90bfac500d24d6e2e731240439" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>HasHeaderRecord</name></member>
+      <member refid="dd/d32/a00041_1aaaa11cc9c2e4f1affb48844f9c76c81d" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>ignoreBlankLines</name></member>
+      <member refid="dd/d32/a00041_1abec66869c9418966fe5bbf74e32b46a2" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnoreBlankLines</name></member>
+      <member refid="dd/d32/a00041_1a509e336bfd99b45feb55acddeda4df24" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnoreHeaderWhiteSpace</name></member>
+      <member refid="dd/d32/a00041_1a21b79b0f10ef0a156bd5993300d26b4d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnorePrivateAccessor</name></member>
+      <member refid="dd/d32/a00041_1abb9b54f3fb2aefa066598d74f01d00d8" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnoreQuotes</name></member>
+      <member refid="dd/d32/a00041_1a8645dbd4fe2a9c443910695a93b1027f" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnoreReadingExceptions</name></member>
+      <member refid="dd/d32/a00041_1a27a2d1b69b3025969a94cd903db9d00a" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IgnoreReferences</name></member>
+      <member refid="dd/d32/a00041_1a71902bcac3d0ed9fdb1d53eb7f97867e" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>isHeaderCaseSensitive</name></member>
+      <member refid="dd/d32/a00041_1aeee80e98871bbc6fe74b87be1c616a8d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>IsHeaderCaseSensitive</name></member>
+      <member refid="dd/d32/a00041_1a1c353c85dc21a4c5632e6184685e234c" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>maps</name></member>
+      <member refid="dd/d32/a00041_1a9119c99f5dafba985718f631f7bfa16a" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>Maps</name></member>
+      <member refid="dd/d32/a00041_1aa4ec3b1cbc0dd97e69b0b7cf7225c2e9" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>PrefixReferenceHeaders</name></member>
+      <member refid="dd/d32/a00041_1af18fcf1e16dcd7c277cc9b636afe3cc4" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>propertyBindingFlags</name></member>
+      <member refid="dd/d32/a00041_1ab5bd1a14758b0c6b84ca3544784a18dd" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>PropertyBindingFlags</name></member>
+      <member refid="dd/d32/a00041_1ab4d958f45281a8e148ca80f4c838e3b5" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>quote</name></member>
+      <member refid="dd/d32/a00041_1a2a8217dbd09f7d7e4c2895893743e25f" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>Quote</name></member>
+      <member refid="dd/d32/a00041_1a04022216f3e425eddb2eea8b78425066" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>QuoteAllFields</name></member>
+      <member refid="dd/d32/a00041_1afc0e3610a56af5e12b0177215fe5248e" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>quoteAllFields</name></member>
+      <member refid="dd/d32/a00041_1a81d9e64909dd0742ccc0c0d4cdf148ac" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>quoteNoFields</name></member>
+      <member refid="dd/d32/a00041_1aa9d54725d696095030d1f4c94825f438" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>QuoteNoFields</name></member>
+      <member refid="dd/d32/a00041_1a7e097358e5aaaba864411fd08a358230" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>quoteRequiredChars</name></member>
+      <member refid="dd/d32/a00041_1a6a01a3fdad14994f306530cdce2db6f6" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>QuoteRequiredChars</name></member>
+      <member refid="dd/d32/a00041_1a8816c29ce809570b4db6bc438f5e0204" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>QuoteString</name></member>
+      <member refid="dd/d32/a00041_1ab8f4f364475aa0f0a65b238ef004baf0" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>quoteString</name></member>
+      <member refid="dd/d32/a00041_1ae7257970a1b5bfb9f2ddfdc61a70fe34" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>ReadingExceptionCallback</name></member>
+      <member refid="dd/d32/a00041_1adf4b355d089af6f33b90f17a689b0084" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>RegisterClassMap</name></member>
+      <member refid="dd/d32/a00041_1a0cd9dc588cc7967d56cee7da5c903aee" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>RegisterClassMap</name></member>
+      <member refid="dd/d32/a00041_1a448b87850bf2a1d6f92cda4576bbeb34" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>RegisterClassMap&lt; TMap &gt;</name></member>
+      <member refid="dd/d32/a00041_1a04c1a9d83f8fe89a23c86def5b8558fb" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>ShouldSkipRecord</name></member>
+      <member refid="dd/d32/a00041_1a416ecf54fed4d9c3e90ebfd0b352663d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>SkipEmptyRecords</name></member>
+      <member refid="dd/d32/a00041_1ac20c0f1cc282f4b13ce15b6a91305c10" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>ThrowOnBadData</name></member>
+      <member refid="dd/d32/a00041_1a100f3a2268218bfba3088f4ca1d6a7ad" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>TrimFields</name></member>
+      <member refid="dd/d32/a00041_1a65704a34f96194fb1a4ed55e60c3b24f" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>TrimHeaders</name></member>
+      <member refid="dd/d32/a00041_1af587ccc1a28c8ced6cc2f51e184fb131" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>UnregisterClassMap</name></member>
+      <member refid="dd/d32/a00041_1aaa50df217bfacab62eff54cd781ada32" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>UnregisterClassMap</name></member>
+      <member refid="dd/d32/a00041_1aaca7cdbf63b8b4d487dcce537a68e26c" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>UnregisterClassMap&lt; TMap &gt;</name></member>
+      <member refid="dd/d32/a00041_1a5d2eed13b8836f0397f8c39a709de1cc" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>UseExcelLeadingZerosFormatForNumerics</name></member>
+      <member refid="dd/d32/a00041_1a87c533a0dbaf65dca68233356310cab0" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>UseNewObjectForNullReferenceProperties</name></member>
+      <member refid="dd/d32/a00041_1a764e14e2b3a5620f5598393c746a8df3" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>useNewObjectForNullReferenceProperties</name></member>
+      <member refid="dd/d32/a00041_1a13cb7999b190a01177134faa52dfa3db" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>WillThrowOnMissingField</name></member>
+      <member refid="dd/d32/a00041_1af557edd010ae706ffb850decbfc5f774" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvConfiguration</scope><name>willThrowOnMissingField</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

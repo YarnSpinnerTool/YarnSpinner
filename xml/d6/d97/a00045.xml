@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d6/d97/a00045" kind="class" prot="public">
+    <compoundname>CsvHelper::CsvMissingFieldException</compoundname>
+    <basecompoundref refid="d9/d2e/a00056" prot="public" virt="non-virtual">CsvHelper.CsvReaderException</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d6/d97/a00045_1ac65429fd7aadcadd7d362722f7a3cab7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvMissingFieldException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d6/d97/a00045" kindref="compound">CsvMissingFieldException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d97/a00045_1aa0b611d59d2c9c47047de427b35cf6a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvMissingFieldException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d6/d97/a00045" kindref="compound">CsvMissingFieldException</ref> class with a specified error message. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d97/a00045_1a1a6eb7ea392bc14d0da95e447ac001dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvMissingFieldException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d6/d97/a00045" kindref="compound">CsvMissingFieldException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d97/a00045_1a867cc21f971ca654865f2cce8e1b971d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvMissingFieldException</name>
+        <param>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="d6/d97/a00045" kindref="compound">CsvMissingFieldException</ref> class with serialized data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="49" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents an error caused because a field is missing in the header while reading a CSV file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="992">
+        <label>Exception</label>
+      </node>
+      <node id="989">
+        <label>CsvHelper.CsvMissingFieldException</label>
+        <link refid="d6/d97/a00045"/>
+        <childnode refid="990" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="990">
+        <label>CsvReaderException</label>
+        <link refid="d9/d2e/a00056"/>
+        <childnode refid="991" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="991">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="992" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="996">
+        <label>Exception</label>
+      </node>
+      <node id="993">
+        <label>CsvHelper.CsvMissingFieldException</label>
+        <link refid="d6/d97/a00045"/>
+        <childnode refid="994" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="994">
+        <label>CsvReaderException</label>
+        <link refid="d9/d2e/a00056"/>
+        <childnode refid="995" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="995">
+        <label>CsvHelperException</label>
+        <link refid="d5/df9/a00044"/>
+        <childnode refid="996" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="19" bodyend="51"/>
+    <listofallmembers>
+      <member refid="d5/df9/a00044_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
+      <member refid="d5/df9/a00044_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
+      <member refid="d6/d97/a00045_1ac65429fd7aadcadd7d362722f7a3cab7" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
+      <member refid="d6/d97/a00045_1aa0b611d59d2c9c47047de427b35cf6a7" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
+      <member refid="d6/d97/a00045_1a1a6eb7ea392bc14d0da95e447ac001dc" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
+      <member refid="d6/d97/a00045_1a867cc21f971ca654865f2cce8e1b971d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
+      <member refid="d9/d2e/a00056_1a92ea35129f92f260c5327bbc3fd330df" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
+      <member refid="d9/d2e/a00056_1abb4803417d6a479385872b608f1791e5" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
+      <member refid="d9/d2e/a00056_1a4507583f079e40d454285c1e4f161aeb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
+      <member refid="d9/d2e/a00056_1aefa7020d5317878f91b9f43d3e1475be" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

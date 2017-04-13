@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d7/d12/a00126" kind="class" prot="public">
+    <compoundname>NUnitLite::Tests::Program</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d7/d12/a00126_1af0872d2d78e93b98528e399a1f19f63f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void NUnitLite.Tests.Program.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>The main program executes the tests. Output may be routed to various locations, depending on the arguments passed. </para>        </briefdescription>
+        <detaileddescription>
+<para>Run with <ndash/>help for a full list of arguments supported</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" bodystart="36" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1465">
+        <label>NUnitLite.Tests.Program</label>
+        <link refid="d7/d12/a00126"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" bodystart="28" bodyend="40"/>
+    <listofallmembers>
+      <member refid="d7/d12/a00126_1af0872d2d78e93b98528e399a1f19f63f" prot="public" virt="non-virtual"><scope>NUnitLite::Tests::Program</scope><name>Main</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

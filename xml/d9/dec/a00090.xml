@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d9/dec/a00090" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvSerializer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
+    <derivedcompoundref refid="d1/d22/a00057" prot="public" virt="non-virtual">CsvHelper.CsvSerializer</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d9/dec/a00090_1a54d241fe87517707b6f85c30fe8b3a95" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="dd/d32/a00041" kindref="compound">CsvConfiguration</ref></type>
+        <definition>CsvConfiguration CsvHelper.ICsvSerializer.Configuration</definition>
+        <argsstring></argsstring>
+        <name>Configuration</name>
+        <briefdescription>
+<para>Gets the configuration. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d9/dec/a00090_1a0b442858eef85b7d933662359646fd0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvSerializer.Write</definition>
+        <argsstring>(string[] record)</argsstring>
+        <name>Write</name>
+        <reimplementedby refid="d1/d22/a00057_1aefad906acd048863d3dd414651a44793">Write</reimplementedby>
+        <param>
+          <type>string[]</type>
+          <declname>record</declname>
+        </param>
+        <briefdescription>
+<para>Writes a record to the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>record</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="24" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Defines methods used to serialize data into a CSV file. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1280">
+        <label>CsvHelper.CsvSerializer</label>
+        <link refid="d1/d22/a00057"/>
+        <childnode refid="1278" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1278">
+        <label>CsvHelper.ICsvSerializer</label>
+        <link refid="d9/dec/a00090"/>
+        <childnode refid="1279" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1279">
+        <label>IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1281">
+        <label>CsvHelper.ICsvSerializer</label>
+        <link refid="d9/dec/a00090"/>
+        <childnode refid="1282" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1282">
+        <label>IDisposable</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs" bodystart="13" bodyend="25"/>
+    <listofallmembers>
+      <member refid="d9/dec/a00090_1a54d241fe87517707b6f85c30fe8b3a95" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvSerializer</scope><name>Configuration</name></member>
+      <member refid="d9/dec/a00090_1a0b442858eef85b7d933662359646fd0b" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvSerializer</scope><name>Write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

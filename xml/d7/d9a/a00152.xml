@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d7/d9a/a00152" kind="class" prot="public">
+    <compoundname>CsvHelper::TypeConversion::TypeConverterOptions</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d7/d9a/a00152_1a326ff183b4992ab134f047e6866df092" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; string &gt;</type>
+        <definition>readonly List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.booleanTrueValues</definition>
+        <argsstring></argsstring>
+        <name>booleanTrueValues</name>
+        <initializer>= new List&lt;string&gt; { &quot;yes&quot;, &quot;y&quot; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d7/d9a/a00152_1a1881a24e1731f70183fdff9c1612b7d5" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; string &gt;</type>
+        <definition>readonly List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.booleanFalseValues</definition>
+        <argsstring></argsstring>
+        <name>booleanFalseValues</name>
+        <initializer>= new List&lt;string&gt; { &quot;no&quot;, &quot;n&quot; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d7/d9a/a00152_1af6bc545680b477abf9178eb4755572b1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>CultureInfo</type>
+        <definition>CultureInfo CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</definition>
+        <argsstring></argsstring>
+        <name>CultureInfo</name>
+        <briefdescription>
+<para>Gets or sets the culture info. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1a53dd999cfdfad024682e67b6d5b1267e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>DateTimeStyles</type>
+        <definition>DateTimeStyles CsvHelper.TypeConversion.TypeConverterOptions.DateTimeStyle</definition>
+        <argsstring></argsstring>
+        <name>DateTimeStyle</name>
+        <briefdescription>
+<para>Gets or sets the date time style. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1a5b94fd91ed938c9d0515a5ab419de8b8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>TimeSpanStyles</type>
+        <definition>TimeSpanStyles CsvHelper.TypeConversion.TypeConverterOptions.TimeSpanStyle</definition>
+        <argsstring></argsstring>
+        <name>TimeSpanStyle</name>
+        <briefdescription>
+<para>Gets or sets the time span style. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1a2bd83a5b0c0d94864ed09563dbab4a36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>NumberStyles</type>
+        <definition>NumberStyles CsvHelper.TypeConversion.TypeConverterOptions.NumberStyle</definition>
+        <argsstring></argsstring>
+        <name>NumberStyle</name>
+        <briefdescription>
+<para>Gets or sets the number style. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1a73fe01941a8c2d3cfbd6fa4414e8d8e0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.BooleanTrueValues</definition>
+        <argsstring></argsstring>
+        <name>BooleanTrueValues</name>
+        <briefdescription>
+<para>Gets the list of values that can be used to represent a boolean of true. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1a7735cd4046cf1b21f458aa96c616a01e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.BooleanFalseValues</definition>
+        <argsstring></argsstring>
+        <name>BooleanFalseValues</name>
+        <briefdescription>
+<para>Gets the list of values that can be used to represent a boolean of false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d7/d9a/a00152_1aadc0730de90844e29da6e1ae7fddc4bb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string CsvHelper.TypeConversion.TypeConverterOptions.Format</definition>
+        <argsstring></argsstring>
+        <name>Format</name>
+        <briefdescription>
+<para>Gets or sets the string format. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d7/d9a/a00152_1a0532694cffc600fe984e10c7f1375e0a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref></type>
+        <definition>static TypeConverterOptions CsvHelper.TypeConversion.TypeConverterOptions.Merge</definition>
+        <argsstring>(params TypeConverterOptions[] sources)</argsstring>
+        <name>Merge</name>
+        <param>
+          <type>params <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref>[]</type>
+          <declname>sources</declname>
+        </param>
+        <briefdescription>
+<para>Merges <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> by applying the values of sources in order to a new <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> instance. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sources</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sources that will be applied.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new instance of <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> with the source applied to it.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="71" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Options used when doing type conversion. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1586">
+        <label>CsvHelper.TypeConversion.TypeConverterOptions</label>
+        <link refid="d7/d9a/a00152"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="15" bodyend="123"/>
+    <listofallmembers>
+      <member refid="d7/d9a/a00152_1a1881a24e1731f70183fdff9c1612b7d5" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>booleanFalseValues</name></member>
+      <member refid="d7/d9a/a00152_1a7735cd4046cf1b21f458aa96c616a01e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>BooleanFalseValues</name></member>
+      <member refid="d7/d9a/a00152_1a326ff183b4992ab134f047e6866df092" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>booleanTrueValues</name></member>
+      <member refid="d7/d9a/a00152_1a73fe01941a8c2d3cfbd6fa4414e8d8e0" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>BooleanTrueValues</name></member>
+      <member refid="d7/d9a/a00152_1af6bc545680b477abf9178eb4755572b1" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>CultureInfo</name></member>
+      <member refid="d7/d9a/a00152_1a53dd999cfdfad024682e67b6d5b1267e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>DateTimeStyle</name></member>
+      <member refid="d7/d9a/a00152_1aadc0730de90844e29da6e1ae7fddc4bb" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>Format</name></member>
+      <member refid="d7/d9a/a00152_1a0532694cffc600fe984e10c7f1375e0a" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>Merge</name></member>
+      <member refid="d7/d9a/a00152_1a2bd83a5b0c0d94864ed09563dbab4a36" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>NumberStyle</name></member>
+      <member refid="d7/d9a/a00152_1a5b94fd91ed938c9d0515a5ab419de8b8" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>TimeSpanStyle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

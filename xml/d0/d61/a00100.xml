@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d0/d61/a00100" kind="class" prot="package">
+    <compoundname>Yarn::Lexer::LexerState</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d0/d61/a00100_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Lexer.LexerState.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d61/a00100_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="d9/d7d/a00150" kindref="compound">TokenRule</ref> &gt;</type>
+        <definition>List&lt;TokenRule&gt; Yarn.Lexer.LexerState.tokenRules</definition>
+        <argsstring></argsstring>
+        <name>tokenRules</name>
+        <initializer>= new List&lt;<ref refid="d9/d7d/a00150" kindref="compound">TokenRule</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="225" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d61/a00100_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.LexerState.setTrackNextIndentation</definition>
+        <argsstring></argsstring>
+        <name>setTrackNextIndentation</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d0/d61/a00100_1a951f91e9522ffe84851f2e25e9445106" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; <ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
+        <definition>Dictionary&lt;TokenType, string&gt; Yarn.Lexer.LexerState.patterns</definition>
+        <argsstring></argsstring>
+        <name>patterns</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d0/d61/a00100_1a69948f05c35eeae9cb8448c849a053e6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.LexerState.containsTextRule</definition>
+        <argsstring></argsstring>
+        <name>containsTextRule</name>
+        <initializer>\G((?!{0}).)*&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="268" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d0/d61/a00100_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.LexerState.LexerState</definition>
+        <argsstring>(Dictionary&lt; TokenType, string &gt; patterns)</argsstring>
+        <name>LexerState</name>
+        <param>
+          <type>Dictionary&lt; <ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
+          <declname>patterns</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="220" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="220" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d61/a00100_1a71ba52744e853ff142de19e97cf5daed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d7d/a00150" kindref="compound">TokenRule</ref></type>
+        <definition>TokenRule Yarn.Lexer.LexerState.AddTransition</definition>
+        <argsstring>(TokenType type, string entersState=null, bool delimitsText=false)</argsstring>
+        <name>AddTransition</name>
+        <param>
+          <type><ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>delimitsText</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="227" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="227" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d61/a00100_1af183111863c651ae5681665a2c379830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d7d/a00150" kindref="compound">TokenRule</ref></type>
+        <definition>TokenRule Yarn.Lexer.LexerState.AddTextRule</definition>
+        <argsstring>(TokenType type, string entersState=null)</argsstring>
+        <name>AddTextRule</name>
+        <param>
+          <type><ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="241" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="241" bodyend="266"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1353">
+        <label>Yarn.Lexer.LexerState</label>
+        <link refid="d0/d61/a00100"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="214" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="214" bodyend="281"/>
+    <listofallmembers>
+      <member refid="d0/d61/a00100_1af183111863c651ae5681665a2c379830" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTextRule</name></member>
+      <member refid="d0/d61/a00100_1a71ba52744e853ff142de19e97cf5daed" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTransition</name></member>
+      <member refid="d0/d61/a00100_1a69948f05c35eeae9cb8448c849a053e6" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>containsTextRule</name></member>
+      <member refid="d0/d61/a00100_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>LexerState</name></member>
+      <member refid="d0/d61/a00100_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>name</name></member>
+      <member refid="d0/d61/a00100_1a951f91e9522ffe84851f2e25e9445106" prot="private" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>patterns</name></member>
+      <member refid="d0/d61/a00100_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>setTrackNextIndentation</name></member>
+      <member refid="d0/d61/a00100_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>tokenRules</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

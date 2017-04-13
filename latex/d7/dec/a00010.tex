@@ -1,0 +1,76 @@
+\subsection*{\hyperlink{a00029}{Yarn} Spinner Quick Start}
+
+Here's how to quickly jump in to \hyperlink{a00029}{Yarn} Spinner, if you're already reasonably comfortable with Unity.
+
+
+\begin{DoxyItemize}
+\item {\bfseries Download and import \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt the Yarn\-Spinner package} into your project.}
+\item {\bfseries Inside the \hyperlink{a00310}{Yarn\-Spinner} folder, open the {\ttfamily Examples/\-Yarn Spinner Basic Example} scene.}
+\item {\bfseries Start the game. Play through the dialogue.}
+\end{DoxyItemize}
+
+Once you've played with it, open the Example Script file in the \hyperlink{a00029}{Yarn} editor (it's in the {\ttfamily Examples/\-Demo Assets} folder), and make some changes to the script. Once you've done that, take a look at how {\ttfamily \hyperlink{a00250}{Code/\-Dialogue\-Runner.\-cs}}, {\ttfamily Examples/\-Demo \hyperlink{a00254}{Scripts/\-Example\-Dialogue\-U\-I.\-cs}} and {\ttfamily Examples/\-Demo \hyperlink{a00255}{Scripts/\-Example\-Variable\-Storage.\-cs}} work. You can also \hyperlink{a00174}{add your own functions to Yarn}.
+
+\subsection*{Tutorial}
+
+\begin{quotation}
+$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know at least a little bit about \href{http://www.unity3d.com}{\tt Unity}. In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C\#. If you don't know these things, check out \href{http://unity3d.com/learn}{\tt Unity's documentation}!
+
+\end{quotation}
+
+
+\hyperlink{a00029}{Yarn} Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.
+
+To use \hyperlink{a00029}{Yarn} Spinner, you use three classes\-:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Dialogue\-Runner}, which is responsible for loading and running your dialogue script;
+\item A subclass of {\ttfamily Dialogue\-U\-I\-Behaviour}, which is reponsible for displaying the lines and dialogue choices to the player; and
+\item A subclass of {\ttfamily Variable\-Storage\-Behaviour}, which is responsible for storing the state of the conversation.
+\end{DoxyItemize}
+
+These three classes exist in the {\ttfamily \hyperlink{a00107}{Yarn.\-Unity}} namespace. To create your subclasses of {\ttfamily Dialogue\-U\-I\-Behaviour} and {\ttfamily Variable\-Storage\-Behaviour}, you'll need to add the following code to the top of your C\# code\-: \begin{DoxyVerb}using Yarn.Unity;
+\end{DoxyVerb}
+
+
+Additionally, you store your \hyperlink{a00029}{Yarn} files as {\ttfamily .json} assets in your Unity projects. These can be stored anywhere -\/ you simply provide add them to the {\ttfamily Dialogue\-Runner}'s inspector. You can also call {\ttfamily Add\-Script} on the {\ttfamily Dialogue\-Runner} at runtime; this is useful for cases like spawning a character who comes with some extra dialogue -\/ all that needs to happen is that character just needs to pass their \hyperlink{a00029}{Yarn} script to the {\ttfamily Dialogue\-Runner}.
+
+\subsubsection*{Load your conversation with {\ttfamily Dialogue\-Runner}}
+
+\hyperlink{a00029}{Yarn} conversations are loaded and managed by a {\ttfamily Dialogue\-Runner} object. This object is responsible for loading and parsing your \hyperlink{a00029}{Yarn} {\ttfamily .json} files. It also runs the script when it's told to -\/ for example, when you walk up to a character in your game and talk to them.
+
+\subsubsection*{Display your conversation with {\ttfamily Dialogue\-U\-I}}
+
+Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.
+
+\hyperlink{a00029}{Yarn} Spinner makes no assumptions about how you want to handle your dialogue's U\-I. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-\/based U\-I with a countdown timer? Oh man that would be sweet.
+
+\hyperlink{a00029}{Yarn} Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying \hyperlink{a00029}{Yarn} Spinner about what response the user selected.
+
+\hyperlink{a00029}{Yarn} Spinner comes with an example script that uses Unity's U\-I system. It's a good place to start.
+
+\subsubsection*{Store your conversation state with a {\ttfamily Variable\-Storage\-Behaviour}}
+
+There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00029}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C\# $\ast$\href{C# interface}{\tt interface}$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
+
+The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
+
+\subsubsection*{Respond to commands with {\ttfamily Yarn\-Command}}
+
+In \hyperlink{a00029}{Yarn}, you can create {\itshape commands} that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this\-: \begin{DoxyVerb}<<move Sally exit>>
+\end{DoxyVerb}
+
+
+For this to work, the game object named \char`\"{}\-Sally\char`\"{} needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this\-: \begin{DoxyVerb}[YarnCommand("move")]
+public void MoveCharacter(string destinationName) {
+    // move to the destination
+}
+\end{DoxyVerb}
+
+
+When \hyperlink{a00029}{Yarn} encounters a command that contains two or more words, it looks for a game object with the same name as the second word (\char`\"{}\-Sally\char`\"{}, in the above example), and then searches that object's scripts for any method that has a {\ttfamily Yarn\-Command} with the same name as the first word (in this case, \char`\"{}move\char`\"{}).
+
+Any further words in the command are passed as string parameters to the method (\char`\"{}exit\char`\"{}, in this case, which is used as the {\ttfamily destination\-Name} parameter)
+
+Note that {\bfseries all} parameters must be strings. {\ttfamily Dialogue\-Runner} will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers. 

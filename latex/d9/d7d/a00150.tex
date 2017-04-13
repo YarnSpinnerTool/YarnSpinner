@@ -1,0 +1,98 @@
+\hypertarget{a00150}{\section{Yarn.\-Lexer.\-Token\-Rule Class Reference}
+\label{a00150}\index{Yarn.\-Lexer.\-Token\-Rule@{Yarn.\-Lexer.\-Token\-Rule}}
+}
+
+
+Collaboration diagram for Yarn.\-Lexer.\-Token\-Rule\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{df/d3a/a00571}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00150_a3d171ae7c4870659d2d1d977a216bdd7}{Token\-Rule} (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, Regex \hyperlink{a00150_a47a404d6637fae489c3c77729a01cc69}{regex}, string \hyperlink{a00150_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}=null, bool \hyperlink{a00150_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text}=false)
+\item 
+override string \hyperlink{a00150_a1ed23ad16b116ecb06dd75b157bf752f}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Regex \hyperlink{a00150_a47a404d6637fae489c3c77729a01cc69}{regex} = null
+\item 
+string \hyperlink{a00150_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}
+\item 
+\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}{type}
+\item 
+bool \hyperlink{a00150_a09f49e6edf9ace38a92d723998181f8f}{is\-Text\-Rule} = false
+\item 
+bool \hyperlink{a00150_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00150_a3d171ae7c4870659d2d1d977a216bdd7}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!Token\-Rule@{Token\-Rule}}
+\index{Token\-Rule@{Token\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{Token\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{Regex}]{regex, }
+\item[{string}]{enters\-State = {\ttfamily null}, }
+\item[{bool}]{delimits\-Text = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{a00150_a3d171ae7c4870659d2d1d977a216bdd7}
+
+\begin{DoxyCode}
+292             \{
+293                 this.regex = \hyperlink{a00150_a47a404d6637fae489c3c77729a01cc69}{regex};
+294                 this.entersState = \hyperlink{a00150_af6a4bd3416c4e1b8e56f9db461d52d18}{entersState};
+295                 this.type = \hyperlink{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}{type};
+296                 this.delimitsText = \hyperlink{a00150_ab0849136a1f27b4d13cb7a45e2fe7130}{delimitsText};
+297             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00150_a1ed23ad16b116ecb06dd75b157bf752f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Lexer.\-Token\-Rule.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00150_a1ed23ad16b116ecb06dd75b157bf752f}
+
+\begin{DoxyCode}
+300             \{
+301                 \textcolor{keywordflow}{return} string.Format (string.Format (\textcolor{stringliteral}{"[TokenRule: \{0\} - \{1\}]"}, 
+      \hyperlink{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, this.regex));
+302             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00150_ab0849136a1f27b4d13cb7a45e2fe7130}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!delimits\-Text@{delimits\-Text}}
+\index{delimits\-Text@{delimits\-Text}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-delimits\-Text = false}}\label{a00150_ab0849136a1f27b4d13cb7a45e2fe7130}
+\hypertarget{a00150_af6a4bd3416c4e1b8e56f9db461d52d18}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!enters\-State@{enters\-State}}
+\index{enters\-State@{enters\-State}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{enters\-State}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Lexer.\-Token\-Rule.\-enters\-State}}\label{a00150_af6a4bd3416c4e1b8e56f9db461d52d18}
+\hypertarget{a00150_a09f49e6edf9ace38a92d723998181f8f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!is\-Text\-Rule@{is\-Text\-Rule}}
+\index{is\-Text\-Rule@{is\-Text\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{is\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-is\-Text\-Rule = false}}\label{a00150_a09f49e6edf9ace38a92d723998181f8f}
+\hypertarget{a00150_a47a404d6637fae489c3c77729a01cc69}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!regex@{regex}}
+\index{regex@{regex}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{regex}]{\setlength{\rightskip}{0pt plus 5cm}Regex Yarn.\-Lexer.\-Token\-Rule.\-regex = null}}\label{a00150_a47a404d6637fae489c3c77729a01cc69}
+\hypertarget{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!type@{type}}
+\index{type@{type}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Lexer.\-Token\-Rule.\-type}}\label{a00150_a0de6fac3b55cf0c61e07cea53ce67caa}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00263}{Lexer.\-cs}\end{DoxyCompactItemize}

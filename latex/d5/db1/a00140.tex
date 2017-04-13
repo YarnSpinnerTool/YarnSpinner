@@ -1,0 +1,331 @@
+\hypertarget{a00140}{\section{Yarn.\-Parser.\-Statement Class Reference}
+\label{a00140}\index{Yarn.\-Parser.\-Statement@{Yarn.\-Parser.\-Statement}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{d6/dfa/a00626}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{d3/da3/a00627}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944}{Type} \{ \\*
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{Type.\-Custom\-Command}, 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{Type.\-Shortcut\-Option\-Group}, 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Type.\-Block}, 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{Type.\-If\-Statement}, 
+\\*
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{Type.\-Option\-Statement}, 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{Type.\-Assignment\-Statement}, 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Type.\-Line}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00140_acba736ffbcc0f8bf5cee2b23f7733dff}{Statement} (\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00121}{Parser} p)
+\item 
+override string \hyperlink{a00140_aaac6d1e0c3b31f33e1c6f964c205153e}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00110}{Node} \hyperlink{a00120_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00120}{Parse\-Node} \hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00120_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944}{Statement.\-Type} \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00022}{Block} \hyperlink{a00140_ac14dfc7210974b4cd86402ed011fb0b6}{block}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00092}{If\-Statement} \hyperlink{a00140_a9a71577456598af0f25b23ccd02154e4}{if\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00118}{Option\-Statement} \hyperlink{a00140_a15020b7dab4983adbd185d5c2c2ebe84}{option\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00018}{Assignment\-Statement} \hyperlink{a00140_a7fa97a80f1b9313bc2bd4194e3f75759}{assignment\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00061}{Custom\-Command} \hyperlink{a00140_a8a98e7d4c66f9909da865f0e671d69f2}{custom\-Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00140_a37695c7b00776bb292fd64894a70fb72}{line}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00134}{Shortcut\-Option\-Group} \hyperlink{a00140_a54d73ad69c4af4a0d61edeaea4c8ca4f}{shortcut\-Option\-Group}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Type@{Type}}
+\index{Type@{Type}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Statement.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00140_a518000e4e6219ce5f9f4229f505cd944}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Custom\-Command@{Custom\-Command}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Custom\-Command@{Custom\-Command}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{Custom\-Command}\label{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}
+}]\index{Shortcut\-Option\-Group@{Shortcut\-Option\-Group}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Shortcut\-Option\-Group@{Shortcut\-Option\-Group}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{Shortcut\-Option\-Group}\label{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}
+}]\index{Block@{Block}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Block@{Block}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}\label{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}
+}]\index{If\-Statement@{If\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!If\-Statement@{If\-Statement}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{If\-Statement}\label{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}
+}]\index{Option\-Statement@{Option\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Option\-Statement@{Option\-Statement}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{Option\-Statement}\label{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}
+}]\index{Assignment\-Statement@{Assignment\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Assignment\-Statement@{Assignment\-Statement}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{Assignment\-Statement}\label{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}
+}]\index{Line@{Line}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Line@{Line}}\item[{\em 
+\hypertarget{a00140_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Line}\label{a00140_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+209                                \{
+210                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand},
+211                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup},
+212                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block},
+213                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement},
+214                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement},
+215                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement},
+216                 \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Line}
+217             \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00140_acba736ffbcc0f8bf5cee2b23f7733dff}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Statement@{Statement}}
+\index{Statement@{Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Statement.\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00140_acba736ffbcc0f8bf5cee2b23f7733dff}
+
+\begin{DoxyCode}
+231                                                            : base(\hyperlink{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+232 
+233                 \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}.CanParse(p)) \{
+234                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.Block;
+235                     \hyperlink{a00140_ac14dfc7210974b4cd86402ed011fb0b6}{block} = \textcolor{keyword}{new} \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}(\textcolor{keyword}{this}, p);
+236                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement}.CanParse(p)) \{
+237                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.IfStatement;
+238                     \hyperlink{a00140_a9a71577456598af0f25b23ccd02154e4}{ifStatement} = \textcolor{keyword}{new} \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement}(\textcolor{keyword}{this}, p);
+239                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement}.CanParse(p)) \{
+240                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.OptionStatement;
+241                     \hyperlink{a00140_a15020b7dab4983adbd185d5c2c2ebe84}{optionStatement} = \textcolor{keyword}{new} \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement}(\textcolor{keyword}{this}, p);
+242                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement}.CanParse(p)) \{
+243                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.AssignmentStatement;
+244                     \hyperlink{a00140_a7fa97a80f1b9313bc2bd4194e3f75759}{assignmentStatement} = \textcolor{keyword}{new} 
+      \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement}(\textcolor{keyword}{this}, p);
+245                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup}.CanParse(p)) \{
+246                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.ShortcutOptionGroup;
+247                     \hyperlink{a00140_a54d73ad69c4af4a0d61edeaea4c8ca4f}{shortcutOptionGroup} = \textcolor{keyword}{new} 
+      \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup}(\textcolor{keyword}{this}, p);
+248                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand}.CanParse(p)) \{
+249                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.CustomCommand;
+250                     \hyperlink{a00140_a8a98e7d4c66f9909da865f0e671d69f2}{customCommand} = \textcolor{keyword}{new} \hyperlink{a00140_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand}(\textcolor{keyword}{this}, p);
+251                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Text)) \{
+252                     \hyperlink{a00140_a37695c7b00776bb292fd64894a70fb72}{line} = p.ExpectSymbol(TokenType.Text).value as \textcolor{keywordtype}{string};
+253                     \hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.Line;
+254                 \} \textcolor{keywordflow}{else} \{
+255                     \textcolor{keywordflow}{throw} ParseException.Make(p.tokens.Peek(), \textcolor{stringliteral}{"Expected a statement here but got "} + p.
+      tokens.Peek().ToString() +\textcolor{stringliteral}{" instead (was there an unbalanced if statement earlier?)"});
+256                 \}
+257 
+258                 \textcolor{comment}{// Parse the optional tags that follow this statement}
+259                 var \hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \textcolor{keyword}{new} List<string>();
+260 
+261                 \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.TagMarker)) \{
+262                     p.ExpectSymbol(TokenType.TagMarker);
+263                     var tag = p.ExpectSymbol(TokenType.Identifier).value;
+264                     tags.Add(tag);
+265                 \}
+266 
+267                 \textcolor{keywordflow}{if} (tags.Count > 0)
+268                     this.tags = tags.ToArray();
+269             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00120_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a580e520a29444fc23ac3660cbe514a09}
+
+\begin{DoxyCode}
+144                                        \{
+145                 var node = \textcolor{keyword}{this};
+146 
+147                 \textcolor{keywordflow}{do} \{
+148                     \textcolor{keywordflow}{if} (node is Node) \{
+149                         \textcolor{keywordflow}{return} node as Node;
+150                     \}
+151                     node = node.parent;
+152                 \} \textcolor{keywordflow}{while} (node 
+153                     != null);                   
+154 
+155                 \textcolor{keywordflow}{return} null;
+156             \}
+\end{DoxyCode}
+\hypertarget{a00140_aaac6d1e0c3b31f33e1c6f964c205153e}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Statement.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00140_aaac6d1e0c3b31f33e1c6f964c205153e}
+
+
+Implements \hyperlink{a00120_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+\begin{DoxyCode}
+272             \{
+273                 StringBuilder s = \textcolor{keyword}{new} StringBuilder ();
+274                 \textcolor{keywordflow}{switch} (\hyperlink{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{type}) \{
+275                 \textcolor{keywordflow}{case} Type.Block:
+276                     s.Append(block.PrintTree (indentLevel));
+277                     \textcolor{keywordflow}{break};
+278                 \textcolor{keywordflow}{case} Type.IfStatement:
+279                     s.Append (ifStatement.PrintTree (indentLevel));
+280                     \textcolor{keywordflow}{break};
+281                 \textcolor{keywordflow}{case} Type.OptionStatement:
+282                     s.Append (optionStatement.PrintTree (indentLevel));
+283                     \textcolor{keywordflow}{break};
+284                 \textcolor{keywordflow}{case} Type.AssignmentStatement:
+285                     s.Append (assignmentStatement.PrintTree (indentLevel));
+286                     \textcolor{keywordflow}{break};
+287                 \textcolor{keywordflow}{case} Type.ShortcutOptionGroup:
+288                     s.Append (shortcutOptionGroup.PrintTree (indentLevel));
+289                     \textcolor{keywordflow}{break};
+290                 \textcolor{keywordflow}{case} Type.CustomCommand:
+291                     s.Append (customCommand.PrintTree (indentLevel));
+292                     \textcolor{keywordflow}{break};
+293                 \textcolor{keywordflow}{case} Type.Line:
+294                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Line: "} + \hyperlink{a00140_a37695c7b00776bb292fd64894a70fb72}{line}));
+295                     \textcolor{keywordflow}{break};
+296                 \textcolor{keywordflow}{default}:
+297                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException ();
+298                 \}
+299 
+300                 s.Append (\hyperlink{a00120_a054f36c80d5eeacd569a8859f599af67}{TagsToString} (indentLevel));
+301 
+302                 \textcolor{keywordflow}{return} s.ToString ();
+303             \}
+\end{DoxyCode}
+\hypertarget{a00120_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a054f36c80d5eeacd569a8859f599af67}
+
+\begin{DoxyCode}
+122             \{
+123                 \textcolor{keywordflow}{if} (\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+124                     var s = \textcolor{keyword}{new} StringBuilder ();
+125 
+126                     s.Append (\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+128                         s.Append(\hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+129                     \}
+130                     \textcolor{keywordflow}{return} s.ToString ();
+131                 \} \textcolor{keywordflow}{else} \{
+132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+133                 \}
+134 
+135 
+136             \}
+\end{DoxyCode}
+\hypertarget{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00120_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+\begin{DoxyCode}
+139             \{
+140                 \textcolor{keywordflow}{return} this.GetType ().Name;
+141             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00120_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a18b493382de0fde5b4299c1bd2250075}
+\hypertarget{a00120_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00120_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00120_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00140_a7fa97a80f1b9313bc2bd4194e3f75759}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!assignment\-Statement@{assignment\-Statement}}
+\index{assignment\-Statement@{assignment\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{assignment\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Assignment\-Statement} Yarn.\-Parser.\-Statement.\-assignment\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a7fa97a80f1b9313bc2bd4194e3f75759}
+\hypertarget{a00140_ac14dfc7210974b4cd86402ed011fb0b6}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!block@{block}}
+\index{block@{block}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block} Yarn.\-Parser.\-Statement.\-block\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_ac14dfc7210974b4cd86402ed011fb0b6}
+\hypertarget{a00140_a8a98e7d4c66f9909da865f0e671d69f2}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!custom\-Command@{custom\-Command}}
+\index{custom\-Command@{custom\-Command}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{custom\-Command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Custom\-Command} Yarn.\-Parser.\-Statement.\-custom\-Command\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a8a98e7d4c66f9909da865f0e671d69f2}
+\hypertarget{a00140_a9a71577456598af0f25b23ccd02154e4}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!if\-Statement@{if\-Statement}}
+\index{if\-Statement@{if\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{if\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf If\-Statement} Yarn.\-Parser.\-Statement.\-if\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a9a71577456598af0f25b23ccd02154e4}
+\hypertarget{a00140_a37695c7b00776bb292fd64894a70fb72}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!line@{line}}
+\index{line@{line}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{line}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Statement.\-line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a37695c7b00776bb292fd64894a70fb72}
+\hypertarget{a00140_a15020b7dab4983adbd185d5c2c2ebe84}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!option\-Statement@{option\-Statement}}
+\index{option\-Statement@{option\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{option\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Option\-Statement} Yarn.\-Parser.\-Statement.\-option\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a15020b7dab4983adbd185d5c2c2ebe84}
+\hypertarget{a00140_a54d73ad69c4af4a0d61edeaea4c8ca4f}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!shortcut\-Option\-Group@{shortcut\-Option\-Group}}
+\index{shortcut\-Option\-Group@{shortcut\-Option\-Group}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shortcut\-Option\-Group} Yarn.\-Parser.\-Statement.\-shortcut\-Option\-Group\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_a54d73ad69c4af4a0d61edeaea4c8ca4f}
+\hypertarget{a00140_aa3fa0eb260e412720562ce06b7dc06fe}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!type@{type}}
+\index{type@{type}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Statement.\-Type} Yarn.\-Parser.\-Statement.\-type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00140_aa3fa0eb260e412720562ce06b7dc06fe}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}

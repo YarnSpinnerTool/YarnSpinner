@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d4/d98/a00120" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Parser::ParseNode</compoundname>
+    <derivedcompoundref refid="d1/d2b/a00018" prot="public" virt="non-virtual">Yarn.Parser.AssignmentStatement</derivedcompoundref>
+    <derivedcompoundref refid="d7/de0/a00022" prot="public" virt="non-virtual">Yarn.Parser.Block</derivedcompoundref>
+    <derivedcompoundref refid="d4/de8/a00061" prot="public" virt="non-virtual">Yarn.Parser.CustomCommand</derivedcompoundref>
+    <derivedcompoundref refid="da/dec/a00080" prot="public" virt="non-virtual">Yarn.Parser.Expression</derivedcompoundref>
+    <derivedcompoundref refid="d1/dc1/a00092" prot="public" virt="non-virtual">Yarn.Parser.IfStatement</derivedcompoundref>
+    <derivedcompoundref refid="d4/d81/a00110" prot="public" virt="non-virtual">Yarn.Parser.Node</derivedcompoundref>
+    <derivedcompoundref refid="d2/da3/a00115" prot="public" virt="non-virtual">Yarn.Parser.Operator</derivedcompoundref>
+    <derivedcompoundref refid="d8/d87/a00118" prot="public" virt="non-virtual">Yarn.Parser.OptionStatement</derivedcompoundref>
+    <derivedcompoundref refid="d0/de8/a00133" prot="public" virt="non-virtual">Yarn.Parser.ShortcutOption</derivedcompoundref>
+    <derivedcompoundref refid="de/d76/a00134" prot="public" virt="non-virtual">Yarn.Parser.ShortcutOptionGroup</derivedcompoundref>
+    <derivedcompoundref refid="d5/db1/a00140" prot="public" virt="non-virtual">Yarn.Parser.Statement</derivedcompoundref>
+    <derivedcompoundref refid="db/d44/a00162" prot="public" virt="non-virtual">Yarn.Parser.ValueNode</derivedcompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="d4/d98/a00120_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
+        <type><ref refid="d4/d98/a00120" kindref="compound">ParseNode</ref></type>
+        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
+        <argsstring></argsstring>
+        <name>parent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d98/a00120_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="104" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d4/d98/a00120_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="d4/d98/a00120_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.ParseNode.ParseNode</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>ParseNode</name>
+        <param>
+          <type><ref refid="d4/d98/a00120" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="d8/dfa/a00121" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="108" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d98/a00120_1a0d6611653f20c2e4d90a97a96c657137" prot="package" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract string</type>
+        <definition>abstract string Yarn.Parser.ParseNode.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplementedby refid="d4/d81/a00110_1ab11501ebf251fdaa7cfe44edfa993068">PrintTree</reimplementedby>
+        <reimplementedby refid="d5/db1/a00140_1aaac6d1e0c3b31f33e1c6f964c205153e">PrintTree</reimplementedby>
+        <reimplementedby refid="d4/de8/a00061_1ad8c821f5f5671cdbac6e4a6fc0b9174b">PrintTree</reimplementedby>
+        <reimplementedby refid="de/d76/a00134_1a7b60f85e46b8767db81177ec40e83104">PrintTree</reimplementedby>
+        <reimplementedby refid="d0/de8/a00133_1a529a2ef1aa6d7226db4ea7f3ea92b8c2">PrintTree</reimplementedby>
+        <reimplementedby refid="d7/de0/a00022_1aaaacfc4e3ff2871fa5e2fb75e48636de">PrintTree</reimplementedby>
+        <reimplementedby refid="d8/d87/a00118_1aafba8c941dbd3d0ef841ac9d472e1ba3">PrintTree</reimplementedby>
+        <reimplementedby refid="d1/dc1/a00092_1a5494c1daef8e0f3ac3ab68f91db4f332">PrintTree</reimplementedby>
+        <reimplementedby refid="db/d44/a00162_1ae4659e4431e9846a45e0d048c960781a">PrintTree</reimplementedby>
+        <reimplementedby refid="da/dec/a00080_1a509ba6d93218203bae56a5a7a82e8261">PrintTree</reimplementedby>
+        <reimplementedby refid="d1/d2b/a00018_1accb9ddcb472eb035a65188c857b8efd8">PrintTree</reimplementedby>
+        <reimplementedby refid="d2/da3/a00115_1a0c2ad7c4d6837ffc7b5325bbb8330c51">PrintTree</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="117" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d98/a00120_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d81/a00110" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+        <argsstring>()</argsstring>
+        <name>NodeParent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="144" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="144" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d4/d98/a00120_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>TagsToString</name>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="121" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d98/a00120_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="138" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1449">
+        <label>Yarn.Parser.ValueNode</label>
+        <link refid="db/d44/a00162"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1446">
+        <label>Yarn.Parser.ShortcutOption</label>
+        <link refid="d0/de8/a00133"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1448">
+        <label>Yarn.Parser.Statement</label>
+        <link refid="d5/db1/a00140"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1447">
+        <label>Yarn.Parser.ShortcutOptionGroup</label>
+        <link refid="de/d76/a00134"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1437">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="d4/d98/a00120"/>
+      </node>
+      <node id="1442">
+        <label>Yarn.Parser.IfStatement</label>
+        <link refid="d1/dc1/a00092"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1445">
+        <label>Yarn.Parser.OptionStatement</label>
+        <link refid="d8/d87/a00118"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1443">
+        <label>Yarn.Parser.Node</label>
+        <link refid="d4/d81/a00110"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1439">
+        <label>Yarn.Parser.Block</label>
+        <link refid="d7/de0/a00022"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1440">
+        <label>Yarn.Parser.CustomCommand</label>
+        <link refid="d4/de8/a00061"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1444">
+        <label>Yarn.Parser.Operator</label>
+        <link refid="d2/da3/a00115"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1441">
+        <label>Yarn.Parser.Expression</label>
+        <link refid="da/dec/a00080"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1438">
+        <label>Yarn.Parser.AssignmentStatement</label>
+        <link refid="d1/d2b/a00018"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1450">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="d4/d98/a00120"/>
+        <childnode refid="1450" relation="usage">
+          <edgelabel>~parent</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="99" bodyend="157"/>
+    <listofallmembers>
+      <member refid="d4/d98/a00120_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>lineNumber</name></member>
+      <member refid="d4/d98/a00120_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>NodeParent</name></member>
+      <member refid="d4/d98/a00120_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>parent</name></member>
+      <member refid="d4/d98/a00120_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>ParseNode</name></member>
+      <member refid="d4/d98/a00120_1a0d6611653f20c2e4d90a97a96c657137" prot="package" virt="pure-virtual"><scope>Yarn::Parser::ParseNode</scope><name>PrintTree</name></member>
+      <member refid="d4/d98/a00120_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>tags</name></member>
+      <member refid="d4/d98/a00120_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>TagsToString</name></member>
+      <member refid="d4/d98/a00120_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>ToString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

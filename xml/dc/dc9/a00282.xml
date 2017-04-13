@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dc/dc9/a00282" kind="namespace">
+    <compoundname>CsvHelper::Configuration</compoundname>
+    <innerclass refid="d8/d41/a00038" prot="public">CsvHelper::Configuration::CsvClassMap</innerclass>
+    <innerclass refid="d3/de7/a00039" prot="public">CsvHelper::Configuration::CsvClassMap&lt; T &gt;</innerclass>
+    <innerclass refid="db/d3a/a00040" prot="public">CsvHelper::Configuration::CsvClassMapCollection</innerclass>
+    <innerclass refid="dd/d32/a00041" prot="public">CsvHelper::Configuration::CsvConfiguration</innerclass>
+    <innerclass refid="d5/db6/a00042" prot="public">CsvHelper::Configuration::CsvConfigurationException</innerclass>
+    <innerclass refid="d4/dca/a00048" prot="public">CsvHelper::Configuration::CsvPropertyMap</innerclass>
+    <innerclass refid="d2/dee/a00049" prot="public">CsvHelper::Configuration::CsvPropertyMapCollection</innerclass>
+    <innerclass refid="d5/de0/a00050" prot="package">CsvHelper::Configuration::CsvPropertyMapComparer</innerclass>
+    <innerclass refid="d2/d79/a00051" prot="public">CsvHelper::Configuration::CsvPropertyMapData</innerclass>
+    <innerclass refid="d1/d84/a00052" prot="public">CsvHelper::Configuration::CsvPropertyNameCollection</innerclass>
+    <innerclass refid="dc/dee/a00053" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMap</innerclass>
+    <innerclass refid="d1/dea/a00054" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMapData</innerclass>
+    <innerclass refid="de/de1/a00065" prot="public">CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="15" column="1"/>
+  </compounddef>
+</doxygen>

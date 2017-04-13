@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d3/d65/a00154" kind="class" prot="public">
+    <compoundname>System::Reflection::TypeExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d3/d65/a00154_1acbfc3dfbd616c1a87fe0158092215639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d3/df8/a00155" kindref="compound">TypeInfo</ref></type>
+        <definition>static TypeInfo System.Reflection.TypeExtensions.GetTypeInfo</definition>
+        <argsstring>(this Type type)</argsstring>
+        <name>GetTypeInfo</name>
+        <param>
+          <type>this Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="8" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1590">
+        <label>System.Reflection.TypeExtensions</label>
+        <link refid="d3/d65/a00154"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="d3/d65/a00154_1acbfc3dfbd616c1a87fe0158092215639" prot="public" virt="non-virtual"><scope>System::Reflection::TypeExtensions</scope><name>GetTypeInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

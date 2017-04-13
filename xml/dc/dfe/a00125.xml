@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dc/dfe/a00125" kind="class" prot="public">
+    <compoundname>YarnSpinner::Tests::Program</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="dc/dfe/a00125_1a2fcb995bee46693c3c18e3bcfbb7e15f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void YarnSpinner.Tests.Program.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" bodystart="9" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1463">
+        <label>YarnSpinner.Tests.Program</label>
+        <link refid="dc/dfe/a00125"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="dc/dfe/a00125_1a2fcb995bee46693c3c18e3bcfbb7e15f" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::Program</scope><name>Main</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

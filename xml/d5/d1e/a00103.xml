@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="d5/d1e/a00103" kind="struct" prot="package">
+    <compoundname>Yarn::LineInfo</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d5/d1e/a00103_1a7165cafce64a3deafc41b2090ddf8d0e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.LineInfo.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d5/d1e/a00103_1a5a91331fb123e29d71d69e096f943c2f" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.LineInfo.nodeName</definition>
+        <argsstring></argsstring>
+        <name>nodeName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/d1e/a00103_1a15924fb79c648f2089ff0db955679dd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.LineInfo.LineInfo</definition>
+        <argsstring>(string nodeName, int lineNumber)</argsstring>
+        <name>LineInfo</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="12" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1362">
+        <label>Yarn.LineInfo</label>
+        <link refid="d5/d1e/a00103"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="8" bodyend="17"/>
+    <listofallmembers>
+      <member refid="d5/d1e/a00103_1a15924fb79c648f2089ff0db955679dd9" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>LineInfo</name></member>
+      <member refid="d5/d1e/a00103_1a7165cafce64a3deafc41b2090ddf8d0e" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>lineNumber</name></member>
+      <member refid="d5/d1e/a00103_1a5a91331fb123e29d71d69e096f943c2f" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>nodeName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
