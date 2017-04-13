@@ -1,44 +1,48 @@
 dist: trusty
+sudo: required
 #cache: true
 
 # Blacklist
-#branches:
-#  except:
-#    - gh-pages
+branches:
+  except:
+    - gh-pages
 
 language: csharp
 solution: YarnSpinner.sln
 
 # Environment variables
 
-#env:
-#  global:
-#    - GH_REPO_NAME: YarnSpinner
-#    - DOXYFILE: $TRAVIS_BUILD_DIR/Documentation/Doxyfile
-#    - GH_REPO_REF: github.com/SecretLab/YarnSpinner.git
-#    - secure: ""
+env:
+  global:
+    - DOXYFILES_ROOT: $TRAVIS_BUILD_DIR/Documentation
+    - GH_REPO_NAME: YarnSpinner
+    - GH_REPO_USER: SecretLab
+    - WANTED_DOCS: '"html latex rtf xml"'
+    - VERBOSE: false
+    - secure: ""
 
 # Install dependencies
-#addons:
-#  apt:
-#    packages:
+addons:
+  apt:
+    packages:
+      - global
 #      When using doxygen
-#      - doxygen
-#      - doxygen-doc
-#      - doxygen-latex
-#      - doxygen-gui
-#      - global
-#      - graphviz
+      - libjs-jquery
+      - graphviz
+#      When using supplied doxygen
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
 
 install:
   - nuget restore YarnSpinner.sln
 
 script:	
-#  - ./build.sh -bcdv
-  - ./build.sh -bcv
+  - ./build.sh -bcdv
 
-# Generate and deploy documentation
-# after_success:
-#   - cd $TRAVIS_BUILD_DIR
-#   - chmod +x DeployDocumentation.sh
-#   - ./DeployDocumentation.sh
+# deploy documentation
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - chmod +x DeployDocumentation.sh
+  - ./DeployDocumentation.sh
