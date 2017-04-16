@@ -224,15 +224,21 @@ namespace YarnSpinner.Tests
 			dialogue.LoadFile(path);
 			var runner = dialogue.Run().GetEnumerator();
 			runner.MoveNext();
+           
 			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the first line.");
-			string saveState = dialogue.SerializeVM();//save
 			runner.MoveNext();
-			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
-			runner.MoveNext();
+            Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+            string saveState = dialogue.SerializeVM();
+            runner.MoveNext();
+            Assert.IsNotNull((runner.Current as Yarn.Dialogue.NodeCompleteResult));
+            runner.MoveNext();
 			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the third line.");//make sure leftover Current does not create a false positive
-			dialogue.DeserializeVM(saveState);//load
-			runner.MoveNext();
-			Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the second line.");
+            dialogue.DeserializeVM(saveState);//load
+            runner.MoveNext();
+            Assert.IsNotNull((runner.Current as Yarn.Dialogue.NodeCompleteResult));
+            runner.MoveNext();
+            Assert.IsNotNull(runner.Current);
+            Assert.AreEqual((runner.Current as Yarn.Dialogue.LineResult).line.text, "This is the third line.");
 			
 		}
 

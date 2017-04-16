@@ -2,10 +2,20 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "This is the first line.\r\nThis is the second line.\r\nThis is the third line.\r\nThis is the fourth line.\r\n",
+		"body": "This is the first line.\r\nThis is the second line.\r\n[[node2]]\r\n",
 		"position": {
 			"x": 543,
 			"y": 269
+		},
+		"colorID": 0
+	},
+	{
+		"title": "node2",
+		"tags": "",
+		"body": "This is the third line.\r\nThis is the fourth line.",
+		"position": {
+			"x": 292,
+			"y": 279
 		},
 		"colorID": 0
 	}
