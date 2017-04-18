@@ -46,12 +46,6 @@
 <codeline lineno="37"><highlight class="preprocessor"></highlight><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>extend<sp/>Yarnspinner</highlight><highlight class="stringliteral">&apos;s<sp/>functionality,<sp/>please</highlight></codeline>
 <codeline lineno="38"><highlight class="stringliteral">refer<sp/>to<sp/>the<sp/>[Extending<sp/>Yarnspinner](Extending.md)<sp/>document.</highlight></codeline>
 <codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="40"><highlight class="stringliteral">###<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral">If<sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
-<codeline lineno="42"><highlight class="stringliteral">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral">install<sp/>the<sp/>[Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual</highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral">Studio](https://www.visualstudio.com/downloads/).</highlight></codeline>
-<codeline lineno="45"><highlight class="stringliteral"></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
   </compounddef>
