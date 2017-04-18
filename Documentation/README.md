@@ -26,8 +26,8 @@ Please refer to the [Unity](Unity.md) document for more information.
 
 ### Windows
 
-Find the temp folder the installer has downloaded to and is executing
-from and back it up.
+Find the temp folder the installer has executed from and back it up
+before it completes installing.
 
 ### Mac
 
@@ -40,5 +40,6 @@ refer to the [Extending Yarnspinner](Extending.md) document.
 ### (OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition
 If you have some programming experience, or wish to have a more
 expansive development enviornment than the Unity editor, you may wish to
-install the Community Edition of Microsoft Visual Studio.
+install the [Community Edition of Microsoft Visual
+Studio](https://www.visualstudio.com/downloads/).
 
