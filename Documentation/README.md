@@ -2,7 +2,8 @@
 
 ## Yarn Documentation
 
-Documentation for Yarn is 
+Documentation for Yarn is under active development. Please submit any
+suggestions you may have.
 
 YarnSpinner documentation is generated automatically by the Doxygen system.
 
@@ -23,7 +24,8 @@ from and back it up.
 
 (This space left intentionally blank)
 
-## (OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition
+## (OPTIONAL: Mac and Windows)
+## Install Microsoft Visual Studio Community Edition
 If you have some programming experience, or wish to have a more
 expansive development enviornment than the Unity editor, you may wish to
 install the Community Edition of Microsoft Visual Studio.
