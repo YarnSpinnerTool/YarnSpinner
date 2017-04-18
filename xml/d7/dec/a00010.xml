@@ -5,14 +5,14 @@
     <title>Yarn Spinner Documentation</title>
     <detaileddescription>
 <para><heading level="2"><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Documentation</heading>
-</para><para>Documentation for <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> is under active development. Please submit any suggestions you may have.</para><para><ref refid="dd/db3/a00313" kindref="compound">YarnSpinner</ref> documentation is generated automatically by the Doxygen system.</para><para><heading level="2">Building Yarnspinner</heading>
+</para><para>Documentation for <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> is under active development. Please submit any suggestions you may have.</para><para><ref refid="dd/db3/a00313" kindref="compound">YarnSpinner</ref> documentation is generated automatically by the <ulink url="http://www.doxygen.org">Doxygen</ulink> system.</para><para><heading level="2">Building Yarnspinner</heading>
 </para><para>Yarnspinner is automatically built by Travis Continual Integration system. For information on how to build it yourself, please refer to the <ref refid="de/d45/a00175" kindref="compound">Building</ref> document.</para><para><heading level="2">Using Yarnspinner</heading>
 </para><para>For information on how to write stories for Yarnspinner, refer to the <ref refid="d0/d81/a00180" kindref="compound">Usage</ref> document.</para><para><heading level="2">Using Unity</heading>
 </para><para>At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future. Please refer to the <ref refid="db/dd9/a00179" kindref="compound">Unity</ref> document for more information.</para><para><heading level="3">Tips during Unity install</heading>
 </para><para><heading level="3">Windows</heading>
-</para><para>Find the temp folder the installer has downloaded to and is executing from and back it up.</para><para><heading level="3">Mac</heading>
+</para><para>Find the temp folder the installer has executed from and back it up before it completes installing.</para><para><heading level="3">Mac</heading>
 </para><para>(This space left intentionally blank)</para><para><heading level="2">Extending Tarnspinner</heading>
 </para><para>For information on how to extend Yarnspinner&apos;s functionality, please refer to the <ref refid="d5/de9/a00176" kindref="compound">Extending Yarnspinner</ref> document.</para><para><heading level="3">(OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition</heading>
-</para><para>If you have some programming experience, or wish to have a more expansive development enviornment than the Unity editor, you may wish to install the Community Edition of Microsoft Visual Studio. </para>    </detaileddescription>
+</para><para>If you have some programming experience, or wish to have a more expansive development enviornment than the Unity editor, you may wish to install the <ulink url="https://www.visualstudio.com/downloads/">Community Edition of Microsoft Visual Studio</ulink>. </para>    </detaileddescription>
   </compounddef>
 </doxygen>

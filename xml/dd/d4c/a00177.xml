@@ -14,11 +14,11 @@
 <codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any</highlight></codeline>
 <codeline lineno="6"><highlight class="normal">suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>Doxygen<sp/>system.</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>[Doxygen]</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">(http:</highlight><highlight class="comment">//www.doxygen.org)<sp/>system.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">##<sp/>Building<sp/>Yarnspinner</highlight></codeline>
-<codeline lineno="12"><highlight class="normal">Yarnspinner<sp/>is<sp/>automatically<sp/>built<sp/>by<sp/>Travis<sp/>Continual<sp/>Integration</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Building<sp/>Yarnspinner</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"></highlight><highlight class="normal">Yarnspinner<sp/>is<sp/>automatically<sp/>built<sp/>by<sp/>Travis<sp/>Continual<sp/>Integration</highlight></codeline>
 <codeline lineno="13"><highlight class="normal">system.<sp/>For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>build<sp/>it<sp/>yourself,<sp/>please<sp/>refer<sp/>to<sp/>the</highlight></codeline>
 <codeline lineno="14"><highlight class="normal">[Building](Building.md)<sp/>document.</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
@@ -35,8 +35,8 @@
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal">###<sp/>Windows</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">Find<sp/>the<sp/>temp<sp/>folder<sp/>the<sp/>installer<sp/>has<sp/>downloaded<sp/>to<sp/>and<sp/>is<sp/>executing</highlight></codeline>
-<codeline lineno="30"><highlight class="normal">from<sp/>and<sp/>back<sp/>it<sp/>up.</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">Find<sp/>the<sp/>temp<sp/>folder<sp/>the<sp/>installer<sp/>has<sp/>executed<sp/>from<sp/>and<sp/>back<sp/>it<sp/>up</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">before<sp/>it<sp/>completes<sp/>installing.</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal">###<sp/>Mac</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
@@ -49,8 +49,9 @@
 <codeline lineno="40"><highlight class="stringliteral">###<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
 <codeline lineno="41"><highlight class="stringliteral">If<sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
 <codeline lineno="42"><highlight class="stringliteral">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral">install<sp/>the<sp/>Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual<sp/>Studio.</highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="43"><highlight class="stringliteral">install<sp/>the<sp/>[Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual</highlight></codeline>
+<codeline lineno="44"><highlight class="stringliteral">Studio](https://www.visualstudio.com/downloads/).</highlight></codeline>
+<codeline lineno="45"><highlight class="stringliteral"></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
   </compounddef>
