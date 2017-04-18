@@ -24,8 +24,7 @@ from and back it up.
 
 (This space left intentionally blank)
 
-## (OPTIONAL: Mac and Windows)
-## Install Microsoft Visual Studio Community Edition
+### (OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition
 If you have some programming experience, or wish to have a more
 expansive development enviornment than the Unity editor, you may wish to
 install the Community Edition of Microsoft Visual Studio.
