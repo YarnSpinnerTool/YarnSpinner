@@ -1,5 +1,9 @@
-<map id="Yarn.ExecutionOptions" name="Yarn.ExecutionOptions">
-<area shape="rect" id="node3" href="$d7/d06/a00131.html" title="{Yarn.RunOptions\n|+ waitForInput\l+ startNode\l+ variables\l+ runTimes\l+ automaticallySelectFirst\lOption\l|}" alt="" coords="5,302,179,453"/>
-<area shape="rect" id="node4" href="$d9/d38/a00166.html" title="{Yarn.VerifyOptions\n|+ showTokensAndExit\l+ showParseTreeAndExit\l+ compileAndExit\l+ listVariables\l|}" alt="" coords="204,317,375,438"/>
-<area shape="rect" id="node2" href="$db/db2/a00020.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="116,5,264,112"/>
+<map id="Yarn.BaseOptions" name="Yarn.BaseOptions">
+<area shape="rect" id="node2" href="$dd/da2/a00019.html" title="{Yarn.AddLabelsOptions\n|+ dryRun\l+ onlyUseTag\l|}" alt="" coords="5,167,163,259"/>
+<area shape="rect" id="node3" href="$d4/d8c/a00035.html" title="{Yarn.CompileOptions\n|+ format\l|}" alt="" coords="188,175,335,252"/>
+<area shape="rect" id="node4" href="$d8/d41/a00038.html" title="{Yarn.ConvertFormatOptions\n|+ convertToJSON\l+ convertToYarn\l+ outputDirectory\l|}" alt="" coords="359,160,544,267"/>
+<area shape="rect" id="node5" href="$d8/d53/a00081.html" title="{Yarn.ExecutionOptions\n|+ stringTable\l+ onlyConsiderNode\l|}" alt="" coords="569,167,724,259"/>
+<area shape="rect" id="node8" href="$df/d13/a00085.html" title="{Yarn.GenerateTableOptions\n|+ onlyUseTag\l|}" alt="" coords="749,175,931,252"/>
+<area shape="rect" id="node6" href="$d0/de8/a00133.html" title="{Yarn.RunOptions\n|+ waitForInput\l+ startNode\l+ variables\l+ runTimes\l+ automaticallySelectFirst\lOption\l|}" alt="" coords="461,315,635,466"/>
+<area shape="rect" id="node7" href="$dd/da7/a00168.html" title="{Yarn.VerifyOptions\n|+ showTokensAndExit\l+ showParseTreeAndExit\l+ compileAndExit\l+ listVariables\l|}" alt="" coords="660,330,831,451"/>
 </map>

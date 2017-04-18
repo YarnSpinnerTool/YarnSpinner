@@ -1,18 +1,585 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="df/d61/a00031" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::CompiledProgramAnalyser</compoundname>
-    <derivedcompoundref refid="de/db9/a00159" prot="public" virt="non-virtual">Yarn.Analysis.UnusedVariableChecker</derivedcompoundref>
-    <derivedcompoundref refid="dd/dae/a00163" prot="public" virt="non-virtual">Yarn.Analysis.VariableLister</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="df/d61/a00031_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Program program)</argsstring>
-        <name>Diagnose</name>
+  <compounddef id="df/d61/a00031" kind="namespace">
+    <compoundname>Yarn</compoundname>
+    <innerclass refid="d3/d32/a00105" prot="package">Yarn::LineInfo</innerclass>
+    <innerclass refid="d7/d12/a00126" prot="package">Yarn::Program</innerclass>
+    <innerclass refid="dd/de2/a00320" prot="package">Yarn::Node</innerclass>
+    <innerclass refid="d9/d77/a00095" prot="public">Yarn::Instruction</innerclass>
+    <innerclass refid="db/df3/a00034" prot="package">Yarn::Compiler</innerclass>
+    <innerclass refid="d5/dcb/a00170" prot="public">Yarn::YarnException</innerclass>
+    <innerclass refid="d2/d41/a00318" prot="public">Yarn::Line</innerclass>
+    <innerclass refid="db/d53/a00321" prot="public">Yarn::Options</innerclass>
+    <innerclass refid="d4/d6f/a00315" prot="public">Yarn::Command</innerclass>
+    <innerclass refid="d9/d38/a00166" prot="public">Yarn::VariableStorage</innerclass>
+    <innerclass refid="d3/d52/a00023" prot="public">Yarn::BaseVariableStorage</innerclass>
+    <innerclass refid="d1/dd6/a00108" prot="public">Yarn::LocalisedLine</innerclass>
+    <innerclass refid="d4/d81/a00110" prot="public">Yarn::MemoryVariableStore</innerclass>
+    <innerclass refid="d6/d2c/a00072" prot="public">Yarn::Dialogue</innerclass>
+    <innerclass refid="d9/d7d/a00150" prot="package">Yarn::TokeniserException</innerclass>
+    <innerclass refid="dd/db2/a00151" prot="package">Yarn::TokenList</innerclass>
+    <innerclass refid="da/d1e/a00149" prot="package">Yarn::Token</innerclass>
+    <innerclass refid="d4/d3a/a00101" prot="package">Yarn::Lexer</innerclass>
+    <innerclass refid="df/d5d/a00084" prot="public">Yarn::FunctionInfo</innerclass>
+    <innerclass refid="d5/d1e/a00103" prot="public">Yarn::Library</innerclass>
+    <innerclass refid="df/d98/a00107" prot="package">Yarn::Loader</innerclass>
+    <innerclass refid="d8/dfa/a00121" prot="package">Yarn::ParseException</innerclass>
+    <innerclass refid="de/d36/a00123" prot="package">Yarn::Parser</innerclass>
+    <innerclass refid="dd/dae/a00163" prot="public">Yarn::Value</innerclass>
+    <innerclass refid="d4/ddd/a00138" prot="package">Yarn::VirtualMachine</innerclass>
+    <innerclass refid="d2/d1f/a00083" prot="public">Yarn::FileFormatConverter</innerclass>
+    <innerclass refid="d0/dc2/a00104" prot="public">Yarn::LineAdder</innerclass>
+    <innerclass refid="d7/de0/a00022" prot="public">Yarn::BaseOptions</innerclass>
+    <innerclass refid="d8/d53/a00081" prot="public">Yarn::ExecutionOptions</innerclass>
+    <innerclass refid="dd/da7/a00168" prot="public">Yarn::VerifyOptions</innerclass>
+    <innerclass refid="d0/de8/a00133" prot="public">Yarn::RunOptions</innerclass>
+    <innerclass refid="d4/d8c/a00035" prot="public">Yarn::CompileOptions</innerclass>
+    <innerclass refid="df/d13/a00085" prot="public">Yarn::GenerateTableOptions</innerclass>
+    <innerclass refid="dd/da2/a00019" prot="public">Yarn::AddLabelsOptions</innerclass>
+    <innerclass refid="d8/d41/a00038" prot="public">Yarn::ConvertFormatOptions</innerclass>
+    <innerclass refid="d1/d0d/a00171" prot="public">Yarn::YarnSpinnerConsole</innerclass>
+    <innerclass refid="d9/d47/a00129" prot="public">Yarn::ProgramExporter</innerclass>
+    <innerclass refid="da/ddb/a00145" prot="public">Yarn::TableGenerator</innerclass>
+    <innernamespace refid="d1/d5d/a00311">Yarn::Analysis</innernamespace>
+    <innernamespace refid="dd/d42/a00109">Yarn::Unity</innernamespace>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894" prot="package" static="no">
+        <name>ByteCode</name>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f" prot="public">
+          <name>Label</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49" prot="public">
+          <name>JumpTo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed" prot="public">
+          <name>Jump</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc" prot="public">
+          <name>RunLine</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226" prot="public">
+          <name>RunCommand</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d" prot="public">
+          <name>AddOption</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7" prot="public">
+          <name>ShowOptions</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a" prot="public">
+          <name>PushString</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33" prot="public">
+          <name>PushNumber</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80" prot="public">
+          <name>PushBool</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755" prot="public">
+          <name>PushNull</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f" prot="public">
+          <name>JumpIfFalse</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0" prot="public">
+          <name>Pop</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a" prot="public">
+          <name>CallFunc</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038" prot="public">
+          <name>PushVariable</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2" prot="public">
+          <name>StoreVariable</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481" prot="public">
+          <name>Stop</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac" prot="public">
+          <name>RunNode</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="269" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="269" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="enum" id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" prot="package" static="no">
+        <name>TokenType</name>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceace9a733c2ae3f8b704aec91f551b2bcc" prot="public">
+          <name>Whitespace</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea497470e76a40fc53e14c0df9b4e4ec9f" prot="public">
+          <name>Indent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea675b39ecba872a6cf58d578781bf5216" prot="public">
+          <name>Dedent</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea5d8c95ca9e91a87bd9c90b0f309fd740" prot="public">
+          <name>EndOfLine</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea571dd25ea11480e6fe93f07a27059fbd" prot="public">
+          <name>EndOfInput</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f" prot="public">
+          <name>Number</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" prot="public">
+          <name>String</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea9979cf260fa3a9c811b668e217a37e21" prot="public">
+          <name>TagMarker</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea2fb334b031e5462b88186810b5dba5ee" prot="public">
+          <name>BeginCommand</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea6d879fc3833a8dc8742400a3c76b56fd" prot="public">
+          <name>EndCommand</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9" prot="public">
+          <name>Variable</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529" prot="public">
+          <name>ShortcutOption</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81" prot="public">
+          <name>OptionStart</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceabbf373bbaabc962ed2d5f5cec1ebd49b" prot="public">
+          <name>OptionDelimit</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626" prot="public">
+          <name>OptionEnd</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" prot="public">
+          <name>If</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaea5b66107aeb6829d789adefcfaac6eb" prot="public">
+          <name>ElseIf</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea6a0053231db40a4539b8f783a719a54a" prot="public">
+          <name>Else</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceade360e1624063d8b9de7d2c411a960d8" prot="public">
+          <name>EndIf</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea5d5b78699e57104f2fa03bbdf7b9197b" prot="public">
+          <name>Set</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaf827cf462f62848df37c5e1e94a4da74" prot="public">
+          <name>True</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaf8320b26d30ab433c5a54546d21f414c" prot="public">
+          <name>False</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94" prot="public">
+          <name>Null</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaf02071a8b56c676adabcad98429fa14e" prot="public">
+          <name>LeftParen</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea2d7e137ea20e2c01ce105573d47ce525" prot="public">
+          <name>RightParen</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea58be47db9455679e6a44df2eff9c9fa6" prot="public">
+          <name>Comma</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea0242c502bd906e05171e64bad31c7c21" prot="public">
+          <name>EqualTo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaf6d044fe1f01fb0c956b80099e2a3072" prot="public">
+          <name>GreaterThan</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea96b5d5dce523a30ceae47db080d8af48" prot="public">
+          <name>GreaterThanOrEqualTo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceac6d9d7bb9939f62f01c80f8b1251501c" prot="public">
+          <name>LessThan</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea67827f79b05c979b2378e9514bb7e741" prot="public">
+          <name>LessThanOrEqualTo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea0961129d84d9d8f6aa4138a3e5022a1d" prot="public">
+          <name>NotEqualTo</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c" prot="public">
+          <name>Or</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceac33315685a0cba3ce53be378b3c7874b" prot="public">
+          <name>And</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea76feb79109026728a20736a8c6504548" prot="public">
+          <name>Xor</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaa74c05d080620f087c4e523977230666" prot="public">
+          <name>Not</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea9f086f3b58f1b290002de301d3a7ab24" prot="public">
+          <name>EqualToOrAssign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea87c80963dae5cd099e3a377e4d314b20" prot="public">
+          <name>UnaryMinus</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceaec211f7c20af43e742bf2570c3cb84f9" prot="public">
+          <name>Add</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea453fb623e752c5993f65bc410fd74fe5" prot="public">
+          <name>Minus</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceae257376d913f3b53cbb4a9b19d770648" prot="public">
+          <name>Multiply</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea0b914e196182d02615487e9793ecff3d" prot="public">
+          <name>Divide</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceab055bb9ca4c2fabe4be4aa6e9e3278c6" prot="public">
+          <name>AddAssign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeaceab05d460746c046306a3b74039a9977ba" prot="public">
+          <name>MinusAssign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea7c3dfbd9bd6620d1cde7bbad4750a9c4" prot="public">
+          <name>MultiplyAssign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea60776f3f45a828ebfd062b8ad8118b38" prot="public">
+          <name>DivideAssign</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea0be8406951cdfda82f00f79328cf4efc" prot="public">
+          <name>Comment</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea29ee5d1ebcc033234938a5234f1f2075" prot="public">
+          <name>Identifier</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675" prot="public">
+          <name>Text</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="79" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="enum" id="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272f" prot="public" static="no">
+        <name>NodeFormat</name>
+        <enumvalue id="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e" prot="public">
+          <name>Unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8" prot="public">
+          <name>SingleNodeText</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8" prot="public">
+          <name>JSON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272fa9dffbf69ffba8bc38bc4e01abf4b1675" prot="public">
+          <name>Text</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="37" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="df/d61/a00031_1a39866cbb03c03a35805d598b5d4ad553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.OptionChooser</definition>
+        <argsstring>(int selectedOptionIndex)</argsstring>
+        <name>OptionChooser</name>
         <param>
-          <type><ref refid="da/d72/a00124" kindref="compound">Yarn.Program</ref></type>
-          <declname>program</declname>
+          <type>int</type>
+          <declname>selectedOptionIndex</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -20,56 +587,64 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="143" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="43" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="df/d61/a00031_1afe059a2ceeabe50380b000420e512bd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerable&lt; <ref refid="d4/d31/a00069" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.CompiledProgramAnalyser.GatherDiagnoses</definition>
-        <argsstring>()</argsstring>
-        <name>GatherDiagnoses</name>
-        <reimplementedby refid="dd/dae/a00163_1ab84e7a8e68740379dee12a51dca69b07">GatherDiagnoses</reimplementedby>
-        <reimplementedby refid="de/db9/a00159_1a107aecf707b130c4b733930a95f9154e">GatherDiagnoses</reimplementedby>
+      <memberdef kind="function" id="df/d61/a00031_1a1e50031b945a3a2afafee6f590730568" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.Logger</definition>
+        <argsstring>(string message)</argsstring>
+        <name>Logger</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="144" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="df/d61/a00031_1a5177bf74fbfe7303fac9d8236c2e514b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate Object</type>
+        <definition>delegate Object Yarn.ReturningFunction</definition>
+        <argsstring>(params Value[] parameters)</argsstring>
+        <name>ReturningFunction</name>
+        <param>
+          <type>params <ref refid="dd/dae/a00163" kindref="compound">Value</ref>[]</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="6" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="df/d61/a00031_1ae0be2e5cf13d5779816102439e61ff1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.Function</definition>
+        <argsstring>(params Value[] parameters)</argsstring>
+        <name>Function</name>
+        <param>
+          <type>params <ref refid="dd/dae/a00163" kindref="compound">Value</ref>[]</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="7" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="920">
-        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
-        <link refid="df/d61/a00031"/>
-      </node>
-      <node id="922">
-        <label>Yarn.Analysis.VariableLister</label>
-        <link refid="dd/dae/a00163"/>
-        <childnode refid="920" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="921">
-        <label>Yarn.Analysis.UnusedVariableChecker</label>
-        <link refid="de/db9/a00159"/>
-        <childnode refid="920" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="923">
-        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
-        <link refid="df/d61/a00031"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="142" bodyend="145"/>
-    <listofallmembers>
-      <member refid="df/d61/a00031_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>Diagnose</name></member>
-      <member refid="df/d61/a00031_1afe059a2ceeabe50380b000420e512bd6" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>GatherDiagnoses</name></member>
-    </listofallmembers>
+    <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>

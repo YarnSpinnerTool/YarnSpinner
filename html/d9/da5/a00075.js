@@ -1,9 +1,9 @@
 var a00075 =
 [
-    [ "EnumConverter", "d9/da5/a00075.html#adda8e6bff0d7635c0de15d36d49495da", null ],
-    [ "CanConvertFrom", "d9/da5/a00075.html#a31af8209aad64ed11d949586075c244a", null ],
-    [ "CanConvertTo", "d9/da5/a00075.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "d9/da5/a00075.html#abbbd7ece803a97b4714445c745918dc9", null ],
-    [ "ConvertToString", "d9/da5/a00075.html#a36cb2f9b24f15a671293f3a722324c27", null ],
-    [ "type", "d9/da5/a00075.html#a3c144b5c7e2720e66dc957aaed671e9a", null ]
+    [ "DialogueComplete", "d9/da5/a00075.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "d9/da5/a00075.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "d9/da5/a00075.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "d9/da5/a00075.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "d9/da5/a00075.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "d9/da5/a00075.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

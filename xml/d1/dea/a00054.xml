@@ -1,118 +1,220 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d1/dea/a00054" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyReferenceMapData</compoundname>
+    <compoundname>CsvHelper::Configuration::CsvPropertyNameCollection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEnumerable&lt; string &gt;</basecompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d1/dea/a00054_1a24263cbdacd2dd0db9bbe22676a6d989" prot="private" static="no" mutable="no">
-        <type>string</type>
-        <definition>string CsvHelper.Configuration.CsvPropertyReferenceMapData.prefix</definition>
+      <memberdef kind="variable" id="d1/dea/a00054_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; string &gt;</type>
+        <definition>readonly List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.names</definition>
         <argsstring></argsstring>
-        <name>prefix</name>
+        <name>names</name>
+        <initializer>= new List&lt;string&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="15" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="16" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="d1/dea/a00054_1a687fe65f1a2b4301f283e9333c282f9c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="property" id="d1/dea/a00054_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>string</type>
-        <definition>virtual string CsvHelper.Configuration.CsvPropertyReferenceMapData.Prefix</definition>
+        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.this[int index]</definition>
         <argsstring></argsstring>
-        <name>Prefix</name>
+        <name>this[int index]</name>
         <briefdescription>
-<para>Gets or sets the header prefix to use. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="21" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d1/dea/a00054_1a5386ac40fb3ea290944f05cbee99bfcb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>PropertyInfo</type>
-        <definition>virtual PropertyInfo CsvHelper.Configuration.CsvPropertyReferenceMapData.Property</definition>
-        <argsstring></argsstring>
-        <name>Property</name>
-        <briefdescription>
-<para>Gets the PropertyInfo that the data is associated with. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="37" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d1/dea/a00054_1af2343065df03de92b6b9803ed2bb4f87" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
-        <definition>CsvClassMap CsvHelper.Configuration.CsvPropertyReferenceMapData.Mapping</definition>
-        <argsstring></argsstring>
-        <name>Mapping</name>
-        <briefdescription>
-<para>Gets the mapping this is a reference for. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="42" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d1/dea/a00054_1ad6fe2913932a9fe434f8a908dec30e8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyReferenceMapData.CsvPropertyReferenceMapData</definition>
-        <argsstring>(PropertyInfo property, CsvClassMap mapping)</argsstring>
-        <name>CsvPropertyReferenceMapData</name>
-        <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
-        <param>
-          <type><ref refid="d8/d41/a00038" kindref="compound">CsvClassMap</ref></type>
-          <declname>mapping</declname>
-        </param>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="d1/dea/a00054" kindref="compound">CsvPropertyReferenceMapData</ref> class. </para>        </briefdescription>
+<para>Gets the name at the given index. If a prefix is set, it will be prepended to the name. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>property</parametername>
+<parametername>index</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The property.</para></parameterdescription>
+</parameterdescription>
 </parameteritem>
-<parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/dea/a00054_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.Prefix</definition>
+        <argsstring></argsstring>
+        <name>Prefix</name>
+        <briefdescription>
+<para>Gets the prefix to use for each name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/dea/a00054_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.Names</definition>
+        <argsstring></argsstring>
+        <name>Names</name>
+        <briefdescription>
+<para>Gets the raw list of names without the prefix being prepended. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="d1/dea/a00054_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvPropertyNameCollection.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+<para>Gets the count. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/dea/a00054_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Add</definition>
+        <argsstring>(string name)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Adds the given name to the collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>mapping</parametername>
+<parametername>name</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The mapping this is a reference for.</para></parameterdescription>
+<para>The name to add.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="49" bodyend="53"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dea/a00054_1abec990435c8dccfb4553602b89f93201" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clears all names from the collection. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dea/a00054_1ac568746273968080890abca50b882802" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.AddRange</definition>
+        <argsstring>(IEnumerable&lt; string &gt; names)</argsstring>
+        <name>AddRange</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>names</declname>
+        </param>
+        <briefdescription>
+<para>Adds a range of names to the collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>names</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The range to add.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/dea/a00054_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator&lt; string &gt;</type>
+        <definition>IEnumerator&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+<para>Returns an enumerator that iterates through the collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A T:System.Collections.Generic.IEnumerator`1 that can be used to iterate through the collection. </para></simplesect>
+&lt;filterpriority&gt;1&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="85" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d1/dea/a00054_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator IEnumerable.</type>
+        <definition>IEnumerator IEnumerable. CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+<para>Returns an enumerator that iterates through a collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An T:System.Collections.IEnumerator object that can be used to iterate through the collection. </para></simplesect>
+&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="100" bodyend="103"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>The configuration data for the reference map. </para>    </briefdescription>
+<para>A collection that holds property names. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1038">
-        <label>CsvHelper.Configuration.CsvPropertyReferenceMapData</label>
+    <inheritancegraph>
+      <node id="1030">
+        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
         <link refid="d1/dea/a00054"/>
+        <childnode refid="1031" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1031">
+        <label>IEnumerable&lt; string &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1032">
+        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
+        <link refid="d1/dea/a00054"/>
+        <childnode refid="1033" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1033">
+        <label>IEnumerable&lt; string &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMapData.cs" bodystart="13" bodyend="54"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="14" bodyend="104"/>
     <listofallmembers>
-      <member refid="d1/dea/a00054_1ad6fe2913932a9fe434f8a908dec30e8b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>CsvPropertyReferenceMapData</name></member>
-      <member refid="d1/dea/a00054_1af2343065df03de92b6b9803ed2bb4f87" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Mapping</name></member>
-      <member refid="d1/dea/a00054_1a687fe65f1a2b4301f283e9333c282f9c" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Prefix</name></member>
-      <member refid="d1/dea/a00054_1a24263cbdacd2dd0db9bbe22676a6d989" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>prefix</name></member>
-      <member refid="d1/dea/a00054_1a5386ac40fb3ea290944f05cbee99bfcb" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMapData</scope><name>Property</name></member>
+      <member refid="d1/dea/a00054_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Add</name></member>
+      <member refid="d1/dea/a00054_1ac568746273968080890abca50b882802" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>AddRange</name></member>
+      <member refid="d1/dea/a00054_1abec990435c8dccfb4553602b89f93201" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Clear</name></member>
+      <member refid="d1/dea/a00054_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Count</name></member>
+      <member refid="d1/dea/a00054_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
+      <member refid="d1/dea/a00054_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
+      <member refid="d1/dea/a00054_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Names</name></member>
+      <member refid="d1/dea/a00054_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>names</name></member>
+      <member refid="d1/dea/a00054_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Prefix</name></member>
+      <member refid="d1/dea/a00054_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>this[int index]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

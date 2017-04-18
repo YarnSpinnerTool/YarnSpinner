@@ -1,10 +1,10 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$db/db2/a00020.html" title="Yarn.BaseOptions" alt="" coords="5,107,133,133"/>
-<area shape="rect" id="node2" href="$d4/d51/a00017.html" title="Yarn.AddLabelsOptions" alt="" coords="195,5,354,32"/>
-<area shape="rect" id="node3" href="$d0/dc0/a00033.html" title="Yarn.CompileOptions" alt="" coords="201,56,348,83"/>
-<area shape="rect" id="node4" href="$de/d8c/a00036.html" title="Yarn.ConvertFormatOptions" alt="" coords="182,107,367,133"/>
-<area shape="rect" id="node5" href="$d1/d51/a00079.html" title="Yarn.ExecutionOptions" alt="" coords="197,157,353,184"/>
-<area shape="rect" id="node8" href="$d2/d1f/a00083.html" title="Yarn.GenerateTableOptions" alt="" coords="183,208,366,235"/>
-<area shape="rect" id="node6" href="$d7/d06/a00131.html" title="Yarn.RunOptions" alt="" coords="421,132,544,159"/>
-<area shape="rect" id="node7" href="$d9/d38/a00166.html" title="Yarn.VerifyOptions" alt="" coords="417,183,549,209"/>
+<area shape="rect" id="node1" href="$d7/de0/a00022.html" title="Yarn.BaseOptions" alt="" coords="5,107,133,133"/>
+<area shape="rect" id="node2" href="$dd/da2/a00019.html" title="Yarn.AddLabelsOptions" alt="" coords="195,5,354,32"/>
+<area shape="rect" id="node3" href="$d4/d8c/a00035.html" title="Yarn.CompileOptions" alt="" coords="201,56,348,83"/>
+<area shape="rect" id="node4" href="$d8/d41/a00038.html" title="Yarn.ConvertFormatOptions" alt="" coords="182,107,367,133"/>
+<area shape="rect" id="node5" href="$d8/d53/a00081.html" title="Yarn.ExecutionOptions" alt="" coords="197,157,353,184"/>
+<area shape="rect" id="node8" href="$df/d13/a00085.html" title="Yarn.GenerateTableOptions" alt="" coords="183,208,366,235"/>
+<area shape="rect" id="node6" href="$d0/de8/a00133.html" title="Yarn.RunOptions" alt="" coords="421,132,544,159"/>
+<area shape="rect" id="node7" href="$dd/da7/a00168.html" title="Yarn.VerifyOptions" alt="" coords="417,183,549,209"/>
 </map>

@@ -1,12 +1,8 @@
 var a00166 =
 [
-    [ "compileAndExit", "d9/d38/a00166.html#af9b6917244075618720f2a90bbe6ef56", null ],
-    [ "files", "d9/d38/a00166.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
-    [ "listVariables", "d9/d38/a00166.html#a062775744f2d7144527fa3bca4b9b3ce", null ],
-    [ "onlyConsiderNode", "d9/d38/a00166.html#af4c0062a1d46281d377f87084fde374e", null ],
-    [ "showDebuggingInfo", "d9/d38/a00166.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
-    [ "showParseTreeAndExit", "d9/d38/a00166.html#abef6bf44ae4792d7644b1c02de625208", null ],
-    [ "showTokensAndExit", "d9/d38/a00166.html#ab1a387df201e3e136c15e5744219628d", null ],
-    [ "stringTable", "d9/d38/a00166.html#a7e43c3b73722956cb0f5d507e4eef527", null ],
-    [ "verbose", "d9/d38/a00166.html#ada4d83d1756918f362d55f6649b82b17", null ]
+    [ "Clear", "d9/d38/a00166.html#af98c1e41f351cb96e13f668ca2fd9d92", null ],
+    [ "GetNumber", "d9/d38/a00166.html#a04b061c52d8ac814ce559da5286fbc71", null ],
+    [ "GetValue", "d9/d38/a00166.html#accab1fc5c8fc353dbfc53ca0f4029576", null ],
+    [ "SetNumber", "d9/d38/a00166.html#aa28c3694f985cf73489efc301b9d41dd", null ],
+    [ "SetValue", "d9/d38/a00166.html#aa90ff61224432c5ed3ce72199c55f440", null ]
 ];

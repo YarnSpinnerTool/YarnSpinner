@@ -1,589 +1,186 @@
-\hypertarget{a00071}{\section{Yarn.\-Unity.\-Dialogue\-Runner Class Reference}
-\label{a00071}\index{Yarn.\-Unity.\-Dialogue\-Runner@{Yarn.\-Unity.\-Dialogue\-Runner}}
+\hypertarget{a00071}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
+\label{a00071}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
+Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{db/dde/a00691}
+\includegraphics[width=202pt]{d2/d85/a00679}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{d0/db6/a00692}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
+\hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
+\hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00071_a88d161b1be7c99b1e202e6ae9e0d1e73}{Add\-Script} (string text)
+\hyperlink{a00071_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00071_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00071_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
 \item 
-void \hyperlink{a00071_a2fd7f165afff0b8bc2004f10ce4537dd}{Add\-Script} (Text\-Asset asset)
+override string \hyperlink{a00071_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
 \item 
-void \hyperlink{a00071_a2e9d9472b4dba699ef72ab558c89e009}{Add\-String\-Table} (Dictionary$<$ string, string $>$ string\-Table)
-\item 
-void \hyperlink{a00071_a08d4eb5038b23aad6d59d74ac89806a9}{Add\-String\-Table} (string text)
-\item 
-void \hyperlink{a00071_abc595a490988ca712d37af540c2e0df9}{Add\-String\-Table} (Text\-Asset text)
-\item 
-void \hyperlink{a00071_ac08900ac15b3ca90446b9454c7fd117e}{Reset\-Dialogue} ()
-\item 
-void \hyperlink{a00071_ab083d0ac60b41958b591c632e3c3a53e}{Start\-Dialogue} ()
-\item 
-void \hyperlink{a00071_abda765c6804853e264282a0f45920cd3}{Start\-Dialogue} (string \hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node})
-\item 
-void \hyperlink{a00071_a09f5769c0c0921a21e659fed0af09c01}{Clear} ()
-\item 
-void \hyperlink{a00071_af94e66876098f8b187181014973645e6}{Stop} ()
-\item 
-bool \hyperlink{a00071_aadf7711b9ba101d6ce8ba491d9c5a4c3}{Node\-Exists} (string node\-Name)
-\item 
-bool \hyperlink{a00071_a7b200f8ddcf77f50906a6341aadeb671}{Dispatch\-Command} (string command)
+string \hyperlink{a00071_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Text\-Asset\mbox{[}$\,$\mbox{]} \hyperlink{a00071_a71eae33d06990a3aec5d444fae017492}{source\-Text}
+string \hyperlink{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{message}
 \item 
-\hyperlink{a00107_d3/db8/a00316}{Localised\-String\-Group}\mbox{[}$\,$\mbox{]} \hyperlink{a00071_a4d00a0671c2966b88d1c806c675fe915}{string\-Groups}
+string \hyperlink{a00071_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
 \item 
-bool \hyperlink{a00071_a3e093d36845924378a8b2fd9ea3ac73d}{should\-Override\-Language} = false
+int \hyperlink{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
 \item 
-System\-Language \hyperlink{a00071_ad12db159fc3df0819d5b594c33fba834}{override\-Language} = System\-Language.\-English
+int \hyperlink{a00071_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
 \item 
-\hyperlink{a00165}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour} \hyperlink{a00071_a6cca3d33f8b0ce3e750caed9fd8fc734}{variable\-Storage}
-\item 
-\hyperlink{a00073}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} \hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogue\-U\-I}
-\item 
-string \hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node} = \hyperlink{a00070_a1b643f15f734090e6a58cbf13dafd28f}{Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}
-\item 
-bool \hyperlink{a00071_a6476a987f9788dba653976bcbe72980c}{start\-Automatically} = true
-\item 
-bool \hyperlink{a00071_a6aac5e877d5396a8141da5e85243f462}{automatic\-Commands} = true
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-bool \hyperlink{a00071_a9eb0fd7b600a4667595042832af1d655}{is\-Dialogue\-Running}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\hyperlink{a00070}{Dialogue} \hyperlink{a00071_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\item 
-string \hyperlink{a00071_a8589c66769e89906eaff3c2263bdad5d}{current\-Node\-Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00071_a18eb3750a0161dbfc20d7eb39e151b6c}{Start} ()
-\item 
-I\-Enumerator \hyperlink{a00071_adf4e816844b7d9ab4ed99265fd3f3ea9}{Run\-Dialogue} (string \hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node}=\char`\"{}Start\char`\"{})
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00070}{Dialogue} \hyperlink{a00071_a822055443227d3b76c6a8fb509812820}{\-\_\-dialogue}
+\hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00071_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
+\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00071_a227813cbc8fa03c3448a612ffc909d1c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
+\hypertarget{a00071_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00071_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
+}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
+\hypertarget{a00071_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00071_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
+}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
+\hypertarget{a00071_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00071_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+13                              \{
+14             \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
+15             \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
+16             \hyperlink{a00071_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
+17         \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00071_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
+\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{{\bf Severity}}]{severity, }
+\item[{string}]{node\-Name = {\ttfamily null}, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{a00071_ad3fd818f1be98dc803e5bec959153824}
+
+\begin{DoxyCode}
+21         \{
+22             this.message = \hyperlink{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+23             this.nodeName = \hyperlink{a00071_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
+24             this.lineNumber = \hyperlink{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
+25             this.columnNumber = \hyperlink{a00071_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
+26             this.severity = \hyperlink{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
+27         \}
+\end{DoxyCode}
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00071_a88d161b1be7c99b1e202e6ae9e0d1e73}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
-\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
-\begin{DoxyParamCaption}
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)}}\label{a00071_a88d161b1be7c99b1e202e6ae9e0d1e73}
-
-\begin{DoxyCode}
-148                                            \{
-149             dialogue.LoadString(text);
-150         \}
-\end{DoxyCode}
-\hypertarget{a00071_a2fd7f165afff0b8bc2004f10ce4537dd}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
-\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
-\begin{DoxyParamCaption}
-\item[{Text\-Asset}]{asset}
-\end{DoxyParamCaption}
-)}}\label{a00071_a2fd7f165afff0b8bc2004f10ce4537dd}
-
-\begin{DoxyCode}
-152                                                \{
-153             dialogue.LoadString(asset.text);
-154         \}
-\end{DoxyCode}
-\hypertarget{a00071_a2e9d9472b4dba699ef72ab558c89e009}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
-\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
-\begin{DoxyParamCaption}
-\item[{Dictionary$<$ string, string $>$}]{string\-Table}
-\end{DoxyParamCaption}
-)}}\label{a00071_a2e9d9472b4dba699ef72ab558c89e009}
-
-\begin{DoxyCode}
-158                                                                           \{
-159             dialogue.AddStringTable(stringTable);
-160         \}
-\end{DoxyCode}
-\hypertarget{a00071_a08d4eb5038b23aad6d59d74ac89806a9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
-\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
-\begin{DoxyParamCaption}
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)}}\label{a00071_a08d4eb5038b23aad6d59d74ac89806a9}
-
-\begin{DoxyCode}
-162                                                 \{
-163             
-164             \textcolor{comment}{// Create the dictionary that will contain these values}
-165             var stringTable = \textcolor{keyword}{new} Dictionary<string,string>();
-166 
-167             \textcolor{keyword}{using} (var reader = \textcolor{keyword}{new} System.IO.StringReader(text)) \{
-168                 \textcolor{keyword}{using} (var csv = \textcolor{keyword}{new} \hyperlink{a00055}{CsvHelper.CsvReader}(reader)) \{
-169 
-170                     var records = csv.GetRecords<\hyperlink{a00106}{Yarn.LocalisedLine}>();
-171 
-172                     \textcolor{keywordflow}{foreach} (var record \textcolor{keywordflow}{in} records) \{
-173                         stringTable[record.LineCode] = record.LineText;
-174                     \}
-175 
-176                 \}
-177             \}
-178 
-179             \hyperlink{a00071_a2e9d9472b4dba699ef72ab558c89e009}{AddStringTable}(stringTable);
-180 
-181         \}
-\end{DoxyCode}
-\hypertarget{a00071_abc595a490988ca712d37af540c2e0df9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-String\-Table@{Add\-String\-Table}}
-\index{Add\-String\-Table@{Add\-String\-Table}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Add\-String\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-String\-Table (
-\begin{DoxyParamCaption}
-\item[{Text\-Asset}]{text}
-\end{DoxyParamCaption}
-)}}\label{a00071_abc595a490988ca712d37af540c2e0df9}
-
-\begin{DoxyCode}
-183                                                    \{
-184             \hyperlink{a00071_a2e9d9472b4dba699ef72ab558c89e009}{AddStringTable}(text.text);
-185         \}
-\end{DoxyCode}
-\hypertarget{a00071_a09f5769c0c0921a21e659fed0af09c01}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Clear (
+\hypertarget{a00071_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00071_a09f5769c0c0921a21e659fed0af09c01}
+)}}\label{a00071_a4475eb5890c340da5c0012e25c2c86ae}
 
 \begin{DoxyCode}
-267                             \{
-268 
-269             \textcolor{keywordflow}{if} (\hyperlink{a00071_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning}) \{
-270                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.InvalidOperationException(\textcolor{stringliteral}{"You cannot clear the dialogue system while a
-       dialogue is running."});
-271             \}
-272 
-273             dialogue.UnloadAll();
-274         \}
+30         \{
+31             \textcolor{keywordflow}{return} \hyperlink{a00071_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
+32         \}
 \end{DoxyCode}
-\hypertarget{a00071_a7b200f8ddcf77f50906a6341aadeb671}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Dispatch\-Command@{Dispatch\-Command}}
-\index{Dispatch\-Command@{Dispatch\-Command}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Dispatch\-Command}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Dispatch\-Command (
+\hypertarget{a00071_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{command}
+\item[{bool}]{show\-Severity}
 \end{DoxyParamCaption}
-)}}\label{a00071_a7b200f8ddcf77f50906a6341aadeb671}
+)}}\label{a00071_a985dee7ca27aa896332590133606b6a9}
 
 \begin{DoxyCode}
-291                                                     \{
-292 
-293             \textcolor{comment}{// commands that can be automatically dispatched look like this:}
-294             \textcolor{comment}{// COMMANDNAME OBJECTNAME <param> <param> <param> ...}
-295 
-296             \textcolor{comment}{// We can dispatch this command if:}
-297             \textcolor{comment}{// 1. it has at least 2 words}
-298             \textcolor{comment}{// 2. the second word is the name of an object}
-299             \textcolor{comment}{// 3. that object has components that have methods }
-300             \textcolor{comment}{//    with the YarnCommand attribute that have the}
-301             \textcolor{comment}{//    correct commandString set}
-302 
-303             var words = command.Split(\textcolor{charliteral}{' '});
-304 
-305             \textcolor{comment}{// need 2 parameters in order to have both a command name}
-306             \textcolor{comment}{// and the name of an object to find}
-307             \textcolor{keywordflow}{if} (words.Length < 2)
-308                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-309 
-310             var commandName = words[0];
-311 
-312             var objectName = words[1];
-313 
-314             var sceneObject = GameObject.Find(objectName);
-315 
-316             \textcolor{comment}{// If we can't find an object, we can't dispatch a command}
-317             \textcolor{keywordflow}{if} (sceneObject == null)
-318                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-319 
-320             \textcolor{keywordtype}{int} numberOfMethodsFound = 0;
-321             List<string[]> errorValues = \textcolor{keyword}{new} List<string[]>();
-322 
-323             List<string> parameters;
-324 
-325             \textcolor{keywordflow}{if} (words.Length > 2) \{
-326                 parameters = \textcolor{keyword}{new} List<string>(words);
-327                 parameters.RemoveRange(0, 2);
-328             \} \textcolor{keywordflow}{else} \{
-329                 parameters = \textcolor{keyword}{new} List<string>();
-330             \}
-331 
-332             \textcolor{comment}{// Find every MonoBehaviour (or subclass) on the object}
-333             \textcolor{keywordflow}{foreach} (var component \textcolor{keywordflow}{in} sceneObject.GetComponents<MonoBehaviour>()) \{
-334                 var type = component.GetType();
-335 
-336                 \textcolor{comment}{// Find every method in this component}
-337                 \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods()) \{
-338 
-339                     \textcolor{comment}{// Find the YarnCommand attributes on this method}
-340                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(
-      YarnCommandAttribute), \textcolor{keyword}{true});
-341 
-342                     \textcolor{comment}{// Find the YarnCommand whose commandString is equal to the command name}
-343                     \textcolor{keywordflow}{foreach} (var attribute \textcolor{keywordflow}{in} attributes) \{
-344                         \textcolor{keywordflow}{if} (attribute.commandString == commandName) \{
-345 
-346                             
-347                             var methodParameters = method.GetParameters();
-348                             \textcolor{keywordtype}{bool} paramsMatch = \textcolor{keyword}{false};
-349                             \textcolor{comment}{// Check if this is a params array}
-350                             \textcolor{keywordflow}{if} (methodParameters.Length == 1 && methodParameters[0].ParameterType.
-      IsAssignableFrom(typeof(\textcolor{keywordtype}{string}[])))
-351                                 \{
-352                                     \textcolor{comment}{// Cool, we can send the command!}
-353                                     \textcolor{keywordtype}{string}[][] paramWrapper = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[1][];
-354                                     paramWrapper[0] = parameters.ToArray();
-355                                     method.Invoke(component, paramWrapper);
-356                                     numberOfMethodsFound++;
-357                                     paramsMatch = \textcolor{keyword}{true};
-358                                 
-359                             \}
-360                             \textcolor{comment}{// Otherwise, verify that this method has the right number of parameters}
-361                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (methodParameters.Length == parameters.Count)
-362                             \{
-363                                 paramsMatch = \textcolor{keyword}{true};
-364                                 \textcolor{keywordflow}{foreach} (var paramInfo \textcolor{keywordflow}{in} methodParameters)
-365                                 \{
-366                                     \textcolor{keywordflow}{if} (!paramInfo.ParameterType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
-367                                     \{
-368                                         Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond
-       to Yarn command \(\backslash\)"\{1\}\(\backslash\)", but not all of its parameters are strings!"}, method.Name, commandName);
-369                                         paramsMatch = \textcolor{keyword}{false};
-370                                         \textcolor{keywordflow}{break};
-371                                     \}
-372                                 \}
-373                                 \textcolor{keywordflow}{if} (paramsMatch)
-374                                 \{
-375                                     \textcolor{comment}{// Cool, we can send the command!}
-376                                     method.Invoke(component, parameters.ToArray());
-377                                     numberOfMethodsFound++;
-378                                 \}
-379                             \}
-380                             \textcolor{comment}{//parameters are invalid, but name matches.}
-381                             \textcolor{keywordflow}{if} (!paramsMatch)
-382                             \{
-383                                 \textcolor{comment}{//save this error in case a matching command is never found.}
-384                                 errorValues.Add(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ method.Name, commandName, 
-      methodParameters.Length.ToString(), parameters.Count.ToString() \});
-385                             \}
-386                         \}
-387                     \}
-388                 \}
-389             \}
-390 
-391             \textcolor{comment}{// Warn if we found multiple things that could respond}
-392             \textcolor{comment}{// to this command.}
-393             \textcolor{keywordflow}{if} (numberOfMethodsFound > 1) \{
-394                 Debug.LogWarningFormat(sceneObject, \textcolor{stringliteral}{"The command \(\backslash\)"\{0\}\(\backslash\)" found \{1\} targets. "} +
-395                     \textcolor{stringliteral}{"You should only have one - check your scripts."}, command, numberOfMethodsFound);
-396             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (numberOfMethodsFound == 0) \{
-397                 \textcolor{comment}{//list all of the near-miss methods only if a proper match is not found, but
-       correctly-named methods are.}
-398                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{string}[] errorVal \textcolor{keywordflow}{in} errorValues) \{
-399                     Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to Yarn command \(\backslash\)"
-      \{1\}\(\backslash\)", but it has a different number of parameters (\{2\}) to those provided (\{3\}), or is not a string array!"}, 
-      errorVal[0], errorVal[1], errorVal[2], errorVal[3]);
-400                 \}
-401             \}
-402 
-403             \textcolor{keywordflow}{return} numberOfMethodsFound > 0;
-404         \}
-\end{DoxyCode}
-\hypertarget{a00071_aadf7711b9ba101d6ce8ba491d9c5a4c3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Node\-Exists@{Node\-Exists}}
-\index{Node\-Exists@{Node\-Exists}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Node\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Node\-Exists (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00071_aadf7711b9ba101d6ce8ba491d9c5a4c3}
-
-\begin{DoxyCode}
-281                                                 \{
-282             \textcolor{keywordflow}{return} dialogue.NodeExists(nodeName);
-283         \}
-\end{DoxyCode}
-\hypertarget{a00071_ac08900ac15b3ca90446b9454c7fd117e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Reset\-Dialogue@{Reset\-Dialogue}}
-\index{Reset\-Dialogue@{Reset\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Reset\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Reset\-Dialogue (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00071_ac08900ac15b3ca90446b9454c7fd117e}
-
-\begin{DoxyCode}
-189         \{
-190             variableStorage.ResetToDefaults ();
-191             \hyperlink{a00071_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue} ();
-192         \}
-\end{DoxyCode}
-\hypertarget{a00071_adf4e816844b7d9ab4ed99265fd3f3ea9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Run\-Dialogue@{Run\-Dialogue}}
-\index{Run\-Dialogue@{Run\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Run\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator Yarn.\-Unity.\-Dialogue\-Runner.\-Run\-Dialogue (
-\begin{DoxyParamCaption}
-\item[{string}]{start\-Node = {\ttfamily \char`\"{}Start\char`\"{}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00071_adf4e816844b7d9ab4ed99265fd3f3ea9}
-
-\begin{DoxyCode}
-210         \{
-211             \textcolor{comment}{// Mark that we're in conversation.}
-212             \hyperlink{a00071_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{true};
-213 
-214             \textcolor{comment}{// Signal that we're starting up.}
-215             yield \textcolor{keywordflow}{return} StartCoroutine(this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00073_af9d88ca81ac536d43046ca6572e3ff54}{DialogueStarted}());
-216 
-217             \textcolor{comment}{// Get lines, options and commands from the Dialogue object,}
-218             \textcolor{comment}{// one at a time.}
-219             \textcolor{keywordflow}{foreach} (Yarn.Dialogue.RunnerResult step in \hyperlink{a00071_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}.\hyperlink{a00070_aead84ee50cb113ca45724894290ce9c2}{Run}(
-      \hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode})) \{
-220 
-221                 \textcolor{keywordflow}{if} (step is Yarn.Dialogue.LineResult) \{
-222 
-223                     \textcolor{comment}{// Wait for line to finish displaying}
-224                     var lineResult = step as \hyperlink{a00104}{Yarn.Dialogue.LineResult};
-225                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00073_a754c6dd0bc67895d11f878fe4477d698}{RunLine} (lineResult.line));
-226 
-227                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.OptionSetResult) \{
-228 
-229                     \textcolor{comment}{// Wait for user to finish picking an option}
-230                     var optionSetResult = step as \hyperlink{a00117}{Yarn.Dialogue.OptionSetResult}
-      ;
-231                     yield \textcolor{keywordflow}{return} StartCoroutine (
-232                         this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.\hyperlink{a00073_ac5b29079f638f2ceb078627ef1e60004}{RunOptions} (
-233                         optionSetResult.options,
-234                         optionSetResult.setSelectedOptionDelegate
-235                     ));
-236 
-237                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.CommandResult) \{
-238 
-239                     \textcolor{comment}{// Wait for command to finish running}
-240 
-241                     var commandResult = step as \hyperlink{a00030}{Yarn.Dialogue.CommandResult};
-242 
-243                     \textcolor{keywordflow}{if} (\hyperlink{a00071_a7b200f8ddcf77f50906a6341aadeb671}{DispatchCommand}(commandResult.command.text) == \textcolor{keyword}{true}) \{
-244                         \textcolor{comment}{// command was dispatched}
-245                     \} \textcolor{keywordflow}{else} \{
-246                         yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00073_a3dffe84b9e7a10fdec6749baf697d111}{RunCommand} (commandResult.command));
-247                     \}
-248 
-249 
-250                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(step is Yarn.Dialogue.NodeCompleteResult) \{
-251 
-252                     \textcolor{comment}{// Wait for post-node action}
-253                     var nodeResult = step as \hyperlink{a00111}{Yarn.Dialogue.NodeCompleteResult}
-      ;
-254                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00073_a2900548a0704d39d4502a153945f4bef}{NodeComplete} (nodeResult.nextNode));
-255                 \}
-256             \}
-257 
-258             \textcolor{comment}{// No more results! The dialogue is done.}
-259             yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00073_aecc60aee9e9386da1f71fb183f43c52d}{DialogueComplete} ());
-260 
-261             \textcolor{comment}{// Clear the 'is running' flag. We do this after DialogueComplete returns,}
-262             \textcolor{comment}{// to allow time for any animations that might run while transitioning}
-263             \textcolor{comment}{// out of a conversation (ie letterboxing going away, etc)}
-264             \hyperlink{a00071_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{false};
-265         \}
-\end{DoxyCode}
-\hypertarget{a00071_a18eb3750a0161dbfc20d7eb39e151b6c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start@{Start}}
-\index{Start@{Start}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00071_a18eb3750a0161dbfc20d7eb39e151b6c}
-
-\begin{DoxyCode}
-96         \{
-97             \textcolor{comment}{// Ensure that we have our Implementation object}
-98             \textcolor{keywordflow}{if} (\hyperlink{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI} == null) \{
-99                 Debug.LogError (\textcolor{stringliteral}{"Implementation was not set! Can't run the dialogue!"});
-100                 \textcolor{keywordflow}{return};
-101             \}
-102 
-103             \textcolor{comment}{// And that we have our variable storage object}
-104             \textcolor{keywordflow}{if} (\hyperlink{a00071_a6cca3d33f8b0ce3e750caed9fd8fc734}{variableStorage} == null) \{
-105                 Debug.LogError (\textcolor{stringliteral}{"Variable storage was not set! Can't run the dialogue!"});
-106                 \textcolor{keywordflow}{return};
-107             \}
-108 
-109             \textcolor{comment}{// Ensure that the variable storage has the right stuff in it}
-110             variableStorage.ResetToDefaults ();
-111 
-112             \textcolor{comment}{// Load all scripts}
-113             \textcolor{keywordflow}{if} (\hyperlink{a00071_a71eae33d06990a3aec5d444fae017492}{sourceText} != null) \{
-114                 \textcolor{keywordflow}{foreach} (var source \textcolor{keywordflow}{in} \hyperlink{a00071_a71eae33d06990a3aec5d444fae017492}{sourceText}) \{
-115 
-116                     \textcolor{comment}{// Is this a compiled script?}
-117                     \textcolor{comment}{// BUG: This will incorrectly detect .yarn.txt files as binary, and try to load them}
-118                     \textcolor{keywordflow}{if} (source.name.EndsWith(\textcolor{stringliteral}{".yarn"})) \{
-119                         \textcolor{comment}{// load the raw bytes}
-120                         dialogue.LoadCompiledProgram(source.bytes, source.name);
-121                     \} \textcolor{keywordflow}{else} \{
-122                         \textcolor{comment}{// load and compile the text}
-123                         dialogue.LoadString (source.text, source.name);
-124                     \}
-125                     
-126                 \}
-127             \}
-128 
-129             \textcolor{keywordflow}{if} (\hyperlink{a00071_a6476a987f9788dba653976bcbe72980c}{startAutomatically}) \{
-130                 \hyperlink{a00071_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}();
-131             \}
-132 
-133             \textcolor{keywordflow}{if} (\hyperlink{a00071_a4d00a0671c2966b88d1c806c675fe915}{stringGroups} != null) \{
-134                 \textcolor{comment}{// Load the string table for this language, if appropriate}
-135                 var stringsGroup = \textcolor{keyword}{new} List<LocalisedStringGroup>(\hyperlink{a00071_a4d00a0671c2966b88d1c806c675fe915}{stringGroups}).Find(
-136                     entry => entry.language == (\hyperlink{a00071_a3e093d36845924378a8b2fd9ea3ac73d}{shouldOverrideLanguage} ? 
-      \hyperlink{a00071_ad12db159fc3df0819d5b594c33fba834}{overrideLanguage} : Application.systemLanguage)
-137                 );
-138 
-139                 \textcolor{keywordflow}{if} (stringsGroup != null) \{
-140                     \textcolor{keywordflow}{foreach} (var table \textcolor{keywordflow}{in} stringsGroup.stringFiles) \{
-141                         this.AddStringTable(table.text);
-142                     \}
-143                 \}
-144             \}
-145 
-146         \}
-\end{DoxyCode}
-\hypertarget{a00071_ab083d0ac60b41958b591c632e3c3a53e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
-\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00071_ab083d0ac60b41958b591c632e3c3a53e}
-
-\begin{DoxyCode}
-194                                      \{
-195             \hyperlink{a00071_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}(\hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode});
-196         \}
-\end{DoxyCode}
-\hypertarget{a00071_abda765c6804853e264282a0f45920cd3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
-\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
-\begin{DoxyParamCaption}
-\item[{string}]{start\-Node}
-\end{DoxyParamCaption}
-)}}\label{a00071_abda765c6804853e264282a0f45920cd3}
-
-\begin{DoxyCode}
-199         \{
-200 
-201             \textcolor{comment}{// Stop any processes that might be running already}
-202             StopAllCoroutines ();
-203             dialogueUI.StopAllCoroutines ();
-204 
-205             \textcolor{comment}{// Get it going}
-206             StartCoroutine (\hyperlink{a00071_adf4e816844b7d9ab4ed99265fd3f3ea9}{RunDialogue} (\hyperlink{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode}));
-207         \}
-\end{DoxyCode}
-\hypertarget{a00071_af94e66876098f8b187181014973645e6}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Stop@{Stop}}
-\index{Stop@{Stop}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Stop (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00071_af94e66876098f8b187181014973645e6}
-
-\begin{DoxyCode}
-276                            \{
-277             \hyperlink{a00071_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{false};
-278             dialogue.Stop();
-279         \}
+35         \{
+36 
+37             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
+38 
+39             \textcolor{keywordflow}{if} (showSeverity) \{
+40                 \textcolor{keywordflow}{switch} (\hyperlink{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
+41                 \textcolor{keywordflow}{case} Severity.Error:
+42                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
+43                     \textcolor{keywordflow}{break};
+44                 \textcolor{keywordflow}{case} Severity.Warning:
+45                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
+46                     \textcolor{keywordflow}{break};
+47                 \textcolor{keywordflow}{case} Severity.Note:
+48                     contextLabel = \textcolor{stringliteral}{"Note: "};
+49                     \textcolor{keywordflow}{break};
+50                 \textcolor{keywordflow}{default}:
+51                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+52                 \}
+53             \}
+54 
+55             \textcolor{keywordflow}{if} (this.\hyperlink{a00071_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
+56 
+57                 contextLabel += this.nodeName;
+58                 \textcolor{keywordflow}{if} (this.\hyperlink{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
+59                     contextLabel += string.Format (\textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
+60 
+61                     \textcolor{keywordflow}{if} (this.\hyperlink{a00071_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
+62                         contextLabel += string.Format (\textcolor{stringliteral}{":\{0\}"}, this.columnNumber);
+63                     \}
+64                 \}
+65             \} 
+66 
+67             \textcolor{keywordtype}{string} \hyperlink{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+68 
+69             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
+70                 message = this.message;
+71             \} \textcolor{keywordflow}{else} \{
+72                 message = string.Format (\textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message);
+73             \}
+74 
+75             \textcolor{keywordflow}{return} \hyperlink{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+76         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00071_a822055443227d3b76c6a8fb509812820}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!\-\_\-dialogue@{\-\_\-dialogue}}
-\index{\-\_\-dialogue@{\-\_\-dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{\-\_\-dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-\_\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00071_a822055443227d3b76c6a8fb509812820}
-\hypertarget{a00071_a6aac5e877d5396a8141da5e85243f462}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!automatic\-Commands@{automatic\-Commands}}
-\index{automatic\-Commands@{automatic\-Commands}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{automatic\-Commands}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-automatic\-Commands = true}}\label{a00071_a6aac5e877d5396a8141da5e85243f462}
-\hypertarget{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue\-U\-I@{dialogue\-U\-I}}
-\index{dialogue\-U\-I@{dialogue\-U\-I}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{dialogue\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\-U\-I}}\label{a00071_ac87fdc65b0be57868f80c0fcd62ffd6d}
-\hypertarget{a00071_ad12db159fc3df0819d5b594c33fba834}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!override\-Language@{override\-Language}}
-\index{override\-Language@{override\-Language}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{override\-Language}]{\setlength{\rightskip}{0pt plus 5cm}System\-Language Yarn.\-Unity.\-Dialogue\-Runner.\-override\-Language = System\-Language.\-English}}\label{a00071_ad12db159fc3df0819d5b594c33fba834}
-\hypertarget{a00071_a3e093d36845924378a8b2fd9ea3ac73d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!should\-Override\-Language@{should\-Override\-Language}}
-\index{should\-Override\-Language@{should\-Override\-Language}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{should\-Override\-Language}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-should\-Override\-Language = false}}\label{a00071_a3e093d36845924378a8b2fd9ea3ac73d}
-\hypertarget{a00071_a71eae33d06990a3aec5d444fae017492}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!source\-Text@{source\-Text}}
-\index{source\-Text@{source\-Text}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{source\-Text}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Dialogue\-Runner.\-source\-Text}}\label{a00071_a71eae33d06990a3aec5d444fae017492}
-\hypertarget{a00071_a6476a987f9788dba653976bcbe72980c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Automatically@{start\-Automatically}}
-\index{start\-Automatically@{start\-Automatically}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{start\-Automatically}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Automatically = true}}\label{a00071_a6476a987f9788dba653976bcbe72980c}
-\hypertarget{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Node@{start\-Node}}
-\index{start\-Node@{start\-Node}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Node = {\bf Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}}}\label{a00071_a61c92b8d2228d01d8ac123b73bbb41a0}
-\hypertarget{a00071_a4d00a0671c2966b88d1c806c675fe915}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!string\-Groups@{string\-Groups}}
-\index{string\-Groups@{string\-Groups}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{string\-Groups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Localised\-String\-Group} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Dialogue\-Runner.\-string\-Groups}}\label{a00071_a4d00a0671c2966b88d1c806c675fe915}
-\hypertarget{a00071_a6cca3d33f8b0ce3e750caed9fd8fc734}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!variable\-Storage@{variable\-Storage}}
-\index{variable\-Storage@{variable\-Storage}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{variable\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Variable\-Storage\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-variable\-Storage}}\label{a00071_a6cca3d33f8b0ce3e750caed9fd8fc734}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00071_a8589c66769e89906eaff3c2263bdad5d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!current\-Node\-Name@{current\-Node\-Name}}
-\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-current\-Node\-Name\hspace{0.3cm}{\ttfamily [get]}}}\label{a00071_a8589c66769e89906eaff3c2263bdad5d}
-\hypertarget{a00071_a4f9712a847ca6d53ec8d2dd64dfcffd8}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue@{dialogue}}
-\index{dialogue@{dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\hspace{0.3cm}{\ttfamily [get]}}}\label{a00071_a4f9712a847ca6d53ec8d2dd64dfcffd8}
-\hypertarget{a00071_a9eb0fd7b600a4667595042832af1d655}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!is\-Dialogue\-Running@{is\-Dialogue\-Running}}
-\index{is\-Dialogue\-Running@{is\-Dialogue\-Running}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{is\-Dialogue\-Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-is\-Dialogue\-Running\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00071_a9eb0fd7b600a4667595042832af1d655}
+\hypertarget{a00071_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00071_a658e7fb05555c0f9ab5f80057bdc1408}
+\hypertarget{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00071_a0bd73f1c684bfd66ae7b6bef8f2972d0}
+\hypertarget{a00071_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
+\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00071_ac7ed070dddd2613c08e7874ea5afb3af}
+\hypertarget{a00071_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00071_a662aca4ad2af5116c2cf6773daf1a847}
+\hypertarget{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
+\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00071_ad90ffa839ce0f568a099bb37b4a6c4da}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Code/\hyperlink{a00250}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00263}{Analyser.\-cs}\end{DoxyCompactItemize}

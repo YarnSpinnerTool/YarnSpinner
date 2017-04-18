@@ -1,113 +1,189 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d3/dfe/a00025" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::CameraFollow</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d3/dfe/a00025_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" static="no" mutable="no">
-        <type>Transform</type>
-        <definition>Transform Yarn.Unity.Example.CameraFollow.target</definition>
-        <argsstring></argsstring>
-        <name>target</name>
+    <compoundname>CsvHelper::TypeConversion::BooleanConverter</compoundname>
+    <basecompoundref refid="da/d24/a00068" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d3/dfe/a00025_1abc77c631974272fd1dfe3fe4fcc3bf28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.BooleanConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="da/d24/a00068_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+        <param>
+          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="34" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="21" bodyend="60"/>
       </memberdef>
-      <memberdef kind="variable" id="d3/dfe/a00025_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.minPosition</definition>
-        <argsstring></argsstring>
-        <name>minPosition</name>
-        <initializer>= -5.3f</initializer>
+      <memberdef kind="function" id="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.BooleanConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="36" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
-      <memberdef kind="variable" id="d3/dfe/a00025_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.maxPosition</definition>
-        <argsstring></argsstring>
-        <name>maxPosition</name>
-        <initializer>= 5.3f</initializer>
+      <memberdef kind="function" id="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="da/d74/a00099_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="d9/da4/a00078_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="d4/d3e/a00116_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <param>
+          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="37" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
       </memberdef>
-      <memberdef kind="variable" id="d3/dfe/a00025_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.CameraFollow.moveSpeed</definition>
-        <argsstring></argsstring>
-        <name>moveSpeed</name>
-        <initializer>= 1.0f</initializer>
+      <memberdef kind="function" id="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="da/d74/a00099_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="d9/da4/a00078_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="d3/dfe/a00025_1a592ddbf8e493bde0a6536c0234869217" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.CameraFollow.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="42" bodyend="53"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Converts a Boolean to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="894">
-        <label>MonoBehaviour</label>
+      <node id="883">
+        <label>ITypeConverter</label>
+        <link refid="da/d74/a00099"/>
       </node>
-      <node id="893">
-        <label>Yarn.Unity.Example.CameraFollow</label>
+      <node id="882">
+        <label>DefaultTypeConverter</label>
+        <link refid="da/d24/a00068"/>
+        <childnode refid="883" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="881">
+        <label>CsvHelper.TypeConversion.BooleanConverter</label>
         <link refid="d3/dfe/a00025"/>
-        <childnode refid="894" relation="public-inheritance">
+        <childnode refid="882" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="896">
-        <label>MonoBehaviour</label>
+      <node id="886">
+        <label>ITypeConverter</label>
+        <link refid="da/d74/a00099"/>
       </node>
-      <node id="895">
-        <label>Yarn.Unity.Example.CameraFollow</label>
+      <node id="885">
+        <label>DefaultTypeConverter</label>
+        <link refid="da/d24/a00068"/>
+        <childnode refid="886" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="884">
+        <label>CsvHelper.TypeConversion.BooleanConverter</label>
         <link refid="d3/dfe/a00025"/>
-        <childnode refid="896" relation="public-inheritance">
+        <childnode refid="885" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="32" bodyend="54"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/BooleanConverter.cs" bodystart="13" bodyend="74"/>
     <listofallmembers>
-      <member refid="d3/dfe/a00025_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>maxPosition</name></member>
-      <member refid="d3/dfe/a00025_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>minPosition</name></member>
-      <member refid="d3/dfe/a00025_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>moveSpeed</name></member>
-      <member refid="d3/dfe/a00025_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>target</name></member>
-      <member refid="d3/dfe/a00025_1a592ddbf8e493bde0a6536c0234869217" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>Update</name></member>
+      <member refid="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>CanConvertTo</name></member>
+      <member refid="d3/dfe/a00025_1abc77c631974272fd1dfe3fe4fcc3bf28" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>ConvertFromString</name></member>
+      <member refid="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::BooleanConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

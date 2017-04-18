@@ -1,534 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d2/dee/a00049" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyMapCollection</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">IList&lt; CsvPropertyMap &gt;</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d2/dee/a00049_1aaaf6e413795a81bf22463f6127f07fbb" prot="private" static="no" mutable="no">
-        <type>readonly List&lt; <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref> &gt;</type>
-        <definition>readonly List&lt;CsvPropertyMap&gt; CsvHelper.Configuration.CsvPropertyMapCollection.list</definition>
-        <argsstring></argsstring>
-        <name>list</name>
-        <initializer>= new List&lt;<ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d2/dee/a00049_1a6af917bc9200b3de170dcd3af2852fef" prot="private" static="no" mutable="no">
-        <type>readonly IComparer&lt; <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref> &gt;</type>
-        <definition>readonly IComparer&lt;CsvPropertyMap&gt; CsvHelper.Configuration.CsvPropertyMapCollection.comparer</definition>
-        <argsstring></argsstring>
-        <name>comparer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="19" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="d2/dee/a00049_1a45cac3a36ac638d4d4b723b7ceb93b5c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapCollection.Count</definition>
-        <argsstring></argsstring>
-        <name>Count</name>
-        <briefdescription>
-<para>Gets the number of elements contained in the T:System.Collections.Generic.ICollection`1. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The number of elements contained in the T:System.Collections.Generic.ICollection`1. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="133" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="134" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d2/dee/a00049_1a992f4d0757c470445df63e94db9ce9b9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.Configuration.CsvPropertyMapCollection.IsReadOnly</definition>
-        <argsstring></argsstring>
-        <name>IsReadOnly</name>
-        <briefdescription>
-<para>Gets a value indicating whether the T:System.Collections.Generic.ICollection`1 is read-only. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>true if the T:System.Collections.Generic.ICollection`1 is read-only; otherwise, false. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="144" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="145" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d2/dee/a00049_1a55e031211272c5a4844f054e2fa34b1d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvPropertyMapCollection.this[int index]</definition>
-        <argsstring></argsstring>
-        <name>this[int index]</name>
-        <briefdescription>
-<para>Gets or sets the element at the specified index. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The element at the specified index. </para></simplesect>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The zero-based index of the element to get or set. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentOutOfRangeException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><emphasis>index</emphasis>  is not a valid index in the T:System.Collections.Generic.IList`1. </para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The property is set and the T:System.Collections.Generic.IList`1 is read-only. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="197" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="198" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::CsvParserException</compoundname>
+    <basecompoundref refid="d3/dea/a00046" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="d2/dee/a00049_1a89ba52f3849e538bb151d9be215212fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d2/dee/a00049_1a4a87a8cbca18790562bab5f571e6e87b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyMapCollection.CsvPropertyMapCollection</definition>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
         <argsstring>()</argsstring>
-        <name>CsvPropertyMapCollection</name>
+        <name>CsvParserException</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvPropertyMapCollection</ref> class. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvParserException</ref> class. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="24" bodyend="24"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="23" bodyend="23"/>
       </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1ad8b12f23755f1d44e8a671c1b71ac52b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d2/dee/a00049_1a6ac692a1b7bb39afc66a7c701963e9c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyMapCollection.CsvPropertyMapCollection</definition>
-        <argsstring>(IComparer&lt; CsvPropertyMap &gt; comparer)</argsstring>
-        <name>CsvPropertyMapCollection</name>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvParserException</name>
         <param>
-          <type>IComparer&lt; <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref> &gt;</type>
-          <declname>comparer</declname>
+          <type>string</type>
+          <declname>message</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvPropertyMapCollection</ref> class. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvParserException</ref> class with a specified error message. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>comparer</parametername>
+<parametername>message</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The comparer to use when sorting the property maps.</para></parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="30" bodyend="33"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="30" bodyend="30"/>
       </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1a35b546631ba782ddfee12a68c551a28c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator&lt; <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref> &gt;</type>
-        <definition>virtual IEnumerator&lt;CsvPropertyMap&gt; CsvHelper.Configuration.CsvPropertyMapCollection.GetEnumerator</definition>
-        <argsstring>()</argsstring>
-        <name>GetEnumerator</name>
-        <briefdescription>
-<para>Returns an enumerator that iterates through the collection. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>A T:System.Collections.Generic.IEnumerator`1 that can be used to iterate through the collection. </para></simplesect>
-&lt;filterpriority&gt;1&lt;/filterpriority&gt; </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="42" bodyend="45"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1ac9c2361bc2e60bdc576a523d3b986241" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.Add</definition>
-        <argsstring>(CsvPropertyMap item)</argsstring>
-        <name>Add</name>
+      <memberdef kind="function" id="d2/dee/a00049_1a62b6bf7ba1ab79737a049a6ced4555d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvParserException</name>
         <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-          <declname>item</declname>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
         </param>
         <briefdescription>
-<para>Adds an item to the T:System.Collections.Generic.ICollection`1. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvParserException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>item</parametername>
+<parametername>message</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The object to add to the T:System.Collections.Generic.ICollection`1. </para></parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
 </parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
+<parameteritem>
 <parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
+<parametername>innerException</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The T:System.Collections.Generic.ICollection`1 is read-only. </para></parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="65" bodyend="69"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="39" bodyend="39"/>
       </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1abe7d382df0e52210392897a1338f0da4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.AddRange</definition>
-        <argsstring>(ICollection&lt; CsvPropertyMap &gt; collection)</argsstring>
-        <name>AddRange</name>
+      <memberdef kind="function" id="d2/dee/a00049_1a3ce8a09ae6e88787d47f47a108d33f21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvParserException</name>
         <param>
-          <type>ICollection&lt; <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref> &gt;</type>
-          <declname>collection</declname>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
         </param>
         <briefdescription>
-<para>Adds a range of items to the T:System.Collections.Generic.ICollection`1. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="d2/dee/a00049" kindref="compound">CsvParserException</ref> class with serialized data. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>collection</parametername>
+<parametername>info</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The collection to add.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="75" bodyend="79"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1a1dfdfaeb3efddb7643223d0c24e78027" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <briefdescription>
-<para>Removes all items from the T:System.Collections.Generic.ICollection`1. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The T:System.Collections.Generic.ICollection`1 is read-only. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="86" bodyend="89"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1aa95db8472bb2bfa95a15142ace748072" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.Configuration.CsvPropertyMapCollection.Contains</definition>
-        <argsstring>(CsvPropertyMap item)</argsstring>
-        <name>Contains</name>
-        <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-          <declname>item</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether the T:System.Collections.Generic.ICollection`1 contains a specific value. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>true if <emphasis>item</emphasis>  is found in the T:System.Collections.Generic.ICollection`1; otherwise, false. </para></simplesect>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>item</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to locate in the T:System.Collections.Generic.ICollection`1. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="99" bodyend="102"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1aeaa8a5bf25526e03affc880fd94c1628" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.CopyTo</definition>
-        <argsstring>(CsvPropertyMap[] array, int arrayIndex)</argsstring>
-        <name>CopyTo</name>
-        <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref>[]</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>arrayIndex</declname>
-        </param>
-        <briefdescription>
-<para>Copies the elements of the T:System.Collections.Generic.ICollection`1 to an T:System.Array, starting at a particular T:System.Array index. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The one-dimensional T:System.Array that is the destination of the elements copied from T:System.Collections.Generic.ICollection`1. The T:System.Array must have zero-based indexing.</para></parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>arrayIndex</parametername>
+<parametername>context</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The zero-based index in <emphasis>array</emphasis>  at which copying begins.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentNullException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><emphasis>array</emphasis>  is null.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentOutOfRangeException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><emphasis>arrayIndex</emphasis>  is less than 0.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The number of elements in the source T:System.Collections.Generic.ICollection`1 is greater than the available space from <emphasis>arrayIndex</emphasis>  to the end of the destination <emphasis>array</emphasis> .</para></parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="108" bodyend="111"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1a49ae251c73ab84b0ce756347cb6f97a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.Configuration.CsvPropertyMapCollection.Remove</definition>
-        <argsstring>(CsvPropertyMap item)</argsstring>
-        <name>Remove</name>
-        <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-          <declname>item</declname>
-        </param>
-        <briefdescription>
-<para>Removes the first occurrence of a specific object from the T:System.Collections.Generic.ICollection`1. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>true if <emphasis>item</emphasis>  was successfully removed from the T:System.Collections.Generic.ICollection`1; otherwise, false. This method also returns false if <emphasis>item</emphasis>  is not found in the original T:System.Collections.Generic.ICollection`1. </para></simplesect>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>item</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to remove from the T:System.Collections.Generic.ICollection`1. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The T:System.Collections.Generic.ICollection`1 is read-only. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="122" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="122" bodyend="125"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1aac63a00dfa729c27907a9fc2fd3ef67f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>int</type>
-        <definition>virtual int CsvHelper.Configuration.CsvPropertyMapCollection.IndexOf</definition>
-        <argsstring>(CsvPropertyMap item)</argsstring>
-        <name>IndexOf</name>
-        <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-          <declname>item</declname>
-        </param>
-        <briefdescription>
-<para>Determines the index of a specific item in the T:System.Collections.Generic.IList`1. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The index of <emphasis>item</emphasis>  if found in the list; otherwise, -1. </para></simplesect>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>item</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to locate in the T:System.Collections.Generic.IList`1. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="157" bodyend="160"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1af11c38d25948e5f901e75fa7b10ec930" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.Insert</definition>
-        <argsstring>(int index, CsvPropertyMap item)</argsstring>
-        <name>Insert</name>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <param>
-          <type><ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref></type>
-          <declname>item</declname>
-        </param>
-        <briefdescription>
-<para>Inserts an item to the T:System.Collections.Generic.IList`1 at the specified index. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The zero-based index at which <emphasis>item</emphasis>  should be inserted. </para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>item</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to insert into the T:System.Collections.Generic.IList`1. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentOutOfRangeException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><emphasis>index</emphasis>  is not a valid index in the T:System.Collections.Generic.IList`1. </para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The T:System.Collections.Generic.IList`1 is read-only. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="170" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="170" bodyend="173"/>
-      </memberdef>
-      <memberdef kind="function" id="d2/dee/a00049_1a30f92a732124e4c2acbf59579de87bf1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.Configuration.CsvPropertyMapCollection.RemoveAt</definition>
-        <argsstring>(int index)</argsstring>
-        <name>RemoveAt</name>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <briefdescription>
-<para>Removes the T:System.Collections.Generic.IList`1 item at the specified index. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>index</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The zero-based index of the item to remove. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>T:System.ArgumentOutOfRangeException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><emphasis>index</emphasis>  is not a valid index in the T:System.Collections.Generic.IList`1. </para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>T:System.NotSupportedException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The T:System.Collections.Generic.IList`1 is read-only. </para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="182" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="182" bodyend="185"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="d2/dee/a00049_1aef581be00c83dbfa17361450e5a571ec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerator IEnumerable.</type>
-        <definition>IEnumerator IEnumerable. CsvHelper.Configuration.CsvPropertyMapCollection.GetEnumerator</definition>
-        <argsstring>()</argsstring>
-        <name>GetEnumerator</name>
-        <briefdescription>
-<para>Returns an enumerator that iterates through a collection. </para>        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>An T:System.Collections.IEnumerator object that can be used to iterate through the collection. </para></simplesect>
-&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="54" bodyend="57"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="48" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>A collection that holds <ref refid="d4/dca/a00048" kindref="compound">CsvPropertyMap</ref>&apos;s. </para>    </briefdescription>
+<para>Represents errors that occur while parsing a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1018">
-        <label>IList&lt; CsvPropertyMap &gt;</label>
-      </node>
-      <node id="1017">
-        <label>CsvHelper.Configuration.CsvPropertyMapCollection</label>
+      <node id="1005">
+        <label>CsvHelper.CsvParserException</label>
         <link refid="d2/dee/a00049"/>
-        <childnode refid="1018" relation="public-inheritance">
+        <childnode refid="1006" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1007">
+        <label>Exception</label>
+      </node>
+      <node id="1006">
+        <label>CsvHelperException</label>
+        <link refid="d3/dea/a00046"/>
+        <childnode refid="1007" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1020">
-        <label>IList&lt; CsvPropertyMap &gt;</label>
-      </node>
-      <node id="1019">
-        <label>CsvHelper.Configuration.CsvPropertyMapCollection</label>
+      <node id="1008">
+        <label>CsvHelper.CsvParserException</label>
         <link refid="d2/dee/a00049"/>
-        <childnode refid="1020" relation="public-inheritance">
+        <childnode refid="1009" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1010">
+        <label>Exception</label>
+      </node>
+      <node id="1009">
+        <label>CsvHelperException</label>
+        <link refid="d3/dea/a00046"/>
+        <childnode refid="1010" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapCollection.cs" bodystart="16" bodyend="202"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="18" bodyend="50"/>
     <listofallmembers>
-      <member refid="d2/dee/a00049_1ac9c2361bc2e60bdc576a523d3b986241" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Add</name></member>
-      <member refid="d2/dee/a00049_1abe7d382df0e52210392897a1338f0da4" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>AddRange</name></member>
-      <member refid="d2/dee/a00049_1a1dfdfaeb3efddb7643223d0c24e78027" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Clear</name></member>
-      <member refid="d2/dee/a00049_1a6af917bc9200b3de170dcd3af2852fef" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>comparer</name></member>
-      <member refid="d2/dee/a00049_1aa95db8472bb2bfa95a15142ace748072" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Contains</name></member>
-      <member refid="d2/dee/a00049_1aeaa8a5bf25526e03affc880fd94c1628" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>CopyTo</name></member>
-      <member refid="d2/dee/a00049_1a45cac3a36ac638d4d4b723b7ceb93b5c" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Count</name></member>
-      <member refid="d2/dee/a00049_1a89ba52f3849e538bb151d9be215212fd" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>CsvPropertyMapCollection</name></member>
-      <member refid="d2/dee/a00049_1ad8b12f23755f1d44e8a671c1b71ac52b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>CsvPropertyMapCollection</name></member>
-      <member refid="d2/dee/a00049_1a35b546631ba782ddfee12a68c551a28c" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>GetEnumerator</name></member>
-      <member refid="d2/dee/a00049_1aef581be00c83dbfa17361450e5a571ec" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>GetEnumerator</name></member>
-      <member refid="d2/dee/a00049_1aac63a00dfa729c27907a9fc2fd3ef67f" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>IndexOf</name></member>
-      <member refid="d2/dee/a00049_1af11c38d25948e5f901e75fa7b10ec930" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Insert</name></member>
-      <member refid="d2/dee/a00049_1a992f4d0757c470445df63e94db9ce9b9" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>IsReadOnly</name></member>
-      <member refid="d2/dee/a00049_1aaaf6e413795a81bf22463f6127f07fbb" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>list</name></member>
-      <member refid="d2/dee/a00049_1a49ae251c73ab84b0ce756347cb6f97a7" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>Remove</name></member>
-      <member refid="d2/dee/a00049_1a30f92a732124e4c2acbf59579de87bf1" prot="public" virt="virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>RemoveAt</name></member>
-      <member refid="d2/dee/a00049_1a55e031211272c5a4844f054e2fa34b1d" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyMapCollection</scope><name>this[int index]</name></member>
+      <member refid="d3/dea/a00046_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="d3/dea/a00046_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="d3/dea/a00046_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="d3/dea/a00046_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="d2/dee/a00049_1a4a87a8cbca18790562bab5f571e6e87b" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="d2/dee/a00049_1a6ac692a1b7bb39afc66a7c701963e9c2" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="d2/dee/a00049_1a62b6bf7ba1ab79737a049a6ced4555d4" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="d2/dee/a00049_1a3ce8a09ae6e88787d47f47a108d33f21" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

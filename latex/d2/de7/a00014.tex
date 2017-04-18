@@ -1,11 +1,134 @@
-The M\-I\-T License (M\-I\-T)
+This document talks about how to use \hyperlink{a00031}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00031}{Yarn} Spinner into your project; for that, see \hyperlink{a00179}{Unity.\-md}Using \hyperlink{a00031}{Yarn} Spinner in your Unity game\char`\"{}\char`\"{}.
 
-Copyright (c) 2015-\/2017 Secret Lab Pty. Ltd. and \hyperlink{a00029}{Yarn} Spinner contributors.
+\subsection*{Lines}
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\-Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\-:
+\hyperlink{a00031}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: \begin{DoxyVerb}Alice: Hey, I'm a character speaking in a dialogue!
+Bob: Wild!
+\end{DoxyVerb}
 
-T\-H\-E S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D \char`\"{}\-A\-S I\-S\char`\"{}, W\-I\-T\-H\-O\-U\-T W\-A\-R\-R\-A\-N\-T\-Y O\-F A\-N\-Y K\-I\-N\-D, E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D, I\-N\-C\-L\-U\-D\-I\-N\-G B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O T\-H\-E W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y, F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-N\-D N\-O\-N\-I\-N\-F\-R\-I\-N\-G\-E\-M\-E\-N\-T. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E A\-U\-T\-H\-O\-R\-S O\-R C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y C\-L\-A\-I\-M, D\-A\-M\-A\-G\-E\-S O\-R O\-T\-H\-E\-R L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N A\-N A\-C\-T\-I\-O\-N O\-F C\-O\-N\-T\-R\-A\-C\-T, T\-O\-R\-T O\-R O\-T\-H\-E\-R\-W\-I\-S\-E, A\-R\-I\-S\-I\-N\-G F\-R\-O\-M, O\-U\-T O\-F O\-R I\-N C\-O\-N\-N\-E\-C\-T\-I\-O\-N W\-I\-T\-H T\-H\-E S\-O\-F\-T\-W\-A\-R\-E O\-R T\-H\-E U\-S\-E O\-R O\-T\-H\-E\-R D\-E\-A\-L\-I\-N\-G\-S I\-N T\-H\-E S\-O\-F\-T\-W\-A\-R\-E.
 
-This software contains third-\/party code\-: Unity Test Tools (M\-I\-T license), N\-Unit (B\-S\-D license), N\-Substitute (B\-S\-D license) and Cecil (M\-I\-T/\-X11 license). For more information, see the \href{Unity/Assets/UnityTestTools/LICENSE.txt}{\tt Unity Test Tools license file}. 
+Each line is delivered to your game one at a time.
+
+\subsection*{Options}
+
+To link a node to another node, you provide {\itshape options}. Options look like this\-: \begin{DoxyVerb}[[Go to the woods|GoToWoods]]
+[[Go back to the city|GoToCity]]
+\end{DoxyVerb}
+
+
+Options have two parts\-: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar ({\ttfamily $\vert$}).
+
+You don't have to provide the label. Instead, you can just provide the node name, like so\-: \begin{DoxyVerb}[[GoToCity]]
+\end{DoxyVerb}
+
+
+If an option has no label, \hyperlink{a00031}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
+
+When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
+
+If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00031}{Yarn} Spinner will let your game know.
+
+\subsection*{Shortcut Options}
+
+Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: \begin{DoxyVerb}Mae: What did you say to her?
+-> Nothing.
+    Mae: Oh, man. Maybe you should have.
+-> That she was an idiot.
+    Mae: Hah! I bet that pissed her off.
+Mae: Anyway, I'd better get going.
+\end{DoxyVerb}
+
+
+When this is run, \hyperlink{a00031}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
+
+You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: \begin{DoxyVerb}Bob: What would you like?
+-> A burger. <<if $money >= 5>>
+    Bob: Nice. Enjoy!
+-> A soda. <<if $money >= 2>>
+    Bob: Yum!
+-> Nothing.
+Bob: Thanks for coming!
+\end{DoxyVerb}
+
+
+Note that in the last example, there wasn't any attached text. If the player selected the last option (\char`\"{}\-Nothing.\char`\"{}), then the next line to appear would be \char`\"{}\-Bob\-: Thanks for coming!\char`\"{}
+
+You can also nest these shortcut options, if you like. Be careful, though -\/ too much nested options can make your text difficult to read.
+
+\subsection*{Commands}
+
+In addition to showing lines of dialogue, your game will probably want to run actions -\/ things like \char`\"{}move the camera to position X\char`\"{}, or \char`\"{}make character start smiling\char`\"{}. You can use commands for this.
+
+Commands look like this\-: \begin{DoxyVerb}<<move alice to under_bridge>>
+\end{DoxyVerb}
+
+
+Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
+
+\hyperlink{a00031}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00031}{Yarn} will stop the entire conversation when it reaches it.
+
+\subsection*{Variables and If statements}
+
+You can store numbers in variables. To do this, use the {\ttfamily set} command\-: \begin{DoxyVerb}<<set $door_unlocked to 1>>
+\end{DoxyVerb}
+
+
+You can check the value of a variable using the {\ttfamily if} command\-: \begin{DoxyVerb}<<if $door_unlocked is 1>>
+    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Expressions}
+
+You can do math in an {\ttfamily if} command. For example\-: \begin{DoxyVerb}<<if $number_of_stars_collected > 5>>
+    You have more than 5 stars!
+<<endif>>
+\end{DoxyVerb}
+
+
+You can also get fancier, and do stuff like this\-: \begin{DoxyVerb}<<if $hostages_saved == $number_of_hostages and $time_remaining > 0>>
+    You win the game!
+<<elseif $hostages_saved < $number_of_hostages and $time_remaining > 0>>
+    You need to rescue more hostages!
+<<elseif $bomb_has_exploded == 0>>
+    You failed to rescue the hostages before time ran out!
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Types}
+
+There are four different types of value in \hyperlink{a00031}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
+
+
+\begin{DoxyItemize}
+\item Strings contain text.
+\item Numbers are floating-\/point numbers.
+\item Booleans are either true or false.
+\item {\ttfamily null} means no value.
+\end{DoxyItemize}
+
+\hyperlink{a00031}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
+    The two strings are the same!
+<<endif>>
+
+<<if 1+1+"hi" == "2hi">>
+    Strings get joined together with other values!
+<<endif>>
+\end{DoxyVerb}
+
+
+{\bfseries Warning\-:} Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
+
+\subsection*{Functions}
+
+You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00031}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
+    We have gone to the city before!
+<<endif>>
+\end{DoxyVerb}
+
+
+You can't define your own functions inside \hyperlink{a00031}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00176}{Extending.\-md}Extending \hyperlink{a00031}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

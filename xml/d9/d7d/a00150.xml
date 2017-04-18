@@ -1,100 +1,97 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d9/d7d/a00150" kind="class" prot="package">
-    <compoundname>Yarn::Lexer::TokenRule</compoundname>
+    <compoundname>Yarn::TokeniserException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">InvalidOperationException</basecompoundref>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d9/d7d/a00150_1a47a404d6637fae489c3c77729a01cc69" prot="public" static="no" mutable="no">
-        <type>Regex</type>
-        <definition>Regex Yarn.Lexer.TokenRule.regex</definition>
+      <memberdef kind="variable" id="d9/d7d/a00150_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.TokeniserException.lineNumber</definition>
         <argsstring></argsstring>
-        <name>regex</name>
-        <initializer>= null</initializer>
+        <name>lineNumber</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="283" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="283" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="35" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d9/d7d/a00150_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Lexer.TokenRule.entersState</definition>
+      <memberdef kind="variable" id="d9/d7d/a00150_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.TokeniserException.columnNumber</definition>
         <argsstring></argsstring>
-        <name>entersState</name>
+        <name>columnNumber</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="286" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="286" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d9/d7d/a00150_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" static="no" mutable="no">
-        <type><ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-        <definition>TokenType Yarn.Lexer.TokenRule.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="287" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="287" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d9/d7d/a00150_1a09f49e6edf9ace38a92d723998181f8f" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.isTextRule</definition>
-        <argsstring></argsstring>
-        <name>isTextRule</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="288" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d9/d7d/a00150_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.delimitsText</definition>
-        <argsstring></argsstring>
-        <name>delimitsText</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="289" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="289" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="36" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/d7d/a00150_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d9/d7d/a00150_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.Lexer.TokenRule.TokenRule</definition>
-        <argsstring>(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</argsstring>
-        <name>TokenRule</name>
+        <definition>Yarn.TokeniserException.TokeniserException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>TokeniserException</name>
         <param>
-          <type><ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/d7d/a00150_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.TokeniserException.TokeniserException</definition>
+        <argsstring>(int lineNumber, int columnNumber, string message)</argsstring>
+        <name>TokeniserException</name>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
         </param>
         <param>
-          <type>Regex</type>
-          <declname>regex</declname>
+          <type>int</type>
+          <declname>columnNumber</declname>
         </param>
         <param>
           <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="39" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d9/d7d/a00150_1af88cfa5eafdee355e1abb67e358497bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d7d/a00150" kindref="compound">TokeniserException</ref></type>
+        <definition>static TokeniserException Yarn.TokeniserException.ExpectedTokensFromState</definition>
+        <argsstring>(int lineNumber, int columnNumber, Lexer.LexerState state)</argsstring>
+        <name>ExpectedTokensFromState</name>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
         </param>
         <param>
-          <type>bool</type>
-          <declname>delimitsText</declname>
-          <defval>false</defval>
+          <type>int</type>
+          <declname>columnNumber</declname>
+        </param>
+        <param>
+          <type><ref refid="d9/dcc/a00102" kindref="compound">Lexer.LexerState</ref></type>
+          <declname>state</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -102,41 +99,42 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="291" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="291" bodyend="297"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/d7d/a00150_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Lexer.TokenRule.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="299" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="299" bodyend="302"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="47" bodyend="65"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1582">
-        <label>Yarn.Lexer.TokenRule</label>
+    <inheritancegraph>
+      <node id="1574">
+        <label>InvalidOperationException</label>
+      </node>
+      <node id="1573">
+        <label>Yarn.TokeniserException</label>
         <link refid="d9/d7d/a00150"/>
+        <childnode refid="1574" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1576">
+        <label>InvalidOperationException</label>
+      </node>
+      <node id="1575">
+        <label>Yarn.TokeniserException</label>
+        <link refid="d9/d7d/a00150"/>
+        <childnode refid="1576" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="282" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="282" bodyend="304"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="33" bodyend="66"/>
     <listofallmembers>
-      <member refid="d9/d7d/a00150_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>delimitsText</name></member>
-      <member refid="d9/d7d/a00150_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>entersState</name></member>
-      <member refid="d9/d7d/a00150_1a09f49e6edf9ace38a92d723998181f8f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>isTextRule</name></member>
-      <member refid="d9/d7d/a00150_1a47a404d6637fae489c3c77729a01cc69" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>regex</name></member>
-      <member refid="d9/d7d/a00150_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>TokenRule</name></member>
-      <member refid="d9/d7d/a00150_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>ToString</name></member>
-      <member refid="d9/d7d/a00150_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>type</name></member>
+      <member refid="d9/d7d/a00150_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>columnNumber</name></member>
+      <member refid="d9/d7d/a00150_1af88cfa5eafdee355e1abb67e358497bd" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>ExpectedTokensFromState</name></member>
+      <member refid="d9/d7d/a00150_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>lineNumber</name></member>
+      <member refid="d9/d7d/a00150_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
+      <member refid="d9/d7d/a00150_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

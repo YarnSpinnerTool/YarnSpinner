@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.TableGenerator Class Reference</title>
+<title>YarnSpinner: CsvHelper.TypeConversion.StringConverter Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -107,63 +107,81 @@ $(document).ready(function(){initNavTree('d7/dce/a00143.html','../../');});
 
 <div class="header">
   <div class="summary">
-<a href="#pac-static-methods">Static Package Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="../../d4/d4f/a00673.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="../../d9/da5/a00493.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.TableGenerator Class Reference</div>  </div>
+<div class="title">CsvHelper.TypeConversion.StringConverter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Converts a string to and from a string.  
+ <a href="../../d7/dce/a00143.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for Yarn.TableGenerator:</div>
+Inheritance diagram for CsvHelper.TypeConversion.StringConverter:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d8/d73/a00674.png" border="0" usemap="#_yarn_8_table_generator_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_table_generator_coll__map" id="_yarn_8_table_generator_coll__map">
-</map>
+<div class="center"><img src="../../d5/d0f/a00494.png" border="0" usemap="#_csv_helper_8_type_conversion_8_string_converter_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_string_converter_inherit__map" id="_csv_helper_8_type_conversion_8_string_converter_inherit__map">
+<area shape="rect" id="node2" href="../../da/d24/a00068.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="../../da/d74/a00099.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for CsvHelper.TypeConversion.StringConverter:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../db/dc4/a00495.png" border="0" usemap="#_csv_helper_8_type_conversion_8_string_converter_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_string_converter_coll__map" id="_csv_helper_8_type_conversion_8_string_converter_coll__map">
+<area shape="rect" id="node2" href="../../da/d24/a00068.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="../../da/d74/a00099.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-static-methods"></a>
-Static Package Functions</h2></td></tr>
-<tr class="memitem:a1d65ef643c3f3495cf9480f86172ff87"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dce/a00143.html#a1d65ef643c3f3495cf9480f86172ff87">GenerateTables</a> (<a class="el" href="../../d2/d1f/a00083.html">GenerateTableOptions</a> options)</td></tr>
-<tr class="separator:a1d65ef643c3f3495cf9480f86172ff87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a72dd508110f2d6ec21a8fa7d3cf35291"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dce/a00143.html#a72dd508110f2d6ec21a8fa7d3cf35291">CreateCSVRow</a> (params string[] entries)</td></tr>
-<tr class="separator:a72dd508110f2d6ec21a8fa7d3cf35291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1014b76df01db6b9e7936e6ab6d44fb6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dce/a00143.html#a1014b76df01db6b9e7936e6ab6d44fb6">CreateCSVRow</a> (KeyValuePair&lt; string, string &gt; entry)</td></tr>
-<tr class="separator:a1014b76df01db6b9e7936e6ab6d44fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a50bf35ff93e01df630a9c5e3c7b7569f"><td class="memItemLeft" align="right" valign="top">override object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dce/a00143.html#a50bf35ff93e01df630a9c5e3c7b7569f">ConvertFromString</a> (<a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a> options, string text)</td></tr>
+<tr class="memdesc:a50bf35ff93e01df630a9c5e3c7b7569f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the string to an object.  <a href="#a50bf35ff93e01df630a9c5e3c7b7569f">More...</a><br/></td></tr>
+<tr class="separator:a50bf35ff93e01df630a9c5e3c7b7569f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7f3959693638756bb98951fe8791f3"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dce/a00143.html#a3e7f3959693638756bb98951fe8791f3">CanConvertFrom</a> (System.Type type)</td></tr>
+<tr class="memdesc:a3e7f3959693638756bb98951fe8791f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert from] the specified type.  <a href="#a3e7f3959693638756bb98951fe8791f3">More...</a><br/></td></tr>
+<tr class="separator:a3e7f3959693638756bb98951fe8791f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36cb2f9b24f15a671293f3a722324c27"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d24/a00068.html#a36cb2f9b24f15a671293f3a722324c27">ConvertToString</a> (<a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a> options, object value)</td></tr>
+<tr class="memdesc:a36cb2f9b24f15a671293f3a722324c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the object to a string.  <a href="#a36cb2f9b24f15a671293f3a722324c27">More...</a><br/></td></tr>
+<tr class="separator:a36cb2f9b24f15a671293f3a722324c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a470d21adaa704eb281250dbd112ff91a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d24/a00068.html#a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</a> (Type type)</td></tr>
+<tr class="memdesc:a470d21adaa704eb281250dbd112ff91a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert from] the specified type.  <a href="#a470d21adaa704eb281250dbd112ff91a">More...</a><br/></td></tr>
+<tr class="separator:a470d21adaa704eb281250dbd112ff91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb65bd8c8199d88d5b1629ae35d18514"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d24/a00068.html#acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</a> (Type type)</td></tr>
+<tr class="memdesc:acb65bd8c8199d88d5b1629ae35d18514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert to] the specified type.  <a href="#acb65bd8c8199d88d5b1629ae35d18514">More...</a><br/></td></tr>
+<tr class="separator:acb65bd8c8199d88d5b1629ae35d18514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a72dd508110f2d6ec21a8fa7d3cf35291"></a>
+<div class="textblock"><p>Converts a string to and from a string. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3e7f3959693638756bb98951fe8791f3"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.TableGenerator.CreateCSVRow </td>
+          <td class="memname">override bool CsvHelper.TypeConversion.StringConverter.CanConvertFrom </td>
           <td>(</td>
-          <td class="paramtype">params string[]&#160;</td>
-          <td class="paramname"><em>entries</em></td><td>)</td>
+          <td class="paramtype">System.Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                                      {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">return</span> string.Join (<span class="stringliteral">&quot;,&quot;</span>, entries);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+
+<p>Determines whether this instance [can convert from] the specified type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert from] the specified type; otherwise, <code>false</code>. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a1014b76df01db6b9e7936e6ab6d44fb6"></a>
+<a class="anchor" id="a470d21adaa704eb281250dbd112ff91a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -171,27 +189,41 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.TableGenerator.CreateCSVRow </td>
+          <td class="memname">virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom </td>
           <td>(</td>
-          <td class="paramtype">KeyValuePair&lt; string, string &gt;&#160;</td>
-          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                                                                {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="../../d7/dce/a00143.html#a72dd508110f2d6ec21a8fa7d3cf35291">CreateCSVRow</a> (<span class="keyword">new</span> <span class="keywordtype">string</span>[] { entry.Key, entry.Value });</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
-<div class="ttc" id="a00143_html_a72dd508110f2d6ec21a8fa7d3cf35291"><div class="ttname"><a href="../../d7/dce/a00143.html#a72dd508110f2d6ec21a8fa7d3cf35291">Yarn.TableGenerator.CreateCSVRow</a></div><div class="ttdeci">string CreateCSVRow(params string[] entries)</div><div class="ttdef"><b>Definition:</b> TableGenerator.cs:124</div></div>
+
+<p>Determines whether this instance [can convert from] the specified type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert from] the specified type; otherwise, <code>false</code>. </dd></dl>
+
+<p>Implements <a class="el" href="../../da/d74/a00099.html#ae1ad863656f4fa96bd846a41344c9349">CsvHelper.TypeConversion.ITypeConverter</a>.</p>
+
+<p>Reimplemented in <a class="el" href="../../d4/d3e/a00116.html#ab9761a9f96be2b41103bb1313611d6f9">CsvHelper.TypeConversion.NullableConverter</a>, <a class="el" href="../../d3/dfe/a00025.html#a0be20573af4ee53409bb437125a64268">CsvHelper.TypeConversion.BooleanConverter</a>, <a class="el" href="../../d1/d09/a00077.html#a31af8209aad64ed11d949586075c244a">CsvHelper.TypeConversion.EnumConverter</a>, <a class="el" href="../../d9/da4/a00078.html#af66a7c67041f4c8061aa66e9e36359cf">CsvHelper.TypeConversion.EnumerableConverter</a>, <a class="el" href="../../de/de1/a00065.html#a82a8cf4b77600ef49da60deb0c24a708">CsvHelper.TypeConversion.DateTimeOffsetConverter</a>, <a class="el" href="../../df/d5f/a00064.html#af44239d3bd014b1423fa80f7440bbd25">CsvHelper.TypeConversion.DateTimeConverter</a>, <a class="el" href="../../d6/d5b/a00026.html#a74a66b405f6c18e69b9fd23a1dea91b0">CsvHelper.TypeConversion.ByteConverter</a>, and <a class="el" href="../../db/d48/a00148.html#ae3f8d46f5176d2ae08ac3fcdda1951e7">CsvHelper.TypeConversion.TimeSpanConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="comment">// The default convert doesn&#39;t know how to</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// convert from any type.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a1d65ef643c3f3495cf9480f86172ff87"></a>
+<a class="anchor" id="acb65bd8c8199d88d5b1629ae35d18514"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -199,151 +231,164 @@ Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int Yarn.TableGenerator.GenerateTables </td>
+          <td class="memname">virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d2/d1f/a00083.html">GenerateTableOptions</a>&#160;</td>
-          <td class="paramname"><em>options</em></td><td>)</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">package</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            YarnSpinnerConsole.CheckFileList(options.files, <a class="code" href="../../de/d53/a00169.html#a0979de7ea02c8c0375b8220a12e6575e">YarnSpinnerConsole.ALLOWED_EXTENSIONS</a>);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">if</span> (options.<a class="code" href="../../db/db2/a00020.html#ada4d83d1756918f362d55f6649b82b17">verbose</a> &amp;&amp; options.<a class="code" href="../../d2/d1f/a00083.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a> != null) {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                YarnSpinnerConsole.Note(string.Format(<span class="stringliteral">&quot;Only using lines from nodes tagged \&quot;{0}\&quot;&quot;</span>, options.onlyUseTag));</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordtype">bool</span> linesWereUntagged = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">foreach</span> (var file <span class="keywordflow">in</span> options.<a class="code" href="../../db/db2/a00020.html#aa93cbb1bc1d5328e0a417012621e92d2">files</a>) {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                dialogue.LoadFile (file);</div>
+
+<p>Determines whether this instance [can convert to] the specified type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert to] the specified type; otherwise, <code>false</code>. </dd></dl>
+
+<p>Implements <a class="el" href="../../da/d74/a00099.html#a168b03dad37fcb6882101c93deac8111">CsvHelper.TypeConversion.ITypeConverter</a>.</p>
+
+<p>Reimplemented in <a class="el" href="../../d9/da4/a00078.html#a44d625b44f770b945a29cd89e399f90f">CsvHelper.TypeConversion.EnumerableConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a50bf35ff93e01df630a9c5e3c7b7569f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override object CsvHelper.TypeConversion.StringConverter.ConvertFromString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the string to an object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">text</td><td>The string to convert to an object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The object created from the string.</dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../da/d24/a00068.html#a804ea00060e1de70e5151f90d3bfce9b">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span>( text == null )</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">return</span> string.Empty;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                var stringTable = dialogue.GetStringTable ();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                var emittedStringTable = <span class="keyword">new</span> Dictionary&lt;string,string&gt; ();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                var anyLinesAreUntagged = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> stringTable) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    <span class="comment">// If options.onlyUseTag is set, we skip all lines in nodes that</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    <span class="comment">// don&#39;t have that tag.</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                    <span class="keywordflow">if</span> (options.<a class="code" href="../../d2/d1f/a00083.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a> != null) {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        <span class="comment">// Find the tags for the node that this string is in</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        <a class="code" href="../../d5/d1e/a00103.html">LineInfo</a> stringInfo;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                            stringInfo = dialogue.program.lineInfo[entry.Key];</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                            YarnSpinnerConsole.Error(string.Format(<span class="stringliteral">&quot;{0}: lineInfo table does not contain an entry for line {1} (\&quot;{2}\&quot;)&quot;</span>, file, entry.Key, entry.Value));</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        <a class="code" href="../../d5/d16/a00029.html#da/de0/a00317">Node</a> node;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                            node = dialogue.program.nodes[stringInfo.nodeName];</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                            YarnSpinnerConsole.Error(string.Format(<span class="stringliteral">&quot;{0}: Line {1}&#39;s lineInfo claims that the line originates in node {2}, but this node is not present in this program.&quot;</span>, file, entry.Key, stringInfo.nodeName));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        var tags = node.tags;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        <span class="comment">// If the tags don&#39;t include the one we&#39;re looking for,</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        <span class="comment">// skip this line</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        <span class="keywordflow">if</span> (tags.FindIndex(i =&gt; i == options.<a class="code" href="../../d2/d1f/a00083.html#a8b30c1b7fb1b74eae455a568c1024b3d">onlyUseTag</a>) == -1) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">if</span> (entry.Key.StartsWith(<span class="stringliteral">&quot;line:&quot;</span>) == <span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        anyLinesAreUntagged = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        emittedStringTable [entry.Key] = entry.Value;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">if</span> (anyLinesAreUntagged) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    YarnSpinnerConsole.Warn(string.Format(<span class="stringliteral">&quot;Untagged lines in {0}&quot;</span>, file));</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    linesWereUntagged = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="comment">// Generate the CSV</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keyword">using</span> (var w = <span class="keyword">new</span> System.IO.StringWriter()) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    <span class="keyword">using</span> (var csv = <span class="keyword">new</span> <a class="code" href="../../d3/d8b/a00059.html">CsvWriter</a>(w)) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        csv.WriteHeader&lt;<a class="code" href="../../d7/d70/a00106.html">LocalisedLine</a>&gt;();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> emittedStringTable)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                            var l = <span class="keyword">new</span> <a class="code" href="../../d7/d70/a00106.html">LocalisedLine</a>();</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                            l.LineCode = entry.Key;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                            l.LineText = entry.Value;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                            l.Comment = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                            csv.WriteRecord(l);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        var dir = System.IO.Path.GetDirectoryName(file);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        var fileName = System.IO.Path.GetFileNameWithoutExtension(file);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        fileName += <span class="stringliteral">&quot;_lines.csv&quot;</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        var filePath = System.IO.Path.Combine(dir, fileName);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        System.IO.File.WriteAllText(filePath, w.ToString());</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        <span class="keywordflow">if</span> (options.<a class="code" href="../../db/db2/a00020.html#ada4d83d1756918f362d55f6649b82b17">verbose</a>)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                            YarnSpinnerConsole.Note(<span class="stringliteral">&quot;Wrote &quot;</span> + filePath);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    }                   </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">if</span> (linesWereUntagged) {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                YarnSpinnerConsole.Warn(<span class="stringliteral">&quot;Some lines were not tagged, so they weren&#39;t added to the &quot;</span> +</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                               <span class="stringliteral">&quot;string file. Use this tool&#39;s &#39;generate&#39; action to add them.&quot;</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="ttc" id="a00020_html_aa93cbb1bc1d5328e0a417012621e92d2"><div class="ttname"><a href="../../db/db2/a00020.html#aa93cbb1bc1d5328e0a417012621e92d2">Yarn.BaseOptions.files</a></div><div class="ttdeci">IList&lt; string &gt; files</div><div class="ttdef"><b>Definition:</b> Main.cs:47</div></div>
-<div class="ttc" id="a00103_html"><div class="ttname"><a href="../../d5/d1e/a00103.html">Yarn.LineInfo</a></div><div class="ttdef"><b>Definition:</b> Compiler.cs:8</div></div>
-<div class="ttc" id="a00059_html"><div class="ttname"><a href="../../d3/d8b/a00059.html">CsvHelper.CsvWriter</a></div><div class="ttdoc">Used to write CSV files. </div><div class="ttdef"><b>Definition:</b> CsvWriter.cs:24</div></div>
-<div class="ttc" id="a00029_html_da/de0/a00317"><div class="ttname"><a href="../../d5/d16/a00029.html#da/de0/a00317">Yarn.Node</a></div><div class="ttdef"><b>Definition:</b> Compiler.cs:163</div></div>
-<div class="ttc" id="a00106_html"><div class="ttname"><a href="../../d7/d70/a00106.html">Yarn.LocalisedLine</a></div><div class="ttdef"><b>Definition:</b> Dialogue.cs:85</div></div>
-<div class="ttc" id="a00169_html_a0979de7ea02c8c0375b8220a12e6575e"><div class="ttname"><a href="../../de/d53/a00169.html#a0979de7ea02c8c0375b8220a12e6575e">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</a></div><div class="ttdeci">static List&lt; string &gt; ALLOWED_EXTENSIONS</div><div class="ttdef"><b>Definition:</b> Main.cs:268</div></div>
-<div class="ttc" id="a00020_html_ada4d83d1756918f362d55f6649b82b17"><div class="ttname"><a href="../../db/db2/a00020.html#ada4d83d1756918f362d55f6649b82b17">Yarn.BaseOptions.verbose</a></div><div class="ttdeci">bool verbose</div><div class="ttdef"><b>Definition:</b> Main.cs:44</div></div>
-<div class="ttc" id="a00083_html_a8b30c1b7fb1b74eae455a568c1024b3d"><div class="ttname"><a href="../../d2/d1f/a00083.html#a8b30c1b7fb1b74eae455a568c1024b3d">Yarn.GenerateTableOptions.onlyUseTag</a></div><div class="ttdeci">string onlyUseTag</div><div class="ttdef"><b>Definition:</b> Main.cs:110</div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">return</span> text;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a36cb2f9b24f15a671293f3a722324c27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the object to a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">value</td><td>The object to convert to a string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string representation of the object.</dd></dl>
+
+<p>Implements <a class="el" href="../../da/d74/a00099.html#a90c465c63dbcf913f38aa878f35e77c7">CsvHelper.TypeConversion.ITypeConverter</a>.</p>
+
+<p>Reimplemented in <a class="el" href="../../d4/d3e/a00116.html#a7205cdb61d2d119582958232b3e63109">CsvHelper.TypeConversion.NullableConverter</a>, and <a class="el" href="../../d9/da4/a00078.html#a7e07e9532857d748654d37db590a0e11">CsvHelper.TypeConversion.EnumerableConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span>( value == null )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">return</span> string.Empty;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            var formattable = value as IFormattable;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span>( formattable != null )</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">return</span> formattable.ToString( options.Format, options.CultureInfo );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> value.ToString();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinnerConsole/<a class="el" href="../../">TableGenerator.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/<a class="el" href="../../">StringConverter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d5/d16/a00029.html">Yarn</a></li><li class="navelem"><a class="el" href="../../d7/dce/a00143.html">TableGenerator</a></li>
+    <li class="navelem"><a class="el" href="../../db/dc3/a00284.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d5/d7b/a00286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="../../d7/dce/a00143.html">StringConverter</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

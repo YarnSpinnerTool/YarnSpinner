@@ -1,48 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d8/df1/a00174" kind="file">
-    <compoundname>Extending.md</compoundname>
+    <compoundname>CONTRIBUTORS.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Extending<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributors<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">This<sp/>is<sp/>a<sp/>quick-and-dirty<sp/>document<sp/>that<sp/>shows<sp/>how<sp/>to<sp/>add<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>functions<sp/>so<sp/>that<sp/>they<sp/>can<sp/>be<sp/>called<sp/>from<sp/>inside<sp/>Yarn.</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">*<sp/>20??-2017<sp/>The<sp/>Secret<sp/>Lab</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">*<sp/>2017<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal">First,<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>your<sp/>`Dialogue`<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>some_implementation<sp/>is<sp/>the<sp/>object<sp/>that<sp/>handles<sp/>variable<sp/>storage<sp/>-<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>it&apos;s<sp/>not<sp/>important<sp/>in<sp/>this<sp/>example</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>dialogue<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dialogue(some_implementation);</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">Next,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>your<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">.<sp/>For<sp/>example,<sp/>let</highlight><highlight class="stringliteral">&apos;s<sp/>make<sp/>a<sp/>function<sp/>that<sp/>takes<sp/>1<sp/>parameter,<sp/>which<sp/>is<sp/>a<sp/>number,<sp/>and<sp/>returns<sp/>`true`<sp/>if<sp/>it&apos;</highlight><highlight class="normal">s<sp/>even:</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>dialogue.library.RegisterFunction<sp/>(</highlight><highlight class="stringliteral">&quot;is_even&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>delegate(Value[]<sp/>parameters)<sp/>{</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)parameters[0].AsNumber<sp/>%<sp/>2<sp/>==<sp/>0;</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">When<sp/>the<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>is<sp/>called,<sp/>the<sp/>delegate<sp/>you<sp/>provide<sp/>will<sp/>be<sp/>run.</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">Some<sp/>notes:</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">*<sp/>You<sp/>don</highlight><highlight class="stringliteral">&apos;t<sp/>have<sp/>to<sp/>return<sp/>a<sp/>value<sp/>from<sp/>your<sp/>function.</highlight></codeline>
-<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="25"><highlight class="stringliteral">*<sp/>The<sp/>parameters<sp/>passed<sp/>to<sp/>your<sp/>function<sp/>are<sp/>of<sp/>type<sp/>Yarn.Value.<sp/>You<sp/>can<sp/>get<sp/>their<sp/>value<sp/>as<sp/>numbers,<sp/>bools<sp/>or<sp/>strings<sp/>by<sp/>using<sp/>the<sp/>`AsNumber`,<sp/>`AsString`<sp/>and<sp/>`AsBool`<sp/>properties.</highlight></codeline>
-<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="27"><highlight class="stringliteral">*<sp/>You<sp/>can<sp/>only<sp/>return<sp/>values<sp/>of<sp/>the<sp/>following<sp/>types:</highlight></codeline>
-<codeline lineno="28"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="29"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>String</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Float</highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Double</highlight></codeline>
-<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Integer</highlight></codeline>
-<codeline lineno="33"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Yarn.Value</highlight></codeline>
-<codeline lineno="34"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="35"><highlight class="stringliteral">*<sp/>Yarn<sp/>Spinner<sp/>will<sp/>make<sp/>sure<sp/>that<sp/>the<sp/>correct<sp/>number<sp/>of<sp/>parameters<sp/>is<sp/>passed<sp/>to<sp/>your<sp/>method.<sp/>If<sp/>you<sp/>specify<sp/>`-1`<sp/>as<sp/>your<sp/>parameter<sp/>count,<sp/>the<sp/>function<sp/>may<sp/>have<sp/>any<sp/>number<sp/>of<sp/>parameters.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Extending.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTORS.md"/>
   </compounddef>
 </doxygen>

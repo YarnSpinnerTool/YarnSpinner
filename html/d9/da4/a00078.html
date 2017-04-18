@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.ExceptionHelper Class Reference</title>
+<title>YarnSpinner: CsvHelper.TypeConversion.EnumerableConverter Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -107,36 +107,49 @@ $(document).ready(function(){initNavTree('d9/da4/a00078.html','../../');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="../../d6/db8/a00376.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="../../db/d2c/a00466.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.ExceptionHelper Class Reference</div>  </div>
+<div class="title">CsvHelper.TypeConversion.EnumerableConverter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Common exception tasks.  
+<p>Throws an exception when used. This is here so that it's apparent that there is no support for IEnumerable type coversion. A custom converter will need to be created to have a field convert to and from an IEnumerable.  
  <a href="../../d9/da4/a00078.html#details">More...</a></p>
 <div class="dynheader">
-Collaboration diagram for CsvHelper.ExceptionHelper:</div>
+Inheritance diagram for CsvHelper.TypeConversion.EnumerableConverter:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d4/d13/a00377.png" border="0" usemap="#_csv_helper_8_exception_helper_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_exception_helper_coll__map" id="_csv_helper_8_exception_helper_coll__map">
-</map>
+<div class="center"><img src="../../d7/d5e/a00467.png" border="0" usemap="#_csv_helper_8_type_conversion_8_enumerable_converter_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_enumerable_converter_inherit__map" id="_csv_helper_8_type_conversion_8_enumerable_converter_inherit__map">
+<area shape="rect" id="node2" href="../../da/d24/a00068.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="../../da/d74/a00099.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for CsvHelper.TypeConversion.EnumerableConverter:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../df/d38/a00468.png" border="0" usemap="#_csv_helper_8_type_conversion_8_enumerable_converter_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_enumerable_converter_coll__map" id="_csv_helper_8_type_conversion_8_enumerable_converter_coll__map">
+<area shape="rect" id="node2" href="../../da/d24/a00068.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="../../da/d74/a00099.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7415ea84b6d462b9d61ecf2128282837"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#a7415ea84b6d462b9d61ecf2128282837">AddExceptionDataMessage</a> (Exception exception, <a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a> parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</td></tr>
-<tr class="memdesc:a7415ea84b6d462b9d61ecf2128282837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> specific information to Exception.Data.  <a href="#a7415ea84b6d462b9d61ecf2128282837">More...</a><br/></td></tr>
-<tr class="separator:a7415ea84b6d462b9d61ecf2128282837"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11e421dc9f9fdb2b72d060a24471b5be"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#a11e421dc9f9fdb2b72d060a24471b5be">GetErrorMessage</a> (<a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a> parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</td></tr>
-<tr class="memdesc:a11e421dc9f9fdb2b72d060a24471b5be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> information to be added to an exception.  <a href="#a11e421dc9f9fdb2b72d060a24471b5be">More...</a><br/></td></tr>
-<tr class="separator:a11e421dc9f9fdb2b72d060a24471b5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a692617638507cd1033728d7f718fcd2a"><td class="memItemLeft" align="right" valign="top">override object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#a692617638507cd1033728d7f718fcd2a">ConvertFromString</a> (<a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a> options, string text)</td></tr>
+<tr class="memdesc:a692617638507cd1033728d7f718fcd2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an exception.  <a href="#a692617638507cd1033728d7f718fcd2a">More...</a><br/></td></tr>
+<tr class="separator:a692617638507cd1033728d7f718fcd2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e07e9532857d748654d37db590a0e11"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#a7e07e9532857d748654d37db590a0e11">ConvertToString</a> (<a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a> options, object value)</td></tr>
+<tr class="memdesc:a7e07e9532857d748654d37db590a0e11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws an exception.  <a href="#a7e07e9532857d748654d37db590a0e11">More...</a><br/></td></tr>
+<tr class="separator:a7e07e9532857d748654d37db590a0e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66a7c67041f4c8061aa66e9e36359cf"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</a> (Type type)</td></tr>
+<tr class="memdesc:af66a7c67041f4c8061aa66e9e36359cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert from] the specified type.  <a href="#af66a7c67041f4c8061aa66e9e36359cf">More...</a><br/></td></tr>
+<tr class="separator:af66a7c67041f4c8061aa66e9e36359cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d625b44f770b945a29cd89e399f90f"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da4/a00078.html#a44d625b44f770b945a29cd89e399f90f">CanConvertTo</a> (Type type)</td></tr>
+<tr class="memdesc:a44d625b44f770b945a29cd89e399f90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert to] the specified type.  <a href="#a44d625b44f770b945a29cd89e399f90f">More...</a><br/></td></tr>
+<tr class="separator:a44d625b44f770b945a29cd89e399f90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Common exception tasks. </p>
+<div class="textblock"><p>Throws an exception when used. This is here so that it's apparent that there is no support for IEnumerable type coversion. A custom converter will need to be created to have a field convert to and from an IEnumerable. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7415ea84b6d462b9d61ecf2128282837"></a>
+<a class="anchor" id="af66a7c67041f4c8061aa66e9e36359cf"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -144,89 +157,37 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void CsvHelper.ExceptionHelper.AddExceptionDataMessage </td>
+          <td class="memname">override bool CsvHelper.TypeConversion.EnumerableConverter.CanConvertFrom </td>
           <td>(</td>
-          <td class="paramtype">Exception&#160;</td>
-          <td class="paramname"><em>exception</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a>&#160;</td>
-          <td class="paramname"><em>parser</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">Dictionary&lt; string, List&lt; int &gt;&gt;&#160;</td>
-          <td class="paramname"><em>namedIndexes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>currentIndex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>currentRecord</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> specific information to Exception.Data. </p>
+<p>Determines whether this instance [can convert from] the specified type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">exception</td><td>The exception to add the info to.</td></tr>
-    <tr><td class="paramname">parser</td><td>The parser.</td></tr>
-    <tr><td class="paramname">type</td><td>The type of object that was being created in the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">namedIndexes</td><td>The named indexes in the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">currentIndex</td><td>The current index of the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">currentRecord</td><td>The current record of the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="comment">// An error could occur in the parser and get this message set on it, then occur in the</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="comment">// reader and have it set again. This is ok because when the reader calls this method,</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="comment">// it will have extra info to be added.</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                exception.Data[<span class="stringliteral">&quot;CsvHelper&quot;</span>] = <a class="code" href="../../d9/da4/a00078.html#a11e421dc9f9fdb2b72d060a24471b5be">GetErrorMessage</a>( parser, type, namedIndexes, currentIndex, currentRecord );</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">catch</span>( Exception ex )</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                var exString = <span class="keyword">new</span> StringBuilder();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                exString.AppendLine( <span class="stringliteral">&quot;An error occurred while creating exception details.&quot;</span> );</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                exString.AppendLine();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                exString.AppendLine( ex.ToString() );</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                exception.Data[<span class="stringliteral">&quot;CsvHelper&quot;</span>] = exString.ToString();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="ttc" id="a00078_html_a11e421dc9f9fdb2b72d060a24471b5be"><div class="ttname"><a href="../../d9/da4/a00078.html#a11e421dc9f9fdb2b72d060a24471b5be">CsvHelper.ExceptionHelper.GetErrorMessage</a></div><div class="ttdeci">static string GetErrorMessage(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</div><div class="ttdoc">Gets CsvHelper information to be added to an exception. </div><div class="ttdef"><b>Definition:</b> ExceptionHelper.cs:57</div></div>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert from] the specified type; otherwise, <code>false</code>. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../da/d24/a00068.html#a470d21adaa704eb281250dbd112ff91a">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a11e421dc9f9fdb2b72d060a24471b5be"></a>
+<a class="anchor" id="a44d625b44f770b945a29cd89e399f90f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -234,34 +195,54 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static string CsvHelper.ExceptionHelper.GetErrorMessage </td>
+          <td class="memname">override bool CsvHelper.TypeConversion.EnumerableConverter.CanConvertTo </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a>&#160;</td>
-          <td class="paramname"><em>parser</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines whether this instance [can convert to] the specified type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert to] the specified type; otherwise, <code>false</code>. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../da/d24/a00068.html#acb65bd8c8199d88d5b1629ae35d18514">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a692617638507cd1033728d7f718fcd2a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override object CsvHelper.TypeConversion.EnumerableConverter.ConvertFromString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Dictionary&lt; string, List&lt; int &gt;&gt;&#160;</td>
-          <td class="paramname"><em>namedIndexes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int?&#160;</td>
-          <td class="paramname"><em>currentIndex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>currentRecord</em>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -271,78 +252,90 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> information to be added to an exception. </p>
+<p>Throws an exception. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parser</td><td>The parser.</td></tr>
-    <tr><td class="paramname">type</td><td>The type of object that was being created in the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">namedIndexes</td><td>The named indexes in the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">currentIndex</td><td>The current index of the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
-    <tr><td class="paramname">currentRecord</td><td>The current record of the <a class="el" href="../../d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. ">CsvReader</a>.</td></tr>
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">text</td><td>The string to convert to an object.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> information.</dd></dl>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            var messageInfo = <span class="keyword">new</span> StringBuilder();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">if</span>( parser != null )</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                messageInfo.AppendFormat( <span class="stringliteral">&quot;Row: &#39;{0}&#39; (1 based)&quot;</span>, parser.Row ).AppendLine();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keywordflow">if</span>( type != null )</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                messageInfo.AppendFormat( <span class="stringliteral">&quot;Type: &#39;{0}&#39;&quot;</span>, type.FullName ).AppendLine();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span>( currentIndex.HasValue )</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                messageInfo.AppendFormat( <span class="stringliteral">&quot;Field Index: &#39;{0}&#39; (0 based)&quot;</span>, currentIndex ).AppendLine();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">if</span>( namedIndexes != null )</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                var fieldName = ( from pair in namedIndexes</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                  from index in pair.Value</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                  where index == currentIndex</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                  select pair.Key ).SingleOrDefault();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">if</span>( fieldName != null )</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    messageInfo.AppendFormat( <span class="stringliteral">&quot;Field Name: &#39;{0}&#39;&quot;</span>, fieldName ).AppendLine();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">if</span>( currentRecord != null &amp;&amp; currentIndex &gt; -1 &amp;&amp; currentIndex &lt; currentRecord.Length )</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">if</span>( currentIndex.Value &lt; currentRecord.Length )</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    var fieldValue = currentRecord[currentIndex.Value];</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    messageInfo.AppendFormat( <span class="stringliteral">&quot;Field Value: &#39;{0}&#39;&quot;</span>, fieldValue ).AppendLine();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">return</span> messageInfo.ToString();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<dl class="section return"><dt>Returns</dt><dd>The object created from the string.</dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../da/d24/a00068.html#a804ea00060e1de70e5151f90d3bfce9b">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> CsvTypeConverterException( <span class="stringliteral">&quot;Converting IEnumerable types is not supported for a single field. &quot;</span> +</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                                 <span class="stringliteral">&quot;If you want to do this, create your own ITypeConverter and register &quot;</span> +</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                 <span class="stringliteral">&quot;it in the TypeConverterFactory by calling AddConverter.&quot;</span> );</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7e07e9532857d748654d37db590a0e11"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string CsvHelper.TypeConversion.EnumerableConverter.ConvertToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d65/a00154.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Throws an exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">value</td><td>The object to convert to a string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string representation of the object.</dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../da/d24/a00068.html#a36cb2f9b24f15a671293f3a722324c27">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> CsvTypeConverterException( <span class="stringliteral">&quot;Converting IEnumerable types is not supported for a single field. &quot;</span> +</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                 <span class="stringliteral">&quot;If you want to do this, create your own ITypeConverter and register &quot;</span> +</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                                 <span class="stringliteral">&quot;it in the TypeConverterFactory by calling AddConverter.&quot;</span> );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="../../">ExceptionHelper.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/<a class="el" href="../../">EnumerableConverter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d2/d04/a00281.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d9/da4/a00078.html">ExceptionHelper</a></li>
+    <li class="navelem"><a class="el" href="../../db/dc3/a00284.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d5/d7b/a00286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="../../d9/da4/a00078.html">EnumerableConverter</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

@@ -1,13 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d9/d0d/a00298" kind="namespace">
-    <compoundname>System::Reflection</compoundname>
-    <innerclass refid="d3/d65/a00154" prot="public">System::Reflection::TypeExtensions</innerclass>
-    <innerclass refid="d3/df8/a00155" prot="public">System::Reflection::TypeInfo</innerclass>
+    <compoundname>System::IO</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="5" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvFactory.cs" line="5" column="1"/>
   </compounddef>
 </doxygen>

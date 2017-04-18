@@ -1,4 +1,7 @@
-<map id="Yarn.BaseVariableStorage" name="Yarn.BaseVariableStorage">
-<area shape="rect" id="node3" href="$d1/dd6/a00108.html" title="{Yarn.MemoryVariableStore\n|&#45; variables\l|+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,373,184,480"/>
-<area shape="rect" id="node2" href="$db/ddf/a00164.html" title="{VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="37,5,152,141"/>
+<map id="Yarn.VariableStorage" name="Yarn.VariableStorage">
+<area shape="rect" id="node2" href="$d3/d52/a00023.html" title="{Yarn.BaseVariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="7,292,181,428"/>
+<area shape="rect" id="node4" href="$dc/de6/a00167.html" title="{Yarn.Unity.VariableStorage\lBehaviour\n||+ SetNumber()\l+ GetNumber()\l+ GetValue()\l+ SetValue()\l+ Clear()\l+ ResetToDefaults()\l}" alt="" coords="206,277,385,443"/>
+<area shape="rect" id="node6" href="$de/d8c/a00036.html" title="{Yarn.YarnSpinnerConsole.\lConsoleRunnerImplementation\n|+ numberOfExpectedOptions\l+ autoSelectOptionNumber\l+ expectedNextLine\l+ expectedNextCommand\l+ autoSelectFirstOption\l&#45; waitForLines\l&#45; variableStore\l|+ ConsoleRunnerImplementation()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ DialogueComplete()\l+ HandleErrorMessage()\l+ HandleDebugMessage()\l+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="411,189,632,531"/>
+<area shape="rect" id="node3" href="$d4/d81/a00110.html" title="{Yarn.MemoryVariableStore\n|&#45; variables\l|+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,616,184,723"/>
+<area shape="rect" id="node5" href="$d4/d31/a00069.html" title="{ExampleVariableStorage\n|+ defaultVariables\l+ debugTextView\l&#45; variables\l|+ ResetToDefaults()\l+ SetValue()\l+ GetValue()\l+ Clear()\l&#45; Awake()\l&#45; Update()\l}" alt="" coords="213,579,377,759"/>
 </map>

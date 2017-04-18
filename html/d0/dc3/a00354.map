@@ -1,4 +1,2 @@
-<map id="CsvHelper.CsvMissingFieldException" name="CsvHelper.CsvMissingFieldException">
-<area shape="rect" id="node2" href="$d9/d2e/a00056.html" title="Represents errors that occur while reading a CSV file. " alt="" coords="21,302,187,423"/>
-<area shape="rect" id="node3" href="$d5/df9/a00044.html" title="Represents errors that occur in CsvHelper. " alt="" coords="23,131,185,253"/>
+<map id="CsvHelper.CsvHelperException" name="CsvHelper.CsvHelperException">
 </map>

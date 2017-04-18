@@ -1,92 +1,63 @@
-\hypertarget{a00113}{\section{Yarn.\-Unity.\-Example.\-N\-P\-C Class Reference}
-\label{a00113}\index{Yarn.\-Unity.\-Example.\-N\-P\-C@{Yarn.\-Unity.\-Example.\-N\-P\-C}}
+\hypertarget{a00113}{\section{Yarn.\-Dialogue.\-Node\-Complete\-Result Class Reference}
+\label{a00113}\index{Yarn.\-Dialogue.\-Node\-Complete\-Result@{Yarn.\-Dialogue.\-Node\-Complete\-Result}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
+Inheritance diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{dc/d8f/a00718}
+\includegraphics[width=226pt]{d9/d87/a00551}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
+Collaboration diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{dd/dd8/a00719}
+\includegraphics[width=226pt]{dd/de9/a00552}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00113_a88c81469a69987c05aa92780c5a5c1f9}{Node\-Complete\-Result} (string \hyperlink{a00113_ad48b37b51066b94cd48c58626ac0e774}{next\-Node})
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00113_a418ea7095bd8201559ed392f07905ca3}{character\-Name} = \char`\"{}\char`\"{}
-\item 
-string \hyperlink{a00113_a64f4f1fb66b2046a674e3ebf3b9fdb56}{talk\-To\-Node} = \char`\"{}\char`\"{}
-\item 
-Text\-Asset \hyperlink{a00113_a63145fb6ddf357e604d71bac04ca8a60}{script\-To\-Load}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00113_a0bf37075312ea87c2e329cc363a328a6}{Start} ()
-\item 
-void \hyperlink{a00113_ab1bea5afabd1c2e1e991063b1579d062}{Update} ()
+string \hyperlink{a00113_ad48b37b51066b94cd48c58626ac0e774}{next\-Node}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00113_a0bf37075312ea87c2e329cc363a328a6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Start@{Start}}
-\index{Start@{Start}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Start (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00113_a88c81469a69987c05aa92780c5a5c1f9}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!Node\-Complete\-Result@{Node\-Complete\-Result}}
+\index{Node\-Complete\-Result@{Node\-Complete\-Result}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
+\subsubsection[{Node\-Complete\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{next\-Node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00113_a0bf37075312ea87c2e329cc363a328a6}
+)}}\label{a00113_a88c81469a69987c05aa92780c5a5c1f9}
 
 \begin{DoxyCode}
-44                       \{
-45             \textcolor{keywordflow}{if} (\hyperlink{a00113_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad} != null) \{
-46                 FindObjectOfType<\hyperlink{a00071}{Yarn.Unity.DialogueRunner}>().AddScript(
-      \hyperlink{a00113_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad});
-47             \}
-48             
-49         \}
-\end{DoxyCode}
-\hypertarget{a00113_ab1bea5afabd1c2e1e991063b1579d062}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Update@{Update}}
-\index{Update@{Update}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Update (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00113_ab1bea5afabd1c2e1e991063b1579d062}
-
-\begin{DoxyCode}
-52                        \{
-53             
-54         \}
+174                                                         \{
+175                 this.nextNode = \hyperlink{a00113_ad48b37b51066b94cd48c58626ac0e774}{nextNode};
+176             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00113_a418ea7095bd8201559ed392f07905ca3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!character\-Name@{character\-Name}}
-\index{character\-Name@{character\-Name}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{character\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-character\-Name = \char`\"{}\char`\"{}}}\label{a00113_a418ea7095bd8201559ed392f07905ca3}
-\hypertarget{a00113_a63145fb6ddf357e604d71bac04ca8a60}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!script\-To\-Load@{script\-To\-Load}}
-\index{script\-To\-Load@{script\-To\-Load}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{script\-To\-Load}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Example.\-N\-P\-C.\-script\-To\-Load}}\label{a00113_a63145fb6ddf357e604d71bac04ca8a60}
-\hypertarget{a00113_a64f4f1fb66b2046a674e3ebf3b9fdb56}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!talk\-To\-Node@{talk\-To\-Node}}
-\index{talk\-To\-Node@{talk\-To\-Node}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
-\subsubsection[{talk\-To\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-talk\-To\-Node = \char`\"{}\char`\"{}}}\label{a00113_a64f4f1fb66b2046a674e3ebf3b9fdb56}
+\hypertarget{a00113_ad48b37b51066b94cd48c58626ac0e774}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!next\-Node@{next\-Node}}
+\index{next\-Node@{next\-Node}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
+\subsubsection[{next\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node}}\label{a00113_ad48b37b51066b94cd48c58626ac0e774}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00257}{N\-P\-C.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00265}{Dialogue.\-cs}\end{DoxyCompactItemize}

@@ -1,87 +1,581 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d4/d7d/a00093" kind="struct" prot="public">
-    <compoundname>Yarn::Instruction</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d4/d7d/a00093_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" static="no" mutable="no">
-        <type><ref refid="d5/d16/a00029_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
-        <definition>ByteCode Yarn.Instruction.operation</definition>
+  <compounddef id="d4/d7d/a00093" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvWriter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
+    <derivedcompoundref refid="d4/de8/a00061" prot="public" virt="non-virtual">CsvHelper.CsvWriter</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d4/d7d/a00093_1a9eff0fa510dda6664274510dd4b025e5" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="d6/d42/a00043" kindref="compound">CsvConfiguration</ref></type>
+        <definition>CsvConfiguration CsvHelper.ICsvWriter.Configuration</definition>
         <argsstring></argsstring>
-        <name>operation</name>
+        <name>Configuration</name>
         <briefdescription>
-        </briefdescription>
+<para>Gets or sets the configuration. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="179" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="179" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d4/d7d/a00093_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" static="no" mutable="no">
-        <type>object</type>
-        <definition>object Yarn.Instruction.operandA</definition>
-        <argsstring></argsstring>
-        <name>operandA</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="180" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d4/d7d/a00093_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" static="no" mutable="no">
-        <type>object</type>
-        <definition>object Yarn.Instruction.operandB</definition>
-        <argsstring></argsstring>
-        <name>operandB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="181" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="d4/d7d/a00093_1a939d511f211e8a61cfbca902e802564f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Instruction.ToString</definition>
-        <argsstring>(Program p, Library l)</argsstring>
-        <name>ToString</name>
+      <memberdef kind="function" id="d4/d7d/a00093_1ace91a528ee7422203cf28ddb0c6cab93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField</definition>
+        <argsstring>(string field)</argsstring>
+        <name>WriteField</name>
+        <reimplementedby refid="d4/de8/a00061_1a994d9b339c4cda8bf83d5665b5c4ff1a">WriteField</reimplementedby>
         <param>
-          <type><ref refid="da/d72/a00124" kindref="compound">Program</ref></type>
-          <declname>p</declname>
-        </param>
-        <param>
-          <type><ref refid="d4/d3a/a00101" kindref="compound">Library</ref></type>
-          <declname>l</declname>
+          <type>string</type>
+          <declname>field</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Writes the field to the CSV file. The field may get quotes added to it. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">NextRecord()</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1aa8b1e17777e22de131fc759f59ebf4a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField</definition>
+        <argsstring>(string field, bool shouldQuote)</argsstring>
+        <name>WriteField</name>
+        <reimplementedby refid="d4/de8/a00061_1a8acd81f4b1e7e725f6c741313ce14a47">WriteField</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shouldQuote</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file. This will ignore any need to quote and ignore the CsvConfiguration.QuoteAllFields and just quote based on the shouldQuote parameter. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">NextRecord()</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shouldQuote</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True to quote the field, otherwise false.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1ae9b669ef98e0c3ac3b2eb2345b9f095e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField&lt; T &gt;</definition>
+        <argsstring>(T field)</argsstring>
+        <name>WriteField&lt; T &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1a7ec3e527a5346503adae03731804bd78">WriteField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">NextRecord()</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1ab2be677f2c7ff5a482f5b406388e8a90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField&lt; T &gt;</definition>
+        <argsstring>(T field, ITypeConverter converter)</argsstring>
+        <name>WriteField&lt; T &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1a8fb44629353e3198293b93d94e1b8c87">WriteField&lt; T &gt;</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type><ref refid="da/d74/a00099" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">ICsvWriter.NextRecord</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The converter used to convert the field into a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a7b465dbc52a5ed040da625c93fbfb1fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField&lt; T, TConverter &gt;</definition>
+        <argsstring>(T field)</argsstring>
+        <name>WriteField&lt; T, TConverter &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1a8879b818c7318f77e230f33a3dcec9c3">WriteField&lt; T, TConverter &gt;</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file using the given ITypeConverter. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">NextRecord()</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TConverter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the converter.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a1a0564acb2e20c1792bb27d3ed303d5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField</definition>
+        <argsstring>(Type type, object field)</argsstring>
+        <name>WriteField</name>
+        <reimplementedby refid="d4/de8/a00061_1aaac679b85a63076fd2f106cd36acbc40">WriteField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">ICsvWriter.NextRecord</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="88" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a0fc0ce39655b94dd519af7aeecc4e9a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteField</definition>
+        <argsstring>(Type type, object field, ITypeConverter converter)</argsstring>
+        <name>WriteField</name>
+        <reimplementedby refid="d4/de8/a00061_1aecf8d120ccbffce3c5cd56bcea754225">WriteField</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type><ref refid="da/d74/a00099" kindref="compound">ITypeConverter</ref></type>
+          <declname>converter</declname>
+        </param>
+        <briefdescription>
+<para>Writes the field to the CSV file. When all fields are written for a record, <ref refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" kindref="member">ICsvWriter.NextRecord</ref> must be called to complete writing of the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to write.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>converter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The converter used to convert the field into a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="100" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.NextRecord</definition>
+        <argsstring>()</argsstring>
+        <name>NextRecord</name>
+        <reimplementedby refid="d4/de8/a00061_1a397af8c87002d3b9c2b5152c6981d4d2">NextRecord</reimplementedby>
+        <briefdescription>
+<para>Ends writing of the current record and starts a new record. This is used when manually writing records with WriteField{T}( T ) </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="183" bodyend="266"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a0b6bf45e56de8f5125c07f0143e74d19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteExcelSeparator</definition>
+        <argsstring>()</argsstring>
+        <name>WriteExcelSeparator</name>
+        <reimplementedby refid="d4/de8/a00061_1aa07bcdeb70bf35895fdc51e46afde120">WriteExcelSeparator</reimplementedby>
+        <briefdescription>
+<para>Write the Excel seperator record. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="112" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a1355ab3a112318c05b96606a9682264f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteHeader&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>WriteHeader&lt; T &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1a3585991c17c8708d238600fa9093faa2">WriteHeader&lt; T &gt;</reimplementedby>
+        <briefdescription>
+<para>Writes the header record from the given properties. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="119" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a51b990d9a9615159631494390d8b53b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteHeader</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>WriteHeader</name>
+        <reimplementedby refid="d4/de8/a00061_1af2298dcd2934550fd9dd592921f18541">WriteHeader</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Writes the header record from the given properties. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="125" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a9620a114ee9e858760f74013cf341f3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteRecord&lt; T &gt;</definition>
+        <argsstring>(T record)</argsstring>
+        <name>WriteRecord&lt; T &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1aec261c2dfe23d6ed84534934e916d8ca">WriteRecord&lt; T &gt;</reimplementedby>
+        <param>
+          <type>T</type>
+          <declname>record</declname>
+        </param>
+        <briefdescription>
+<para>Writes the record to the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the record.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>record</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a6d492491db7fccb8831e782f01b820f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteRecord</definition>
+        <argsstring>(Type type, object record)</argsstring>
+        <name>WriteRecord</name>
+        <reimplementedby refid="d4/de8/a00061_1ab1bc88015b53d21f6f5746a65180b0ac">WriteRecord</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>record</declname>
+        </param>
+        <briefdescription>
+<para>Writes the record to the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the record.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>record</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="140" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a3aaa524ef8e6a1f9a0af10a38e2e9406" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.WriteRecords</definition>
+        <argsstring>(IEnumerable records)</argsstring>
+        <name>WriteRecords</name>
+        <reimplementedby refid="d4/de8/a00061_1ab92f8ddaaa2650eafbd9d16b3813d14e">WriteRecords</reimplementedby>
+        <param>
+          <type>IEnumerable</type>
+          <declname>records</declname>
+        </param>
+        <briefdescription>
+<para>Writes the list of records to the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>records</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of records to write.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="146" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1a25ea9b1de249748a2e3e73942ad9f583" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.ClearRecordCache&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRecordCache&lt; T &gt;</name>
+        <reimplementedby refid="d4/de8/a00061_1a11eb73c5fcd65642b4b4959a7200ba96">ClearRecordCache&lt; T &gt;</reimplementedby>
+        <briefdescription>
+<para>Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="156" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1aeaa617bc92344678ad45ba34ab2a248d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.ClearRecordCache</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>ClearRecordCache</name>
+        <reimplementedby refid="d4/de8/a00061_1a439d9918f23faa938820a792c57aa090">ClearRecordCache</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <ref refid="d4/d7d/a00093_1aeaa617bc92344678ad45ba34ab2a248d" kindref="member">ClearRecordCache( Type )</ref> needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="166" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d7d/a00093_1ab56edba6195d8d1f7976d7f28928c43b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.ICsvWriter.ClearRecordCache</definition>
+        <argsstring>()</argsstring>
+        <name>ClearRecordCache</name>
+        <reimplementedby refid="d4/de8/a00061_1a16aa1591d1c89062b6af26bf1989415d">ClearRecordCache</reimplementedby>
+        <briefdescription>
+<para>Clears the record cache for all types. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <ref refid="d4/d7d/a00093_1ab56edba6195d8d1f7976d7f28928c43b" kindref="member">ClearRecordCache()</ref> needs to be called to update the record cache. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="175" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Defines methods used to write to a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1294">
-        <label>Yarn.Instruction</label>
+    <inheritancegraph>
+      <node id="1285">
+        <label>CsvHelper.CsvWriter</label>
+        <link refid="d4/de8/a00061"/>
+        <childnode refid="1283" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1284">
+        <label>IDisposable</label>
+      </node>
+      <node id="1283">
+        <label>CsvHelper.ICsvWriter</label>
         <link refid="d4/d7d/a00093"/>
+        <childnode refid="1284" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1287">
+        <label>IDisposable</label>
+      </node>
+      <node id="1286">
+        <label>CsvHelper.ICsvWriter</label>
+        <link refid="d4/d7d/a00093"/>
+        <childnode refid="1287" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="178" bodyend="267"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvWriter.cs" bodystart="15" bodyend="177"/>
     <listofallmembers>
-      <member refid="d4/d7d/a00093_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandA</name></member>
-      <member refid="d4/d7d/a00093_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandB</name></member>
-      <member refid="d4/d7d/a00093_1a566bf5f7198cc353ea5c3710cb3a31cb" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operation</name></member>
-      <member refid="d4/d7d/a00093_1a939d511f211e8a61cfbca902e802564f" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>ToString</name></member>
+      <member refid="d4/d7d/a00093_1aeaa617bc92344678ad45ba34ab2a248d" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>ClearRecordCache</name></member>
+      <member refid="d4/d7d/a00093_1ab56edba6195d8d1f7976d7f28928c43b" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>ClearRecordCache</name></member>
+      <member refid="d4/d7d/a00093_1a25ea9b1de249748a2e3e73942ad9f583" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>ClearRecordCache&lt; T &gt;</name></member>
+      <member refid="d4/d7d/a00093_1a9eff0fa510dda6664274510dd4b025e5" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>Configuration</name></member>
+      <member refid="d4/d7d/a00093_1a6bb1687959808ea1219fa68e7f3060fa" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>NextRecord</name></member>
+      <member refid="d4/d7d/a00093_1a0b6bf45e56de8f5125c07f0143e74d19" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteExcelSeparator</name></member>
+      <member refid="d4/d7d/a00093_1ace91a528ee7422203cf28ddb0c6cab93" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField</name></member>
+      <member refid="d4/d7d/a00093_1aa8b1e17777e22de131fc759f59ebf4a0" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField</name></member>
+      <member refid="d4/d7d/a00093_1a1a0564acb2e20c1792bb27d3ed303d5f" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField</name></member>
+      <member refid="d4/d7d/a00093_1a0fc0ce39655b94dd519af7aeecc4e9a3" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField</name></member>
+      <member refid="d4/d7d/a00093_1ae9b669ef98e0c3ac3b2eb2345b9f095e" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField&lt; T &gt;</name></member>
+      <member refid="d4/d7d/a00093_1ab2be677f2c7ff5a482f5b406388e8a90" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField&lt; T &gt;</name></member>
+      <member refid="d4/d7d/a00093_1a7b465dbc52a5ed040da625c93fbfb1fa" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteField&lt; T, TConverter &gt;</name></member>
+      <member refid="d4/d7d/a00093_1a51b990d9a9615159631494390d8b53b6" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteHeader</name></member>
+      <member refid="d4/d7d/a00093_1a1355ab3a112318c05b96606a9682264f" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteHeader&lt; T &gt;</name></member>
+      <member refid="d4/d7d/a00093_1a6d492491db7fccb8831e782f01b820f0" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteRecord</name></member>
+      <member refid="d4/d7d/a00093_1a9620a114ee9e858760f74013cf341f3a" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteRecord&lt; T &gt;</name></member>
+      <member refid="d4/d7d/a00093_1a3aaa524ef8e6a1f9a0af10a38e2e9406" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvWriter</scope><name>WriteRecords</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

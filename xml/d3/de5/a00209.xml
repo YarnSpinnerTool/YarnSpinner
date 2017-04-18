@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d3/de5/a00209" kind="file">
-    <compoundname>ICsvSerializer.cs</compoundname>
-    <innerclass refid="d9/dec/a00090" prot="public">CsvHelper::ICsvSerializer</innerclass>
-    <innernamespace refid="d2/d04/a00281">CsvHelper</innernamespace>
+    <compoundname>ICsvFactory.cs</compoundname>
+    <innerclass refid="db/ddf/a00088" prot="public">CsvHelper::ICsvFactory</innerclass>
+    <innernamespace refid="db/dc3/a00284">CsvHelper</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -13,19 +13,29 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.IO;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>CsvHelper.Configuration;</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper</highlight></codeline>
 <codeline lineno="9"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="13" refid="d9/dec/a00090" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal"><ref refid="d9/dec/a00090" kindref="compound">ICsvSerializer</ref><sp/>:<sp/>IDisposable</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="18" refid="d9/dec/a00090_1a54d241fe87517707b6f85c30fe8b3a95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d32/a00041" kindref="compound">CsvConfiguration</ref><sp/><ref refid="d9/dec/a00090_1a54d241fe87517707b6f85c30fe8b3a95" kindref="member">Configuration</ref><sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/dec/a00090_1a0b442858eef85b7d933662359646fd0b" kindref="member">Write</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">[]<sp/>record<sp/>);</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14" refid="db/ddf/a00088" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal"><ref refid="db/ddf/a00088" kindref="compound">ICsvFactory</ref></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/dab/a00089" kindref="compound">ICsvParser</ref><sp/><ref refid="db/ddf/a00088_1a9b68cbd7292c76037959d51ecc7c374d" kindref="member">CreateParser</ref>(<sp/>TextReader<sp/>reader,<sp/><ref refid="d6/d42/a00043" kindref="compound">CsvConfiguration</ref><sp/>configuration<sp/>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/dab/a00089" kindref="compound">ICsvParser</ref><sp/><ref refid="db/ddf/a00088_1a9b68cbd7292c76037959d51ecc7c374d" kindref="member">CreateParser</ref>(<sp/>TextReader<sp/>reader<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/dec/a00090" kindref="compound">ICsvReader</ref><sp/><ref refid="db/ddf/a00088_1ade2a6e776fad6aa36c201901d6427058" kindref="member">CreateReader</ref>(<sp/>TextReader<sp/>reader,<sp/><ref refid="d6/d42/a00043" kindref="compound">CsvConfiguration</ref><sp/>configuration<sp/>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/dec/a00090" kindref="compound">ICsvReader</ref><sp/><ref refid="db/ddf/a00088_1ade2a6e776fad6aa36c201901d6427058" kindref="member">CreateReader</ref>(<sp/>TextReader<sp/>reader<sp/>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/dec/a00090" kindref="compound">ICsvReader</ref><sp/><ref refid="db/ddf/a00088_1ade2a6e776fad6aa36c201901d6427058" kindref="member">CreateReader</ref>(<sp/><ref refid="db/dab/a00089" kindref="compound">ICsvParser</ref><sp/>parser<sp/>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d7d/a00093" kindref="compound">ICsvWriter</ref><sp/><ref refid="db/ddf/a00088_1ae77852d2702bc2caad76c045a538933e" kindref="member">CreateWriter</ref>(<sp/>TextWriter<sp/>writer,<sp/><ref refid="d6/d42/a00043" kindref="compound">CsvConfiguration</ref><sp/>configuration<sp/>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d7d/a00093" kindref="compound">ICsvWriter</ref><sp/><ref refid="db/ddf/a00088_1ae77852d2702bc2caad76c045a538933e" kindref="member">CreateWriter</ref>(<sp/>TextWriter<sp/>writer<sp/>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvSerializer.cs"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs"/>
   </compounddef>
 </doxygen>

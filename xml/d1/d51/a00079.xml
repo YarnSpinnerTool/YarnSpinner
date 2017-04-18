@@ -1,75 +1,239 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d1/d51/a00079" kind="class" prot="public">
-    <compoundname>Yarn::ExecutionOptions</compoundname>
-    <basecompoundref refid="db/db2/a00020" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
-    <derivedcompoundref refid="d7/d06/a00131" prot="public" virt="non-virtual">Yarn.RunOptions</derivedcompoundref>
-    <derivedcompoundref refid="d9/d38/a00166" prot="public" virt="non-virtual">Yarn.VerifyOptions</derivedcompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="d1/d51/a00079_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.stringTable</definition>
+    <compoundname>Yarn::Unity::Example::ExampleDialogueUI</compoundname>
+    <basecompoundref refid="d9/da5/a00075" prot="public" virt="non-virtual">Yarn.Unity.DialogueUIBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/d51/a00079_1a2eaebc844d2ca982ec078708d070dbd3" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject Yarn.Unity.Example.ExampleDialogueUI.dialogueContainer</definition>
         <argsstring></argsstring>
-        <name>stringTable</name>
+        <name>dialogueContainer</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="55" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="48" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="d1/d51/a00079_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
+      <memberdef kind="variable" id="d1/d51/a00079_1a791f15a67a97fbe06ffc0bdf518edd04" prot="public" static="no" mutable="no">
+        <type><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675" kindref="member">Text</ref></type>
+        <definition>Text Yarn.Unity.Example.ExampleDialogueUI.lineText</definition>
         <argsstring></argsstring>
-        <name>onlyConsiderNode</name>
+        <name>lineText</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="58" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="51" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="db/db2/a00020_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+      <memberdef kind="variable" id="d1/d51/a00079_1a74367b77a6a5218fa47dbe1d6266e4c6" prot="public" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject Yarn.Unity.Example.ExampleDialogueUI.continuePrompt</definition>
         <argsstring></argsstring>
-        <name>showDebuggingInfo</name>
+        <name>continuePrompt</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="40" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="54" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="db/db2/a00020_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.BaseOptions.verbose</definition>
+      <memberdef kind="variable" id="d1/d51/a00079_1a6053aa65534195d626031413ef3a0828" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.ExampleDialogueUI.textSpeed</definition>
         <argsstring></argsstring>
-        <name>verbose</name>
+        <name>textSpeed</name>
+        <initializer>= 0.025f</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="44" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="62" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="db/db2/a00020_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>IList&lt; string &gt;</type>
-        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+      <memberdef kind="variable" id="d1/d51/a00079_1a090b7693e7ec6ec43c8c8e2b6b20b015" prot="public" static="no" mutable="no">
+        <type>List&lt; Button &gt;</type>
+        <definition>List&lt;Button&gt; Yarn.Unity.Example.ExampleDialogueUI.optionButtons</definition>
         <argsstring></argsstring>
-        <name>files</name>
+        <name>optionButtons</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="47" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d51/a00079_1a8344106eb22a0ad00e2400c2941b3e5f" prot="public" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform Yarn.Unity.Example.ExampleDialogueUI.gameControlsContainer</definition>
+        <argsstring></argsstring>
+        <name>gameControlsContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d1/d51/a00079_1a558f60ef9a7bcf887f015ba0d27aa6ef" prot="private" static="no" mutable="no">
+        <type><ref refid="df/d61/a00031_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+        <definition>Yarn.OptionChooser Yarn.Unity.Example.ExampleDialogueUI.SetSelectedOption</definition>
+        <argsstring></argsstring>
+        <name>SetSelectedOption</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d1/d51/a00079_1a6e57983db349b0d9e4526ecb7aa6fed2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.ExampleDialogueUI.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="69" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d51/a00079_1a109aeedc5206dcbc4f629638b7830030" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator Yarn.Unity.Example.ExampleDialogueUI.RunLine</definition>
+        <argsstring>(Yarn.Line line)</argsstring>
+        <name>RunLine</name>
+        <reimplements refid="d9/da5/a00075_1a754c6dd0bc67895d11f878fe4477d698">RunLine</reimplements>
+        <param>
+          <type><ref refid="d2/d41/a00318" kindref="compound">Yarn.Line</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="88" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d51/a00079_1aaa93672700a456e66c694636460a58f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator Yarn.Unity.Example.ExampleDialogueUI.RunOptions</definition>
+        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <reimplements refid="d9/da5/a00075_1ac5b29079f638f2ceb078627ef1e60004">RunOptions</reimplements>
+        <param>
+          <type><ref refid="db/d53/a00321" kindref="compound">Yarn.Options</ref></type>
+          <declname>optionsCollection</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/a00031_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+          <declname>optionChooser</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="126" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="126" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d51/a00079_1ad1ac5781ded20d2950d8dd3af506df37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.ExampleDialogueUI.SetOption</definition>
+        <argsstring>(int selectedOption)</argsstring>
+        <name>SetOption</name>
+        <param>
+          <type>int</type>
+          <declname>selectedOption</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="158" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d51/a00079_1a7f84b1e7d3c9c1f7507d143e11ba8075" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator Yarn.Unity.Example.ExampleDialogueUI.RunCommand</definition>
+        <argsstring>(Yarn.Command command)</argsstring>
+        <name>RunCommand</name>
+        <reimplements refid="d9/da5/a00075_1a3dffe84b9e7a10fdec6749baf697d111">RunCommand</reimplements>
+        <param>
+          <type><ref refid="d4/d6f/a00315" kindref="compound">Yarn.Command</ref></type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="170" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="170" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d51/a00079_1a313283f6c53354b54f25898eb436eba0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator Yarn.Unity.Example.ExampleDialogueUI.DialogueStarted</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueStarted</name>
+        <reimplements refid="d9/da5/a00075_1af9d88ca81ac536d43046ca6572e3ff54">DialogueStarted</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="178" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d51/a00079_1a1f2a08baacc25aea09af8e60eb5d3eb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator Yarn.Unity.Example.ExampleDialogueUI.DialogueComplete</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueComplete</name>
+        <reimplements refid="d9/da5/a00075_1aecc60aee9e9386da1f71fb183f43c52d">DialogueComplete</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="195" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeComplete</name>
+        <param>
+          <type>string</type>
+          <declname>nextNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="445" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="445" bodyend="448"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -77,48 +241,68 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1232">
-        <label>Yarn.RunOptions</label>
-        <link refid="d7/d06/a00131"/>
-        <childnode refid="1230" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1233">
-        <label>Yarn.VerifyOptions</label>
-        <link refid="d9/d38/a00166"/>
-        <childnode refid="1230" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1230">
-        <label>Yarn.ExecutionOptions</label>
+      <node id="1209">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
         <link refid="d1/d51/a00079"/>
-        <childnode refid="1231" relation="public-inheritance">
+        <childnode refid="1210" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1231">
-        <label>BaseOptions</label>
-        <link refid="db/db2/a00020"/>
+      <node id="1211">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1210">
+        <label>Yarn::Unity::DialogueUIBehaviour</label>
+        <link refid="d9/da5/a00075"/>
+        <childnode refid="1211" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1234">
-        <label>Yarn.ExecutionOptions</label>
+      <node id="1212">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
         <link refid="d1/d51/a00079"/>
-        <childnode refid="1235" relation="public-inheritance">
+        <childnode refid="1213" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1215" relation="usage">
+          <edgelabel>-SetSelectedOption</edgelabel>
+        </childnode>
+        <childnode refid="1216" relation="usage">
+          <edgelabel>+lineText</edgelabel>
         </childnode>
       </node>
-      <node id="1235">
-        <label>BaseOptions</label>
-        <link refid="db/db2/a00020"/>
+      <node id="1216">
+        <label>Text</label>
+      </node>
+      <node id="1214">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1215">
+        <label>Yarn</label>
+      </node>
+      <node id="1213">
+        <label>Yarn::Unity::DialogueUIBehaviour</label>
+        <link refid="d9/da5/a00075"/>
+        <childnode refid="1214" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="52" bodyend="59"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" bodystart="42" bodyend="211"/>
     <listofallmembers>
-      <member refid="db/db2/a00020_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>files</name></member>
-      <member refid="d1/d51/a00079_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>onlyConsiderNode</name></member>
-      <member refid="db/db2/a00020_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>showDebuggingInfo</name></member>
-      <member refid="d1/d51/a00079_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>stringTable</name></member>
-      <member refid="db/db2/a00020_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>verbose</name></member>
+      <member refid="d1/d51/a00079_1a6e57983db349b0d9e4526ecb7aa6fed2" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>Awake</name></member>
+      <member refid="d1/d51/a00079_1a74367b77a6a5218fa47dbe1d6266e4c6" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>continuePrompt</name></member>
+      <member refid="d1/d51/a00079_1a1f2a08baacc25aea09af8e60eb5d3eb1" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>DialogueComplete</name></member>
+      <member refid="d1/d51/a00079_1a2eaebc844d2ca982ec078708d070dbd3" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>dialogueContainer</name></member>
+      <member refid="d1/d51/a00079_1a313283f6c53354b54f25898eb436eba0" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>DialogueStarted</name></member>
+      <member refid="d1/d51/a00079_1a8344106eb22a0ad00e2400c2941b3e5f" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>gameControlsContainer</name></member>
+      <member refid="d1/d51/a00079_1a791f15a67a97fbe06ffc0bdf518edd04" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>lineText</name></member>
+      <member refid="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>NodeComplete</name></member>
+      <member refid="d1/d51/a00079_1a090b7693e7ec6ec43c8c8e2b6b20b015" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>optionButtons</name></member>
+      <member refid="d1/d51/a00079_1a7f84b1e7d3c9c1f7507d143e11ba8075" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>RunCommand</name></member>
+      <member refid="d1/d51/a00079_1a109aeedc5206dcbc4f629638b7830030" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>RunLine</name></member>
+      <member refid="d1/d51/a00079_1aaa93672700a456e66c694636460a58f4" prot="public" virt="virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>RunOptions</name></member>
+      <member refid="d1/d51/a00079_1ad1ac5781ded20d2950d8dd3af506df37" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>SetOption</name></member>
+      <member refid="d1/d51/a00079_1a558f60ef9a7bcf887f015ba0d27aa6ef" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>SetSelectedOption</name></member>
+      <member refid="d1/d51/a00079_1a6053aa65534195d626031413ef3a0828" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::ExampleDialogueUI</scope><name>textSpeed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

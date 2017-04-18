@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Using Yarn Spinner in your Unity game</title>
+<title>YarnSpinner: Yarn Spinner Documentation</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -99,53 +99,21 @@ $(document).ready(function(){initNavTree('d7/dec/a00010.html','../../');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Using <a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner in your Unity game </div>  </div>
+<div class="title"><a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner Quick Start</h2>
-<p>Here's how to quickly jump in to <a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner, if you're already reasonably comfortable with Unity.</p>
-<ul>
-<li><b>Download and import <a href="https://github.com/thesecretlab/YarnSpinner/releases">the YarnSpinner package</a> into your project.</b></li>
-<li><b>Inside the <a class="el" href="../../d1/d67/a00310.html">YarnSpinner</a> folder, open the <code>Examples/Yarn Spinner Basic Example</code> scene.</b></li>
-<li><b>Start the game. Play through the dialogue.</b></li>
-</ul>
-<p>Once you've played with it, open the Example Script file in the <a class="el" href="../../d5/d16/a00029.html">Yarn</a> editor (it's in the <code>Examples/Demo Assets</code> folder), and make some changes to the script. Once you've done that, take a look at how <code><a class="el" href="../../d0/da7/a00250.html">Code/DialogueRunner.cs</a></code>, <code>Examples/Demo <a class="el" href="../../d7/d03/a00254.html">Scripts/ExampleDialogueUI.cs</a></code> and <code>Examples/Demo <a class="el" href="../../d4/d04/a00255.html">Scripts/ExampleVariableStorage.cs</a></code> work. You can also <a class="el" href="../../d8/df1/a00174.html">add your own functions to Yarn</a>.</p>
-<h2>Tutorial</h2>
-<blockquote class="doxtable">
-<p>***Note:*** This tutorial assumes that you know at least a little bit about <a href="http://www.unity3d.com">Unity</a>. In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out <a href="http://unity3d.com/learn">Unity's documentation</a>!</p>
-<p></p>
-</blockquote>
-<p><a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.</p>
-<p>To use <a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner, you use three classes:</p>
-<ul>
-<li><code>DialogueRunner</code>, which is responsible for loading and running your dialogue script;</li>
-<li>A subclass of <code>DialogueUIBehaviour</code>, which is reponsible for displaying the lines and dialogue choices to the player; and</li>
-<li>A subclass of <code>VariableStorageBehaviour</code>, which is responsible for storing the state of the conversation.</li>
-</ul>
-<p>These three classes exist in the <code><a class="el" href="../../df/d98/a00107.html">Yarn.Unity</a></code> namespace. To create your subclasses of <code>DialogueUIBehaviour</code> and <code>VariableStorageBehaviour</code>, you'll need to add the following code to the top of your C# code: </p>
-<pre class="fragment">using Yarn.Unity;
-</pre><p>Additionally, you store your <a class="el" href="../../d5/d16/a00029.html">Yarn</a> files as <code>.json</code> assets in your Unity projects. These can be stored anywhere - you simply provide add them to the <code>DialogueRunner</code>'s inspector. You can also call <code>AddScript</code> on the <code>DialogueRunner</code> at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their <a class="el" href="../../d5/d16/a00029.html">Yarn</a> script to the <code>DialogueRunner</code>.</p>
-<h3>Load your conversation with <code>DialogueRunner</code></h3>
-<p><a class="el" href="../../d5/d16/a00029.html">Yarn</a> conversations are loaded and managed by a <code>DialogueRunner</code> object. This object is responsible for loading and parsing your <a class="el" href="../../d5/d16/a00029.html">Yarn</a> <code>.json</code> files. It also runs the script when it's told to - for example, when you walk up to a character in your game and talk to them.</p>
-<h3>Display your conversation with <code>DialogueUI</code></h3>
-<p>Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.</p>
-<p><a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner makes no assumptions about how you want to handle your dialogue's UI. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-based UI with a countdown timer? Oh man that would be sweet.</p>
-<p><a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying <a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner about what response the user selected.</p>
-<p><a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner comes with an example script that uses Unity's UI system. It's a good place to start.</p>
-<h3>Store your conversation state with a <code>VariableStorageBehaviour</code></h3>
-<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="../../d5/d16/a00029.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C# *<a href="../../C# interface">interface</a>*, which defines methods like "set variable" and "get value of variable".</p>
-<p>The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.</p>
-<h3>Respond to commands with <code>YarnCommand</code></h3>
-<p>In <a class="el" href="../../d5/d16/a00029.html">Yarn</a>, you can create <em>commands</em> that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this: </p>
-<pre class="fragment">&lt;&lt;move Sally exit&gt;&gt;
-</pre><p>For this to work, the game object named "Sally" needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this: </p>
-<pre class="fragment">[YarnCommand("move")]
-public void MoveCharacter(string destinationName) {
-    // move to the destination
-}
-</pre><p>When <a class="el" href="../../d5/d16/a00029.html">Yarn</a> encounters a command that contains two or more words, it looks for a game object with the same name as the second word ("Sally", in the above example), and then searches that object's scripts for any method that has a <code>YarnCommand</code> with the same name as the first word (in this case, "move").</p>
-<p>Any further words in the command are passed as string parameters to the method ("exit", in this case, which is used as the <code>destinationName</code> parameter)</p>
-<p>Note that <b>all</b> parameters must be strings. <code>DialogueRunner</code> will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers. </p>
+<div class="textblock"><h2><a class="el" href="../../df/d61/a00031.html">Yarn</a> Documentation</h2>
+<p>Documentation for <a class="el" href="../../df/d61/a00031.html">Yarn</a> is</p>
+<p><a class="el" href="../../dd/db3/a00313.html">YarnSpinner</a> documentation is generated automatically by the Doxygen system.</p>
+<h2>Install Unity</h2>
+<p>At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future. Meanwhile, please install Unity.</p>
+<h2>Tips during Unity install</h2>
+<h3>Windows</h3>
+<p>Find the temp folder the installer has downloaded to and is executing from and back it up.</p>
+<h3>Mac</h3>
+<p>(This space left intentionally blank)</p>
+<h2>(OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition</h2>
+<p>If you have some programming experience, or wish to have a more expansive development enviornment than the Unity editor, you may wish to install the Community Edition of Microsoft Visual Studio. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,157 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d0/d33/a00027" kind="class" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" static="no">
-        <name>State</name>
-        <enumvalue id="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5" prot="public">
-          <name>NotTested</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15" prot="public">
-          <name>Passed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca" prot="public">
-          <name>Failed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="36" bodyend="40"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="d0/d33/a00027" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::CameraFollow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d0/d33/a00027_1a7202b24bd068da24d7e28bec5668b13a" prot="public" static="no" mutable="no">
-        <type><ref refid="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">State</ref></type>
-        <definition>State Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</definition>
+      <memberdef kind="variable" id="d0/d33/a00027_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform Yarn.Unity.Example.CameraFollow.target</definition>
         <argsstring></argsstring>
-        <name>state</name>
+        <name>target</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="42" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="34" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d33/a00027_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" static="no" mutable="no">
-        <type>TextAsset</type>
-        <definition>TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</definition>
+      <memberdef kind="variable" id="d0/d33/a00027_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.minPosition</definition>
         <argsstring></argsstring>
-        <name>script</name>
+        <name>minPosition</name>
+        <initializer>= -5.3f</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="43" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="36" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d33/a00027_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
-        <type><ref refid="db/d53/a00321" kindref="compound">ValidationMessage</ref>[]</type>
-        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
+      <memberdef kind="variable" id="d0/d33/a00027_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.maxPosition</definition>
         <argsstring></argsstring>
-        <name>messages</name>
-        <initializer>= new <ref refid="db/d53/a00321" kindref="compound">ValidationMessage</ref>[0]</initializer>
+        <name>maxPosition</name>
+        <initializer>= 5.3f</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="45" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d33/a00027_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Yarn.Unity.Example.CameraFollow.moveSpeed</definition>
+        <argsstring></argsstring>
+        <name>moveSpeed</name>
+        <initializer>= 1.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="39" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d0/d33/a00027_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>Equals</name>
-        <param>
-          <type>object</type>
-          <declname>obj</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="47" bodyend="53"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d33/a00027_1a85d50993390cdd8ba30ac44043b18de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override int</type>
-        <definition>override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode</definition>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d0/d33/a00027_1a592ddbf8e493bde0a6536c0234869217" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.CameraFollow.Update</definition>
         <argsstring>()</argsstring>
-        <name>GetHashCode</name>
+        <name>Update</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="55" bodyend="58"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d33/a00027_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</definition>
-        <argsstring>(TextAsset script)</argsstring>
-        <name>CheckerResult</name>
-        <param>
-          <type>TextAsset</type>
-          <declname>script</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="60" bodyend="63"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="42" bodyend="53"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="904">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult</label>
+    <inheritancegraph>
+      <node id="894">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="893">
+        <label>Yarn.Unity.Example.CameraFollow</label>
         <link refid="d0/d33/a00027"/>
-        <childnode refid="905" relation="usage">
-          <edgelabel>+messages</edgelabel>
+        <childnode refid="894" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="905">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
-        <link refid="db/d53/a00321"/>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="896">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="895">
+        <label>Yarn.Unity.Example.CameraFollow</label>
+        <link refid="d0/d33/a00027"/>
+        <childnode refid="896" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="35" bodyend="64"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" bodystart="32" bodyend="54"/>
     <listofallmembers>
-      <member refid="d0/d33/a00027_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>CheckerResult</name></member>
-      <member refid="d0/d33/a00027_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>Equals</name></member>
-      <member refid="d0/d33/a00027_1a85d50993390cdd8ba30ac44043b18de7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>GetHashCode</name></member>
-      <member refid="d0/d33/a00027_1a808a039e280cf875cb3c9e9385148498" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>messages</name></member>
-      <member refid="d0/d33/a00027_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>script</name></member>
-      <member refid="d0/d33/a00027_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>State</name></member>
-      <member refid="d0/d33/a00027_1a7202b24bd068da24d7e28bec5668b13a" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>state</name></member>
+      <member refid="d0/d33/a00027_1abb0154dcbc2a7d43795beacd61a56de4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>maxPosition</name></member>
+      <member refid="d0/d33/a00027_1a08c6f6c0ea423c21af99e4b5467d3c9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>minPosition</name></member>
+      <member refid="d0/d33/a00027_1a3d4f2efe9c2cee8c7ff797cac03f27ec" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>moveSpeed</name></member>
+      <member refid="d0/d33/a00027_1aa5d6958fb14a14ebb74e21c372fcca8b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>target</name></member>
+      <member refid="d0/d33/a00027_1a592ddbf8e493bde0a6536c0234869217" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::CameraFollow</scope><name>Update</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

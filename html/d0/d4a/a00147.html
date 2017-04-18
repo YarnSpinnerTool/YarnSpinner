@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Token Class Reference</title>
+<title>YarnSpinner: TestDialogueUIBehaviour Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -109,80 +109,231 @@ $(document).ready(function(){initNavTree('d0/d4a/a00147.html','../../');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="../../d0/dc2/a00564.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="../../d3/d93/a00341.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Token Class Reference</div>  </div>
+<div class="title">TestDialogueUIBehaviour Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Collaboration diagram for Yarn.Token:</div>
+Inheritance diagram for TestDialogueUIBehaviour:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d8/dd2/a00565.png" border="0" usemap="#_yarn_8_token_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_token_coll__map" id="_yarn_8_token_coll__map">
-</map>
+<div class="center"><img src="../../d2/d45/a00342.png" border="0" usemap="#_test_dialogue_u_i_behaviour_inherit__map" alt="Inheritance graph"/></div>
+<map name="_test_dialogue_u_i_behaviour_inherit__map" id="_test_dialogue_u_i_behaviour_inherit__map">
+<area shape="rect" id="node2" href="../../d9/da5/a00075.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="5,131,224,282"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for TestDialogueUIBehaviour:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/dc5/a00343.png" border="0" usemap="#_test_dialogue_u_i_behaviour_coll__map" alt="Collaboration graph"/></div>
+<map name="_test_dialogue_u_i_behaviour_coll__map" id="_test_dialogue_u_i_behaviour_coll__map">
+<area shape="rect" id="node2" href="../../d9/da5/a00075.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="5,131,224,282"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab8531150354ef148b8929a727f29ae39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#ab8531150354ef148b8929a727f29ae39">Token</a> (<a class="el" href="../../d5/d16/a00029.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> <a class="el" href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">type</a>, <a class="el" href="../../d0/d61/a00100.html">Lexer.LexerState</a> <a class="el" href="../../d0/d4a/a00147.html#a710099e7abe84f30864a320cc7464214">lexerState</a>, int <a class="el" href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">lineNumber</a>=-1, int <a class="el" href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>=-1, string <a class="el" href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">value</a>=null)</td></tr>
-<tr class="separator:ab8531150354ef148b8929a727f29ae39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf676a737679ec2fb1dffd75dc4d7976"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#abf676a737679ec2fb1dffd75dc4d7976">ToString</a> ()</td></tr>
-<tr class="separator:abf676a737679ec2fb1dffd75dc4d7976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af51a4e0d00f92dcc991f6c1ac62ac8c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#af51a4e0d00f92dcc991f6c1ac62ac8c3">ExpectLine</a> (string line)</td></tr>
+<tr class="separator:af51a4e0d00f92dcc991f6c1ac62ac8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc743ade599769e968fecea525add7b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#adc743ade599769e968fecea525add7b3">SelectOption</a> (string option)</td></tr>
+<tr class="separator:adc743ade599769e968fecea525add7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c30953edbd1cd4181e2a3854a1642b"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a> (<a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a> line)</td></tr>
+<tr class="separator:ac6c30953edbd1cd4181e2a3854a1642b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe2e6bc2d5471d9af14a9d35de821bd"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a> (<a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a> optionsCollection, <a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> optionChooser)</td></tr>
+<tr class="separator:a7fe2e6bc2d5471d9af14a9d35de821bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc93c5cf370b31eceab3671c9eca0d94"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> (<a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a> command)</td></tr>
+<tr class="separator:afc93c5cf370b31eceab3671c9eca0d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae274e39b640908d04aacc6cf6624d9da"><td class="memItemLeft" align="right" valign="top">override <br class="typebreak"/>
+System.Collections.IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#ae274e39b640908d04aacc6cf6624d9da">RunLine</a> (<a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a> line)</td></tr>
+<tr class="separator:ae274e39b640908d04aacc6cf6624d9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2ac83f91814d8666482bf8b6f3721d1"><td class="memItemLeft" align="right" valign="top">override <br class="typebreak"/>
+System.Collections.IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#ad2ac83f91814d8666482bf8b6f3721d1">RunOptions</a> (<a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a> optionsCollection, <a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> optionChooser)</td></tr>
+<tr class="separator:ad2ac83f91814d8666482bf8b6f3721d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01e67009071f9ee5ac5ef3c970cd3695"><td class="memItemLeft" align="right" valign="top">override <br class="typebreak"/>
+System.Collections.IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a01e67009071f9ee5ac5ef3c970cd3695">RunCommand</a> (<a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a> command)</td></tr>
+<tr class="separator:a01e67009071f9ee5ac5ef3c970cd3695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d88ca81ac536d43046ca6572e3ff54"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#af9d88ca81ac536d43046ca6572e3ff54">DialogueStarted</a> ()</td></tr>
+<tr class="separator:af9d88ca81ac536d43046ca6572e3ff54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a754c6dd0bc67895d11f878fe4477d698"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a754c6dd0bc67895d11f878fe4477d698">RunLine</a> (<a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a> line)</td></tr>
+<tr class="separator:a754c6dd0bc67895d11f878fe4477d698"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b29079f638f2ceb078627ef1e60004"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#ac5b29079f638f2ceb078627ef1e60004">RunOptions</a> (<a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a> optionsCollection, <a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> optionChooser)</td></tr>
+<tr class="separator:ac5b29079f638f2ceb078627ef1e60004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dffe84b9e7a10fdec6749baf697d111"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a3dffe84b9e7a10fdec6749baf697d111">RunCommand</a> (<a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a> command)</td></tr>
+<tr class="separator:a3dffe84b9e7a10fdec6749baf697d111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2900548a0704d39d4502a153945f4bef"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a2900548a0704d39d4502a153945f4bef">NodeComplete</a> (string nextNode)</td></tr>
+<tr class="separator:a2900548a0704d39d4502a153945f4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc60aee9e9386da1f71fb183f43c52d"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#aecc60aee9e9386da1f71fb183f43c52d">DialogueComplete</a> ()</td></tr>
+<tr class="separator:aecc60aee9e9386da1f71fb183f43c52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a471a25da67fda0524f2375f9a882aafa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d16/a00029.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">type</a></td></tr>
-<tr class="separator:a471a25da67fda0524f2375f9a882aafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3df6b32d6190a639619a3f064c2154e2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">value</a></td></tr>
-<tr class="separator:a3df6b32d6190a639619a3f064c2154e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80fe710713201bb793a41452e314a721"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">lineNumber</a></td></tr>
-<tr class="separator:a80fe710713201bb793a41452e314a721"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a0f0a8a7ab1e90ab48f15192323ffca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a></td></tr>
-<tr class="separator:a9a0f0a8a7ab1e90ab48f15192323ffca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a089d248c904a6e8366b81c2c47ff5af8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a089d248c904a6e8366b81c2c47ff5af8">context</a></td></tr>
-<tr class="separator:a089d248c904a6e8366b81c2c47ff5af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af15d26fa4e6f276ab58ff66d3c4203da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#af15d26fa4e6f276ab58ff66d3c4203da">delimitsText</a> = false</td></tr>
-<tr class="separator:af15d26fa4e6f276ab58ff66d3c4203da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf11c0d29b66935a8d8109d6308d0488"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#adf11c0d29b66935a8d8109d6308d0488">parameterCount</a></td></tr>
-<tr class="separator:adf11c0d29b66935a8d8109d6308d0488"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a710099e7abe84f30864a320cc7464214"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a710099e7abe84f30864a320cc7464214">lexerState</a></td></tr>
-<tr class="separator:a710099e7abe84f30864a320cc7464214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87332992e1420a8b2047822fab2b03c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d4a/a00147.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a></td></tr>
+<tr class="separator:af87332992e1420a8b2047822fab2b03c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbea72eb6f5ab305b3757789919f961"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d4a/a00147.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a></td></tr>
+<tr class="separator:adcbea72eb6f5ab305b3757789919f961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2003ece8aeab171db3a749bef5f770"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d4a/a00147.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a></td></tr>
+<tr class="separator:a5c2003ece8aeab171db3a749bef5f770"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab0f7b55e776ae494a651c845b496916c"><td class="memItemLeft" align="right" valign="top">Queue&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a> = new Queue&lt;string&gt;()</td></tr>
+<tr class="separator:ab0f7b55e776ae494a651c845b496916c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e4308d412945c977b2deb63f139009"><td class="memItemLeft" align="right" valign="top">Queue&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4a/a00147.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a> = new Queue&lt;string&gt;()</td></tr>
+<tr class="separator:a94e4308d412945c977b2deb63f139009"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab8531150354ef148b8929a727f29ae39"></a>
+<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afc93c5cf370b31eceab3671c9eca0d94"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Yarn.Token.Token </td>
+          <td class="memname">delegate void TestDialogueUIBehaviour.CommandHandler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d5/d16/a00029.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d0/d61/a00100.html">Lexer.LexerState</a>&#160;</td>
-          <td class="paramname"><em>lexerState</em>, </td>
         </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aecc60aee9e9386da1f71fb183f43c52d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lineNumber</em> = <code>-1</code>, </td>
         </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="../../d1/d51/a00079.html#a1f2a08baacc25aea09af8e60eb5d3eb1">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+<div class="fragment"><div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                                                       {</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af9d88ca81ac536d43046ca6572e3ff54"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>columnNumber</em> = <code>-1</code>, </td>
         </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="../../d1/d51/a00079.html#a313283f6c53354b54f25898eb436eba0">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+<div class="fragment"><div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                                                     {</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af51a4e0d00f92dcc991f6c1ac62ac8c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
-          <td></td>
+          <td class="memname">void TestDialogueUIBehaviour.ExpectLine </td>
+          <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>value</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                                        {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        expectedLines.Enqueue(line);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac6c30953edbd1cd4181e2a3854a1642b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void TestDialogueUIBehaviour.LineHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2900548a0704d39d4502a153945f4bef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nextNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                                                                 {</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7fe2e6bc2d5471d9af14a9d35de821bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void TestDialogueUIBehaviour.OptionsHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a>&#160;</td>
+          <td class="paramname"><em>optionsCollection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a>&#160;</td>
+          <td class="paramname"><em>optionChooser</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -191,139 +342,282 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                                                                                                                                 {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            this.type = <a class="code" href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">type</a>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            this.value = <a class="code" href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">value</a>;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            this.lineNumber = <a class="code" href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">lineNumber</a>;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            this.columnNumber = <a class="code" href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            this.lexerState = lexerState.name;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
-<div class="ttc" id="a00147_html_a471a25da67fda0524f2375f9a882aafa"><div class="ttname"><a href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">Yarn.Token.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> Lexer.cs:178</div></div>
-<div class="ttc" id="a00147_html_a9a0f0a8a7ab1e90ab48f15192323ffca"><div class="ttname"><a href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">Yarn.Token.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> Lexer.cs:183</div></div>
-<div class="ttc" id="a00147_html_a80fe710713201bb793a41452e314a721"><div class="ttname"><a href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">Yarn.Token.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> Lexer.cs:182</div></div>
-<div class="ttc" id="a00147_html_a3df6b32d6190a639619a3f064c2154e2"><div class="ttname"><a href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">Yarn.Token.value</a></div><div class="ttdeci">string value</div><div class="ttdef"><b>Definition:</b> Lexer.cs:179</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abf676a737679ec2fb1dffd75dc4d7976"></a>
+<a class="anchor" id="a01e67009071f9ee5ac5ef3c970cd3695"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">override string Yarn.Token.ToString </td>
+          <td class="memname">override System.Collections.IEnumerator TestDialogueUIBehaviour.RunCommand </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                                          {</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">if</span> (this.<a class="code" href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">value</a> != null) {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">return</span> string.Format(<span class="stringliteral">&quot;{0} ({1}) at {2}:{3} (state: {4})&quot;</span>, type.ToString(), <a class="code" href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">value</a>.ToString(), <a class="code" href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">lineNumber</a>, <a class="code" href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>, <a class="code" href="../../d0/d4a/a00147.html#a710099e7abe84f30864a320cc7464214">lexerState</a>);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">return</span> string.Format (<span class="stringliteral">&quot;{0} at {1}:{2} (state: {3})&quot;</span>, <a class="code" href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">type</a>, <a class="code" href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">lineNumber</a>, <a class="code" href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">columnNumber</a>, <a class="code" href="../../d0/d4a/a00147.html#a710099e7abe84f30864a320cc7464214">lexerState</a>);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        }</div>
-<div class="ttc" id="a00147_html_a471a25da67fda0524f2375f9a882aafa"><div class="ttname"><a href="../../d0/d4a/a00147.html#a471a25da67fda0524f2375f9a882aafa">Yarn.Token.type</a></div><div class="ttdeci">TokenType type</div><div class="ttdef"><b>Definition:</b> Lexer.cs:178</div></div>
-<div class="ttc" id="a00147_html_a9a0f0a8a7ab1e90ab48f15192323ffca"><div class="ttname"><a href="../../d0/d4a/a00147.html#a9a0f0a8a7ab1e90ab48f15192323ffca">Yarn.Token.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> Lexer.cs:183</div></div>
-<div class="ttc" id="a00147_html_a80fe710713201bb793a41452e314a721"><div class="ttname"><a href="../../d0/d4a/a00147.html#a80fe710713201bb793a41452e314a721">Yarn.Token.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> Lexer.cs:182</div></div>
-<div class="ttc" id="a00147_html_a710099e7abe84f30864a320cc7464214"><div class="ttname"><a href="../../d0/d4a/a00147.html#a710099e7abe84f30864a320cc7464214">Yarn.Token.lexerState</a></div><div class="ttdeci">string lexerState</div><div class="ttdef"><b>Definition:</b> Lexer.cs:193</div></div>
-<div class="ttc" id="a00147_html_a3df6b32d6190a639619a3f064c2154e2"><div class="ttname"><a href="../../d0/d4a/a00147.html#a3df6b32d6190a639619a3f064c2154e2">Yarn.Token.value</a></div><div class="ttdeci">string value</div><div class="ttdef"><b>Definition:</b> Lexer.cs:179</div></div>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="../../d0/d4a/a00147.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a> != null)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="../../d0/d4a/a00147.html#a5c2003ece8aeab171db3a749bef5f770">commandHandler</a>(command);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="ttc" id="a00147_html_a5c2003ece8aeab171db3a749bef5f770"><div class="ttname"><a href="../../d0/d4a/a00147.html#a5c2003ece8aeab171db3a749bef5f770">TestDialogueUIBehaviour.commandHandler</a></div><div class="ttdeci">CommandHandler commandHandler</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:26</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a3dffe84b9e7a10fdec6749baf697d111"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#a7f84b1e7d3c9c1f7507d143e11ba8075">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae274e39b640908d04aacc6cf6624d9da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override System.Collections.IEnumerator TestDialogueUIBehaviour.RunLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="../../d0/d4a/a00147.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a> != null)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="../../d0/d4a/a00147.html#af87332992e1420a8b2047822fab2b03c">lineHandler</a>(line);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="../../d0/d4a/a00147.html#ab0f7b55e776ae494a651c845b496916c">expectedLines</a>.Count &gt; 0) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            Assert.AreEqual(expectedLines.Dequeue(), line.text);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="ttc" id="a00147_html_ab0f7b55e776ae494a651c845b496916c"><div class="ttname"><a href="../../d0/d4a/a00147.html#ab0f7b55e776ae494a651c845b496916c">TestDialogueUIBehaviour.expectedLines</a></div><div class="ttdeci">Queue&lt; string &gt; expectedLines</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:8</div></div>
+<div class="ttc" id="a00147_html_af87332992e1420a8b2047822fab2b03c"><div class="ttname"><a href="../../d0/d4a/a00147.html#af87332992e1420a8b2047822fab2b03c">TestDialogueUIBehaviour.lineHandler</a></div><div class="ttdeci">LineHandler lineHandler</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:20</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a754c6dd0bc67895d11f878fe4477d698"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#a109aeedc5206dcbc4f629638b7830030">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2ac83f91814d8666482bf8b6f3721d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override System.Collections.IEnumerator TestDialogueUIBehaviour.RunOptions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a>&#160;</td>
+          <td class="paramname"><em>optionsCollection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a>&#160;</td>
+          <td class="paramname"><em>optionChooser</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="../../d0/d4a/a00147.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a> != null)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="../../d0/d4a/a00147.html#adcbea72eb6f5ab305b3757789919f961">optionsHandler</a>(optionsCollection, optionChooser);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="../../d0/d4a/a00147.html#a94e4308d412945c977b2deb63f139009">expectedOptions</a>.Count &gt; 0) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            var selection = expectedOptions.Dequeue();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            var index = optionsCollection.options.IndexOf(selection);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Assert.AreNotEqual(index, -1, <span class="stringliteral">&quot;Failed to find option \&quot;{0}\&quot;&quot;</span>, selection);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            Assert.Less(index, optionsCollection.options.Count);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            optionChooser(index);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="ttc" id="a00147_html_a94e4308d412945c977b2deb63f139009"><div class="ttname"><a href="../../d0/d4a/a00147.html#a94e4308d412945c977b2deb63f139009">TestDialogueUIBehaviour.expectedOptions</a></div><div class="ttdeci">Queue&lt; string &gt; expectedOptions</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:13</div></div>
+<div class="ttc" id="a00147_html_adcbea72eb6f5ab305b3757789919f961"><div class="ttname"><a href="../../d0/d4a/a00147.html#adcbea72eb6f5ab305b3757789919f961">TestDialogueUIBehaviour.optionsHandler</a></div><div class="ttdeci">OptionsHandler optionsHandler</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:23</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac5b29079f638f2ceb078627ef1e60004"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a>&#160;</td>
+          <td class="paramname"><em>optionsCollection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a>&#160;</td>
+          <td class="paramname"><em>optionChooser</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#aaa93672700a456e66c694636460a58f4">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc743ade599769e968fecea525add7b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TestDialogueUIBehaviour.SelectOption </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>option</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                            {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        expectedOptions.Enqueue(option);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a9a0f0a8a7ab1e90ab48f15192323ffca"></a>
+<a class="anchor" id="a5c2003ece8aeab171db3a749bef5f770"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Yarn.Token.columnNumber</td>
+          <td class="memname"><a class="el" href="../../d0/d4a/a00147.html#afc93c5cf370b31eceab3671c9eca0d94">CommandHandler</a> TestDialogueUIBehaviour.commandHandler</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a089d248c904a6e8366b81c2c47ff5af8"></a>
+<a class="anchor" id="ab0f7b55e776ae494a651c845b496916c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Queue&lt;string&gt; TestDialogueUIBehaviour.expectedLines = new Queue&lt;string&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a94e4308d412945c977b2deb63f139009"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Queue&lt;string&gt; TestDialogueUIBehaviour.expectedOptions = new Queue&lt;string&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af87332992e1420a8b2047822fab2b03c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.Token.context</td>
+          <td class="memname"><a class="el" href="../../d0/d4a/a00147.html#ac6c30953edbd1cd4181e2a3854a1642b">LineHandler</a> TestDialogueUIBehaviour.lineHandler</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="af15d26fa4e6f276ab58ff66d3c4203da"></a>
+<a class="anchor" id="adcbea72eb6f5ab305b3757789919f961"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.Token.delimitsText = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a710099e7abe84f30864a320cc7464214"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Token.lexerState</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a80fe710713201bb793a41452e314a721"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Yarn.Token.lineNumber</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adf11c0d29b66935a8d8109d6308d0488"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Yarn.Token.parameterCount</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a471a25da67fda0524f2375f9a882aafa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d5/d16/a00029.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a> Yarn.Token.type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3df6b32d6190a639619a3f064c2154e2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Token.value</td>
+          <td class="memname"><a class="el" href="../../d0/d4a/a00147.html#a7fe2e6bc2d5471d9af14a9d35de821bd">OptionsHandler</a> TestDialogueUIBehaviour.optionsHandler</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -331,14 +625,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="../../">Lexer.cs</a></li>
+<li>Unity/Assets/Yarn Spinner/Code/Editor/<a class="el" href="../../">YarnSpinnerTests.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d5/d16/a00029.html">Yarn</a></li><li class="navelem"><a class="el" href="../../d0/d4a/a00147.html">Token</a></li>
+    <li class="navelem"><a class="el" href="../../d0/d4a/a00147.html">TestDialogueUIBehaviour</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

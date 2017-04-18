@@ -1,134 +1,89 @@
-\hypertarget{a00027}{\section{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result Class Reference}
-\label{a00027}\index{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result@{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result}}
+\hypertarget{a00027}{\section{Yarn.\-Unity.\-Example.\-Camera\-Follow Class Reference}
+\label{a00027}\index{Yarn.\-Unity.\-Example.\-Camera\-Follow@{Yarn.\-Unity.\-Example.\-Camera\-Follow}}
 }
 
 
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{d8/dcb/a00706}
+\includegraphics[width=222pt]{d3/d3b/a00715}
 \end{center}
 \end{figure}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385}{State} \{ \hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{State.\-Not\-Tested}, 
-\hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{State.\-Passed}, 
-\hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{State.\-Failed}
- \}
-\end{DoxyCompactItemize}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-override bool \hyperlink{a00027_a1e653caad5ab99847c26ff8f67da8f45}{Equals} (object obj)
-\item 
-override int \hyperlink{a00027_a85d50993390cdd8ba30ac44043b18de7}{Get\-Hash\-Code} ()
-\item 
-\hyperlink{a00027_af1c9b3d1757d33ad2141c639c3827c97}{Checker\-Result} (Text\-Asset \hyperlink{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{script})
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{d2/d94/a00716}
+\end{center}
+\end{figure}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385}{State} \hyperlink{a00027_a7202b24bd068da24d7e28bec5668b13a}{state}
+Transform \hyperlink{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{target}
 \item 
-Text\-Asset \hyperlink{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{script}
+float \hyperlink{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{min\-Position} = -\/5.\-3f
 \item 
-\hyperlink{a00160_db/d53/a00321}{Validation\-Message}\mbox{[}$\,$\mbox{]} \hyperlink{a00027_a808a039e280cf875cb3c9e9385148498}{messages} = new \hyperlink{a00160_db/d53/a00321}{Validation\-Message}\mbox{[}0\mbox{]}
+float \hyperlink{a00027_abb0154dcbc2a7d43795beacd61a56de4}{max\-Position} = 5.\-3f
+\item 
+float \hyperlink{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{move\-Speed} = 1.\-0f
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00027_a592ddbf8e493bde0a6536c0234869217}{Update} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00027_ab24848d7951ce44eb3c7768c6ee10385}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!State@{State}}
-\index{State@{State}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-State}}}\label{a00027_ab24848d7951ce44eb3c7768c6ee10385}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Not\-Tested@{Not\-Tested}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Not\-Tested@{Not\-Tested}}\item[{\em 
-\hypertarget{a00027_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{Not\-Tested}\label{a00027_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}
-}]\index{Passed@{Passed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Passed@{Passed}}\item[{\em 
-\hypertarget{a00027_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed}\label{a00027_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}
-}]\index{Failed@{Failed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Failed@{Failed}}\item[{\em 
-\hypertarget{a00027_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}\label{a00027_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}
-}]\end{description}
-\end{Desc}
-
-\begin{DoxyCode}
-36                               \{
-37                 \hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{NotTested},
-38                 \hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed},
-39                 \hyperlink{a00027_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}
-40             \}
-\end{DoxyCode}
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00027_af1c9b3d1757d33ad2141c639c3827c97}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Checker\-Result@{Checker\-Result}}
-\index{Checker\-Result@{Checker\-Result}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{Checker\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Checker\-Result (
-\begin{DoxyParamCaption}
-\item[{Text\-Asset}]{script}
-\end{DoxyParamCaption}
-)}}\label{a00027_af1c9b3d1757d33ad2141c639c3827c97}
-
-\begin{DoxyCode}
-60                                                    \{
-61                 this.script = \hyperlink{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{script};
-62                 this.state = State.NotTested;
-63             \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00027_a1e653caad5ab99847c26ff8f67da8f45}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Equals@{Equals}}
-\index{Equals@{Equals}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}override bool Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Equals (
-\begin{DoxyParamCaption}
-\item[{object}]{obj}
-\end{DoxyParamCaption}
-)}}\label{a00027_a1e653caad5ab99847c26ff8f67da8f45}
-
-\begin{DoxyCode}
-48             \{
-49                 \textcolor{keywordflow}{if} (obj is \hyperlink{a00027_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult} && ((\hyperlink{a00027_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult})obj).
-      \hyperlink{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{script} == this.\hyperlink{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{script})
-50                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-51                 \textcolor{keywordflow}{else}
-52                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-53             \}
-\end{DoxyCode}
-\hypertarget{a00027_a85d50993390cdd8ba30ac44043b18de7}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Get\-Hash\-Code@{Get\-Hash\-Code}}
-\index{Get\-Hash\-Code@{Get\-Hash\-Code}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{Get\-Hash\-Code}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Get\-Hash\-Code (
+\hypertarget{a00027_a592ddbf8e493bde0a6536c0234869217}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Camera\-Follow.\-Update (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00027_a85d50993390cdd8ba30ac44043b18de7}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00027_a592ddbf8e493bde0a6536c0234869217}
 
 \begin{DoxyCode}
-56             \{
-57                 \textcolor{keywordflow}{return} this.script.GetHashCode();
-58             \}
+42                        \{
+43             \textcolor{keywordflow}{if} (\hyperlink{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{target} == null) \{
+44                 \textcolor{keywordflow}{return};
+45             \}
+46             var newPosition = Vector3.Lerp(transform.position, target.position, 
+      \hyperlink{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{moveSpeed} * Time.deltaTime);
+47 
+48             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{minPosition}, 
+      \hyperlink{a00027_abb0154dcbc2a7d43795beacd61a56de4}{maxPosition});
+49             newPosition.y = transform.position.y;
+50             newPosition.z = transform.position.z;
+51 
+52             transform.position = newPosition;
+53         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00027_a808a039e280cf875cb3c9e9385148498}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!messages@{messages}}
-\index{messages@{messages}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{messages}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Validation\-Message} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-messages = new {\bf Validation\-Message}\mbox{[}0\mbox{]}}}\label{a00027_a808a039e280cf875cb3c9e9385148498}
-\hypertarget{a00027_a6c852f7521c0a91b519aa3d391f63e6b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!script@{script}}
-\index{script@{script}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{script}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-script}}\label{a00027_a6c852f7521c0a91b519aa3d391f63e6b}
-\hypertarget{a00027_a7202b24bd068da24d7e28bec5668b13a}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!state@{state}}
-\index{state@{state}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
-\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-state}}\label{a00027_a7202b24bd068da24d7e28bec5668b13a}
+\hypertarget{a00027_abb0154dcbc2a7d43795beacd61a56de4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!max\-Position@{max\-Position}}
+\index{max\-Position@{max\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-max\-Position = 5.\-3f}}\label{a00027_abb0154dcbc2a7d43795beacd61a56de4}
+\hypertarget{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!min\-Position@{min\-Position}}
+\index{min\-Position@{min\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-min\-Position = -\/5.\-3f}}\label{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}
+\hypertarget{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!move\-Speed@{move\-Speed}}
+\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-move\-Speed = 1.\-0f}}\label{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}
+\hypertarget{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!target@{target}}
+\index{target@{target}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}Transform Yarn.\-Unity.\-Example.\-Camera\-Follow.\-target}}\label{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00251}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00256}{Camera\-Follow.\-cs}\end{DoxyCompactItemize}

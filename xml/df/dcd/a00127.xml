@@ -1,31 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="df/dcd/a00127" kind="class" prot="public">
-    <compoundname>Yarn::ProgramExporter</compoundname>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="df/dcd/a00127_1a2e617f0d69a4a6a1c5307af390067079" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.ProgramExporter.ProgramExporter</definition>
-        <argsstring>()</argsstring>
-        <name>ProgramExporter</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" bodystart="9" bodyend="11"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="df/dcd/a00127_1a3679a1f144471ea411fed34f6a79a18d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.ProgramExporter.Export</definition>
-        <argsstring>(CompileOptions options)</argsstring>
-        <name>Export</name>
+    <compoundname>YarnSpinner::Tests::Program</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="df/dcd/a00127_1a2fcb995bee46693c3c18e3bcfbb7e15f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void YarnSpinner.Tests.Program.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
         <param>
-          <type><ref refid="d0/dc0/a00033" kindref="compound">CompileOptions</ref></type>
-          <declname>options</declname>
+          <type>string[]</type>
+          <declname>args</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -33,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" bodystart="13" bodyend="49"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" bodystart="9" bodyend="13"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -41,15 +26,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1467">
-        <label>Yarn.ProgramExporter</label>
+      <node id="1463">
+        <label>YarnSpinner.Tests.Program</label>
         <link refid="df/dcd/a00127"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/ProgramExporter.cs" bodystart="7" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" bodystart="6" bodyend="14"/>
     <listofallmembers>
-      <member refid="df/dcd/a00127_1a3679a1f144471ea411fed34f6a79a18d" prot="package" virt="non-virtual"><scope>Yarn::ProgramExporter</scope><name>Export</name></member>
-      <member refid="df/dcd/a00127_1a2e617f0d69a4a6a1c5307af390067079" prot="public" virt="non-virtual"><scope>Yarn::ProgramExporter</scope><name>ProgramExporter</name></member>
+      <member refid="df/dcd/a00127_1a2fcb995bee46693c3c18e3bcfbb7e15f" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::Program</scope><name>Main</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

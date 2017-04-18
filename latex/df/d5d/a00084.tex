@@ -1,233 +1,172 @@
-\hypertarget{a00084}{\section{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter Class Reference}
-\label{a00084}\index{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter}}
+\hypertarget{a00084}{\section{Yarn.\-Function\-Info Class Reference}
+\label{a00084}\index{Yarn.\-Function\-Info@{Yarn.\-Function\-Info}}
 }
 
 
-Converts a Guid to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter\-:
+Collaboration diagram for Yarn.\-Function\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{d7/d5e/a00467}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{df/d38/a00468}
+\includegraphics[width=222pt]{de/d7c/a00576}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00084_ad00786c329498785bbb77407ea023877}{Convert\-From\-String} (\hyperlink{a00152}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00084_a0a4f9bd355387b70241a9d5f92c7b0ef}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00066_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00152}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00066_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00066_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00163}{Value} \hyperlink{a00084_ab400ac66785d7df2e3fc0f3ce3796044}{Invoke} (params \hyperlink{a00163}{Value}\mbox{[}$\,$\mbox{]} parameters)
+\item 
+\hyperlink{a00163}{Value} \hyperlink{a00084_a3ce11058d35232907a738de4bb094c67}{Invoke\-With\-Array} (\hyperlink{a00163}{Value}\mbox{[}$\,$\mbox{]} parameters)
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}{Function\-Info} (string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00031_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+\item 
+\hyperlink{a00084_a41d97c09da25caede70cb734d18113b9}{Function\-Info} (string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00031_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
+\item 
+bool \hyperlink{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{Is\-Parameter\-Count\-Correct} (int parameter\-Count)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00031_ae0be2e5cf13d5779816102439e61ff1a}{Function} \hyperlink{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}{function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00031_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} \hyperlink{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{returning\-Function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00084_acaff044276aa230de7c0b27dd5267bc7}{returns\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Guid to and from a string. 
 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
+\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{param\-Count, }
+\item[{{\bf Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}
+
+\begin{DoxyCode}
+65                                                                                     \{
+66             this.name = \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name};
+67             this.paramCount = \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
+68             this.function = implementation;
+69             this.returningFunction = null;
+70         \}
+\end{DoxyCode}
+\hypertarget{a00084_a41d97c09da25caede70cb734d18113b9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
+\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{param\-Count, }
+\item[{{\bf Returning\-Function}}]{implementation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a41d97c09da25caede70cb734d18113b9}
+
+\begin{DoxyCode}
+72                                                                                              \{
+73             this.name = \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name};
+74             this.paramCount = \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
+75             this.returningFunction = implementation;
+76             this.function = null;
+77         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00084_a0a4f9bd355387b70241a9d5f92c7b0ef}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00084_ab400ac66785d7df2e3fc0f3ce3796044}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke@{Invoke}}
+\index{Invoke@{Invoke}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Invoke}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{params {\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
 \end{DoxyParamCaption}
-)}}\label{a00084_a0a4f9bd355387b70241a9d5f92c7b0ef}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
+)}}\label{a00084_ab400ac66785d7df2e3fc0f3ce3796044}
 
 \begin{DoxyCode}
-39         \{
-40             \textcolor{comment}{// We only care about strings.}
-41             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-42         \}
+32                                                        \{
+33             \textcolor{keywordflow}{return} \hyperlink{a00084_a3ce11058d35232907a738de4bb094c67}{InvokeWithArray}(parameters);
+34         \}
 \end{DoxyCode}
-\hypertarget{a00066_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00084_a3ce11058d35232907a738de4bb094c67}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke\-With\-Array@{Invoke\-With\-Array}}
+\index{Invoke\-With\-Array@{Invoke\-With\-Array}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Invoke\-With\-Array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke\-With\-Array (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00066_a470d21adaa704eb281250dbd112ff91a}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00097_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00114_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00023_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00075_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00076_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00063_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00062_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00024_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00146_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
+)}}\label{a00084_a3ce11058d35232907a738de4bb094c67}
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+36                                                          \{
+37 
+38             \textcolor{keywordtype}{int} length;
+39 
+40             \textcolor{keywordflow}{if} (parameters != null)
+41                 length = parameters.Length;
+42             \textcolor{keywordflow}{else} 
+43                 length = 0;
+44 
+45             \textcolor{keywordflow}{if} (\hyperlink{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{IsParameterCountCorrect} (length)) \{
+46                 \textcolor{keywordflow}{if} (\hyperlink{a00084_acaff044276aa230de7c0b27dd5267bc7}{returnsValue}) \{
+47                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} Value(\hyperlink{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{returningFunction} (parameters));
+48                 \} \textcolor{keywordflow}{else} \{
+49                     \textcolor{keyword}{function} (parameters);
+50                     \textcolor{keywordflow}{return} \hyperlink{a00163_a1ed2964965baca8621c45efa23f37660}{Value.NULL}; \textcolor{comment}{// a null Value}
+51                 \}               
+52             \} \textcolor{keywordflow}{else} \{
+53                 \textcolor{keywordtype}{string} error = string.Format (
+54                     \textcolor{stringliteral}{"Incorrect number of parameters for function \{0\} (expected \{1\}, got \{2\}"}, 
+55                     this.name, 
+56                     this.paramCount, 
+57                     parameters.Length);
+58                 
+59                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (error);
+60             \}
+61         \}
 \end{DoxyCode}
-\hypertarget{a00066_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}}
+\index{Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{Is\-Parameter\-Count\-Correct}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{int}]{parameter\-Count}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00066_acb65bd8c8199d88d5b1629ae35d18514}
-
-
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00097_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00076_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+80         \{
+81             \textcolor{keywordflow}{return} \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == parameterCount || \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == -1;
+82         \}
 \end{DoxyCode}
-\hypertarget{a00084_ad00786c329498785bbb77407ea023877}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00084_ad00786c329498785bbb77407ea023877}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00066_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( text == null )
-24             \{
-25                 \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-26             \}
-27 
-28             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Guid( text );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00066_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::GuidConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Guid\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00066_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00097_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00114_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00076_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
+\subsection{Property Documentation}
+\hypertarget{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!function@{function}}
+\index{function@{function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} Yarn.\-Function\-Info.\-function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}
+\hypertarget{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!name@{name}}
+\index{name@{name}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Function\-Info.\-name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_adb38e83e3c1597b553aeff14bef5bfcb}
+\hypertarget{a00084_aa8527de9e4f153b05164ccaf167c3186}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!param\-Count@{param\-Count}}
+\index{param\-Count@{param\-Count}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{param\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Function\-Info.\-param\-Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_aa8527de9e4f153b05164ccaf167c3186}
+\hypertarget{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returning\-Function@{returning\-Function}}
+\index{returning\-Function@{returning\-Function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{returning\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Returning\-Function} Yarn.\-Function\-Info.\-returning\-Function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}
+\hypertarget{a00084_acaff044276aa230de7c0b27dd5267bc7}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returns\-Value@{returns\-Value}}
+\index{returns\-Value@{returns\-Value}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
+\subsubsection[{returns\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-returns\-Value\hspace{0.3cm}{\ttfamily [get]}}}\label{a00084_acaff044276aa230de7c0b27dd5267bc7}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00231}{Guid\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00267}{Library.\-cs}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
-<map id="Yarn.Parser.Block" name="Yarn.Parser.Block">
-<area shape="rect" id="node2" href="$d4/d98/a00120.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="24,222,144,373"/>
-<area shape="rect" id="node3" href="$d4/d98/a00120.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="4,6,163,157"/>
+<map id="Yarn.Parser.AssignmentStatement" name="Yarn.Parser.AssignmentStatement">
+<area shape="rect" id="node2" href="$df/dc8/a00122.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="56,222,176,373"/>
+<area shape="rect" id="node3" href="$df/dc8/a00122.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="36,6,195,157"/>
 </map>

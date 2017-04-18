@@ -1,222 +1,120 @@
-\hypertarget{a00052}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection Class Reference}
-\label{a00052}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection}}
+\hypertarget{a00052}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer Class Reference}
+\label{a00052}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer}}
 }
 
 
-A collection that holds property names.  
+Used to compare \hyperlink{a00050}{Csv\-Property\-Map}s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
+Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{dc/df3/a00424}
+\includegraphics[width=234pt]{db/d43/a00422}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{dc/d2f/a00425}
+\includegraphics[width=234pt]{d1/d05/a00423}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00052_ad7b7d11d5814bcce5ed38e054ef71b4e}{Add} (string name)
-\begin{DoxyCompactList}\small\item\em Adds the given name to the collection. \end{DoxyCompactList}\item 
-void \hyperlink{a00052_abec990435c8dccfb4553602b89f93201}{Clear} ()
-\begin{DoxyCompactList}\small\item\em Clears all names from the collection. \end{DoxyCompactList}\item 
-void \hyperlink{a00052_ac568746273968080890abca50b882802}{Add\-Range} (I\-Enumerable$<$ string $>$ \hyperlink{a00052_a41eb6804d8afe8d674e64d71f66962ce}{names})
-\begin{DoxyCompactList}\small\item\em Adds a range of names to the collection. \end{DoxyCompactList}\item 
-I\-Enumerator$<$ string $>$ \hyperlink{a00052_a61b6a80e51d06f17d0043ec6aef89f1b}{Get\-Enumerator} ()
-\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through the collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00052_acdce91a755be3bec6218e3d82f4dfe82}{this\mbox{[}int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the name at the given index. If a prefix is set, it will be prepended to the name. \end{DoxyCompactList}\item 
-string \hyperlink{a00052_ab8f3256d8435a1c93f0280064aa3ff06}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the prefix to use for each name. \end{DoxyCompactList}\item 
-List$<$ string $>$ \hyperlink{a00052_a1aa06a47337f6ab576b23fe63854dcbe}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw list of names without the prefix being prepended. \end{DoxyCompactList}\item 
-int \hyperlink{a00052_a4b7b56286ad80183e1a33554a49eefa1}{Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the count. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-I\-Enumerator I\-Enumerable. \hyperlink{a00052_a76b5c67fcecf55dbdd4b680cde1a78f7}{Get\-Enumerator} ()
-\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through a collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-readonly List$<$ string $>$ \hyperlink{a00052_a41eb6804d8afe8d674e64d71f66962ce}{names} = new List$<$string$>$()
-\end{DoxyCompactItemize}
+virtual int \hyperlink{a00052_a41ab777503459b3984a2e2826a14d52a}{Compare} (object x, object y)
+\begin{DoxyCompactList}\small\item\em Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. \end{DoxyCompactList}\item 
+virtual int \hyperlink{a00052_ab9c855cf5389c8f1ae1b476d508ade5d}{Compare} (\hyperlink{a00050}{Csv\-Property\-Map} x, \hyperlink{a00050}{Csv\-Property\-Map} y)
+\begin{DoxyCompactList}\small\item\em Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A collection that holds property names. 
+Used to compare \hyperlink{a00050}{Csv\-Property\-Map}s. The order is by field index ascending. Any fields that don't have an index are pushed to the bottom. 
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00052_ad7b7d11d5814bcce5ed38e054ef71b4e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add@{Add}}
-\index{Add@{Add}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add (
+\hypertarget{a00052_a41ab777503459b3984a2e2826a14d52a}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}!Compare@{Compare}}
+\index{Compare@{Compare}!CsvHelper::Configuration::CsvPropertyMapComparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}}
+\subsubsection[{Compare}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer.\-Compare (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{object}]{x, }
+\item[{object}]{y}
 \end{DoxyParamCaption}
-)}}\label{a00052_ad7b7d11d5814bcce5ed38e054ef71b4e}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_a41ab777503459b3984a2e2826a14d52a}
 
 
-Adds the given name to the collection. 
+Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. 
 
+\begin{DoxyReturn}{Returns}
+Value Condition Less than zero {\itshape x}  is less than {\itshape y} . Zero {\itshape x}  equals {\itshape y} . Greater than zero {\itshape x}  is greater than {\itshape y} . 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-{\em name} & The name to add.\\
+{\em x} & The first object to compare. \\
+\hline
+{\em y} & The second object to compare. \\
 \hline
 \end{DoxyParams}
 
-\begin{DoxyCode}
-57         \{
-58             names.Add( name );
-59         \}
-\end{DoxyCode}
-\hypertarget{a00052_ac568746273968080890abca50b882802}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add\-Range@{Add\-Range}}
-\index{Add\-Range@{Add\-Range}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Add\-Range}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add\-Range (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ string $>$}]{names}
-\end{DoxyParamCaption}
-)}}\label{a00052_ac568746273968080890abca50b882802}
-
-
-Adds a range of names to the collection. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em names} & The range to add.\\
+\begin{DoxyExceptions}{Exceptions}
+{\em T\-:\-System.\-Argument\-Exception} & Neither {\itshape x}  nor {\itshape y}  implements the T\-:\-System.\-I\-Comparable interface. -\/or-\/ {\itshape x}  and {\itshape y}  are of different types and neither one can handle comparisons with the other. \\
 \hline
-\end{DoxyParams}
-
-\begin{DoxyCode}
-74         \{
-75             this.names.AddRange( \hyperlink{a00052_a41eb6804d8afe8d674e64d71f66962ce}{names} );
-76         \}
-\end{DoxyCode}
-\hypertarget{a00052_abec990435c8dccfb4553602b89f93201}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Clear@{Clear}}
-\index{Clear@{Clear}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Clear (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00052_abec990435c8dccfb4553602b89f93201}
-
-
-Clears all names from the collection. 
-
-
-\begin{DoxyCode}
-65         \{
-66             names.Clear();
-67         \}
-\end{DoxyCode}
-\hypertarget{a00052_a61b6a80e51d06f17d0043ec6aef89f1b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
-\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00052_a61b6a80e51d06f17d0043ec6aef89f1b}
-
-
-Returns an enumerator that iterates through the collection. 
-
-\begin{DoxyReturn}{Returns}
-A T\-:\-System.\-Collections.\-Generic.\-I\-Enumerator`1 that can be used to iterate through the collection. 
-\end{DoxyReturn}
-$<$filterpriority$>$1$<$/filterpriority$>$ 
-\begin{DoxyCode}
-86         \{
-87             \textcolor{keywordflow}{for}( var i = 0; i < names.Count; i++ )
-88             \{
-89                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{this}[i];
-90             \}
-91         \}
-\end{DoxyCode}
-\hypertarget{a00052_a76b5c67fcecf55dbdd4b680cde1a78f7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
-\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator I\-Enumerable. Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00052_a76b5c67fcecf55dbdd4b680cde1a78f7}
-
-
-Returns an enumerator that iterates through a collection. 
-
-\begin{DoxyReturn}{Returns}
-An T\-:\-System.\-Collections.\-I\-Enumerator object that can be used to iterate through the collection. 
-\end{DoxyReturn}
+\end{DoxyExceptions}
 $<$filterpriority$>$2$<$/filterpriority$>$ 
 \begin{DoxyCode}
-101         \{
-102             \textcolor{keywordflow}{return} names.GetEnumerator();
-103         \}
+39         \{
+40             var xProperty = x as CsvPropertyMap;
+41             var yProperty = y as CsvPropertyMap;
+42             \textcolor{keywordflow}{return} \hyperlink{a00052_a41ab777503459b3984a2e2826a14d52a}{Compare}( xProperty, yProperty );
+43         \}
 \end{DoxyCode}
+\hypertarget{a00052_ab9c855cf5389c8f1ae1b476d508ade5d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}!Compare@{Compare}}
+\index{Compare@{Compare}!CsvHelper::Configuration::CsvPropertyMapComparer@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Comparer}}
+\subsubsection[{Compare}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Comparer.\-Compare (
+\begin{DoxyParamCaption}
+\item[{{\bf Csv\-Property\-Map}}]{x, }
+\item[{{\bf Csv\-Property\-Map}}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_ab9c855cf5389c8f1ae1b476d508ade5d}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00052_a41eb6804d8afe8d674e64d71f66962ce}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!names@{names}}
-\index{names@{names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-names = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00052_a41eb6804d8afe8d674e64d71f66962ce}
+Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other. 
 
-
-\subsection{Property Documentation}
-\hypertarget{a00052_a4b7b56286ad80183e1a33554a49eefa1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Count@{Count}}
-\index{Count@{Count}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00052_a4b7b56286ad80183e1a33554a49eefa1}
-
-
-Gets the count. 
-
-\hypertarget{a00052_a1aa06a47337f6ab576b23fe63854dcbe}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Names@{Names}}
-\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00052_a1aa06a47337f6ab576b23fe63854dcbe}
-
-
-Gets the raw list of names without the prefix being prepended. 
-
-\hypertarget{a00052_ab8f3256d8435a1c93f0280064aa3ff06}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Prefix@{Prefix}}
-\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00052_ab8f3256d8435a1c93f0280064aa3ff06}
-
-
-Gets the prefix to use for each name. 
-
-\hypertarget{a00052_acdce91a755be3bec6218e3d82f4dfe82}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!this\mbox{[}int index\mbox{]}@{this[int index]}}
-\index{this\mbox{[}int index\mbox{]}@{this[int index]}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
-\subsubsection[{this[int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00052_acdce91a755be3bec6218e3d82f4dfe82}
-
-
-Gets the name at the given index. If a prefix is set, it will be prepended to the name. 
-
+\begin{DoxyReturn}{Returns}
+Value Condition Less than zero {\itshape x}  is less than {\itshape y} . Zero {\itshape x}  equals {\itshape y} . Greater than zero {\itshape x}  is greater than {\itshape y} . 
+\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-{\em index} & \\
+{\em x} & The first object to compare. \\
+\hline
+{\em y} & The second object to compare. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
 
-\end{DoxyReturn}
+\begin{DoxyCode}
+62         \{
+63             \textcolor{keywordflow}{if}( x == null )
+64             \{
+65                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"x"} );
+66             \}
+67             \textcolor{keywordflow}{if}( y == null )
+68             \{
+69                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"y"} );
+70             \}
+71 
+72             \textcolor{keywordflow}{return} x.Data.Index.CompareTo( y.Data.Index );
+73         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00187}{Csv\-Property\-Name\-Collection.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00189}{Csv\-Property\-Map\-Comparer.\-cs}\end{DoxyCompactItemize}

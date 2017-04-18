@@ -1,3 +1,4 @@
-<map id="Yarn.Dialogue.NodeCompleteResult" name="Yarn.Dialogue.NodeCompleteResult">
-<area shape="rect" id="node2" href="$d6/db3/a00130.html" title="{RunnerResult\n||}" alt="" coords="51,5,153,83"/>
+<map id="Yarn.Dialogue.LineResult" name="Yarn.Dialogue.LineResult">
+<area shape="rect" id="node2" href="$d5/deb/a00132.html" title="{RunnerResult\n||}" alt="" coords="5,5,107,83"/>
+<area shape="rect" id="node3" href="$df/d61/a00031.html#d2/d41/a00318" title="{Yarn.Line\n|+ text\l|}" alt="" coords="132,5,208,83"/>
 </map>

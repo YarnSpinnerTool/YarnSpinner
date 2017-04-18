@@ -1,174 +1,61 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="db/df3/a00034" kind="class" prot="package">
-    <compoundname>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</compoundname>
-    <basecompoundref refid="db/ddf/a00164" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <compoundname>Yarn::Compiler</compoundname>
+    <innerclass refid="d3/db8/a00316" prot="private">Yarn::Compiler::CompileFlags</innerclass>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="db/df3/a00034_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.waitForLines</definition>
+      <memberdef kind="variable" id="db/df3/a00034_1a541022d89bcf9bc8f794eb6d6b438d08" prot="private" static="no" mutable="no">
+        <type><ref refid="d3/db8/a00316" kindref="compound">CompileFlags</ref></type>
+        <definition>CompileFlags Yarn.Compiler.flags</definition>
         <argsstring></argsstring>
-        <name>waitForLines</name>
-        <initializer>= false</initializer>
+        <name>flags</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="501" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="501" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="304" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="304" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="db/df3/a00034_1a9907b805775d5837a900ddbd0a1739b7" prot="private" static="no" mutable="no">
-        <type><ref refid="d1/dd6/a00108" kindref="compound">Yarn.MemoryVariableStore</ref></type>
-        <definition>Yarn.MemoryVariableStore Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.variableStore</definition>
+      <memberdef kind="variable" id="db/df3/a00034_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Compiler.labelCount</definition>
         <argsstring></argsstring>
-        <name>variableStore</name>
+        <name>labelCount</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="503" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="503" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="395" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="395" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="db/df3/a00034_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.numberOfExpectedOptions</definition>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="db/df3/a00034_1aa1737da428ec7d597009661dd8a47829" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d7/d12/a00126" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.Compiler.program</definition>
         <argsstring></argsstring>
-        <name>numberOfExpectedOptions</name>
-        <initializer>= -1</initializer>
+        <name>program</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="507" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="507" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="db/df3/a00034_1a34886671e91a1bf3fc225eeb67baced1" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectOptionNumber</definition>
-        <argsstring></argsstring>
-        <name>autoSelectOptionNumber</name>
-        <initializer>= -1</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="511" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="511" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="db/df3/a00034_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextLine</definition>
-        <argsstring></argsstring>
-        <name>expectedNextLine</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="513" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="513" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="db/df3/a00034_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.expectedNextCommand</definition>
-        <argsstring></argsstring>
-        <name>expectedNextCommand</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="515" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="515" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="db/df3/a00034_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.autoSelectFirstOption</definition>
-        <argsstring></argsstring>
-        <name>autoSelectFirstOption</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="517" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="517" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="306" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="306" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="db/df3/a00034_1a8a2687bbff3f09203c14fa505b06f505" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="db/df3/a00034_1a47bfde319a618a1e11d00cb282a84364" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.ConsoleRunnerImplementation</definition>
-        <argsstring>(bool waitForLines=false)</argsstring>
-        <name>ConsoleRunnerImplementation</name>
-        <param>
-          <type>bool</type>
-          <declname>waitForLines</declname>
-          <defval>false</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="519" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="519" bodyend="523"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</definition>
-        <argsstring>(Yarn.Line lineText)</argsstring>
-        <name>RunLine</name>
-        <param>
-          <type><ref refid="d4/d6f/a00315" kindref="compound">Yarn.Line</ref></type>
-          <declname>lineText</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="525" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="525" bodyend="543"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</definition>
-        <argsstring>(Options optionsGroup, OptionChooser optionChooser)</argsstring>
-        <name>RunOptions</name>
-        <param>
-          <type><ref refid="d2/d41/a00318" kindref="compound">Options</ref></type>
-          <declname>optionsGroup</declname>
-        </param>
-        <param>
-          <type><ref refid="d5/d16/a00029_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-          <declname>optionChooser</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="545" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="545" bodyend="621"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</definition>
-        <argsstring>(string command)</argsstring>
-        <name>RunCommand</name>
+        <definition>Yarn.Compiler.Compiler</definition>
+        <argsstring>(string programName)</argsstring>
+        <name>Compiler</name>
         <param>
           <type>string</type>
-          <declname>command</declname>
+          <declname>programName</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -176,29 +63,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="623" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="623" bodyend="636"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="308" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="308" bodyend="311"/>
       </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1ad6299fd476e53164d9f97d324d8c5936" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="db/df3/a00034_1a10b52c5694f78285d087a455e3654eaa" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.DialogueComplete</definition>
-        <argsstring>()</argsstring>
-        <name>DialogueComplete</name>
+        <definition>void Yarn.Compiler.CompileNode</definition>
+        <argsstring>(Parser.Node node)</argsstring>
+        <name>CompileNode</name>
+        <param>
+          <type><ref refid="db/d57/a00112" kindref="compound">Parser.Node</ref></type>
+          <declname>node</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="638" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="638" bodyend="641"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="316" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="316" bodyend="393"/>
       </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1a925ecf432875c3831adc1a9959db8b46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleErrorMessage</definition>
-        <argsstring>(string error)</argsstring>
-        <name>HandleErrorMessage</name>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="db/df3/a00034_1a1bae0d8b701a59708641aa36ea971fa5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.RegisterLabel</definition>
+        <argsstring>(string commentary=null)</argsstring>
+        <name>RegisterLabel</name>
         <param>
           <type>string</type>
-          <declname>error</declname>
+          <declname>commentary</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -206,16 +100,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="643" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="643" bodyend="646"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="398" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="398" bodyend="400"/>
       </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="db/df3/a00034_1a774e8c143cdda0584fcfdda98626a83c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleDebugMessage</definition>
-        <argsstring>(string message)</argsstring>
-        <name>HandleDebugMessage</name>
+        <definition>void Yarn.Compiler.Emit</definition>
+        <argsstring>(Node node, ByteCode code, object operandA=null, object operandB=null)</argsstring>
+        <name>Emit</name>
         <param>
-          <type>string</type>
-          <declname>message</declname>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/a00031_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandA</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandB</declname>
+          <defval>null</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -223,39 +131,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="648" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="648" bodyend="651"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="402" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="402" bodyend="414"/>
       </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1adc9bfad13d8ae2f147deeddbc5c38ea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="db/df3/a00034_1a006f3becd521cc179ba3d3352f6f930b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="db/ddf/a00164_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Statement statement)</argsstring>
+        <name>GenerateCode</name>
         <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
         </param>
         <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="653" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="653" bodyend="656"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1adf34fa27235fc0fd5fe35c32023220c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="db/ddf/a00164_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type><ref refid="d2/d82/a00142" kindref="compound">Parser.Statement</ref></type>
+          <declname>statement</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -263,20 +152,208 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="658" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="658" bodyend="661"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="417" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="417" bodyend="456"/>
       </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1ab6312d89b626ca803a74a9181286d608" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="db/df3/a00034_1a656b6c7fcd08d24300ec592465274f66" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>virtual void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="db/ddf/a00164_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.CustomCommand statement)</argsstring>
+        <name>GenerateCode</name>
         <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
         </param>
         <param>
-          <type><ref refid="d6/d7d/a00161" kindref="compound">Value</ref></type>
+          <type><ref refid="d1/d6f/a00063" kindref="compound">Parser.CustomCommand</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="458" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="458" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a5117b9c2253de15d3fd3557c8b037235" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.GetLineIDFromNodeTags</definition>
+        <argsstring>(Parser.ParseNode node)</argsstring>
+        <name>GetLineIDFromNodeTags</name>
+        <param>
+          <type><ref refid="df/dc8/a00122" kindref="compound">Parser.ParseNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="484" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="484" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1af1ee28d67902b27ee0816e2a47343652" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Statement parseNode, string line)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="d2/d82/a00142" kindref="compound">Parser.Statement</ref></type>
+          <declname>parseNode</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="496" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="496" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a3e492edcefdfeacec80e528f8c4fa6cc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.ShortcutOptionGroup statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/d5e/a00136" kindref="compound">Parser.ShortcutOptionGroup</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="507" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="507" bodyend="574"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1ab4f6dd2ddf38b0c5bfb2b8a40869a09a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, IEnumerable&lt; Yarn.Parser.Statement &gt; statementList)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>IEnumerable&lt; <ref refid="d2/d82/a00142" kindref="compound">Yarn.Parser.Statement</ref> &gt;</type>
+          <declname>statementList</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="576" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="576" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a6ab14514a3b0644ae39c626e5e5e180d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.IfStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d54/a00094" kindref="compound">Parser.IfStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="586" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="586" bodyend="616"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a5cb3cbcd9727bdef018ec5299bd13142" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.OptionStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d98/a00120" kindref="compound">Parser.OptionStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="618" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="618" bodyend="634"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1afb86d9228f66896abe31d47d72a267ce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.AssignmentStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="db/db2/a00020" kindref="compound">Parser.AssignmentStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="636" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="636" bodyend="685"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a5c762915320958c3a03b193b06a7e279" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Expression expression)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d63/a00082" kindref="compound">Parser.Expression</ref></type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="687" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="687" bodyend="711"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df3/a00034_1a41438a0b25f2668a180372d05127d891" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.ValueNode value)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="dd/de2/a00320" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="db/ddf/a00164" kindref="compound">Parser.ValueNode</ref></type>
           <declname>value</declname>
         </param>
         <briefdescription>
@@ -285,96 +362,46 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="663" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="663" bodyend="666"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1a66fc86080cd452079f5adf15e97c8e41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="d6/d7d/a00161" kindref="compound">Value</ref></type>
-        <definition>virtual Value Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="db/ddf/a00164_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="668" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="668" bodyend="671"/>
-      </memberdef>
-      <memberdef kind="function" id="db/df3/a00034_1a082617cf099d13cb4338935020ced764" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="db/ddf/a00164_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="673" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="673" bodyend="676"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="713" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="713" bodyend="739"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="934">
-        <label>Yarn::VariableStorage</label>
-        <link refid="db/ddf/a00164"/>
-      </node>
-      <node id="933">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
-        <link refid="db/df3/a00034"/>
-        <childnode refid="934" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="936">
-        <label>Yarn::VariableStorage</label>
-        <link refid="db/ddf/a00164"/>
-      </node>
-      <node id="935">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
+      <node id="931">
+        <label>Yarn.Compiler</label>
         <link refid="db/df3/a00034"/>
-        <childnode refid="936" relation="public-inheritance">
-        </childnode>
-        <childnode refid="937" relation="usage">
-          <edgelabel>-variableStore</edgelabel>
+        <childnode refid="932" relation="usage">
+          <edgelabel>-flags</edgelabel>
         </childnode>
       </node>
-      <node id="937">
-        <label>Yarn</label>
+      <node id="932">
+        <label>Yarn.Compiler.CompileFlags</label>
+        <link refid="d3/db8/a00316"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="499" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="498" bodyend="677"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="295" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="294" bodyend="744"/>
     <listofallmembers>
-      <member refid="db/df3/a00034_1a09a552ee9ff58cb3c995f8ecba1592b6" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectFirstOption</name></member>
-      <member refid="db/df3/a00034_1a34886671e91a1bf3fc225eeb67baced1" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>autoSelectOptionNumber</name></member>
-      <member refid="db/df3/a00034_1a082617cf099d13cb4338935020ced764" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>Clear</name></member>
-      <member refid="db/df3/a00034_1a8a2687bbff3f09203c14fa505b06f505" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>ConsoleRunnerImplementation</name></member>
-      <member refid="db/df3/a00034_1ad6299fd476e53164d9f97d324d8c5936" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>DialogueComplete</name></member>
-      <member refid="db/df3/a00034_1a3c7133c65dc7cf293f49b61426a0c4aa" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextCommand</name></member>
-      <member refid="db/df3/a00034_1a33a44e39f2d90850cee234dfad50f2c5" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>expectedNextLine</name></member>
-      <member refid="db/df3/a00034_1adf34fa27235fc0fd5fe35c32023220c4" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>GetNumber</name></member>
-      <member refid="db/df3/a00034_1a66fc86080cd452079f5adf15e97c8e41" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>GetValue</name></member>
-      <member refid="db/df3/a00034_1ab656ffe1f6e66f2e6d2cb3e970f54b90" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleDebugMessage</name></member>
-      <member refid="db/df3/a00034_1a925ecf432875c3831adc1a9959db8b46" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>HandleErrorMessage</name></member>
-      <member refid="db/df3/a00034_1a2e17937195ecd64d5d867d958c45d2c3" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>numberOfExpectedOptions</name></member>
-      <member refid="db/df3/a00034_1aef048f9dbd90258eacc2886aa48ef6af" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunCommand</name></member>
-      <member refid="db/df3/a00034_1a13bc6c3a8ba43223a20befae50dbbcb4" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunLine</name></member>
-      <member refid="db/df3/a00034_1a62674694fa65e5ae8c0c0da4fbceda51" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>RunOptions</name></member>
-      <member refid="db/df3/a00034_1adc9bfad13d8ae2f147deeddbc5c38ea3" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetNumber</name></member>
-      <member refid="db/df3/a00034_1ab6312d89b626ca803a74a9181286d608" prot="public" virt="virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>SetValue</name></member>
-      <member refid="db/df3/a00034_1a9907b805775d5837a900ddbd0a1739b7" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>variableStore</name></member>
-      <member refid="db/df3/a00034_1a90b0c755ea1d2f3ffaffa6cf18266709" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</scope><name>waitForLines</name></member>
+      <member refid="db/df3/a00034_1a10b52c5694f78285d087a455e3654eaa" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>CompileNode</name></member>
+      <member refid="db/df3/a00034_1a47bfde319a618a1e11d00cb282a84364" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Compiler</name></member>
+      <member refid="db/df3/a00034_1a774e8c143cdda0584fcfdda98626a83c" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Emit</name></member>
+      <member refid="db/df3/a00034_1a541022d89bcf9bc8f794eb6d6b438d08" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>flags</name></member>
+      <member refid="db/df3/a00034_1a006f3becd521cc179ba3d3352f6f930b" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a656b6c7fcd08d24300ec592465274f66" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1af1ee28d67902b27ee0816e2a47343652" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a3e492edcefdfeacec80e528f8c4fa6cc" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1ab4f6dd2ddf38b0c5bfb2b8a40869a09a" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a6ab14514a3b0644ae39c626e5e5e180d" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a5cb3cbcd9727bdef018ec5299bd13142" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1afb86d9228f66896abe31d47d72a267ce" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a5c762915320958c3a03b193b06a7e279" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a41438a0b25f2668a180372d05127d891" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="db/df3/a00034_1a5117b9c2253de15d3fd3557c8b037235" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GetLineIDFromNodeTags</name></member>
+      <member refid="db/df3/a00034_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>labelCount</name></member>
+      <member refid="db/df3/a00034_1aa1737da428ec7d597009661dd8a47829" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>program</name></member>
+      <member refid="db/df3/a00034_1a1bae0d8b701a59708641aa36ea971fa5" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>RegisterLabel</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

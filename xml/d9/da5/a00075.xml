@@ -1,231 +1,161 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d9/da5/a00075" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::EnumConverter</compoundname>
-    <basecompoundref refid="d9/db3/a00066" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d9/da5/a00075_1a3c144b5c7e2720e66dc957aaed671e9a" prot="private" static="no" mutable="no">
-        <type>readonly Type</type>
-        <definition>readonly Type CsvHelper.TypeConversion.EnumConverter.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
+  <compounddef id="d9/da5/a00075" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="d0/d4a/a00147" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
+    <derivedcompoundref refid="d1/d51/a00079" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d9/da5/a00075_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueStarted</name>
+        <reimplementedby refid="d1/d51/a00079_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="15" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="429" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="429" bodyend="432"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/da5/a00075_1adda8e6bff0d7635c0de15d36d49495da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.TypeConversion.EnumConverter.EnumConverter</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>EnumConverter</name>
+      <memberdef kind="function" id="d9/da5/a00075_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
+        <argsstring>(Yarn.Line line)</argsstring>
+        <name>RunLine</name>
+        <reimplementedby refid="d1/d51/a00079_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type><ref refid="d2/d41/a00318" kindref="compound">Yarn.Line</ref></type>
+          <declname>line</declname>
         </param>
         <briefdescription>
-<para>Creates a new <ref refid="d9/da5/a00075" kindref="compound">EnumConverter</ref> for the given Enum Type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type of the Enum.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="21" bodyend="30"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="435" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1abbbd7ece803a97b4714445c745918dc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.EnumConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="d9/db3/a00066_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+      <memberdef kind="function" id="d9/da5/a00075_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
+        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
+        <name>RunOptions</name>
+        <reimplementedby refid="d1/d51/a00079_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
         <param>
-          <type><ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
+          <type><ref refid="db/d53/a00321" kindref="compound">Yarn.Options</ref></type>
+          <declname>optionsCollection</declname>
         </param>
+        <param>
+          <type><ref refid="df/d61/a00031_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
+          <declname>optionChooser</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="438" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da5/a00075_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
+        <argsstring>(Yarn.Command command)</argsstring>
+        <name>RunCommand</name>
+        <reimplementedby refid="d1/d51/a00079_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
+        <param>
+          <type><ref refid="d4/d6f/a00315" kindref="compound">Yarn.Command</ref></type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="442" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
+        <argsstring>(string nextNode)</argsstring>
+        <name>NodeComplete</name>
         <param>
           <type>string</type>
-          <declname>text</declname>
+          <declname>nextNode</declname>
         </param>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="38" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="445" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="445" bodyend="448"/>
       </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1a31af8209aad64ed11d949586075c244a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.EnumConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="d9/db3/a00066_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="function" id="d9/da5/a00075_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>IEnumerator</type>
+        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
+        <argsstring>()</argsstring>
+        <name>DialogueComplete</name>
+        <reimplementedby refid="d1/d51/a00079_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="57" bodyend="61"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/db3/a00066_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="d1/d84/a00097_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="db/df8/a00076_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="d8/d17/a00114_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/db3/a00066_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="d1/d84/a00097_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="db/df8/a00076_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="451" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="451" bodyend="454"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts an Enum to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1197">
-        <label>CsvHelper.TypeConversion.EnumConverter</label>
-        <link refid="d9/da5/a00075"/>
-        <childnode refid="1198" relation="public-inheritance">
+      <node id="1188">
+        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
+        <link refid="d1/d51/a00079"/>
+        <childnode refid="1185" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1199">
-        <label>ITypeConverter</label>
-        <link refid="d1/d84/a00097"/>
+      <node id="1185">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
+        <link refid="d9/da5/a00075"/>
+        <childnode refid="1186" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1198">
-        <label>DefaultTypeConverter</label>
-        <link refid="d9/db3/a00066"/>
-        <childnode refid="1199" relation="public-inheritance">
+      <node id="1186">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1187">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="d0/d4a/a00147"/>
+        <childnode refid="1185" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1200">
-        <label>CsvHelper.TypeConversion.EnumConverter</label>
+      <node id="1189">
+        <label>Yarn.Unity.DialogueUIBehaviour</label>
         <link refid="d9/da5/a00075"/>
-        <childnode refid="1201" relation="public-inheritance">
+        <childnode refid="1190" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1202">
-        <label>ITypeConverter</label>
-        <link refid="d1/d84/a00097"/>
-      </node>
-      <node id="1201">
-        <label>DefaultTypeConverter</label>
-        <link refid="d9/db3/a00066"/>
-        <childnode refid="1202" relation="public-inheritance">
-        </childnode>
+      <node id="1190">
+        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/EnumConverter.cs" bodystart="13" bodyend="62"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="427" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="426" bodyend="455"/>
     <listofallmembers>
-      <member refid="d9/da5/a00075_1a31af8209aad64ed11d949586075c244a" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="d9/db3/a00066_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>CanConvertTo</name></member>
-      <member refid="d9/da5/a00075_1abbbd7ece803a97b4714445c745918dc9" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>ConvertFromString</name></member>
-      <member refid="d9/db3/a00066_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>ConvertToString</name></member>
-      <member refid="d9/da5/a00075_1adda8e6bff0d7635c0de15d36d49495da" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>EnumConverter</name></member>
-      <member refid="d9/da5/a00075_1a3c144b5c7e2720e66dc957aaed671e9a" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::EnumConverter</scope><name>type</name></member>
+      <member refid="d9/da5/a00075_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
+      <member refid="d9/da5/a00075_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
+      <member refid="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
+      <member refid="d9/da5/a00075_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
+      <member refid="d9/da5/a00075_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
+      <member refid="d9/da5/a00075_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

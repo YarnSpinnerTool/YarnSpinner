@@ -1,8 +1,18 @@
 var a00074 =
 [
-    [ "CanConvertFrom", "db/db6/a00074.html#ad67475daa90cdb00cf626429e925e732", null ],
-    [ "CanConvertFrom", "db/db6/a00074.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "db/db6/a00074.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "db/db6/a00074.html#a0c93a63f9f954646172a65b432c40c69", null ],
-    [ "ConvertToString", "db/db6/a00074.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "ExpectLine", "db/db6/a00074.html#ac21a5082ddac1da9db17ae54038df44e", null ],
+    [ "HandleResult", "db/db6/a00074.html#a7b525f85a26d7c942e1cbfa5d6453893", null ],
+    [ "Init", "db/db6/a00074.html#a357a0dab579f9e45666c10779683dc27", null ],
+    [ "RunStandardTestcase", "db/db6/a00074.html#abffa134d40d72b21e6b35c3bf05fc53f", null ],
+    [ "TestAnalysis", "db/db6/a00074.html#a40b0efb3cac1715b44640c29988139f1", null ],
+    [ "TestDumpingCode", "db/db6/a00074.html#a111f0f8418baaeaf83cfb422c90210e0", null ],
+    [ "TestGettingCurrentNodeName", "db/db6/a00074.html#afbb342ea64e33ee19d42a6a2c949592a", null ],
+    [ "TestGettingRawSource", "db/db6/a00074.html#a16ed34de323da529e1a17670f556791c", null ],
+    [ "TestMissingNode", "db/db6/a00074.html#a013d5e3847b9d716b39aa925d70b99fd", null ],
+    [ "TestNodeExists", "db/db6/a00074.html#a9d4171827bf3eba4c6ae52760a475f45", null ],
+    [ "TestNodeVistation", "db/db6/a00074.html#a9c0d2732044b273929dbce35358a1906", null ],
+    [ "dialogue", "db/db6/a00074.html#a4cff5de56c4b8a91c76b6eb2d622a795", null ],
+    [ "errorsCauseFailures", "db/db6/a00074.html#ac978fe85db843c51411f5517bdbe0eb8", null ],
+    [ "storage", "db/db6/a00074.html#a23d59ace1516ca72924c6fe3feafd3f7", null ],
+    [ "isExpectingLine", "db/db6/a00074.html#a47f35b8e8123ed9471883d02b8bc9f3e", null ]
 ];

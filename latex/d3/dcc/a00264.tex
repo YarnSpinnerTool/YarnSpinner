@@ -1,22 +1,120 @@
-\hypertarget{a00264}{\section{Yarn\-Spinner/\-Library.cs File Reference}
-\label{a00264}\index{Yarn\-Spinner/\-Library.\-cs@{Yarn\-Spinner/\-Library.\-cs}}
+\hypertarget{a00264}{\section{Yarn\-Spinner/\-Compiler.cs File Reference}
+\label{a00264}\index{Yarn\-Spinner/\-Compiler.\-cs@{Yarn\-Spinner/\-Compiler.\-cs}}
 }
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00082}{Yarn.\-Function\-Info}
+struct \hyperlink{a00105}{Yarn.\-Line\-Info}
 \item 
-class \hyperlink{a00101}{Yarn.\-Library}
+class \hyperlink{a00126}{Yarn.\-Program}
+\item 
+class \hyperlink{a00031_dd/de2/a00320}{Yarn.\-Node}
+\item 
+struct \hyperlink{a00095}{Yarn.\-Instruction}
+\item 
+class \hyperlink{a00034}{Yarn.\-Compiler}
+\item 
+struct \hyperlink{a00034_d3/db8/a00316}{Yarn.\-Compiler.\-Compile\-Flags}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00029}{Yarn}
+package \hyperlink{a00031}{Yarn}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-delegate Object \hyperlink{a00029_a5177bf74fbfe7303fac9d8236c2e514b}{Yarn.\-Returning\-Function} (params Value\mbox{[}$\,$\mbox{]} parameters)
-\item 
-delegate void \hyperlink{a00029_ae0be2e5cf13d5779816102439e61ff1a}{Yarn.\-Function} (params Value\mbox{[}$\,$\mbox{]} parameters)
+enum \hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894}{Yarn.\-Byte\-Code} \{ \\*
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Yarn.\-Byte\-Code.\-Label}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Yarn.\-Byte\-Code.\-Jump\-To}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Yarn.\-Byte\-Code.\-Jump}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Yarn.\-Byte\-Code.\-Run\-Line}, 
+\\*
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Yarn.\-Byte\-Code.\-Run\-Command}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Yarn.\-Byte\-Code.\-Add\-Option}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Yarn.\-Byte\-Code.\-Show\-Options}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Yarn.\-Byte\-Code.\-Push\-String}, 
+\\*
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Yarn.\-Byte\-Code.\-Push\-Number}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Yarn.\-Byte\-Code.\-Push\-Bool}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Yarn.\-Byte\-Code.\-Push\-Null}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Yarn.\-Byte\-Code.\-Jump\-If\-False}, 
+\\*
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Yarn.\-Byte\-Code.\-Pop}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Yarn.\-Byte\-Code.\-Call\-Func}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Yarn.\-Byte\-Code.\-Push\-Variable}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Yarn.\-Byte\-Code.\-Store\-Variable}, 
+\\*
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Yarn.\-Byte\-Code.\-Stop}, 
+\hyperlink{a00031_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Yarn.\-Byte\-Code.\-Run\-Node}
+ \}
 \end{DoxyCompactItemize}
+
+
+\subsection{Class Documentation}
+\index{Yarn\-::\-Node@{Yarn\-::\-Node}}\label{dd/de2/a00320}
+\hypertarget{a00031_dd/de2/a00320}{}
+\subsubsection{class Yarn\-:\-:Node}
+
+
+Collaboration diagram for Yarn.\-Node\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{dd/d4e/a00329}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00031_a156723a9252b62d288ddf611939ea7c3}{List$<$ \hyperlink{a00095}{Instruction} $>$}\label{a00031_a156723a9252b62d288ddf611939ea7c3}
+&
+instructions&
+\\
+\hline
+
+\hypertarget{a00031_a9afa49f4fbc72e806a0210cb4198f12e}{Dictionary$<$ string, int $>$}\label{a00031_a9afa49f4fbc72e806a0210cb4198f12e}
+&
+labels&
+\\
+\hline
+
+\hypertarget{a00031_a107b0de3fcfc65e99913edc01b5ce9db}{string}\label{a00031_a107b0de3fcfc65e99913edc01b5ce9db}
+&
+name&
+\\
+\hline
+
+\hypertarget{a00031_a09c6af5b50925d0876283b84281b3ed4}{string}\label{a00031_a09c6af5b50925d0876283b84281b3ed4}
+&
+source\-Text\-String\-I\-D&
+\\
+\hline
+
+\hypertarget{a00031_a811086feceebbe79a74eba071c1d516b}{List$<$ string $>$}\label{a00031_a811086feceebbe79a74eba071c1d516b}
+&
+tags&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Yarn\-::\-Compiler\-::\-Compile\-Flags@{Yarn\-::\-Compiler\-::\-Compile\-Flags}}\label{d3/db8/a00316}
+\hypertarget{a00034_d3/db8/a00316}{}
+\subsubsection{struct Yarn\-:\-:Compiler\-:\-:Compile\-Flags}
+
+
+Collaboration diagram for Yarn.\-Compiler.\-Compile\-Flags\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{dd/dbb/a00330}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00034_a8b49bb7763ff477cba21d7c771ef3ed0}{bool}\label{a00034_a8b49bb7763ff477cba21d7c771ef3ed0}
+&
+Disable\-Shuffle\-Options\-After\-Next\-Set&
+\\
+\hline
+
+\end{DoxyFields}

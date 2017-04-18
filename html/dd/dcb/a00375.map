@@ -1,3 +1,6 @@
-<map id="CsvHelper.CsvWriterException" name="CsvHelper.CsvWriterException">
-<area shape="rect" id="node2" href="$d5/df9/a00044.html" title="Represents errors that occur in CsvHelper. " alt="" coords="27,131,189,253"/>
+<map id="CsvHelper.CsvWriter" name="CsvHelper.CsvWriter">
+<area shape="rect" id="node2" href="$d4/d7d/a00093.html" title="Defines methods used to write to a CSV file. " alt="" coords="5,396,211,620"/>
+<area shape="rect" id="node6" href="$d1/dc1/a00092.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="236,469,407,547"/>
+<area shape="rect" id="node4" href="$d6/d42/a00043.html" title="Configuration used for reading and writing CSV data. " alt="" coords="431,235,637,781"/>
+<area shape="rect" id="node5" href="$d5/db6/a00042.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="427,5,643,171"/>
 </map>

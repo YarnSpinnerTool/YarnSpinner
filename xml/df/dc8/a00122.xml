@@ -1,122 +1,156 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="df/dc8/a00122" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::PlayerCharacter</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="df/dc8/a00122_1ac025d4f4afaf854f8256e0d2d03e5b52" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.minPosition</definition>
+  <compounddef id="df/dc8/a00122" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Parser::ParseNode</compoundname>
+    <derivedcompoundref refid="db/db2/a00020" prot="public" virt="non-virtual">Yarn.Parser.AssignmentStatement</derivedcompoundref>
+    <derivedcompoundref refid="dc/de2/a00024" prot="public" virt="non-virtual">Yarn.Parser.Block</derivedcompoundref>
+    <derivedcompoundref refid="d1/d6f/a00063" prot="public" virt="non-virtual">Yarn.Parser.CustomCommand</derivedcompoundref>
+    <derivedcompoundref refid="d4/d63/a00082" prot="public" virt="non-virtual">Yarn.Parser.Expression</derivedcompoundref>
+    <derivedcompoundref refid="dc/d54/a00094" prot="public" virt="non-virtual">Yarn.Parser.IfStatement</derivedcompoundref>
+    <derivedcompoundref refid="db/d57/a00112" prot="public" virt="non-virtual">Yarn.Parser.Node</derivedcompoundref>
+    <derivedcompoundref refid="d9/d4b/a00117" prot="public" virt="non-virtual">Yarn.Parser.Operator</derivedcompoundref>
+    <derivedcompoundref refid="d4/d98/a00120" prot="public" virt="non-virtual">Yarn.Parser.OptionStatement</derivedcompoundref>
+    <derivedcompoundref refid="d5/d5b/a00135" prot="public" virt="non-virtual">Yarn.Parser.ShortcutOption</derivedcompoundref>
+    <derivedcompoundref refid="d0/d5e/a00136" prot="public" virt="non-virtual">Yarn.Parser.ShortcutOptionGroup</derivedcompoundref>
+    <derivedcompoundref refid="d2/d82/a00142" prot="public" virt="non-virtual">Yarn.Parser.Statement</derivedcompoundref>
+    <derivedcompoundref refid="db/ddf/a00164" prot="public" virt="non-virtual">Yarn.Parser.ValueNode</derivedcompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="df/dc8/a00122_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
+        <type><ref refid="df/dc8/a00122" kindref="compound">ParseNode</ref></type>
+        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
         <argsstring></argsstring>
-        <name>minPosition</name>
-        <initializer>= -5.3f</initializer>
+        <name>parent</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="34" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="101" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="df/dc8/a00122_1ada9dd748a1d89a7f9b12ac8967a07ae6" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.maxPosition</definition>
+      <memberdef kind="variable" id="df/dc8/a00122_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
         <argsstring></argsstring>
-        <name>maxPosition</name>
-        <initializer>= 5.3f</initializer>
+        <name>lineNumber</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="35" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="104" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="104" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="df/dc8/a00122_1adc602a4b2c7e44e4b15a11f1ffcf07e4" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.moveSpeed</definition>
+      <memberdef kind="variable" id="df/dc8/a00122_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
         <argsstring></argsstring>
-        <name>moveSpeed</name>
-        <initializer>= 1.0f</initializer>
+        <name>tags</name>
+        <initializer>= {}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="37" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="df/dc8/a00122_1af89807d2195915ee9a0c42317e110fc6" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.interactionRadius</definition>
-        <argsstring></argsstring>
-        <name>interactionRadius</name>
-        <initializer>= 2.0f</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="39" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="119" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="df/dc8/a00122_1a7bcde19f080bfd09bbc833b8fb555cf7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>float</type>
-        <definition>float Yarn.Unity.Example.PlayerCharacter.movementFromButtons</definition>
-        <argsstring></argsstring>
-        <name>movementFromButtons</name>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="df/dc8/a00122_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.ParseNode.ParseNode</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>ParseNode</name>
+        <param>
+          <type><ref refid="df/dc8/a00122" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="de/d36/a00123" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="41" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="108" bodyend="114"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="df/dc8/a00122_1a9e83ec3c6e45ee4dd17215e3030f6403" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.OnDrawGizmosSelected</definition>
-        <argsstring>()</argsstring>
-        <name>OnDrawGizmosSelected</name>
+      <memberdef kind="function" id="df/dc8/a00122_1a0d6611653f20c2e4d90a97a96c657137" prot="package" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract string</type>
+        <definition>abstract string Yarn.Parser.ParseNode.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplementedby refid="db/d57/a00112_1ab11501ebf251fdaa7cfe44edfa993068">PrintTree</reimplementedby>
+        <reimplementedby refid="d2/d82/a00142_1aaac6d1e0c3b31f33e1c6f964c205153e">PrintTree</reimplementedby>
+        <reimplementedby refid="d1/d6f/a00063_1ad8c821f5f5671cdbac6e4a6fc0b9174b">PrintTree</reimplementedby>
+        <reimplementedby refid="d0/d5e/a00136_1a7b60f85e46b8767db81177ec40e83104">PrintTree</reimplementedby>
+        <reimplementedby refid="d5/d5b/a00135_1a529a2ef1aa6d7226db4ea7f3ea92b8c2">PrintTree</reimplementedby>
+        <reimplementedby refid="dc/de2/a00024_1aaaacfc4e3ff2871fa5e2fb75e48636de">PrintTree</reimplementedby>
+        <reimplementedby refid="d4/d98/a00120_1aafba8c941dbd3d0ef841ac9d472e1ba3">PrintTree</reimplementedby>
+        <reimplementedby refid="dc/d54/a00094_1a5494c1daef8e0f3ac3ab68f91db4f332">PrintTree</reimplementedby>
+        <reimplementedby refid="db/ddf/a00164_1ae4659e4431e9846a45e0d048c960781a">PrintTree</reimplementedby>
+        <reimplementedby refid="d4/d63/a00082_1a509ba6d93218203bae56a5a7a82e8261">PrintTree</reimplementedby>
+        <reimplementedby refid="db/db2/a00020_1accb9ddcb472eb035a65188c857b8efd8">PrintTree</reimplementedby>
+        <reimplementedby refid="d9/d4b/a00117_1a0c2ad7c4d6837ffc7b5325bbb8330c51">PrintTree</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="44" bodyend="52"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="117" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="df/dc8/a00122_1a8e78b2dc1cd221fb9d05b89e70155df4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.Update</definition>
+      <memberdef kind="function" id="df/dc8/a00122_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="db/d57/a00112" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
         <argsstring>()</argsstring>
-        <name>Update</name>
+        <name>NodeParent</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="56" bodyend="81"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="144" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="144" bodyend="156"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="df/dc8/a00122_1a574b6d984b8671c7a780d3d10e040a9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.Example.PlayerCharacter.CheckForNearbyNPC</definition>
-        <argsstring>()</argsstring>
-        <name>CheckForNearbyNPC</name>
+      <memberdef kind="function" id="df/dc8/a00122_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>TagsToString</name>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="85" bodyend="100"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="121" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="df/dc8/a00122_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="138" bodyend="141"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -124,37 +158,102 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1455">
-        <label>MonoBehaviour</label>
+      <node id="1449">
+        <label>Yarn.Parser.ValueNode</label>
+        <link refid="db/ddf/a00164"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="1454">
-        <label>Yarn.Unity.Example.PlayerCharacter</label>
+      <node id="1446">
+        <label>Yarn.Parser.ShortcutOption</label>
+        <link refid="d5/d5b/a00135"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1448">
+        <label>Yarn.Parser.Statement</label>
+        <link refid="d2/d82/a00142"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1447">
+        <label>Yarn.Parser.ShortcutOptionGroup</label>
+        <link refid="d0/d5e/a00136"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1437">
+        <label>Yarn.Parser.ParseNode</label>
         <link refid="df/dc8/a00122"/>
-        <childnode refid="1455" relation="public-inheritance">
+      </node>
+      <node id="1442">
+        <label>Yarn.Parser.IfStatement</label>
+        <link refid="dc/d54/a00094"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1445">
+        <label>Yarn.Parser.OptionStatement</label>
+        <link refid="d4/d98/a00120"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1443">
+        <label>Yarn.Parser.Node</label>
+        <link refid="db/d57/a00112"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1439">
+        <label>Yarn.Parser.Block</label>
+        <link refid="dc/de2/a00024"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1440">
+        <label>Yarn.Parser.CustomCommand</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1444">
+        <label>Yarn.Parser.Operator</label>
+        <link refid="d9/d4b/a00117"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1441">
+        <label>Yarn.Parser.Expression</label>
+        <link refid="d4/d63/a00082"/>
+        <childnode refid="1437" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1438">
+        <label>Yarn.Parser.AssignmentStatement</label>
+        <link refid="db/db2/a00020"/>
+        <childnode refid="1437" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1457">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1456">
-        <label>Yarn.Unity.Example.PlayerCharacter</label>
+      <node id="1450">
+        <label>Yarn.Parser.ParseNode</label>
         <link refid="df/dc8/a00122"/>
-        <childnode refid="1457" relation="public-inheritance">
+        <childnode refid="1450" relation="usage">
+          <edgelabel>~parent</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/PlayerCharacter.cs" bodystart="32" bodyend="101"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="99" bodyend="157"/>
     <listofallmembers>
-      <member refid="df/dc8/a00122_1a574b6d984b8671c7a780d3d10e040a9b" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>CheckForNearbyNPC</name></member>
-      <member refid="df/dc8/a00122_1af89807d2195915ee9a0c42317e110fc6" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>interactionRadius</name></member>
-      <member refid="df/dc8/a00122_1ada9dd748a1d89a7f9b12ac8967a07ae6" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>maxPosition</name></member>
-      <member refid="df/dc8/a00122_1ac025d4f4afaf854f8256e0d2d03e5b52" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>minPosition</name></member>
-      <member refid="df/dc8/a00122_1a7bcde19f080bfd09bbc833b8fb555cf7" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>movementFromButtons</name></member>
-      <member refid="df/dc8/a00122_1adc602a4b2c7e44e4b15a11f1ffcf07e4" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>moveSpeed</name></member>
-      <member refid="df/dc8/a00122_1a9e83ec3c6e45ee4dd17215e3030f6403" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>OnDrawGizmosSelected</name></member>
-      <member refid="df/dc8/a00122_1a8e78b2dc1cd221fb9d05b89e70155df4" prot="private" virt="non-virtual"><scope>Yarn::Unity::Example::PlayerCharacter</scope><name>Update</name></member>
+      <member refid="df/dc8/a00122_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>lineNumber</name></member>
+      <member refid="df/dc8/a00122_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>NodeParent</name></member>
+      <member refid="df/dc8/a00122_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>parent</name></member>
+      <member refid="df/dc8/a00122_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>ParseNode</name></member>
+      <member refid="df/dc8/a00122_1a0d6611653f20c2e4d90a97a96c657137" prot="package" virt="pure-virtual"><scope>Yarn::Parser::ParseNode</scope><name>PrintTree</name></member>
+      <member refid="df/dc8/a00122_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>tags</name></member>
+      <member refid="df/dc8/a00122_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>TagsToString</name></member>
+      <member refid="df/dc8/a00122_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::ParseNode</scope><name>ToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

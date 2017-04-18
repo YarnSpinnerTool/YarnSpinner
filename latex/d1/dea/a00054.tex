@@ -1,106 +1,222 @@
-\hypertarget{a00054}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data Class Reference}
-\label{a00054}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data}}
+\hypertarget{a00054}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection Class Reference}
+\label{a00054}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection}}
 }
 
 
-The configuration data for the reference map.  
+A collection that holds property names.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data\-:
+Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=250pt]{d4/d53/a00429}
+\includegraphics[width=220pt]{da/db6/a00427}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{d4/dd3/a00428}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00054_ad6fe2913932a9fe434f8a908dec30e8b}{Csv\-Property\-Reference\-Map\-Data} (Property\-Info property, \hyperlink{a00038}{Csv\-Class\-Map} mapping)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00054}{Csv\-Property\-Reference\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00054_ad7b7d11d5814bcce5ed38e054ef71b4e}{Add} (string name)
+\begin{DoxyCompactList}\small\item\em Adds the given name to the collection. \end{DoxyCompactList}\item 
+void \hyperlink{a00054_abec990435c8dccfb4553602b89f93201}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Clears all names from the collection. \end{DoxyCompactList}\item 
+void \hyperlink{a00054_ac568746273968080890abca50b882802}{Add\-Range} (I\-Enumerable$<$ string $>$ \hyperlink{a00054_a41eb6804d8afe8d674e64d71f66962ce}{names})
+\begin{DoxyCompactList}\small\item\em Adds a range of names to the collection. \end{DoxyCompactList}\item 
+I\-Enumerator$<$ string $>$ \hyperlink{a00054_a61b6a80e51d06f17d0043ec6aef89f1b}{Get\-Enumerator} ()
+\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through the collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-virtual string \hyperlink{a00054_a687fe65f1a2b4301f283e9333c282f9c}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the header prefix to use. \end{DoxyCompactList}\item 
-virtual Property\-Info \hyperlink{a00054_a5386ac40fb3ea290944f05cbee99bfcb}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
-\hyperlink{a00038}{Csv\-Class\-Map} \hyperlink{a00054_af2343065df03de92b6b9803ed2bb4f87}{Mapping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the mapping this is a reference for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00054_acdce91a755be3bec6218e3d82f4dfe82}{this\mbox{[}int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the name at the given index. If a prefix is set, it will be prepended to the name. \end{DoxyCompactList}\item 
+string \hyperlink{a00054_ab8f3256d8435a1c93f0280064aa3ff06}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the prefix to use for each name. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00054_a1aa06a47337f6ab576b23fe63854dcbe}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw list of names without the prefix being prepended. \end{DoxyCompactList}\item 
+int \hyperlink{a00054_a4b7b56286ad80183e1a33554a49eefa1}{Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerator I\-Enumerable. \hyperlink{a00054_a76b5c67fcecf55dbdd4b680cde1a78f7}{Get\-Enumerator} ()
+\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through a collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00054_a24263cbdacd2dd0db9bbe22676a6d989}{prefix}
+readonly List$<$ string $>$ \hyperlink{a00054_a41eb6804d8afe8d674e64d71f66962ce}{names} = new List$<$string$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The configuration data for the reference map. 
+A collection that holds property names. 
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00054_ad6fe2913932a9fe434f8a908dec30e8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}}
-\index{Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Csv\-Property\-Reference\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Csv\-Property\-Reference\-Map\-Data (
+\subsection{Member Function Documentation}
+\hypertarget{a00054_ad7b7d11d5814bcce5ed38e054ef71b4e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add@{Add}}
+\index{Add@{Add}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{{\bf Csv\-Class\-Map}}]{mapping}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)}}\label{a00054_ad6fe2913932a9fe434f8a908dec30e8b}
+)}}\label{a00054_ad7b7d11d5814bcce5ed38e054ef71b4e}
 
 
-Initializes a new instance of the \hyperlink{a00054}{Csv\-Property\-Reference\-Map\-Data} class. 
+Adds the given name to the collection. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em property} & The property.\\
-\hline
-{\em mapping} & The mapping this is a reference for.\\
+{\em name} & The name to add.\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
-50         \{
-51             \hyperlink{a00054_a5386ac40fb3ea290944f05cbee99bfcb}{Property} = property;
-52             \hyperlink{a00054_af2343065df03de92b6b9803ed2bb4f87}{Mapping} = mapping;
-53         \}
+57         \{
+58             names.Add( name );
+59         \}
+\end{DoxyCode}
+\hypertarget{a00054_ac568746273968080890abca50b882802}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add\-Range@{Add\-Range}}
+\index{Add\-Range@{Add\-Range}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Add\-Range}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add\-Range (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ string $>$}]{names}
+\end{DoxyParamCaption}
+)}}\label{a00054_ac568746273968080890abca50b882802}
+
+
+Adds a range of names to the collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em names} & The range to add.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+74         \{
+75             this.names.AddRange( \hyperlink{a00054_a41eb6804d8afe8d674e64d71f66962ce}{names} );
+76         \}
+\end{DoxyCode}
+\hypertarget{a00054_abec990435c8dccfb4553602b89f93201}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Clear@{Clear}}
+\index{Clear@{Clear}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00054_abec990435c8dccfb4553602b89f93201}
+
+
+Clears all names from the collection. 
+
+
+\begin{DoxyCode}
+65         \{
+66             names.Clear();
+67         \}
+\end{DoxyCode}
+\hypertarget{a00054_a61b6a80e51d06f17d0043ec6aef89f1b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
+\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00054_a61b6a80e51d06f17d0043ec6aef89f1b}
+
+
+Returns an enumerator that iterates through the collection. 
+
+\begin{DoxyReturn}{Returns}
+A T\-:\-System.\-Collections.\-Generic.\-I\-Enumerator`1 that can be used to iterate through the collection. 
+\end{DoxyReturn}
+$<$filterpriority$>$1$<$/filterpriority$>$ 
+\begin{DoxyCode}
+86         \{
+87             \textcolor{keywordflow}{for}( var i = 0; i < names.Count; i++ )
+88             \{
+89                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{this}[i];
+90             \}
+91         \}
+\end{DoxyCode}
+\hypertarget{a00054_a76b5c67fcecf55dbdd4b680cde1a78f7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
+\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator I\-Enumerable. Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00054_a76b5c67fcecf55dbdd4b680cde1a78f7}
+
+
+Returns an enumerator that iterates through a collection. 
+
+\begin{DoxyReturn}{Returns}
+An T\-:\-System.\-Collections.\-I\-Enumerator object that can be used to iterate through the collection. 
+\end{DoxyReturn}
+$<$filterpriority$>$2$<$/filterpriority$>$ 
+\begin{DoxyCode}
+101         \{
+102             \textcolor{keywordflow}{return} names.GetEnumerator();
+103         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00054_a24263cbdacd2dd0db9bbe22676a6d989}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!prefix@{prefix}}
-\index{prefix@{prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-prefix\hspace{0.3cm}{\ttfamily [private]}}}\label{a00054_a24263cbdacd2dd0db9bbe22676a6d989}
+\hypertarget{a00054_a41eb6804d8afe8d674e64d71f66962ce}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!names@{names}}
+\index{names@{names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-names = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00054_a41eb6804d8afe8d674e64d71f66962ce}
 
 
 \subsection{Property Documentation}
-\hypertarget{a00054_af2343065df03de92b6b9803ed2bb4f87}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Mapping@{Mapping}}
-\index{Mapping@{Mapping}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Mapping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Mapping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00054_af2343065df03de92b6b9803ed2bb4f87}
+\hypertarget{a00054_a4b7b56286ad80183e1a33554a49eefa1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Count@{Count}}
+\index{Count@{Count}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00054_a4b7b56286ad80183e1a33554a49eefa1}
 
 
-Gets the mapping this is a reference for. 
+Gets the count. 
 
-\hypertarget{a00054_a687fe65f1a2b4301f283e9333c282f9c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Prefix@{Prefix}}
-\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00054_a687fe65f1a2b4301f283e9333c282f9c}
-
-
-Gets or sets the header prefix to use. 
-
-\hypertarget{a00054_a5386ac40fb3ea290944f05cbee99bfcb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Property@{Property}}
-\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00054_a5386ac40fb3ea290944f05cbee99bfcb}
+\hypertarget{a00054_a1aa06a47337f6ab576b23fe63854dcbe}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Names@{Names}}
+\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00054_a1aa06a47337f6ab576b23fe63854dcbe}
 
 
-Gets the Property\-Info that the data is associated with. 
+Gets the raw list of names without the prefix being prepended. 
 
+\hypertarget{a00054_ab8f3256d8435a1c93f0280064aa3ff06}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Prefix@{Prefix}}
+\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00054_ab8f3256d8435a1c93f0280064aa3ff06}
+
+
+Gets the prefix to use for each name. 
+
+\hypertarget{a00054_acdce91a755be3bec6218e3d82f4dfe82}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!this\mbox{[}int index\mbox{]}@{this[int index]}}
+\index{this\mbox{[}int index\mbox{]}@{this[int index]}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{this[int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00054_acdce91a755be3bec6218e3d82f4dfe82}
+
+
+Gets the name at the given index. If a prefix is set, it will be prepended to the name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00189}{Csv\-Property\-Reference\-Map\-Data.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00191}{Csv\-Property\-Name\-Collection.\-cs}\end{DoxyCompactItemize}

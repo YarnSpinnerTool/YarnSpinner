@@ -1,17 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d5/d0f/a00308" kind="namespace">
-    <compoundname>Yarn::Analysis</compoundname>
-    <innerclass refid="d4/d31/a00069" prot="public">Yarn::Analysis::Diagnosis</innerclass>
-    <innerclass refid="d4/d8c/a00035" prot="public">Yarn::Analysis::Context</innerclass>
-    <innerclass refid="dd/da2/a00019" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
-    <innerclass refid="df/d61/a00031" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
-    <innerclass refid="dd/dae/a00163" prot="package">Yarn::Analysis::VariableLister</innerclass>
-    <innerclass refid="de/db9/a00159" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
+    <compoundname>UnityEngine</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="5" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="27" column="1"/>
   </compounddef>
 </doxygen>

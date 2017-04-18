@@ -1,16 +1,19 @@
 var a00069 =
 [
-    [ "Severity", "d4/d31/a00069.html#a227813cbc8fa03c3448a612ffc909d1c", [
-      [ "Error", "d4/d31/a00069.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
-      [ "Warning", "d4/d31/a00069.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
-      [ "Note", "d4/d31/a00069.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    [ "DefaultVariable", "d4/d31/a00069.html#da/de0/a00317", [
+      [ "name", "d4/d31/a00069.html#a609feaa53936e7dc42248ff2ba68454a", null ],
+      [ "type", "d4/d31/a00069.html#a904347efdca12f40243c7dedb646153d", null ],
+      [ "value", "d4/d31/a00069.html#a0f00ecb21b58aa754a4bbb61edf62818", null ]
     ] ],
-    [ "Diagnosis", "d4/d31/a00069.html#ad3fd818f1be98dc803e5bec959153824", null ],
-    [ "ToString", "d4/d31/a00069.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
-    [ "ToString", "d4/d31/a00069.html#a985dee7ca27aa896332590133606b6a9", null ],
-    [ "columnNumber", "d4/d31/a00069.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
-    [ "lineNumber", "d4/d31/a00069.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
-    [ "message", "d4/d31/a00069.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
-    [ "nodeName", "d4/d31/a00069.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
-    [ "severity", "d4/d31/a00069.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
+    [ "Awake", "d4/d31/a00069.html#ab6a56afc687455f360876eff67891163", null ],
+    [ "Clear", "d4/d31/a00069.html#a0ce614bee8d5b220500fb765390b4ca3", null ],
+    [ "GetNumber", "d4/d31/a00069.html#add85a45dd65a5d4bd41c9d5ce5f77d19", null ],
+    [ "GetValue", "d4/d31/a00069.html#a741593be1a299dcc2136f05b9b4a995a", null ],
+    [ "ResetToDefaults", "d4/d31/a00069.html#a3a05d66cdacadb2e9b618cd0aef45f84", null ],
+    [ "SetNumber", "d4/d31/a00069.html#ac0d2f2e081944ad197992a26ad1a833c", null ],
+    [ "SetValue", "d4/d31/a00069.html#ac4265c1c9da485f13a6b05784b0f668d", null ],
+    [ "Update", "d4/d31/a00069.html#af646a17cfd63039a25149f8fc0776dcb", null ],
+    [ "debugTextView", "d4/d31/a00069.html#a9893656e3683711eb78441b30c52a600", null ],
+    [ "defaultVariables", "d4/d31/a00069.html#a464c8a4ff6a3c624602d0adc55dfc59a", null ],
+    [ "variables", "d4/d31/a00069.html#a4a4fec7b4ad707cd0603393dd57de96c", null ]
 ];

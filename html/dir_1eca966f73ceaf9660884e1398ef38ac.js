@@ -1,46 +1,46 @@
 var dir_1eca966f73ceaf9660884e1398ef38ac =
 [
     [ "Properties", "dir_27b0c1af8c4e705ac80588c758eab39a.html", "dir_27b0c1af8c4e705ac80588c758eab39a" ],
-    [ "Analyser.cs", "dd/dd7/a00260.html", [
-      [ "Diagnosis", "d4/d31/a00069.html", "d4/d31/a00069" ],
-      [ "Context", "d4/d8c/a00035.html", "d4/d8c/a00035" ],
-      [ "ASTAnalyser", "dd/da2/a00019.html", "dd/da2/a00019" ],
-      [ "CompiledProgramAnalyser", "df/d61/a00031.html", "df/d61/a00031" ],
-      [ "VariableLister", "dd/dae/a00163.html", "dd/dae/a00163" ],
-      [ "UnusedVariableChecker", "de/db9/a00159.html", "de/db9/a00159" ]
+    [ "Analyser.cs", "df/da9/a00263.html", [
+      [ "Diagnosis", "d0/d89/a00071.html", "d0/d89/a00071" ],
+      [ "Context", "d1/dc6/a00037.html", "d1/dc6/a00037" ],
+      [ "ASTAnalyser", "de/d11/a00021.html", "de/d11/a00021" ],
+      [ "CompiledProgramAnalyser", "d0/dc0/a00033.html", "d0/dc0/a00033" ],
+      [ "VariableLister", "d0/d48/a00165.html", "d0/d48/a00165" ],
+      [ "UnusedVariableChecker", "d6/d7d/a00161.html", "d6/d7d/a00161" ]
     ] ],
-    [ "Compiler.cs", "dc/d6a/a00261.html", "dc/d6a/a00261" ],
-    [ "Dialogue.cs", "d9/d8d/a00262.html", "d9/d8d/a00262" ],
-    [ "Lexer.cs", "df/da9/a00263.html", "df/da9/a00263" ],
-    [ "Library.cs", "d3/dcc/a00264.html", "d3/dcc/a00264" ],
-    [ "Loader.cs", "da/d53/a00265.html", "da/d53/a00265" ],
-    [ "Parser.cs", "d5/d35/a00266.html", [
-      [ "ParseException", "df/d6a/a00119.html", "df/d6a/a00119" ],
-      [ "Parser", "d8/dfa/a00121.html", "d8/dfa/a00121" ],
-      [ "ParseNode", "d4/d98/a00120.html", "d4/d98/a00120" ],
-      [ "Node", "d4/d81/a00110.html", "d4/d81/a00110" ],
-      [ "Statement", "d5/db1/a00140.html", "d5/db1/a00140" ],
-      [ "CustomCommand", "d4/de8/a00061.html", "d4/de8/a00061" ],
-      [ "ShortcutOptionGroup", "de/d76/a00134.html", "de/d76/a00134" ],
-      [ "ShortcutOption", "d0/de8/a00133.html", "d0/de8/a00133" ],
-      [ "Block", "d7/de0/a00022.html", "d7/de0/a00022" ],
-      [ "OptionStatement", "d8/d87/a00118.html", "d8/d87/a00118" ],
-      [ "IfStatement", "d1/dc1/a00092.html", "d1/dc1/a00092" ],
-      [ "Clause", "dc/d3c/a00028.html", "dc/d3c/a00028" ],
-      [ "ValueNode", "db/d44/a00162.html", "db/d44/a00162" ],
-      [ "Expression", "da/dec/a00080.html", "da/dec/a00080" ],
-      [ "AssignmentStatement", "d1/d2b/a00018.html", "d1/d2b/a00018" ],
-      [ "Operator", "d2/da3/a00115.html", "d2/da3/a00115" ],
-      [ "OperatorInfo", "d4/d3e/a00116.html", "d4/d3e/a00116" ]
+    [ "Compiler.cs", "d3/dcc/a00264.html", "d3/dcc/a00264" ],
+    [ "Dialogue.cs", "da/d53/a00265.html", "da/d53/a00265" ],
+    [ "Lexer.cs", "d5/d35/a00266.html", "d5/d35/a00266" ],
+    [ "Library.cs", "d1/dd4/a00267.html", "d1/dd4/a00267" ],
+    [ "Loader.cs", "db/d12/a00268.html", "db/d12/a00268" ],
+    [ "Parser.cs", "d5/d42/a00269.html", [
+      [ "ParseException", "d8/dfa/a00121.html", "d8/dfa/a00121" ],
+      [ "Parser", "de/d36/a00123.html", "de/d36/a00123" ],
+      [ "ParseNode", "df/dc8/a00122.html", "df/dc8/a00122" ],
+      [ "Node", "db/d57/a00112.html", "db/d57/a00112" ],
+      [ "Statement", "d2/d82/a00142.html", "d2/d82/a00142" ],
+      [ "CustomCommand", "d1/d6f/a00063.html", "d1/d6f/a00063" ],
+      [ "ShortcutOptionGroup", "d0/d5e/a00136.html", "d0/d5e/a00136" ],
+      [ "ShortcutOption", "d5/d5b/a00135.html", "d5/d5b/a00135" ],
+      [ "Block", "dc/de2/a00024.html", "dc/de2/a00024" ],
+      [ "OptionStatement", "d4/d98/a00120.html", "d4/d98/a00120" ],
+      [ "IfStatement", "dc/d54/a00094.html", "dc/d54/a00094" ],
+      [ "Clause", "d5/d79/a00030.html", "d5/d79/a00030" ],
+      [ "ValueNode", "db/ddf/a00164.html", "db/ddf/a00164" ],
+      [ "Expression", "d4/d63/a00082.html", "d4/d63/a00082" ],
+      [ "AssignmentStatement", "db/db2/a00020.html", "db/db2/a00020" ],
+      [ "Operator", "d9/d4b/a00117.html", "d9/d4b/a00117" ],
+      [ "OperatorInfo", "d8/d87/a00118.html", "d8/d87/a00118" ]
     ] ],
-    [ "Value.cs", "d1/dd4/a00267.html", [
-      [ "Value", "d6/d7d/a00161.html", "d6/d7d/a00161" ]
+    [ "Value.cs", "d9/d2a/a00270.html", [
+      [ "Value", "dd/dae/a00163.html", "dd/dae/a00163" ]
     ] ],
-    [ "VirtualMachine.cs", "db/d12/a00268.html", [
-      [ "VirtualMachine", "d0/d5e/a00136.html", "d0/d5e/a00136" ],
-      [ "State", "de/d14/a00139.html", "de/d14/a00139" ],
-      [ "SpecialVariables", "d0/d5e/a00136.html#de/dab/a00319", [
-        [ "ShuffleOptions", "d0/d5e/a00136.html#aecbb8ab9becd96457d836100b2818078", null ]
+    [ "VirtualMachine.cs", "dd/d86/a00271.html", [
+      [ "VirtualMachine", "d4/ddd/a00138.html", "d4/ddd/a00138" ],
+      [ "State", "d5/d4e/a00141.html", "d5/d4e/a00141" ],
+      [ "SpecialVariables", "d4/ddd/a00138.html#de/de9/a00322", [
+        [ "ShuffleOptions", "d4/ddd/a00138.html#aecbb8ab9becd96457d836100b2818078", null ]
       ] ]
     ] ]
 ];

@@ -1,7 +1,3 @@
-<map id="Yarn.Parser.IfStatement.Clause" name="Yarn.Parser.IfStatement.Clause">
-<area shape="rect" id="node2" href="$da/dec/a00080.html" title="{Yarn.Parser.Expression\n|~ type\l~ parameters\l|~ Expression()\l~ Expression()\l~ PrintTree()\l~ Parse()\l&#45; ShouldApplyPrecedence()\l}" alt="" coords="75,683,255,834"/>
-<area shape="rect" id="node3" href="$d4/d98/a00120.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="25,222,145,373"/>
-<area shape="rect" id="node6" href="$db/d44/a00162.html" title="{Yarn.Parser.ValueNode\n|+ value\l|~ ValueNode()\l~ ValueNode()\l~ PrintTree()\l&#45; UseToken()\l}" alt="" coords="86,461,244,582"/>
-<area shape="rect" id="node4" href="$d4/d98/a00120.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="5,6,164,157"/>
-<area shape="rect" id="node5" href="$d4/d63/a00082.html" title="{Yarn.FunctionInfo\n|+ name\l+ paramCount\l+ function\l+ returningFunction\l+ returnsValue\l|+ Invoke()\l+ InvokeWithArray()\l~ FunctionInfo()\l~ FunctionInfo()\l~ IsParameterCountCorrect()\l}" alt="" coords="269,424,459,619"/>
+<map id="Yarn.Parser.IfStatement" name="Yarn.Parser.IfStatement">
+<area shape="rect" id="node2" href="$df/dc8/a00122.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="27,5,147,171"/>
 </map>

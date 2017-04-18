@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.CsvFactory Class Reference</title>
+<title>YarnSpinner: CsvHelper.Configuration.CsvConfiguration Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -108,106 +108,238 @@ $(document).ready(function(){initNavTree('d6/d42/a00043.html','../../');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="../../d2/daf/a00346.html">List of all members</a>  </div>
+<a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="../../d2/db6/a00411.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.CsvFactory Class Reference</div>  </div>
+<div class="title">CsvHelper.Configuration.CsvConfiguration Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Creates <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> classes.  
+<p><a class="el" href="../../d3/d58/a00285.html">Configuration</a> used for reading and writing CSV data.  
  <a href="../../d6/d42/a00043.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for CsvHelper.CsvFactory:</div>
+Collaboration diagram for CsvHelper.Configuration.CsvConfiguration:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/dc6/a00347.png" border="0" usemap="#_csv_helper_8_csv_factory_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_csv_factory_inherit__map" id="_csv_helper_8_csv_factory_inherit__map">
-<area shape="rect" id="node2" href="../../da/d2a/a00086.html" title="Defines methods used to create CsvHelper classes. " alt="" coords="21,5,144,171"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for CsvHelper.CsvFactory:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../df/d03/a00348.png" border="0" usemap="#_csv_helper_8_csv_factory_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_csv_factory_coll__map" id="_csv_helper_8_csv_factory_coll__map">
-<area shape="rect" id="node2" href="../../da/d2a/a00086.html" title="Defines methods used to create CsvHelper classes. " alt="" coords="21,5,144,171"/></map>
+<div class="center"><img src="../../d9/d72/a00412.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_configuration_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_configuration_8_csv_configuration_coll__map" id="_csv_helper_8_configuration_8_csv_configuration_coll__map">
+<area shape="rect" id="node2" href="../../d5/db6/a00042.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="5,5,221,171"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a741fb4a1622778af65bfa27606bf6f25"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a741fb4a1622778af65bfa27606bf6f25">CreateParser</a> (TextReader reader, <a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a> configuration)</td></tr>
-<tr class="memdesc:a741fb4a1622778af65bfa27606bf6f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>.  <a href="#a741fb4a1622778af65bfa27606bf6f25">More...</a><br/></td></tr>
-<tr class="separator:a741fb4a1622778af65bfa27606bf6f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07665ae71961a161552189877d11a5be"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a07665ae71961a161552189877d11a5be">CreateParser</a> (TextReader reader)</td></tr>
-<tr class="memdesc:a07665ae71961a161552189877d11a5be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>.  <a href="#a07665ae71961a161552189877d11a5be">More...</a><br/></td></tr>
-<tr class="separator:a07665ae71961a161552189877d11a5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b1358fc847e407519a76b7fe003a34"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a12b1358fc847e407519a76b7fe003a34">CreateReader</a> (TextReader reader, <a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a> configuration)</td></tr>
-<tr class="memdesc:a12b1358fc847e407519a76b7fe003a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#a12b1358fc847e407519a76b7fe003a34">More...</a><br/></td></tr>
-<tr class="separator:a12b1358fc847e407519a76b7fe003a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77bcca4ad5023f5628c519c2914da5bb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a77bcca4ad5023f5628c519c2914da5bb">CreateReader</a> (TextReader reader)</td></tr>
-<tr class="memdesc:a77bcca4ad5023f5628c519c2914da5bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#a77bcca4ad5023f5628c519c2914da5bb">More...</a><br/></td></tr>
-<tr class="separator:a77bcca4ad5023f5628c519c2914da5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e7e06df9265cbd53219c964424cec1e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a4e7e06df9265cbd53219c964424cec1e">CreateReader</a> (<a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a> parser)</td></tr>
-<tr class="memdesc:a4e7e06df9265cbd53219c964424cec1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>.  <a href="#a4e7e06df9265cbd53219c964424cec1e">More...</a><br/></td></tr>
-<tr class="separator:a4e7e06df9265cbd53219c964424cec1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bfe534b70ff92ea3809f1a372d160cc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../da/d82/a00091.html">ICsvWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a6bfe534b70ff92ea3809f1a372d160cc">CreateWriter</a> (TextWriter writer, <a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a> configuration)</td></tr>
-<tr class="memdesc:a6bfe534b70ff92ea3809f1a372d160cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../da/d82/a00091.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>.  <a href="#a6bfe534b70ff92ea3809f1a372d160cc">More...</a><br/></td></tr>
-<tr class="separator:a6bfe534b70ff92ea3809f1a372d160cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cec3a639b206f2d88debdc50413202a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../da/d82/a00091.html">ICsvWriter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a0cec3a639b206f2d88debdc50413202a">CreateWriter</a> (TextWriter writer)</td></tr>
-<tr class="memdesc:a0cec3a639b206f2d88debdc50413202a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="../../da/d82/a00091.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>.  <a href="#a0cec3a639b206f2d88debdc50413202a">More...</a><br/></td></tr>
-<tr class="separator:a0cec3a639b206f2d88debdc50413202a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448b87850bf2a1d6f92cda4576bbeb34"><td class="memItemLeft" align="right" valign="top">virtual TMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a448b87850bf2a1d6f92cda4576bbeb34">RegisterClassMap&lt; TMap &gt;</a> ()</td></tr>
+<tr class="memdesc:a448b87850bf2a1d6f92cda4576bbeb34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used.  <a href="#a448b87850bf2a1d6f92cda4576bbeb34">More...</a><br/></td></tr>
+<tr class="separator:a448b87850bf2a1d6f92cda4576bbeb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4b355d089af6f33b90f17a689b0084"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">RegisterClassMap</a> (Type classMapType)</td></tr>
+<tr class="memdesc:adf4b355d089af6f33b90f17a689b0084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used.  <a href="#adf4b355d089af6f33b90f17a689b0084">More...</a><br/></td></tr>
+<tr class="separator:adf4b355d089af6f33b90f17a689b0084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cd9dc588cc7967d56cee7da5c903aee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a0cd9dc588cc7967d56cee7da5c903aee">RegisterClassMap</a> (<a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a> map)</td></tr>
+<tr class="memdesc:a0cd9dc588cc7967d56cee7da5c903aee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the class map.  <a href="#a0cd9dc588cc7967d56cee7da5c903aee">More...</a><br/></td></tr>
+<tr class="separator:a0cd9dc588cc7967d56cee7da5c903aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca7cdbf63b8b4d487dcce537a68e26c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aaca7cdbf63b8b4d487dcce537a68e26c">UnregisterClassMap&lt; TMap &gt;</a> ()</td></tr>
+<tr class="memdesc:aaca7cdbf63b8b4d487dcce537a68e26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters the class map.  <a href="#aaca7cdbf63b8b4d487dcce537a68e26c">More...</a><br/></td></tr>
+<tr class="separator:aaca7cdbf63b8b4d487dcce537a68e26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af587ccc1a28c8ced6cc2f51e184fb131"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#af587ccc1a28c8ced6cc2f51e184fb131">UnregisterClassMap</a> (Type classMapType)</td></tr>
+<tr class="memdesc:af587ccc1a28c8ced6cc2f51e184fb131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters the class map.  <a href="#af587ccc1a28c8ced6cc2f51e184fb131">More...</a><br/></td></tr>
+<tr class="separator:af587ccc1a28c8ced6cc2f51e184fb131"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa50df217bfacab62eff54cd781ada32"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aaa50df217bfacab62eff54cd781ada32">UnregisterClassMap</a> ()</td></tr>
+<tr class="memdesc:aaa50df217bfacab62eff54cd781ada32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters all class maps.  <a href="#aaa50df217bfacab62eff54cd781ada32">More...</a><br/></td></tr>
+<tr class="separator:aaa50df217bfacab62eff54cd781ada32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64cca27e888eda0ca43e638a2576ebef"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a64cca27e888eda0ca43e638a2576ebef">AutoMap&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:a64cca27e888eda0ca43e638a2576ebef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the type.  <a href="#a64cca27e888eda0ca43e638a2576ebef">More...</a><br/></td></tr>
+<tr class="separator:a64cca27e888eda0ca43e638a2576ebef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c837ded7144bbd2f5a991dc1ae68c1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ad9c837ded7144bbd2f5a991dc1ae68c1">AutoMap</a> (Type type)</td></tr>
+<tr class="memdesc:ad9c837ded7144bbd2f5a991dc1ae68c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the type.  <a href="#ad9c837ded7144bbd2f5a991dc1ae68c1">More...</a><br/></td></tr>
+<tr class="separator:ad9c837ded7144bbd2f5a991dc1ae68c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd54e348b2781917a5d791a8a91c319d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#acd54e348b2781917a5d791a8a91c319d">CsvConfiguration</a> ()</td></tr>
+<tr class="memdesc:acd54e348b2781917a5d791a8a91c319d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="../../d6/d42/a00043.html" title="Configuration used for reading and writing CSV data. ">CsvConfiguration</a>.  <a href="#acd54e348b2781917a5d791a8a91c319d">More...</a><br/></td></tr>
+<tr class="separator:acd54e348b2781917a5d791a8a91c319d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a9119c99f5dafba985718f631f7bfa16a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a9119c99f5dafba985718f631f7bfa16a">Maps</a><code> [get]</code></td></tr>
+<tr class="memdesc:a9119c99f5dafba985718f631f7bfa16a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The configured <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>s.  <a href="#a9119c99f5dafba985718f631f7bfa16a">More...</a><br/></td></tr>
+<tr class="separator:a9119c99f5dafba985718f631f7bfa16a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5bd1a14758b0c6b84ca3544784a18dd"><td class="memItemLeft" align="right" valign="top">virtual BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ab5bd1a14758b0c6b84ca3544784a18dd">PropertyBindingFlags</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab5bd1a14758b0c6b84ca3544784a18dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the property binding flags. This determines what properties on the custom class are used. Default is Public | Instance.  <a href="#ab5bd1a14758b0c6b84ca3544784a18dd">More...</a><br/></td></tr>
+<tr class="separator:ab5bd1a14758b0c6b84ca3544784a18dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e439f90bfac500d24d6e2e731240439"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a9e439f90bfac500d24d6e2e731240439">HasHeaderRecord</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9e439f90bfac500d24d6e2e731240439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if the CSV file has a header record. Default is true.  <a href="#a9e439f90bfac500d24d6e2e731240439">More...</a><br/></td></tr>
+<tr class="separator:a9e439f90bfac500d24d6e2e731240439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec30ebdadc1050686b22d1f518df042"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a1ec30ebdadc1050686b22d1f518df042">HasExcelSeparator</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1ec30ebdadc1050686b22d1f518df042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating the if the CSV file contains the Excel "sep=delimeter" config option in the first row.  <a href="#a1ec30ebdadc1050686b22d1f518df042">More...</a><br/></td></tr>
+<tr class="separator:a1ec30ebdadc1050686b22d1f518df042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13cb7999b190a01177134faa52dfa3db"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a13cb7999b190a01177134faa52dfa3db">WillThrowOnMissingField</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a13cb7999b190a01177134faa52dfa3db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if an exception will be thrown if a field defined in a mapping is missing. True to throw an exception, otherwise false. Default is true.  <a href="#a13cb7999b190a01177134faa52dfa3db">More...</a><br/></td></tr>
+<tr class="separator:a13cb7999b190a01177134faa52dfa3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615120d2e42818bc37d87181b72d4ad3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a615120d2e42818bc37d87181b72d4ad3">DetectColumnCountChanges</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a615120d2e42818bc37d87181b72d4ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether changes in the column count should be detected. If true, a <a class="el" href="../../d3/de7/a00039.html" title="Represents errors that occur due to bad data. ">CsvBadDataException</a> will be thrown if a different column count is detected.  <a href="#a615120d2e42818bc37d87181b72d4ad3">More...</a><br/></td></tr>
+<tr class="separator:a615120d2e42818bc37d87181b72d4ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee80e98871bbc6fe74b87be1c616a8d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aeee80e98871bbc6fe74b87be1c616a8d">IsHeaderCaseSensitive</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aeee80e98871bbc6fe74b87be1c616a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether matching header column names is case sensitive. True for case sensitive matching, otherwise false. Default is true.  <a href="#aeee80e98871bbc6fe74b87be1c616a8d">More...</a><br/></td></tr>
+<tr class="separator:aeee80e98871bbc6fe74b87be1c616a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a509e336bfd99b45feb55acddeda4df24"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a509e336bfd99b45feb55acddeda4df24">IgnoreHeaderWhiteSpace</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a509e336bfd99b45feb55acddeda4df24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether matcher header column names will ignore white space. True to ignore white space, otherwise false. Default is false.  <a href="#a509e336bfd99b45feb55acddeda4df24">More...</a><br/></td></tr>
+<tr class="separator:a509e336bfd99b45feb55acddeda4df24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a2d1b69b3025969a94cd903db9d00a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a27a2d1b69b3025969a94cd903db9d00a">IgnoreReferences</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a27a2d1b69b3025969a94cd903db9d00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether references should be ignored when auto mapping. True to ignore references, otherwise false. Default is false.  <a href="#a27a2d1b69b3025969a94cd903db9d00a">More...</a><br/></td></tr>
+<tr class="separator:a27a2d1b69b3025969a94cd903db9d00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65704a34f96194fb1a4ed55e60c3b24f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a65704a34f96194fb1a4ed55e60c3b24f">TrimHeaders</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a65704a34f96194fb1a4ed55e60c3b24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether headers should be trimmed. True to trim headers, otherwise false. Default is false.  <a href="#a65704a34f96194fb1a4ed55e60c3b24f">More...</a><br/></td></tr>
+<tr class="separator:a65704a34f96194fb1a4ed55e60c3b24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100f3a2268218bfba3088f4ca1d6a7ad"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a100f3a2268218bfba3088f4ca1d6a7ad">TrimFields</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a100f3a2268218bfba3088f4ca1d6a7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether fields should be trimmed. True to trim fields, otherwise false. Default is false.  <a href="#a100f3a2268218bfba3088f4ca1d6a7ad">More...</a><br/></td></tr>
+<tr class="separator:a100f3a2268218bfba3088f4ca1d6a7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611063826803f98b7cfc275247c1d883"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a611063826803f98b7cfc275247c1d883">Delimiter</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a611063826803f98b7cfc275247c1d883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the delimiter used to separate fields. Default is ',';  <a href="#a611063826803f98b7cfc275247c1d883">More...</a><br/></td></tr>
+<tr class="separator:a611063826803f98b7cfc275247c1d883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a8217dbd09f7d7e4c2895893743e25f"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a2a8217dbd09f7d7e4c2895893743e25f">Quote</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2a8217dbd09f7d7e4c2895893743e25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the character used to quote fields. Default is '"'.  <a href="#a2a8217dbd09f7d7e4c2895893743e25f">More...</a><br/></td></tr>
+<tr class="separator:a2a8217dbd09f7d7e4c2895893743e25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8816c29ce809570b4db6bc438f5e0204"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a8816c29ce809570b4db6bc438f5e0204">QuoteString</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8816c29ce809570b4db6bc438f5e0204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a string representation of the currently configured Quote character.  <a href="#a8816c29ce809570b4db6bc438f5e0204">More...</a><br/></td></tr>
+<tr class="separator:a8816c29ce809570b4db6bc438f5e0204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f5825f9343c21ef968486cef817e11d"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a5f5825f9343c21ef968486cef817e11d">DoubleQuoteString</a><code> [get]</code></td></tr>
+<tr class="memdesc:a5f5825f9343c21ef968486cef817e11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a string representation of two of the currently configured Quote characters.  <a href="#a5f5825f9343c21ef968486cef817e11d">More...</a><br/></td></tr>
+<tr class="separator:a5f5825f9343c21ef968486cef817e11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a01a3fdad14994f306530cdce2db6f6"><td class="memItemLeft" align="right" valign="top">virtual char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a6a01a3fdad14994f306530cdce2db6f6">QuoteRequiredChars</a><code> [get]</code></td></tr>
+<tr class="memdesc:a6a01a3fdad14994f306530cdce2db6f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an array characters that require the field to be quoted.  <a href="#a6a01a3fdad14994f306530cdce2db6f6">More...</a><br/></td></tr>
+<tr class="separator:a6a01a3fdad14994f306530cdce2db6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7df1aa9462eff1da4a271cb3a53feb95"><td class="memItemLeft" align="right" valign="top">virtual char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a7df1aa9462eff1da4a271cb3a53feb95">Comment</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7df1aa9462eff1da4a271cb3a53feb95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the character used to denote a line that is commented out. Default is '#'.  <a href="#a7df1aa9462eff1da4a271cb3a53feb95">More...</a><br/></td></tr>
+<tr class="separator:a7df1aa9462eff1da4a271cb3a53feb95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0799eaadd40d70a70cb2d50a3f6f5836"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a0799eaadd40d70a70cb2d50a3f6f5836">AllowComments</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a0799eaadd40d70a70cb2d50a3f6f5836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if comments are allowed. True to allow commented out lines, otherwise false.  <a href="#a0799eaadd40d70a70cb2d50a3f6f5836">More...</a><br/></td></tr>
+<tr class="separator:a0799eaadd40d70a70cb2d50a3f6f5836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae477580df84900b3fad796a14fad7620"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ae477580df84900b3fad796a14fad7620">BufferSize</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae477580df84900b3fad796a14fad7620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the size of the buffer used for reading and writing CSV files. Default is 2048.  <a href="#ae477580df84900b3fad796a14fad7620">More...</a><br/></td></tr>
+<tr class="separator:ae477580df84900b3fad796a14fad7620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04022216f3e425eddb2eea8b78425066"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a04022216f3e425eddb2eea8b78425066">QuoteAllFields</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a04022216f3e425eddb2eea8b78425066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to be. <a class="el" href="../../d6/d42/a00043.html#a04022216f3e425eddb2eea8b78425066" title="Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to...">QuoteAllFields</a> and <a class="el" href="../../d6/d42/a00043.html#aa9d54725d696095030d1f4c94825f438" title="Gets or sets a value indicating whether no fields are quoted when writing. QuoteAllFields and QuoteNo...">QuoteNoFields</a> cannot be true at the same time. Turning one on will turn the other off.  <a href="#a04022216f3e425eddb2eea8b78425066">More...</a><br/></td></tr>
+<tr class="separator:a04022216f3e425eddb2eea8b78425066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d54725d696095030d1f4c94825f438"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aa9d54725d696095030d1f4c94825f438">QuoteNoFields</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa9d54725d696095030d1f4c94825f438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether no fields are quoted when writing. <a class="el" href="../../d6/d42/a00043.html#a04022216f3e425eddb2eea8b78425066" title="Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to...">QuoteAllFields</a> and <a class="el" href="../../d6/d42/a00043.html#aa9d54725d696095030d1f4c94825f438" title="Gets or sets a value indicating whether no fields are quoted when writing. QuoteAllFields and QuoteNo...">QuoteNoFields</a> cannot be true at the same time. Turning one on will turn the other off.  <a href="#aa9d54725d696095030d1f4c94825f438">More...</a><br/></td></tr>
+<tr class="separator:aa9d54725d696095030d1f4c94825f438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af774e3cb6d18788006deec71879f54a1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#af774e3cb6d18788006deec71879f54a1">CountBytes</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af774e3cb6d18788006deec71879f54a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether the number of bytes should be counted while parsing. Default is false. This will slow down parsing because it needs to get the byte count of every char for the given encoding. The <a class="el" href="../../d6/d42/a00043.html#a28a7819a63acdc5982093ce3b84102d8" title="Gets or sets the encoding used when counting bytes. ">Encoding</a> needs to be set correctly for this to be accurate.  <a href="#af774e3cb6d18788006deec71879f54a1">More...</a><br/></td></tr>
+<tr class="separator:af774e3cb6d18788006deec71879f54a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28a7819a63acdc5982093ce3b84102d8"><td class="memItemLeft" align="right" valign="top">virtual Encoding&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a28a7819a63acdc5982093ce3b84102d8">Encoding</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a28a7819a63acdc5982093ce3b84102d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the encoding used when counting bytes.  <a href="#a28a7819a63acdc5982093ce3b84102d8">More...</a><br/></td></tr>
+<tr class="separator:a28a7819a63acdc5982093ce3b84102d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04ccfdd3cbc265f527ee5baa2e08508"><td class="memItemLeft" align="right" valign="top">virtual CultureInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ad04ccfdd3cbc265f527ee5baa2e08508">CultureInfo</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad04ccfdd3cbc265f527ee5baa2e08508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the culture info used to read an write CSV files.  <a href="#ad04ccfdd3cbc265f527ee5baa2e08508">More...</a><br/></td></tr>
+<tr class="separator:ad04ccfdd3cbc265f527ee5baa2e08508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416ecf54fed4d9c3e90ebfd0b352663d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a416ecf54fed4d9c3e90ebfd0b352663d">SkipEmptyRecords</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a416ecf54fed4d9c3e90ebfd0b352663d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether empty rows should be skipped when reading. A record is considered empty if all fields are empty.  <a href="#a416ecf54fed4d9c3e90ebfd0b352663d">More...</a><br/></td></tr>
+<tr class="separator:a416ecf54fed4d9c3e90ebfd0b352663d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04c1a9d83f8fe89a23c86def5b8558fb"><td class="memItemLeft" align="right" valign="top">virtual Func&lt; string[], bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a04c1a9d83f8fe89a23c86def5b8558fb">ShouldSkipRecord</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a04c1a9d83f8fe89a23c86def5b8558fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the callback that will be called to determine whether to skip the given record or not. This overrides the <a class="el" href="../../d6/d42/a00043.html#a416ecf54fed4d9c3e90ebfd0b352663d" title="Gets or sets a value indicating whether empty rows should be skipped when reading. A record is considered empty if all fields are empty. ">SkipEmptyRecords</a> setting.  <a href="#a04c1a9d83f8fe89a23c86def5b8558fb">More...</a><br/></td></tr>
+<tr class="separator:a04c1a9d83f8fe89a23c86def5b8558fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb9b54f3fb2aefa066598d74f01d00d8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#abb9b54f3fb2aefa066598d74f01d00d8">IgnoreQuotes</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:abb9b54f3fb2aefa066598d74f01d00d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if quotes should be ingored when parsing and treated like any other character.  <a href="#abb9b54f3fb2aefa066598d74f01d00d8">More...</a><br/></td></tr>
+<tr class="separator:abb9b54f3fb2aefa066598d74f01d00d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b79b0f10ef0a156bd5993300d26b4d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a21b79b0f10ef0a156bd5993300d26b4d">IgnorePrivateAccessor</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a21b79b0f10ef0a156bd5993300d26b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if private get and set property accessors should be ignored when reading and writing. True to ignore, otherwise false. Default is false.  <a href="#a21b79b0f10ef0a156bd5993300d26b4d">More...</a><br/></td></tr>
+<tr class="separator:a21b79b0f10ef0a156bd5993300d26b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec66869c9418966fe5bbf74e32b46a2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#abec66869c9418966fe5bbf74e32b46a2">IgnoreBlankLines</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:abec66869c9418966fe5bbf74e32b46a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if blank lines should be ignored when reading. True to ignore, otherwise false. Default is true.  <a href="#abec66869c9418966fe5bbf74e32b46a2">More...</a><br/></td></tr>
+<tr class="separator:abec66869c9418966fe5bbf74e32b46a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d2eed13b8836f0397f8c39a709de1cc"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a5d2eed13b8836f0397f8c39a709de1cc">UseExcelLeadingZerosFormatForNumerics</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5d2eed13b8836f0397f8c39a709de1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if an Excel specific format should be used when writing fields containing numeric values. e.g. 00001 -&gt; ="00001"  <a href="#a5d2eed13b8836f0397f8c39a709de1cc">More...</a><br/></td></tr>
+<tr class="separator:a5d2eed13b8836f0397f8c39a709de1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ec3b1cbc0dd97e69b0b7cf7225c2e9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aa4ec3b1cbc0dd97e69b0b7cf7225c2e9">PrefixReferenceHeaders</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa4ec3b1cbc0dd97e69b0b7cf7225c2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if headers of reference properties should get prefixed by the parent property name when automapping. True to prefix, otherwise false. Default is false.  <a href="#aa4ec3b1cbc0dd97e69b0b7cf7225c2e9">More...</a><br/></td></tr>
+<tr class="separator:aa4ec3b1cbc0dd97e69b0b7cf7225c2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20c0f1cc282f4b13ce15b6a91305c10"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ac20c0f1cc282f4b13ce15b6a91305c10">ThrowOnBadData</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac20c0f1cc282f4b13ce15b6a91305c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating if an exception should be thrown when bad field data is detected. True to throw, otherwise false. Default is false.  <a href="#ac20c0f1cc282f4b13ce15b6a91305c10">More...</a><br/></td></tr>
+<tr class="separator:ac20c0f1cc282f4b13ce15b6a91305c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a59e8f40f9629658d47a6f163dda8ed"><td class="memItemLeft" align="right" valign="top">virtual Action&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a1a59e8f40f9629658d47a6f163dda8ed">BadDataCallback</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1a59e8f40f9629658d47a6f163dda8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a method that gets called when bad data is detected.  <a href="#a1a59e8f40f9629658d47a6f163dda8ed">More...</a><br/></td></tr>
+<tr class="separator:a1a59e8f40f9629658d47a6f163dda8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8645dbd4fe2a9c443910695a93b1027f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a8645dbd4fe2a9c443910695a93b1027f">IgnoreReadingExceptions</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8645dbd4fe2a9c443910695a93b1027f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether exceptions that occur duruing reading should be ignored. True to ignore exceptions, otherwise false. Default is false. This is only applicable when during ICsvReaderRow.GetRecords{T}.  <a href="#a8645dbd4fe2a9c443910695a93b1027f">More...</a><br/></td></tr>
+<tr class="separator:a8645dbd4fe2a9c443910695a93b1027f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7257970a1b5bfb9f2ddfdc61a70fe34"><td class="memItemLeft" align="right" valign="top">virtual Action&lt; Exception, <br class="typebreak"/>
+<a class="el" href="../../d9/dec/a00090.html">ICsvReader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ae7257970a1b5bfb9f2ddfdc61a70fe34">ReadingExceptionCallback</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae7257970a1b5bfb9f2ddfdc61a70fe34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the callback that is called when a reading exception occurs. This will only happen when <a class="el" href="../../d6/d42/a00043.html#a8645dbd4fe2a9c443910695a93b1027f" title="Gets or sets a value indicating whether exceptions that occur duruing reading should be ignored...">IgnoreReadingExceptions</a> is true, and when calling ICsvReaderRow.GetRecords{T}.  <a href="#ae7257970a1b5bfb9f2ddfdc61a70fe34">More...</a><br/></td></tr>
+<tr class="separator:ae7257970a1b5bfb9f2ddfdc61a70fe34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c533a0dbaf65dca68233356310cab0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a87c533a0dbaf65dca68233356310cab0">UseNewObjectForNullReferenceProperties</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a87c533a0dbaf65dca68233356310cab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating that during writing if a new object should be created when a reference property is null. True to create a new object and use it's defaults for the fields, or false to leave the fields empty for all the reference property's properties.  <a href="#a87c533a0dbaf65dca68233356310cab0">More...</a><br/></td></tr>
+<tr class="separator:a87c533a0dbaf65dca68233356310cab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac0f0c61962cfd710e73753d7bc7be4bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ac0f0c61962cfd710e73753d7bc7be4bf">BuildRequiredQuoteChars</a> ()</td></tr>
+<tr class="memdesc:ac0f0c61962cfd710e73753d7bc7be4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the values for the RequiredQuoteChars property.  <a href="#ac0f0c61962cfd710e73753d7bc7be4bf">More...</a><br/></td></tr>
+<tr class="separator:ac0f0c61962cfd710e73753d7bc7be4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af18fcf1e16dcd7c277cc9b636afe3cc4"><td class="memItemLeft" align="right" valign="top">BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#af18fcf1e16dcd7c277cc9b636afe3cc4">propertyBindingFlags</a> = BindingFlags.Public | BindingFlags.Instance</td></tr>
+<tr class="separator:af18fcf1e16dcd7c277cc9b636afe3cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad70ea02838356e66476cc0c7151c17aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ad70ea02838356e66476cc0c7151c17aa">hasHeaderRecord</a> = true</td></tr>
+<tr class="separator:ad70ea02838356e66476cc0c7151c17aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af557edd010ae706ffb850decbfc5f774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#af557edd010ae706ffb850decbfc5f774">willThrowOnMissingField</a> = true</td></tr>
+<tr class="separator:af557edd010ae706ffb850decbfc5f774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ac37138febea53e79c1a3c6ad273b9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ae3ac37138febea53e79c1a3c6ad273b9">delimiter</a> = &quot;,&quot;</td></tr>
+<tr class="separator:ae3ac37138febea53e79c1a3c6ad273b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d958f45281a8e148ca80f4c838e3b5"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ab4d958f45281a8e148ca80f4c838e3b5">quote</a> = '&quot;'</td></tr>
+<tr class="separator:ab4d958f45281a8e148ca80f4c838e3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f4f364475aa0f0a65b238ef004baf0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ab8f4f364475aa0f0a65b238ef004baf0">quoteString</a> = &quot;\&quot;&quot;</td></tr>
+<tr class="separator:ab8f4f364475aa0f0a65b238ef004baf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a345c1d99f9fd609a1e1eea0476dd5dae"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a345c1d99f9fd609a1e1eea0476dd5dae">doubleQuoteString</a> = &quot;\&quot;\&quot;&quot;</td></tr>
+<tr class="separator:a345c1d99f9fd609a1e1eea0476dd5dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e097358e5aaaba864411fd08a358230"><td class="memItemLeft" align="right" valign="top">char[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a7e097358e5aaaba864411fd08a358230">quoteRequiredChars</a></td></tr>
+<tr class="separator:a7e097358e5aaaba864411fd08a358230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c21ea2d42a1e3ee29b66cc2cf2a949"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ab4c21ea2d42a1e3ee29b66cc2cf2a949">comment</a> = '#'</td></tr>
+<tr class="separator:ab4c21ea2d42a1e3ee29b66cc2cf2a949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc7c575ccfe2270a472f327d5768120"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a6dc7c575ccfe2270a472f327d5768120">bufferSize</a> = 2048</td></tr>
+<tr class="separator:a6dc7c575ccfe2270a472f327d5768120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71902bcac3d0ed9fdb1d53eb7f97867e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a71902bcac3d0ed9fdb1d53eb7f97867e">isHeaderCaseSensitive</a> = true</td></tr>
+<tr class="separator:a71902bcac3d0ed9fdb1d53eb7f97867e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad562fa0e6e495a39cf5e7d5df0a03d23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d42/a00043.html#a28a7819a63acdc5982093ce3b84102d8">Encoding</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#ad562fa0e6e495a39cf5e7d5df0a03d23">encoding</a> = Encoding.UTF8</td></tr>
+<tr class="separator:ad562fa0e6e495a39cf5e7d5df0a03d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfad028f0055932b37b4c06bf9e1eab9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d42/a00043.html#ad04ccfdd3cbc265f527ee5baa2e08508">CultureInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#adfad028f0055932b37b4c06bf9e1eab9">cultureInfo</a> = CultureInfo.CurrentCulture</td></tr>
+<tr class="separator:adfad028f0055932b37b4c06bf9e1eab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc0e3610a56af5e12b0177215fe5248e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#afc0e3610a56af5e12b0177215fe5248e">quoteAllFields</a></td></tr>
+<tr class="separator:afc0e3610a56af5e12b0177215fe5248e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d9e64909dd0742ccc0c0d4cdf148ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a81d9e64909dd0742ccc0c0d4cdf148ac">quoteNoFields</a></td></tr>
+<tr class="separator:a81d9e64909dd0742ccc0c0d4cdf148ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa11cc9c2e4f1affb48844f9c76c81d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#aaaa11cc9c2e4f1affb48844f9c76c81d">ignoreBlankLines</a> = true</td></tr>
+<tr class="separator:aaaa11cc9c2e4f1affb48844f9c76c81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a764e14e2b3a5620f5598393c746a8df3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a764e14e2b3a5620f5598393c746a8df3">useNewObjectForNullReferenceProperties</a> = true</td></tr>
+<tr class="separator:a764e14e2b3a5620f5598393c746a8df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c353c85dc21a4c5632e6184685e234c"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d42/a00043.html#a1c353c85dc21a4c5632e6184685e234c">maps</a> = new <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a>()</td></tr>
+<tr class="separator:a1c353c85dc21a4c5632e6184685e234c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Creates <a class="el" href="../../d2/d04/a00281.html">CsvHelper</a> classes. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a741fb4a1622778af65bfa27606bf6f25"></a>
+<div class="textblock"><p><a class="el" href="../../d3/d58/a00285.html">Configuration</a> used for reading and writing CSV data. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="acd54e348b2781917a5d791a8a91c319d"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a> CsvHelper.CsvFactory.CreateParser </td>
+          <td class="memname">CsvHelper.Configuration.CsvConfiguration.CsvConfiguration </td>
           <td>(</td>
-          <td class="paramtype">TextReader&#160;</td>
-          <td class="paramname"><em>reader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a>&#160;</td>
-          <td class="paramname"><em>configuration</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="../../d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reader</td><td>The text reader to use for the csv parser.</td></tr>
-    <tr><td class="paramname">configuration</td><td>The configuration to use for the csv parser.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The created parser.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#a9b68cbd7292c76037959d51ecc7c374d">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvParser( reader, configuration );</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<p>Creates a new <a class="el" href="../../d6/d42/a00043.html" title="Configuration used for reading and writing CSV data. ">CsvConfiguration</a>. </p>
+<div class="fragment"><div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;        {</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;            <a class="code" href="../../d6/d42/a00043.html#ac0f0c61962cfd710e73753d7bc7be4bf">BuildRequiredQuoteChars</a>();</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_ac0f0c61962cfd710e73753d7bc7be4bf"><div class="ttname"><a href="../../d6/d42/a00043.html#ac0f0c61962cfd710e73753d7bc7be4bf">CsvHelper.Configuration.CsvConfiguration.BuildRequiredQuoteChars</a></div><div class="ttdeci">void BuildRequiredQuoteChars()</div><div class="ttdoc">Builds the values for the RequiredQuoteChars property. </div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:554</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a07665ae71961a161552189877d11a5be"></a>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad9c837ded7144bbd2f5a991dc1ae68c1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -215,10 +347,10 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a> CsvHelper.CsvFactory.CreateParser </td>
+          <td class="memname">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a> CsvHelper.Configuration.CsvConfiguration.AutoMap </td>
           <td>(</td>
-          <td class="paramtype">TextReader&#160;</td>
-          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -229,23 +361,27 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="../../d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. ">ICsvParser</a>. </p>
+<p>Generates a <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">reader</td><td>The text reader to use for the csv parser.</td></tr>
+    <tr><td class="paramname">type</td><td>The type to generate for the map.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created parser.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#ab085a057f1b80ebf03ed2247d8759314">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvParser( reader );</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<dl class="section return"><dt>Returns</dt><dd>The generate map.</dd></dl>
+<div class="fragment"><div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        {</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;            var mapType = typeof( DefaultCsvClassMap&lt;&gt; ).MakeGenericType( type );</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;            var map = (CsvClassMap)ReflectionHelper.CreateInstance( mapType );</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;            map.AutoMap( <a class="code" href="../../d6/d42/a00043.html#a27a2d1b69b3025969a94cd903db9d00a">IgnoreReferences</a>, <a class="code" href="../../d6/d42/a00043.html#aa4ec3b1cbc0dd97e69b0b7cf7225c2e9">PrefixReferenceHeaders</a> );</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;            <span class="keywordflow">return</span> map;</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_aa4ec3b1cbc0dd97e69b0b7cf7225c2e9"><div class="ttname"><a href="../../d6/d42/a00043.html#aa4ec3b1cbc0dd97e69b0b7cf7225c2e9">CsvHelper.Configuration.CsvConfiguration.PrefixReferenceHeaders</a></div><div class="ttdeci">virtual bool PrefixReferenceHeaders</div><div class="ttdoc">Gets or sets a value indicating if headers of reference properties should get prefixed by the parent ...</div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:395</div></div>
+<div class="ttc" id="a00043_html_a27a2d1b69b3025969a94cd903db9d00a"><div class="ttname"><a href="../../d6/d42/a00043.html#a27a2d1b69b3025969a94cd903db9d00a">CsvHelper.Configuration.CsvConfiguration.IgnoreReferences</a></div><div class="ttdeci">virtual bool IgnoreReferences</div><div class="ttdoc">Gets or sets a value indicating whether references should be ignored when auto mapping. True to ignore references, otherwise false. Default is false. </div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:125</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a12b1358fc847e407519a76b7fe003a34"></a>
+<a class="anchor" id="a64cca27e888eda0ca43e638a2576ebef"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -253,59 +389,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a> CsvHelper.CsvFactory.CreateReader </td>
+          <td class="memname">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a> <a class="el" href="../../d6/d42/a00043.html#ad9c837ded7144bbd2f5a991dc1ae68c1">CsvHelper.Configuration.CsvConfiguration.AutoMap</a>&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">TextReader&#160;</td>
-          <td class="paramname"><em>reader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a>&#160;</td>
-          <td class="paramname"><em>configuration</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reader</td><td>The text reader to use for the csv reader.</td></tr>
-    <tr><td class="paramname">configuration</td><td>The configuration to use for the reader.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#ade2a6e776fad6aa36c201901d6427058">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvReader( reader, configuration );</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a77bcca4ad5023f5628c519c2914da5bb"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a> CsvHelper.CsvFactory.CreateReader </td>
-          <td>(</td>
-          <td class="paramtype">TextReader&#160;</td>
-          <td class="paramname"><em>reader</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -316,23 +402,22 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reader</td><td>The text reader to use for the csv reader.</td></tr>
+<p>Generates a <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type to generate the map for.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#ae1ebb61244b36ddecb986d047ac9c217">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvReader( reader );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<dl class="section return"><dt>Returns</dt><dd>The generate map.</dd></dl>
+<div class="fragment"><div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        {</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="../../d6/d42/a00043.html#ad9c837ded7144bbd2f5a991dc1ae68c1">AutoMap</a>( typeof( T ) );</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_ad9c837ded7144bbd2f5a991dc1ae68c1"><div class="ttname"><a href="../../d6/d42/a00043.html#ad9c837ded7144bbd2f5a991dc1ae68c1">CsvHelper.Configuration.CsvConfiguration.AutoMap</a></div><div class="ttdeci">virtual CsvClassMap AutoMap(Type type)</div><div class="ttdoc">Generates a CsvClassMap for the type. </div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:533</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a4e7e06df9265cbd53219c964424cec1e"></a>
+<a class="anchor" id="ac0f0c61962cfd710e73753d7bc7be4bf"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -340,10 +425,42 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../db/ddf/a00088.html">ICsvReader</a> CsvHelper.CsvFactory.CreateReader </td>
+          <td class="memname">void CsvHelper.Configuration.CsvConfiguration.BuildRequiredQuoteChars </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d1/d1e/a00087.html">ICsvParser</a>&#160;</td>
-          <td class="paramname"><em>parser</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Builds the values for the RequiredQuoteChars property. </p>
+<div class="fragment"><div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        {</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;            <a class="code" href="../../d6/d42/a00043.html#a7e097358e5aaaba864411fd08a358230">quoteRequiredChars</a> = delimiter.Length &gt; 1 ? </div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;                <span class="keyword">new</span>[] { <span class="charliteral">&#39;\r&#39;</span>, <span class="charliteral">&#39;\n&#39;</span> } : </div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;                <span class="keyword">new</span>[] { <span class="charliteral">&#39;\r&#39;</span>, <span class="charliteral">&#39;\n&#39;</span>, <a class="code" href="../../d6/d42/a00043.html#ae3ac37138febea53e79c1a3c6ad273b9">delimiter</a>[0] };</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_a7e097358e5aaaba864411fd08a358230"><div class="ttname"><a href="../../d6/d42/a00043.html#a7e097358e5aaaba864411fd08a358230">CsvHelper.Configuration.CsvConfiguration.quoteRequiredChars</a></div><div class="ttdeci">char[] quoteRequiredChars</div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:27</div></div>
+<div class="ttc" id="a00043_html_ae3ac37138febea53e79c1a3c6ad273b9"><div class="ttname"><a href="../../d6/d42/a00043.html#ae3ac37138febea53e79c1a3c6ad273b9">CsvHelper.Configuration.CsvConfiguration.delimiter</a></div><div class="ttdeci">string delimiter</div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:23</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="adf4b355d089af6f33b90f17a689b0084"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a> CsvHelper.Configuration.CsvConfiguration.RegisterClassMap </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classMapType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -354,23 +471,29 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="../../db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. ">ICsvReader</a>. </p>
+<p>Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parser</td><td>The parser used to create the reader.</td></tr>
+    <tr><td class="paramname">classMapType</td><td>The type of mapping class to use.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created reader.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#af5b755ba2825f781d501402f1d765b33">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvReader( parser );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        {</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <span class="keywordflow">if</span>( !typeof( CsvClassMap ).IsAssignableFrom( classMapType ) )</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;            {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;The class map type must inherit from CsvClassMap.&quot;</span> );</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;            }</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;            var map = (CsvClassMap)ReflectionHelper.CreateInstance( classMapType );</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <a class="code" href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">RegisterClassMap</a>( map );</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            <span class="keywordflow">return</span> map;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_adf4b355d089af6f33b90f17a689b0084"><div class="ttname"><a href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</a></div><div class="ttdeci">virtual CsvClassMap RegisterClassMap(Type classMapType)</div><div class="ttdoc">Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by defau...</div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:462</div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a6bfe534b70ff92ea3809f1a372d160cc"></a>
+<a class="anchor" id="a0cd9dc588cc7967d56cee7da5c903aee"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -378,59 +501,10 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../da/d82/a00091.html">ICsvWriter</a> CsvHelper.CsvFactory.CreateWriter </td>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvConfiguration.RegisterClassMap </td>
           <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../dd/d32/a00041.html">CsvConfiguration</a>&#160;</td>
-          <td class="paramname"><em>configuration</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Creates an <a class="el" href="../../da/d82/a00091.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">writer</td><td>The text writer to use for the csv writer.</td></tr>
-    <tr><td class="paramname">configuration</td><td>The configuration to use for the writer.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The created writer.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#ae77852d2702bc2caad76c045a538933e">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvWriter( writer, configuration );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a0cec3a639b206f2d88debdc50413202a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="../../da/d82/a00091.html">ICsvWriter</a> CsvHelper.CsvFactory.CreateWriter </td>
-          <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="../../db/d3a/a00040.html">CsvClassMap</a>&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -441,31 +515,1347 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an <a class="el" href="../../da/d82/a00091.html" title="Defines methods used to write to a CSV file. ">ICsvWriter</a>. </p>
+<p>Registers the class map. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">writer</td><td>The text writer to use for the csv writer.</td></tr>
+    <tr><td class="paramname">map</td><td>The class map to register.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The created writer.</dd></dl>
-
-<p>Implements <a class="el" href="../../da/d2a/a00086.html#ab6df59078b6245e653c06c00358b402a">CsvHelper.ICsvFactory</a>.</p>
-<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> CsvWriter( writer );</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;        {</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;            map.CreateMap();</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;            <span class="keywordflow">if</span>( map.Constructor == null &amp;&amp; map.PropertyMaps.Count == 0 &amp;&amp; map.ReferenceMaps.Count == 0 )</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;            {</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> CsvConfigurationException( <span class="stringliteral">&quot;No mappings were specified in the CsvClassMap.&quot;</span> );</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;            }</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;            Maps.Add( map );</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a448b87850bf2a1d6f92cda4576bbeb34"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual TMap <a class="el" href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</a>&lt; TMap &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by default. Only properties specified in the mapping are used. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TMap</td><td>The type of mapping class to use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TMap</em></td><td>&#160;:</td><td valign="top"><em>CsvClassMap</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
+<div class="fragment"><div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                                                                : CsvClassMap</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        {</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            var map = ReflectionHelper.CreateInstance&lt;TMap&gt;();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;            <a class="code" href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">RegisterClassMap</a>( map );</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            <span class="keywordflow">return</span> map;</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_adf4b355d089af6f33b90f17a689b0084"><div class="ttname"><a href="../../d6/d42/a00043.html#adf4b355d089af6f33b90f17a689b0084">CsvHelper.Configuration.CsvConfiguration.RegisterClassMap</a></div><div class="ttdeci">virtual CsvClassMap RegisterClassMap(Type classMapType)</div><div class="ttdoc">Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by defau...</div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:462</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af587ccc1a28c8ced6cc2f51e184fb131"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classMapType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregisters the class map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classMapType</td><td>The map type to unregister.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;        {</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;            maps.Remove( classMapType );</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aaa50df217bfacab62eff54cd781ada32"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregisters all class maps. </p>
+<div class="fragment"><div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        {</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;            maps.Clear();</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aaca7cdbf63b8b4d487dcce537a68e26c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="../../d6/d42/a00043.html#af587ccc1a28c8ced6cc2f51e184fb131">CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap</a>&lt; TMap &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregisters the class map. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TMap</td><td>The map type to unregister.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>TMap</em></td><td>&#160;:</td><td valign="top"><em>CsvClassMap</em></td><td>&#160;</td></tr>
+</table>
+</dl>
+</div>
+<div class="fragment"><div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;                       : CsvClassMap</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        {</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;            <a class="code" href="../../d6/d42/a00043.html#aaa50df217bfacab62eff54cd781ada32">UnregisterClassMap</a>( typeof( TMap ) );</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        }</div>
+<div class="ttc" id="a00043_html_aaa50df217bfacab62eff54cd781ada32"><div class="ttname"><a href="../../d6/d42/a00043.html#aaa50df217bfacab62eff54cd781ada32">CsvHelper.Configuration.CsvConfiguration.UnregisterClassMap</a></div><div class="ttdeci">virtual void UnregisterClassMap()</div><div class="ttdoc">Unregisters all class maps. </div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:513</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a6dc7c575ccfe2270a472f327d5768120"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CsvHelper.Configuration.CsvConfiguration.bufferSize = 2048</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4c21ea2d42a1e3ee29b66cc2cf2a949"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char CsvHelper.Configuration.CsvConfiguration.comment = '#'</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adfad028f0055932b37b4c06bf9e1eab9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d42/a00043.html#ad04ccfdd3cbc265f527ee5baa2e08508">CultureInfo</a> CsvHelper.Configuration.CsvConfiguration.cultureInfo = CultureInfo.CurrentCulture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae3ac37138febea53e79c1a3c6ad273b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.Configuration.CsvConfiguration.delimiter = &quot;,&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a345c1d99f9fd609a1e1eea0476dd5dae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.Configuration.CsvConfiguration.doubleQuoteString = &quot;\&quot;\&quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad562fa0e6e495a39cf5e7d5df0a03d23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d42/a00043.html#a28a7819a63acdc5982093ce3b84102d8">Encoding</a> CsvHelper.Configuration.CsvConfiguration.encoding = Encoding.UTF8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad70ea02838356e66476cc0c7151c17aa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.hasHeaderRecord = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaaa11cc9c2e4f1affb48844f9c76c81d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.ignoreBlankLines = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a71902bcac3d0ed9fdb1d53eb7f97867e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.isHeaderCaseSensitive = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1c353c85dc21a4c5632e6184685e234c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a> CsvHelper.Configuration.CsvConfiguration.maps = new <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af18fcf1e16dcd7c277cc9b636afe3cc4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BindingFlags CsvHelper.Configuration.CsvConfiguration.propertyBindingFlags = BindingFlags.Public | BindingFlags.Instance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4d958f45281a8e148ca80f4c838e3b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char CsvHelper.Configuration.CsvConfiguration.quote = '&quot;'</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afc0e3610a56af5e12b0177215fe5248e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.quoteAllFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a81d9e64909dd0742ccc0c0d4cdf148ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.quoteNoFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7e097358e5aaaba864411fd08a358230"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char [] CsvHelper.Configuration.CsvConfiguration.quoteRequiredChars</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab8f4f364475aa0f0a65b238ef004baf0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CsvHelper.Configuration.CsvConfiguration.quoteString = &quot;\&quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a764e14e2b3a5620f5598393c746a8df3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.useNewObjectForNullReferenceProperties = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af557edd010ae706ffb850decbfc5f774"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CsvHelper.Configuration.CsvConfiguration.willThrowOnMissingField = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a0799eaadd40d70a70cb2d50a3f6f5836"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.AllowComments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if comments are allowed. True to allow commented out lines, otherwise false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1a59e8f40f9629658d47a6f163dda8ed"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Action&lt;string&gt; CsvHelper.Configuration.CsvConfiguration.BadDataCallback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a method that gets called when bad data is detected. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae477580df84900b3fad796a14fad7620"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CsvHelper.Configuration.CsvConfiguration.BufferSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the size of the buffer used for reading and writing CSV files. Default is 2048. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7df1aa9462eff1da4a271cb3a53feb95"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual char CsvHelper.Configuration.CsvConfiguration.Comment</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the character used to denote a line that is commented out. Default is '#'. </p>
+
+</div>
+</div>
+<a class="anchor" id="af774e3cb6d18788006deec71879f54a1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.CountBytes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether the number of bytes should be counted while parsing. Default is false. This will slow down parsing because it needs to get the byte count of every char for the given encoding. The <a class="el" href="../../d6/d42/a00043.html#a28a7819a63acdc5982093ce3b84102d8" title="Gets or sets the encoding used when counting bytes. ">Encoding</a> needs to be set correctly for this to be accurate. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad04ccfdd3cbc265f527ee5baa2e08508"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual CultureInfo CsvHelper.Configuration.CsvConfiguration.CultureInfo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the culture info used to read an write CSV files. </p>
+
+</div>
+</div>
+<a class="anchor" id="a611063826803f98b7cfc275247c1d883"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string CsvHelper.Configuration.CsvConfiguration.Delimiter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the delimiter used to separate fields. Default is ','; </p>
+
+</div>
+</div>
+<a class="anchor" id="a615120d2e42818bc37d87181b72d4ad3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.DetectColumnCountChanges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether changes in the column count should be detected. If true, a <a class="el" href="../../d3/de7/a00039.html" title="Represents errors that occur due to bad data. ">CsvBadDataException</a> will be thrown if a different column count is detected. </p>
+<p><code>true</code> if [detect column count changes]; otherwise, <code>false</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5f5825f9343c21ef968486cef817e11d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string CsvHelper.Configuration.CsvConfiguration.DoubleQuoteString</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a string representation of two of the currently configured Quote characters. </p>
+<p>The new double quote string. </p>
+
+</div>
+</div>
+<a class="anchor" id="a28a7819a63acdc5982093ce3b84102d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Encoding CsvHelper.Configuration.CsvConfiguration.Encoding</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the encoding used when counting bytes. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1ec30ebdadc1050686b22d1f518df042"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.HasExcelSeparator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating the if the CSV file contains the Excel "sep=delimeter" config option in the first row. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9e439f90bfac500d24d6e2e731240439"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.HasHeaderRecord</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if the CSV file has a header record. Default is true. </p>
+
+</div>
+</div>
+<a class="anchor" id="abec66869c9418966fe5bbf74e32b46a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreBlankLines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if blank lines should be ignored when reading. True to ignore, otherwise false. Default is true. </p>
+
+</div>
+</div>
+<a class="anchor" id="a509e336bfd99b45feb55acddeda4df24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreHeaderWhiteSpace</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether matcher header column names will ignore white space. True to ignore white space, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a21b79b0f10ef0a156bd5993300d26b4d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnorePrivateAccessor</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if private get and set property accessors should be ignored when reading and writing. True to ignore, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="abb9b54f3fb2aefa066598d74f01d00d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreQuotes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if quotes should be ingored when parsing and treated like any other character. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8645dbd4fe2a9c443910695a93b1027f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreReadingExceptions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether exceptions that occur duruing reading should be ignored. True to ignore exceptions, otherwise false. Default is false. This is only applicable when during ICsvReaderRow.GetRecords{T}. </p>
+
+</div>
+</div>
+<a class="anchor" id="a27a2d1b69b3025969a94cd903db9d00a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IgnoreReferences</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether references should be ignored when auto mapping. True to ignore references, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="aeee80e98871bbc6fe74b87be1c616a8d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.IsHeaderCaseSensitive</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether matching header column names is case sensitive. True for case sensitive matching, otherwise false. Default is true. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9119c99f5dafba985718f631f7bfa16a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d5/db6/a00042.html">CsvClassMapCollection</a> CsvHelper.Configuration.CsvConfiguration.Maps</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The configured <a class="el" href="../../db/d3a/a00040.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>s. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa4ec3b1cbc0dd97e69b0b7cf7225c2e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.PrefixReferenceHeaders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if headers of reference properties should get prefixed by the parent property name when automapping. True to prefix, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab5bd1a14758b0c6b84ca3544784a18dd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual BindingFlags CsvHelper.Configuration.CsvConfiguration.PropertyBindingFlags</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the property binding flags. This determines what properties on the custom class are used. Default is Public | Instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2a8217dbd09f7d7e4c2895893743e25f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual char CsvHelper.Configuration.CsvConfiguration.Quote</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the character used to quote fields. Default is '"'. </p>
+
+</div>
+</div>
+<a class="anchor" id="a04022216f3e425eddb2eea8b78425066"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.QuoteAllFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to be. <a class="el" href="../../d6/d42/a00043.html#a04022216f3e425eddb2eea8b78425066" title="Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to...">QuoteAllFields</a> and <a class="el" href="../../d6/d42/a00043.html#aa9d54725d696095030d1f4c94825f438" title="Gets or sets a value indicating whether no fields are quoted when writing. QuoteAllFields and QuoteNo...">QuoteNoFields</a> cannot be true at the same time. Turning one on will turn the other off. </p>
+<p><code>true</code> if all fields should be quoted; otherwise, <code>false</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa9d54725d696095030d1f4c94825f438"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.QuoteNoFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether no fields are quoted when writing. <a class="el" href="../../d6/d42/a00043.html#a04022216f3e425eddb2eea8b78425066" title="Gets or sets a value indicating whether all fields are quoted when writing, or just ones that have to...">QuoteAllFields</a> and <a class="el" href="../../d6/d42/a00043.html#aa9d54725d696095030d1f4c94825f438" title="Gets or sets a value indicating whether no fields are quoted when writing. QuoteAllFields and QuoteNo...">QuoteNoFields</a> cannot be true at the same time. Turning one on will turn the other off. </p>
+<p><code>true</code> if [quote no fields]; otherwise, <code>false</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6a01a3fdad14994f306530cdce2db6f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual char [] CsvHelper.Configuration.CsvConfiguration.QuoteRequiredChars</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets an array characters that require the field to be quoted. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8816c29ce809570b4db6bc438f5e0204"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string CsvHelper.Configuration.CsvConfiguration.QuoteString</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a string representation of the currently configured Quote character. </p>
+<p>The new quote string. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae7257970a1b5bfb9f2ddfdc61a70fe34"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Action&lt;Exception, <a class="el" href="../../d9/dec/a00090.html">ICsvReader</a>&gt; CsvHelper.Configuration.CsvConfiguration.ReadingExceptionCallback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the callback that is called when a reading exception occurs. This will only happen when <a class="el" href="../../d6/d42/a00043.html#a8645dbd4fe2a9c443910695a93b1027f" title="Gets or sets a value indicating whether exceptions that occur duruing reading should be ignored...">IgnoreReadingExceptions</a> is true, and when calling ICsvReaderRow.GetRecords{T}. </p>
+
+</div>
+</div>
+<a class="anchor" id="a04c1a9d83f8fe89a23c86def5b8558fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Func&lt;string[], bool&gt; CsvHelper.Configuration.CsvConfiguration.ShouldSkipRecord</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the callback that will be called to determine whether to skip the given record or not. This overrides the <a class="el" href="../../d6/d42/a00043.html#a416ecf54fed4d9c3e90ebfd0b352663d" title="Gets or sets a value indicating whether empty rows should be skipped when reading. A record is considered empty if all fields are empty. ">SkipEmptyRecords</a> setting. </p>
+
+</div>
+</div>
+<a class="anchor" id="a416ecf54fed4d9c3e90ebfd0b352663d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.SkipEmptyRecords</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether empty rows should be skipped when reading. A record is considered empty if all fields are empty. </p>
+<p><code>true</code> if [skip empty rows]; otherwise, <code>false</code>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac20c0f1cc282f4b13ce15b6a91305c10"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.ThrowOnBadData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if an exception should be thrown when bad field data is detected. True to throw, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a100f3a2268218bfba3088f4ca1d6a7ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.TrimFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether fields should be trimmed. True to trim fields, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a65704a34f96194fb1a4ed55e60c3b24f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.TrimHeaders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether headers should be trimmed. True to trim headers, otherwise false. Default is false. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5d2eed13b8836f0397f8c39a709de1cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.UseExcelLeadingZerosFormatForNumerics</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if an Excel specific format should be used when writing fields containing numeric values. e.g. 00001 -&gt; ="00001" </p>
+
+</div>
+</div>
+<a class="anchor" id="a87c533a0dbaf65dca68233356310cab0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.UseNewObjectForNullReferenceProperties</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating that during writing if a new object should be created when a reference property is null. True to create a new object and use it's defaults for the fields, or false to leave the fields empty for all the reference property's properties. </p>
+
+</div>
+</div>
+<a class="anchor" id="a13cb7999b190a01177134faa52dfa3db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.Configuration.CsvConfiguration.WillThrowOnMissingField</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating if an exception will be thrown if a field defined in a mapping is missing. True to throw an exception, otherwise false. Default is true. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="../../">CsvFactory.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="../../">CsvConfiguration.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d2/d04/a00281.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d6/d42/a00043.html">CsvFactory</a></li>
+    <li class="navelem"><a class="el" href="../../db/dc3/a00284.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d3/d58/a00285.html">Configuration</a></li><li class="navelem"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

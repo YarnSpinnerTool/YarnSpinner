@@ -1,57 +1,85 @@
-\hypertarget{a00076}{\section{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter Class Reference}
-\label{a00076}\index{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}}
+\hypertarget{a00076}{\section{Csv\-Helper.\-Type\-Conversion.\-Double\-Converter Class Reference}
+\label{a00076}\index{Csv\-Helper.\-Type\-Conversion.\-Double\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Double\-Converter}}
 }
 
 
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable.  
+Converts a Double to and from a string.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Double\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{d2/d9d/a00464}
+\includegraphics[width=220pt]{d5/d5f/a00461}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Double\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{db/de0/a00465}
+\includegraphics[width=220pt]{de/dcb/a00462}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00076_a692617638507cd1033728d7f718fcd2a}{Convert\-From\-String} (\hyperlink{a00152}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override string \hyperlink{a00076_a7e07e9532857d748654d37db590a0e11}{Convert\-To\-String} (\hyperlink{a00152}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00076_af66a7c67041f4c8061aa66e9e36359cf}{Can\-Convert\-From} (Type type)
+override object \hyperlink{a00076_a0c93a63f9f954646172a65b432c40c69}{Convert\-From\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00076_ad67475daa90cdb00cf626429e925e732}{Can\-Convert\-From} (System.\-Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00076_a44d625b44f770b945a29cd89e399f90f}{Can\-Convert\-To} (Type type)
+virtual string \hyperlink{a00068_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00068_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00068_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
 \begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable. 
+Converts a Double to and from a string. 
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00076_af66a7c67041f4c8061aa66e9e36359cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00076_ad67475daa90cdb00cf626429e925e732}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DoubleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Double\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{System.\-Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00076_ad67475daa90cdb00cf626429e925e732}
+
+
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+43         \{
+44             \textcolor{comment}{// We only care about strings.}
+45             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+46         \}
+\end{DoxyCode}
+\hypertarget{a00068_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DoubleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00076_af66a7c67041f4c8061aa66e9e36359cf}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00068_a470d21adaa704eb281250dbd112ff91a}
 
 
 Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
@@ -66,21 +94,27 @@ Determines whether this instance \mbox{[}can convert from\mbox{]} the specified 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00066_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00099_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00116_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00025_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00077_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00078_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00065_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00064_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00026_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00148_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
 
 
 \begin{DoxyCode}
-52         \{
-53             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-54         \}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
 \end{DoxyCode}
-\hypertarget{a00076_a44d625b44f770b945a29cd89e399f90f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00068_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DoubleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
 \item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00076_a44d625b44f770b945a29cd89e399f90f}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00068_acb65bd8c8199d88d5b1629ae35d18514}
 
 
 Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
@@ -95,25 +129,30 @@ Determines whether this instance \mbox{[}can convert to\mbox{]} the specified ty
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00066_acb65bd8c8199d88d5b1629ae35d18514}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00099_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00078_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 \begin{DoxyCode}
-64         \{
-65             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-66         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
-\hypertarget{a00076_a692617638507cd1033728d7f718fcd2a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-From\-String (
+\hypertarget{a00076_a0c93a63f9f954646172a65b432c40c69}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DoubleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Double\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00076_a692617638507cd1033728d7f718fcd2a}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00076_a0c93a63f9f954646172a65b432c40c69}
 
 
-Throws an exception. 
+Converts the string to an object. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -123,34 +162,37 @@ Throws an exception.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-The object created from the string.
+The object created from the string. 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00066_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Reimplemented from \hyperlink{a00068_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 \begin{DoxyCode}
-25         \{
-26             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-27                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-28                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-29         \}
+23         \{
+24             var numberStyle = options.NumberStyle ?? NumberStyles.Float;
+25 
+26             \textcolor{keywordtype}{double} d;
+27             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{double}.TryParse( text, numberStyle, options.CultureInfo, out d ) )
+28             \{
+29                 \textcolor{keywordflow}{return} d;
+30             \}
+31 
+32             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+33         \}
 \end{DoxyCode}
-\hypertarget{a00076_a7e07e9532857d748654d37db590a0e11}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-To\-String (
+\hypertarget{a00068_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DoubleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Double\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
 \item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00076_a7e07e9532857d748654d37db590a0e11}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00068_a36cb2f9b24f15a671293f3a722324c27}
 
 
-Throws an exception. 
+Converts the object to a string. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -164,21 +206,31 @@ The string representation of the object.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{a00066_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00099_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00116_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00078_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
 
 
 \begin{DoxyCode}
-38         \{
-39             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-40                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-41                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-42         \}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
 \end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00230}{Enumerable\-Converter.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00232}{Double\-Converter.\-cs}\end{DoxyCompactItemize}

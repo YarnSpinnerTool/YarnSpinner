@@ -1,76 +1,42 @@
-\hypertarget{a00121}{\section{Yarn.\-Parser Class Reference}
-\label{a00121}\index{Yarn.\-Parser@{Yarn.\-Parser}}
+\hypertarget{a00121}{\section{Yarn.\-Parse\-Exception Class Reference}
+\label{a00121}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
 }
 
 
-Collaboration diagram for Yarn.\-Parser\-:
+Inheritance diagram for Yarn.\-Parse\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=194pt]{de/dde/a00587}
+\includegraphics[width=188pt]{de/dde/a00587}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00018}{Assignment\-Statement}
-\item 
-class \hyperlink{a00022}{Block}
-\item 
-class \hyperlink{a00061}{Custom\-Command}
-\item 
-class \hyperlink{a00080}{Expression}
-\item 
-class \hyperlink{a00092}{If\-Statement}
-\item 
-class \hyperlink{a00110}{Node}
-\item 
-class \hyperlink{a00115}{Operator}
-\item 
-class \hyperlink{a00118}{Option\-Statement}
-\item 
-class \hyperlink{a00120}{Parse\-Node}
-\item 
-class \hyperlink{a00133}{Shortcut\-Option}
-\item 
-class \hyperlink{a00134}{Shortcut\-Option\-Group}
-\item 
-class \hyperlink{a00140}{Statement}
-\item 
-class \hyperlink{a00162}{Value\-Node}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Parse\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{d8/d2e/a00588}
+\end{center}
+\end{figure}
 \subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00121_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser} (I\-Collection$<$ \hyperlink{a00147}{Token} $>$ \hyperlink{a00121_a1a4de646937057988b59d2ff8035eae3}{tokens}, \hyperlink{a00101}{Library} \hyperlink{a00121_a1313951b09177a1c83b6cf035139197a}{library})
-\item 
-\hyperlink{a00110}{Node} \hyperlink{a00121_a811cc7226f4f4a2f3440cdb67ad14468}{Parse} ()
+\hyperlink{a00121_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00121_a666a945da1a7845b02b92592fccac291}{Next\-Symbol\-Is} (params \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+static \hyperlink{a00121}{Parse\-Exception} \hyperlink{a00121_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00149}{Token} found\-Token, params \hyperlink{a00031_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
 \item 
-bool \hyperlink{a00121_afaa7e96d4cdaf6b1fde9ecd273c00c34}{Next\-Symbols\-Are} (params \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
-\item 
-\hyperlink{a00147}{Token} \hyperlink{a00121_a8a396d05e7dad704009e8c77657b31d3}{Expect\-Symbol} (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type)
-\item 
-\hyperlink{a00147}{Token} \hyperlink{a00121_a5a8f02cd87335aae2f2aa7de13c7512c}{Expect\-Symbol} ()
-\item 
-\hyperlink{a00147}{Token} \hyperlink{a00121_ae69620071ecfd16807c5dfc0948ee7f5}{Expect\-Symbol} (params \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+static \hyperlink{a00121}{Parse\-Exception} \hyperlink{a00121_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00149}{Token} most\-Recent\-Token, string message)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Package Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static string \hyperlink{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (int indent\-Level, string input, bool new\-Line=true)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Queue$<$ \hyperlink{a00147}{Token} $>$ \hyperlink{a00121_a1a4de646937057988b59d2ff8035eae3}{tokens}
-\item 
-\hyperlink{a00101}{Library} \hyperlink{a00121_a1313951b09177a1c83b6cf035139197a}{library}
+int \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
 \end{DoxyCompactItemize}
 
 
@@ -78,169 +44,80 @@ Queue$<$ \hyperlink{a00147}{Token} $>$ \hyperlink{a00121_a1a4de646937057988b59d2
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00121_acd2714b911fb5e7c38f0e07a9dc1af58}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parser@{Parser}}
-\index{Parser@{Parser}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Parser}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parser (
+\hypertarget{a00121_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
+\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
 \begin{DoxyParamCaption}
-\item[{I\-Collection$<$ {\bf Token} $>$}]{tokens, }
-\item[{{\bf Library}}]{library}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00121_acd2714b911fb5e7c38f0e07a9dc1af58}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00121_aa3c4f5c8b0ae86097bbc46044df9f317}
 
 \begin{DoxyCode}
-1318                                                                     \{
-1319             this.tokens = \textcolor{keyword}{new} Queue<Token>(\hyperlink{a00121_a1a4de646937057988b59d2ff8035eae3}{tokens});
-1320             this.library = \hyperlink{a00121_a1313951b09177a1c83b6cf035139197a}{library};
-1321         \}
+73 : base(message) \{\}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00121_a8a396d05e7dad704009e8c77657b31d3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
+\hypertarget{a00121_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
 \begin{DoxyParamCaption}
-\item[{{\bf Token\-Type}}]{type}
+\item[{{\bf Token}}]{found\-Token, }
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a8a396d05e7dad704009e8c77657b31d3}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00121_a511a51bb42dc5bb107eb68f7e5cf5ff1}
 
 \begin{DoxyCode}
-1356                                            \{
-1357             var t = this.tokens.Dequeue();
-1358             \textcolor{keywordflow}{if} (t.type != type) \{
-1359 
-1360                 \textcolor{keywordflow}{throw} ParseException.Make(t, type);
-1361             \}
-1362             \textcolor{keywordflow}{return} t;
-1363         \}
+41                                                                                                 \{
+42 
+43             var \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber+1;
+44 
+45             var expectedTypeNames = \textcolor{keyword}{new} List<String> ();
+46             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes) \{
+47                 expectedTypeNames.Add (type.ToString ());
+48             \}
+49 
+50             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
+51             \textcolor{keywordtype}{string} message = string.Format(\textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but found \{3\}"},
+52                                            \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+53                                            foundToken.columnNumber,
+54                                            possibleValues,
+55                                            foundToken.type.ToString()
+56                                            );
+57             var e = \textcolor{keyword}{new} \hyperlink{a00121_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (message);
+58             e.lineNumber = \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+59             \textcolor{keywordflow}{return} e;
+60         \}
 \end{DoxyCode}
-\hypertarget{a00121_a5a8f02cd87335aae2f2aa7de13c7512c}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
+\hypertarget{a00121_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
+\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Token}}]{most\-Recent\-Token, }
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a5a8f02cd87335aae2f2aa7de13c7512c}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00121_a173f3cabc4741d9d9e016310e90c1c9f}
 
 \begin{DoxyCode}
-1366                              \{
-1367             var token = this.tokens.Dequeue ();
-1368             \textcolor{keywordflow}{if} (token.type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndOfInput) \{
-1369                 \textcolor{keywordflow}{throw} ParseException.Make (token, \textcolor{stringliteral}{"Unexpected end of input"});
-1370             \}
-1371             \textcolor{keywordflow}{return} token;
-1372         \}
-\end{DoxyCode}
-\hypertarget{a00121_ae69620071ecfd16807c5dfc0948ee7f5}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
-\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
-\begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_ae69620071ecfd16807c5dfc0948ee7f5}
-
-\begin{DoxyCode}
-1376                                                           \{
-1377             var t = this.tokens.Dequeue();
-1378 
-1379             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
-1380                 \textcolor{keywordflow}{if} (t.type == validType) \{
-1381                     \textcolor{keywordflow}{return} t;
-1382                 \}
-1383             \}
-1384 
-1385             \textcolor{keywordflow}{throw} ParseException.Make(t, validTypes);
-1386         \}
-\end{DoxyCode}
-\hypertarget{a00121_a666a945da1a7845b02b92592fccac291}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbol\-Is@{Next\-Symbol\-Is}}
-\index{Next\-Symbol\-Is@{Next\-Symbol\-Is}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Next\-Symbol\-Is}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbol\-Is (
-\begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a666a945da1a7845b02b92592fccac291}
-
-\begin{DoxyCode}
-1330                                                          \{
-1331             var t = this.tokens.Peek().type;
-1332 
-1333             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
-1334                 \textcolor{keywordflow}{if} (t == validType) \{
-1335                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-1336                 \}
-1337             \}
-1338             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-1339         \}
-\end{DoxyCode}
-\hypertarget{a00121_afaa7e96d4cdaf6b1fde9ecd273c00c34}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbols\-Are@{Next\-Symbols\-Are}}
-\index{Next\-Symbols\-Are@{Next\-Symbols\-Are}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Next\-Symbols\-Are}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbols\-Are (
-\begin{DoxyParamCaption}
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_afaa7e96d4cdaf6b1fde9ecd273c00c34}
-
-\begin{DoxyCode}
-1344                                                            \{
-1345             var tempQueue = \textcolor{keyword}{new} Queue<Token> (\hyperlink{a00121_a1a4de646937057988b59d2ff8035eae3}{tokens});
-1346             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} validTypes) \{
-1347                 \textcolor{keywordflow}{if} (tempQueue.Dequeue ().type != type)
-1348                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-1349             \}
-1350             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-1351         \}
-\end{DoxyCode}
-\hypertarget{a00121_a811cc7226f4f4a2f3440cdb67ad14468}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parse@{Parse}}
-\index{Parse@{Parse}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Parse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00121_a811cc7226f4f4a2f3440cdb67ad14468}
-
-\begin{DoxyCode}
-1323                               \{
-1324 
-1325             \textcolor{comment}{// Kick off the parsing process by trying to parse a whole node}
-1326             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Node(\textcolor{stringliteral}{"Start"}, null, \textcolor{keyword}{this});
-1327         \}
-\end{DoxyCode}
-\hypertarget{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Tab@{Tab}}
-\index{Tab@{Tab}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{Tab}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Parser.\-Tab (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level, }
-\item[{string}]{input, }
-\item[{bool}]{new\-Line = {\ttfamily true}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00121_aa8fa36b46de12a1c561d77b99c4b9ae3}
-
-\begin{DoxyCode}
-83                                                                                       \{
-84             var sb = \textcolor{keyword}{new} StringBuilder();
-85 
-86             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < indentLevel; i++) \{
-87                 sb.Append (\textcolor{stringliteral}{"| "});
-88             \}
-89             sb.Append (input);
-90 
-91             \textcolor{keywordflow}{if} (newLine)
-92                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)n"});
-93             
-94             \textcolor{keywordflow}{return} sb.ToString ();
-95         \}
+62                                                                                    \{
+63             var \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber+1;
+64             \textcolor{keywordtype}{string} theMessage = string.Format (\textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
+65                                  \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
+66                                 mostRecentToken.columnNumber,
+67                                  message);
+68             var e = \textcolor{keyword}{new} \hyperlink{a00121_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (theMessage);
+69             e.lineNumber = \hyperlink{a00121_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
+70             \textcolor{keywordflow}{return} e;
+71         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00121_a1313951b09177a1c83b6cf035139197a}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!library@{library}}
-\index{library@{library}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{library}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Library} Yarn.\-Parser.\-library\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a1313951b09177a1c83b6cf035139197a}
-\hypertarget{a00121_a1a4de646937057988b59d2ff8035eae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!tokens@{tokens}}
-\index{tokens@{tokens}!Yarn::Parser@{Yarn\-::\-Parser}}
-\subsubsection[{tokens}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<${\bf Token}$>$ Yarn.\-Parser.\-tokens\hspace{0.3cm}{\ttfamily [private]}}}\label{a00121_a1a4de646937057988b59d2ff8035eae3}
+\hypertarget{a00121_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00121_ab335169367e64fd6d89d58b3ac573751}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00266}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00269}{Parser.\-cs}\end{DoxyCompactItemize}

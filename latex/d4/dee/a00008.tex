@@ -1,4 +1,4 @@
-This is a quick-\/and-\/dirty document that shows how to add new functions so that they can be called from inside \hyperlink{a00029}{Yarn}.
+This is a quick-\/and-\/dirty document that shows how to add new functions so that they can be called from inside \hyperlink{a00031}{Yarn}.
 
 First, get your {\ttfamily Dialogue} object\-: \begin{DoxyVerb}// some_implementation is the object that handles variable storage - 
 // it's not important in this example
@@ -21,14 +21,14 @@ Some notes\-:
 
 \begin{DoxyItemize}
 \item You don't have to return a value from your function.
-\item The parameters passed to your function are of type \hyperlink{a00161}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
+\item The parameters passed to your function are of type \hyperlink{a00163}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
 \item You can only return values of the following types\-:
 \begin{DoxyItemize}
 \item String
 \item Float
 \item Double
 \item Integer
-\item \hyperlink{a00161}{Yarn.\-Value}
+\item \hyperlink{a00163}{Yarn.\-Value}
 \end{DoxyItemize}
-\item \hyperlink{a00029}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
+\item \hyperlink{a00031}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
 \end{DoxyItemize}

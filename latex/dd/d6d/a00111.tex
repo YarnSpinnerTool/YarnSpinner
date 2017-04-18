@@ -1,63 +1,58 @@
-\hypertarget{a00111}{\section{Yarn.\-Dialogue.\-Node\-Complete\-Result Class Reference}
-\label{a00111}\index{Yarn.\-Dialogue.\-Node\-Complete\-Result@{Yarn.\-Dialogue.\-Node\-Complete\-Result}}
+\hypertarget{a00111}{\section{Mobile\-Only Class Reference}
+\label{a00111}\index{Mobile\-Only@{Mobile\-Only}}
 }
 
 
-Inheritance diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
+Inheritance diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{dd/de6/a00548}
+\includegraphics[width=162pt]{d0/d01/a00339}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
+Collaboration diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=226pt]{d5/d21/a00549}
+\includegraphics[width=162pt]{df/df1/a00340}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00111_a88c81469a69987c05aa92780c5a5c1f9}{Node\-Complete\-Result} (string \hyperlink{a00111_ad48b37b51066b94cd48c58626ac0e774}{next\-Node})
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00111_ad48b37b51066b94cd48c58626ac0e774}{next\-Node}
+void \hyperlink{a00111_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00111_a88c81469a69987c05aa92780c5a5c1f9}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!Node\-Complete\-Result@{Node\-Complete\-Result}}
-\index{Node\-Complete\-Result@{Node\-Complete\-Result}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
-\subsubsection[{Node\-Complete\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result (
+\subsection{Member Function Documentation}
+\hypertarget{a00111_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
 \begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00111_a88c81469a69987c05aa92780c5a5c1f9}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00111_acfb1b3a9c8f62b30300331fb84752022}
 
 \begin{DoxyCode}
-174                                                         \{
-175                 this.nextNode = \hyperlink{a00111_ad48b37b51066b94cd48c58626ac0e774}{nextNode};
-176             \}
+9                   \{
+10 
+11         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+12             \textcolor{comment}{// Hang around}
+13         \} \textcolor{keywordflow}{else} \{
+14             Destroy(gameObject);
+15         \}
+16     
+17     \}
 \end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00111_ad48b37b51066b94cd48c58626ac0e774}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!next\-Node@{next\-Node}}
-\index{next\-Node@{next\-Node}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
-\subsubsection[{next\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node}}\label{a00111_ad48b37b51066b94cd48c58626ac0e774}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00262}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00259}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

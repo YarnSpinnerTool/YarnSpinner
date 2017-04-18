@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$d6/db3/a00130.html" title="Yarn.Dialogue.RunnerResult" alt="" coords="6,85,194,112"/>
-<area shape="rect" id="node2" href="$d5/d79/a00030.html" title="Yarn.Dialogue.CommandResult" alt="" coords="243,5,450,32"/>
-<area shape="rect" id="node3" href="$d0/dc2/a00104.html" title="Yarn.Dialogue.LineResult" alt="" coords="261,56,432,83"/>
-<area shape="rect" id="node4" href="$dd/d6d/a00111.html" title="Yarn.Dialogue.NodeComplete\lResult" alt="" coords="249,107,444,149"/>
-<area shape="rect" id="node5" href="$d9/d4b/a00117.html" title="Yarn.Dialogue.OptionSetResult" alt="" coords="245,173,449,200"/>
+<area shape="rect" id="node1" href="$d5/deb/a00132.html" title="Yarn.Dialogue.RunnerResult" alt="" coords="6,85,194,112"/>
+<area shape="rect" id="node2" href="$dc/d87/a00032.html" title="Yarn.Dialogue.CommandResult" alt="" coords="243,5,450,32"/>
+<area shape="rect" id="node3" href="$d7/d70/a00106.html" title="Yarn.Dialogue.LineResult" alt="" coords="261,56,432,83"/>
+<area shape="rect" id="node4" href="$d3/d00/a00113.html" title="Yarn.Dialogue.NodeComplete\lResult" alt="" coords="249,107,444,149"/>
+<area shape="rect" id="node5" href="$df/d6a/a00119.html" title="Yarn.Dialogue.OptionSetResult" alt="" coords="245,173,449,200"/>
 </map>

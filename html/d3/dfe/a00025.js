@@ -1,8 +1,7 @@
 var a00025 =
 [
-    [ "Update", "d3/dfe/a00025.html#a592ddbf8e493bde0a6536c0234869217", null ],
-    [ "maxPosition", "d3/dfe/a00025.html#abb0154dcbc2a7d43795beacd61a56de4", null ],
-    [ "minPosition", "d3/dfe/a00025.html#a08c6f6c0ea423c21af99e4b5467d3c9b", null ],
-    [ "moveSpeed", "d3/dfe/a00025.html#a3d4f2efe9c2cee8c7ff797cac03f27ec", null ],
-    [ "target", "d3/dfe/a00025.html#aa5d6958fb14a14ebb74e21c372fcca8b", null ]
+    [ "CanConvertFrom", "d3/dfe/a00025.html#a0be20573af4ee53409bb437125a64268", null ],
+    [ "CanConvertTo", "d3/dfe/a00025.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "d3/dfe/a00025.html#abc77c631974272fd1dfe3fe4fcc3bf28", null ],
+    [ "ConvertToString", "d3/dfe/a00025.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

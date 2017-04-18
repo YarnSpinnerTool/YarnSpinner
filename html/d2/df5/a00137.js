@@ -1,9 +1,8 @@
 var a00137 =
 [
-    [ "SpriteInfo", "d2/df5/a00137.html#dd/de2/a00320", [
-      [ "name", "d2/df5/a00137.html#a3f5bca2fff413dfe075c1fcf7e58369c", null ],
-      [ "sprite", "d2/df5/a00137.html#adc58df011dc2841837b6cf775b372061", null ]
-    ] ],
-    [ "UseSprite", "d2/df5/a00137.html#ac26718b713f342f3de8f3e569c5b62da", null ],
-    [ "sprites", "d2/df5/a00137.html#a1e85d9f4f6b33ca7ae638cce2eb704aa", null ]
+    [ "CanConvertFrom", "d2/df5/a00137.html#a49bc7b2d2d399343a21b691a026dbf99", null ],
+    [ "CanConvertFrom", "d2/df5/a00137.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "d2/df5/a00137.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "d2/df5/a00137.html#a5c8a692325c19551246a589e9ca4a1e1", null ],
+    [ "ConvertToString", "d2/df5/a00137.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

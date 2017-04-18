@@ -1,42 +1,194 @@
-\hypertarget{a00154}{\section{System.\-Reflection.\-Type\-Extensions Class Reference}
-\label{a00154}\index{System.\-Reflection.\-Type\-Extensions@{System.\-Reflection.\-Type\-Extensions}}
+\hypertarget{a00154}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options Class Reference}
+\label{a00154}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options}}
 }
 
 
-Collaboration diagram for System.\-Reflection.\-Type\-Extensions\-:
+Options used when doing type conversion.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=250pt]{d6/d90/a00514}
+\includegraphics[width=220pt]{d0/da2/a00502}
 \end{center}
 \end{figure}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00155}{Type\-Info} \hyperlink{a00154_acbfc3dfbd616c1a87fe0158092215639}{Get\-Type\-Info} (this Type type)
+static \hyperlink{a00154}{Type\-Converter\-Options} \hyperlink{a00154_a0532694cffc600fe984e10c7f1375e0a}{Merge} (params \hyperlink{a00154}{Type\-Converter\-Options}\mbox{[}$\,$\mbox{]} sources)
+\begin{DoxyCompactList}\small\item\em Merges \hyperlink{a00154}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00154}{Type\-Converter\-Options} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Culture\-Info \hyperlink{a00154_af6bc545680b477abf9178eb4755572b1}{Culture\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the culture info. \end{DoxyCompactList}\item 
+Date\-Time\-Styles \hyperlink{a00154_a53dd999cfdfad024682e67b6d5b1267e}{Date\-Time\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the date time style. \end{DoxyCompactList}\item 
+Time\-Span\-Styles \hyperlink{a00154_a5b94fd91ed938c9d0515a5ab419de8b8}{Time\-Span\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the time span style. \end{DoxyCompactList}\item 
+Number\-Styles \hyperlink{a00154_a2bd83a5b0c0d94864ed09563dbab4a36}{Number\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the number style. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00154_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{Boolean\-True\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of true. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00154_a7735cd4046cf1b21f458aa96c616a01e}{Boolean\-False\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of false. \end{DoxyCompactList}\item 
+string \hyperlink{a00154_aadc0730de90844e29da6e1ae7fddc4bb}{Format}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the string format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly List$<$ string $>$ \hyperlink{a00154_a326ff183b4992ab134f047e6866df092}{boolean\-True\-Values} = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}
+\item 
+readonly List$<$ string $>$ \hyperlink{a00154_a1881a24e1731f70183fdff9c1612b7d5}{boolean\-False\-Values} = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Options used when doing type conversion. 
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00154_acbfc3dfbd616c1a87fe0158092215639}{\index{System\-::\-Reflection\-::\-Type\-Extensions@{System\-::\-Reflection\-::\-Type\-Extensions}!Get\-Type\-Info@{Get\-Type\-Info}}
-\index{Get\-Type\-Info@{Get\-Type\-Info}!System::Reflection::TypeExtensions@{System\-::\-Reflection\-::\-Type\-Extensions}}
-\subsubsection[{Get\-Type\-Info}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Info} System.\-Reflection.\-Type\-Extensions.\-Get\-Type\-Info (
+\hypertarget{a00154_a0532694cffc600fe984e10c7f1375e0a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Merge@{Merge}}
+\index{Merge@{Merge}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Merge}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Merge (
 \begin{DoxyParamCaption}
-\item[{this Type}]{type}
+\item[{params {\bf Type\-Converter\-Options}\mbox{[}$\,$\mbox{]}}]{sources}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00154_acbfc3dfbd616c1a87fe0158092215639}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00154_a0532694cffc600fe984e10c7f1375e0a}
+
+
+Merges \hyperlink{a00154}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00154}{Type\-Converter\-Options} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources} & The sources that will be applied.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of \hyperlink{a00154}{Type\-Converter\-Options} with the source applied to it.
+\end{DoxyReturn}
 
 \begin{DoxyCode}
-9         \{
-10             \textcolor{keywordflow}{return} \textcolor{keyword}{new} TypeInfo( type );
-11         \}
+72         \{
+73             var options = \textcolor{keyword}{new} TypeConverterOptions();
+74             \textcolor{keywordflow}{foreach}( var source \textcolor{keywordflow}{in} sources )
+75             \{
+76                 \textcolor{keywordflow}{if}( source == null )
+77                 \{
+78                     \textcolor{keywordflow}{continue};
+79                 \}
+80 
+81                 \textcolor{keywordflow}{if}( source.CultureInfo != null )
+82                 \{
+83                     options.CultureInfo = source.CultureInfo;
+84                 \}
+85 
+86                 \textcolor{keywordflow}{if}( source.DateTimeStyle != null )
+87                 \{
+88                     options.DateTimeStyle = source.DateTimeStyle;
+89                 \}
+90 
+91 \textcolor{preprocessor}{#if !NET\_2\_0 && !NET\_3\_5 && !PCL}
+92 \textcolor{preprocessor}{}                \textcolor{keywordflow}{if}( source.TimeSpanStyle != null )
+93                 \{
+94                     options.TimeSpanStyle = source.TimeSpanStyle;
+95                 \}
+96 \textcolor{preprocessor}{#endif}
+97 \textcolor{preprocessor}{}
+98                 \textcolor{keywordflow}{if}( source.NumberStyle != null )
+99                 \{
+100                     options.NumberStyle = source.NumberStyle;
+101                 \}
+102 
+103                 \textcolor{keywordflow}{if}( source.Format != null )
+104                 \{
+105                     options.Format = source.Format;
+106                 \}
+107 
+108                 \textcolor{keywordflow}{if}( !options.booleanTrueValues.SequenceEqual( source.booleanTrueValues ) )
+109                 \{
+110                     options.booleanTrueValues.Clear();
+111                     options.booleanTrueValues.AddRange( source.booleanTrueValues );
+112                 \}
+113 
+114                 \textcolor{keywordflow}{if}( !options.booleanFalseValues.SequenceEqual( source.booleanFalseValues ) )
+115                 \{
+116                     options.booleanFalseValues.Clear();
+117                     options.booleanFalseValues.AddRange( source.booleanFalseValues );
+118                 \}
+119             \}
+120 
+121             \textcolor{keywordflow}{return} options;
+122         \}
 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00154_a1881a24e1731f70183fdff9c1612b7d5}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-False\-Values@{boolean\-False\-Values}}
+\index{boolean\-False\-Values@{boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-False\-Values = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00154_a1881a24e1731f70183fdff9c1612b7d5}
+\hypertarget{a00154_a326ff183b4992ab134f047e6866df092}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-True\-Values@{boolean\-True\-Values}}
+\index{boolean\-True\-Values@{boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-True\-Values = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00154_a326ff183b4992ab134f047e6866df092}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00154_a7735cd4046cf1b21f458aa96c616a01e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-False\-Values@{Boolean\-False\-Values}}
+\index{Boolean\-False\-Values@{Boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-False\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00154_a7735cd4046cf1b21f458aa96c616a01e}
+
+
+Gets the list of values that can be used to represent a boolean of false. 
+
+\hypertarget{a00154_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-True\-Values@{Boolean\-True\-Values}}
+\index{Boolean\-True\-Values@{Boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-True\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00154_a73fe01941a8c2d3cfbd6fa4414e8d8e0}
+
+
+Gets the list of values that can be used to represent a boolean of true. 
+
+\hypertarget{a00154_af6bc545680b477abf9178eb4755572b1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Culture\-Info@{Culture\-Info}}
+\index{Culture\-Info@{Culture\-Info}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Culture\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Culture\-Info Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00154_af6bc545680b477abf9178eb4755572b1}
+
+
+Gets or sets the culture info. 
+
+\hypertarget{a00154_a53dd999cfdfad024682e67b6d5b1267e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Date\-Time\-Style@{Date\-Time\-Style}}
+\index{Date\-Time\-Style@{Date\-Time\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Date\-Time\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Date\-Time\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Date\-Time\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00154_a53dd999cfdfad024682e67b6d5b1267e}
+
+
+Gets or sets the date time style. 
+
+\hypertarget{a00154_aadc0730de90844e29da6e1ae7fddc4bb}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Format@{Format}}
+\index{Format@{Format}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Format}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Format\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00154_aadc0730de90844e29da6e1ae7fddc4bb}
+
+
+Gets or sets the string format. 
+
+\hypertarget{a00154_a2bd83a5b0c0d94864ed09563dbab4a36}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Number\-Style@{Number\-Style}}
+\index{Number\-Style@{Number\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Number\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Number\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Number\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00154_a2bd83a5b0c0d94864ed09563dbab4a36}
+
+
+Gets or sets the number style. 
+
+\hypertarget{a00154_a5b94fd91ed938c9d0515a5ab419de8b8}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Time\-Span\-Style@{Time\-Span\-Style}}
+\index{Time\-Span\-Style@{Time\-Span\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Time\-Span\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Time\-Span\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Time\-Span\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00154_a5b94fd91ed938c9d0515a5ab419de8b8}
+
+
+Gets or sets the time span style. 
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Core\-Fx\-Compatibility/\hyperlink{a00191}{Type\-Extensions.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00246}{Type\-Converter\-Options.\-cs}\end{DoxyCompactItemize}

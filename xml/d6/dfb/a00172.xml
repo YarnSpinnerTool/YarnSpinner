@@ -1,18 +1,118 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d6/dfb/a00172" kind="file">
-    <compoundname>CONTRIBUTORS.md</compoundname>
+  <compounddef id="d6/dfb/a00172" kind="class" prot="public">
+    <compoundname>YarnSpinnerTests</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d6/dfb/a00172_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" static="no" mutable="no">
+        <type><ref refid="d1/d6e/a00073" kindref="compound">Yarn.Unity.DialogueRunner</ref></type>
+        <definition>Yarn.Unity.DialogueRunner YarnSpinnerTests.dialogueRunner</definition>
+        <argsstring></argsstring>
+        <name>dialogueRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dfb/a00172_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" static="no" mutable="no">
+        <type><ref refid="dc/de6/a00167" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref></type>
+        <definition>Yarn.Unity.VariableStorageBehaviour YarnSpinnerTests.variableStorage</definition>
+        <argsstring></argsstring>
+        <name>variableStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dfb/a00172_1aace025d2a9a703154a1989c47b0a0737" prot="private" static="no" mutable="no">
+        <type><ref refid="d0/d4a/a00147" kindref="compound">TestDialogueUIBehaviour</ref></type>
+        <definition>TestDialogueUIBehaviour YarnSpinnerTests.dialogueUI</definition>
+        <argsstring></argsstring>
+        <name>dialogueUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d6/dfb/a00172_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.SetUp</definition>
+        <argsstring>()</argsstring>
+        <name>SetUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="73" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/dfb/a00172_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.EditorTest</definition>
+        <argsstring>()</argsstring>
+        <name>EditorTest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="94" bodyend="116"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributors<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">*<sp/>20??-2017<sp/>The<sp/>Secret<sp/>Lab</highlight></codeline>
-<codeline lineno="4"><highlight class="normal">*<sp/>2017<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
-    </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTORS.md"/>
+    <collaborationgraph>
+      <node id="1676">
+        <label>YarnSpinnerTests</label>
+        <link refid="d6/dfb/a00172"/>
+        <childnode refid="1677" relation="usage">
+          <edgelabel>-dialogueRunner</edgelabel>
+          <edgelabel>-variableStorage</edgelabel>
+        </childnode>
+        <childnode refid="1678" relation="usage">
+          <edgelabel>-dialogueUI</edgelabel>
+        </childnode>
+      </node>
+      <node id="1680">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1677">
+        <label>Yarn</label>
+      </node>
+      <node id="1678">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="d0/d4a/a00147"/>
+        <childnode refid="1679" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1679">
+        <label>Yarn::Unity::DialogueUIBehaviour</label>
+        <link refid="d9/da5/a00075"/>
+        <childnode refid="1680" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" line="66" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs" bodystart="66" bodyend="117"/>
+    <listofallmembers>
+      <member refid="d6/dfb/a00172_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueRunner</name></member>
+      <member refid="d6/dfb/a00172_1aace025d2a9a703154a1989c47b0a0737" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueUI</name></member>
+      <member refid="d6/dfb/a00172_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>EditorTest</name></member>
+      <member refid="d6/dfb/a00172_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>SetUp</name></member>
+      <member refid="d6/dfb/a00172_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>variableStorage</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

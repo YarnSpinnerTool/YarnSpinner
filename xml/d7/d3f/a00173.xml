@@ -1,36 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d7/d3f/a00173" kind="file">
-    <compoundname>Building.md</compoundname>
+    <compoundname>CONTRIBUTING.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributing<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">&gt;<sp/>***Important:***<sp/>This<sp/>document<sp/>only<sp/>matters<sp/>to<sp/>you<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.<sp/>In<sp/>almost<sp/>all<sp/>cases,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>be<sp/>totally<sp/>fine<sp/>with<sp/>[downloading<sp/>a<sp/>build](https://github.com/thesecretlab/YarnSpinner/releases),<sp/>and<sp/>using<sp/>that<sp/>in<sp/>your<sp/>project.</highlight></codeline>
-<codeline lineno="4"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="5"><highlight class="stringliteral">To<sp/>build<sp/>Yarn<sp/>Spinner,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>MonoDevelop.<sp/>You<sp/>can<sp/>[download<sp/>MonoDevelop<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>OS<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http:</highlight><highlight class="comment">//www.monodevelop.com/download/).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Hi<sp/>there!<sp/>We</highlight><highlight class="stringliteral">&apos;re<sp/>thrilled<sp/>that<sp/>you&apos;</highlight><highlight class="normal">d<sp/>like<sp/>to<sp/>contribute<sp/>to<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>project.<sp/>Your<sp/>help<sp/>is<sp/>essential<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>keeping<sp/>it<sp/>great.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">##<sp/>How<sp/>to<sp/>send<sp/>in<sp/>your<sp/>contributions</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">Once<sp/>it</highlight><highlight class="stringliteral">&apos;s<sp/>downloaded,<sp/>follow<sp/>these<sp/>steps:</highlight></codeline>
-<codeline lineno="8"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="9"><highlight class="stringliteral">*<sp/>Open<sp/>**YarnSpinner.sln**.</highlight></codeline>
-<codeline lineno="10"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Build<sp/>menu**,<sp/>and<sp/>choose<sp/>**Build<sp/>All**.</highlight></codeline>
-<codeline lineno="11"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Unity/Assets/Yarn<sp/>Spinner**<sp/>folder.<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>find<sp/>a<sp/>copy<sp/>of<sp/>**YarnSpinner.dll**<sp/>there.<sp/>You<sp/>can<sp/>now<sp/>copy<sp/>that<sp/>DLL<sp/>file<sp/>wherever<sp/>you<sp/>need<sp/>it.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">There<sp/>are<sp/>many<sp/>ways<sp/>you<sp/>can<sp/>send<sp/>your<sp/>contributions<sp/>to<sp/>Yarn<sp/>Spinner.<sp/>You<sp/>can<sp/>either<sp/>**report<sp/>a<sp/>bug**,<sp/>or<sp/>you<sp/>can<sp/>make<sp/>the<sp/>changes<sp/>yourself<sp/>and<sp/>**submit<sp/>a<sp/>pull<sp/>request**!</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Reporting<sp/>bugs<sp/>and<sp/>opening<sp/>issues</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Please<sp/>[report<sp/>bugs](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/issues)<sp/>and<sp/>open<sp/>issues<sp/>generously.<sp/>Don&apos;t<sp/>be<sp/>afraid<sp/>that<sp/>your<sp/>idea<sp/>is<sp/>silly,<sp/>or<sp/>you&apos;re<sp/>reporting<sp/>a<sp/>duplicate.<sp/>We&apos;re<sp/>happy<sp/>to<sp/>hear<sp/>from<sp/>you.<sp/>Seriously.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal">##<sp/>Building<sp/>Documentation</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">Yarn<sp/>Spinner<sp/>uses<sp/>[Doxygen](https:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen)<sp/>to<sp/>generate<sp/>[DocBook](http://docbook.org/),<sp/>[HTML](https://en.wikipedia.org/wiki/HTML),<sp/>[LaTeX](https://www.latex-project.org/help/documentation/),<sp/>[RTF](https://en.wikipedia.org/wiki/Rich_Text_Format),<sp/>and<sp/>[XML](https://en.wikipedia.org/wiki/XML)<sp/>documentation.<sp/>[GNU<sp/>GLOBAL](https://www.gnu.org/software/global/)<sp/>is<sp/>also<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">Basic<sp/>steps<sp/>to<sp/>clean<sp/>out<sp/>existing<sp/>documentation,<sp/>generate<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/>and<sp/>check<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>generation<sp/>errors.<sp/>Note<sp/>that<sp/>some<sp/>ocurrences<sp/>of<sp/>the<sp/>word<sp/></highlight><highlight class="stringliteral">&apos;error&apos;</highlight><highlight class="normal"><sp/>will<sp/>be<sp/>due<sp/>to<sp/>classes/methods<sp/>etc.<sp/>of<sp/>YarnSpinner<sp/>itself<sp/>and<sp/>not<sp/>an<sp/>actual<sp/>error<sp/>in<sp/>the<sp/>documentation.</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">*<sp/>rm<sp/>-fr<sp/>Documentation/{docbook,html,latex,rtf,xml}</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">*<sp/>doxygen<sp/>Documentation/Doxyfile<sp/>&gt;<sp/>doxyoutput.txt<sp/>2&gt;&amp;1</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">*<sp/>grep<sp/>-i<sp/>error<sp/>doxyoutput.txt</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">[MarkDown](https:</highlight><highlight class="comment">//daringfireball.net/projects/markdown/)<sp/>documentation<sp/>is<sp/>available<sp/>via<sp/>conversion<sp/>of<sp/>the<sp/>XML<sp/>output<sp/>to<sp/>Markdown<sp/>using<sp/>third<sp/>party<sp/>tools<sp/>such<sp/>as<sp/>[Pandoc](http://pandoc.org)<sp/>or<sp/>[doxygen2md](https://github.com/pferdinand/doxygen2md)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>***Please<sp/>Note:***<sp/>Yarn<sp/>Spinner<sp/>is<sp/>written<sp/>by<sp/>volunteers.<sp/><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>encounter<sp/>a<sp/>problem<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>it,<sp/>we</highlight><highlight class="stringliteral">&apos;ll<sp/>do<sp/>our<sp/>best<sp/>to<sp/>help<sp/>you,<sp/>but<sp/>neither<sp/>the<sp/>authors,<sp/>or<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>can<sp/>offer<sp/>any<sp/>support.</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral">###<sp/>Submitting<sp/>a<sp/>pull<sp/>request</highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral">*<sp/>[Fork](https://github.com/thesecretlab/YarnSpinner/fork)<sp/>and<sp/>clone<sp/>the<sp/>repository</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral">*<sp/>Create<sp/>a<sp/>new<sp/>branch:<sp/>git<sp/>checkout<sp/>-b<sp/>my-branch-name</highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral">*<sp/>Make<sp/>your<sp/>changes</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral">*<sp/>Push<sp/>to<sp/>your<sp/>fork<sp/>and<sp/>[submit<sp/>a<sp/>pull<sp/>request](https://github.com/thesecretlab/YarnSpinner/compare)</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral">*<sp/>Pat<sp/>your<sp/>self<sp/>on<sp/>the<sp/>back<sp/>and<sp/>wait<sp/>for<sp/>your<sp/>pull<sp/>request<sp/>to<sp/>be<sp/>reviewed.</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral">If<sp/>you&apos;</highlight><highlight class="normal">re<sp/>unfamiliar<sp/>with<sp/>how<sp/>pull<sp/>requests<sp/>work,<sp/>[GitHub</highlight><highlight class="stringliteral">&apos;s<sp/>documentation<sp/>on<sp/>them](https://help.github.com/articles/using-pull-requests/)<sp/>is<sp/>very<sp/>good.</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">Here<sp/>are<sp/>a<sp/>few<sp/>things<sp/>you<sp/>can<sp/>do<sp/>that<sp/>will<sp/>increase<sp/>the<sp/>likelihood<sp/>of<sp/>your<sp/>pull<sp/>request<sp/>being<sp/>accepted:</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">*<sp/>Update<sp/>the<sp/>documentation<sp/>as<sp/>necessary,<sp/>as<sp/>well<sp/>as<sp/>making<sp/>code<sp/>changes.</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral">*<sp/>Keep<sp/>your<sp/>change<sp/>as<sp/>focused<sp/>as<sp/>possible.<sp/>If<sp/>there<sp/>are<sp/>multiple<sp/>changes<sp/>you<sp/>would<sp/>like<sp/>to<sp/>make<sp/>that<sp/>are<sp/>not<sp/>dependent<sp/>upon<sp/>each<sp/>other,<sp/>consider<sp/>submitting<sp/>them<sp/>as<sp/>separate<sp/>pull<sp/>requests.</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">*<sp/>[Write<sp/>a<sp/>good<sp/>commit<sp/>message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral">###<sp/>Branches</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral">All<sp/>of<sp/>Yarn<sp/>Spinner&apos;</highlight><highlight class="normal">s<sp/>in-progress<sp/>work<sp/>happens<sp/>on<sp/>the<sp/>`development`<sp/>branch.<sp/>When<sp/>we<sp/>make<sp/>a<sp/>release,<sp/>we<sp/>merge<sp/>from<sp/>`development`<sp/>into<sp/>`master`.<sp/>This<sp/>means<sp/>that<sp/>`master`<sp/>is<sp/>always<sp/>in<sp/>a<sp/>releasable<sp/>state.</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">###<sp/>Code<sp/>and<sp/>other<sp/>contributions</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">Contributions<sp/>to<sp/>Yarn<sp/>Spinner<sp/>(via<sp/>pull<sp/>request<sp/>or<sp/>otherwise)<sp/>must<sp/>be<sp/>licensed<sp/>under<sp/>the<sp/>MIT<sp/>license.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Building.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTING.md"/>
   </compounddef>
 </doxygen>

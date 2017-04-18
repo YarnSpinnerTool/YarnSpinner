@@ -1,6 +1,4 @@
-<map id="Yarn.Parser.Expression" name="Yarn.Parser.Expression">
-<area shape="rect" id="node2" href="$d4/d98/a00120.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="25,222,145,373"/>
-<area shape="rect" id="node5" href="$db/d44/a00162.html" title="{Yarn.Parser.ValueNode\n|+ value\l|~ ValueNode()\l~ ValueNode()\l~ PrintTree()\l&#45; UseToken()\l}" alt="" coords="86,461,244,582"/>
-<area shape="rect" id="node3" href="$d4/d98/a00120.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="5,6,164,157"/>
-<area shape="rect" id="node4" href="$d4/d63/a00082.html" title="{Yarn.FunctionInfo\n|+ name\l+ paramCount\l+ function\l+ returningFunction\l+ returnsValue\l|+ Invoke()\l+ InvokeWithArray()\l~ FunctionInfo()\l~ FunctionInfo()\l~ IsParameterCountCorrect()\l}" alt="" coords="269,424,459,619"/>
+<map id="Yarn.Parser.CustomCommand" name="Yarn.Parser.CustomCommand">
+<area shape="rect" id="node2" href="$df/dc8/a00122.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="45,222,165,373"/>
+<area shape="rect" id="node3" href="$df/dc8/a00122.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="25,6,184,157"/>
 </map>

@@ -1,2 +1,2 @@
-<map id="CsvHelper.ICsvSerializer" name="CsvHelper.ICsvSerializer">
+<map id="CsvHelper.ICsvReaderRow" name="CsvHelper.ICsvReaderRow">
 </map>

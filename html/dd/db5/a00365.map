@@ -1,4 +1,4 @@
-<map id="CsvHelper.CsvReaderException" name="CsvHelper.CsvReaderException">
-<area shape="rect" id="node4" href="$d6/d97/a00045.html" title="Represents an error caused because a field is missing in the header while reading a CSV file..." alt="" coords="12,472,209,608"/>
-<area shape="rect" id="node2" href="$d5/df9/a00044.html" title="Represents errors that occur in CsvHelper. " alt="" coords="29,131,192,253"/>
+<map id="CsvHelper.CsvReader" name="CsvHelper.CsvReader">
+<area shape="rect" id="node2" href="$d9/dec/a00090.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="95,353,209,474"/>
+<area shape="rect" id="node3" href="$da/d82/a00091.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
 </map>

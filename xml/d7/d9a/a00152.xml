@@ -1,180 +1,142 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d7/d9a/a00152" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::TypeConverterOptions</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d7/d9a/a00152_1a326ff183b4992ab134f047e6866df092" prot="private" static="no" mutable="no">
-        <type>readonly List&lt; string &gt;</type>
-        <definition>readonly List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.booleanTrueValues</definition>
+  <compounddef id="d7/d9a/a00152" kind="class" prot="package">
+    <compoundname>Yarn::Lexer::TokenRule</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d7/d9a/a00152_1a47a404d6637fae489c3c77729a01cc69" prot="public" static="no" mutable="no">
+        <type>Regex</type>
+        <definition>Regex Yarn.Lexer.TokenRule.regex</definition>
         <argsstring></argsstring>
-        <name>booleanTrueValues</name>
-        <initializer>= new List&lt;string&gt; { &quot;yes&quot;, &quot;y&quot; }</initializer>
+        <name>regex</name>
+        <initializer>= null</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="17" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="283" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="283" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d7/d9a/a00152_1a1881a24e1731f70183fdff9c1612b7d5" prot="private" static="no" mutable="no">
-        <type>readonly List&lt; string &gt;</type>
-        <definition>readonly List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.booleanFalseValues</definition>
-        <argsstring></argsstring>
-        <name>booleanFalseValues</name>
-        <initializer>= new List&lt;string&gt; { &quot;no&quot;, &quot;n&quot; }</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="d7/d9a/a00152_1af6bc545680b477abf9178eb4755572b1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>CultureInfo</type>
-        <definition>CultureInfo CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</definition>
-        <argsstring></argsstring>
-        <name>CultureInfo</name>
-        <briefdescription>
-<para>Gets or sets the culture info. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1a53dd999cfdfad024682e67b6d5b1267e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>DateTimeStyles</type>
-        <definition>DateTimeStyles CsvHelper.TypeConversion.TypeConverterOptions.DateTimeStyle</definition>
-        <argsstring></argsstring>
-        <name>DateTimeStyle</name>
-        <briefdescription>
-<para>Gets or sets the date time style. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1a5b94fd91ed938c9d0515a5ab419de8b8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>TimeSpanStyles</type>
-        <definition>TimeSpanStyles CsvHelper.TypeConversion.TypeConverterOptions.TimeSpanStyle</definition>
-        <argsstring></argsstring>
-        <name>TimeSpanStyle</name>
-        <briefdescription>
-<para>Gets or sets the time span style. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1a2bd83a5b0c0d94864ed09563dbab4a36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>NumberStyles</type>
-        <definition>NumberStyles CsvHelper.TypeConversion.TypeConverterOptions.NumberStyle</definition>
-        <argsstring></argsstring>
-        <name>NumberStyle</name>
-        <briefdescription>
-<para>Gets or sets the number style. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="40" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1a73fe01941a8c2d3cfbd6fa4414e8d8e0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.BooleanTrueValues</definition>
-        <argsstring></argsstring>
-        <name>BooleanTrueValues</name>
-        <briefdescription>
-<para>Gets the list of values that can be used to represent a boolean of true. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="47" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1a7735cd4046cf1b21f458aa96c616a01e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; CsvHelper.TypeConversion.TypeConverterOptions.BooleanFalseValues</definition>
-        <argsstring></argsstring>
-        <name>BooleanFalseValues</name>
-        <briefdescription>
-<para>Gets the list of values that can be used to represent a boolean of false. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="56" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="d7/d9a/a00152_1aadc0730de90844e29da6e1ae7fddc4bb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="variable" id="d7/d9a/a00152_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string CsvHelper.TypeConversion.TypeConverterOptions.Format</definition>
+        <definition>string Yarn.Lexer.TokenRule.entersState</definition>
         <argsstring></argsstring>
-        <name>Format</name>
+        <name>entersState</name>
         <briefdescription>
-<para>Gets or sets the string format. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="63" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="286" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d7/d9a/a00152_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" static="no" mutable="no">
+        <type><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+        <definition>TokenType Yarn.Lexer.TokenRule.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="287" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d7/d9a/a00152_1a09f49e6edf9ace38a92d723998181f8f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.TokenRule.isTextRule</definition>
+        <argsstring></argsstring>
+        <name>isTextRule</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d7/d9a/a00152_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.TokenRule.delimitsText</definition>
+        <argsstring></argsstring>
+        <name>delimitsText</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="289" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="289" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="d7/d9a/a00152_1a0532694cffc600fe984e10c7f1375e0a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref></type>
-        <definition>static TypeConverterOptions CsvHelper.TypeConversion.TypeConverterOptions.Merge</definition>
-        <argsstring>(params TypeConverterOptions[] sources)</argsstring>
-        <name>Merge</name>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d7/d9a/a00152_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.TokenRule.TokenRule</definition>
+        <argsstring>(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</argsstring>
+        <name>TokenRule</name>
         <param>
-          <type>params <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref>[]</type>
-          <declname>sources</declname>
+          <type><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Regex</type>
+          <declname>regex</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>delimitsText</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
-<para>Merges <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> by applying the values of sources in order to a new <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> instance. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sources</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The sources that will be applied.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A new instance of <ref refid="d7/d9a/a00152" kindref="compound">TypeConverterOptions</ref> with the source applied to it.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="71" bodyend="122"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="291" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="291" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/d9a/a00152_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Lexer.TokenRule.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="299" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="299" bodyend="302"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Options used when doing type conversion. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1586">
-        <label>CsvHelper.TypeConversion.TypeConverterOptions</label>
+      <node id="1582">
+        <label>Yarn.Lexer.TokenRule</label>
         <link refid="d7/d9a/a00152"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TypeConverterOptions.cs" bodystart="15" bodyend="123"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="282" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="282" bodyend="304"/>
     <listofallmembers>
-      <member refid="d7/d9a/a00152_1a1881a24e1731f70183fdff9c1612b7d5" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>booleanFalseValues</name></member>
-      <member refid="d7/d9a/a00152_1a7735cd4046cf1b21f458aa96c616a01e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>BooleanFalseValues</name></member>
-      <member refid="d7/d9a/a00152_1a326ff183b4992ab134f047e6866df092" prot="private" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>booleanTrueValues</name></member>
-      <member refid="d7/d9a/a00152_1a73fe01941a8c2d3cfbd6fa4414e8d8e0" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>BooleanTrueValues</name></member>
-      <member refid="d7/d9a/a00152_1af6bc545680b477abf9178eb4755572b1" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>CultureInfo</name></member>
-      <member refid="d7/d9a/a00152_1a53dd999cfdfad024682e67b6d5b1267e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>DateTimeStyle</name></member>
-      <member refid="d7/d9a/a00152_1aadc0730de90844e29da6e1ae7fddc4bb" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>Format</name></member>
-      <member refid="d7/d9a/a00152_1a0532694cffc600fe984e10c7f1375e0a" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>Merge</name></member>
-      <member refid="d7/d9a/a00152_1a2bd83a5b0c0d94864ed09563dbab4a36" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>NumberStyle</name></member>
-      <member refid="d7/d9a/a00152_1a5b94fd91ed938c9d0515a5ab419de8b8" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::TypeConverterOptions</scope><name>TimeSpanStyle</name></member>
+      <member refid="d7/d9a/a00152_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>delimitsText</name></member>
+      <member refid="d7/d9a/a00152_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>entersState</name></member>
+      <member refid="d7/d9a/a00152_1a09f49e6edf9ace38a92d723998181f8f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>isTextRule</name></member>
+      <member refid="d7/d9a/a00152_1a47a404d6637fae489c3c77729a01cc69" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>regex</name></member>
+      <member refid="d7/d9a/a00152_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>TokenRule</name></member>
+      <member refid="d7/d9a/a00152_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>ToString</name></member>
+      <member refid="d7/d9a/a00152_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

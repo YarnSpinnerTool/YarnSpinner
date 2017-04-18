@@ -1,517 +1,150 @@
-\hypertarget{a00099}{\section{Yarn.\-Lexer Class Reference}
-\label{a00099}\index{Yarn.\-Lexer@{Yarn.\-Lexer}}
+\hypertarget{a00099}{\section{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter Interface Reference}
+\label{a00099}\index{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter@{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}}
 }
 
 
-Collaboration diagram for Yarn.\-Lexer\-:
+Converts objects to and from strings.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{d2/dd7/a00567}
+\includegraphics[width=350pt]{db/d8e/a00482}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00100}{Lexer\-State}
-\item 
-class \hyperlink{a00150}{Token\-Rule}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{dc/da0/a00483}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00099_a4bf394bcf675142f33c90541be7dd571}{Lexer} ()
-\item 
-\hyperlink{a00149}{Token\-List} \hyperlink{a00099_a6a09f1bb13f28acd95fd081954b45437}{Tokenise} (string title, string text)
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00099_a646081a52b241abaafe5e0cfaeafd751}{Create\-States} ()
-\item 
-\hyperlink{a00149}{Token\-List} \hyperlink{a00099_a20b63f6ef434f6a40fd388f262f03fa8}{Tokenise\-Line} (string line, int line\-Number)
-\item 
-int \hyperlink{a00099_a4079b10b099e5d85f5482f9e7eac4179}{Line\-Indentation} (string line)
-\item 
-void \hyperlink{a00099_ad3ef08f822b310d9864774b057b96995}{Enter\-State} (\hyperlink{a00100}{Lexer\-State} state)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-const string \hyperlink{a00099_a29c457125cc4876f8571f5d9afa372e2}{L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T} = \char`\"{}//\char`\"{}
-\item 
-Dictionary$<$ string, \hyperlink{a00100}{Lexer\-State} $>$ \hyperlink{a00099_a2c65c0ba90f973e459583badefef216a}{states}
-\item 
-\hyperlink{a00100}{Lexer\-State} \hyperlink{a00099_a16b5dbf27a377cde5e8ba0eaa05b5710}{default\-State}
-\item 
-\hyperlink{a00100}{Lexer\-State} \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{current\-State}
-\item 
-Stack$<$ Key\-Value\-Pair$<$ int, bool $>$ $>$ \hyperlink{a00099_a6631a1b1a9109258ab18927e7587ff9b}{indentation\-Stack}
-\item 
-bool \hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{should\-Track\-Next\-Indentation}
-\end{DoxyCompactItemize}
+string \hyperlink{a00099_a90c465c63dbcf913f38aa878f35e77c7}{Convert\-To\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+object \hyperlink{a00099_ab598e04c22e5a7890b6d21011492283e}{Convert\-From\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+bool \hyperlink{a00099_ae1ad863656f4fa96bd846a41344c9349}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+bool \hyperlink{a00099_a168b03dad37fcb6882101c93deac8111}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Converts objects to and from strings. 
 
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00099_a4bf394bcf675142f33c90541be7dd571}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Lexer@{Lexer}}
-\index{Lexer@{Lexer}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Lexer}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Lexer (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00099_a4bf394bcf675142f33c90541be7dd571}
-
-\begin{DoxyCode}
-320         \{
-321             \hyperlink{a00099_a646081a52b241abaafe5e0cfaeafd751}{CreateStates} ();
-322         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00099_a646081a52b241abaafe5e0cfaeafd751}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Create\-States@{Create\-States}}
-\index{Create\-States@{Create\-States}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Create\-States}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Lexer.\-Create\-States (
+\hypertarget{a00099_ae1ad863656f4fa96bd846a41344c9349}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::ITypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a646081a52b241abaafe5e0cfaeafd751}
+)}}\label{a00099_ae1ad863656f4fa96bd846a41344c9349}
 
-\begin{DoxyCode}
-325         \{
-326 
-327             var patterns = \textcolor{keyword}{new} Dictionary<TokenType, string> ();
-328 
-329             patterns[TokenType.Text] = \textcolor{stringliteral}{".*"};
-330 
-331             patterns[TokenType.Number] = \textcolor{stringliteral}{@"\(\backslash\)-?[0-9]+(\(\backslash\).[0-9+])?"};
-332             patterns[TokenType.String] = \textcolor{stringliteral}{@"""([^""\(\backslash\)\(\backslash\)]*(?:\(\backslash\)\(\backslash\).[^""\(\backslash\)\(\backslash\)]*)*)"""};
-333             patterns[TokenType.TagMarker] = \textcolor{stringliteral}{@"\(\backslash\)#"};
-334             patterns[TokenType.LeftParen] = \textcolor{stringliteral}{@"\(\backslash\)("};
-335             patterns[TokenType.RightParen] = \textcolor{stringliteral}{@"\(\backslash\))"};
-336             patterns[TokenType.EqualTo] = \textcolor{stringliteral}{@"(==|is(?!\(\backslash\)w)|eq(?!\(\backslash\)w))"};
-337             patterns[TokenType.EqualToOrAssign] = \textcolor{stringliteral}{@"(=|to(?!\(\backslash\)w))"};
-338             patterns[TokenType.NotEqualTo] = \textcolor{stringliteral}{@"(\(\backslash\)!=|neq(?!\(\backslash\)w))"};
-339             patterns[TokenType.GreaterThanOrEqualTo] = \textcolor{stringliteral}{@"(\(\backslash\)>=|gte(?!\(\backslash\)w))"};
-340             patterns[TokenType.GreaterThan] = \textcolor{stringliteral}{@"(\(\backslash\)>|gt(?!\(\backslash\)w))"};
-341             patterns[TokenType.LessThanOrEqualTo] = \textcolor{stringliteral}{@"(\(\backslash\)<=|lte(?!\(\backslash\)w))"};
-342             patterns[TokenType.LessThan] = \textcolor{stringliteral}{@"(\(\backslash\)<|lt(?!\(\backslash\)w))"};
-343             patterns[TokenType.AddAssign] = \textcolor{stringliteral}{@"\(\backslash\)+="};
-344             patterns[TokenType.MinusAssign] = \textcolor{stringliteral}{@"\(\backslash\)-="};
-345             patterns[TokenType.MultiplyAssign] = \textcolor{stringliteral}{@"\(\backslash\)*="};
-346             patterns[TokenType.DivideAssign] = \textcolor{stringliteral}{@"\(\backslash\)/="};
-347             patterns[TokenType.Add] = \textcolor{stringliteral}{@"\(\backslash\)+"};
-348             patterns[TokenType.Minus] = \textcolor{stringliteral}{@"\(\backslash\)-"};
-349             patterns[TokenType.Multiply] = \textcolor{stringliteral}{@"\(\backslash\)*"};
-350             patterns[TokenType.Divide] = \textcolor{stringliteral}{@"\(\backslash\)/"};
-351             patterns [TokenType.And] = \textcolor{stringliteral}{@"(\(\backslash\)&\(\backslash\)&|and(?!\(\backslash\)w))"};
-352             patterns [TokenType.Or] = \textcolor{stringliteral}{@"(\(\backslash\)|\(\backslash\)||or(?!\(\backslash\)w))"};
-353             patterns [TokenType.Xor] = \textcolor{stringliteral}{@"(\(\backslash\)^|xor(?!\(\backslash\)w))"};
-354             patterns [TokenType.Not] = \textcolor{stringliteral}{@"(\(\backslash\)!|not(?!\(\backslash\)w))"};
-355             patterns[TokenType.Variable] = \textcolor{stringliteral}{@"\(\backslash\)$([A-Za-z0-9\_\(\backslash\).])+"};
-356             patterns[TokenType.Comma] = \textcolor{stringliteral}{@","};
-357             patterns[TokenType.True] = \textcolor{stringliteral}{@"true(?!\(\backslash\)w)"};
-358             patterns[TokenType.False] = \textcolor{stringliteral}{@"false(?!\(\backslash\)w)"};
-359             patterns[TokenType.Null] = \textcolor{stringliteral}{@"null(?!\(\backslash\)w)"};
-360 
-361             patterns[TokenType.BeginCommand] = \textcolor{stringliteral}{@"\(\backslash\)<\(\backslash\)<"};
-362             patterns[TokenType.EndCommand] = \textcolor{stringliteral}{@"\(\backslash\)>\(\backslash\)>"};
-363 
-364             patterns[TokenType.OptionStart] = \textcolor{stringliteral}{@"\(\backslash\)[\(\backslash\)["};
-365             patterns[TokenType.OptionEnd] = \textcolor{stringliteral}{@"\(\backslash\)]\(\backslash\)]"};
-366             patterns[TokenType.OptionDelimit] = \textcolor{stringliteral}{@"\(\backslash\)|"};
-367 
-368             patterns[TokenType.Identifier] = \textcolor{stringliteral}{@"[a-zA-Z0-9\_:\(\backslash\).]+"};
-369 
-370             patterns[TokenType.If] = \textcolor{stringliteral}{@"if(?!\(\backslash\)w)"};
-371             patterns[TokenType.Else] = \textcolor{stringliteral}{@"else(?!\(\backslash\)w)"};
-372             patterns[TokenType.ElseIf] = \textcolor{stringliteral}{@"elseif(?!\(\backslash\)w)"};
-373             patterns[TokenType.EndIf] = \textcolor{stringliteral}{@"endif(?!\(\backslash\)w)"};
-374             patterns[TokenType.Set] = \textcolor{stringliteral}{@"set(?!\(\backslash\)w)"};
-375 
-376             patterns[TokenType.ShortcutOption] = \textcolor{stringliteral}{@"\(\backslash\)-\(\backslash\)>"};
-377 
-378             \hyperlink{a00099_a2c65c0ba90f973e459583badefef216a}{states} = \textcolor{keyword}{new} Dictionary<string, LexerState> ();
-379 
-380             \hyperlink{a00099_a2c65c0ba90f973e459583badefef216a}{states} [\textcolor{stringliteral}{"base"}] = \textcolor{keyword}{new} LexerState (patterns);
-381             states [\textcolor{stringliteral}{"base"}].AddTransition(TokenType.BeginCommand, \textcolor{stringliteral}{"command"}, delimitsText:\textcolor{keyword}{true});
-382             states [\textcolor{stringliteral}{"base"}].AddTransition(TokenType.OptionStart, \textcolor{stringliteral}{"link"}, delimitsText:\textcolor{keyword}{true});
-383             states [\textcolor{stringliteral}{"base"}].AddTransition(TokenType.ShortcutOption, \textcolor{stringliteral}{"shortcut-option"});
-384             states [\textcolor{stringliteral}{"base"}].AddTransition (TokenType.TagMarker, \textcolor{stringliteral}{"tag"}, delimitsText: \textcolor{keyword}{true});
-385             states [\textcolor{stringliteral}{"base"}].AddTextRule (TokenType.Text);
-386 
-387             states [\textcolor{stringliteral}{"tag"}] = \textcolor{keyword}{new} LexerState (patterns);
-388             states [\textcolor{stringliteral}{"tag"}].AddTransition (TokenType.Identifier, \textcolor{stringliteral}{"base"});
-389 
-390             states [\textcolor{stringliteral}{"shortcut-option"}] = \textcolor{keyword}{new} LexerState (patterns);
-391             states [\textcolor{stringliteral}{"shortcut-option"}].setTrackNextIndentation = \textcolor{keyword}{true};
-392             states [\textcolor{stringliteral}{"shortcut-option"}].AddTransition (TokenType.BeginCommand, \textcolor{stringliteral}{"expression"}, delimitsText: \textcolor{keyword}{
-      true});
-393             states [\textcolor{stringliteral}{"shortcut-option"}].AddTransition (TokenType.TagMarker, \textcolor{stringliteral}{"shortcut-option-tag"}, 
-      delimitsText: \textcolor{keyword}{true});
-394             states [\textcolor{stringliteral}{"shortcut-option"}].AddTextRule (TokenType.Text, \textcolor{stringliteral}{"base"});
-395 
-396             states [\textcolor{stringliteral}{"shortcut-option-tag"}] = \textcolor{keyword}{new} LexerState (patterns);
-397             states [\textcolor{stringliteral}{"shortcut-option-tag"}].AddTransition (TokenType.Identifier, \textcolor{stringliteral}{"shortcut-option"});
-398 
-399             states [\textcolor{stringliteral}{"command"}] = \textcolor{keyword}{new} LexerState (patterns);
-400             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.If, \textcolor{stringliteral}{"expression"});
-401             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.Else);
-402             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.ElseIf, \textcolor{stringliteral}{"expression"});
-403             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.EndIf);
-404             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.Set, \textcolor{stringliteral}{"assignment"});
-405             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.EndCommand,  \textcolor{stringliteral}{"base"}, delimitsText: \textcolor{keyword}{true});
-406             states [\textcolor{stringliteral}{"command"}].AddTransition (TokenType.Identifier, \textcolor{stringliteral}{"command-or-expression"});
-407             states [\textcolor{stringliteral}{"command"}].AddTextRule (TokenType.Text);
-408 
-409             states [\textcolor{stringliteral}{"command-or-expression"}] = \textcolor{keyword}{new} LexerState (patterns);
-410             states [\textcolor{stringliteral}{"command-or-expression"}].AddTransition (TokenType.LeftParen, \textcolor{stringliteral}{"expression"});
-411             states [\textcolor{stringliteral}{"command-or-expression"}].AddTransition (TokenType.EndCommand, \textcolor{stringliteral}{"base"}, delimitsText:\textcolor{keyword}{true}
-      );
-412             states [\textcolor{stringliteral}{"command-or-expression"}].AddTextRule (TokenType.Text);
-413 
-414 
-415             states [\textcolor{stringliteral}{"assignment"}] = \textcolor{keyword}{new} LexerState (patterns);
-416             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.Variable);
-417             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.EqualToOrAssign, \textcolor{stringliteral}{"expression"});
-418             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.AddAssign, \textcolor{stringliteral}{"expression"});
-419             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.MinusAssign, \textcolor{stringliteral}{"expression"});
-420             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.MultiplyAssign, \textcolor{stringliteral}{"expression"});
-421             states [\textcolor{stringliteral}{"assignment"}].AddTransition(TokenType.DivideAssign, \textcolor{stringliteral}{"expression"});
-422 
-423 
-424             states [\textcolor{stringliteral}{"expression"}] = \textcolor{keyword}{new} LexerState (patterns);
-425             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.EndCommand, \textcolor{stringliteral}{"base"});
-426             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Number);
-427             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.String);
-428             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.LeftParen);
-429             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.RightParen);
-430             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.EqualTo);
-431             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.EqualToOrAssign);
-432             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.NotEqualTo);
-433             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.GreaterThanOrEqualTo);
-434             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.GreaterThan);
-435             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.LessThanOrEqualTo);
-436             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.LessThan);
-437             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Add);
-438             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Minus);
-439             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Multiply);
-440             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Divide);
-441             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.And);
-442             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Or);
-443             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Xor);
-444             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Not);
-445             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Variable);
-446             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Comma);
-447             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.True);
-448             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.False);
-449             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Null);
-450             states [\textcolor{stringliteral}{"expression"}].AddTransition(TokenType.Identifier);
-451 
-452 
-453             states [\textcolor{stringliteral}{"link"}] = \textcolor{keyword}{new} LexerState (patterns);
-454             states [\textcolor{stringliteral}{"link"}].AddTransition (TokenType.OptionEnd, \textcolor{stringliteral}{"base"}, delimitsText:\textcolor{keyword}{true});
-455             states [\textcolor{stringliteral}{"link"}].AddTransition (TokenType.OptionDelimit, \textcolor{stringliteral}{"link-destination"}, delimitsText:\textcolor{keyword}{true});
-456             states [\textcolor{stringliteral}{"link"}].AddTextRule (TokenType.Text);
-457 
-458             states [\textcolor{stringliteral}{"link-destination"}] = \textcolor{keyword}{new} LexerState (patterns);
-459             states [\textcolor{stringliteral}{"link-destination"}].AddTransition (TokenType.Identifier);
-460             states [\textcolor{stringliteral}{"link-destination"}].AddTransition (TokenType.OptionEnd, \textcolor{stringliteral}{"base"});
-461 
-462             \hyperlink{a00099_a16b5dbf27a377cde5e8ba0eaa05b5710}{defaultState} = states [\textcolor{stringliteral}{"base"}];
-463 
-464             \textcolor{comment}{// Make all states aware of their names}
-465             \textcolor{keywordflow}{foreach} (KeyValuePair<string, LexerState> entry \textcolor{keywordflow}{in} states) \{
-466                 entry.Value.name = entry.Key;
-467             \}
-468         \}
-\end{DoxyCode}
-\hypertarget{a00099_ad3ef08f822b310d9864774b057b96995}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Enter\-State@{Enter\-State}}
-\index{Enter\-State@{Enter\-State}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Enter\-State}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Lexer.\-Enter\-State (
+
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00116_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00025_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00077_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00068_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}, \hyperlink{a00078_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00065_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00064_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00026_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00148_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
+
+\hypertarget{a00099_a168b03dad37fcb6882101c93deac8111}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::ITypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-\item[{{\bf Lexer\-State}}]{state}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_ad3ef08f822b310d9864774b057b96995}
+)}}\label{a00099_a168b03dad37fcb6882101c93deac8111}
 
-\begin{DoxyCode}
-680                                           \{
-681             \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState} = state;
-682 
-683             \textcolor{keywordflow}{if} (\hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}.\hyperlink{a00100_ad8b6ccac53bedd9dc202ffe6ac5698b2}{setTrackNextIndentation})
-684                 \hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{shouldTrackNextIndentation} = \textcolor{keyword}{true};
-685         \}
-\end{DoxyCode}
-\hypertarget{a00099_a4079b10b099e5d85f5482f9e7eac4179}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Line\-Indentation@{Line\-Indentation}}
-\index{Line\-Indentation@{Line\-Indentation}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Line\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Lexer.\-Line\-Indentation (
-\begin{DoxyParamCaption}
-\item[{string}]{line}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a4079b10b099e5d85f5482f9e7eac4179}
 
-\begin{DoxyCode}
-669         \{
-670             var initialIndentRegex = \textcolor{keyword}{new} Regex (\textcolor{stringliteral}{@"^(\(\backslash\)s*)"});
-671             var match = initialIndentRegex.Match (line);
-672 
-673             \textcolor{keywordflow}{if} (match == null || match.Groups [0] == null) \{
-674                 \textcolor{keywordflow}{return} 0;
-675             \}
-676 
-677             \textcolor{keywordflow}{return} match.Groups [0].Length;
-678         \}
-\end{DoxyCode}
-\hypertarget{a00099_a6a09f1bb13f28acd95fd081954b45437}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Tokenise@{Tokenise}}
-\index{Tokenise@{Tokenise}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Tokenise}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-List} Yarn.\-Lexer.\-Tokenise (
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00068_acb65bd8c8199d88d5b1629ae35d18514}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}, and \hyperlink{a00078_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+\hypertarget{a00099_ab598e04c22e5a7890b6d21011492283e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::ITypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{title, }
+\item[{{\bf Type\-Converter\-Options}}]{options, }
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)}}\label{a00099_a6a09f1bb13f28acd95fd081954b45437}
+)}}\label{a00099_ab598e04c22e5a7890b6d21011492283e}
 
-\begin{DoxyCode}
-471         \{
-472 
-473             \textcolor{comment}{// Do some initial setup}
-474             \hyperlink{a00099_a6631a1b1a9109258ab18927e7587ff9b}{indentationStack} = \textcolor{keyword}{new} Stack<KeyValuePair<int,bool>> ();
-475             indentationStack.Push (\textcolor{keyword}{new} KeyValuePair<int, bool>(0, \textcolor{keyword}{false}));
-476             \hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{shouldTrackNextIndentation} = \textcolor{keyword}{false};
-477 
-478             var tokens = \textcolor{keyword}{new} TokenList();
-479 
-480             \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState} = \hyperlink{a00099_a16b5dbf27a377cde5e8ba0eaa05b5710}{defaultState};
-481     
-482             \textcolor{comment}{// Parse each line}
-483             var lines = \textcolor{keyword}{new} List<string>(text.Split (\textcolor{charliteral}{'\(\backslash\)n'}));
-484             \textcolor{comment}{// Add a blank line to ensure that we end with zero indentation}
-485             lines.Add(\textcolor{stringliteral}{""});
-486 
-487             \textcolor{keywordtype}{int} lineNumber = 1;
-488 
-489             \textcolor{keywordflow}{foreach} (var line \textcolor{keywordflow}{in} lines) \{               
-490                 tokens.AddRange (this.TokeniseLine (line, lineNumber));
-491                 lineNumber++;
-492             \}
-493 
-494             var endOfInput = \textcolor{keyword}{new} Token (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndOfInput, 
-      \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}, lineNumber, 0);
-495             tokens.Add (endOfInput);
-496 
-497             \textcolor{keywordflow}{return} tokens;
-498         \}
-\end{DoxyCode}
-\hypertarget{a00099_a20b63f6ef434f6a40fd388f262f03fa8}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!Tokenise\-Line@{Tokenise\-Line}}
-\index{Tokenise\-Line@{Tokenise\-Line}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{Tokenise\-Line}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-List} Yarn.\-Lexer.\-Tokenise\-Line (
+
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00116_addb6dc12d4927204cd2349202db63e74}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00068_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}, \hyperlink{a00077_abbbd7ece803a97b4714445c745918dc9}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00148_a0f2536c88227a94822d0b7730eedf3eb}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}, \hyperlink{a00078_a692617638507cd1033728d7f718fcd2a}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00065_aa69835fc086d80a8eabe7ac50cb92f47}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00076_a0c93a63f9f954646172a65b432c40c69}{Csv\-Helper.\-Type\-Conversion.\-Double\-Converter}, \hyperlink{a00025_abc77c631974272fd1dfe3fe4fcc3bf28}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00026_a6176d20d761abfc0af4e840553ffae47}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, \hyperlink{a00064_a6b1b54cb2d1b200beb8fa3c63e4c064a}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00086_ad00786c329498785bbb77407ea023877}{Csv\-Helper.\-Type\-Conversion.\-Guid\-Converter}, \hyperlink{a00028_a7cf201b75714eccdc084b6cc3161bf29}{Csv\-Helper.\-Type\-Conversion.\-Char\-Converter}, \hyperlink{a00066_a07444e6f2bb1e49288f9de3b2407dc4f}{Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter}, \hyperlink{a00096_aff576c6ca9bb1942fb17e385befb0197}{Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter}, \hyperlink{a00097_a392314cc9b5f5b4ad176d0f1a99af32f}{Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter}, \hyperlink{a00098_a9080b7b6a5abc7d8271ffb6924c31b7c}{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter}, \hyperlink{a00134_ad16aeb03f418c89b3f78e95b46a46b40}{Csv\-Helper.\-Type\-Conversion.\-S\-Byte\-Converter}, \hyperlink{a00137_a5c8a692325c19551246a589e9ca4a1e1}{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter}, \hyperlink{a00143_a50bf35ff93e01df630a9c5e3c7b7569f}{Csv\-Helper.\-Type\-Conversion.\-String\-Converter}, \hyperlink{a00158_a796e0b7b57d69abee122947166b45a9a}{Csv\-Helper.\-Type\-Conversion.\-U\-Int16\-Converter}, \hyperlink{a00159_a15686325b6bfa7648b65f201ecf50cd2}{Csv\-Helper.\-Type\-Conversion.\-U\-Int32\-Converter}, and \hyperlink{a00160_a1d3e86ea3d34de0d47a365c9b8622eb7}{Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter}.
+
+\hypertarget{a00099_a90c465c63dbcf913f38aa878f35e77c7}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::ITypeConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-I\-Type\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter.\-Convert\-To\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{line, }
-\item[{int}]{line\-Number}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a20b63f6ef434f6a40fd388f262f03fa8}
-
-\begin{DoxyCode}
-501         \{
-502             var lineTokens = \textcolor{keyword}{new} Stack<Token> ();
-503 
-504             \textcolor{comment}{// Replace tabs with four spaces}
-505             line = line.Replace (\textcolor{stringliteral}{"\(\backslash\)t"}, \textcolor{stringliteral}{"    "});
-506 
-507             \textcolor{comment}{// Strip out \(\backslash\)r's}
-508             line = line.Replace(\textcolor{stringliteral}{"\(\backslash\)r"}, \textcolor{stringliteral}{""});
-509 
-510             \textcolor{comment}{// Record the indentation level if the previous state wants us to}
-511 
-512             var thisIndentation = \hyperlink{a00099_a4079b10b099e5d85f5482f9e7eac4179}{LineIndentation} (line);
-513             var previousIndentation = indentationStack.Peek ();
-514 
-515             \textcolor{keywordflow}{if} (\hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{shouldTrackNextIndentation} && thisIndentation > 
-      previousIndentation.Key) \{
-516                 \textcolor{comment}{// If we are more indented than before, emit an}
-517                 \textcolor{comment}{// indent token and record this new indent level}
-518                 indentationStack.Push (\textcolor{keyword}{new} KeyValuePair<int, bool>(thisIndentation, \textcolor{keyword}{true}));
-519 
-520                 var indent = \textcolor{keyword}{new} Token (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Indent, \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}, lineNumber, 
-      previousIndentation.Key);
-521                 indent.value = \textcolor{stringliteral}{""}.PadLeft (thisIndentation - previousIndentation.Key);
-522 
-523                 \hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{shouldTrackNextIndentation} = \textcolor{keyword}{false};
-524 
-525                 lineTokens.Push (indent);
-526 
-527             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (thisIndentation < previousIndentation.Key) \{
-528 
-529                 \textcolor{comment}{// If we are less indented, emit a dedent for every}
-530                 \textcolor{comment}{// indentation level that we passed on the way back to 0 that also}
-531                 \textcolor{comment}{// emitted an indentation token.}
-532                 \textcolor{comment}{// at the same time, remove those indent levels from the stack}
-533 
-534                 \textcolor{keywordflow}{while} (thisIndentation < \hyperlink{a00099_a6631a1b1a9109258ab18927e7587ff9b}{indentationStack}.Peek ().Key) \{
-535 
-536                     var topLevel = indentationStack.Pop ();
-537 
-538                     \textcolor{keywordflow}{if} (topLevel.Value) \{
-539                         var dedent = \textcolor{keyword}{new} Token (\hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent, 
-      \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}, lineNumber, 0);
-540                         lineTokens.Push (dedent);
-541                     \}
-542 
-543                 \}
-544             \}
-545 
-546             \textcolor{comment}{// Now that we're past any initial indentation, start}
-547             \textcolor{comment}{// finding tokens.}
-548             \textcolor{keywordtype}{int} columnNumber = thisIndentation;
-549 
-550             var whitespace = \textcolor{keyword}{new} Regex (\textcolor{stringliteral}{@"\(\backslash\)s*"});
-551 
-552             \textcolor{keywordflow}{while} (columnNumber < line.Length) \{
-553 
-554                 \textcolor{comment}{// If we're about to hit a line comment, abort processing line}
-555                 \textcolor{comment}{// immediately}
-556                 \textcolor{keywordflow}{if} (line.Substring(columnNumber).StartsWith(\hyperlink{a00099_a29c457125cc4876f8571f5d9afa372e2}{LINE\_COMMENT})) \{
-557                     \textcolor{keywordflow}{break};
-558                 \}
-559 
-560                 var matched = \textcolor{keyword}{false};
-561 
-562                 \textcolor{keywordflow}{foreach} (var rule \textcolor{keywordflow}{in} \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}.\hyperlink{a00100_adf6563b1dc6f3ef80ed13c2b15b7be03}{tokenRules}) \{
-563                     
-564                     var match = rule.regex.Match (line, columnNumber);
-565 
-566                     \textcolor{keywordflow}{if} (match.Success == \textcolor{keyword}{false} || match.Length == 0)
-567                         \textcolor{keywordflow}{continue};
-568 
-569                     \textcolor{keywordtype}{string} tokenText;
-570 
-571                     \textcolor{keywordflow}{if} (rule.type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Text) \{
-572                         \textcolor{comment}{// if this is text, then back up to the most recent text }
-573                         \textcolor{comment}{// delimiting token, and treat everything from there as}
-574                         \textcolor{comment}{// the text.}
-575                         \textcolor{comment}{// we do this because we don't want this:}
-576                         \textcolor{comment}{//    <<flip Harley3 +1>>}
-577                         \textcolor{comment}{// to get matched as this:}
-578                         \textcolor{comment}{//    BeginCommand Identifier("flip") Text("Harley3 +1") EndCommand}
-579                         \textcolor{comment}{// instead, we want to match it as this:}
-580                         \textcolor{comment}{//    BeginCommand Text("flip Harley3 +1") EndCommand}
-581 
-582                         \textcolor{keywordtype}{int} textStartIndex = thisIndentation;
-583 
-584                         \textcolor{keywordflow}{if} (lineTokens.Count > 0) \{
-585                             \textcolor{keywordflow}{while} (lineTokens.Peek().type == TokenType.Identifier) \{
-586                                 lineTokens.Pop ();
-587                             \}
-588 
-589                             var startDelimiterToken = lineTokens.Peek ();
-590                             textStartIndex = startDelimiterToken.columnNumber;
-591                             \textcolor{keywordflow}{if} (startDelimiterToken.type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Indent)
-592                                 textStartIndex += startDelimiterToken.value.Length;
-593                             \textcolor{keywordflow}{if} (startDelimiterToken.type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent)
-594                                 textStartIndex = thisIndentation;
-595                         \}
-596 
-597                         columnNumber = textStartIndex;
-598 
-599                         var textEndIndex = match.Index + match.Length;
-600 
-601                         tokenText = line.Substring (textStartIndex, textEndIndex-textStartIndex);
-602 
-603                     \} \textcolor{keywordflow}{else} \{
-604                         tokenText = match.Value;
-605                     \}
-606 
-607                     columnNumber += tokenText.Length;
-608 
-609                     \textcolor{comment}{// If this was a string, lop off the quotes at the start and}
-610                     \textcolor{comment}{// end, and un-escape the quotes and slashes}
-611                     \textcolor{keywordflow}{if} (rule.type == \hyperlink{a00029_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.String) \{
-612                         tokenText = tokenText.Substring (1, tokenText.Length - 2);
-613 
-614                         tokenText = tokenText.Replace (\textcolor{stringliteral}{@"\(\backslash\)\(\backslash\)"}, \textcolor{stringliteral}{@"\(\backslash\)"});
-615                         tokenText = tokenText.Replace (\textcolor{stringliteral}{@"\(\backslash\)"""}, \textcolor{stringliteral}{@""""});
-616                     \}
-617 
-618                     var token = \textcolor{keyword}{new} Token (rule.type, \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState}, lineNumber, columnNumber, 
-      tokenText);
-619 
-620                     token.delimitsText = rule.delimitsText;
-621 
-622                     lineTokens.Push (token);
-623 
-624 
-625 
-626                     \textcolor{keywordflow}{if} (rule.entersState != null) \{
-627                         \textcolor{keywordflow}{if} (\hyperlink{a00099_a2c65c0ba90f973e459583badefef216a}{states}.ContainsKey(rule.entersState) == \textcolor{keyword}{false}) \{
-628                             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} TokeniserException (lineNumber, columnNumber, \textcolor{stringliteral}{"Unknown tokeniser
-       state "} + rule.entersState);
-629                         \}
-630 
-631                         \hyperlink{a00099_ad3ef08f822b310d9864774b057b96995}{EnterState} (\hyperlink{a00099_a2c65c0ba90f973e459583badefef216a}{states} [rule.entersState]);
-632 
-633                         \textcolor{keywordflow}{if} (\hyperlink{a00099_ac670aac2245cbd4694dfbd5b69313218}{shouldTrackNextIndentation} == \textcolor{keyword}{true}) \{
-634                             \textcolor{keywordflow}{if} (\hyperlink{a00099_a6631a1b1a9109258ab18927e7587ff9b}{indentationStack}.Peek().Key < thisIndentation) \{
-635                                 indentationStack.Push (\textcolor{keyword}{new} KeyValuePair<int, bool>(thisIndentation, \textcolor{keyword}{false}))
-      ;
-636                             \}
-637                                 
-638                         \}
-639                     \}
-640 
-641                     matched = \textcolor{keyword}{true};
-642 
-643                     \textcolor{keywordflow}{break};
-644                 \}
-645 
-646                 \textcolor{keywordflow}{if} (matched == \textcolor{keyword}{false}) \{
-647 
-648                     \textcolor{keywordflow}{throw} TokeniserException.ExpectedTokensFromState (lineNumber, columnNumber, 
-      \hyperlink{a00099_ac90b7dce8103425a148f9e8588f14137}{currentState});
-649                 \}
-650 
-651                 \textcolor{comment}{// consume any lingering whitespace before the next token}
-652                 var lastWhitespace = whitespace.Match(line, columnNumber);
-653                 \textcolor{keywordflow}{if} (lastWhitespace != null) \{
-654                     columnNumber += lastWhitespace.Length;
-655                 \}
-656 
-657             \}
-658 
-659             var listToReturn = \textcolor{keyword}{new} TokenList (lineTokens.ToArray ());
-660             listToReturn.Reverse ();
-661 
-662             \textcolor{keywordflow}{return} listToReturn;
-663 
-664 
-665         \}
-\end{DoxyCode}
+)}}\label{a00099_a90c465c63dbcf913f38aa878f35e77c7}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00099_ac90b7dce8103425a148f9e8588f14137}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!current\-State@{current\-State}}
-\index{current\-State@{current\-State}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{current\-State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Lexer\-State} Yarn.\-Lexer.\-current\-State\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_ac90b7dce8103425a148f9e8588f14137}
-\hypertarget{a00099_a16b5dbf27a377cde5e8ba0eaa05b5710}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!default\-State@{default\-State}}
-\index{default\-State@{default\-State}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{default\-State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Lexer\-State} Yarn.\-Lexer.\-default\-State\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a16b5dbf27a377cde5e8ba0eaa05b5710}
-\hypertarget{a00099_a6631a1b1a9109258ab18927e7587ff9b}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!indentation\-Stack@{indentation\-Stack}}
-\index{indentation\-Stack@{indentation\-Stack}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{indentation\-Stack}]{\setlength{\rightskip}{0pt plus 5cm}Stack$<$Key\-Value\-Pair$<$int,bool$>$ $>$ Yarn.\-Lexer.\-indentation\-Stack\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a6631a1b1a9109258ab18927e7587ff9b}
-\hypertarget{a00099_a29c457125cc4876f8571f5d9afa372e2}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T@{L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T}}
-\index{L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T@{L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}const string Yarn.\-Lexer.\-L\-I\-N\-E\-\_\-\-C\-O\-M\-M\-E\-N\-T = \char`\"{}//\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a29c457125cc4876f8571f5d9afa372e2}
-\hypertarget{a00099_ac670aac2245cbd4694dfbd5b69313218}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!should\-Track\-Next\-Indentation@{should\-Track\-Next\-Indentation}}
-\index{should\-Track\-Next\-Indentation@{should\-Track\-Next\-Indentation}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{should\-Track\-Next\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-should\-Track\-Next\-Indentation\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_ac670aac2245cbd4694dfbd5b69313218}
-\hypertarget{a00099_a2c65c0ba90f973e459583badefef216a}{\index{Yarn\-::\-Lexer@{Yarn\-::\-Lexer}!states@{states}}
-\index{states@{states}!Yarn::Lexer@{Yarn\-::\-Lexer}}
-\subsubsection[{states}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Lexer\-State}$>$ Yarn.\-Lexer.\-states\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a2c65c0ba90f973e459583badefef216a}
+Converts the object to a string. 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00116_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00078_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, and \hyperlink{a00068_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00263}{Lexer.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00239}{I\-Type\-Converter.\-cs}\end{DoxyCompactItemize}

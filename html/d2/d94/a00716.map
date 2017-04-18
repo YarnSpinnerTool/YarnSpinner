@@ -1,3 +1,2 @@
-<map id="Yarn.Unity.Example.ExampleDialogueUI" name="Yarn.Unity.Example.ExampleDialogueUI">
-<area shape="rect" id="node2" href="$d1/d6e/a00073.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="5,134,224,285"/>
+<map id="Yarn.Unity.Example.CameraFollow" name="Yarn.Unity.Example.CameraFollow">
 </map>

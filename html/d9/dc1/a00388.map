@@ -1,4 +1,4 @@
-<map id="CsvHelper.ICsvReaderRow" name="CsvHelper.ICsvReaderRow">
-<area shape="rect" id="node2" href="$db/ddf/a00088.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="35,353,193,474"/>
-<area shape="rect" id="node3" href="$d4/d6d/a00055.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="5,523,224,1187"/>
+<map id="CsvHelper.ICsvReader" name="CsvHelper.ICsvReader">
+<area shape="rect" id="node4" href="$d1/d22/a00057.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="42,523,261,1187"/>
+<area shape="rect" id="node2" href="$da/d82/a00091.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
 </map>

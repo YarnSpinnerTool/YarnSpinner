@@ -1,5 +1,6 @@
 var a00104 =
 [
-    [ "LineResult", "d0/dc2/a00104.html#ad91ff667246e8c4ac0492cedea34b524", null ],
-    [ "line", "d0/dc2/a00104.html#abfbb0ea840b02acd0ecdc72c5b120257", null ]
+    [ "AddLines", "d0/dc2/a00104.html#aa2b8af349e709b8a45d42af5146ca848", null ],
+    [ "GenerateString", "d0/dc2/a00104.html#a91ad68b679bd3b0bd89fe92ea5068688", null ],
+    [ "random", "d0/dc2/a00104.html#ad887744b1b813fc081be814958742c37", null ]
 ];

@@ -1,3 +1,6 @@
-<map id="Yarn.Dialogue.StandardLibrary" name="Yarn.Dialogue.StandardLibrary">
-<area shape="rect" id="node2" href="$d4/d3a/a00101.html" title="{Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="28,5,180,171"/>
+<map id="Yarn.Dialogue.RunnerResult" name="Yarn.Dialogue.RunnerResult">
+<area shape="rect" id="node2" href="$dc/d87/a00032.html" title="{Yarn.Dialogue.CommandResult\n|+ command\l|+ CommandResult()\l}" alt="" coords="5,139,211,216"/>
+<area shape="rect" id="node3" href="$d7/d70/a00106.html" title="{Yarn.Dialogue.LineResult\n|+ line\l|+ LineResult()\l}" alt="" coords="236,139,407,216"/>
+<area shape="rect" id="node4" href="$d3/d00/a00113.html" title="{Yarn.Dialogue.NodeComplete\lResult\n|+ nextNode\l|+ NodeCompleteResult()\l}" alt="" coords="431,131,625,223"/>
+<area shape="rect" id="node5" href="$df/d6a/a00119.html" title="{Yarn.Dialogue.OptionSetResult\n|+ options\l+ setSelectedOptionDelegate\l|+ OptionSetResult()\l}" alt="" coords="650,131,853,223"/>
 </map>

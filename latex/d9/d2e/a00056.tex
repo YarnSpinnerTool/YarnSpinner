@@ -1,133 +1,106 @@
-\hypertarget{a00056}{\section{Csv\-Helper.\-Csv\-Reader\-Exception Class Reference}
-\label{a00056}\index{Csv\-Helper.\-Csv\-Reader\-Exception@{Csv\-Helper.\-Csv\-Reader\-Exception}}
+\hypertarget{a00056}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data Class Reference}
+\label{a00056}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data}}
 }
 
 
-Represents errors that occur while reading a C\-S\-V file.  
+The configuration data for the reference map.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Reader\-Exception\-:
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=238pt]{dd/db5/a00365}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Reader\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=238pt]{d2/d3e/a00366}
+\includegraphics[width=250pt]{d9/dd5/a00432}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a92ea35129f92f260c5327bbc3fd330df}{Csv\-Reader\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00056_abb4803417d6a479385872b608f1791e5}{Csv\-Reader\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00056_a4507583f079e40d454285c1e4f161aeb}{Csv\-Reader\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00056_aefa7020d5317878f91b9f43d3e1475be}{Csv\-Reader\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00056_ad6fe2913932a9fe434f8a908dec30e8b}{Csv\-Property\-Reference\-Map\-Data} (Property\-Info property, \hyperlink{a00040}{Csv\-Class\-Map} mapping)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Property\-Reference\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+virtual string \hyperlink{a00056_a687fe65f1a2b4301f283e9333c282f9c}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the header prefix to use. \end{DoxyCompactList}\item 
+virtual Property\-Info \hyperlink{a00056_a5386ac40fb3ea290944f05cbee99bfcb}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
+\hyperlink{a00040}{Csv\-Class\-Map} \hyperlink{a00056_af2343065df03de92b6b9803ed2bb4f87}{Mapping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the mapping this is a reference for. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00056_a24263cbdacd2dd0db9bbe22676a6d989}{prefix}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur while reading a C\-S\-V file. 
+The configuration data for the reference map. 
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00056_a92ea35129f92f260c5327bbc3fd330df}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
-\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
-\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
+\hypertarget{a00056_ad6fe2913932a9fe434f8a908dec30e8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}}
+\index{Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
+\subsubsection[{Csv\-Property\-Reference\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Csv\-Property\-Reference\-Map\-Data (
 \begin{DoxyParamCaption}
-{}
+\item[{Property\-Info}]{property, }
+\item[{{\bf Csv\-Class\-Map}}]{mapping}
 \end{DoxyParamCaption}
-)}}\label{a00056_a92ea35129f92f260c5327bbc3fd330df}
+)}}\label{a00056_ad6fe2913932a9fe434f8a908dec30e8b}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class. 
-
-
-\begin{DoxyCode}
-23 \{\}
-\end{DoxyCode}
-\hypertarget{a00056_abb4803417d6a479385872b608f1791e5}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
-\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
-\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00056_abb4803417d6a479385872b608f1791e5}
-
-
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with a specified error message. 
+Initializes a new instance of the \hyperlink{a00056}{Csv\-Property\-Reference\-Map\-Data} class. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
+{\em property} & The property.\\
+\hline
+{\em mapping} & The mapping this is a reference for.\\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyCode}
-30 : base( message ) \{\}
+50         \{
+51             \hyperlink{a00056_a5386ac40fb3ea290944f05cbee99bfcb}{Property} = property;
+52             \hyperlink{a00056_af2343065df03de92b6b9803ed2bb4f87}{Mapping} = mapping;
+53         \}
 \end{DoxyCode}
-\hypertarget{a00056_a4507583f079e40d454285c1e4f161aeb}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
-\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
-\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
-\end{DoxyParamCaption}
-)}}\label{a00056_a4507583f079e40d454285c1e4f161aeb}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+\subsection{Member Data Documentation}
+\hypertarget{a00056_a24263cbdacd2dd0db9bbe22676a6d989}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!prefix@{prefix}}
+\index{prefix@{prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
+\subsubsection[{prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-prefix\hspace{0.3cm}{\ttfamily [private]}}}\label{a00056_a24263cbdacd2dd0db9bbe22676a6d989}
 
 
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
-\end{DoxyCode}
-\hypertarget{a00056_aefa7020d5317878f91b9f43d3e1475be}{\index{Csv\-Helper\-::\-Csv\-Reader\-Exception@{Csv\-Helper\-::\-Csv\-Reader\-Exception}!Csv\-Reader\-Exception@{Csv\-Reader\-Exception}}
-\index{Csv\-Reader\-Exception@{Csv\-Reader\-Exception}!CsvHelper::CsvReaderException@{Csv\-Helper\-::\-Csv\-Reader\-Exception}}
-\subsubsection[{Csv\-Reader\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Reader\-Exception.\-Csv\-Reader\-Exception (
-\begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
-\end{DoxyParamCaption}
-)}}\label{a00056_aefa7020d5317878f91b9f43d3e1475be}
+\subsection{Property Documentation}
+\hypertarget{a00056_af2343065df03de92b6b9803ed2bb4f87}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Mapping@{Mapping}}
+\index{Mapping@{Mapping}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
+\subsubsection[{Mapping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Mapping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00056_af2343065df03de92b6b9803ed2bb4f87}
 
 
-Initializes a new instance of the \hyperlink{a00056}{Csv\-Reader\-Exception} class with serialized data. 
+Gets the mapping this is a reference for. 
+
+\hypertarget{a00056_a687fe65f1a2b4301f283e9333c282f9c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Prefix@{Prefix}}
+\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
+\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00056_a687fe65f1a2b4301f283e9333c282f9c}
 
 
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
+Gets or sets the header prefix to use. 
 
-\begin{DoxyCode}
-48 : base( info, context ) \{ \}
-\end{DoxyCode}
+\hypertarget{a00056_a5386ac40fb3ea290944f05cbee99bfcb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Property@{Property}}
+\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
+\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00056_a5386ac40fb3ea290944f05cbee99bfcb}
+
+
+Gets the Property\-Info that the data is associated with. 
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00200}{Csv\-Reader\-Exception.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00193}{Csv\-Property\-Reference\-Map\-Data.\-cs}\end{DoxyCompactItemize}

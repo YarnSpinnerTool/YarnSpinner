@@ -1,5 +1,4 @@
-<map id="CsvHelper.CsvParser" name="CsvHelper.CsvParser">
-<area shape="rect" id="node2" href="$d1/d1e/a00087.html" title="Defines methods used the parse a CSV file. " alt="" coords="5,433,115,583"/>
-<area shape="rect" id="node4" href="$dd/d32/a00041.html" title="Configuration used for reading and writing CSV data. " alt="" coords="139,235,345,781"/>
-<area shape="rect" id="node5" href="$db/d3a/a00040.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="135,5,351,171"/>
+<map id="CsvHelper.CsvMissingFieldException" name="CsvHelper.CsvMissingFieldException">
+<area shape="rect" id="node2" href="$d7/df7/a00058.html" title="Represents errors that occur while reading a CSV file. " alt="" coords="21,302,187,423"/>
+<area shape="rect" id="node3" href="$d3/dea/a00046.html" title="Represents errors that occur in CsvHelper. " alt="" coords="23,131,185,253"/>
 </map>

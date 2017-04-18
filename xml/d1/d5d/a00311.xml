@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d1/d5d/a00311" kind="namespace">
-    <compoundname>YarnSpinner::Tests</compoundname>
-    <innerclass refid="d6/d2c/a00072" prot="public">YarnSpinner::Tests::DialogueTests</innerclass>
-    <innerclass refid="d1/d44/a00098" prot="public">YarnSpinner::Tests::LanguageTests</innerclass>
-    <innerclass refid="dc/dfe/a00125" prot="public">YarnSpinner::Tests::Program</innerclass>
-    <innerclass refid="d1/d88/a00128" prot="public">YarnSpinner::Tests::ProjectTests</innerclass>
-    <innerclass refid="d5/da7/a00144" prot="public">YarnSpinner::Tests::TestBase</innerclass>
+    <compoundname>Yarn::Analysis</compoundname>
+    <innerclass refid="d0/d89/a00071" prot="public">Yarn::Analysis::Diagnosis</innerclass>
+    <innerclass refid="d1/dc6/a00037" prot="public">Yarn::Analysis::Context</innerclass>
+    <innerclass refid="de/d11/a00021" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
+    <innerclass refid="d0/dc0/a00033" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
+    <innerclass refid="d0/d48/a00165" prot="package">Yarn::Analysis::VariableLister</innerclass>
+    <innerclass refid="d6/d7d/a00161" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/DialogueTests.cs" line="8" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="5" column="1"/>
   </compounddef>
 </doxygen>

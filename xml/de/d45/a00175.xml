@@ -1,159 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="de/d45/a00175" kind="file">
-    <compoundname>Unity.md</compoundname>
+    <compoundname>Building.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Spinner<sp/>Quick<sp/>Start</highlight></codeline>
-<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Here</highlight><highlight class="stringliteral">&apos;s<sp/>how<sp/>to<sp/>quickly<sp/>jump<sp/>in<sp/>to<sp/>Yarn<sp/>Spinner,<sp/>if<sp/>you&apos;</highlight><highlight class="normal">re<sp/>already<sp/>reasonably<sp/>comfortable<sp/>with<sp/>Unity.</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">&gt;<sp/>***Important:***<sp/>This<sp/>document<sp/>only<sp/>matters<sp/>to<sp/>you<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.<sp/>In<sp/>almost<sp/>all<sp/>cases,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>be<sp/>totally<sp/>fine<sp/>with<sp/>[downloading<sp/>a<sp/>build](https://github.com/thesecretlab/YarnSpinner/releases),<sp/>and<sp/>using<sp/>that<sp/>in<sp/>your<sp/>project.</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">To<sp/>build<sp/>Yarn<sp/>Spinner,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>MonoDevelop.<sp/>You<sp/>can<sp/>[download<sp/>MonoDevelop<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>OS<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http:</highlight><highlight class="comment">//www.monodevelop.com/download/).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">*<sp/>**Download<sp/>and<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>[the<sp/>YarnSpinner<sp/>package](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/releases)<sp/>into<sp/>your<sp/>project.**</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">*<sp/>**Inside<sp/>the<sp/>YarnSpinner<sp/>folder,<sp/>open<sp/>the<sp/>`Examples/Yarn<sp/>Spinner<sp/>Basic<sp/>Example`<sp/>scene.**</highlight></codeline>
-<codeline lineno="9"><highlight class="normal">*<sp/>**Start<sp/>the<sp/>game.<sp/>Play<sp/>through<sp/>the<sp/>dialogue.**</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">Once<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>played<sp/>with<sp/>it,<sp/>open<sp/>the<sp/>Example<sp/>Script<sp/>file<sp/>in<sp/>the<sp/>Yarn<sp/>editor<sp/>(it&apos;</highlight><highlight class="normal">s<sp/>in<sp/>the<sp/>`Examples/Demo<sp/>Assets`<sp/>folder),<sp/>and<sp/>make<sp/>some<sp/>changes<sp/>to<sp/>the<sp/>script.<sp/>Once<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>done<sp/>that,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>how<sp/>`Code/DialogueRunner.cs`,<sp/>`Examples/Demo<sp/>Scripts/ExampleDialogueUI.cs`<sp/>and<sp/>`Examples/Demo<sp/>Scripts/ExampleVariableStorage.cs`<sp/>work.<sp/>You<sp/>can<sp/>also<sp/>[add<sp/>your<sp/>own<sp/>functions<sp/>to<sp/>Yarn](Extending.md).</highlight></codeline>
-<codeline lineno="12"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="13"><highlight class="stringliteral">##<sp/>Tutorial</highlight></codeline>
-<codeline lineno="14"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="15"><highlight class="stringliteral">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>at<sp/>least<sp/>a<sp/>little<sp/>bit<sp/>about<sp/>[Unity](http://www.unity3d.com).<sp/>In<sp/>particular,<sp/>it<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>get<sp/>around<sp/>the<sp/>Unity<sp/>editor,<sp/>how<sp/>to<sp/>work<sp/>with<sp/>game<sp/>objects,<sp/>and<sp/>how<sp/>to<sp/>write<sp/>scripts<sp/>in<sp/>C#.<sp/>If<sp/>you<sp/>don&apos;</highlight><highlight class="normal">t<sp/>know<sp/>these<sp/>things,<sp/>check<sp/>out<sp/>[Unity</highlight><highlight class="stringliteral">&apos;s<sp/>documentation](http://unity3d.com/learn)!</highlight></codeline>
-<codeline lineno="16"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="17"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>is<sp/>designed<sp/>to<sp/>be<sp/>easy<sp/>to<sp/>work<sp/>with<sp/>in<sp/>Unity.<sp/>It<sp/>makes<sp/>no<sp/>assumptions<sp/>about<sp/>how<sp/>your<sp/>game<sp/>presents<sp/>dialogue<sp/>to<sp/>the<sp/>player,<sp/>or<sp/>about<sp/>how<sp/>the<sp/>player<sp/>chooses<sp/>their<sp/>responses.<sp/></highlight></codeline>
-<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="19"><highlight class="stringliteral">To<sp/>use<sp/>Yarn<sp/>Spinner,<sp/>you<sp/>use<sp/>three<sp/>classes:</highlight></codeline>
-<codeline lineno="20"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="21"><highlight class="stringliteral">*<sp/>`DialogueRunner`,<sp/>which<sp/>is<sp/>responsible<sp/>for<sp/>loading<sp/>and<sp/>running<sp/>your<sp/>dialogue<sp/>script;</highlight></codeline>
-<codeline lineno="22"><highlight class="stringliteral">*<sp/>A<sp/>subclass<sp/>of<sp/>`DialogueUIBehaviour`,<sp/>which<sp/>is<sp/>reponsible<sp/>for<sp/>displaying<sp/>the<sp/>lines<sp/>and<sp/>dialogue<sp/>choices<sp/>to<sp/>the<sp/>player;<sp/>and</highlight></codeline>
-<codeline lineno="23"><highlight class="stringliteral">*<sp/>A<sp/>subclass<sp/>of<sp/>`VariableStorageBehaviour`,<sp/>which<sp/>is<sp/>responsible<sp/>for<sp/>storing<sp/>the<sp/>state<sp/>of<sp/>the<sp/>conversation.</highlight></codeline>
-<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="25"><highlight class="stringliteral">These<sp/>three<sp/>classes<sp/>exist<sp/>in<sp/>the<sp/>`Yarn.Unity`<sp/>namespace.<sp/>To<sp/>create<sp/>your<sp/>subclasses<sp/>of<sp/>`DialogueUIBehaviour`<sp/>and<sp/>`VariableStorageBehaviour`,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>to<sp/>add<sp/>the<sp/>following<sp/>code<sp/>to<sp/>the<sp/>top<sp/>of<sp/>your<sp/>C#<sp/>code:</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Yarn.Unity;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">Additionally,<sp/>you<sp/>store<sp/>your<sp/>Yarn<sp/>files<sp/>as<sp/>`.json`<sp/>assets<sp/>in<sp/>your<sp/>Unity<sp/>projects.<sp/>These<sp/>can<sp/>be<sp/>stored<sp/>anywhere<sp/>-<sp/>you<sp/>simply<sp/>provide<sp/>add<sp/>them<sp/>to<sp/>the<sp/>`DialogueRunner`</highlight><highlight class="stringliteral">&apos;s<sp/>inspector.<sp/>You<sp/>can<sp/>also<sp/>call<sp/>`AddScript`<sp/>on<sp/>the<sp/>`DialogueRunner`<sp/>at<sp/>runtime;<sp/>this<sp/>is<sp/>useful<sp/>for<sp/>cases<sp/>like<sp/>spawning<sp/>a<sp/>character<sp/>who<sp/>comes<sp/>with<sp/>some<sp/>extra<sp/>dialogue<sp/>-<sp/>all<sp/>that<sp/>needs<sp/>to<sp/>happen<sp/>is<sp/>that<sp/>character<sp/>just<sp/>needs<sp/>to<sp/>pass<sp/>their<sp/>Yarn<sp/>script<sp/>to<sp/>the<sp/>`DialogueRunner`.</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="31"><highlight class="stringliteral">&lt;!--</highlight></codeline>
-<codeline lineno="32"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="33"><highlight class="stringliteral">Let&apos;</highlight><highlight class="normal">s<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>started<sp/>with<sp/>Yarn<sp/>Spinner!</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal">##<sp/>Tutorial</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal">To<sp/>introduce<sp/>Yarn<sp/>Spinner,<sp/>we</highlight><highlight class="stringliteral">&apos;ll<sp/>create<sp/>an<sp/>empty<sp/>Unity<sp/>project,<sp/>and<sp/>then<sp/>build<sp/>it<sp/>from<sp/>the<sp/>ground<sp/>up<sp/>to<sp/>run<sp/>a<sp/>sample<sp/>conversation.</highlight></codeline>
-<codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="40"><highlight class="stringliteral">To<sp/>see<sp/>the<sp/>finished<sp/>project,<sp/>[download<sp/>Yarn<sp/>Spinner](https://github.com/thesecretlab/YarnSpinner/releases)<sp/>and<sp/>open<sp/>the<sp/>[Unity<sp/>folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity)<sp/>in<sp/>the<sp/>Unity<sp/>editor.</highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="42"><highlight class="stringliteral">###<sp/>Create<sp/>the<sp/>Unity<sp/>project</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral">*<sp/>**Launch<sp/>Unity,<sp/>and<sp/>create<sp/>a<sp/>new<sp/>project.**<sp/>The<sp/>name<sp/>of<sp/>the<sp/>project<sp/>doesn&apos;</highlight><highlight class="normal">t<sp/>matter.</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal">###<sp/>Import<sp/>the<sp/>Yarn<sp/>Spinner<sp/>package.</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal">*<sp/>**Import<sp/>YarnSpinner.unitypackage<sp/>into<sp/>your<sp/>project.**<sp/>If<sp/>you<sp/>prefer,<sp/>you<sp/>can<sp/>also<sp/>install<sp/>the<sp/>package<sp/>from<sp/>the<sp/>[Asset<sp/>Store](TODO).</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">Yarn<sp/>Spinner<sp/>is<sp/>composed<sp/>of<sp/>a<sp/>.DLL<sp/>file,<sp/>and<sp/>a<sp/>couple<sp/>of<sp/>supporting<sp/>scripts<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Unity.</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal">*<sp/>`YarnSpinner.dll`,<sp/>which<sp/>does<sp/>the<sp/>heavy<sp/>lifting<sp/>involved<sp/>in<sp/>parsing<sp/>your<sp/>Yarn<sp/>files,<sp/>and<sp/>executing<sp/>them.<sp/>You<sp/>won</highlight><highlight class="stringliteral">&apos;t<sp/>do<sp/>much<sp/>with<sp/>it<sp/>yourself;<sp/>rather,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>take<sp/>advantage<sp/>of...--<sp/>&gt;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal">Yarn<sp/>dialogue<sp/>is<sp/>stored<sp/>in<sp/>.json<sp/>files,<sp/>which<sp/>you<sp/>create<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>the<sp/>[Yarn<sp/>editor](http:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn).<sp/>To<sp/>show<sp/>the<sp/>dialogue<sp/>in<sp/>your<sp/>game,<sp/>you<sp/>need<sp/>to<sp/>add<sp/>it<sp/>to<sp/>your<sp/>project<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal">*<sp/>**Create<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>conversation<sp/>in<sp/>the<sp/>[Yarn<sp/>editor](http:</highlight><highlight class="comment">//www.github.com/infiniteammoinc/Yarn),**<sp/>and<sp/>save<sp/>it<sp/>as<sp/>a<sp/>JSON<sp/>file.<sp/>(Alternatively,<sp/>if<sp/>you<sp/>already<sp/>have<sp/>a<sp/>dialogue<sp/>file<sp/>you&apos;d<sp/>like<sp/>to<sp/>use,<sp/>go<sp/>ahead<sp/>and<sp/>use<sp/>that<sp/>instead!)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal">*<sp/>**Copy<sp/>your<sp/>Yarn<sp/><ref refid="d5/d16/a00029_1ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8" kindref="member">JSON</ref><sp/>file<sp/>into<sp/>your<sp/>project.**<sp/>You</highlight><highlight class="stringliteral">&apos;re<sp/>now<sp/>ready<sp/>to<sp/>start<sp/>using<sp/>Yarn<sp/>Spinner.</highlight></codeline>
-<codeline lineno="60"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="61"><highlight class="stringliteral">&lt;!--<sp/>(gif<sp/>of<sp/>dragging<sp/>in<sp/>the<sp/>dialogue<sp/>file)<sp/>--&gt;</highlight></codeline>
-<codeline lineno="62"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="63"><highlight class="stringliteral">###<sp/>Load<sp/>your<sp/>conversation<sp/>with<sp/>`DialogueRunner`</highlight></codeline>
-<codeline lineno="64"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="65"><highlight class="stringliteral">Yarn<sp/>conversations<sp/>are<sp/>loaded<sp/>and<sp/>managed<sp/>by<sp/>a<sp/>`DialogueRunner`<sp/>object.<sp/>This<sp/>object<sp/>is<sp/>responsible<sp/>for<sp/>loading<sp/>and<sp/>parsing<sp/>your<sp/>Yarn<sp/>`.json`<sp/>files.<sp/>It<sp/>also<sp/>runs<sp/>the<sp/>script<sp/>when<sp/>it&apos;</highlight><highlight class="normal">s<sp/>told<sp/>to<sp/>-<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>example,<sp/>when<sp/>you<sp/>walk<sp/>up<sp/>to<sp/>a<sp/>character<sp/>in<sp/>your<sp/>game<sp/>and<sp/>talk<sp/>to<sp/>them.</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal">&lt;!--<sp/>We</highlight><highlight class="stringliteral">&apos;ll<sp/>start<sp/>by<sp/>creating<sp/>an<sp/>empty<sp/>object,<sp/>and<sp/>then<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>add<sp/>the<sp/>`DialogueRunner`<sp/>component<sp/>to<sp/>it.</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal">*<sp/>**Create<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>empty<sp/>game<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">.<sp/>Rename<sp/>it<sp/>to<sp/></highlight><highlight class="stringliteral">&quot;Dialogue<sp/>Runner&quot;</highlight><highlight class="normal">.**</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal">*<sp/>With<sp/>the<sp/>Dialogue<sp/>Runner<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>selected,<sp/>**open<sp/>the<sp/>Component<sp/>menu,<sp/>and<sp/>choose<sp/>Scripts<sp/>→<sp/>Yarn<sp/>Spinner<sp/>→<sp/>Dialogue<sp/>Runner.**</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal">&lt;!--<sp/>(gif<sp/>of<sp/>adding<sp/>component)<sp/>--<sp/>&gt;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal">Next,<sp/>you<sp/>need<sp/>to<sp/>add<sp/>the<sp/>Yarn<sp/>files<sp/>that<sp/>you<sp/>want<sp/>to<sp/>show.<sp/>The<sp/>Dialogue<sp/>runner<sp/>can<sp/>load<sp/>multiple<sp/>Yarn<sp/>files<sp/>at<sp/>the<sp/>same<sp/>time;<sp/>the<sp/>only<sp/>requirement<sp/>is<sp/>that<sp/>**no<sp/>nodes<sp/>are<sp/>allowed<sp/>to<sp/>have<sp/>the<sp/>same<sp/>name**.<sp/>(This<sp/>is<sp/>a<sp/>requirement<sp/>that<sp/>may<sp/>change<sp/>in<sp/>the<sp/>future.)</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal">*<sp/>**Drag<sp/>your<sp/>Yarn<sp/><ref refid="d5/d16/a00029_1ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8" kindref="member">JSON</ref><sp/>file<sp/>into<sp/>the<sp/>`Source<sp/><ref refid="d5/d16/a00029_1a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675" kindref="member">Text</ref>`<sp/>array.**</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal">&lt;!--<sp/>(gif<sp/>of<sp/>adding<sp/>dialogue<sp/>file)<sp/>--<sp/>&gt;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal">--&gt;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal">###<sp/>Display<sp/>your<sp/>conversation<sp/>with<sp/>`DialogueUI`</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal">Your<sp/>game</highlight><highlight class="stringliteral">&apos;s<sp/>dialogue<sp/>needs<sp/>to<sp/>be<sp/>shown<sp/>to<sp/>the<sp/>user.<sp/>Additionally,<sp/>you<sp/>need<sp/>a<sp/>way<sp/>to<sp/>let<sp/>the<sp/>player<sp/>choose<sp/>what<sp/>their<sp/>reaction<sp/>is<sp/>going<sp/>to<sp/>be.</highlight></codeline>
-<codeline lineno="85"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="86"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>makes<sp/>no<sp/>assumptions<sp/>about<sp/>how<sp/>you<sp/>want<sp/>to<sp/>handle<sp/>your<sp/>dialogue&apos;</highlight><highlight class="normal">s<sp/>UI.<sp/>Want<sp/>to<sp/>present<sp/>as<sp/>simple<sp/>list<sp/>of<sp/>options?<sp/>That</highlight><highlight class="stringliteral">&apos;s<sp/>fine.<sp/>Want<sp/>a<sp/>fancy<sp/>Mass<sp/>Effect<sp/>style<sp/>radial<sp/>menu?<sp/>Totally<sp/>cool.<sp/>Want<sp/>a<sp/>totally<sp/>bonkers<sp/>gesture-based<sp/>UI<sp/>with<sp/>a<sp/>countdown<sp/>timer?<sp/>Oh<sp/>man<sp/>that<sp/>would<sp/>be<sp/>sweet.</highlight></codeline>
-<codeline lineno="87"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="88"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>leaves<sp/>all<sp/>of<sp/>the<sp/>work<sp/>of<sp/>actually<sp/>presenting<sp/>the<sp/>conversation<sp/>up<sp/>to<sp/>you;<sp/>all<sp/>it&apos;</highlight><highlight class="normal">s<sp/>responsible<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>is<sp/>delivering<sp/>the<sp/>lines<sp/>that<sp/>the<sp/>player<sp/>should<sp/>see,<sp/>and<sp/>notifying<sp/>Yarn<sp/>Spinner<sp/>about<sp/>what<sp/>response<sp/>the<sp/>user<sp/>selected.</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal">Yarn<sp/>Spinner<sp/>comes<sp/>with<sp/>an<sp/>example<sp/>script<sp/>that<sp/>uses<sp/>Unity</highlight><highlight class="stringliteral">&apos;s<sp/>UI<sp/>system.<sp/>It&apos;</highlight><highlight class="normal">s<sp/>a<sp/>good<sp/>place<sp/>to<sp/>start.<sp/></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal">&lt;!--<sp/>TODO:<sp/>This<sp/>needs<sp/>completion.</highlight></codeline>
-<codeline lineno="93"><highlight class="normal">*<sp/>**Select<sp/>the<sp/>Dialogue<sp/>Runner,**<sp/>,<sp/>and<sp/>drag<sp/>the<sp/>`ExampleDialogueUI`<sp/>script<sp/>onto<sp/>it.<sp/></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal">The<sp/>`ExampleDialogueUI`<sp/>script<sp/>uses<sp/>a<sp/>`Text`<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>to<sp/>display<sp/>the<sp/>current<sp/>line<sp/>of<sp/>dialogue,<sp/>and<sp/>a<sp/>number<sp/>of<sp/>`Button`<sp/>objects<sp/>to<sp/>display<sp/>the<sp/>possible<sp/>choices<sp/>a<sp/>player<sp/>can<sp/>select.<sp/>When<sp/>Yarn<sp/>Spinner<sp/>has<sp/>a<sp/>line<sp/>of<sp/>dialogue,<sp/>it<sp/>displays<sp/>it<sp/>in<sp/>the<sp/>text<sp/>field;<sp/>when<sp/>Yarn<sp/>Spinner<sp/>has<sp/>a<sp/>collection<sp/>of<sp/>choices,<sp/>each<sp/>button</highlight><highlight class="stringliteral">&apos;s<sp/>text<sp/>is<sp/>set<sp/>to<sp/>the<sp/>corresponding<sp/>choice.</highlight></codeline>
-<codeline lineno="96"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="97"><highlight class="stringliteral"><sp/>--&gt;</highlight></codeline>
-<codeline lineno="98"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="99"><highlight class="stringliteral">###<sp/>Store<sp/>your<sp/>conversation<sp/>state<sp/>with<sp/>a<sp/>`VariableStorageBehaviour`</highlight></codeline>
-<codeline lineno="100"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="101"><highlight class="stringliteral">There&apos;</highlight><highlight class="normal">s<sp/>one<sp/>last<sp/>necessary<sp/>component.<sp/>As<sp/>you<sp/>play<sp/>through<sp/>a<sp/>conversation,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>probably<sp/>want<sp/>to<sp/>record<sp/>the<sp/>user&apos;</highlight><highlight class="normal">s<sp/>choices<sp/>somewhere.<sp/>Yarn<sp/>Spinner<sp/>doesn</highlight><highlight class="stringliteral">&apos;t<sp/>care<sp/>about<sp/>the<sp/>details<sp/>of<sp/>how<sp/>you<sp/>save<sp/>your<sp/>game<sp/>state;<sp/>instead,<sp/>it<sp/>just<sp/>expects<sp/>you<sp/>to<sp/>give<sp/>it<sp/>an<sp/>object<sp/>that<sp/>conforms<sp/>to<sp/>a<sp/>C#<sp/>*[interface](C#<sp/>interface)*,<sp/>which<sp/>defines<sp/>methods<sp/>like<sp/>&quot;set<sp/>variable&quot;<sp/>and<sp/>&quot;get<sp/>value<sp/>of<sp/>variable&quot;.</highlight></codeline>
-<codeline lineno="102"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="103"><highlight class="stringliteral">The<sp/>simplest<sp/>implementation<sp/>of<sp/>this<sp/>is<sp/>one<sp/>that<sp/>just<sp/>keeps<sp/>your<sp/>variables<sp/>in<sp/>memory,<sp/>but<sp/>it&apos;</highlight><highlight class="normal">s<sp/>pretty<sp/>straightforward<sp/>to<sp/>adapt<sp/>an<sp/>existing<sp/>save<sp/>game<sp/>system<sp/>to<sp/>use<sp/>it.</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal">&lt;!--</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal">Do<sp/>one<sp/>of<sp/>the<sp/>following<sp/>two<sp/>things:</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal">*<sp/>**Create<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>game<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/>and<sp/>add<sp/>the<sp/>`<ref refid="dc/ddf/a00067" kindref="compound">ExampleVariableStorage</ref>`<sp/>script<sp/>to<sp/>it.**</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal">Or:</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal">*<sp/>**Create<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>game<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/>and<sp/>add<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>script<sp/>to<sp/>it.<sp/>Make<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>script<sp/>subclass<sp/>`VariableStorageBehaviour`,<sp/>and<sp/>the<sp/>implement<sp/>the<sp/><sp/>`SetNumber`,<sp/>`GetNumber`,<sp/>`Clear`,<sp/>and<sp/>`ResetToDefaults`<sp/>methods.**</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal">*<sp/>Once<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>done<sp/>that,<sp/>**drag<sp/>this<sp/>new<sp/>object<sp/>into<sp/>the<sp/>Dialoge<sp/>Runner&apos;</highlight><highlight class="normal">s<sp/>`Variable<sp/>Storage`<sp/>slot.**</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal">###<sp/>Run<sp/>your<sp/>conversation</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal">There</highlight><highlight class="stringliteral">&apos;s<sp/>only<sp/>one<sp/>thing<sp/>left<sp/>to<sp/>do:<sp/>Yarn<sp/>Spinner<sp/>just<sp/>needs<sp/>to<sp/>know<sp/>what<sp/>node<sp/>in<sp/>the<sp/>Yarn<sp/>file<sp/>to<sp/>start<sp/>from.<sp/>It<sp/>will<sp/>default<sp/>to<sp/>&quot;Start&quot;,<sp/>but<sp/>you<sp/>can<sp/>override<sp/>it.</highlight></codeline>
-<codeline lineno="120"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="121"><highlight class="stringliteral">*<sp/>**Change<sp/>the<sp/>Dialogue<sp/>Runner&apos;</highlight><highlight class="normal">s<sp/>`Start<sp/>Node`<sp/>to<sp/>the<sp/>name<sp/>of<sp/>the<sp/>node<sp/>you</highlight><highlight class="stringliteral">&apos;d<sp/>like<sp/>to<sp/>start<sp/>run.**</highlight></codeline>
-<codeline lineno="122"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="123"><highlight class="stringliteral">*<sp/>Finally,<sp/>**run<sp/>the<sp/>game.**<sp/>The<sp/>conversation<sp/>will<sp/>play!</highlight></codeline>
-<codeline lineno="124"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="125"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="126"><highlight class="stringliteral">--&gt;</highlight></codeline>
-<codeline lineno="127"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="128"><highlight class="stringliteral">###<sp/>Respond<sp/>to<sp/>commands<sp/>with<sp/>`YarnCommand`</highlight></codeline>
-<codeline lineno="129"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="130"><highlight class="stringliteral">In<sp/>Yarn,<sp/>you<sp/>can<sp/>create<sp/>*commands*<sp/>that<sp/>tell<sp/>your<sp/>game<sp/>to<sp/>do<sp/>something.<sp/>For<sp/>example,<sp/>if<sp/>you<sp/>want<sp/>a<sp/>character<sp/>to<sp/>move<sp/>to<sp/>a<sp/>certain<sp/>point<sp/>on<sp/>the<sp/>screen,<sp/>you<sp/>might<sp/>have<sp/>a<sp/>command<sp/>that<sp/>looks<sp/>like<sp/>this:</highlight></codeline>
-<codeline lineno="131"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="132"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;&lt;move<sp/>Sally<sp/>exit&gt;&gt;</highlight></codeline>
-<codeline lineno="133"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="134"><highlight class="stringliteral">For<sp/>this<sp/>to<sp/>work,<sp/>the<sp/>game<sp/>object<sp/>named<sp/>&quot;Sally&quot;<sp/>needs<sp/>to<sp/>have<sp/>a<sp/>script<sp/>component<sp/>attached<sp/>to<sp/>it,<sp/>and<sp/>one<sp/>of<sp/>those<sp/>scripts<sp/>needs<sp/>to<sp/>have<sp/>a<sp/>method<sp/>that<sp/>looks<sp/>like<sp/>this:</highlight></codeline>
-<codeline lineno="135"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="136"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>[YarnCommand(&quot;move&quot;)]</highlight></codeline>
-<codeline lineno="137"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>public<sp/>void<sp/>MoveCharacter(string<sp/>destinationName)<sp/>{</highlight></codeline>
-<codeline lineno="138"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>move<sp/>to<sp/>the<sp/>destination</highlight></codeline>
-<codeline lineno="139"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="140"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="141"><highlight class="stringliteral">When<sp/>Yarn<sp/>encounters<sp/>a<sp/>command<sp/>that<sp/>contains<sp/>two<sp/>or<sp/>more<sp/>words,<sp/>it<sp/>looks<sp/>for<sp/>a<sp/>game<sp/>object<sp/>with<sp/>the<sp/>same<sp/>name<sp/>as<sp/>the<sp/>second<sp/>word<sp/>(&quot;Sally&quot;,<sp/>in<sp/>the<sp/>above<sp/>example),<sp/>and<sp/>then<sp/>searches<sp/>that<sp/>object&apos;</highlight><highlight class="normal">s<sp/>scripts<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>any<sp/>method<sp/>that<sp/>has<sp/>a<sp/>`YarnCommand`<sp/>with<sp/>the<sp/>same<sp/>name<sp/>as<sp/>the<sp/>first<sp/>word<sp/>(in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;move&quot;</highlight><highlight class="normal">).</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal">Any<sp/>further<sp/>words<sp/>in<sp/>the<sp/>command<sp/>are<sp/>passed<sp/>as<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>parameters<sp/>to<sp/>the<sp/>method<sp/>(</highlight><highlight class="stringliteral">&quot;exit&quot;</highlight><highlight class="normal">,<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal">,<sp/>which<sp/>is<sp/>used<sp/>as<sp/>the<sp/>`destinationName`<sp/>parameter)</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal">Note<sp/>that<sp/>**all**<sp/>parameters<sp/>must<sp/>be<sp/>strings.<sp/>`DialogueRunner`<sp/>will<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>an<sp/>error<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>it<sp/>finds<sp/>a<sp/>method<sp/>that<sp/>has<sp/>parameters<sp/>of<sp/>any<sp/>other<sp/>type.<sp/>It</highlight><highlight class="stringliteral">&apos;s<sp/>up<sp/>to<sp/>your<sp/>method<sp/>to<sp/>convert<sp/>the<sp/>strings<sp/>into<sp/>other<sp/>types,<sp/>like<sp/>numbers.</highlight></codeline>
-<codeline lineno="146"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Once<sp/>it</highlight><highlight class="stringliteral">&apos;s<sp/>downloaded,<sp/>follow<sp/>these<sp/>steps:</highlight></codeline>
+<codeline lineno="8"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="9"><highlight class="stringliteral">*<sp/>Open<sp/>**YarnSpinner.sln**.</highlight></codeline>
+<codeline lineno="10"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Build<sp/>menu**,<sp/>and<sp/>choose<sp/>**Build<sp/>All**.</highlight></codeline>
+<codeline lineno="11"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Unity/Assets/Yarn<sp/>Spinner**<sp/>folder.<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>find<sp/>a<sp/>copy<sp/>of<sp/>**YarnSpinner.dll**<sp/>there.<sp/>You<sp/>can<sp/>now<sp/>copy<sp/>that<sp/>DLL<sp/>file<sp/>wherever<sp/>you<sp/>need<sp/>it.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">##<sp/>Building<sp/>Documentation</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">Yarn<sp/>Spinner<sp/>uses<sp/>[Doxygen](https:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen)<sp/>to<sp/>generate<sp/>[DocBook](http://docbook.org/),<sp/>[HTML](https://en.wikipedia.org/wiki/HTML),<sp/>[LaTeX](https://www.latex-project.org/help/documentation/),<sp/>[RTF](https://en.wikipedia.org/wiki/Rich_Text_Format),<sp/>and<sp/>[XML](https://en.wikipedia.org/wiki/XML)<sp/>documentation.<sp/>[GNU<sp/>GLOBAL](https://www.gnu.org/software/global/)<sp/>is<sp/>also<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">Basic<sp/>steps<sp/>to<sp/>clean<sp/>out<sp/>existing<sp/>documentation,<sp/>generate<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/>and<sp/>check<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>generation<sp/>errors.<sp/>Note<sp/>that<sp/>some<sp/>ocurrences<sp/>of<sp/>the<sp/>word<sp/></highlight><highlight class="stringliteral">&apos;error&apos;</highlight><highlight class="normal"><sp/>will<sp/>be<sp/>due<sp/>to<sp/>classes/methods<sp/>etc.<sp/>of<sp/>YarnSpinner<sp/>itself<sp/>and<sp/>not<sp/>an<sp/>actual<sp/>error<sp/>in<sp/>the<sp/>documentation.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">*<sp/>rm<sp/>-fr<sp/>Documentation/{docbook,html,latex,rtf,xml}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">*<sp/>doxygen<sp/>Documentation/Doxyfile<sp/>&gt;<sp/>doxyoutput.txt<sp/>2&gt;&amp;1</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">*<sp/>grep<sp/>-i<sp/>error<sp/>doxyoutput.txt</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">[MarkDown](https:</highlight><highlight class="comment">//daringfireball.net/projects/markdown/)<sp/>documentation<sp/>is<sp/>available<sp/>via<sp/>conversion<sp/>of<sp/>the<sp/>XML<sp/>output<sp/>to<sp/>Markdown<sp/>using<sp/>third<sp/>party<sp/>tools<sp/>such<sp/>as<sp/>[Pandoc](http://pandoc.org)<sp/>or<sp/>[doxygen2md](https://github.com/pferdinand/doxygen2md)</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Unity.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Building.md"/>
   </compounddef>
 </doxygen>

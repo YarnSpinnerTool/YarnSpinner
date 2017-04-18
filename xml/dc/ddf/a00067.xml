@@ -1,273 +1,509 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dc/ddf/a00067" kind="class" prot="public">
-    <compoundname>ExampleVariableStorage</compoundname>
-    <basecompoundref refid="d0/d48/a00165" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
-    <innerclass refid="d0/d39/a00314" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="dc/ddf/a00067_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="d6/d7d/a00161" kindref="compound">Yarn.Value</ref> &gt;</type>
-        <definition>Dictionary&lt;string, Yarn.Value&gt; ExampleVariableStorage.variables</definition>
-        <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="d6/d7d/a00161" kindref="compound">Yarn.Value</ref>&gt; ()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="dc/ddf/a00067_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
-        <type><ref refid="d0/d39/a00314" kindref="compound">DefaultVariable</ref>[]</type>
-        <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
-        <argsstring></argsstring>
-        <name>defaultVariables</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="51" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="dc/ddf/a00067_1a9893656e3683711eb78441b30c52a600" prot="public" static="no" mutable="no">
-        <type>UnityEngine.UI.Text</type>
-        <definition>UnityEngine.UI.Text ExampleVariableStorage.debugTextView</definition>
-        <argsstring></argsstring>
-        <name>debugTextView</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="55" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="dc/ddf/a00067_1ab6a56afc687455f360876eff67891163" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void ExampleVariableStorage.Awake</definition>
-        <argsstring>()</argsstring>
-        <name>Awake</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="58" bodyend="61"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/ddf/a00067_1af646a17cfd63039a25149f8fc0776dcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void ExampleVariableStorage.Update</definition>
-        <argsstring>()</argsstring>
-        <name>Update</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="146" bodyend="157"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</compoundname>
+    <basecompoundref refid="dd/d32/a00041" prot="public" virt="non-virtual">CsvHelper.Configuration.CsvClassMap&lt; T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="dc/ddf/a00067_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.ResetToDefaults</definition>
-        <argsstring>()</argsstring>
-        <name>ResetToDefaults</name>
-        <reimplements refid="d0/d48/a00165_1a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="64" bodyend="120"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/ddf/a00067_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.SetValue</definition>
-        <argsstring>(string variableName, Yarn.Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="d0/d48/a00165_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="d6/d7d/a00161" kindref="compound">Yarn.Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="123" bodyend="127"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/ddf/a00067_1a741593be1a299dcc2136f05b9b4a995a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override <ref refid="d6/d7d/a00161" kindref="compound">Yarn.Value</ref></type>
-        <definition>override Yarn.Value ExampleVariableStorage.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="d0/d48/a00165_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="130" bodyend="137"/>
-      </memberdef>
-      <memberdef kind="function" id="dc/ddf/a00067_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void ExampleVariableStorage.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="d0/d48/a00165_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="140" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="140" bodyend="143"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d48/a00165_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="dd/d32/a00041_1a983d792ae80f888958037eea306b143a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
-        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="db/ddf/a00164_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <definition>virtual void CsvHelper.Configuration.CsvClassMap&lt; T &gt;.ConstructUsing</definition>
+        <argsstring>(Expression&lt; Func&lt; T &gt;&gt; expression)</argsstring>
+        <name>ConstructUsing</name>
         <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
+          <type>Expression&lt; Func&lt; T &gt;&gt;</type>
+          <declname>expression</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Constructs the row object using the given expression. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The expression.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="461" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="461" bodyend="464"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" bodystart="26" bodyend="29"/>
       </memberdef>
-      <memberdef kind="function" id="d0/d48/a00165_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>float</type>
-        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="db/ddf/a00164_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+      <memberdef kind="function" id="dd/d32/a00041_1aa3395a5f657f0dd7c8fe6a0fbf5a03cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d5/de0/a00050" kindref="compound">CsvPropertyMap</ref></type>
+        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvClassMap&lt; T &gt;.Map</definition>
+        <argsstring>(Expression&lt; Func&lt; T, object &gt;&gt; expression)</argsstring>
+        <name>Map</name>
         <param>
-          <type>string</type>
-          <declname>variableName</declname>
+          <type>Expression&lt; Func&lt; T, object &gt;&gt;</type>
+          <declname>expression</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Maps a property to a CSV field. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The property to map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The property mapping.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" bodystart="36" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d32/a00041_1a20365b78c96ac29e3261bcde30e0d746" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d4/d6d/a00055" kindref="compound">CsvPropertyReferenceMap</ref></type>
+        <definition>virtual CsvPropertyReferenceMap CsvHelper.Configuration.CsvClassMap&lt; T &gt;.References&lt; TClassMap &gt;</definition>
+        <argsstring>(Expression&lt; Func&lt; T, object &gt;&gt; expression, params object[] constructorArgs)</argsstring>
+        <name>References&lt; TClassMap &gt;</name>
+        <param>
+          <type>Expression&lt; Func&lt; T, object &gt;&gt;</type>
+          <declname>expression</declname>
+        </param>
+        <param>
+          <type>params object[]</type>
+          <declname>constructorArgs</declname>
+        </param>
+        <briefdescription>
+<para>Maps a property to another class map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>TClassMap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The expression.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>constructorArgs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Constructor arguments used to create the reference map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The reference mapping for the property.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" bodystart="63" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d3a/a00040_1a83de9d28160d0d3da1e017df554a9481" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvClassMap.CreateMap</definition>
+        <argsstring>()</argsstring>
+        <name>CreateMap</name>
+        <briefdescription>
+<para>Called to create the mappings. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="466" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="466" bodyend="469"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d3a/a00040_1abab2b5cd5a290fd5d17116430b084420" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d5/de0/a00050" kindref="compound">CsvPropertyMap</ref></type>
+        <definition>virtual CsvPropertyMap CsvHelper.Configuration.CsvClassMap.PropertyMap&lt; T &gt;</definition>
+        <argsstring>(Expression&lt; Func&lt; T, object &gt;&gt; expression)</argsstring>
+        <name>PropertyMap&lt; T &gt;</name>
+        <param>
+          <type>Expression&lt; Func&lt; T, object &gt;&gt;</type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+<para>Gets the property map for the given property expression. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class the property belongs to.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The property expression.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="d5/de0/a00050" kindref="compound">CsvPropertyMap</ref> for the given expression.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="63" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="63" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d3a/a00040_1aec2097b09baaaac45171f91592af439d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.Configuration.CsvClassMap.AutoMap</definition>
+        <argsstring>(bool ignoreReferences=false, bool prefixReferenceHeaders=false)</argsstring>
+        <name>AutoMap</name>
+        <param>
+          <type>bool</type>
+          <declname>ignoreReferences</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>prefixReferenceHeaders</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Auto maps all properties for the given type. If a property is mapped again it will override the existing map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ignoreReferences</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prefixReferenceHeaders</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="92" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="92" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="dd/d32/a00041_1a68caeee244e978110a2acae6d3042fc3" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="d4/d6d/a00055" kindref="compound">CsvPropertyReferenceMap</ref></type>
+        <definition>virtual CsvPropertyReferenceMap CsvHelper.Configuration.CsvClassMap&lt; T &gt;.References</definition>
+        <argsstring>(Type type, Expression&lt; Func&lt; T, object &gt;&gt; expression, params object[] constructorArgs)</argsstring>
+        <name>References</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Expression&lt; Func&lt; T, object &gt;&gt;</type>
+          <declname>expression</declname>
+        </param>
+        <param>
+          <type>params object[]</type>
+          <declname>constructorArgs</declname>
+        </param>
+        <briefdescription>
+<para>Maps a property to another class map. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The expression.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>constructorArgs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Constructor arguments used to create the reference map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The reference mapping for the property</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" line="93" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap`1.cs" bodystart="93" bodyend="112"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="db/d3a/a00040_1ae8038b36db7584ef1a73852fcc46404b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>NewExpression</type>
+        <definition>virtual NewExpression CsvHelper.Configuration.CsvClassMap.Constructor</definition>
+        <argsstring></argsstring>
+        <name>Constructor</name>
+        <briefdescription>
+<para>Gets the constructor expression. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/d3a/a00040_1a9580e897abcba144f3101eb983348e25" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="d2/d79/a00051" kindref="compound">CsvPropertyMapCollection</ref></type>
+        <definition>virtual CsvPropertyMapCollection CsvHelper.Configuration.CsvClassMap.PropertyMaps</definition>
+        <argsstring></argsstring>
+        <name>PropertyMaps</name>
+        <briefdescription>
+<para>The class property mappings. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/d3a/a00040_1a6dfbf8f743b16d2ec83edef865ea2d9e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; <ref refid="d4/d6d/a00055" kindref="compound">CsvPropertyReferenceMap</ref> &gt;</type>
+        <definition>virtual List&lt;CsvPropertyReferenceMap&gt; CsvHelper.Configuration.CsvClassMap.ReferenceMaps</definition>
+        <argsstring></argsstring>
+        <name>ReferenceMaps</name>
+        <briefdescription>
+<para>The class property reference mappings. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="db/d3a/a00040_1a708c455aa7f78a26b55dafc46a587ec3" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvClassMap.GetMaxIndex</definition>
+        <argsstring>()</argsstring>
+        <name>GetMaxIndex</name>
+        <briefdescription>
+<para>Get the largest index for the properties and references. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The max index.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="103" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d3a/a00040_1ac6c1e8ae1d049bd0ef09e7c2d99fbe55" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvClassMap.ReIndex</definition>
+        <argsstring>(int indexStart=0)</argsstring>
+        <name>ReIndex</name>
+        <param>
+          <type>int</type>
+          <declname>indexStart</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Resets the indexes based on the given start index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indexStart</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index start.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The last index + 1.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="125" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="db/d3a/a00040_1a16b5bb84064e86c2b319348d8a42693d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CsvHelper.Configuration.CsvClassMap.AutoMapInternal</definition>
+        <argsstring>(CsvClassMap map, bool ignoreReferences, bool prefixReferenceHeaders, LinkedList&lt; Type &gt; mapParents, int indexStart=0)</argsstring>
+        <name>AutoMapInternal</name>
+        <param>
+          <type><ref refid="db/d3a/a00040" kindref="compound">CsvClassMap</ref></type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ignoreReferences</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>prefixReferenceHeaders</declname>
+        </param>
+        <param>
+          <type>LinkedList&lt; Type &gt;</type>
+          <declname>mapParents</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>indexStart</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Auto maps the given map and checks for circular references as it goes. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The map to auto map.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ignoreReferences</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if references should be ignored when auto mapping. True to ignore references, otherwise false.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prefixReferenceHeaders</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if headers of reference properties should get prefixed by the parent property name. True to prefix, otherwise false.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mapParents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of parents for the map.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="153" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="153" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d3a/a00040_1a4b2f3fc2e0670d17566b4705b7b622aa" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CsvHelper.Configuration.CsvClassMap.CheckForCircularReference</definition>
+        <argsstring>(Type type, LinkedList&lt; Type &gt; mapParents)</argsstring>
+        <name>CheckForCircularReference</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>LinkedList&lt; Type &gt;</type>
+          <declname>mapParents</declname>
+        </param>
+        <briefdescription>
+<para>Checks for circular references. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check for.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mapParents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of parents to check against.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if a circular reference was found. True if a circular reference was found, otherwise false.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="232" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" bodystart="232" bodyend="255"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A default CsvClassMap{T} that can be used to create a class map dynamically. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
     <inheritancegraph>
-      <node id="1218">
-        <label>VariableStorageBehaviour</label>
-        <link refid="d0/d48/a00165"/>
-        <childnode refid="1219" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1220" relation="public-inheritance">
+      <node id="1110">
+        <label>CsvClassMap&lt; T &gt;</label>
+        <link refid="dd/d32/a00041"/>
+        <childnode refid="1111" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1217">
-        <label>ExampleVariableStorage</label>
+      <node id="1109">
+        <label>CsvHelper.Configuration.DefaultCsvClassMap&lt; T &gt;</label>
         <link refid="dc/ddf/a00067"/>
-        <childnode refid="1218" relation="public-inheritance">
+        <childnode refid="1110" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1220">
-        <label>Yarn::VariableStorage</label>
-        <link refid="db/ddf/a00164"/>
-      </node>
-      <node id="1219">
-        <label>MonoBehaviour</label>
+      <node id="1111">
+        <label>CsvClassMap</label>
+        <link refid="db/d3a/a00040"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1222">
-        <label>VariableStorageBehaviour</label>
-        <link refid="d0/d48/a00165"/>
-        <childnode refid="1223" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1224" relation="public-inheritance">
+      <node id="1116">
+        <label>IList&lt; CsvPropertyMap &gt;</label>
+      </node>
+      <node id="1113">
+        <label>CsvClassMap&lt; T &gt;</label>
+        <link refid="dd/d32/a00041"/>
+        <childnode refid="1114" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1221">
-        <label>ExampleVariableStorage</label>
+      <node id="1112">
+        <label>CsvHelper.Configuration.DefaultCsvClassMap&lt; T &gt;</label>
         <link refid="dc/ddf/a00067"/>
-        <childnode refid="1222" relation="public-inheritance">
-        </childnode>
-        <childnode refid="1225" relation="usage">
-          <edgelabel>+defaultVariables</edgelabel>
-        </childnode>
-        <childnode refid="1227" relation="usage">
-          <edgelabel>+debugTextView</edgelabel>
+        <childnode refid="1113" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1224">
-        <label>Yarn::VariableStorage</label>
-        <link refid="db/ddf/a00164"/>
-      </node>
-      <node id="1227">
-        <label>UnityEngine</label>
-      </node>
-      <node id="1225">
-        <label>ExampleVariableStorage.DefaultVariable</label>
-        <link refid="d0/d39/a00314"/>
-        <childnode refid="1226" relation="usage">
-          <edgelabel>+type</edgelabel>
+      <node id="1114">
+        <label>CsvClassMap</label>
+        <link refid="db/d3a/a00040"/>
+        <childnode refid="1115" relation="usage">
+          <edgelabel>-propertyMaps</edgelabel>
         </childnode>
       </node>
-      <node id="1223">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1226">
-        <label>Yarn</label>
+      <node id="1115">
+        <label>CsvHelper.Configuration.CsvPropertyMapCollection</label>
+        <link refid="d2/d79/a00051"/>
+        <childnode refid="1116" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="34" bodyend="160"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/DefaultCsvClassMap`1.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/DefaultCsvClassMap`1.cs" bodystart="14" bodyend="16"/>
     <listofallmembers>
-      <member refid="dc/ddf/a00067_1ab6a56afc687455f360876eff67891163" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Awake</name></member>
-      <member refid="dc/ddf/a00067_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>Clear</name></member>
-      <member refid="dc/ddf/a00067_1a9893656e3683711eb78441b30c52a600" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>debugTextView</name></member>
-      <member refid="dc/ddf/a00067_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>defaultVariables</name></member>
-      <member refid="d0/d48/a00165_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetNumber</name></member>
-      <member refid="dc/ddf/a00067_1a741593be1a299dcc2136f05b9b4a995a" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetValue</name></member>
-      <member refid="dc/ddf/a00067_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>ResetToDefaults</name></member>
-      <member refid="d0/d48/a00165_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetNumber</name></member>
-      <member refid="dc/ddf/a00067_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetValue</name></member>
-      <member refid="dc/ddf/a00067_1af646a17cfd63039a25149f8fc0776dcb" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Update</name></member>
-      <member refid="dc/ddf/a00067_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>variables</name></member>
+      <member refid="db/d3a/a00040_1aec2097b09baaaac45171f91592af439d" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>AutoMap</name></member>
+      <member refid="db/d3a/a00040_1a16b5bb84064e86c2b319348d8a42693d" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>AutoMapInternal</name></member>
+      <member refid="db/d3a/a00040_1a4b2f3fc2e0670d17566b4705b7b622aa" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>CheckForCircularReference</name></member>
+      <member refid="db/d3a/a00040_1ae8038b36db7584ef1a73852fcc46404b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>Constructor</name></member>
+      <member refid="dd/d32/a00041_1a983d792ae80f888958037eea306b143a" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>ConstructUsing</name></member>
+      <member refid="db/d3a/a00040_1a83de9d28160d0d3da1e017df554a9481" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>CreateMap</name></member>
+      <member refid="db/d3a/a00040_1affc5ae8f2b0406d496bcbdf246da6210" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>CsvClassMap</name></member>
+      <member refid="db/d3a/a00040_1a708c455aa7f78a26b55dafc46a587ec3" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>GetMaxIndex</name></member>
+      <member refid="dd/d32/a00041_1aa3395a5f657f0dd7c8fe6a0fbf5a03cb" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>Map</name></member>
+      <member refid="db/d3a/a00040_1abab2b5cd5a290fd5d17116430b084420" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>PropertyMap&lt; T &gt;</name></member>
+      <member refid="db/d3a/a00040_1a9580e897abcba144f3101eb983348e25" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>PropertyMaps</name></member>
+      <member refid="db/d3a/a00040_1a6dfbf8f743b16d2ec83edef865ea2d9e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>ReferenceMaps</name></member>
+      <member refid="dd/d32/a00041_1a68caeee244e978110a2acae6d3042fc3" prot="protected" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>References</name></member>
+      <member refid="dd/d32/a00041_1a20365b78c96ac29e3261bcde30e0d746" prot="public" virt="virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>References&lt; TClassMap &gt;</name></member>
+      <member refid="db/d3a/a00040_1ac6c1e8ae1d049bd0ef09e7c2d99fbe55" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</scope><name>ReIndex</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
