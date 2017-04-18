@@ -42,10 +42,16 @@
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal">(This<sp/>space<sp/>left<sp/>intentionally<sp/>blank)</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Extending<sp/>Tarnspinner</highlight></codeline>
-<codeline lineno="37"><highlight class="preprocessor"></highlight><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>extend<sp/>Yarnspinner</highlight><highlight class="stringliteral">&apos;s<sp/>functionality,<sp/>please</highlight></codeline>
-<codeline lineno="38"><highlight class="stringliteral">refer<sp/>to<sp/>the<sp/>[Extending<sp/>Yarnspinner](Extending.md)<sp/>document.</highlight></codeline>
-<codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Linux</highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">As<sp/>Unity<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Linux<sp/>is<sp/>currently<sp/>not<sp/>available<sp/>in<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>release,<sp/>we<sp/>are</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">not<sp/>actively<sp/>pursuing<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>platform<sp/>however<sp/>we<sp/>are<sp/>very<sp/>enthusastic</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">about<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>future<sp/>prospect.</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">##<sp/>Extending<sp/>Tarnspinner</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>extend<sp/>Yarnspinner</highlight><highlight class="stringliteral">&apos;s<sp/>functionality,<sp/>please</highlight></codeline>
+<codeline lineno="44"><highlight class="stringliteral">refer<sp/>to<sp/>the<sp/>[Extending<sp/>Yarnspinner](Extending.md)<sp/>document.</highlight></codeline>
+<codeline lineno="45"><highlight class="stringliteral"></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
   </compounddef>
