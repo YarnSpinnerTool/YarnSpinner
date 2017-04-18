@@ -33,12 +33,11 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal">(This<sp/>space<sp/>left<sp/>intentionally<sp/>blank)</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)</highlight></codeline>
-<codeline lineno="28"><highlight class="preprocessor"></highlight><highlight class="preprocessor">##<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
-<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="normal"><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
-<codeline lineno="30"><highlight class="normal">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
-<codeline lineno="31"><highlight class="normal">install<sp/>the<sp/>Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual<sp/>Studio.</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"></highlight><highlight class="normal"><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">install<sp/>the<sp/>Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual<sp/>Studio.</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
   </compounddef>
