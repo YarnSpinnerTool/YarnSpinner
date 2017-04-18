@@ -2,32 +2,24 @@
 
 ## Yarn Documentation
 
-Documentation for Yarn is under active development. Please submit any
-suggestions you may have.
+Documentation for Yarn is under active development. Please submit any suggestions you may have.
 
-YarnSpinner documentation is generated automatically by the [Doxygen]
-(http://www.doxygen.org) system.
+YarnSpinner documentation is generated automatically by the [Doxygen](http://www.doxygen.org) system.
 
 ## Building Yarnspinner
-Yarnspinner is automatically built by Travis Continual Integration
-system. For information on how to build it yourself, please refer to the
-[Building](Building.md) document.
+Yarnspinner is automatically built by Travis Continual Integration system. For information on how to build it yourself, please refer to the [Building](Building.md) document.
 
 ## Using Yarnspinner
-For information on how to write stories for Yarnspinner, refer to the
-[Usage](Usage.md) document.
+For information on how to write stories for Yarnspinner, refer to the [Usage](Usage.md) document.
 
 ## Using Unity
-At this point in time, only examples for the Unity game engine are
-available. We hope to include a more generic example in the future.
-Please refer to the [Unity](Unity.md) document for more information.
+At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Unity](Unity.md) document for more information.
 
 ### Tips during Unity install
 
 ### Windows
 
-Find the temp folder the installer has executed from and back it up
-before it completes installing.
+Find the temp folder the installer has executed from and back it up before it completes installing.
 
 ### Mac
 
@@ -35,11 +27,8 @@ before it completes installing.
 
 ### Linux
 
-As Unity for Linux is currently not available in final release, we are
-not actively pursuing this platform however we are very enthusastic
-about this future prospect.
+As Unity for Linux is currently not available in final release, we are not actively pursuing this platform however we are very enthusastic about this future prospect.
 
 ## Extending Tarnspinner
-For information on how to extend Yarnspinner's functionality, please
-refer to the [Extending Yarnspinner](Extending.md) document.
+For information on how to extend Yarnspinner's functionality, please refer to the [Extending Yarnspinner](Extending.md) document.
 
