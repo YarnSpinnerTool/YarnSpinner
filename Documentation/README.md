@@ -33,6 +33,12 @@ before it completes installing.
 
 (This space left intentionally blank)
 
+### Linux
+
+As Unity for Linux is currently not available in final release, we are
+not actively pursuing this platform however we are very enthusastic
+about this future prospect.
+
 ## Extending Tarnspinner
 For information on how to extend Yarnspinner's functionality, please
 refer to the [Extending Yarnspinner](Extending.md) document.
