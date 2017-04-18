@@ -5,8 +5,8 @@
 Documentation for Yarn is under active development. Please submit any
 suggestions you may have.
 
-YarnSpinner documentation is generated automatically by the Doxygen system.
-
+YarnSpinner documentation is generated automatically by the [Doxygen]
+(http://www.doxygen.org) system.
 
 ## Building Yarnspinner
 Yarnspinner is automatically built by Travis Continual Integration
