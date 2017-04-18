@@ -11,32 +11,34 @@
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Documentation</highlight></codeline>
 <codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>is<sp/></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>Doxygen<sp/>system.</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">##<sp/>Install<sp/>Unity</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>point<sp/>in<sp/>time,<sp/>only<sp/>examples<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>Unity<sp/>game<sp/>engine<sp/>are</highlight></codeline>
-<codeline lineno="12"><highlight class="normal">available.<sp/>We<sp/>hope<sp/>to<sp/>include<sp/>a<sp/>more<sp/></highlight><highlight class="keyword">generic</highlight><highlight class="normal"><sp/>example<sp/>in<sp/>the<sp/>future.</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">Meanwhile,<sp/>please<sp/>install<sp/>Unity.</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">##<sp/>Tips<sp/>during<sp/>Unity<sp/>install</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Windows</highlight></codeline>
-<codeline lineno="18"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">Find<sp/>the<sp/>temp<sp/>folder<sp/>the<sp/>installer<sp/>has<sp/>downloaded<sp/>to<sp/>and<sp/>is<sp/>executing</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">from<sp/>and<sp/>back<sp/>it<sp/>up.</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal">###<sp/>Mac</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">(This<sp/>space<sp/>left<sp/>intentionally<sp/>blank)</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
-<codeline lineno="27"><highlight class="preprocessor"></highlight><highlight class="normal"><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
-<codeline lineno="28"><highlight class="normal">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
-<codeline lineno="29"><highlight class="normal">install<sp/>the<sp/>Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual<sp/>Studio.</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>Doxygen<sp/>system.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">##<sp/>Install<sp/>Unity</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>point<sp/>in<sp/>time,<sp/>only<sp/>examples<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>Unity<sp/>game<sp/>engine<sp/>are</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">available.<sp/>We<sp/>hope<sp/>to<sp/>include<sp/>a<sp/>more<sp/></highlight><highlight class="keyword">generic</highlight><highlight class="normal"><sp/>example<sp/>in<sp/>the<sp/>future.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">Meanwhile,<sp/>please<sp/>install<sp/>Unity.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">##<sp/>Tips<sp/>during<sp/>Unity<sp/>install</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Windows</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Find<sp/>the<sp/>temp<sp/>folder<sp/>the<sp/>installer<sp/>has<sp/>downloaded<sp/>to<sp/>and<sp/>is<sp/>executing</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">from<sp/>and<sp/>back<sp/>it<sp/>up.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">###<sp/>Mac</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">(This<sp/>space<sp/>left<sp/>intentionally<sp/>blank)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>(OPTIONAL:<sp/>Mac<sp/>and<sp/>Windows)</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"></highlight><highlight class="preprocessor">##<sp/>Install<sp/>Microsoft<sp/>Visual<sp/>Studio<sp/>Community<sp/>Edition</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="normal"><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>have<sp/>some<sp/>programming<sp/>experience,<sp/>or<sp/>wish<sp/>to<sp/>have<sp/>a<sp/>more</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">expansive<sp/>development<sp/>enviornment<sp/>than<sp/>the<sp/>Unity<sp/>editor,<sp/>you<sp/>may<sp/>wish<sp/>to</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">install<sp/>the<sp/>Community<sp/>Edition<sp/>of<sp/>Microsoft<sp/>Visual<sp/>Studio.</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
   </compounddef>

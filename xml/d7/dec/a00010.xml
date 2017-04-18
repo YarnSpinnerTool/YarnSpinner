@@ -5,11 +5,12 @@
     <title>Yarn Spinner Documentation</title>
     <detaileddescription>
 <para><heading level="2"><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Documentation</heading>
-</para><para>Documentation for <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> is</para><para><ref refid="dd/db3/a00313" kindref="compound">YarnSpinner</ref> documentation is generated automatically by the Doxygen system.</para><para><heading level="2">Install Unity</heading>
+</para><para>Documentation for <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> is under active development. Please submit any suggestions you may have.</para><para><ref refid="dd/db3/a00313" kindref="compound">YarnSpinner</ref> documentation is generated automatically by the Doxygen system.</para><para><heading level="2">Install Unity</heading>
 </para><para>At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future. Meanwhile, please install Unity.</para><para><heading level="2">Tips during Unity install</heading>
 </para><para><heading level="3">Windows</heading>
 </para><para>Find the temp folder the installer has downloaded to and is executing from and back it up.</para><para><heading level="3">Mac</heading>
-</para><para>(This space left intentionally blank)</para><para><heading level="2">(OPTIONAL: Mac and Windows) Install Microsoft Visual Studio Community Edition</heading>
+</para><para>(This space left intentionally blank)</para><para><heading level="2">(OPTIONAL: Mac and Windows)</heading>
+</para><para><heading level="2">Install Microsoft Visual Studio Community Edition</heading>
 </para><para>If you have some programming experience, or wish to have a more expansive development enviornment than the Unity editor, you may wish to install the Community Edition of Microsoft Visual Studio. </para>    </detaileddescription>
   </compounddef>
 </doxygen>
