@@ -27,7 +27,7 @@ Find the temp folder the installer has executed from and back it up before it co
 
 ### Linux
 
-As Unity for Linux is currently not available in final release, we are not actively pursuing this platform however we are very enthusastic about this future prospect.
+As Unity for Linux is currently not available in final release, we are not actively pursuing this platform however we are very enthusastic about this future prospect. However, we encourge Linux users to test our code using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Whilst FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. 
 
 ## Extending Tarnspinner
 For information on how to extend Yarnspinner's functionality, please refer to the [Extending Yarnspinner](Extending.md) document.
