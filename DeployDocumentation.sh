@@ -78,7 +78,7 @@ init () {
     fi
 }
 
-generate_doxygen () {
+prepare_doxygen () {
     cd ~
     echo "Setting up the script"
     # Exit with nonzero exit code if anything fails
@@ -133,6 +133,10 @@ commit_docs () {
     fi
 }
 
+if [ "${TRAVIS_BRANCH}" != "master" ]; then
+    echo "Only commit documentation for the master branch"
+    exit
+fi
 init
-generate_doxygen
+prepare_doxygen
 commit_docs
