@@ -1,9 +1,11 @@
 # Building Yarn Spinner
 
-## Windows and Mac
 > ***Important:*** This document only matters to you if you want to build Yarn Spinner from source. In almost all cases, you'll be totally fine with [downloading a build](https://github.com/thesecretlab/YarnSpinner/releases), and using that in your project.
 
-To build Yarn Spinner, you'll need MonoDevelop. You can [download MonoDevelop for your OS from the MonoDevelop site](http://www.monodevelop.com/download/).
+## Windows, Mac and Linux using MonoDevelop
+
+To build Yarn Spinner on Windows or Mac, you'll need MonoDevelop. You can [download MonoDevelop for your OS from the MonoDevelop site](http://www.monodevelop.com/download/).
+To build Yarn Spinner on Linux, you'll need MonoDevelop's Flatpak. Once you have installed [Flatpak for your distribution](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
 
 Once it's downloaded, follow these steps:
 
@@ -12,7 +14,7 @@ Once it's downloaded, follow these steps:
 * Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there. You can now copy that DLL file wherever you need it.
 
 ## Linux
-At the moment, Linux building is not actually supported despite the build taking place on a a Travis Linux instance. We are currently evaluating the minimal packages required as well as the optimal desktop environment to develop in.
+As well as using MonoDevelop, you can use xbuild to build on Linux. At this stage, see the [build.sh](../build.sh) script for information on how to do this.
 
 ## Building Documentation
 
