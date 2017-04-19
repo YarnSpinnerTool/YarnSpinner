@@ -2,7 +2,7 @@
 
 # The MIT License (MIT)
 # 
-# Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+# Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
