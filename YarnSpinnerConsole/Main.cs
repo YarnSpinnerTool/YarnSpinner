@@ -50,6 +50,7 @@ namespace Yarn
 			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
 			Console.WriteLine ("\t-d: Show debugging information.");
 			Console.WriteLine ("\t-c: Show program bytecode and exit.");
+			Console.WriteLine ("\t-f: Write program bytecode to file and exit.");
 			Console.WriteLine ("\t-a: Show analysis of the program and exit.");
 			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
@@ -74,6 +75,7 @@ namespace Yarn
 			bool verifyOnly = false;
 			bool autoSelectFirstOption = false;
 			bool analyseOnly = false;
+			string outputFile = null;
 
 			var inputFiles = new List<string> ();
 			string startNode = Dialogue.DEFAULT_START;
@@ -133,6 +135,16 @@ namespace Yarn
 
 				}
 
+				// Handle 'output file' parameter
+				if (arg.IndexOf("-f=") != -1) {
+					var argArray = arg.Split('=');
+					if (argArray.Length != 2) {
+						ShowHelpAndExit();
+					} else {
+						outputFile = argArray[1];
+						continue;
+					}
+				}
 
 				switch (arg) {
 				case "-V":
@@ -269,6 +281,15 @@ namespace Yarn
 			}
 
 			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+
+			if (outputFile != null) {
+				var result = dialogue.GetByteCode();
+				System.Text.UTF8Encoding utf8 = new System.Text.UTF8Encoding();
+				using (System.IO.StreamWriter file = new System.IO.StreamWriter(outputFile, false, utf8)) {
+					file.Write(result);
+				}
+				return;
+			}
 
 			if (compileToBytecodeOnly) {
 				var result = dialogue.GetByteCode ();
