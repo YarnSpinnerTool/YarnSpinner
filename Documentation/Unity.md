@@ -12,7 +12,7 @@ Once you've played with it, open the Example Script file in the Yarn editor (it'
 
 ## Tutorial
 
-> ***Note:*** This tutorial assumes that you know at least a little bit about [Unity](http://www.unity3d.com). In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out [Unity's documentation](http://unity3d.com/learn)!
+> ***Note:*** This tutorial assumes that you know at least a little bit about [Unity](http://www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out [Unity's documentation](http://unity3d.com/learn).
 
 Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. 
 
@@ -28,10 +28,6 @@ These three classes exist in the `Yarn.Unity` namespace. To create your subclass
 
 Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their Yarn script to the `DialogueRunner`.
 
-
-Let's get started with Yarn Spinner!
-
-## Tutorial
 
 To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to  see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.
 
