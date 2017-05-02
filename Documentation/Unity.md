@@ -32,11 +32,11 @@ Additionally, you store your Yarn files as `.json` assets in your Unity projects
 
 ### Create the Unity project
 
-* **Launch Unity, and create a new project.** The name of the project doesn't matter.
+* **Launch Unity**, and **create a new project**. The name of the project doesn't matter.
 
 ### Import the Yarn Spinner package.
 
-* **Import YarnSpinner.unitypackage into your project.** If you prefer, you can also install the package from the [Asset Store](TODO).
+* **Import YarnSpinner.unitypackage** into your project. If you prefer, you can also install the package from the [Asset Store](TODO).
 
 Yarn Spinner is composed of a .DLL file, and a couple of supporting scripts for Unity.
 
@@ -44,9 +44,11 @@ Yarn Spinner is composed of a .DLL file, and a couple of supporting scripts for 
 
 Yarn dialogue is stored in .json files, which you create using the [Yarn editor](http://github.com/infiniteammoinc/Yarn). To show the dialogue in your game, you need to add it to your project as well.
 
-* **Create a new conversation in the [Yarn editor](http://www.github.com/infiniteammoinc/Yarn),** and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
+* **Create a new conversation** in the **[Yarn editor](http://www.github.com/infiniteammoinc/Yarn)**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
 
-* **Copy your Yarn JSON file into your project.** You're now ready to start using Yarn Spinner.
+* **Copy your Yarn JSON file** into your project.
+
+You're now ready to start using Yarn Spinner!
 
 <!-- (gif of dragging in the dialogue file) -->
 
