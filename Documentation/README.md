@@ -2,7 +2,7 @@
 
 ## Yarn Documentation
 
-Documentation for Yarn is under active development. Please submit any suggestions you may have.
+Documentation for Yarn Spinner is under active development. Please submit any suggestions you may have.
 
 YarnSpinner documentation is generated automatically by the [Doxygen](http://www.doxygen.org) system.
 
