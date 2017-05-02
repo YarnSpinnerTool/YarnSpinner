@@ -43,7 +43,7 @@ Additionally, you store your Yarn files as `.json` assets in your Unity projects
 * `YarnSpinner.dll`, which does the heavy lifting involved in parsing your Yarn files, and executing them. You won't do much with it yourself; rather, you'll take advantage of.
 
     Yarn dialogue is stored in .json files, which you create using the [Yarn editor](http://github.com/infiniteammoinc/Yarn). To show the dialogue in your game, you need to add it to your project as well.
-    If you are using Linux and wish to use the Yarn editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn editor. **NOTE AT THIS STAGE THIS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**
+    If you are using Linux and wish to use the Yarn editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**
 
 * **Create a new conversation** in the **[Yarn editor](http://www.github.com/infiniteammoinc/Yarn)**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
 
