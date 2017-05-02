@@ -31,12 +31,9 @@ Additionally, you store your Yarn files as `.json` assets in your Unity projects
 
 Let's get started with Yarn Spinner!
 
-
 ## Tutorial
 
-To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation.
-
-To see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor.
+To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to  see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.
 
 ### Create the Unity project
 
@@ -137,4 +134,10 @@ When Yarn encounters a command that contains two or more words, it looks for a g
 Any further words in the command are passed as string parameters to the method ("exit", in this case, which is used as the `destinationName` parameter)
 
 Note that **all** parameters must be strings. `DialogueRunner` will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers.
+
+### Finishing up
+
+Save the project
+
+Build a stand alone
 
