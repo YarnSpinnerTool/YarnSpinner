@@ -28,7 +28,7 @@ To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour
 
     using Yarn.Unity;
 
-Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their Yarn script to the `DialogueRunner`.
+Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases such as spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their Yarn script to the `DialogueRunner`.
 
 ### Create the Unity project
 
