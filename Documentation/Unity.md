@@ -64,9 +64,11 @@ We'll start by creating an empty object, and then we'll add the `DialogueRunner`
 
 * With the Dialogue Runner object selected, **open the Component menu**, and choose **Scripts → Yarn Spinner → Dialogue Runner**.
 
+    Next you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time. The only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
+
+
 <!-- (gif of adding component) -->
 
-    Next you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time. The only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
 
 * **Drag your Yarn JSON file into the `Source Text` array.**
 
