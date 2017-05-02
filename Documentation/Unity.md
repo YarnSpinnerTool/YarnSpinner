@@ -58,13 +58,15 @@ Yarn conversations are loaded and managed by a `DialogueRunner` object. This obj
 
 We'll start by creating an empty object, and then we'll add the `DialogueRunner` component to it.
 
-* **Create a new empty game object. Rename it to "Dialogue Runner".**
+* **Create a new empty game object**.
 
-* With the Dialogue Runner object selected, **open the Component menu, and choose Scripts → Yarn Spinner → Dialogue Runner.**
+* **Rename it to "Dialogue Runner"**.
+
+* With the Dialogue Runner object selected, **open the Component menu**, and choose **Scripts → Yarn Spinner → Dialogue Runner**.
 
 <!-- (gif of adding component) -- >
 
-Next, you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time; the only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
+Next you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time. The only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
 
 * **Drag your Yarn JSON file into the `Source Text` array.**
 
