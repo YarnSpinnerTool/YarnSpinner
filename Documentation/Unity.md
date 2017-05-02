@@ -18,13 +18,13 @@ Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptio
 
 To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to  see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.
 
-To use Yarn Spinner, you use three classes:
+To use Yarn Spinner, you use three classes that will exist in the `Yarn.Unity` namespace.
 
 * `DialogueRunner`, which is responsible for loading and running your dialogue script;
 * A subclass of `DialogueUIBehaviour`, which is reponsible for displaying the lines and dialogue choices to the player; and
 * A subclass of `VariableStorageBehaviour`, which is responsible for storing the state of the conversation.
 
-These three classes exist in the `Yarn.Unity` namespace. To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour`, you'll need to add the following code to the top of your C# code:
+To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour`, you'll need to add the following code to the top of your C# code:
 
     using Yarn.Unity;
 
