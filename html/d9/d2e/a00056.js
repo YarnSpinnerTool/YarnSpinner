@@ -1,8 +1,7 @@
 var a00056 =
 [
-    [ "CsvPropertyReferenceMapData", "d9/d2e/a00056.html#ad6fe2913932a9fe434f8a908dec30e8b", null ],
-    [ "prefix", "d9/d2e/a00056.html#a24263cbdacd2dd0db9bbe22676a6d989", null ],
-    [ "Mapping", "d9/d2e/a00056.html#af2343065df03de92b6b9803ed2bb4f87", null ],
-    [ "Prefix", "d9/d2e/a00056.html#a687fe65f1a2b4301f283e9333c282f9c", null ],
-    [ "Property", "d9/d2e/a00056.html#a5386ac40fb3ea290944f05cbee99bfcb", null ]
+    [ "NodeInfo", "d9/d2e/a00056.html#aa56085ea115b77cb9ee975686e726c29", null ],
+    [ "tags", "d9/d2e/a00056.html#acd4d4915f6cc14f8b0f1f92d27da8b36", null ],
+    [ "text", "d9/d2e/a00056.html#a63d7ebed8095a20fc5d0d74c84a34f6c", null ],
+    [ "title", "d9/d2e/a00056.html#aafc45bbc86a9acb9bdbcf7877695a96c", null ]
 ];

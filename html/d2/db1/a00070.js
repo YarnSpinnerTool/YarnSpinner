@@ -1,7 +1,10 @@
 var a00070 =
 [
-    [ "Deprecation", "d2/db1/a00070.html#ae80171841e97a48611c51a9a574a2fc0", null ],
-    [ "methodName", "d2/db1/a00070.html#a61605b2d0a17dfdf9c62952270d44fbd", null ],
-    [ "type", "d2/db1/a00070.html#a750904df254223bf3131c39017f90a0b", null ],
-    [ "usageNotes", "d2/db1/a00070.html#ac23509be7ae6b43a3e2154dd430954a7", null ]
+    [ "ShortcutOption", "d2/db1/a00070.html#a2c80b137d65f31b24533987233074605", null ],
+    [ "NodeParent", "d2/db1/a00070.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "d2/db1/a00070.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2", null ],
+    [ "ToString", "d2/db1/a00070.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "condition", "d2/db1/a00070.html#a31ece7f65af1e43961b68ba0275cdfaf", null ],
+    [ "label", "d2/db1/a00070.html#ab43ec731479a56891389f6ece87f5f62", null ],
+    [ "optionNode", "d2/db1/a00070.html#a33d667370031f58b054b79a39891c3f3", null ]
 ];

@@ -1,223 +1,138 @@
-\hypertarget{a00024}{\section{Yarn.\-Parser.\-Block Class Reference}
-\label{a00024}\index{Yarn.\-Parser.\-Block@{Yarn.\-Parser.\-Block}}
+\hypertarget{a00024}{\section{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result Class Reference}
+\label{a00024}\index{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result@{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-Block\-:
+Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=176pt]{d8/de9/a00595}
+\includegraphics[width=224pt]{d8/d8e/a00344}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Parser.\-Block\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=254pt]{dc/d25/a00596}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385}{State} \{ \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{State.\-Not\-Tested}, 
+\hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62}{State.\-Ignored}, 
+\hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{State.\-Passed}, 
+\hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{State.\-Failed}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00122_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+override bool \hyperlink{a00024_a1e653caad5ab99847c26ff8f67da8f45}{Equals} (object obj)
 \item 
-override string \hyperlink{a00122_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+override int \hyperlink{a00024_a85d50993390cdd8ba30ac44043b18de7}{Get\-Hash\-Code} ()
+\item 
+\hyperlink{a00024_af1c9b3d1757d33ad2141c639c3827c97}{Checker\-Result} (Text\-Asset \hyperlink{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{script})
 \end{DoxyCompactItemize}
-\subsection*{Package Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00024_a943abeb93be783da7ff6ca595b6a34e7}{Block} (\hyperlink{a00122}{Parse\-Node} \hyperlink{a00122_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00123}{Parser} p)
+\hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385}{State} \hyperlink{a00024_a7202b24bd068da24d7e28bec5668b13a}{state}
 \item 
-override string \hyperlink{a00024_aaaacfc4e3ff2871fa5e2fb75e48636de}{Print\-Tree} (int indent\-Level)
+Text\-Asset \hyperlink{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{script}
 \item 
-\hyperlink{a00112}{Node} \hyperlink{a00122_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static bool \hyperlink{a00024_a7fa97243e2a807c2255988547d31cac7}{Can\-Parse} (\hyperlink{a00123}{Parser} p)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00122}{Parse\-Node} \hyperlink{a00122_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
-\item 
-int \hyperlink{a00122_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
-\item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00122_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-I\-Enumerable$<$ \hyperlink{a00142}{Statement} $>$ \hyperlink{a00024_a42e3d555bbd5ecbdf61c45ad715be7e1}{statements}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-List$<$ \hyperlink{a00142}{Statement} $>$ \hyperlink{a00024_ad79f9582e55ec75b68fd72ffcae0f41b}{\-\_\-statements} = new List$<$\hyperlink{a00142}{Statement}$>$ ()
+\hyperlink{a00085_d9/d38/a00166}{Validation\-Message}\mbox{[}$\,$\mbox{]} \hyperlink{a00024_a808a039e280cf875cb3c9e9385148498}{messages} = new \hyperlink{a00085_d9/d38/a00166}{Validation\-Message}\mbox{[}0\mbox{]}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00024_a943abeb93be783da7ff6ca595b6a34e7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Block@{Block}}
-\index{Block@{Block}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Block}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Block.\-Block (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00024_a943abeb93be783da7ff6ca595b6a34e7}
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00024_ab24848d7951ce44eb3c7768c6ee10385}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!State@{State}}
+\index{State@{State}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-State}}}\label{a00024_ab24848d7951ce44eb3c7768c6ee10385}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Not\-Tested@{Not\-Tested}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Not\-Tested@{Not\-Tested}}\item[{\em 
+\hypertarget{a00024_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{Not\-Tested}\label{a00024_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}
+}]\index{Ignored@{Ignored}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Ignored@{Ignored}}\item[{\em 
+\hypertarget{a00024_ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62}{Ignored}\label{a00024_ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62}
+}]\index{Passed@{Passed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Passed@{Passed}}\item[{\em 
+\hypertarget{a00024_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed}\label{a00024_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}
+}]\index{Failed@{Failed}!Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Failed@{Failed}}\item[{\em 
+\hypertarget{a00024_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}\label{a00024_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}
+}]\end{description}
+\end{Desc}
 
 \begin{DoxyCode}
-495                                                        : base(\hyperlink{a00122_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-496 
-497                 \textcolor{comment}{// Read the indent token}
-498                 p.ExpectSymbol(TokenType.Indent);
-499 
-500                 \textcolor{comment}{// Keep reading statements until we hit a dedent}
-501                 \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00031_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent) == \textcolor{keyword}{false}) \{
-502                     \textcolor{comment}{// fun fact! because Blocks are a type of Statement,}
-503                     \textcolor{comment}{// we get nested block parsing for free! \(\backslash\):D/}
-504                     \_statements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-505                 \}
-506 
-507                 \textcolor{comment}{// Tidy up by reading the dedent}
-508                 p.ExpectSymbol(TokenType.Dedent);
-509 
-510             \}
+36                               \{
+37                 \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5}{NotTested},
+38                 \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62}{Ignored},
+39                 \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15}{Passed},
+40                 \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}
+41             \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00024_af1c9b3d1757d33ad2141c639c3827c97}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Checker\-Result@{Checker\-Result}}
+\index{Checker\-Result@{Checker\-Result}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Checker\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Checker\-Result (
+\begin{DoxyParamCaption}
+\item[{Text\-Asset}]{script}
+\end{DoxyParamCaption}
+)}}\label{a00024_af1c9b3d1757d33ad2141c639c3827c97}
+
+\begin{DoxyCode}
+61                                                    \{
+62                 this.script = \hyperlink{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{script};
+63                 this.state = State.NotTested;
+64             \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00024_a7fa97243e2a807c2255988547d31cac7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Can\-Parse@{Can\-Parse}}
-\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Block.\-Can\-Parse (
+\hypertarget{a00024_a1e653caad5ab99847c26ff8f67da8f45}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Equals@{Equals}}
+\index{Equals@{Equals}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Equals}]{\setlength{\rightskip}{0pt plus 5cm}override bool Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Equals (
 \begin{DoxyParamCaption}
-\item[{{\bf Parser}}]{p}
+\item[{object}]{obj}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00024_a7fa97243e2a807c2255988547d31cac7}
+)}}\label{a00024_a1e653caad5ab99847c26ff8f67da8f45}
 
 \begin{DoxyCode}
-486             \{
-487                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.Indent);
-488             \}
+49             \{
+50                 \textcolor{keywordflow}{if} (obj is \hyperlink{a00024_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult} && ((\hyperlink{a00024_af1c9b3d1757d33ad2141c639c3827c97}{CheckerResult})obj).
+      \hyperlink{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{script} == this.\hyperlink{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{script})
+51                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+52                 \textcolor{keywordflow}{else}
+53                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+54             \}
 \end{DoxyCode}
-\hypertarget{a00122_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\hypertarget{a00024_a85d50993390cdd8ba30ac44043b18de7}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!Get\-Hash\-Code@{Get\-Hash\-Code}}
+\index{Get\-Hash\-Code@{Get\-Hash\-Code}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{Get\-Hash\-Code}]{\setlength{\rightskip}{0pt plus 5cm}override int Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-Get\-Hash\-Code (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00122_a580e520a29444fc23ac3660cbe514a09}
+)}}\label{a00024_a85d50993390cdd8ba30ac44043b18de7}
 
 \begin{DoxyCode}
-144                                        \{
-145                 var node = \textcolor{keyword}{this};
-146 
-147                 \textcolor{keywordflow}{do} \{
-148                     \textcolor{keywordflow}{if} (node is Node) \{
-149                         \textcolor{keywordflow}{return} node as Node;
-150                     \}
-151                     node = node.parent;
-152                 \} \textcolor{keywordflow}{while} (node 
-153                     != null);                   
-154 
-155                 \textcolor{keywordflow}{return} null;
-156             \}
-\end{DoxyCode}
-\hypertarget{a00024_aaaacfc4e3ff2871fa5e2fb75e48636de}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Block.\-Print\-Tree (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00024_aaaacfc4e3ff2871fa5e2fb75e48636de}
-
-
-Implements \hyperlink{a00122_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
-
-
-\begin{DoxyCode}
-514             \{
-515                 var sb = \textcolor{keyword}{new} StringBuilder ();
-516                 sb.Append (\hyperlink{a00123_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"Block \{"}));
-517                 \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} \hyperlink{a00024_ad79f9582e55ec75b68fd72ffcae0f41b}{\_statements}) \{
-518                     sb.Append (statement.PrintTree (indentLevel + 1));
-519                 \}
-520                 sb.Append (\hyperlink{a00123_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"\}"}));
-521 
-522                 \textcolor{keywordflow}{return} sb.ToString ();
-523             \}
-\end{DoxyCode}
-\hypertarget{a00122_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Tags\-To\-String@{Tags\-To\-String}}
-\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00122_a054f36c80d5eeacd569a8859f599af67}
-
-\begin{DoxyCode}
-122             \{
-123                 \textcolor{keywordflow}{if} (\hyperlink{a00122_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
-124                     var s = \textcolor{keyword}{new} StringBuilder ();
-125 
-126                     s.Append (\hyperlink{a00123_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
-127                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00122_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
-128                         s.Append(\hyperlink{a00123_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
-129                     \}
-130                     \textcolor{keywordflow}{return} s.ToString ();
-131                 \} \textcolor{keywordflow}{else} \{
-132                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
-133                 \}
-134 
-135 
-136             \}
-\end{DoxyCode}
-\hypertarget{a00122_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00122_a18c67cb16090d0889bb9d6c8c6c565f8}
-
-\begin{DoxyCode}
-139             \{
-140                 \textcolor{keywordflow}{return} this.GetType ().Name;
-141             \}
+57             \{
+58                 \textcolor{keywordflow}{return} this.script.GetHashCode();
+59             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00024_ad79f9582e55ec75b68fd72ffcae0f41b}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!\-\_\-statements@{\-\_\-statements}}
-\index{\-\_\-statements@{\-\_\-statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{\-\_\-statements}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-\_\-statements = new List$<${\bf Statement}$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00024_ad79f9582e55ec75b68fd72ffcae0f41b}
-\hypertarget{a00122_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00122_a18b493382de0fde5b4299c1bd2250075}
-\hypertarget{a00122_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!parent@{parent}}
-\index{parent@{parent}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00122_af313a82103fcc2ff5a177dbb06b92f7b}
-\hypertarget{a00122_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!tags@{tags}}
-\index{tags@{tags}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00122_a58b3a15788fd2d4127d73619dc6d04ae}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00024_a42e3d555bbd5ecbdf61c45ad715be7e1}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!statements@{statements}}
-\index{statements@{statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-statements\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00024_a42e3d555bbd5ecbdf61c45ad715be7e1}
+\hypertarget{a00024_a808a039e280cf875cb3c9e9385148498}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!messages@{messages}}
+\index{messages@{messages}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{messages}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Validation\-Message} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-messages = new {\bf Validation\-Message}\mbox{[}0\mbox{]}}}\label{a00024_a808a039e280cf875cb3c9e9385148498}
+\hypertarget{a00024_a6c852f7521c0a91b519aa3d391f63e6b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!script@{script}}
+\index{script@{script}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{script}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-script}}\label{a00024_a6c852f7521c0a91b519aa3d391f63e6b}
+\hypertarget{a00024_a7202b24bd068da24d7e28bec5668b13a}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}!state@{state}}
+\index{state@{state}!Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Checker\-Result}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Checker\-Result.\-state}}\label{a00024_a7202b24bd068da24d7e28bec5668b13a}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00269}{Parser.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00106}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

@@ -1,287 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="db/d44/a00162" kind="class" prot="public">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">EditorWindow</basecompoundref>
-    <innerclass refid="d5/d16/a00029" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</innerclass>
-    <innerclass refid="d2/db1/a00070" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</innerclass>
-    <innerclass refid="d4/d8f/a00324" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</innerclass>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="db/d44/a00162_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="d5/d16/a00029" kindref="compound">CheckerResult</ref> &gt;</type>
-        <definition>List&lt;CheckerResult&gt; Yarn.Unity.YarnSpinnerEditorWindow.checkResults</definition>
+  <compounddef id="db/d44/a00162" kind="class" prot="package">
+    <compoundname>Yarn::Node</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="db/d44/a00162_1a156723a9252b62d288ddf611939ea7c3" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="d5/df9/a00044" kindref="compound">Instruction</ref> &gt;</type>
+        <definition>List&lt;Instruction&gt; Yarn.Node.instructions</definition>
         <argsstring></argsstring>
-        <name>checkResults</name>
-        <initializer>= new List&lt;<ref refid="d5/d16/a00029" kindref="compound">CheckerResult</ref>&gt;()</initializer>
+        <name>instructions</name>
+        <initializer>= new List&lt;<ref refid="d5/df9/a00044" kindref="compound">Instruction</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="67" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="112" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="112" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="db/d44/a00162_1a25c92cbfdd09661a96714d05b14af886" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="d0/d89/a00071" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
-        <definition>List&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.diagnoses</definition>
+      <memberdef kind="variable" id="db/d44/a00162_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Node.name</definition>
         <argsstring></argsstring>
-        <name>diagnoses</name>
-        <initializer>= new List&lt;<ref refid="d0/d89/a00071" kindref="compound">Yarn.Analysis.Diagnosis</ref>&gt;()</initializer>
+        <name>name</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="71" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="114" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="db/d44/a00162_1a2d9b9702b0980af9d4202aebd440124b" prot="private" static="no" mutable="no">
-        <type>Vector2</type>
-        <definition>Vector2 Yarn.Unity.YarnSpinnerEditorWindow.scrollPos</definition>
+      <memberdef kind="variable" id="db/d44/a00162_1a09c6af5b50925d0876283b84281b3ed4" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Node.sourceTextStringID</definition>
         <argsstring></argsstring>
-        <name>scrollPos</name>
+        <name>sourceTextStringID</name>
+        <initializer>= null</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="74" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="118" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="db/d44/a00162_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" static="no" mutable="no">
-        <type>const float</type>
-        <definition>const float Yarn.Unity.YarnSpinnerEditorWindow.timeBeforeProgressBar</definition>
+      <memberdef kind="variable" id="db/d44/a00162_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, int &gt;</type>
+        <definition>Dictionary&lt;string, int&gt; Yarn.Node.labels</definition>
         <argsstring></argsstring>
-        <name>timeBeforeProgressBar</name>
-        <initializer>= 0.1f</initializer>
+        <name>labels</name>
+        <initializer>= new Dictionary&lt;string, int&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="77" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="77" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="db/d44/a00162_1a406febf62d77eaabc235f6316e537345" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.UpdateYarnScriptList</definition>
-        <argsstring>()</argsstring>
-        <name>UpdateYarnScriptList</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="80" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="80" bodyend="103"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1aeba1f39189758bd91bdce298e8859947" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnEnable</definition>
-        <argsstring>()</argsstring>
-        <name>OnEnable</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="112" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="112" bodyend="121"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.RefreshAllResults</definition>
-        <argsstring>()</argsstring>
-        <name>RefreshAllResults</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="123" bodyend="162"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1ab84b77da285227c4ab4e1366131dd2b5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.CompileAllScripts</definition>
-        <argsstring>()</argsstring>
-        <name>CompileAllScripts</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="164" bodyend="252"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1aec84840262ae8fd7d84605778de1dc39" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnGUI</definition>
-        <argsstring>()</argsstring>
-        <name>OnGUI</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="254" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="254" bodyend="312"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>delegate void</type>
-        <definition>delegate void Yarn.Unity.YarnSpinnerEditorWindow.GUICallback</definition>
-        <argsstring>(int complete, int total)</argsstring>
-        <name>GUICallback</name>
-        <param>
-          <type>int</type>
-          <declname>complete</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>total</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="356" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.CheckAllFiles</definition>
-        <argsstring>(GUICallback callback=null)</argsstring>
-        <name>CheckAllFiles</name>
-        <param>
-          <type><ref refid="db/d44/a00162_1a8f57c8688d68ae4a5ce708e665902bc0" kindref="member">GUICallback</ref></type>
-          <declname>callback</declname>
-          <defval>null</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="357" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="357" bodyend="414"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d8f/a00324" kindref="compound">ValidationMessage</ref>[]</type>
-        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.ValidateFile</definition>
-        <argsstring>(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result)</argsstring>
-        <name>ValidateFile</name>
-        <param>
-          <type>TextAsset</type>
-          <declname>script</declname>
-        </param>
-        <param>
-          <type><ref refid="d1/dc6/a00037" kindref="compound">Analysis.Context</ref></type>
-          <declname>analysisContext</declname>
-        </param>
-        <param>
-          <type>out <ref refid="d5/d16/a00029_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">CheckerResult.State</ref></type>
-          <declname>result</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="419" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="419" bodyend="478"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1a9c207786c349120dc439bdce53072191" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="d0/d89/a00071" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
-        <definition>IEnumerable&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.AnalyseEnvironment</definition>
-        <argsstring>()</argsstring>
-        <name>AnalyseEnvironment</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="501" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="501" bodyend="545"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="db/d44/a00162_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.ShowWindow</definition>
-        <argsstring>()</argsstring>
-        <name>ShowWindow</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="107" bodyend="109"/>
-      </memberdef>
-      <memberdef kind="function" id="db/d44/a00162_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</definition>
-        <argsstring>(CheckerResult result)</argsstring>
-        <name>DrawScriptGUI</name>
-        <param>
-          <type><ref refid="d5/d16/a00029" kindref="compound">CheckerResult</ref></type>
-          <declname>result</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="314" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="314" bodyend="353"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="120" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1671">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
-        <link refid="db/d44/a00162"/>
-        <childnode refid="1672" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1672">
-        <label>EditorWindow</label>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1673">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
+      <node id="563">
+        <label>Yarn.Node</label>
         <link refid="db/d44/a00162"/>
-        <childnode refid="1674" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1674">
-        <label>EditorWindow</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="33" bodyend="547"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="121"/>
     <listofallmembers>
-      <member refid="db/d44/a00162_1a9c207786c349120dc439bdce53072191" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>AnalyseEnvironment</name></member>
-      <member refid="db/d44/a00162_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>CheckAllFiles</name></member>
-      <member refid="db/d44/a00162_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>checkResults</name></member>
-      <member refid="db/d44/a00162_1ab84b77da285227c4ab4e1366131dd2b5" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>CompileAllScripts</name></member>
-      <member refid="db/d44/a00162_1a25c92cbfdd09661a96714d05b14af886" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>diagnoses</name></member>
-      <member refid="db/d44/a00162_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>DrawScriptGUI</name></member>
-      <member refid="db/d44/a00162_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>GUICallback</name></member>
-      <member refid="db/d44/a00162_1aeba1f39189758bd91bdce298e8859947" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnEnable</name></member>
-      <member refid="db/d44/a00162_1aec84840262ae8fd7d84605778de1dc39" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnGUI</name></member>
-      <member refid="db/d44/a00162_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>RefreshAllResults</name></member>
-      <member refid="db/d44/a00162_1a2d9b9702b0980af9d4202aebd440124b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>scrollPos</name></member>
-      <member refid="db/d44/a00162_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ShowWindow</name></member>
-      <member refid="db/d44/a00162_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>timeBeforeProgressBar</name></member>
-      <member refid="db/d44/a00162_1a406febf62d77eaabc235f6316e537345" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>UpdateYarnScriptList</name></member>
-      <member refid="db/d44/a00162_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ValidateFile</name></member>
+      <member refid="db/d44/a00162_1a156723a9252b62d288ddf611939ea7c3" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>instructions</name></member>
+      <member refid="db/d44/a00162_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>labels</name></member>
+      <member refid="db/d44/a00162_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>name</name></member>
+      <member refid="db/d44/a00162_1a09c6af5b50925d0876283b84281b3ed4" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>sourceTextStringID</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

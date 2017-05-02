@@ -1,224 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d1/d84/a00097" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::Int32Converter</compoundname>
-    <basecompoundref refid="da/d24/a00068" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d1/d84/a00097_1a392314cc9b5f5b4ad176d0f1a99af32f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.Int32Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="da/d24/a00068_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" bodystart="20" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="d1/d84/a00097_1ad5fc1d8a5eb73fb4588e7cdc66bd2d89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.Int32Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" bodystart="40" bodyend="44"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="da/d74/a00099_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="da/d74/a00099_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="db/d48/a00148_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d6/d5b/a00026_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="df/d5f/a00064_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="de/de1/a00065_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d9/da4/a00078_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d1/d09/a00077_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="da/d74/a00099_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="d1/d84/a00097" kind="file">
+    <compoundname>Extending.md</compoundname>
     <briefdescription>
-<para>Converts an Int32 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1301">
-        <label>CsvHelper.TypeConversion.Int32Converter</label>
-        <link refid="d1/d84/a00097"/>
-        <childnode refid="1302" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1303">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1302">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1303" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1304">
-        <label>CsvHelper.TypeConversion.Int32Converter</label>
-        <link refid="d1/d84/a00097"/>
-        <childnode refid="1305" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1306">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1305">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1306" relation="public-inheritance">
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int32Converter.cs" bodystart="12" bodyend="45"/>
-    <listofallmembers>
-      <member refid="d1/d84/a00097_1ad5fc1d8a5eb73fb4588e7cdc66bd2d89" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::Int32Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::Int32Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int32Converter</scope><name>CanConvertTo</name></member>
-      <member refid="d1/d84/a00097_1a392314cc9b5f5b4ad176d0f1a99af32f" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int32Converter</scope><name>ConvertFromString</name></member>
-      <member refid="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int32Converter</scope><name>ConvertToString</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Extending<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">This<sp/>is<sp/>a<sp/>quick-and-dirty<sp/>document<sp/>that<sp/>shows<sp/>how<sp/>to<sp/>add<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>functions<sp/>so<sp/>that<sp/>they<sp/>can<sp/>be<sp/>called<sp/>from<sp/>inside<sp/>Yarn.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">First,<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>your<sp/>`Dialogue`<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>some_implementation<sp/>is<sp/>the<sp/>object<sp/>that<sp/>handles<sp/>variable<sp/>storage<sp/>-<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>it&apos;s<sp/>not<sp/>important<sp/>in<sp/>this<sp/>example</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>dialogue<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dialogue(some_implementation);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">Next,<sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/>your<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">.<sp/>For<sp/>example,<sp/>let</highlight><highlight class="stringliteral">&apos;s<sp/>make<sp/>a<sp/>function<sp/>that<sp/>takes<sp/>1<sp/>parameter,<sp/>which<sp/>is<sp/>a<sp/>number,<sp/>and<sp/>returns<sp/>`true`<sp/>if<sp/>it&apos;</highlight><highlight class="normal">s<sp/>even:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>dialogue.library.RegisterFunction<sp/>(</highlight><highlight class="stringliteral">&quot;is_even&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>delegate(Value[]<sp/>parameters)<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)parameters[0].AsNumber<sp/>%<sp/>2<sp/>==<sp/>0;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">When<sp/>the<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>is<sp/>called,<sp/>the<sp/>delegate<sp/>you<sp/>provide<sp/>will<sp/>be<sp/>run.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">Some<sp/>notes:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">*<sp/>You<sp/>don</highlight><highlight class="stringliteral">&apos;t<sp/>have<sp/>to<sp/>return<sp/>a<sp/>value<sp/>from<sp/>your<sp/>function.</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">*<sp/>The<sp/>parameters<sp/>passed<sp/>to<sp/>your<sp/>function<sp/>are<sp/>of<sp/>type<sp/>Yarn.Value.<sp/>You<sp/>can<sp/>get<sp/>their<sp/>value<sp/>as<sp/>numbers,<sp/>bools<sp/>or<sp/>strings<sp/>by<sp/>using<sp/>the<sp/>`AsNumber`,<sp/>`AsString`<sp/>and<sp/>`AsBool`<sp/>properties.</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">*<sp/>You<sp/>can<sp/>only<sp/>return<sp/>values<sp/>of<sp/>the<sp/>following<sp/>types:</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>String</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Float</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Double</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Integer</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>*<sp/>Yarn.Value</highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral">*<sp/>Yarn<sp/>Spinner<sp/>will<sp/>make<sp/>sure<sp/>that<sp/>the<sp/>correct<sp/>number<sp/>of<sp/>parameters<sp/>is<sp/>passed<sp/>to<sp/>your<sp/>method.<sp/>If<sp/>you<sp/>specify<sp/>`-1`<sp/>as<sp/>your<sp/>parameter<sp/>count,<sp/>the<sp/>function<sp/>may<sp/>have<sp/>any<sp/>number<sp/>of<sp/>parameters.</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Extending.md"/>
   </compounddef>
 </doxygen>

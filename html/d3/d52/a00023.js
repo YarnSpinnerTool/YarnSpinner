@@ -1,8 +1,8 @@
 var a00023 =
 [
-    [ "Clear", "d3/d52/a00023.html#a7e45c37f3662ce9f2643e306bb2b3adc", null ],
-    [ "GetNumber", "d3/d52/a00023.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "d3/d52/a00023.html#a13b142df804d9842e97e628e252928e8", null ],
-    [ "SetNumber", "d3/d52/a00023.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "d3/d52/a00023.html#a1c57d6d208b78abec0a670396771448e", null ]
+    [ "Update", "d3/d52/a00023.html#a592ddbf8e493bde0a6536c0234869217", null ],
+    [ "maxPosition", "d3/d52/a00023.html#abb0154dcbc2a7d43795beacd61a56de4", null ],
+    [ "minPosition", "d3/d52/a00023.html#a08c6f6c0ea423c21af99e4b5467d3c9b", null ],
+    [ "moveSpeed", "d3/d52/a00023.html#a3d4f2efe9c2cee8c7ff797cac03f27ec", null ],
+    [ "target", "d3/d52/a00023.html#aa5d6958fb14a14ebb74e21c372fcca8b", null ]
 ];

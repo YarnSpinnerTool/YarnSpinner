@@ -1,17 +1,11 @@
 var a00067 =
 [
-    [ "AutoMap", "dc/ddf/a00067.html#aec2097b09baaaac45171f91592af439d", null ],
-    [ "AutoMapInternal", "dc/ddf/a00067.html#a16b5bb84064e86c2b319348d8a42693d", null ],
-    [ "CheckForCircularReference", "dc/ddf/a00067.html#a4b2f3fc2e0670d17566b4705b7b622aa", null ],
-    [ "ConstructUsing", "dc/ddf/a00067.html#a983d792ae80f888958037eea306b143a", null ],
-    [ "CreateMap", "dc/ddf/a00067.html#a83de9d28160d0d3da1e017df554a9481", null ],
-    [ "GetMaxIndex", "dc/ddf/a00067.html#a708c455aa7f78a26b55dafc46a587ec3", null ],
-    [ "Map", "dc/ddf/a00067.html#aa3395a5f657f0dd7c8fe6a0fbf5a03cb", null ],
-    [ "PropertyMap< T >", "dc/ddf/a00067.html#abab2b5cd5a290fd5d17116430b084420", null ],
-    [ "References", "dc/ddf/a00067.html#a68caeee244e978110a2acae6d3042fc3", null ],
-    [ "References< TClassMap >", "dc/ddf/a00067.html#a20365b78c96ac29e3261bcde30e0d746", null ],
-    [ "ReIndex", "dc/ddf/a00067.html#ac6c1e8ae1d049bd0ef09e7c2d99fbe55", null ],
-    [ "Constructor", "dc/ddf/a00067.html#ae8038b36db7584ef1a73852fcc46404b", null ],
-    [ "PropertyMaps", "dc/ddf/a00067.html#a9580e897abcba144f3101eb983348e25", null ],
-    [ "ReferenceMaps", "dc/ddf/a00067.html#a6dfbf8f743b16d2ec83edef865ea2d9e", null ]
+    [ "DumpCode", "dc/ddf/a00067.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
+    [ "GetString", "dc/ddf/a00067.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
+    [ "GetTextForNode", "dc/ddf/a00067.html#aad8029f37832ff1985fad6a31e51afd8", null ],
+    [ "Include", "dc/ddf/a00067.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
+    [ "RegisterString", "dc/ddf/a00067.html#a13c9b747b37e404e2d0713468b2a78ff", null ],
+    [ "nodes", "dc/ddf/a00067.html#a3f4928a577c88263ad016be259b175c4", null ],
+    [ "stringCount", "dc/ddf/a00067.html#a8ef1d10094ef00311aade6715ba78ec7", null ],
+    [ "strings", "dc/ddf/a00067.html#a91518fda7e41bf573f66c6946dd3b4cb", null ]
 ];

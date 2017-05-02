@@ -1,14 +1,15 @@
 var a00024 =
 [
-    [ "Block", "dc/de2/a00024.html#a943abeb93be783da7ff6ca595b6a34e7", null ],
-    [ "CanParse", "dc/de2/a00024.html#a7fa97243e2a807c2255988547d31cac7", null ],
-    [ "NodeParent", "dc/de2/a00024.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "dc/de2/a00024.html#aaaacfc4e3ff2871fa5e2fb75e48636de", null ],
-    [ "TagsToString", "dc/de2/a00024.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "dc/de2/a00024.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "_statements", "dc/de2/a00024.html#ad79f9582e55ec75b68fd72ffcae0f41b", null ],
-    [ "lineNumber", "dc/de2/a00024.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "dc/de2/a00024.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "dc/de2/a00024.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "statements", "dc/de2/a00024.html#a42e3d555bbd5ecbdf61c45ad715be7e1", null ]
+    [ "State", "dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385", [
+      [ "NotTested", "dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5", null ],
+      [ "Ignored", "dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62", null ],
+      [ "Passed", "dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15", null ],
+      [ "Failed", "dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca", null ]
+    ] ],
+    [ "CheckerResult", "dc/de2/a00024.html#af1c9b3d1757d33ad2141c639c3827c97", null ],
+    [ "Equals", "dc/de2/a00024.html#a1e653caad5ab99847c26ff8f67da8f45", null ],
+    [ "GetHashCode", "dc/de2/a00024.html#a85d50993390cdd8ba30ac44043b18de7", null ],
+    [ "messages", "dc/de2/a00024.html#a808a039e280cf875cb3c9e9385148498", null ],
+    [ "script", "dc/de2/a00024.html#a6c852f7521c0a91b519aa3d391f63e6b", null ],
+    [ "state", "dc/de2/a00024.html#a7202b24bd068da24d7e28bec5668b13a", null ]
 ];

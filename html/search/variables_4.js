@@ -1,21 +1,10 @@
 var searchData=
 [
-  ['data',['data',['../d5/db6/a00042.html#a6402d0986ae539363780f34eefd5fa99',1,'CsvHelper.Configuration.CsvClassMapCollection.data()'],['../d5/de0/a00050.html#a2943371f5d55b2fd7313bbb0e87a013c',1,'CsvHelper.Configuration.CsvPropertyMap.data()'],['../d4/d6d/a00055.html#aa6926229eec915aa6a71c9ee603064f5',1,'CsvHelper.Configuration.CsvPropertyReferenceMap.data()']]],
-  ['debugtextview',['debugTextView',['../d4/d31/a00069.html#a9893656e3683711eb78441b30c52a600',1,'ExampleVariableStorage']]],
-  ['default_5fstart',['DEFAULT_START',['../d6/d2c/a00072.html#a1b643f15f734090e6a58cbf13dafd28f',1,'Yarn::Dialogue']]],
-  ['defaultstate',['defaultState',['../d4/d3a/a00101.html#a16b5dbf27a377cde5e8ba0eaa05b5710',1,'Yarn::Lexer']]],
-  ['defaultvalue',['defaultValue',['../dc/dee/a00053.html#a77d34f2e73ad23e07eb38ee5ecceadf8',1,'CsvHelper::Configuration::CsvPropertyMapData']]],
-  ['defaultvariables',['defaultVariables',['../d4/d31/a00069.html#a464c8a4ff6a3c624602d0adc55dfc59a',1,'ExampleVariableStorage']]],
-  ['delimiter',['delimiter',['../d6/d42/a00043.html#ae3ac37138febea53e79c1a3c6ad273b9',1,'CsvHelper::Configuration::CsvConfiguration']]],
-  ['delimitstext',['delimitsText',['../da/d1e/a00149.html#af15d26fa4e6f276ab58ff66d3c4203da',1,'Yarn.Token.delimitsText()'],['../d7/d9a/a00152.html#ab0849136a1f27b4d13cb7a45e2fe7130',1,'Yarn.Lexer.TokenRule.delimitsText()']]],
-  ['diagnoses',['diagnoses',['../db/d44/a00162.html#a25c92cbfdd09661a96714d05b14af886',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
-  ['dialogue',['dialogue',['../df/d98/a00107.html#a89d1f29eba1c52c96c62a4cfe7859a1d',1,'Yarn.Loader.dialogue()'],['../d4/ddd/a00138.html#ac506426c503da5f033247c29e11c5e82',1,'Yarn.VirtualMachine.dialogue()'],['../d9/db6/a00146.html#a4cff5de56c4b8a91c76b6eb2d622a795',1,'YarnSpinner.Tests.TestBase.dialogue()']]],
-  ['dialoguecontainer',['dialogueContainer',['../d1/d51/a00079.html#a2eaebc844d2ca982ec078708d070dbd3',1,'Yarn::Unity::Example::ExampleDialogueUI']]],
-  ['dialoguerunner',['dialogueRunner',['../d6/dfb/a00172.html#a9791840e0b5987e5bd09bce83ce2d8d9',1,'YarnSpinnerTests']]],
-  ['dialogueui',['dialogueUI',['../d1/d6e/a00073.html#ac87fdc65b0be57868f80c0fcd62ffd6d',1,'Yarn.Unity.DialogueRunner.dialogueUI()'],['../d6/dfb/a00172.html#aace025d2a9a703154a1989c47b0a0737',1,'YarnSpinnerTests.dialogueUI()']]],
-  ['disableshuffleoptionsafternextset',['DisableShuffleOptionsAfterNextSet',['../db/df3/a00034.html#a8b49bb7763ff477cba21d7c771ef3ed0',1,'Yarn::Compiler::CompileFlags']]],
-  ['disposed',['disposed',['../d4/dca/a00048.html#abeead9997a4c1ec20866458a2e0928bb',1,'CsvHelper.CsvParser.disposed()'],['../d1/d22/a00057.html#aa2e7952350ee7c52c74a3c259d372c89',1,'CsvHelper.CsvReader.disposed()'],['../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4',1,'CsvHelper.CsvSerializer.disposed()'],['../d4/de8/a00061.html#aae86e2e359261e81ddc2ed22b9517b35',1,'CsvHelper.CsvWriter.disposed()']]],
-  ['donereading',['doneReading',['../d1/d22/a00057.html#a04a4a668ae50f5383cdd2a1691bbd718',1,'CsvHelper::CsvReader']]],
-  ['donereadingexceptionmessage',['DoneReadingExceptionMessage',['../d1/d22/a00057.html#abea2bd0359f517019984de31f9d9fb96',1,'CsvHelper::CsvReader']]],
-  ['doublequotestring',['doubleQuoteString',['../d6/d42/a00043.html#a345c1d99f9fd609a1e1eea0476dd5dae',1,'CsvHelper::Configuration::CsvConfiguration']]]
+  ['entersstate',['entersState',['../d4/d63/a00082.html#af6a4bd3416c4e1b8e56f9db461d52d18',1,'Yarn::Lexer::TokenRule']]],
+  ['errorscausefailures',['errorsCauseFailures',['../d1/d09/a00077.html#a1e0244f4c5261bad66a866fd6ec38f6d',1,'YarnSpinner::Tests::Test']]],
+  ['expectedlines',['expectedLines',['../d9/da4/a00078.html#ab0f7b55e776ae494a651c845b496916c',1,'TestDialogueUIBehaviour']]],
+  ['expectednextcommand',['expectedNextCommand',['../d5/d79/a00030.html#a3c7133c65dc7cf293f49b61426a0c4aa',1,'Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation']]],
+  ['expectednextline',['expectedNextLine',['../d5/d79/a00030.html#a33a44e39f2d90850cee234dfad50f2c5',1,'Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation']]],
+  ['expectedoptions',['expectedOptions',['../d9/da4/a00078.html#a94e4308d412945c977b2deb63f139009',1,'TestDialogueUIBehaviour']]],
+  ['expression',['expression',['../d3/dfe/a00025.html#a1abd1f7c41f68ccdf64074ea49365be9',1,'Yarn::Parser::IfStatement::Clause']]]
 ];

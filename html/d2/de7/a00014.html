@@ -99,12 +99,12 @@ $(document).ready(function(){initNavTree('d2/de7/a00014.html','../../');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="../../df/d61/a00031.html">Yarn</a> for Writers </div>  </div>
+<div class="title"><a class="el" href="../../d6/d5b/a00026.html">Yarn</a> for Writers </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This document talks about how to use <a class="el" href="../../df/d61/a00031.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner into your project; for that, see <a class="el" href="../../db/dd9/a00179.html">Unity.md</a>Using <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner in your Unity game"".</p>
+<div class="textblock"><p>This document talks about how to use <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner into your project; for that, see <a class="el" href="../../d0/d61/a00100.html">Unity.md</a>Using <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner in your Unity game"".</p>
 <h2>Lines</h2>
-<p><a class="el" href="../../df/d61/a00031.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
+<p><a class="el" href="../../d6/d5b/a00026.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
 <p>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: </p>
 <pre class="fragment">Alice: Hey, I'm a character speaking in a dialogue!
 Bob: Wild!
@@ -116,9 +116,9 @@ Bob: Wild!
 </pre><p>Options have two parts: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (<code>|</code>).</p>
 <p>You don't have to provide the label. Instead, you can just provide the node name, like so: </p>
 <pre class="fragment">[[GoToCity]]
-</pre><p>If an option has no label, <a class="el" href="../../df/d61/a00031.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
+</pre><p>If an option has no label, <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
 <p>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</p>
-<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner will let your game know.</p>
+<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner will let your game know.</p>
 <h2>Shortcut Options</h2>
 <p>Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use <em>shortcut options</em>: </p>
 <pre class="fragment">Mae: What did you say to her?
@@ -127,7 +127,7 @@ Bob: Wild!
 -&gt; That she was an idiot.
     Mae: Hah! I bet that pissed her off.
 Mae: Anyway, I'd better get going.
-</pre><p>When this is run, <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
+</pre><p>When this is run, <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
 <p>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: </p>
 <pre class="fragment">Bob: What would you like?
 -&gt; A burger. &lt;&lt;if $money &gt;= 5&gt;&gt;
@@ -143,7 +143,7 @@ Bob: Thanks for coming!
 <p>Commands look like this: </p>
 <pre class="fragment">&lt;&lt;move alice to under_bridge&gt;&gt;
 </pre><p>Any text inside the double-chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.</p>
-<p><a class="el" href="../../df/d61/a00031.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="../../df/d61/a00031.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
+<p><a class="el" href="../../d6/d5b/a00026.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
 <h2>Variables and If statements</h2>
 <p>You can store numbers in variables. To do this, use the <code>set</code> command: </p>
 <pre class="fragment">&lt;&lt;set $door_unlocked to 1&gt;&gt;
@@ -165,14 +165,14 @@ Bob: Thanks for coming!
     You failed to rescue the hostages before time ran out!
 &lt;&lt;endif&gt;&gt;
 </pre><h2>Types</h2>
-<p>There are four different types of value in <a class="el" href="../../df/d61/a00031.html">Yarn</a>: strings, numbers, booleans, and <code>null</code>.</p>
+<p>There are four different types of value in <a class="el" href="../../d6/d5b/a00026.html">Yarn</a>: strings, numbers, booleans, and <code>null</code>.</p>
 <ul>
 <li>Strings contain text.</li>
 <li>Numbers are floating-point numbers.</li>
 <li>Booleans are either true or false.</li>
 <li><code>null</code> means no value.</li>
 </ul>
-<p><a class="el" href="../../df/d61/a00031.html">Yarn</a> will automatically convert between types for you. For example: </p>
+<p><a class="el" href="../../d6/d5b/a00026.html">Yarn</a> will automatically convert between types for you. For example: </p>
 <pre class="fragment">&lt;&lt;if "hi" == "hi"&gt;&gt;
     The two strings are the same!
 &lt;&lt;endif&gt;&gt;
@@ -182,11 +182,11 @@ Bob: Thanks for coming!
 &lt;&lt;endif&gt;&gt;
 </pre><p><b>Warning:</b> Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.</p>
 <h2>Functions</h2>
-<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. </p>
+<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. </p>
 <pre class="fragment">&lt;&lt;if visited("GoToCity")&gt;&gt;
     We have gone to the city before!
 &lt;&lt;endif&gt;&gt;
-</pre><p>You can't define your own functions inside <a class="el" href="../../df/d61/a00031.html">Yarn</a> itself, but they can be added at run-time. See <a class="el" href="../../d5/de9/a00176.html">Extending.md</a>Extending <a class="el" href="../../df/d61/a00031.html">Yarn</a> Spinner"" for more info. </p>
+</pre><p>You can't define your own functions inside <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> itself, but they can be added at run-time. See <a class="el" href="../../d1/d84/a00097.html">Extending.md</a>Extending <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner"" for more info. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

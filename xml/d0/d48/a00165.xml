@@ -1,108 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d0/d48/a00165" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::VariableLister</compoundname>
-    <basecompoundref refid="d0/dc0/a00033" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d0/d48/a00165_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
-        <type>HashSet&lt; string &gt;</type>
-        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
+  <compounddef id="d0/d48/a00165" kind="struct" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d0/d48/a00165_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</definition>
         <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new HashSet&lt;string&gt;()</initializer>
+        <name>name</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="148" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="148" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="37" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d0/d48/a00165_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override void</type>
-        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
-        <argsstring>(Program program)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="d7/d12/a00126" kindref="compound">Program</ref></type>
-          <declname>program</declname>
-        </param>
+      <memberdef kind="variable" id="d0/d48/a00165_1adc58df011dc2841837b6cf775b372061" prot="public" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</definition>
+        <argsstring></argsstring>
+        <name>sprite</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="150" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="150" bodyend="171"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d48/a00165_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override IEnumerable&lt; <ref refid="d0/d89/a00071" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
-        <argsstring>()</argsstring>
-        <name>GatherDiagnoses</name>
-        <reimplements refid="d0/dc0/a00033_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="173" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="173" bodyend="183"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/dc0/a00033_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Program program)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="d7/d12/a00126" kindref="compound">Yarn.Program</ref></type>
-          <declname>program</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="143" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="38" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1629">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="d0/dc0/a00033"/>
-      </node>
-      <node id="1628">
-        <label>Yarn.Analysis.VariableLister</label>
-        <link refid="d0/d48/a00165"/>
-        <childnode refid="1629" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1631">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="d0/dc0/a00033"/>
-      </node>
-      <node id="1630">
-        <label>Yarn.Analysis.VariableLister</label>
+      <node id="648">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
         <link refid="d0/d48/a00165"/>
-        <childnode refid="1631" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="147" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="147" bodyend="184"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="36" bodyend="39"/>
     <listofallmembers>
-      <member refid="d0/d48/a00165_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="d0/dc0/a00033_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="d0/d48/a00165_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
-      <member refid="d0/d48/a00165_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
+      <member refid="d0/d48/a00165_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>name</name></member>
+      <member refid="d0/d48/a00165_1adc58df011dc2841837b6cf775b372061" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>sprite</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

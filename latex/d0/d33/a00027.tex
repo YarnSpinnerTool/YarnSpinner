@@ -1,89 +1,65 @@
-\hypertarget{a00027}{\section{Yarn.\-Unity.\-Example.\-Camera\-Follow Class Reference}
-\label{a00027}\index{Yarn.\-Unity.\-Example.\-Camera\-Follow@{Yarn.\-Unity.\-Example.\-Camera\-Follow}}
+\hypertarget{a00027}{\section{Yarn.\-Dialogue.\-Command\-Result Class Reference}
+\label{a00027}\index{Yarn.\-Dialogue.\-Command\-Result@{Yarn.\-Dialogue.\-Command\-Result}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
+Inheritance diagram for Yarn.\-Dialogue.\-Command\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{d3/d3b/a00715}
+\includegraphics[width=234pt]{dd/dc1/a00212}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
+Collaboration diagram for Yarn.\-Dialogue.\-Command\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{d2/d94/a00716}
+\includegraphics[width=259pt]{d1/de1/a00213}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00027_a1a553422394fb0c854d1184985f993bb}{Command\-Result} (string text)
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Transform \hyperlink{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{target}
-\item 
-float \hyperlink{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{min\-Position} = -\/5.\-3f
-\item 
-float \hyperlink{a00027_abb0154dcbc2a7d43795beacd61a56de4}{max\-Position} = 5.\-3f
-\item 
-float \hyperlink{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{move\-Speed} = 1.\-0f
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00027_a592ddbf8e493bde0a6536c0234869217}{Update} ()
+\hyperlink{a00026_d6/db8/a00158}{Command} \hyperlink{a00027_a420ca0984d6e5c33bb761654305c592e}{command}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00027_a592ddbf8e493bde0a6536c0234869217}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!Update@{Update}}
-\index{Update@{Update}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
-\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Camera\-Follow.\-Update (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00027_a1a553422394fb0c854d1184985f993bb}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!Command\-Result@{Command\-Result}}
+\index{Command\-Result@{Command\-Result}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
+\subsubsection[{Command\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Command\-Result.\-Command\-Result (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00027_a592ddbf8e493bde0a6536c0234869217}
+)}}\label{a00027_a1a553422394fb0c854d1184985f993bb}
 
 \begin{DoxyCode}
-42                        \{
-43             \textcolor{keywordflow}{if} (\hyperlink{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{target} == null) \{
-44                 \textcolor{keywordflow}{return};
-45             \}
-46             var newPosition = Vector3.Lerp(transform.position, target.position, 
-      \hyperlink{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{moveSpeed} * Time.deltaTime);
-47 
-48             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{minPosition}, 
-      \hyperlink{a00027_abb0154dcbc2a7d43795beacd61a56de4}{maxPosition});
-49             newPosition.y = transform.position.y;
-50             newPosition.z = transform.position.z;
-51 
-52             transform.position = newPosition;
-53         \}
+108                                                \{
+109                 var \hyperlink{a00027_a420ca0984d6e5c33bb761654305c592e}{command} = \textcolor{keyword}{new} Command();
+110                 command.text = text;
+111                 this.command = \hyperlink{a00027_a420ca0984d6e5c33bb761654305c592e}{command};
+112             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00027_abb0154dcbc2a7d43795beacd61a56de4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!max\-Position@{max\-Position}}
-\index{max\-Position@{max\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
-\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-max\-Position = 5.\-3f}}\label{a00027_abb0154dcbc2a7d43795beacd61a56de4}
-\hypertarget{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!min\-Position@{min\-Position}}
-\index{min\-Position@{min\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
-\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-min\-Position = -\/5.\-3f}}\label{a00027_a08c6f6c0ea423c21af99e4b5467d3c9b}
-\hypertarget{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!move\-Speed@{move\-Speed}}
-\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
-\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-move\-Speed = 1.\-0f}}\label{a00027_a3d4f2efe9c2cee8c7ff797cac03f27ec}
-\hypertarget{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!target@{target}}
-\index{target@{target}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
-\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}Transform Yarn.\-Unity.\-Example.\-Camera\-Follow.\-target}}\label{a00027_aa5d6958fb14a14ebb74e21c372fcca8b}
+\hypertarget{a00027_a420ca0984d6e5c33bb761654305c592e}{\index{Yarn\-::\-Dialogue\-::\-Command\-Result@{Yarn\-::\-Dialogue\-::\-Command\-Result}!command@{command}}
+\index{command@{command}!Yarn::Dialogue::CommandResult@{Yarn\-::\-Dialogue\-::\-Command\-Result}}
+\subsubsection[{command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command} Yarn.\-Dialogue.\-Command\-Result.\-command}}\label{a00027_a420ca0984d6e5c33bb761654305c592e}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00256}{Camera\-Follow.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00117}{Dialogue.\-cs}\end{DoxyCompactItemize}

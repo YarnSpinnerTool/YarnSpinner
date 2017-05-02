@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Analysis.ASTAnalyser Class Reference</title>
+<title>YarnSpinner: Yarn.BaseVariableStorage Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -108,27 +108,42 @@ $(document).ready(function(){initNavTree('de/d11/a00021.html','../../');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="../../d7/dc3/a00682.html">List of all members</a>  </div>
+<a href="../../d5/df1/a00206.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Analysis.ASTAnalyser Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Yarn.BaseVariableStorage Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Collaboration diagram for Yarn.Analysis.ASTAnalyser:</div>
+Inheritance diagram for Yarn.BaseVariableStorage:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../db/d77/a00683.png" border="0" usemap="#_yarn_8_analysis_8_a_s_t_analyser_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_analysis_8_a_s_t_analyser_coll__map" id="_yarn_8_analysis_8_a_s_t_analyser_coll__map">
-</map>
+<div class="center"><img src="../../de/dd2/a00207.png" border="0" usemap="#_yarn_8_base_variable_storage_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_base_variable_storage_inherit__map" id="_yarn_8_base_variable_storage_inherit__map">
+<area shape="rect" id="node3" href="../../d1/d84/a00052.html" title="{Yarn.MemoryVariableStore\n|&#45; variables\l|+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,373,184,480"/><area shape="rect" id="node2" href="../../db/ddf/a00088.html" title="{VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="37,5,152,141"/></map>
+</div>
+<div class="dynheader">
+Collaboration diagram for Yarn.BaseVariableStorage:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dc/d31/a00208.png" border="0" usemap="#_yarn_8_base_variable_storage_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_base_variable_storage_coll__map" id="_yarn_8_base_variable_storage_coll__map">
+<area shape="rect" id="node2" href="../../db/ddf/a00088.html" title="{VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="35,5,149,141"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a07bb220dead44ed12c8842de706ecdf7"><td class="memItemLeft" align="right" valign="top">abstract IEnumerable&lt; <a class="el" href="../../d0/d89/a00071.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a07bb220dead44ed12c8842de706ecdf7">Diagnose</a> (<a class="el" href="../../db/d57/a00112.html">Yarn.Parser.Node</a> node)</td></tr>
-<tr class="separator:a07bb220dead44ed12c8842de706ecdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48b93de9cd7ae61d0cd9583c8330d3ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a48b93de9cd7ae61d0cd9583c8330d3ee">SetNumber</a> (string variableName, float number)</td></tr>
+<tr class="separator:a48b93de9cd7ae61d0cd9583c8330d3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b7f7f4468b2463e7b47986d99362279"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a1b7f7f4468b2463e7b47986d99362279">GetNumber</a> (string variableName)</td></tr>
+<tr class="separator:a1b7f7f4468b2463e7b47986d99362279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c57d6d208b78abec0a670396771448e"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a1c57d6d208b78abec0a670396771448e">SetValue</a> (string variableName, <a class="el" href="../../da/d2a/a00086.html">Value</a> value)</td></tr>
+<tr class="separator:a1c57d6d208b78abec0a670396771448e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b142df804d9842e97e628e252928e8"><td class="memItemLeft" align="right" valign="top">abstract <a class="el" href="../../da/d2a/a00086.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a13b142df804d9842e97e628e252928e8">GetValue</a> (string variableName)</td></tr>
+<tr class="separator:a13b142df804d9842e97e628e252928e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e45c37f3662ce9f2643e306bb2b3adc"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d11/a00021.html#a7e45c37f3662ce9f2643e306bb2b3adc">Clear</a> ()</td></tr>
+<tr class="separator:a7e45c37f3662ce9f2643e306bb2b3adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a07bb220dead44ed12c8842de706ecdf7"></a>
+<a class="anchor" id="a7e45c37f3662ce9f2643e306bb2b3adc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -136,10 +151,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">abstract IEnumerable&lt;<a class="el" href="../../d0/d89/a00071.html">Diagnosis</a>&gt; Yarn.Analysis.ASTAnalyser.Diagnose </td>
+          <td class="memname">abstract void Yarn.BaseVariableStorage.Clear </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/d57/a00112.html">Yarn.Parser.Node</a>&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -150,17 +164,139 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implements <a class="el" href="../../db/ddf/a00088.html#af98c1e41f351cb96e13f668ca2fd9d92">Yarn.VariableStorage</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d1/d84/a00052.html#aa6d243e7ef02b91f793a221f509dae69">Yarn.MemoryVariableStore</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b7f7f4468b2463e7b47986d99362279"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Yarn.BaseVariableStorage.GetNumber </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../db/ddf/a00088.html#a04b061c52d8ac814ce559da5286fbc71">Yarn.VariableStorage</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                    {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">return</span> this.GetValue(variableName).AsNumber;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a13b142df804d9842e97e628e252928e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract <a class="el" href="../../da/d2a/a00086.html">Value</a> Yarn.BaseVariableStorage.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../db/ddf/a00088.html#accab1fc5c8fc353dbfc53ca0f4029576">Yarn.VariableStorage</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d1/d84/a00052.html#a0ce77e8245c504a777540e359704aa2a">Yarn.MemoryVariableStore</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a48b93de9cd7ae61d0cd9583c8330d3ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.BaseVariableStorage.SetNumber </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../db/ddf/a00088.html#aa28c3694f985cf73489efc301b9d41dd">Yarn.VariableStorage</a>.</p>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                                                 {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            this.SetValue(variableName, <span class="keyword">new</span> Value(number));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a1c57d6d208b78abec0a670396771448e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void Yarn.BaseVariableStorage.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>variableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../da/d2a/a00086.html">Value</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../db/ddf/a00088.html#aa90ff61224432c5ed3ce72199c55f440">Yarn.VariableStorage</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d1/d84/a00052.html#a653a459811e5c19549f4b31269093ef5">Yarn.MemoryVariableStore</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="../../">Analyser.cs</a></li>
+<li>YarnSpinner/<a class="el" href="../../">Dialogue.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../df/d61/a00031.html">Yarn</a></li><li class="navelem"><a class="el" href="../../d1/d5d/a00311.html">Analysis</a></li><li class="navelem"><a class="el" href="../../de/d11/a00021.html">ASTAnalyser</a></li>
+    <li class="navelem"><a class="el" href="../../d6/d5b/a00026.html">Yarn</a></li><li class="navelem"><a class="el" href="../../de/d11/a00021.html">BaseVariableStorage</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

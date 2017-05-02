@@ -26,10 +26,10 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
-        [ "Properties", "functions_prop.html", "functions_prop" ]
+        [ "Properties", "functions_prop.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -45,14 +45,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"d1/d22/a00057.html#a2a7e1bcb33d8013182286439e6f7416f",
-"d2/da3/a00115.html#a0bf37075312ea87c2e329cc363a328a6",
-"d4/dca/a00048.html#abea7b56f7571998c07fbf18043852835",
-"d6/d2c/a00072.html#a7acfe32f91b36ee812059f2ad3011133",
-"d9/d4b/a00117.html#a171027dbddf208784c824ae7fe72cb71",
-"db/d3a/a00040.html#af2c164ac53fb00b7130fcfd334e3df94",
-"dd/da7/a00168.html#aa93cbb1bc1d5328e0a417012621e92d2",
-"functions_m.html"
+"d3/dea/a00046.html#a17292a3090b1cc75139caa4fd1986474",
+"d7/dec/a00010.html",
+"dd/d42/a00109.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

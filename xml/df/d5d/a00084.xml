@@ -1,83 +1,47 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="df/d5d/a00084" kind="class" prot="public">
-    <compoundname>Yarn::FunctionInfo</compoundname>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="df/d5d/a00084_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.FunctionInfo.name</definition>
+  <compounddef id="df/d5d/a00084" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Analysis::UnusedVariableChecker</compoundname>
+    <basecompoundref refid="dc/d3c/a00028" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="df/d5d/a00084_1a6b542092ddce1b92c9455d60899518a9" prot="private" static="no" mutable="no">
+        <type>HashSet&lt; string &gt;</type>
+        <definition>HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.readVariables</definition>
         <argsstring></argsstring>
-        <name>name</name>
+        <name>readVariables</name>
+        <initializer>= new HashSet&lt;string&gt; ()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="12" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="149" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="149" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="df/d5d/a00084_1aa8527de9e4f153b05164ccaf167c3186" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>int</type>
-        <definition>int Yarn.FunctionInfo.paramCount</definition>
+      <memberdef kind="variable" id="df/d5d/a00084_1a0c2fe6eded1b10b135ca2469f5980a39" prot="private" static="no" mutable="no">
+        <type>HashSet&lt; string &gt;</type>
+        <definition>HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.writtenVariables</definition>
         <argsstring></argsstring>
-        <name>paramCount</name>
+        <name>writtenVariables</name>
+        <initializer>= new HashSet&lt;string&gt; ()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="16" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="df/d5d/a00084_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="df/d61/a00031_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-        <definition>Function Yarn.FunctionInfo.function</definition>
-        <argsstring></argsstring>
-        <name>function</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="22" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="df/d5d/a00084_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="df/d61/a00031_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-        <definition>ReturningFunction Yarn.FunctionInfo.returningFunction</definition>
-        <argsstring></argsstring>
-        <name>returningFunction</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="df/d5d/a00084_1acaff044276aa230de7c0b27dd5267bc7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.returnsValue</definition>
-        <argsstring></argsstring>
-        <name>returnsValue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="26" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="150" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="150" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="df/d5d/a00084_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="dd/dae/a00163" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.Invoke</definition>
-        <argsstring>(params Value[] parameters)</argsstring>
-        <name>Invoke</name>
+      <memberdef kind="function" id="df/d5d/a00084_1aeac8f333d4dcc85f4d4a716bf8fea01f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void Yarn.Analysis.UnusedVariableChecker.Diagnose</definition>
+        <argsstring>(Program program)</argsstring>
+        <name>Diagnose</name>
         <param>
-          <type>params <ref refid="dd/dae/a00163" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
+          <type><ref refid="dc/ddf/a00067" kindref="compound">Program</ref></type>
+          <declname>program</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -85,43 +49,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="32" bodyend="34"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="153" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="153" bodyend="176"/>
       </memberdef>
-      <memberdef kind="function" id="df/d5d/a00084_1a3ce11058d35232907a738de4bb094c67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="dd/dae/a00163" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.FunctionInfo.InvokeWithArray</definition>
-        <argsstring>(Value[] parameters)</argsstring>
-        <name>InvokeWithArray</name>
-        <param>
-          <type><ref refid="dd/dae/a00163" kindref="compound">Value</ref>[]</type>
-          <declname>parameters</declname>
-        </param>
+      <memberdef kind="function" id="df/d5d/a00084_1a107aecf707b130c4b733930a95f9154e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerable&lt; <ref refid="d4/d8c/a00035" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.UnusedVariableChecker.GatherDiagnoses</definition>
+        <argsstring>()</argsstring>
+        <name>GatherDiagnoses</name>
+        <reimplements refid="dc/d3c/a00028_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="36" bodyend="61"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="178" bodyend="203"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="df/d5d/a00084_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, Function implementation)</argsstring>
-        <name>FunctionInfo</name>
+      <memberdef kind="function" id="dc/d3c/a00028_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
+        <argsstring>(Yarn.Program program)</argsstring>
+        <name>Diagnose</name>
         <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
+          <type><ref refid="dc/ddf/a00067" kindref="compound">Yarn.Program</ref></type>
+          <declname>program</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -129,73 +80,44 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="65" bodyend="70"/>
-      </memberdef>
-      <memberdef kind="function" id="df/d5d/a00084_1a41d97c09da25caede70cb734d18113b9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.FunctionInfo.FunctionInfo</definition>
-        <argsstring>(string name, int paramCount, ReturningFunction implementation)</argsstring>
-        <name>FunctionInfo</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>paramCount</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="72" bodyend="77"/>
-      </memberdef>
-      <memberdef kind="function" id="df/d5d/a00084_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Yarn.FunctionInfo.IsParameterCountCorrect</definition>
-        <argsstring>(int parameterCount)</argsstring>
-        <name>IsParameterCountCorrect</name>
-        <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="79" bodyend="82"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="143" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1246">
-        <label>Yarn.FunctionInfo</label>
+    <inheritancegraph>
+      <node id="704">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="dc/d3c/a00028"/>
+      </node>
+      <node id="703">
+        <label>Yarn.Analysis.UnusedVariableChecker</label>
         <link refid="df/d5d/a00084"/>
+        <childnode refid="704" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="706">
+        <label>CompiledProgramAnalyser</label>
+        <link refid="dc/d3c/a00028"/>
+      </node>
+      <node id="705">
+        <label>Yarn.Analysis.UnusedVariableChecker</label>
+        <link refid="df/d5d/a00084"/>
+        <childnode refid="706" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="9" bodyend="87"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="147" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="147" bodyend="205"/>
     <listofallmembers>
-      <member refid="df/d5d/a00084_1a1dd2f9d11614a2fce170b3f3eecdb5f9" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>function</name></member>
-      <member refid="df/d5d/a00084_1a93457cd0e838cb2ef59cc2a3a46ce758" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="df/d5d/a00084_1a41d97c09da25caede70cb734d18113b9" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>FunctionInfo</name></member>
-      <member refid="df/d5d/a00084_1ab400ac66785d7df2e3fc0f3ce3796044" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>Invoke</name></member>
-      <member refid="df/d5d/a00084_1a3ce11058d35232907a738de4bb094c67" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>InvokeWithArray</name></member>
-      <member refid="df/d5d/a00084_1a1ed09ff8aafa230a0d2bbc23cd6cd763" prot="package" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>IsParameterCountCorrect</name></member>
-      <member refid="df/d5d/a00084_1adb38e83e3c1597b553aeff14bef5bfcb" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>name</name></member>
-      <member refid="df/d5d/a00084_1aa8527de9e4f153b05164ccaf167c3186" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>paramCount</name></member>
-      <member refid="df/d5d/a00084_1a8b6e0e5a875c427a1d947f3c52c308ca" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returningFunction</name></member>
-      <member refid="df/d5d/a00084_1acaff044276aa230de7c0b27dd5267bc7" prot="public" virt="non-virtual"><scope>Yarn::FunctionInfo</scope><name>returnsValue</name></member>
+      <member refid="df/d5d/a00084_1aeac8f333d4dcc85f4d4a716bf8fea01f" prot="public" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>Diagnose</name></member>
+      <member refid="dc/d3c/a00028_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>Diagnose</name></member>
+      <member refid="df/d5d/a00084_1a107aecf707b130c4b733930a95f9154e" prot="public" virt="virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>GatherDiagnoses</name></member>
+      <member refid="df/d5d/a00084_1a6b542092ddce1b92c9455d60899518a9" prot="private" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>readVariables</name></member>
+      <member refid="df/d5d/a00084_1a0c2fe6eded1b10b135ca2469f5980a39" prot="private" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>writtenVariables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

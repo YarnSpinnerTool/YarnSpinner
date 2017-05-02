@@ -1,222 +1,99 @@
-\hypertarget{a00042}{\section{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection Class Reference}
-\label{a00042}\index{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection@{Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection}}
+\hypertarget{a00042}{\section{Yarn.\-Unity.\-Icons Class Reference}
+\label{a00042}\index{Yarn.\-Unity.\-Icons@{Yarn.\-Unity.\-Icons}}
 }
 
 
-Collection that holds Csv\-Class\-Maps for record types.  
-
-
-
-
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection\-:
+Collaboration diagram for Yarn.\-Unity.\-Icons\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=242pt]{d8/d91/a00410}
+\includegraphics[width=170pt]{df/d03/a00348}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual \hyperlink{a00040}{Csv\-Class\-Map}$<$ T $>$ \hyperlink{a00042_ac75513617b6c256c3d693adf4482e1ed}{Find$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Finds the \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-virtual void \hyperlink{a00042_aab6a14a4c1a614fac511ddd6af2c9e40}{Add} (\hyperlink{a00040}{Csv\-Class\-Map} map)
-\begin{DoxyCompactList}\small\item\em Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00042_a0b18f7ab62839aa354021986e5a2ef96}{Remove} (Type class\-Map\-Type)
-\begin{DoxyCompactList}\small\item\em Removes the class map. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00042_a91718f9b6527a7f833393d24587716cc}{Clear} ()
-\begin{DoxyCompactList}\small\item\em Removes all maps. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{a00040}{Csv\-Class\-Map} \hyperlink{a00042_a58c95d5126b396fcf3f58d7daa59646e}{this\mbox{[}\-Type type\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+static Texture \hyperlink{a00042_aec8aea03eb6e31771ebc98e0611fff79}{success\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00042_aae7cc0e5016db04a90b2aa0e80957626}{failed\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00042_a3f03f2f0fa137e349853d755e79f2e4a}{ignored\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00042_aa78ab016ad041bc36850c8b20ba63972}{window\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Type \hyperlink{a00042_a73e02f782a0c35347d7d035bec5deb99}{Get\-Generic\-Csv\-Class\-Map\-Type} (Type type)
-\begin{DoxyCompactList}\small\item\em Goes up the inheritance tree to find the type instance of \hyperlink{a00040}{Csv\-Class\-Map}\{\}. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+static Texture \hyperlink{a00042_a267896b2c4512f5b17772e7e1e46d6da}{Get\-Texture} (string texture\-Name)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-readonly Dictionary$<$ Type, \\*
-\hyperlink{a00040}{Csv\-Class\-Map} $>$ \hyperlink{a00042_a6402d0986ae539363780f34eefd5fa99}{data} = new Dictionary$<$Type, \hyperlink{a00040}{Csv\-Class\-Map}$>$()
+static Texture \hyperlink{a00042_a40e137f48495168d4423c103c8935a1b}{\-\_\-success\-Icon}
+\item 
+static Texture \hyperlink{a00042_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\-\_\-failed\-Icon}
+\item 
+static Texture \hyperlink{a00042_aeb6761c6115d55f24df4ad963a2d224c}{\-\_\-ignored\-Icon}
+\item 
+static Texture \hyperlink{a00042_abba8fef6cc12836ea431a8a7c9e2f3db}{\-\_\-window\-Icon}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Collection that holds Csv\-Class\-Maps for record types. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00042_aab6a14a4c1a614fac511ddd6af2c9e40}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Add@{Add}}
-\index{Add@{Add}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Add (
+\hypertarget{a00042_a267896b2c4512f5b17772e7e1e46d6da}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!Get\-Texture@{Get\-Texture}}
+\index{Get\-Texture@{Get\-Texture}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{Get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}static Texture Yarn.\-Unity.\-Icons.\-Get\-Texture (
 \begin{DoxyParamCaption}
-\item[{{\bf Csv\-Class\-Map}}]{map}
+\item[{string}]{texture\-Name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00042_aab6a14a4c1a614fac511ddd6af2c9e40}
-
-
-Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em map} & The map.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00042_a267896b2c4512f5b17772e7e1e46d6da}
 
 \begin{DoxyCode}
-57         \{
-58             var type = \hyperlink{a00042_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( map.GetType() ).
-      GetGenericArguments().First();
-59 
-60             \textcolor{keywordflow}{if}( \hyperlink{a00042_a6402d0986ae539363780f34eefd5fa99}{data}.ContainsKey( type ) )
-61             \{
-62                 \hyperlink{a00042_a6402d0986ae539363780f34eefd5fa99}{data}[type] = map;
-63             \}
-64             \textcolor{keywordflow}{else}
-65             \{
-66                 data.Add( type, map );
-67             \}
-68         \}
-\end{DoxyCode}
-\hypertarget{a00042_a91718f9b6527a7f833393d24587716cc}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Clear@{Clear}}
-\index{Clear@{Clear}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Clear (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00042_a91718f9b6527a7f833393d24587716cc}
-
-
-Removes all maps. 
-
-
-\begin{DoxyCode}
-90         \{
-91             data.Clear();
-92         \}
-\end{DoxyCode}
-\hypertarget{a00042_ac75513617b6c256c3d693adf4482e1ed}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Find$<$ T $>$@{Find$<$ T $>$}}
-\index{Find$<$ T $>$@{Find$<$ T $>$}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{Find$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Class\-Map}$<$T$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Find$<$ T $>$ (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00042_ac75513617b6c256c3d693adf4482e1ed}
-
-
-Finds the \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The record type.\\
-\hline
-\end{DoxyTemplParams}
-\begin{DoxyReturn}{Returns}
-The \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type.
-\end{DoxyReturn}
-
-\begin{DoxyCode}
-46         \{
-47             \textcolor{keywordflow}{return} (CsvClassMap<T>)\textcolor{keyword}{this}[typeof( T )];
-48         \}
-\end{DoxyCode}
-\hypertarget{a00042_a73e02f782a0c35347d7d035bec5deb99}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Get\-Generic\-Csv\-Class\-Map\-Type@{Get\-Generic\-Csv\-Class\-Map\-Type}}
-\index{Get\-Generic\-Csv\-Class\-Map\-Type@{Get\-Generic\-Csv\-Class\-Map\-Type}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{Get\-Generic\-Csv\-Class\-Map\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Get\-Generic\-Csv\-Class\-Map\-Type (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_a73e02f782a0c35347d7d035bec5deb99}
-
-
-Goes up the inheritance tree to find the type instance of \hyperlink{a00040}{Csv\-Class\-Map}\{\}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type to traverse.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The type that is \hyperlink{a00040}{Csv\-Class\-Map}\{\}.
-\end{DoxyReturn}
-
-\begin{DoxyCode}
-100         \{
-101             \textcolor{keywordflow}{if}( type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof( 
-      CsvClassMap<> ) )
-102             \{
-103                 \textcolor{keywordflow}{return} type;
-104             \}
-105 
-106             \textcolor{keywordflow}{return} \hyperlink{a00042_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( type.GetTypeInfo().BaseType );
-107         \}
-\end{DoxyCode}
-\hypertarget{a00042_a0b18f7ab62839aa354021986e5a2ef96}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!Remove@{Remove}}
-\index{Remove@{Remove}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{Remove}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-Remove (
-\begin{DoxyParamCaption}
-\item[{Type}]{class\-Map\-Type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00042_a0b18f7ab62839aa354021986e5a2ef96}
-
-
-Removes the class map. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em class\-Map\-Type} & The class map type.\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyCode}
-75         \{
-76             \textcolor{keywordflow}{if}( !typeof( CsvClassMap ).IsAssignableFrom( classMapType ) )
-77             \{
-78                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"The class map type must inherit from CsvClassMap."} );
-79             \}
-80 
-81             var type = \hyperlink{a00042_a73e02f782a0c35347d7d035bec5deb99}{GetGenericCsvClassMapType}( classMapType )
-      .GetGenericArguments().First();
-82 
-83             data.Remove( type );
-84         \}
+357                                                               \{
+358             var guids = AssetDatabase.FindAssets (string.Format (\textcolor{stringliteral}{"\{0\} t:texture"}, textureName));
+359             \textcolor{keywordflow}{if} (guids.Length == 0)
+360                 \textcolor{keywordflow}{return} null;
+361 
+362             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+363             \textcolor{keywordflow}{return} AssetDatabase.LoadAssetAtPath<Texture>(path);
+364         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00042_a6402d0986ae539363780f34eefd5fa99}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!data@{data}}
-\index{data@{data}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}readonly Dictionary$<$Type, {\bf Csv\-Class\-Map}$>$ Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-data = new Dictionary$<$Type, {\bf Csv\-Class\-Map}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00042_a6402d0986ae539363780f34eefd5fa99}
+\hypertarget{a00042_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-failed\-Icon@{\-\_\-failed\-Icon}}
+\index{\-\_\-failed\-Icon@{\-\_\-failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00042_a75ef0bcf3f5968f11949e6bfa4fdddd5}
+\hypertarget{a00042_aeb6761c6115d55f24df4ad963a2d224c}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-ignored\-Icon@{\-\_\-ignored\-Icon}}
+\index{\-\_\-ignored\-Icon@{\-\_\-ignored\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-ignored\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-ignored\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00042_aeb6761c6115d55f24df4ad963a2d224c}
+\hypertarget{a00042_a40e137f48495168d4423c103c8935a1b}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-success\-Icon@{\-\_\-success\-Icon}}
+\index{\-\_\-success\-Icon@{\-\_\-success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00042_a40e137f48495168d4423c103c8935a1b}
+\hypertarget{a00042_abba8fef6cc12836ea431a8a7c9e2f3db}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-window\-Icon@{\-\_\-window\-Icon}}
+\index{\-\_\-window\-Icon@{\-\_\-window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00042_abba8fef6cc12836ea431a8a7c9e2f3db}
 
 
 \subsection{Property Documentation}
-\hypertarget{a00042_a58c95d5126b396fcf3f58d7daa59646e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}!this\mbox{[}\-Type type\mbox{]}@{this[Type type]}}
-\index{this\mbox{[}\-Type type\mbox{]}@{this[Type type]}!CsvHelper::Configuration::CsvClassMapCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Class\-Map\-Collection}}
-\subsubsection[{this[Type type]}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Class\-Map\-Collection.\-this\mbox{[}Type type\mbox{]}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00042_a58c95d5126b396fcf3f58d7daa59646e}
-
-
-Gets the \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type. 
-
-The \hyperlink{a00040}{Csv\-Class\-Map}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The record type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The \hyperlink{a00040}{Csv\-Class\-Map} for the specified record type.
-\end{DoxyReturn}
+\hypertarget{a00042_aae7cc0e5016db04a90b2aa0e80957626}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!failed\-Icon@{failed\-Icon}}
+\index{failed\-Icon@{failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00042_aae7cc0e5016db04a90b2aa0e80957626}
+\hypertarget{a00042_a3f03f2f0fa137e349853d755e79f2e4a}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!ignored\-Icon@{ignored\-Icon}}
+\index{ignored\-Icon@{ignored\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{ignored\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-ignored\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00042_a3f03f2f0fa137e349853d755e79f2e4a}
+\hypertarget{a00042_aec8aea03eb6e31771ebc98e0611fff79}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!success\-Icon@{success\-Icon}}
+\index{success\-Icon@{success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00042_aec8aea03eb6e31771ebc98e0611fff79}
+\hypertarget{a00042_aa78ab016ad041bc36850c8b20ba63972}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!window\-Icon@{window\-Icon}}
+\index{window\-Icon@{window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00042_aa78ab016ad041bc36850c8b20ba63972}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00184}{Csv\-Class\-Map\-Collection.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00106}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

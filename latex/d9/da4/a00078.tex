@@ -1,184 +1,297 @@
-\hypertarget{a00078}{\section{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter Class Reference}
-\label{a00078}\index{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}}
+\hypertarget{a00078}{\section{Test\-Dialogue\-U\-I\-Behaviour Class Reference}
+\label{a00078}\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
 }
 
 
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Inheritance diagram for Test\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{d7/d5e/a00467}
+\includegraphics[width=244pt]{dc/d52/a00183}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter\-:
+Collaboration diagram for Test\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{df/d38/a00468}
+\includegraphics[width=244pt]{d2/d94/a00184}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00078_a692617638507cd1033728d7f718fcd2a}{Convert\-From\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override string \hyperlink{a00078_a7e07e9532857d748654d37db590a0e11}{Convert\-To\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Throws an exception. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00078_af66a7c67041f4c8061aa66e9e36359cf}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00078_a44d625b44f770b945a29cd89e399f90f}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}{Expect\-Line} (string line)
+\item 
+void \hyperlink{a00078_adc743ade599769e968fecea525add7b3}{Select\-Option} (string option)
+\item 
+delegate void \hyperlink{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{Line\-Handler} (\hyperlink{a00026_d6/d7d/a00161}{Yarn.\-Line} line)
+\item 
+delegate void \hyperlink{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{Options\-Handler} (\hyperlink{a00026_dd/dae/a00163}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\item 
+delegate void \hyperlink{a00078_afc93c5cf370b31eceab3671c9eca0d94}{Command\-Handler} (\hyperlink{a00026_d6/db8/a00158}{Yarn.\-Command} command)
+\item 
+override \\*
+System.\-Collections.\-I\-Enumerator \hyperlink{a00078_ae274e39b640908d04aacc6cf6624d9da}{Run\-Line} (\hyperlink{a00026_d6/d7d/a00161}{Yarn.\-Line} line)
+\item 
+override \\*
+System.\-Collections.\-I\-Enumerator \hyperlink{a00078_ad2ac83f91814d8666482bf8b6f3721d1}{Run\-Options} (\hyperlink{a00026_dd/dae/a00163}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\item 
+override \\*
+System.\-Collections.\-I\-Enumerator \hyperlink{a00078_a01e67009071f9ee5ac5ef3c970cd3695}{Run\-Command} (\hyperlink{a00026_d6/db8/a00158}{Yarn.\-Command} command)
+\item 
+virtual I\-Enumerator \hyperlink{a00038_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
+\item 
+abstract I\-Enumerator \hyperlink{a00038_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00026_d6/d7d/a00161}{Yarn.\-Line} line)
+\item 
+abstract I\-Enumerator \hyperlink{a00038_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00026_dd/dae/a00163}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\item 
+abstract I\-Enumerator \hyperlink{a00038_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00026_d6/db8/a00158}{Yarn.\-Command} command)
+\item 
+virtual I\-Enumerator \hyperlink{a00038_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
+\item 
+virtual I\-Enumerator \hyperlink{a00038_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{Line\-Handler} \hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{line\-Handler}
+\item 
+\hyperlink{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{Options\-Handler} \hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{options\-Handler}
+\item 
+\hyperlink{a00078_afc93c5cf370b31eceab3671c9eca0d94}{Command\-Handler} \hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{command\-Handler}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Queue$<$ string $>$ \hyperlink{a00078_ab0f7b55e776ae494a651c845b496916c}{expected\-Lines} = new Queue$<$string$>$()
+\item 
+Queue$<$ string $>$ \hyperlink{a00078_a94e4308d412945c977b2deb63f139009}{expected\-Options} = new Queue$<$string$>$()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Throws an exception when used. This is here so that it's apparent that there is no support for I\-Enumerable type coversion. A custom converter will need to be created to have a field convert to and from an I\-Enumerable. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00078_af66a7c67041f4c8061aa66e9e36359cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00078_afc93c5cf370b31eceab3671c9eca0d94}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Command\-Handler@{Command\-Handler}}
+\index{Command\-Handler@{Command\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Command\-Handler (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Yarn.\-Command}}]{command}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00078_af66a7c67041f4c8061aa66e9e36359cf}
+)}}\label{a00078_afc93c5cf370b31eceab3671c9eca0d94}
+\hypertarget{a00038_aecc60aee9e9386da1f71fb183f43c52d}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
+\index{Dialogue\-Complete@{Dialogue\-Complete}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_aecc60aee9e9386da1f71fb183f43c52d}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Reimplemented in \hyperlink{a00039_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
 
 \begin{DoxyCode}
-52         \{
-53             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+359                                                        \{
+360             \textcolor{comment}{// Default implementation does nothing.}
+361             yield \textcolor{keywordflow}{break};
+362         \}
+\end{DoxyCode}
+\hypertarget{a00038_af9d88ca81ac536d43046ca6572e3ff54}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
+\index{Dialogue\-Started@{Dialogue\-Started}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_af9d88ca81ac536d43046ca6572e3ff54}
+
+
+Reimplemented in \hyperlink{a00039_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+
+\begin{DoxyCode}
+337                                                      \{
+338             \textcolor{comment}{// Default implementation does nothing.}
+339             yield \textcolor{keywordflow}{break};
+340         \}
+\end{DoxyCode}
+\hypertarget{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Expect\-Line@{Expect\-Line}}
+\index{Expect\-Line@{Expect\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Test\-Dialogue\-U\-I\-Behaviour.\-Expect\-Line (
+\begin{DoxyParamCaption}
+\item[{string}]{line}
+\end{DoxyParamCaption}
+)}}\label{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}
+
+\begin{DoxyCode}
+9                                         \{
+10         expectedLines.Enqueue(line);
+11     \}
+\end{DoxyCode}
+\hypertarget{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Line\-Handler@{Line\-Handler}}
+\index{Line\-Handler@{Line\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Line\-Handler (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)}}\label{a00078_ac6c30953edbd1cd4181e2a3854a1642b}
+\hypertarget{a00038_a2900548a0704d39d4502a153945f4bef}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
+\index{Node\-Complete@{Node\-Complete}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
+\begin{DoxyParamCaption}
+\item[{string}]{next\-Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_a2900548a0704d39d4502a153945f4bef}
+
+\begin{DoxyCode}
+353                                                                  \{
+354             \textcolor{comment}{// Default implementation does nothing.}
+355             yield \textcolor{keywordflow}{break};
+356         \}
+\end{DoxyCode}
+\hypertarget{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Options\-Handler@{Options\-Handler}}
+\index{Options\-Handler@{Options\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Options\-Handler (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)}}\label{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}
+\hypertarget{a00078_a01e67009071f9ee5ac5ef3c970cd3695}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Command}}]{command}
+\end{DoxyParamCaption}
+)}}\label{a00078_a01e67009071f9ee5ac5ef3c970cd3695}
+
+\begin{DoxyCode}
+59     \{
+60         \textcolor{keywordflow}{if} (\hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{commandHandler} != null)
+61             \hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{commandHandler}(command);
+62         yield \textcolor{keywordflow}{break};
+63     \}
+\end{DoxyCode}
+\hypertarget{a00038_a3dffe84b9e7a10fdec6749baf697d111}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Command}}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_a3dffe84b9e7a10fdec6749baf697d111}
+
+
+Implemented in \hyperlink{a00039_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00078_ae274e39b640908d04aacc6cf6624d9da}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)}}\label{a00078_ae274e39b640908d04aacc6cf6624d9da}
+
+\begin{DoxyCode}
+30     \{
+31         \textcolor{keywordflow}{if} (\hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{lineHandler} != null)
+32             \hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{lineHandler}(line);
+33         
+34         \textcolor{keywordflow}{if} (\hyperlink{a00078_ab0f7b55e776ae494a651c845b496916c}{expectedLines}.Count > 0) \{
+35             Assert.AreEqual(expectedLines.Dequeue(), line.text);
+36         \}
+37 
+38         yield \textcolor{keywordflow}{break};
+39     \}
+\end{DoxyCode}
+\hypertarget{a00038_a754c6dd0bc67895d11f878fe4477d698}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_a754c6dd0bc67895d11f878fe4477d698}
+
+
+Implemented in \hyperlink{a00039_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00078_ad2ac83f91814d8666482bf8b6f3721d1}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)}}\label{a00078_ad2ac83f91814d8666482bf8b6f3721d1}
+
+\begin{DoxyCode}
+41     \{
+42         \textcolor{keywordflow}{if} (\hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{optionsHandler} != null)
+43             \hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{optionsHandler}(optionsCollection, optionChooser);
+44 
+45         \textcolor{keywordflow}{if} (\hyperlink{a00078_a94e4308d412945c977b2deb63f139009}{expectedOptions}.Count > 0) \{
+46             var selection = expectedOptions.Dequeue();
+47 
+48             var index = optionsCollection.options.IndexOf(selection);
+49 
+50             Assert.AreNotEqual(index, -1, \textcolor{stringliteral}{"Failed to find option \(\backslash\)"\{0\}\(\backslash\)""}, selection);
+51 
+52             Assert.Less(index, optionsCollection.options.Count);
+53             optionChooser(index);
 54         \}
+55 
+56         yield \textcolor{keywordflow}{break};
+57     \}
 \end{DoxyCode}
-\hypertarget{a00078_a44d625b44f770b945a29cd89e399f90f}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00038_ac5b29079f638f2ceb078627ef1e60004}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00078_a44d625b44f770b945a29cd89e399f90f}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_ac5b29079f638f2ceb078627ef1e60004}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+Implemented in \hyperlink{a00039_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_acb65bd8c8199d88d5b1629ae35d18514}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
+\hypertarget{a00078_adc743ade599769e968fecea525add7b3}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Select\-Option@{Select\-Option}}
+\index{Select\-Option@{Select\-Option}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Select\-Option}]{\setlength{\rightskip}{0pt plus 5cm}void Test\-Dialogue\-U\-I\-Behaviour.\-Select\-Option (
+\begin{DoxyParamCaption}
+\item[{string}]{option}
+\end{DoxyParamCaption}
+)}}\label{a00078_adc743ade599769e968fecea525add7b3}
 
 \begin{DoxyCode}
-64         \{
-65             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-66         \}
+14                                             \{
+15         expectedOptions.Enqueue(option);
+16     \}
 \end{DoxyCode}
-\hypertarget{a00078_a692617638507cd1033728d7f718fcd2a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00078_a692617638507cd1033728d7f718fcd2a}
 
 
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-\begin{DoxyCode}
-25         \{
-26             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-27                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-28                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-29         \}
-\end{DoxyCode}
-\hypertarget{a00078_a7e07e9532857d748654d37db590a0e11}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::EnumerableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Enumerable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00078_a7e07e9532857d748654d37db590a0e11}
-
-
-Throws an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-\begin{DoxyCode}
-38         \{
-39             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} CsvTypeConverterException( \textcolor{stringliteral}{"Converting IEnumerable types is not supported for a
-       single field. "} +
-40                                                  \textcolor{stringliteral}{"If you want to do this, create your own ITypeConverter
-       and register "} +
-41                                                  \textcolor{stringliteral}{"it in the TypeConverterFactory by calling AddConverter."} 
-      );
-42         \}
-\end{DoxyCode}
+\subsection{Member Data Documentation}
+\hypertarget{a00078_a5c2003ece8aeab171db3a749bef5f770}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!command\-Handler@{command\-Handler}}
+\index{command\-Handler@{command\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-command\-Handler}}\label{a00078_a5c2003ece8aeab171db3a749bef5f770}
+\hypertarget{a00078_ab0f7b55e776ae494a651c845b496916c}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!expected\-Lines@{expected\-Lines}}
+\index{expected\-Lines@{expected\-Lines}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{expected\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<$string$>$ Test\-Dialogue\-U\-I\-Behaviour.\-expected\-Lines = new Queue$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_ab0f7b55e776ae494a651c845b496916c}
+\hypertarget{a00078_a94e4308d412945c977b2deb63f139009}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!expected\-Options@{expected\-Options}}
+\index{expected\-Options@{expected\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{expected\-Options}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<$string$>$ Test\-Dialogue\-U\-I\-Behaviour.\-expected\-Options = new Queue$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a94e4308d412945c977b2deb63f139009}
+\hypertarget{a00078_af87332992e1420a8b2047822fab2b03c}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!line\-Handler@{line\-Handler}}
+\index{line\-Handler@{line\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-line\-Handler}}\label{a00078_af87332992e1420a8b2047822fab2b03c}
+\hypertarget{a00078_adcbea72eb6f5ab305b3757789919f961}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!options\-Handler@{options\-Handler}}
+\index{options\-Handler@{options\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-options\-Handler}}\label{a00078_adcbea72eb6f5ab305b3757789919f961}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00234}{Enumerable\-Converter.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00107}{Yarn\-Spinner\-Tests.\-cs}\end{DoxyCompactItemize}

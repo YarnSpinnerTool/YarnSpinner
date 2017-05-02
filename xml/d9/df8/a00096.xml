@@ -1,224 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d9/df8/a00096" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::Int16Converter</compoundname>
-    <basecompoundref refid="da/d24/a00068" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/df8/a00096_1aff576c6ca9bb1942fb17e385befb0197" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.Int16Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="da/d24/a00068_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" bodystart="20" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/df8/a00096_1a4040b7e66af082f1a57b65c20877dd7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.Int16Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" bodystart="40" bodyend="44"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="da/d74/a00099_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="da/d74/a00099_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="db/d48/a00148_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d6/d5b/a00026_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="df/d5f/a00064_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="de/de1/a00065_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d9/da4/a00078_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d1/d09/a00077_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="da/d74/a00099_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="d9/df8/a00096" kind="file">
+    <compoundname>Building.md</compoundname>
     <briefdescription>
-<para>Converts an Int16 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1297">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1296">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1297" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1295">
-        <label>CsvHelper.TypeConversion.Int16Converter</label>
-        <link refid="d9/df8/a00096"/>
-        <childnode refid="1296" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1300">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1299">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1300" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1298">
-        <label>CsvHelper.TypeConversion.Int16Converter</label>
-        <link refid="d9/df8/a00096"/>
-        <childnode refid="1299" relation="public-inheritance">
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/Int16Converter.cs" bodystart="12" bodyend="45"/>
-    <listofallmembers>
-      <member refid="d9/df8/a00096_1a4040b7e66af082f1a57b65c20877dd7f" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::Int16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::Int16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int16Converter</scope><name>CanConvertTo</name></member>
-      <member refid="d9/df8/a00096_1aff576c6ca9bb1942fb17e385befb0197" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int16Converter</scope><name>ConvertFromString</name></member>
-      <member refid="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::Int16Converter</scope><name>ConvertToString</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">&gt;<sp/>***Important:***<sp/>This<sp/>document<sp/>only<sp/>matters<sp/>to<sp/>you<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.<sp/>In<sp/>almost<sp/>all<sp/>cases,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>be<sp/>totally<sp/>fine<sp/>with<sp/>[downloading<sp/>a<sp/>build](https://github.com/thesecretlab/YarnSpinner/releases),<sp/>and<sp/>using<sp/>that<sp/>in<sp/>your<sp/>project.</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">##<sp/>Windows,<sp/>Mac<sp/>and<sp/>Linux<sp/>using<sp/>MonoDevelop</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Windows<sp/>or<sp/>Mac,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>MonoDevelop.<sp/>You<sp/>can<sp/>[download<sp/>MonoDevelop<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>OS<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http:</highlight><highlight class="comment">//www.monodevelop.com/download/).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Linux,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>need<sp/>MonoDevelop&apos;</highlight><highlight class="normal">s<sp/>Flatpak.<sp/>Once<sp/>you<sp/>have<sp/>installed<sp/>[Flatpak<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>distribution](http:</highlight><highlight class="comment">//flatpak.org/getting.html),<sp/>you<sp/>can<sp/>[download<sp/>MonoDevelop<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http://www.monodevelop.com/download/linux/).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Once<sp/>it</highlight><highlight class="stringliteral">&apos;s<sp/>downloaded,<sp/>follow<sp/>these<sp/>steps:</highlight></codeline>
+<codeline lineno="11"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="12"><highlight class="stringliteral">*<sp/>Open<sp/>**YarnSpinner.sln**.</highlight></codeline>
+<codeline lineno="13"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Build<sp/>menu**,<sp/>and<sp/>choose<sp/>**Build<sp/>All**.</highlight></codeline>
+<codeline lineno="14"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Unity/Assets/Yarn<sp/>Spinner**<sp/>folder.<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>find<sp/>a<sp/>copy<sp/>of<sp/>**YarnSpinner.dll**<sp/>there.<sp/>You<sp/>can<sp/>now<sp/>copy<sp/>that<sp/>DLL<sp/>file<sp/>wherever<sp/>you<sp/>need<sp/>it.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">##<sp/>Linux</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">As<sp/>well<sp/>as<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>MonoDevelop,<sp/>you<sp/>can<sp/>use<sp/>xbuild<sp/>to<sp/>build<sp/>on<sp/>Linux.<sp/>At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>stage,<sp/>see<sp/>the<sp/>[build.sh](../build.sh)<sp/>script<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>information<sp/>on<sp/>how<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>this.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">##<sp/>Building<sp/>Documentation</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">Yarn<sp/>Spinner<sp/>uses<sp/>[Doxygen](https:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen)<sp/>to<sp/>generate<sp/>[DocBook](http://docbook.org/),<sp/>[HTML](https://en.wikipedia.org/wiki/HTML),<sp/>[LaTeX](https://www.latex-project.org/help/documentation/),<sp/>[RTF](https://en.wikipedia.org/wiki/Rich_Text_Format),<sp/>and<sp/>[XML](https://en.wikipedia.org/wiki/XML)<sp/>documentation.<sp/>[GNU<sp/>GLOBAL](https://www.gnu.org/software/global/)<sp/>is<sp/>also<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Basic<sp/>steps<sp/>to<sp/>clean<sp/>out<sp/>existing<sp/>documentation,<sp/>generate<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/>and<sp/>check<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>generation<sp/>errors.<sp/>Note<sp/>that<sp/>some<sp/>ocurrences<sp/>of<sp/>the<sp/>word<sp/></highlight><highlight class="stringliteral">&apos;error&apos;</highlight><highlight class="normal"><sp/>will<sp/>be<sp/>due<sp/>to<sp/>classes/methods<sp/>etc.<sp/>of<sp/>YarnSpinner<sp/>itself<sp/>and<sp/>not<sp/>an<sp/>actual<sp/>error<sp/>in<sp/>the<sp/>documentation.</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">*<sp/>rm<sp/>-fr<sp/>Documentation/{docbook,html,latex,rtf,xml}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">*<sp/>doxygen<sp/>Documentation/Doxyfile<sp/>&gt;<sp/>doxyoutput.txt<sp/>2&gt;&amp;1</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">*<sp/>grep<sp/>-i<sp/>error<sp/>doxyoutput.txt</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">[MarkDown](https:</highlight><highlight class="comment">//daringfireball.net/projects/markdown/)<sp/>documentation<sp/>is<sp/>available<sp/>via<sp/>conversion<sp/>of<sp/>the<sp/>XML<sp/>output<sp/>to<sp/>Markdown<sp/>using<sp/>third<sp/>party<sp/>tools<sp/>such<sp/>as<sp/>[Pandoc](http://pandoc.org)<sp/>or<sp/>[doxygen2md](https://github.com/pferdinand/doxygen2md)</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Building.md"/>
   </compounddef>
 </doxygen>

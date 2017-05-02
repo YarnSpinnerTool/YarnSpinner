@@ -1,184 +1,228 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d6/d2d/a00047" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvMissingFieldException</compoundname>
-    <basecompoundref refid="d7/df7/a00058" prot="public" virt="non-virtual">CsvHelper.CsvReaderException</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d6/d2d/a00047_1ac65429fd7aadcadd7d362722f7a3cab7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
-        <argsstring>()</argsstring>
-        <name>CsvMissingFieldException</name>
+  <compounddef id="d6/d2d/a00047" kind="class" prot="package">
+    <compoundname>Yarn::Lexer</compoundname>
+    <innerclass refid="d4/dca/a00048" prot="package">Yarn::Lexer::LexerState</innerclass>
+    <innerclass refid="d4/d63/a00082" prot="package">Yarn::Lexer::TokenRule</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d6/d2d/a00047_1a29c457125cc4876f8571f5d9afa372e2" prot="private" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Yarn.Lexer.LINE_COMMENT</definition>
+        <argsstring></argsstring>
+        <name>LINE_COMMENT</name>
+        <initializer>= &quot;//&quot;</initializer>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d6/d2d/a00047" kindref="compound">CsvMissingFieldException</ref> class. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="24" bodyend="24"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="298" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="298" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d6/d2d/a00047_1aa0b611d59d2c9c47047de427b35cf6a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="variable" id="d6/d2d/a00047_1a2c65c0ba90f973e459583badefef216a" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="d4/dca/a00048" kindref="compound">LexerState</ref> &gt;</type>
+        <definition>Dictionary&lt;string, LexerState&gt; Yarn.Lexer.states</definition>
+        <argsstring></argsstring>
+        <name>states</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="300" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="300" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2d/a00047_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" static="no" mutable="no">
+        <type><ref refid="d4/dca/a00048" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.defaultState</definition>
+        <argsstring></argsstring>
+        <name>defaultState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="302" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="302" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2d/a00047_1ac90b7dce8103425a148f9e8588f14137" prot="private" static="no" mutable="no">
+        <type><ref refid="d4/dca/a00048" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.currentState</definition>
+        <argsstring></argsstring>
+        <name>currentState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="303" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="303" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2d/a00047_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" static="no" mutable="no">
+        <type>Stack&lt; KeyValuePair&lt; int, bool &gt; &gt;</type>
+        <definition>Stack&lt;KeyValuePair&lt;int,bool&gt; &gt; Yarn.Lexer.indentationStack</definition>
+        <argsstring></argsstring>
+        <name>indentationStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="307" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="307" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2d/a00047_1ac670aac2245cbd4694dfbd5b69313218" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.shouldTrackNextIndentation</definition>
+        <argsstring></argsstring>
+        <name>shouldTrackNextIndentation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="308" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d6/d2d/a00047_1a4bf394bcf675142f33c90541be7dd571" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>CsvMissingFieldException</name>
+        <definition>Yarn.Lexer.Lexer</definition>
+        <argsstring>()</argsstring>
+        <name>Lexer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="310" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="310" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2d/a00047_1a6a09f1bb13f28acd95fd081954b45437" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d8/d53/a00081" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.Tokenise</definition>
+        <argsstring>(string title, string text)</argsstring>
+        <name>Tokenise</name>
         <param>
           <type>string</type>
-          <declname>message</declname>
+          <declname>title</declname>
         </param>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="d6/d2d/a00047" kindref="compound">CsvMissingFieldException</ref> class with a specified error message. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The message that describes the error.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="31" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="d6/d2d/a00047_1a1a6eb7ea392bc14d0da95e447ac001dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
-        <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvMissingFieldException</name>
         <param>
           <type>string</type>
-          <declname>message</declname>
-        </param>
-        <param>
-          <type>Exception</type>
-          <declname>innerException</declname>
+          <declname>text</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d6/d2d/a00047" kindref="compound">CsvMissingFieldException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The error message that explains the reason for the exception.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>innerException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="40" bodyend="40"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="447" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="447" bodyend="475"/>
       </memberdef>
-      <memberdef kind="function" id="d6/d2d/a00047_1a867cc21f971ca654865f2cce8e1b971d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvMissingFieldException.CsvMissingFieldException</definition>
-        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvMissingFieldException</name>
-        <param>
-          <type>SerializationInfo</type>
-          <declname>info</declname>
-        </param>
-        <param>
-          <type>StreamingContext</type>
-          <declname>context</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d6/d2d/a00047_1a646081a52b241abaafe5e0cfaeafd751" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.CreateStates</definition>
+        <argsstring>()</argsstring>
+        <name>CreateStates</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d6/d2d/a00047" kindref="compound">CsvMissingFieldException</ref> class with serialized data. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>info</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>context</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="49" bodyend="49"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="315" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="315" bodyend="445"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2d/a00047_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d8/d53/a00081" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.TokeniseLine</definition>
+        <argsstring>(string line, int lineNumber)</argsstring>
+        <name>TokeniseLine</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="477" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="477" bodyend="641"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2d/a00047_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Yarn.Lexer.LineIndentation</definition>
+        <argsstring>(string line)</argsstring>
+        <name>LineIndentation</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="644" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="644" bodyend="654"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2d/a00047_1ad3ef08f822b310d9864774b057b96995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.EnterState</definition>
+        <argsstring>(LexerState state)</argsstring>
+        <name>EnterState</name>
+        <param>
+          <type><ref refid="d4/dca/a00048" kindref="compound">LexerState</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="656" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="656" bodyend="661"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents an error caused because a field is missing in the header while reading a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="992">
-        <label>Exception</label>
-      </node>
-      <node id="989">
-        <label>CsvHelper.CsvMissingFieldException</label>
-        <link refid="d6/d2d/a00047"/>
-        <childnode refid="990" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="990">
-        <label>CsvReaderException</label>
-        <link refid="d7/df7/a00058"/>
-        <childnode refid="991" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="991">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="992" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="996">
-        <label>Exception</label>
+      <node id="530">
+        <label>Yarn.Lexer.LexerState</label>
+        <link refid="d4/dca/a00048"/>
       </node>
-      <node id="993">
-        <label>CsvHelper.CsvMissingFieldException</label>
+      <node id="529">
+        <label>Yarn.Lexer</label>
         <link refid="d6/d2d/a00047"/>
-        <childnode refid="994" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="994">
-        <label>CsvReaderException</label>
-        <link refid="d7/df7/a00058"/>
-        <childnode refid="995" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="995">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="996" relation="public-inheritance">
+        <childnode refid="530" relation="usage">
+          <edgelabel>-currentState</edgelabel>
+          <edgelabel>-defaultState</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs" bodystart="19" bodyend="51"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="205" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="205" bodyend="663"/>
     <listofallmembers>
-      <member refid="d3/dea/a00046_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvHelperException</name></member>
-      <member refid="d6/d2d/a00047_1ac65429fd7aadcadd7d362722f7a3cab7" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
-      <member refid="d6/d2d/a00047_1aa0b611d59d2c9c47047de427b35cf6a7" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
-      <member refid="d6/d2d/a00047_1a1a6eb7ea392bc14d0da95e447ac001dc" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
-      <member refid="d6/d2d/a00047_1a867cc21f971ca654865f2cce8e1b971d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvMissingFieldException</name></member>
-      <member refid="d7/df7/a00058_1a92ea35129f92f260c5327bbc3fd330df" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1abb4803417d6a479385872b608f1791e5" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1a4507583f079e40d454285c1e4f161aeb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1aefa7020d5317878f91b9f43d3e1475be" prot="public" virt="non-virtual"><scope>CsvHelper::CsvMissingFieldException</scope><name>CsvReaderException</name></member>
+      <member refid="d6/d2d/a00047_1a646081a52b241abaafe5e0cfaeafd751" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>CreateStates</name></member>
+      <member refid="d6/d2d/a00047_1ac90b7dce8103425a148f9e8588f14137" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>currentState</name></member>
+      <member refid="d6/d2d/a00047_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>defaultState</name></member>
+      <member refid="d6/d2d/a00047_1ad3ef08f822b310d9864774b057b96995" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>EnterState</name></member>
+      <member refid="d6/d2d/a00047_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>indentationStack</name></member>
+      <member refid="d6/d2d/a00047_1a4bf394bcf675142f33c90541be7dd571" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Lexer</name></member>
+      <member refid="d6/d2d/a00047_1a29c457125cc4876f8571f5d9afa372e2" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LINE_COMMENT</name></member>
+      <member refid="d6/d2d/a00047_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LineIndentation</name></member>
+      <member refid="d6/d2d/a00047_1ac670aac2245cbd4694dfbd5b69313218" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>shouldTrackNextIndentation</name></member>
+      <member refid="d6/d2d/a00047_1a2c65c0ba90f973e459583badefef216a" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>states</name></member>
+      <member refid="d6/d2d/a00047_1a6a09f1bb13f28acd95fd081954b45437" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Tokenise</name></member>
+      <member refid="d6/d2d/a00047_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>TokeniseLine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,8 +1,7 @@
 var namespaces =
 [
-    [ "CsvHelper", "db/dc3/a00284.html", "db/dc3/a00284" ],
-    [ "NUnitLite", "d4/d66/a00289.html", "d4/d66/a00289" ],
-    [ "System", "d8/d0a/a00292.html", "d8/d0a/a00292" ],
-    [ "Yarn", "df/d61/a00031.html", "df/d61/a00031" ],
-    [ "YarnSpinner", "dd/db3/a00313.html", "dd/db3/a00313" ]
+    [ "Json", "d5/deb/a00132.html", null ],
+    [ "NUnitLite", "d0/d5e/a00136.html", "d0/d5e/a00136" ],
+    [ "Yarn", "d6/d5b/a00026.html", "d6/d5b/a00026" ],
+    [ "YarnSpinner", "d2/d34/a00156.html", "d2/d34/a00156" ]
 ];

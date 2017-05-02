@@ -1,258 +1,133 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="df/d98/a00107" kind="class" prot="package">
-    <compoundname>Yarn::Loader</compoundname>
-    <innerclass refid="d8/d17/a00114" prot="public">Yarn::Loader::NodeInfo</innerclass>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="df/d98/a00107_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" static="no" mutable="no">
-        <type><ref refid="d6/d2c/a00072" kindref="compound">Dialogue</ref></type>
-        <definition>Dialogue Yarn.Loader.dialogue</definition>
-        <argsstring></argsstring>
-        <name>dialogue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="53" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="df/d98/a00107_1a6d8296076823c0c082df9024367f4860" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="d7/d12/a00126" kindref="compound">Program</ref></type>
-        <definition>Program Yarn.Loader.program</definition>
-        <argsstring></argsstring>
-        <name>program</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="55" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="df/d98/a00107_1a9321fce224021841ce6f70ca7fbe531b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Loader.PrintTokenList</definition>
-        <argsstring>(IEnumerable&lt; Token &gt; tokenList)</argsstring>
-        <name>PrintTokenList</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="da/d1e/a00149" kindref="compound">Token</ref> &gt;</type>
-          <declname>tokenList</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="58" bodyend="69"/>
-      </memberdef>
-      <memberdef kind="function" id="df/d98/a00107_1aa105ea8e5d65a420d1089616523feecc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Loader.PrintParseTree</definition>
-        <argsstring>(Yarn.Parser.ParseNode rootNode)</argsstring>
-        <name>PrintParseTree</name>
-        <param>
-          <type><ref refid="df/dc8/a00122" kindref="compound">Yarn.Parser.ParseNode</ref></type>
-          <declname>rootNode</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="72" bodyend="76"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="df/d98/a00107_1a1972fc413e1679ecbe91eef536ca8479" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Loader.Loader</definition>
-        <argsstring>(Dialogue dialogue)</argsstring>
-        <name>Loader</name>
-        <param>
-          <type><ref refid="d6/d2c/a00072" kindref="compound">Dialogue</ref></type>
-          <declname>dialogue</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="79" bodyend="85"/>
-      </memberdef>
-      <memberdef kind="function" id="df/d98/a00107_1a228e10256dddbcc17c231d08b3b2140b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d7/d12/a00126" kindref="compound">Program</ref></type>
-        <definition>Program Yarn.Loader.Load</definition>
-        <argsstring>(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format)</argsstring>
-        <name>Load</name>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <param>
-          <type><ref refid="d5/d1e/a00103" kindref="compound">Library</ref></type>
-          <declname>library</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>fileName</declname>
-        </param>
-        <param>
-          <type><ref refid="d7/d12/a00126" kindref="compound">Program</ref></type>
-          <declname>includeProgram</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>showTokens</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>showParseTree</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>onlyConsiderNode</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="91" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="91" bodyend="189"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="df/d98/a00107_1a080b2d6b7553c178007c04297d50e9da" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-        <definition>static NodeFormat Yarn.Loader.GetFormatFromFileName</definition>
-        <argsstring>(string fileName)</argsstring>
-        <name>GetFormatFromFileName</name>
-        <param>
-          <type>string</type>
-          <declname>fileName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="228" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="228" bodyend="248"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="df/d98/a00107_1a0aa76ba9366b44bf78198a78ea958c9c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d8/d17/a00114" kindref="compound">NodeInfo</ref>[]</type>
-        <definition>NodeInfo [] Yarn.Loader.GetNodesFromText</definition>
-        <argsstring>(string text, NodeFormat format)</argsstring>
-        <name>GetNodesFromText</name>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1ad7ebb46e7309ead8767383a672b3272f" kindref="member">NodeFormat</ref></type>
-          <declname>format</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="252" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="252" bodyend="418"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="df/d98/a00107" kind="file">
+    <compoundname>YarnSpinnerTests.cs</compoundname>
+    <innerclass refid="d9/da4/a00078" prot="public">TestDialogueUIBehaviour</innerclass>
+    <innerclass refid="d4/d7d/a00093" prot="public">YarnSpinnerTests</innerclass>
+    <innernamespace refid="d5/d5b/a00135">NUnit::Framework</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1373">
-        <label>Yarn.Program</label>
-        <link refid="d7/d12/a00126"/>
-      </node>
-      <node id="1370">
-        <label>Yarn.Dialogue</label>
-        <link refid="d6/d2c/a00072"/>
-        <childnode refid="1371" relation="usage">
-          <edgelabel>-vm</edgelabel>
-        </childnode>
-        <childnode refid="1375" relation="usage">
-          <edgelabel>+library</edgelabel>
-        </childnode>
-        <childnode refid="1373" relation="usage">
-          <edgelabel>~program</edgelabel>
-        </childnode>
-        <childnode refid="1369" relation="usage">
-          <edgelabel>~loader</edgelabel>
-        </childnode>
-        <childnode refid="1376" relation="usage">
-          <edgelabel>~continuity</edgelabel>
-        </childnode>
-      </node>
-      <node id="1375">
-        <label>Yarn.Library</label>
-        <link refid="d5/d1e/a00103"/>
-      </node>
-      <node id="1374">
-        <label>Yarn.VirtualMachine.State</label>
-        <link refid="d5/d4e/a00141"/>
-      </node>
-      <node id="1369">
-        <label>Yarn.Loader</label>
-        <link refid="df/d98/a00107"/>
-        <childnode refid="1370" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
-        </childnode>
-      </node>
-      <node id="1376">
-        <label>Yarn.VariableStorage</label>
-        <link refid="d9/d38/a00166"/>
-      </node>
-      <node id="1372">
-        <label>Yarn.Node</label>
-        <link refid="dd/de2/a00320"/>
-      </node>
-      <node id="1371">
-        <label>Yarn.VirtualMachine</label>
-        <link refid="d4/ddd/a00138"/>
-        <childnode refid="1370" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
-        </childnode>
-        <childnode refid="1372" relation="usage">
-          <edgelabel>-currentNode</edgelabel>
-        </childnode>
-        <childnode refid="1373" relation="usage">
-          <edgelabel>-program</edgelabel>
-        </childnode>
-        <childnode refid="1374" relation="usage">
-          <edgelabel>-state</edgelabel>
-        </childnode>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="51" bodyend="420"/>
-    <listofallmembers>
-      <member refid="df/d98/a00107_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>dialogue</name></member>
-      <member refid="df/d98/a00107_1a080b2d6b7553c178007c04297d50e9da" prot="package" virt="non-virtual"><scope>Yarn::Loader</scope><name>GetFormatFromFileName</name></member>
-      <member refid="df/d98/a00107_1a0aa76ba9366b44bf78198a78ea958c9c" prot="package" virt="non-virtual"><scope>Yarn::Loader</scope><name>GetNodesFromText</name></member>
-      <member refid="df/d98/a00107_1a228e10256dddbcc17c231d08b3b2140b" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Load</name></member>
-      <member refid="df/d98/a00107_1a1972fc413e1679ecbe91eef536ca8479" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Loader</name></member>
-      <member refid="df/d98/a00107_1aa105ea8e5d65a420d1089616523feecc" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintParseTree</name></member>
-      <member refid="df/d98/a00107_1a9321fce224021841ce6f70ca7fbe531b" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintTokenList</name></member>
-      <member refid="df/d98/a00107_1a6d8296076823c0c082df9024367f4860" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>program</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEditor;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>NUnit.Framework;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="d9/da4/a00078" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d9/da4/a00078" kindref="compound">TestDialogueUIBehaviour</ref><sp/>:<sp/>Yarn.Unity.DialogueUIBehaviour<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="d9/da4/a00078_1ab0f7b55e776ae494a651c845b496916c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;<sp/><ref refid="d9/da4/a00078_1ab0f7b55e776ae494a651c845b496916c" kindref="member">expectedLines</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;();</highlight></codeline>
+<codeline lineno="9" refid="d9/da4/a00078_1af51a4e0d00f92dcc991f6c1ac62ac8c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1af51a4e0d00f92dcc991f6c1ac62ac8c3" kindref="member">ExpectLine</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>line)<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expectedLines.Enqueue(line);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="d9/da4/a00078_1a94e4308d412945c977b2deb63f139009" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;<sp/><ref refid="d9/da4/a00078_1a94e4308d412945c977b2deb63f139009" kindref="member">expectedOptions</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Queue&lt;string&gt;();</highlight></codeline>
+<codeline lineno="14" refid="d9/da4/a00078_1adc743ade599769e968fecea525add7b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1adc743ade599769e968fecea525add7b3" kindref="member">SelectOption</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>option)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expectedOptions.Enqueue(option);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Delegates<sp/>that<sp/>allow<sp/>this<sp/>behaviour<sp/>to<sp/>notify<sp/>the<sp/>test<sp/>of<sp/>events</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1ac6c30953edbd1cd4181e2a3854a1642b" kindref="member">LineHandler</ref>(Yarn.Line<sp/>line);</highlight></codeline>
+<codeline lineno="20" refid="d9/da4/a00078_1af87332992e1420a8b2047822fab2b03c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1ac6c30953edbd1cd4181e2a3854a1642b" kindref="member">LineHandler</ref><sp/><ref refid="d9/da4/a00078_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1a7fe2e6bc2d5471d9af14a9d35de821bd" kindref="member">OptionsHandler</ref>(Yarn.Options<sp/>optionsCollection,<sp/>Yarn.OptionChooser<sp/>optionChooser);</highlight></codeline>
+<codeline lineno="23" refid="d9/da4/a00078_1adcbea72eb6f5ab305b3757789919f961" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1a7fe2e6bc2d5471d9af14a9d35de821bd" kindref="member">OptionsHandler</ref><sp/><ref refid="d9/da4/a00078_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>delegate<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1afc93c5cf370b31eceab3671c9eca0d94" kindref="member">CommandHandler</ref><sp/>(Yarn.Command<sp/>command);</highlight></codeline>
+<codeline lineno="26" refid="d9/da4/a00078_1a5c2003ece8aeab171db3a749bef5f770" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="d9/da4/a00078_1afc93c5cf370b31eceab3671c9eca0d94" kindref="member">CommandHandler</ref><sp/><ref refid="d9/da4/a00078_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="d9/da4/a00078_1ae274e39b640908d04aacc6cf6624d9da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="d9/da4/a00078_1ae274e39b640908d04aacc6cf6624d9da" kindref="member">RunLine</ref><sp/>(Yarn.Line<sp/>line)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d9/da4/a00078_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/da4/a00078_1af87332992e1420a8b2047822fab2b03c" kindref="member">lineHandler</ref>(line);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d9/da4/a00078_1ab0f7b55e776ae494a651c845b496916c" kindref="member">expectedLines</ref>.Count<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.AreEqual(expectedLines.Dequeue(),<sp/>line.text);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40" refid="d9/da4/a00078_1ad2ac83f91814d8666482bf8b6f3721d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="d9/da4/a00078_1ad2ac83f91814d8666482bf8b6f3721d1" kindref="member">RunOptions</ref><sp/>(Yarn.Options<sp/>optionsCollection,<sp/>Yarn.OptionChooser<sp/>optionChooser)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d9/da4/a00078_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/da4/a00078_1adcbea72eb6f5ab305b3757789919f961" kindref="member">optionsHandler</ref>(optionsCollection,<sp/>optionChooser);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d9/da4/a00078_1a94e4308d412945c977b2deb63f139009" kindref="member">expectedOptions</ref>.Count<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>selection<sp/>=<sp/>expectedOptions.Dequeue();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>index<sp/>=<sp/>optionsCollection.options.IndexOf(selection);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.AreNotEqual(index,<sp/>-1,<sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>find<sp/>option<sp/>\&quot;{0}\&quot;&quot;</highlight><highlight class="normal">,<sp/>selection);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Assert.Less(index,<sp/>optionsCollection.options.Count);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>optionChooser(index);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58" refid="d9/da4/a00078_1a01e67009071f9ee5ac5ef3c970cd3695" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>System.Collections.IEnumerator<sp/><ref refid="d9/da4/a00078_1a01e67009071f9ee5ac5ef3c970cd3695" kindref="member">RunCommand</ref><sp/>(Yarn.Command<sp/>command)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d9/da4/a00078_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/da4/a00078_1a5c2003ece8aeab171db3a749bef5f770" kindref="member">commandHandler</ref>(command);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="d4/d7d/a00093" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d4/d7d/a00093" kindref="compound">YarnSpinnerTests</ref><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="d4/d7d/a00093_1a9791840e0b5987e5bd09bce83ce2d8d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d1/dc6/a00037" kindref="compound">Yarn.Unity.DialogueRunner</ref><sp/><ref refid="d4/d7d/a00093_1a9791840e0b5987e5bd09bce83ce2d8d9" kindref="member">dialogueRunner</ref>;</highlight></codeline>
+<codeline lineno="69" refid="d4/d7d/a00093_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/dab/a00089" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref><sp/><ref refid="d4/d7d/a00093_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" kindref="member">variableStorage</ref>;</highlight></codeline>
+<codeline lineno="70" refid="d4/d7d/a00093_1aace025d2a9a703154a1989c47b0a0737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/da4/a00078" kindref="compound">TestDialogueUIBehaviour</ref><sp/><ref refid="d4/d7d/a00093_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>[<ref refid="d4/d7d/a00093_1ad6e4c6a92bb5ed6187949264df6aaf1b" kindref="member">SetUp</ref>]</highlight></codeline>
+<codeline lineno="73" refid="d4/d7d/a00093_1ad6e4c6a92bb5ed6187949264df6aaf1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d7d/a00093_1ad6e4c6a92bb5ed6187949264df6aaf1b" kindref="member">SetUp</ref>()</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Arrange</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>dialogue<sp/>runner</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>dialogueHost<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d7d/a00093_1a9791840e0b5987e5bd09bce83ce2d8d9" kindref="member">dialogueRunner</ref><sp/>=<sp/>dialogueHost.AddComponent&lt;<ref refid="d1/dc6/a00037" kindref="compound">Yarn.Unity.DialogueRunner</ref>&gt;();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>variable<sp/>storage</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//variableStorage<sp/>=<sp/>dialogueHost.AddComponent&lt;ExampleVariableStorage&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>the<sp/>test<sp/>script</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>text<sp/>=<sp/>AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(</highlight><highlight class="stringliteral">&quot;Assets/Yarn<sp/>Spinner/Examples/Demo<sp/>Assets/Space.json&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.AddScript(text);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d7d/a00093_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref><sp/>=<sp/>dialogueHost.AddComponent&lt;<ref refid="d9/da4/a00078" kindref="compound">TestDialogueUIBehaviour</ref>&gt;();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.dialogueUI<sp/>=<sp/><ref refid="d4/d7d/a00093_1aace025d2a9a703154a1989c47b0a0737" kindref="member">dialogueUI</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>[Test]</highlight></codeline>
+<codeline lineno="94" refid="d4/d7d/a00093_1a60ab8ed8dc30ec30e74baa1916d47324" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d7d/a00093_1a60ab8ed8dc30ec30e74baa1916d47324" kindref="member">EditorTest</ref>()</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Player:<sp/>Hey,<sp/>Sally.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>Oh!<sp/>Hi.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>You<sp/>snuck<sp/>up<sp/>on<sp/>me.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.ExpectLine(</highlight><highlight class="stringliteral">&quot;Sally:<sp/>Don&apos;t<sp/>do<sp/>that.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueUI.SelectOption(</highlight><highlight class="stringliteral">&quot;Anything<sp/>exciting<sp/>happen<sp/>on<sp/>your<sp/>watch?&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dialogueRunner.StartDialogue(</highlight><highlight class="stringliteral">&quot;Sally&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Talking<sp/>to<sp/>Sally<sp/>a<sp/>second<sp/>time<sp/>should<sp/>result<sp/>in<sp/>a<sp/>different<sp/>dialogue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Act</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Try<sp/>to<sp/>rename<sp/>the<sp/>GameObject</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Assert</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//The<sp/>object<sp/>has<sp/>a<sp/>new<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Assert.AreEqual(newGameObjectName,<sp/>gameObject.name);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerTests.cs"/>
   </compounddef>
 </doxygen>

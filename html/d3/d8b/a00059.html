@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.CsvSerializer Class Reference</title>
+<title>YarnSpinner: Yarn.Parser.Operator.OperatorInfo Struct Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -107,117 +107,61 @@ $(document).ready(function(){initNavTree('d3/d8b/a00059.html','../../');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="../../d3/d30/a00370.html">List of all members</a>  </div>
+<a href="#pac-methods">Package Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="../../d2/d82/a00279.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.CsvSerializer Class Reference</div>  </div>
+<div class="title">Yarn.Parser.Operator.OperatorInfo Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Defines methods used to serialize data into a CSV file.  
- <a href="../../d3/d8b/a00059.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for CsvHelper.CsvSerializer:</div>
+Collaboration diagram for Yarn.Parser.Operator.OperatorInfo:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d6/d80/a00371.png" border="0" usemap="#_csv_helper_8_csv_serializer_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_csv_serializer_inherit__map" id="_csv_helper_8_csv_serializer_inherit__map">
-<area shape="rect" id="node2" href="../../d1/dc1/a00092.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="33,131,143,208"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for CsvHelper.CsvSerializer:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../db/d7e/a00372.png" border="0" usemap="#_csv_helper_8_csv_serializer_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_csv_serializer_coll__map" id="_csv_helper_8_csv_serializer_coll__map">
-<area shape="rect" id="node2" href="../../d1/dc1/a00092.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="5,469,115,547"/><area shape="rect" id="node4" href="../../d6/d42/a00043.html" title="Configuration used for reading and writing CSV data. " alt="" coords="139,235,345,781"/><area shape="rect" id="node5" href="../../d5/db6/a00042.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="135,5,351,171"/></map>
+<div class="center"><img src="../../d0/dcd/a00280.png" border="0" usemap="#_yarn_8_parser_8_operator_8_operator_info_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_parser_8_operator_8_operator_info_coll__map" id="_yarn_8_parser_8_operator_8_operator_info_coll__map">
+</map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a74ea10f7aaea0a478087d8ff6182f38c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a74ea10f7aaea0a478087d8ff6182f38c">CsvSerializer</a> (TextWriter <a class="el" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>)</td></tr>
-<tr class="memdesc:a74ea10f7aaea0a478087d8ff6182f38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new serializer using the given TextWriter.  <a href="#a74ea10f7aaea0a478087d8ff6182f38c">More...</a><br/></td></tr>
-<tr class="separator:a74ea10f7aaea0a478087d8ff6182f38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#ab14fe4a4f630ce97d57c27e2ee050fac">CsvSerializer</a> (TextWriter <a class="el" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>, <a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a> <a class="el" href="../../d3/d8b/a00059.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>)</td></tr>
-<tr class="memdesc:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new serializer using the given TextWriter and CsvConfiguration.  <a href="#ab14fe4a4f630ce97d57c27e2ee050fac">More...</a><br/></td></tr>
-<tr class="separator:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefad906acd048863d3dd414651a44793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#aefad906acd048863d3dd414651a44793">Write</a> (string[] record)</td></tr>
-<tr class="memdesc:aefad906acd048863d3dd414651a44793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a record to the CSV file.  <a href="#aefad906acd048863d3dd414651a44793">More...</a><br/></td></tr>
-<tr class="separator:aefad906acd048863d3dd414651a44793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0e8b3508b377a7f978da2394b09e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a> ()</td></tr>
-<tr class="memdesc:a9d0e8b3508b377a7f978da2394b09e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.  <a href="#a9d0e8b3508b377a7f978da2394b09e36">More...</a><br/></td></tr>
-<tr class="separator:a9d0e8b3508b377a7f978da2394b09e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:a25faca62235c9f8542e4a071ba8ebc0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a25faca62235c9f8542e4a071ba8ebc0b">OperatorInfo</a> (<a class="el" href="../../d7/df7/a00058.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a> <a class="el" href="../../d3/d8b/a00059.html#accba40a72d9709ca3c18810b8661afe3">associativity</a>, int <a class="el" href="../../d3/d8b/a00059.html#a0b2921d7b863e268d33aa15213395093">precedence</a>, int <a class="el" href="../../d3/d8b/a00059.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a>)</td></tr>
+<tr class="separator:a25faca62235c9f8542e4a071ba8ebc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0be3b74ca7606e27fd16441ecc988f0b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a0be3b74ca7606e27fd16441ecc988f0b">Dispose</a> (bool disposing)</td></tr>
-<tr class="memdesc:a0be3b74ca7606e27fd16441ecc988f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.  <a href="#a0be3b74ca7606e27fd16441ecc988f0b">More...</a><br/></td></tr>
-<tr class="separator:a0be3b74ca7606e27fd16441ecc988f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14e1913a4e76faf97484c1bde339143"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a> ()</td></tr>
-<tr class="memdesc:ae14e1913a4e76faf97484c1bde339143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the instance has been disposed of.  <a href="#ae14e1913a4e76faf97484c1bde339143">More...</a><br/></td></tr>
-<tr class="separator:ae14e1913a4e76faf97484c1bde339143"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a2ae1b1a629b707fbfb7d636989442f34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a2ae1b1a629b707fbfb7d636989442f34">Configuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2ae1b1a629b707fbfb7d636989442f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the configuration.  <a href="#a2ae1b1a629b707fbfb7d636989442f34">More...</a><br/></td></tr>
-<tr class="separator:a2ae1b1a629b707fbfb7d636989442f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a2687885dae7f7b0eec3c2db81c05f7e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a></td></tr>
-<tr class="separator:a2687885dae7f7b0eec3c2db81c05f7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8c56ff97c0a797245f2205c486833ea"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a></td></tr>
-<tr class="separator:ae8c56ff97c0a797245f2205c486833ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfb235fa2c868fc79c0376fd12fda767"><td class="memItemLeft" align="right" valign="top">TextWriter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a></td></tr>
-<tr class="separator:adfb235fa2c868fc79c0376fd12fda767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:accba40a72d9709ca3c18810b8661afe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df7/a00058.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#accba40a72d9709ca3c18810b8661afe3">associativity</a></td></tr>
+<tr class="separator:accba40a72d9709ca3c18810b8661afe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2921d7b863e268d33aa15213395093"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a0b2921d7b863e268d33aa15213395093">precedence</a></td></tr>
+<tr class="separator:a0b2921d7b863e268d33aa15213395093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0758c6f7dac4b205f616b43b1af95b95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/a00059.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a></td></tr>
+<tr class="separator:a0758c6f7dac4b205f616b43b1af95b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines methods used to serialize data into a CSV file. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a74ea10f7aaea0a478087d8ff6182f38c"></a>
+<div class="textblock"></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a25faca62235c9f8542e4a071ba8ebc0b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">CsvHelper.CsvSerializer.CsvSerializer </td>
+          <td class="memname">Yarn.Parser.Operator.OperatorInfo.OperatorInfo </td>
           <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Creates a new serializer using the given TextWriter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">writer</td><td>The TextWriter to write the CSV file data to.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;: <span class="keyword">this</span>( <a class="code" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>, <span class="keyword">new</span> <a class="code" href="../../d6/d42/a00043.html">CsvConfiguration</a>() ) {}</div>
-<div class="ttc" id="a00059_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:18</div></div>
-<div class="ttc" id="a00043_html"><div class="ttname"><a href="../../d6/d42/a00043.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> CsvConfiguration.cs:18</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab14fe4a4f630ce97d57c27e2ee050fac"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CsvHelper.CsvSerializer.CsvSerializer </td>
-          <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em>, </td>
+          <td class="paramtype"><a class="el" href="../../d7/df7/a00058.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>&#160;</td>
+          <td class="paramname"><em>associativity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a>&#160;</td>
-          <td class="paramname"><em>configuration</em>&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>precedence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arguments</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -225,183 +169,25 @@ Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-<p>Creates a new serializer using the given TextWriter and CsvConfiguration. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">writer</td><td>The TextWriter to write the CSV file data to.</td></tr>
-    <tr><td class="paramname">configuration</td><td>The configuration.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> == null )</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;writer&quot;</span> );</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span>( configuration == null )</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;configuration&quot;</span> );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            this.writer = <a class="code" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            this.configuration = <a class="code" href="../../d3/d8b/a00059.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="ttc" id="a00059_html_ae8c56ff97c0a797245f2205c486833ea"><div class="ttname"><a href="../../d3/d8b/a00059.html#ae8c56ff97c0a797245f2205c486833ea">CsvHelper.CsvSerializer.configuration</a></div><div class="ttdeci">readonly CsvConfiguration configuration</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:17</div></div>
-<div class="ttc" id="a00059_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:18</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae14e1913a4e76faf97484c1bde339143"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CsvHelper.CsvSerializer.CheckDisposed </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Checks if the instance has been disposed of. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">ObjectDisposedException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ObjectDisposedException( GetType().ToString() );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="ttc" id="a00059_html_a2687885dae7f7b0eec3c2db81c05f7e4"><div class="ttname"><a href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">CsvHelper.CsvSerializer.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:16</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a9d0e8b3508b377a7f978da2394b09e36"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.CsvSerializer.Dispose </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </p>
-<p>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </p>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="../../d3/d8b/a00059.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a>( <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            GC.SuppressFinalize( this );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="ttc" id="a00059_html_a9d0e8b3508b377a7f978da2394b09e36"><div class="ttname"><a href="../../d3/d8b/a00059.html#a9d0e8b3508b377a7f978da2394b09e36">CsvHelper.CsvSerializer.Dispose</a></div><div class="ttdeci">void Dispose()</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:72</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a0be3b74ca7606e27fd16441ecc988f0b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CsvHelper.CsvSerializer.Dispose </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>disposing</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">disposing</td><td>True if the instance needs to be disposed of.</td></tr>
-  </table>
-  </dd>
-</dl>
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span>( disposing )</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> != null )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    writer.Dispose();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <a class="code" href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> = null;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
-<div class="ttc" id="a00059_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="../../d3/d8b/a00059.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:18</div></div>
-<div class="ttc" id="a00059_html_a2687885dae7f7b0eec3c2db81c05f7e4"><div class="ttname"><a href="../../d3/d8b/a00059.html#a2687885dae7f7b0eec3c2db81c05f7e4">CsvHelper.CsvSerializer.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:16</div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aefad906acd048863d3dd414651a44793"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.CsvSerializer.Write </td>
-          <td>(</td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>record</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes a record to the CSV file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">record</td><td>The record to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="../../d1/dc1/a00092.html#a0b442858eef85b7d933662359646fd0b">CsvHelper.ICsvSerializer</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="../../d3/d8b/a00059.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            var recordString = string.Join( configuration.Delimiter, record );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            writer.WriteLine( recordString );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="ttc" id="a00059_html_ae14e1913a4e76faf97484c1bde339143"><div class="ttname"><a href="../../d3/d8b/a00059.html#ae14e1913a4e76faf97484c1bde339143">CsvHelper.CsvSerializer.CheckDisposed</a></div><div class="ttdeci">virtual void CheckDisposed()</div><div class="ttdoc">Checks if the instance has been disposed of. </div><div class="ttdef"><b>Definition:</b> CsvSerializer.cs:105</div></div>
+<div class="fragment"><div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;                                                                                                  {                 </div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;                    this.associativity = <a class="code" href="../../d3/d8b/a00059.html#accba40a72d9709ca3c18810b8661afe3">associativity</a>;</div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;                    this.precedence = <a class="code" href="../../d3/d8b/a00059.html#a0b2921d7b863e268d33aa15213395093">precedence</a>;</div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;                    this.arguments = <a class="code" href="../../d3/d8b/a00059.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a>;</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;                }</div>
+<div class="ttc" id="a00059_html_a0b2921d7b863e268d33aa15213395093"><div class="ttname"><a href="../../d3/d8b/a00059.html#a0b2921d7b863e268d33aa15213395093">Yarn.Parser.Operator.OperatorInfo.precedence</a></div><div class="ttdeci">int precedence</div><div class="ttdef"><b>Definition:</b> Parser.cs:1134</div></div>
+<div class="ttc" id="a00059_html_a0758c6f7dac4b205f616b43b1af95b95"><div class="ttname"><a href="../../d3/d8b/a00059.html#a0758c6f7dac4b205f616b43b1af95b95">Yarn.Parser.Operator.OperatorInfo.arguments</a></div><div class="ttdeci">int arguments</div><div class="ttdef"><b>Definition:</b> Parser.cs:1135</div></div>
+<div class="ttc" id="a00059_html_accba40a72d9709ca3c18810b8661afe3"><div class="ttname"><a href="../../d3/d8b/a00059.html#accba40a72d9709ca3c18810b8661afe3">Yarn.Parser.Operator.OperatorInfo.associativity</a></div><div class="ttdeci">Associativity associativity</div><div class="ttdef"><b>Definition:</b> Parser.cs:1133</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ae8c56ff97c0a797245f2205c486833ea"></a>
+<a class="anchor" id="a0758c6f7dac4b205f616b43b1af95b95"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -409,19 +195,19 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly <a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a> CsvHelper.CsvSerializer.configuration</td>
+          <td class="memname">int Yarn.Parser.Operator.OperatorInfo.arguments</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a2687885dae7f7b0eec3c2db81c05f7e4"></a>
+<a class="anchor" id="accba40a72d9709ca3c18810b8661afe3"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -429,19 +215,19 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CsvHelper.CsvSerializer.disposed</td>
+          <td class="memname"><a class="el" href="../../d7/df7/a00058.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a> Yarn.Parser.Operator.OperatorInfo.associativity</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="adfb235fa2c868fc79c0376fd12fda767"></a>
+<a class="anchor" id="a0b2921d7b863e268d33aa15213395093"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -449,50 +235,27 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TextWriter CsvHelper.CsvSerializer.writer</td>
+          <td class="memname">int Yarn.Parser.Operator.OperatorInfo.precedence</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a2ae1b1a629b707fbfb7d636989442f34"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a> CsvHelper.CsvSerializer.Configuration</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the configuration. </p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="../../">CsvSerializer.cs</a></li>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="../../">Parser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../db/dc3/a00284.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d3/d8b/a00059.html">CsvSerializer</a></li>
+    <li class="navelem"><a class="el" href="../../d6/d5b/a00026.html">Yarn</a></li><li class="navelem"><a class="el" href="../../df/d5f/a00064.html">Parser</a></li><li class="navelem"><a class="el" href="../../d7/df7/a00058.html">Operator</a></li><li class="navelem"><a class="el" href="../../d3/d8b/a00059.html">OperatorInfo</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

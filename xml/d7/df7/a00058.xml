@@ -1,175 +1,247 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d7/df7/a00058" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvReaderException</compoundname>
-    <basecompoundref refid="d3/dea/a00046" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
-    <derivedcompoundref refid="d6/d2d/a00047" prot="public" virt="non-virtual">CsvHelper.CsvMissingFieldException</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d7/df7/a00058_1a92ea35129f92f260c5327bbc3fd330df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
-        <argsstring>()</argsstring>
-        <name>CsvReaderException</name>
+  <compounddef id="d7/df7/a00058" kind="class" prot="package">
+    <compoundname>Yarn::Parser::Operator</compoundname>
+    <basecompoundref refid="d1/d6f/a00063" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
+    <innerclass refid="d3/d8b/a00059" prot="package">Yarn::Parser::Operator::OperatorInfo</innerclass>
+      <sectiondef kind="package-type">
+      <memberdef kind="enum" id="d7/df7/a00058_1a83fa1b8db0e6678006920812b6f33f62" prot="package" static="no">
+        <name>Associativity</name>
+        <enumvalue id="d7/df7/a00058_1a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff" prot="public">
+          <name>Left</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d7/df7/a00058_1a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c" prot="public">
+          <name>Right</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="d7/df7/a00058_1a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d7/df7/a00058" kindref="compound">CsvReaderException</ref> class. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="23" bodyend="23"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1125" bodyend="1129"/>
       </memberdef>
-      <memberdef kind="function" id="d7/df7/a00058_1abb4803417d6a479385872b608f1791e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>CsvReaderException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d7/df7/a00058_1ac2de2f59be0e69b316627a4de16fadd3" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d6/d5b/a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+        <definition>TokenType Yarn.Parser.Operator.operatorType</definition>
+        <argsstring></argsstring>
+        <name>operatorType</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d7/df7/a00058" kindref="compound">CsvReaderException</ref> class with a specified error message. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The message that describes the error.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="30" bodyend="30"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1123" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d7/df7/a00058_1a4507583f079e40d454285c1e4f161aeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
-        <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvReaderException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <param>
-          <type>Exception</type>
-          <declname>innerException</declname>
-        </param>
+      <memberdef kind="property" id="d7/df7/a00058_1a8dca7db3b76b8c358aba6068274e07df" prot="package" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="d6/d5b/a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
+        <definition>TokenType [] Yarn.Parser.Operator.operatorTypes</definition>
+        <argsstring></argsstring>
+        <name>operatorTypes</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d7/df7/a00058" kindref="compound">CsvReaderException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The error message that explains the reason for the exception.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>innerException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="39" bodyend="39"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1188" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1188" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d7/df7/a00058_1aefa7020d5317878f91b9f43d3e1475be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
-        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvReaderException</name>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="d7/df7/a00058_1a871e7b4652c48f456647d3950ac37531" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d3/d8b/a00059" kindref="compound">OperatorInfo</ref></type>
+        <definition>static OperatorInfo Yarn.Parser.Operator.InfoForOperator</definition>
+        <argsstring>(TokenType op)</argsstring>
+        <name>InfoForOperator</name>
         <param>
-          <type>SerializationInfo</type>
-          <declname>info</declname>
-        </param>
-        <param>
-          <type>StreamingContext</type>
-          <declname>context</declname>
+          <type><ref refid="d6/d5b/a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>op</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d7/df7/a00058" kindref="compound">CsvReaderException</ref> class with serialized data. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>info</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>context</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="48" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1143" bodyend="1181"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/df7/a00058_1a77a9edf71f86263e1695869e69505007" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Yarn.Parser.Operator.IsOperator</definition>
+        <argsstring>(TokenType type)</argsstring>
+        <name>IsOperator</name>
+        <param>
+          <type><ref refid="d6/d5b/a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1183" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1183" bodyend="1185"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="d7/df7/a00058_1a91a9fcc02c55cbc107fe2687fc0f05d4" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Operator.Operator</definition>
+        <argsstring>(ParseNode parent, TokenType t)</argsstring>
+        <name>Operator</name>
+        <param>
+          <type><ref refid="d1/d6f/a00063" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="d6/d5b/a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1216" bodyend="1218"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/df7/a00058_1a50f9f95cd7aefe2a601a7d5b5ee7801a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Operator.Operator</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>Operator</name>
+        <param>
+          <type><ref refid="d1/d6f/a00063" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d5f/a00064" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1220" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1220" bodyend="1222"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/df7/a00058_1a0c2ad7c4d6837ffc7b5325bbb8330c51" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.Operator.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplements refid="d1/d6f/a00063_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1224" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1224" bodyend="1227"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/dea/a00054" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+        <argsstring>()</argsstring>
+        <name>NodeParent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="116" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="110" bodyend="113"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents errors that occur while reading a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1050">
-        <label>CsvHelper.CsvReaderException</label>
+      <node id="580">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+      </node>
+      <node id="579">
+        <label>Yarn.Parser.Operator</label>
         <link refid="d7/df7/a00058"/>
-        <childnode refid="1051" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1052">
-        <label>Exception</label>
-      </node>
-      <node id="1053">
-        <label>CsvHelper.CsvMissingFieldException</label>
-        <link refid="d6/d2d/a00047"/>
-        <childnode refid="1050" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1051">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="1052" relation="public-inheritance">
+        <childnode refid="580" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1054">
-        <label>CsvHelper.CsvReaderException</label>
-        <link refid="d7/df7/a00058"/>
-        <childnode refid="1055" relation="public-inheritance">
+      <node id="583">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="583" relation="usage">
+          <edgelabel>-parent</edgelabel>
         </childnode>
       </node>
-      <node id="1056">
-        <label>Exception</label>
+      <node id="582">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="583" relation="usage">
+          <edgelabel>-parent</edgelabel>
+        </childnode>
       </node>
-      <node id="1055">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="1056" relation="public-inheritance">
+      <node id="581">
+        <label>Yarn.Parser.Operator</label>
+        <link refid="d7/df7/a00058"/>
+        <childnode refid="582" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="18" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1122" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1122" bodyend="1228"/>
     <listofallmembers>
-      <member refid="d3/dea/a00046_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="d7/df7/a00058_1a92ea35129f92f260c5327bbc3fd330df" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1abb4803417d6a479385872b608f1791e5" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1a4507583f079e40d454285c1e4f161aeb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="d7/df7/a00058_1aefa7020d5317878f91b9f43d3e1475be" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
+      <member refid="d7/df7/a00058_1a83fa1b8db0e6678006920812b6f33f62" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>Associativity</name></member>
+      <member refid="d7/df7/a00058_1a871e7b4652c48f456647d3950ac37531" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>InfoForOperator</name></member>
+      <member refid="d7/df7/a00058_1a77a9edf71f86263e1695869e69505007" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>IsOperator</name></member>
+      <member refid="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>NodeParent</name></member>
+      <member refid="d7/df7/a00058_1a91a9fcc02c55cbc107fe2687fc0f05d4" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>Operator</name></member>
+      <member refid="d7/df7/a00058_1a50f9f95cd7aefe2a601a7d5b5ee7801a" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>Operator</name></member>
+      <member refid="d7/df7/a00058_1ac2de2f59be0e69b316627a4de16fadd3" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>operatorType</name></member>
+      <member refid="d7/df7/a00058_1a8dca7db3b76b8c358aba6068274e07df" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>operatorTypes</name></member>
+      <member refid="d1/d6f/a00063_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>ParseNode</name></member>
+      <member refid="d7/df7/a00058_1a0c2ad7c4d6837ffc7b5325bbb8330c51" prot="package" virt="virtual"><scope>Yarn::Parser::Operator</scope><name>PrintTree</name></member>
+      <member refid="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::Operator</scope><name>ToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

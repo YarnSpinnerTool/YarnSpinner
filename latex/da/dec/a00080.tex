@@ -1,168 +1,127 @@
-\hypertarget{a00080}{\section{Csv\-Helper.\-Exception\-Helper Class Reference}
-\label{a00080}\index{Csv\-Helper.\-Exception\-Helper@{Csv\-Helper.\-Exception\-Helper}}
+\hypertarget{a00080}{\section{Yarn.\-Tokeniser\-Exception Class Reference}
+\label{a00080}\index{Yarn.\-Tokeniser\-Exception@{Yarn.\-Tokeniser\-Exception}}
 }
 
 
-Common exception tasks.  
-
-
-
-
-Collaboration diagram for Csv\-Helper.\-Exception\-Helper\-:
+Inheritance diagram for Yarn.\-Tokeniser\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{d8/ddd/a00380}
+\includegraphics[width=230pt]{dd/d2d/a00229}
 \end{center}
 \end{figure}
+
+
+Collaboration diagram for Yarn.\-Tokeniser\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{d1/da8/a00230}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{Tokeniser\-Exception} (string message)
+\item 
+\hyperlink{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}{Tokeniser\-Exception} (int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, string message)
+\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{a00080_a7415ea84b6d462b9d61ecf2128282837}{Add\-Exception\-Data\-Message} (Exception exception, \hyperlink{a00089}{I\-Csv\-Parser} parser, Type type, Dictionary$<$ string, List$<$ int $>$$>$ named\-Indexes, int?current\-Index, string\mbox{[}$\,$\mbox{]} current\-Record)
-\begin{DoxyCompactList}\small\item\em Adds \hyperlink{a00284}{Csv\-Helper} specific information to Exception.\-Data. \end{DoxyCompactList}\item 
-static string \hyperlink{a00080_a11e421dc9f9fdb2b72d060a24471b5be}{Get\-Error\-Message} (\hyperlink{a00089}{I\-Csv\-Parser} parser, Type type, Dictionary$<$ string, List$<$ int $>$$>$ named\-Indexes, int?current\-Index, string\mbox{[}$\,$\mbox{]} current\-Record)
-\begin{DoxyCompactList}\small\item\em Gets \hyperlink{a00284}{Csv\-Helper} information to be added to an exception. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{a00080}{Tokeniser\-Exception} \hyperlink{a00080_af88cfa5eafdee355e1abb67e358497bd}{Expected\-Tokens\-From\-State} (int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, \hyperlink{a00048}{Lexer.\-Lexer\-State} state)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}
+\item 
+int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Common exception tasks. 
 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
+\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}
+
+\begin{DoxyCode}
+38 : base (message) \{\}
+\end{DoxyCode}
+\hypertarget{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
+\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
+\begin{DoxyParamCaption}
+\item[{int}]{line\-Number, }
+\item[{int}]{column\-Number, }
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}
+
+\begin{DoxyCode}
+40             : base(\textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"\{0\}:\{1\}: \{2\}"}, \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
+      \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message))
+41         \{
+42             this.lineNumber = \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber};
+43             this.columnNumber = \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber};
+44         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00080_a7415ea84b6d462b9d61ecf2128282837}{\index{Csv\-Helper\-::\-Exception\-Helper@{Csv\-Helper\-::\-Exception\-Helper}!Add\-Exception\-Data\-Message@{Add\-Exception\-Data\-Message}}
-\index{Add\-Exception\-Data\-Message@{Add\-Exception\-Data\-Message}!CsvHelper::ExceptionHelper@{Csv\-Helper\-::\-Exception\-Helper}}
-\subsubsection[{Add\-Exception\-Data\-Message}]{\setlength{\rightskip}{0pt plus 5cm}static void Csv\-Helper.\-Exception\-Helper.\-Add\-Exception\-Data\-Message (
+\hypertarget{a00080_af88cfa5eafdee355e1abb67e358497bd}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}}
+\index{Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{Expected\-Tokens\-From\-State}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tokeniser\-Exception} Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State (
 \begin{DoxyParamCaption}
-\item[{Exception}]{exception, }
-\item[{{\bf I\-Csv\-Parser}}]{parser, }
-\item[{Type}]{type, }
-\item[{Dictionary$<$ string, List$<$ int $>$$>$}]{named\-Indexes, }
-\item[{int?}]{current\-Index, }
-\item[{string\mbox{[}$\,$\mbox{]}}]{current\-Record}
+\item[{int}]{line\-Number, }
+\item[{int}]{column\-Number, }
+\item[{{\bf Lexer.\-Lexer\-State}}]{state}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00080_a7415ea84b6d462b9d61ecf2128282837}
-
-
-Adds \hyperlink{a00284}{Csv\-Helper} specific information to Exception.\-Data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em exception} & The exception to add the info to.\\
-\hline
-{\em parser} & The parser.\\
-\hline
-{\em type} & The type of object that was being created in the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em named\-Indexes} & The named indexes in the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em current\-Index} & The current index of the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em current\-Record} & The current record of the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00080_af88cfa5eafdee355e1abb67e358497bd}
 
 \begin{DoxyCode}
-29         \{
-30             \textcolor{comment}{// An error could occur in the parser and get this message set on it, then occur in the}
-31             \textcolor{comment}{// reader and have it set again. This is ok because when the reader calls this method,}
-32             \textcolor{comment}{// it will have extra info to be added.}
-33 
-34             \textcolor{keywordflow}{try}
-35             \{
-36                 exception.Data[\textcolor{stringliteral}{"CsvHelper"}] = \hyperlink{a00080_a11e421dc9f9fdb2b72d060a24471b5be}{GetErrorMessage}( parser, type, namedIndexes, 
-      currentIndex, currentRecord );
-37             \}
-38             \textcolor{keywordflow}{catch}( Exception ex )
-39             \{
-40                 var exString = \textcolor{keyword}{new} StringBuilder();
-41                 exString.AppendLine( \textcolor{stringliteral}{"An error occurred while creating exception details."} );
-42                 exString.AppendLine();
-43                 exString.AppendLine( ex.ToString() );
-44                 exception.Data[\textcolor{stringliteral}{"CsvHelper"}] = exString.ToString();
-45             \}
-46         \}
+47                                                                                                            
+                       \{
+48 
+49             var names = \textcolor{keyword}{new} List<string> ();
+50             \textcolor{keywordflow}{foreach} (var tokenRule \textcolor{keywordflow}{in} state.tokenRules) \{
+51                 names.Add (tokenRule.type.ToString ());
+52             \}
+53 
+54             \textcolor{keywordtype}{string} nameList;
+55             \textcolor{keywordflow}{if} (names.Count > 1) \{
+56                 nameList = String.Join (\textcolor{stringliteral}{", "}, names.ToArray (), 0, names.Count - 1);
+57                 nameList += \textcolor{stringliteral}{", or "} + names [names.Count - 1];
+58             \} \textcolor{keywordflow}{else} \{
+59                 nameList = names [0];
+60             \}
+61 
+62             var message = string.Format (\textcolor{stringliteral}{"Expected "} + nameList);
+63             
+64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{TokeniserException} (\hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
+      \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message);
+65         \}
 \end{DoxyCode}
-\hypertarget{a00080_a11e421dc9f9fdb2b72d060a24471b5be}{\index{Csv\-Helper\-::\-Exception\-Helper@{Csv\-Helper\-::\-Exception\-Helper}!Get\-Error\-Message@{Get\-Error\-Message}}
-\index{Get\-Error\-Message@{Get\-Error\-Message}!CsvHelper::ExceptionHelper@{Csv\-Helper\-::\-Exception\-Helper}}
-\subsubsection[{Get\-Error\-Message}]{\setlength{\rightskip}{0pt plus 5cm}static string Csv\-Helper.\-Exception\-Helper.\-Get\-Error\-Message (
-\begin{DoxyParamCaption}
-\item[{{\bf I\-Csv\-Parser}}]{parser, }
-\item[{Type}]{type, }
-\item[{Dictionary$<$ string, List$<$ int $>$$>$}]{named\-Indexes, }
-\item[{int?}]{current\-Index, }
-\item[{string\mbox{[}$\,$\mbox{]}}]{current\-Record}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00080_a11e421dc9f9fdb2b72d060a24471b5be}
 
 
-Gets \hyperlink{a00284}{Csv\-Helper} information to be added to an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em parser} & The parser.\\
-\hline
-{\em type} & The type of object that was being created in the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em named\-Indexes} & The named indexes in the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em current\-Index} & The current index of the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-{\em current\-Record} & The current record of the \hyperlink{a00057}{Csv\-Reader}.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The \hyperlink{a00284}{Csv\-Helper} information.
-\end{DoxyReturn}
-
-\begin{DoxyCode}
-58         \{
-59             var messageInfo = \textcolor{keyword}{new} StringBuilder();
-60 
-61             \textcolor{keywordflow}{if}( parser != null )
-62             \{
-63                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Row: '\{0\}' (1 based)"}, parser.Row ).AppendLine();
-64             \}
-65 
-66             \textcolor{keywordflow}{if}( type != null )
-67             \{
-68                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Type: '\{0\}'"}, type.FullName ).AppendLine();
-69             \}
-70 
-71             \textcolor{keywordflow}{if}( currentIndex.HasValue )
-72             \{
-73                 messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Index: '\{0\}' (0 based)"}, currentIndex ).AppendLine();
-74             \}
-75 
-76 \textcolor{preprocessor}{#if !NET\_2\_0}
-77 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if}( namedIndexes != null )
-78             \{
-79                 var fieldName = ( from pair in namedIndexes
-80                                   from index in pair.Value
-81                                   where index == currentIndex
-82                                   select pair.Key ).SingleOrDefault();
-83                 \textcolor{keywordflow}{if}( fieldName != null )
-84                 \{
-85                     messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Name: '\{0\}'"}, fieldName ).AppendLine();
-86                 \}
-87             \}
-88 \textcolor{preprocessor}{#endif}
-89 \textcolor{preprocessor}{}
-90             \textcolor{keywordflow}{if}( currentRecord != null && currentIndex > -1 && currentIndex < currentRecord.Length )
-91             \{
-92                 \textcolor{keywordflow}{if}( currentIndex.Value < currentRecord.Length )
-93                 \{
-94                     var fieldValue = currentRecord[currentIndex.Value];
-95                     messageInfo.AppendFormat( \textcolor{stringliteral}{"Field Value: '\{0\}'"}, fieldValue ).AppendLine();
-96                 \}
-97             \}
-98 
-99             \textcolor{keywordflow}{return} messageInfo.ToString();
-100         \}
-\end{DoxyCode}
+\subsection{Member Data Documentation}
+\hypertarget{a00080_aabf2ad38f3984297c1daede9be55e3d6}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-column\-Number}}\label{a00080_aabf2ad38f3984297c1daede9be55e3d6}
+\hypertarget{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-line\-Number}}\label{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00208}{Exception\-Helper.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00119}{Lexer.\-cs}\end{DoxyCompactItemize}

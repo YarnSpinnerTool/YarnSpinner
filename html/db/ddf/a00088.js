@@ -1,10 +1,8 @@
 var a00088 =
 [
-    [ "CreateParser", "db/ddf/a00088.html#a9b68cbd7292c76037959d51ecc7c374d", null ],
-    [ "CreateParser", "db/ddf/a00088.html#ab085a057f1b80ebf03ed2247d8759314", null ],
-    [ "CreateReader", "db/ddf/a00088.html#ade2a6e776fad6aa36c201901d6427058", null ],
-    [ "CreateReader", "db/ddf/a00088.html#ae1ebb61244b36ddecb986d047ac9c217", null ],
-    [ "CreateReader", "db/ddf/a00088.html#af5b755ba2825f781d501402f1d765b33", null ],
-    [ "CreateWriter", "db/ddf/a00088.html#ae77852d2702bc2caad76c045a538933e", null ],
-    [ "CreateWriter", "db/ddf/a00088.html#ab6df59078b6245e653c06c00358b402a", null ]
+    [ "Clear", "db/ddf/a00088.html#af98c1e41f351cb96e13f668ca2fd9d92", null ],
+    [ "GetNumber", "db/ddf/a00088.html#a04b061c52d8ac814ce559da5286fbc71", null ],
+    [ "GetValue", "db/ddf/a00088.html#accab1fc5c8fc353dbfc53ca0f4029576", null ],
+    [ "SetNumber", "db/ddf/a00088.html#aa28c3694f985cf73489efc301b9d41dd", null ],
+    [ "SetValue", "db/ddf/a00088.html#aa90ff61224432c5ed3ce72199c55f440", null ]
 ];

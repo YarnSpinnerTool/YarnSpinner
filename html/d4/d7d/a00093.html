@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.ICsvWriter Interface Reference</title>
+<title>YarnSpinner: YarnSpinnerTests Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -108,601 +108,114 @@ $(document).ready(function(){initNavTree('d4/d7d/a00093.html','../../');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#properties">Properties</a> &#124;
-<a href="../../d9/da1/a00396.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="../../de/df3/a00185.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.ICsvWriter Interface Reference</div>  </div>
+<div class="title">YarnSpinnerTests Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Defines methods used to write to a CSV file.  
- <a href="../../d4/d7d/a00093.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for CsvHelper.ICsvWriter:</div>
+Collaboration diagram for YarnSpinnerTests:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d7/d93/a00397.png" border="0" usemap="#_csv_helper_8_i_csv_writer_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_i_csv_writer_inherit__map" id="_csv_helper_8_i_csv_writer_inherit__map">
-<area shape="rect" id="node3" href="../../d4/de8/a00061.html" title="Used to write CSV files. " alt="" coords="5,403,211,906"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for CsvHelper.ICsvWriter:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d9/dd1/a00398.png" border="0" usemap="#_csv_helper_8_i_csv_writer_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_i_csv_writer_coll__map" id="_csv_helper_8_i_csv_writer_coll__map">
-</map>
+<div class="center"><img src="../../d8/d00/a00186.png" border="0" usemap="#_yarn_spinner_tests_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_spinner_tests_coll__map" id="_yarn_spinner_tests_coll__map">
+<area shape="rect" id="node3" href="../../d9/da4/a00078.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="79,337,249,575"/><area shape="rect" id="node4" href="../../d8/d41/a00038.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="55,134,273,285"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ace91a528ee7422203cf28ddb0c6cab93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#ace91a528ee7422203cf28ddb0c6cab93">WriteField</a> (string field)</td></tr>
-<tr class="memdesc:ace91a528ee7422203cf28ddb0c6cab93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. The field may get quotes added to it. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record.  <a href="#ace91a528ee7422203cf28ddb0c6cab93">More...</a><br/></td></tr>
-<tr class="separator:ace91a528ee7422203cf28ddb0c6cab93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8b1e17777e22de131fc759f59ebf4a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#aa8b1e17777e22de131fc759f59ebf4a0">WriteField</a> (string field, bool shouldQuote)</td></tr>
-<tr class="memdesc:aa8b1e17777e22de131fc759f59ebf4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. This will ignore any need to quote and ignore the CsvConfiguration.QuoteAllFields and just quote based on the shouldQuote parameter. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record.  <a href="#aa8b1e17777e22de131fc759f59ebf4a0">More...</a><br/></td></tr>
-<tr class="separator:aa8b1e17777e22de131fc759f59ebf4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9b669ef98e0c3ac3b2eb2345b9f095e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#ae9b669ef98e0c3ac3b2eb2345b9f095e">WriteField&lt; T &gt;</a> (T field)</td></tr>
-<tr class="memdesc:ae9b669ef98e0c3ac3b2eb2345b9f095e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record.  <a href="#ae9b669ef98e0c3ac3b2eb2345b9f095e">More...</a><br/></td></tr>
-<tr class="separator:ae9b669ef98e0c3ac3b2eb2345b9f095e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2be677f2c7ff5a482f5b406388e8a90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#ab2be677f2c7ff5a482f5b406388e8a90">WriteField&lt; T &gt;</a> (T field, <a class="el" href="../../da/d74/a00099.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:ab2be677f2c7ff5a482f5b406388e8a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record.  <a href="#ab2be677f2c7ff5a482f5b406388e8a90">More...</a><br/></td></tr>
-<tr class="separator:ab2be677f2c7ff5a482f5b406388e8a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b465dbc52a5ed040da625c93fbfb1fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a7b465dbc52a5ed040da625c93fbfb1fa">WriteField&lt; T, TConverter &gt;</a> (T field)</td></tr>
-<tr class="memdesc:a7b465dbc52a5ed040da625c93fbfb1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file using the given ITypeConverter. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record.  <a href="#a7b465dbc52a5ed040da625c93fbfb1fa">More...</a><br/></td></tr>
-<tr class="separator:a7b465dbc52a5ed040da625c93fbfb1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a0564acb2e20c1792bb27d3ed303d5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a1a0564acb2e20c1792bb27d3ed303d5f">WriteField</a> (Type type, object field)</td></tr>
-<tr class="memdesc:a1a0564acb2e20c1792bb27d3ed303d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record.  <a href="#a1a0564acb2e20c1792bb27d3ed303d5f">More...</a><br/></td></tr>
-<tr class="separator:a1a0564acb2e20c1792bb27d3ed303d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fc0ce39655b94dd519af7aeecc4e9a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a0fc0ce39655b94dd519af7aeecc4e9a3">WriteField</a> (Type type, object field, <a class="el" href="../../da/d74/a00099.html">ITypeConverter</a> converter)</td></tr>
-<tr class="memdesc:a0fc0ce39655b94dd519af7aeecc4e9a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record.  <a href="#a0fc0ce39655b94dd519af7aeecc4e9a3">More...</a><br/></td></tr>
-<tr class="separator:a0fc0ce39655b94dd519af7aeecc4e9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bb1687959808ea1219fa68e7f3060fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa">NextRecord</a> ()</td></tr>
-<tr class="memdesc:a6bb1687959808ea1219fa68e7f3060fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends writing of the current record and starts a new record. This is used when manually writing records with WriteField{T}( T )  <a href="#a6bb1687959808ea1219fa68e7f3060fa">More...</a><br/></td></tr>
-<tr class="separator:a6bb1687959808ea1219fa68e7f3060fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b6bf45e56de8f5125c07f0143e74d19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a0b6bf45e56de8f5125c07f0143e74d19">WriteExcelSeparator</a> ()</td></tr>
-<tr class="memdesc:a0b6bf45e56de8f5125c07f0143e74d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the Excel seperator record.  <a href="#a0b6bf45e56de8f5125c07f0143e74d19">More...</a><br/></td></tr>
-<tr class="separator:a0b6bf45e56de8f5125c07f0143e74d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1355ab3a112318c05b96606a9682264f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a1355ab3a112318c05b96606a9682264f">WriteHeader&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a1355ab3a112318c05b96606a9682264f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the header record from the given properties.  <a href="#a1355ab3a112318c05b96606a9682264f">More...</a><br/></td></tr>
-<tr class="separator:a1355ab3a112318c05b96606a9682264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51b990d9a9615159631494390d8b53b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a51b990d9a9615159631494390d8b53b6">WriteHeader</a> (Type type)</td></tr>
-<tr class="memdesc:a51b990d9a9615159631494390d8b53b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the header record from the given properties.  <a href="#a51b990d9a9615159631494390d8b53b6">More...</a><br/></td></tr>
-<tr class="separator:a51b990d9a9615159631494390d8b53b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9620a114ee9e858760f74013cf341f3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a9620a114ee9e858760f74013cf341f3a">WriteRecord&lt; T &gt;</a> (T record)</td></tr>
-<tr class="memdesc:a9620a114ee9e858760f74013cf341f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the record to the CSV file.  <a href="#a9620a114ee9e858760f74013cf341f3a">More...</a><br/></td></tr>
-<tr class="separator:a9620a114ee9e858760f74013cf341f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d492491db7fccb8831e782f01b820f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a6d492491db7fccb8831e782f01b820f0">WriteRecord</a> (Type type, object record)</td></tr>
-<tr class="memdesc:a6d492491db7fccb8831e782f01b820f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the record to the CSV file.  <a href="#a6d492491db7fccb8831e782f01b820f0">More...</a><br/></td></tr>
-<tr class="separator:a6d492491db7fccb8831e782f01b820f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3aaa524ef8e6a1f9a0af10a38e2e9406"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a3aaa524ef8e6a1f9a0af10a38e2e9406">WriteRecords</a> (IEnumerable records)</td></tr>
-<tr class="memdesc:a3aaa524ef8e6a1f9a0af10a38e2e9406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the list of records to the CSV file.  <a href="#a3aaa524ef8e6a1f9a0af10a38e2e9406">More...</a><br/></td></tr>
-<tr class="separator:a3aaa524ef8e6a1f9a0af10a38e2e9406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25ea9b1de249748a2e3e73942ad9f583"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a25ea9b1de249748a2e3e73942ad9f583">ClearRecordCache&lt; T &gt;</a> ()</td></tr>
-<tr class="memdesc:a25ea9b1de249748a2e3e73942ad9f583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache.  <a href="#a25ea9b1de249748a2e3e73942ad9f583">More...</a><br/></td></tr>
-<tr class="separator:a25ea9b1de249748a2e3e73942ad9f583"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeaa617bc92344678ad45ba34ab2a248d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#aeaa617bc92344678ad45ba34ab2a248d">ClearRecordCache</a> (Type type)</td></tr>
-<tr class="memdesc:aeaa617bc92344678ad45ba34ab2a248d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="../../d4/d7d/a00093.html#aeaa617bc92344678ad45ba34ab2a248d" title="Clears the record cache for the given type. After WriteRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache.  <a href="#aeaa617bc92344678ad45ba34ab2a248d">More...</a><br/></td></tr>
-<tr class="separator:aeaa617bc92344678ad45ba34ab2a248d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab56edba6195d8d1f7976d7f28928c43b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#ab56edba6195d8d1f7976d7f28928c43b">ClearRecordCache</a> ()</td></tr>
-<tr class="memdesc:ab56edba6195d8d1f7976d7f28928c43b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the record cache for all types. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="../../d4/d7d/a00093.html#ab56edba6195d8d1f7976d7f28928c43b" title="Clears the record cache for all types. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache() needs to be called to update the record cache. ">ClearRecordCache()</a> needs to be called to update the record cache.  <a href="#ab56edba6195d8d1f7976d7f28928c43b">More...</a><br/></td></tr>
-<tr class="separator:ab56edba6195d8d1f7976d7f28928c43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e4c6a92bb5ed6187949264df6aaf1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#ad6e4c6a92bb5ed6187949264df6aaf1b">SetUp</a> ()</td></tr>
+<tr class="separator:ad6e4c6a92bb5ed6187949264df6aaf1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ab8ed8dc30ec30e74baa1916d47324"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a60ab8ed8dc30ec30e74baa1916d47324">EditorTest</a> ()</td></tr>
+<tr class="separator:a60ab8ed8dc30ec30e74baa1916d47324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
-Properties</h2></td></tr>
-<tr class="memitem:a9eff0fa510dda6664274510dd4b025e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a9eff0fa510dda6664274510dd4b025e5">Configuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a9eff0fa510dda6664274510dd4b025e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the configuration.  <a href="#a9eff0fa510dda6664274510dd4b025e5">More...</a><br/></td></tr>
-<tr class="separator:a9eff0fa510dda6664274510dd4b025e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9791840e0b5987e5bd09bce83ce2d8d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dc6/a00037.html">Yarn.Unity.DialogueRunner</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a></td></tr>
+<tr class="separator:a9791840e0b5987e5bd09bce83ce2d8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27dbc8c3f7f23ce142d1d5d1fd3df8bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dab/a00089.html">Yarn.Unity.VariableStorageBehaviour</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc">variableStorage</a></td></tr>
+<tr class="separator:a27dbc8c3f7f23ce142d1d5d1fd3df8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace025d2a9a703154a1989c47b0a0737"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/da4/a00078.html">TestDialogueUIBehaviour</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d7d/a00093.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a></td></tr>
+<tr class="separator:aace025d2a9a703154a1989c47b0a0737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines methods used to write to a CSV file. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aeaa617bc92344678ad45ba34ab2a248d"></a>
+<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a60ab8ed8dc30ec30e74baa1916d47324"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.ClearRecordCache </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="../../d4/d7d/a00093.html#aeaa617bc92344678ad45ba34ab2a248d" title="Clears the record cache for the given type. After WriteRecord{T} is called the first time...">ClearRecordCache( Type )</a> needs to be called to update the record cache. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The record type.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a439d9918f23faa938820a792c57aa090">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab56edba6195d8d1f7976d7f28928c43b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.ClearRecordCache </td>
+          <td class="memname">void YarnSpinnerTests.EditorTest </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Clears the record cache for all types. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, <a class="el" href="../../d4/d7d/a00093.html#ab56edba6195d8d1f7976d7f28928c43b" title="Clears the record cache for all types. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache() needs to be called to update the record cache. ">ClearRecordCache()</a> needs to be called to update the record cache. </p>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a16aa1591d1c89062b6af26bf1989415d">CsvHelper.CsvWriter</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Player: Hey, Sally.&quot;</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Oh! Hi.&quot;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: You snuck up on me.&quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        dialogueUI.ExpectLine(<span class="stringliteral">&quot;Sally: Don&#39;t do that.&quot;</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        dialogueUI.SelectOption(<span class="stringliteral">&quot;Anything exciting happen on your watch?&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        dialogueRunner.StartDialogue(<span class="stringliteral">&quot;Sally&quot;</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">// Talking to Sally a second time should result in a different dialogue</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">//Act</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//Try to rename the GameObject</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="comment">//Assert</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">//The object has a new name</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">//Assert.AreEqual(newGameObjectName, gameObject.name);</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a25ea9b1de249748a2e3e73942ad9f583"></a>
+<a class="anchor" id="ad6e4c6a92bb5ed6187949264df6aaf1b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#aeaa617bc92344678ad45ba34ab2a248d">CsvHelper.ICsvWriter.ClearRecordCache</a>&lt; T &gt; </td>
+          <td class="memname">void YarnSpinnerTests.SetUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Clears the record cache for the given type. After WriteRecord{T} is called the first time, code is dynamically generated based on the CsvPropertyMapCollection, compiled, and stored for the given type T. If the CsvPropertyMapCollection changes, ClearRecordCache{T} needs to be called to update the record cache. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The record type.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a11eb73c5fcd65642b4b4959a7200ba96">CsvHelper.CsvWriter</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">//Arrange</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// Create the dialogue runner</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        var dialogueHost = <span class="keyword">new</span> GameObject();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="../../d4/d7d/a00093.html#a9791840e0b5987e5bd09bce83ce2d8d9">dialogueRunner</a> = dialogueHost.AddComponent&lt;<a class="code" href="../../d1/dc6/a00037.html">Yarn.Unity.DialogueRunner</a>&gt;();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// Create the variable storage</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//variableStorage = dialogueHost.AddComponent&lt;ExampleVariableStorage&gt;();</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// Load the test script</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        var text = AssetDatabase.LoadAssetAtPath&lt;TextAsset&gt;(<span class="stringliteral">&quot;Assets/Yarn Spinner/Examples/Demo Assets/Space.json&quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        dialogueRunner.AddScript(text);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="../../d4/d7d/a00093.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a> = dialogueHost.AddComponent&lt;<a class="code" href="../../d9/da4/a00078.html">TestDialogueUIBehaviour</a>&gt;();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        dialogueRunner.dialogueUI = <a class="code" href="../../d4/d7d/a00093.html#aace025d2a9a703154a1989c47b0a0737">dialogueUI</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="ttc" id="a00078_html"><div class="ttname"><a href="../../d9/da4/a00078.html">TestDialogueUIBehaviour</a></div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:6</div></div>
+<div class="ttc" id="a00037_html"><div class="ttname"><a href="../../d1/dc6/a00037.html">Yarn.Unity.DialogueRunner</a></div><div class="ttdef"><b>Definition:</b> DialogueRunner.cs:37</div></div>
+<div class="ttc" id="a00093_html_a9791840e0b5987e5bd09bce83ce2d8d9"><div class="ttname"><a href="../../d4/d7d/a00093.html#a9791840e0b5987e5bd09bce83ce2d8d9">YarnSpinnerTests.dialogueRunner</a></div><div class="ttdeci">Yarn.Unity.DialogueRunner dialogueRunner</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:68</div></div>
+<div class="ttc" id="a00093_html_aace025d2a9a703154a1989c47b0a0737"><div class="ttname"><a href="../../d4/d7d/a00093.html#aace025d2a9a703154a1989c47b0a0737">YarnSpinnerTests.dialogueUI</a></div><div class="ttdeci">TestDialogueUIBehaviour dialogueUI</div><div class="ttdef"><b>Definition:</b> YarnSpinnerTests.cs:70</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a6bb1687959808ea1219fa68e7f3060fa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.NextRecord </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Ends writing of the current record and starts a new record. This is used when manually writing records with WriteField{T}( T ) </p>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a397af8c87002d3b9c2b5152c6981d4d2">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0b6bf45e56de8f5125c07f0143e74d19"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteExcelSeparator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Write the Excel seperator record. </p>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#aa07bcdeb70bf35895fdc51e46afde120">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ace91a528ee7422203cf28ddb0c6cab93"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteField </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>field</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. The field may get quotes added to it. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a994d9b339c4cda8bf83d5665b5c4ff1a">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa8b1e17777e22de131fc759f59ebf4a0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteField </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>field</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>shouldQuote</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. This will ignore any need to quote and ignore the CsvConfiguration.QuoteAllFields and just quote based on the shouldQuote parameter. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-    <tr><td class="paramname">shouldQuote</td><td>True to quote the field, otherwise false.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a8acd81f4b1e7e725f6c741313ce14a47">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1a0564acb2e20c1792bb27d3ed303d5f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteField </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>field</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#aaac679b85a63076fd2f106cd36acbc40">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0fc0ce39655b94dd519af7aeecc4e9a3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteField </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>field</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../da/d74/a00099.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-    <tr><td class="paramname">converter</td><td>The converter used to convert the field into a string.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#aecf8d120ccbffce3c5cd56bcea754225">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae9b669ef98e0c3ac3b2eb2345b9f095e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#ace91a528ee7422203cf28ddb0c6cab93">CsvHelper.ICsvWriter.WriteField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>field</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a7ec3e527a5346503adae03731804bd78">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab2be677f2c7ff5a482f5b406388e8a90"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#ace91a528ee7422203cf28ddb0c6cab93">CsvHelper.ICsvWriter.WriteField</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>field</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../da/d74/a00099.html">ITypeConverter</a>&#160;</td>
-          <td class="paramname"><em>converter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">ICsvWriter.NextRecord</a> must be called to complete writing of the current record. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the field.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-    <tr><td class="paramname">converter</td><td>The converter used to convert the field into a string.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a8fb44629353e3198293b93d94e1b8c87">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b465dbc52a5ed040da625c93fbfb1fa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#ace91a528ee7422203cf28ddb0c6cab93">CsvHelper.ICsvWriter.WriteField</a>&lt; T, TConverter &gt; </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>field</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the field to the CSV file using the given ITypeConverter. When all fields are written for a record, <a class="el" href="../../d4/d7d/a00093.html#a6bb1687959808ea1219fa68e7f3060fa" title="Ends writing of the current record and starts a new record. This is used when manually writing record...">NextRecord()</a> must be called to complete writing of the current record. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the field.</td></tr>
-    <tr><td class="paramname">TConverter</td><td>The type of the converter.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">field</td><td>The field to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a8879b818c7318f77e230f33a3dcec9c3">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a51b990d9a9615159631494390d8b53b6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteHeader </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the header record from the given properties. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#af2298dcd2934550fd9dd592921f18541">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1355ab3a112318c05b96606a9682264f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#a51b990d9a9615159631494390d8b53b6">CsvHelper.ICsvWriter.WriteHeader</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the header record from the given properties. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#a3585991c17c8708d238600fa9093faa2">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6d492491db7fccb8831e782f01b820f0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteRecord </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>record</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the record to the CSV file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>The type of the record.</td></tr>
-    <tr><td class="paramname">record</td><td>The record to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#ab1bc88015b53d21f6f5746a65180b0ac">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9620a114ee9e858760f74013cf341f3a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="../../d4/d7d/a00093.html#a6d492491db7fccb8831e782f01b820f0">CsvHelper.ICsvWriter.WriteRecord</a>&lt; T &gt; </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>record</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the record to the CSV file. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>The type of the record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">record</td><td>The record to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#aec261c2dfe23d6ed84534934e916d8ca">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3aaa524ef8e6a1f9a0af10a38e2e9406"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.ICsvWriter.WriteRecords </td>
-          <td>(</td>
-          <td class="paramtype">IEnumerable&#160;</td>
-          <td class="paramname"><em>records</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the list of records to the CSV file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">records</td><td>The list of records to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="../../d4/de8/a00061.html#ab92f8ddaaa2650eafbd9d16b3813d14e">CsvHelper.CsvWriter</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a9eff0fa510dda6664274510dd4b025e5"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a9791840e0b5987e5bd09bce83ce2d8d9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -710,29 +223,67 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d6/d42/a00043.html">CsvConfiguration</a> CsvHelper.ICsvWriter.Configuration</td>
+          <td class="memname"><a class="el" href="../../d1/dc6/a00037.html">Yarn.Unity.DialogueRunner</a> YarnSpinnerTests.dialogueRunner</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets or sets the configuration. </p>
+</div>
+</div>
+<a class="anchor" id="aace025d2a9a703154a1989c47b0a0737"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/da4/a00078.html">TestDialogueUIBehaviour</a> YarnSpinnerTests.dialogueUI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="../../">ICsvWriter.cs</a></li>
+<a class="anchor" id="a27dbc8c3f7f23ce142d1d5d1fd3df8bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dab/a00089.html">Yarn.Unity.VariableStorageBehaviour</a> YarnSpinnerTests.variableStorage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>Unity/Assets/Yarn Spinner/Code/Editor/<a class="el" href="../../">YarnSpinnerTests.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../db/dc3/a00284.html">CsvHelper</a></li><li class="navelem"><a class="el" href="../../d4/d7d/a00093.html">ICsvWriter</a></li>
+    <li class="navelem"><a class="el" href="../../d4/d7d/a00093.html">YarnSpinnerTests</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

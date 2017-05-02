@@ -1,81 +1,370 @@
-\hypertarget{a00092}{\section{Csv\-Helper.\-I\-Csv\-Serializer Interface Reference}
-\label{a00092}\index{Csv\-Helper.\-I\-Csv\-Serializer@{Csv\-Helper.\-I\-Csv\-Serializer}}
+\hypertarget{a00092}{\section{Yarn.\-Yarn\-Spinner\-Console Class Reference}
+\label{a00092}\index{Yarn.\-Yarn\-Spinner\-Console@{Yarn.\-Yarn\-Spinner\-Console}}
 }
 
 
-Defines methods used to serialize data into a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
+Collaboration diagram for Yarn.\-Yarn\-Spinner\-Console\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{d9/dad/a00394}
+\includegraphics[width=208pt]{d7/df2/a00312}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=208pt]{db/dbc/a00395}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00092_a0b442858eef85b7d933662359646fd0b}{Write} (string\mbox{[}$\,$\mbox{]} record)
-\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
+class \hyperlink{a00030}{Console\-Runner\-Implementation}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00043}{Csv\-Configuration} \hyperlink{a00092_a54d241fe87517707b6f85c30fe8b3a95}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{a00092_a1d71ff2eb190449ea1d42ce86f44489f}{Main} (string\mbox{[}$\,$\mbox{]} args)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{Show\-Help\-And\-Exit} ()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to serialize data into a C\-S\-V file. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00092_a0b442858eef85b7d933662359646fd0b}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Write@{Write}}
-\index{Write@{Write}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
-\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Serializer.\-Write (
+\hypertarget{a00092_a1d71ff2eb190449ea1d42ce86f44489f}{\index{Yarn\-::\-Yarn\-Spinner\-Console@{Yarn\-::\-Yarn\-Spinner\-Console}!Main@{Main}}
+\index{Main@{Main}!Yarn::YarnSpinnerConsole@{Yarn\-::\-Yarn\-Spinner\-Console}}
+\subsubsection[{Main}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Yarn\-Spinner\-Console.\-Main (
 \begin{DoxyParamCaption}
-\item[{string\mbox{[}$\,$\mbox{]}}]{record}
+\item[{string\mbox{[}$\,$\mbox{]}}]{args}
 \end{DoxyParamCaption}
-)}}\label{a00092_a0b442858eef85b7d933662359646fd0b}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00092_a1d71ff2eb190449ea1d42ce86f44489f}
+
+\begin{DoxyCode}
+62         \{
+63 
+64             \textcolor{keywordflow}{if} (args.Length == 0) \{
+65                 \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+66             \}
+67 
+68             \textcolor{keywordtype}{bool} showTokens = \textcolor{keyword}{false};
+69             \textcolor{keywordtype}{bool} showParseTree = \textcolor{keyword}{false};
+70             \textcolor{keywordtype}{bool} waitForLines = \textcolor{keyword}{false};
+71             \textcolor{keywordtype}{string} onlyConsiderNode = null;
+72             \textcolor{keywordtype}{bool} showDebugging = \textcolor{keyword}{false};
+73             \textcolor{keywordtype}{int} runTimes = 1;
+74             \textcolor{keywordtype}{bool} compileToBytecodeOnly = \textcolor{keyword}{false};
+75             \textcolor{keywordtype}{bool} verifyOnly = \textcolor{keyword}{false};
+76             \textcolor{keywordtype}{bool} autoSelectFirstOption = \textcolor{keyword}{false};
+77             \textcolor{keywordtype}{bool} analyseOnly = \textcolor{keyword}{false};
+78             \textcolor{keywordtype}{string} outputFile = null;
+79 
+80             var inputFiles = \textcolor{keyword}{new} List<string> ();
+81             \textcolor{keywordtype}{string} startNode = \hyperlink{a00036_a1b643f15f734090e6a58cbf13dafd28f}{Dialogue.DEFAULT\_START};
+82 
+83             \textcolor{keywordtype}{string}[] allowedExtensions = \{\textcolor{stringliteral}{".node"}, \textcolor{stringliteral}{".json"} \};
+84 
+85             var defaultVariables = \textcolor{keyword}{new} Dictionary<string,float> ();
+86 
+87             \textcolor{keywordflow}{foreach} (var arg \textcolor{keywordflow}{in} args) \{
+88 
+89                 \textcolor{comment}{// Handle 'start' parameter}
+90                 \textcolor{keywordflow}{if} (arg.IndexOf(\textcolor{stringliteral}{"-s="}) != -1) \{
+91                     var startArray = arg.Split (\textcolor{keyword}{new} \textcolor{keywordtype}{char}[]\{ \textcolor{charliteral}{'='} \});
+92                     \textcolor{keywordflow}{if} (startArray.Length != 2) \{
+93                         \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+94                     \} \textcolor{keywordflow}{else} \{
+95                         startNode = startArray [1];
+96                         \textcolor{keywordflow}{continue};
+97                     \}
+98                 \}
+99 
+100                 \textcolor{comment}{// Handle variable input}
+101                 \textcolor{keywordflow}{if} (arg.IndexOf(\textcolor{stringliteral}{"-v"}) != -1) \{
+102                     var variable = arg.Substring (2);
+103                     var variableArray = variable.Split (\textcolor{keyword}{new} \textcolor{keywordtype}{char}[]\{ \textcolor{charliteral}{'='} \});
+104                     \textcolor{keywordflow}{if} (variableArray.Length != 2) \{
+105                         \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+106                     \} \textcolor{keywordflow}{else} \{
+107                         var varName = \textcolor{stringliteral}{"$"} + variableArray [0];
+108                         var varValue = float.Parse (variableArray [1]);
+109                         defaultVariables [varName] = varValue;
+110                         \textcolor{keywordflow}{continue};
+111                     \}
+112 
+113                 \}
+114 
+115                 \textcolor{comment}{// Handle 'only this node' parameter}
+116                 \textcolor{keywordflow}{if} (arg.IndexOf(\textcolor{stringliteral}{"-o="}) != -1) \{
+117                     var startArray = arg.Split (\textcolor{keyword}{new} \textcolor{keywordtype}{char}[]\{ \textcolor{charliteral}{'='} \});
+118                     \textcolor{keywordflow}{if} (startArray.Length != 2) \{
+119                         \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+120                     \} \textcolor{keywordflow}{else} \{
+121                         onlyConsiderNode = startArray [1];
+122                         \textcolor{keywordflow}{continue};
+123                     \}
+124                 \}
+125 
+126                 \textcolor{comment}{// Handle 'run times' parameter}
+127                 \textcolor{keywordflow}{if} (arg.IndexOf(\textcolor{stringliteral}{"-r="}) != -1) \{
+128                     var argArray = arg.Split (\textcolor{charliteral}{'='});
+129                     \textcolor{keywordflow}{if} (argArray.Length != 2) \{
+130                         \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+131                     \} \textcolor{keywordflow}{else} \{
+132                         runTimes = int.Parse (argArray [1]);
+133                         \textcolor{keywordflow}{continue};
+134                     \}
+135 
+136                 \}
+137 
+138                 \textcolor{comment}{// Handle 'output file' parameter}
+139                 \textcolor{keywordflow}{if} (arg.IndexOf(\textcolor{stringliteral}{"-f="}) != -1) \{
+140                     var argArray = arg.Split(\textcolor{charliteral}{'='});
+141                     \textcolor{keywordflow}{if} (argArray.Length != 2) \{
+142                         \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit}();
+143                     \} \textcolor{keywordflow}{else} \{
+144                         outputFile = argArray[1];
+145                         \textcolor{keywordflow}{continue};
+146                     \}
+147                 \}
+148 
+149                 \textcolor{keywordflow}{switch} (arg) \{
+150                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-V"}:
+151                     verifyOnly = \textcolor{keyword}{true};
+152                     \textcolor{keywordflow}{break};
+153                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-t"}:
+154                     showTokens = \textcolor{keyword}{true};
+155                     showDebugging = \textcolor{keyword}{true};
+156                     \textcolor{keywordflow}{break};
+157                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-p"}:
+158                     showParseTree = \textcolor{keyword}{true};
+159                     showDebugging = \textcolor{keyword}{true};
+160                     \textcolor{keywordflow}{break};
+161                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-w"}:
+162                     waitForLines = \textcolor{keyword}{true};
+163                     \textcolor{keywordflow}{break};
+164                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-d"}:
+165                     showDebugging = \textcolor{keyword}{true};
+166                     \textcolor{keywordflow}{break};
+167                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-c"}:
+168                     compileToBytecodeOnly = \textcolor{keyword}{true};
+169                     \textcolor{keywordflow}{break};
+170                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-1"}:
+171                     autoSelectFirstOption = \textcolor{keyword}{true};
+172                     \textcolor{keywordflow}{break};
+173                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-h"}:
+174                     \hyperlink{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{ShowHelpAndExit} ();
+175                     \textcolor{keywordflow}{break};
+176                 \textcolor{keywordflow}{case} \textcolor{stringliteral}{"-a"}:
+177                     analyseOnly = \textcolor{keyword}{true};
+178                     \textcolor{keywordflow}{break};
+179                 \textcolor{keywordflow}{default}:
+180 
+181                     \textcolor{comment}{// only allow one file}
+182                     \textcolor{keywordflow}{if} (inputFiles.Count > 0) \{
+183                         Console.Error.WriteLine (\textcolor{stringliteral}{"Error: Too many files specified."});
+184                         Environment.Exit (1);
+185                     \}
+186 
+187                     var extension = System.IO.Path.GetExtension (arg);
+188                     \textcolor{keywordflow}{if} (Array.IndexOf(allowedExtensions, extension) != -1) \{
+189                         inputFiles.Add (arg);
+190                     \}
+191                     \textcolor{keywordflow}{break};
+192                 \}
+193             \}
+194 
+195             \textcolor{keywordflow}{if} (inputFiles.Count == 0) \{
+196                 Console.Error.WriteLine (\textcolor{stringliteral}{"Error: No files specified."});
+197                 Environment.Exit (1);
+198             \}
+199 
+200             \textcolor{comment}{// Create the object that handles callbacks}
+201             var impl = \textcolor{keyword}{new} ConsoleRunnerImplementation (waitForLines:waitForLines);
+202 
+203             \textcolor{comment}{// load the default variables we got on the command line}
+204             \textcolor{keywordflow}{foreach} (var variable \textcolor{keywordflow}{in} defaultVariables) \{
+205 
+206                 impl.SetNumber (variable.Key, variable.Value);
+207             \}
+208 
+209             \textcolor{comment}{// Load nodes}
+210             var dialogue = \textcolor{keyword}{new} Dialogue(impl);
+211 
+212 
+213             \textcolor{comment}{// Add some methods for testing}
+214             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"add\_three\_operands"}, 3, delegate(Value[] parameters) \{
+215                 \textcolor{keywordflow}{return} parameters[0]+parameters[1]+parameters[2];
+216             \});
+217 
+218             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"last\_value"}, -1, delegate(Value[] parameters) \{
+219                 \textcolor{comment}{// return the last value}
+220                 \textcolor{keywordflow}{return} parameters[parameters.Length-1];
+221             \});
+222 
+223             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"is\_even"}, 1, delegate(Value[] parameters) \{
+224                 \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})parameters[0].AsNumber % 2 == 0;
+225             \});
+226 
+227             \textcolor{comment}{// Register the "assert" function, which stops execution if its parameter evaluates to false}
+228             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"assert"}, -1, delegate(Value[] parameters) \{
+229                 \textcolor{keywordflow}{if} (parameters[0].AsBool == \textcolor{keyword}{false}) \{
+230 
+231                     \textcolor{comment}{// TODO: Include file, node and line number}
+232                     \textcolor{keywordflow}{if}( parameters.Length > 1 && parameters[1].AsBool ) \{
+233                         dialogue.LogErrorMessage (\textcolor{stringliteral}{"ASSERTION FAILED: "} + parameters[1].AsString);
+234                     \} \textcolor{keywordflow}{else} \{
+235                         dialogue.LogErrorMessage (\textcolor{stringliteral}{"ASSERTION FAILED"});
+236                     \}
+237                     Environment.Exit(1);
+238                 \}
+239             \});
+240 
+241 
+242             \textcolor{comment}{// Register a function to let test scripts register how many}
+243             \textcolor{comment}{// options they expect to send}
+244             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"prepare\_for\_options"}, 2, delegate(Value[] parameters) \{
+245                 impl.numberOfExpectedOptions = (int)parameters [0].AsNumber;
+246                 impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
+247             \});
+248 
+249             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"expect\_line"}, 1, delegate(Value[] parameters) \{
+250                 impl.expectedNextLine = parameters[0].AsString;
+251             \});
+252 
+253             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"expect\_command"}, 1, delegate(Value[] parameters) \{
+254                 impl.expectedNextCommand = parameters[0].AsString;
+255             \});
+256 
+257             \textcolor{keywordflow}{if} (autoSelectFirstOption == \textcolor{keyword}{true}) \{
+258                 impl.autoSelectFirstOption = \textcolor{keyword}{true};
+259             \}
+260 
+261             \textcolor{comment}{// If debugging is enabled, log debug messages; otherwise, ignore them}
+262             \textcolor{keywordflow}{if} (showDebugging) \{
+263                 dialogue.LogDebugMessage = delegate(\textcolor{keywordtype}{string} message) \{
+264                     Console.WriteLine (\textcolor{stringliteral}{"Debug: "} + message);
+265                 \};
+266             \} \textcolor{keywordflow}{else} \{
+267                 dialogue.LogDebugMessage = delegate(\textcolor{keywordtype}{string} message) \{\};
+268             \}
+269 
+270             dialogue.LogErrorMessage = delegate(\textcolor{keywordtype}{string} message) \{
+271                 Console.WriteLine (\textcolor{stringliteral}{"ERROR: "} + message);
+272             \};
+273 
+274             \textcolor{keywordflow}{if} (verifyOnly) \{
+275                 \textcolor{keywordflow}{try} \{
+276                     dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+277                 \} \textcolor{keywordflow}{catch} (Exception e) \{
+278                     Console.WriteLine (\textcolor{stringliteral}{"Error: "} + e.Message);
+279                 \}
+280                 \textcolor{keywordflow}{return};
+281             \}
+282 
+283             dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+284 
+285             \textcolor{keywordflow}{if} (outputFile != null) \{
+286                 var result = dialogue.GetByteCode();
+287                 System.Text.UTF8Encoding utf8 = \textcolor{keyword}{new} System.Text.UTF8Encoding();
+288                 \textcolor{keyword}{using} (System.IO.StreamWriter file = \textcolor{keyword}{new} System.IO.StreamWriter(outputFile, \textcolor{keyword}{false}, utf8)) \{
+289                     file.Write(result);
+290                 \}
+291                 \textcolor{keywordflow}{return};
+292             \}
+293 
+294             \textcolor{keywordflow}{if} (compileToBytecodeOnly) \{
+295                 var result = dialogue.GetByteCode ();
+296                 Console.WriteLine (result);
+297                 \textcolor{keywordflow}{return};
+298             \}
+299 
+300             \textcolor{keywordflow}{if} (analyseOnly) \{
+301 
+302                 var context = \textcolor{keyword}{new} \hyperlink{a00031}{Yarn.Analysis.Context} ();
+303 
+304                 dialogue.Analyse (context);
+305 
+306                 \textcolor{keywordflow}{foreach} (var diagnosis \textcolor{keywordflow}{in} context.FinishAnalysis()) \{
+307                     Console.WriteLine (diagnosis.ToString(showSeverity:\textcolor{keyword}{true}));
+308                 \}
+309                 \textcolor{keywordflow}{return};
+310             \}
+311 
+312             \textcolor{comment}{// Only run the program when we're not emitting debug output of some kind}
+313             var runProgram =
+314                 showTokens == \textcolor{keyword}{false} &&
+315                 showParseTree == \textcolor{keyword}{false} &&
+316                 compileToBytecodeOnly == \textcolor{keyword}{false} &&
+317                 analyseOnly == \textcolor{keyword}{false};
+318 
+319             \textcolor{keywordflow}{if} (runProgram) \{
+320                 \textcolor{comment}{// Run the conversation}
+321 
+322                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} run = 0; run < runTimes; run++) \{
+323                     \textcolor{keywordflow}{foreach} (var step \textcolor{keywordflow}{in} dialogue.Run (startNode)) \{
+324 
+325                         \textcolor{comment}{// It can be one of three types: a line to show, options}
+326                         \textcolor{comment}{// to present to the user, or an internal command to run}
+327 
+328                         \textcolor{keywordflow}{if} (step is Dialogue.LineResult) \{
+329                             var lineResult = step as Dialogue.LineResult;
+330                             impl.RunLine (lineResult.line);
+331                         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Dialogue.OptionSetResult) \{
+332                             var optionsResult = step as Dialogue.OptionSetResult;
+333                             impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate
+      );
+334                         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Dialogue.CommandResult) \{
+335                             var commandResult = step as Dialogue.CommandResult;
+336                             impl.RunCommand (commandResult.command.text);
+337                         \}
+338                     \}
+339                     impl.DialogueComplete ();
+340                 \}
+341 
+342 
+343             \}
+344 
+345         \}
+\end{DoxyCode}
+\hypertarget{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}{\index{Yarn\-::\-Yarn\-Spinner\-Console@{Yarn\-::\-Yarn\-Spinner\-Console}!Show\-Help\-And\-Exit@{Show\-Help\-And\-Exit}}
+\index{Show\-Help\-And\-Exit@{Show\-Help\-And\-Exit}!Yarn::YarnSpinnerConsole@{Yarn\-::\-Yarn\-Spinner\-Console}}
+\subsubsection[{Show\-Help\-And\-Exit}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Yarn\-Spinner\-Console.\-Show\-Help\-And\-Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00092_a0ce7698dabf6d60f3cd33fe5d23c11b3}
+
+\begin{DoxyCode}
+37                                       \{
+38             Console.WriteLine (\textcolor{stringliteral}{"YarnSpinner: Executes Yarn dialog files."});
+39             Console.WriteLine ();
+40             Console.WriteLine (\textcolor{stringliteral}{"Usage:"});
+41             Console.WriteLine (\textcolor{stringliteral}{"YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-r=<run times>] [-s=<start>]
+       [-v<argname>=<value>] <inputfile>"});
+42             Console.WriteLine ();
+43             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-t: Show the list of parsed tokens and exit."});
+44             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-p: Show the parse tree and exit."});
+45             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-w: After showing each line, wait for the user to press a key."});
+46             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-s: Start at the given node, instead of the default ('"} + 
+      Dialogue.DEFAULT\_START + \textcolor{stringliteral}{"')."});
+47             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-v: Sets the variable 'argname' to 'value'."});
+48             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-V: Verifies the provided script"});
+49             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-o: Only consider the node named <node>."});
+50             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-r: Run the script N times. Default is 1."});
+51             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-d: Show debugging information."});
+52             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-c: Show program bytecode and exit."});
+53             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-f: Write program bytecode to file and exit."});
+54             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-a: Show analysis of the program and exit."});
+55             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-1: Automatically select the the first option when presented with
+       options."});
+56             Console.WriteLine (\textcolor{stringliteral}{"\(\backslash\)t-h: Show this message and exit."});
+57 
+58             Environment.Exit (0);
+59         \}
+\end{DoxyCode}
 
 
-Writes a record to the C\-S\-V file. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em record} & The record to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implemented in \hyperlink{a00059_aefad906acd048863d3dd414651a44793}{Csv\-Helper.\-Csv\-Serializer}.
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00092_a54d241fe87517707b6f85c30fe8b3a95}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00092_a54d241fe87517707b6f85c30fe8b3a95}
-
-
-Gets the configuration. 
-
-
-
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00213}{I\-Csv\-Serializer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00128}{Main.\-cs}\end{DoxyCompactItemize}

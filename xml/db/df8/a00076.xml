@@ -1,224 +1,298 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="db/df8/a00076" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::DoubleConverter</compoundname>
-    <basecompoundref refid="da/d24/a00068" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="db/df8/a00076_1a0c93a63f9f954646172a65b432c40c69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.DoubleConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="da/d24/a00068_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
+  <compounddef id="db/df8/a00076" kind="class" prot="package">
+    <compoundname>Yarn::Parser::Statement</compoundname>
+    <basecompoundref refid="d1/d6f/a00063" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
+      <sectiondef kind="package-type">
+      <memberdef kind="enum" id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944" prot="package" static="no">
+        <name>Type</name>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe" prot="public">
+          <name>CustomCommand</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a" prot="public">
+          <name>ShortcutOptionGroup</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2" prot="public">
+          <name>Block</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d" prot="public">
+          <name>IfStatement</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7" prot="public">
+          <name>OptionStatement</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341" prot="public">
+          <name>AssignmentStatement</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4" prot="public">
+          <name>Line</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="22" bodyend="33"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="178" bodyend="186"/>
       </memberdef>
-      <memberdef kind="function" id="db/df8/a00076_1ad67475daa90cdb00cf626429e925e732" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.DoubleConverter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="db/df8/a00076_1aa3fa0eb260e412720562ce06b7dc06fe" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944" kindref="member">Statement.Type</ref></type>
+        <definition>Statement.Type Yarn.Parser.Statement.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="42" bodyend="46"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="188" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="188" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="property" id="db/df8/a00076_1ac14dfc7210974b4cd86402ed011fb0b6" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d7/de0/a00022" kindref="compound">Block</ref></type>
+        <definition>Block Yarn.Parser.Statement.block</definition>
+        <argsstring></argsstring>
+        <name>block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="191" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/df8/a00076_1a9a71577456598af0f25b23ccd02154e4" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d6/d42/a00043" kindref="compound">IfStatement</ref></type>
+        <definition>IfStatement Yarn.Parser.Statement.ifStatement</definition>
+        <argsstring></argsstring>
+        <name>ifStatement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="192" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/df8/a00076_1a15020b7dab4983adbd185d5c2c2ebe84" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d4/de8/a00061" kindref="compound">OptionStatement</ref></type>
+        <definition>OptionStatement Yarn.Parser.Statement.optionStatement</definition>
+        <argsstring></argsstring>
+        <name>optionStatement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="193" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/df8/a00076_1a7fa97a80f1b9313bc2bd4194e3f75759" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="dd/da2/a00019" kindref="compound">AssignmentStatement</ref></type>
+        <definition>AssignmentStatement Yarn.Parser.Statement.assignmentStatement</definition>
+        <argsstring></argsstring>
+        <name>assignmentStatement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="194" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/df8/a00076_1a8a98e7d4c66f9909da865f0e671d69f2" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="dc/d87/a00032" kindref="compound">CustomCommand</ref></type>
+        <definition>CustomCommand Yarn.Parser.Statement.customCommand</definition>
+        <argsstring></argsstring>
+        <name>customCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="db/df8/a00076_1a37695c7b00776bb292fd64894a70fb72" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="da/d74/a00099_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
+        <definition>string Yarn.Parser.Statement.line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="196" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="196" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="da/d74/a00099_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="db/d48/a00148_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d6/d5b/a00026_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="df/d5f/a00064_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="de/de1/a00065_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d9/da4/a00078_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d1/d09/a00077_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="property" id="db/df8/a00076_1a54d73ad69c4af4a0d61edeaea4c8ca4f" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="d0/d89/a00071" kindref="compound">ShortcutOptionGroup</ref></type>
+        <definition>ShortcutOptionGroup Yarn.Parser.Statement.shortcutOptionGroup</definition>
+        <argsstring></argsstring>
+        <name>shortcutOptionGroup</name>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="197" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="197" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="da/d74/a00099_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="db/df8/a00076_1acba736ffbcc0f8bf5cee2b23f7733dff" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Statement.Statement</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>Statement</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type><ref refid="d1/d6f/a00063" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d5f/a00064" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="200" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="200" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="db/df8/a00076_1aaac6d1e0c3b31f33e1c6f964c205153e" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.Statement.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplements refid="d1/d6f/a00063_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="234" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="234" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/dea/a00054" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+        <argsstring>()</argsstring>
+        <name>NodeParent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="116" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="110" bodyend="113"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a Double to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1191">
-        <label>CsvHelper.TypeConversion.DoubleConverter</label>
+      <node id="660">
+        <label>Yarn.Parser.Statement</label>
         <link refid="db/df8/a00076"/>
-        <childnode refid="1192" relation="public-inheritance">
+        <childnode refid="661" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1193">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1192">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1193" relation="public-inheritance">
-        </childnode>
+      <node id="661">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1194">
-        <label>CsvHelper.TypeConversion.DoubleConverter</label>
+      <node id="662">
+        <label>Yarn.Parser.Statement</label>
         <link refid="db/df8/a00076"/>
-        <childnode refid="1195" relation="public-inheritance">
+        <childnode refid="663" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1196">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
+      <node id="664">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="664" relation="usage">
+          <edgelabel>-parent</edgelabel>
+        </childnode>
       </node>
-      <node id="1195">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1196" relation="public-inheritance">
+      <node id="663">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="664" relation="usage">
+          <edgelabel>-parent</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DoubleConverter.cs" bodystart="12" bodyend="47"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="176" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="176" bodyend="256"/>
     <listofallmembers>
-      <member refid="db/df8/a00076_1ad67475daa90cdb00cf626429e925e732" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>CanConvertTo</name></member>
-      <member refid="db/df8/a00076_1a0c93a63f9f954646172a65b432c40c69" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>ConvertFromString</name></member>
-      <member refid="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DoubleConverter</scope><name>ConvertToString</name></member>
+      <member refid="db/df8/a00076_1a7fa97a80f1b9313bc2bd4194e3f75759" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>assignmentStatement</name></member>
+      <member refid="db/df8/a00076_1ac14dfc7210974b4cd86402ed011fb0b6" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>block</name></member>
+      <member refid="db/df8/a00076_1a8a98e7d4c66f9909da865f0e671d69f2" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>customCommand</name></member>
+      <member refid="db/df8/a00076_1a9a71577456598af0f25b23ccd02154e4" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>ifStatement</name></member>
+      <member refid="db/df8/a00076_1a37695c7b00776bb292fd64894a70fb72" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>line</name></member>
+      <member refid="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>NodeParent</name></member>
+      <member refid="db/df8/a00076_1a15020b7dab4983adbd185d5c2c2ebe84" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>optionStatement</name></member>
+      <member refid="d1/d6f/a00063_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>ParseNode</name></member>
+      <member refid="db/df8/a00076_1aaac6d1e0c3b31f33e1c6f964c205153e" prot="package" virt="virtual"><scope>Yarn::Parser::Statement</scope><name>PrintTree</name></member>
+      <member refid="db/df8/a00076_1a54d73ad69c4af4a0d61edeaea4c8ca4f" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>shortcutOptionGroup</name></member>
+      <member refid="db/df8/a00076_1acba736ffbcc0f8bf5cee2b23f7733dff" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>Statement</name></member>
+      <member refid="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>ToString</name></member>
+      <member refid="db/df8/a00076_1aa3fa0eb260e412720562ce06b7dc06fe" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>type</name></member>
+      <member refid="db/df8/a00076_1a518000e4e6219ce5f9f4229f505cd944" prot="package" virt="non-virtual"><scope>Yarn::Parser::Statement</scope><name>Type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

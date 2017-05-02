@@ -1,7 +1,7 @@
 var a00044 =
 [
-    [ "CsvConfigurationException", "d5/df9/a00044.html#a26b35b967f6c7e409dd84bdb60619993", null ],
-    [ "CsvConfigurationException", "d5/df9/a00044.html#a77c920cd1ce043a9494cd19cb074f84e", null ],
-    [ "CsvConfigurationException", "d5/df9/a00044.html#a2dee1f8508b1411b8dc4d369abfd04aa", null ],
-    [ "CsvConfigurationException", "d5/df9/a00044.html#af53550f7b533e7878e010c4048e6686c", null ]
+    [ "ToString", "d5/df9/a00044.html#a939d511f211e8a61cfbca902e802564f", null ],
+    [ "operandA", "d5/df9/a00044.html#ab5d386faa0d3dbc23db80f8e62706afd", null ],
+    [ "operandB", "d5/df9/a00044.html#a56348c6fe7eb919b7277afc06e5b224a", null ],
+    [ "operation", "d5/df9/a00044.html#a566bf5f7198cc353ea5c3710cb3a31cb", null ]
 ];

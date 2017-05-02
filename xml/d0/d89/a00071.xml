@@ -1,147 +1,116 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d0/d89/a00071" kind="class" prot="public">
-    <compoundname>Yarn::Analysis::Diagnosis</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" static="no">
-        <name>Severity</name>
-        <enumvalue id="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
-          <name>Error</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa" prot="public">
-          <name>Warning</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec" prot="public">
-          <name>Note</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
+  <compounddef id="d0/d89/a00071" kind="class" prot="package">
+    <compoundname>Yarn::Parser::ShortcutOptionGroup</compoundname>
+    <basecompoundref refid="d1/d6f/a00063" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="d0/d89/a00071_1a91b28e9dce684c476c526c4103b6c488" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>IEnumerable&lt; <ref refid="d2/db1/a00070" kindref="compound">ShortcutOption</ref> &gt;</type>
+        <definition>IEnumerable&lt;ShortcutOption&gt; Yarn.Parser.ShortcutOptionGroup.options</definition>
+        <argsstring></argsstring>
+        <name>options</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="13" bodyend="17"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="334" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="334" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d0/d89/a00071_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.message</definition>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d0/d89/a00071_1a494c8c422cebbea5c50878db64334873" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="d2/db1/a00070" kindref="compound">ShortcutOption</ref> &gt;</type>
+        <definition>List&lt;ShortcutOption&gt; Yarn.Parser.ShortcutOptionGroup._options</definition>
         <argsstring></argsstring>
-        <name>message</name>
+        <name>_options</name>
+        <initializer>= new List&lt;<ref refid="d2/db1/a00070" kindref="compound">ShortcutOption</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="8" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="337" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="337" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d89/a00071_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.nodeName</definition>
-        <argsstring></argsstring>
-        <name>nodeName</name>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="d0/d89/a00071_1a906962aae2ecb11535f34249a34703f8" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Yarn.Parser.ShortcutOptionGroup.CanParse</definition>
+        <argsstring>(Parser p)</argsstring>
+        <name>CanParse</name>
+        <param>
+          <type><ref refid="df/d5f/a00064" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="9" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="329" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="329" bodyend="332"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d89/a00071_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Analysis.Diagnosis.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="d0/d89/a00071_1aa4ee47826640ad8dff651603c940c7f4" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.ShortcutOptionGroup.ShortcutOptionGroup</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>ShortcutOptionGroup</name>
+        <param>
+          <type><ref refid="d1/d6f/a00063" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d5f/a00064" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="10" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="339" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="339" bodyend="348"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d89/a00071_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Analysis.Diagnosis.columnNumber</definition>
-        <argsstring></argsstring>
-        <name>columnNumber</name>
+      <memberdef kind="function" id="d0/d89/a00071_1a7b60f85e46b8767db81177ec40e83104" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ShortcutOptionGroup.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplements refid="d1/d6f/a00063_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="11" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="350" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="350" bodyend="361"/>
       </memberdef>
-      <memberdef kind="variable" id="d0/d89/a00071_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" static="no" mutable="no">
-        <type><ref refid="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
-        <definition>Severity Yarn.Analysis.Diagnosis.severity</definition>
-        <argsstring></argsstring>
-        <name>severity</name>
+      <memberdef kind="function" id="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/dea/a00054" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+        <argsstring>()</argsstring>
+        <name>NodeParent</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="18" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="116" bodyend="128"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="d0/d89/a00071_1ad3fd818f1be98dc803e5bec959153824" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Diagnosis.Diagnosis</definition>
-        <argsstring>(string message, Severity severity, string nodeName=null, int lineNumber=-1, int columnNumber=-1)</argsstring>
-        <name>Diagnosis</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <param>
-          <type><ref refid="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
-          <declname>severity</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>nodeName</declname>
-          <defval>null</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>columnNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="20" bodyend="27"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d89/a00071_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override string</type>
-        <definition>override string Yarn.Analysis.Diagnosis.ToString</definition>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
         <argsstring>()</argsstring>
         <name>ToString</name>
         <briefdescription>
@@ -150,47 +119,57 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="29" bodyend="32"/>
-      </memberdef>
-      <memberdef kind="function" id="d0/d89/a00071_1a985dee7ca27aa896332590133606b6a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.ToString</definition>
-        <argsstring>(bool showSeverity)</argsstring>
-        <name>ToString</name>
-        <param>
-          <type>bool</type>
-          <declname>showSeverity</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="34" bodyend="76"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="110" bodyend="113"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1149">
-        <label>Yarn.Analysis.Diagnosis</label>
+    <inheritancegraph>
+      <node id="640">
+        <label>Yarn.Parser.ShortcutOptionGroup</label>
         <link refid="d0/d89/a00071"/>
+        <childnode refid="641" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="641">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="642">
+        <label>Yarn.Parser.ShortcutOptionGroup</label>
+        <link refid="d0/d89/a00071"/>
+        <childnode refid="643" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="644">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="644" relation="usage">
+          <edgelabel>-parent</edgelabel>
+        </childnode>
+      </node>
+      <node id="643">
+        <label>ParseNode</label>
+        <link refid="d1/d6f/a00063"/>
+        <childnode refid="644" relation="usage">
+          <edgelabel>-parent</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="6" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="6" bodyend="79"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="328" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="328" bodyend="364"/>
     <listofallmembers>
-      <member refid="d0/d89/a00071_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>columnNumber</name></member>
-      <member refid="d0/d89/a00071_1ad3fd818f1be98dc803e5bec959153824" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Diagnosis</name></member>
-      <member refid="d0/d89/a00071_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>lineNumber</name></member>
-      <member refid="d0/d89/a00071_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>message</name></member>
-      <member refid="d0/d89/a00071_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>nodeName</name></member>
-      <member refid="d0/d89/a00071_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Severity</name></member>
-      <member refid="d0/d89/a00071_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>severity</name></member>
-      <member refid="d0/d89/a00071_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
-      <member refid="d0/d89/a00071_1a985dee7ca27aa896332590133606b6a9" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
+      <member refid="d0/d89/a00071_1a494c8c422cebbea5c50878db64334873" prot="private" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>_options</name></member>
+      <member refid="d0/d89/a00071_1a906962aae2ecb11535f34249a34703f8" prot="package" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>CanParse</name></member>
+      <member refid="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>NodeParent</name></member>
+      <member refid="d0/d89/a00071_1a91b28e9dce684c476c526c4103b6c488" prot="package" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>options</name></member>
+      <member refid="d1/d6f/a00063_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>ParseNode</name></member>
+      <member refid="d0/d89/a00071_1a7b60f85e46b8767db81177ec40e83104" prot="package" virt="virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>PrintTree</name></member>
+      <member refid="d0/d89/a00071_1aa4ee47826640ad8dff651603c940c7f4" prot="package" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>ShortcutOptionGroup</name></member>
+      <member refid="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::ShortcutOptionGroup</scope><name>ToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

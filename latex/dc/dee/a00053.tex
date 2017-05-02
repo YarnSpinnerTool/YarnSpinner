@@ -1,198 +1,58 @@
-\hypertarget{a00053}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data Class Reference}
-\label{a00053}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data}}
+\hypertarget{a00053}{\section{Mobile\-Only Class Reference}
+\label{a00053}\index{Mobile\-Only@{Mobile\-Only}}
 }
 
 
-The configured data for the property map.  
-
-
-
-
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data\-:
+Inheritance diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{dc/d2f/a00425}
+\includegraphics[width=162pt]{d0/d81/a00180}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+
+
+Collaboration diagram for Mobile\-Only\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{d8/d64/a00181}
+\end{center}
+\end{figure}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_a1a1424683bea80f373e3ea80ae6e39c7}{Csv\-Property\-Map\-Data} (Property\-Info property)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00053}{Csv\-Property\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-virtual Property\-Info \hyperlink{a00053_ad8f34e4f5081de744efc703640e3b7d2}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00054}{Csv\-Property\-Name\-Collection} \hyperlink{a00053_ad37a07fbc2781cdb1dce5cb6fcf953d9}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the list of column names. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00053_acf816322908241de17cad1d9a66add43}{Name\-Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the index of the name. This is used if there are multiple columns with the same names. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00053_a4edc08c491e692d4b187c4e436a0a216}{Is\-Name\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. \end{DoxyCompactList}\item 
-virtual int \hyperlink{a00053_a14a0ca66dd60cf7685ac511906b04927}{Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the column index. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00053_a6af03961e4cab7536aca530902fe4e43}{Is\-Index\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00099}{I\-Type\-Converter} \hyperlink{a00053_a5d282b88e912b3909072dff40a205f8b}{Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the type converter. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00154}{Type\-Converter\-Options} \hyperlink{a00053_ad0d40cffbecb6c5e43d6aae27c97a214}{Type\-Converter\-Options}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the type converter options. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00053_a98ca8f9b7cc478644de267d44c6647b7}{Ignore}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether the field should be ignored. \end{DoxyCompactList}\item 
-virtual object \hyperlink{a00053_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{Default}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the default value used when a C\-S\-V field is empty. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00053_a3b9322c5f0b85df6a3d7662265c75151}{Is\-Default\-Set}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. \end{DoxyCompactList}\item 
-virtual Expression \hyperlink{a00053_a1ae48223a4f425b7b315c6ae3235b4c1}{Convert\-Expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the expression used to convert data in the row to the property. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-readonly \hyperlink{a00054}{Csv\-Property\-Name\-Collection} \hyperlink{a00053_acb636e590836496473e867897ab79d97}{names} = new \hyperlink{a00054}{Csv\-Property\-Name\-Collection}()
-\item 
-int \hyperlink{a00053_a6dfbe771775d4c0d785847b7f0d2299c}{index} = -\/1
-\item 
-object \hyperlink{a00053_a77d34f2e73ad23e07eb38ee5ecceadf8}{default\-Value}
-\item 
-readonly \hyperlink{a00154}{Type\-Converter\-Options} \hyperlink{a00053_a0ca8b71605ad4490ea143c24c8adb1f8}{type\-Converter\-Options} = new \hyperlink{a00154}{Type\-Converter\-Options}()
+void \hyperlink{a00053_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The configured data for the property map. 
 
 
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00053_a1a1424683bea80f373e3ea80ae6e39c7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}}
-\index{Csv\-Property\-Map\-Data@{Csv\-Property\-Map\-Data}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Csv\-Property\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Csv\-Property\-Map\-Data (
+\subsection{Member Function Documentation}
+\hypertarget{a00053_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00053_a1a1424683bea80f373e3ea80ae6e39c7}
-
-
-Initializes a new instance of the \hyperlink{a00053}{Csv\-Property\-Map\-Data} class. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em property} & The property.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_acfb1b3a9c8f62b30300331fb84752022}
 
 \begin{DoxyCode}
-115         \{
-116             \hyperlink{a00053_ad8f34e4f5081de744efc703640e3b7d2}{Property} = property;
-117         \}
+9                   \{
+10 
+11         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+12             \textcolor{comment}{// Hang around}
+13         \} \textcolor{keywordflow}{else} \{
+14             Destroy(gameObject);
+15         \}
+16     
+17     \}
 \end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00053_a77d34f2e73ad23e07eb38ee5ecceadf8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!default\-Value@{default\-Value}}
-\index{default\-Value@{default\-Value}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{default\-Value}]{\setlength{\rightskip}{0pt plus 5cm}object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-default\-Value\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_a77d34f2e73ad23e07eb38ee5ecceadf8}
-\hypertarget{a00053_a6dfbe771775d4c0d785847b7f0d2299c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!index@{index}}
-\index{index@{index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-index = -\/1\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_a6dfbe771775d4c0d785847b7f0d2299c}
-\hypertarget{a00053_acb636e590836496473e867897ab79d97}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!names@{names}}
-\index{names@{names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-names = new {\bf Csv\-Property\-Name\-Collection}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_acb636e590836496473e867897ab79d97}
-\hypertarget{a00053_a0ca8b71605ad4490ea143c24c8adb1f8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!type\-Converter\-Options@{type\-Converter\-Options}}
-\index{type\-Converter\-Options@{type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-type\-Converter\-Options = new {\bf Type\-Converter\-Options}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_a0ca8b71605ad4490ea143c24c8adb1f8}
-
-
-\subsection{Property Documentation}
-\hypertarget{a00053_a1ae48223a4f425b7b315c6ae3235b4c1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Convert\-Expression@{Convert\-Expression}}
-\index{Convert\-Expression@{Convert\-Expression}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Convert\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}virtual Expression Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Convert\-Expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a1ae48223a4f425b7b315c6ae3235b4c1}
-
-
-Gets or sets the expression used to convert data in the row to the property. 
-
-\hypertarget{a00053_a3740c3b2f1e6e74349ac5fdf1ec0fce8}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Default@{Default}}
-\index{Default@{Default}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Default}]{\setlength{\rightskip}{0pt plus 5cm}virtual object Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Default\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a3740c3b2f1e6e74349ac5fdf1ec0fce8}
-
-
-Gets or sets the default value used when a C\-S\-V field is empty. 
-
-\hypertarget{a00053_a98ca8f9b7cc478644de267d44c6647b7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Ignore@{Ignore}}
-\index{Ignore@{Ignore}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Ignore}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Ignore\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a98ca8f9b7cc478644de267d44c6647b7}
-
-
-Gets or sets a value indicating whether the field should be ignored. 
-
-\hypertarget{a00053_a14a0ca66dd60cf7685ac511906b04927}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Index@{Index}}
-\index{Index@{Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a14a0ca66dd60cf7685ac511906b04927}
-
-
-Gets or sets the column index. 
-
-\hypertarget{a00053_a3b9322c5f0b85df6a3d7662265c75151}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Default\-Set@{Is\-Default\-Set}}
-\index{Is\-Default\-Set@{Is\-Default\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Default\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Default\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a3b9322c5f0b85df6a3d7662265c75151}
-
-
-Gets or sets a value indicating whether this instance is default value set. the default value was explicitly set. True if it was explicitly set, otherwise false. 
-
-\hypertarget{a00053_a6af03961e4cab7536aca530902fe4e43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Index\-Set@{Is\-Index\-Set}}
-\index{Is\-Index\-Set@{Is\-Index\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Index\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Index\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a6af03961e4cab7536aca530902fe4e43}
-
-
-Gets or sets a value indicating if the index was explicitly set. True if it was explicitly set, otherwise false. 
-
-\hypertarget{a00053_a4edc08c491e692d4b187c4e436a0a216}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Is\-Name\-Set@{Is\-Name\-Set}}
-\index{Is\-Name\-Set@{Is\-Name\-Set}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Is\-Name\-Set}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Is\-Name\-Set\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a4edc08c491e692d4b187c4e436a0a216}
-
-
-Gets or sets a value indicating if the name was explicitly set. True if it was explicity set, otherwise false. 
-
-\hypertarget{a00053_acf816322908241de17cad1d9a66add43}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Name\-Index@{Name\-Index}}
-\index{Name\-Index@{Name\-Index}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Name\-Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual int Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Name\-Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_acf816322908241de17cad1d9a66add43}
-
-
-Gets or sets the index of the name. This is used if there are multiple columns with the same names. 
-
-\hypertarget{a00053_ad37a07fbc2781cdb1dce5cb6fcf953d9}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Names@{Names}}
-\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Name\-Collection} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00053_ad37a07fbc2781cdb1dce5cb6fcf953d9}
-
-
-Gets the list of column names. 
-
-\hypertarget{a00053_ad8f34e4f5081de744efc703640e3b7d2}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Property@{Property}}
-\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_ad8f34e4f5081de744efc703640e3b7d2}
-
-
-Gets the Property\-Info that the data is associated with. 
-
-\hypertarget{a00053_a5d282b88e912b3909072dff40a205f8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter@{Type\-Converter}}
-\index{Type\-Converter@{Type\-Converter}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Type\-Converter} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00053_a5d282b88e912b3909072dff40a205f8b}
-
-
-Gets or sets the type converter. 
-
-\hypertarget{a00053_ad0d40cffbecb6c5e43d6aae27c97a214}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}!Type\-Converter\-Options@{Type\-Converter\-Options}}
-\index{Type\-Converter\-Options@{Type\-Converter\-Options}!CsvHelper::Configuration::CsvPropertyMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map\-Data}}
-\subsubsection[{Type\-Converter\-Options}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Type\-Converter\-Options} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-Data.\-Type\-Converter\-Options\hspace{0.3cm}{\ttfamily [get]}}}\label{a00053_ad0d40cffbecb6c5e43d6aae27c97a214}
-
-
-Gets or sets the type converter options. 
-
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00190}{Csv\-Property\-Map\-Data.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00111}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

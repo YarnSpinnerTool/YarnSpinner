@@ -1,38 +1,41 @@
-\hypertarget{a00023}{\section{Yarn.\-Base\-Variable\-Storage Class Reference}
-\label{a00023}\index{Yarn.\-Base\-Variable\-Storage@{Yarn.\-Base\-Variable\-Storage}}
+\hypertarget{a00023}{\section{Yarn.\-Unity.\-Example.\-Camera\-Follow Class Reference}
+\label{a00023}\index{Yarn.\-Unity.\-Example.\-Camera\-Follow@{Yarn.\-Unity.\-Example.\-Camera\-Follow}}
 }
 
 
-Inheritance diagram for Yarn.\-Base\-Variable\-Storage\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{d7/d84/a00535}
+\includegraphics[width=222pt]{db/d10/a00350}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Base\-Variable\-Storage\-:
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{d4/d33/a00536}
+\includegraphics[width=222pt]{d0/d48/a00351}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00023_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
+Transform \hyperlink{a00023_aa5d6958fb14a14ebb74e21c372fcca8b}{target}
 \item 
-float \hyperlink{a00023_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
+float \hyperlink{a00023_a08c6f6c0ea423c21af99e4b5467d3c9b}{min\-Position} = -\/5.\-3f
 \item 
-abstract void \hyperlink{a00023_a1c57d6d208b78abec0a670396771448e}{Set\-Value} (string variable\-Name, \hyperlink{a00163}{Value} value)
+float \hyperlink{a00023_abb0154dcbc2a7d43795beacd61a56de4}{max\-Position} = 5.\-3f
 \item 
-abstract \hyperlink{a00163}{Value} \hyperlink{a00023_a13b142df804d9842e97e628e252928e8}{Get\-Value} (string variable\-Name)
+float \hyperlink{a00023_a3d4f2efe9c2cee8c7ff797cac03f27ec}{move\-Speed} = 1.\-0f
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-abstract void \hyperlink{a00023_a7e45c37f3662ce9f2643e306bb2b3adc}{Clear} ()
+void \hyperlink{a00023_a592ddbf8e493bde0a6536c0234869217}{Update} ()
 \end{DoxyCompactItemize}
 
 
@@ -40,89 +43,47 @@ abstract void \hyperlink{a00023_a7e45c37f3662ce9f2643e306bb2b3adc}{Clear} ()
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00023_a7e45c37f3662ce9f2643e306bb2b3adc}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Clear (
+\hypertarget{a00023_a592ddbf8e493bde0a6536c0234869217}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Camera\-Follow.\-Update (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00023_a7e45c37f3662ce9f2643e306bb2b3adc}
-
-
-Implements \hyperlink{a00166_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
-
-
-
-Implemented in \hyperlink{a00110_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}.
-
-\hypertarget{a00023_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00023_a1b7f7f4468b2463e7b47986d99362279}
-
-
-Implements \hyperlink{a00166_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
-
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00023_a592ddbf8e493bde0a6536c0234869217}
 
 \begin{DoxyCode}
-73                                                     \{
-74             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
-75         \}
+42                        \{
+43             \textcolor{keywordflow}{if} (\hyperlink{a00023_aa5d6958fb14a14ebb74e21c372fcca8b}{target} == null) \{
+44                 \textcolor{keywordflow}{return};
+45             \}
+46             var newPosition = Vector3.Lerp(transform.position, target.position, 
+      \hyperlink{a00023_a3d4f2efe9c2cee8c7ff797cac03f27ec}{moveSpeed} * Time.deltaTime);
+47 
+48             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00023_a08c6f6c0ea423c21af99e4b5467d3c9b}{minPosition}, 
+      \hyperlink{a00023_abb0154dcbc2a7d43795beacd61a56de4}{maxPosition});
+49             newPosition.y = transform.position.y;
+50             newPosition.z = transform.position.z;
+51 
+52             transform.position = newPosition;
+53         \}
 \end{DoxyCode}
-\hypertarget{a00023_a13b142df804d9842e97e628e252928e8}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Value} Yarn.\-Base\-Variable\-Storage.\-Get\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00023_a13b142df804d9842e97e628e252928e8}
 
 
-Implements \hyperlink{a00166_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
-
-
-
-Implemented in \hyperlink{a00110_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}.
-
-\hypertarget{a00023_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
-\end{DoxyParamCaption}
-)}}\label{a00023_a48b93de9cd7ae61d0cd9583c8330d3ee}
-
-
-Implements \hyperlink{a00166_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
-
-
-\begin{DoxyCode}
-68                                                                  \{
-69             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
-70         \}
-\end{DoxyCode}
-\hypertarget{a00023_a1c57d6d208b78abec0a670396771448e}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Set\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00023_a1c57d6d208b78abec0a670396771448e}
-
-
-Implements \hyperlink{a00166_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
-
-
-
-Implemented in \hyperlink{a00110_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}.
-
+\subsection{Member Data Documentation}
+\hypertarget{a00023_abb0154dcbc2a7d43795beacd61a56de4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!max\-Position@{max\-Position}}
+\index{max\-Position@{max\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-max\-Position = 5.\-3f}}\label{a00023_abb0154dcbc2a7d43795beacd61a56de4}
+\hypertarget{a00023_a08c6f6c0ea423c21af99e4b5467d3c9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!min\-Position@{min\-Position}}
+\index{min\-Position@{min\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-min\-Position = -\/5.\-3f}}\label{a00023_a08c6f6c0ea423c21af99e4b5467d3c9b}
+\hypertarget{a00023_a3d4f2efe9c2cee8c7ff797cac03f27ec}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!move\-Speed@{move\-Speed}}
+\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-move\-Speed = 1.\-0f}}\label{a00023_a3d4f2efe9c2cee8c7ff797cac03f27ec}
+\hypertarget{a00023_aa5d6958fb14a14ebb74e21c372fcca8b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!target@{target}}
+\index{target@{target}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}Transform Yarn.\-Unity.\-Example.\-Camera\-Follow.\-target}}\label{a00023_aa5d6958fb14a14ebb74e21c372fcca8b}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00265}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00108}{Camera\-Follow.\-cs}\end{DoxyCompactItemize}

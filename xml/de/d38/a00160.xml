@@ -1,224 +1,69 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="de/d38/a00160" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::UInt64Converter</compoundname>
-    <basecompoundref refid="da/d24/a00068" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="de/d38/a00160_1a1d3e86ea3d34de0d47a365c9b8622eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.UInt64Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="da/d24/a00068_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="20" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="de/d38/a00160_1a3d9e9527b77fbf94786f2e5b8c4e5829" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.UInt64Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="40" bodyend="44"/>
-      </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+    <compoundname>ExampleVariableStorage::DefaultVariable</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="de/d38/a00160_1a609feaa53936e7dc42248ff2ba68454a" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="da/d74/a00099_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="d3/d65/a00154" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
+        <definition>string ExampleVariableStorage.DefaultVariable.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="45" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="da/d74/a00099_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="db/d48/a00148_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d6/d5b/a00026_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="df/d5f/a00064_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="de/de1/a00065_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d9/da4/a00078_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d1/d09/a00077_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d3/dfe/a00025_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="d4/d3e/a00116_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="de/d38/a00160_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ExampleVariableStorage.DefaultVariable.value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="46" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="da/d74/a00099_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="d9/da4/a00078_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="de/d38/a00160_1a904347efdca12f40243c7dedb646153d" prot="public" static="no" mutable="no">
+        <type><ref refid="da/d2a/a00086_1ad5aaf60ee4504608fcc2ffadefa14884" kindref="member">Yarn.Value.Type</ref></type>
+        <definition>Yarn.Value.Type ExampleVariableStorage.DefaultVariable.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="47" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a UInt64 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1607">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1606">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1607" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1605">
-        <label>CsvHelper.TypeConversion.UInt64Converter</label>
-        <link refid="de/d38/a00160"/>
-        <childnode refid="1606" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1610">
-        <label>ITypeConverter</label>
-        <link refid="da/d74/a00099"/>
-      </node>
-      <node id="1609">
-        <label>DefaultTypeConverter</label>
-        <link refid="da/d24/a00068"/>
-        <childnode refid="1610" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1608">
-        <label>CsvHelper.TypeConversion.UInt64Converter</label>
+      <node id="450">
+        <label>ExampleVariableStorage.DefaultVariable</label>
         <link refid="de/d38/a00160"/>
-        <childnode refid="1609" relation="public-inheritance">
+        <childnode refid="451" relation="usage">
+          <edgelabel>+type</edgelabel>
         </childnode>
+      </node>
+      <node id="451">
+        <label>Yarn</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt64Converter.cs" bodystart="12" bodyend="45"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="43" bodyend="48"/>
     <listofallmembers>
-      <member refid="de/d38/a00160_1a3d9e9527b77fbf94786f2e5b8c4e5829" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="da/d24/a00068_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>CanConvertTo</name></member>
-      <member refid="de/d38/a00160_1a1d3e86ea3d34de0d47a365c9b8622eb7" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>ConvertFromString</name></member>
-      <member refid="da/d24/a00068_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt64Converter</scope><name>ConvertToString</name></member>
+      <member refid="de/d38/a00160_1a609feaa53936e7dc42248ff2ba68454a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>name</name></member>
+      <member refid="de/d38/a00160_1a904347efdca12f40243c7dedb646153d" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>type</name></member>
+      <member refid="de/d38/a00160_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>value</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

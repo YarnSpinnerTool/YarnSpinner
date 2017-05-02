@@ -1,161 +1,144 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d9/da5/a00075" kind="class" prot="public" abstract="yes">
-    <compoundname>Yarn::Unity::DialogueUIBehaviour</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <derivedcompoundref refid="d0/d4a/a00147" prot="public" virt="non-virtual">TestDialogueUIBehaviour</derivedcompoundref>
-    <derivedcompoundref refid="d1/d51/a00079" prot="public" virt="non-virtual">Yarn.Unity.Example.ExampleDialogueUI</derivedcompoundref>
+  <compounddef id="d9/da5/a00075" kind="class" prot="package">
+    <compoundname>Yarn::VirtualMachine::State</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d9/da5/a00075_1a86f481fad527f719b49f8fee6ff79764" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.VirtualMachine.State.currentNodeName</definition>
+        <argsstring></argsstring>
+        <name>currentNodeName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d9/da5/a00075_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.VirtualMachine.State.programCounter</definition>
+        <argsstring></argsstring>
+        <name>programCounter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d9/da5/a00075_1ab816dfea32ecda23282700f01454e0a9" prot="public" static="no" mutable="no">
+        <type>List&lt; KeyValuePair&lt; string, string &gt; &gt;</type>
+        <definition>List&lt;KeyValuePair&lt;string,string&gt; &gt; Yarn.VirtualMachine.State.currentOptions</definition>
+        <argsstring></argsstring>
+        <name>currentOptions</name>
+        <initializer>= new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d9/da5/a00075_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" static="no" mutable="no">
+        <type>Stack&lt; <ref refid="da/d2a/a00086" kindref="compound">Value</ref> &gt;</type>
+        <definition>Stack&lt;Value&gt; Yarn.VirtualMachine.State.stack</definition>
+        <argsstring></argsstring>
+        <name>stack</name>
+        <initializer>= new Stack&lt;<ref refid="da/d2a/a00086" kindref="compound">Value</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/da5/a00075_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted</definition>
+      <memberdef kind="function" id="d9/da5/a00075_1aace44f5b85b9f746fede834becda4a8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.State.PushValue</definition>
+        <argsstring>(object o)</argsstring>
+        <name>PushValue</name>
+        <param>
+          <type>object</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="26" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da5/a00075_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="da/d2a/a00086" kindref="compound">Value</ref></type>
+        <definition>Value Yarn.VirtualMachine.State.PopValue</definition>
         <argsstring>()</argsstring>
-        <name>DialogueStarted</name>
-        <reimplementedby refid="d1/d51/a00079_1a313283f6c53354b54f25898eb436eba0">DialogueStarted</reimplementedby>
+        <name>PopValue</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="429" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="429" bodyend="432"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="34" bodyend="36"/>
       </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1a754c6dd0bc67895d11f878fe4477d698" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine</definition>
-        <argsstring>(Yarn.Line line)</argsstring>
-        <name>RunLine</name>
-        <reimplementedby refid="d1/d51/a00079_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
-        <param>
-          <type><ref refid="d2/d41/a00318" kindref="compound">Yarn.Line</ref></type>
-          <declname>line</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="435" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1ac5b29079f638f2ceb078627ef1e60004" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions</definition>
-        <argsstring>(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</argsstring>
-        <name>RunOptions</name>
-        <reimplementedby refid="d1/d51/a00079_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
-        <param>
-          <type><ref refid="db/d53/a00321" kindref="compound">Yarn.Options</ref></type>
-          <declname>optionsCollection</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">Yarn.OptionChooser</ref></type>
-          <declname>optionChooser</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="438" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerator</type>
-        <definition>abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand</definition>
-        <argsstring>(Yarn.Command command)</argsstring>
-        <name>RunCommand</name>
-        <reimplementedby refid="d1/d51/a00079_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
-        <param>
-          <type><ref refid="d4/d6f/a00315" kindref="compound">Yarn.Command</ref></type>
-          <declname>command</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="442" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete</definition>
-        <argsstring>(string nextNode)</argsstring>
-        <name>NodeComplete</name>
-        <param>
-          <type>string</type>
-          <declname>nextNode</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="445" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="445" bodyend="448"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/da5/a00075_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>IEnumerator</type>
-        <definition>virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete</definition>
+      <memberdef kind="function" id="d9/da5/a00075_1a54fd5b64ec94e937e771846167242dc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="da/d2a/a00086" kindref="compound">Value</ref></type>
+        <definition>Value Yarn.VirtualMachine.State.PeekValue</definition>
         <argsstring>()</argsstring>
-        <name>DialogueComplete</name>
-        <reimplementedby refid="d1/d51/a00079_1a1f2a08baacc25aea09af8e60eb5d3eb1">DialogueComplete</reimplementedby>
+        <name>PeekValue</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="451" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="451" bodyend="454"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="d9/da5/a00075_1a9c787097fbbbbf1680e4960cda092535" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.State.ClearStack</definition>
+        <argsstring>()</argsstring>
+        <name>ClearStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="42" bodyend="44"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1188">
-        <label>Yarn.Unity.Example.ExampleDialogueUI</label>
-        <link refid="d1/d51/a00079"/>
-        <childnode refid="1185" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1185">
-        <label>Yarn.Unity.DialogueUIBehaviour</label>
-        <link refid="d9/da5/a00075"/>
-        <childnode refid="1186" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1186">
-        <label>MonoBehaviour</label>
-      </node>
-      <node id="1187">
-        <label>TestDialogueUIBehaviour</label>
-        <link refid="d0/d4a/a00147"/>
-        <childnode refid="1185" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1189">
-        <label>Yarn.Unity.DialogueUIBehaviour</label>
+      <node id="659">
+        <label>Yarn.VirtualMachine.State</label>
         <link refid="d9/da5/a00075"/>
-        <childnode refid="1190" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1190">
-        <label>MonoBehaviour</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="427" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="426" bodyend="455"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="11" bodyend="45"/>
     <listofallmembers>
-      <member refid="d9/da5/a00075_1aecc60aee9e9386da1f71fb183f43c52d" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueComplete</name></member>
-      <member refid="d9/da5/a00075_1af9d88ca81ac536d43046ca6572e3ff54" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>DialogueStarted</name></member>
-      <member refid="d9/da5/a00075_1a2900548a0704d39d4502a153945f4bef" prot="public" virt="virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>NodeComplete</name></member>
-      <member refid="d9/da5/a00075_1a3dffe84b9e7a10fdec6749baf697d111" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunCommand</name></member>
-      <member refid="d9/da5/a00075_1a754c6dd0bc67895d11f878fe4477d698" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunLine</name></member>
-      <member refid="d9/da5/a00075_1ac5b29079f638f2ceb078627ef1e60004" prot="public" virt="pure-virtual"><scope>Yarn::Unity::DialogueUIBehaviour</scope><name>RunOptions</name></member>
+      <member refid="d9/da5/a00075_1a9c787097fbbbbf1680e4960cda092535" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>ClearStack</name></member>
+      <member refid="d9/da5/a00075_1a86f481fad527f719b49f8fee6ff79764" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentNodeName</name></member>
+      <member refid="d9/da5/a00075_1ab816dfea32ecda23282700f01454e0a9" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentOptions</name></member>
+      <member refid="d9/da5/a00075_1a54fd5b64ec94e937e771846167242dc2" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PeekValue</name></member>
+      <member refid="d9/da5/a00075_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PopValue</name></member>
+      <member refid="d9/da5/a00075_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>programCounter</name></member>
+      <member refid="d9/da5/a00075_1aace44f5b85b9f746fede834becda4a8e" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PushValue</name></member>
+      <member refid="d9/da5/a00075_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>stack</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,133 +1,326 @@
-\hypertarget{a00039}{\section{Csv\-Helper.\-Csv\-Bad\-Data\-Exception Class Reference}
-\label{a00039}\index{Csv\-Helper.\-Csv\-Bad\-Data\-Exception@{Csv\-Helper.\-Csv\-Bad\-Data\-Exception}}
+\hypertarget{a00039}{\section{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I Class Reference}
+\label{a00039}\index{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I@{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}}
 }
 
 
-Represents errors that occur due to bad data.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{d1/dc6/a00347}
+\includegraphics[width=244pt]{db/ddc/a00353}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=246pt]{df/d03/a00348}
+\includegraphics[width=350pt]{d0/dc3/a00354}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00039_a337ebca212c62127ba837ae726a0cc3a}{Csv\-Bad\-Data\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00039_a31da9e807053a75e8bd252aa792269eb}{Csv\-Bad\-Data\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00039_a2c210cf80604e58ffecc177f6f7c2547}{Csv\-Bad\-Data\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00039_abe956c9c100374953fd899bef2f2489f}{Csv\-Bad\-Data\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+override I\-Enumerator \hyperlink{a00039_a109aeedc5206dcbc4f629638b7830030}{Run\-Line} (\hyperlink{a00026_d6/d7d/a00161}{Yarn.\-Line} line)
+\item 
+override I\-Enumerator \hyperlink{a00039_aaa93672700a456e66c694636460a58f4}{Run\-Options} (\hyperlink{a00026_dd/dae/a00163}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\item 
+void \hyperlink{a00039_ad1ac5781ded20d2950d8dd3af506df37}{Set\-Option} (int selected\-Option)
+\item 
+override I\-Enumerator \hyperlink{a00039_a7f84b1e7d3c9c1f7507d143e11ba8075}{Run\-Command} (\hyperlink{a00026_d6/db8/a00158}{Yarn.\-Command} command)
+\item 
+override I\-Enumerator \hyperlink{a00039_a313283f6c53354b54f25898eb436eba0}{Dialogue\-Started} ()
+\item 
+override I\-Enumerator \hyperlink{a00039_a1f2a08baacc25aea09af8e60eb5d3eb1}{Dialogue\-Complete} ()
+\item 
+virtual I\-Enumerator \hyperlink{a00038_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Game\-Object \hyperlink{a00039_a2eaebc844d2ca982ec078708d070dbd3}{dialogue\-Container}
+\item 
+\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text} \hyperlink{a00039_a791f15a67a97fbe06ffc0bdf518edd04}{line\-Text}
+\item 
+Game\-Object \hyperlink{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}{continue\-Prompt}
+\item 
+float \hyperlink{a00039_a6053aa65534195d626031413ef3a0828}{text\-Speed} = 0.\-025f
+\item 
+List$<$ Button $>$ \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{option\-Buttons}
+\item 
+Rect\-Transform \hyperlink{a00039_a8344106eb22a0ad00e2400c2941b3e5f}{game\-Controls\-Container}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00039_a6e57983db349b0d9e4526ecb7aa6fed2}{Awake} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} \hyperlink{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{Set\-Selected\-Option}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur due to bad data. 
 
 
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00039_a337ebca212c62127ba837ae726a0cc3a}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\subsection{Member Function Documentation}
+\hypertarget{a00039_a6e57983db349b0d9e4526ecb7aa6fed2}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Awake@{Awake}}
+\index{Awake@{Awake}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Awake (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00039_a337ebca212c62127ba837ae726a0cc3a}
-
-
-Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class. 
-
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00039_a6e57983db349b0d9e4526ecb7aa6fed2}
 
 \begin{DoxyCode}
-23 \{\}
+70         \{
+71             \textcolor{comment}{// Start by hiding the container, line and option buttons}
+72             \textcolor{keywordflow}{if} (\hyperlink{a00039_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
+73                 dialogueContainer.SetActive(\textcolor{keyword}{false});
+74             
+75             lineText.gameObject.SetActive (\textcolor{keyword}{false});
+76             
+77             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
+78                 button.gameObject.SetActive (\textcolor{keyword}{false});
+79             \}
+80             
+81             \textcolor{comment}{// Hide the continue prompt if it exists}
+82             \textcolor{keywordflow}{if} (\hyperlink{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
+83                 continuePrompt.SetActive (\textcolor{keyword}{false});
+84         \}
 \end{DoxyCode}
-\hypertarget{a00039_a31da9e807053a75e8bd252aa792269eb}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00039_a1f2a08baacc25aea09af8e60eb5d3eb1}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Complete@{Dialogue\-Complete}}
+\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Complete (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00039_a31da9e807053a75e8bd252aa792269eb}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00039_a1f2a08baacc25aea09af8e60eb5d3eb1}
 
 
-Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class with a specified error message. 
+Reimplemented from \hyperlink{a00038_aecc60aee9e9386da1f71fb183f43c52d}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
-\hline
-\end{DoxyParams}
 
 \begin{DoxyCode}
-30 : base( message ) \{\}
+196         \{
+197             Debug.Log (\textcolor{stringliteral}{"Complete!"});
+198 
+199             \textcolor{comment}{// Hide the dialogue interface.}
+200             \textcolor{keywordflow}{if} (\hyperlink{a00039_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
+201                 dialogueContainer.SetActive(\textcolor{keyword}{false});
+202 
+203             \textcolor{comment}{// Show the game controls.}
+204             \textcolor{keywordflow}{if} (\hyperlink{a00039_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
+205                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{true});
+206             \}
+207             
+208             yield \textcolor{keywordflow}{break};
+209         \}
 \end{DoxyCode}
-\hypertarget{a00039_a2c210cf80604e58ffecc177f6f7c2547}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00039_a313283f6c53354b54f25898eb436eba0}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Started@{Dialogue\-Started}}
+\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Started (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00039_a2c210cf80604e58ffecc177f6f7c2547}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00039_a313283f6c53354b54f25898eb436eba0}
 
 
-Initializes a new instance of the \hyperlink{a00039}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+Reimplemented from \hyperlink{a00038_af9d88ca81ac536d43046ca6572e3ff54}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
 
 \begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
+179         \{
+180             Debug.Log (\textcolor{stringliteral}{"Dialogue starting!"});
+181             
+182             \textcolor{comment}{// Enable the dialogue controls.}
+183             \textcolor{keywordflow}{if} (\hyperlink{a00039_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
+184                 dialogueContainer.SetActive(\textcolor{keyword}{true});
+185 
+186             \textcolor{comment}{// Hide the game controls.}
+187             \textcolor{keywordflow}{if} (\hyperlink{a00039_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
+188                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{false});
+189             \}
+190             
+191             yield \textcolor{keywordflow}{break};
+192         \}
 \end{DoxyCode}
-\hypertarget{a00039_abe956c9c100374953fd899bef2f2489f}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
-\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
-\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\hypertarget{a00038_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Node\-Complete@{Node\-Complete}}
+\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
 \begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
+\item[{string}]{next\-Node}
 \end{DoxyParamCaption}
-)}}\label{a00039_abe956c9c100374953fd899bef2f2489f}
-
-
-Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_a2900548a0704d39d4502a153945f4bef}
 
 \begin{DoxyCode}
-48 : base( info, context ) \{\}
+353                                                                  \{
+354             \textcolor{comment}{// Default implementation does nothing.}
+355             yield \textcolor{keywordflow}{break};
+356         \}
 \end{DoxyCode}
+\hypertarget{a00039_a7f84b1e7d3c9c1f7507d143e11ba8075}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Command}}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00039_a7f84b1e7d3c9c1f7507d143e11ba8075}
+
+
+Implements \hyperlink{a00038_a3dffe84b9e7a10fdec6749baf697d111}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
+
+
+\begin{DoxyCode}
+171         \{
+172             \textcolor{comment}{// "Perform" the command}
+173             Debug.Log (\textcolor{stringliteral}{"Command: "} + command.text);
+174 
+175             yield \textcolor{keywordflow}{break};
+176         \}
+\end{DoxyCode}
+\hypertarget{a00039_a109aeedc5206dcbc4f629638b7830030}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Line (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00039_a109aeedc5206dcbc4f629638b7830030}
+
+
+Implements \hyperlink{a00038_a754c6dd0bc67895d11f878fe4477d698}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
+
+
+\begin{DoxyCode}
+89         \{
+90             \textcolor{comment}{// Show the text}
+91             lineText.gameObject.SetActive (\textcolor{keyword}{true});
+92             
+93             \textcolor{keywordflow}{if} (\hyperlink{a00039_a6053aa65534195d626031413ef3a0828}{textSpeed} > 0.0f) \{
+94                 \textcolor{comment}{// Display the line one character at a time}
+95                 var stringBuilder = \textcolor{keyword}{new} StringBuilder ();
+96                 
+97                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{char} c \textcolor{keywordflow}{in} line.text) \{
+98                     stringBuilder.Append (c);
+99                     lineText.text = stringBuilder.ToString ();
+100                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForSeconds (\hyperlink{a00039_a6053aa65534195d626031413ef3a0828}{textSpeed});
+101                 \}
+102             \} \textcolor{keywordflow}{else} \{
+103                 \textcolor{comment}{// Display the line immediately if textSpeed == 0}
+104                 lineText.text = line.text;
+105             \}
+106             
+107             \textcolor{comment}{// Show the 'press any key' prompt when done, if we have one}
+108             \textcolor{keywordflow}{if} (\hyperlink{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
+109                 continuePrompt.SetActive (\textcolor{keyword}{true});
+110             
+111             
+112             \textcolor{comment}{// Wait for any user input}
+113             \textcolor{keywordflow}{while} (Input.anyKeyDown == \textcolor{keyword}{false}) \{
+114                 yield \textcolor{keywordflow}{return} null;
+115             \}
+116             
+117             \textcolor{comment}{// Hide the text and prompt}
+118             lineText.gameObject.SetActive (\textcolor{keyword}{false});
+119             
+120             \textcolor{keywordflow}{if} (\hyperlink{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
+121                 continuePrompt.SetActive (\textcolor{keyword}{false});
+122             
+123         \}
+\end{DoxyCode}
+\hypertarget{a00039_aaa93672700a456e66c694636460a58f4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00039_aaa93672700a456e66c694636460a58f4}
+
+
+Implements \hyperlink{a00038_ac5b29079f638f2ceb078627ef1e60004}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
+
+
+\begin{DoxyCode}
+128         \{
+129             \textcolor{comment}{// Do a little bit of safety checking}
+130             \textcolor{keywordflow}{if} (optionsCollection.options.Count > \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}.Count) \{
+131                 Debug.LogWarning(\textcolor{stringliteral}{"There are more options to present than there are"} +
+132                                  \textcolor{stringliteral}{"buttons to present them in. This will cause problems."});
+133             \}
+134             
+135             \textcolor{comment}{// Display each option in a button, and make it visible}
+136             \textcolor{keywordtype}{int} i = 0;
+137             \textcolor{keywordflow}{foreach} (var optionString \textcolor{keywordflow}{in} optionsCollection.options) \{
+138                 \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].gameObject.SetActive (\textcolor{keyword}{true});
+139                 \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].GetComponentInChildren<\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}> ().text = optionString;
+140                 i++;
+141             \}
+142             
+143             \textcolor{comment}{// Record that we're using it}
+144             \hyperlink{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = optionChooser;
+145             
+146             \textcolor{comment}{// Wait until the chooser has been used and then removed (see SetOption below)}
+147             \textcolor{keywordflow}{while} (\hyperlink{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} != null) \{
+148                 yield \textcolor{keywordflow}{return} null;
+149             \}
+150                 
+151             \textcolor{comment}{// Hide all the buttons}
+152             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
+153                 button.gameObject.SetActive (\textcolor{keyword}{false});
+154             \}
+155         \}
+\end{DoxyCode}
+\hypertarget{a00039_ad1ac5781ded20d2950d8dd3af506df37}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Option@{Set\-Option}}
+\index{Set\-Option@{Set\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Set\-Option}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Option (
+\begin{DoxyParamCaption}
+\item[{int}]{selected\-Option}
+\end{DoxyParamCaption}
+)}}\label{a00039_ad1ac5781ded20d2950d8dd3af506df37}
+
+\begin{DoxyCode}
+159         \{
+160             
+161             \textcolor{comment}{// Call the delegate to tell the dialogue system that we've}
+162             \textcolor{comment}{// selected an option.}
+163             \hyperlink{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} (selectedOption);
+164             
+165             \textcolor{comment}{// Now remove the delegate so that the loop in RunOptions will exit}
+166             \hyperlink{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = null; 
+167         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!continue\-Prompt@{continue\-Prompt}}
+\index{continue\-Prompt@{continue\-Prompt}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{continue\-Prompt}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-continue\-Prompt}}\label{a00039_a74367b77a6a5218fa47dbe1d6266e4c6}
+\hypertarget{a00039_a2eaebc844d2ca982ec078708d070dbd3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!dialogue\-Container@{dialogue\-Container}}
+\index{dialogue\-Container@{dialogue\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{dialogue\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-dialogue\-Container}}\label{a00039_a2eaebc844d2ca982ec078708d070dbd3}
+\hypertarget{a00039_a8344106eb22a0ad00e2400c2941b3e5f}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!game\-Controls\-Container@{game\-Controls\-Container}}
+\index{game\-Controls\-Container@{game\-Controls\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{game\-Controls\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Rect\-Transform Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-game\-Controls\-Container}}\label{a00039_a8344106eb22a0ad00e2400c2941b3e5f}
+\hypertarget{a00039_a791f15a67a97fbe06ffc0bdf518edd04}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!line\-Text@{line\-Text}}
+\index{line\-Text@{line\-Text}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{line\-Text}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-line\-Text}}\label{a00039_a791f15a67a97fbe06ffc0bdf518edd04}
+\hypertarget{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!option\-Buttons@{option\-Buttons}}
+\index{option\-Buttons@{option\-Buttons}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{option\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Button$>$ Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-option\-Buttons}}\label{a00039_a090b7693e7ec6ec43c8c8e2b6b20b015}
+\hypertarget{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Selected\-Option@{Set\-Selected\-Option}}
+\index{Set\-Selected\-Option@{Set\-Selected\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{Set\-Selected\-Option}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Option\-Chooser} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Selected\-Option\hspace{0.3cm}{\ttfamily [private]}}}\label{a00039_a558f60ef9a7bcf887f015ba0d27aa6ef}
+\hypertarget{a00039_a6053aa65534195d626031413ef3a0828}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!text\-Speed@{text\-Speed}}
+\index{text\-Speed@{text\-Speed}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
+\subsubsection[{text\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-text\-Speed = 0.\-025f}}\label{a00039_a6053aa65534195d626031413ef3a0828}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00197}{Csv\-Bad\-Data\-Exception.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00109}{Example\-Dialogue\-U\-I.\-cs}\end{DoxyCompactItemize}

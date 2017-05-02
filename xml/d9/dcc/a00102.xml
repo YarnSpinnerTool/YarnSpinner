@@ -1,169 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d9/dcc/a00102" kind="class" prot="package">
-    <compoundname>Yarn::Lexer::LexerState</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d9/dcc/a00102_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Lexer.LexerState.name</definition>
-        <argsstring></argsstring>
-        <name>name</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="216" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d9/dcc/a00102_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" static="no" mutable="no">
-        <type>List&lt; <ref refid="d7/d9a/a00152" kindref="compound">TokenRule</ref> &gt;</type>
-        <definition>List&lt;TokenRule&gt; Yarn.Lexer.LexerState.tokenRules</definition>
-        <argsstring></argsstring>
-        <name>tokenRules</name>
-        <initializer>= new List&lt;<ref refid="d7/d9a/a00152" kindref="compound">TokenRule</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="225" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="225" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d9/dcc/a00102_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.LexerState.setTrackNextIndentation</definition>
-        <argsstring></argsstring>
-        <name>setTrackNextIndentation</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="278" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d9/dcc/a00102_1a951f91e9522ffe84851f2e25e9445106" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; <ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
-        <definition>Dictionary&lt;TokenType, string&gt; Yarn.Lexer.LexerState.patterns</definition>
-        <argsstring></argsstring>
-        <name>patterns</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="218" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="d9/dcc/a00102_1a69948f05c35eeae9cb8448c849a053e6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.LexerState.containsTextRule</definition>
-        <argsstring></argsstring>
-        <name>containsTextRule</name>
-        <initializer>\G((?!{0}).)*&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="268" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="268" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/dcc/a00102_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Lexer.LexerState.LexerState</definition>
-        <argsstring>(Dictionary&lt; TokenType, string &gt; patterns)</argsstring>
-        <name>LexerState</name>
-        <param>
-          <type>Dictionary&lt; <ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
-          <declname>patterns</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="220" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="220" bodyend="223"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/dcc/a00102_1a71ba52744e853ff142de19e97cf5daed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d7/d9a/a00152" kindref="compound">TokenRule</ref></type>
-        <definition>TokenRule Yarn.Lexer.LexerState.AddTransition</definition>
-        <argsstring>(TokenType type, string entersState=null, bool delimitsText=false)</argsstring>
-        <name>AddTransition</name>
-        <param>
-          <type><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>delimitsText</declname>
-          <defval>false</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="227" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="227" bodyend="236"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/dcc/a00102_1af183111863c651ae5681665a2c379830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d7/d9a/a00152" kindref="compound">TokenRule</ref></type>
-        <definition>TokenRule Yarn.Lexer.LexerState.AddTextRule</definition>
-        <argsstring>(TokenType type, string entersState=null)</argsstring>
-        <name>AddTextRule</name>
-        <param>
-          <type><ref refid="df/d61/a00031_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="241" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="241" bodyend="266"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="d9/dcc/a00102" kind="file">
+    <compoundname>LICENSE.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1353">
-        <label>Yarn.Lexer.LexerState</label>
-        <link refid="d9/dcc/a00102"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="214" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="214" bodyend="281"/>
-    <listofallmembers>
-      <member refid="d9/dcc/a00102_1af183111863c651ae5681665a2c379830" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTextRule</name></member>
-      <member refid="d9/dcc/a00102_1a71ba52744e853ff142de19e97cf5daed" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTransition</name></member>
-      <member refid="d9/dcc/a00102_1a69948f05c35eeae9cb8448c849a053e6" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>containsTextRule</name></member>
-      <member refid="d9/dcc/a00102_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>LexerState</name></member>
-      <member refid="d9/dcc/a00102_1aeb8debd0d81a76e90f083f0bf407573e" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>name</name></member>
-      <member refid="d9/dcc/a00102_1a951f91e9522ffe84851f2e25e9445106" prot="private" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>patterns</name></member>
-      <member refid="d9/dcc/a00102_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>setTrackNextIndentation</name></member>
-      <member refid="d9/dcc/a00102_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>tokenRules</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">The<sp/>MIT<sp/>License<sp/>(MIT)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Copyright<sp/>(c)<sp/>2015-2017<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>and<sp/>Yarn<sp/>Spinner<sp/>contributors.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/>copy</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the<sp/>&quot;Software&quot;),<sp/>to<sp/>deal</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>conditions:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>EXPRESS<sp/>OR</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">SOFTWARE.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">This<sp/>software<sp/>contains<sp/>third-party<sp/>code:<sp/>Unity<sp/>Test<sp/>Tools<sp/>(MIT<sp/>license),<sp/>NUnit<sp/>(BSD<sp/>license),<sp/>NSubstitute<sp/>(BSD<sp/>license)<sp/>and<sp/>Cecil<sp/>(MIT/X11<sp/>license).<sp/>For<sp/>more<sp/>information,<sp/>see<sp/>the<sp/>[Unity<sp/>Test<sp/>Tools<sp/>license<sp/>file](Unity/Assets/UnityTestTools/LICENSE.txt).</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/LICENSE.md"/>
   </compounddef>
 </doxygen>

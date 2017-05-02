@@ -1,9 +1,9 @@
 var a00038 =
 [
-    [ "convertToJSON", "d8/d41/a00038.html#a6a650914fcde92ba06fb5f140af27f11", null ],
-    [ "convertToYarn", "d8/d41/a00038.html#a052d6f00647c503adc5a79a1ff92cdf4", null ],
-    [ "files", "d8/d41/a00038.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
-    [ "outputDirectory", "d8/d41/a00038.html#ab636bde93c2204b2af1a9306560d9749", null ],
-    [ "showDebuggingInfo", "d8/d41/a00038.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
-    [ "verbose", "d8/d41/a00038.html#ada4d83d1756918f362d55f6649b82b17", null ]
+    [ "DialogueComplete", "d8/d41/a00038.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "d8/d41/a00038.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "d8/d41/a00038.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "d8/d41/a00038.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "d8/d41/a00038.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "d8/d41/a00038.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

@@ -1,211 +1,164 @@
-\hypertarget{a00065}{\section{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter Class Reference}
-\label{a00065}\index{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}}
+\hypertarget{a00065}{\section{Yarn.\-Unity.\-Example.\-Player\-Character Class Reference}
+\label{a00065}\index{Yarn.\-Unity.\-Example.\-Player\-Character@{Yarn.\-Unity.\-Example.\-Player\-Character}}
 }
 
 
-Converts a Date\-Time\-Offset to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{d1/d0b/a00452}
+\includegraphics[width=216pt]{d4/def/a00359}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter\-:
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{da/dc3/a00453}
+\includegraphics[width=216pt]{d0/d65/a00360}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00065_aa69835fc086d80a8eabe7ac50cb92f47}{Convert\-From\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00065_a82a8cf4b77600ef49da60deb0c24a708}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00068_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00154}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00068_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00065_a574b6d984b8671c7a780d3d10e040a9b}{Check\-For\-Nearby\-N\-P\-C} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{a00065_ac025d4f4afaf854f8256e0d2d03e5b52}{min\-Position} = -\/5.\-3f
+\item 
+float \hyperlink{a00065_ada9dd748a1d89a7f9b12ac8967a07ae6}{max\-Position} = 5.\-3f
+\item 
+float \hyperlink{a00065_adc602a4b2c7e44e4b15a11f1ffcf07e4}{move\-Speed} = 1.\-0f
+\item 
+float \hyperlink{a00065_af89807d2195915ee9a0c42317e110fc6}{interaction\-Radius} = 2.\-0f
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{a00065_a7bcde19f080bfd09bbc833b8fb555cf7}{movement\-From\-Buttons}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00065_a9e83ec3c6e45ee4dd17215e3030f6403}{On\-Draw\-Gizmos\-Selected} ()
+\item 
+void \hyperlink{a00065_a8e78b2dc1cd221fb9d05b89e70155df4}{Update} ()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Date\-Time\-Offset to and from a string. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00065_a82a8cf4b77600ef49da60deb0c24a708}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00065_a574b6d984b8671c7a780d3d10e040a9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}}
+\index{Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{Check\-For\-Nearby\-N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Check\-For\-Nearby\-N\-P\-C (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00065_a82a8cf4b77600ef49da60deb0c24a708}
-
-
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
+)}}\label{a00065_a574b6d984b8671c7a780d3d10e040a9b}
 
 \begin{DoxyCode}
-50         \{
-51             \textcolor{comment}{// We only care about strings.}
-52             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-53         \}
+86         \{
+87             \textcolor{comment}{// Find all DialogueParticipants, and filter them to}
+88             \textcolor{comment}{// those that have a Yarn start node and are in range; }
+89             \textcolor{comment}{// then start a conversation with the first one}
+90             var allParticipants = \textcolor{keyword}{new} List<NPC> (FindObjectsOfType<NPC> ());
+91             var target = allParticipants.Find (delegate (NPC p) \{
+92                 \textcolor{keywordflow}{return} string.IsNullOrEmpty (p.talkToNode) == \textcolor{keyword}{false} && \textcolor{comment}{// has a conversation node?}
+93                 (p.transform.position - \textcolor{keyword}{this}.transform.position)\textcolor{comment}{// is in range?}
+94                 .magnitude <= \hyperlink{a00065_af89807d2195915ee9a0c42317e110fc6}{interactionRadius};
+95             \});
+96             \textcolor{keywordflow}{if} (target != null) \{
+97                 \textcolor{comment}{// Kick off the dialogue at this node.}
+98                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
+99             \}
+100         \}
 \end{DoxyCode}
-\hypertarget{a00068_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00065_a9e83ec3c6e45ee4dd17215e3030f6403}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}}
+\index{On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{On\-Draw\-Gizmos\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-On\-Draw\-Gizmos\-Selected (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00068_acb65bd8c8199d88d5b1629ae35d18514}
-
-
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00099_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00078_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00065_a9e83ec3c6e45ee4dd17215e3030f6403}
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+44                                     \{
+45             Gizmos.color = Color.blue;
+46 
+47             \textcolor{comment}{// Flatten the sphere into a disk, which looks nicer in 2D games}
+48             Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, \textcolor{keyword}{new} Vector3(1,1,0));
+49 
+50             \textcolor{comment}{// Need to draw at position zero because we set position in the line above}
+51             Gizmos.DrawWireSphere(Vector3.zero, \hyperlink{a00065_af89807d2195915ee9a0c42317e110fc6}{interactionRadius});
+52         \}
 \end{DoxyCode}
-\hypertarget{a00065_aa69835fc086d80a8eabe7ac50cb92f47}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String (
+\hypertarget{a00065_a8e78b2dc1cd221fb9d05b89e70155df4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Update (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00065_aa69835fc086d80a8eabe7ac50cb92f47}
-
-
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00068_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00065_a8e78b2dc1cd221fb9d05b89e70155df4}
 
 \begin{DoxyCode}
-23         \{
-24             \textcolor{keywordflow}{if}( text == null )
-25             \{
-26                 \textcolor{keywordflow}{return} base.ConvertFromString( options, null );
-27             \}
-28 
-29             \textcolor{keywordflow}{if}( text.Trim().Length == 0 )
-30             \{
-31                 \textcolor{keywordflow}{return} DateTimeOffset.MinValue;
-32             \}
-33 
-34             var formatProvider = (IFormatProvider)options.CultureInfo.GetFormat( typeof( DateTimeFormatInfo
-       ) ) ?? options.CultureInfo;
-35             var dateTimeStyle = options.DateTimeStyle ?? DateTimeStyles.None;
-36 
-37             \textcolor{keywordflow}{return} string.IsNullOrEmpty( options.Format )
-38                 ? DateTimeOffset.Parse( text, formatProvider, dateTimeStyle )
-39                 : DateTimeOffset.ParseExact( text, options.Format, formatProvider, dateTimeStyle );
-40         \}
+56                        \{
+57 
+58             \textcolor{comment}{// Remove all player control when we're in dialogue}
+59             \textcolor{keywordflow}{if} (FindObjectOfType<DialogueRunner>().isDialogueRunning == \textcolor{keyword}{true}) \{
+60                 \textcolor{keywordflow}{return};
+61             \}
+62 
+63             \textcolor{comment}{// Move the player, clamping them to within the boundaries }
+64             \textcolor{comment}{// of the level.}
+65             var movement = Input.GetAxis(\textcolor{stringliteral}{"Horizontal"});
+66             movement += \hyperlink{a00065_a7bcde19f080bfd09bbc833b8fb555cf7}{movementFromButtons};
+67             movement *= (\hyperlink{a00065_adc602a4b2c7e44e4b15a11f1ffcf07e4}{moveSpeed} * Time.deltaTime);
+68 
+69 
+70             var newPosition = transform.position;
+71             newPosition.x += movement;
+72             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00065_ac025d4f4afaf854f8256e0d2d03e5b52}{minPosition}, 
+      \hyperlink{a00065_ada9dd748a1d89a7f9b12ac8967a07ae6}{maxPosition});
+73 
+74             transform.position = newPosition;
+75 
+76             \textcolor{comment}{// Detect if we want to start a conversation}
+77 
+78             \textcolor{keywordflow}{if} (Input.GetKeyDown(KeyCode.Space)) \{
+79                 \hyperlink{a00065_a574b6d984b8671c7a780d3d10e040a9b}{CheckForNearbyNPC} ();
+80             \}
+81         \}
 \end{DoxyCode}
-\hypertarget{a00068_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::DateTimeOffsetConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Date\-Time\-Offset\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00068_a36cb2f9b24f15a671293f3a722324c27}
 
 
-Converts the object to a string. 
+\subsection{Member Data Documentation}
+\hypertarget{a00065_af89807d2195915ee9a0c42317e110fc6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!interaction\-Radius@{interaction\-Radius}}
+\index{interaction\-Radius@{interaction\-Radius}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{interaction\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-interaction\-Radius = 2.\-0f}}\label{a00065_af89807d2195915ee9a0c42317e110fc6}
+\hypertarget{a00065_ada9dd748a1d89a7f9b12ac8967a07ae6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!max\-Position@{max\-Position}}
+\index{max\-Position@{max\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-max\-Position = 5.\-3f}}\label{a00065_ada9dd748a1d89a7f9b12ac8967a07ae6}
+\hypertarget{a00065_ac025d4f4afaf854f8256e0d2d03e5b52}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!min\-Position@{min\-Position}}
+\index{min\-Position@{min\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-min\-Position = -\/5.\-3f}}\label{a00065_ac025d4f4afaf854f8256e0d2d03e5b52}
+\hypertarget{a00065_adc602a4b2c7e44e4b15a11f1ffcf07e4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!move\-Speed@{move\-Speed}}
+\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-move\-Speed = 1.\-0f}}\label{a00065_adc602a4b2c7e44e4b15a11f1ffcf07e4}
 
 
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00099_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00116_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00078_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
+\subsection{Property Documentation}
+\hypertarget{a00065_a7bcde19f080bfd09bbc833b8fb555cf7}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!movement\-From\-Buttons@{movement\-From\-Buttons}}
+\index{movement\-From\-Buttons@{movement\-From\-Buttons}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
+\subsubsection[{movement\-From\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-movement\-From\-Buttons\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00065_a7bcde19f080bfd09bbc833b8fb555cf7}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00229}{Date\-Time\-Offset\-Converter.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00113}{Player\-Character.\-cs}\end{DoxyCompactItemize}

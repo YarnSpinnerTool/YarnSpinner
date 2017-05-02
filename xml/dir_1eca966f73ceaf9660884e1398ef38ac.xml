@@ -3,15 +3,17 @@
   <compounddef id="dir_1eca966f73ceaf9660884e1398ef38ac" kind="dir">
     <compoundname>YarnSpinner</compoundname>
     <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
-    <innerfile refid="df/da9/a00263">Analyser.cs</innerfile>
-    <innerfile refid="d3/dcc/a00264">Compiler.cs</innerfile>
-    <innerfile refid="da/d53/a00265">Dialogue.cs</innerfile>
-    <innerfile refid="d5/d35/a00266">Lexer.cs</innerfile>
-    <innerfile refid="d1/dd4/a00267">Library.cs</innerfile>
-    <innerfile refid="db/d12/a00268">Loader.cs</innerfile>
-    <innerfile refid="d5/d42/a00269">Parser.cs</innerfile>
-    <innerfile refid="d9/d2a/a00270">Value.cs</innerfile>
-    <innerfile refid="dd/d86/a00271">VirtualMachine.cs</innerfile>
+    <innerfile refid="d2/da3/a00115">Analyser.cs</innerfile>
+    <innerfile refid="d4/d3e/a00116">Compiler.cs</innerfile>
+    <innerfile refid="d9/d4b/a00117">Dialogue.cs</innerfile>
+    <innerfile refid="d8/d87/a00118">JsonParser.cs</innerfile>
+    <innerfile refid="df/d6a/a00119">Lexer.cs</innerfile>
+    <innerfile refid="d4/d98/a00120">Library.cs</innerfile>
+    <innerfile refid="d8/dfa/a00121">Loader.cs</innerfile>
+    <innerfile refid="df/dc8/a00122">Parser.cs</innerfile>
+    <innerfile refid="dc/dfe/a00125">TreeRunner.cs</innerfile>
+    <innerfile refid="d7/d12/a00126">Value.cs</innerfile>
+    <innerfile refid="df/dcd/a00127">VirtualMachine.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

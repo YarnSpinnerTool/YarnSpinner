@@ -1,124 +1,159 @@
-\hypertarget{a00089}{\section{Csv\-Helper.\-I\-Csv\-Parser Interface Reference}
-\label{a00089}\index{Csv\-Helper.\-I\-Csv\-Parser@{Csv\-Helper.\-I\-Csv\-Parser}}
+\hypertarget{a00089}{\section{Yarn.\-Unity.\-Variable\-Storage\-Behaviour Class Reference}
+\label{a00089}\index{Yarn.\-Unity.\-Variable\-Storage\-Behaviour@{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}}
 }
 
 
-Defines methods used the parse a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
+Inheritance diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{d5/d05/a00385}
+\includegraphics[width=294pt]{dc/d84/a00338}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Parser\-:
+Collaboration diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=194pt]{dd/df5/a00386}
+\includegraphics[width=294pt]{d0/d01/a00339}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00089_a411461b4cd33dce0b42c81715359f687}{Read} ()
-\begin{DoxyCompactList}\small\item\em Reads a record from the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
+virtual void \hyperlink{a00089_ac0d2f2e081944ad197992a26ad1a833c}{Set\-Number} (string variable\-Name, float number)
 \item 
-\hyperlink{a00043}{Csv\-Configuration} \hyperlink{a00089_af1303d18a827bf46a56f9cb6ba05ed64}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\item 
-int \hyperlink{a00089_a50c0428defc2ada782c6863d72a990e4}{Field\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the field count. \end{DoxyCompactList}\item 
-long \hyperlink{a00089_aa47c7ce6c764dddc78bb4d3ee83714eb}{Char\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the character position that the parser is currently on. \end{DoxyCompactList}\item 
-long \hyperlink{a00089_a23dee37412eeb387df1d336e7bf07cc2}{Byte\-Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the byte position that the parser is currently on. \end{DoxyCompactList}\item 
-int \hyperlink{a00089_a0ec83f976594f51a002448fa2fe2e392}{Row}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the row of the C\-S\-V file that the parser is currently on. \end{DoxyCompactList}\item 
-string \hyperlink{a00089_a1b238e3bb053f2f6c122ee0d77bb48d7}{Raw\-Record}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the raw row for the current record that was parsed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual float \hyperlink{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}{Get\-Number} (string variable\-Name)
+\item 
+virtual \hyperlink{a00086}{Value} \hyperlink{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}{Get\-Value} (string variable\-Name)
+\item 
+virtual void \hyperlink{a00089_a25f979b062d63c9e886fe7070ce4561b}{Set\-Value} (string variable\-Name, \hyperlink{a00086}{Value} value)
+\item 
+virtual void \hyperlink{a00089_a587fe10b367ace190e10f3bcb590a53c}{Clear} ()
+\item 
+abstract void \hyperlink{a00089_a33fcbff56561e53e0a70b59c56f0c3af}{Reset\-To\-Defaults} ()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used the parse a C\-S\-V file. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00089_a411461b4cd33dce0b42c81715359f687}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Read@{Read}}
-\index{Read@{Read}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Read}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Csv\-Helper.\-I\-Csv\-Parser.\-Read (
+\hypertarget{a00089_a587fe10b367ace190e10f3bcb590a53c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00089_a411461b4cd33dce0b42c81715359f687}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a587fe10b367ace190e10f3bcb590a53c}
 
 
-Reads a record from the C\-S\-V file. 
-
-\begin{DoxyReturn}{Returns}
-A T\-:\-String\mbox{[}$\,$\mbox{]} of fields for the record read.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00048_a8e938842c6267343128babd111df9710}{Csv\-Helper.\-Csv\-Parser}.
+Implements \hyperlink{a00088_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00089_a23dee37412eeb387df1d336e7bf07cc2}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Byte\-Position@{Byte\-Position}}
-\index{Byte\-Position@{Byte\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Byte\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Byte\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a23dee37412eeb387df1d336e7bf07cc2}
+Reimplemented in \hyperlink{a00033_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}.
 
 
-Gets the byte position that the parser is currently on. 
-
-\hypertarget{a00089_aa47c7ce6c764dddc78bb4d3ee83714eb}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Char\-Position@{Char\-Position}}
-\index{Char\-Position@{Char\-Position}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Char\-Position}]{\setlength{\rightskip}{0pt plus 5cm}long Csv\-Helper.\-I\-Csv\-Parser.\-Char\-Position\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_aa47c7ce6c764dddc78bb4d3ee83714eb}
-
-
-Gets the character position that the parser is currently on. 
-
-\hypertarget{a00089_af1303d18a827bf46a56f9cb6ba05ed64}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Parser.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_af1303d18a827bf46a56f9cb6ba05ed64}
-
-
-Gets the configuration. 
-
-\hypertarget{a00089_a50c0428defc2ada782c6863d72a990e4}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Field\-Count@{Field\-Count}}
-\index{Field\-Count@{Field\-Count}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Field\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Field\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a50c0428defc2ada782c6863d72a990e4}
+\begin{DoxyCode}
+388         \{
+389             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+390         \}
+\end{DoxyCode}
+\hypertarget{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}
 
 
-Gets the field count. 
-
-\hypertarget{a00089_a1b238e3bb053f2f6c122ee0d77bb48d7}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Raw\-Record@{Raw\-Record}}
-\index{Raw\-Record@{Raw\-Record}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Raw\-Record}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-I\-Csv\-Parser.\-Raw\-Record\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a1b238e3bb053f2f6c122ee0d77bb48d7}
+Implements \hyperlink{a00088_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
 
 
-Gets the raw row for the current record that was parsed. 
+\begin{DoxyCode}
+375         \{
+376             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+377         \}
+\end{DoxyCode}
+\hypertarget{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Value} Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}
 
-\hypertarget{a00089_a0ec83f976594f51a002448fa2fe2e392}{\index{Csv\-Helper\-::\-I\-Csv\-Parser@{Csv\-Helper\-::\-I\-Csv\-Parser}!Row@{Row}}
-\index{Row@{Row}!CsvHelper::ICsvParser@{Csv\-Helper\-::\-I\-Csv\-Parser}}
-\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-I\-Csv\-Parser.\-Row\hspace{0.3cm}{\ttfamily [get]}}}\label{a00089_a0ec83f976594f51a002448fa2fe2e392}
 
-
-Gets the row of the C\-S\-V file that the parser is currently on. 
+Implements \hyperlink{a00088_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
 
 
 
-The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
+Reimplemented in \hyperlink{a00033_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}.
+
+
+\begin{DoxyCode}
+379                                                            \{
+380             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00086}{Yarn.Value}(this.GetNumber(variableName));
+381         \}
+\end{DoxyCode}
+\hypertarget{a00089_a33fcbff56561e53e0a70b59c56f0c3af}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
+\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Reset\-To\-Defaults (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00089_a33fcbff56561e53e0a70b59c56f0c3af}
+
+
+Implemented in \hyperlink{a00033_a3a05d66cdacadb2e9b618cd0aef45f84}{Example\-Variable\-Storage}.
+
+\hypertarget{a00089_ac0d2f2e081944ad197992a26ad1a833c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_ac0d2f2e081944ad197992a26ad1a833c}
+
+
+Implements \hyperlink{a00088_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+
+
+\begin{DoxyCode}
+370         \{
+371             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
+372         \}
+\end{DoxyCode}
+\hypertarget{a00089_a25f979b062d63c9e886fe7070ce4561b}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a25f979b062d63c9e886fe7070ce4561b}
+
+
+Implements \hyperlink{a00088_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
+
+
+
+Reimplemented in \hyperlink{a00033_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}.
+
+
+\begin{DoxyCode}
+383                                                                        \{
+384             this.SetNumber(variableName, value.AsNumber);
+385         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00210}{I\-Csv\-Parser.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\hyperlink{a00105}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

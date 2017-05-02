@@ -1,147 +1,175 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="db/dab/a00089" kind="interface" prot="public">
-    <compoundname>CsvHelper::ICsvParser</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">IDisposable</basecompoundref>
-    <derivedcompoundref refid="d4/dca/a00048" prot="public" virt="non-virtual">CsvHelper.CsvParser</derivedcompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="db/dab/a00089_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="d6/d42/a00043" kindref="compound">CsvConfiguration</ref></type>
-        <definition>CsvConfiguration CsvHelper.ICsvParser.Configuration</definition>
-        <argsstring></argsstring>
-        <name>Configuration</name>
-        <briefdescription>
-<para>Gets the configuration. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="db/dab/a00089_1a50c0428defc2ada782c6863d72a990e4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>int CsvHelper.ICsvParser.FieldCount</definition>
-        <argsstring></argsstring>
-        <name>FieldCount</name>
-        <briefdescription>
-<para>Gets the field count. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="db/dab/a00089_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>long</type>
-        <definition>long CsvHelper.ICsvParser.CharPosition</definition>
-        <argsstring></argsstring>
-        <name>CharPosition</name>
-        <briefdescription>
-<para>Gets the character position that the parser is currently on. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="db/dab/a00089_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>long</type>
-        <definition>long CsvHelper.ICsvParser.BytePosition</definition>
-        <argsstring></argsstring>
-        <name>BytePosition</name>
-        <briefdescription>
-<para>Gets the byte position that the parser is currently on. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="db/dab/a00089_1a0ec83f976594f51a002448fa2fe2e392" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>int</type>
-        <definition>int CsvHelper.ICsvParser.Row</definition>
-        <argsstring></argsstring>
-        <name>Row</name>
-        <briefdescription>
-<para>Gets the row of the CSV file that the parser is currently on. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="db/dab/a00089_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string CsvHelper.ICsvParser.RawRecord</definition>
-        <argsstring></argsstring>
-        <name>RawRecord</name>
-        <briefdescription>
-<para>Gets the raw row for the current record that was parsed. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="db/dab/a00089" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::Unity::VariableStorageBehaviour</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="db/ddf/a00088" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <derivedcompoundref refid="d0/dc0/a00033" prot="public" virt="non-virtual">ExampleVariableStorage</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="db/dab/a00089_1a411461b4cd33dce0b42c81715359f687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>string[]</type>
-        <definition>string [] CsvHelper.ICsvParser.Read</definition>
-        <argsstring>()</argsstring>
-        <name>Read</name>
-        <reimplementedby refid="d4/dca/a00048_1a8e938842c6267343128babd111df9710">Read</reimplementedby>
+      <memberdef kind="function" id="db/dab/a00089_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="db/ddf/a00088_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
+        </param>
         <briefdescription>
-<para>Reads a record from the CSV file. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>A T:String[] of fields for the record read.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="49" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="369" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="369" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>float</type>
+        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="db/ddf/a00088_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="374" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="374" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="da/d2a/a00086" kindref="compound">Value</ref></type>
+        <definition>virtual Value Yarn.Unity.VariableStorageBehaviour.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="db/ddf/a00088_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <reimplementedby refid="d0/dc0/a00033_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="379" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="379" bodyend="381"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a25f979b062d63c9e886fe7070ce4561b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="db/ddf/a00088_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <reimplementedby refid="d0/dc0/a00033_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="da/d2a/a00086" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="383" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="383" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a587fe10b367ace190e10f3bcb590a53c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="db/ddf/a00088_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <reimplementedby refid="d0/dc0/a00033_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="387" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="387" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="db/dab/a00089_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Unity.VariableStorageBehaviour.ResetToDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>ResetToDefaults</name>
+        <reimplementedby refid="d0/dc0/a00033_1a3a05d66cdacadb2e9b618cd0aef45f84">ResetToDefaults</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="392" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Defines methods used the parse a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1263">
-        <label>IDisposable</label>
-      </node>
-      <node id="1264">
-        <label>CsvHelper.CsvParser</label>
-        <link refid="d4/dca/a00048"/>
-        <childnode refid="1262" relation="public-inheritance">
+      <node id="730">
+        <label>ExampleVariableStorage</label>
+        <link refid="d0/dc0/a00033"/>
+        <childnode refid="727" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1262">
-        <label>CsvHelper.ICsvParser</label>
+      <node id="729">
+        <label>Yarn::VariableStorage</label>
+        <link refid="db/ddf/a00088"/>
+      </node>
+      <node id="727">
+        <label>Yarn.Unity.VariableStorageBehaviour</label>
         <link refid="db/dab/a00089"/>
-        <childnode refid="1263" relation="public-inheritance">
+        <childnode refid="728" relation="public-inheritance">
         </childnode>
+        <childnode refid="729" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="728">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1266">
-        <label>IDisposable</label>
+      <node id="733">
+        <label>Yarn::VariableStorage</label>
+        <link refid="db/ddf/a00088"/>
       </node>
-      <node id="1265">
-        <label>CsvHelper.ICsvParser</label>
+      <node id="731">
+        <label>Yarn.Unity.VariableStorageBehaviour</label>
         <link refid="db/dab/a00089"/>
-        <childnode refid="1266" relation="public-inheritance">
+        <childnode refid="732" relation="public-inheritance">
+        </childnode>
+        <childnode refid="733" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="732">
+        <label>MonoBehaviour</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs" bodystart="13" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="367" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="366" bodyend="394"/>
     <listofallmembers>
-      <member refid="db/dab/a00089_1a23dee37412eeb387df1d336e7bf07cc2" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>BytePosition</name></member>
-      <member refid="db/dab/a00089_1aa47c7ce6c764dddc78bb4d3ee83714eb" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>CharPosition</name></member>
-      <member refid="db/dab/a00089_1af1303d18a827bf46a56f9cb6ba05ed64" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Configuration</name></member>
-      <member refid="db/dab/a00089_1a50c0428defc2ada782c6863d72a990e4" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>FieldCount</name></member>
-      <member refid="db/dab/a00089_1a1b238e3bb053f2f6c122ee0d77bb48d7" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>RawRecord</name></member>
-      <member refid="db/dab/a00089_1a411461b4cd33dce0b42c81715359f687" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Read</name></member>
-      <member refid="db/dab/a00089_1a0ec83f976594f51a002448fa2fe2e392" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvParser</scope><name>Row</name></member>
+      <member refid="db/dab/a00089_1a587fe10b367ace190e10f3bcb590a53c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>Clear</name></member>
+      <member refid="db/dab/a00089_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetNumber</name></member>
+      <member refid="db/dab/a00089_1ac6ebafcbebc2b2d71eba8562490a2f1e" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>GetValue</name></member>
+      <member refid="db/dab/a00089_1a33fcbff56561e53e0a70b59c56f0c3af" prot="public" virt="pure-virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>ResetToDefaults</name></member>
+      <member refid="db/dab/a00089_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetNumber</name></member>
+      <member refid="db/dab/a00089_1a25f979b062d63c9e886fe7070ce4561b" prot="public" virt="virtual"><scope>Yarn::Unity::VariableStorageBehaviour</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

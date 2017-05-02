@@ -1,288 +1,413 @@
-\hypertarget{a00083}{\section{Yarn.\-File\-Format\-Converter Class Reference}
-\label{a00083}\index{Yarn.\-File\-Format\-Converter@{Yarn.\-File\-Format\-Converter}}
+\hypertarget{a00083}{\section{Yarn.\-Tree\-Runner Class Reference}
+\label{a00083}\index{Yarn.\-Tree\-Runner@{Yarn.\-Tree\-Runner}}
 }
 
 
-Collaboration diagram for Yarn.\-File\-Format\-Converter\-:
+Collaboration diagram for Yarn.\-Tree\-Runner\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{df/dcf/a00642}
+\includegraphics[width=350pt]{db/da2/a00300}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00083_aa4db4ccac799c5f047a8b1a9efbe109d}{Convert\-Format} (\hyperlink{a00038}{Convert\-Format\-Options} options)
+\hyperlink{a00083_a2b5fb685b706c0b46035201baf40361a}{Tree\-Runner} (\hyperlink{a00036}{Dialogue} \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue})
 \item 
-static string \hyperlink{a00083_a85596df924468279b2dc44a9f31d8bad}{Convert\-Nodes} (I\-Enumerable$<$ \hyperlink{a00114}{Loader.\-Node\-Info} $>$ nodes, \hyperlink{a00031_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_aa71f63255bc062c21ed9283dc6ecec73}{Run\-Node} (\hyperlink{a00054}{Yarn.\-Parser.\-Node} node)
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-delegate string \hyperlink{a00083_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} (I\-Enumerable$<$ \hyperlink{a00114}{Loader.\-Node\-Info} $>$ nodes)
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{Run\-Statements} (I\-Enumerable$<$ \hyperlink{a00076}{Parser.\-Statement} $>$ statements)
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{Run\-Statement} (\hyperlink{a00076}{Parser.\-Statement} statement)
+\item 
+\hyperlink{a00086}{Yarn.\-Value} \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{Evaluate\-Expression} (\hyperlink{a00040}{Parser.\-Expression} expression)
+\item 
+\hyperlink{a00086}{Yarn.\-Value} \hyperlink{a00083_a352ca6c227f278419b252bc46ba30d0d}{Evaluate\-Value} (\hyperlink{a00086}{Value} value)
+\item 
+void \hyperlink{a00083_a217c6205821aff5ba31daeb8b3bf2846}{Run\-Assignment\-Statement} (\hyperlink{a00019}{Parser.\-Assignment\-Statement} assignment)
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_a231488eace774d92f5c55034d075016d}{Run\-Shortcut\-Option\-Group} (\hyperlink{a00071}{Parser.\-Shortcut\-Option\-Group} shortcut\-Option\-Group)
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00083_a28a086a7b44ecea7430af40436f38df6}{Convert\-To\-J\-S\-O\-N} (\hyperlink{a00038}{Convert\-Format\-Options} options)
+List$<$ \hyperlink{a00061}{Parser.\-Option\-Statement} $>$ \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{current\-Options}
 \item 
-static int \hyperlink{a00083_a1e6cd39b0c813f21da278367dcff76d2}{Convert\-To\-Yarn} (\hyperlink{a00038}{Convert\-Format\-Options} options)
-\item 
-static string \hyperlink{a00083_a282f283f02c9b1d3e53d813ec2f35233}{Convert\-Nodes\-To\-Yarn\-Text} (I\-Enumerable$<$ \hyperlink{a00114}{Loader.\-Node\-Info} $>$ nodes)
-\item 
-static void \hyperlink{a00083_aa72838be584177b5592c31d73c0febdb}{Convert\-Nodes\-In\-File} (\hyperlink{a00038}{Convert\-Format\-Options} options, string file, string file\-Extension, \hyperlink{a00083_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} convert)
+\hyperlink{a00036}{Dialogue} \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00083_a2b5fb685b706c0b46035201baf40361a}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Tree\-Runner@{Tree\-Runner}}
+\index{Tree\-Runner@{Tree\-Runner}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Tree\-Runner}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tree\-Runner.\-Tree\-Runner (
+\begin{DoxyParamCaption}
+\item[{{\bf Dialogue}}]{dialogue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00083_a2b5fb685b706c0b46035201baf40361a}
+
+\begin{DoxyCode}
+44                                                \{
+45             this.dialogue = \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue};
+46         \}
+\end{DoxyCode}
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00083_aa4db4ccac799c5f047a8b1a9efbe109d}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Format@{Convert\-Format}}
-\index{Convert\-Format@{Convert\-Format}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Format}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-Format (
+\hypertarget{a00083_ac57271c72da4ec456a32c94d951c8b65}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Evaluate\-Expression@{Evaluate\-Expression}}
+\index{Evaluate\-Expression@{Evaluate\-Expression}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Evaluate\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Value} Yarn.\-Tree\-Runner.\-Evaluate\-Expression (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
+\item[{{\bf Parser.\-Expression}}]{expression}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00083_aa4db4ccac799c5f047a8b1a9efbe109d}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_ac57271c72da4ec456a32c94d951c8b65}
 
 \begin{DoxyCode}
-11         \{
-12 
-13             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00171_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-14 
-15             \textcolor{keywordflow}{if} (options.convertToJSON)
-16             \{
-17                 \textcolor{keywordflow}{return} \hyperlink{a00083_a28a086a7b44ecea7430af40436f38df6}{ConvertToJSON}(options);
-18             \}
-19             \textcolor{keywordflow}{if} (options.convertToYarn)
-20             \{
-21                 \textcolor{keywordflow}{return} \hyperlink{a00083_a1e6cd39b0c813f21da278367dcff76d2}{ConvertToYarn}(options);
-22             \}
-23 
-24             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-25 
-26             YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"You must specify a destination format. Run '\{0\} help
-       convert' to learn more."}, processName));
-27             \textcolor{keywordflow}{return} 1;
-28         \}
+190                                                                             \{
+191 
+192             \textcolor{keywordflow}{if} (expression == null)
+193                 \textcolor{keywordflow}{return} Yarn.Value.NULL;
+194             
+195             \textcolor{keywordflow}{switch} (expression.type) \{
+196             \textcolor{keywordflow}{case} Parser.Expression.Type.Value:
+197                 \textcolor{comment}{// just a regular value? return it}
+198                 \textcolor{keywordflow}{return} \hyperlink{a00083_a352ca6c227f278419b252bc46ba30d0d}{EvaluateValue} (expression.value.value);
+199 
+200             \textcolor{keywordflow}{case} Parser.Expression.Type.FunctionCall:
+201                 \textcolor{comment}{// get the function}
+202                 var func = expression.function;
+203 
+204                 \textcolor{comment}{// evaluate all parameters}
+205                 var evaluatedParameters = \textcolor{keyword}{new} List<Value> ();
+206 
+207                 \textcolor{keywordflow}{foreach} (var param \textcolor{keywordflow}{in} expression.parameters) \{
+208                     var expr = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (param);
+209                     evaluatedParameters.Add (expr);
+210                 \}
+211 
+212                 var result = func.InvokeWithArray (evaluatedParameters.ToArray ());
+213 
+214                 \textcolor{keywordflow}{return} result;
+215 
+216             \}
+217 
+218             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException (\textcolor{stringliteral}{"Unimplemented expression type "} + expression.type.ToString 
+      ());
+219 
+220         \}
 \end{DoxyCode}
-\hypertarget{a00083_a85596df924468279b2dc44a9f31d8bad}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes@{Convert\-Nodes}}
-\index{Convert\-Nodes@{Convert\-Nodes}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes (
+\hypertarget{a00083_a352ca6c227f278419b252bc46ba30d0d}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Evaluate\-Value@{Evaluate\-Value}}
+\index{Evaluate\-Value@{Evaluate\-Value}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Evaluate\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Value} Yarn.\-Tree\-Runner.\-Evaluate\-Value (
 \begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes, }
-\item[{{\bf Node\-Format}}]{format}
+\item[{{\bf Value}}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00083_a85596df924468279b2dc44a9f31d8bad}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a352ca6c227f278419b252bc46ba30d0d}
 
 \begin{DoxyCode}
-62                                                                                                    \{
-63             \textcolor{keywordflow}{switch} (format)
-64             \{
-65                 \textcolor{keywordflow}{case} NodeFormat.JSON:
-66                     \textcolor{keywordflow}{return} JsonConvert.SerializeObject(nodes, Formatting.Indented);
-67                 \textcolor{keywordflow}{case} NodeFormat.Text:
-68                     \textcolor{keywordflow}{return} \hyperlink{a00083_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText}(nodes);
-69                 \textcolor{keywordflow}{default}:
-70                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-71             \}
-72         \}
+223                                                       \{
+224             \textcolor{keywordflow}{switch} (value.type) \{
+225             \textcolor{keywordflow}{case} Value.Type.Variable:
+226                 dialogue.LogDebugMessage (\textcolor{stringliteral}{"Checking value "} + value.variableName);
+227                 \textcolor{keywordflow}{return} dialogue.continuity.GetValue (value.variableName);
+228             \textcolor{keywordflow}{default}:
+229                 \textcolor{keywordflow}{return} value;
+230             \}
+231         \}
 \end{DoxyCode}
-\hypertarget{a00083_aa72838be584177b5592c31d73c0febdb}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}}
-\index{Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-In\-File}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File (
+\hypertarget{a00083_a217c6205821aff5ba31daeb8b3bf2846}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Assignment\-Statement@{Run\-Assignment\-Statement}}
+\index{Run\-Assignment\-Statement@{Run\-Assignment\-Statement}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Assignment\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Tree\-Runner.\-Run\-Assignment\-Statement (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options, }
-\item[{string}]{file, }
-\item[{string}]{file\-Extension, }
-\item[{{\bf Convert\-Nodes\-To\-Text}}]{convert}
+\item[{{\bf Parser.\-Assignment\-Statement}}]{assignment}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00083_aa72838be584177b5592c31d73c0febdb}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a217c6205821aff5ba31daeb8b3bf2846}
 
 \begin{DoxyCode}
-144         \{
-145             var d = \textcolor{keyword}{new} Dialogue(null);
-146 
-147             var text = File.ReadAllText(file);
-148 
-149             IEnumerable<Loader.NodeInfo> nodes;
-150             \textcolor{keywordflow}{try} \{
-151                 nodes = d.loader.GetNodesFromText(text, Loader.GetFormatFromFileName(file));
-152             \} \textcolor{keywordflow}{catch} (FormatException e) \{
-153                 YarnSpinnerConsole.Error(e.Message);
-154                 \textcolor{keywordflow}{return};
-155             \}
-156 
-157             var serialisedText = convert(nodes);
-158 
-159             var destinationDirectory = options.outputDirectory;
-160 
-161             \textcolor{keywordflow}{if} (destinationDirectory == null)
-162             \{
-163                 destinationDirectory = Path.GetDirectoryName(file);
-164             \}
-165 
-166             var fileName = Path.GetFileName(file);
-167 
-168             \textcolor{comment}{// ChangeExtension thinks that the file "Foo.yarn.txt" has the extension "txt", so}
-169             \textcolor{comment}{// to simplify things, just lop that extension off right away if it's there}
-170             fileName = fileName.Replace(\textcolor{stringliteral}{".yarn.txt"}, \textcolor{stringliteral}{""});
-171 
-172             \textcolor{comment}{// change the filename's extension}
-173             fileName = Path.ChangeExtension(fileName, fileExtension);
-174 
-175             \textcolor{comment}{// figure out where we're writing this file}
-176             var destinationFilePath = Path.Combine(destinationDirectory, fileName);
-177 
-178             File.WriteAllText(destinationFilePath, serialisedText);
-179 
-180             \textcolor{keywordflow}{if} (options.verbose)
-181             \{
-182                 YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + destinationFilePath);
-183             \}
-184         \}
+234                                                                                    \{
+235 
+236             \textcolor{comment}{// The place where we're stickin' this value.}
+237             var variableName = assignment.destinationVariableName;
+238 
+239             \textcolor{comment}{// The value that's going into this variable.}
+240             var computedValue = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (assignment.valueExpression);
+241 
+242             \textcolor{comment}{// The current value of this variable.}
+243             Value originalValue = dialogue.continuity.GetValue (variableName);
+244 
+245             \textcolor{comment}{// What shall we do with it?}
+246 
+247             Value finalValue = \hyperlink{a00086_a1ed2964965baca8621c45efa23f37660}{Value.NULL};
+248             \textcolor{keywordflow}{switch} (assignment.operation) \{
+249             \textcolor{keywordflow}{case} TokenType.EqualToOrAssign:
+250                 finalValue = computedValue;
+251                 \textcolor{keywordflow}{break};
+252             \textcolor{keywordflow}{case} TokenType.AddAssign:
+253                 finalValue = originalValue + computedValue;
+254                 \textcolor{keywordflow}{break};
+255             \textcolor{keywordflow}{case} TokenType.MinusAssign:
+256                 finalValue = originalValue - computedValue;
+257                 \textcolor{keywordflow}{break};
+258             \textcolor{keywordflow}{case} TokenType.MultiplyAssign:
+259                 finalValue = originalValue * computedValue;
+260                 \textcolor{keywordflow}{break};
+261             \textcolor{keywordflow}{case} TokenType.DivideAssign:
+262                 finalValue = originalValue / computedValue;
+263                 \textcolor{keywordflow}{break};
+264             \}
+265 
+266             dialogue.LogDebugMessage(string.Format(\textcolor{stringliteral}{"Set \{0\} to \{1\}"}, variableName, finalValue));
+267             dialogue.continuity.SetValue (variableName, finalValue);
+268         \}
 \end{DoxyCode}
-\hypertarget{a00083_af9bd5d832fdd2bcbdc626d9f8632e05c}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}}
-\index{Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Text}]{\setlength{\rightskip}{0pt plus 5cm}delegate string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Text (
+\hypertarget{a00083_aa71f63255bc062c21ed9283dc6ecec73}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Node@{Run\-Node}}
+\index{Run\-Node@{Run\-Node}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Node (
 \begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
+\item[{{\bf Yarn.\-Parser.\-Node}}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_af9bd5d832fdd2bcbdc626d9f8632e05c}
-\hypertarget{a00083_a282f283f02c9b1d3e53d813ec2f35233}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}}
-\index{Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Yarn\-Text}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00083_a282f283f02c9b1d3e53d813ec2f35233}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00083_aa71f63255bc062c21ed9283dc6ecec73}
 
 \begin{DoxyCode}
-75         \{
-76             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-77 
-78             var properties = typeof(Loader.NodeInfo).GetProperties();
-79 
-80             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
+51         \{
+52 
+53             \textcolor{comment}{// Clear the list of options when we start a new node}
+54             \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions} = \textcolor{keyword}{new} List<Parser.OptionStatement> ();
+55 
+56             \textcolor{comment}{// Run all of the statements in this node}
+57             \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (node.statements)) \{
+58                 yield \textcolor{keywordflow}{return} command;
+59             \}
+60 
+61             \textcolor{comment}{// If we have no options, we're all done}
+62             \textcolor{keywordflow}{if} (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}.Count == 0) \{
+63                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult (null);
+64                 yield \textcolor{keywordflow}{break};
+65             \} \textcolor{keywordflow}{else} \{
+66                 \textcolor{comment}{// We have options!}
+67 
+68                 \textcolor{comment}{// If we have precisely one option and it's got no label, jump to it}
+69                 \textcolor{keywordflow}{if} (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}.Count == 1 &&
+70                     \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}[0].label == null) \{
+71                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions} [0]
+      .destination);
+72                     yield \textcolor{keywordflow}{break};
+73                 \}
+74 
+75                 \textcolor{comment}{// Otherwise, ask which option to pick...}
+76                 var optionStrings = \textcolor{keyword}{new} List<string> ();
+77                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}) \{
+78                     var label = option.label ?? option.destination;
+79                     optionStrings.Add (label);
+80                 \}
 81 
-82                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} properties) \{
+82                 Parser.OptionStatement selectedOption = null;
 83 
-84                     \textcolor{comment}{// ignore the body attribute}
-85                     \textcolor{keywordflow}{if} (property.Name == \textcolor{stringliteral}{"body"}) \{
-86                         \textcolor{keywordflow}{continue};
-87                     \}
-88 
-89                     \textcolor{comment}{// piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised}
-90                     \textcolor{keywordflow}{if} (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), \textcolor{keyword}{false}).Length > 0) \{
-91                         \textcolor{keywordflow}{continue};
-92                     \}
-93 
-94                     var field = property.Name;
-95 
-96                     \textcolor{keywordtype}{string} value;
+84                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.OptionSetResult (optionStrings, delegate(\textcolor{keywordtype}{int} selectedOptionIndex)
+       \{
+85                     selectedOption = currentOptions[selectedOptionIndex];
+86                 \});
+87 
+88                 \textcolor{keywordflow}{if} (selectedOption == null) \{
+89                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Option chooser was never called!"});
+90                     yield \textcolor{keywordflow}{break};
+91                 \}
+92 
+93                 \textcolor{comment}{// And jump to its destination!}
+94                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult(selectedOption.destination);
+95             \}
+96             yield \textcolor{keywordflow}{break};
 97 
-98                     var propertyType = property.PropertyType;
-99                     \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
-100                     \{
-101                         value = (string)property.GetValue(node, null);
-102 
-103                         \textcolor{comment}{// avoid storing nulls when we could store the empty string instead}
-104                         \textcolor{keywordflow}{if} (value == null)
-105                             value = \textcolor{stringliteral}{""};
-106                     \}
-107                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
-108                     \{
-109                         value = ((int)property.GetValue(node, null)).ToString();
-110                     \}
-111                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
-112                     \{
-113                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
-114 
-115                         value = string.Format(\textcolor{stringliteral}{"\{0\},\{1\}"}, position.x, position.y);
-116                     \} \textcolor{keywordflow}{else} \{
-117                         YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"Internal error: Node \{0\}'s property \{1\} has
-       unsupported type \{2\}"}, node.title, property.Name, propertyType.FullName));
+98         \}
+\end{DoxyCode}
+\hypertarget{a00083_a231488eace774d92f5c55034d075016d}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Shortcut\-Option\-Group@{Run\-Shortcut\-Option\-Group}}
+\index{Run\-Shortcut\-Option\-Group@{Run\-Shortcut\-Option\-Group}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Shortcut\-Option\-Group (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Shortcut\-Option\-Group}}]{shortcut\-Option\-Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a231488eace774d92f5c55034d075016d}
+
+\begin{DoxyCode}
+271         \{
+272             var optionsToDisplay = \textcolor{keyword}{new} List<Parser.ShortcutOption> ();
+273 
+274             \textcolor{comment}{// Determine which options to present}
+275             \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} shortcutOptionGroup.options) \{
+276                 var include = \textcolor{keyword}{true};
+277                 \textcolor{keywordflow}{if} (option.condition != null) \{
+278                     include = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression}(option.condition).AsBool != \textcolor{keyword}{false};
+279                 \}
+280                 \textcolor{keywordflow}{if} (include) \{
+281                     optionsToDisplay.Add(option);
+282                 \}
+283             \}
+284 
+285             \textcolor{keywordflow}{if} (optionsToDisplay.Count > 0) \{
+286                 \textcolor{comment}{// Give this list to our client}
+287                 var optionStrings = \textcolor{keyword}{new} List<string> ();
+288 
+289                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} optionsToDisplay) \{
+290                     optionStrings.Add(option.label);
+291                 \}
+292 
+293                 Parser.ShortcutOption selectedOption = null;
+294 
+295                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.OptionSetResult (optionStrings, delegate(\textcolor{keywordtype}{int} selectedOptionIndex)
+       \{
+296                     selectedOption = optionsToDisplay[selectedOptionIndex];
+297                 \});
+298 
+299                 \textcolor{keywordflow}{if} (selectedOption == null) \{
+300                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"The OptionChooser I provided was not called before the "} +
+301                         \textcolor{stringliteral}{"next line was run! Stopping dialogue."});
+302                     yield \textcolor{keywordflow}{break};
+303                 \}
+304 
+305                 \textcolor{keywordflow}{if} (selectedOption.optionNode != null) \{
+306                     \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements}(selectedOption.optionNode.statements
+      )) \{
+307                         yield \textcolor{keywordflow}{return} command;
+308                     \}
+309                 \}
+310                     
+311             \}
+312 
+313         \}
+\end{DoxyCode}
+\hypertarget{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Statement@{Run\-Statement}}
+\index{Run\-Statement@{Run\-Statement}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Statement}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a4a0f51fa1a54f8df77557cab086e43b7}
+
+\begin{DoxyCode}
+116                                                                                              \{
+117 
 118 
-119                         \textcolor{comment}{// will never be run, but prevents the compiler being mean about us not returning a
-       value}
-120                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception();
-121                     \}
-122 
-123                     var header = string.Format(\textcolor{stringliteral}{"\{0\}: \{1\}"}, field, value);
-124 
-125                     sb.AppendLine(header);
-126 
-127                 \}
-128                 \textcolor{comment}{// now write the body}
-129                 sb.AppendLine(\textcolor{stringliteral}{"---"});
-130 
-131                 sb.AppendLine(node.body);
+119             \textcolor{keywordflow}{switch} (statement.type) \{
+120 
+121             \textcolor{keywordflow}{case} Parser.Statement.Type.Block:
+122                 \textcolor{comment}{// Blocks just contain statements, so run them!}
+123                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (statement.block.statements)) \{
+124                     yield \textcolor{keywordflow}{return} command;
+125                 \}
+126                 \textcolor{keywordflow}{break};
+127 
+128             \textcolor{keywordflow}{case} Parser.Statement.Type.Line:
+129                 \textcolor{comment}{// Lines get forwarded to the client for display}
+130                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.LineResult(statement.line);
+131                 \textcolor{keywordflow}{break};
 132 
-133                 sb.AppendLine(\textcolor{stringliteral}{"==="});
+133             \textcolor{keywordflow}{case} Parser.Statement.Type.IfStatement:
 134 
-135             \}
-136 
-137             \textcolor{keywordflow}{return} sb.ToString();
-138         \}
+135                 \textcolor{comment}{// Evaluate each clause in the statement, and run its statements if appropriate}
+136                 \textcolor{keywordflow}{foreach} (var clause \textcolor{keywordflow}{in} statement.ifStatement.clauses) \{
+137                     \textcolor{comment}{// if this clause's expression doesn't evaluate to 0, run it; alternatively,}
+138                     \textcolor{comment}{// if this clause has no expression (ie it's the 'else' clause) then also run it}
+139                     \textcolor{keywordflow}{if} (clause.expression == null || \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression}(clause.expression
+      ).AsBool != \textcolor{keyword}{false}) \{
+140                         \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in}  \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (clause.statements)) \{
+141                             yield \textcolor{keywordflow}{return} command;
+142                         \}
+143                         \textcolor{comment}{// don't continue on to the other clauses}
+144                         \textcolor{keywordflow}{break};
+145                     \}
+146                 \}
+147                 \textcolor{keywordflow}{break};
+148 
+149             \textcolor{keywordflow}{case} Parser.Statement.Type.OptionStatement:
+150                 \textcolor{comment}{// If we encounter an option, record it so that we can present it later}
+151                 currentOptions.Add (statement.optionStatement);
+152                 \textcolor{keywordflow}{break};
+153 
+154             \textcolor{keywordflow}{case} Parser.Statement.Type.AssignmentStatement:
+155                 \textcolor{comment}{// Evaluate the expression and assign it to a variable}
+156                 \hyperlink{a00083_a217c6205821aff5ba31daeb8b3bf2846}{RunAssignmentStatement} (statement.assignmentStatement);
+157                 \textcolor{keywordflow}{break};
+158 
+159             \textcolor{keywordflow}{case} Parser.Statement.Type.ShortcutOptionGroup:
+160                 \textcolor{comment}{// Evaluate and present the options, then run the stuff that came after the options}
+161                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_a231488eace774d92f5c55034d075016d}{RunShortcutOptionGroup} (statement.
+      shortcutOptionGroup)) \{
+162                     yield \textcolor{keywordflow}{return} command;
+163                 \}
+164                 \textcolor{keywordflow}{break};
+165 
+166             \textcolor{keywordflow}{case} Parser.Statement.Type.CustomCommand:
+167                 \textcolor{comment}{// Deal with a custom command - it's either an expression or a client command}
+168                 \textcolor{comment}{// If it's an expression, evaluate it}
+169                 \textcolor{comment}{// If it's a client command, yield it to the client}
+170 
+171                 \textcolor{keywordflow}{switch} (statement.customCommand.type) \{
+172                 \textcolor{keywordflow}{case} Parser.CustomCommand.Type.Expression:
+173                     \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (statement.customCommand.expression);
+174                     \textcolor{keywordflow}{break};
+175                 \textcolor{keywordflow}{case} Parser.CustomCommand.Type.ClientCommand:
+176                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.CommandResult (statement.customCommand.clientCommand);
+177                     \textcolor{keywordflow}{break};
+178                 \}
+179 
+180                 \textcolor{keywordflow}{break};
+181 
+182             \textcolor{keywordflow}{default}:
+183                 \textcolor{comment}{// Just in case we added a new type of statement and didn't implement it here}
+184                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException (\textcolor{stringliteral}{"YarnRunner: Unimplemented statement type "} + statement.
+      type);
+185             \}
+186         
+187 
+188         \}
 \end{DoxyCode}
-\hypertarget{a00083_a28a086a7b44ecea7430af40436f38df6}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}}
-\index{Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-J\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N (
+\hypertarget{a00083_aa436557ec45c8e98d194d9af139d9170}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Statements@{Run\-Statements}}
+\index{Run\-Statements@{Run\-Statements}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Statements (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
+\item[{I\-Enumerable$<$ {\bf Parser.\-Statement} $>$}]{statements}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00083_a28a086a7b44ecea7430af40436f38df6}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_aa436557ec45c8e98d194d9af139d9170}
 
 \begin{DoxyCode}
-31         \{
-32             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-33             \{
-34 
-35                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
-36                 \{
-37                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
-       implies it's already in JSON format"}, file));
-38                     \textcolor{keywordflow}{continue};
-39                 \}
-40 
-41                 \hyperlink{a00083_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"json"}, (IEnumerable<Loader.NodeInfo> 
-      nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
-42 
-43             \}
-44             \textcolor{keywordflow}{return} 0;
-45         \}
+101                                                                                                            
+      \{
+102             
+103             \textcolor{keywordflow}{if} (statements == null) \{
+104                 yield \textcolor{keywordflow}{break};
+105             \}
+106 
+107             \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} statements) \{
+108                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{RunStatement} (statement)) \{
+109                     yield \textcolor{keywordflow}{return} command;
+110                 \}
+111 
+112             \}
+113         \}
 \end{DoxyCode}
-\hypertarget{a00083_a1e6cd39b0c813f21da278367dcff76d2}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-Yarn@{Convert\-To\-Yarn}}
-\index{Convert\-To\-Yarn@{Convert\-To\-Yarn}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-Yarn}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn (
-\begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00083_a1e6cd39b0c813f21da278367dcff76d2}
 
-\begin{DoxyCode}
-48         \{
-49             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-50             \{
-51                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
-52                 \{
-53                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
-       implies it's already in Yarn format"}, file));
-54                     \textcolor{keywordflow}{continue};
-55                 \}
-56 
-57                 \hyperlink{a00083_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"yarn.txt"}, 
-      \hyperlink{a00083_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText});
-58             \}
-59             \textcolor{keywordflow}{return} 0;
-60         \}
-\end{DoxyCode}
+
+\subsection{Member Data Documentation}
+\hypertarget{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!current\-Options@{current\-Options}}
+\index{current\-Options@{current\-Options}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Parser.\-Option\-Statement}$>$ Yarn.\-Tree\-Runner.\-current\-Options\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a1ff25426f4da4236acc741bbbb8c0d56}
+\hypertarget{a00083_aa4f386822db0dee7a07079271cb968a4}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Tree\-Runner.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_aa4f386822db0dee7a07079271cb968a4}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00272}{File\-Format\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00125}{Tree\-Runner.\-cs}\end{DoxyCompactItemize}

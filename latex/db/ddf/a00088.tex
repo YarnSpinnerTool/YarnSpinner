@@ -1,228 +1,104 @@
-\hypertarget{a00088}{\section{Csv\-Helper.\-I\-Csv\-Factory Interface Reference}
-\label{a00088}\index{Csv\-Helper.\-I\-Csv\-Factory@{Csv\-Helper.\-I\-Csv\-Factory}}
+\hypertarget{a00088}{\section{Yarn.\-Variable\-Storage Interface Reference}
+\label{a00088}\index{Yarn.\-Variable\-Storage@{Yarn.\-Variable\-Storage}}
 }
 
 
-Defines methods used to create \hyperlink{a00284}{Csv\-Helper} classes.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+Inheritance diagram for Yarn.\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=198pt]{d3/d45/a00382}
+\includegraphics[width=350pt]{d1/d72/a00204}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+Collaboration diagram for Yarn.\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=198pt]{da/dee/a00383}
+\includegraphics[width=188pt]{d5/d13/a00205}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00089}{I\-Csv\-Parser} \hyperlink{a00088_a9b68cbd7292c76037959d51ecc7c374d}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00089}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00089}{I\-Csv\-Parser} \hyperlink{a00088_ab085a057f1b80ebf03ed2247d8759314}{Create\-Parser} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00089}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00088_ade2a6e776fad6aa36c201901d6427058}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00088_ae1ebb61244b36ddecb986d047ac9c217}{Create\-Reader} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00088_af5b755ba2825f781d501402f1d765b33}{Create\-Reader} (\hyperlink{a00089}{I\-Csv\-Parser} parser)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00093}{I\-Csv\-Writer} \hyperlink{a00088_ae77852d2702bc2caad76c045a538933e}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00093}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
-\hyperlink{a00093}{I\-Csv\-Writer} \hyperlink{a00088_ab6df59078b6245e653c06c00358b402a}{Create\-Writer} (Text\-Writer writer)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00093}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00088_aa28c3694f985cf73489efc301b9d41dd}{Set\-Number} (string variable\-Name, float number)
+\item 
+float \hyperlink{a00088_a04b061c52d8ac814ce559da5286fbc71}{Get\-Number} (string variable\-Name)
+\item 
+void \hyperlink{a00088_aa90ff61224432c5ed3ce72199c55f440}{Set\-Value} (string variable\-Name, \hyperlink{a00086}{Value} value)
+\item 
+\hyperlink{a00086}{Value} \hyperlink{a00088_accab1fc5c8fc353dbfc53ca0f4029576}{Get\-Value} (string variable\-Name)
+\item 
+void \hyperlink{a00088_af98c1e41f351cb96e13f668ca2fd9d92}{Clear} ()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to create \hyperlink{a00284}{Csv\-Helper} classes. 
-
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00088_a9b68cbd7292c76037959d51ecc7c374d}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
+\hypertarget{a00088_af98c1e41f351cb96e13f668ca2fd9d92}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Clear (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00088_a9b68cbd7292c76037959d51ecc7c374d}
+)}}\label{a00088_af98c1e41f351cb96e13f668ca2fd9d92}
 
 
-Creates an \hyperlink{a00089}{I\-Csv\-Parser}. 
+Implemented in \hyperlink{a00030_a082617cf099d13cb4338935020ced764}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00089_a587fe10b367ace190e10f3bcb590a53c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00052_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}, \hyperlink{a00033_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}, and \hyperlink{a00021_a7e45c37f3662ce9f2643e306bb2b3adc}{Yarn.\-Base\-Variable\-Storage}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-{\em configuration} & The configuration to use for the csv parser.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a741fb4a1622778af65bfa27606bf6f25}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_ab085a057f1b80ebf03ed2247d8759314}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
+\hypertarget{a00088_a04b061c52d8ac814ce559da5286fbc71}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Variable\-Storage.\-Get\-Number (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)}}\label{a00088_ab085a057f1b80ebf03ed2247d8759314}
+)}}\label{a00088_a04b061c52d8ac814ce559da5286fbc71}
 
 
-Creates an \hyperlink{a00089}{I\-Csv\-Parser}. 
+Implemented in \hyperlink{a00030_adf34fa27235fc0fd5fe35c32023220c4}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, and \hyperlink{a00021_a1b7f7f4468b2463e7b47986d99362279}{Yarn.\-Base\-Variable\-Storage}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a07665ae71961a161552189877d11a5be}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_ade2a6e776fad6aa36c201901d6427058}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\hypertarget{a00088_accab1fc5c8fc353dbfc53ca0f4029576}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Variable\-Storage.\-Get\-Value (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)}}\label{a00088_ade2a6e776fad6aa36c201901d6427058}
+)}}\label{a00088_accab1fc5c8fc353dbfc53ca0f4029576}
 
 
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
+Implemented in \hyperlink{a00030_a66fc86080cd452079f5adf15e97c8e41}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00052_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}, \hyperlink{a00033_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}, and \hyperlink{a00021_a13b142df804d9842e97e628e252928e8}{Yarn.\-Base\-Variable\-Storage}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-{\em configuration} & The configuration to use for the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a12b1358fc847e407519a76b7fe003a34}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_ae1ebb61244b36ddecb986d047ac9c217}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\hypertarget{a00088_aa28c3694f985cf73489efc301b9d41dd}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Set\-Number (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
 \end{DoxyParamCaption}
-)}}\label{a00088_ae1ebb61244b36ddecb986d047ac9c217}
+)}}\label{a00088_aa28c3694f985cf73489efc301b9d41dd}
 
 
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
+Implemented in \hyperlink{a00030_adc9bfad13d8ae2f147deeddbc5c38ea3}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00089_ac0d2f2e081944ad197992a26ad1a833c}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, and \hyperlink{a00021_a48b93de9cd7ae61d0cd9583c8330d3ee}{Yarn.\-Base\-Variable\-Storage}.
 
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a77bcca4ad5023f5628c519c2914da5bb}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_af5b755ba2825f781d501402f1d765b33}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\hypertarget{a00088_aa90ff61224432c5ed3ce72199c55f440}{\index{Yarn\-::\-Variable\-Storage@{Yarn\-::\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::VariableStorage@{Yarn\-::\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Variable\-Storage.\-Set\-Value (
 \begin{DoxyParamCaption}
-\item[{{\bf I\-Csv\-Parser}}]{parser}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
 \end{DoxyParamCaption}
-)}}\label{a00088_af5b755ba2825f781d501402f1d765b33}
+)}}\label{a00088_aa90ff61224432c5ed3ce72199c55f440}
 
 
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em parser} & The parser used to create the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a4e7e06df9265cbd53219c964424cec1e}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_ae77852d2702bc2caad76c045a538933e}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00088_ae77852d2702bc2caad76c045a538933e}
-
-
-Creates an \hyperlink{a00093}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-{\em configuration} & The configuration to use for the writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a6bfe534b70ff92ea3809f1a372d160cc}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00088_ab6df59078b6245e653c06c00358b402a}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
-\end{DoxyParamCaption}
-)}}\label{a00088_ab6df59078b6245e653c06c00358b402a}
-
-
-Creates an \hyperlink{a00093}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00045_a0cec3a639b206f2d88debdc50413202a}{Csv\-Helper.\-Csv\-Factory}.
+Implemented in \hyperlink{a00030_ab6312d89b626ca803a74a9181286d608}{Yarn.\-Yarn\-Spinner\-Console.\-Console\-Runner\-Implementation}, \hyperlink{a00089_a25f979b062d63c9e886fe7070ce4561b}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}, \hyperlink{a00052_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}, \hyperlink{a00033_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}, and \hyperlink{a00021_a1c57d6d208b78abec0a670396771448e}{Yarn.\-Base\-Variable\-Storage}.
 
 
 
 The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00209}{I\-Csv\-Factory.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00117}{Dialogue.\-cs}\end{DoxyCompactItemize}

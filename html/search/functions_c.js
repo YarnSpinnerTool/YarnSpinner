@@ -1,20 +1,13 @@
 var searchData=
 [
-  ['ondrawgizmosselected',['OnDrawGizmosSelected',['../da/d72/a00124.html#a9e83ec3c6e45ee4dd17215e3030f6403',1,'Yarn::Unity::Example::PlayerCharacter']]],
-  ['onenable',['OnEnable',['../db/d44/a00162.html#aeba1f39189758bd91bdce298e8859947',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
-  ['ongui',['OnGUI',['../db/d44/a00162.html#aec84840262ae8fd7d84605778de1dc39',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
-  ['operator',['Operator',['../d9/d4b/a00117.html#a171027dbddf208784c824ae7fe72cb71',1,'Yarn.Parser.Operator.Operator(ParseNode parent, TokenType t, Parser p)'],['../d9/d4b/a00117.html#a50f9f95cd7aefe2a601a7d5b5ee7801a',1,'Yarn.Parser.Operator.Operator(ParseNode parent, Parser p)']]],
-  ['operator_2a',['operator*',['../dd/dae/a00163.html#a946a02ecefe18d7c82cad0e2632d19c8',1,'Yarn::Value']]],
-  ['operator_2b',['operator+',['../dd/dae/a00163.html#abfd48481b0ac28ff5485a850a8271dfd',1,'Yarn::Value']]],
-  ['operator_2d',['operator-',['../dd/dae/a00163.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c',1,'Yarn.Value.operator-(Value a, Value b)'],['../dd/dae/a00163.html#aeaf119fa2885dbd1685d1efcd9594316',1,'Yarn.Value.operator-(Value a)']]],
-  ['operator_2f',['operator/',['../dd/dae/a00163.html#afe3559ae2e0f3db33a23a640ee7832d4',1,'Yarn::Value']]],
-  ['operator_3c',['operator&lt;',['../dd/dae/a00163.html#a0d1d9c4ee3fd55ad97d30279db525e4b',1,'Yarn::Value']]],
-  ['operator_3c_3d',['operator&lt;=',['../dd/dae/a00163.html#a4822bad5d6dc0fa6f7b9bd71b71855aa',1,'Yarn::Value']]],
-  ['operator_3e',['operator&gt;',['../dd/dae/a00163.html#a02509b7c4eb702d86c1ffb7be99f7aeb',1,'Yarn::Value']]],
-  ['operator_3e_3d',['operator&gt;=',['../dd/dae/a00163.html#ac7680e8a5ef93dc1d1266a06c0a29dbf',1,'Yarn::Value']]],
-  ['operatorinfo',['OperatorInfo',['../d8/d87/a00118.html#a25faca62235c9f8542e4a071ba8ebc0b',1,'Yarn::Parser::Operator::OperatorInfo']]],
-  ['optionchooser',['OptionChooser',['../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553',1,'Yarn']]],
-  ['optionsetresult',['OptionSetResult',['../df/d6a/a00119.html#a934c02fb1047ffd05b2b5a9c6fcd7acb',1,'Yarn::Dialogue::OptionSetResult']]],
-  ['optionshandler',['OptionsHandler',['../d0/d4a/a00147.html#a7fe2e6bc2d5471d9af14a9d35de821bd',1,'TestDialogueUIBehaviour.OptionsHandler()'],['../d4/ddd/a00138.html#a78dfd54b743e53078eed19ab7be2b6cf',1,'Yarn.VirtualMachine.OptionsHandler()']]],
-  ['optionstatement',['OptionStatement',['../d4/d98/a00120.html#ad18938712d01cf71edbc75d4974cd0e0',1,'Yarn::Parser::OptionStatement']]]
+  ['nextsymbolis',['NextSymbolIs',['../df/d5f/a00064.html#a666a945da1a7845b02b92592fccac291',1,'Yarn::Parser']]],
+  ['nextsymbolsare',['NextSymbolsAre',['../df/d5f/a00064.html#afaa7e96d4cdaf6b1fde9ecd273c00c34',1,'Yarn::Parser']]],
+  ['nexttoken',['NextToken',['../d3/dea/a00046.html#a1d2daab9b052b186da7a2b6711be5803',1,'Json::JsonParser']]],
+  ['node',['Node',['../d1/dea/a00054.html#ae0562dc06ca747307b66039ef2f28772',1,'Yarn::Parser::Node']]],
+  ['nodecomplete',['NodeComplete',['../d8/d41/a00038.html#a2900548a0704d39d4502a153945f4bef',1,'Yarn::Unity::DialogueUIBehaviour']]],
+  ['nodecompletehandler',['NodeCompleteHandler',['../d6/d2c/a00072.html#a5bf3aa51578847c18191fec665a840f9',1,'Yarn::VirtualMachine']]],
+  ['nodecompleteresult',['NodeCompleteResult',['../d4/d6d/a00055.html#a88c81469a69987c05aa92780c5a5c1f9',1,'Yarn::Dialogue::NodeCompleteResult']]],
+  ['nodeexists',['NodeExists',['../d1/dc6/a00037.html#aadf7711b9ba101d6ce8ba491d9c5a4c3',1,'Yarn.Unity.DialogueRunner.NodeExists()'],['../de/d8c/a00036.html#a93bb76a1f9a4058f225ff4cee97483c6',1,'Yarn.Dialogue.NodeExists()']]],
+  ['nodeinfo',['NodeInfo',['../d9/d2e/a00056.html#aa56085ea115b77cb9ee975686e726c29',1,'Yarn::Loader::NodeInfo']]],
+  ['nodeparent',['NodeParent',['../d1/d6f/a00063.html#a580e520a29444fc23ac3660cbe514a09',1,'Yarn::Parser::ParseNode']]]
 ];

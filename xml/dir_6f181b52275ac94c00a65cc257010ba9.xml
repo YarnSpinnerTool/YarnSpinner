@@ -4,11 +4,7 @@
     <compoundname>YarnSpinnerConsole</compoundname>
     <innerdir refid="dir_5332b71096d915ae09dfdbe456bbd399">YarnSpinnerConsole/obj</innerdir>
     <innerdir refid="dir_c5b5245a8d866663393107841a0eecb5">YarnSpinnerConsole/Properties</innerdir>
-    <innerfile refid="d9/dd6/a00272">FileFormatConverter.cs</innerfile>
-    <innerfile refid="d0/d19/a00273">LineAdder.cs</innerfile>
-    <innerfile refid="dd/d56/a00274">Main.cs</innerfile>
-    <innerfile refid="dc/d28/a00276">ProgramExporter.cs</innerfile>
-    <innerfile refid="d6/d4b/a00277">TableGenerator.cs</innerfile>
+    <innerfile refid="d1/d88/a00128">Main.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

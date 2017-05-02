@@ -1,193 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d5/d1e/a00103" kind="class" prot="public">
-    <compoundname>Yarn::Library</compoundname>
-    <derivedcompoundref refid="d5/db1/a00140" prot="public" virt="non-virtual">Yarn.Dialogue.StandardLibrary</derivedcompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d5/d1e/a00103_1a2fcc78a63963be5320cf09783b66fab6" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="df/d5d/a00084" kindref="compound">FunctionInfo</ref> &gt;</type>
-        <definition>Dictionary&lt;string, FunctionInfo&gt; Yarn.Library.functions</definition>
-        <argsstring></argsstring>
-        <name>functions</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="df/d5d/a00084" kindref="compound">FunctionInfo</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="93" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="93" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d5/d1e/a00103_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="df/d5d/a00084" kindref="compound">FunctionInfo</ref></type>
-        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>GetFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="97" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="97" bodyend="103"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.ImportLibrary</definition>
-        <argsstring>(Library otherLibrary)</argsstring>
-        <name>ImportLibrary</name>
-        <param>
-          <type><ref refid="d5/d1e/a00103" kindref="compound">Library</ref></type>
-          <declname>otherLibrary</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="108" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="108" bodyend="112"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(FunctionInfo function)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type><ref refid="df/d5d/a00084" kindref="compound">FunctionInfo</ref></type>
-          <declname>function</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="114" bodyend="116"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="118" bodyend="121"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="df/d61/a00031_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="123" bodyend="126"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Yarn.Library.FunctionExists</definition>
-        <argsstring>(string name)</argsstring>
-        <name>FunctionExists</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="128" bodyend="130"/>
-      </memberdef>
-      <memberdef kind="function" id="d5/d1e/a00103_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.DeregisterFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>DeregisterFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="132" bodyend="135"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="d5/d1e/a00103" kind="file">
+    <compoundname>Program.cs</compoundname>
+    <innerclass refid="d9/db3/a00066" prot="public">NUnitLite::Tests::Program</innerclass>
+    <innernamespace refid="d2/df5/a00137">NUnitLite::Tests</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1355">
-        <label>Yarn.Dialogue.StandardLibrary</label>
-        <link refid="d5/db1/a00140"/>
-        <childnode refid="1354" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1354">
-        <label>Yarn.Library</label>
-        <link refid="d5/d1e/a00103"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1356">
-        <label>Yarn.Library</label>
-        <link refid="d5/d1e/a00103"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="91" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="90" bodyend="138"/>
-    <listofallmembers>
-      <member refid="d5/d1e/a00103_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>DeregisterFunction</name></member>
-      <member refid="d5/d1e/a00103_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>FunctionExists</name></member>
-      <member refid="d5/d1e/a00103_1a2fcc78a63963be5320cf09783b66fab6" prot="private" virt="non-virtual"><scope>Yarn::Library</scope><name>functions</name></member>
-      <member refid="d5/d1e/a00103_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>GetFunction</name></member>
-      <member refid="d5/d1e/a00103_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>ImportLibrary</name></member>
-      <member refid="d5/d1e/a00103_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="d5/d1e/a00103_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="d5/d1e/a00103_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-    </listofallmembers>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>***********************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>2015<sp/>Charlie<sp/>Poole</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>a<sp/>copy<sp/>of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;Software&quot;),<sp/>to<sp/>deal<sp/>in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>without<sp/>limitation<sp/>the<sp/>rights<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell<sp/>copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is<sp/>furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>following<sp/>conditions:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>included<sp/>in<sp/>all<sp/>copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>EXPRESS<sp/>OR<sp/>IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MERCHANTABILITY,<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,<sp/>OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE<sp/>SOFTWARE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>***********************************************************************</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>NUnitLite;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="d2/df5/a00137" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">NUnitLite.Tests</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28" refid="d9/db3/a00066" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d9/db3/a00066" kindref="compound">Program</ref></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36" refid="d9/db3/a00066_1af0872d2d78e93b98528e399a1f19f63f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/db3/a00066_1af0872d2d78e93b98528e399a1f19f63f" kindref="member">Main</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">[]<sp/>args)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>AutoRun().Execute(args);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs"/>
   </compounddef>
 </doxygen>

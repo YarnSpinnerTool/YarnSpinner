@@ -3,7 +3,7 @@
   <compounddef id="dir_1af2676c2ee55b9b2722366576e0f3fc" kind="dir">
     <compoundname>Unity/Assets/Yarn Spinner/Code</compoundname>
     <innerdir refid="dir_66515eab7c27cc0adcf56e931f793384">Unity/Assets/Yarn Spinner/Code/Editor</innerdir>
-    <innerfile refid="d0/d3e/a00253">DialogueRunner.cs</innerfile>
+    <innerfile refid="d3/d32/a00105">DialogueRunner.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

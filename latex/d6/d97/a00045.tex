@@ -1,270 +1,60 @@
-\hypertarget{a00045}{\section{Csv\-Helper.\-Csv\-Factory Class Reference}
-\label{a00045}\index{Csv\-Helper.\-Csv\-Factory@{Csv\-Helper.\-Csv\-Factory}}
+\hypertarget{a00045}{\section{Json.\-Invalid\-Json\-Exception Class Reference}
+\label{a00045}\index{Json.\-Invalid\-Json\-Exception@{Json.\-Invalid\-Json\-Exception}}
 }
 
 
-Creates \hyperlink{a00284}{Csv\-Helper} classes.  
+Exception raised when \hyperlink{a00046}{Json\-Parser} encounters an invalid token.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Factory\-:
+Inheritance diagram for Json.\-Invalid\-Json\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{db/d10/a00350}
+\includegraphics[width=214pt]{da/d15/a00188}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Factory\-:
+Collaboration diagram for Json.\-Invalid\-Json\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{d0/d48/a00351}
+\includegraphics[width=214pt]{da/deb/a00189}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{a00089}{I\-Csv\-Parser} \hyperlink{a00045_a741fb4a1622778af65bfa27606bf6f25}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00089}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00089}{I\-Csv\-Parser} \hyperlink{a00045_a07665ae71961a161552189877d11a5be}{Create\-Parser} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00089}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00045_a12b1358fc847e407519a76b7fe003a34}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00045_a77bcca4ad5023f5628c519c2914da5bb}{Create\-Reader} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00090}{I\-Csv\-Reader} \hyperlink{a00045_a4e7e06df9265cbd53219c964424cec1e}{Create\-Reader} (\hyperlink{a00089}{I\-Csv\-Parser} parser)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00090}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00093}{I\-Csv\-Writer} \hyperlink{a00045_a6bfe534b70ff92ea3809f1a372d160cc}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00043}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00093}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00093}{I\-Csv\-Writer} \hyperlink{a00045_a0cec3a639b206f2d88debdc50413202a}{Create\-Writer} (Text\-Writer writer)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00093}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00045_a163a2125e44163ee7b2ff8c2a7cc71da}{Invalid\-Json\-Exception} (string message)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Creates \hyperlink{a00284}{Csv\-Helper} classes. 
+Exception raised when \hyperlink{a00046}{Json\-Parser} encounters an invalid token. 
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00045_a741fb4a1622778af65bfa27606bf6f25}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Parser} Csv\-Helper.\-Csv\-Factory.\-Create\-Parser (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00045_a163a2125e44163ee7b2ff8c2a7cc71da}{\index{Json\-::\-Invalid\-Json\-Exception@{Json\-::\-Invalid\-Json\-Exception}!Invalid\-Json\-Exception@{Invalid\-Json\-Exception}}
+\index{Invalid\-Json\-Exception@{Invalid\-Json\-Exception}!Json::InvalidJsonException@{Json\-::\-Invalid\-Json\-Exception}}
+\subsubsection[{Invalid\-Json\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Json.\-Invalid\-Json\-Exception.\-Invalid\-Json\-Exception (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a741fb4a1622778af65bfa27606bf6f25}
-
-
-Creates an \hyperlink{a00089}{I\-Csv\-Parser}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-{\em configuration} & The configuration to use for the csv parser.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_a9b68cbd7292c76037959d51ecc7c374d}{Csv\-Helper.\-I\-Csv\-Factory}.
-
+)}}\label{a00045_a163a2125e44163ee7b2ff8c2a7cc71da}
 
 \begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvParser( reader, configuration );
-24         \}
-\end{DoxyCode}
-\hypertarget{a00045_a07665ae71961a161552189877d11a5be}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Parser} Csv\-Helper.\-Csv\-Factory.\-Create\-Parser (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a07665ae71961a161552189877d11a5be}
-
-
-Creates an \hyperlink{a00089}{I\-Csv\-Parser}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_ab085a057f1b80ebf03ed2247d8759314}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-32         \{
-33             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvParser( reader );
-34         \}
-\end{DoxyCode}
-\hypertarget{a00045_a12b1358fc847e407519a76b7fe003a34}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a12b1358fc847e407519a76b7fe003a34}
-
-
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-{\em configuration} & The configuration to use for the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_ade2a6e776fad6aa36c201901d6427058}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-43         \{
-44             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( reader, configuration );
-45         \}
-\end{DoxyCode}
-\hypertarget{a00045_a77bcca4ad5023f5628c519c2914da5bb}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a77bcca4ad5023f5628c519c2914da5bb}
-
-
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_ae1ebb61244b36ddecb986d047ac9c217}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-53         \{
-54             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( reader );
-55         \}
-\end{DoxyCode}
-\hypertarget{a00045_a4e7e06df9265cbd53219c964424cec1e}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Reader} Csv\-Helper.\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{{\bf I\-Csv\-Parser}}]{parser}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a4e7e06df9265cbd53219c964424cec1e}
-
-
-Creates an \hyperlink{a00090}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em parser} & The parser used to create the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_af5b755ba2825f781d501402f1d765b33}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-63         \{
-64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvReader( parser );
-65         \}
-\end{DoxyCode}
-\hypertarget{a00045_a6bfe534b70ff92ea3809f1a372d160cc}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Writer} Csv\-Helper.\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a6bfe534b70ff92ea3809f1a372d160cc}
-
-
-Creates an \hyperlink{a00093}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-{\em configuration} & The configuration to use for the writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_ae77852d2702bc2caad76c045a538933e}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-74         \{
-75             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvWriter( writer, configuration );
-76         \}
-\end{DoxyCode}
-\hypertarget{a00045_a0cec3a639b206f2d88debdc50413202a}{\index{Csv\-Helper\-::\-Csv\-Factory@{Csv\-Helper\-::\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::CsvFactory@{Csv\-Helper\-::\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf I\-Csv\-Writer} Csv\-Helper.\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00045_a0cec3a639b206f2d88debdc50413202a}
-
-
-Creates an \hyperlink{a00093}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00088_ab6df59078b6245e653c06c00358b402a}{Csv\-Helper.\-I\-Csv\-Factory}.
-
-
-\begin{DoxyCode}
-84         \{
-85             \textcolor{keywordflow}{return} \textcolor{keyword}{new} CsvWriter( writer );
-86         \}
+44             : base(message)
+45         \{
+46 
+47         \}
 \end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00198}{Csv\-Factory.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00118}{Json\-Parser.\-cs}\end{DoxyCompactItemize}

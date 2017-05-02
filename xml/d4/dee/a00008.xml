@@ -4,16 +4,16 @@
     <compoundname>md_Documentation_Extending</compoundname>
     <title>Extending Yarn Spinner</title>
     <detaileddescription>
-<para>This is a quick-and-dirty document that shows how to add new functions so that they can be called from inside <ref refid="df/d61/a00031" kindref="compound">Yarn</ref>.</para><para>First, get your <computeroutput>Dialogue</computeroutput> object: <verbatim>// some_implementation is the object that handles variable storage - 
+<para>This is a quick-and-dirty document that shows how to add new functions so that they can be called from inside <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref>.</para><para>First, get your <computeroutput>Dialogue</computeroutput> object: <verbatim>// some_implementation is the object that handles variable storage - 
 // it&apos;s not important in this example
 var dialogue = new Dialogue(some_implementation);
 </verbatim></para><para>Next, register your new function. For example, let&apos;s make a function that takes 1 parameter, which is a number, and returns <computeroutput>true</computeroutput> if it&apos;s even:</para><para><verbatim>dialogue.library.RegisterFunction (&quot;is_even&quot;, 1, delegate(Value[] parameters) {
     return (int)parameters[0].AsNumber % 2 == 0;
 });
 </verbatim></para><para>When the function is called, the delegate you provide will be run.</para><para>Some notes:</para><para><itemizedlist>
-<listitem><para>You don&apos;t have to return a value from your function.</para></listitem><listitem><para>The parameters passed to your function are of type <ref refid="dd/dae/a00163" kindref="compound">Yarn.Value</ref>. You can get their value as numbers, bools or strings by using the <computeroutput>AsNumber</computeroutput>, <computeroutput>AsString</computeroutput> and <computeroutput>AsBool</computeroutput> properties.</para></listitem><listitem><para>You can only return values of the following types:<itemizedlist>
-<listitem><para>String</para></listitem><listitem><para>Float</para></listitem><listitem><para>Double</para></listitem><listitem><para>Integer</para></listitem><listitem><para><ref refid="dd/dae/a00163" kindref="compound">Yarn.Value</ref></para></listitem></itemizedlist>
-</para></listitem><listitem><para><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <computeroutput>-1</computeroutput> as your parameter count, the function may have any number of parameters. </para></listitem></itemizedlist>
+<listitem><para>You don&apos;t have to return a value from your function.</para></listitem><listitem><para>The parameters passed to your function are of type <ref refid="da/d2a/a00086" kindref="compound">Yarn.Value</ref>. You can get their value as numbers, bools or strings by using the <computeroutput>AsNumber</computeroutput>, <computeroutput>AsString</computeroutput> and <computeroutput>AsBool</computeroutput> properties.</para></listitem><listitem><para>You can only return values of the following types:<itemizedlist>
+<listitem><para>String</para></listitem><listitem><para>Float</para></listitem><listitem><para>Double</para></listitem><listitem><para>Integer</para></listitem><listitem><para><ref refid="da/d2a/a00086" kindref="compound">Yarn.Value</ref></para></listitem></itemizedlist>
+</para></listitem><listitem><para><ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <computeroutput>-1</computeroutput> as your parameter count, the function may have any number of parameters. </para></listitem></itemizedlist>
 </para>    </detaileddescription>
   </compounddef>
 </doxygen>

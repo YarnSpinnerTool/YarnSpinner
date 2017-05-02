@@ -4,21 +4,21 @@
     <compoundname>md_Documentation_Usage</compoundname>
     <title>Yarn for Writers</title>
     <detaileddescription>
-<para>This document talks about how to use <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> if you&apos;re using it to write content. It doesn&apos;t talk about how to integrate <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner into your project; for that, see <ref refid="db/dd9/a00179" kindref="compound">Unity.md</ref>Using <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner in your Unity game&quot;&quot;.</para><para><heading level="2">Lines</heading>
-</para><para><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <emphasis>node</emphasis>.</para><para>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: <verbatim>Alice: Hey, I&apos;m a character speaking in a dialogue!
+<para>This document talks about how to use <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> if you&apos;re using it to write content. It doesn&apos;t talk about how to integrate <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner into your project; for that, see <ref refid="d0/d61/a00100" kindref="compound">Unity.md</ref>Using <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner in your Unity game&quot;&quot;.</para><para><heading level="2">Lines</heading>
+</para><para><ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <emphasis>node</emphasis>.</para><para>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: <verbatim>Alice: Hey, I&apos;m a character speaking in a dialogue!
 Bob: Wild!
 </verbatim></para><para>Each line is delivered to your game one at a time.</para><para><heading level="2">Options</heading>
 </para><para>To link a node to another node, you provide <emphasis>options</emphasis>. Options look like this: <verbatim>[[Go to the woods|GoToWoods]]
 [[Go back to the city|GoToCity]]
 </verbatim></para><para>Options have two parts: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (<computeroutput>|</computeroutput>).</para><para>You don&apos;t have to provide the label. Instead, you can just provide the node name, like so: <verbatim>[[GoToCity]]
-</verbatim></para><para>If an option has no label, <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> will automatically jump to that node when that line is run, and it won&apos;t show options to the player.</para><para>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</para><para>If there are no options when we reach the end of a node, then we&apos;ve reached the end of a conversation, and <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner will let your game know.</para><para><heading level="2">Shortcut Options</heading>
+</verbatim></para><para>If an option has no label, <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> will automatically jump to that node when that line is run, and it won&apos;t show options to the player.</para><para>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</para><para>If there are no options when we reach the end of a node, then we&apos;ve reached the end of a conversation, and <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner will let your game know.</para><para><heading level="2">Shortcut Options</heading>
 </para><para>Sometimes, you&apos;ll want to add little branches to your conversation, but you don&apos;t want to create separate nodes for them. Instead, you can use <emphasis>shortcut options</emphasis>: <verbatim>Mae: What did you say to her?
 -&gt; Nothing.
     Mae: Oh, man. Maybe you should have.
 -&gt; That she was an idiot.
     Mae: Hah! I bet that pissed her off.
 Mae: Anyway, I&apos;d better get going.
-</verbatim></para><para>When this is run, <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner will behave just as if you&apos;d broken all of this up into multiple nodes.</para><para>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: <verbatim>Bob: What would you like?
+</verbatim></para><para>When this is run, <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner will behave just as if you&apos;d broken all of this up into multiple nodes.</para><para>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: <verbatim>Bob: What would you like?
 -&gt; A burger. &lt;&lt;if $money &gt;= 5&gt;&gt;
     Bob: Nice. Enjoy!
 -&gt; A soda. &lt;&lt;if $money &gt;= 2&gt;&gt;
@@ -27,7 +27,7 @@ Mae: Anyway, I&apos;d better get going.
 Bob: Thanks for coming!
 </verbatim></para><para>Note that in the last example, there wasn&apos;t any attached text. If the player selected the last option (&quot;Nothing.&quot;), then the next line to appear would be &quot;Bob: Thanks for coming!&quot;</para><para>You can also nest these shortcut options, if you like. Be careful, though - too much nested options can make your text difficult to read.</para><para><heading level="2">Commands</heading>
 </para><para>In addition to showing lines of dialogue, your game will probably want to run actions - things like &quot;move the camera to position X&quot;, or &quot;make character start smiling&quot;. You can use commands for this.</para><para>Commands look like this: <verbatim>&lt;&lt;move alice to under_bridge&gt;&gt;
-</verbatim></para><para>Any text inside the double-chevrons will be sent directly to your game as a string. It&apos;s up to you to decide what to do with that string.</para><para><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> has a special command, called <computeroutput>stop</computeroutput>. If you include <computeroutput>&lt;&lt;stop&gt;&gt;</computeroutput> in your node, <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> will stop the entire conversation when it reaches it.</para><para><heading level="2">Variables and If statements</heading>
+</verbatim></para><para>Any text inside the double-chevrons will be sent directly to your game as a string. It&apos;s up to you to decide what to do with that string.</para><para><ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> has a special command, called <computeroutput>stop</computeroutput>. If you include <computeroutput>&lt;&lt;stop&gt;&gt;</computeroutput> in your node, <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> will stop the entire conversation when it reaches it.</para><para><heading level="2">Variables and If statements</heading>
 </para><para>You can store numbers in variables. To do this, use the <computeroutput>set</computeroutput> command: <verbatim>&lt;&lt;set $door_unlocked to 1&gt;&gt;
 </verbatim></para><para>You can check the value of a variable using the <computeroutput>if</computeroutput> command: <verbatim>&lt;&lt;if $door_unlocked is 1&gt;&gt;
     The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
@@ -44,9 +44,9 @@ Bob: Thanks for coming!
     You failed to rescue the hostages before time ran out!
 &lt;&lt;endif&gt;&gt;
 </verbatim></para><para><heading level="2">Types</heading>
-</para><para>There are four different types of value in <ref refid="df/d61/a00031" kindref="compound">Yarn</ref>: strings, numbers, booleans, and <computeroutput>null</computeroutput>.</para><para><itemizedlist>
+</para><para>There are four different types of value in <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref>: strings, numbers, booleans, and <computeroutput>null</computeroutput>.</para><para><itemizedlist>
 <listitem><para>Strings contain text.</para></listitem><listitem><para>Numbers are floating-point numbers.</para></listitem><listitem><para>Booleans are either true or false.</para></listitem><listitem><para><computeroutput>null</computeroutput> means no value.</para></listitem></itemizedlist>
-</para><para><ref refid="df/d61/a00031" kindref="compound">Yarn</ref> will automatically convert between types for you. For example: <verbatim>&lt;&lt;if &quot;hi&quot; == &quot;hi&quot;&gt;&gt;
+</para><para><ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> will automatically convert between types for you. For example: <verbatim>&lt;&lt;if &quot;hi&quot; == &quot;hi&quot;&gt;&gt;
     The two strings are the same!
 &lt;&lt;endif&gt;&gt;
 
@@ -54,9 +54,9 @@ Bob: Thanks for coming!
     Strings get joined together with other values!
 &lt;&lt;endif&gt;&gt;
 </verbatim></para><para><bold>Warning:</bold> Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.</para><para><heading level="2">Functions</heading>
-</para><para>You can call functions in your <computeroutput>if</computeroutput> commands. For example, <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner provides a function called <computeroutput>visited</computeroutput>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. <verbatim>&lt;&lt;if visited(&quot;GoToCity&quot;)&gt;&gt;
+</para><para>You can call functions in your <computeroutput>if</computeroutput> commands. For example, <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner provides a function called <computeroutput>visited</computeroutput>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. <verbatim>&lt;&lt;if visited(&quot;GoToCity&quot;)&gt;&gt;
     We have gone to the city before!
 &lt;&lt;endif&gt;&gt;
-</verbatim></para><para>You can&apos;t define your own functions inside <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> itself, but they can be added at run-time. See <ref refid="d5/de9/a00176" kindref="compound">Extending.md</ref>Extending <ref refid="df/d61/a00031" kindref="compound">Yarn</ref> Spinner&quot;&quot; for more info. </para>    </detaileddescription>
+</verbatim></para><para>You can&apos;t define your own functions inside <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> itself, but they can be added at run-time. See <ref refid="d1/d84/a00097" kindref="compound">Extending.md</ref>Extending <ref refid="d6/d5b/a00026" kindref="compound">Yarn</ref> Spinner&quot;&quot; for more info. </para>    </detaileddescription>
   </compounddef>
 </doxygen>

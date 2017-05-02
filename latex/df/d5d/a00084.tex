@@ -1,172 +1,140 @@
-\hypertarget{a00084}{\section{Yarn.\-Function\-Info Class Reference}
-\label{a00084}\index{Yarn.\-Function\-Info@{Yarn.\-Function\-Info}}
+\hypertarget{a00084}{\section{Yarn.\-Analysis.\-Unused\-Variable\-Checker Class Reference}
+\label{a00084}\index{Yarn.\-Analysis.\-Unused\-Variable\-Checker@{Yarn.\-Analysis.\-Unused\-Variable\-Checker}}
 }
 
 
-Collaboration diagram for Yarn.\-Function\-Info\-:
+Inheritance diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{de/d7c/a00576}
+\includegraphics[width=228pt]{d8/d23/a00326}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{d8/dfc/a00327}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00163}{Value} \hyperlink{a00084_ab400ac66785d7df2e3fc0f3ce3796044}{Invoke} (params \hyperlink{a00163}{Value}\mbox{[}$\,$\mbox{]} parameters)
+override void \hyperlink{a00084_aeac8f333d4dcc85f4d4a716bf8fea01f}{Diagnose} (\hyperlink{a00067}{Program} program)
 \item 
-\hyperlink{a00163}{Value} \hyperlink{a00084_a3ce11058d35232907a738de4bb094c67}{Invoke\-With\-Array} (\hyperlink{a00163}{Value}\mbox{[}$\,$\mbox{]} parameters)
+override I\-Enumerable$<$ \hyperlink{a00035}{Diagnosis} $>$ \hyperlink{a00084_a107aecf707b130c4b733930a95f9154e}{Gather\-Diagnoses} ()
+\item 
+abstract void \hyperlink{a00028_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00067}{Yarn.\-Program} program)
 \end{DoxyCompactItemize}
-\subsection*{Package Functions}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}{Function\-Info} (string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00031_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+Hash\-Set$<$ string $>$ \hyperlink{a00084_a6b542092ddce1b92c9455d60899518a9}{read\-Variables} = new Hash\-Set$<$string$>$ ()
 \item 
-\hyperlink{a00084_a41d97c09da25caede70cb734d18113b9}{Function\-Info} (string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}, int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}, \hyperlink{a00031_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-bool \hyperlink{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{Is\-Parameter\-Count\-Correct} (int parameter\-Count)
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-int \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{param\-Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\hyperlink{a00031_ae0be2e5cf13d5779816102439e61ff1a}{Function} \hyperlink{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}{function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-\hyperlink{a00031_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} \hyperlink{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{returning\-Function}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00084_acaff044276aa230de7c0b27dd5267bc7}{returns\-Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+Hash\-Set$<$ string $>$ \hyperlink{a00084_a0c2fe6eded1b10b135ca2469f5980a39}{written\-Variables} = new Hash\-Set$<$string$>$ ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
-\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{param\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a93457cd0e838cb2ef59cc2a3a46ce758}
-
-\begin{DoxyCode}
-65                                                                                     \{
-66             this.name = \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name};
-67             this.paramCount = \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
-68             this.function = implementation;
-69             this.returningFunction = null;
-70         \}
-\end{DoxyCode}
-\hypertarget{a00084_a41d97c09da25caede70cb734d18113b9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Function\-Info@{Function\-Info}}
-\index{Function\-Info@{Function\-Info}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Function\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Function\-Info.\-Function\-Info (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{param\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a41d97c09da25caede70cb734d18113b9}
-
-\begin{DoxyCode}
-72                                                                                              \{
-73             this.name = \hyperlink{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{name};
-74             this.paramCount = \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount};
-75             this.returningFunction = implementation;
-76             this.function = null;
-77         \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00084_ab400ac66785d7df2e3fc0f3ce3796044}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke@{Invoke}}
-\index{Invoke@{Invoke}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Invoke}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke (
+\hypertarget{a00028_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
 \begin{DoxyParamCaption}
-\item[{params {\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
+\item[{{\bf Yarn.\-Program}}]{program}
 \end{DoxyParamCaption}
-)}}\label{a00084_ab400ac66785d7df2e3fc0f3ce3796044}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00028_aba4a36cb823b11ee491074e26477d084}
+\hypertarget{a00084_aeac8f333d4dcc85f4d4a716bf8fea01f}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
+\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
+\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Diagnose (
+\begin{DoxyParamCaption}
+\item[{{\bf Program}}]{program}
+\end{DoxyParamCaption}
+)}}\label{a00084_aeac8f333d4dcc85f4d4a716bf8fea01f}
 
 \begin{DoxyCode}
-32                                                        \{
-33             \textcolor{keywordflow}{return} \hyperlink{a00084_a3ce11058d35232907a738de4bb094c67}{InvokeWithArray}(parameters);
-34         \}
+154         \{
+155             
+156             \textcolor{comment}{// In each node, find all reads and writes to variables}
+157             \textcolor{keywordflow}{foreach} (var nodeInfo \textcolor{keywordflow}{in} program.nodes) \{
+158 
+159                 var nodeName = nodeInfo.Key;
+160                 var theNode = nodeInfo.Value;
+161 
+162                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} theNode.instructions) \{
+163 
+164                     \textcolor{keywordflow}{switch} (instruction.operation) \{
+165                     \textcolor{keywordflow}{case} ByteCode.PushVariable:
+166                         readVariables.Add ((string)instruction.operandA);
+167                         \textcolor{keywordflow}{break};
+168                     \textcolor{keywordflow}{case} ByteCode.StoreVariable:
+169                         writtenVariables.Add ((string)instruction.operandA);
+170                         \textcolor{keywordflow}{break};
+171                     \}
+172                 \}
+173             \}
+174 
+175 
+176         \}
 \end{DoxyCode}
-\hypertarget{a00084_a3ce11058d35232907a738de4bb094c67}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Invoke\-With\-Array@{Invoke\-With\-Array}}
-\index{Invoke\-With\-Array@{Invoke\-With\-Array}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Invoke\-With\-Array}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Function\-Info.\-Invoke\-With\-Array (
+\hypertarget{a00084_a107aecf707b130c4b733930a95f9154e}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Gather\-Diagnoses@{Gather\-Diagnoses}}
+\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
+\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Gather\-Diagnoses (
 \begin{DoxyParamCaption}
-\item[{{\bf Value}\mbox{[}$\,$\mbox{]}}]{parameters}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00084_a3ce11058d35232907a738de4bb094c67}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00084_a107aecf707b130c4b733930a95f9154e}
+
+
+Implements \hyperlink{a00028_afe059a2ceeabe50380b000420e512bd6}{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}.
+
 
 \begin{DoxyCode}
-36                                                          \{
-37 
-38             \textcolor{keywordtype}{int} length;
-39 
-40             \textcolor{keywordflow}{if} (parameters != null)
-41                 length = parameters.Length;
-42             \textcolor{keywordflow}{else} 
-43                 length = 0;
-44 
-45             \textcolor{keywordflow}{if} (\hyperlink{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{IsParameterCountCorrect} (length)) \{
-46                 \textcolor{keywordflow}{if} (\hyperlink{a00084_acaff044276aa230de7c0b27dd5267bc7}{returnsValue}) \{
-47                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} Value(\hyperlink{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{returningFunction} (parameters));
-48                 \} \textcolor{keywordflow}{else} \{
-49                     \textcolor{keyword}{function} (parameters);
-50                     \textcolor{keywordflow}{return} \hyperlink{a00163_a1ed2964965baca8621c45efa23f37660}{Value.NULL}; \textcolor{comment}{// a null Value}
-51                 \}               
-52             \} \textcolor{keywordflow}{else} \{
-53                 \textcolor{keywordtype}{string} error = string.Format (
-54                     \textcolor{stringliteral}{"Incorrect number of parameters for function \{0\} (expected \{1\}, got \{2\}"}, 
-55                     this.name, 
-56                     this.paramCount, 
-57                     parameters.Length);
-58                 
-59                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (error);
-60             \}
-61         \}
-\end{DoxyCode}
-\hypertarget{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}}
-\index{Is\-Parameter\-Count\-Correct@{Is\-Parameter\-Count\-Correct}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{Is\-Parameter\-Count\-Correct}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct (
-\begin{DoxyParamCaption}
-\item[{int}]{parameter\-Count}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00084_a1ed09ff8aafa230a0d2bbc23cd6cd763}
-
-\begin{DoxyCode}
-80         \{
-81             \textcolor{keywordflow}{return} \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == parameterCount || \hyperlink{a00084_aa8527de9e4f153b05164ccaf167c3186}{paramCount} == -1;
-82         \}
+179         \{
+180 
+181             \textcolor{comment}{// Exclude read variables that are also written}
+182             var readOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00084_a6b542092ddce1b92c9455d60899518a9}{readVariables});
+183             readOnlyVariables.ExceptWith (\hyperlink{a00084_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
+184 
+185             \textcolor{comment}{// Exclude written variables that are also read}
+186             var writeOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00084_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
+187             writeOnlyVariables.ExceptWith (\hyperlink{a00084_a6b542092ddce1b92c9455d60899518a9}{readVariables});
+188 
+189             \textcolor{comment}{// Generate diagnoses}
+190             var diagnoses = \textcolor{keyword}{new} List<Diagnosis>();
+191 
+192             \textcolor{keywordflow}{foreach} (var readOnlyVariable \textcolor{keywordflow}{in} readOnlyVariables) \{
+193                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is read from, but never assigned"}, 
+      readOnlyVariable);
+194                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
+195             \}
+196 
+197             \textcolor{keywordflow}{foreach} (var writeOnlyVariable \textcolor{keywordflow}{in} writeOnlyVariables) \{
+198                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is assigned, but never read from"}, 
+      writeOnlyVariable);
+199                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
+200             \}
+201 
+202             \textcolor{keywordflow}{return} diagnoses;
+203         \}
 \end{DoxyCode}
 
 
-\subsection{Property Documentation}
-\hypertarget{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!function@{function}}
-\index{function@{function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function} Yarn.\-Function\-Info.\-function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_a1dd2f9d11614a2fce170b3f3eecdb5f9}
-\hypertarget{a00084_adb38e83e3c1597b553aeff14bef5bfcb}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!name@{name}}
-\index{name@{name}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Function\-Info.\-name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_adb38e83e3c1597b553aeff14bef5bfcb}
-\hypertarget{a00084_aa8527de9e4f153b05164ccaf167c3186}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!param\-Count@{param\-Count}}
-\index{param\-Count@{param\-Count}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{param\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Function\-Info.\-param\-Count\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_aa8527de9e4f153b05164ccaf167c3186}
-\hypertarget{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returning\-Function@{returning\-Function}}
-\index{returning\-Function@{returning\-Function}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{returning\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Returning\-Function} Yarn.\-Function\-Info.\-returning\-Function\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00084_a8b6e0e5a875c427a1d947f3c52c308ca}
-\hypertarget{a00084_acaff044276aa230de7c0b27dd5267bc7}{\index{Yarn\-::\-Function\-Info@{Yarn\-::\-Function\-Info}!returns\-Value@{returns\-Value}}
-\index{returns\-Value@{returns\-Value}!Yarn::FunctionInfo@{Yarn\-::\-Function\-Info}}
-\subsubsection[{returns\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Function\-Info.\-returns\-Value\hspace{0.3cm}{\ttfamily [get]}}}\label{a00084_acaff044276aa230de7c0b27dd5267bc7}
+\subsection{Member Data Documentation}
+\hypertarget{a00084_a6b542092ddce1b92c9455d60899518a9}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!read\-Variables@{read\-Variables}}
+\index{read\-Variables@{read\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
+\subsubsection[{read\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-read\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00084_a6b542092ddce1b92c9455d60899518a9}
+\hypertarget{a00084_a0c2fe6eded1b10b135ca2469f5980a39}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!written\-Variables@{written\-Variables}}
+\index{written\-Variables@{written\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
+\subsubsection[{written\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-written\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00084_a0c2fe6eded1b10b135ca2469f5980a39}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00267}{Library.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00115}{Analyser.\-cs}\end{DoxyCompactItemize}

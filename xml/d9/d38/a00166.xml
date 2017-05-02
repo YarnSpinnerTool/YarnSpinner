@@ -1,175 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d9/d38/a00166" kind="interface" prot="public">
-    <compoundname>Yarn::VariableStorage</compoundname>
-    <derivedcompoundref refid="d3/d52/a00023" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</derivedcompoundref>
-    <derivedcompoundref refid="dc/de6/a00167" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</derivedcompoundref>
-    <derivedcompoundref refid="de/d8c/a00036" prot="public" virt="non-virtual">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/d38/a00166_1aa28c3694f985cf73489efc301b9d41dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplementedby refid="d3/d52/a00023_1a48b93de9cd7ae61d0cd9583c8330d3ee">SetNumber</reimplementedby>
-        <reimplementedby refid="dc/de6/a00167_1ac0d2f2e081944ad197992a26ad1a833c">SetNumber</reimplementedby>
-        <reimplementedby refid="de/d8c/a00036_1adc9bfad13d8ae2f147deeddbc5c38ea3">SetNumber</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
+  <compounddef id="d9/d38/a00166" kind="struct" prot="private">
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d9/d38/a00166_1a636dce6708e779c201fa5e7d01cf2955" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage.message</definition>
+        <argsstring></argsstring>
+        <name>message</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="59" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="286" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="286" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d9/d38/a00166_1a04b061c52d8ac814ce559da5286fbc71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>float</type>
-        <definition>float Yarn.VariableStorage.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplementedby refid="d3/d52/a00023_1a1b7f7f4468b2463e7b47986d99362279">GetNumber</reimplementedby>
-        <reimplementedby refid="dc/de6/a00167_1add85a45dd65a5d4bd41c9d5ce5f77d19">GetNumber</reimplementedby>
-        <reimplementedby refid="de/d8c/a00036_1adf34fa27235fc0fd5fe35c32023220c4">GetNumber</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
+      <memberdef kind="variable" id="d9/d38/a00166_1a7d342190c7657fbbe85eb6fa66bcabb8" prot="public" static="no" mutable="no">
+        <type>MessageType</type>
+        <definition>MessageType Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="60" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/d38/a00166_1aa90ff61224432c5ed3ce72199c55f440" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplementedby refid="d3/d52/a00023_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplementedby>
-        <reimplementedby refid="d4/d81/a00110_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
-        <reimplementedby refid="d4/d31/a00069_1ac4265c1c9da485f13a6b05784b0f668d">SetValue</reimplementedby>
-        <reimplementedby refid="dc/de6/a00167_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplementedby>
-        <reimplementedby refid="de/d8c/a00036_1ab6312d89b626ca803a74a9181286d608">SetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="dd/dae/a00163" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="61" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/d38/a00166_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="dd/dae/a00163" kindref="compound">Value</ref></type>
-        <definition>Value Yarn.VariableStorage.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplementedby refid="d3/d52/a00023_1a13b142df804d9842e97e628e252928e8">GetValue</reimplementedby>
-        <reimplementedby refid="d4/d81/a00110_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
-        <reimplementedby refid="d4/d31/a00069_1a741593be1a299dcc2136f05b9b4a995a">GetValue</reimplementedby>
-        <reimplementedby refid="dc/de6/a00167_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplementedby>
-        <reimplementedby refid="de/d8c/a00036_1a66fc86080cd452079f5adf15e97c8e41">GetValue</reimplementedby>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="62" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/d38/a00166_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.VariableStorage.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplementedby refid="d3/d52/a00023_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplementedby>
-        <reimplementedby refid="d4/d81/a00110_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
-        <reimplementedby refid="d4/d31/a00069_1a0ce614bee8d5b220500fb765390b4ca3">Clear</reimplementedby>
-        <reimplementedby refid="dc/de6/a00167_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplementedby>
-        <reimplementedby refid="de/d8c/a00036_1a082617cf099d13cb4338935020ced764">Clear</reimplementedby>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="63" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="288" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1636">
-        <label>ExampleVariableStorage</label>
-        <link refid="d4/d31/a00069"/>
-        <childnode refid="1635" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1635">
-        <label>Yarn.Unity.VariableStorageBehaviour</label>
-        <link refid="dc/de6/a00167"/>
-        <childnode refid="1632" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1637">
-        <label>Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</label>
-        <link refid="de/d8c/a00036"/>
-        <childnode refid="1632" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1634">
-        <label>Yarn.MemoryVariableStore</label>
-        <link refid="d4/d81/a00110"/>
-        <childnode refid="1633" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1633">
-        <label>Yarn.BaseVariableStorage</label>
-        <link refid="d3/d52/a00023"/>
-        <childnode refid="1632" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1632">
-        <label>Yarn.VariableStorage</label>
-        <link refid="d9/d38/a00166"/>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1638">
-        <label>Yarn.VariableStorage</label>
+      <node id="708">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
         <link refid="d9/d38/a00166"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="57" bodyend="64"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="285" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="285" bodyend="289"/>
     <listofallmembers>
-      <member refid="d9/d38/a00166_1af98c1e41f351cb96e13f668ca2fd9d92" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>Clear</name></member>
-      <member refid="d9/d38/a00166_1a04b061c52d8ac814ce559da5286fbc71" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>GetNumber</name></member>
-      <member refid="d9/d38/a00166_1accab1fc5c8fc353dbfc53ca0f4029576" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>GetValue</name></member>
-      <member refid="d9/d38/a00166_1aa28c3694f985cf73489efc301b9d41dd" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetNumber</name></member>
-      <member refid="d9/d38/a00166_1aa90ff61224432c5ed3ce72199c55f440" prot="public" virt="non-virtual"><scope>Yarn::VariableStorage</scope><name>SetValue</name></member>
+      <member refid="d9/d38/a00166_1a636dce6708e779c201fa5e7d01cf2955" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</scope><name>message</name></member>
+      <member refid="d9/d38/a00166_1a7d342190c7657fbbe85eb6fa66bcabb8" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Unity.DialogueUIBehaviour Class Reference</title>
+<title>YarnSpinner: Yarn.VirtualMachine.State Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
@@ -108,130 +108,164 @@ $(document).ready(function(){initNavTree('d9/da5/a00075.html','../../');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="../../d8/d33/a00699.html">List of all members</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="../../d2/d71/a00309.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Unity.DialogueUIBehaviour Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Yarn.VirtualMachine.State Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
-Inheritance diagram for Yarn.Unity.DialogueUIBehaviour:</div>
+Collaboration diagram for Yarn.VirtualMachine.State:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d0/d15/a00700.png" border="0" usemap="#_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map" id="_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map">
-<area shape="rect" id="node3" href="../../d0/d4a/a00147.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="5,346,176,585"/><area shape="rect" id="node4" href="../../d1/d51/a00079.html" title="{Yarn.Unity.Example.Example\lDialogueUI\n|+ dialogueContainer\l+ lineText\l+ continuePrompt\l+ textSpeed\l+ optionButtons\l+ gameControlsContainer\l&#45; SetSelectedOption\l|+ RunLine()\l+ RunOptions()\l+ SetOption()\l+ RunCommand()\l+ DialogueStarted()\l+ DialogueComplete()\l&#45; Awake()\l}" alt="" coords="200,331,395,599"/></map>
-</div>
-<div class="dynheader">
-Collaboration diagram for Yarn.Unity.DialogueUIBehaviour:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../dd/d57/a00701.png" border="0" usemap="#_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map" id="_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map">
+<div class="center"><img src="../../d1/d67/a00310.png" border="0" usemap="#_yarn_8_virtual_machine_8_state_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_virtual_machine_8_state_coll__map" id="_yarn_8_virtual_machine_8_state_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af9d88ca81ac536d43046ca6572e3ff54"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#af9d88ca81ac536d43046ca6572e3ff54">DialogueStarted</a> ()</td></tr>
-<tr class="separator:af9d88ca81ac536d43046ca6572e3ff54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a754c6dd0bc67895d11f878fe4477d698"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a754c6dd0bc67895d11f878fe4477d698">RunLine</a> (<a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a> line)</td></tr>
-<tr class="separator:a754c6dd0bc67895d11f878fe4477d698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b29079f638f2ceb078627ef1e60004"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#ac5b29079f638f2ceb078627ef1e60004">RunOptions</a> (<a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a> optionsCollection, <a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> optionChooser)</td></tr>
-<tr class="separator:ac5b29079f638f2ceb078627ef1e60004"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dffe84b9e7a10fdec6749baf697d111"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a3dffe84b9e7a10fdec6749baf697d111">RunCommand</a> (<a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a> command)</td></tr>
-<tr class="separator:a3dffe84b9e7a10fdec6749baf697d111"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2900548a0704d39d4502a153945f4bef"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a2900548a0704d39d4502a153945f4bef">NodeComplete</a> (string nextNode)</td></tr>
-<tr class="separator:a2900548a0704d39d4502a153945f4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecc60aee9e9386da1f71fb183f43c52d"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#aecc60aee9e9386da1f71fb183f43c52d">DialogueComplete</a> ()</td></tr>
-<tr class="separator:aecc60aee9e9386da1f71fb183f43c52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace44f5b85b9f746fede834becda4a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#aace44f5b85b9f746fede834becda4a8e">PushValue</a> (object o)</td></tr>
+<tr class="separator:aace44f5b85b9f746fede834becda4a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36881a888ea2839d74c3d4e7c199f4ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d2a/a00086.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a36881a888ea2839d74c3d4e7c199f4ee">PopValue</a> ()</td></tr>
+<tr class="separator:a36881a888ea2839d74c3d4e7c199f4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54fd5b64ec94e937e771846167242dc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d2a/a00086.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a54fd5b64ec94e937e771846167242dc2">PeekValue</a> ()</td></tr>
+<tr class="separator:a54fd5b64ec94e937e771846167242dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c787097fbbbbf1680e4960cda092535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a9c787097fbbbbf1680e4960cda092535">ClearStack</a> ()</td></tr>
+<tr class="separator:a9c787097fbbbbf1680e4960cda092535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a86f481fad527f719b49f8fee6ff79764"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a86f481fad527f719b49f8fee6ff79764">currentNodeName</a></td></tr>
+<tr class="separator:a86f481fad527f719b49f8fee6ff79764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c76546b54b4fb573d7f14d79ce230a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a2c76546b54b4fb573d7f14d79ce230a3">programCounter</a> = 0</td></tr>
+<tr class="separator:a2c76546b54b4fb573d7f14d79ce230a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab816dfea32ecda23282700f01454e0a9"><td class="memItemLeft" align="right" valign="top">List&lt; KeyValuePair&lt; string, <br class="typebreak"/>
+string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#ab816dfea32ecda23282700f01454e0a9">currentOptions</a> = new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</td></tr>
+<tr class="separator:ab816dfea32ecda23282700f01454e0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0bc84abf38b3ff31cbb47363b851c233"><td class="memItemLeft" align="right" valign="top">Stack&lt; <a class="el" href="../../da/d2a/a00086.html">Value</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da5/a00075.html#a0bc84abf38b3ff31cbb47363b851c233">stack</a> = new Stack&lt;<a class="el" href="../../da/d2a/a00086.html">Value</a>&gt;()</td></tr>
+<tr class="separator:a0bc84abf38b3ff31cbb47363b851c233"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aecc60aee9e9386da1f71fb183f43c52d"></a>
+<a class="anchor" id="a9c787097fbbbbf1680e4960cda092535"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete </td>
+          <td class="memname">void Yarn.VirtualMachine.State.ClearStack </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
-<p>Reimplemented in <a class="el" href="../../d1/d51/a00079.html#a1f2a08baacc25aea09af8e60eb5d3eb1">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
-<div class="fragment"><div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                                                       {</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                     {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                stack.Clear ();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="af9d88ca81ac536d43046ca6572e3ff54"></a>
+<a class="anchor" id="a54fd5b64ec94e937e771846167242dc2"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted </td>
+          <td class="memname"><a class="el" href="../../da/d2a/a00086.html">Value</a> Yarn.VirtualMachine.State.PeekValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
-<p>Reimplemented in <a class="el" href="../../d1/d51/a00079.html#a313283f6c53354b54f25898eb436eba0">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
-<div class="fragment"><div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                                                     {</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                     {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">return</span> stack.Peek ();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a2900548a0704d39d4502a153945f4bef"></a>
+<a class="anchor" id="a36881a888ea2839d74c3d4e7c199f4ee"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete </td>
+          <td class="memname"><a class="el" href="../../da/d2a/a00086.html">Value</a> Yarn.VirtualMachine.State.PopValue </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>nextNode</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                                                                 {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            yield <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">return</span> stack.Pop ();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a3dffe84b9e7a10fdec6749baf697d111"></a>
+<a class="anchor" id="aace44f5b85b9f746fede834becda4a8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Yarn.VirtualMachine.State.PushValue </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                            {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">if</span>( o is Value ) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    stack.Push(o as Value);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    stack.Push (<span class="keyword">new</span> Value(o));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a86f481fad527f719b49f8fee6ff79764"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.VirtualMachine.State.currentNodeName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab816dfea32ecda23282700f01454e0a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;KeyValuePair&lt;string,string&gt; &gt; Yarn.VirtualMachine.State.currentOptions = new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c76546b54b4fb573d7f14d79ce230a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Yarn.VirtualMachine.State.programCounter = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0bc84abf38b3ff31cbb47363b851c233"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -239,95 +273,27 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d4/d6f/a00315">Yarn.Command</a>&#160;</td>
-          <td class="paramname"><em>command</em></td><td>)</td>
-          <td></td>
+          <td class="memname">Stack&lt;<a class="el" href="../../da/d2a/a00086.html">Value</a>&gt; Yarn.VirtualMachine.State.stack = new Stack&lt;<a class="el" href="../../da/d2a/a00086.html">Value</a>&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#a7f84b1e7d3c9c1f7507d143e11ba8075">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a754c6dd0bc67895d11f878fe4477d698"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#d2/d41/a00318">Yarn.Line</a>&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#a109aeedc5206dcbc4f629638b7830030">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac5b29079f638f2ceb078627ef1e60004"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#db/d53/a00321">Yarn.Options</a>&#160;</td>
-          <td class="paramname"><em>optionsCollection</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../df/d61/a00031.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a>&#160;</td>
-          <td class="paramname"><em>optionChooser</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="../../d1/d51/a00079.html#aaa93672700a456e66c694636460a58f4">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Unity/Assets/Yarn Spinner/Code/<a class="el" href="../../">DialogueRunner.cs</a></li>
+<li>YarnSpinner/<a class="el" href="../../">VirtualMachine.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../df/d61/a00031.html">Yarn</a></li><li class="navelem"><a class="el" href="../../dd/d42/a00109.html">Unity</a></li><li class="navelem"><a class="el" href="../../d9/da5/a00075.html">DialogueUIBehaviour</a></li>
+    <li class="navelem"><a class="el" href="../../d6/d5b/a00026.html">Yarn</a></li><li class="navelem"><a class="el" href="../../d6/d2c/a00072.html">VirtualMachine</a></li><li class="navelem"><a class="el" href="../../d9/da5/a00075.html">State</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.6 </li>

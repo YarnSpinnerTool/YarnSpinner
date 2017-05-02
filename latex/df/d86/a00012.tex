@@ -1,15 +1,15 @@
-\subsection*{\hyperlink{a00031}{Yarn} Spinner Quick Start}
+\subsection*{\hyperlink{a00026}{Yarn} Spinner Quick Start}
 
-Here's how to quickly jump in to \hyperlink{a00031}{Yarn} Spinner, if you're already reasonably comfortable with Unity.
+Here's how to quickly jump in to \hyperlink{a00026}{Yarn} Spinner, if you're already reasonably comfortable with Unity.
 
 
 \begin{DoxyItemize}
 \item {\bfseries Download and import \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt the Yarn\-Spinner package} into your project.}
-\item {\bfseries Inside the \hyperlink{a00313}{Yarn\-Spinner} folder, open the {\ttfamily Examples/\-Yarn Spinner Basic Example} scene.}
+\item {\bfseries Inside the \hyperlink{a00156}{Yarn\-Spinner} folder, open the {\ttfamily Examples/\-Yarn Spinner Basic Example} scene.}
 \item {\bfseries Start the game. Play through the dialogue.}
 \end{DoxyItemize}
 
-Once you've played with it, open the Example Script file in the \hyperlink{a00031}{Yarn} editor (it's in the {\ttfamily Examples/\-Demo Assets} folder), and make some changes to the script. Once you've done that, take a look at how {\ttfamily \hyperlink{a00253}{Code/\-Dialogue\-Runner.\-cs}}, {\ttfamily Examples/\-Demo \hyperlink{a00257}{Scripts/\-Example\-Dialogue\-U\-I.\-cs}} and {\ttfamily Examples/\-Demo \hyperlink{a00258}{Scripts/\-Example\-Variable\-Storage.\-cs}} work. You can also \hyperlink{a00176}{add your own functions to Yarn}.
+Once you've played with it, open the Example Script file in the \hyperlink{a00026}{Yarn} editor (it's in the {\ttfamily Examples/\-Demo Assets} folder), and make some changes to the script. Once you've done that, take a look at how {\ttfamily \hyperlink{a00105}{Code/\-Dialogue\-Runner.\-cs}}, {\ttfamily Examples/\-Demo \hyperlink{a00109}{Scripts/\-Example\-Dialogue\-U\-I.\-cs}} and {\ttfamily Examples/\-Demo \hyperlink{a00110}{Scripts/\-Example\-Variable\-Storage.\-cs}} work. You can also \hyperlink{a00097}{add your own functions to Yarn}.
 
 \subsection*{Tutorial}
 
@@ -19,9 +19,9 @@ $\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you kno
 \end{quotation}
 
 
-\hyperlink{a00031}{Yarn} Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.
+\hyperlink{a00026}{Yarn} Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.
 
-To use \hyperlink{a00031}{Yarn} Spinner, you use three classes\-:
+To use \hyperlink{a00026}{Yarn} Spinner, you use three classes\-:
 
 
 \begin{DoxyItemize}
@@ -30,35 +30,35 @@ To use \hyperlink{a00031}{Yarn} Spinner, you use three classes\-:
 \item A subclass of {\ttfamily Variable\-Storage\-Behaviour}, which is responsible for storing the state of the conversation.
 \end{DoxyItemize}
 
-These three classes exist in the {\ttfamily \hyperlink{a00109}{Yarn.\-Unity}} namespace. To create your subclasses of {\ttfamily Dialogue\-U\-I\-Behaviour} and {\ttfamily Variable\-Storage\-Behaviour}, you'll need to add the following code to the top of your C\# code\-: \begin{DoxyVerb}using Yarn.Unity;
+These three classes exist in the {\ttfamily \hyperlink{a00154}{Yarn.\-Unity}} namespace. To create your subclasses of {\ttfamily Dialogue\-U\-I\-Behaviour} and {\ttfamily Variable\-Storage\-Behaviour}, you'll need to add the following code to the top of your C\# code\-: \begin{DoxyVerb}using Yarn.Unity;
 \end{DoxyVerb}
 
 
-Additionally, you store your \hyperlink{a00031}{Yarn} files as {\ttfamily .json} assets in your Unity projects. These can be stored anywhere -\/ you simply provide add them to the {\ttfamily Dialogue\-Runner}'s inspector. You can also call {\ttfamily Add\-Script} on the {\ttfamily Dialogue\-Runner} at runtime; this is useful for cases like spawning a character who comes with some extra dialogue -\/ all that needs to happen is that character just needs to pass their \hyperlink{a00031}{Yarn} script to the {\ttfamily Dialogue\-Runner}.
+Additionally, you store your \hyperlink{a00026}{Yarn} files as {\ttfamily .json} assets in your Unity projects. These can be stored anywhere -\/ you simply provide add them to the {\ttfamily Dialogue\-Runner}'s inspector. You can also call {\ttfamily Add\-Script} on the {\ttfamily Dialogue\-Runner} at runtime; this is useful for cases like spawning a character who comes with some extra dialogue -\/ all that needs to happen is that character just needs to pass their \hyperlink{a00026}{Yarn} script to the {\ttfamily Dialogue\-Runner}.
 
 \subsubsection*{Load your conversation with {\ttfamily Dialogue\-Runner}}
 
-\hyperlink{a00031}{Yarn} conversations are loaded and managed by a {\ttfamily Dialogue\-Runner} object. This object is responsible for loading and parsing your \hyperlink{a00031}{Yarn} {\ttfamily .json} files. It also runs the script when it's told to -\/ for example, when you walk up to a character in your game and talk to them.
+\hyperlink{a00026}{Yarn} conversations are loaded and managed by a {\ttfamily Dialogue\-Runner} object. This object is responsible for loading and parsing your \hyperlink{a00026}{Yarn} {\ttfamily .json} files. It also runs the script when it's told to -\/ for example, when you walk up to a character in your game and talk to them.
 
 \subsubsection*{Display your conversation with {\ttfamily Dialogue\-U\-I}}
 
 Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.
 
-\hyperlink{a00031}{Yarn} Spinner makes no assumptions about how you want to handle your dialogue's U\-I. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-\/based U\-I with a countdown timer? Oh man that would be sweet.
+\hyperlink{a00026}{Yarn} Spinner makes no assumptions about how you want to handle your dialogue's U\-I. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-\/based U\-I with a countdown timer? Oh man that would be sweet.
 
-\hyperlink{a00031}{Yarn} Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying \hyperlink{a00031}{Yarn} Spinner about what response the user selected.
+\hyperlink{a00026}{Yarn} Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying \hyperlink{a00026}{Yarn} Spinner about what response the user selected.
 
-\hyperlink{a00031}{Yarn} Spinner comes with an example script that uses Unity's U\-I system. It's a good place to start.
+\hyperlink{a00026}{Yarn} Spinner comes with an example script that uses Unity's U\-I system. It's a good place to start.
 
 \subsubsection*{Store your conversation state with a {\ttfamily Variable\-Storage\-Behaviour}}
 
-There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00031}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C\# $\ast$\href{C# interface}{\tt interface}$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
+There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00026}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C\# $\ast$\href{C# interface}{\tt interface}$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
 
 The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
 
 \subsubsection*{Respond to commands with {\ttfamily Yarn\-Command}}
 
-In \hyperlink{a00031}{Yarn}, you can create {\itshape commands} that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this\-: \begin{DoxyVerb}<<move Sally exit>>
+In \hyperlink{a00026}{Yarn}, you can create {\itshape commands} that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this\-: \begin{DoxyVerb}<<move Sally exit>>
 \end{DoxyVerb}
 
 
@@ -69,7 +69,7 @@ public void MoveCharacter(string destinationName) {
 \end{DoxyVerb}
 
 
-When \hyperlink{a00031}{Yarn} encounters a command that contains two or more words, it looks for a game object with the same name as the second word (\char`\"{}\-Sally\char`\"{}, in the above example), and then searches that object's scripts for any method that has a {\ttfamily Yarn\-Command} with the same name as the first word (in this case, \char`\"{}move\char`\"{}).
+When \hyperlink{a00026}{Yarn} encounters a command that contains two or more words, it looks for a game object with the same name as the second word (\char`\"{}\-Sally\char`\"{}, in the above example), and then searches that object's scripts for any method that has a {\ttfamily Yarn\-Command} with the same name as the first word (in this case, \char`\"{}move\char`\"{}).
 
 Any further words in the command are passed as string parameters to the method (\char`\"{}exit\char`\"{}, in this case, which is used as the {\ttfamily destination\-Name} parameter)
 

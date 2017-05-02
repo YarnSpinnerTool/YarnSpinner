@@ -1,133 +1,1253 @@
-\hypertarget{a00046}{\section{Csv\-Helper.\-Csv\-Helper\-Exception Class Reference}
-\label{a00046}\index{Csv\-Helper.\-Csv\-Helper\-Exception@{Csv\-Helper.\-Csv\-Helper\-Exception}}
+\hypertarget{a00046}{\section{Json.\-Json\-Parser Class Reference}
+\label{a00046}\index{Json.\-Json\-Parser@{Json.\-Json\-Parser}}
 }
 
 
-Represents errors that occur in \hyperlink{a00284}{Csv\-Helper}.  
+A parser for J\-S\-O\-N. \begin{DoxySeeAlso}{See Also}
+http\-://json.\-org
+
+
+\end{DoxySeeAlso}
+ 
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
+Collaboration diagram for Json.\-Json\-Parser\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{db/ddc/a00353}
+\includegraphics[width=210pt]{d9/dd0/a00191}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Csv\-Helper\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=236pt]{d0/dc3/a00354}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00046_a83571967535529f42bb42b33684e4631}{Csv\-Helper\-Exception} ()
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class. \end{DoxyCompactList}\item 
-\hyperlink{a00046_a47cbed4fb25c42fd548282b3f8652290}{Csv\-Helper\-Exception} (string message)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
-\hyperlink{a00046_ac97c52774cb49f7e5d855b7586cdfa1d}{Csv\-Helper\-Exception} (string message, Exception inner\-Exception)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
-\hyperlink{a00046_a1194d6917d1b52a8e15e3701a6e8264d}{Csv\-Helper\-Exception} (Serialization\-Info info, Streaming\-Context context)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static string \hyperlink{a00046_a49728c8da4904f2fc8b2d9a97cd93f2f}{Serialize$<$ T $>$} (T instance)
+\item 
+static object \hyperlink{a00046_a7a247a376140fc0937c0b6ddeaa19d2c}{Deserialize} (string json, Type type)
+\item 
+static T \hyperlink{a00046_a17292a3090b1cc75139caa4fd1986474}{Deserialize$<$ T $>$} (string json)
+\item 
+static I\-Dictionary$<$ string, \\*
+object $>$ \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{From\-Json} (string json)
+\item 
+static I\-Dictionary$<$ string, \\*
+object $>$ \hyperlink{a00046_a6c8678fcf08beb342f2a9b722870ac1b}{From\-Json} (string json, out \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} type)
+\item 
+static string \hyperlink{a00046_a4c5b7984378951474675cccdd6bde72c}{To\-Json} (I\-Dictionary$<$ string, object $>$ bag)
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static I\-Dictionary$<$ string, \\*
+object $>$ \hyperlink{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}{Get\-Bag\-For\-Object} (Type type, object instance)
+\item 
+static I\-Dictionary$<$ string, \\*
+object $>$ \hyperlink{a00046_a9ce835f1af37bfb8f65176a0d3185d69}{Get\-Bag\-For\-Object$<$ T $>$} (T instance)
+\item 
+static Dictionary$<$ string, object $>$ \hyperlink{a00046_a9f62c2e79312364d7161b13a64b89c8e}{Initialize\-Bag} ()
+\item 
+static I\-Enumerable$<$ Property\-Info $>$ \hyperlink{a00046_ab61372226682d7b1d17f54345dfd17b5}{Prepare\-Instance} (out object instance, Type type)
+\item 
+static I\-Enumerable$<$ Property\-Info $>$ \hyperlink{a00046_a48baaa0a217d05b48e049a4c5f2784a9}{Prepare\-Instance$<$ T $>$} (out T instance)
+\item 
+static void \hyperlink{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}{Cache\-Reflection} (Type item)
+\item 
+static void \hyperlink{a00046_a1ce11382c35fcbc0902e73deec3e617b}{Serialize\-Item} (String\-Builder sb, object item)
+\item 
+static void \hyperlink{a00046_a6874a321c86a87ddeafb25e1f5b37a42}{Serialize\-Date\-Time} (String\-Builder sb)
+\item 
+static void \hyperlink{a00046_a38298480de46941b764cbbae3ec00ac0}{Serialize\-Array} (object item, String\-Builder sb)
+\item 
+static void \hyperlink{a00046_a2a63df270c38b1c9ce7de54b268cdc4f}{Serialize\-Object} (object item, String\-Builder sb)
+\item 
+static void \hyperlink{a00046_a9322c1bf740844d26a732c091004063f}{Serialize\-String} (String\-Builder sb, object item)
+\item 
+static string \hyperlink{a00046_a03595e6253700fbdb86440704e1f2e66}{Get\-Unicode} (int code)
+\item 
+static Key\-Value\-Pair$<$ string, \\*
+object $>$ \hyperlink{a00046_a59a67256e67e7a4edd4c9905ecd1aec8}{Parse\-Pair} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static bool \hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{Parse\-Token} (\hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, I\-List$<$ char $>$ data, ref int index)
+\item 
+static string \hyperlink{a00046_a7e18de40259814b5ab9d0100bdeab4fe}{Parse\-String} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static object \hyperlink{a00046_aa84c3b3d395c5990f202ef55321dfa1a}{Parse\-Value} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static I\-Dictionary$<$ string, \\*
+object $>$ \hyperlink{a00046_a49577a43cf31e147b6d46ea28f7f617e}{Parse\-Object} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static I\-Enumerable$<$ object $>$ \hyperlink{a00046_ae0b95fd2671c34c64b6a2c6275d69111}{Parse\-Array} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static object \hyperlink{a00046_ae0f7085f6d03e4e5cfcba42467cbd0b8}{Parse\-Number} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{Next\-Token} (I\-List$<$ char $>$ data, ref int index)
+\item 
+static \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{Get\-Token\-From\-Symbol} (char symbol)
+\item 
+static \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a5600fe22f246bcf8f7488801f0c9724d}{Get\-Token\-From\-Symbol} (char symbol, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token)
+\item 
+static void \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{Ignore\-Whitespace} (I\-List$<$ char $>$ data, ref int index, char symbol)
+\item 
+static \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a8e00ac0c0d9380bc5d07d1fd8982a0df}{Ignore\-Whitespace} (I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, char symbol)
+\item 
+static void \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{Get\-Keyword} (string word, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} target, I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} result)
+\item 
+static string \hyperlink{a00046_a40c3e9c7c786e6bd8577d2e00bdcea73}{Base\-Convert} (int input, char\mbox{[}$\,$\mbox{]} char\-Set, int min\-Length)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00046_a1544c040c7ea06b664fdc4860a2f9bf8}{Json\-Parser} ()
+\item 
+static void \hyperlink{a00046_a67dcda2f39de7721d92a69dc4191f664}{Deserialize\-Impl} (I\-Enumerable$<$ Property\-Info $>$ map, I\-Dictionary$<$ string, object $>$ bag, object instance)
+\item 
+static void \hyperlink{a00046_a2630a01783ba0cda2e4e29c922951a66}{Deserialize\-Impl$<$ T $>$} (I\-Enumerable$<$ Property\-Info $>$ map, I\-Dictionary$<$ string, object $>$ bag, T instance)
+\item 
+static void \hyperlink{a00046_a551f727b71d49c59cd7a101790764e5b}{Deserialize\-Type} (I\-Enumerable$<$ Property\-Info $>$ map, I\-Dictionary$<$ string, object $>$ bag, object instance)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Number\-Styles \hyperlink{a00046_ad05db33540abe9864b13b6b5c637a354}{Json\-Numbers} = Number\-Styles.\-Float
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly I\-Dictionary\\*
+$<$ Type, Property\-Info\mbox{[}$\,$\mbox{]}$>$ \hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\-\_\-cache}
+\item 
+static readonly char\mbox{[}$\,$\mbox{]} \hyperlink{a00046_a9d97f297996ac634f58dd842ebc00171}{\-\_\-base16}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represents errors that occur in \hyperlink{a00284}{Csv\-Helper}. 
+A parser for J\-S\-O\-N. \begin{DoxySeeAlso}{See Also}
+http\-://json.\-org
+
+
+\end{DoxySeeAlso}
+
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00046_a83571967535529f42bb42b33684e4631}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
-\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
-\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\hypertarget{a00046_a1544c040c7ea06b664fdc4860a2f9bf8}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Json\-Parser@{Json\-Parser}}
+\index{Json\-Parser@{Json\-Parser}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Json\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}static Json.\-Json\-Parser.\-Json\-Parser (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00046_a83571967535529f42bb42b33684e4631}
-
-
-Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class. 
-
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_a1544c040c7ea06b664fdc4860a2f9bf8}
 
 \begin{DoxyCode}
-23 \{\}
+150         \{
+151             \hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\_cache} = \textcolor{keyword}{new} Dictionary<Type, PropertyInfo[]>(0);
+152         \}
 \end{DoxyCode}
-\hypertarget{a00046_a47cbed4fb25c42fd548282b3f8652290}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
-\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
-\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00046_a40c3e9c7c786e6bd8577d2e00bdcea73}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Base\-Convert@{Base\-Convert}}
+\index{Base\-Convert@{Base\-Convert}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Base\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}static string Json.\-Json\-Parser.\-Base\-Convert (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{int}]{input, }
+\item[{char\mbox{[}$\,$\mbox{]}}]{char\-Set, }
+\item[{int}]{min\-Length}
 \end{DoxyParamCaption}
-)}}\label{a00046_a47cbed4fb25c42fd548282b3f8652290}
-
-
-Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with a specified error message. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The message that describes the error.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a40c3e9c7c786e6bd8577d2e00bdcea73}
 
 \begin{DoxyCode}
-30 : base( message ) \{\}
+926         \{
+927             var sb = \textcolor{keyword}{new} StringBuilder();
+928             var @base = charSet.Length;
+929 
+930             \textcolor{keywordflow}{while} (input > 0)
+931             \{
+932                 var index = input % @base;
+933                 sb.Insert(0, \textcolor{keyword}{new}[] \{ charSet[index] \});
+934                 input = input / @base;
+935             \}
+936 
+937             \textcolor{keywordflow}{while} (sb.Length < minLength)
+938             \{
+939                 sb.Insert(0, \textcolor{stringliteral}{"0"});
+940             \}
+941 
+942             \textcolor{keywordflow}{return} sb.ToString();
+943         \}
 \end{DoxyCode}
-\hypertarget{a00046_ac97c52774cb49f7e5d855b7586cdfa1d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
-\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
-\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\hypertarget{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Cache\-Reflection@{Cache\-Reflection}}
+\index{Cache\-Reflection@{Cache\-Reflection}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Cache\-Reflection}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Cache\-Reflection (
 \begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{Exception}]{inner\-Exception}
+\item[{Type}]{item}
 \end{DoxyParamCaption}
-)}}\label{a00046_ac97c52774cb49f7e5d855b7586cdfa1d}
-
-
-Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em message} & The error message that explains the reason for the exception.\\
-\hline
-{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}
 
 \begin{DoxyCode}
-39 : base( message, innerException ) \{ \}
+377         \{
+378             \textcolor{keywordflow}{if} (\hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\_cache}.ContainsKey(item))
+379             \{
+380                 \textcolor{keywordflow}{return};
+381             \}
+382 
+383 \textcolor{preprocessor}{            #if PCL}
+384 \textcolor{preprocessor}{}            var properties = item.GetRuntimeProperties().ToArray();
+385 \textcolor{preprocessor}{            #else}
+386 \textcolor{preprocessor}{}            var properties = item.GetProperties(
+387                 BindingFlags.Public | BindingFlags.Instance
+388                 );
+389 \textcolor{preprocessor}{            #endif}
+390 \textcolor{preprocessor}{}
+391             \_cache.Add(item, properties);
+392         \}
 \end{DoxyCode}
-\hypertarget{a00046_a1194d6917d1b52a8e15e3701a6e8264d}{\index{Csv\-Helper\-::\-Csv\-Helper\-Exception@{Csv\-Helper\-::\-Csv\-Helper\-Exception}!Csv\-Helper\-Exception@{Csv\-Helper\-Exception}}
-\index{Csv\-Helper\-Exception@{Csv\-Helper\-Exception}!CsvHelper::CsvHelperException@{Csv\-Helper\-::\-Csv\-Helper\-Exception}}
-\subsubsection[{Csv\-Helper\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Helper\-Exception.\-Csv\-Helper\-Exception (
+\hypertarget{a00046_a7a247a376140fc0937c0b6ddeaa19d2c}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Deserialize@{Deserialize}}
+\index{Deserialize@{Deserialize}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Deserialize}]{\setlength{\rightskip}{0pt plus 5cm}static object Json.\-Json\-Parser.\-Deserialize (
 \begin{DoxyParamCaption}
-\item[{Serialization\-Info}]{info, }
-\item[{Streaming\-Context}]{context}
+\item[{string}]{json, }
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00046_a1194d6917d1b52a8e15e3701a6e8264d}
-
-
-Initializes a new instance of the \hyperlink{a00046}{Csv\-Helper\-Exception} class with serialized data. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
-\hline
-{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
-\hline
-\end{DoxyParams}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a7a247a376140fc0937c0b6ddeaa19d2c}
 
 \begin{DoxyCode}
-48 : base( info, context ) \{\}
+162         \{
+163             \textcolor{keywordtype}{object} instance;
+164             var map = \hyperlink{a00046_ab61372226682d7b1d17f54345dfd17b5}{PrepareInstance}(out instance, type);
+165             var bag = \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{FromJson}(json);
+166 
+167             \hyperlink{a00046_a67dcda2f39de7721d92a69dc4191f664}{DeserializeImpl}(map, bag, instance);
+168             \textcolor{keywordflow}{return} instance;
+169         \}
 \end{DoxyCode}
+\hypertarget{a00046_a17292a3090b1cc75139caa4fd1986474}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Deserialize$<$ T $>$@{Deserialize$<$ T $>$}}
+\index{Deserialize$<$ T $>$@{Deserialize$<$ T $>$}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Deserialize$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T {\bf Json.\-Json\-Parser.\-Deserialize}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{string}]{json}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a17292a3090b1cc75139caa4fd1986474}
+
+\begin{DoxyCode}
+172         \{
+173             T instance;
+174             var map = \hyperlink{a00046_ab61372226682d7b1d17f54345dfd17b5}{PrepareInstance}(out instance);
+175             var bag = \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{FromJson}(json);
+176 
+177             \hyperlink{a00046_a67dcda2f39de7721d92a69dc4191f664}{DeserializeImpl}(map, bag, instance);
+178             \textcolor{keywordflow}{return} instance;
+179         \}
+\end{DoxyCode}
+\hypertarget{a00046_a67dcda2f39de7721d92a69dc4191f664}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Deserialize\-Impl@{Deserialize\-Impl}}
+\index{Deserialize\-Impl@{Deserialize\-Impl}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Deserialize\-Impl}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Deserialize\-Impl (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ Property\-Info $>$}]{map, }
+\item[{I\-Dictionary$<$ string, object $>$}]{bag, }
+\item[{object}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_a67dcda2f39de7721d92a69dc4191f664}
+
+\begin{DoxyCode}
+207         \{
+208             \hyperlink{a00046_a551f727b71d49c59cd7a101790764e5b}{DeserializeType}(map, bag, instance);
+209         \}
+\end{DoxyCode}
+\hypertarget{a00046_a2630a01783ba0cda2e4e29c922951a66}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Deserialize\-Impl$<$ T $>$@{Deserialize\-Impl$<$ T $>$}}
+\index{Deserialize\-Impl$<$ T $>$@{Deserialize\-Impl$<$ T $>$}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Deserialize\-Impl$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static void {\bf Json.\-Json\-Parser.\-Deserialize\-Impl}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ Property\-Info $>$}]{map, }
+\item[{I\-Dictionary$<$ string, object $>$}]{bag, }
+\item[{T}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_a2630a01783ba0cda2e4e29c922951a66}
+
+\begin{DoxyCode}
+214         \{
+215             \hyperlink{a00046_a551f727b71d49c59cd7a101790764e5b}{DeserializeType}(map, bag, instance);
+216         \}
+\end{DoxyCode}
+\hypertarget{a00046_a551f727b71d49c59cd7a101790764e5b}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Deserialize\-Type@{Deserialize\-Type}}
+\index{Deserialize\-Type@{Deserialize\-Type}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Deserialize\-Type}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Deserialize\-Type (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ Property\-Info $>$}]{map, }
+\item[{I\-Dictionary$<$ string, object $>$}]{bag, }
+\item[{object}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_a551f727b71d49c59cd7a101790764e5b}
+
+\begin{DoxyCode}
+219         \{
+220             \textcolor{keywordflow}{foreach} (var info \textcolor{keywordflow}{in} map)
+221             \{
+222                 var key = info.Name;
+223                 \textcolor{keywordflow}{if} (!bag.ContainsKey(key))
+224                 \{
+225                     key = info.Name.Replace(\textcolor{stringliteral}{"\_"}, \textcolor{stringliteral}{""});
+226                     \textcolor{keywordflow}{if} (!bag.ContainsKey(key))
+227                     \{
+228                         key = info.Name.Replace(\textcolor{stringliteral}{"-"}, \textcolor{stringliteral}{""});
+229                         \textcolor{keywordflow}{if} (!bag.ContainsKey(key))
+230                         \{
+231                             \textcolor{keywordflow}{continue};
+232                         \}
+233                     \}
+234                 \}
+235 
+236                 var value = bag[key];
+237                 \textcolor{keywordflow}{if} (info.PropertyType == typeof(DateTime))
+238                 \{
+239                     \textcolor{comment}{// Dates (Not part of spec, using lossy epoch convention)}
+240                     var seconds = Int32.Parse(
+241                         value.ToString(), NumberStyles.Number, CultureInfo.InvariantCulture
+242                         );
+243                     var time = \textcolor{keyword}{new} DateTime(1970, 1, 1).ToUniversalTime();
+244                     value = time.AddSeconds(seconds);
+245                 \}
+246 
+247                 \textcolor{keywordflow}{if} (info.PropertyType == typeof(byte[]))
+248                 \{
+249                     var bytes = (List<object>)value;
+250                     value = bytes.Select(symbol => Convert.ToByte(symbol)).ToArray();
+251                 \}
+252 
+253                 \textcolor{keywordflow}{if} (info.PropertyType == typeof(\textcolor{keywordtype}{double}))
+254                 \{
+255                     value = Convert.ToDouble(value);
+256                 \}
+257 
+258                 \textcolor{keywordflow}{if} (info.PropertyType == typeof(\textcolor{keywordtype}{int}))
+259                 \{
+260                     value = Convert.ToInt32(value);
+261                 \}
+262 
+263                 \textcolor{keywordflow}{if} (info.PropertyType == typeof(\textcolor{keywordtype}{long}))
+264                 \{
+265                     value = Convert.ToInt64(value);
+266                 \}
+267 
+268                 info.SetValue(instance, value, null);
+269             \}
+270         \}
+\end{DoxyCode}
+\hypertarget{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!From\-Json@{From\-Json}}
+\index{From\-Json@{From\-Json}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{From\-Json}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Dictionary$<$string, object$>$ Json.\-Json\-Parser.\-From\-Json (
+\begin{DoxyParamCaption}
+\item[{string}]{json}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}
+
+\begin{DoxyCode}
+273         \{
+274             \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken} type;
+275 
+276             var result = \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{FromJson}(json, out type);
+277 
+278             \textcolor{keywordflow}{switch} (type)
+279             \{
+280                 \textcolor{keywordflow}{case} JsonToken.LeftBrace:
+281                     var @\textcolor{keywordtype}{object} = (IDictionary<string, object>)result.Single().Value;
+282                     \textcolor{keywordflow}{return} @object;
+283             \}
+284 
+285             \textcolor{keywordflow}{return} result;
+286         \}
+\end{DoxyCode}
+\hypertarget{a00046_a6c8678fcf08beb342f2a9b722870ac1b}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!From\-Json@{From\-Json}}
+\index{From\-Json@{From\-Json}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{From\-Json}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Dictionary$<$string, object$>$ Json.\-Json\-Parser.\-From\-Json (
+\begin{DoxyParamCaption}
+\item[{string}]{json, }
+\item[{out {\bf Json\-Token}}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a6c8678fcf08beb342f2a9b722870ac1b}
+
+\begin{DoxyCode}
+289         \{
+290             var data = json.ToCharArray();
+291             var index = 0;
+292 
+293             \textcolor{comment}{// Rewind index for first token}
+294             var token = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+295             \textcolor{keywordflow}{switch} (token)
+296             \{
+297                 \textcolor{keywordflow}{case} JsonToken.LeftBrace:   \textcolor{comment}{// Start Object}
+298                 \textcolor{keywordflow}{case} JsonToken.LeftBracket: \textcolor{comment}{// Start Array}
+299                     index--;
+300                     type = token;
+301                     \textcolor{keywordflow}{break};
+302                 \textcolor{keywordflow}{default}:
+303                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(\textcolor{stringliteral}{"JSON must begin with an object or array"});
+304             \}
+305 
+306             \textcolor{keywordflow}{return} \hyperlink{a00046_a49577a43cf31e147b6d46ea28f7f617e}{ParseObject}(data, ref index);
+307         \}
+\end{DoxyCode}
+\hypertarget{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Bag\-For\-Object@{Get\-Bag\-For\-Object}}
+\index{Get\-Bag\-For\-Object@{Get\-Bag\-For\-Object}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Bag\-For\-Object}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Dictionary$<$string, object$>$ Json.\-Json\-Parser.\-Get\-Bag\-For\-Object (
+\begin{DoxyParamCaption}
+\item[{Type}]{type, }
+\item[{object}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}
+
+\begin{DoxyCode}
+319         \{
+320             \hyperlink{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}{CacheReflection}(type);
+321 
+322             \textcolor{keywordflow}{if} (type.FullName == null)
+323             \{
+324                 \textcolor{keywordflow}{return} null;
+325             \}
+326 
+327             var anonymous = type.FullName.Contains(\textcolor{stringliteral}{"\_\_AnonymousType"});
+328             var map = \hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\_cache}[type];
+329 
+330             IDictionary<string, object> bag = \hyperlink{a00046_a9f62c2e79312364d7161b13a64b89c8e}{InitializeBag}();
+331             \textcolor{keywordflow}{foreach} (var info \textcolor{keywordflow}{in} map)
+332             \{
+333                 var readWrite = (info.CanWrite && info.CanRead);
+334                 \textcolor{keywordflow}{if} (!readWrite && !anonymous)
+335                 \{
+336                     \textcolor{keywordflow}{continue};
+337                 \}
+338                 var value = info.GetValue(instance, null);
+339                 bag.Add(info.Name, value);
+340             \}
+341 
+342             \textcolor{keywordflow}{return} bag;
+343         \}
+\end{DoxyCode}
+\hypertarget{a00046_a9ce835f1af37bfb8f65176a0d3185d69}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Bag\-For\-Object$<$ T $>$@{Get\-Bag\-For\-Object$<$ T $>$}}
+\index{Get\-Bag\-For\-Object$<$ T $>$@{Get\-Bag\-For\-Object$<$ T $>$}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Bag\-For\-Object$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Dictionary$<$string, object$>$ {\bf Json.\-Json\-Parser.\-Get\-Bag\-For\-Object}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a9ce835f1af37bfb8f65176a0d3185d69}
+
+\begin{DoxyCode}
+346         \{
+347             \textcolor{keywordflow}{return} \hyperlink{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}{GetBagForObject}(typeof(T), instance);
+348         \}
+\end{DoxyCode}
+\hypertarget{a00046_a01fac43195f80e1e8660240b1d1104cd}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Keyword@{Get\-Keyword}}
+\index{Get\-Keyword@{Get\-Keyword}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Keyword}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Get\-Keyword (
+\begin{DoxyParamCaption}
+\item[{string}]{word, }
+\item[{{\bf Json\-Token}}]{target, }
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index, }
+\item[{ref {\bf Json\-Token}}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a01fac43195f80e1e8660240b1d1104cd}
+
+\begin{DoxyCode}
+906         \{
+907             var buffer = data.Count - index;
+908             \textcolor{keywordflow}{if} (buffer < word.Length)
+909             \{
+910                 \textcolor{keywordflow}{return};
+911             \}
+912 
+913             \textcolor{keywordflow}{for} (var i = 0; i < word.Length; i++)
+914             \{
+915                 \textcolor{keywordflow}{if} (data[index + i] != word[i])
+916                 \{
+917                     \textcolor{keywordflow}{return};
+918                 \}
+919             \}
+920 
+921             result = target;
+922             index += word.Length;
+923         \}
+\end{DoxyCode}
+\hypertarget{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Token\-From\-Symbol@{Get\-Token\-From\-Symbol}}
+\index{Get\-Token\-From\-Symbol@{Get\-Token\-From\-Symbol}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Token\-From\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Json\-Token} Json.\-Json\-Parser.\-Get\-Token\-From\-Symbol (
+\begin{DoxyParamCaption}
+\item[{char}]{symbol}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_afe1d461122e927aae8a2cb0c7269c3c6}
+
+\begin{DoxyCode}
+825         \{
+826             \textcolor{keywordflow}{return} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{GetTokenFromSymbol}(symbol, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Unknown);
+827         \}
+\end{DoxyCode}
+\hypertarget{a00046_a5600fe22f246bcf8f7488801f0c9724d}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Token\-From\-Symbol@{Get\-Token\-From\-Symbol}}
+\index{Get\-Token\-From\-Symbol@{Get\-Token\-From\-Symbol}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Token\-From\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Json\-Token} Json.\-Json\-Parser.\-Get\-Token\-From\-Symbol (
+\begin{DoxyParamCaption}
+\item[{char}]{symbol, }
+\item[{{\bf Json\-Token}}]{token}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a5600fe22f246bcf8f7488801f0c9724d}
+
+\begin{DoxyCode}
+830         \{
+831             \textcolor{keywordflow}{switch} (symbol)
+832             \{
+833                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\{'}:
+834                     token = JsonToken.LeftBrace;
+835                     \textcolor{keywordflow}{break};
+836                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\}'}:
+837                     token = JsonToken.RightBrace;
+838                     \textcolor{keywordflow}{break};
+839                 \textcolor{keywordflow}{case} \textcolor{charliteral}{':'}:
+840                     token = JsonToken.Colon;
+841                     \textcolor{keywordflow}{break};
+842                 \textcolor{keywordflow}{case} \textcolor{charliteral}{','}:
+843                     token = JsonToken.Comma;
+844                     \textcolor{keywordflow}{break};
+845                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'['}:
+846                     token = JsonToken.LeftBracket;
+847                     \textcolor{keywordflow}{break};
+848                 \textcolor{keywordflow}{case} \textcolor{charliteral}{']'}:
+849                     token = JsonToken.RightBracket;
+850                     \textcolor{keywordflow}{break};
+851                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'"'}:
+852                     token = JsonToken.String;
+853                     \textcolor{keywordflow}{break};
+854                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:
+855                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:
+856                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:
+857                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:
+858                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}:
+859                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'5'}:
+860                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'6'}:
+861                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'7'}:
+862                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'8'}:
+863                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'9'}:
+864                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'.'}:
+865                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'e'}:
+866                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}:
+867                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:
+868                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'-'}:
+869                     token = JsonToken.Number;
+870                     \textcolor{keywordflow}{break};
+871             \}
+872             \textcolor{keywordflow}{return} token;
+873         \}
+\end{DoxyCode}
+\hypertarget{a00046_a03595e6253700fbdb86440704e1f2e66}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Unicode@{Get\-Unicode}}
+\index{Get\-Unicode@{Get\-Unicode}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Get\-Unicode}]{\setlength{\rightskip}{0pt plus 5cm}static string Json.\-Json\-Parser.\-Get\-Unicode (
+\begin{DoxyParamCaption}
+\item[{int}]{code}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a03595e6253700fbdb86440704e1f2e66}
+
+\begin{DoxyCode}
+517         \{
+518             \textcolor{comment}{// http://unicode.org/roadmaps/bmp/}
+519             var basicLatin = code >= 32 && code <= 126;
+520             \textcolor{keywordflow}{if} (basicLatin)
+521             \{
+522                 var value = (char)code;
+523                 \textcolor{keywordflow}{return} value == \textcolor{charliteral}{'"'} ? \textcolor{stringliteral}{@"\(\backslash\)"""} : \textcolor{keyword}{new} string(value, 1);
+524             \}
+525 
+526             var unicode = \hyperlink{a00046_a40c3e9c7c786e6bd8577d2e00bdcea73}{BaseConvert}(code, \hyperlink{a00046_a9d97f297996ac634f58dd842ebc00171}{\_base16}, 4);
+527             \textcolor{keywordflow}{return} string.Concat(\textcolor{stringliteral}{"\(\backslash\)\(\backslash\)u"}, unicode);
+528         \}
+\end{DoxyCode}
+\hypertarget{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Ignore\-Whitespace@{Ignore\-Whitespace}}
+\index{Ignore\-Whitespace@{Ignore\-Whitespace}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Ignore\-Whitespace}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Ignore\-Whitespace (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index, }
+\item[{char}]{symbol}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}
+
+\begin{DoxyCode}
+876         \{
+877             var token = JsonToken.Unknown;
+878             \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{IgnoreWhitespace}(data, ref index, ref token, symbol);
+879             \textcolor{keywordflow}{return};
+880         \}
+\end{DoxyCode}
+\hypertarget{a00046_a8e00ac0c0d9380bc5d07d1fd8982a0df}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Ignore\-Whitespace@{Ignore\-Whitespace}}
+\index{Ignore\-Whitespace@{Ignore\-Whitespace}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Ignore\-Whitespace}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Json\-Token} Json.\-Json\-Parser.\-Ignore\-Whitespace (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index, }
+\item[{ref {\bf Json\-Token}}]{token, }
+\item[{char}]{symbol}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a8e00ac0c0d9380bc5d07d1fd8982a0df}
+
+\begin{DoxyCode}
+883         \{
+884             \textcolor{keywordflow}{switch} (symbol)
+885             \{
+886                 \textcolor{keywordflow}{case} \textcolor{charliteral}{' '}:
+887                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}:
+888                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:
+889                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)b'}:
+890                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)f'}:
+891                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)n'}:
+892                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)r'}:
+893                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)t'}:
+894                     index++;
+895                     token = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+896                     \textcolor{keywordflow}{break};
+897             \}
+898             \textcolor{keywordflow}{return} token;
+899         \}
+\end{DoxyCode}
+\hypertarget{a00046_a9f62c2e79312364d7161b13a64b89c8e}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Initialize\-Bag@{Initialize\-Bag}}
+\index{Initialize\-Bag@{Initialize\-Bag}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Initialize\-Bag}]{\setlength{\rightskip}{0pt plus 5cm}static Dictionary$<$string, object$>$ Json.\-Json\-Parser.\-Initialize\-Bag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a9f62c2e79312364d7161b13a64b89c8e}
+
+\begin{DoxyCode}
+351         \{
+352             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dictionary<string, object>(
+353                 0, StringComparer.OrdinalIgnoreCase
+354                 );
+355         \}
+\end{DoxyCode}
+\hypertarget{a00046_a1d2daab9b052b186da7a2b6711be5803}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Next\-Token@{Next\-Token}}
+\index{Next\-Token@{Next\-Token}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Next\-Token}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Json\-Token} Json.\-Json\-Parser.\-Next\-Token (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a1d2daab9b052b186da7a2b6711be5803}
+
+\begin{DoxyCode}
+812         \{
+813             var symbol = data[index];
+814             var token = \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{GetTokenFromSymbol}(symbol);
+815             token = \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{IgnoreWhitespace}(data, ref index, ref token, symbol);
+816 
+817             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"true"}, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.True, data, ref index, ref token);
+818             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"false"}, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.False, data, ref index, ref token);
+819             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"null"}, \hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Null, data, ref index, ref token);
+820 
+821             \textcolor{keywordflow}{return} token;
+822         \}
+\end{DoxyCode}
+\hypertarget{a00046_ae0b95fd2671c34c64b6a2c6275d69111}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Array@{Parse\-Array}}
+\index{Parse\-Array@{Parse\-Array}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Array}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$object$>$ Json.\-Json\-Parser.\-Parse\-Array (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_ae0b95fd2671c34c64b6a2c6275d69111}
+
+\begin{DoxyCode}
+729         \{
+730             var result = \textcolor{keyword}{new} List<object>();
+731 
+732             index++; \textcolor{comment}{// Skip first bracket}
+733             \textcolor{keywordflow}{while} (index < data.Count - 1)
+734             \{
+735                 var token = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+736                 \textcolor{keywordflow}{switch} (token)
+737                 \{
+738                     \textcolor{comment}{// End Tokens}
+739                     \textcolor{keywordflow}{case} JsonToken.Unknown:             \textcolor{comment}{// Bad Data}
+740                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(\textcolor{keywordtype}{string}.Format(
+741                             \textcolor{stringliteral}{"Invalid JSON found while parsing an array at index \{0\}."}, index
+742                             ));
+743                     \textcolor{keywordflow}{case} JsonToken.RightBracket:        \textcolor{comment}{// End Array}
+744                         index++;
+745                         \textcolor{keywordflow}{return} result;
+746                     \textcolor{comment}{// Skip Tokens}
+747                     \textcolor{keywordflow}{case} JsonToken.Comma:               \textcolor{comment}{// Separator}
+748                     \textcolor{keywordflow}{case} JsonToken.RightBrace:          \textcolor{comment}{// End Object}
+749                     \textcolor{keywordflow}{case} JsonToken.Colon:               \textcolor{comment}{// Separator}
+750                         index++;
+751                         \textcolor{keywordflow}{break};
+752                     \textcolor{comment}{// Value Tokens}
+753                     \textcolor{keywordflow}{case} JsonToken.LeftBrace:           \textcolor{comment}{// Start Object}
+754                         var nested = \hyperlink{a00046_a49577a43cf31e147b6d46ea28f7f617e}{ParseObject}(data, ref index);
+755                         result.Add(nested);
+756                         \textcolor{keywordflow}{break};
+757                     \textcolor{keywordflow}{case} JsonToken.LeftBracket:         \textcolor{comment}{// Start Array}
+758                     \textcolor{keywordflow}{case} JsonToken.String:
+759                     \textcolor{keywordflow}{case} JsonToken.Number:
+760                     \textcolor{keywordflow}{case} JsonToken.True:
+761                     \textcolor{keywordflow}{case} JsonToken.False:
+762                     \textcolor{keywordflow}{case} JsonToken.Null:
+763                         var value = \hyperlink{a00046_aa84c3b3d395c5990f202ef55321dfa1a}{ParseValue}(data, ref index);
+764                         result.Add(value);
+765                         \textcolor{keywordflow}{break};
+766                     \textcolor{keywordflow}{default}:
+767                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+768                 \}
+769             \}
+770 
+771             \textcolor{keywordflow}{return} result;
+772         \}
+\end{DoxyCode}
+\hypertarget{a00046_ae0f7085f6d03e4e5cfcba42467cbd0b8}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Number@{Parse\-Number}}
+\index{Parse\-Number@{Parse\-Number}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Number}]{\setlength{\rightskip}{0pt plus 5cm}static object Json.\-Json\-Parser.\-Parse\-Number (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_ae0f7085f6d03e4e5cfcba42467cbd0b8}
+
+\begin{DoxyCode}
+775         \{
+776             var symbol = data[index];
+777             \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{IgnoreWhitespace}(data, ref index, symbol);
+778 
+779             var start = index;
+780             var length = 0;
+781             \textcolor{keywordflow}{while} (\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Number, data, ref index))
+782             \{
+783                 length++;
+784                 index++;
+785             \}
+786 
+787             var number = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[length];
+788             Array.Copy(data.ToArray(), start, number, 0, length);
+789 
+790             \textcolor{keywordtype}{double} result;
+791             var buffer = \textcolor{keyword}{new} string(number);
+792 \textcolor{preprocessor}{#if NETCF}
+793 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if} (!buffer.TryParse(out result))
+794             \{
+795                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(
+796                     \textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"Value '\{0\}' was not a valid JSON number"}, buffer)
+797                     );
+798             \}
+799 \textcolor{preprocessor}{#else}
+800 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if} (!\textcolor{keywordtype}{double}.TryParse(buffer, \hyperlink{a00046_ad05db33540abe9864b13b6b5c637a354}{JsonNumbers}, CultureInfo.InvariantCulture, out result))
+801             \{
+802                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(
+803                     \textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"Value '\{0\}' was not a valid JSON number"}, buffer)
+804                     );
+805             \}
+806 \textcolor{preprocessor}{#endif}
+807 \textcolor{preprocessor}{}
+808             \textcolor{keywordflow}{return} result;
+809         \}
+\end{DoxyCode}
+\hypertarget{a00046_a49577a43cf31e147b6d46ea28f7f617e}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Object@{Parse\-Object}}
+\index{Parse\-Object@{Parse\-Object}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Object}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Dictionary$<$string, object$>$ Json.\-Json\-Parser.\-Parse\-Object (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a49577a43cf31e147b6d46ea28f7f617e}
+
+\begin{DoxyCode}
+671         \{
+672             var result = \hyperlink{a00046_a9f62c2e79312364d7161b13a64b89c8e}{InitializeBag}();
+673 
+674             index++; \textcolor{comment}{// Skip first token}
+675 
+676             \textcolor{keywordflow}{while} (index < data.Count - 1)
+677             \{
+678                 var token = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+679                 \textcolor{keywordflow}{switch} (token)
+680                 \{
+681                     \textcolor{comment}{// End Tokens}
+682                     \textcolor{keywordflow}{case} JsonToken.Unknown:             \textcolor{comment}{// Bad Data}
+683                     \textcolor{keywordflow}{case} JsonToken.True:
+684                     \textcolor{keywordflow}{case} JsonToken.False:
+685                     \textcolor{keywordflow}{case} JsonToken.Null:
+686                     \textcolor{keywordflow}{case} JsonToken.Colon:
+687                     \textcolor{keywordflow}{case} JsonToken.RightBracket:
+688                     \textcolor{keywordflow}{case} JsonToken.Number:
+689                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(\textcolor{keywordtype}{string}.Format(
+690                             \textcolor{stringliteral}{"Invalid JSON found while parsing an object at index \{0\}."}, index
+691                             ));
+692                     \textcolor{keywordflow}{case} JsonToken.RightBrace:          \textcolor{comment}{// End Object}
+693                         index++;
+694                         \textcolor{keywordflow}{return} result;
+695                     \textcolor{comment}{// Skip Tokens}
+696                     \textcolor{keywordflow}{case} JsonToken.Comma:
+697                         index++;
+698                         \textcolor{keywordflow}{break};
+699                     \textcolor{comment}{// Start Tokens}
+700                     \textcolor{keywordflow}{case} JsonToken.LeftBrace:           \textcolor{comment}{// Start Object}
+701                         var @\textcolor{keywordtype}{object} = \hyperlink{a00046_a49577a43cf31e147b6d46ea28f7f617e}{ParseObject}(data, ref index);
+702                         \textcolor{keywordflow}{if} (@\textcolor{keywordtype}{object} != null)
+703                         \{
+704                             result.Add(string.Concat(\textcolor{stringliteral}{"object"}, result.Count), @\textcolor{keywordtype}{object});
+705                         \}
+706                         index++;
+707                         \textcolor{keywordflow}{break};
+708                     \textcolor{keywordflow}{case} JsonToken.LeftBracket:         \textcolor{comment}{// Start Array}
+709                         var @array = \hyperlink{a00046_ae0b95fd2671c34c64b6a2c6275d69111}{ParseArray}(data, ref index);
+710                         \textcolor{keywordflow}{if} (@array != null)
+711                         \{
+712                             result.Add(string.Concat(\textcolor{stringliteral}{"array"}, result.Count), @array);
+713                         \}
+714                         index++;
+715                         \textcolor{keywordflow}{break};
+716                     \textcolor{keywordflow}{case} JsonToken.String:
+717                         var pair = \hyperlink{a00046_a59a67256e67e7a4edd4c9905ecd1aec8}{ParsePair}(data, ref index);
+718                         result.Add(pair.Key, pair.Value);
+719                         \textcolor{keywordflow}{break};
+720                     \textcolor{keywordflow}{default}:
+721                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotSupportedException(\textcolor{stringliteral}{"Invalid token expected."});
+722                 \}
+723             \}
+724 
+725             \textcolor{keywordflow}{return} result;
+726         \}
+\end{DoxyCode}
+\hypertarget{a00046_a59a67256e67e7a4edd4c9905ecd1aec8}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Pair@{Parse\-Pair}}
+\index{Parse\-Pair@{Parse\-Pair}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}static Key\-Value\-Pair$<$string, object$>$ Json.\-Json\-Parser.\-Parse\-Pair (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a59a67256e67e7a4edd4c9905ecd1aec8}
+
+\begin{DoxyCode}
+531         \{
+532             var valid = \textcolor{keyword}{true};
+533 
+534             var name = \hyperlink{a00046_a7e18de40259814b5ab9d0100bdeab4fe}{ParseString}(data, ref index);
+535             \textcolor{keywordflow}{if} (name == null)
+536             \{
+537                 valid = \textcolor{keyword}{false};
+538             \}
+539 
+540             \textcolor{keywordflow}{if} (!\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00132_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Colon, data, ref index))
+541             \{
+542                 valid = \textcolor{keyword}{false};
+543             \}
+544 
+545             \textcolor{keywordflow}{if} (!valid)
+546             \{
+547                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(\textcolor{keywordtype}{string}.Format(
+548                             \textcolor{stringliteral}{"Invalid JSON found while parsing a value pair at index \{0\}."}, index
+549                             ));
+550             \}
+551 
+552             index++;
+553             var value = \hyperlink{a00046_aa84c3b3d395c5990f202ef55321dfa1a}{ParseValue}(data, ref index);
+554             \textcolor{keywordflow}{return} \textcolor{keyword}{new} KeyValuePair<string, object>(name, value);
+555         \}
+\end{DoxyCode}
+\hypertarget{a00046_a7e18de40259814b5ab9d0100bdeab4fe}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-String@{Parse\-String}}
+\index{Parse\-String@{Parse\-String}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-String}]{\setlength{\rightskip}{0pt plus 5cm}static string Json.\-Json\-Parser.\-Parse\-String (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a7e18de40259814b5ab9d0100bdeab4fe}
+
+\begin{DoxyCode}
+564         \{
+565             var symbol = data[index];
+566             \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{IgnoreWhitespace}(data, ref index, symbol);
+567             symbol = data[++index]; \textcolor{comment}{// Skip first quotation}
+568 
+569             var sb = \textcolor{keyword}{new} StringBuilder();
+570             \textcolor{keywordflow}{while} (\textcolor{keyword}{true})
+571             \{
+572                 \textcolor{keywordflow}{if} (index >= data.Count - 1)
+573                 \{
+574                     \textcolor{keywordflow}{return} null;
+575                 \}
+576                 \textcolor{keywordflow}{switch} (symbol)
+577                 \{
+578                     \textcolor{keywordflow}{case} \textcolor{charliteral}{'"'}:  \textcolor{comment}{// End String}
+579                         index++;
+580                         \textcolor{keywordflow}{return} sb.ToString();
+581                     \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}: \textcolor{comment}{// Control Character}
+582                         symbol = data[++index];
+583                         \textcolor{keywordflow}{switch} (symbol)
+584                         \{
+585                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:
+586                                 sb.Append(symbol);
+587                                 \textcolor{keywordflow}{break};
+588                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'t'}:
+589                                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)t"});
+590                                 \textcolor{keywordflow}{break};
+591                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'n'}:
+592                                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)n"});
+593                                 \textcolor{keywordflow}{break};
+594                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}:
+595                                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)\(\backslash\)"});
+596                                 \textcolor{keywordflow}{break};
+597                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'\(\backslash\)"'}:
+598                                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)""});
+599                                 \textcolor{keywordflow}{break};
+600                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:
+601                                 
+602                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'b'}:
+603                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'f'}:
+604                             
+605                                 \textcolor{keywordflow}{break};
+606                             \textcolor{keywordflow}{case} \textcolor{charliteral}{'u'}: \textcolor{comment}{// Unicode literals}
+607                                 \textcolor{keywordflow}{if} (index < data.Count - 5)
+608                                 \{
+609                                     var array = data.ToArray();
+610                                     var buffer = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[4];
+611                                     Array.Copy(array, index + 1, buffer, 0, 4);
+612 
+613                                     \textcolor{comment}{// http://msdn.microsoft.com/en-us/library/aa664669%28VS.71%29.aspx}
+614                                     \textcolor{comment}{// http://www.yoda.arachsys.com/csharp/unicode.html}
+615                                     \textcolor{comment}{// http://en.wikipedia.org/wiki/UTF-32/UCS-4}
+616                                     var hex = \textcolor{keyword}{new} string(buffer);
+617                                     var unicode = (char)Convert.ToInt32(hex, 16);
+618                                     sb.Append(unicode);
+619                                     index += 4;
+620                                 \}
+621                                 \textcolor{keywordflow}{else}
+622                                 \{
+623                                     \textcolor{keywordflow}{break};
+624                                 \}
+625                                 \textcolor{keywordflow}{break};
+626                         \}
+627                         \textcolor{keywordflow}{break};
+628                     \textcolor{keywordflow}{default}:
+629                         sb.Append(symbol);
+630                         \textcolor{keywordflow}{break};
+631                 \}
+632                 symbol = data[++index];
+633             \}
+634         \}
+\end{DoxyCode}
+\hypertarget{a00046_a8865158aad79660d9c4cc83a7c6d8544}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Token@{Parse\-Token}}
+\index{Parse\-Token@{Parse\-Token}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Token}]{\setlength{\rightskip}{0pt plus 5cm}static bool Json.\-Json\-Parser.\-Parse\-Token (
+\begin{DoxyParamCaption}
+\item[{{\bf Json\-Token}}]{token, }
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a8865158aad79660d9c4cc83a7c6d8544}
+
+\begin{DoxyCode}
+558         \{
+559             var nextToken = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+560             \textcolor{keywordflow}{return} token == nextToken;
+561         \}
+\end{DoxyCode}
+\hypertarget{a00046_aa84c3b3d395c5990f202ef55321dfa1a}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Parse\-Value@{Parse\-Value}}
+\index{Parse\-Value@{Parse\-Value}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Parse\-Value}]{\setlength{\rightskip}{0pt plus 5cm}static object Json.\-Json\-Parser.\-Parse\-Value (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ char $>$}]{data, }
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_aa84c3b3d395c5990f202ef55321dfa1a}
+
+\begin{DoxyCode}
+637         \{
+638             var token = \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{NextToken}(data, ref index);
+639             \textcolor{keywordflow}{switch} (token)
+640             \{
+641                 \textcolor{comment}{// End Tokens}
+642                 \textcolor{keywordflow}{case} JsonToken.RightBracket:    \textcolor{comment}{// Bad Data}
+643                 \textcolor{keywordflow}{case} JsonToken.RightBrace:
+644                 \textcolor{keywordflow}{case} JsonToken.Unknown:
+645                 \textcolor{keywordflow}{case} JsonToken.Colon:
+646                 \textcolor{keywordflow}{case} JsonToken.Comma:
+647                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidJsonException(\textcolor{keywordtype}{string}.Format(
+648                             \textcolor{stringliteral}{"Invalid JSON found while parsing a value at index \{0\}."}, index
+649                             ));
+650                 \textcolor{comment}{// Value Tokens}
+651                 \textcolor{keywordflow}{case} JsonToken.LeftBrace:
+652                     \textcolor{keywordflow}{return} \hyperlink{a00046_a49577a43cf31e147b6d46ea28f7f617e}{ParseObject}(data, ref index);
+653                 \textcolor{keywordflow}{case} JsonToken.LeftBracket:
+654                     \textcolor{keywordflow}{return} \hyperlink{a00046_ae0b95fd2671c34c64b6a2c6275d69111}{ParseArray}(data, ref index);
+655                 \textcolor{keywordflow}{case} JsonToken.String:
+656                     \textcolor{keywordflow}{return} \hyperlink{a00046_a7e18de40259814b5ab9d0100bdeab4fe}{ParseString}(data, ref index);
+657                 \textcolor{keywordflow}{case} JsonToken.Number:
+658                     \textcolor{keywordflow}{return} \hyperlink{a00046_ae0f7085f6d03e4e5cfcba42467cbd0b8}{ParseNumber}(data, ref index);
+659                 \textcolor{keywordflow}{case} JsonToken.True:
+660                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+661                 \textcolor{keywordflow}{case} JsonToken.False:
+662                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+663                 \textcolor{keywordflow}{case} JsonToken.Null:
+664                     \textcolor{keywordflow}{return} null;
+665                 \textcolor{keywordflow}{default}:
+666                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+667             \}
+668         \}
+\end{DoxyCode}
+\hypertarget{a00046_ab61372226682d7b1d17f54345dfd17b5}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Prepare\-Instance@{Prepare\-Instance}}
+\index{Prepare\-Instance@{Prepare\-Instance}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Prepare\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$Property\-Info$>$ Json.\-Json\-Parser.\-Prepare\-Instance (
+\begin{DoxyParamCaption}
+\item[{out object}]{instance, }
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_ab61372226682d7b1d17f54345dfd17b5}
+
+\begin{DoxyCode}
+358         \{
+359             instance = Activator.CreateInstance(type);
+360 
+361             \hyperlink{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}{CacheReflection}(type);
+362 
+363             \textcolor{keywordflow}{return} \hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\_cache}[type];
+364         \}
+\end{DoxyCode}
+\hypertarget{a00046_a48baaa0a217d05b48e049a4c5f2784a9}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Prepare\-Instance$<$ T $>$@{Prepare\-Instance$<$ T $>$}}
+\index{Prepare\-Instance$<$ T $>$@{Prepare\-Instance$<$ T $>$}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Prepare\-Instance$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$Property\-Info$>$ {\bf Json.\-Json\-Parser.\-Prepare\-Instance}$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{out T}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a48baaa0a217d05b48e049a4c5f2784a9}
+
+\begin{DoxyCode}
+367         \{
+368             instance = Activator.CreateInstance<T>();
+369             var item = typeof(T);
+370 
+371             \hyperlink{a00046_a1bb8d04c0c686da8bf81c0b273cc0591}{CacheReflection}(item);
+372 
+373             \textcolor{keywordflow}{return} \hyperlink{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\_cache}[item];
+374         \}
+\end{DoxyCode}
+\hypertarget{a00046_a49728c8da4904f2fc8b2d9a97cd93f2f}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize$<$ T $>$@{Serialize$<$ T $>$}}
+\index{Serialize$<$ T $>$@{Serialize$<$ T $>$}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static string Json.\-Json\-Parser.\-Serialize$<$ T $>$ (
+\begin{DoxyParamCaption}
+\item[{T}]{instance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a49728c8da4904f2fc8b2d9a97cd93f2f}
+
+\begin{DoxyCode}
+155         \{
+156             var bag = \hyperlink{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}{GetBagForObject}(instance);
+157 
+158             \textcolor{keywordflow}{return} \hyperlink{a00046_a4c5b7984378951474675cccdd6bde72c}{ToJson}(bag);
+159         \}
+\end{DoxyCode}
+\hypertarget{a00046_a38298480de46941b764cbbae3ec00ac0}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize\-Array@{Serialize\-Array}}
+\index{Serialize\-Array@{Serialize\-Array}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize\-Array}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Serialize\-Array (
+\begin{DoxyParamCaption}
+\item[{object}]{item, }
+\item[{String\-Builder}]{sb}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a38298480de46941b764cbbae3ec00ac0}
+
+\begin{DoxyCode}
+452         \{
+453             var array = (IEnumerable)item;
+454             sb.Append(\textcolor{stringliteral}{"["});
+455             var count = 0;
+456 
+457             var total = array.Cast<\textcolor{keywordtype}{object}>().Count();
+458             \textcolor{keywordflow}{foreach} (var element \textcolor{keywordflow}{in} array)
+459             \{
+460                 \hyperlink{a00046_a1ce11382c35fcbc0902e73deec3e617b}{SerializeItem}(sb, element);
+461                 count++;
+462                 \textcolor{keywordflow}{if} (count < total)
+463                 \{
+464                     sb.Append(\textcolor{stringliteral}{","});
+465                 \}
+466             \}
+467             sb.Append(\textcolor{stringliteral}{"]"});
+468         \}
+\end{DoxyCode}
+\hypertarget{a00046_a6874a321c86a87ddeafb25e1f5b37a42}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize\-Date\-Time@{Serialize\-Date\-Time}}
+\index{Serialize\-Date\-Time@{Serialize\-Date\-Time}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize\-Date\-Time}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Serialize\-Date\-Time (
+\begin{DoxyParamCaption}
+\item[{String\-Builder}]{sb}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a6874a321c86a87ddeafb25e1f5b37a42}
+
+\begin{DoxyCode}
+445         \{
+446             var elapsed = DateTime.UtcNow - \textcolor{keyword}{new} DateTime(1970, 1, 1).ToUniversalTime();
+447             var epoch = (long)elapsed.TotalSeconds;
+448             \hyperlink{a00046_a9322c1bf740844d26a732c091004063f}{SerializeString}(sb, epoch);
+449         \}
+\end{DoxyCode}
+\hypertarget{a00046_a1ce11382c35fcbc0902e73deec3e617b}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize\-Item@{Serialize\-Item}}
+\index{Serialize\-Item@{Serialize\-Item}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize\-Item}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Serialize\-Item (
+\begin{DoxyParamCaption}
+\item[{String\-Builder}]{sb, }
+\item[{object}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a1ce11382c35fcbc0902e73deec3e617b}
+
+\begin{DoxyCode}
+395         \{
+396             \textcolor{keywordflow}{if} (item is IDictionary<string, object>)
+397             \{
+398                 \hyperlink{a00046_a2a63df270c38b1c9ce7de54b268cdc4f}{SerializeObject}(item, sb);
+399                 \textcolor{keywordflow}{return};
+400             \}
+401 
+402             \textcolor{keywordflow}{if} (item is IEnumerable)
+403             \{
+404                 \hyperlink{a00046_a38298480de46941b764cbbae3ec00ac0}{SerializeArray}(item, sb);
+405                 \textcolor{keywordflow}{return};
+406             \}
+407 
+408             \textcolor{keywordflow}{if} (item is DateTime)
+409             \{
+410                 \hyperlink{a00046_a6874a321c86a87ddeafb25e1f5b37a42}{SerializeDateTime}(sb);
+411                 \textcolor{keywordflow}{return};
+412             \}
+413 
+414             \textcolor{keywordflow}{if} (item is \textcolor{keywordtype}{bool})
+415             \{
+416                 sb.Append(((bool)item).ToString().ToLower());
+417                 \textcolor{keywordflow}{return};
+418             \}
+419 
+420             \textcolor{keywordtype}{double} number;
+421             var input = item != null ? item.ToString() : \textcolor{stringliteral}{""};
+422 \textcolor{preprocessor}{#if NETCF}
+423 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if} (input.TryParse(out number))
+424             \{
+425                 sb.Append(number);
+426             \}
+427 \textcolor{preprocessor}{#else}
+428 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if} (\textcolor{keywordtype}{double}.TryParse(input, \hyperlink{a00046_ad05db33540abe9864b13b6b5c637a354}{JsonNumbers}, CultureInfo.InvariantCulture, out number))
+429             \{
+430                 sb.Append(number);
+431                 \textcolor{keywordflow}{return};
+432             \}
+433 \textcolor{preprocessor}{#endif}
+434 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if} (item == null)
+435             \{
+436                 sb.Append(\textcolor{stringliteral}{"null"});
+437                 \textcolor{keywordflow}{return};
+438             \}
+439 
+440             var bag = \hyperlink{a00046_a3589b9943dbb8872cd4030d4b9ff1a7a}{GetBagForObject}(item.GetType(), item);
+441             \hyperlink{a00046_a1ce11382c35fcbc0902e73deec3e617b}{SerializeItem}(sb, bag);
+442         \}
+\end{DoxyCode}
+\hypertarget{a00046_a2a63df270c38b1c9ce7de54b268cdc4f}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize\-Object@{Serialize\-Object}}
+\index{Serialize\-Object@{Serialize\-Object}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize\-Object}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Serialize\-Object (
+\begin{DoxyParamCaption}
+\item[{object}]{item, }
+\item[{String\-Builder}]{sb}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a2a63df270c38b1c9ce7de54b268cdc4f}
+
+\begin{DoxyCode}
+471         \{
+472             var nested = (IDictionary<string, object>)item;
+473             sb.Append(\textcolor{stringliteral}{"\{"});
+474 
+475             var count = 0;
+476             \textcolor{keywordflow}{foreach} (var key \textcolor{keywordflow}{in} nested.Keys)
+477             \{
+478                 \hyperlink{a00046_a9322c1bf740844d26a732c091004063f}{SerializeString}(sb, key.ToLower());
+479                 sb.Append(\textcolor{stringliteral}{":"});
+480 
+481                 var value = nested[key];
+482                 \textcolor{keywordflow}{if} (value is \textcolor{keywordtype}{string})
+483                 \{
+484                     \hyperlink{a00046_a9322c1bf740844d26a732c091004063f}{SerializeString}(sb, value);
+485                 \}
+486                 \textcolor{keywordflow}{else}
+487                 \{
+488                     \hyperlink{a00046_a1ce11382c35fcbc0902e73deec3e617b}{SerializeItem}(sb, nested[key]);
+489                 \}
+490 
+491                 \textcolor{keywordflow}{if} (count < nested.Keys.Count - 1)
+492                 \{
+493                     sb.Append(\textcolor{stringliteral}{","});
+494                 \}
+495                 count++;
+496             \}
+497             sb.Append(\textcolor{stringliteral}{"\}"});
+498         \}
+\end{DoxyCode}
+\hypertarget{a00046_a9322c1bf740844d26a732c091004063f}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Serialize\-String@{Serialize\-String}}
+\index{Serialize\-String@{Serialize\-String}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Serialize\-String}]{\setlength{\rightskip}{0pt plus 5cm}static void Json.\-Json\-Parser.\-Serialize\-String (
+\begin{DoxyParamCaption}
+\item[{String\-Builder}]{sb, }
+\item[{object}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00046_a9322c1bf740844d26a732c091004063f}
+
+\begin{DoxyCode}
+502         \{
+503             sb.Append(\textcolor{stringliteral}{"\(\backslash\)""});
+504             var symbols = item.ToString().ToCharArray();
+505             
+506             var unicodes = symbols.Select(symbol => \hyperlink{a00046_a03595e6253700fbdb86440704e1f2e66}{GetUnicode}(symbol));
+507 
+508             \textcolor{keywordflow}{foreach} (var unicode \textcolor{keywordflow}{in} unicodes)
+509             \{
+510                 sb.Append(unicode);
+511             \}
+512 
+513             sb.Append(\textcolor{stringliteral}{"\(\backslash\)""});
+514         \}
+\end{DoxyCode}
+\hypertarget{a00046_a4c5b7984378951474675cccdd6bde72c}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!To\-Json@{To\-Json}}
+\index{To\-Json@{To\-Json}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{To\-Json}]{\setlength{\rightskip}{0pt plus 5cm}static string Json.\-Json\-Parser.\-To\-Json (
+\begin{DoxyParamCaption}
+\item[{I\-Dictionary$<$ string, object $>$}]{bag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00046_a4c5b7984378951474675cccdd6bde72c}
+
+\begin{DoxyCode}
+310         \{
+311             var sb = \textcolor{keyword}{new} StringBuilder(0);
+312 
+313             \hyperlink{a00046_a1ce11382c35fcbc0902e73deec3e617b}{SerializeItem}(sb, bag);
+314 
+315             \textcolor{keywordflow}{return} sb.ToString();
+316         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00046_a9d97f297996ac634f58dd842ebc00171}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!\-\_\-base16@{\-\_\-base16}}
+\index{\-\_\-base16@{\-\_\-base16}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{\-\_\-base16}]{\setlength{\rightskip}{0pt plus 5cm}readonly char \mbox{[}$\,$\mbox{]} Json.\-Json\-Parser.\-\_\-base16\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_a9d97f297996ac634f58dd842ebc00171}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= \textcolor{keyword}{new}[]
+                             \{
+                                 \textcolor{charliteral}{'0'}, \textcolor{charliteral}{'1'}, \textcolor{charliteral}{'2'}, \textcolor{charliteral}{'3'}, 
+                                 \textcolor{charliteral}{'4'}, \textcolor{charliteral}{'5'}, \textcolor{charliteral}{'6'}, \textcolor{charliteral}{'7'}, 
+                                 \textcolor{charliteral}{'8'}, \textcolor{charliteral}{'9'}, \textcolor{charliteral}{'A'}, \textcolor{charliteral}{'B'}, 
+                                 \textcolor{charliteral}{'C'}, \textcolor{charliteral}{'D'}, \textcolor{charliteral}{'E'}, \textcolor{charliteral}{'F'}
+                             \}
+\end{DoxyCode}
+\hypertarget{a00046_ae6f928a5caa81742eb3bac3e986f92f6}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!\-\_\-cache@{\-\_\-cache}}
+\index{\-\_\-cache@{\-\_\-cache}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{\-\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}readonly I\-Dictionary$<$Type, Property\-Info\mbox{[}$\,$\mbox{]}$>$ Json.\-Json\-Parser.\-\_\-cache\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00046_ae6f928a5caa81742eb3bac3e986f92f6}
+\hypertarget{a00046_ad05db33540abe9864b13b6b5c637a354}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Json\-Numbers@{Json\-Numbers}}
+\index{Json\-Numbers@{Json\-Numbers}!Json::JsonParser@{Json\-::\-Json\-Parser}}
+\subsubsection[{Json\-Numbers}]{\setlength{\rightskip}{0pt plus 5cm}const Number\-Styles Json.\-Json\-Parser.\-Json\-Numbers = Number\-Styles.\-Float\hspace{0.3cm}{\ttfamily [private]}}}\label{a00046_ad05db33540abe9864b13b6b5c637a354}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00199}{Csv\-Helper\-Exception.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00118}{Json\-Parser.\-cs}\end{DoxyCompactItemize}

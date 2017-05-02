@@ -1,4 +1,0 @@
-<map id="Yarn.BaseVariableStorage" name="Yarn.BaseVariableStorage">
-<area shape="rect" id="node3" href="$d4/d81/a00110.html" title="{Yarn.MemoryVariableStore\n|&#45; variables\l|+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,373,184,480"/>
-<area shape="rect" id="node2" href="$d9/d38/a00166.html" title="{VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="37,5,152,141"/>
-</map>

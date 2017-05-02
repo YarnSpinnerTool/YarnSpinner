@@ -1,168 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d9/d73/a00060" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::CsvTypeConverterException</compoundname>
-    <basecompoundref refid="d3/dea/a00046" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="d9/d73/a00060_1af2278af1cb915e9b8485c005148c430b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
-        <argsstring>()</argsstring>
-        <name>CsvTypeConverterException</name>
+    <compoundname>Yarn::Dialogue::OptionSetResult</compoundname>
+    <basecompoundref refid="d4/d31/a00069" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d9/d73/a00060_1abda9c3047ff9d3c3ec5540566a239315" prot="public" static="no" mutable="no">
+        <type><ref refid="dd/dae/a00163" kindref="compound">Options</ref></type>
+        <definition>Options Yarn.Dialogue.OptionSetResult.options</definition>
+        <argsstring></argsstring>
+        <name>options</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d9/d73/a00060" kindref="compound">CsvTypeConverterException</ref> class. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="20" bodyend="20"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="120" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d9/d73/a00060_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>CsvTypeConverterException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
+      <memberdef kind="variable" id="d9/d73/a00060_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" static="no" mutable="no">
+        <type><ref refid="d6/d5b/a00026_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
+        <definition>OptionChooser Yarn.Dialogue.OptionSetResult.setSelectedOptionDelegate</definition>
+        <argsstring></argsstring>
+        <name>setSelectedOptionDelegate</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d9/d73/a00060" kindref="compound">CsvTypeConverterException</ref> class with a specified error message. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The message that describes the error.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="27" bodyend="27"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="121" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="d9/d73/a00060_1afbea8720637f53c27ef4a9ca99c41955" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d9/d73/a00060_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
-        <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvTypeConverterException</name>
+        <definition>Yarn.Dialogue.OptionSetResult.OptionSetResult</definition>
+        <argsstring>(IList&lt; string &gt; optionStrings, OptionChooser setSelectedOption)</argsstring>
+        <name>OptionSetResult</name>
         <param>
-          <type>string</type>
-          <declname>message</declname>
+          <type>IList&lt; string &gt;</type>
+          <declname>optionStrings</declname>
         </param>
         <param>
-          <type>Exception</type>
-          <declname>innerException</declname>
+          <type><ref refid="d6/d5b/a00026_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
+          <declname>setSelectedOption</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="d9/d73/a00060" kindref="compound">CsvTypeConverterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>message</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The error message that explains the reason for the exception.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>innerException</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="36" bodyend="36"/>
-      </memberdef>
-      <memberdef kind="function" id="d9/d73/a00060_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.TypeConversion.CsvTypeConverterException.CsvTypeConverterException</definition>
-        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvTypeConverterException</name>
-        <param>
-          <type>SerializationInfo</type>
-          <declname>info</declname>
-        </param>
-        <param>
-          <type>StreamingContext</type>
-          <declname>context</declname>
-        </param>
-        <briefdescription>
-<para>Initializes a new instance of the <ref refid="d9/d73/a00060" kindref="compound">CsvTypeConverterException</ref> class with serialized data. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>info</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>context</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="45" bodyend="45"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="123" bodyend="128"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents errors that occur while reading a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1065">
-        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
+      <node id="589">
+        <label>RunnerResult</label>
+        <link refid="d4/d31/a00069"/>
+      </node>
+      <node id="588">
+        <label>Yarn.Dialogue.OptionSetResult</label>
         <link refid="d9/d73/a00060"/>
-        <childnode refid="1066" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1067">
-        <label>Exception</label>
-      </node>
-      <node id="1066">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="1067" relation="public-inheritance">
+        <childnode refid="589" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1068">
-        <label>CsvHelper.TypeConversion.CsvTypeConverterException</label>
+      <node id="592">
+        <label>Yarn.Options</label>
+        <link refid="dd/dae/a00163"/>
+      </node>
+      <node id="591">
+        <label>RunnerResult</label>
+        <link refid="d4/d31/a00069"/>
+      </node>
+      <node id="590">
+        <label>Yarn.Dialogue.OptionSetResult</label>
         <link refid="d9/d73/a00060"/>
-        <childnode refid="1069" relation="public-inheritance">
+        <childnode refid="591" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="1070">
-        <label>Exception</label>
-      </node>
-      <node id="1069">
-        <label>CsvHelperException</label>
-        <link refid="d3/dea/a00046"/>
-        <childnode refid="1070" relation="public-inheritance">
+        <childnode refid="592" relation="usage">
+          <edgelabel>+options</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CsvTypeConverterException.cs" bodystart="15" bodyend="47"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="119" bodyend="130"/>
     <listofallmembers>
-      <member refid="d3/dea/a00046_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
-      <member refid="d3/dea/a00046_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvHelperException</name></member>
-      <member refid="d9/d73/a00060_1af2278af1cb915e9b8485c005148c430b" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
-      <member refid="d9/d73/a00060_1a4e4e9bdf9280d14be37fc42d887b7360" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
-      <member refid="d9/d73/a00060_1afbea8720637f53c27ef4a9ca99c41955" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
-      <member refid="d9/d73/a00060_1a118ca20beb2ce0c2b4591502a52b0163" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::CsvTypeConverterException</scope><name>CsvTypeConverterException</name></member>
+      <member refid="d9/d73/a00060_1abda9c3047ff9d3c3ec5540566a239315" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>options</name></member>
+      <member refid="d9/d73/a00060_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>OptionSetResult</name></member>
+      <member refid="d9/d73/a00060_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>setSelectedOptionDelegate</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
