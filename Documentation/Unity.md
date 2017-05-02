@@ -38,10 +38,9 @@ Additionally, you store your Yarn files as `.json` assets in your Unity projects
 
 * **Import YarnSpinner.unitypackage into your project.** If you prefer, you can also install the package from the [Asset Store](TODO).
 
-
 Yarn Spinner is composed of a .DLL file, and a couple of supporting scripts for Unity.
 
-* `YarnSpinner.dll`, which does the heavy lifting involved in parsing your Yarn files, and executing them. You won't do much with it yourself; rather, you'll take advantage of...-- >
+* `YarnSpinner.dll`, which does the heavy lifting involved in parsing your Yarn files, and executing them. You won't do much with it yourself; rather, you'll take advantage of.
 
 Yarn dialogue is stored in .json files, which you create using the [Yarn editor](http://github.com/infiniteammoinc/Yarn). To show the dialogue in your game, you need to add it to your project as well.
 
