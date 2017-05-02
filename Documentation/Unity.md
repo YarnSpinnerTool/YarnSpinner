@@ -28,7 +28,6 @@ These three classes exist in the `Yarn.Unity` namespace. To create your subclass
 
 Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their Yarn script to the `DialogueRunner`.
 
-<!--
 
 Let's get started with Yarn Spinner!
 
@@ -64,7 +63,7 @@ Yarn dialogue is stored in .json files, which you create using the [Yarn editor]
 
 Yarn conversations are loaded and managed by a `DialogueRunner` object. This object is responsible for loading and parsing your Yarn `.json` files. It also runs the script when it's told to - for example, when you walk up to a character in your game and talk to them.
 
-<!-- We'll start by creating an empty object, and then we'll add the `DialogueRunner` component to it.
+We'll start by creating an empty object, and then we'll add the `DialogueRunner` component to it.
 
 * **Create a new empty game object. Rename it to "Dialogue Runner".**
 
@@ -78,7 +77,6 @@ Next, you need to add the Yarn files that you want to show. The Dialogue runner 
 
 <!-- (gif of adding dialogue file) -- >
 
--->
 ### Display your conversation with `DialogueUI`
 
 Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.
@@ -102,9 +100,6 @@ There's one last necessary component. As you play through a conversation, you'll
 
 The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
 
-<!--
-
-Do one of the following two things:
 
 * **Create a new game object, and add the `ExampleVariableStorage` script to it.**
 
@@ -123,7 +118,6 @@ There's only one thing left to do: Yarn Spinner just needs to know what node in 
 * Finally, **run the game.** The conversation will play!
 
 		
--->
 
 ### Respond to commands with `YarnCommand`
 
