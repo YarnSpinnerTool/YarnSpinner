@@ -11,7 +11,7 @@
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Documentation</highlight></codeline>
 <codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any<sp/>suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any<sp/>suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>[Doxygen](http:</highlight><highlight class="comment">//www.doxygen.org)<sp/>system.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
