@@ -1,5 +1,10 @@
 # Using Yarn Spinner in your Unity game
 
+Style Guide
+* `Grey background`      : Style 1
+* **Bold**               : Style 2
+* ***Italics***          : Style 3
+*      Plain Indentation : Style 4
 ## Yarn Spinner Quick Start
 
 Here's how to quickly jump in to Yarn Spinner if you're already familiar with Unity.
