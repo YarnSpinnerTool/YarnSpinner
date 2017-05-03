@@ -5,6 +5,8 @@ Style Guide
 * **Bold**               : Style 2
 * ***Italics***          : Style 3
 *      Plain Indentation : Style 4
+* > Blockquote           : Style 5
+
 ## Yarn Spinner Quick Start
 
 Here's how to quickly jump in to Yarn Spinner if you're already familiar with Unity.
