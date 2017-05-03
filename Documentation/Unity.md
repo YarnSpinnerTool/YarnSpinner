@@ -28,7 +28,9 @@ To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour
 
     using Yarn.Unity;
 
-Additionally, you store your Yarn files as `.json` assets in your Unity projects. These can be stored anywhere - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their Yarn script to the `DialogueRunner`.
+Yarn dialogue is created using the [Yarn editor](http://github.com/infiniteammoinc/Yarn), and the resulting dialogue is stored as `.json` assets in the Unity project. If you are using Linux and wish to use the Yarn editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**.
+
+The Yarn dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their Yarn script to the `DialogueRunner`.
 
 ### Create the Unity project
 
@@ -42,10 +44,9 @@ Additionally, you store your Yarn files as `.json` assets in your Unity projects
 
 * `YarnSpinner.dll`, which does the heavy lifting involved in parsing your Yarn files, and executing them. You won't do much with it yourself; rather, you'll take advantage of.
 
-    Yarn dialogue is stored in .json files, which you create using the [Yarn editor](http://github.com/infiniteammoinc/Yarn). To show the dialogue in your game, you need to add it to your project as well.
-    If you are using Linux and wish to use the Yarn editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**
-
-* **Create a new conversation** in the **[Yarn editor](http://www.github.com/infiniteammoinc/Yarn)**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
+    To show Yarn dialogue in your game, you will need to add it to your project as well.
+    
+* **Create a new conversation** in the Yarn Editor, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
 
 * **Copy your Yarn JSON file** into your project.
 
