@@ -30,6 +30,8 @@ Once you've played with it, open the Example Script file in the [Yarn Editor](ht
 
 ## Step by Step
 
+### Introducing Yarn Spinner
+
 Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. 
 
 To introduce Yarn Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to  see the finished project, [download Yarn Spinner](https://github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.
