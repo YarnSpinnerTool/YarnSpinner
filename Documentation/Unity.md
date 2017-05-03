@@ -50,6 +50,10 @@ Yarn dialogue is created using the [Yarn Editor](http://github.com/infiniteammoi
 
 The Yarn dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their Yarn script to the `DialogueRunner`.
 
+### Create the Yarn conversations
+
+* In the Yarn Editor, **Create a new conversation**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
+
 ### Create the Unity project
 
 * **Launch Unity**, and **create a new project**. The name of the project doesn't matter.
@@ -61,8 +65,6 @@ The Yarn dialogue files can be stored anywhere inside the project hierarchy - yo
     Yarn Spinner is composed of a `yarnspinner.dll` file, and a couple of supporting scripts for Unity.  This dll file does the heavy lifting involved in parsing your Yarn files, and executing them.
 
     To show Yarn dialogue in your game, you will need to add it to your project as well.
-    
-* In the Yarn Editor, **Create a new conversation**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
 
 * **Copy your Yarn JSON file** into your project.
 
