@@ -1,6 +1,7 @@
 # Using Yarn Spinner in your Unity game
 
 ##Style Guide
+
 `Grey background`      : Style 1
 **Bold**               : Style 2
 ***Italics***          : Style 3
