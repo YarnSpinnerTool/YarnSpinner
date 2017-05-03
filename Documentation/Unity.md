@@ -1,6 +1,6 @@
 # Using Yarn Spinner in your Unity game
 
-#### Style Guide
+### Style Guide
 
 `Inline Code` contain short snippets of code for your project
 
@@ -12,6 +12,9 @@
 
 > Blockquotes contain essential information
 
+## Tutorial
+
+> ***Note:*** This tutorial assumes that you know a little bit about [Unity](http://www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to [Unity's documentation](http://unity3d.com/learn).
 
 ## Yarn Spinner Quick Start
 
@@ -25,9 +28,7 @@ Here's how to quickly jump in to Yarn Spinner if you're already familiar with Un
 
 Once you've played with it, open the Example Script file in the [Yarn Editor](http://github.com/infiniteammoinc/Yarn), (it's in the `Examples/Demo Assets` folder), and make some changes to the script. Once you've done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
 
-## Tutorial
-
-> ***Note:*** This tutorial assumes that you know a little bit about [Unity](http://www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to [Unity's documentation](http://unity3d.com/learn).
+## Step by Step
 
 Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. 
 
