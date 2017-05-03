@@ -8,7 +8,7 @@ Here's how to quickly jump in to Yarn Spinner if you're already familiar with Un
 * **Inside the YarnSpinner folder, open the `Examples/Yarn Spinner Basic Example` scene.**
 * **Start the game. Play through the dialogue.**
 
-Once you've played with it, open the Example Script file in the Yarn editor (it's in the `Examples/Demo Assets` folder), and make some changes to the script. Once you've done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
+Once you've played with it, open the Example Script file in the Yarn Editor (it's in the `Examples/Demo Assets` folder), and make some changes to the script. Once you've done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
 
 ## Tutorial
 
@@ -28,7 +28,7 @@ To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour
 
     using Yarn.Unity;
 
-Yarn dialogue is created using the [Yarn editor](http://github.com/infiniteammoinc/Yarn), and the resulting dialogue is stored as `.json` assets in the Unity project. If you are using Linux and wish to use the Yarn editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**.
+Yarn dialogue is created using the [Yarn Editor](http://github.com/infiniteammoinc/Yarn), and the resulting dialogue is stored as `.json` assets in the Unity project. If you are using Linux and wish to use the Yarn Editor, you will first need to [install](https://nwjs.io/downloads/) or [build](https://github.com/nwjs/nw.js/blob/nw22/docs/For%20Developers/Building%20NW.js.md) nw.js then attempt to build the Yarn Editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**.
 
 The Yarn dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the `DialogueRunner`'s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their Yarn script to the `DialogueRunner`.
 
