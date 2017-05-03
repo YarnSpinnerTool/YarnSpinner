@@ -56,7 +56,7 @@ The Yarn dialogue files can be stored anywhere inside the project hierarchy - yo
 
 ### Import the Yarn Spinner package.
 
-* **Import YarnSpinner.unitypackage** into your project. <!-- If you prefer, you can also install the package from the [Asset Store](TODO). -->
+* **[Import YarnSpinner.unitypackage](https://github.com/thesecretlab/YarnSpinner/releases)** into your project. <!-- If you prefer, you can also install the package from the [Asset Store](TODO). -->
 
     Yarn Spinner is composed of a .DLL file, and a couple of supporting scripts for Unity.
 
