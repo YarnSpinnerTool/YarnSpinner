@@ -8,7 +8,7 @@
 
 **Bold is used for actions (Selecting a menu item, copying a file etc.)**
 
-***Italics are used for notices***
+***Bold italics are used for emphasis***
 
 > Blockquotes are used for essential sections
 
