@@ -58,13 +58,11 @@ The Yarn dialogue files can be stored anywhere inside the project hierarchy - yo
 
 * **[Import YarnSpinner.unitypackage](https://github.com/thesecretlab/YarnSpinner/releases)** into your project. <!-- If you prefer, you can also install the package from the [Asset Store](TODO). -->
 
-    Yarn Spinner is composed of a .DLL file, and a couple of supporting scripts for Unity.
-
-* `YarnSpinner.dll`, which does the heavy lifting involved in parsing your Yarn files, and executing them. You won't do much with it yourself; rather, you'll take advantage of.
+    Yarn Spinner is composed of a `yarnspinner.dll` file, and a couple of supporting scripts for Unity.  This dll file does the heavy lifting involved in parsing your Yarn files, and executing them.
 
     To show Yarn dialogue in your game, you will need to add it to your project as well.
     
-* **Create a new conversation** in the Yarn Editor, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
+* In the Yarn Editor, **Create a new conversation**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
 
 * **Copy your Yarn JSON file** into your project.
 
