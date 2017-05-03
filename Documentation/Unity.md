@@ -2,15 +2,15 @@
 
 ## Style Guide
 
-`Grey background : Style 1`
+`Inline Code` contain snippets of code for your project
 
-**Bold : Style 2**
+    Code Blocks contain segments of code for your project
 
-***Italics : Style 3***
+**Bold is used for actions (Selecting a menu item, copying a file etc.)**
 
-    Plain Indentation : Style 4
+***Italics are used for notices***
 
-> Blockquote : Style 5
+> Blockquotes are used for essential sections
 
 
 ## Yarn Spinner Quick Start
