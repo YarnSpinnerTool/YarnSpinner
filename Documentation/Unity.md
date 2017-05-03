@@ -1,6 +1,6 @@
 # Using Yarn Spinner in your Unity game
 
-### Style Guide
+#### Style Guide
 
 `Inline Code` contain short snippets of code for your project
 
