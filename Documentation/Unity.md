@@ -21,7 +21,7 @@ Here's how to quickly jump in to Yarn Spinner if you're already familiar with Un
 * **Inside the YarnSpinner folder, open the `Examples/Yarn Spinner Basic Example` scene.**
 * **Start the game. Play through the dialogue.**
 
-Once you've played with it, open the Example Script file in the Yarn Editor (it's in the `Examples/Demo Assets` folder), and make some changes to the script. Once you've done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
+Once you've played with it, open the Example Script file in the [Yarn Editor](http://github.com/infiniteammoinc/Yarn), (it's in the `Examples/Demo Assets` folder), and make some changes to the script. Once you've done that, take a look at how `Code/DialogueRunner.cs`, `Examples/Demo Scripts/ExampleDialogueUI.cs` and `Examples/Demo Scripts/ExampleVariableStorage.cs` work. You can also [add your own functions to Yarn](Extending.md).
 
 ## Tutorial
 
