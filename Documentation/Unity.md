@@ -52,7 +52,7 @@ The Yarn dialogue files can be stored anywhere inside the project hierarchy - yo
 
 ### Create the Yarn conversations
 
-* In the Yarn Editor, **Create a new conversation**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!)
+* In the Yarn Editor, **Create a new conversation**, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!). For information on how to create a Yarn conversation, please refer to the Yarn Editor site.
 
 ### Create the Unity project
 
