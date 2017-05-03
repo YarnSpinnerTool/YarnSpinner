@@ -6,7 +6,7 @@
 
     Code Blocks contain segments or chunks of code for your project
 
-**Bold indicate actions (Selecting a menu item, copying a file etc.)**
+**Bold indicate actions (Select menu item, copying file, etc.)**
 
 ***Bold italic text indicates emphasis***
 
