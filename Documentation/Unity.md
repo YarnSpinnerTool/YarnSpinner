@@ -2,15 +2,15 @@
 
 ## Style Guide
 
-`Inline Code` contain snippets of code for your project
+`Inline Code` contain short snippets of code for your project
 
-    Code Blocks contain segments of code for your project
+    Code Blocks contain segments or chunks of code for your project
 
-**Bold is used for actions (Selecting a menu item, copying a file etc.)**
+**Bold indicate actions (Selecting a menu item, copying a file etc.)**
 
-***Bold italics are used for emphasis***
+***Bold italic text indicates emphasis***
 
-> Blockquotes are used for essential sections
+> Blockquotes contain essential information
 
 
 ## Yarn Spinner Quick Start
