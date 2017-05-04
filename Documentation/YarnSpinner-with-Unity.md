@@ -28,7 +28,8 @@ If you've not done much more than install Unity and the Yarn Editor and confirme
 
 ### Windows
 
-Find the temp folder the installer has executed from and back it up before it completes installing.
+* If you install to Unity the default file location, find the temp folder the installer has executed from and back it up before it completes installing.
+* If you decide to install Visual Studio seperately, be aware that there are files from this program that insist on being installed on the C:\ drive and that your development experience may be restricted.
 
 ### Mac
 
