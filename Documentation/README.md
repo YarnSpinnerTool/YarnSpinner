@@ -13,23 +13,7 @@ Yarnspinner is automatically built by Travis Continual Integration system. For i
 For information on how to write stories for Yarnspinner, refer to the [Usage](Usage.md) document.
 
 ## Using Unity
-At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Unity](YarnSpinner-with-Unity.md) document for more information.
-
-### Tips during Unity install
-
-### Windows
-
-Find the temp folder the installer has executed from and back it up before it completes installing.
-
-### Mac
-
-(This space left intentionally blank)
-
-### Linux
-
-Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of [Unity for Linux](https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/), although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).
-
-We encourge Linux users to test Yarnspinner using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.
+At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Yarn Spinner With Unity](YarnSpinner-with-Unity.md) document for more information.
 
 ## Extending Tarnspinner
 For information on how to extend Yarnspinner's functionality, please refer to the [Extending Yarnspinner](Extending.md) document.
