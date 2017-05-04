@@ -15,6 +15,6 @@ For information on how to write stories for Yarnspinner, refer to the [Usage](Us
 ## Using Unity
 At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Yarn Spinner With Unity](YarnSpinner-with-Unity.md) document for more information.
 
-## Extending Tarnspinner
+## Extending Yarnspinner
 For information on how to extend Yarnspinner's functionality, please refer to the [Extending Yarnspinner](Extending.md) document.
 
