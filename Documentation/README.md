@@ -13,7 +13,7 @@ Yarnspinner is automatically built by Travis Continual Integration system. For i
 For information on how to write stories for Yarnspinner, refer to the [Usage](Usage.md) document.
 
 ## Using Unity
-At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Unity](Unity.md) document for more information.
+At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Unity](YarnSpinner-with-Unity.md) document for more information.
 
 ### Tips during Unity install
 

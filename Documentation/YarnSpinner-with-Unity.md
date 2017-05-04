@@ -18,9 +18,9 @@
 
 ## Yarn Spinner Quick Start
 
-If you're already familiar with Unity and the Yarn Editor, we have a [Unity Quickstart](Unity-QuickStart.md) guide.
+If you're already familiar with Unity and the Yarn Editor, we have a [Unity Quickstart](YarnSpinner-with-Unity-QuickStart.md) guide.
 
 ## Step by Step
 
-If you've not done much more than install Unity and the Yarn Editor and confirmed that menu and dialogue functions of these applications appear operational, our [Step By Step](Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.
+If you've not done much more than install Unity and the Yarn Editor and confirmed that menu and dialogue functions of these applications appear operational, our [Step By Step](YarnSpinner-with-Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.
 
