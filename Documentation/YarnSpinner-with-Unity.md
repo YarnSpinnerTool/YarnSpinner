@@ -14,7 +14,7 @@
 
 ## Tutorial
 
-> ***Note:*** This tutorial assumes that you know a little bit about [Unity](http://www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to [Unity's documentation](http://unity3d.com/learn). It is also helpful if you know a little about the Yarn Editor.
+> ***Note:*** This tutorial assumes that you know a little bit about [Unity](http://www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to [Unity's documentation](http://unity3d.com/learn). We recommend their [tutorials](https://unity3d.com/learn/tutorials/), starting with the [Roll-a-ball tutorial](https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). It is also helpful if you know a little about the [Yarn Editor](https://github.com/InfiniteAmmoInc/Yarn).
 
 ## Yarn Spinner Quick Start
 
@@ -22,7 +22,7 @@ If you're already familiar with Unity and the Yarn Editor, we have a [Unity Quic
 
 ## Step by Step
 
-If you've not done much more than install Unity and the Yarn Editor and confirmed that menu and dialogue functions of these applications appear operational, our [Step By Step](YarnSpinner-with-Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.
+If you've not done much more than install Unity and the Yarn Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity [Roll-a-ball tutorial](https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial), our [Step By Step](YarnSpinner-with-Unity-StepByStep.md) guide is intended to walk you through the creation of a very basic game using Yarn Spinner.
 
 ## Tips during Unity install
 
