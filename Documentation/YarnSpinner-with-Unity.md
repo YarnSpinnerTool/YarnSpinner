@@ -37,6 +37,8 @@ If you've not done much more than install Unity and the Yarn Editor, confirmed t
 
 ### Linux
 
+* Unity is only officially supported on Ubuntu. YarnSpinner is built on Ubuntu. However, we use Debian for some of our development and testing.
 * Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of [Unity for Linux](https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/), although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).
+* npm is needed for Unity. Iit is available for Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the [nodejs.org website](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions).
 * We encourge Linux users to test Yarnspinner using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.
 
