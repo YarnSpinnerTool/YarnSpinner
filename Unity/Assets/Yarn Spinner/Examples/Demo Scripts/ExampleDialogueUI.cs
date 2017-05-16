@@ -30,38 +30,40 @@ using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
 
-// Displays dialogue lines to the player, and sends
-// user choices back to the dialogue system.
-
-// Note that this is just one way of presenting the
-// dialogue to the user. The only hard requirement
-// is that you provide the RunLine, RunOptions, RunCommand
-// and DialogueComplete coroutines; what they do is up to you.
-
 namespace Yarn.Unity.Example {
+    /// Displays dialogue lines to the player, and sends
+    /// user choices back to the dialogue system.
+
+    /** Note that this is just one way of presenting the
+     * dialogue to the user. The only hard requirement
+     * is that you provide the RunLine, RunOptions, RunCommand
+     * and DialogueComplete coroutines; what they do is up to you.
+     */
 	public class ExampleDialogueUI : Yarn.Unity.DialogueUIBehaviour
 	{
 		
-		// The object that contains the dialogue and the options.
-		// This object will be enabled when conversation starts, and
-		// disabled when it ends.
+		/// The object that contains the dialogue and the options.
+		/** This object will be enabled when conversation starts, and 
+         * disabled when it ends. 
+         */
 		public GameObject dialogueContainer;
 		
-		// The UI element that displays lines
+		/// The UI element that displays lines
 		public Text lineText;
 		
-		// A UI element that appears after lines have finished appearing
+		/// A UI element that appears after lines have finished appearing
 		public GameObject continuePrompt;
 		
-		// A delegate (ie a function-stored-in-a-variable) that
-		// we call to tell the dialogue system about what option
-		// the user selected
+		/// A delegate (ie a function-stored-in-a-variable) that
+		/// we call to tell the dialogue system about what option
+		/// the user selected
 		private Yarn.OptionChooser SetSelectedOption;
 		
+        /// How quickly to show the text, in seconds per character
 		[Tooltip("How quickly to show the text, in seconds per character")]
 		public float textSpeed = 0.025f;
 		
-		// The buttons that let the user choose an option
+		/// The buttons that let the user choose an option
 		public List<Button> optionButtons;
 
 		public RectTransform gameControlsContainer;
@@ -84,7 +86,7 @@ namespace Yarn.Unity.Example {
 		}
 		
 		
-		// Show a line of dialogue, gradually
+		/// Show a line of dialogue, gradually
 		public override IEnumerator RunLine (Yarn.Line line)
 		{
 			// Show the text
@@ -122,7 +124,7 @@ namespace Yarn.Unity.Example {
 			
 		}
 		
-		// Show a list of options, and wait for the player to make a selection.
+		/// Show a list of options, and wait for the player to make a selection.
 		public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
 		                                        Yarn.OptionChooser optionChooser)
 		{
@@ -154,7 +156,7 @@ namespace Yarn.Unity.Example {
 			}
 		}
 		
-		// Called by buttons to make a selection.
+		/// Called by buttons to make a selection.
 		public void SetOption (int selectedOption)
 		{
 			
@@ -166,7 +168,7 @@ namespace Yarn.Unity.Example {
 			SetSelectedOption = null; 
 		}
 		
-		// Run an internal command.
+		/// Run an internal command.
 		public override IEnumerator RunCommand (Yarn.Command command)
 		{
 			// "Perform" the command
@@ -175,6 +177,7 @@ namespace Yarn.Unity.Example {
 			yield break;
 		}
 		
+		/// Called when the dialogue system has started running.
 		public override IEnumerator DialogueStarted ()
 		{
 			Debug.Log ("Dialogue starting!");
@@ -191,7 +194,7 @@ namespace Yarn.Unity.Example {
 			yield break;
 		}
 		
-		// Yay we're done. Called when the dialogue system has finished running.
+		/// Called when the dialogue system has finished running.
 		public override IEnumerator DialogueComplete ()
 		{
 			Debug.Log ("Complete!");

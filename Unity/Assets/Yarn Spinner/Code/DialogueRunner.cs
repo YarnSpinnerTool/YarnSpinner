@@ -39,32 +39,32 @@ namespace Yarn.Unity
         public TextAsset[] stringFiles;
     }
 
-	// DialogueRunners act as the interface between your game and YarnSpinner.
-    // Make our menu item slightly nicer looking
+	/// DialogueRunners act as the interface between your game and YarnSpinner.
+    /** Make our menu item slightly nicer looking */
 	[AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
 	public class DialogueRunner : MonoBehaviour
 	{
-		// The JSON files to load the conversation from
+		/// The JSON files to load the conversation from
 		public TextAsset[] sourceText;
 
-        // The group of JSON files to be used for this language
+        /// The group of JSON files to be used for this language
         public LocalisedStringGroup[] stringGroups;
 
-        // Language debugging options
+        /// Language debugging options
         public bool shouldOverrideLanguage = false;
 
         public SystemLanguage overrideLanguage = SystemLanguage.English;
 
-        // Our variable storage
+        /// Our variable storage
 		public Yarn.Unity.VariableStorageBehaviour variableStorage;
 
-		// The object that will handle the actual display and user input
+		/// The object that will handle the actual display and user input
 		public Yarn.Unity.DialogueUIBehaviour dialogueUI;
 
-		// Which node to start from
+		/// Which node to start from
 		public string startNode = Yarn.Dialogue.DEFAULT_START;
 
-		// Whether we should start dialogue when the scene starts
+		/// Whether we should start dialogue when the scene starts
 		public bool startAutomatically = true;
 
 		public bool isDialogueRunning { get; private set; }
@@ -153,8 +153,8 @@ namespace Yarn.Unity
 			dialogue.LoadString(asset.text);
 		}
 
-        // Loads a string table, replacing any existing strings with the same
-        // key.
+        /// Loads a string table, replacing any existing strings with the same
+        /// key.
         public void AddStringTable(Dictionary<string,string> stringTable) {
             dialogue.AddStringTable(stringTable);
         }
@@ -184,7 +184,7 @@ namespace Yarn.Unity
             AddStringTable(text.text);
         }
 
-		// Nuke the variable store and start again
+		/// Nuke the variable store and start again
 		public void ResetDialogue ()
 		{
 			variableStorage.ResetToDefaults ();
@@ -288,17 +288,15 @@ namespace Yarn.Unity
 			}
 		}
 
+
+		/// commands that can be automatically dispatched look like this:
+		/// COMMANDNAME OBJECTNAME <param> <param> <param> ...
+		/** We can dispatch this command if:
+         * 1. it has at least 2 words
+         * 2. the second word is the name of an object
+         * 3. that object has components that have methods with the YarnCommand attribute that have the correct commandString set
+         */
 		public bool DispatchCommand(string command) {
-
-			// commands that can be automatically dispatched look like this:
-			// COMMANDNAME OBJECTNAME <param> <param> <param> ...
-
-			// We can dispatch this command if:
-			// 1. it has at least 2 words
-			// 2. the second word is the name of an object
-			// 3. that object has components that have methods 
-			//    with the YarnCommand attribute that have the
-			//    correct commandString set
 
 			var words = command.Split(' ');
 
@@ -405,14 +403,15 @@ namespace Yarn.Unity
 
 	}
 
-	// Apply this attribute to methods in your scripts to expose
-	// them to Yarn.
+	/// Apply this attribute to methods in your scripts to expose
+	/// them to Yarn.
 
-	// For example:
-	// [YarnCommand("dosomething")]
-	// void Foo() {
-	//    do something!
-	// }
+	/** For example:
+     *  [YarnCommand("dosomething")]
+     *      void Foo() {
+     *         do something!
+     *      }
+     */
 	public class YarnCommandAttribute : System.Attribute
 	{
 		public string commandString { get; private set; }
@@ -422,7 +421,7 @@ namespace Yarn.Unity
 		}
 	}
 
-	// Scripts that can act as the UI for the conversation should subclass this
+	/// Scripts that can act as the UI for the conversation should subclass this
 	public abstract class DialogueUIBehaviour : MonoBehaviour
 	{
 		// A conversation has started.
@@ -454,7 +453,7 @@ namespace Yarn.Unity
 		}
 	}
 
-	// Scripts that can act as a variable storage should subclass this
+	/// Scripts that can act as a variable storage should subclass this
 	public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
 	{
 

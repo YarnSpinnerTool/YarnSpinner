@@ -30,30 +30,30 @@ using System.Collections.Generic;
 
 namespace Yarn {
 
-	// Represents things that can go wrong while loading or running
-	// a dialogue.
+	/// Represents things that can go wrong while loading or running a dialogue.
 	public  class YarnException : Exception {
 		public YarnException(string message) : base(message) {}
 	}
 
 	// Delegates, which are used by the client.
 
-	// OptionChoosers let the client tell the Dialogue about what
-	// response option the user selected.
+	/// OptionChoosers let the client tell the Dialogue about what
+    /// response option the user selected.
 	public delegate void OptionChooser (int selectedOptionIndex);
 
-	// Loggers let the client send output to a console, for both debugging
-	// and error logging.
+	/// Loggers let the client send output to a console, for both debugging
+	/// and error logging.
 	public delegate void Logger(string message);
 
-	// Information about stuff that the client should handle.
-	// (Currently this just wraps a single field, but doing it like this
-	// gives us the option to add more stuff later without breaking the API.)
+	/// Information about stuff that the client should handle.
+	/** (Currently this just wraps a single field, but doing it like this
+     * gives us the option to add more stuff later without breaking the API.)
+     */
 	public struct Line { public string text; }
 	public struct Options { public IList<string> options; }
 	public struct Command { public string text; }
 
-	// Where we turn to for storing and loading variable data.
+	/// Where we turn to for storing and loading variable data.
 	public interface VariableStorage {
 
         [Obsolete] void SetNumber(string variableName, float number);
@@ -79,9 +79,10 @@ namespace Yarn {
         public abstract void Clear();
     }
 
-	// A line, localised into the current locale.
-	// LocalisedLines are used in both lines, options, and shortcut options - basically,
-	// anything user-facing.
+	/// A line, localised into the current locale.
+	/** LocalisedLines are used in both lines, options, and shortcut options - basically,
+     * anything user-facing.
+     */
 	public class LocalisedLine
 	{
 		public string LineCode { get; set; }
@@ -89,7 +90,7 @@ namespace Yarn {
 		public string Comment { get; set; }
 	}
 
-	// Very simple continuity class that keeps all variables in memory
+	/// Very simple continuity class that keeps all variables in memory
 	public class MemoryVariableStore : Yarn.BaseVariableStorage
 	{
 		Dictionary<string, Value> variables = new Dictionary<string, Value>();
@@ -117,16 +118,16 @@ namespace Yarn {
 		}
 	}
 
-	// The Dialogue class is the main thing that clients will use.
+	/// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
-		// We'll ask this object for the state of variables
+		/// We'll ask this object for the state of variables
 		internal VariableStorage continuity;
 
-		// Represents something for the end user ("client") of the Dialogue class to do.
+		/// Represents something for the end user ("client") of the Dialogue class to do.
 		public abstract class RunnerResult { }
 
-		// The client should run a line of dialogue.
+		/// The client should run a line of dialogue.
 		public class LineResult : RunnerResult  {
 
 			public Line line;
@@ -139,7 +140,7 @@ namespace Yarn {
 
 		}
 
-		// The client should run a command (it's up to them to parse the string)
+		/// The client should run a command (it's up to them to parse the string)
 		public class CommandResult: RunnerResult {
 			public Command command;
 
@@ -151,9 +152,9 @@ namespace Yarn {
 
 		}
 
-		// The client should show a list of options, and call
-		// setSelectedOptionDelegate before asking for the
-		// next line. It's an error if you don't.
+		/// The client should show a list of options, and call
+		/// setSelectedOptionDelegate before asking for the
+		/// next line. It's an error if you don't.
 		public class OptionSetResult : RunnerResult {
 			public Options options;
 			public OptionChooser setSelectedOptionDelegate;
@@ -167,7 +168,7 @@ namespace Yarn {
 
 		}
 
-		// We've reached the end of this node.
+		/// We've reached the end of this node.
 		public class NodeCompleteResult: RunnerResult {
 			public string nextNode;
 
@@ -176,28 +177,29 @@ namespace Yarn {
 			}
 		}
 
-		// Delegates used for logging.
+		/// Delegates used for logging.
 		public Logger LogDebugMessage;
 		public Logger LogErrorMessage;
 
-		// The node we start from.
+		/// The node we start from.
 		public const string DEFAULT_START = "Start";
 
-		// The loader contains all of the nodes we're going to run.
+		/// The loader contains all of the nodes we're going to run.
 		internal Loader loader;
 
-		// The Program is the compiled Yarn program.
+		/// The Program is the compiled Yarn program.
 		internal Program program;
 
-		// The library contains all of the functions and operators we know about.
+		/// The library contains all of the functions and operators we know about.
 		public Library library;
 
-		// The collection of nodes that we've seen.
+		/// The collection of nodes that we've seen.
         public Dictionary<String, int> visitedNodeCount = new Dictionary<string, int>();
 		
-        // A function exposed to Yarn that returns the number of times a node has been run.
-        // If no parameters are supplied, returns the number of time the current node
-        // has been run.
+        /// A function exposed to Yarn that returns the number of times a node has been run.
+        /** If no parameters are supplied, returns the number of time the current node
+         * has been run.
+         */
         object YarnFunctionNodeVisitCount (Value[] parameters)
         {
             // Determine the node we're checking
@@ -230,8 +232,8 @@ namespace Yarn {
             return visitCount;
         }
 
-        // A Yarn function that returns true if the named node, or the current node 
-        // if no parameters were provided, has been visited at least once.
+        /// A Yarn function that returns true if the named node, or the current node 
+        /// if no parameters were provided, has been visited at least once.
         object YarnFunctionIsNodeVisited (Value[] parameters)
         {
             return (int)YarnFunctionNodeVisitCount(parameters) > 0;
@@ -255,7 +257,7 @@ namespace Yarn {
 
 		}
 
-		// Load a file from disk.
+		/// Load a file from disk.
 		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 
 			// Is this a compiled program file?
@@ -334,7 +336,9 @@ namespace Yarn {
 			}
 		}
 
-		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
+		/// Ask the loader to parse a string.
+        /** Returns the number of nodes that were loaded.
+         */
 		public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
 
 			if (LogDebugMessage == null) {
@@ -366,8 +370,10 @@ namespace Yarn {
 
 		private VirtualMachine vm;
 
-		// Executes a node. Use this in a for-each construct; each time you iterate over it,
-		// you'll get a line, command, or set of options.
+		// Executes a node.
+        /** Use this in a for-each construct; each time you iterate over it,
+         * you'll get a line, command, or set of options.
+         */
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
 
 
@@ -480,8 +486,7 @@ namespace Yarn {
 			return d;
 		}
 
-		// Returns the source code for the node 'nodeName', 
-		// if that node was tagged with rawText.
+		/// Returns the source code for the node 'nodeName', if that node was tagged with rawText.
 		public string GetTextForNode(string nodeName) {
 			if (program.nodes.Count == 0) {
 				LogErrorMessage ("No nodes are loaded!");
@@ -540,7 +545,7 @@ namespace Yarn {
 			}
 		}
 
-		// Unloads ALL nodes.
+		/// Unloads ALL nodes.
 		public void UnloadAll(bool clearVisitedNodes = true) {
 			if (clearVisitedNodes)
                 visitedNodeCount.Clear();
@@ -589,7 +594,7 @@ namespace Yarn {
 		}
 
 
-		// The standard, built-in library of functions and operators.
+		/// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
 
 			public StandardLibrary() {
