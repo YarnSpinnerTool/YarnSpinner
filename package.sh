@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 # The MIT License (MIT)
-# 
+#
 # Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,49 +39,49 @@ CURRENT_BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
 set -e
 
 function show_help {
-	echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
-	echo
-	echo "Usage: package.sh [-hsSxcC]"
-	echo "  -s: Package the source code, not a built DLL"
+    echo "package.sh: Package Yarn Spinner into a .unitypackage for distribution"
+    echo
+    echo "Usage: package.sh [-hsSxcC]"
+    echo "  -s: Package the source code, not a built DLL"
     echo "  -S: Copy the files into the Unity project and exit"
-	echo "  -c: Show the changes since the last tag and exit"
+    echo "  -c: Show the changes since the last tag and exit"
     echo "  -C: Clean the Unity project and exit"
-	echo "  -h: Show this text and exit"
-	echo "  -x: Do not include example project assets"
+    echo "  -h: Show this text and exit"
+    echo "  -x: Do not include example project assets"
 }
 
 function show_changes {
-	LATEST_TAG=$(git describe --abbrev=0 --tags)
-	COMMITS_SINCE_THEN=$(git rev-list "$LATEST_TAG".. --count)
-	
-	echo "You are currently on branch $CURRENT_BRANCH_NAME."
-	
-	if [ "$COMMITS_SINCE_THEN" -eq "0" ]; then
-		echo "There has been no further work since the last tag."
-	else
-		echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG on this branch:"
+    LATEST_TAG=$(git describe --abbrev=0 --tags)
+    COMMITS_SINCE_THEN=$(git rev-list "$LATEST_TAG".. --count)
 
-		git log "$LATEST_TAG".. --pretty=format:"* %s"
-	fi
+    echo "You are currently on branch $CURRENT_BRANCH_NAME."
+
+    if [ "$COMMITS_SINCE_THEN" -eq "0" ]; then
+        echo "There has been no further work since the last tag."
+    else
+        echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG on this branch:"
+
+        git log "$LATEST_TAG".. --pretty=format:"* %s"
+    fi
 }
 
 while getopts ":xhsScC" opt; do
-	
-	case $opt in
-	   x) NO_EXAMPLES=1 ;;
-	   h) show_help ; exit 0 ;;
-	   s) SOURCE_BUILD=1 ;;
+
+    case $opt in
+       x) NO_EXAMPLES=1 ;;
+       h) show_help ; exit 0 ;;
+       s) SOURCE_BUILD=1 ;;
        S) COPY_ONLY=1 ;;
-	   c) show_changes ; exit 0 ;;
+       c) show_changes ; exit 0 ;;
        C) CLEAN_ONLY=1 ;;
-	   \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ; exit 0 ;;
-	esac
+       \?) echo "Invalid option: -$OPTARG" >&2; echo; show_help ; exit 0 ;;
+    esac
 
 done
 
 if [ "$(uname -s)" != "Darwin" ]; then
-	echo "This script only works on OS X."
-	exit 1
+    echo "This script only works on OS X."
+    exit 1
 fi
 
 # Clean the Unity directory of anything ignored
@@ -97,14 +97,14 @@ echo "Building Yarn Spinner..."
 ./build.sh
 
 if [ $SOURCE_BUILD == 1 ]; then
-	echo "Removing YarnSpinner.dll..."
-	# Remove the built DLL from the Unity project (we built it to ensure that it actually works)
-	rm -v "Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll"
-	
-	echo "Copying Yarn Spinner source in..."
-	# Copy the source files in
-	cp -v "$SOURCE_FILES" "Unity/Assets/Yarn Spinner/Code/"
-	
+    echo "Removing YarnSpinner.dll..."
+    # Remove the built DLL from the Unity project (we built it to ensure that it actually works)
+    rm -v "Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll"
+
+    echo "Copying Yarn Spinner source in..."
+    # Copy the source files in
+    cp -v "$SOURCE_FILES" "Unity/Assets/Yarn Spinner/Code/"
+
 fi
 
 if [ $COPY_ONLY == 1 ]; then
@@ -119,15 +119,15 @@ function strip-v () { echo -n "${1#v}"; }
 FULL_VERSION=$(strip-v "$(git describe --tags --match 'v[0-9]*' --always --dirty)")
 
 if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
-	FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
+    FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
 fi
 
 if [ $SOURCE_BUILD == 1 ]; then
-	FULL_VERSION="$FULL_VERSION-source"
+    FULL_VERSION="$FULL_VERSION-source"
 fi
 
 if [ $NO_EXAMPLES == 1 ]; then
-	FULL_VERSION="$FULL_VERSION-minimal"
+    FULL_VERSION="$FULL_VERSION-minimal"
 fi
 
 # sanity check that the examples folder is where we expect
@@ -140,9 +140,9 @@ fi
 
 if [ $NO_EXAMPLES == 1 ]; then
     # move the Examples folder to a temporary location
-    
+
     temp_folder="$(mktemp -d)/Examples"
-    
+
     echo "Moving Examples out of the way..."
     mv "$expected_examples_location" "$temp_folder"
     mv "$expected_examples_location.meta" "$temp_folder/"
@@ -158,44 +158,44 @@ OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 UNITY="$(mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1)/Contents/MacOS/Unity"
 
 if [[ -f $UNITY ]]; then
-	echo "Using $UNITY"
-	
-	ASSET_PATH="Assets/Yarn Spinner"
+    echo "Using $UNITY"
 
-	# Disable stop-on-error for this - we want better reporting
-	set +e
-	
-	"$UNITY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
-	
-	if [ $? -ne 0 ]; then
-		
-		echo "Error: Unity failed to build the package (see $LOGFILE)"
-		exit 1
-	fi
-	
-	if [ -f "$OUTFILE" ]; then
-		echo "Package created in $OUTFILE"		
-	else
-		echo "Error: Unity reported no error, but the package wasn't created. Check $LOGFILE."
-		exit 1
-	fi
-	
-	# Turn stop-on-error back on
-	set -e
-	
-	# Tidy up any untracked files (including source files, if this was a source build)
-	git clean -f Unity
-	
+    ASSET_PATH="Assets/Yarn Spinner"
+
+    # Disable stop-on-error for this - we want better reporting
+    set +e
+
+    "$UNITY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
+
+    if [ $? -ne 0 ]; then
+
+        echo "Error: Unity failed to build the package (see $LOGFILE)"
+        exit 1
+    fi
+
+    if [ -f "$OUTFILE" ]; then
+        echo "Package created in $OUTFILE"
+    else
+        echo "Error: Unity reported no error, but the package wasn't created. Check $LOGFILE."
+        exit 1
+    fi
+
+    # Turn stop-on-error back on
+    set -e
+
+    # Tidy up any untracked files (including source files, if this was a source build)
+    git clean -f Unity
+
 else
-	echo "Error: Unity not found"
-	exit 1
+    echo "Error: Unity not found"
+    exit 1
 fi
 
 if [ $NO_EXAMPLES == 1 ]; then
     # move the Examples folder back into place
-    
+
     echo "Moving Examples back into position..."
-    mv "$temp_folder/Examples.meta" "$expected_examples_location.meta" 
+    mv "$temp_folder/Examples.meta" "$expected_examples_location.meta"
     mv "$temp_folder" "$expected_examples_location"
 fi
 
