@@ -42,7 +42,7 @@
 
 # Before this script is used there should already be a gh-pages branch in the
 # repository.
-# 
+#
 ################################################################################
 
 init () {
