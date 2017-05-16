@@ -8,19 +8,19 @@ namespace Yarn
 
 		internal class State {
 
-			// The name of the node that we're currently in
+			/// The name of the node that we're currently in
 			public string currentNodeName;
 
-			// The instruction number in the current node
+			/// The instruction number in the current node
 			public int programCounter = 0;
 
-			// List of options, where each option = <string id, destination node>
+			/// List of options, where each option = <string id, destination node>
 			public List<KeyValuePair<string,string>> currentOptions = new List<KeyValuePair<string, string>>();
 
-			// The value stack
+			/// The value stack
 			private Stack<Value> stack = new Stack<Value>();
 
-			// Methods for working with the stack
+			/// Methods for working with the stack
 			public void PushValue(object o) {
 				if( o is Value ) {
 					stack.Push(o as Value);
@@ -82,8 +82,11 @@ namespace Yarn
 		}
 
 		public enum ExecutionState {
+            /** Stopped */
 			Stopped,
+            /** Waiting on option selection */
 			WaitingOnOptionSelection,
+            /** Running */
 			Running
 		}
 
@@ -127,7 +130,7 @@ namespace Yarn
 			executionState = ExecutionState.Stopped;
 		}
 
-		// Executes the next instruction in the current node.
+		/// Executes the next instruction in the current node.
 		internal void RunNext() {
 
 			if (executionState == ExecutionState.WaitingOnOptionSelection) {
@@ -153,7 +156,7 @@ namespace Yarn
 
 		}
 
-		// Looks up the instruction number for a named label in the current node.
+		/// Looks up the instruction number for a named label in the current node.
 		internal int FindInstructionPointForLabel(string labelName) {
 
 			if (currentNode.labels.ContainsKey(labelName) == false) {
@@ -172,20 +175,22 @@ namespace Yarn
 		internal void RunInstruction(Instruction i) {
 			switch (i.operation) {
 			case ByteCode.Label:
-
-				// No-op; used as a destination for JumpTo and Jump.
+				/// - Label
+                /** No-op, used as a destination for JumpTo and Jump.
+                 */
 				break;
 			case ByteCode.JumpTo:
-
-				// Jumps to a named label
+                /// - JumpTo
+				/** Jumps to a named label
+                 */
 				state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
 
 				break;
 			case ByteCode.RunLine:
-
-				// Looks up a string from the string table and
-				// passes it to the client as a line
-
+                /// - RunLine
+				/** Looks up a string from the string table and
+                 *  passes it to the client as a line
+                 */
 				var lineText = program.GetString ((string)i.operandA);
 
 				if (lineText == null) {
@@ -197,68 +202,75 @@ namespace Yarn
 
 				break;
 			case ByteCode.RunCommand:
-
-				// Passes a string to the client as a custom command
+                /// - RunCommand
+				/** Passes a string to the client as a custom command
+                 */
 				commandHandler (
 					new Dialogue.CommandResult ((string)i.operandA)
 				);
 
 				break;
 			case ByteCode.PushString:
-
-				// Pushes a string value onto the stack; the operand
-				// is an index into the string table, so that's looked up
-				// first.
+                /// - PushString
+				/** Pushes a string value onto the stack. The operand is an index into
+                 *  the string table, so that's looked up first.
+                 */
 				state.PushValue (program.GetString ((string)i.operandA));
 
 				break;
 			case ByteCode.PushNumber:
-
-				// Pushes a number onto the stack.
+                /// - PushNumber
+				/** Pushes a number onto the stack.
+                 */
 				state.PushValue (Convert.ToSingle(i.operandA));
 
 				break;
 			case ByteCode.PushBool:
-
-				// Pushes a boolean value onto the stack.
+                /// - PushBool
+				/** Pushes a boolean value onto the stack.
+                 */
 				state.PushValue (Convert.ToBoolean(i.operandA));
 
 				break;
 			case ByteCode.PushNull:
-
-				// Pushes a null value onto the stack.
+                /// - PushNull
+				/** Pushes a null value onto the stack.
+                 */
 				state.PushValue (Value.NULL);
 
 				break;
 			case ByteCode.JumpIfFalse:
-
-				// Jumps to a named label if the value on the top of the stack
-				// evaluates to the boolean value 'false'.
+                /// - JumpIfFalse
+				/** Jumps to a named label if the value on the top of the stack
+                 *  evaluates to the boolean value 'false'.
+                 */
 				if (state.PeekValue ().AsBool == false) {
 					state.programCounter = FindInstructionPointForLabel ((string)i.operandA);
 				}
 				break;
 
 			case ByteCode.Jump:
-
-				// Jumps to a label whose name is on the stack.
+                /// - Jump
+				/** Jumps to a label whose name is on the stack.
+                 */
 				var jumpDestination = state.PeekValue ().AsString;
 				state.programCounter = FindInstructionPointForLabel (jumpDestination);
 
 				break;
 
 			case ByteCode.Pop:
-
-				// Pops a value from the stack.
+                /// - Pop
+				/** Pops a value from the stack.
+                 */
 				state.PopValue ();
 				break;
 
 			case ByteCode.CallFunc:
-
-
-				// Call a function, whose parameters are expected to
-				// be on the stack. Pushes the function's return value,
-				// if it returns one.
+                /// - CallFunc
+				/** Call a function, whose parameters are expected to
+				 *  be on the stack. Pushes the function's return value,
+                 *  if it returns one.
+                 */
 				var functionName = (string)i.operandA;
 
 				var function = dialogue.library.GetFunction (functionName);
@@ -295,30 +307,35 @@ namespace Yarn
 
 				break;
 			case ByteCode.PushVariable:
-
-				// Get the contents of a variable, push that onto the stack.
+                /// - PushVariable
+				/** Get the contents of a variable, push that onto the stack.
+                 */
 				var variableName = (string)i.operandA;
 				var loadedValue = dialogue.continuity.GetValue (variableName);
 				state.PushValue (loadedValue);
 
 				break;
 			case ByteCode.StoreVariable:
-
-				// Store the top value on the stack in a variable.
+                /// - StoreVariable
+				/** Store the top value on the stack in a variable.
+                 */
 				var topValue = state.PeekValue ();
 				var destinationVariableName = (string)i.operandA;
 				dialogue.continuity.SetValue (destinationVariableName, topValue);
 
 				break;
 			case ByteCode.Stop:
-
-				// Immediately stop execution, and report that fact.
+                /// - Stop
+				/** Immediately stop execution, and report that fact.
+                 */
 				nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
 				executionState = ExecutionState.Stopped;
 
 				break;
 			case ByteCode.RunNode:
-
+                /// - RunNode
+                /** Run a node
+                 */
 				string nodeName;
 
 				if (string.IsNullOrEmpty((string) i.operandA)) {
@@ -332,19 +349,19 @@ namespace Yarn
 				nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
 				SetNode (nodeName);
 
-
-
 				break;
 			case ByteCode.AddOption:
-
-				// Add an option to the current state.
+                /// - AddOption
+				/** Add an option to the current state.
+                 */
 				state.currentOptions.Add (new KeyValuePair<string, string> ((string)i.operandA, (string)i.operandB));
 
 
 				break;
 			case ByteCode.ShowOptions:
-
-				// If we have no options to show, immediately stop.
+                /// - ShowOptions
+				/** If we have no options to show, immediately stop.
+                 */
 				if (state.currentOptions.Count == 0) {
 					executionState = ExecutionState.Stopped;
 					nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
@@ -403,10 +420,11 @@ namespace Yarn
 
 				break;
 			default:
-
-				// Whoa, no idea what bytecode this is. Stop the program
-				// and throw an exception.
-				executionState = ExecutionState.Stopped;
+                /// - default
+				/** Whoa, no idea what bytecode this is. Stop the program
+                 * and throw an exception.
+                */
+                executionState = ExecutionState.Stopped;
 				throw new ArgumentOutOfRangeException ();
 			}
 		}
