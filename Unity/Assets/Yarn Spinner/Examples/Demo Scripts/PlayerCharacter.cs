@@ -40,7 +40,7 @@ namespace Yarn.Unity.Example {
 
 		public float movementFromButtons {get;set;}
 
-		// Draw the range at which we'll start talking to people.
+		/// Draw the range at which we'll start talking to people.
 		void OnDrawGizmosSelected() {
 			Gizmos.color = Color.blue;
 
@@ -52,7 +52,7 @@ namespace Yarn.Unity.Example {
 		}
 
 		
-		// Update is called once per frame
+		/// Update is called once per frame
 		void Update () {
 
 			// Remove all player control when we're in dialogue
@@ -82,11 +82,12 @@ namespace Yarn.Unity.Example {
 
 
 
+		/// Find all DialogueParticipants
+        /** Filter them to those that have a Yarn start node and are in range; 
+		 * then start a conversation with the first one
+         */
 		public void CheckForNearbyNPC ()
 		{
-			// Find all DialogueParticipants, and filter them to
-			// those that have a Yarn start node and are in range; 
-			// then start a conversation with the first one
 			var allParticipants = new List<NPC> (FindObjectsOfType<NPC> ());
 			var target = allParticipants.Find (delegate (NPC p) {
 				return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
