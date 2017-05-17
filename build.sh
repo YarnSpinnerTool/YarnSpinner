@@ -64,7 +64,7 @@ done
 }
 
 clean_yarnspinner () {
-if [ -f YarnSpinner/bin/Release/YarnSpinner.dll ]; then
+if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
     xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
 fi
 }
@@ -81,7 +81,7 @@ build_yarnspinner () {
     # this is an appalling test for not windows or osx and with unity
     if [ "${OSTYPE}" != "linux-gnu" ]; then
         OUTPUT_DLL="YarnSpinner.dll"
-        BUILD_DIR="YarnSpinner/bin/Release/"
+        BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/"
         UNITY_DIR="Unity/Assets/Yarn Spinner/Code/"
 
         if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
@@ -109,11 +109,11 @@ build_native () {
     export CC="cc -lobjc -liconv -framework Foundation"
 
     # Build:
-    mkbundle YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/Release/*.dll --static --deps -o yarn_native
+    mkbundle YarnSpinnerConsole/bin/${CONFIGURATION}/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/${CONFIGURATION}/*.dll --static --deps -o yarn_native
 }
 
 unit_tests () (
-    if [ -x ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll ]; then
+    if [ -x ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
         mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll "$@"
     else
         echo "Failed to find unit tests; exiting"; exit 1
