@@ -51,7 +51,6 @@ namespace Yarn.Unity.Example {
             Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);
         }
 
-
         /// Update is called once per frame
         void Update () {
 
@@ -80,8 +79,6 @@ namespace Yarn.Unity.Example {
             }
         }
 
-
-
         /// Find all DialogueParticipants
         /** Filter them to those that have a Yarn start node and are in range; 
          * then start a conversation with the first one
@@ -100,7 +97,4 @@ namespace Yarn.Unity.Example {
             }
         }
     }
-
-
-
 }

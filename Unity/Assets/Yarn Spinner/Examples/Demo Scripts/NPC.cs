@@ -39,7 +39,6 @@ namespace Yarn.Unity.Example {
         [Header("Optional")]
         public TextAsset scriptToLoad;
 
-
         // Use this for initialization
         void Start () {
             if (scriptToLoad != null) {
