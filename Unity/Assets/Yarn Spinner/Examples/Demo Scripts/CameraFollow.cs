@@ -34,31 +34,31 @@ namespace Yarn.Unity.Example {
      * same because we're dealing with 2D. The movement speed
      * shouldn't be too fast nor too slow
      */
-	public class CameraFollow : MonoBehaviour {
+    public class CameraFollow : MonoBehaviour {
 
         /// Target of the camera
-		public Transform target;
+        public Transform target;
 
         /// Minimum position of camera
-		public float minPosition = -5.3f;
+        public float minPosition = -5.3f;
         /// Maximum position of camera
-		public float maxPosition = 5.3f;
+        public float maxPosition = 5.3f;
         /// Movement speed of camera
-		public float moveSpeed = 1.0f;
+        public float moveSpeed = 1.0f;
 
-		// Update is called once per frame
-		void Update () {
-			if (target == null) {
-				return;
-			}
-			var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
+        // Update is called once per frame
+        void Update () {
+            if (target == null) {
+                return;
+            }
+            var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
-			newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
-			newPosition.y = transform.position.y;
-			newPosition.z = transform.position.z;
+            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+            newPosition.y = transform.position.y;
+            newPosition.z = transform.position.z;
 
-			transform.position = newPosition;
-		}
-	}
+            transform.position = newPosition;
+        }
+    }
 }
 

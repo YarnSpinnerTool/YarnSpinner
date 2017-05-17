@@ -29,34 +29,34 @@ using System.Collections;
 
 namespace Yarn.Unity.Example {
 
-	[RequireComponent (typeof (SpriteRenderer))]
-	public class SpriteSwitcher : MonoBehaviour {
+    [RequireComponent (typeof (SpriteRenderer))]
+    public class SpriteSwitcher : MonoBehaviour {
 
-		[System.Serializable]
-		public struct SpriteInfo {
-			public string name;
-			public Sprite sprite;
-		}
+        [System.Serializable]
+        public struct SpriteInfo {
+            public string name;
+            public Sprite sprite;
+        }
 
-		public SpriteInfo[] sprites;
+        public SpriteInfo[] sprites;
 
-		[YarnCommand("setsprite")]
-		public void UseSprite(string spriteName) {
+        [YarnCommand("setsprite")]
+        public void UseSprite(string spriteName) {
 
-			Sprite s = null;
-			foreach(var info in sprites) {
-				if (info.name == spriteName) {
-					s = info.sprite;
-					break;
-				}
- 			}
-			if (s == null) {
-				Debug.LogErrorFormat("Can't find sprite named {0}!", spriteName);
-				return;
-			}
+            Sprite s = null;
+            foreach(var info in sprites) {
+                if (info.name == spriteName) {
+                    s = info.sprite;
+                    break;
+                }
+             }
+            if (s == null) {
+                Debug.LogErrorFormat("Can't find sprite named {0}!", spriteName);
+                return;
+            }
 
-			GetComponent<SpriteRenderer>().sprite = s;
-		}
-	}
+            GetComponent<SpriteRenderer>().sprite = s;
+        }
+    }
 
 }

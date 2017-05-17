@@ -29,29 +29,29 @@ using System.Collections;
 using UnityEngine.Serialization;
 
 namespace Yarn.Unity.Example {
-	public class NPC : MonoBehaviour {
+    public class NPC : MonoBehaviour {
 
-		public string characterName = "";
+        public string characterName = "";
 
-		[FormerlySerializedAs("startNode")]
-		public string talkToNode = "";
+        [FormerlySerializedAs("startNode")]
+        public string talkToNode = "";
 
-		[Header("Optional")]
-		public TextAsset scriptToLoad;
+        [Header("Optional")]
+        public TextAsset scriptToLoad;
 
 
-		// Use this for initialization
-		void Start () {
-			if (scriptToLoad != null) {
-				FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
-			}
+        // Use this for initialization
+        void Start () {
+            if (scriptToLoad != null) {
+                FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
+            }
 
-		}
+        }
 
-		// Update is called once per frame
-		void Update () {
+        // Update is called once per frame
+        void Update () {
 
-		}
-	}
+        }
+    }
 
 }
