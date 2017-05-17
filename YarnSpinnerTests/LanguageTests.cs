@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Yarn;
 using System.IO;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
@@ -12,49 +13,23 @@ namespace YarnSpinner.Tests
 	[TestFixture]
 	public class LanguageTests : TestBase
 	{
+		
+		[SetUp]
+		public new void Init() {
+			base.Init();
 
-		[Test]
-		public void TestTags()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Localisation.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
+			// Register some additional functions
+			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
+				return parameters[0] + parameters[1] + parameters[2];
+			});
+
+			dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
+			{
+				return parameters[parameters.Length - 1];
+			});
+
+
 		}
-
-		[Test]
-		public void TestIndentation()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Indentation.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
-		[Test]
-		public void TestVariableStorage()
-		{
-			storage.Clear();
-
-			var path = Path.Combine(TestDataPath, "TestCases", "VariableStorage.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
-		[Test]
-		public void TestOptions()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Options.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
-		[Test]
-		public void TestParsingSmileys()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Smileys.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
 
 		[Test]
 		public void TestExampleScript()
@@ -62,24 +37,6 @@ namespace YarnSpinner.Tests
 
 			errorsCauseFailures = false;
 			var path = Path.Combine(TestDataPath, "Example.json");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
-		[Test]
-		public void TestCommands()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Commands.node");
-			dialogue.LoadFile(path);
-			RunStandardTestcase();
-		}
-
-
-
-		[Test]
-		public void TestTypes()
-		{
-			var path = Path.Combine(TestDataPath, "TestCases", "Types.node");
 			dialogue.LoadFile(path);
 			RunStandardTestcase();
 		}
@@ -117,6 +74,34 @@ namespace YarnSpinner.Tests
 
 		}
 
+		// Test every file in Tests/TestCases
+		[Test, TestCaseSource("FileSources")]
+		public void TestSources(string file) {
+
+			storage.Clear();
+
+			var scriptFilePath = Path.Combine(TestDataPath, "TestCases", file);
+
+			dialogue.LoadFile(scriptFilePath);
+			
+
+			RunStandardTestcase();
+		}
+
+		public static IEnumerable<string> FileSources() {
+			
+			var testCasesPath = Path.Combine(TestDataPath, "TestCases");
+
+			var allowedExtensions = new[] { ".node", ".json", ".yarn.txt" };
+
+			// taking only the filename to make the test case more readable in lists
+			// - it gets re-added in TestSources
+
+			return Directory
+				.EnumerateFiles(testCasesPath)
+				.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+				.Select(p => Path.GetFileName(p));
+		}
 
 
 	}
