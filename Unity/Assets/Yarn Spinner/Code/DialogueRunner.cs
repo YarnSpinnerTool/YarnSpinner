@@ -67,12 +67,14 @@ namespace Yarn.Unity
 		/// Whether we should start dialogue when the scene starts
 		public bool startAutomatically = true;
 
+        /// Tests to see if the dialogue is running
 		public bool isDialogueRunning { get; private set; }
 
 		public bool automaticCommands = true;
 
-		// Our conversation engine
-		// Automatically created on first access
+		/// Our conversation engine
+		/** Automatically created on first access
+         */
 		private Dialogue _dialogue;
 		public Dialogue dialogue {
 			get {
@@ -92,6 +94,7 @@ namespace Yarn.Unity
 			}
 		}
 
+        /// Start the dialogue
 		void Start ()
 		{
             // Ensure that we have our Implementation object
@@ -270,6 +273,7 @@ namespace Yarn.Unity
 			isDialogueRunning = false;
 		}
 
+        /// Clear the dialogue system
 		public void Clear() {
 
 			if (isDialogueRunning) {
@@ -279,15 +283,18 @@ namespace Yarn.Unity
 			dialogue.UnloadAll();
 		}
 
+        /// Stop the dialogue
 		public void Stop() {
             isDialogueRunning = false;
 			dialogue.Stop();
 		}
 
+        /// Test to see if a node name exists
 		public bool NodeExists(string nodeName) {
 			return dialogue.NodeExists(nodeName);
 		}
 
+        /// Return the current node name
 		public string currentNodeName {
 			get {
 				return dialogue.currentNode;
