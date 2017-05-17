@@ -67,3 +67,15 @@ Unity/Assets/UnityTestTools*
 
 # Unity package log
 export.log
+
+# Doxygen generated files
+Documentation/docbook*
+Documentation/html*
+Documentation/latex*
+Documentation/rtf*
+Documentation/xml*
+
+# GNU GLOBAL
+GPATH
+GRTAGS
+GTAGS

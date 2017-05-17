@@ -32,7 +32,6 @@ When all of the lines in a node have been displayed, the dialogue system gives y
 
 If there are no options when we reach the end of a node, then we've reached the end of a conversation, and Yarn Spinner will let your game know.
 
-
 ## Shortcut Options
 
 Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use *shortcut options*:

@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,34 +29,34 @@ using System.Collections;
 
 namespace Yarn.Unity.Example {
 
-	[RequireComponent (typeof (SpriteRenderer))]
-	public class SpriteSwitcher : MonoBehaviour {
+    [RequireComponent (typeof (SpriteRenderer))]
+    public class SpriteSwitcher : MonoBehaviour {
 
-		[System.Serializable]
-		public struct SpriteInfo {
-			public string name;
-			public Sprite sprite;
-		}
+        [System.Serializable]
+        public struct SpriteInfo {
+            public string name;
+            public Sprite sprite;
+        }
 
-		public SpriteInfo[] sprites;
+        public SpriteInfo[] sprites;
 
-		[YarnCommand("setsprite")]
-		public void UseSprite(string spriteName) {
+        [YarnCommand("setsprite")]
+        public void UseSprite(string spriteName) {
 
-			Sprite s = null;
-			foreach(var info in sprites) {
-				if (info.name == spriteName) {
-					s = info.sprite;
-					break;
-				}
- 			}
-			if (s == null) {
-				Debug.LogErrorFormat("Can't find sprite named {0}!", spriteName);
-				return;
-			}
+            Sprite s = null;
+            foreach(var info in sprites) {
+                if (info.name == spriteName) {
+                    s = info.sprite;
+                    break;
+                }
+             }
+            if (s == null) {
+                Debug.LogErrorFormat("Can't find sprite named {0}!", spriteName);
+                return;
+            }
 
-			GetComponent<SpriteRenderer>().sprite = s;
-		}
-	}
+            GetComponent<SpriteRenderer>().sprite = s;
+        }
+    }
 
 }

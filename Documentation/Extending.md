@@ -1,7 +1,6 @@
-#Extending Yarn Spinner
+# Extending Yarn Spinner
 
 This is a quick-and-dirty document that shows how to add new functions so that they can be called from inside Yarn.
-
 
 First, get your `Dialogue` object:
  

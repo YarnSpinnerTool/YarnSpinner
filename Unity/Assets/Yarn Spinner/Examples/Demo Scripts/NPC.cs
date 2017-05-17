@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,29 +29,28 @@ using System.Collections;
 using UnityEngine.Serialization;
 
 namespace Yarn.Unity.Example {
-	public class NPC : MonoBehaviour {
-		
-		public string characterName = "";
+    public class NPC : MonoBehaviour {
 
-		[FormerlySerializedAs("startNode")]
-		public string talkToNode = "";
+        public string characterName = "";
 
-		[Header("Optional")]
-		public TextAsset scriptToLoad;
+        [FormerlySerializedAs("startNode")]
+        public string talkToNode = "";
 
-		
-		// Use this for initialization
-		void Start () {
-			if (scriptToLoad != null) {
-				FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
-			}
-			
-		}
-		
-		// Update is called once per frame
-		void Update () {
-			
-		}
-	}
+        [Header("Optional")]
+        public TextAsset scriptToLoad;
+
+        // Use this for initialization
+        void Start () {
+            if (scriptToLoad != null) {
+                FindObjectOfType<Yarn.Unity.DialogueRunner>().AddScript(scriptToLoad);
+            }
+
+        }
+
+        // Update is called once per frame
+        void Update () {
+
+        }
+    }
 
 }

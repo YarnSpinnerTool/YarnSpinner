@@ -16,7 +16,7 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
-## Quick Start
+## Quick Start - OSX
 
 1. Download the [Yarn editor](https://github.com/InfiniteAmmoInc/Yarn), so that you can create and edit Yarn files.
 1. Create a new project in [Unity](https://unity3d.com/get-unity).
@@ -24,7 +24,6 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 3. Import the package.
 4. Go to the `Yarn Spinner/Examples/` folder in Unity, and open one of the demo scenes. 
 5. Run the game, and poke around!
-
 
 ## What To Do Next
 
@@ -40,7 +39,6 @@ Yarn Spinner is available under the [MIT License](LICENSE.md). This means that y
 
 * [Learn more about what this license lets you do](https://tldrlegal.com/license/mit-license). 
 
-
 ## Made by Secret Lab!
 
 Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
@@ -53,7 +51,5 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 
 * Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we'd love your help in improving.
 * Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
-
-
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)

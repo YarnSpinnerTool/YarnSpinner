@@ -50,9 +50,10 @@ namespace Yarn
 
 		private int stringCount = 0;
 
-		// Loads a new string table into the program. The string table is
-		// merged with any existing strings, with the new table taking
-		// precedence over the old.
+		/// Loads a new string table into the program.
+        /** The string table is merged with any existing strings,
+         * with the new table taking precedence over the old.
+         */
 		public void LoadStrings(Dictionary<string,string> newStrings) {
 			foreach (var entry in newStrings) {
 				strings [entry.Key] = entry.Value;
@@ -166,8 +167,8 @@ namespace Yarn
 
 		public string name;
 
-		// the entry in the program's string table that contains
-		// the original text of this node; null if this is not available
+		/// the entry in the program's string table that contains
+		/// the original text of this node; null if this is not available
 		public string sourceTextStringID = null;
 
 		public Dictionary<string, int> labels = new Dictionary<string, int>();
@@ -268,24 +269,42 @@ namespace Yarn
 
 	internal enum ByteCode {
 		
-		Label,			    // opA = string: label name
-		JumpTo,			    // opA = string: label name
-		Jump,				// peek string from stack and jump to that label
-		RunLine,		    // opA = int: string number
-		RunCommand,		    // opA = string: command text
-		AddOption,		    // opA = int: string number for option to add
-		ShowOptions,	    // present the current list of options, then clear the list; most recently selected option will be on the top of the stack
-		PushString,		    // opA = int: string number in table; push string to stack
-		PushNumber,		    // opA = float: number to push to stack
-		PushBool,		    // opA = int (0 or 1): bool to push to stack
-		PushNull,		    // pushes a null value onto the stack
-		JumpIfFalse,	    // opA = string: label name if top of stack is not null, zero or false, jumps to that label
-		Pop,			    // discard top of stack
-		CallFunc,		    // opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-		PushVariable,			    // opA = name of variable to get value of and push to stack
-		StoreVariable,			    // opA = name of variable to store top of stack in
-		Stop,			    // stops execution
-		RunNode			    // run the node whose name is at the top of the stack
+		/// opA = string: label name
+		Label,
+		/// opA = string: label name
+		JumpTo,
+		/// peek string from stack and jump to that label
+		Jump,
+		/// opA = int: string number
+		RunLine,
+		/// opA = string: command text
+		RunCommand,
+		/// opA = int: string number for option to add
+		AddOption,
+		/// present the current list of options, then clear the list; most recently selected option will be on the top of the stack
+		ShowOptions,
+		/// opA = int: string number in table; push string to stack
+		PushString,
+		/// opA = float: number to push to stack
+		PushNumber,
+		/// opA = int (0 or 1): bool to push to stack
+		PushBool,
+		/// pushes a null value onto the stack
+		PushNull,
+		/// opA = string: label name if top of stack is not null, zero or false, jumps to that label
+		JumpIfFalse,
+		/// discard top of stack
+		Pop,
+		/// opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
+		CallFunc,
+		/// opA = name of variable to get value of and push to stack
+		PushVariable,
+		/// opA = name of variable to store top of stack in
+		StoreVariable,
+		/// stops execution
+		Stop,
+		/// run the node whose name is at the top of the stack
+		RunNode
 
 	}
 

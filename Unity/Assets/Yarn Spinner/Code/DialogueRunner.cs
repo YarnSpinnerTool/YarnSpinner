@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,40 +39,42 @@ namespace Yarn.Unity
         public TextAsset[] stringFiles;
     }
 
-	// DialogueRunners act as the interface between your game and YarnSpinner.
-    // Make our menu item slightly nicer looking
+	/// DialogueRunners act as the interface between your game and YarnSpinner.
+    /** Make our menu item slightly nicer looking */
 	[AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
 	public class DialogueRunner : MonoBehaviour
 	{
-		// The JSON files to load the conversation from
+		/// The JSON files to load the conversation from
 		public TextAsset[] sourceText;
 
-        // The group of JSON files to be used for this language
+        /// The group of JSON files to be used for this language
         public LocalisedStringGroup[] stringGroups;
 
-        // Language debugging options
+        /// Language debugging options
         public bool shouldOverrideLanguage = false;
 
         public SystemLanguage overrideLanguage = SystemLanguage.English;
 
-        // Our variable storage
+        /// Our variable storage
 		public Yarn.Unity.VariableStorageBehaviour variableStorage;
 
-		// The object that will handle the actual display and user input
+		/// The object that will handle the actual display and user input
 		public Yarn.Unity.DialogueUIBehaviour dialogueUI;
 
-		// Which node to start from
+		/// Which node to start from
 		public string startNode = Yarn.Dialogue.DEFAULT_START;
 
-		// Whether we should start dialogue when the scene starts
+		/// Whether we should start dialogue when the scene starts
 		public bool startAutomatically = true;
 
+        /// Tests to see if the dialogue is running
 		public bool isDialogueRunning { get; private set; }
 
 		public bool automaticCommands = true;
 
-		// Our conversation engine
-		// Automatically created on first access
+		/// Our conversation engine
+		/** Automatically created on first access
+         */
 		private Dialogue _dialogue;
 		public Dialogue dialogue {
 			get {
@@ -92,6 +94,7 @@ namespace Yarn.Unity
 			}
 		}
 
+        /// Start the dialogue
 		void Start ()
 		{
             // Ensure that we have our Implementation object
@@ -145,20 +148,23 @@ namespace Yarn.Unity
 
 		}
 
+        /// Add a string of text to a script
 		public void AddScript(string text) {
 			dialogue.LoadString(text);
 		}
 
+        /// Add a TextAsset to a script
 		public void AddScript(TextAsset asset) {
 			dialogue.LoadString(asset.text);
 		}
 
-        // Loads a string table, replacing any existing strings with the same
-        // key.
+        /// Loads a string table, replacing any existing strings with the same
+        /// key.
         public void AddStringTable(Dictionary<string,string> stringTable) {
             dialogue.AddStringTable(stringTable);
         }
 
+        /// Add a string of text to a table
         public void AddStringTable(string text) {
             
             // Create the dictionary that will contain these values
@@ -180,21 +186,24 @@ namespace Yarn.Unity
 
         }
 
+        /// Add a TextAsset to a table
         public void AddStringTable(TextAsset text) {
             AddStringTable(text.text);
         }
 
-		// Nuke the variable store and start again
+		/// Destroy the variable store and start again
 		public void ResetDialogue ()
 		{
 			variableStorage.ResetToDefaults ();
 			StartDialogue ();
 		}
 
+        /// Start the dialogue
 		public void StartDialogue () {
 			StartDialogue(startNode);
 		}
 
+        /// Start the dialogue from a given node
 		public void StartDialogue (string startNode)
 		{
 
@@ -264,6 +273,7 @@ namespace Yarn.Unity
 			isDialogueRunning = false;
 		}
 
+        /// Clear the dialogue system
 		public void Clear() {
 
 			if (isDialogueRunning) {
@@ -273,32 +283,33 @@ namespace Yarn.Unity
 			dialogue.UnloadAll();
 		}
 
+        /// Stop the dialogue
 		public void Stop() {
             isDialogueRunning = false;
 			dialogue.Stop();
 		}
 
+        /// Test to see if a node name exists
 		public bool NodeExists(string nodeName) {
 			return dialogue.NodeExists(nodeName);
 		}
 
+        /// Return the current node name
 		public string currentNodeName {
 			get {
 				return dialogue.currentNode;
 			}
 		}
 
+
+		/// commands that can be automatically dispatched look like this:
+		/// COMMANDNAME OBJECTNAME <param> <param> <param> ...
+		/** We can dispatch this command if:
+         * 1. it has at least 2 words
+         * 2. the second word is the name of an object
+         * 3. that object has components that have methods with the YarnCommand attribute that have the correct commandString set
+         */
 		public bool DispatchCommand(string command) {
-
-			// commands that can be automatically dispatched look like this:
-			// COMMANDNAME OBJECTNAME <param> <param> <param> ...
-
-			// We can dispatch this command if:
-			// 1. it has at least 2 words
-			// 2. the second word is the name of an object
-			// 3. that object has components that have methods 
-			//    with the YarnCommand attribute that have the
-			//    correct commandString set
 
 			var words = command.Split(' ');
 
@@ -318,6 +329,7 @@ namespace Yarn.Unity
 				return false;
 
 			int numberOfMethodsFound = 0;
+			List<string[]> errorValues = new List<string[]>();
 
 			List<string> parameters;
 
@@ -342,36 +354,61 @@ namespace Yarn.Unity
 					foreach (var attribute in attributes) {
 						if (attribute.commandString == commandName) {
 
-							// Verify that this method has the right number of parameters
+							
 							var methodParameters = method.GetParameters();
-
-							if (methodParameters.Length != parameters.Count) {
-								Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but it has a different number of parameters ({2}) to those provided ({3})!", method.Name, commandName, methodParameters.Length, parameters.Count);
-								return false;
+							bool paramsMatch = false;
+							// Check if this is a params array
+							if (methodParameters.Length == 1 && methodParameters[0].ParameterType.IsAssignableFrom(typeof(string[])))
+								{
+									// Cool, we can send the command!
+									string[][] paramWrapper = new string[1][];
+									paramWrapper[0] = parameters.ToArray();
+									method.Invoke(component, paramWrapper);
+									numberOfMethodsFound++;
+									paramsMatch = true;
+								
 							}
-
-							// Verify that this method has only string parameters (or no parameters)
-							foreach (var paramInfo in methodParameters) {
-								if (paramInfo.ParameterType.IsAssignableFrom(typeof(string)) == false) {
-									Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but not all of its parameters are strings!", method.Name, commandName);
-									return false;
+							// Otherwise, verify that this method has the right number of parameters
+							else if (methodParameters.Length == parameters.Count)
+							{
+								paramsMatch = true;
+								foreach (var paramInfo in methodParameters)
+								{
+									if (!paramInfo.ParameterType.IsAssignableFrom(typeof(string)))
+									{
+										Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but not all of its parameters are strings!", method.Name, commandName);
+										paramsMatch = false;
+										break;
+									}
+								}
+								if (paramsMatch)
+								{
+									// Cool, we can send the command!
+									method.Invoke(component, parameters.ToArray());
+									numberOfMethodsFound++;
 								}
 							}
-
-							// Cool, we can send the command!
-							method.Invoke(component, parameters.ToArray());
-							numberOfMethodsFound ++;
-
+							//parameters are invalid, but name matches.
+							if (!paramsMatch)
+							{
+								//save this error in case a matching command is never found.
+								errorValues.Add(new string[] { method.Name, commandName, methodParameters.Length.ToString(), parameters.Count.ToString() });
+							}
 						}
 					}
-				} 
+				}
 			}
 
 			// Warn if we found multiple things that could respond
 			// to this command.
 			if (numberOfMethodsFound > 1) {
 				Debug.LogWarningFormat(sceneObject, "The command \"{0}\" found {1} targets. " +
-					"You should only have one - check your scripts.");
+					"You should only have one - check your scripts.", command, numberOfMethodsFound);
+			} else if (numberOfMethodsFound == 0) {
+				//list all of the near-miss methods only if a proper match is not found, but correctly-named methods are.
+				foreach (string[] errorVal in errorValues) {
+					Debug.LogErrorFormat(sceneObject, "Method \"{0}\" wants to respond to Yarn command \"{1}\", but it has a different number of parameters ({2}) to those provided ({3}), or is not a string array!", errorVal[0], errorVal[1], errorVal[2], errorVal[3]);
+				}
 			}
 
 			return numberOfMethodsFound > 0;
@@ -379,14 +416,15 @@ namespace Yarn.Unity
 
 	}
 
-	// Apply this attribute to methods in your scripts to expose
-	// them to Yarn.
+	/// Apply this attribute to methods in your scripts to expose
+	/// them to Yarn.
 
-	// For example:
-	// [YarnCommand("dosomething")]
-	// void Foo() {
-	//    do something!
-	// }
+	/** For example:
+     *  [YarnCommand("dosomething")]
+     *      void Foo() {
+     *         do something!
+     *      }
+     */
 	public class YarnCommandAttribute : System.Attribute
 	{
 		public string commandString { get; private set; }
@@ -396,60 +434,65 @@ namespace Yarn.Unity
 		}
 	}
 
-	// Scripts that can act as the UI for the conversation should subclass this
+	/// Scripts that can act as the UI for the conversation should subclass this
 	public abstract class DialogueUIBehaviour : MonoBehaviour
 	{
-		// A conversation has started.
+		/// A conversation has started.
 		public virtual IEnumerator DialogueStarted() {
 			// Default implementation does nothing.
 			yield break;
 		}
 
-		// Display a line.
+		/// Display a line.
 		public abstract IEnumerator RunLine (Yarn.Line line);
 
-		// Display the options, and call the optionChooser when done.
+		/// Display the options, and call the optionChooser when done.
 		public abstract IEnumerator RunOptions (Yarn.Options optionsCollection,
 												Yarn.OptionChooser optionChooser);
 
-		// Perform some game-specific command.
+		/// Perform some game-specific command.
 		public abstract IEnumerator RunCommand (Yarn.Command command);
 
-		// The node has ended.
+		/// The node has ended.
 		public virtual IEnumerator NodeComplete(string nextNode) {
 			// Default implementation does nothing.
 			yield break;
 		}
 
-		// The conversation has ended.
+		/// The conversation has ended.
 		public virtual IEnumerator DialogueComplete () {
 			// Default implementation does nothing.
 			yield break;
 		}
 	}
 
-	// Scripts that can act as a variable storage should subclass this
+	/// Scripts that can act as a variable storage should subclass this
 	public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
 	{
 
+        /// Not implemented here
         public virtual void SetNumber (string variableName, float number)
 		{
 			throw new System.NotImplementedException ();
 		}
 
+        /// Not implemented here
         public virtual float GetNumber (string variableName)
 		{
 			throw new System.NotImplementedException ();
 		}
 
+        /// Get a value
 		public virtual Value GetValue(string variableName) {
 			return new Yarn.Value(this.GetNumber(variableName));
 		}
 
+        /// Set a value
 		public virtual void SetValue(string variableName, Value value) {
 			this.SetNumber(variableName, value.AsNumber);
 		}
 
+        /// Not implemented here
 		public virtual void Clear ()
 		{
 			throw new System.NotImplementedException ();

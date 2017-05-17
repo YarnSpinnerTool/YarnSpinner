@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,29 +28,39 @@ using UnityEngine;
 using System.Collections;
 
 namespace Yarn.Unity.Example {
-	
-	public class CameraFollow : MonoBehaviour {
 
-		public Transform target;
+    /// Control the position of the camera and its behaviour
+    /** Camera should have minPosition and maxPosition of the
+     * same because we're dealing with 2D. The movement speed
+     * shouldn't be too fast nor too slow
+     */
+    public class CameraFollow : MonoBehaviour {
 
-		public float minPosition = -5.3f;
-		public float maxPosition = 5.3f;
-		
-		public float moveSpeed = 1.0f;
+        /// Target of the camera
+        public Transform target;
 
-		// Update is called once per frame
-		void Update () {
-			if (target == null) {
-				return;
-			}
-			var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
+        /// Minimum position of camera
+        public float minPosition = -5.3f;
 
-			newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
-			newPosition.y = transform.position.y;
-			newPosition.z = transform.position.z;
+        /// Maximum position of camera
+        public float maxPosition = 5.3f;
 
-			transform.position = newPosition;
-		}
-	}
+        /// Movement speed of camera
+        public float moveSpeed = 1.0f;
+
+        // Update is called once per frame
+        void Update () {
+            if (target == null) {
+                return;
+            }
+            var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
+
+            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+            newPosition.y = transform.position.y;
+            newPosition.z = transform.position.z;
+
+            transform.position = newPosition;
+        }
+    }
 }
 
