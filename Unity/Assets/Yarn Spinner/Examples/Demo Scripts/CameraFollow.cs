@@ -41,8 +41,10 @@ namespace Yarn.Unity.Example {
 
         /// Minimum position of camera
         public float minPosition = -5.3f;
+
         /// Maximum position of camera
         public float maxPosition = 5.3f;
+
         /// Movement speed of camera
         public float moveSpeed = 1.0f;
 
