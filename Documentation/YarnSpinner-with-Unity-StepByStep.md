@@ -86,9 +86,7 @@ We'll start by creating an empty object, and then we'll add the `DialogueRunner`
 
     Next you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time. The only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)
 
-
 <!-- (gif of adding component) -->
-
 
 * **Drag your Yarn JSON file into the `Source Text` array.**
 
@@ -117,7 +115,6 @@ There's one last necessary component. As you play through a conversation, you'll
 
 The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
 
-
 * **Create a new game object**, and add the `ExampleVariableStorage` script to it.
 
 Or:
@@ -133,7 +130,6 @@ There's only one thing left to do: Yarn Spinner just needs to know what node in 
 * **Change the Dialogue Runner's `Start Node`** to the **name of the node you'd like to start run.**
 
 * Finally, **run the game.** The conversation will play!
-
 
 ### Respond to commands with `YarnCommand`
 
