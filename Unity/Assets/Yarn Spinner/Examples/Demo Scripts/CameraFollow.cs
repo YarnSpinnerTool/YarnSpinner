@@ -28,14 +28,14 @@ using UnityEngine;
 using System.Collections;
 
 namespace Yarn.Unity.Example {
-	
+
 	public class CameraFollow : MonoBehaviour {
 
 		public Transform target;
 
 		public float minPosition = -5.3f;
 		public float maxPosition = 5.3f;
-		
+
 		public float moveSpeed = 1.0f;
 
 		// Update is called once per frame

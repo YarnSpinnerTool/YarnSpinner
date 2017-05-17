@@ -13,7 +13,7 @@ public class MobileOnly : MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 		}
-	
+
 	}
 
 }

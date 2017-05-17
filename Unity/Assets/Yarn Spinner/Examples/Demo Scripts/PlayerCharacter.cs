@@ -51,7 +51,7 @@ namespace Yarn.Unity.Example {
 			Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);
 		}
 
-		
+
 		/// Update is called once per frame
 		void Update () {
 

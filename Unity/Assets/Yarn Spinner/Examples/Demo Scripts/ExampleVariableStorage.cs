@@ -64,7 +64,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	public override void ResetToDefaults ()
 	{
 		Clear ();
-		
+
         // For each default variable that's been defined, parse the string
         // that the user typed in in Unity and store the variable
 		foreach (var variable in defaultVariables) {
