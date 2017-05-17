@@ -40,7 +40,7 @@ install:
   - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
 
 script:	
-  - ./build.sh -bcdv
+  - ./build.sh -bcdvu
 
 # deploy documentation
 after_success:
