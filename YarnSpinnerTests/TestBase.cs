@@ -3,6 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using System.Reflection;
+using System.IO;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
@@ -21,23 +24,53 @@ namespace YarnSpinner.Tests
 
 		protected bool errorsCauseFailures = true;
 
+		// Returns the path that contains the test case files.
+
+		public string ProjectRootPath {
+			get {
+				var path = Assembly.GetCallingAssembly().Location.Split(Path.DirectorySeparatorChar).ToList();
+
+				var index = path.FindIndex(x => x == "YarnSpinnerTests");
+
+				if (index == -1)
+				{
+					Assert.Fail("Not in a test directory; cannot get test data directory");
+				}
+
+				var testDataDirectory = path.Take(index).ToList();
+
+				var pathToTestData = string.Join(Path.DirectorySeparatorChar.ToString(), testDataDirectory.ToArray());
+
+				pathToTestData = Path.DirectorySeparatorChar + pathToTestData;
+
+				return pathToTestData;
+			}
+		}
+
+
+		public string TestDataPath
+		{
+			get
+			{
+				return Path.Combine(ProjectRootPath, "Tests");
+
+
+			}
+		}
+
+		public string UnityDemoScriptsPath
+		{
+			get
+			{
+				return Path.Combine(ProjectRootPath, "Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space");
+			}
+		}
+
+
 		[SetUp()]
 		public void Init()
 		{
-
-			if (System.IO.Path.GetFileName(Environment.CurrentDirectory) != "Tests") {
-				if (TestContext.CurrentContext.TestDirectory == Environment.CurrentDirectory) {
-					// Hop up to the folder that contains the Tests folder
-					var topLevelPath = System.IO.Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
-					Environment.CurrentDirectory = topLevelPath;
-				}
-
-				var newWorkingDir = 
-					System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
-				Environment.CurrentDirectory = newWorkingDir;
-			}
-
-
+			
 			dialogue = new Yarn.Dialogue (storage);
 
 			dialogue.LogDebugMessage = delegate(string message) {

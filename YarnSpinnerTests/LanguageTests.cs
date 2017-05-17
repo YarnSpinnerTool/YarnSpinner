@@ -3,107 +3,116 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using System.IO;
 
 namespace YarnSpinner.Tests
 {
 
 
-	[TestFixture ()]
+	[TestFixture]
 	public class LanguageTests : TestBase
 	{
-		
-		[Test()]
-		public void TestTags() {
-			var path = System.IO.Path.Combine ("TestCases", "Localisation.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+
+		[Test]
+		public void TestTags()
+		{
+			var path = Path.Combine(TestDataPath, "TestCases", "Localisation.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestIndentation()
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Indentation.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "Indentation.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestVariableStorage()
 		{
-			storage.Clear ();
+			storage.Clear();
 
-			var path = System.IO.Path.Combine ("TestCases", "VariableStorage.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "VariableStorage.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestOptions()
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Options.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "Options.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestParsingSmileys()
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "Smileys.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
 
-		[Test()]
+		[Test]
 		public void TestExampleScript()
 		{
 
 			errorsCauseFailures = false;
-			var path = "Example.json";
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "Example.json");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestCommands()
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "Commands.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
 
 
-		[Test()]
-		public void TestTypes() 
+		[Test]
+		public void TestTypes()
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Types.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "TestCases", "Types.node");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
+		[Test]
 		public void TestMergingNodes()
 		{
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.json");
+			var examplePath = Path.Combine(TestDataPath, "Example.json");
 
-			dialogue.LoadFile ("Example.json");
+			dialogue.LoadFile(sallyPath);
+			dialogue.LoadFile(examplePath);
 
 			// Loading code with the same contents should throw
-			Assert.Throws <InvalidOperationException> (delegate () {
-				dialogue.LoadFile ("Example.json");
+			Assert.Throws<InvalidOperationException>(delegate ()
+			{
+				var path = Path.Combine(TestDataPath, "Example.json");
+				dialogue.LoadFile(path);
 				return;
 			});
 		}
 
 
 
-		[Test()]
-		public void TestEndOfNotesWithOptionsNotAdded() {
-			dialogue.LoadFile ("SkippedOptions.node");
+		[Test]
+		public void TestEndOfNotesWithOptionsNotAdded()
+		{
+			var path = Path.Combine(TestDataPath, "SkippedOptions.node");
+			dialogue.LoadFile(path);
 
-			foreach (var result in dialogue.Run()) {
-				Assert.IsNotInstanceOf<Yarn.Dialogue.OptionSetResult> (result);
+			foreach (var result in dialogue.Run())
+			{
+				Assert.IsNotInstanceOf<Dialogue.OptionSetResult>(result);
 			}
 
 		}

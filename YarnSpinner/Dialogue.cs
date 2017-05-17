@@ -442,7 +442,7 @@ namespace Yarn {
 			}
             set {
                 visitedNodeCount = new Dictionary<string, int>();
-                foreach (var entry in visitedNodes) {
+                foreach (var entry in value) {
                     visitedNodeCount[entry] = 1;
                 }				
 			}
