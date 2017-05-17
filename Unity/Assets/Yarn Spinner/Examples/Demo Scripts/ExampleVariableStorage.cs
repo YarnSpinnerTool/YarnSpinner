@@ -77,29 +77,21 @@ public class ExampleVariableStorage : VariableStorageBehaviour
             switch (variable.type) {
             case Yarn.Value.Type.Number:
                 float f = 0.0f;
-
                 float.TryParse(variable.value, out f);
-
                 value = f;
-
                 break;
 
             case Yarn.Value.Type.String:
-
                 value = variable.value;
-
                 break;
+
             case Yarn.Value.Type.Bool:
-
                 bool b = false;
-
                 bool.TryParse(variable.value, out b);
-
                 value = b;
-
                 break;
-            case Yarn.Value.Type.Variable:
 
+            case Yarn.Value.Type.Variable:
                 // We don't support assigning default variables from other variables
                 // yet
                 Debug.LogErrorFormat("Can't set variable {0} to {1}: You can't " +
@@ -108,12 +100,12 @@ public class ExampleVariableStorage : VariableStorageBehaviour
                 continue;
 
             case Yarn.Value.Type.Null:
-
                 value = null;
-
                 break;
+
             default:
                 throw new System.ArgumentOutOfRangeException ();
+
             }
 
             var v = new Yarn.Value(value);
