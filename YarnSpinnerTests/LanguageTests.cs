@@ -3,119 +3,105 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using System.IO;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
 
 
-	[TestFixture ()]
+	[TestFixture]
 	public class LanguageTests : TestBase
 	{
 		
-		[Test()]
-		public void TestTags() {
-			var path = System.IO.Path.Combine ("TestCases", "Localisation.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+		[SetUp]
+		public new void Init() {
+			base.Init();
+
+			// Register some additional functions
+			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
+				return parameters[0] + parameters[1] + parameters[2];
+			});
+
+			dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
+			{
+				return parameters[parameters.Length - 1];
+			});
+
+
 		}
 
-		[Test()]
-		public void TestIndentation()
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Indentation.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-		[Test()]
-		public void TestVariableStorage()
-		{
-			storage.Clear ();
-
-			var path = System.IO.Path.Combine ("TestCases", "VariableStorage.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-		[Test()]
-		public void TestOptions()
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Options.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-		[Test()]
-		public void TestParsingSmileys()
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-		[Test()]
-		public void TestExpression()
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Expressions.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-
-		[Test()]
+		[Test]
 		public void TestExampleScript()
 		{
 
 			errorsCauseFailures = false;
-			var path = "Example.json";
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
+			var path = Path.Combine(TestDataPath, "Example.json");
+			dialogue.LoadFile(path);
+			RunStandardTestcase();
 		}
 
-		[Test()]
-		public void TestCommands()
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Commands.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-
-
-		[Test()]
-		public void TestTypes() 
-		{
-			var path = System.IO.Path.Combine ("TestCases", "Types.node");
-			dialogue.LoadFile (path);
-			RunStandardTestcase ();
-		}
-
-		[Test()]
+		[Test]
 		public void TestMergingNodes()
 		{
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.json");
+			var examplePath = Path.Combine(TestDataPath, "Example.json");
 
-			dialogue.LoadFile ("Example.json");
+			dialogue.LoadFile(sallyPath);
+			dialogue.LoadFile(examplePath);
 
 			// Loading code with the same contents should throw
-			Assert.Throws <InvalidOperationException> (delegate () {
-				dialogue.LoadFile ("Example.json");
+			Assert.Throws<InvalidOperationException>(delegate ()
+			{
+				var path = Path.Combine(TestDataPath, "Example.json");
+				dialogue.LoadFile(path);
 				return;
 			});
 		}
 
 
 
-		[Test()]
-		public void TestEndOfNotesWithOptionsNotAdded() {
-			dialogue.LoadFile ("SkippedOptions.node");
+		[Test]
+		public void TestEndOfNotesWithOptionsNotAdded()
+		{
+			var path = Path.Combine(TestDataPath, "SkippedOptions.node");
+			dialogue.LoadFile(path);
 
-			foreach (var result in dialogue.Run()) {
-				Assert.IsNotInstanceOf<Yarn.Dialogue.OptionSetResult> (result);
+			foreach (var result in dialogue.Run())
+			{
+				Assert.IsNotInstanceOf<Dialogue.OptionSetResult>(result);
 			}
 
 		}
 
+		// Test every file in Tests/TestCases
+		[Test, TestCaseSource("FileSources")]
+		public void TestSources(string file) {
+
+			storage.Clear();
+
+			var scriptFilePath = Path.Combine(TestDataPath, "TestCases", file);
+
+			dialogue.LoadFile(scriptFilePath);
+			
+
+			RunStandardTestcase();
+		}
+
+		public static IEnumerable<string> FileSources() {
+			
+			var testCasesPath = Path.Combine(TestDataPath, "TestCases");
+
+			var allowedExtensions = new[] { ".node", ".json", ".yarn.txt" };
+
+			// taking only the filename to make the test case more readable in lists
+			// - it gets re-added in TestSources
+
+			return Directory
+				.EnumerateFiles(testCasesPath)
+				.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+				.Select(p => Path.GetFileName(p));
+		}
 
 
 	}

@@ -62,6 +62,8 @@ TestResult.xml
 
 packages/
 
+testrunner/
+
 # Unity Test Tools examples
 Unity/Assets/UnityTestTools*
 

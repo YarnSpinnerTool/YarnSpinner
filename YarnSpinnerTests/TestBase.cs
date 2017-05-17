@@ -3,6 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using System.Reflection;
+using System.IO;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
@@ -21,24 +24,54 @@ namespace YarnSpinner.Tests
 
 		protected bool errorsCauseFailures = true;
 
-		[SetUp()]
-		public void Init()
-		{
+		// Returns the path that contains the test case files.
 
-			if (System.IO.Path.GetFileName(Environment.CurrentDirectory) != "Tests") {
-				if (TestContext.CurrentContext.TestDirectory == Environment.CurrentDirectory) {
-					// Hop up to the folder that contains the Tests folder
-					var topLevelPath = System.IO.Path.Combine(Environment.CurrentDirectory, "..", "..", "..");
-					Environment.CurrentDirectory = topLevelPath;
+		public static string ProjectRootPath {
+			get {
+				var path = Assembly.GetCallingAssembly().Location.Split(Path.DirectorySeparatorChar).ToList();
+
+				var index = path.FindIndex(x => x == "YarnSpinnerTests");
+
+				if (index == -1)
+				{
+					Assert.Fail("Not in a test directory; cannot get test data directory");
 				}
 
-				var newWorkingDir = 
-					System.IO.Path.Combine (Environment.CurrentDirectory, "Tests");
-				Environment.CurrentDirectory = newWorkingDir;
+				var testDataDirectory = path.Take(index).ToList();
+
+				var pathToTestData = string.Join(Path.DirectorySeparatorChar.ToString(), testDataDirectory.ToArray());
+
+				pathToTestData = Path.DirectorySeparatorChar + pathToTestData;
+
+				return pathToTestData;
 			}
+		}
 
 
-			dialogue = new Yarn.Dialogue (storage);
+		public static string TestDataPath
+		{
+			get
+			{
+				return Path.Combine(ProjectRootPath, "Tests");
+
+
+			}
+		}
+
+		public static string UnityDemoScriptsPath
+		{
+			get
+			{
+				return Path.Combine(ProjectRootPath, "Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space");
+			}
+		}
+
+
+		[SetUp]
+		public void Init()
+		{
+			
+			dialogue = new Dialogue (storage);
 
 			dialogue.LogDebugMessage = delegate(string message) {
 
@@ -52,7 +85,7 @@ namespace YarnSpinner.Tests
 				Console.ResetColor ();
 
 				if (errorsCauseFailures == true)
-					Assert.Fail();
+					Assert.Fail(message);
 			};
 
 			dialogue.library.RegisterFunction ("assert", -1, delegate(Yarn.Value[] parameters) {
@@ -65,18 +98,21 @@ namespace YarnSpinner.Tests
 				}
 			});
 
-			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Yarn.Value[] parameters) {
+			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Value[] parameters) {
 				nextExpectedOptionCount = (int)parameters[0].AsNumber;
 				nextOptionToSelect = (int)parameters[1].AsNumber;
 			});
 
-			dialogue.library.RegisterFunction ("expect_line", -1, delegate(Yarn.Value[] parameters) {
+			dialogue.library.RegisterFunction ("expect_line", -1, delegate(Value[] parameters) {
 				nextExpectedLine = parameters[0].AsString;
 			});
 
-			dialogue.library.RegisterFunction ("expect_command", -1, delegate(Yarn.Value[] parameters) {
+			dialogue.library.RegisterFunction ("expect_command", -1, delegate(Value[] parameters) {
 				nextExpectedCommand = parameters[0].AsString;
 			});
+
+			nextExpectedOptionCount = -1;
+			nextOptionToSelect = -1;
 		}
 
 
@@ -113,6 +149,8 @@ namespace YarnSpinner.Tests
 
 				if (nextOptionToSelect != -1) {
 					resultDelegate (nextOptionToSelect);
+				} else {
+					resultDelegate(0);
 				}
 			} else if (result is Yarn.Dialogue.CommandResult) {
 				var commandText = (result as Yarn.Dialogue.CommandResult).command.text;

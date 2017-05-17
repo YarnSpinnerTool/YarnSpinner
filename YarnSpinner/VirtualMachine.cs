@@ -150,7 +150,7 @@ namespace Yarn
 
 			if (state.programCounter >= currentNode.instructions.Count) {
 				executionState = ExecutionState.Stopped;
-				nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
+				nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
 				dialogue.LogDebugMessage ("Run complete.");
 			}
 
@@ -363,8 +363,8 @@ namespace Yarn
 				/** If we have no options to show, immediately stop.
                  */
 				if (state.currentOptions.Count == 0) {
+					nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
 					executionState = ExecutionState.Stopped;
-					nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
 					break;
 				}
 

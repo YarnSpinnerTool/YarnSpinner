@@ -282,7 +282,7 @@ namespace Yarn {
 
 					// we use a regex to match either \r\n or \n line endings
 					if (System.Text.RegularExpressions.Regex.IsMatch(text, "---.?\n") == false) {
-						dialogue.LogErrorMessage("Error parsing input: text appears corrupt (no header sentinel");
+						dialogue.LogErrorMessage("Error parsing input: text appears corrupt (no header sentinel)");
 						break;
 					}
 
@@ -410,7 +410,7 @@ namespace Yarn {
 					}
 					break;
 				default:
-					throw new InvalidOperationException();
+					throw new InvalidOperationException("Unknown format " + format.ToString());
 			}
 
 			// hooray we're done

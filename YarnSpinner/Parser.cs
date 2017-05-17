@@ -1255,7 +1255,7 @@ namespace Yarn {
 					return new OperatorInfo(Associativity.Left, 2,2);
 
 				}
-				throw new InvalidOperationException ();
+				throw new InvalidOperationException ("Unknown operator " + op.ToString());
 				
 			}
 

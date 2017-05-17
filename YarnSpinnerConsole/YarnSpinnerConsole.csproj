@@ -30,11 +30,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Execute" />
-      </CustomCommands>
-    </CustomCommands>
+    
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

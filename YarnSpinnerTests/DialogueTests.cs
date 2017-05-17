@@ -3,20 +3,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Yarn;
+using System.IO;
+using System.Linq;
 
 namespace YarnSpinner.Tests
 {
 
 
-	[TestFixture ()]
+	[TestFixture]
 	public class DialogueTests : TestBase {
-		
-		[Test()]
+
+
+		[Test]
 		public void TestNodeExists ()
 		{
 
+			var path = Path.Combine(UnityDemoScriptsPath, "Sally.json");
 
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			dialogue.LoadFile (path);
 
 			Assert.True (dialogue.NodeExists ("Sally"));
 
@@ -30,7 +34,7 @@ namespace YarnSpinner.Tests
 
 		}
 
-		[Test()]
+		[Test]
 		public void TestAnalysis() {
 
 			ICollection<Yarn.Analysis.Diagnosis> diagnoses;
@@ -44,18 +48,19 @@ namespace YarnSpinner.Tests
 			// this means that there should be two diagnosis results
 			var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
 
-			context = new Yarn.Analysis.Context ();
+			context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 			dialogue.LoadString (script);
 			dialogue.Analyse (context);
 			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-			Assert.IsTrue (diagnoses.Count == 2);
+			Assert.AreEqual (2, diagnoses.Count);
 
 			dialogue.UnloadAll ();
 
-			context = new Yarn.Analysis.Context ();
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Ship.json");
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
+
+			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Ship.json"));
+			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
 			dialogue.Analyse (context);
 			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
@@ -65,10 +70,10 @@ namespace YarnSpinner.Tests
 
 		}
 
-		[Test()]
+		[Test]
 		public void TestDumpingCode()
 		{
-			var path = "Example.json";
+			var path = Path.Combine(TestDataPath, "Example.json");
 			dialogue.LoadFile (path);
 
 			var byteCode = dialogue.GetByteCode ();
@@ -76,10 +81,10 @@ namespace YarnSpinner.Tests
 
 		}
 
-		[Test()]
+		[Test]
 		public void TestMissingNode() 
 		{
-			var path = System.IO.Path.Combine ("TestCases", "Smileys.node");
+			var path = Path.Combine (TestDataPath, "TestCases", "Smileys.node");
 			dialogue.LoadFile (path);
 
 			errorsCauseFailures = false;
@@ -89,9 +94,9 @@ namespace YarnSpinner.Tests
 			}
 		}
 
-		[Test()]
+		[Test]
 		public void TestGettingCurrentNodeName()  {
-			dialogue.LoadFile ("../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space/Sally.json");
+			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
 
 			// dialogue should not be running yet
 			Assert.IsNull (dialogue.currentNode);
@@ -107,9 +112,9 @@ namespace YarnSpinner.Tests
 			Assert.IsNull (dialogue.currentNode);
 		}
 
-		[Test()]
+		[Test]
 		public void TestGettingRawSource() {
-			dialogue.LoadFile ("Example.json");
+			dialogue.LoadFile (Path.Combine(TestDataPath, "Example.json"));
 
 			var source = dialogue.GetTextForNode ("LearnMore");
 
@@ -118,33 +123,20 @@ namespace YarnSpinner.Tests
 			Assert.AreEqual (source, "A: HAHAHA");
 		}
 
-		[Test()]
+		[Test]
 		public void TestNodeVistation() {
-			dialogue.LoadFile ("Example.json");
+			dialogue.LoadFile(Path.Combine(TestDataPath, "Example.json"));
 
 			foreach (var result in dialogue.Run("Leave")) {
 				HandleResult (result);
 			}
 
-			bool found;
+			Assert.Contains("Leave", dialogue.visitedNodes.ToList());
 
-			found = false;
-			foreach (var name in dialogue.visitedNodes) {
-				if (name == "Leave")
-					found = true;
-			}
-			Assert.IsTrue (found);
-
+			// Override the visitedNodes list
 			dialogue.visitedNodes = new string[]{ "LearnMore" };
 
-			found = false;
-			foreach (var name in dialogue.visitedNodes) {
-				if (name == "Leave")
-					found = true;
-			}
-			Assert.IsTrue (found);
-
-				
+			Assert.Contains("LearnMore", dialogue.visitedNodes.ToList());
 
 		}
 

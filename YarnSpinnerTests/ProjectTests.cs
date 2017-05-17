@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using System;
 using System.IO;
 using System.Collections;
@@ -13,10 +13,10 @@ namespace YarnSpinner.Tests
 	public class ProjectTests : TestBase
 	{
 
-		[Test()]
+		[Test]
 		public void TestLoadingSingleFile()
 		{
-			var path = Path.Combine("Projects", "Basic", "Test.yarn.txt");
+			var path = Path.Combine(TestDataPath, "Projects", "Basic", "Test.yarn.txt");
 
 			// high-level test: load the file, verify it has the nodes we want,
 			// and run one

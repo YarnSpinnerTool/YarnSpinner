@@ -117,6 +117,14 @@ namespace Yarn.Analysis
 
 		}
 
+		public Context(params Type[] types) {
+			analysers = new List<CompiledProgramAnalyser> ();
+
+			foreach (var analyserType in types) {
+				analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+			}
+		}
+
 		internal void AddProgramToAnalysis(Program program) {
 			foreach (var analyser in analysers) {
 				analyser.Diagnose (program);
@@ -175,7 +183,7 @@ namespace Yarn.Analysis
 			var diagnoses = new List<Diagnosis>();
 
 			foreach (var variable in variables) {
-				var d = new Diagnosis(variable, Diagnosis.Severity.Note);
+				var d = new Diagnosis("Script uses variable " + variable, Diagnosis.Severity.Note);
 				diagnoses.Add(d);
 			}
 
