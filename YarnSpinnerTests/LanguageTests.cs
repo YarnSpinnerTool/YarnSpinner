@@ -53,6 +53,14 @@ namespace YarnSpinner.Tests
 			RunStandardTestcase ();
 		}
 
+		[Test()]
+		public void TestExpression()
+		{
+			var path = System.IO.Path.Combine ("TestCases", "Expressions.node");
+			dialogue.LoadFile (path);
+			RunStandardTestcase ();
+		}
+
 
 		[Test()]
 		public void TestExampleScript()
