@@ -29,13 +29,21 @@ using System.Collections;
 
 namespace Yarn.Unity.Example {
 
+    /// Control the position of the camera and its behaviour
+    /** Camera should have minPosition and maxPosition of the
+     * same because we're dealing with 2D. The movement speed
+     * shouldn't be too fast nor too slow
+     */
 	public class CameraFollow : MonoBehaviour {
 
+        /// Target of the camera
 		public Transform target;
 
+        /// Minimum position of camera
 		public float minPosition = -5.3f;
+        /// Maximum position of camera
 		public float maxPosition = 5.3f;
-
+        /// Movement speed of camera
 		public float moveSpeed = 1.0f;
 
 		// Update is called once per frame
