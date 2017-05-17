@@ -437,29 +437,29 @@ namespace Yarn.Unity
 	/// Scripts that can act as the UI for the conversation should subclass this
 	public abstract class DialogueUIBehaviour : MonoBehaviour
 	{
-		// A conversation has started.
+		/// A conversation has started.
 		public virtual IEnumerator DialogueStarted() {
 			// Default implementation does nothing.
 			yield break;
 		}
 
-		// Display a line.
+		/// Display a line.
 		public abstract IEnumerator RunLine (Yarn.Line line);
 
-		// Display the options, and call the optionChooser when done.
+		/// Display the options, and call the optionChooser when done.
 		public abstract IEnumerator RunOptions (Yarn.Options optionsCollection,
 												Yarn.OptionChooser optionChooser);
 
-		// Perform some game-specific command.
+		/// Perform some game-specific command.
 		public abstract IEnumerator RunCommand (Yarn.Command command);
 
-		// The node has ended.
+		/// The node has ended.
 		public virtual IEnumerator NodeComplete(string nextNode) {
 			// Default implementation does nothing.
 			yield break;
 		}
 
-		// The conversation has ended.
+		/// The conversation has ended.
 		public virtual IEnumerator DialogueComplete () {
 			// Default implementation does nothing.
 			yield break;
@@ -470,24 +470,29 @@ namespace Yarn.Unity
 	public abstract class VariableStorageBehaviour : MonoBehaviour, Yarn.VariableStorage
 	{
 
+        /// Not implemented here
         public virtual void SetNumber (string variableName, float number)
 		{
 			throw new System.NotImplementedException ();
 		}
 
+        /// Not implemented here
         public virtual float GetNumber (string variableName)
 		{
 			throw new System.NotImplementedException ();
 		}
 
+        /// Get a value
 		public virtual Value GetValue(string variableName) {
 			return new Yarn.Value(this.GetNumber(variableName));
 		}
 
+        /// Set a value
 		public virtual void SetValue(string variableName, Value value) {
 			this.SetNumber(variableName, value.AsNumber);
 		}
 
+        /// Not implemented here
 		public virtual void Clear ()
 		{
 			throw new System.NotImplementedException ();
