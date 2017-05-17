@@ -1,4 +1,4 @@
-# Using Yarn Spinner in your Unity game
+# Quickstart to Using Yarn Spinner in your Unity game
 
 ### Style Guide
 
