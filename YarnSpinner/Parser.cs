@@ -1233,6 +1233,7 @@ namespace Yarn {
 
 				case TokenType.Multiply:
 				case TokenType.Divide:
+				case TokenType.Modulo:
 					return new OperatorInfo(Associativity.Left, 20,2);
 				case TokenType.Add:
 				case TokenType.Minus:
@@ -1274,6 +1275,7 @@ namespace Yarn {
 						TokenType.Minus,
 						TokenType.Divide,
 						TokenType.Multiply,
+						TokenType.Modulo,
 
 						TokenType.EqualToOrAssign,
 						TokenType.EqualTo,

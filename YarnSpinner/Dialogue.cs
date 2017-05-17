@@ -621,6 +621,10 @@ namespace Yarn {
 					return parameters[0] * parameters[1];
 				});
 
+				this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) {
+					return parameters[0] % parameters[1];
+				});
+
 				this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {
                     return parameters[0].Equals( parameters[1] );
 				});

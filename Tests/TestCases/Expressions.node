@@ -13,6 +13,10 @@
 <<set $math = 5 * 2 - 2 * -1 >>
 <<assert ($math is 12)>>
 
+// Test % operator
+<<set $math = $math % 5 >>
+<<assert ($math is 2)>>
+
 // Test floating point math
 <<assert (1 / 2 == 0.5)>>
 <<assert (0.1 + 0.1 == 0.2)>>

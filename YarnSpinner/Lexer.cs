@@ -158,6 +158,7 @@ namespace Yarn {
 		Minus, // -
 		Multiply, // *
 		Divide, // /
+		Modulo, // %
 		
 		AddAssign, // +=
 		MinusAssign, // -=
@@ -348,10 +349,11 @@ namespace Yarn {
 			patterns[TokenType.Minus] = @"\-";
 			patterns[TokenType.Multiply] = @"\*";
 			patterns[TokenType.Divide] = @"\/";
-			patterns [TokenType.And] = @"(\&\&|and(?!\w))";
-			patterns [TokenType.Or] = @"(\|\||or(?!\w))";
-			patterns [TokenType.Xor] = @"(\^|xor(?!\w))";
-			patterns [TokenType.Not] = @"(\!|not(?!\w))";
+			patterns [TokenType.Modulo] = @"\%";
+			patterns[TokenType.And] = @"(\&\&|and(?!\w))";
+			patterns[TokenType.Or] = @"(\|\||or(?!\w))";
+			patterns[TokenType.Xor] = @"(\^|xor(?!\w))";
+			patterns[TokenType.Not] = @"(\!|not(?!\w))";
 			patterns[TokenType.Variable] = @"\$([A-Za-z0-9_\.])+";
 			patterns[TokenType.Comma] = @",";
 			patterns[TokenType.True] = @"true(?!\w)";
@@ -438,6 +440,7 @@ namespace Yarn {
 			states ["expression"].AddTransition(TokenType.Minus);
 			states ["expression"].AddTransition(TokenType.Multiply);
 			states ["expression"].AddTransition(TokenType.Divide);
+			states ["expression"].AddTransition (TokenType.Modulo);
 			states ["expression"].AddTransition(TokenType.And);
 			states ["expression"].AddTransition(TokenType.Or);
 			states ["expression"].AddTransition(TokenType.Xor);

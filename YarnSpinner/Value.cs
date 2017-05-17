@@ -294,6 +294,16 @@ namespace Yarn
 			);
 		}
 
+		public static Value operator %(Value a, Value b) {
+			if (a.type == Type.Number && (b.type == Type.Number || b.type == Type.Null) ||
+			    b.type == Type.Number && (a.type == Type.Number || a.type == Type.Null)) {
+				return new Value (a.AsNumber % b.AsNumber);
+			}
+			throw new System.ArgumentException(
+				string.Format("Cannot modulo types {0} and {1}.", a.type, b.type )
+			);
+		}
+
 		public static Value operator- (Value a) {
 			if( a.type == Type.Number ) {
 				return new Value( -a.AsNumber );
