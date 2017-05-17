@@ -42,8 +42,11 @@ public class ExampleVariableStorage : VariableStorageBehaviour
 	[System.Serializable]
 	public class DefaultVariable
 	{
+        /// Name of the variable
 		public string name;
+        /// Value of the variable
 		public string value;
+        /// Type of the variable
         public Yarn.Value.Type type;
 	}
 
