@@ -145,10 +145,12 @@ namespace Yarn.Unity
 
 		}
 
+        /// Add a string of text to a script
 		public void AddScript(string text) {
 			dialogue.LoadString(text);
 		}
 
+        /// Add a TextAsset to a script
 		public void AddScript(TextAsset asset) {
 			dialogue.LoadString(asset.text);
 		}
@@ -159,6 +161,7 @@ namespace Yarn.Unity
             dialogue.AddStringTable(stringTable);
         }
 
+        /// Add a string of text to a table
         public void AddStringTable(string text) {
             
             // Create the dictionary that will contain these values
@@ -180,21 +183,24 @@ namespace Yarn.Unity
 
         }
 
+        /// Add a TextAsset to a table
         public void AddStringTable(TextAsset text) {
             AddStringTable(text.text);
         }
 
-		/// Nuke the variable store and start again
+		/// Destroy the variable store and start again
 		public void ResetDialogue ()
 		{
 			variableStorage.ResetToDefaults ();
 			StartDialogue ();
 		}
 
+        /// Start the dialogue
 		public void StartDialogue () {
 			StartDialogue(startNode);
 		}
 
+        /// Start the dialogue from a given node
 		public void StartDialogue (string startNode)
 		{
 
