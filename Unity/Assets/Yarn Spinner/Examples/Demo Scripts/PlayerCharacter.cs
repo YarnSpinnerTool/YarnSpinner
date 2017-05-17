@@ -65,7 +65,6 @@ namespace Yarn.Unity.Example {
             movement += movementFromButtons;
             movement *= (moveSpeed * Time.deltaTime);
 
-
             var newPosition = transform.position;
             newPosition.x += movement;
             newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);

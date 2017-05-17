@@ -85,7 +85,6 @@ namespace Yarn.Unity.Example {
                 continuePrompt.SetActive (false);
         }
 
-
         /// Show a line of dialogue, gradually
         public override IEnumerator RunLine (Yarn.Line line)
         {
@@ -109,7 +108,6 @@ namespace Yarn.Unity.Example {
             // Show the 'press any key' prompt when done, if we have one
             if (continuePrompt != null)
                 continuePrompt.SetActive (true);
-
 
             // Wait for any user input
             while (Input.anyKeyDown == false) {
