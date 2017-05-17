@@ -65,13 +65,13 @@ done
 
 clean_yarnspinner () {
 if [ -f YarnSpinner/bin/Release/YarnSpinner.dll ]; then
-    xbuild "${XBUILD_ARGS}" /target:clean YarnSpinner.sln
+    xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
 fi
 }
 
 
 build_yarnspinner () {
-    xbuild "${XBUILD_ARGS}" YarnSpinner.sln
+    xbuild ${XBUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
         echo "Error during: xbuild ${XBUILD_ARGS}"
