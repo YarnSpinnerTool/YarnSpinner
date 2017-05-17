@@ -111,10 +111,10 @@ build_native () {
 }
 
 unit_tests () (
-    if [ -x ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe ]; then
-        mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe "$@"
+    if [ -x ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll ]; then
+        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll "$@"
     else
-        echo "./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe doesn't exist, exiting"; exit 1
+        echo "Failed to find unit tests; exiting"; exit 1
     fi
 )
 
