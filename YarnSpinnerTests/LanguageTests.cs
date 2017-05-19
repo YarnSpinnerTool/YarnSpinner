@@ -88,6 +88,8 @@ namespace YarnSpinner.Tests
 			RunStandardTestcase();
 		}
 
+		// Returns the list of node, json and yarn.txt files in the 
+		// Tests/TestCases directory.
 		public static IEnumerable<string> FileSources() {
 			
 			var testCasesPath = Path.Combine(TestDataPath, "TestCases");

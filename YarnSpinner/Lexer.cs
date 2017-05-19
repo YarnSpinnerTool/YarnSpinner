@@ -349,7 +349,7 @@ namespace Yarn {
 			patterns[TokenType.Minus] = @"\-";
 			patterns[TokenType.Multiply] = @"\*";
 			patterns[TokenType.Divide] = @"\/";
-			patterns [TokenType.Modulo] = @"\%";
+			patterns[TokenType.Modulo] = @"\%";
 			patterns[TokenType.And] = @"(\&\&|and(?!\w))";
 			patterns[TokenType.Or] = @"(\|\||or(?!\w))";
 			patterns[TokenType.Xor] = @"(\^|xor(?!\w))";

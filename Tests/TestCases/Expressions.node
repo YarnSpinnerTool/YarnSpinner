@@ -14,6 +14,7 @@
 <<assert ($math is 12)>>
 
 // Test % operator
+<<set $math = 12 >>
 <<set $math = $math % 5 >>
 <<assert ($math is 2)>>
 

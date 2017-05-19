@@ -836,7 +836,7 @@ namespace Yarn {
 				// used for keeping count of parameters for each function
 				var functionStack = new Stack<Token> (); 
 
-				var allValidTokenTypes = new List<TokenType>(Operator.operatorTypes);
+				var allValidTokenTypes = new List<TokenType>(Operator.OperatorTypes);
 				allValidTokenTypes.Add(TokenType.Number);
 				allValidTokenTypes.Add(TokenType.Variable);
 				allValidTokenTypes.Add(TokenType.String);
@@ -1219,7 +1219,7 @@ namespace Yarn {
 			} 
 
 			internal static OperatorInfo InfoForOperator(TokenType op) {
-				if (Array.IndexOf(operatorTypes, op) == -1) {
+				if (Array.IndexOf(OperatorTypes, op) == -1) {
 					throw new ParseException (op.ToString () + " is not a valid operator");
 				}
 
@@ -1260,11 +1260,11 @@ namespace Yarn {
 			}
 
 			internal static bool IsOperator(TokenType type) {
-				return Array.IndexOf (operatorTypes, type) != -1;
+				return Array.IndexOf (OperatorTypes, type) != -1;
 			}
 
 			// Valid types of operators.
-			internal static  TokenType[] operatorTypes {
+			internal static  TokenType[] OperatorTypes {
 				get {
 					return new TokenType[] {
 
@@ -1298,7 +1298,7 @@ namespace Yarn {
 			}
 
 			internal Operator(ParseNode parent, Parser p) : base(parent, p) {
-				operatorType = p.ExpectSymbol(Operator.operatorTypes).type;
+				operatorType = p.ExpectSymbol(Operator.OperatorTypes).type;
 			}
 
 			internal override string PrintTree (int indentLevel)
