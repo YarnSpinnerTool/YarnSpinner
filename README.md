@@ -53,6 +53,7 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 
 * Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we'd love your help in improving.
 * Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
+* **New!** Join our Slack! http://lab.to/narrativegamedev
 
 
 
