@@ -66,6 +66,8 @@ namespace Yarn.Unity.Example {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
+        /// Make it possible to temporarily disable the controls when
+        /// dialogue is active and to restore them when dialogue ends
         public RectTransform gameControlsContainer;
 
         void Awake ()

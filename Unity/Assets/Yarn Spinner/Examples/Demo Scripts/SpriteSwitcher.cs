@@ -26,10 +26,11 @@ SOFTWARE.
 
 using UnityEngine;
 using System.Collections;
-
+/// Attach sprite renderer to game object
 namespace Yarn.Unity.Example {
 
     [RequireComponent (typeof (SpriteRenderer))]
+    /// Attach SpriteSwitcher to game object
     public class SpriteSwitcher : MonoBehaviour {
 
         [System.Serializable]
@@ -40,6 +41,7 @@ namespace Yarn.Unity.Example {
 
         public SpriteInfo[] sprites;
 
+        /// Create a command to use on a sprite
         [YarnCommand("setsprite")]
         public void UseSprite(string spriteName) {
 
