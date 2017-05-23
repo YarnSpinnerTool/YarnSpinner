@@ -2,15 +2,23 @@
 
 > ***Important:*** This document only matters to you if you want to build Yarn Spinner from source. In almost all cases, you'll be totally fine with [downloading a build](https://github.com/thesecretlab/YarnSpinner/releases), and using that in your project.
 
-## Windows, Mac and Linux using MonoDevelop
+## Windows and Mac using MonoDevelop
 
 To build Yarn Spinner on Windows or Mac, you'll need MonoDevelop. You can [download MonoDevelop for your OS from the MonoDevelop site](http://www.monodevelop.com/download/).
-To build Yarn Spinner on Linux, you can either use mono or MonoDevelop's Flatpak.
-* If you're going to use mono, you'll need [xbuild](http://www.mono-project.com/docs/tools+libraries/tools/xbuild/) and also [nuget](http://www.nuget.org). Then, ensure you have the correct packages installed by nuget, issuing `nuget restore YarnSpinner.sln`
-* Once you have installed [Flatpak for your distribution](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/). Open **YarnSpinner.sln**. Open the **Build menu**, and choose **Build All**. Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there. You can now copy that DLL file wherever you need it.
 
 ## Linux
-As well as using MonoDevelop, you can use xbuild to build on Linux. At this stage, see the [build.sh](../build.sh) script for information on how to do this.
+To build Yarn Spinner on Linux, you can either
+* use [xbuild](http://www.mono-project.com/docs/tools+libraries/tools/xbuild/) and [nuget](http://www.nuget.org).
+* Then ensure you have the correct packages installed by nuget, `nuget restore YarnSpinner.sln`.
+* See the [build.sh](../build.sh) script for further information on how using mono to build.
+or
+* use [Flatpak](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
+
+### Using MonoDevelop
+* Open **YarnSpinner.sln**.
+* Open the **Build menu**, and choose **Build All**.
+* Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there.
+* Copy that DLL file wherever you need it.
 
 ## Building Documentation
 
