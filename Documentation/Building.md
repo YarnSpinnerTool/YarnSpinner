@@ -18,7 +18,8 @@ Yarn Spinner uses [Doxygen](https://www.stack.nl/~dimitri/doxygen) to generate [
 
 Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of YarnSpinner itself and not an actual error in the documentation.
 
-```rm -fr Documentation/{docbook,html,latex,rtf,xml}
+```
+rm -fr Documentation/{docbook,html,latex,rtf,xml}
 doxygen Documentation/Doxyfile > doxyoutput.txt 2>&1
 grep -i error doxyoutput.txt```
 
