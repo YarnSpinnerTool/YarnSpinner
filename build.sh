@@ -114,9 +114,8 @@ build_native () {
 }
 
 unit_tests () (
-    echo "ls"
-    ls
     if [ -x ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
+        nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
         mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
     else
         echo "Failed to find unit tests; exiting"; exit 1

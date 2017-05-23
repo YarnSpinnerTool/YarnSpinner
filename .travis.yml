@@ -37,7 +37,6 @@ addons:
 
 install:
   - nuget restore YarnSpinner.sln
-  - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory Yarnspinner/testrunner
 
 script:	
   - ./build.sh -bcdvu
