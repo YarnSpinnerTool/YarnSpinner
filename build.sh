@@ -58,6 +58,14 @@ init_build () {
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
+        if [ ! $(which xbuild) ]; then
+            echo "xbuild not installed or not in \$PATH"
+            exit 1
+        fi
+        if [ ! $(which nuget) ]; then
+            echo "nuget not installed or not in \$PATH"
+            exit 1
+        fi
         XBUILD_ARGS="${XBUILD_ARGS} /p:TargetFrameworkVersion=v4.5"
     fi
 done
@@ -71,7 +79,7 @@ fi
 
 
 build_yarnspinner () {
-    echo "XBUILD_ARGS: ${XBUILD_ARGS}"
+    nuget restore YarnSpinner.sln
     xbuild ${XBUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
@@ -115,6 +123,11 @@ build_native () {
 
 unit_tests () (
     if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
+        if [ ! $(which nuget) ]; then
+            echo "nuget not installed or not in \$PATH"
+            exit 1
+        fi
+        nuget restore YarnSpinner.sln
         nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
         mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
     else
@@ -131,6 +144,8 @@ build_documentation () {
             rm -fvr GPATH GRTAGS GTAGS doxygen
         fi
         doxygen Documentation/Doxyfile
+    else
+        echo "doxygen not found or not in \${PATH}"
     fi
 }
 
