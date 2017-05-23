@@ -29,6 +29,7 @@ Basic steps to clean out existing documentation, generate new documentation and 
 ```
 rm -fr Documentation/{docbook,html,latex,rtf,xml}
 doxygen Documentation/Doxyfile > doxyoutput.txt 2>&1
-grep -i error doxyoutput.txt```
+grep -i error doxyoutput.txt
+```
 
 [MarkDown](https://daringfireball.net/projects/markdown/) documentation is available via conversion of the XML output to Markdown using third party tools such as [Pandoc](http://pandoc.org) or [doxygen2md](https://github.com/pferdinand/doxygen2md)
