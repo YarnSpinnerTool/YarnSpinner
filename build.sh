@@ -115,7 +115,7 @@ build_native () {
 
 unit_tests () (
     ls -la ./YarnSpinnerTests/bin/${CONFIGURATION}/
-    if [ -x ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
+    if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
         nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
         mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
     else
