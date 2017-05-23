@@ -36,7 +36,7 @@ addons:
       - doxygen-gui
 
 install:
-  - nuget restore Yarnspinner/YarnSpinner.sln
+  - nuget restore YarnSpinner.sln
   - nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory Yarnspinner/testrunner
 
 script:	
