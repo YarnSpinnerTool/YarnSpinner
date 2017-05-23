@@ -71,6 +71,7 @@ fi
 
 
 build_yarnspinner () {
+    echo "XBUILD_ARGS: ${XBUILD_ARGS}"
     xbuild "${XBUILD_ARGS}" YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
