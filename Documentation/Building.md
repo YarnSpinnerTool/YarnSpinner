@@ -5,13 +5,13 @@
 ## Windows, Mac and Linux using MonoDevelop
 
 To build Yarn Spinner on Windows or Mac, you'll need MonoDevelop. You can [download MonoDevelop for your OS from the MonoDevelop site](http://www.monodevelop.com/download/).
-To build Yarn Spinner on Linux, you'll need MonoDevelop's Flatpak. Once you have installed [Flatpak for your distribution](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
-
-Once it's downloaded, follow these steps:
-
-* Open **YarnSpinner.sln**.
-* Open the **Build menu**, and choose **Build All**.
-* Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there. You can now copy that DLL file wherever you need it.
+To build Yarn Spinner on Linux, you can either use mono or MonoDevelop's Flatpak.
+* If you're going to use mono, you'll need [xbuild](http://www.mono-project.com/docs/tools+libraries/tools/xbuild/) and also [nuget](http://www.nuget.org). Then, ensure you have the correct packages installed by nuget, issue
+** nuget restore YarnSpinner.sln
+* Once you have installed [Flatpak for your distribution](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
+** Open **YarnSpinner.sln**.
+** Open the **Build menu**, and choose **Build All**.
+** Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there. You can now copy that DLL file wherever you need it.
 
 ## Linux
 As well as using MonoDevelop, you can use xbuild to build on Linux. At this stage, see the [build.sh](../build.sh) script for information on how to do this.
