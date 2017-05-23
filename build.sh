@@ -111,7 +111,7 @@ build_native () {
 }
 
 unit_tests () (
-    if [ -x ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe ]; then
+    if [ -r ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe ]; then
         mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe "$@"
     else
         echo "./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe doesn't exist, exiting"; exit 1
