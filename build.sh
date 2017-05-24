@@ -20,6 +20,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN T
 
+set -e
+
 show_help () {
     echo "build.sh: Build Yarn Spinner"
     echo
@@ -56,20 +58,29 @@ init_build () {
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
+        if [ ! $(which xbuild) ]; then
+            echo "xbuild not installed or not in \$PATH"
+            exit 1
+        fi
+        if [ ! $(which nuget) ]; then
+            echo "nuget not installed or not in \$PATH"
+            exit 1
+        fi
         XBUILD_ARGS="${XBUILD_ARGS} /p:TargetFrameworkVersion=v4.5"
     fi
 done
 }
 
 clean_yarnspinner () {
-if [ -f YarnSpinner/bin/Release/YarnSpinner.dll ]; then
-    xbuild "${XBUILD_ARGS}" /target:clean YarnSpinner.sln
+if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
+    xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
 fi
 }
 
 
 build_yarnspinner () {
-    xbuild "${XBUILD_ARGS}" YarnSpinner.sln
+    nuget restore YarnSpinner.sln
+    xbuild ${XBUILD_ARGS} YarnSpinner.sln
 
     if [ $? -ne 0 ]; then
         echo "Error during: xbuild ${XBUILD_ARGS}"
@@ -79,7 +90,7 @@ build_yarnspinner () {
     # this is an appalling test for not windows or osx and with unity
     if [ "${OSTYPE}" != "linux-gnu" ]; then
         OUTPUT_DLL="YarnSpinner.dll"
-        BUILD_DIR="YarnSpinner/bin/Release/"
+        BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/"
         UNITY_DIR="Unity/Assets/Yarn Spinner/Code/"
 
         if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
@@ -107,14 +118,20 @@ build_native () {
     export CC="cc -lobjc -liconv -framework Foundation"
 
     # Build:
-    mkbundle YarnSpinnerConsole/bin/Release/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/Release/*.dll --static --deps -o yarn_native
+    mkbundle YarnSpinnerConsole/bin/${CONFIGURATION}/YarnSpinnerConsole.exe  YarnSpinnerConsole/bin/${CONFIGURATION}/*.dll --static --deps -o yarn_native
 }
 
 unit_tests () (
-    if [ -r ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe ]; then
-        mono ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe "$@"
+    if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
+        if [ ! $(which nuget) ]; then
+            echo "nuget not installed or not in \$PATH"
+            exit 1
+        fi
+        nuget restore YarnSpinner.sln
+        nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
+        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
     else
-        echo "./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe doesn't exist, exiting"; exit 1
+        echo "Failed to find unit tests; exiting"; exit 1
     fi
 )
 
@@ -127,6 +144,8 @@ build_documentation () {
             rm -fvr GPATH GRTAGS GTAGS doxygen
         fi
         doxygen Documentation/Doxyfile
+    else
+        echo "doxygen not found or not in \${PATH}"
     fi
 }
 

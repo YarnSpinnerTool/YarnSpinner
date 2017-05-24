@@ -35,11 +35,8 @@ addons:
       - doxygen-latex
       - doxygen-gui
 
-install:
-  - nuget restore YarnSpinner.sln
-
 script:	
-  - ./build.sh -bcdv
+  - ./build.sh -bcdvu
 
 # deploy documentation
 after_success:
