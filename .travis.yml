@@ -36,7 +36,7 @@ addons:
       - doxygen-gui
 
 script:	
-  - ./build.sh -bcdvu
+  - ./build.sh -bcdv
 
 # deploy documentation
 after_success:
