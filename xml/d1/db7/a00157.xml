@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d1/db7/a00157" kind="namespace">
-    <compoundname>YarnSpinner::Tests</compoundname>
-    <innerclass refid="da/d24/a00068" prot="public">YarnSpinner::Tests::Program</innerclass>
-    <innerclass refid="d1/d09/a00077" prot="public">YarnSpinner::Tests::Test</innerclass>
+    <compoundname>YarnSpinner</compoundname>
+    <innernamespace refid="d6/db8/a00158">YarnSpinner::Tests</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/Program.cs" line="5" column="1"/>
+    <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>

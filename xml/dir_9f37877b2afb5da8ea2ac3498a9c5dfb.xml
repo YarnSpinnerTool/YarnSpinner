@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_9f37877b2afb5da8ea2ac3498a9c5dfb" kind="dir">
+    <compoundname>YarnSpinner/obj</compoundname>
+    <innerdir refid="dir_8914b47a1feff31bcd9b4361d6603234">YarnSpinner/obj/Release</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/obj/"/>
+  </compounddef>
+</doxygen>

@@ -70,11 +70,11 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="dc/de2/a00024_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
-        <type><ref refid="d9/d38/a00166" kindref="compound">ValidationMessage</ref>[]</type>
+        <type><ref refid="dc/de6/a00167" kindref="compound">ValidationMessage</ref>[]</type>
         <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
         <argsstring></argsstring>
         <name>messages</name>
-        <initializer>= new <ref refid="d9/d38/a00166" kindref="compound">ValidationMessage</ref>[0]</initializer>
+        <initializer>= new <ref refid="dc/de6/a00167" kindref="compound">ValidationMessage</ref>[0]</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -147,7 +147,7 @@
       </node>
       <node id="414">
         <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
-        <link refid="d9/d38/a00166"/>
+        <link refid="dc/de6/a00167"/>
       </node>
     </collaborationgraph>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="35" bodyend="65"/>

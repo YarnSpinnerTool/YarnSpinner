@@ -9,7 +9,7 @@
     <innerclass refid="d4/dca/a00048" prot="package">Yarn::Lexer::LexerState</innerclass>
     <innerclass refid="d4/d63/a00082" prot="package">Yarn::Lexer::TokenRule</innerclass>
     <innernamespace refid="d6/d5b/a00026">Yarn</innernamespace>
-    <innernamespace refid="db/d48/a00148">System::Text::RegularExpressions</innernamespace>
+    <innernamespace refid="da/d1e/a00149">System::Text::RegularExpressions</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

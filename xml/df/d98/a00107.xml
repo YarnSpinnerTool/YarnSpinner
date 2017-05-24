@@ -4,7 +4,7 @@
     <compoundname>YarnSpinnerTests.cs</compoundname>
     <innerclass refid="d9/da4/a00078" prot="public">TestDialogueUIBehaviour</innerclass>
     <innerclass refid="d4/d7d/a00093" prot="public">YarnSpinnerTests</innerclass>
-    <innernamespace refid="d5/d5b/a00135">NUnit::Framework</innernamespace>
+    <innernamespace refid="d0/d5e/a00136">NUnit::Framework</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

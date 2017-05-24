@@ -27,7 +27,7 @@
         <name>RunLine</name>
         <reimplementedby refid="d3/de7/a00039_1a109aeedc5206dcbc4f629638b7830030">RunLine</reimplementedby>
         <param>
-          <type><ref refid="d6/d7d/a00161" kindref="compound">Yarn.Line</ref></type>
+          <type><ref refid="db/d44/a00162" kindref="compound">Yarn.Line</ref></type>
           <declname>line</declname>
         </param>
         <briefdescription>
@@ -45,7 +45,7 @@
         <name>RunOptions</name>
         <reimplementedby refid="d3/de7/a00039_1aaa93672700a456e66c694636460a58f4">RunOptions</reimplementedby>
         <param>
-          <type><ref refid="dd/dae/a00163" kindref="compound">Yarn.Options</ref></type>
+          <type><ref refid="db/ddf/a00164" kindref="compound">Yarn.Options</ref></type>
           <declname>optionsCollection</declname>
         </param>
         <param>
@@ -67,7 +67,7 @@
         <name>RunCommand</name>
         <reimplementedby refid="d3/de7/a00039_1a7f84b1e7d3c9c1f7507d143e11ba8075">RunCommand</reimplementedby>
         <param>
-          <type><ref refid="d6/db8/a00158" kindref="compound">Yarn.Command</ref></type>
+          <type><ref refid="de/db9/a00159" kindref="compound">Yarn.Command</ref></type>
           <declname>command</declname>
         </param>
         <briefdescription>

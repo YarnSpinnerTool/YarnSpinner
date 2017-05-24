@@ -3,9 +3,9 @@
   <compounddef id="dd/d42/a00109" kind="file">
     <compoundname>ExampleDialogueUI.cs</compoundname>
     <innerclass refid="d3/de7/a00039" prot="public">Yarn::Unity::Example::ExampleDialogueUI</innerclass>
-    <innernamespace refid="d3/df8/a00155">Yarn::Unity::Example</innernamespace>
-    <innernamespace refid="d7/d9a/a00152">UnityEngine::UI</innernamespace>
-    <innernamespace refid="d0/d4a/a00147">System::Text</innernamespace>
+    <innernamespace refid="d2/d34/a00156">Yarn::Unity::Example</innernamespace>
+    <innernamespace refid="da/d01/a00153">UnityEngine::UI</innernamespace>
+    <innernamespace refid="db/d48/a00148">System::Text</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

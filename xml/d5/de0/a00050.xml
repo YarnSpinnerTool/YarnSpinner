@@ -5,7 +5,7 @@
     <basecompoundref refid="d4/d31/a00069" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d5/de0/a00050_1abfbb0ea840b02acd0ecdc72c5b120257" prot="public" static="no" mutable="no">
-        <type><ref refid="d6/d7d/a00161" kindref="compound">Line</ref></type>
+        <type><ref refid="db/d44/a00162" kindref="compound">Line</ref></type>
         <definition>Line Yarn.Dialogue.LineResult.line</definition>
         <argsstring></argsstring>
         <name>line</name>
@@ -65,7 +65,7 @@
       </node>
       <node id="542">
         <label>Yarn.Line</label>
-        <link refid="d6/d7d/a00161"/>
+        <link refid="db/d44/a00162"/>
       </node>
       <node id="541">
         <label>RunnerResult</label>

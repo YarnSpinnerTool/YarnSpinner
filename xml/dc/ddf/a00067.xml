@@ -18,11 +18,11 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="10" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="dc/ddf/a00067_1a3f4928a577c88263ad016be259b175c4" prot="public" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="db/d44/a00162" kindref="compound">Node</ref> &gt;</type>
+        <type>Dictionary&lt; string, <ref refid="dd/dae/a00163" kindref="compound">Node</ref> &gt;</type>
         <definition>Dictionary&lt;string, Node&gt; Yarn.Program.nodes</definition>
         <argsstring></argsstring>
         <name>nodes</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="db/d44/a00162" kindref="compound">Node</ref>&gt; ()</initializer>
+        <initializer>= new Dictionary&lt;string, <ref refid="dd/dae/a00163" kindref="compound">Node</ref>&gt; ()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

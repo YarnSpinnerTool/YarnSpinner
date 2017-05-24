@@ -6,10 +6,10 @@
     <innerclass refid="d9/dec/a00090" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
     <innerclass refid="d8/d41/a00038" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
     <innerclass refid="db/dab/a00089" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
-    <innernamespace refid="d3/d65/a00154">Yarn::Unity</innernamespace>
-    <innernamespace refid="d9/d7d/a00150">UnityEngine</innernamespace>
-    <innernamespace refid="d5/db1/a00140">System::Collections</innernamespace>
-    <innernamespace refid="d5/d4e/a00141">System::Collections::Generic</innernamespace>
+    <innernamespace refid="d3/df8/a00155">Yarn::Unity</innernamespace>
+    <innernamespace refid="dd/db2/a00151">UnityEngine</innernamespace>
+    <innernamespace refid="d5/d4e/a00141">System::Collections</innernamespace>
+    <innernamespace refid="d2/d82/a00142">System::Collections::Generic</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -45,7 +45,7 @@
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="d3/d65/a00154" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Yarn.Unity</highlight></codeline>
+<codeline lineno="31" refid="d3/df8/a00155" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Yarn.Unity</highlight></codeline>
 <codeline lineno="32"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>DialogueRunners<sp/>act<sp/>as<sp/>the<sp/>interface<sp/>between<sp/>your<sp/>game<sp/>and<sp/>YarnSpinner.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>

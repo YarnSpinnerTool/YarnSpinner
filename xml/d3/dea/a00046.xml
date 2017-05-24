@@ -226,7 +226,7 @@
           <declname>json</declname>
         </param>
         <param>
-          <type>out <ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type>out <ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>type</declname>
         </param>
         <briefdescription>
@@ -507,7 +507,7 @@
         <argsstring>(JsonToken token, IList&lt; char &gt; data, ref int index)</argsstring>
         <name>ParseToken</name>
         <param>
-          <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>token</declname>
         </param>
         <param>
@@ -632,7 +632,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="774" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="774" bodyend="809"/>
       </memberdef>
       <memberdef kind="function" id="d3/dea/a00046_1a1d2daab9b052b186da7a2b6711be5803" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
         <definition>static JsonToken Json.JsonParser.NextToken</definition>
         <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
         <name>NextToken</name>
@@ -653,7 +653,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="811" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="811" bodyend="822"/>
       </memberdef>
       <memberdef kind="function" id="d3/dea/a00046_1afe1d461122e927aae8a2cb0c7269c3c6" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
         <definition>static JsonToken Json.JsonParser.GetTokenFromSymbol</definition>
         <argsstring>(char symbol)</argsstring>
         <name>GetTokenFromSymbol</name>
@@ -670,7 +670,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="824" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="824" bodyend="827"/>
       </memberdef>
       <memberdef kind="function" id="d3/dea/a00046_1a5600fe22f246bcf8f7488801f0c9724d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
         <definition>static JsonToken Json.JsonParser.GetTokenFromSymbol</definition>
         <argsstring>(char symbol, JsonToken token)</argsstring>
         <name>GetTokenFromSymbol</name>
@@ -679,7 +679,7 @@
           <declname>symbol</declname>
         </param>
         <param>
-          <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>token</declname>
         </param>
         <briefdescription>
@@ -716,7 +716,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="875" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="875" bodyend="880"/>
       </memberdef>
       <memberdef kind="function" id="d3/dea/a00046_1a8e00ac0c0d9380bc5d07d1fd8982a0df" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
         <definition>static JsonToken Json.JsonParser.IgnoreWhitespace</definition>
         <argsstring>(IList&lt; char &gt; data, ref int index, ref JsonToken token, char symbol)</argsstring>
         <name>IgnoreWhitespace</name>
@@ -729,7 +729,7 @@
           <declname>index</declname>
         </param>
         <param>
-          <type>ref <ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type>ref <ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>token</declname>
         </param>
         <param>
@@ -754,7 +754,7 @@
           <declname>word</declname>
         </param>
         <param>
-          <type><ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type><ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>target</declname>
         </param>
         <param>
@@ -766,7 +766,7 @@
           <declname>index</declname>
         </param>
         <param>
-          <type>ref <ref refid="d5/deb/a00132_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <type>ref <ref refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
           <declname>result</declname>
         </param>
         <briefdescription>

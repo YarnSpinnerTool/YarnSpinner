@@ -7,8 +7,8 @@
     <innerclass refid="db/db2/a00020" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
     <innerclass refid="dc/d3c/a00028" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
     <innerclass refid="df/d5d/a00084" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
-    <innernamespace refid="da/d01/a00153">Yarn::Analysis</innernamespace>
-    <innernamespace refid="de/d14/a00139">System</innernamespace>
+    <innernamespace refid="d3/d65/a00154">Yarn::Analysis</innernamespace>
+    <innernamespace refid="d5/db1/a00140">System</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -17,7 +17,7 @@
 <codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4" refid="da/d01/a00153" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Yarn.Analysis</highlight></codeline>
+<codeline lineno="4" refid="d3/d65/a00154" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Yarn.Analysis</highlight></codeline>
 <codeline lineno="5"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="6" refid="d4/d8c/a00035" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d4/d8c/a00035" kindref="compound">Diagnosis</ref><sp/>{</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>

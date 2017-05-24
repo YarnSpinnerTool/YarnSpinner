@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_5a09edfa34643aa599cdbb74efc47eeb" kind="dir">
     <compoundname>YarnSpinnerTests/obj</compoundname>
-    <innerdir refid="dir_82f17298b97255c54fe71a09a6fbacbd">YarnSpinnerTests/obj/Debug</innerdir>
+    <innerdir refid="dir_573edd0730433ad3334934fbd5c93c4e">YarnSpinnerTests/obj/Release</innerdir>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

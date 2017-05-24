@@ -1,20 +1,46 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d6/d7d/a00161" kind="struct" prot="public">
-    <compoundname>Yarn::Line</compoundname>
+  <compounddef id="d6/d7d/a00161" kind="class" prot="public">
+    <compoundname>ExampleVariableStorage::DefaultVariable</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="d6/d7d/a00161_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="d6/d7d/a00161_1a609feaa53936e7dc42248ff2ba68454a" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Line.text</definition>
+        <definition>string ExampleVariableStorage.DefaultVariable.name</definition>
         <argsstring></argsstring>
-        <name>text</name>
+        <name>name</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="52" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d7d/a00161_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ExampleVariableStorage.DefaultVariable.value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d7d/a00161_1a904347efdca12f40243c7dedb646153d" prot="public" static="no" mutable="no">
+        <type><ref refid="da/d2a/a00086_1ad5aaf60ee4504608fcc2ffadefa14884" kindref="member">Yarn.Value.Type</ref></type>
+        <definition>Yarn.Value.Type ExampleVariableStorage.DefaultVariable.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="47" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -22,14 +48,22 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="537">
-        <label>Yarn.Line</label>
+      <node id="450">
+        <label>ExampleVariableStorage.DefaultVariable</label>
         <link refid="d6/d7d/a00161"/>
+        <childnode refid="451" relation="usage">
+          <edgelabel>+type</edgelabel>
+        </childnode>
+      </node>
+      <node id="451">
+        <label>Yarn</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="52" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="52" bodyend="52"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="43" bodyend="48"/>
     <listofallmembers>
-      <member refid="d6/d7d/a00161_1a81d1f04bbb4cf6642d2bd685bda1da20" prot="public" virt="non-virtual"><scope>Yarn::Line</scope><name>text</name></member>
+      <member refid="d6/d7d/a00161_1a609feaa53936e7dc42248ff2ba68454a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>name</name></member>
+      <member refid="d6/d7d/a00161_1a904347efdca12f40243c7dedb646153d" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>type</name></member>
+      <member refid="d6/d7d/a00161_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>value</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -3,7 +3,7 @@
   <compounddef id="d0/dc2/a00104" kind="file">
     <compoundname>Program.cs</compoundname>
     <innerclass refid="da/d24/a00068" prot="public">YarnSpinner::Tests::Program</innerclass>
-    <innernamespace refid="d1/db7/a00157">YarnSpinner::Tests</innernamespace>
+    <innernamespace refid="d6/db8/a00158">YarnSpinner::Tests</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -12,7 +12,7 @@
 <codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>NUnitLite;</highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4" refid="d1/db7/a00157" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">YarnSpinner.Tests</highlight></codeline>
+<codeline lineno="4" refid="d6/db8/a00158" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">YarnSpinner.Tests</highlight></codeline>
 <codeline lineno="5"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="6" refid="da/d24/a00068" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/d24/a00068" kindref="compound">Program</ref></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>

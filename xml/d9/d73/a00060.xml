@@ -5,7 +5,7 @@
     <basecompoundref refid="d4/d31/a00069" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d9/d73/a00060_1abda9c3047ff9d3c3ec5540566a239315" prot="public" static="no" mutable="no">
-        <type><ref refid="dd/dae/a00163" kindref="compound">Options</ref></type>
+        <type><ref refid="db/ddf/a00164" kindref="compound">Options</ref></type>
         <definition>Options Yarn.Dialogue.OptionSetResult.options</definition>
         <argsstring></argsstring>
         <name>options</name>
@@ -73,7 +73,7 @@
     <collaborationgraph>
       <node id="592">
         <label>Yarn.Options</label>
-        <link refid="dd/dae/a00163"/>
+        <link refid="db/ddf/a00164"/>
       </node>
       <node id="591">
         <label>RunnerResult</label>

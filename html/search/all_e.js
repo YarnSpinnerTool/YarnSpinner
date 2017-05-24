@@ -26,7 +26,7 @@ var searchData=
   ['optionend',['OptionEnd',['../d6/d5b/a00026.html#a301aa7c866593a5b625a8fc158bbeacea2c617506a5bd9d900fd650a4bee0e626',1,'Yarn']]],
   ['optionnode',['optionNode',['../d2/db1/a00070.html#a33d667370031f58b054b79a39891c3f3',1,'Yarn::Parser::ShortcutOption']]],
   ['options',['options',['../d6/d5b/a00026.html#ae8c616d923ceeeed192a9436c55d9917',1,'Yarn.Options.options()'],['../d9/d73/a00060.html#abda9c3047ff9d3c3ec5540566a239315',1,'Yarn.Dialogue.OptionSetResult.options()'],['../d0/d89/a00071.html#a91b28e9dce684c476c526c4103b6c488',1,'Yarn.Parser.ShortcutOptionGroup.options()']]],
-  ['options',['Options',['../d6/d5b/a00026.html#dd/dae/a00163',1,'Yarn']]],
+  ['options',['Options',['../d6/d5b/a00026.html#db/ddf/a00164',1,'Yarn']]],
   ['optionsetresult',['OptionSetResult',['../d9/d73/a00060.html',1,'Yarn::Dialogue']]],
   ['optionsetresult',['OptionSetResult',['../d9/d73/a00060.html#a934c02fb1047ffd05b2b5a9c6fcd7acb',1,'Yarn::Dialogue::OptionSetResult']]],
   ['optionshandler',['optionsHandler',['../d9/da4/a00078.html#adcbea72eb6f5ab305b3757789919f961',1,'TestDialogueUIBehaviour.optionsHandler()'],['../d6/d2c/a00072.html#acd25fe2e3aa90dc87ba25d9af904465b',1,'Yarn.VirtualMachine.optionsHandler()'],['../d9/da4/a00078.html#a7fe2e6bc2d5471d9af14a9d35de821bd',1,'TestDialogueUIBehaviour.OptionsHandler()'],['../d6/d2c/a00072.html#a78dfd54b743e53078eed19ab7be2b6cf',1,'Yarn.VirtualMachine.OptionsHandler()']]],

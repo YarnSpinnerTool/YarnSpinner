@@ -1,16 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d3/df8/a00155" kind="namespace">
-    <compoundname>Yarn::Unity::Example</compoundname>
-    <innerclass refid="d3/d52/a00023" prot="public">Yarn::Unity::Example::CameraFollow</innerclass>
-    <innerclass refid="d3/de7/a00039" prot="public">Yarn::Unity::Example::ExampleDialogueUI</innerclass>
-    <innerclass refid="d1/d22/a00057" prot="public">Yarn::Unity::Example::NPC</innerclass>
-    <innerclass refid="de/de1/a00065" prot="public">Yarn::Unity::Example::PlayerCharacter</innerclass>
-    <innerclass refid="d1/d6e/a00073" prot="public">Yarn::Unity::Example::SpriteSwitcher</innerclass>
+    <compoundname>Yarn::Unity</compoundname>
+    <innerclass refid="d1/dc6/a00037" prot="public">Yarn::Unity::DialogueRunner</innerclass>
+    <innerclass refid="d9/dec/a00090" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
+    <innerclass refid="d8/d41/a00038" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
+    <innerclass refid="db/dab/a00089" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
+    <innerclass refid="df/d13/a00085" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
+    <innerclass refid="d5/db6/a00042" prot="package">Yarn::Unity::Icons</innerclass>
+    <innernamespace refid="d2/d34/a00156">Yarn::Unity::Example</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="30" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="32" column="1"/>
   </compounddef>
 </doxygen>

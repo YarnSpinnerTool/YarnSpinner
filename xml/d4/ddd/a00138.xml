@@ -1,86 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d4/ddd/a00138" kind="namespace">
-    <compoundname>std</compoundname>
-    <innerclass refid="df/dee/a00369" prot="public">std::allocator</innerclass>
-    <innerclass refid="d3/d30/a00370" prot="public">std::array</innerclass>
-    <innerclass refid="d6/d80/a00371" prot="public">std::auto_ptr</innerclass>
-    <innerclass refid="db/d7e/a00372" prot="public">std::smart_ptr</innerclass>
-    <innerclass refid="dc/de3/a00373" prot="public">std::unique_ptr</innerclass>
-    <innerclass refid="d5/db5/a00374" prot="public">std::weak_ptr</innerclass>
-    <innerclass refid="dd/dcb/a00375" prot="public">std::ios_base</innerclass>
-    <innerclass refid="d6/db8/a00376" prot="public">std::error_code</innerclass>
-    <innerclass refid="d4/d13/a00377" prot="public">std::error_category</innerclass>
-    <innerclass refid="d7/d08/a00378" prot="public">std::system_error</innerclass>
-    <innerclass refid="d8/d95/a00379" prot="public">std::error_condition</innerclass>
-    <innerclass refid="d8/ddd/a00380" prot="public">std::thread</innerclass>
-    <innerclass refid="de/d08/a00381" prot="public">std::basic_ios</innerclass>
-    <innerclass refid="d3/d45/a00382" prot="public">std::basic_istream</innerclass>
-    <innerclass refid="da/dee/a00383" prot="public">std::basic_ostream</innerclass>
-    <innerclass refid="d2/d56/a00384" prot="public">std::basic_iostream</innerclass>
-    <innerclass refid="d5/d05/a00385" prot="public">std::basic_ifstream</innerclass>
-    <innerclass refid="dd/df5/a00386" prot="public">std::basic_ofstream</innerclass>
-    <innerclass refid="db/db9/a00387" prot="public">std::basic_fstream</innerclass>
-    <innerclass refid="d9/dc1/a00388" prot="public">std::basic_istringstream</innerclass>
-    <innerclass refid="dc/dc9/a00389" prot="public">std::basic_ostringstream</innerclass>
-    <innerclass refid="d9/d0a/a00390" prot="public">std::basic_stringstream</innerclass>
-    <innerclass refid="db/d95/a00391" prot="public">std::ios</innerclass>
-    <innerclass refid="d4/d27/a00392" prot="public">std::wios</innerclass>
-    <innerclass refid="da/dbf/a00393" prot="public">std::istream</innerclass>
-    <innerclass refid="d9/dad/a00394" prot="public">std::wistream</innerclass>
-    <innerclass refid="db/dbc/a00395" prot="public">std::ostream</innerclass>
-    <innerclass refid="d9/da1/a00396" prot="public">std::wostream</innerclass>
-    <innerclass refid="d7/d93/a00397" prot="public">std::ifstream</innerclass>
-    <innerclass refid="d9/dd1/a00398" prot="public">std::wifstream</innerclass>
-    <innerclass refid="d1/d53/a00399" prot="public">std::ofstream</innerclass>
-    <innerclass refid="d9/d95/a00400" prot="public">std::wofstream</innerclass>
-    <innerclass refid="d7/d00/a00401" prot="public">std::fstream</innerclass>
-    <innerclass refid="d4/d6d/a00402" prot="public">std::wfstream</innerclass>
-    <innerclass refid="d0/da0/a00403" prot="public">std::istringstream</innerclass>
-    <innerclass refid="d9/de6/a00404" prot="public">std::wistringstream</innerclass>
-    <innerclass refid="de/de8/a00405" prot="public">std::ostringstream</innerclass>
-    <innerclass refid="d1/d8b/a00406" prot="public">std::wostringstream</innerclass>
-    <innerclass refid="d1/d98/a00407" prot="public">std::stringstream</innerclass>
-    <innerclass refid="dd/dea/a00408" prot="public">std::wstringstream</innerclass>
-    <innerclass refid="de/d3d/a00409" prot="public">std::basic_string</innerclass>
-    <innerclass refid="d8/d91/a00410" prot="public">std::string</innerclass>
-    <innerclass refid="d2/db6/a00411" prot="public">std::wstring</innerclass>
-    <innerclass refid="d9/d72/a00412" prot="public">std::complex</innerclass>
-    <innerclass refid="da/d9c/a00413" prot="public">std::bitset</innerclass>
-    <innerclass refid="d4/dbc/a00414" prot="public">std::deque</innerclass>
-    <innerclass refid="d0/dd6/a00415" prot="public">std::list</innerclass>
-    <innerclass refid="df/d15/a00416" prot="public">std::forward_list</innerclass>
-    <innerclass refid="d8/de7/a00417" prot="public">std::map</innerclass>
-    <innerclass refid="de/df7/a00418" prot="public">std::unordered_map</innerclass>
-    <innerclass refid="d3/d29/a00419" prot="public">std::multimap</innerclass>
-    <innerclass refid="db/d4f/a00420" prot="public">std::unordered_multimap</innerclass>
-    <innerclass refid="d2/de1/a00421" prot="public">std::set</innerclass>
-    <innerclass refid="db/d43/a00422" prot="public">std::unordered_set</innerclass>
-    <innerclass refid="d1/d05/a00423" prot="public">std::multiset</innerclass>
-    <innerclass refid="dc/df3/a00424" prot="public">std::unordered_multiset</innerclass>
-    <innerclass refid="dc/d2f/a00425" prot="public">std::vector</innerclass>
-    <innerclass refid="d7/db9/a00426" prot="public">std::queue</innerclass>
-    <innerclass refid="da/db6/a00427" prot="public">std::priority_queue</innerclass>
-    <innerclass refid="d4/dd3/a00428" prot="public">std::stack</innerclass>
-    <innerclass refid="d4/d53/a00429" prot="public">std::valarray</innerclass>
-    <innerclass refid="dc/d0c/a00430" prot="public">std::exception</innerclass>
-    <innerclass refid="df/d70/a00431" prot="public">std::bad_alloc</innerclass>
-    <innerclass refid="d9/dd5/a00432" prot="public">std::bad_cast</innerclass>
-    <innerclass refid="dd/d07/a00433" prot="public">std::bad_typeid</innerclass>
-    <innerclass refid="d1/d7e/a00434" prot="public">std::logic_error</innerclass>
-    <innerclass refid="d0/dc5/a00435" prot="public">std::runtime_error</innerclass>
-    <innerclass refid="d4/d82/a00436" prot="public">std::bad_exception</innerclass>
-    <innerclass refid="d4/da8/a00437" prot="public">std::domain_error</innerclass>
-    <innerclass refid="dd/dfd/a00438" prot="public">std::invalid_argument</innerclass>
-    <innerclass refid="d9/d3a/a00439" prot="public">std::length_error</innerclass>
-    <innerclass refid="de/df8/a00440" prot="public">std::out_of_range</innerclass>
-    <innerclass refid="d6/d66/a00441" prot="public">std::range_error</innerclass>
-    <innerclass refid="db/d34/a00442" prot="public">std::overflow_error</innerclass>
-    <innerclass refid="d0/dc4/a00443" prot="public">std::underflow_error</innerclass>
+    <compoundname>NUnitLite::Tests</compoundname>
+    <innerclass refid="d9/db3/a00066" prot="public">NUnitLite::Tests::Program</innerclass>
     <briefdescription>
-<para>STL namespace. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[STL]" line="1" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="27" column="1"/>
   </compounddef>
 </doxygen>

@@ -1,16 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="da/d01/a00153" kind="namespace">
-    <compoundname>Yarn::Analysis</compoundname>
-    <innerclass refid="d4/d8c/a00035" prot="public">Yarn::Analysis::Diagnosis</innerclass>
-    <innerclass refid="df/d61/a00031" prot="public">Yarn::Analysis::Context</innerclass>
-    <innerclass refid="db/db2/a00020" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
-    <innerclass refid="dc/d3c/a00028" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
-    <innerclass refid="df/d5d/a00084" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
+    <compoundname>UnityEngine::UI</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="5" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="29" column="1"/>
   </compounddef>
 </doxygen>

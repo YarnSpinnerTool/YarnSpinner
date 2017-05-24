@@ -2,10 +2,10 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d5/d16/a00029" kind="class" prot="package">
     <compoundname>Yarn::Compiler</compoundname>
-    <innerclass refid="de/db9/a00159" prot="private">Yarn::Compiler::CompileFlags</innerclass>
+    <innerclass refid="de/d38/a00160" prot="private">Yarn::Compiler::CompileFlags</innerclass>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="d5/d16/a00029_1a541022d89bcf9bc8f794eb6d6b438d08" prot="private" static="no" mutable="no">
-        <type><ref refid="de/db9/a00159" kindref="compound">CompileFlags</ref></type>
+        <type><ref refid="de/d38/a00160" kindref="compound">CompileFlags</ref></type>
         <definition>CompileFlags Yarn.Compiler.flags</definition>
         <argsstring></argsstring>
         <name>flags</name>
@@ -108,7 +108,7 @@
         <argsstring>(Node node, ByteCode code, object operandA=null, object operandB=null)</argsstring>
         <name>Emit</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -139,7 +139,7 @@
         <argsstring>(Node node, Parser.Statement statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -160,7 +160,7 @@
         <argsstring>(Node node, Parser.CustomCommand statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -181,7 +181,7 @@
         <argsstring>(Node node, string line)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -202,7 +202,7 @@
         <argsstring>(Node node, Parser.ShortcutOptionGroup statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -223,7 +223,7 @@
         <argsstring>(Node node, IEnumerable&lt; Yarn.Parser.Statement &gt; statementList)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -244,7 +244,7 @@
         <argsstring>(Node node, Parser.IfStatement statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -265,7 +265,7 @@
         <argsstring>(Node node, Parser.OptionStatement statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -286,7 +286,7 @@
         <argsstring>(Node node, Parser.AssignmentStatement statement)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -307,7 +307,7 @@
         <argsstring>(Node node, Parser.Expression expression)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -328,7 +328,7 @@
         <argsstring>(Node node, Parser.ValueNode value)</argsstring>
         <name>GenerateCode</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Node</ref></type>
+          <type><ref refid="dd/dae/a00163" kindref="compound">Node</ref></type>
           <declname>node</declname>
         </param>
         <param>
@@ -358,7 +358,7 @@
       </node>
       <node id="436">
         <label>Yarn.Compiler.CompileFlags</label>
-        <link refid="de/db9/a00159"/>
+        <link refid="de/d38/a00160"/>
       </node>
     </collaborationgraph>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="240" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="239" bodyend="643"/>

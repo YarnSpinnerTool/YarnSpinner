@@ -1,21 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="db/ddf/a00164" kind="class" prot="package">
-    <compoundname>Yarn::VirtualMachine::SpecialVariables</compoundname>
+  <compounddef id="db/ddf/a00164" kind="struct" prot="public">
+    <compoundname>Yarn::Options</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="db/ddf/a00164_1aecbb8ab9becd96457d836100b2818078" prot="public" static="no" mutable="no">
-        <type>const string</type>
-        <definition>const string Yarn.VirtualMachine.SpecialVariables.ShuffleOptions</definition>
+      <memberdef kind="variable" id="db/ddf/a00164_1ae8c616d923ceeeed192a9436c55d9917" prot="public" static="no" mutable="no">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.Options.options</definition>
         <argsstring></argsstring>
-        <name>ShuffleOptions</name>
-        <initializer>= &quot;$Yarn.ShuffleOptions&quot;</initializer>
+        <name>options</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="48" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -23,14 +22,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="646">
-        <label>Yarn.VirtualMachine.SpecialVariables</label>
+      <node id="587">
+        <label>Yarn.Options</label>
         <link refid="db/ddf/a00164"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="47" bodyend="49"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="53"/>
     <listofallmembers>
-      <member refid="db/ddf/a00164_1aecbb8ab9becd96457d836100b2818078" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::SpecialVariables</scope><name>ShuffleOptions</name></member>
+      <member refid="db/ddf/a00164_1ae8c616d923ceeeed192a9436c55d9917" prot="public" virt="non-virtual"><scope>Yarn::Options</scope><name>options</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
