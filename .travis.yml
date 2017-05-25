@@ -37,7 +37,7 @@ addons:
 
 script:	
 #   Unit tests currently disabled on Master (see bug #78)
-  - ./build.sh -bcdvu
+#  - ./build.sh -bcdvu
   - ./build.sh -bcdv
 
 # deploy documentation
