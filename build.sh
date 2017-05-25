@@ -72,9 +72,12 @@ done
 }
 
 clean_yarnspinner () {
-if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
-    xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
-fi
+    if [ -f YarnSpinner/bin/${CONFIGURATION}/YarnSpinner.dll ]; then
+        xbuild ${XBUILD_ARGS} /target:clean YarnSpinner.sln
+    fi
+    echo "Cleaning documentation"
+    rm -fvr Documentation/{docbook,html,latex,rtf,xml}
+    rm -fvr GPATH GRTAGS GTAGS doxygen
 }
 
 
