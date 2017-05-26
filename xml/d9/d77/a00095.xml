@@ -9,9 +9,8 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributors<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">*<sp/>20??-2017<sp/>The<sp/>Secret<sp/>Lab</highlight></codeline>
-<codeline lineno="4"><highlight class="normal">*<sp/>2017<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">*<sp/>20??-ongoing:<sp/>Secret<sp/>Lab<sp/>Team<sp/>-<sp/>Jon<sp/>Manning<sp/>and<sp/>Paris<sp/>Buttfield-Addison<sp/>&lt;lab@secretlab.com.au&gt;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">*<sp/>2017:<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
     </programlisting>
     <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTORS.md"/>
   </compounddef>
