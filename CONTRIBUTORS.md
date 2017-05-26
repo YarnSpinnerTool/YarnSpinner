@@ -1,5 +1,4 @@
 # Contributors to Yarn Spinner
 
-* 20??-2017 The Secret Lab
-* 2017 Peter Lawler <relwalretep@gmail.com>
-
+* 20??-ongoing: Secret Lab Team - Jon Manning and Paris Buttfield-Addison <lab@secretlab.com.au>
+* 2017: Peter Lawler <relwalretep@gmail.com>
