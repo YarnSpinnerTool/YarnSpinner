@@ -28,7 +28,6 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 4. Go to the `Yarn Spinner/Examples/` folder in Unity, and open one of the demo scenes. 
 5. Run the game, and poke around!
 
-
 ## What To Do Next
 
 * [Download Yarn Spinner.](https://github.com/thesecretlab/YarnSpinner/releases)
@@ -37,18 +36,21 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 * [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
 * [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
 
+<img src="http://akamaicovers.oreilly.com/images/0636920055105/lrg.jpg" alt="Yarn Spinner training" width="100px;" align="right">
+We also produced a training video on integrating and using the basics of Yarn Spinner in Unity games, [available commercially from O'Reilly Media](http://shop.oreilly.com/product/0636920055105.do#) (and [also on Safari](https://www.safaribooksonline.com/library/view/creating-narrative-games/9781491969830/?utm_medium=referral&utm_campaign=publisher&utm_source=oreilly&utm_content=buybox)).
+
 ## License
 
 Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
 
 * [Learn more about what this license lets you do](https://tldrlegal.com/license/mit-license). 
 
-
 ## Made by Secret Lab!
 
 Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
 
 The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent [Rex Smeal](https://twitter.com/RexSmeal), and is under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+
 
 ## Help Us Make Yarn Spinner!
 
@@ -58,7 +60,5 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 * Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
 * **New!** Join our [narrative game development](http://lab.to/narrativegamedev) Slack!
 * **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available
-
-
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
