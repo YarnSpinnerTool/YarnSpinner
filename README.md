@@ -36,7 +36,7 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 * [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
 * [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
 
-<img src="http://akamaicovers.oreilly.com/images/0636920055105/lrg.jpg" alt="Yarn Spinner training" width="100px;" align="right">
+<a href="http://shop.oreilly.com/product/0636920055105.do"><img src="http://akamaicovers.oreilly.com/images/0636920055105/lrg.jpg" alt="Yarn Spinner training" width="100px;" align="right"></a>
 
 We also produced a training video on integrating and using the basics of Yarn Spinner in Unity games, [available commercially from O'Reilly Media](http://shop.oreilly.com/product/0636920055105.do) (and [also on Safari](https://www.safaribooksonline.com/library/view/creating-narrative-games/9781491969830/)).
 
