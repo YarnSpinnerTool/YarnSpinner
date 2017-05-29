@@ -8,6 +8,8 @@ export CLASSPATH=.:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar
 
 # poor terminal
 clear
+# quitting preview
+osascript -e 'quit app "preview"'
 
 # generate the grammar
 antlr4 *.g4
@@ -16,10 +18,7 @@ antlr4 *.g4
 javac *.java
 
 # run the result and generate a parse tree into a PostScript file
-grun YarnSpinner node -tokens Test.yarn.txt -ps Test.yarn.txt.ps
-
-# quitting preview
-osascript -e 'quit app "preview"'
+grun YarnSpinner dialogue -tokens Test.yarn.txt -ps Test.yarn.txt.ps
 
 # open the ps
 open -a "Preview" Test.yarn.txt.ps

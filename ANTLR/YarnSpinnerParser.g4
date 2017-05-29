@@ -5,7 +5,24 @@ parser grammar YarnSpinnerParser;
 
 options { tokenVocab=YarnSpinnerLexer; }
 
-node: BODY_ENTER statement* BODY_CLOSE ;
+dialogue : node+ ;
+
+node: header body NEWLINE*;
+
+// this is wrong, this means you have to have a title (correct)
+// but can have any number (including 0) of the others
+// we only want 0-1 of each in any order but to do this means writing them out
+// or doing it with some code
+// the listener code option seems the best here
+// at least according to https://stackoverflow.com/questions/14934081/antlr4-matching-all-input-alternatives-exaclty-once
+header : header_title (header_tags | header_colour | header_position)* ;
+
+header_title    : HEADER_TITLE    ':' ID+               NEWLINE ;
+header_tags     : HEADER_TAGS     ':' ID+               NEWLINE ;
+header_colour   : HEADER_COLOUR   ':' NUMBER            NEWLINE ;
+header_position : HEADER_POSITION ':' NUMBER ',' NUMBER NEWLINE ;
+
+body : BODY_ENTER statement* BODY_CLOSE ;
 
 statement
     : if_statement
@@ -24,7 +41,7 @@ set_statement
     ;
 
 action_statement
-    : '<<' ID+ '>>'
+    : '<<' BODY_ID+ '>>'
     ;
 
 option_statement
@@ -48,15 +65,9 @@ expression
     | variable                                                                         #expVariable
     ;
 
-//ok so a command is << any text is allowed in here especially spaces>>
-//a function is <<anyText>>
-// function can't have spaces and has a parentheses at the end
-// <<hello()>> is a function
-// <<hello() there is a command>>
-
 // can add in support for more values in here
 value
-    : NUMBER
+    : BODY_NUMBER
     | KEYWORD_TRUE
     | KEYWORD_FALSE
     ;

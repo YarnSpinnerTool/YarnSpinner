@@ -5,21 +5,40 @@ lexer grammar YarnSpinnerLexer;
 
 // ----------------------
 // Default mode
-// for handling normal dialogue lines and moving between modes
+// handles headers and pushes into body mode
 
-BODY_ENTER : '---' ;
-BODY_CLOSE : '===' ;
+BODY_ENTER : '---' -> pushMode(Body) ;
+
+HEADER_TITLE : 'title' ;
+HEADER_TAGS : 'tags' ;
+HEADER_COLOUR : 'colorID' ;
+HEADER_POSITION : 'position' ;
+HEADER_SEPARATOR : ':' ;
+COMMA : ',' ;
+
+NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
+ID : (([a-zA-Z0-9])|('_'))+ ;
+
+NEWLINE : [\r\n]+ ;
+WS : ' ' -> skip ;
+
+// ----------------------
+// Body mode
+// for handling normal dialogue lines and moving between modes
+mode Body;
+
+BODY_CLOSE : '===' -> popMode ;
 
 COMMAND_ENTER : '<<' -> pushMode(Command) ;
 OPTION_ENTER : '[[' -> pushMode(Option) ;
 
-NEWLINE : [\r\n]+ -> skip;
+BODY_NEWLINE : [\r\n]+ -> skip;
 
 TEXT: TEXTCOMPONENT+ ;
 fragment TEXTCOMPONENT: ~('<'|'|'|'['|']'|'\n') ;
 
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT : '//' .*? '\n' -> skip ;
+WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------
 // Command mode
@@ -39,9 +58,9 @@ KEYWORD_TO : 'to' | 'TO' | '=' ;
 KEYWORD_TRUE  : 'true' | 'TRUE' ;
 KEYWORD_FALSE : 'false' | 'FALSE' ;
 
-NUMBER : [0-9]+(.[0-9]+)? ; // match numbers
 VAR_ID : '$' ID ;
-ID : (([a-zA-Z0-9])|('_'))+ ;
+BODY_NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
+BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
 
 // All the operators YarnSpinner currently supports
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' ;
@@ -59,7 +78,7 @@ OPERATOR_MATHS_MODULUS : '%' ;
 LPAREN: '(' ;
 RPAREN: ')' ;
 
-WS_IN_COMMAND : WS -> skip ; // skip spaces, tabs, newlines
+WS_IN_COMMAND : WS_IN_BODY -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------
 // Option mode
