@@ -18,7 +18,7 @@ node: header body NEWLINE*;
 header : header_title (header_tags | header_colour | header_position)* ;
 
 header_title    : HEADER_TITLE    ':' ID+               NEWLINE ;
-header_tags     : HEADER_TAGS     ':' ID+               NEWLINE ;
+header_tags     : HEADER_TAGS     ':' ID*               NEWLINE ;
 header_colour   : HEADER_COLOUR   ':' NUMBER            NEWLINE ;
 header_position : HEADER_POSITION ':' NUMBER ',' NUMBER NEWLINE ;
 
@@ -36,8 +36,10 @@ if_statement
     : '<<' KEYWORD_IF expression '>>' statement* ('<<' KEYWORD_ELSE_IF expression '>>' statement*)* ('<<' KEYWORD_ELSE '>>' statement*)* '<<' KEYWORD_ENDIF '>>'
     ;
 
+// this is a hack until I can work out exactly what the rules for setting are
 set_statement
-    : '<<' KEYWORD_SET variable KEYWORD_TO expression '>>'
+    : '<<' KEYWORD_SET variable KEYWORD_TO* expression '>>'
+    | '<<' KEYWORD_SET expression '>>'
     ;
 
 action_statement
@@ -57,12 +59,15 @@ line_statement
 // need to work on this
 expression
     : '(' expression ')'                                                               #expParens
-    | value                                                                            #expValue
-    | expression op=('*' | '/') expression                                             #expMultDiv
+    | expression op=('*' | '/' | '%') expression                                       #expMultDivMod
     | expression op=('+' | '-') expression                                             #expAddSub
     | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression #expEquality
     | expression op=('<' | '>' | '<=' | '>=' ) expression                              #expComparison
+    | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR) expression            #expAndOr
+    | expression op=('+=' | '-=') expression                                           #expPlusMinusEquals
+    | expression op=('*=' | '/=' | '%=') expression                                    #expMultDivModEquals
     | variable                                                                         #expVariable
+    | value                                                                            #expValue
     ;
 
 // can add in support for more values in here

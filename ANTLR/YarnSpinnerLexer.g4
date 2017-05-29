@@ -58,10 +58,6 @@ KEYWORD_TO : 'to' | 'TO' | '=' ;
 KEYWORD_TRUE  : 'true' | 'TRUE' ;
 KEYWORD_FALSE : 'false' | 'FALSE' ;
 
-VAR_ID : '$' ID ;
-BODY_NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
-BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
-
 // All the operators YarnSpinner currently supports
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' ;
 OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' ;
@@ -69,6 +65,13 @@ OPERATOR_LOGICAL_EQUALS : '==' | 'IS' | 'is' ;
 OPERATOR_LOGICAL_LESS : '<' ;
 OPERATOR_LOGICAL_GREATER : '>' ;
 OPERATOR_LOGICAL_NOT_EQUALS : '!=' ;
+OPERATOR_LOGICAL_AND : 'and' | 'AND' | '&&' ;
+OPERATOR_LOGICAL_OR : 'or' | 'OR' | '||' ;
+OPERATOR_MATHS_ADDITION_EQUALS : '+=' ;
+OPERATOR_MATHS_SUBTRACTION_EQUALS : '-=' ;
+OPERATOR_MATHS_MULTIPLICATION_EQUALS : '*=' ;
+OPERATOR_MATHS_MODULUS_EQUALS : '%=' ;
+OPERATOR_MATHS_DIVISION_EQUALS : '/=' ;
 OPERATOR_MATHS_ADDITION : '+' ;
 OPERATOR_MATHS_SUBTRACTION : '-' ;
 OPERATOR_MATHS_MULTIPLICATION : '*' ;
@@ -77,6 +80,10 @@ OPERATOR_MATHS_MODULUS : '%' ;
 
 LPAREN: '(' ;
 RPAREN: ')' ;
+
+VAR_ID : '$' BODY_ID ;
+BODY_NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
+BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
 
 WS_IN_COMMAND : WS_IN_BODY -> skip ; // skip spaces, tabs, newlines
 
