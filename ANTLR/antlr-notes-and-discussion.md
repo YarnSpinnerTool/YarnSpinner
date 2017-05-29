@@ -124,3 +124,14 @@ I would change this either so everything has a keyword to control its functional
 The rules around what can be identifiers are effectively arbitrary, as it currently stands they can be any upper or lower variable, any numbers, and the _ symbol.
 This also somewhat ties into almost everything else that can have generic text, i.e do we allow arbitrary text inside actions or does it have to conform to a pattern?
 What should and shouldn't be allowed as identifiers and why?
+
+## Headers
+
+As it currently stands the allowed headers are `title` (required) and `tags`, `position`, and `colorID` all being optional.
+Because of a combination of my hesitance to in line code, and ANTLR4 syntax there is nothing stopping you putting as many of the optional headers in as you want.
+
+This is another area that needs to be discussed, not everything can be done in ANTLR, in places where it can be solved with in lining code we need to work out some rules for when we should and should not do this.
+As it currently stands there are no code sections in the the grammar.
+This is partially due to my experiece with ANTLR and partially due to my unwillingness to add code, as each part of code is something that will have to be ported when the time comes, this feels messy and against the spirit of ANTLR to me.
+
+With that said, some things will be MUCH easier to do with in line code and can likely be written in a way that is either applicable to multiple target languages or simple enough that tweaking it won't be a problem, this is all an area we need to look at as we head forward.
