@@ -32,7 +32,7 @@ deploy:
   file: "$TRAVIS_BUILD_DIR/YarnSpinner/bin/Release/YarnSpinner.dll"
   skip_cleanup: true
   on:
-    repo: thesecretlab/YarnSpinner
+      tags: true
 after_success:
 - cd $TRAVIS_BUILD_DIR
 - chmod +x DeployDocumentation.sh
