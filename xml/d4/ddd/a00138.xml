@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="d4/ddd/a00138" kind="namespace">
-    <compoundname>NUnitLite::Tests</compoundname>
-    <innerclass refid="d9/db3/a00066" prot="public">NUnitLite::Tests::Program</innerclass>
+    <compoundname>System::Collections</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="27" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="28" column="1"/>
   </compounddef>
 </doxygen>

@@ -5,7 +5,7 @@
     <basecompoundref prot="public" virt="non-virtual">EditorWindow</basecompoundref>
     <innerclass refid="dc/de2/a00024" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</innerclass>
     <innerclass refid="db/df3/a00034" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</innerclass>
-    <innerclass refid="dc/de6/a00167" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</innerclass>
+    <innerclass refid="db/ddf/a00164" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</innerclass>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="df/d13/a00085_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" static="no" mutable="no">
         <type>List&lt; <ref refid="dc/de2/a00024" kindref="compound">CheckerResult</ref> &gt;</type>
@@ -103,7 +103,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="200" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="200" bodyend="234"/>
       </memberdef>
       <memberdef kind="function" id="df/d13/a00085_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="dc/de6/a00167" kindref="compound">ValidationMessage</ref>[]</type>
+        <type><ref refid="db/ddf/a00164" kindref="compound">ValidationMessage</ref>[]</type>
         <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.ValidateFile</definition>
         <argsstring>(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result)</argsstring>
         <name>ValidateFile</name>

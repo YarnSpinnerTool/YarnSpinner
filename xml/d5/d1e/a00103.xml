@@ -3,7 +3,7 @@
   <compounddef id="d5/d1e/a00103" kind="file">
     <compoundname>Program.cs</compoundname>
     <innerclass refid="d9/db3/a00066" prot="public">NUnitLite::Tests::Program</innerclass>
-    <innernamespace refid="d4/ddd/a00138">NUnitLite::Tests</innernamespace>
+    <innernamespace refid="d5/d5b/a00135">NUnitLite::Tests</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -34,7 +34,7 @@
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>NUnitLite;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26" refid="d4/ddd/a00138" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">NUnitLite.Tests</highlight></codeline>
+<codeline lineno="26" refid="d5/d5b/a00135" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">NUnitLite.Tests</highlight></codeline>
 <codeline lineno="27"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="28" refid="d9/db3/a00066" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d9/db3/a00066" kindref="compound">Program</ref></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>

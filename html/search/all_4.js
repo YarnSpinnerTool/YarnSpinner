@@ -5,7 +5,7 @@ var searchData=
   ['default_5fstart',['DEFAULT_START',['../de/d8c/a00036.html#a1b643f15f734090e6a58cbf13dafd28f',1,'Yarn::Dialogue']]],
   ['defaultanalyserclasses',['defaultAnalyserClasses',['../df/d61/a00031.html#afdf24f2512251c2203ba1bde8f4a0f90',1,'Yarn::Analysis::Context']]],
   ['defaultstate',['defaultState',['../d6/d2d/a00047.html#a16b5dbf27a377cde5e8ba0eaa05b5710',1,'Yarn::Lexer']]],
-  ['defaultvariable',['DefaultVariable',['../d0/dc0/a00033.html#d6/d7d/a00161',1,'ExampleVariableStorage']]],
+  ['defaultvariable',['DefaultVariable',['../d0/dc0/a00033.html#d6/db8/a00158',1,'ExampleVariableStorage']]],
   ['defaultvariables',['defaultVariables',['../d0/dc0/a00033.html#a464c8a4ff6a3c624602d0adc55dfc59a',1,'ExampleVariableStorage']]],
   ['delimitstext',['delimitsText',['../d1/d51/a00079.html#af15d26fa4e6f276ab58ff66d3c4203da',1,'Yarn.Token.delimitsText()'],['../d4/d63/a00082.html#ab0849136a1f27b4d13cb7a45e2fe7130',1,'Yarn.Lexer.TokenRule.delimitsText()']]],
   ['deprecation',['Deprecation',['../db/df3/a00034.html',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],

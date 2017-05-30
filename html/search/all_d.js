@@ -11,7 +11,7 @@ var searchData=
   ['nexttoken',['NextToken',['../d3/dea/a00046.html#a1d2daab9b052b186da7a2b6711be5803',1,'Json::JsonParser']]],
   ['node',['Node',['../d1/dea/a00054.html',1,'Yarn::Parser']]],
   ['node',['Node',['../d1/dea/a00054.html#ae0562dc06ca747307b66039ef2f28772',1,'Yarn::Parser::Node']]],
-  ['node',['Node',['../d6/d5b/a00026.html#dd/dae/a00163',1,'Yarn']]],
+  ['node',['Node',['../d6/d5b/a00026.html#de/d38/a00160',1,'Yarn']]],
   ['nodecomplete',['NodeComplete',['../d8/d41/a00038.html#a2900548a0704d39d4502a153945f4bef',1,'Yarn::Unity::DialogueUIBehaviour']]],
   ['nodecompletehandler',['nodeCompleteHandler',['../d6/d2c/a00072.html#a5129c63e67e2d4e2780d86b8351320a2',1,'Yarn.VirtualMachine.nodeCompleteHandler()'],['../d6/d2c/a00072.html#a5bf3aa51578847c18191fec665a840f9',1,'Yarn.VirtualMachine.NodeCompleteHandler(Dialogue.NodeCompleteResult complete)']]],
   ['nodecompleteresult',['NodeCompleteResult',['../d4/d6d/a00055.html#a88c81469a69987c05aa92780c5a5c1f9',1,'Yarn::Dialogue::NodeCompleteResult']]],
@@ -29,10 +29,10 @@ var searchData=
   ['nottested',['NotTested',['../dc/de2/a00024.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5',1,'Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult']]],
   ['npc',['NPC',['../d1/d22/a00057.html',1,'Yarn::Unity::Example']]],
   ['npc_2ecs',['NPC.cs',['../db/d57/a00112.html',1,'']]],
-  ['null',['Null',['../da/d2a/a00086.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Value.Null()'],['../da/d2a/a00086.html#a1ed2964965baca8621c45efa23f37660',1,'Yarn.Value.NULL()'],['../d0/de8/a00133.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94',1,'Json.Null()'],['../d6/d5b/a00026.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Null()']]],
-  ['number',['Number',['../da/d2a/a00086.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f',1,'Yarn.Value.Number()'],['../d0/de8/a00133.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f',1,'Json.Number()'],['../d6/d5b/a00026.html#a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f',1,'Yarn.Number()']]],
+  ['null',['Null',['../da/d2a/a00086.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Value.Null()'],['../da/d2a/a00086.html#a1ed2964965baca8621c45efa23f37660',1,'Yarn.Value.NULL()'],['../d6/db3/a00130.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94',1,'Json.Null()'],['../d6/d5b/a00026.html#a301aa7c866593a5b625a8fc158bbeaceabbb93ef26e3c101ff11cdd21cab08a94',1,'Yarn.Null()']]],
+  ['number',['Number',['../da/d2a/a00086.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f',1,'Yarn.Value.Number()'],['../d6/db3/a00130.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f',1,'Json.Number()'],['../d6/d5b/a00026.html#a301aa7c866593a5b625a8fc158bbeaceab2ee912b91d69b435159c7c3f6df7f5f',1,'Yarn.Number()']]],
   ['numberofexpectedoptions',['numberOfExpectedOptions',['../d5/d79/a00030.html#a2e17937195ecd64d5d867d958c45d2c3',1,'Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation']]],
   ['numbervalue',['numberValue',['../da/d2a/a00086.html#ae1892c1c7a8177537d1caa39a2e51da6',1,'Yarn::Value']]],
-  ['nunitlite',['NUnitLite',['../d2/df5/a00137.html',1,'']]],
-  ['tests',['Tests',['../d4/ddd/a00138.html',1,'NUnitLite']]]
+  ['nunitlite',['NUnitLite',['../de/d76/a00134.html',1,'']]],
+  ['tests',['Tests',['../d5/d5b/a00135.html',1,'NUnitLite']]]
 ];

@@ -1,12 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="d1/db7/a00157" kind="namespace">
-    <compoundname>YarnSpinner</compoundname>
-    <innernamespace refid="d6/db8/a00158">YarnSpinner::Tests</innernamespace>
+  <compounddef id="d1/db7/a00157" kind="struct" prot="private">
+    <compoundname>Yarn::Compiler::CompileFlags</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/db7/a00157_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</definition>
+        <argsstring></argsstring>
+        <name>DisableShuffleOptionsAfterNextSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="246" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[generated]" line="1" column="1"/>
+    <collaborationgraph>
+      <node id="433">
+        <label>Yarn.Compiler.CompileFlags</label>
+        <link refid="d1/db7/a00157"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="243" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="243" bodyend="247"/>
+    <listofallmembers>
+      <member refid="d1/db7/a00157_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" virt="non-virtual"><scope>Yarn::Compiler::CompileFlags</scope><name>DisableShuffleOptionsAfterNextSet</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

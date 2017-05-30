@@ -129,7 +129,7 @@
         <argsstring>(Yarn.Line lineText)</argsstring>
         <name>RunLine</name>
         <param>
-          <type><ref refid="db/d44/a00162" kindref="compound">Yarn.Line</ref></type>
+          <type><ref refid="de/db9/a00159" kindref="compound">Yarn.Line</ref></type>
           <declname>lineText</declname>
         </param>
         <briefdescription>
@@ -146,7 +146,7 @@
         <argsstring>(Options optionsGroup, OptionChooser optionChooser)</argsstring>
         <name>RunOptions</name>
         <param>
-          <type><ref refid="db/ddf/a00164" kindref="compound">Options</ref></type>
+          <type><ref refid="d6/d7d/a00161" kindref="compound">Options</ref></type>
           <declname>optionsGroup</declname>
         </param>
         <param>

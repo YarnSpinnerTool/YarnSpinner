@@ -55,8 +55,8 @@
     <member refid="d3/dfe/a00025_1a6f4765482e98ed042e38a0ede13f171f" kind="variable"><name>statements</name></member>
     <member refid="d3/dfe/a00025_1a7f4fc9399896512b68fdc7bc7cf818c9" kind="function"><name>PrintTree</name></member>
   </compound>
-  <compound refid="de/db9/a00159" kind="struct"><name>Yarn::Command</name>
-    <member refid="de/db9/a00159_1a8564e5104566e145f5d917ec846444d9" kind="variable"><name>text</name></member>
+  <compound refid="d2/d34/a00156" kind="struct"><name>Yarn::Command</name>
+    <member refid="d2/d34/a00156_1a8564e5104566e145f5d917ec846444d9" kind="variable"><name>text</name></member>
   </compound>
   <compound refid="d0/d33/a00027" kind="class"><name>Yarn::Dialogue::CommandResult</name>
     <member refid="d0/d33/a00027_1a420ca0984d6e5c33bb761654305c592e" kind="variable"><name>command</name></member>
@@ -66,8 +66,8 @@
     <member refid="dc/d3c/a00028_1aba4a36cb823b11ee491074e26477d084" kind="function"><name>Diagnose</name></member>
     <member refid="dc/d3c/a00028_1afe059a2ceeabe50380b000420e512bd6" kind="function"><name>GatherDiagnoses</name></member>
   </compound>
-  <compound refid="de/d38/a00160" kind="struct"><name>Yarn::Compiler::CompileFlags</name>
-    <member refid="de/d38/a00160_1a8b49bb7763ff477cba21d7c771ef3ed0" kind="variable"><name>DisableShuffleOptionsAfterNextSet</name></member>
+  <compound refid="d1/db7/a00157" kind="struct"><name>Yarn::Compiler::CompileFlags</name>
+    <member refid="d1/db7/a00157_1a8b49bb7763ff477cba21d7c771ef3ed0" kind="variable"><name>DisableShuffleOptionsAfterNextSet</name></member>
   </compound>
   <compound refid="d5/d16/a00029" kind="class"><name>Yarn::Compiler</name>
     <member refid="d5/d16/a00029_1a541022d89bcf9bc8f794eb6d6b438d08" kind="variable"><name>flags</name></member>
@@ -130,10 +130,10 @@
     <member refid="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" kind="function"><name>NodeParent</name></member>
     <member refid="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" kind="function"><name>ToString</name></member>
   </compound>
-  <compound refid="d6/d7d/a00161" kind="class"><name>ExampleVariableStorage::DefaultVariable</name>
-    <member refid="d6/d7d/a00161_1a609feaa53936e7dc42248ff2ba68454a" kind="variable"><name>name</name></member>
-    <member refid="d6/d7d/a00161_1a0f00ecb21b58aa754a4bbb61edf62818" kind="variable"><name>value</name></member>
-    <member refid="d6/d7d/a00161_1a904347efdca12f40243c7dedb646153d" kind="variable"><name>type</name></member>
+  <compound refid="d6/db8/a00158" kind="class"><name>ExampleVariableStorage::DefaultVariable</name>
+    <member refid="d6/db8/a00158_1a609feaa53936e7dc42248ff2ba68454a" kind="variable"><name>name</name></member>
+    <member refid="d6/db8/a00158_1a0f00ecb21b58aa754a4bbb61edf62818" kind="variable"><name>value</name></member>
+    <member refid="d6/db8/a00158_1a904347efdca12f40243c7dedb646153d" kind="variable"><name>type</name></member>
   </compound>
   <compound refid="db/df3/a00034" kind="struct"><name>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</name>
     <member refid="db/df3/a00034_1a750904df254223bf3131c39017f90a0b" kind="variable"><name>type</name></member>
@@ -375,8 +375,8 @@
     <member refid="d2/dee/a00049_1a6c9a1cc3e25b6aae25e210d8a0d68c09" kind="function"><name>FunctionExists</name></member>
     <member refid="d2/dee/a00049_1a47d1b3664733207d5cda15f4a4a7af7a" kind="function"><name>DeregisterFunction</name></member>
   </compound>
-  <compound refid="db/d44/a00162" kind="struct"><name>Yarn::Line</name>
-    <member refid="db/d44/a00162_1a81d1f04bbb4cf6642d2bd685bda1da20" kind="variable"><name>text</name></member>
+  <compound refid="de/db9/a00159" kind="struct"><name>Yarn::Line</name>
+    <member refid="de/db9/a00159_1a81d1f04bbb4cf6642d2bd685bda1da20" kind="variable"><name>text</name></member>
   </compound>
   <compound refid="d5/de0/a00050" kind="class"><name>Yarn::Dialogue::LineResult</name>
     <member refid="d5/de0/a00050_1abfbb0ea840b02acd0ecdc72c5b120257" kind="variable"><name>line</name></member>
@@ -402,11 +402,11 @@
   <compound refid="dc/dee/a00053" kind="class"><name>MobileOnly</name>
     <member refid="dc/dee/a00053_1acfb1b3a9c8f62b30300331fb84752022" kind="function"><name>Awake</name></member>
   </compound>
-  <compound refid="dd/dae/a00163" kind="class"><name>Yarn::Node</name>
-    <member refid="dd/dae/a00163_1a156723a9252b62d288ddf611939ea7c3" kind="variable"><name>instructions</name></member>
-    <member refid="dd/dae/a00163_1a107b0de3fcfc65e99913edc01b5ce9db" kind="variable"><name>name</name></member>
-    <member refid="dd/dae/a00163_1a09c6af5b50925d0876283b84281b3ed4" kind="variable"><name>sourceTextStringID</name></member>
-    <member refid="dd/dae/a00163_1a9afa49f4fbc72e806a0210cb4198f12e" kind="variable"><name>labels</name></member>
+  <compound refid="de/d38/a00160" kind="class"><name>Yarn::Node</name>
+    <member refid="de/d38/a00160_1a156723a9252b62d288ddf611939ea7c3" kind="variable"><name>instructions</name></member>
+    <member refid="de/d38/a00160_1a107b0de3fcfc65e99913edc01b5ce9db" kind="variable"><name>name</name></member>
+    <member refid="de/d38/a00160_1a09c6af5b50925d0876283b84281b3ed4" kind="variable"><name>sourceTextStringID</name></member>
+    <member refid="de/d38/a00160_1a9afa49f4fbc72e806a0210cb4198f12e" kind="variable"><name>labels</name></member>
   </compound>
   <compound refid="d1/dea/a00054" kind="class"><name>Yarn::Parser::Node</name>
     <member refid="d1/dea/a00054_1a3cfa07840da3a7a92c820788e902aefb" kind="property"><name>name</name></member>
@@ -456,8 +456,8 @@
     <member refid="d3/d8b/a00059_1a0758c6f7dac4b205f616b43b1af95b95" kind="variable"><name>arguments</name></member>
     <member refid="d3/d8b/a00059_1a25faca62235c9f8542e4a071ba8ebc0b" kind="function"><name>OperatorInfo</name></member>
   </compound>
-  <compound refid="db/ddf/a00164" kind="struct"><name>Yarn::Options</name>
-    <member refid="db/ddf/a00164_1ae8c616d923ceeeed192a9436c55d9917" kind="variable"><name>options</name></member>
+  <compound refid="d6/d7d/a00161" kind="struct"><name>Yarn::Options</name>
+    <member refid="d6/d7d/a00161_1ae8c616d923ceeeed192a9436c55d9917" kind="variable"><name>options</name></member>
   </compound>
   <compound refid="d9/d73/a00060" kind="class"><name>Yarn::Dialogue::OptionSetResult</name>
     <member refid="d9/d73/a00060_1abda9c3047ff9d3c3ec5540566a239315" kind="variable"><name>options</name></member>
@@ -544,12 +544,12 @@
     <member refid="d1/d6f/a00063_1a580e520a29444fc23ac3660cbe514a09" kind="function"><name>NodeParent</name></member>
     <member refid="d1/d6f/a00063_1a18c67cb16090d0889bb9d6c8c6c565f8" kind="function"><name>ToString</name></member>
   </compound>
-  <compound refid="d0/d48/a00165" kind="class"><name>Yarn::VirtualMachine::SpecialVariables</name>
-    <member refid="d0/d48/a00165_1aecbb8ab9becd96457d836100b2818078" kind="variable"><name>ShuffleOptions</name></member>
+  <compound refid="db/d44/a00162" kind="class"><name>Yarn::VirtualMachine::SpecialVariables</name>
+    <member refid="db/d44/a00162_1aecbb8ab9becd96457d836100b2818078" kind="variable"><name>ShuffleOptions</name></member>
   </compound>
-  <compound refid="d9/d38/a00166" kind="struct"><name>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</name>
-    <member refid="d9/d38/a00166_1a3f5bca2fff413dfe075c1fcf7e58369c" kind="variable"><name>name</name></member>
-    <member refid="d9/d38/a00166_1adc58df011dc2841837b6cf775b372061" kind="variable"><name>sprite</name></member>
+  <compound refid="dd/dae/a00163" kind="struct"><name>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</name>
+    <member refid="dd/dae/a00163_1a3f5bca2fff413dfe075c1fcf7e58369c" kind="variable"><name>name</name></member>
+    <member refid="dd/dae/a00163_1adc58df011dc2841837b6cf775b372061" kind="variable"><name>sprite</name></member>
   </compound>
   <compound refid="d1/d6e/a00073" kind="class"><name>Yarn::Unity::Example::SpriteSwitcher</name>
     <member refid="d1/d6e/a00073_1a1e85d9f4f6b33ca7ae638cce2eb704aa" kind="variable"><name>sprites</name></member>
@@ -695,9 +695,9 @@
     <member refid="df/d5d/a00084_1a107aecf707b130c4b733930a95f9154e" kind="function"><name>GatherDiagnoses</name></member>
     <member refid="dc/d3c/a00028_1aba4a36cb823b11ee491074e26477d084" kind="function"><name>Diagnose</name></member>
   </compound>
-  <compound refid="dc/de6/a00167" kind="struct"><name>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</name>
-    <member refid="dc/de6/a00167_1a636dce6708e779c201fa5e7d01cf2955" kind="variable"><name>message</name></member>
-    <member refid="dc/de6/a00167_1a7d342190c7657fbbe85eb6fa66bcabb8" kind="variable"><name>type</name></member>
+  <compound refid="db/ddf/a00164" kind="struct"><name>Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</name>
+    <member refid="db/ddf/a00164_1a636dce6708e779c201fa5e7d01cf2955" kind="variable"><name>message</name></member>
+    <member refid="db/ddf/a00164_1a7d342190c7657fbbe85eb6fa66bcabb8" kind="variable"><name>type</name></member>
   </compound>
   <compound refid="da/d2a/a00086" kind="class"><name>Yarn::Value</name>
     <member refid="da/d2a/a00086_1ad5aaf60ee4504608fcc2ffadefa14884" kind="enum"><name>Type</name></member>
@@ -820,60 +820,60 @@
     <member refid="d4/d7d/a00093_1ad6e4c6a92bb5ed6187949264df6aaf1b" kind="function"><name>SetUp</name></member>
     <member refid="d4/d7d/a00093_1a60ab8ed8dc30ec30e74baa1916d47324" kind="function"><name>EditorTest</name></member>
   </compound>
-  <compound refid="d0/de8/a00133" kind="namespace"><name>Json</name>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236" kind="enum"><name>JsonToken</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e" kind="enumvalue"><name>Unknown</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f" kind="enumvalue"><name>LeftBrace</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a" kind="enumvalue"><name>RightBrace</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83" kind="enumvalue"><name>Colon</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6" kind="enumvalue"><name>Comma</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17" kind="enumvalue"><name>LeftBracket</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c" kind="enumvalue"><name>RightBracket</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f" kind="enumvalue"><name>Number</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74" kind="enumvalue"><name>True</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c" kind="enumvalue"><name>False</name></member>
-    <member refid="d0/de8/a00133_1a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94" kind="enumvalue"><name>Null</name></member>
+  <compound refid="d6/db3/a00130" kind="namespace"><name>Json</name>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236" kind="enum"><name>JsonToken</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e" kind="enumvalue"><name>Unknown</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f" kind="enumvalue"><name>LeftBrace</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a" kind="enumvalue"><name>RightBrace</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83" kind="enumvalue"><name>Colon</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6" kind="enumvalue"><name>Comma</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17" kind="enumvalue"><name>LeftBracket</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c" kind="enumvalue"><name>RightBracket</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f" kind="enumvalue"><name>Number</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74" kind="enumvalue"><name>True</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c" kind="enumvalue"><name>False</name></member>
+    <member refid="d6/db3/a00130_1a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94" kind="enumvalue"><name>Null</name></member>
   </compound>
-  <compound refid="de/d76/a00134" kind="namespace"><name>Newtonsoft::Json</name>
+  <compound refid="d7/d06/a00131" kind="namespace"><name>Newtonsoft::Json</name>
   </compound>
-  <compound refid="d5/d5b/a00135" kind="namespace"><name>Newtonsoft::Json::Linq</name>
+  <compound refid="d5/deb/a00132" kind="namespace"><name>Newtonsoft::Json::Linq</name>
   </compound>
-  <compound refid="d0/d5e/a00136" kind="namespace"><name>NUnit::Framework</name>
+  <compound refid="d0/de8/a00133" kind="namespace"><name>NUnit::Framework</name>
   </compound>
-  <compound refid="d2/df5/a00137" kind="namespace"><name>NUnitLite</name>
+  <compound refid="de/d76/a00134" kind="namespace"><name>NUnitLite</name>
   </compound>
-  <compound refid="d4/ddd/a00138" kind="namespace"><name>NUnitLite::Tests</name>
+  <compound refid="d5/d5b/a00135" kind="namespace"><name>NUnitLite::Tests</name>
   </compound>
-  <compound refid="de/d14/a00139" kind="namespace"><name>std</name>
+  <compound refid="d0/d5e/a00136" kind="namespace"><name>std</name>
   </compound>
-  <compound refid="d5/db1/a00140" kind="namespace"><name>System</name>
+  <compound refid="d2/df5/a00137" kind="namespace"><name>System</name>
   </compound>
-  <compound refid="d5/d4e/a00141" kind="namespace"><name>System::Collections</name>
+  <compound refid="d4/ddd/a00138" kind="namespace"><name>System::Collections</name>
   </compound>
-  <compound refid="d2/d82/a00142" kind="namespace"><name>System::Collections::Generic</name>
+  <compound refid="de/d14/a00139" kind="namespace"><name>System::Collections::Generic</name>
   </compound>
-  <compound refid="d7/dce/a00143" kind="namespace"><name>System::Globalization</name>
+  <compound refid="d5/db1/a00140" kind="namespace"><name>System::Globalization</name>
   </compound>
-  <compound refid="d5/da7/a00144" kind="namespace"><name>System::Linq</name>
+  <compound refid="d5/d4e/a00141" kind="namespace"><name>System::Linq</name>
   </compound>
-  <compound refid="da/ddb/a00145" kind="namespace"><name>System::Reflection</name>
+  <compound refid="d2/d82/a00142" kind="namespace"><name>System::Reflection</name>
   </compound>
-  <compound refid="d9/db6/a00146" kind="namespace"><name>System::Runtime::CompilerServices</name>
+  <compound refid="d7/dce/a00143" kind="namespace"><name>System::Runtime::CompilerServices</name>
   </compound>
-  <compound refid="d0/d4a/a00147" kind="namespace"><name>System::Runtime::Serialization</name>
+  <compound refid="d5/da7/a00144" kind="namespace"><name>System::Runtime::Serialization</name>
   </compound>
-  <compound refid="db/d48/a00148" kind="namespace"><name>System::Text</name>
+  <compound refid="da/ddb/a00145" kind="namespace"><name>System::Text</name>
   </compound>
-  <compound refid="da/d1e/a00149" kind="namespace"><name>System::Text::RegularExpressions</name>
+  <compound refid="d9/db6/a00146" kind="namespace"><name>System::Text::RegularExpressions</name>
   </compound>
-  <compound refid="d9/d7d/a00150" kind="namespace"><name>UnityEditor</name>
+  <compound refid="d0/d4a/a00147" kind="namespace"><name>UnityEditor</name>
   </compound>
-  <compound refid="dd/db2/a00151" kind="namespace"><name>UnityEngine</name>
+  <compound refid="db/d48/a00148" kind="namespace"><name>UnityEngine</name>
   </compound>
-  <compound refid="d7/d9a/a00152" kind="namespace"><name>UnityEngine::Serialization</name>
+  <compound refid="da/d1e/a00149" kind="namespace"><name>UnityEngine::Serialization</name>
   </compound>
-  <compound refid="da/d01/a00153" kind="namespace"><name>UnityEngine::UI</name>
+  <compound refid="d9/d7d/a00150" kind="namespace"><name>UnityEngine::UI</name>
   </compound>
   <compound refid="d6/d5b/a00026" kind="namespace"><name>Yarn</name>
     <member refid="d6/d5b/a00026_1ad5dfb6ee68ca7469623ad3e459f98894" kind="enum"><name>ByteCode</name></member>
@@ -949,15 +949,15 @@
     <member refid="d6/d5b/a00026_1a5177bf74fbfe7303fac9d8236c2e514b" kind="function"><name>ReturningFunction</name></member>
     <member refid="d6/d5b/a00026_1ae0be2e5cf13d5779816102439e61ff1a" kind="function"><name>Function</name></member>
   </compound>
-  <compound refid="d3/d65/a00154" kind="namespace"><name>Yarn::Analysis</name>
+  <compound refid="dd/db2/a00151" kind="namespace"><name>Yarn::Analysis</name>
   </compound>
-  <compound refid="d3/df8/a00155" kind="namespace"><name>Yarn::Unity</name>
+  <compound refid="d7/d9a/a00152" kind="namespace"><name>Yarn::Unity</name>
   </compound>
-  <compound refid="d2/d34/a00156" kind="namespace"><name>Yarn::Unity::Example</name>
+  <compound refid="da/d01/a00153" kind="namespace"><name>Yarn::Unity::Example</name>
   </compound>
-  <compound refid="d1/db7/a00157" kind="namespace"><name>YarnSpinner</name>
+  <compound refid="d3/d65/a00154" kind="namespace"><name>YarnSpinner</name>
   </compound>
-  <compound refid="d6/db8/a00158" kind="namespace"><name>YarnSpinner::Tests</name>
+  <compound refid="d3/df8/a00155" kind="namespace"><name>YarnSpinner::Tests</name>
   </compound>
   <compound refid="dc/d54/a00094" kind="file"><name>CONTRIBUTING.md</name>
   </compound>
@@ -1016,27 +1016,21 @@
   <compound refid="d8/dfa/a00121" kind="file"><name>Loader.cs</name>
     <member refid="d8/dfa/a00121_1a77a5bfa27437777ac8554e94e76e4e43" kind="define"><name>CATCH_EXCEPTIONS</name></member>
   </compound>
-  <compound refid="df/dc8/a00122" kind="file"><name>.NETFramework,Version=v4.5.AssemblyAttribute.cs</name>
+  <compound refid="df/dc8/a00122" kind="file"><name>Parser.cs</name>
   </compound>
-  <compound refid="de/d36/a00123" kind="file"><name>.NETFramework,Version=v4.5.AssemblyAttribute.cs</name>
+  <compound refid="de/d36/a00123" kind="file"><name>AssemblyInfo.cs</name>
   </compound>
-  <compound refid="da/d72/a00124" kind="file"><name>.NETFramework,Version=v4.5.AssemblyAttribute.cs</name>
+  <compound refid="da/d72/a00124" kind="file"><name>AssemblyInfo.cs</name>
   </compound>
-  <compound refid="dc/dfe/a00125" kind="file"><name>Parser.cs</name>
+  <compound refid="dc/dfe/a00125" kind="file"><name>TreeRunner.cs</name>
   </compound>
-  <compound refid="d7/d12/a00126" kind="file"><name>AssemblyInfo.cs</name>
+  <compound refid="d7/d12/a00126" kind="file"><name>Value.cs</name>
   </compound>
-  <compound refid="df/dcd/a00127" kind="file"><name>AssemblyInfo.cs</name>
+  <compound refid="df/dcd/a00127" kind="file"><name>VirtualMachine.cs</name>
   </compound>
-  <compound refid="d1/d88/a00128" kind="file"><name>TreeRunner.cs</name>
+  <compound refid="d1/d88/a00128" kind="file"><name>Main.cs</name>
   </compound>
-  <compound refid="d9/d47/a00129" kind="file"><name>Value.cs</name>
-  </compound>
-  <compound refid="d6/db3/a00130" kind="file"><name>VirtualMachine.cs</name>
-  </compound>
-  <compound refid="d7/d06/a00131" kind="file"><name>Main.cs</name>
-  </compound>
-  <compound refid="d5/deb/a00132" kind="file"><name>Test.cs</name>
+  <compound refid="d9/d47/a00129" kind="file"><name>Test.cs</name>
   </compound>
   <compound refid="d7/d46/a00002" kind="page"><name>md_CONTRIBUTING</name>
   </compound>
@@ -1070,27 +1064,13 @@
   </compound>
   <compound refid="dir_13c6f03e9e899a688ffbbd5cb9ecc26c" kind="dir"><name>packages/NUnitLite.3.0.1</name>
   </compound>
-  <compound refid="dir_5a09edfa34643aa599cdbb74efc47eeb" kind="dir"><name>YarnSpinnerTests/obj</name>
-  </compound>
-  <compound refid="dir_5332b71096d915ae09dfdbe456bbd399" kind="dir"><name>YarnSpinnerConsole/obj</name>
-  </compound>
-  <compound refid="dir_9f37877b2afb5da8ea2ac3498a9c5dfb" kind="dir"><name>YarnSpinner/obj</name>
-  </compound>
   <compound refid="dir_93501a11e921083efbd154e0cdff5f10" kind="dir"><name>packages</name>
   </compound>
   <compound refid="dir_c5b5245a8d866663393107841a0eecb5" kind="dir"><name>YarnSpinnerConsole/Properties</name>
   </compound>
   <compound refid="dir_27b0c1af8c4e705ac80588c758eab39a" kind="dir"><name>YarnSpinner/Properties</name>
   </compound>
-  <compound refid="dir_573edd0730433ad3334934fbd5c93c4e" kind="dir"><name>YarnSpinnerTests/obj/Release</name>
-  </compound>
-  <compound refid="dir_fe08152905bc1c4ee86a4066d2b2d6b1" kind="dir"><name>YarnSpinnerConsole/obj/x86/Release</name>
-  </compound>
-  <compound refid="dir_8914b47a1feff31bcd9b4361d6603234" kind="dir"><name>YarnSpinner/obj/Release</name>
-  </compound>
   <compound refid="dir_3d328b3dca154a477d99beb656992be2" kind="dir"><name>Unity</name>
-  </compound>
-  <compound refid="dir_ad0c3ba5870da5f538a314c67519b97b" kind="dir"><name>YarnSpinnerConsole/obj/x86</name>
   </compound>
   <compound refid="dir_b9c11085bcc355d6abe5d870e1c35d61" kind="dir"><name>Unity/Assets/Yarn Spinner</name>
   </compound>

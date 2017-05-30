@@ -3,13 +3,13 @@
   <compounddef id="d6/d5b/a00026" kind="namespace">
     <compoundname>Yarn</compoundname>
     <innerclass refid="dc/ddf/a00067" prot="package">Yarn::Program</innerclass>
-    <innerclass refid="dd/dae/a00163" prot="package">Yarn::Node</innerclass>
+    <innerclass refid="de/d38/a00160" prot="package">Yarn::Node</innerclass>
     <innerclass refid="d5/df9/a00044" prot="package">Yarn::Instruction</innerclass>
     <innerclass refid="d5/d16/a00029" prot="package">Yarn::Compiler</innerclass>
     <innerclass refid="da/d82/a00091" prot="public">Yarn::YarnException</innerclass>
-    <innerclass refid="db/d44/a00162" prot="public">Yarn::Line</innerclass>
-    <innerclass refid="db/ddf/a00164" prot="public">Yarn::Options</innerclass>
-    <innerclass refid="de/db9/a00159" prot="public">Yarn::Command</innerclass>
+    <innerclass refid="de/db9/a00159" prot="public">Yarn::Line</innerclass>
+    <innerclass refid="d6/d7d/a00161" prot="public">Yarn::Options</innerclass>
+    <innerclass refid="d2/d34/a00156" prot="public">Yarn::Command</innerclass>
     <innerclass refid="db/ddf/a00088" prot="public">Yarn::VariableStorage</innerclass>
     <innerclass refid="de/d11/a00021" prot="public">Yarn::BaseVariableStorage</innerclass>
     <innerclass refid="de/d8c/a00036" prot="public">Yarn::Dialogue</innerclass>
@@ -27,8 +27,8 @@
     <innerclass refid="da/d2a/a00086" prot="public">Yarn::Value</innerclass>
     <innerclass refid="d6/d2c/a00072" prot="package">Yarn::VirtualMachine</innerclass>
     <innerclass refid="d1/dc1/a00092" prot="public">Yarn::YarnSpinnerConsole</innerclass>
-    <innernamespace refid="d3/d65/a00154">Yarn::Analysis</innernamespace>
-    <innernamespace refid="d3/df8/a00155">Yarn::Unity</innernamespace>
+    <innernamespace refid="dd/db2/a00151">Yarn::Analysis</innernamespace>
+    <innernamespace refid="d7/d9a/a00152">Yarn::Unity</innernamespace>
       <sectiondef kind="enum">
       <memberdef kind="enum" id="d6/d5b/a00026_1ad5dfb6ee68ca7469623ad3e459f98894" prot="package" static="no">
         <name>ByteCode</name>

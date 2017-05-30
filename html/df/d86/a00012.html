@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('df/d86/a00012.html','../../');});
 <p>Here's how to quickly jump in to <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> Spinner, if you're already reasonably comfortable with Unity.</p>
 <ul>
 <li><b>Download and import <a href="https://github.com/thesecretlab/YarnSpinner/releases">the YarnSpinner package</a> into your project.</b></li>
-<li><b>Inside the <a class="el" href="../../d1/db7/a00157.html">YarnSpinner</a> folder, open the <code>Examples/Yarn Spinner Basic Example</code> scene.</b></li>
+<li><b>Inside the <a class="el" href="../../d3/d65/a00154.html">YarnSpinner</a> folder, open the <code>Examples/Yarn Spinner Basic Example</code> scene.</b></li>
 <li><b>Start the game. Play through the dialogue.</b></li>
 </ul>
 <p>Once you've played with it, open the Example Script file in the <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> editor (it's in the <code>Examples/Demo Assets</code> folder), and make some changes to the script. Once you've done that, take a look at how <code><a class="el" href="../../d3/d32/a00105.html">Code/DialogueRunner.cs</a></code>, <code>Examples/Demo <a class="el" href="../../dd/d42/a00109.html">Scripts/ExampleDialogueUI.cs</a></code> and <code>Examples/Demo <a class="el" href="../../d4/d81/a00110.html">Scripts/ExampleVariableStorage.cs</a></code> work. You can also <a class="el" href="../../d1/d84/a00097.html">add your own functions to Yarn</a>.</p>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('df/d86/a00012.html','../../');});
 <li>A subclass of <code>DialogueUIBehaviour</code>, which is reponsible for displaying the lines and dialogue choices to the player; and</li>
 <li>A subclass of <code>VariableStorageBehaviour</code>, which is responsible for storing the state of the conversation.</li>
 </ul>
-<p>These three classes exist in the <code><a class="el" href="../../d3/df8/a00155.html">Yarn.Unity</a></code> namespace. To create your subclasses of <code>DialogueUIBehaviour</code> and <code>VariableStorageBehaviour</code>, you'll need to add the following code to the top of your C# code: </p>
+<p>These three classes exist in the <code><a class="el" href="../../d7/d9a/a00152.html">Yarn.Unity</a></code> namespace. To create your subclasses of <code>DialogueUIBehaviour</code> and <code>VariableStorageBehaviour</code>, you'll need to add the following code to the top of your C# code: </p>
 <pre class="fragment">using Yarn.Unity;
 </pre><p>Additionally, you store your <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> files as <code>.json</code> assets in your Unity projects. These can be stored anywhere - you simply provide add them to the <code>DialogueRunner</code>'s inspector. You can also call <code>AddScript</code> on the <code>DialogueRunner</code> at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their <a class="el" href="../../d6/d5b/a00026.html">Yarn</a> script to the <code>DialogueRunner</code>.</p>
 <h3>Load your conversation with <code>DialogueRunner</code></h3>

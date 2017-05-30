@@ -3,8 +3,8 @@
   <compounddef id="db/d57/a00112" kind="file">
     <compoundname>NPC.cs</compoundname>
     <innerclass refid="d1/d22/a00057" prot="public">Yarn::Unity::Example::NPC</innerclass>
-    <innernamespace refid="d2/d34/a00156">Yarn::Unity::Example</innernamespace>
-    <innernamespace refid="d7/d9a/a00152">UnityEngine::Serialization</innernamespace>
+    <innernamespace refid="da/d01/a00153">Yarn::Unity::Example</innernamespace>
+    <innernamespace refid="da/d1e/a00149">UnityEngine::Serialization</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

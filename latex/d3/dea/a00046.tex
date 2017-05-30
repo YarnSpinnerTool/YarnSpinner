@@ -18,7 +18,7 @@ Collaboration diagram for Json.\-Json\-Parser\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{dd/da2/a00192}
+\includegraphics[width=210pt]{da/deb/a00189}
 \end{center}
 \end{figure}
 \subsection*{Static Public Member Functions}
@@ -34,7 +34,7 @@ static I\-Dictionary$<$ string, \\*
 object $>$ \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{From\-Json} (string json)
 \item 
 static I\-Dictionary$<$ string, \\*
-object $>$ \hyperlink{a00046_a6c8678fcf08beb342f2a9b722870ac1b}{From\-Json} (string json, out \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} type)
+object $>$ \hyperlink{a00046_a6c8678fcf08beb342f2a9b722870ac1b}{From\-Json} (string json, out \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} type)
 \item 
 static string \hyperlink{a00046_a4c5b7984378951474675cccdd6bde72c}{To\-Json} (I\-Dictionary$<$ string, object $>$ bag)
 \end{DoxyCompactItemize}
@@ -70,7 +70,7 @@ static string \hyperlink{a00046_a03595e6253700fbdb86440704e1f2e66}{Get\-Unicode}
 static Key\-Value\-Pair$<$ string, \\*
 object $>$ \hyperlink{a00046_a59a67256e67e7a4edd4c9905ecd1aec8}{Parse\-Pair} (I\-List$<$ char $>$ data, ref int index)
 \item 
-static bool \hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{Parse\-Token} (\hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, I\-List$<$ char $>$ data, ref int index)
+static bool \hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{Parse\-Token} (\hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, I\-List$<$ char $>$ data, ref int index)
 \item 
 static string \hyperlink{a00046_a7e18de40259814b5ab9d0100bdeab4fe}{Parse\-String} (I\-List$<$ char $>$ data, ref int index)
 \item 
@@ -83,17 +83,17 @@ static I\-Enumerable$<$ object $>$ \hyperlink{a00046_ae0b95fd2671c34c64b6a2c6275
 \item 
 static object \hyperlink{a00046_ae0f7085f6d03e4e5cfcba42467cbd0b8}{Parse\-Number} (I\-List$<$ char $>$ data, ref int index)
 \item 
-static \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{Next\-Token} (I\-List$<$ char $>$ data, ref int index)
+static \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a1d2daab9b052b186da7a2b6711be5803}{Next\-Token} (I\-List$<$ char $>$ data, ref int index)
 \item 
-static \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{Get\-Token\-From\-Symbol} (char symbol)
+static \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{Get\-Token\-From\-Symbol} (char symbol)
 \item 
-static \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a5600fe22f246bcf8f7488801f0c9724d}{Get\-Token\-From\-Symbol} (char symbol, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token)
+static \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a5600fe22f246bcf8f7488801f0c9724d}{Get\-Token\-From\-Symbol} (char symbol, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token)
 \item 
 static void \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{Ignore\-Whitespace} (I\-List$<$ char $>$ data, ref int index, char symbol)
 \item 
-static \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a8e00ac0c0d9380bc5d07d1fd8982a0df}{Ignore\-Whitespace} (I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, char symbol)
+static \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \hyperlink{a00046_a8e00ac0c0d9380bc5d07d1fd8982a0df}{Ignore\-Whitespace} (I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} token, char symbol)
 \item 
-static void \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{Get\-Keyword} (string word, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} target, I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} result)
+static void \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{Get\-Keyword} (string word, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} target, I\-List$<$ char $>$ data, ref int index, ref \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} result)
 \item 
 static string \hyperlink{a00046_a40c3e9c7c786e6bd8577d2e00bdcea73}{Base\-Convert} (int input, char\mbox{[}$\,$\mbox{]} char\-Set, int min\-Length)
 \end{DoxyCompactItemize}
@@ -347,7 +347,7 @@ http\-://json.\-org
 
 \begin{DoxyCode}
 273         \{
-274             \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken} type;
+274             \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken} type;
 275 
 276             var result = \hyperlink{a00046_a25f408d4c36efa0ff4a1a2a9fe519cc2}{FromJson}(json, out type);
 277 
@@ -482,7 +482,7 @@ http\-://json.\-org
 
 \begin{DoxyCode}
 825         \{
-826             \textcolor{keywordflow}{return} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{GetTokenFromSymbol}(symbol, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Unknown);
+826             \textcolor{keywordflow}{return} \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{GetTokenFromSymbol}(symbol, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Unknown);
 827         \}
 \end{DoxyCode}
 \hypertarget{a00046_a5600fe22f246bcf8f7488801f0c9724d}{\index{Json\-::\-Json\-Parser@{Json\-::\-Json\-Parser}!Get\-Token\-From\-Symbol@{Get\-Token\-From\-Symbol}}
@@ -639,9 +639,9 @@ http\-://json.\-org
 814             var token = \hyperlink{a00046_afe1d461122e927aae8a2cb0c7269c3c6}{GetTokenFromSymbol}(symbol);
 815             token = \hyperlink{a00046_a2c524a3d0510dd2e4ec91dd63acbf61d}{IgnoreWhitespace}(data, ref index, ref token, symbol);
 816 
-817             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"true"}, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.True, data, ref index, ref token);
-818             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"false"}, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.False, data, ref index, ref token);
-819             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"null"}, \hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Null, data, ref index, ref token);
+817             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"true"}, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.True, data, ref index, ref token);
+818             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"false"}, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.False, data, ref index, ref token);
+819             \hyperlink{a00046_a01fac43195f80e1e8660240b1d1104cd}{GetKeyword}(\textcolor{stringliteral}{"null"}, \hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Null, data, ref index, ref token);
 820 
 821             \textcolor{keywordflow}{return} token;
 822         \}
@@ -717,7 +717,7 @@ http\-://json.\-org
 778 
 779             var start = index;
 780             var length = 0;
-781             \textcolor{keywordflow}{while} (\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Number, data, ref index))
+781             \textcolor{keywordflow}{while} (\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Number, data, ref index))
 782             \{
 783                 length++;
 784                 index++;
@@ -833,7 +833,7 @@ http\-://json.\-org
 537                 valid = \textcolor{keyword}{false};
 538             \}
 539 
-540             \textcolor{keywordflow}{if} (!\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00133_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Colon, data, ref index))
+540             \textcolor{keywordflow}{if} (!\hyperlink{a00046_a8865158aad79660d9c4cc83a7c6d8544}{ParseToken}(\hyperlink{a00130_a9d0536e3d8d9353112cfd292cc41b236}{JsonToken}.Colon, data, ref index))
 541             \{
 542                 valid = \textcolor{keyword}{false};
 543             \}

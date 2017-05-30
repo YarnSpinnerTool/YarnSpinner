@@ -6,14 +6,14 @@ var hierarchy =
     ] ],
     [ "Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult", "dc/de2/a00024.html", null ],
     [ "Yarn.Parser.IfStatement.Clause", "d3/dfe/a00025.html", null ],
-    [ "Yarn.Command", "d6/d5b/a00026.html#de/db9/a00159", null ],
+    [ "Yarn.Command", "d6/d5b/a00026.html#d2/d34/a00156", null ],
     [ "Yarn.Analysis.CompiledProgramAnalyser", "dc/d3c/a00028.html", [
       [ "Yarn.Analysis.UnusedVariableChecker", "df/d5d/a00084.html", null ]
     ] ],
-    [ "Yarn.Compiler.CompileFlags", "d5/d16/a00029.html#de/d38/a00160", null ],
+    [ "Yarn.Compiler.CompileFlags", "d5/d16/a00029.html#d1/db7/a00157", null ],
     [ "Yarn.Compiler", "d5/d16/a00029.html", null ],
     [ "Yarn.Analysis.Context", "df/d61/a00031.html", null ],
-    [ "ExampleVariableStorage.DefaultVariable", "d0/dc0/a00033.html#d6/d7d/a00161", null ],
+    [ "ExampleVariableStorage.DefaultVariable", "d0/dc0/a00033.html#d6/db8/a00158", null ],
     [ "Yarn.Unity.YarnSpinnerEditorWindow.Deprecation", "db/df3/a00034.html", null ],
     [ "Yarn.Analysis.Diagnosis", "d4/d8c/a00035.html", null ],
     [ "Yarn.Dialogue", "de/d8c/a00036.html", null ],
@@ -43,7 +43,7 @@ var hierarchy =
     [ "Yarn.Library", "d2/dee/a00049.html", [
       [ "Yarn.Dialogue.StandardLibrary", "db/db6/a00074.html", null ]
     ] ],
-    [ "Yarn.Line", "d6/d5b/a00026.html#db/d44/a00162", null ],
+    [ "Yarn.Line", "d6/d5b/a00026.html#de/db9/a00159", null ],
     [ "List< Token >", null, [
       [ "Yarn.TokenList", "d8/d53/a00081.html", null ]
     ] ],
@@ -63,10 +63,10 @@ var hierarchy =
         [ "ExampleVariableStorage", "d0/dc0/a00033.html", null ]
       ] ]
     ] ],
-    [ "Yarn.Node", "d6/d5b/a00026.html#dd/dae/a00163", null ],
+    [ "Yarn.Node", "d6/d5b/a00026.html#de/d38/a00160", null ],
     [ "Yarn.Loader.NodeInfo", "d9/d2e/a00056.html", null ],
     [ "Yarn.Parser.Operator.OperatorInfo", "d3/d8b/a00059.html", null ],
-    [ "Yarn.Options", "d6/d5b/a00026.html#db/ddf/a00164", null ],
+    [ "Yarn.Options", "d6/d5b/a00026.html#d6/d7d/a00161", null ],
     [ "Yarn.Parser.ParseNode", "d1/d6f/a00063.html", [
       [ "Yarn.Parser.AssignmentStatement", "dd/da2/a00019.html", null ],
       [ "Yarn.Parser.Block", "d7/de0/a00022.html", null ],
@@ -91,14 +91,14 @@ var hierarchy =
       [ "Yarn.Dialogue.NodeCompleteResult", "d4/d6d/a00055.html", null ],
       [ "Yarn.Dialogue.OptionSetResult", "d9/d73/a00060.html", null ]
     ] ],
-    [ "Yarn.VirtualMachine.SpecialVariables", "d6/d2c/a00072.html#d0/d48/a00165", null ],
-    [ "Yarn.Unity.Example.SpriteSwitcher.SpriteInfo", "d1/d6e/a00073.html#d9/d38/a00166", null ],
+    [ "Yarn.VirtualMachine.SpecialVariables", "d6/d2c/a00072.html#db/d44/a00162", null ],
+    [ "Yarn.Unity.Example.SpriteSwitcher.SpriteInfo", "d1/d6e/a00073.html#dd/dae/a00163", null ],
     [ "Yarn.VirtualMachine.State", "d9/da5/a00075.html", null ],
     [ "YarnSpinner.Tests.Test", "d1/d09/a00077.html", null ],
     [ "Yarn.Token", "d1/d51/a00079.html", null ],
     [ "Yarn.Lexer.TokenRule", "d4/d63/a00082.html", null ],
     [ "Yarn.TreeRunner", "d2/d1f/a00083.html", null ],
-    [ "Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage", "df/d13/a00085.html#dc/de6/a00167", null ],
+    [ "Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage", "df/d13/a00085.html#db/ddf/a00164", null ],
     [ "Yarn.VariableStorage", "db/ddf/a00088.html", [
       [ "Yarn.BaseVariableStorage", "de/d11/a00021.html", [
         [ "Yarn.MemoryVariableStore", "d1/d84/a00052.html", null ]

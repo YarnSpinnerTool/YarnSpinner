@@ -1,4 +1,4 @@
-<map id="Yarn.Parser.AssignmentStatement" name="Yarn.Parser.AssignmentStatement">
-<area shape="rect" id="node2" href="$d1/d6f/a00063.html" title="{ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="61,193,171,314"/>
-<area shape="rect" id="node3" href="$d1/d6f/a00063.html" title="{Yarn.Parser.ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="36,6,195,127"/>
+<map id="Yarn.Parser.Block" name="Yarn.Parser.Block">
+<area shape="rect" id="node2" href="$d1/d6f/a00063.html" title="{ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="29,193,139,314"/>
+<area shape="rect" id="node3" href="$d1/d6f/a00063.html" title="{Yarn.Parser.ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="4,6,163,127"/>
 </map>

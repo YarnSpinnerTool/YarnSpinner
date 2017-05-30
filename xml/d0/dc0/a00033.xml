@@ -3,7 +3,7 @@
   <compounddef id="d0/dc0/a00033" kind="class" prot="public">
     <compoundname>ExampleVariableStorage</compoundname>
     <basecompoundref refid="db/dab/a00089" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
-    <innerclass refid="d6/d7d/a00161" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
+    <innerclass refid="d6/db8/a00158" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="d0/dc0/a00033_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
         <type>Dictionary&lt; string, <ref refid="da/d2a/a00086" kindref="compound">Yarn.Value</ref> &gt;</type>
@@ -22,7 +22,7 @@
       </sectiondef>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d0/dc0/a00033_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
-        <type><ref refid="d6/d7d/a00161" kindref="compound">DefaultVariable</ref>[]</type>
+        <type><ref refid="d6/db8/a00158" kindref="compound">DefaultVariable</ref>[]</type>
         <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
         <argsstring></argsstring>
         <name>defaultVariables</name>
@@ -243,7 +243,7 @@
       </node>
       <node id="501">
         <label>ExampleVariableStorage.DefaultVariable</label>
-        <link refid="d6/d7d/a00161"/>
+        <link refid="d6/db8/a00158"/>
         <childnode refid="502" relation="usage">
           <edgelabel>+type</edgelabel>
         </childnode>

@@ -1,4 +1,4 @@
-<map id="Yarn.Parser.ShortcutOptionGroup" name="Yarn.Parser.ShortcutOptionGroup">
-<area shape="rect" id="node2" href="$d1/d6f/a00063.html" title="{ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="41,193,151,314"/>
-<area shape="rect" id="node3" href="$d1/d6f/a00063.html" title="{Yarn.Parser.ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="16,6,175,127"/>
+<map id="Yarn.Parser.Statement" name="Yarn.Parser.Statement">
+<area shape="rect" id="node2" href="$d1/d6f/a00063.html" title="{ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="30,193,140,314"/>
+<area shape="rect" id="node3" href="$d1/d6f/a00063.html" title="{Yarn.Parser.ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="5,6,164,127"/>
 </map>

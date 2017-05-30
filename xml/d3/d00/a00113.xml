@@ -3,7 +3,7 @@
   <compounddef id="d3/d00/a00113" kind="file">
     <compoundname>PlayerCharacter.cs</compoundname>
     <innerclass refid="de/de1/a00065" prot="public">Yarn::Unity::Example::PlayerCharacter</innerclass>
-    <innernamespace refid="d2/d34/a00156">Yarn::Unity::Example</innernamespace>
+    <innernamespace refid="da/d01/a00153">Yarn::Unity::Example</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

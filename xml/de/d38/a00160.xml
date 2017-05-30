@@ -1,20 +1,62 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="de/d38/a00160" kind="struct" prot="private">
-    <compoundname>Yarn::Compiler::CompileFlags</compoundname>
+  <compounddef id="de/d38/a00160" kind="class" prot="package">
+    <compoundname>Yarn::Node</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="de/d38/a00160_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</definition>
+      <memberdef kind="variable" id="de/d38/a00160_1a156723a9252b62d288ddf611939ea7c3" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="d5/df9/a00044" kindref="compound">Instruction</ref> &gt;</type>
+        <definition>List&lt;Instruction&gt; Yarn.Node.instructions</definition>
         <argsstring></argsstring>
-        <name>DisableShuffleOptionsAfterNextSet</name>
+        <name>instructions</name>
+        <initializer>= new List&lt;<ref refid="d5/df9/a00044" kindref="compound">Instruction</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="246" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="246" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="112" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/d38/a00160_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Node.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/d38/a00160_1a09c6af5b50925d0876283b84281b3ed4" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Node.sourceTextStringID</definition>
+        <argsstring></argsstring>
+        <name>sourceTextStringID</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/d38/a00160_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, int &gt;</type>
+        <definition>Dictionary&lt;string, int&gt; Yarn.Node.labels</definition>
+        <argsstring></argsstring>
+        <name>labels</name>
+        <initializer>= new Dictionary&lt;string, int&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="120" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -22,14 +64,17 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="433">
-        <label>Yarn.Compiler.CompileFlags</label>
+      <node id="563">
+        <label>Yarn.Node</label>
         <link refid="de/d38/a00160"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="243" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="243" bodyend="247"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="121"/>
     <listofallmembers>
-      <member refid="de/d38/a00160_1a8b49bb7763ff477cba21d7c771ef3ed0" prot="public" virt="non-virtual"><scope>Yarn::Compiler::CompileFlags</scope><name>DisableShuffleOptionsAfterNextSet</name></member>
+      <member refid="de/d38/a00160_1a156723a9252b62d288ddf611939ea7c3" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>instructions</name></member>
+      <member refid="de/d38/a00160_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>labels</name></member>
+      <member refid="de/d38/a00160_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>name</name></member>
+      <member refid="de/d38/a00160_1a09c6af5b50925d0876283b84281b3ed4" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>sourceTextStringID</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

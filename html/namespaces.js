@@ -1,7 +1,7 @@
 var namespaces =
 [
-    [ "Json", "d0/de8/a00133.html", null ],
-    [ "NUnitLite", "d2/df5/a00137.html", "d2/df5/a00137" ],
+    [ "Json", "d6/db3/a00130.html", null ],
+    [ "NUnitLite", "de/d76/a00134.html", "de/d76/a00134" ],
     [ "Yarn", "d6/d5b/a00026.html", "d6/d5b/a00026" ],
-    [ "YarnSpinner", "d1/db7/a00157.html", "d1/db7/a00157" ]
+    [ "YarnSpinner", "d3/d65/a00154.html", "d3/d65/a00154" ]
 ];

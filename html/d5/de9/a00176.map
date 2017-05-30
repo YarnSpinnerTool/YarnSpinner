@@ -1,2 +1,5 @@
-<map id="Yarn.VirtualMachine.SpecialVariables" name="Yarn.VirtualMachine.SpecialVariables">
+<map id="ExampleVariableStorage" name="ExampleVariableStorage">
+<area shape="rect" id="node2" href="$db/dab/a00089.html" title="{VariableStorageBehaviour\n||+ SetNumber()\l+ GetNumber()\l+ GetValue()\l+ SetValue()\l+ Clear()\l+ ResetToDefaults()\l}" alt="" coords="83,206,255,357"/>
+<area shape="rect" id="node4" href="$db/ddf/a00088.html" title="{Yarn::VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="141,5,289,141"/>
+<area shape="rect" id="node5" href="$d0/dc0/a00033.html#d6/db8/a00158" title="{ExampleVariableStorage.Default\lVariable\n|+ name\l+ value\l|}" alt="" coords="280,228,489,335"/>
 </map>

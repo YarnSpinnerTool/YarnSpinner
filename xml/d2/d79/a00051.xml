@@ -195,7 +195,7 @@
       </node>
       <node id="547">
         <label>Yarn.Node</label>
-        <link refid="dd/dae/a00163"/>
+        <link refid="de/d38/a00160"/>
       </node>
       <node id="546">
         <label>Yarn.VirtualMachine</label>

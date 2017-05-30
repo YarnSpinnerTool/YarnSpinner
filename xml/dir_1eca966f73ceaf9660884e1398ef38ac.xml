@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_1eca966f73ceaf9660884e1398ef38ac" kind="dir">
     <compoundname>YarnSpinner</compoundname>
-    <innerdir refid="dir_9f37877b2afb5da8ea2ac3498a9c5dfb">YarnSpinner/obj</innerdir>
     <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
     <innerfile refid="d2/da3/a00115">Analyser.cs</innerfile>
     <innerfile refid="d4/d3e/a00116">Compiler.cs</innerfile>
@@ -11,10 +10,10 @@
     <innerfile refid="df/d6a/a00119">Lexer.cs</innerfile>
     <innerfile refid="d4/d98/a00120">Library.cs</innerfile>
     <innerfile refid="d8/dfa/a00121">Loader.cs</innerfile>
-    <innerfile refid="dc/dfe/a00125">Parser.cs</innerfile>
-    <innerfile refid="d1/d88/a00128">TreeRunner.cs</innerfile>
-    <innerfile refid="d9/d47/a00129">Value.cs</innerfile>
-    <innerfile refid="d6/db3/a00130">VirtualMachine.cs</innerfile>
+    <innerfile refid="df/dc8/a00122">Parser.cs</innerfile>
+    <innerfile refid="dc/dfe/a00125">TreeRunner.cs</innerfile>
+    <innerfile refid="d7/d12/a00126">Value.cs</innerfile>
+    <innerfile refid="df/dcd/a00127">VirtualMachine.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

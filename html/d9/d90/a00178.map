@@ -1,4 +1,2 @@
-<map id="ExampleVariableStorage" name="ExampleVariableStorage">
-<area shape="rect" id="node2" href="$db/dab/a00089.html" title="{VariableStorageBehaviour\n||+ SetNumber()\l+ GetNumber()\l+ GetValue()\l+ SetValue()\l+ Clear()\l+ ResetToDefaults()\l}" alt="" coords="53,190,224,341"/>
-<area shape="rect" id="node4" href="$db/ddf/a00088.html" title="{Yarn::VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="141,5,289,141"/>
+<map id="MobileOnly" name="MobileOnly">
 </map>

@@ -3,10 +3,10 @@
   <compounddef id="d1/d6e/a00073" kind="class" prot="public">
     <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
     <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <innerclass refid="d9/d38/a00166" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
+    <innerclass refid="dd/dae/a00163" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d1/d6e/a00073_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
-        <type><ref refid="d9/d38/a00166" kindref="compound">SpriteInfo</ref>[]</type>
+        <type><ref refid="dd/dae/a00163" kindref="compound">SpriteInfo</ref>[]</type>
         <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
         <argsstring></argsstring>
         <name>sprites</name>
@@ -65,7 +65,7 @@
       </node>
       <node id="653">
         <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
-        <link refid="d9/d38/a00166"/>
+        <link refid="dd/dae/a00163"/>
       </node>
       <node id="652">
         <label>MonoBehaviour</label>

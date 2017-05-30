@@ -1,25 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="dd/dae/a00163" kind="class" prot="package">
-    <compoundname>Yarn::Node</compoundname>
+  <compounddef id="dd/dae/a00163" kind="struct" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="dd/dae/a00163_1a156723a9252b62d288ddf611939ea7c3" prot="public" static="no" mutable="no">
-        <type>List&lt; <ref refid="d5/df9/a00044" kindref="compound">Instruction</ref> &gt;</type>
-        <definition>List&lt;Instruction&gt; Yarn.Node.instructions</definition>
-        <argsstring></argsstring>
-        <name>instructions</name>
-        <initializer>= new List&lt;<ref refid="d5/df9/a00044" kindref="compound">Instruction</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="112" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="112" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="dd/dae/a00163_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="dd/dae/a00163_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" static="no" mutable="no">
         <type>string</type>
-        <definition>string Yarn.Node.name</definition>
+        <definition>string Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</definition>
         <argsstring></argsstring>
         <name>name</name>
         <briefdescription>
@@ -28,35 +14,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="114" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="114" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="37" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="dd/dae/a00163_1a09c6af5b50925d0876283b84281b3ed4" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Node.sourceTextStringID</definition>
+      <memberdef kind="variable" id="dd/dae/a00163_1adc58df011dc2841837b6cf775b372061" prot="public" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</definition>
         <argsstring></argsstring>
-        <name>sourceTextStringID</name>
-        <initializer>= null</initializer>
+        <name>sprite</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="118" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="dd/dae/a00163_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" static="no" mutable="no">
-        <type>Dictionary&lt; string, int &gt;</type>
-        <definition>Dictionary&lt;string, int&gt; Yarn.Node.labels</definition>
-        <argsstring></argsstring>
-        <name>labels</name>
-        <initializer>= new Dictionary&lt;string, int&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="120" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="38" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -64,17 +35,15 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="563">
-        <label>Yarn.Node</label>
+      <node id="648">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
         <link refid="dd/dae/a00163"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="121"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="36" bodyend="39"/>
     <listofallmembers>
-      <member refid="dd/dae/a00163_1a156723a9252b62d288ddf611939ea7c3" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>instructions</name></member>
-      <member refid="dd/dae/a00163_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>labels</name></member>
-      <member refid="dd/dae/a00163_1a107b0de3fcfc65e99913edc01b5ce9db" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>name</name></member>
-      <member refid="dd/dae/a00163_1a09c6af5b50925d0876283b84281b3ed4" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>sourceTextStringID</name></member>
+      <member refid="dd/dae/a00163_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>name</name></member>
+      <member refid="dd/dae/a00163_1adc58df011dc2841837b6cf775b372061" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>sprite</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
