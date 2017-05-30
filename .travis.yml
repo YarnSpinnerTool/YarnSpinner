@@ -1,47 +1,38 @@
 dist: trusty
 sudo: required
-#cache: true
-
-# Blacklist
 branches:
   except:
-    - gh-pages
-
+  - gh-pages
 language: csharp
 solution: YarnSpinner.sln
-
-# Environment variables
-
 env:
   global:
-    - DOXYFILES_ROOT: $TRAVIS_BUILD_DIR/Documentation
-    - GH_REPO_NAME: YarnSpinner
-    - GH_REPO_USER: TheSecretLab
-    - WANTED_DOCS: '"html latex rtf xml"'
-    - VERBOSE: false
-    - secure: "SW26GHKfixdYsbZ1yCHe5qI2OekA7Y+FbUBf9oSY/JOB/wfVw7mCH0sJ2Y5gYte3NywnCeNkRRvuW3JkCk1g0i3rjyvB5FP3CwHmEdIzgs9UIprNuaIXUF8/sKL3UZyElIWRTe/na2bLRYJ2C09pXzS0armUULn3FohSxegQwPFpisDzWPC+CAfaNwTHUnFAZ66fPwbqLIRScMvgK0ie8nni3VI6kokkb4SE3QL5EewguoZq9WCeWv+x0u1l3v8rUVmL0OjBZLloILjKwi8liRoqO9GHd8BQYaRbRwWkoLW4RJ4Hq0MephkYUzX/FOzTZpRM8dugM23yXkw8iYiqYZQDuCTBh9Zn11h8SDA3SGAK2dS4alM9haHVr6b5Y74xaa/n7G+8QWevUz0MQ83LkYeLvLWod9yzxGkMgg5ggtdOTQlFPebn5KeO88aDPu08US0hJiYxiXIbo/DY25aArQ5/wvhExNd4rWesbd6NWUi5M7hWH3WiNiiE7+ktvzktqikao0w6zdZyNlFCx61Q2uUTybpjJ5DlTF9On53RBuEiF9Yqo8eEm4m1mtIATc6io9ez78ub+ak/atsI//h55RdVaKnIPxDq5H/za9UhV+j0uRSGfXCVEL0Zf57X0KNYSlESByvZEUmWrJOQqalZFzXuOhtCr7te9/8JXThUU94="
-
-# Install dependencies
+  - DOXYFILES_ROOT: "$TRAVIS_BUILD_DIR/Documentation"
+  - GH_REPO_NAME: YarnSpinner
+  - GH_REPO_USER: TheSecretLab
+  - WANTED_DOCS: '"html latex rtf xml"'
+  - VERBOSE: false
+  - secure: SW26GHKfixdYsbZ1yCHe5qI2OekA7Y+FbUBf9oSY/JOB/wfVw7mCH0sJ2Y5gYte3NywnCeNkRRvuW3JkCk1g0i3rjyvB5FP3CwHmEdIzgs9UIprNuaIXUF8/sKL3UZyElIWRTe/na2bLRYJ2C09pXzS0armUULn3FohSxegQwPFpisDzWPC+CAfaNwTHUnFAZ66fPwbqLIRScMvgK0ie8nni3VI6kokkb4SE3QL5EewguoZq9WCeWv+x0u1l3v8rUVmL0OjBZLloILjKwi8liRoqO9GHd8BQYaRbRwWkoLW4RJ4Hq0MephkYUzX/FOzTZpRM8dugM23yXkw8iYiqYZQDuCTBh9Zn11h8SDA3SGAK2dS4alM9haHVr6b5Y74xaa/n7G+8QWevUz0MQ83LkYeLvLWod9yzxGkMgg5ggtdOTQlFPebn5KeO88aDPu08US0hJiYxiXIbo/DY25aArQ5/wvhExNd4rWesbd6NWUi5M7hWH3WiNiiE7+ktvzktqikao0w6zdZyNlFCx61Q2uUTybpjJ5DlTF9On53RBuEiF9Yqo8eEm4m1mtIATc6io9ez78ub+ak/atsI//h55RdVaKnIPxDq5H/za9UhV+j0uRSGfXCVEL0Zf57X0KNYSlESByvZEUmWrJOQqalZFzXuOhtCr7te9/8JXThUU94=
 addons:
   apt:
     packages:
-      - global
-#      When using doxygen
-      - libjs-jquery
-      - graphviz
-#      When using supplied doxygen
-      - doxygen
-      - doxygen-doc
-      - doxygen-latex
-      - doxygen-gui
-
-script:	
-#   Unit tests currently disabled on Master (see bug #78)
-#  - ./build.sh -bcdvu
-  - ./build.sh -bcdv
-
-# deploy documentation
+    - global
+    - libjs-jquery
+    - graphviz
+    - doxygen
+    - doxygen-doc
+    - doxygen-latex
+    - doxygen-gui
+script:
+- "./build.sh -bcdv"
 after_success:
-  - cd $TRAVIS_BUILD_DIR
-  - chmod +x DeployDocumentation.sh
-  - ./DeployDocumentation.sh
+- cd $TRAVIS_BUILD_DIR
+- chmod +x DeployDocumentation.sh
+- "./DeployDocumentation.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: ppMWm5zS3NfplInwq+JdBBLFgTPVvpLrTeqcTdpHRBLtoiKHtfiPDVhvRKshu5qdbp+h1L0ZWTxfXdmOzYxdrXlLQkUAMFIlj7kY+hfzBcSnfA707dJapx6Q9LeJCy50JuDXEx+hPCjNAREz6+YP1Cb5FVwFoC3pu0FQ0Qg+86uUy4D3jZDMmjHIg0qN+sdwOf1xTmLJ37nuoDSpsUWx4MDMh/RP/7Uwz9lxYBw1XcWlddZzHesLj0HUuRmRSrk/4KNEQsYavH2U+vgPnRuWVITuB/Y2LqLE+pleNCt5NiqVvSHZgRTSYu4Jik7ivaNa+JuVjeAokJubRv1wUba3wlU25fUfzeBvm1bxGbF+7HofZSaaUvK28JP1e/LYR8EfwPy4L+yfasEGh5McTKjsdKKK+c8wrvR1EaPwNe7bPy0YOeHfxf2/aTR8PoEqPQdzLo2VIIMdqEvChiE7Z6X2WgPBxbGoBp5NOL3uRhE/9aAyMSIt/sYZvtSmbtxfK5qCEMP0j2cNRs0d91DaL9nsnEFYu9jrddwX68HgtWmt77MdGAYMz5vyQPQtJuKKATST3HkKDvWyoWcNgnF4xL0U0bOZZcBGilZDuvEAqSSyw7oCXTnbh0B+pCpo6NOaV4ks62klmAbaC3IPAOvajlgViB6sHsknixys/Z1VkQjI5YY=
+  file: YarnSpinner/bin/Release/YarnSpinner.dll
+  on:
+    repo: thesecretlab/YarnSpinner
