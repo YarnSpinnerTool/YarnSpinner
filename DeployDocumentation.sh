@@ -116,7 +116,7 @@ commit_docs () {
     if  [ -d "html" ] && [ -f "html/index.html" ]; then
         # Remove un-needed files
         #rm -v GPATH GRTAGS GSYMS GTAGS
-        find . -name GSYMS -print0
+        find . -name GSYMS -print
 
         echo 'Uploading documentation to the gh-pages branch...'
         # Add everything in this directory (the Doxygen code documentation) to the
