@@ -113,6 +113,7 @@ prepare_doxygen () {
     # Remove un-needed files
     rm -fvr "$DOXYFILES_ROOT/GPATH"
     rm -fvr "$DOXYFILES_ROOT/GRTAGS"
+    rm -fvr "$DOXYFILES_ROOT/GSYMS"
     rm -fvr "$DOXYFILES_ROOT/GTAGS"
 }
 
