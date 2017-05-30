@@ -114,9 +114,11 @@ prepare_doxygen () {
 
 commit_docs () {
     if  [ -d "html" ] && [ -f "html/index.html" ]; then
-        echo 'Uploading documentation to the gh-pages branch...'
         # Remove un-needed files
-        rm -v GPATH GRTAGS GSYMS GTAGS
+        #rm -v GPATH GRTAGS GSYMS GTAGS
+        find . -name GSYMS -print0
+
+        echo 'Uploading documentation to the gh-pages branch...'
         # Add everything in this directory (the Doxygen code documentation) to the
         # gh-pages branch.
         git add --all
