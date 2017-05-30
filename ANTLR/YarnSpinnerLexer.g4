@@ -34,8 +34,8 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 
 BODY_NEWLINE : [\r\n]+ -> skip;
 
-TEXT: TEXTCOMPONENT+ ;
-fragment TEXTCOMPONENT: ~('<'|'|'|'['|']'|'\n') ;
+TEXT : TEXTCOMPONENT+ ;
+fragment TEXTCOMPONENT : ~('<'|'|'|'['|']'|'\n') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines

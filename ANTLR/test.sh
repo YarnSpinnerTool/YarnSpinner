@@ -9,7 +9,7 @@ export CLASSPATH=.:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar
 # poor terminal
 clear
 # quitting preview
-osascript -e 'quit app "preview"'
+osascript -e 'tell application "Preview" to close (every window whose name is "Test.yarn.txt.pdf")'
 
 # generate the grammar
 antlr4 *.g4
