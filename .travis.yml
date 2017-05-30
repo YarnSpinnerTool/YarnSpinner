@@ -33,8 +33,8 @@ deploy:
   skip_cleanup: true
   on:
     repo: thesecretlab/YarnSpinner
-#after_success:
-#- cd $TRAVIS_BUILD_DIR
-#- chmod +x DeployDocumentation.sh
-#- "./build.sh -cdv"
-#- "./DeployDocumentation.sh"
+after_success:
+- cd $TRAVIS_BUILD_DIR
+- chmod +x DeployDocumentation.sh
+- "./build.sh -cdv"
+- "./DeployDocumentation.sh"
