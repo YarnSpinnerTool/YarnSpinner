@@ -24,15 +24,16 @@ addons:
     - doxygen-latex
     - doxygen-gui
 script:
-- "./build.sh -bcdv"
+- "./build.sh -bcv"
+#deploy:
+#  provider: releases
+#  api_key:
+#    secure: ppMWm5zS3NfplInwq+JdBBLFgTPVvpLrTeqcTdpHRBLtoiKHtfiPDVhvRKshu5qdbp+h1L0ZWTxfXdmOzYxdrXlLQkUAMFIlj7kY+hfzBcSnfA707dJapx6Q9LeJCy50JuDXEx+hPCjNAREz6+YP1Cb5FVwFoC3pu0FQ0Qg+86uUy4D3jZDMmjHIg0qN+sdwOf1xTmLJ37nuoDSpsUWx4MDMh/RP/7Uwz9lxYBw1XcWlddZzHesLj0HUuRmRSrk/4KNEQsYavH2U+vgPnRuWVITuB/Y2LqLE+pleNCt5NiqVvSHZgRTSYu4Jik7ivaNa+JuVjeAokJubRv1wUba3wlU25fUfzeBvm1bxGbF+7HofZSaaUvK28JP1e/LYR8EfwPy4L+yfasEGh5McTKjsdKKK+c8wrvR1EaPwNe7bPy0YOeHfxf2/aTR8PoEqPQdzLo2VIIMdqEvChiE7Z6X2WgPBxbGoBp5NOL3uRhE/9aAyMSIt/sYZvtSmbtxfK5qCEMP0j2cNRs0d91DaL9nsnEFYu9jrddwX68HgtWmt77MdGAYMz5vyQPQtJuKKATST3HkKDvWyoWcNgnF4xL0U0bOZZcBGilZDuvEAqSSyw7oCXTnbh0B+pCpo6NOaV4ks62klmAbaC3IPAOvajlgViB6sHsknixys/Z1VkQjI5YY=
+#  file: YarnSpinner/bin/Release/YarnSpinner.dll
+#  on:
+#    repo: thesecretlab/YarnSpinner
 after_success:
 - cd $TRAVIS_BUILD_DIR
 - chmod +x DeployDocumentation.sh
+- "./build.sh -cdv"
 - "./DeployDocumentation.sh"
-deploy:
-  provider: releases
-  api_key:
-    secure: ppMWm5zS3NfplInwq+JdBBLFgTPVvpLrTeqcTdpHRBLtoiKHtfiPDVhvRKshu5qdbp+h1L0ZWTxfXdmOzYxdrXlLQkUAMFIlj7kY+hfzBcSnfA707dJapx6Q9LeJCy50JuDXEx+hPCjNAREz6+YP1Cb5FVwFoC3pu0FQ0Qg+86uUy4D3jZDMmjHIg0qN+sdwOf1xTmLJ37nuoDSpsUWx4MDMh/RP/7Uwz9lxYBw1XcWlddZzHesLj0HUuRmRSrk/4KNEQsYavH2U+vgPnRuWVITuB/Y2LqLE+pleNCt5NiqVvSHZgRTSYu4Jik7ivaNa+JuVjeAokJubRv1wUba3wlU25fUfzeBvm1bxGbF+7HofZSaaUvK28JP1e/LYR8EfwPy4L+yfasEGh5McTKjsdKKK+c8wrvR1EaPwNe7bPy0YOeHfxf2/aTR8PoEqPQdzLo2VIIMdqEvChiE7Z6X2WgPBxbGoBp5NOL3uRhE/9aAyMSIt/sYZvtSmbtxfK5qCEMP0j2cNRs0d91DaL9nsnEFYu9jrddwX68HgtWmt77MdGAYMz5vyQPQtJuKKATST3HkKDvWyoWcNgnF4xL0U0bOZZcBGilZDuvEAqSSyw7oCXTnbh0B+pCpo6NOaV4ks62klmAbaC3IPAOvajlgViB6sHsknixys/Z1VkQjI5YY=
-  file: YarnSpinner/bin/Release/YarnSpinner.dll
-  on:
-    repo: thesecretlab/YarnSpinner
