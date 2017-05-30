@@ -110,6 +110,10 @@ prepare_doxygen () {
         echo "Copying $l"
         cp --recursive $VERBOSE_SWITCH "$DOXYFILES_ROOT/$l" .
     done
+    # Remove un-needed files
+    rm -fvr "$DOXYFILES_ROOT/GPATH"
+    rm -fvr "$DOXYFILES_ROOT/GRTAGS"
+    rm -fvr "$DOXYFILES_ROOT/GTAGS"
 }
 
 commit_docs () {
