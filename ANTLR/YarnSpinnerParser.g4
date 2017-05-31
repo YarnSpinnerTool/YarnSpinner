@@ -47,8 +47,9 @@ option_statement
     | '[[' OPTION_TEXT ']]'
     ;
 
+// temporary hack because I was getting annoyed with the red text
 action_statement
-    : '<<' BODY_ID+ '>>'
+    : '<<' BODY_ID+ (expression)*'>>'
     ;
 
 line_statement
@@ -59,6 +60,7 @@ line_statement
 // need to work on this
 expression
     : '(' expression ')'                                                                           #expParens
+    | <assoc=right>'-' expression                                                                  #expNegative
     | expression op=('*' | '/' | '%') expression                                                   #expMultDivMod
     | expression op=('+' | '-') expression                                                         #expAddSub
     | expression op=('<' | '>' | '<=' | '>=' ) expression                                          #expComparison
