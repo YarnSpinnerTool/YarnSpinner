@@ -5,7 +5,7 @@ parser grammar YarnSpinnerParser;
 
 options { tokenVocab=YarnSpinnerLexer; }
 
-dialogue : node+ ;
+dialogue : node+ EOF;
 
 node: header body NEWLINE*;
 
@@ -42,13 +42,13 @@ set_statement
     | '<<' KEYWORD_SET expression '>>'
     ;
 
-action_statement
-    : '<<' BODY_ID+ '>>'
-    ;
-
 option_statement
     : '[[' OPTION_TEXT '|' OPTION_LINK ']]'
     | '[[' OPTION_TEXT ']]'
+    ;
+
+action_statement
+    : '<<' BODY_ID+ '>>'
     ;
 
 line_statement
@@ -58,16 +58,16 @@ line_statement
 // this feel a bit crude
 // need to work on this
 expression
-    : '(' expression ')'                                                               #expParens
-    | expression op=('*' | '/' | '%') expression                                       #expMultDivMod
-    | expression op=('+' | '-') expression                                             #expAddSub
-    | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression #expEquality
-    | expression op=('<' | '>' | '<=' | '>=' ) expression                              #expComparison
-    | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR) expression            #expAndOr
-    | expression op=('+=' | '-=') expression                                           #expPlusMinusEquals
-    | expression op=('*=' | '/=' | '%=') expression                                    #expMultDivModEquals
-    | variable                                                                         #expVariable
-    | value                                                                            #expValue
+    : '(' expression ')'                                                                           #expParens
+    | expression op=('*' | '/' | '%') expression                                                   #expMultDivMod
+    | expression op=('+' | '-') expression                                                         #expAddSub
+    | expression op=('<' | '>' | '<=' | '>=' ) expression                                          #expComparison
+    | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression             #expEquality
+    | expression op=('*=' | '/=' | '%=') expression                                                #expMultDivModEquals
+    | expression op=('+=' | '-=') expression                                                       #expPlusMinusEquals
+    | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
+    | variable                                                                                     #expVariable
+    | value                                                                                        #expValue
     ;
 
 // can add in support for more values in here
