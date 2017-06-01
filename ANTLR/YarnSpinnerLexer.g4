@@ -85,7 +85,7 @@ RPAREN: ')' ;
 VAR_ID : '$' BODY_ID ;
 
 // this should allow for 1, 1.1, and .1 all fine
-BODY_NUMBER : DIGIT+('.'DIGIT+)? | '.'DIGIT+ ;
+BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
 
 BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
