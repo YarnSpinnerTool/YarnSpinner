@@ -99,8 +99,8 @@ WS_IN_COMMAND : WS_IN_BODY -> skip ; // skip spaces, tabs, newlines
 mode Option;
 
 OPTION_SEPARATOR: '|' -> pushMode(OptionLink) ;
-OPTION_TEXT: TEXT ;
+OPTION_TEXT : ~('|'|']')+ ;
 OPTION_CLOSE: ']]' -> popMode ;
 
 mode OptionLink;
-OPTION_LINK : TEXT -> popMode;
+OPTION_LINK : ~(']')+ -> popMode;

@@ -49,7 +49,7 @@ option_statement
 
 // temporary hack because I was getting annoyed with the red text
 action_statement
-    : '<<' BODY_ID+ (expression)*'>>'
+    : '<<' (BODY_ID|BODY_NUMBER|'+')+'>>'
     ;
 
 line_statement
