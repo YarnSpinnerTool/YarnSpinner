@@ -90,6 +90,8 @@ fragment DIGIT : [0-9] ;
 
 BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
 
+FUNCTION_TEXT : BODY_ID '(' .*? ')' ;
+
 WS_IN_COMMAND : WS_IN_BODY -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------

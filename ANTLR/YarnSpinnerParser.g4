@@ -27,9 +27,10 @@ body : BODY_ENTER statement* BODY_CLOSE ;
 statement
     : if_statement
     | set_statement
+    | option_statement
+    | function_statement
     | action_statement
     | line_statement
-    | option_statement
     ;
 
 if_statement
@@ -45,6 +46,10 @@ set_statement
 option_statement
     : '[[' OPTION_TEXT '|' OPTION_LINK ']]'
     | '[[' OPTION_TEXT ']]'
+    ;
+
+function_statement
+    : '<<' FUNCTION_TEXT '>>'
     ;
 
 // temporary hack because I was getting annoyed with the red text
