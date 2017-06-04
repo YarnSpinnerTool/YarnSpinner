@@ -22,7 +22,7 @@ Here's how to quickly jump in to Yarn Spinner if you're already familiar with Un
 
 * **Download** [the YarnSpinner package](https://github.com/thesecretlab/YarnSpinner/releases) into your Unity project.
 * **Import** the package into your project.
-* Inside the YarnSpinner folder, **open the `Examples/Yarn Spinner Basic Example` scene.**
+* In Unity, from the YarnSpinner folder, **open the `Examples/Yarn Spinner Basic Example` scene.**
 * **Start the game.**
 * **Play through the dialogue.**
 
