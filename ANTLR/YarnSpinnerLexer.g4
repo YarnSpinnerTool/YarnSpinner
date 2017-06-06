@@ -20,22 +20,27 @@ NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
 ID : (([a-zA-Z0-9])|('_'))+ ;
 
 NEWLINE : [\r\n]+ ;
-WS : ' ' -> skip ;
+WS : (' '|'\t') -> skip ;
 
 // ----------------------
 // Body mode
 // for handling normal dialogue lines and moving between modes
+
 mode Body;
 
 BODY_CLOSE : '===' -> popMode ;
 
+SHORTCUT_ENTER : '->' ;
+DEDENT : '}' ;
+INDENT : '{' ;
+
 COMMAND_ENTER : '<<' -> pushMode(Command) ;
 OPTION_ENTER : '[[' -> pushMode(Option) ;
 
-BODY_NEWLINE : [\r\n]+ -> skip;
+BODY_NEWLINE : [\r\n]+ -> skip ;
 
 TEXT : TEXTCOMPONENT+ ;
-fragment TEXTCOMPONENT : ~('<'|'|'|'['|']'|'\n') ;
+fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'{'|'}') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
@@ -43,6 +48,7 @@ WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 // ----------------------
 // Command mode
 // for handling branching and expression
+
 mode Command;
 
 COMMAND_CLOSE : '>>' -> popMode ;
@@ -82,22 +88,21 @@ OPERATOR_MATHS_MODULUS : '%' ;
 LPAREN: '(' ;
 RPAREN: ')' ;
 
-VAR_ID : '$' BODY_ID ;
+VAR_ID : '$' ID ;
 
 // this should allow for 1, 1.1, and .1 all fine
 BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
 
-BODY_ID : (([a-zA-Z0-9])|('_'))+ ;
+FUNCTION_TEXT : ID '(' .*? ')' ;
 
-FUNCTION_TEXT : BODY_ID '(' .*? ')' ;
-
-WS_IN_COMMAND : WS_IN_BODY -> skip ; // skip spaces, tabs, newlines
+WS_IN_COMMAND : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------
 // Option mode
 // For handling options
 // pops when hits ]]
+
 mode Option;
 
 OPTION_SEPARATOR: '|' -> pushMode(OptionLink) ;

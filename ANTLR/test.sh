@@ -11,6 +11,9 @@ clear
 # quitting preview
 osascript -e 'tell application "Preview" to close (every window whose name is "Test.yarn.txt.pdf")'
 
+# running the script through the preprocessor
+python preprocessor.py Test.yarn.txt
+
 # generate the grammar
 antlr4 *.g4
 
@@ -18,7 +21,7 @@ antlr4 *.g4
 javac *.java
 
 # run the result and generate a parse tree into a PostScript file
-grun YarnSpinner dialogue -tokens Test.yarn.txt -ps Test.yarn.txt.ps
+grun YarnSpinner dialogue -tokens processed.yarn -ps Test.yarn.txt.ps
 
 # open the ps
 open -a "Preview" Test.yarn.txt.ps
@@ -27,3 +30,4 @@ open -a "Preview" Test.yarn.txt.ps
 rm *.class
 rm *.java
 rm *.tokens
+rm processed.yarn

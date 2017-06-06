@@ -25,13 +25,17 @@ header_position : HEADER_POSITION ':' NUMBER ',' NUMBER NEWLINE ;
 body : BODY_ENTER statement* BODY_CLOSE ;
 
 statement
-    : if_statement
+    : shortcut_statement
+    | if_statement
     | set_statement
     | option_statement
     | function_statement
     | action_statement
     | line_statement
     ;
+
+shortcut_statement : shortcut+ ;
+shortcut : '->' TEXT INDENT statement* DEDENT ;
 
 if_statement
     : '<<' KEYWORD_IF expression '>>' statement* ('<<' KEYWORD_ELSE_IF expression '>>' statement*)* ('<<' KEYWORD_ELSE '>>' statement*)* '<<' KEYWORD_ENDIF '>>'
@@ -54,7 +58,7 @@ function_statement
 
 // temporary hack because I was getting annoyed with the red text
 action_statement
-    : '<<' (BODY_ID|BODY_NUMBER|'+')+'>>'
+    : '<<' (ID|BODY_NUMBER|'+'|'-')+ '>>'
     ;
 
 line_statement
