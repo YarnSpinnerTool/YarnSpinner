@@ -16,22 +16,18 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
-## Quick Start - Unity
+## Quick Start - Documentation
 
-1. Download the [Yarn editor](https://github.com/InfiniteAmmoInc/Yarn), so that you can create and edit Yarn files.
-1. Create a new project in [Unity](https://unity3d.com/get-unity).
-2. Download the [latest release's Unity package](https://github.com/thesecretlab/YarnSpinner/releases).
-3. Import the package.
-4. Go to the `Yarn Spinner/Examples/` folder in Unity, and open one of the demo scenes. 
-5. Run the game, and poke around!
+* If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](YarnSpinner-with-Unity-QuickStart.md) document.
 
 ## What To Do Next
 
-* [Download Yarn Spinner.](https://github.com/thesecretlab/YarnSpinner/releases)
-* [Learn how to build Yarn Spinner from source.](Documentation/Building.md)
-* [Learn more about Yarn, and the Yarn editor.](https://github.com/infiniteammoinc/Yarn)
-* [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
-* [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
+* Learn how to [build Yarn Spinner from source.](Documentation/Building.md)
+* Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.
+* Learn more about [writing dialogue in Yarn.](Documentation/Usage.md)
+* Learn about using [Yarn Spinner in your Unity](Documentation/Unity.md) game.
+* If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](YarnSpinner-with-Unity-StepByStep.md) document.
+* We have some information that may be of assistance in using [Yarn Spinner With Unity](YarnSpinner-with-Unity.md) on your system.
 
 ## License
 
