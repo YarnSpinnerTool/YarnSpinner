@@ -4,49 +4,49 @@ using Newtonsoft.Json;
 
 namespace Yarn
 {
-	public class ProgramExporter
-	{
-		public ProgramExporter()
-		{
-		}
+    public class ProgramExporter
+    {
+        public ProgramExporter()
+        {
+        }
 
-		internal static int Export(CompileOptions options)
-		{
-			YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
+        internal static int Export(CompileOptions options)
+        {
+            YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
-			foreach (var file in options.files) {
-				
-				var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
+            foreach (var file in options.files) {
 
-				// Load and compile the program
-				try
-				{
-					// First, we need to ensure that this file compiles.
-					dialogue.LoadFile(file);
-				}
-				catch
-				{
-					YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
-					continue;
-				}
+                var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
 
-				// Convert the program into BSON
-				var compiledProgram = dialogue.GetCompiledProgram(options.format);
+                // Load and compile the program
+                try
+                {
+                    // First, we need to ensure that this file compiles.
+                    dialogue.LoadFile(file);
+                }
+                catch
+                {
+                    YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
+                    continue;
+                }
 
-				var outputPath = System.IO.Path.ChangeExtension(file, "yarn.bytes");
+                // Convert the program into BSON
+                var compiledProgram = dialogue.GetCompiledProgram(options.format);
 
-				try {
-					System.IO.File.WriteAllBytes(outputPath, compiledProgram);
-				} catch (Exception e) {
-					YarnSpinnerConsole.Error(string.Format("Error writing {0}: {1}", outputPath, e.Message));
-				}
+                var outputPath = System.IO.Path.ChangeExtension(file, "yarn.bytes");
+
+                try {
+                    System.IO.File.WriteAllBytes(outputPath, compiledProgram);
+                } catch (Exception e) {
+                    YarnSpinnerConsole.Error(string.Format("Error writing {0}: {1}", outputPath, e.Message));
+                }
 
 
 
-			}
+            }
 
-			return 0;
-		}
+            return 0;
+        }
 }
 }
 

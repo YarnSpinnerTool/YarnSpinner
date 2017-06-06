@@ -10,137 +10,137 @@ namespace YarnSpinner.Tests
 {
 
 
-	[TestFixture]
-	public class DialogueTests : TestBase {
+    [TestFixture]
+    public class DialogueTests : TestBase {
 
 
-		[Test]
-		public void TestNodeExists ()
-		{
+        [Test]
+        public void TestNodeExists ()
+        {
 
-			var path = Path.Combine(UnityDemoScriptsPath, "Sally.json");
+            var path = Path.Combine(UnityDemoScriptsPath, "Sally.json");
 
-			dialogue.LoadFile (path);
+            dialogue.LoadFile (path);
 
-			Assert.True (dialogue.NodeExists ("Sally"));
+            Assert.True (dialogue.NodeExists ("Sally"));
 
-			// Test clearing everything
-			dialogue.UnloadAll ();
+            // Test clearing everything
+            dialogue.UnloadAll ();
 
-			// Load an empty node
-			dialogue.LoadString("// Test, this is empty");
+            // Load an empty node
+            dialogue.LoadString("// Test, this is empty");
 
-			Assert.False (dialogue.NodeExists ("Sally"));
+            Assert.False (dialogue.NodeExists ("Sally"));
 
-		}
+        }
 
-		[Test]
-		public void TestAnalysis() {
+        [Test]
+        public void TestAnalysis() {
 
-			ICollection<Yarn.Analysis.Diagnosis> diagnoses;
-			Yarn.Analysis.Context context;
-
-
-			// this script has the following variables:
-			// $foo is read from and written to
-			// $bar is written to but never read
-			// $bas is read from but never written to
-			// this means that there should be two diagnosis results
-			var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
-
-			context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
-			dialogue.LoadString (script);
-			dialogue.Analyse (context);
-			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
-
-			Assert.AreEqual (2, diagnoses.Count);
-
-			dialogue.UnloadAll ();
-
-			context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
-
-			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Ship.json"));
-			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
-			dialogue.Analyse (context);
-			diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
-
-			// This script should contain no unused variables
-			Assert.IsEmpty (diagnoses);
+            ICollection<Yarn.Analysis.Diagnosis> diagnoses;
+            Yarn.Analysis.Context context;
 
 
-		}
+            // this script has the following variables:
+            // $foo is read from and written to
+            // $bar is written to but never read
+            // $bas is read from but never written to
+            // this means that there should be two diagnosis results
+            var script = "// testing\n<<set $foo to 1>><<set $bar to $foo>><<set $bar to $bas>>";
 
-		[Test]
-		public void TestDumpingCode()
-		{
-			var path = Path.Combine(TestDataPath, "Example.json");
-			dialogue.LoadFile (path);
+            context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
+            dialogue.LoadString (script);
+            dialogue.Analyse (context);
+            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-			var byteCode = dialogue.GetByteCode ();
-			Assert.NotNull (byteCode);
+            Assert.AreEqual (2, diagnoses.Count);
 
-		}
+            dialogue.UnloadAll ();
 
-		[Test]
-		public void TestMissingNode() 
-		{
-			var path = Path.Combine (TestDataPath, "TestCases", "Smileys.node");
-			dialogue.LoadFile (path);
+            context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
-			errorsCauseFailures = false;
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Ship.json"));
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
+            dialogue.Analyse (context);
+            diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
-			foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
-
-			}
-		}
-
-		[Test]
-		public void TestGettingCurrentNodeName()  {
-			dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
-
-			// dialogue should not be running yet
-			Assert.IsNull (dialogue.currentNode);
-
-			foreach (var result in dialogue.Run("Sally")) {
-				// Should now be in the node we requested
-				Assert.AreEqual (dialogue.currentNode, "Sally");
-				// Stop immediately
-				dialogue.Stop ();
-			}
-
-			// Current node should now be null
-			Assert.IsNull (dialogue.currentNode);
-		}
-
-		[Test]
-		public void TestGettingRawSource() {
-			dialogue.LoadFile (Path.Combine(TestDataPath, "Example.json"));
-
-			var source = dialogue.GetTextForNode ("LearnMore");
-
-			Assert.IsNotNull (source);
-
-			Assert.AreEqual (source, "A: HAHAHA");
-		}
-
-		[Test]
-		public void TestNodeVistation() {
-			dialogue.LoadFile(Path.Combine(TestDataPath, "Example.json"));
-
-			foreach (var result in dialogue.Run("Leave")) {
-				HandleResult (result);
-			}
-
-			Assert.Contains("Leave", dialogue.visitedNodes.ToList());
-
-			// Override the visitedNodes list
-			dialogue.visitedNodes = new string[]{ "LearnMore" };
-
-			Assert.Contains("LearnMore", dialogue.visitedNodes.ToList());
-
-		}
+            // This script should contain no unused variables
+            Assert.IsEmpty (diagnoses);
 
 
-	}
+        }
+
+        [Test]
+        public void TestDumpingCode()
+        {
+            var path = Path.Combine(TestDataPath, "Example.json");
+            dialogue.LoadFile (path);
+
+            var byteCode = dialogue.GetByteCode ();
+            Assert.NotNull (byteCode);
+
+        }
+
+        [Test]
+        public void TestMissingNode()
+        {
+            var path = Path.Combine (TestDataPath, "TestCases", "Smileys.node");
+            dialogue.LoadFile (path);
+
+            errorsCauseFailures = false;
+
+            foreach (var result in dialogue.Run("THIS NODE DOES NOT EXIST")) {
+
+            }
+        }
+
+        [Test]
+        public void TestGettingCurrentNodeName()  {
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
+
+            // dialogue should not be running yet
+            Assert.IsNull (dialogue.currentNode);
+
+            foreach (var result in dialogue.Run("Sally")) {
+                // Should now be in the node we requested
+                Assert.AreEqual (dialogue.currentNode, "Sally");
+                // Stop immediately
+                dialogue.Stop ();
+            }
+
+            // Current node should now be null
+            Assert.IsNull (dialogue.currentNode);
+        }
+
+        [Test]
+        public void TestGettingRawSource() {
+            dialogue.LoadFile (Path.Combine(TestDataPath, "Example.json"));
+
+            var source = dialogue.GetTextForNode ("LearnMore");
+
+            Assert.IsNotNull (source);
+
+            Assert.AreEqual (source, "A: HAHAHA");
+        }
+
+        [Test]
+        public void TestNodeVistation() {
+            dialogue.LoadFile(Path.Combine(TestDataPath, "Example.json"));
+
+            foreach (var result in dialogue.Run("Leave")) {
+                HandleResult (result);
+            }
+
+            Assert.Contains("Leave", dialogue.visitedNodes.ToList());
+
+            // Override the visitedNodes list
+            dialogue.visitedNodes = new string[]{ "LearnMore" };
+
+            Assert.Contains("LearnMore", dialogue.visitedNodes.ToList());
+
+        }
+
+
+    }
 }
 
