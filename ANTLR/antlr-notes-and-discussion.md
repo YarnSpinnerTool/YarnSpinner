@@ -40,18 +40,28 @@ This is a peeve of mine because it complicates design and implementation for, wh
 - closer to existing programming languages
 - already have `is` keyword if people really don't like `==`
 
-## No support for `->`  shortcut syntax
+## The `->`  shortcut syntax
 
-This is currently just an implementation thing as there isn't a straight forward way of doing this syntax easily in ANTLR.
+Shortcuts are now implemented using a two stage approach, where the Yarn files are run through a preprocessor to add in indents and dedents to build up the blocks for shortcuts.
+Due to the nature of ANTRL and YarnSpinners rather unusual approach to whitespace this was found to be the simplest approach as it means there is no code in the grammar file itself.
+There is now however an extra step and a file that will need to be ported to each language.
+It was done this way as the preprocessor itself is quite straightforward compared to what the extra code in the grammar would be.
 
-This can be changed by:
+A side-effect of this is that a symbol had to be chosen to represent the indents/dedents.
+I went with the `\a` or bell for indents (playing the role `{` normally does) and `\v` or vertical tab for dedent (`}` equivalent).
+Both of these were chosen as they are invisible and unlikely (especially in the case of bell) to be used in existing Yarn files, additionally as control characters they don't limit the amount of available characters in text lines.
+This does mean however if someone was using either of those two in their Yarn files there files won't parse correctly.
 
-- me putting in more effort to code it...
-- change the syntax to something easily antlrd
-- abandoning the concept
+While this works this also allows for an opportunity to discuss the `->` syntax.
+It currently has remarkably flexible rules around the whitespace, such that it allows structures that would break in almost any other whitespace programming language.
+Is this something worth changing?
 
-I think abandoning the concept is stupid and me putting in more effort is the best way, but is it worth having a discussion around changing the syntax?
-If the syntax was to change the most straightforward option is to replace the whitespace with `{}`, as is done in many of programming languages.
+Options to change include:
+
+- Locking down the syntax a bit more so that whitespace rules are enforced more than currently, Python offers a guideline for how this would look.
+- Using the use of a `{ }` (or something similar) syntax for the `->` code blocks.
+
+At this stage it isn't worth changing as it is currently working fine, but this is something to consider going forward.
 
 ### Reasons to keep to old style
 
@@ -132,6 +142,6 @@ Because of a combination of my hesitance to in line code, and ANTLR4 syntax ther
 
 This is another area that needs to be discussed, not everything can be done in ANTLR, in places where it can be solved with in lining code we need to work out some rules for when we should and should not do this.
 As it currently stands there are no code sections in the the grammar.
-This is partially due to my experiece with ANTLR and partially due to my unwillingness to add code, as each part of code is something that will have to be ported when the time comes, this feels messy and against the spirit of ANTLR to me.
+This is partially due to my experience with ANTLR and partially due to my unwillingness to add code, as each part of code is something that will have to be ported when the time comes, this feels messy and against the spirit of ANTLR to me.
 
 With that said, some things will be MUCH easier to do with in line code and can likely be written in a way that is either applicable to multiple target languages or simple enough that tweaking it won't be a problem, this is all an area we need to look at as we head forward.
