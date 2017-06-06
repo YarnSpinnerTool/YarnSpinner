@@ -16,7 +16,7 @@ Yarn is a language that's designed to make it *super easy* to create interactive
 
 Yarn Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
-## Quick Start - OSX
+## Quick Start - Unity
 
 1. Download the [Yarn editor](https://github.com/InfiniteAmmoInc/Yarn), so that you can create and edit Yarn files.
 1. Create a new project in [Unity](https://unity3d.com/get-unity).
