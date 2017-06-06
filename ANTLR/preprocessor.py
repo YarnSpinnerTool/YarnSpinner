@@ -22,8 +22,10 @@ with open(sys.argv[1], 'rU') as yarn:
     shouldTrackNextIndentation = False
 
     # our INDENT and DEDENT symbols
-    INDENT = '{'
-    DEDENT = '}'
+    # bell and vertical tab
+    # these fill the role of { and } in other languages
+    INDENT = '\a'
+    DEDENT = '\v'
     # the option symbol, just to avoid typos
     OPTION = "->"
 

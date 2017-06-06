@@ -31,8 +31,13 @@ mode Body;
 BODY_CLOSE : '===' -> popMode ;
 
 SHORTCUT_ENTER : '->' ;
-DEDENT : '}' ;
-INDENT : '{' ;
+// currently using \a and \v as the indent and dedent symbols
+// these play the role that { and } play in many other languages
+// not sure if this is the best idea, feels like it might break
+// but at this stage the yarn file has gone through the preprocessor so it shouldnt really matter
+// have ruled out people using /a and /v as normal text, not likely to cause issue but worth pointing out
+INDENT : '\u0007' ;//'{' ;
+DEDENT : '\u000B';//'}' ;
 
 COMMAND_ENTER : '<<' -> pushMode(Command) ;
 OPTION_ENTER : '[[' -> pushMode(Option) ;
@@ -40,7 +45,7 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 BODY_NEWLINE : [\r\n]+ -> skip ;
 
 TEXT : TEXTCOMPONENT+ ;
-fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'{'|'}') ;
+fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
