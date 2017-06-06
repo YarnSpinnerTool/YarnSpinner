@@ -110,4 +110,4 @@ OPTION_TEXT : ~('|'|']')+ ;
 OPTION_CLOSE: ']]' -> popMode ;
 
 mode OptionLink;
-OPTION_LINK : ~(']')+ -> popMode;
+OPTION_LINK : ~(']')+ -> popMode ;

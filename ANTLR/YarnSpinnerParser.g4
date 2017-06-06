@@ -35,7 +35,7 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : '->' TEXT INDENT statement* DEDENT ;
+shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? INDENT statement* DEDENT ;
 
 if_statement
     : '<<' KEYWORD_IF expression '>>' statement* ('<<' KEYWORD_ELSE_IF expression '>>' statement*)* ('<<' KEYWORD_ELSE '>>' statement*)* '<<' KEYWORD_ENDIF '>>'
