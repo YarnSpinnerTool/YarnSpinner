@@ -2,7 +2,7 @@
 
 <img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
-Yarn is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes). 
+**Yarn** is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes). 
 
 **Yarn Spinner** interprets the [Yarn](https://github.com/infiniteammoinc/Yarn) language, and is written in C#. Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it's also intended for use in other contexts as well.
 
