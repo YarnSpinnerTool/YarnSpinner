@@ -278,7 +278,6 @@ namespace Yarn {
 				LoadString(inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
 			}
 
-
 		}
 
 		public void LoadCompiledProgram(byte[] bytes, string fileName, CompiledFormat format = LATEST_FORMAT)
@@ -302,7 +301,6 @@ namespace Yarn {
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-
 
 		}
 
@@ -375,7 +373,6 @@ namespace Yarn {
          * you'll get a line, command, or set of options.
          */
 		public IEnumerable<Yarn.Dialogue.RunnerResult> Run(string startNode = DEFAULT_START) {
-
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before running");
@@ -593,7 +590,6 @@ namespace Yarn {
 
 		}
 
-
 		/// The standard, built-in library of functions and operators.
 		private class StandardLibrary : Library {
 
@@ -672,8 +668,6 @@ namespace Yarn {
 				#endregion Operators
 			}
 		}
-
-
 
 	}
 }

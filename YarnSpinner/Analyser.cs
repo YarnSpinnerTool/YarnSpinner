@@ -196,7 +196,6 @@ namespace Yarn.Analysis
 		HashSet<string> readVariables = new HashSet<string> ();
 		HashSet<string> writtenVariables = new HashSet<string> ();
 
-
 		public override void Diagnose (Program program)
 		{
 			
@@ -218,7 +217,6 @@ namespace Yarn.Analysis
 					}
 				}
 			}
-
 
 		}
 

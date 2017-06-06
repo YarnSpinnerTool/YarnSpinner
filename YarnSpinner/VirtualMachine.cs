@@ -78,7 +78,6 @@ namespace Yarn
 
 		private Random random = new Random();
 
-
 		public string currentNodeName {
 			get {
 				return state.currentNodeName;
@@ -171,10 +170,7 @@ namespace Yarn
 
 			return currentNode.labels [labelName];
 
-
 		}
-
-
 
 		internal void RunInstruction(Instruction i) {
 			switch (i.operation) {
@@ -360,7 +356,6 @@ namespace Yarn
                  */
 				state.currentOptions.Add (new KeyValuePair<string, string> ((string)i.operandA, (string)i.operandB));
 
-
 				break;
 			case ByteCode.ShowOptions:
                 /// - ShowOptions
@@ -399,8 +394,6 @@ namespace Yarn
 					optionStrings.Add (program.GetString (option.Key));
 				}
 
-
-
 				// We can't continue until our client tell us which option to pick
 				executionState = ExecutionState.WaitingOnOptionSelection;
 
@@ -432,7 +425,6 @@ namespace Yarn
 				throw new ArgumentOutOfRangeException ();
 			}
 		}
-
 
 	}
 }

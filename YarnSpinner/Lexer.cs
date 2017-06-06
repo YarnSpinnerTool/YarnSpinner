@@ -78,7 +78,6 @@ namespace Yarn {
 
 	internal enum TokenType {
 
-
 		
 		// Special tokens
 		Whitespace,
@@ -145,7 +144,6 @@ namespace Yarn {
 		And, // &&, and
 		Xor, // ^, xor
 		Not, // !, not
-
 
 		// this guy's special because '=' can mean either 'equal to' 
 		// or 'becomes' depending on context
@@ -236,7 +234,6 @@ namespace Yarn {
 				return rule;
 			}
 
-
 			// A "text" rule matches everything that it possibly can, up to ANY of
 			// the rules that already exist.
 			public TokenRule AddTextRule (TokenType type, string entersState = null)
@@ -261,7 +258,6 @@ namespace Yarn {
 
 				rule.regex = new Regex (pattern);
 				rule.isTextRule = true;
-
 
 				return rule;
 			}
@@ -413,7 +409,6 @@ namespace Yarn {
 			states ["command-or-expression"].AddTransition (TokenType.EndCommand, "base", delimitsText:true);
 			states ["command-or-expression"].AddTextRule (TokenType.Text);
 
-
 			states ["assignment"] = new LexerState (patterns);
 			states ["assignment"].AddTransition(TokenType.Variable);
 			states ["assignment"].AddTransition(TokenType.EqualToOrAssign, "expression");
@@ -421,7 +416,6 @@ namespace Yarn {
 			states ["assignment"].AddTransition(TokenType.MinusAssign, "expression");
 			states ["assignment"].AddTransition(TokenType.MultiplyAssign, "expression");
 			states ["assignment"].AddTransition(TokenType.DivideAssign, "expression");
-
 
 			states ["expression"] = new LexerState (patterns);
 			states ["expression"].AddTransition(TokenType.EndCommand, "base");
@@ -451,7 +445,6 @@ namespace Yarn {
 			states ["expression"].AddTransition(TokenType.False);
 			states ["expression"].AddTransition(TokenType.Null);
 			states ["expression"].AddTransition(TokenType.Identifier);
-
 
 			states ["link"] = new LexerState (patterns);
 			states ["link"].AddTransition (TokenType.OptionEnd, "base", delimitsText:true);
@@ -624,8 +617,6 @@ namespace Yarn {
 
 					lineTokens.Push (token);
 
-
-
 					if (rule.entersState != null) {
 						if (states.ContainsKey(rule.entersState) == false) {
 							throw new TokeniserException (lineNumber, columnNumber, "Unknown tokeniser state " + rule.entersState);
@@ -664,9 +655,7 @@ namespace Yarn {
 
 			return listToReturn;
 
-
 		}
-
 
 		int LineIndentation(string line)
 		{

@@ -31,7 +31,6 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-
 namespace Yarn {
 
 	public enum NodeFormat
@@ -45,8 +44,6 @@ namespace Yarn {
 		Text, //  a text file containing multiple nodes with metadata
 
 	}
-
-
 
 	internal class Loader {
 
@@ -99,7 +96,6 @@ namespace Yarn {
 			if (format == NodeFormat.Unknown) {
 				format = GetFormatFromFileName(fileName);
 			}
-
 
 			var nodeInfos = GetNodesFromText(text, format);
 
@@ -169,7 +165,6 @@ namespace Yarn {
 				}
 #endif
 
-
 			}
 
 			var compiler = new Yarn.Compiler(fileName);
@@ -196,7 +191,6 @@ namespace Yarn {
 				public int x { get; set; }
 				public int y { get; set; }
 			}
-
 
 			public string title { get; set; }
 			public string body { get; set; }

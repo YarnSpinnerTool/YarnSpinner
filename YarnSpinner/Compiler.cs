@@ -16,7 +16,6 @@ namespace Yarn
 		}
 	}
 
-
 	[JsonObject(MemberSerialization.OptIn)] // properties must opt-in to JSON serialization
 	internal class Program {
 
@@ -130,7 +129,6 @@ namespace Yarn
 
 				stringCount++;
 			}
-
 
 			return sb.ToString ();
 		}
@@ -308,8 +306,6 @@ namespace Yarn
 
 	}
 
-
-
 	internal class Compiler
 	{
 		
@@ -328,9 +324,6 @@ namespace Yarn
 		{
 			program = new Program ();
 		}
-
-
-
 
 		internal void CompileNode(Parser.Node node) {
 
@@ -450,7 +443,6 @@ namespace Yarn
 
 				break;
 
-
 			case Parser.Statement.Type.IfStatement:
 				GenerateCode (node, statement.ifStatement);
 				break;
@@ -470,7 +462,6 @@ namespace Yarn
 			default:
 				throw new ArgumentOutOfRangeException ();
 			}
-
 
 		}
 
@@ -588,7 +579,6 @@ namespace Yarn
 
 			// clean up after the jump
 			Emit (node, ByteCode.Pop);
-
 
 		}
 
@@ -756,9 +746,6 @@ namespace Yarn
 				throw new ArgumentOutOfRangeException ();
 			}
 		}
-
-
-
 
 	}
 }

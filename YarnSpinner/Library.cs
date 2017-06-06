@@ -81,9 +81,6 @@ namespace Yarn
 			return paramCount == parameterCount || paramCount == -1;
 		}
 
-
-
-
 	}
 
 	// A Library is a collection of callable functions.
@@ -133,7 +130,6 @@ namespace Yarn
 			if (functions.ContainsKey(name))
 				functions.Remove (name);
 		}
-
 
 	}
 }

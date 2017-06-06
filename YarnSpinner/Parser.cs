@@ -74,7 +74,6 @@ namespace Yarn {
 		
 	}
 
-
 	// Magic abstract syntax tree producer - feed it tokens, and it gives you
 	// a tree representation! Or an error!
 	internal class Parser {
@@ -131,7 +130,6 @@ namespace Yarn {
 				} else {
 					return "";
 				}
-
 
 			}
 
@@ -226,7 +224,6 @@ namespace Yarn {
 			internal CustomCommand customCommand {get;private set;}
 			internal string line {get; private set;}
 			internal ShortcutOptionGroup shortcutOptionGroup { get; private set; }
-
 
 			internal Statement(ParseNode parent, Parser p) : base(parent, p) {
 
@@ -354,8 +351,6 @@ namespace Yarn {
 					this.clientCommand = commandTokens[0].value;
 				}
 
-
-
 			}
 
 			internal override string PrintTree (int indentLevel)
@@ -407,7 +402,6 @@ namespace Yarn {
 
 				return sb.ToString ();
 			}
-
 
 		}
 
@@ -476,7 +470,6 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-
 		}
 
 		// Blocks are indented groups of statements
@@ -509,7 +502,6 @@ namespace Yarn {
 
 			}
 
-
 			internal override string PrintTree (int indentLevel)
 			{
 				var sb = new StringBuilder ();
@@ -534,7 +526,6 @@ namespace Yarn {
 
 			internal string destination { get; private set;}
 			internal string label { get; private set;}
-
 
 			internal OptionStatement(ParseNode parent, Parser p) : base(parent, p) {
 
@@ -570,7 +561,6 @@ namespace Yarn {
 				// Parse the closing ]]
 				p.ExpectSymbol(TokenType.OptionEnd);
 			}
-
 
 			internal override string PrintTree (int indentLevel)
 			{
@@ -639,7 +629,6 @@ namespace Yarn {
 				primaryClause.statements = statements;
 
 				clauses.Add(primaryClause);
-
 
 				// Handle as many <<elseif clauses as we find
 				while (p.NextSymbolsAre(TokenType.BeginCommand, TokenType.ElseIf)) {
@@ -1063,7 +1052,6 @@ namespace Yarn {
 							info = new FunctionInfo (next.value, next.parameterCount, (Function)null);
 						}
 
-
 						var parameterList = new List<Expression> ();
 						for (int i = 0; i < next.parameterCount; i++) {
 							parameterList.Add (evaluationStack.Pop());
@@ -1092,7 +1080,6 @@ namespace Yarn {
 
 				// Return it
 				return evaluationStack.Pop ();
-
 
 			}
 
@@ -1143,7 +1130,6 @@ namespace Yarn {
 						stringBuilder.Append(Tab(indentLevel, "}"));
 					}
 					return stringBuilder.ToString();
-
 
 				}
 
@@ -1352,7 +1338,6 @@ namespace Yarn {
 			return true;
 		}
 
-
 		// Return the next token, which must be of type 'type',
 		// or throw an exception
 		Token ExpectSymbol(TokenType type) {
@@ -1388,7 +1373,5 @@ namespace Yarn {
 		}
 	}
 
-
 }
-
 
