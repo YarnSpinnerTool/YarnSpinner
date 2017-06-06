@@ -29,14 +29,17 @@ namespace Yarn
 				}
 			}
 
+            /// Pop a value from the stack
 			public Value PopValue() {
 				return stack.Pop ();
 			}
 
+            /// Peek at a value from the stack
 			public Value PeekValue() {
 				return stack.Peek ();
 			}
 
+            /// Clear the stack
 			public void ClearStack() {
 				stack.Clear ();
 			}
@@ -53,6 +56,7 @@ namespace Yarn
 			state = new State ();
 		}
 
+        /// Reset the state of the VM
 		void ResetState() {
 			state = new State();
 		}
@@ -368,8 +372,8 @@ namespace Yarn
 					break;
 				}
 
-				// If we have a single option, and it has no label, select it immediately and continue
-				// execution
+				/** If we have a single option, and it has no label, select it immediately and continue execution
+                 */
 				if (state.currentOptions.Count == 1 && state.currentOptions[0].Key == null) {
 					var destinationNode = state.currentOptions[0].Value;
 					state.PushValue(destinationNode);
