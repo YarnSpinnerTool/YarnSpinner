@@ -17,7 +17,7 @@
 
 ## Quick Start - Documentation
 
-* If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](YarnSpinner-with-Unity-QuickStart.md) document.
+* If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-with-Unity-QuickStart.md) document.
 
 ## What To Do Next
 
@@ -25,8 +25,8 @@
 * Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.
 * Learn more about [writing dialogue in Yarn.](Documentation/Usage.md)
 * Learn about using [Yarn Spinner in your Unity](Documentation/Unity.md) game.
-* If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](YarnSpinner-with-Unity-StepByStep.md) document.
-* We have some information that may be of assistance in using [Yarn Spinner With Unity](YarnSpinner-with-Unity.md) on your system.
+* If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-with-Unity-StepByStep.md) document.
+* We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity.md) on your system.
 
 ## License
 
