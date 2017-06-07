@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
+#if NETFX_CORE
+using System.Reflection;
+#endif
+
 namespace Yarn.Analysis
 {
 	public class Diagnosis {
@@ -88,17 +92,31 @@ namespace Yarn.Analysis
 				if (_defaultAnalyserClasses == null) {
 					classes = new List<Type> ();
 
-					var assembly = this.GetType().Assembly;
+                    IEnumerable<Type> assemblyTypes;
+#if NETFX_CORE
+                    var assembly = this.GetType().GetTypeInfo().Assembly;
+                    assemblyTypes = assembly.ExportedTypes;
+#else
+                    var assembly = this.GetType().Assembly;
+                    assemblyTypes = assembly.GetTypes();
+#endif
 
-					foreach (var type in assembly.GetTypes()) {
-						if (type.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) &&
-							type.IsAbstract == false) {
+                    foreach (var type in assemblyTypes)
+                    {
+#if NETFX_CORE
+                        TypeInfo typeInfo = type.GetTypeInfo();
+#else
+                        Type typeInfo = type;
+#endif
+                        if (typeInfo.IsSubclassOf(typeof(Analysis.CompiledProgramAnalyser)) &&
+                            typeInfo.IsAbstract == false)
+                        {
 
-							classes.Add (type);
+                            classes.Add(type);
 
-						}
-					}
-					_defaultAnalyserClasses = classes;
+                        }
+                    }
+                    _defaultAnalyserClasses = classes;
 				}
 
 				return _defaultAnalyserClasses;

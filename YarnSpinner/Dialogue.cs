@@ -173,8 +173,9 @@ namespace Yarn {
 
 		}
 
-		// Load a file from disk.
-		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+#if !NETFX_CORE
+        // Load a file from disk.
+        public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
 			string inputString = reader.ReadToEnd ();
 			reader.Close ();
@@ -182,6 +183,7 @@ namespace Yarn {
 			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
 
 		}
+#endif
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
 		public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
@@ -362,7 +364,7 @@ namespace Yarn {
 
 			public StandardLibrary() {
 
-				#region Operators
+#region Operators
 
 				this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {
 					return parameters[0] + parameters[1];
@@ -428,7 +430,7 @@ namespace Yarn {
 					return !parameters[0].AsBool;
 				});
 
-				#endregion Operators
+#endregion Operators
 			}
 		}
 

@@ -127,6 +127,30 @@ namespace Json
     }
 #endif
 
+#if NETFX_CORE
+    public enum BindingFlags
+    {
+        Instance = 4,
+        Static = 8,
+        Public = 16,
+    }
+
+    public static class ReflectionExtensions
+    {
+        public static PropertyInfo[] GetProperties(this Type type, BindingFlags flags)
+        {
+            var props = type.GetRuntimeProperties();
+
+            return props.Where(p =>
+             ((flags.HasFlag(BindingFlags.Static) == (p.GetMethod != null && p.GetMethod.IsStatic)) ||
+               (flags.HasFlag(BindingFlags.Instance) == (p.GetMethod != null && !p.GetMethod.IsStatic))
+             ) &&
+             (flags.HasFlag(BindingFlags.Public) == (p.GetMethod != null && p.GetMethod.IsPublic)
+             )).ToArray();
+        }
+    }
+#endif
+
     /// <summary>
     /// A parser for JSON.
     /// <seealso cref="http://json.org" />

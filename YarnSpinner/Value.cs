@@ -101,8 +101,8 @@ namespace Yarn
 		// Create a value with a C# object
 		public Value (object value)
 		{
-			// Copy an existing value
-			if (typeof(Value).IsInstanceOfType(value)) {
+            // Copy an existing value
+            if (value is Value) {
 				var otherValue = value as Value;
 				type = otherValue.type;
 				switch (type) {
