@@ -1,9 +1,9 @@
 # LOCALIZATION
-Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the YarnSpinnerConsole tool.
+Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the [YarnSpinnerConsole](../YarnSpinnerConsole) tool.
 
 ## Localisation procedure
 
-1. We first use the tool to place a unique **tagline** on each line of text that the end user will see.  `YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt`.
+1. We first use the tool to place unique **taglines** on each line of text that the end user will see. To do this, we execute the tool with the **taglines** command, eg:  `YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt`.
 
 2. Next, we use the tool to generate a file of strings (**genstrings**) in '[comma separated value](https://en.wikipedia.org/wiki/Comma-separated_values)' (csv) format. `YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt` will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg
     ```
