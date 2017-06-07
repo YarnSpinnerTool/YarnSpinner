@@ -8,8 +8,6 @@ export CLASSPATH=.:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar
 
 # poor terminal
 clear
-# quitting preview
-osascript -e 'tell application "Preview" to close (every window whose name is "Test.yarn.txt.pdf")'
 
 # running the script through the preprocessor
 python preprocessor.py Test.yarn.txt
@@ -20,11 +18,8 @@ antlr4 *.g4
 # compile the source code
 javac *.java
 
-# run the result and generate a parse tree into a PostScript file
-grun YarnSpinner dialogue -tokens processed.yarn -ps Test.yarn.txt.ps
-
-# open the ps
-open -a "Preview" Test.yarn.txt.ps
+# run the result and run the ANTLR gui testrig
+grun YarnSpinner dialogue -tokens processed.yarn -gui
 
 # clear up the junk we don't need
 rm *.class
