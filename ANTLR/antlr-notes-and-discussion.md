@@ -14,14 +14,6 @@ I am of the opinion that the syntax should be changed as it currently grew organ
 That doesn't mean what it currently is is garbage or that is worth throwing out the design already done as there is a LOT of great stuff in there.
 This is also NOT me saying how it should be done, this is just how I am doing it and ideally forms the beginning of a discussion around the future of YarnSpinner syntax and features.
 
-## node structure
-
-As it currently stands this can only parse the body nodes of yarn files, this is purely because that is all I have been focussing on for now as that is where the bulk of the work in YarnSpinner lies.
-
-This however opens up the question of headers, what are allowed in headers.
-What headers should be mandatory and which are optional?
-Can you have custom headers?
-
 ## `=` is for assignment and assignment alone
 
 In a language that doesn't have operator overloading, and pretty much always defines a new keyword for new functionality, we have this single case where `=` can be used for comparison and equality.
@@ -50,7 +42,7 @@ It was done this way as the preprocessor itself is quite straightforward compare
 A side-effect of this is that a symbol had to be chosen to represent the indents/dedents.
 I went with the `\a` or bell for indents (playing the role `{` normally does) and `\v` or vertical tab for dedent (`}` equivalent).
 Both of these were chosen as they are invisible and unlikely (especially in the case of bell) to be used in existing Yarn files, additionally as control characters they don't limit the amount of available characters in text lines.
-This does mean however if someone was using either of those two in their Yarn files there files won't parse correctly.
+This does mean however if someone was using either of those two in their Yarn files their files won't parse correctly.
 
 While this works this also allows for an opportunity to discuss the `->` syntax.
 It currently has remarkably flexible rules around the whitespace, such that it allows structures that would break in almost any other whitespace programming language.
@@ -145,3 +137,8 @@ As it currently stands there are no code sections in the the grammar.
 This is partially due to my experience with ANTLR and partially due to my unwillingness to add code, as each part of code is something that will have to be ported when the time comes, this feels messy and against the spirit of ANTLR to me.
 
 With that said, some things will be MUCH easier to do with in line code and can likely be written in a way that is either applicable to multiple target languages or simple enough that tweaking it won't be a problem, this is all an area we need to look at as we head forward.
+
+This also opens up the question of headers, what are allowed in headers.
+What headers should be mandatory and which are optional?
+Can you have custom headers?
+What value can each header support?
