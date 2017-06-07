@@ -115,17 +115,8 @@ namespace Yarn.Unity
             // Load all scripts
             if (sourceText != null) {
                 foreach (var source in sourceText) {
-
-                    // Is this a compiled script?
-                    // BUG: This will incorrectly detect .yarn.txt files as binary, and try to load them
-                    if (source.name.EndsWith(".yarn")) {
-                        // load the raw bytes
-                        dialogue.LoadCompiledProgram(source.bytes, source.name);
-                    } else {
-                        // load and compile the text
-                        dialogue.LoadString (source.text, source.name);
-                    }
-
+                    // load and compile the text
+                    dialogue.LoadString (source.text, source.name);
                 }
             }
 
