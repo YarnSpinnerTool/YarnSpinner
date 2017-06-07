@@ -11,7 +11,7 @@ The documentation is currently automatically generated every time a commit is ma
 If you are working on the [Development branch](https://github.com/thesecretlab/YarnSpinner/tree/development), the [build.sh](../build.sh) script is capable of generating documents for you locally by utilising the -d switch.
 
 ## Building Yarn Spinner
-Yarn Spinner is automatically built by [Travis Continual Integration](http://www.travis-ci.org) system. For information on how to build it yourself, please refer to the [Building](Building.md) document.
+Yarn Spinner is automatically built by [Travis Continual Integration](https://travis-ci.org/thesecretlab/YarnSpinner) system. For information on how to build it yourself, please refer to the [Building](Building.md) document.
 
 ## Using Yarn Spinner
 For information on how to write stories for Yarn Spinner, refer to the [Usage](Usage.md) document.
