@@ -34,9 +34,9 @@ This is a peeve of mine because it complicates design and implementation for, wh
 
 ## The `->`  shortcut syntax
 
-Shortcuts are now implemented using a two stage approach, where the Yarn files are run through a preprocessor to add in indents and dedents to build up the blocks for shortcuts.
-Due to the nature of ANTRL and YarnSpinners rather unusual approach to whitespace this was found to be the simplest approach as it means there is no code in the grammar file itself.
-There is now however an extra step and a file that will need to be ported to each language.
+Shortcuts are now implemented using a two stage approach, where the Yarn files are run through a preprocessor (currently written in Python) to add in indents and dedents to build up the blocks for shortcuts.
+Due to the nature of ANTLR and YarnSpinners rather unusual approach to whitespace this was found to be the simplest approach as it means there is no code in the grammar file itself.
+There is now however an extra step and the preprocessor will need to be ported to each language.
 It was done this way as the preprocessor itself is quite straightforward compared to what the extra code in the grammar would be.
 
 A side-effect of this is that a symbol had to be chosen to represent the indents/dedents.
@@ -52,6 +52,7 @@ Options to change include:
 
 - Locking down the syntax a bit more so that whitespace rules are enforced more than currently, Python offers a guideline for how this would look.
 - Using the use of a `{ }` (or something similar) syntax for the `->` code blocks.
+- Using a close tag similar to `<<endif>>` perhaps `<-`.
 
 At this stage it isn't worth changing as it is currently working fine, but this is something to consider going forward.
 
@@ -105,7 +106,7 @@ The question is, is it worth keeping this, picking a single case approach, exten
 
 ## functions vs actions vs expressions
 
-Currently actions work fine, functions do not but I think they'll work the same as the current YarnSpinner engine, the question is is this good?
+Currently actions work fine, as do functions, the question is is this good?
 As it currently stands the way the system determines if it is a function is if it matches as pattern of `<<bunchOfCharactersFromAnAllowedSet(some sort of expression)>>`, if it finds a space in there it determines it is an action instead.
 Expressions on the other hand go `<<keyword expression>>`.
 This is not only messy in my mind from a readability perspective it also makes it trickier to parse.
@@ -113,17 +114,17 @@ This means we have 3 uses of the `<<>>` syntax, one of which has keywords to con
 The expressions impact the dialogue, functions impact yarn spinner, actions impact the game.
 In my mind these are completely unrelated to each other in functionality yet share a very common syntax, leading to confusion or small typos resulting in unexpected behaviour, eg:
 
-- should <<if 5>> be an expression or an action?
-- is <<hello there()>> a function or an action?
-- how is <<assert(2 < 3)>> different from <<assert 2 < 3>>?
+- should `<<if 5>>` be an expression or an action?
+- is `<<hello there()>>` a function or an action?
+- how is `<<assert(2 < 3)>>` different from `<<assert 2 < 3>>`?
 
 These are easily answered and understandable from my perspective but I believe the point should be to minimise the amount of specialised knowledge needed, and overloading syntax is the opposite of that.
 While these can be fixed with warning and error messages it does feel a bit like something that should be investigated if this is the right way moving forward.
-I would change this either so everything has a keyword to control its functionality, or change the '<<>>' so that the different capabilities use different syntax.
+I would change this either so everything has a keyword to control its functionality, or change the `<<>>` so that the different capabilities use different syntax.
 
 ## Identifiers
 
-The rules around what can be identifiers are effectively arbitrary, as it currently stands they can be any upper or lower variable, any numbers, and the _ symbol.
+The rules around what can be identifiers are effectively arbitrary, as it currently stands they can be any upper or lower a-z, any numbers, and the _ symbol.
 This also somewhat ties into almost everything else that can have generic text, i.e do we allow arbitrary text inside actions or does it have to conform to a pattern?
 What should and shouldn't be allowed as identifiers and why?
 
@@ -138,7 +139,8 @@ This is partially due to my experience with ANTLR and partially due to my unwill
 
 With that said, some things will be MUCH easier to do with in line code and can likely be written in a way that is either applicable to multiple target languages or simple enough that tweaking it won't be a problem, this is all an area we need to look at as we head forward.
 
-This also opens up the question of headers, what are allowed in headers.
-What headers should be mandatory and which are optional?
-Can you have custom headers?
-What value can each header support?
+This also opens up the question of what are allowed in headers.
+
+- What headers should be mandatory?
+- Can you define your own headers?
+- What value can each header support?
