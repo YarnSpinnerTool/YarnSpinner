@@ -58,7 +58,7 @@ function_statement
 
 // temporary hack because I was getting annoyed with the red text
 action_statement
-    : '<<' (ID|BODY_NUMBER|'+'|'-')+ '>>'
+    : '<<' (ACTION_TEXT|BODY_NUMBER|'+'|'-')+ '>>'
     ;
 
 line_statement

@@ -45,7 +45,7 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 BODY_NEWLINE : [\r\n]+ -> skip ;
 
 TEXT : TEXTCOMPONENT+ ;
-fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007') ;
+fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
@@ -100,6 +100,8 @@ BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
 
 FUNCTION_TEXT : ID '(' .*? ')' ;
+
+ACTION_TEXT : ID ;
 
 WS_IN_COMMAND : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
 

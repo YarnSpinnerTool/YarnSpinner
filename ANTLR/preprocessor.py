@@ -26,6 +26,11 @@ with open(sys.argv[1], 'rU') as yarn:
     # these fill the role of { and } in other languages
     INDENT = '\a'
     DEDENT = '\v'
+    # for debugging purposes, it is REALLY hard to see \a and \v
+    if len(sys.argv) == 3 and sys.argv[2] == "debug":
+        INDENT = '{'
+        DEDENT = '}'
+
     # the option symbol, just to avoid typos
     OPTION = "->"
 
