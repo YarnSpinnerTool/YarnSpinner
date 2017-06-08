@@ -24,7 +24,7 @@ Yarn Dialogue is designed for Authors who have little or no programming knowledg
 
 ### Simple Example Script
 
-We will create thei essential Yarn Dialogue for the [Simple Example Dialogue](Unity/Assets/Yarn Spinner/Examples/Demo Assets/Simple Example Script.yarn.txt). We will start off with the text as presented by the ingame characters, add in choices which are essentially what the player says to the characters, and have the characters react to the choices.
+We will create thei essential Yarn Dialogue for the [Simple Example Dialogue](../Unity/Assets/Yarn Spinner/Examples/Demo Assets/Simple Example Script.yarn.txt). We will start off with the text as presented by the ingame characters, add in choices which are essentially what the player says to the characters, and have the characters react to the choices.
 
 Each section of text in Yarn Dialogue is known as a ***node***.
 
