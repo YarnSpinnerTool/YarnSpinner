@@ -130,7 +130,7 @@ A: How delightful!
 ===
 ```
 
-### New Nodes
+### Branching to New Nodes
 Additional nodes can be added to extend the story. These further nodes can introduce new characters, actions or provide different options and replies.
 
 We will now present the player with options of selecting what to do next.
