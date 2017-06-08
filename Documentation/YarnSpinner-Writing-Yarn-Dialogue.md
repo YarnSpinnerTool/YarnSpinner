@@ -70,8 +70,9 @@ B: And I am too! You are talking to me!
 
 Congratulations, you've just written your very first piece of Yarn Dialogue!
 
-### Adding options
+### Adding Options and Replies
 
+#### Options
 The next step we'll take is to add in some options to present to the player.  We wish to present the player with the choice of two options. To do this, we use the `->` marker as the first characters in our line of text to tell the system the text is an option.
 
 We add this after the A and B character dialogue, but before the ending tag.
@@ -90,4 +91,24 @@ B: And I am too! You are talking to me!
 -> Um ok
 ===
 ```
+
+#### Replies
+Options aren't really that useful without a ***reply***. Replies are indented with four spaces.
+```
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+```
+The reply is placed immediately after the option to which it is connected. We'll add the above replies to the first option, resulting in our Yarn Dialogue now looking like this:
+```
+title: start
+---
+A: Hey, I'm a character in a script!
+B: And I am too! You are talking to me!
+-> What's going on
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+-> Um ok
+===
+```
+> Note: The order of the reply is important. In the above example, Character A replies, then Character B. We could easily reverse these lines if we wanted Character B to reply first.
 
