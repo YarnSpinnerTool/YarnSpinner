@@ -16,7 +16,7 @@
 
 > ***Note:*** This tutorial assumes that you know nothing about writing code, in particular how to use [Unity](http://www.unity3d.com) or the Yarn Editor.
 > You do not need to know how to use those tools to write Yarn Dialogue. It is required that you know how to create a text file (.txt), which is different to a .doc, .docx, .rtf etc. document, in whatever text editor you are most comfortable using. Please refer to your friendly local computer expert if you are unsure how to do this.
-> As you learn more about Yarn Dialogue, you may find the Yarn Editor useful as you progress with your authoring. It is a text editor that is designed to make Yarn Dialogue easier to create. 
+> As you learn more about Yarn Dialogue, you may find the Yarn Editor useful as you progress with your authoring. It is a text editor that is designed to make Yarn Dialogue easier to create.
 
 ## Introducing Yarn Dialogue
 
@@ -32,8 +32,7 @@ A ***node*** consists of ***header data*** and ***body data***. The header data 
 
 In this example, our first node commences with two characters, A and B.
 
-We need to give this node a title, and in this example we will call it
-***start***. There is no default title, it can be anything you like.
+We need to give this node a title, and in this example we will call it ***start***. There is no default title, it can be anything you like.
 ```
 title: start
 ```
@@ -112,3 +111,91 @@ B: And I am too! You are talking to me!
 ```
 > Note: The order of the reply is important. In the above example, Character A replies, then Character B. We could easily reverse these lines if we wanted Character B to reply first.
 
+Finishing up here, we'll end the Dialogue with a pleasantary.
+
+```
+A: How delightful!
+```
+We now have:
+```
+title: start
+---
+A: Hey, I'm a character in a script!
+B: And I am too! You are talking to me!
+-> What's going on
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+-> Um ok
+A: How delightful!
+===
+```
+
+### New Nodes
+Additional nodes can be added to extend the story. These further nodes can introduce new characters, actions or provide different options and replies.
+
+We will now present the player with options of selecting what to do next.
+```
+B: What would you prefer to do next?
+[[Leave|Leave]]
+[[Learn more|LearnMore]]
+```
+The square double braces, `[[` and `]]`, indicate a branch to a different node. The vertical bar, ``|``, separates the string to be presented to the player (the option), from the destination ***node name***. Presentation of the new node will commence once the player has selected their chosen option text. Thus, the above code will present the player with two choices, 'Leave' and 'Learn More'. These options will take the player to the 'Leave' and 'LearnMore' nodes respectively.
+
+> Note: ***Node names*** must be a single string, that is to say they cannot have spaces in them.
+
+Our Dialogue now reads like this:
+```
+title: Start
+---
+A: Hey, I'm a character in a script!
+B: And I am too! You are talking to me!
+-> What's going on
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+-> Um ok
+A: How delightful!
+B: What would you prefer to do next?
+[[Leave|Leave]]
+[[Learn more|LearnMore]]
+===
+```
+
+All we need to do now is add in two more nodes, the Leave and LearnMore nodes. We'll add a little bit of conversation in to Characters A and B just to differentiate between the two nodes.
+
+```
+title: Leave
+---
+A: Oh, goodbye!
+B: You'll be back soon!
+===
+title: LearnMore
+---
+A: HAHAHA
+===
+```
+
+Our final Yarn Dialogue file will read such:
+```
+title: Start
+---
+A: Hey, I'm a character in a script!
+B: And I am too! You are talking to me!
+-> What's going on
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+-> Um ok
+A: How delightful!
+B: What would you prefer to do next?
+[[Leave|Leave]]
+[[Learn more|LearnMore]]
+===
+title: Leave
+---
+A: Oh, goodbye!
+B: You'll be back soon!
+===
+title: LearnMore
+---
+A: HAHAHA
+===
+```
