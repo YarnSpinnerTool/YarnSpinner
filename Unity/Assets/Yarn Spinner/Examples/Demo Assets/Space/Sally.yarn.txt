@@ -49,10 +49,3 @@ position: 827,439
 ---
 Sally: Yeah. Don't do it again.
 ===
-title: EnterLevel
-tags: 
-colorID: 0
-position: 897,118
----
-
-===
