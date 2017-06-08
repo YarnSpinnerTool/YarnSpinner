@@ -39,12 +39,13 @@ title: start
 ```
 
 > Node titles are case insensitive. The titles ***start***, ***Start***, ***START*** and ***StArT*** are different.
+
 > There is no default title. You will need to ensure that your game programmers know which node your game starts on, as it may not necessarily be the first node in your Yarn Dialogue file.
 
 The title tag is part of a collection of data known as ***header data*** that can refer to position, colour and other information about the dialogue. While the title tag is required, these other header data tags are optional and generally used later in game development when the dialogue is attached to scenes and graphical characters.
 
 To seperate the ***header data*** from the ***body data*** in the node, we then add in three `-` characters, known as a header delimiter.
-````
+```
 ---
 ```
 We can now add the starting text for our characters A and B. Their dialogue is so:
