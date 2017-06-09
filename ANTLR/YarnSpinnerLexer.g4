@@ -1,5 +1,4 @@
 // Grammar file for the YarnSpinner lexer
-// currently does not support shortcut -> syntax
 
 lexer grammar YarnSpinnerLexer;
 
@@ -15,6 +14,10 @@ HEADER_COLOUR : 'colorID' ;
 HEADER_POSITION : 'position' ;
 HEADER_SEPARATOR : ':' ;
 COMMA : ',' ;
+
+// this should allow normal "programming style" strings
+STRING : '"' .*? '"';
+//STRING : '"' (~('"' | '\\' | '\n') | '\\' ('"' | '\\'))* '"' ;
 
 NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
 ID : (([a-zA-Z0-9])|('_'))+ ;
@@ -44,7 +47,7 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 
 BODY_NEWLINE : [\r\n]+ -> skip ;
 
-TEXT : TEXTCOMPONENT+ ;
+TEXT : STRING | TEXTCOMPONENT+ ;
 fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
@@ -57,6 +60,8 @@ WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 mode Command;
 
 COMMAND_CLOSE : '>>' -> popMode ;
+
+COMMAND_STRING : STRING ;
 
 KEYWORD_IF : 'if' | 'IF' ;
 KEYWORD_ELSE : 'else' | 'ELSE' ;

@@ -88,17 +88,6 @@ with open(sys.argv[1], 'rU') as yarn:
         output_lines.append(tweaked_line)
         line_count += 1
 
-# running through one more time to quickly grab all the single shortcuts and add the INDENTDEDENT at the end
-# this is again just to simplify things for ANTLR and I think it will be nice to get a warning saying "hey there is no sub text on this option, that right?"
-# as only shortcuts can have an indent symbol, if there isnt one it means it is by itself so add the INDENT/DEDENT to the end
-line_count = 0
-for line in output_lines:
-    if line.strip().startswith(OPTION):
-        if not line.endswith(INDENT):
-            line += INDENT + DEDENT
-            output_lines[line_count] = line
-    line_count += 1
-
 # saving the processed Yarn file back out and joining the lines back together with \n's
 output = open('processed.yarn', 'w')
 output.write('\n'.join(output_lines))

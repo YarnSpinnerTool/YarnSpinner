@@ -1,5 +1,4 @@
 // Basic Parser grammar for YarnSpinner
-// currently does not support shortcut -> syntax
 
 parser grammar YarnSpinnerParser;
 
@@ -17,7 +16,7 @@ node: header body NEWLINE*;
 // at least according to https://stackoverflow.com/questions/14934081/antlr4-matching-all-input-alternatives-exaclty-once
 header : header_title (header_tags | header_colour | header_position)* ;
 
-header_title    : HEADER_TITLE    ':' ID+               NEWLINE ;
+header_title    : HEADER_TITLE    ':' ID                NEWLINE ;
 header_tags     : HEADER_TAGS     ':' ID*               NEWLINE ;
 header_colour   : HEADER_COLOUR   ':' NUMBER            NEWLINE ;
 header_position : HEADER_POSITION ':' NUMBER ',' NUMBER NEWLINE ;
@@ -35,7 +34,7 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? INDENT statement* DEDENT ;
+shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? (INDENT statement* DEDENT)? ;
 
 if_statement
     : '<<' KEYWORD_IF expression '>>' statement* ('<<' KEYWORD_ELSE_IF expression '>>' statement*)* ('<<' KEYWORD_ELSE '>>' statement*)* '<<' KEYWORD_ENDIF '>>'
@@ -58,7 +57,7 @@ function_statement
 
 // temporary hack because I was getting annoyed with the red text
 action_statement
-    : '<<' (ACTION_TEXT|BODY_NUMBER|'+'|'-')+ '>>'
+    : '<<' (COMMAND_STRING | (ACTION_TEXT|BODY_NUMBER|'+'|'-')+) '>>'
     ;
 
 line_statement
@@ -83,9 +82,9 @@ expression
 
 // can add in support for more values in here
 value
-    : BODY_NUMBER
-    | KEYWORD_TRUE
-    | KEYWORD_FALSE
+    : BODY_NUMBER   #valueNumber
+    | KEYWORD_TRUE  #valueTrue
+    | KEYWORD_FALSE #valueFalse
     ;
 variable
     : VAR_ID
