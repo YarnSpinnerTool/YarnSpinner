@@ -10,7 +10,7 @@ To build Yarn Spinner on Windows or Mac, you'll need MonoDevelop. You can [downl
 To build Yarn Spinner on Linux, you can either
 * use [xbuild](http://www.mono-project.com/docs/tools+libraries/tools/xbuild/) and [nuget](http://www.nuget.org).
 * Then ensure you have the correct packages installed by nuget, `nuget restore YarnSpinner.sln`.
-* See the [build.sh](../build.sh) script for further information on how using mono to build.
+* See the [build.sh](../../build.sh) script for further information on how using mono to build.
 or
 * use [Flatpak](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
 
