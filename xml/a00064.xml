@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00064" kind="class" prot="package">
+    <compoundname>Yarn::Parser</compoundname>
+    <innerclass refid="a00019" prot="package">Yarn::Parser::AssignmentStatement</innerclass>
+    <innerclass refid="a00022" prot="package">Yarn::Parser::Block</innerclass>
+    <innerclass refid="a00032" prot="package">Yarn::Parser::CustomCommand</innerclass>
+    <innerclass refid="a00040" prot="package">Yarn::Parser::Expression</innerclass>
+    <innerclass refid="a00043" prot="package">Yarn::Parser::IfStatement</innerclass>
+    <innerclass refid="a00054" prot="package">Yarn::Parser::Node</innerclass>
+    <innerclass refid="a00058" prot="package">Yarn::Parser::Operator</innerclass>
+    <innerclass refid="a00061" prot="package">Yarn::Parser::OptionStatement</innerclass>
+    <innerclass refid="a00063" prot="package">Yarn::Parser::ParseNode</innerclass>
+    <innerclass refid="a00070" prot="package">Yarn::Parser::ShortcutOption</innerclass>
+    <innerclass refid="a00071" prot="package">Yarn::Parser::ShortcutOptionGroup</innerclass>
+    <innerclass refid="a00076" prot="package">Yarn::Parser::Statement</innerclass>
+    <innerclass refid="a00087" prot="public">Yarn::Parser::ValueNode</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00064_1a1a4de646937057988b59d2ff8035eae3" prot="private" static="no" mutable="no">
+        <type>Queue&lt; <ref refid="a00079" kindref="compound">Token</ref> &gt;</type>
+        <definition>Queue&lt;Token&gt; Yarn.Parser.tokens</definition>
+        <argsstring></argsstring>
+        <name>tokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1233" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00064_1a1313951b09177a1c83b6cf035139197a" prot="private" static="no" mutable="no">
+        <type><ref refid="a00049" kindref="compound">Library</ref></type>
+        <definition>Library Yarn.Parser.library</definition>
+        <argsstring></argsstring>
+        <name>library</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1235" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1235" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00064_1aa8fa36b46de12a1c561d77b99c4b9ae3" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Yarn.Parser.Tab</definition>
+        <argsstring>(int indentLevel, string input, bool newLine=true)</argsstring>
+        <name>Tab</name>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>newLine</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="83" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="83" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00064_1acd2714b911fb5e7c38f0e07a9dc1af58" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Parser</definition>
+        <argsstring>(ICollection&lt; Token &gt; tokens, Library library)</argsstring>
+        <name>Parser</name>
+        <param>
+          <type>ICollection&lt; <ref refid="a00079" kindref="compound">Token</ref> &gt;</type>
+          <declname>tokens</declname>
+        </param>
+        <param>
+          <type><ref refid="a00049" kindref="compound">Library</ref></type>
+          <declname>library</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1238" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1238" bodyend="1241"/>
+      </memberdef>
+      <memberdef kind="function" id="a00064_1a811cc7226f4f4a2f3440cdb67ad14468" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00054" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.Parse</definition>
+        <argsstring>()</argsstring>
+        <name>Parse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1243" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1243" bodyend="1247"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00064_1a666a945da1a7845b02b92592fccac291" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Parser.NextSymbolIs</definition>
+        <argsstring>(params TokenType[] validTypes)</argsstring>
+        <name>NextSymbolIs</name>
+        <param>
+          <type>params <ref refid="a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
+          <declname>validTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1250" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1250" bodyend="1259"/>
+      </memberdef>
+      <memberdef kind="function" id="a00064_1afaa7e96d4cdaf6b1fde9ecd273c00c34" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Parser.NextSymbolsAre</definition>
+        <argsstring>(params TokenType[] validTypes)</argsstring>
+        <name>NextSymbolsAre</name>
+        <param>
+          <type>params <ref refid="a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
+          <declname>validTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1264" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1264" bodyend="1271"/>
+      </memberdef>
+      <memberdef kind="function" id="a00064_1a8a396d05e7dad704009e8c77657b31d3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00079" kindref="compound">Token</ref></type>
+        <definition>Token Yarn.Parser.ExpectSymbol</definition>
+        <argsstring>(TokenType type)</argsstring>
+        <name>ExpectSymbol</name>
+        <param>
+          <type><ref refid="a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1276" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1276" bodyend="1283"/>
+      </memberdef>
+      <memberdef kind="function" id="a00064_1a5a8f02cd87335aae2f2aa7de13c7512c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00079" kindref="compound">Token</ref></type>
+        <definition>Token Yarn.Parser.ExpectSymbol</definition>
+        <argsstring>()</argsstring>
+        <name>ExpectSymbol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1286" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1286" bodyend="1292"/>
+      </memberdef>
+      <memberdef kind="function" id="a00064_1ae69620071ecfd16807c5dfc0948ee7f5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00079" kindref="compound">Token</ref></type>
+        <definition>Token Yarn.Parser.ExpectSymbol</definition>
+        <argsstring>(params TokenType[] validTypes)</argsstring>
+        <name>ExpectSymbol</name>
+        <param>
+          <type>params <ref refid="a00026_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
+          <declname>validTypes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1296" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1296" bodyend="1306"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="617">
+        <label>Yarn.Parser</label>
+        <link refid="a00064"/>
+        <childnode refid="618" relation="usage">
+          <edgelabel>-library</edgelabel>
+        </childnode>
+      </node>
+      <node id="618">
+        <label>Yarn.Library</label>
+        <link refid="a00049"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="80" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="80" bodyend="1307"/>
+    <listofallmembers>
+      <member refid="a00064_1a8a396d05e7dad704009e8c77657b31d3" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>ExpectSymbol</name></member>
+      <member refid="a00064_1a5a8f02cd87335aae2f2aa7de13c7512c" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>ExpectSymbol</name></member>
+      <member refid="a00064_1ae69620071ecfd16807c5dfc0948ee7f5" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>ExpectSymbol</name></member>
+      <member refid="a00064_1a1313951b09177a1c83b6cf035139197a" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>library</name></member>
+      <member refid="a00064_1a666a945da1a7845b02b92592fccac291" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>NextSymbolIs</name></member>
+      <member refid="a00064_1afaa7e96d4cdaf6b1fde9ecd273c00c34" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>NextSymbolsAre</name></member>
+      <member refid="a00064_1a811cc7226f4f4a2f3440cdb67ad14468" prot="package" virt="non-virtual"><scope>Yarn::Parser</scope><name>Parse</name></member>
+      <member refid="a00064_1acd2714b911fb5e7c38f0e07a9dc1af58" prot="package" virt="non-virtual"><scope>Yarn::Parser</scope><name>Parser</name></member>
+      <member refid="a00064_1aa8fa36b46de12a1c561d77b99c4b9ae3" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>Tab</name></member>
+      <member refid="a00064_1a1a4de646937057988b59d2ff8035eae3" prot="private" virt="non-virtual"><scope>Yarn::Parser</scope><name>tokens</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

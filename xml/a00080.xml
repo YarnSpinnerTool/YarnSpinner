@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00080" kind="class" prot="package">
+    <compoundname>Yarn::TokeniserException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">InvalidOperationException</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00080_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.TokeniserException.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00080_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.TokeniserException.columnNumber</definition>
+        <argsstring></argsstring>
+        <name>columnNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00080_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.TokeniserException.TokeniserException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>TokeniserException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="a00080_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.TokeniserException.TokeniserException</definition>
+        <argsstring>(int lineNumber, int columnNumber, string message)</argsstring>
+        <name>TokeniserException</name>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>columnNumber</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="39" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00080_1af88cfa5eafdee355e1abb67e358497bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00080" kindref="compound">TokeniserException</ref></type>
+        <definition>static TokeniserException Yarn.TokeniserException.ExpectedTokensFromState</definition>
+        <argsstring>(int lineNumber, int columnNumber, Lexer.LexerState state)</argsstring>
+        <name>ExpectedTokensFromState</name>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>columnNumber</declname>
+        </param>
+        <param>
+          <type><ref refid="a00048" kindref="compound">Lexer.LexerState</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="47" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="684">
+        <label>InvalidOperationException</label>
+      </node>
+      <node id="683">
+        <label>Yarn.TokeniserException</label>
+        <link refid="a00080"/>
+        <childnode refid="684" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="686">
+        <label>InvalidOperationException</label>
+      </node>
+      <node id="685">
+        <label>Yarn.TokeniserException</label>
+        <link refid="a00080"/>
+        <childnode refid="686" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="33" bodyend="66"/>
+    <listofallmembers>
+      <member refid="a00080_1aabf2ad38f3984297c1daede9be55e3d6" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>columnNumber</name></member>
+      <member refid="a00080_1af88cfa5eafdee355e1abb67e358497bd" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>ExpectedTokensFromState</name></member>
+      <member refid="a00080_1a54b936d7b4f26f88a07a66c5fc1d1ad1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>lineNumber</name></member>
+      <member refid="a00080_1ad00fcf742d2b0d476ce43b27a3f3b6c1" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
+      <member refid="a00080_1aa8674d006a0d29081a7b87bdd8ff2f4f" prot="public" virt="non-virtual"><scope>Yarn::TokeniserException</scope><name>TokeniserException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

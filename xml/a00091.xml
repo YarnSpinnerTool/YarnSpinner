@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00091" kind="class" prot="public">
+    <compoundname>Yarn::YarnException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00091_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.YarnException.YarnException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>YarnException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="36" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="748">
+        <label>Exception</label>
+      </node>
+      <node id="747">
+        <label>Yarn.YarnException</label>
+        <link refid="a00091"/>
+        <childnode refid="748" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="750">
+        <label>Exception</label>
+      </node>
+      <node id="749">
+        <label>Yarn.YarnException</label>
+        <link refid="a00091"/>
+        <childnode refid="750" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="35" bodyend="37"/>
+    <listofallmembers>
+      <member refid="a00091_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" virt="non-virtual"><scope>Yarn::YarnException</scope><name>YarnException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

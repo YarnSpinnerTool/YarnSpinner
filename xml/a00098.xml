@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00098" kind="file">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner<sp/>Documentation</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Documentation</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>is<sp/>under<sp/>active<sp/>development.<sp/>Please<sp/>submit<sp/>any<sp/>suggestions<sp/>you<sp/>may<sp/>have.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">YarnSpinner<sp/>documentation<sp/>is<sp/>generated<sp/>automatically<sp/>by<sp/>the<sp/>[Doxygen](http:</highlight><highlight class="comment">//www.doxygen.org)<sp/>system.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Building<sp/>Yarnspinner</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="normal">Yarnspinner<sp/>is<sp/>automatically<sp/>built<sp/>by<sp/>Travis<sp/>Continual<sp/>Integration<sp/>system.<sp/>For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>build<sp/>it<sp/>yourself,<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>[Building](Building.md)<sp/>document.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">##<sp/>Using<sp/>Yarnspinner</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>write<sp/>stories<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarnspinner,<sp/>refer<sp/>to<sp/>the<sp/>[Usage](Usage.md)<sp/>document.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">##<sp/>Using<sp/>Unity</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>point<sp/>in<sp/>time,<sp/>only<sp/>examples<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>Unity<sp/>game<sp/>engine<sp/>are<sp/>available.<sp/>We<sp/>hope<sp/>to<sp/>include<sp/>a<sp/>more<sp/></highlight><highlight class="keyword">generic</highlight><highlight class="normal"><sp/>example<sp/>in<sp/>the<sp/>future.<sp/><sp/>Please<sp/>refer<sp/>to<sp/>the<sp/>[Unity](Unity.md)<sp/>document<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>more<sp/>information.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">###<sp/>Tips<sp/>during<sp/>Unity<sp/>install</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">###<sp/>Windows</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">Find<sp/>the<sp/>temp<sp/>folder<sp/>the<sp/>installer<sp/>has<sp/>executed<sp/>from<sp/>and<sp/>back<sp/>it<sp/>up<sp/>before<sp/>it<sp/>completes<sp/>installing.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">###<sp/>Mac</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">(This<sp/>space<sp/>left<sp/>intentionally<sp/>blank)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Linux</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">Unity<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Linux<sp/>is<sp/>not<sp/>available<sp/>in<sp/>formal<sp/>release<sp/>and<sp/>we<sp/>are<sp/>not<sp/>actively<sp/>pursuing<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>platform,<sp/>however<sp/>we<sp/>are<sp/>very<sp/>enthusastic<sp/>about<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>future<sp/>prospect.<sp/>We<sp/>have<sp/>confirmed<sp/>that<sp/>Yarnspinner<sp/>works<sp/>with<sp/>the<sp/>current<sp/>5.6<sp/>release<sp/>of<sp/>[Unity<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Linux](https:</highlight><highlight class="comment">//forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/),<sp/>although<sp/>this<sp/>has<sp/>only<sp/>been<sp/>tested<sp/>with<sp/>our<sp/>example<sp/>Unity<sp/>code<sp/>on<sp/>Debian<sp/>Stretch<sp/>(amd64<sp/>architecture).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">We<sp/>encourge<sp/>Linux<sp/>users<sp/>to<sp/>test<sp/>Yarnspinner<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>the<sp/>[Monodevelop<sp/>FlatPak](http:</highlight><highlight class="comment">//www.monodevelop.com/download/linux/).<sp/>Although<sp/>FlatPak<sp/>is<sp/>designed<sp/>to<sp/>be<sp/>Linux<sp/>agnostic,<sp/>we<sp/>are<sp/>currently<sp/>utilising<sp/>Gnome3<sp/>on<sp/>Debian<sp/>Stretch<sp/>for<sp/>desktop<sp/>development<sp/>purposes.<sp/>Your<sp/>mileage<sp/>may<sp/>vary<sp/>on<sp/>other<sp/>Linux<sp/>combinations<sp/>and<sp/>flavours,<sp/>we<sp/>are<sp/>eager<sp/>to<sp/>receive<sp/>your<sp/>feedback.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Extending<sp/>Tarnspinner</highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor"></highlight><highlight class="normal">For<sp/>information<sp/>on<sp/>how<sp/>to<sp/>extend<sp/>Yarnspinner</highlight><highlight class="stringliteral">&apos;s<sp/>functionality,<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>[Extending<sp/>Yarnspinner](Extending.md)<sp/>document.</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/README.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,279 @@
+\hypertarget{a00051}{\section{Yarn.\-Loader Class Reference}
+\label{a00051}\index{Yarn.\-Loader@{Yarn.\-Loader}}
+}
+
+
+Collaboration diagram for Yarn.\-Loader\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00246}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00056}{Node\-Info}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00051_a1972fc413e1679ecbe91eef536ca8479}{Loader} (\hyperlink{a00036}{Dialogue} \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue})
+\item 
+\hyperlink{a00067}{Program} \hyperlink{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}{Load} (string text, \hyperlink{a00049}{Library} library, string file\-Name, \hyperlink{a00067}{Program} include\-Program, bool show\-Tokens, bool show\-Parse\-Tree, string only\-Consider\-Node)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00067}{Program} \hyperlink{a00051_a6d8296076823c0c082df9024367f4860}{program}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00051_a9321fce224021841ce6f70ca7fbe531b}{Print\-Token\-List} (I\-Enumerable$<$ \hyperlink{a00079}{Token} $>$ token\-List)
+\item 
+void \hyperlink{a00051_aa105ea8e5d65a420d1089616523feecc}{Print\-Parse\-Tree} (\hyperlink{a00063}{Yarn.\-Parser.\-Parse\-Node} root\-Node)
+\item 
+\hyperlink{a00056}{Node\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00051_a2f635405d2b624ac67a27da0787a3524}{Parse\-Input} (string text)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00036}{Dialogue} \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00051_a1972fc413e1679ecbe91eef536ca8479}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Loader@{Loader}}
+\index{Loader@{Loader}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{Loader}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Loader (
+\begin{DoxyParamCaption}
+\item[{{\bf Dialogue}}]{dialogue}
+\end{DoxyParamCaption}
+)}}\label{a00051_a1972fc413e1679ecbe91eef536ca8479}
+
+\begin{DoxyCode}
+65                                          \{
+66             \textcolor{keywordflow}{if} (\hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue} == null)
+67                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException (\textcolor{stringliteral}{"dialogue"});
+68             
+69             this.dialogue = \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue};
+70 
+71         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Load@{Load}}
+\index{Load@{Load}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{Load}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-Load (
+\begin{DoxyParamCaption}
+\item[{string}]{text, }
+\item[{{\bf Library}}]{library, }
+\item[{string}]{file\-Name, }
+\item[{{\bf Program}}]{include\-Program, }
+\item[{bool}]{show\-Tokens, }
+\item[{bool}]{show\-Parse\-Tree, }
+\item[{string}]{only\-Consider\-Node}
+\end{DoxyParamCaption}
+)}}\label{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}
+
+\begin{DoxyCode}
+77                                                                                                            
+                                                            \{
+78 
+79             \textcolor{comment}{// The final parsed nodes that were in the file we were given}
+80             Dictionary<string, \hyperlink{a00054}{Yarn.Parser.Node}> nodes = \textcolor{keyword}{new} Dictionary<string, Parser.Node
+      >();
+81 
+82             \textcolor{comment}{// Load the raw data and get the array of node title-text pairs}
+83             var nodeInfos = \hyperlink{a00051_a2f635405d2b624ac67a27da0787a3524}{ParseInput} (text);
+84 
+85             \textcolor{keywordtype}{int} nodesLoaded = 0;
+86 
+87             \textcolor{keywordflow}{foreach} (NodeInfo nodeInfo \textcolor{keywordflow}{in} nodeInfos) \{
+88 
+89                 \textcolor{keywordflow}{if} (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
+90                     \textcolor{keywordflow}{continue};
+91 
+92                 \textcolor{comment}{// Attempt to parse every node; log if we encounter any errors}
+93 \textcolor{preprocessor}{                #if CATCH\_EXCEPTIONS}
+94 \textcolor{preprocessor}{}                \textcolor{keywordflow}{try} \{
+95 \textcolor{preprocessor}{                #endif }
+96 \textcolor{preprocessor}{}                    
+97                     \textcolor{keywordflow}{if} (nodes.ContainsKey(nodeInfo.title)) \{
+98                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{stringliteral}{"Attempted to load a node called "}+
+99                             nodeInfo.title+\textcolor{stringliteral}{", but a node with that name has already been loaded!"});
+100                     \}
+101 
+102                     var lexer = \textcolor{keyword}{new} Lexer ();
+103                     var tokens = lexer.Tokenise (nodeInfo.title, nodeInfo.text);
+104 
+105                     \textcolor{keywordflow}{if} (showTokens)
+106                         \hyperlink{a00051_a9321fce224021841ce6f70ca7fbe531b}{PrintTokenList} (tokens);
+107 
+108                     var node = \textcolor{keyword}{new} Parser (tokens, library).Parse();
+109 
+110                     \textcolor{comment}{// If this node is tagged "rawText", then preserve its source}
+111                     \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(nodeInfo.tags) == \textcolor{keyword}{false} && 
+112                         nodeInfo.tags.Contains(\textcolor{stringliteral}{"rawText"})) \{
+113                         node.source = nodeInfo.text;
+114                     \}
+115 
+116                     node.name = nodeInfo.title;
+117 
+118                     \textcolor{keywordflow}{if} (showParseTree)
+119                         \hyperlink{a00051_aa105ea8e5d65a420d1089616523feecc}{PrintParseTree}(node);
+120 
+121                     nodes[nodeInfo.title] = node;
+122 
+123                     nodesLoaded++;
+124 
+125 \textcolor{preprocessor}{                #if CATCH\_EXCEPTIONS}
+126 \textcolor{preprocessor}{}                \} \textcolor{keywordflow}{catch} (Yarn.TokeniserException t) \{
+127                     \textcolor{comment}{// Add file information}
+128                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error reading node \{1\}: \{2\}"}, fileName, 
+      nodeInfo.title, t.Message);
+129                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00080}{Yarn.TokeniserException} (message);
+130                 \} \textcolor{keywordflow}{catch} (Yarn.ParseException p) \{
+131                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error parsing node \{1\}: \{2\}"}, fileName, 
+      nodeInfo.title, p.Message);
+132                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00062}{Yarn.ParseException} (message);
+133                 \} \textcolor{keywordflow}{catch} (InvalidOperationException e) \{
+134                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error reading node \{1\}: \{2\}"}, fileName, 
+      nodeInfo.title, e.Message);
+135                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (message);
+136                 \}
+137 \textcolor{preprocessor}{                #endif }
+138 \textcolor{preprocessor}{}
+139 
+140             \}
+141 
+142             var compiler = \textcolor{keyword}{new} \hyperlink{a00029}{Yarn.Compiler}(fileName);
+143 
+144             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
+145                 compiler.CompileNode (node.Value);
+146             \}
+147 
+148             \textcolor{keywordflow}{if} (includeProgram != null) \{
+149                 compiler.program.Include (includeProgram);
+150             \}
+151 
+152             \textcolor{keywordflow}{return} compiler.program;
+153 
+154         \}
+\end{DoxyCode}
+\hypertarget{a00051_a2f635405d2b624ac67a27da0787a3524}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Parse\-Input@{Parse\-Input}}
+\index{Parse\-Input@{Parse\-Input}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{Parse\-Input}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Loader.\-Parse\-Input (
+\begin{DoxyParamCaption}
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a2f635405d2b624ac67a27da0787a3524}
+
+\begin{DoxyCode}
+171         \{
+172             \textcolor{comment}{// All the nodes we found in this file}
+173             var nodes = \textcolor{keyword}{new} List<NodeInfo> ();
+174 
+175             \textcolor{keywordflow}{if} (text.IndexOf(\textcolor{stringliteral}{"//"}) == 0) \{
+176                 \textcolor{comment}{// If it starts with a comment, treat it as a single-node file}
+177                 nodes.Add (\textcolor{keyword}{new} NodeInfo (\textcolor{stringliteral}{"Start"}, text, null));
+178             \} \textcolor{keywordflow}{else} \{
+179                 \textcolor{comment}{// Blindly assume it's JSON! \(\backslash\):D/}
+180                 \textcolor{keywordflow}{try} \{
+181 
+182                     \textcolor{comment}{// First, parse the raw text}
+183                     var loadedJSON = JsonParser.FromJson (text);
+184 
+185                     \textcolor{comment}{// Process each item that was found (probably just a single one)}
+186                     \textcolor{keywordflow}{foreach} (var item \textcolor{keywordflow}{in} loadedJSON) \{
+187 
+188                         \textcolor{comment}{// We expect it to be an array of dictionaries}
+189                         var list = item.Value as IList<object>;
+190 
+191                         \textcolor{comment}{// For each dictionary in the list..}
+192                         \textcolor{keywordflow}{foreach} (IDictionary<string,object> nodeJSON \textcolor{keywordflow}{in} list) \{
+193 
+194                             \textcolor{comment}{// Pull out the node's title and body, and use that}
+195                             nodes.Add(
+196                                 \textcolor{keyword}{new} NodeInfo(
+197                                     nodeJSON[\textcolor{stringliteral}{"title"}] as \textcolor{keywordtype}{string}, 
+198                                     nodeJSON[\textcolor{stringliteral}{"body"}] as \textcolor{keywordtype}{string},
+199                                     nodeJSON[\textcolor{stringliteral}{"tags"}] as \textcolor{keywordtype}{string}
+200                                 )
+201                             );
+202                         \}
+203                     \}
+204 
+205                 \} \textcolor{keywordflow}{catch} (InvalidCastException) \{
+206                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Error parsing Yarn input: it's valid JSON, but "} +
+207                         \textcolor{stringliteral}{"it didn't match the data layout I was expecting."});
+208                 \} \textcolor{keywordflow}{catch} (\hyperlink{a00045}{InvalidJsonException} e) \{
+209                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Error parsing Yarn input: "} + e.Message);
+210                 \}
+211             \}
+212 
+213             \textcolor{comment}{// hooray we're done}
+214             \textcolor{keywordflow}{return} nodes.ToArray();
+215         \}
+\end{DoxyCode}
+\hypertarget{a00051_aa105ea8e5d65a420d1089616523feecc}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Print\-Parse\-Tree@{Print\-Parse\-Tree}}
+\index{Print\-Parse\-Tree@{Print\-Parse\-Tree}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{Print\-Parse\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Loader.\-Print\-Parse\-Tree (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Parser.\-Parse\-Node}}]{root\-Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_aa105ea8e5d65a420d1089616523feecc}
+
+\begin{DoxyCode}
+58                                                             \{
+59             dialogue.LogDebugMessage(\textcolor{stringliteral}{"Parse Tree:"});
+60             dialogue.LogDebugMessage(rootNode.PrintTree(0));
+61 
+62         \}
+\end{DoxyCode}
+\hypertarget{a00051_a9321fce224021841ce6f70ca7fbe531b}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Print\-Token\-List@{Print\-Token\-List}}
+\index{Print\-Token\-List@{Print\-Token\-List}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{Print\-Token\-List}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Loader.\-Print\-Token\-List (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ {\bf Token} $>$}]{token\-List}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a9321fce224021841ce6f70ca7fbe531b}
+
+\begin{DoxyCode}
+44                                                           \{
+45             \textcolor{comment}{// Sum up the result}
+46             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
+47             \textcolor{keywordflow}{foreach} (var t \textcolor{keywordflow}{in} tokenList) \{
+48                 sb.AppendLine (string.Format(\textcolor{stringliteral}{"\{0\} (\{1\} line \{2\})"}, t.ToString (), t.context, t.lineNumber))
+      ;
+49             \}
+50 
+51             \textcolor{comment}{// Let's see what we got}
+52             dialogue.LogDebugMessage(\textcolor{stringliteral}{"Tokens:"});
+53             dialogue.LogDebugMessage(sb.ToString());
+54 
+55         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Loader.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00051_a6d8296076823c0c082df9024367f4860}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!program@{program}}
+\index{program@{program}!Yarn::Loader@{Yarn\-::\-Loader}}
+\subsubsection[{program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-program\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00051_a6d8296076823c0c082df9024367f4860}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00121}{Loader.\-cs}\end{DoxyCompactItemize}

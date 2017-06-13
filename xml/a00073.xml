@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00073" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="a00163" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00073_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00163" kindref="compound">SpriteInfo</ref>[]</type>
+        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
+        <argsstring></argsstring>
+        <name>sprites</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00073_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
+        <argsstring>(string spriteName)</argsstring>
+        <name>UseSprite</name>
+        <param>
+          <type>string</type>
+          <declname>spriteName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="44" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="649">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00073"/>
+        <childnode refid="650" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="650">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="651">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00073"/>
+        <childnode refid="652" relation="public-inheritance">
+        </childnode>
+        <childnode refid="653" relation="usage">
+          <edgelabel>+sprites</edgelabel>
+        </childnode>
+      </node>
+      <node id="653">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+        <link refid="a00163"/>
+      </node>
+      <node id="652">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="33" bodyend="60"/>
+    <listofallmembers>
+      <member refid="a00073_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
+      <member refid="a00073_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

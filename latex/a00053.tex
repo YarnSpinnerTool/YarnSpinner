@@ -1,0 +1,58 @@
+\hypertarget{a00053}{\section{Mobile\-Only Class Reference}
+\label{a00053}\index{Mobile\-Only@{Mobile\-Only}}
+}
+
+
+Inheritance diagram for Mobile\-Only\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{a00178}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Mobile\-Only\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{a00179}
+\end{center}
+\end{figure}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00053_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00053_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00053_acfb1b3a9c8f62b30300331fb84752022}
+
+\begin{DoxyCode}
+9                   \{
+10 
+11         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+12             \textcolor{comment}{// Hang around}
+13         \} \textcolor{keywordflow}{else} \{
+14             Destroy(gameObject);
+15         \}
+16     
+17     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\hyperlink{a00111}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

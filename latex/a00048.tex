@@ -1,0 +1,144 @@
+\hypertarget{a00048}{\section{Yarn.\-Lexer.\-Lexer\-State Class Reference}
+\label{a00048}\index{Yarn.\-Lexer.\-Lexer\-State@{Yarn.\-Lexer.\-Lexer\-State}}
+}
+
+
+Collaboration diagram for Yarn.\-Lexer.\-Lexer\-State\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{a00237}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00048_ac67a7c0e09d7b4350f75b105723a4f6c}{Lexer\-State} (Dictionary$<$ \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00048_a951f91e9522ffe84851f2e25e9445106}{patterns})
+\item 
+\hyperlink{a00082}{Token\-Rule} \hyperlink{a00048_a71ba52744e853ff142de19e97cf5daed}{Add\-Transition} (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null, bool delimits\-Text=false)
+\item 
+\hyperlink{a00082}{Token\-Rule} \hyperlink{a00048_af183111863c651ae5681665a2c379830}{Add\-Text\-Rule} (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{a00082}{Token\-Rule} $>$ \hyperlink{a00048_adf6563b1dc6f3ef80ed13c2b15b7be03}{token\-Rules} = new List$<$\hyperlink{a00082}{Token\-Rule}$>$()
+\item 
+bool \hyperlink{a00048_ad8b6ccac53bedd9dc202ffe6ac5698b2}{set\-Track\-Next\-Indentation} = false
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00048_a69948f05c35eeae9cb8448c849a053e6}{contains\-Text\-Rule} \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00048_a951f91e9522ffe84851f2e25e9445106}{patterns}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00048_ac67a7c0e09d7b4350f75b105723a4f6c}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Lexer\-State@{Lexer\-State}}
+\index{Lexer\-State@{Lexer\-State}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Lexer\-State}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Lexer\-State.\-Lexer\-State (
+\begin{DoxyParamCaption}
+\item[{Dictionary$<$ {\bf Token\-Type}, string $>$}]{patterns}
+\end{DoxyParamCaption}
+)}}\label{a00048_ac67a7c0e09d7b4350f75b105723a4f6c}
+
+\begin{DoxyCode}
+212             \{
+213                 this.patterns = \hyperlink{a00048_a951f91e9522ffe84851f2e25e9445106}{patterns};
+214             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00048_af183111863c651ae5681665a2c379830}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Text\-Rule@{Add\-Text\-Rule}}
+\index{Add\-Text\-Rule@{Add\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{a00048_af183111863c651ae5681665a2c379830}
+
+\begin{DoxyCode}
+233             \{
+234                 \textcolor{keywordflow}{if} (\hyperlink{a00048_a69948f05c35eeae9cb8448c849a053e6}{containsTextRule}) \{
+235                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (\textcolor{stringliteral}{"State already contains a text rule"});
+236                 \}
+237 
+238                 var delimiterRules = \textcolor{keyword}{new} List<string>();
+239 
+240                 \textcolor{keywordflow}{foreach} (var otherRule \textcolor{keywordflow}{in} \hyperlink{a00048_adf6563b1dc6f3ef80ed13c2b15b7be03}{tokenRules}) \{
+241                     \textcolor{keywordflow}{if} (otherRule.delimitsText == \textcolor{keyword}{true})
+242                         delimiterRules.Add (string.Format (\textcolor{stringliteral}{"(\{0\})"}, otherRule.regex.ToString().Substring(2)
+      ));
+243                 \}
+244 
+245                 \textcolor{comment}{// Create a regex that matches all text up to but not including}
+246                 \textcolor{comment}{// any of the delimiter rules}
+247                 var pattern = string.Format (\textcolor{stringliteral}{@"\(\backslash\)G((?!\{0\}).)*"}, 
+248                     string.Join (\textcolor{stringliteral}{"|"}, delimiterRules.ToArray()));
+249 
+250                 var rule = \hyperlink{a00048_a71ba52744e853ff142de19e97cf5daed}{AddTransition}(type, entersState);
+251 
+252                 rule.regex = \textcolor{keyword}{new} Regex (pattern);
+253                 rule.isTextRule = \textcolor{keyword}{true};
+254 
+255 
+256                 \textcolor{keywordflow}{return} rule;
+257             \}
+\end{DoxyCode}
+\hypertarget{a00048_a71ba52744e853ff142de19e97cf5daed}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Transition@{Add\-Transition}}
+\index{Add\-Transition@{Add\-Transition}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Transition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Transition (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}, }
+\item[{bool}]{delimits\-Text = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{a00048_a71ba52744e853ff142de19e97cf5daed}
+
+\begin{DoxyCode}
+218                                                                                                            
+            \{
+219 
+220                 var pattern = string.Format (\textcolor{stringliteral}{@"\(\backslash\)G\{0\}"}, \hyperlink{a00048_a951f91e9522ffe84851f2e25e9445106}{patterns} [type]);
+221 
+222                 var rule = \textcolor{keyword}{new} TokenRule (type, \textcolor{keyword}{new} Regex(pattern), entersState, delimitsText);
+223 
+224                 tokenRules.Add(rule);
+225 
+226                 \textcolor{keywordflow}{return} rule;
+227             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00048_a951f91e9522ffe84851f2e25e9445106}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!patterns@{patterns}}
+\index{patterns@{patterns}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{patterns}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<${\bf Token\-Type}, string$>$ Yarn.\-Lexer.\-Lexer\-State.\-patterns\hspace{0.3cm}{\ttfamily [private]}}}\label{a00048_a951f91e9522ffe84851f2e25e9445106}
+\hypertarget{a00048_ad8b6ccac53bedd9dc202ffe6ac5698b2}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}}
+\index{set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{set\-Track\-Next\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-set\-Track\-Next\-Indentation = false}}\label{a00048_ad8b6ccac53bedd9dc202ffe6ac5698b2}
+\hypertarget{a00048_adf6563b1dc6f3ef80ed13c2b15b7be03}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!token\-Rules@{token\-Rules}}
+\index{token\-Rules@{token\-Rules}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{token\-Rules}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Token\-Rule}$>$ Yarn.\-Lexer.\-Lexer\-State.\-token\-Rules = new List$<${\bf Token\-Rule}$>$()}}\label{a00048_adf6563b1dc6f3ef80ed13c2b15b7be03}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00048_a69948f05c35eeae9cb8448c849a053e6}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!contains\-Text\-Rule@{contains\-Text\-Rule}}
+\index{contains\-Text\-Rule@{contains\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{contains\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-contains\-Text\-Rule \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00048_a69948f05c35eeae9cb8448c849a053e6}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00119}{Lexer.\-cs}\end{DoxyCompactItemize}

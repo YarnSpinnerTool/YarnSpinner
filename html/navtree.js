@@ -1,15 +1,15 @@
 var NAVTREE =
 [
   [ "YarnSpinner", "index.html", [
-    [ "Contributing to Yarn Spinner", "d7/d46/a00002.html", null ],
-    [ "Contributors to Yarn Spinner", "d0/d0b/a00004.html", null ],
-    [ "Building Yarn Spinner", "de/d21/a00006.html", null ],
-    [ "Extending Yarn Spinner", "d4/dee/a00008.html", null ],
-    [ "Yarn Spinner Documentation", "d7/dec/a00010.html", null ],
-    [ "Using Yarn Spinner in your Unity game", "df/d86/a00012.html", null ],
-    [ "Yarn for Writers", "d2/de7/a00014.html", null ],
-    [ "LICENSE", "d7/d7a/a00016.html", null ],
-    [ "Yarn Spinner", "d1/d2b/a00018.html", null ],
+    [ "Contributing to Yarn Spinner", "a00002.html", null ],
+    [ "Contributors to Yarn Spinner", "a00004.html", null ],
+    [ "Building Yarn Spinner", "a00006.html", null ],
+    [ "Extending Yarn Spinner", "a00008.html", null ],
+    [ "Yarn Spinner Documentation", "a00010.html", null ],
+    [ "Using Yarn Spinner in your Unity game", "a00012.html", null ],
+    [ "Yarn for Writers", "a00014.html", null ],
+    [ "LICENSE", "a00016.html", null ],
+    [ "Yarn Spinner", "a00018.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -45,9 +45,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"d3/dea/a00046.html#a40c3e9c7c786e6bd8577d2e00bdcea73",
-"d7/df7/a00058.html#a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754",
-"dd/da2/a00019.html#a7ada366012cacd98436db80227ee65f5"
+"a00038.html#ac5b29079f638f2ceb078627ef1e60004",
+"a00067.html#a3f4928a577c88263ad016be259b175c4",
+"a00088.html#aa28c3694f985cf73489efc301b9d41dd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

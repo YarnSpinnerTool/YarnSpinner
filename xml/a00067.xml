@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00067" kind="class" prot="package">
+    <compoundname>Yarn::Program</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00067_1a91518fda7e41bf573f66c6946dd3b4cb" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string,string&gt; Yarn.Program.strings</definition>
+        <argsstring></argsstring>
+        <name>strings</name>
+        <initializer>= new Dictionary&lt;string, string&gt; ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00067_1a3f4928a577c88263ad016be259b175c4" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00160" kindref="compound">Node</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Node&gt; Yarn.Program.nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00160" kindref="compound">Node</ref>&gt; ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00067_1a8ef1d10094ef00311aade6715ba78ec7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Program.stringCount</definition>
+        <argsstring></argsstring>
+        <name>stringCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00067_1a13c9b747b37e404e2d0713468b2a78ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.RegisterString</definition>
+        <argsstring>(string theString, string forNode)</argsstring>
+        <name>RegisterString</name>
+        <param>
+          <type>string</type>
+          <declname>theString</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>forNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="16" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="a00067_1a14737b93594c4aab25c59cb0a3c918f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.GetString</definition>
+        <argsstring>(string key)</argsstring>
+        <name>GetString</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="a00067_1a2f5bb468ce53eb7bbe647e3c11ddbb61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.DumpCode</definition>
+        <argsstring>(Library l)</argsstring>
+        <name>DumpCode</name>
+        <param>
+          <type><ref refid="a00049" kindref="compound">Library</ref></type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="32" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="a00067_1aad8029f37832ff1985fad6a31e51afd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Program.GetTextForNode</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>GetTextForNode</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="84" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="a00067_1afd3385ca1f7589b3b9dae3646e4fee84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Program.Include</definition>
+        <argsstring>(Program otherProgram)</argsstring>
+        <name>Include</name>
+        <param>
+          <type><ref refid="a00067" kindref="compound">Program</ref></type>
+          <declname>otherProgram</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="88" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="626">
+        <label>Yarn.Program</label>
+        <link refid="a00067"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="8" bodyend="108"/>
+    <listofallmembers>
+      <member refid="a00067_1a2f5bb468ce53eb7bbe647e3c11ddbb61" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>DumpCode</name></member>
+      <member refid="a00067_1a14737b93594c4aab25c59cb0a3c918f7" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>GetString</name></member>
+      <member refid="a00067_1aad8029f37832ff1985fad6a31e51afd8" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>GetTextForNode</name></member>
+      <member refid="a00067_1afd3385ca1f7589b3b9dae3646e4fee84" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>Include</name></member>
+      <member refid="a00067_1a3f4928a577c88263ad016be259b175c4" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>nodes</name></member>
+      <member refid="a00067_1a13c9b747b37e404e2d0713468b2a78ff" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>RegisterString</name></member>
+      <member refid="a00067_1a8ef1d10094ef00311aade6715ba78ec7" prot="private" virt="non-virtual"><scope>Yarn::Program</scope><name>stringCount</name></member>
+      <member refid="a00067_1a91518fda7e41bf573f66c6946dd3b4cb" prot="public" virt="non-virtual"><scope>Yarn::Program</scope><name>strings</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

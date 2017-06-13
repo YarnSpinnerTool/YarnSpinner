@@ -1,0 +1,113 @@
+\hypertarget{a00079}{\section{Yarn.\-Token Class Reference}
+\label{a00079}\index{Yarn.\-Token@{Yarn.\-Token}}
+}
+
+
+Collaboration diagram for Yarn.\-Token\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{a00233}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00079_a5b307a925a1606db47866b31cea71386}{Token} (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00079_a471a25da67fda0524f2375f9a882aafa}{type}, int \hyperlink{a00079_a80fe710713201bb793a41452e314a721}{line\-Number}=-\/1, int \hyperlink{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}=-\/1, string \hyperlink{a00079_a3df6b32d6190a639619a3f064c2154e2}{value}=null)
+\item 
+override string \hyperlink{a00079_abf676a737679ec2fb1dffd75dc4d7976}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00079_a471a25da67fda0524f2375f9a882aafa}{type}
+\item 
+string \hyperlink{a00079_a3df6b32d6190a639619a3f064c2154e2}{value}
+\item 
+int \hyperlink{a00079_a80fe710713201bb793a41452e314a721}{line\-Number}
+\item 
+int \hyperlink{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}
+\item 
+string \hyperlink{a00079_a089d248c904a6e8366b81c2c47ff5af8}{context}
+\item 
+bool \hyperlink{a00079_af15d26fa4e6f276ab58ff66d3c4203da}{delimits\-Text} = false
+\item 
+int \hyperlink{a00079_adf11c0d29b66935a8d8109d6308d0488}{parameter\-Count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00079_a5b307a925a1606db47866b31cea71386}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!Token@{Token}}
+\index{Token@{Token}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{Token}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Token.\-Token (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}, }
+\item[{string}]{value = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{a00079_a5b307a925a1606db47866b31cea71386}
+
+\begin{DoxyCode}
+189                                                                                                     \{
+190             this.type = \hyperlink{a00079_a471a25da67fda0524f2375f9a882aafa}{type};
+191             this.value = \hyperlink{a00079_a3df6b32d6190a639619a3f064c2154e2}{value};
+192             this.lineNumber = \hyperlink{a00079_a80fe710713201bb793a41452e314a721}{lineNumber};
+193             this.columnNumber = \hyperlink{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber};           
+194         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00079_abf676a737679ec2fb1dffd75dc4d7976}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Token.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00079_abf676a737679ec2fb1dffd75dc4d7976}
+
+\begin{DoxyCode}
+196                                           \{
+197             \textcolor{keywordflow}{if} (this.\hyperlink{a00079_a3df6b32d6190a639619a3f064c2154e2}{value} != null) \{
+198                 \textcolor{keywordflow}{return} string.Format(\textcolor{stringliteral}{"\{0\} (\{1\}) at \{2\}:\{3\}"}, type.ToString(), 
+      \hyperlink{a00079_a3df6b32d6190a639619a3f064c2154e2}{value}.ToString(), \hyperlink{a00079_a80fe710713201bb793a41452e314a721}{lineNumber}, \hyperlink{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber});
+199             \} \textcolor{keywordflow}{else} \{
+200                 \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"\{0\} at \{1\}:\{2\}"}, \hyperlink{a00079_a471a25da67fda0524f2375f9a882aafa}{type}, \hyperlink{a00079_a80fe710713201bb793a41452e314a721}{lineNumber}, 
+      \hyperlink{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber});
+201             \}
+202         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-column\-Number}}\label{a00079_a9a0f0a8a7ab1e90ab48f15192323ffca}
+\hypertarget{a00079_a089d248c904a6e8366b81c2c47ff5af8}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!context@{context}}
+\index{context@{context}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{context}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-context}}\label{a00079_a089d248c904a6e8366b81c2c47ff5af8}
+\hypertarget{a00079_af15d26fa4e6f276ab58ff66d3c4203da}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!delimits\-Text@{delimits\-Text}}
+\index{delimits\-Text@{delimits\-Text}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Token.\-delimits\-Text = false}}\label{a00079_af15d26fa4e6f276ab58ff66d3c4203da}
+\hypertarget{a00079_a80fe710713201bb793a41452e314a721}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-line\-Number}}\label{a00079_a80fe710713201bb793a41452e314a721}
+\hypertarget{a00079_adf11c0d29b66935a8d8109d6308d0488}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!parameter\-Count@{parameter\-Count}}
+\index{parameter\-Count@{parameter\-Count}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{parameter\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-parameter\-Count}}\label{a00079_adf11c0d29b66935a8d8109d6308d0488}
+\hypertarget{a00079_a471a25da67fda0524f2375f9a882aafa}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!type@{type}}
+\index{type@{type}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Token.\-type}}\label{a00079_a471a25da67fda0524f2375f9a882aafa}
+\hypertarget{a00079_a3df6b32d6190a639619a3f064c2154e2}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!value@{value}}
+\index{value@{value}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-value}}\label{a00079_a3df6b32d6190a639619a3f064c2154e2}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00119}{Lexer.\-cs}\end{DoxyCompactItemize}

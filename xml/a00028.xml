@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00028" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Analysis::CompiledProgramAnalyser</compoundname>
+    <derivedcompoundref refid="a00084" prot="public" virt="non-virtual">Yarn.Analysis.UnusedVariableChecker</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00028_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
+        <argsstring>(Yarn.Program program)</argsstring>
+        <name>Diagnose</name>
+        <param>
+          <type><ref refid="a00067" kindref="compound">Yarn.Program</ref></type>
+          <declname>program</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="143" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00028_1afe059a2ceeabe50380b000420e512bd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerable&lt; <ref refid="a00035" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.CompiledProgramAnalyser.GatherDiagnoses</definition>
+        <argsstring>()</argsstring>
+        <name>GatherDiagnoses</name>
+        <reimplementedby refid="a00084_1a107aecf707b130c4b733930a95f9154e">GatherDiagnoses</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="144" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="429">
+        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
+        <link refid="a00028"/>
+      </node>
+      <node id="430">
+        <label>Yarn.Analysis.UnusedVariableChecker</label>
+        <link refid="a00084"/>
+        <childnode refid="429" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="431">
+        <label>Yarn.Analysis.CompiledProgramAnalyser</label>
+        <link refid="a00028"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="142" bodyend="145"/>
+    <listofallmembers>
+      <member refid="a00028_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>Diagnose</name></member>
+      <member refid="a00028_1afe059a2ceeabe50380b000420e512bd6" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::CompiledProgramAnalyser</scope><name>GatherDiagnoses</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

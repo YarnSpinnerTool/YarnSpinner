@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00056" kind="struct" prot="private">
+    <compoundname>Yarn::Loader::NodeInfo</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00056_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.title</definition>
+        <argsstring></argsstring>
+        <name>title</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00056_1a63d7ebed8095a20fc5d0d74c84a34f6c" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="159" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00056_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="160" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00056_1aa56085ea115b77cb9ee975686e726c29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Loader.NodeInfo.NodeInfo</definition>
+        <argsstring>(string title, string text, string tags)</argsstring>
+        <name>NodeInfo</name>
+        <param>
+          <type>string</type>
+          <declname>title</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>tags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="161" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="161" bodyend="165"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="574">
+        <label>Yarn.Loader.NodeInfo</label>
+        <link refid="a00056"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="157" bodyend="166"/>
+    <listofallmembers>
+      <member refid="a00056_1aa56085ea115b77cb9ee975686e726c29" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>NodeInfo</name></member>
+      <member refid="a00056_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tags</name></member>
+      <member refid="a00056_1a63d7ebed8095a20fc5d0d74c84a34f6c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>text</name></member>
+      <member refid="a00056_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>title</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

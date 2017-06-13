@@ -1,0 +1,413 @@
+\hypertarget{a00083}{\section{Yarn.\-Tree\-Runner Class Reference}
+\label{a00083}\index{Yarn.\-Tree\-Runner@{Yarn.\-Tree\-Runner}}
+}
+
+
+Collaboration diagram for Yarn.\-Tree\-Runner\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00298}
+\end{center}
+\end{figure}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00083_a2b5fb685b706c0b46035201baf40361a}{Tree\-Runner} (\hyperlink{a00036}{Dialogue} \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue})
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_aa71f63255bc062c21ed9283dc6ecec73}{Run\-Node} (\hyperlink{a00054}{Yarn.\-Parser.\-Node} node)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{Run\-Statements} (I\-Enumerable$<$ \hyperlink{a00076}{Parser.\-Statement} $>$ statements)
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{Run\-Statement} (\hyperlink{a00076}{Parser.\-Statement} statement)
+\item 
+\hyperlink{a00086}{Yarn.\-Value} \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{Evaluate\-Expression} (\hyperlink{a00040}{Parser.\-Expression} expression)
+\item 
+\hyperlink{a00086}{Yarn.\-Value} \hyperlink{a00083_a352ca6c227f278419b252bc46ba30d0d}{Evaluate\-Value} (\hyperlink{a00086}{Value} value)
+\item 
+void \hyperlink{a00083_a217c6205821aff5ba31daeb8b3bf2846}{Run\-Assignment\-Statement} (\hyperlink{a00019}{Parser.\-Assignment\-Statement} assignment)
+\item 
+I\-Enumerable\\*
+$<$ \hyperlink{a00069}{Dialogue.\-Runner\-Result} $>$ \hyperlink{a00083_a231488eace774d92f5c55034d075016d}{Run\-Shortcut\-Option\-Group} (\hyperlink{a00071}{Parser.\-Shortcut\-Option\-Group} shortcut\-Option\-Group)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{a00061}{Parser.\-Option\-Statement} $>$ \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{current\-Options}
+\item 
+\hyperlink{a00036}{Dialogue} \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00083_a2b5fb685b706c0b46035201baf40361a}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Tree\-Runner@{Tree\-Runner}}
+\index{Tree\-Runner@{Tree\-Runner}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Tree\-Runner}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tree\-Runner.\-Tree\-Runner (
+\begin{DoxyParamCaption}
+\item[{{\bf Dialogue}}]{dialogue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00083_a2b5fb685b706c0b46035201baf40361a}
+
+\begin{DoxyCode}
+44                                                \{
+45             this.dialogue = \hyperlink{a00083_aa4f386822db0dee7a07079271cb968a4}{dialogue};
+46         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00083_ac57271c72da4ec456a32c94d951c8b65}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Evaluate\-Expression@{Evaluate\-Expression}}
+\index{Evaluate\-Expression@{Evaluate\-Expression}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Evaluate\-Expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Value} Yarn.\-Tree\-Runner.\-Evaluate\-Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Expression}}]{expression}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_ac57271c72da4ec456a32c94d951c8b65}
+
+\begin{DoxyCode}
+190                                                                             \{
+191 
+192             \textcolor{keywordflow}{if} (expression == null)
+193                 \textcolor{keywordflow}{return} Yarn.Value.NULL;
+194             
+195             \textcolor{keywordflow}{switch} (expression.type) \{
+196             \textcolor{keywordflow}{case} Parser.Expression.Type.Value:
+197                 \textcolor{comment}{// just a regular value? return it}
+198                 \textcolor{keywordflow}{return} \hyperlink{a00083_a352ca6c227f278419b252bc46ba30d0d}{EvaluateValue} (expression.value.value);
+199 
+200             \textcolor{keywordflow}{case} Parser.Expression.Type.FunctionCall:
+201                 \textcolor{comment}{// get the function}
+202                 var func = expression.function;
+203 
+204                 \textcolor{comment}{// evaluate all parameters}
+205                 var evaluatedParameters = \textcolor{keyword}{new} List<Value> ();
+206 
+207                 \textcolor{keywordflow}{foreach} (var param \textcolor{keywordflow}{in} expression.parameters) \{
+208                     var expr = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (param);
+209                     evaluatedParameters.Add (expr);
+210                 \}
+211 
+212                 var result = func.InvokeWithArray (evaluatedParameters.ToArray ());
+213 
+214                 \textcolor{keywordflow}{return} result;
+215 
+216             \}
+217 
+218             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException (\textcolor{stringliteral}{"Unimplemented expression type "} + expression.type.ToString 
+      ());
+219 
+220         \}
+\end{DoxyCode}
+\hypertarget{a00083_a352ca6c227f278419b252bc46ba30d0d}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Evaluate\-Value@{Evaluate\-Value}}
+\index{Evaluate\-Value@{Evaluate\-Value}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Evaluate\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Value} Yarn.\-Tree\-Runner.\-Evaluate\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a352ca6c227f278419b252bc46ba30d0d}
+
+\begin{DoxyCode}
+223                                                       \{
+224             \textcolor{keywordflow}{switch} (value.type) \{
+225             \textcolor{keywordflow}{case} Value.Type.Variable:
+226                 dialogue.LogDebugMessage (\textcolor{stringliteral}{"Checking value "} + value.variableName);
+227                 \textcolor{keywordflow}{return} dialogue.continuity.GetValue (value.variableName);
+228             \textcolor{keywordflow}{default}:
+229                 \textcolor{keywordflow}{return} value;
+230             \}
+231         \}
+\end{DoxyCode}
+\hypertarget{a00083_a217c6205821aff5ba31daeb8b3bf2846}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Assignment\-Statement@{Run\-Assignment\-Statement}}
+\index{Run\-Assignment\-Statement@{Run\-Assignment\-Statement}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Assignment\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Tree\-Runner.\-Run\-Assignment\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Assignment\-Statement}}]{assignment}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a217c6205821aff5ba31daeb8b3bf2846}
+
+\begin{DoxyCode}
+234                                                                                    \{
+235 
+236             \textcolor{comment}{// The place where we're stickin' this value.}
+237             var variableName = assignment.destinationVariableName;
+238 
+239             \textcolor{comment}{// The value that's going into this variable.}
+240             var computedValue = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (assignment.valueExpression);
+241 
+242             \textcolor{comment}{// The current value of this variable.}
+243             Value originalValue = dialogue.continuity.GetValue (variableName);
+244 
+245             \textcolor{comment}{// What shall we do with it?}
+246 
+247             Value finalValue = \hyperlink{a00086_a1ed2964965baca8621c45efa23f37660}{Value.NULL};
+248             \textcolor{keywordflow}{switch} (assignment.operation) \{
+249             \textcolor{keywordflow}{case} TokenType.EqualToOrAssign:
+250                 finalValue = computedValue;
+251                 \textcolor{keywordflow}{break};
+252             \textcolor{keywordflow}{case} TokenType.AddAssign:
+253                 finalValue = originalValue + computedValue;
+254                 \textcolor{keywordflow}{break};
+255             \textcolor{keywordflow}{case} TokenType.MinusAssign:
+256                 finalValue = originalValue - computedValue;
+257                 \textcolor{keywordflow}{break};
+258             \textcolor{keywordflow}{case} TokenType.MultiplyAssign:
+259                 finalValue = originalValue * computedValue;
+260                 \textcolor{keywordflow}{break};
+261             \textcolor{keywordflow}{case} TokenType.DivideAssign:
+262                 finalValue = originalValue / computedValue;
+263                 \textcolor{keywordflow}{break};
+264             \}
+265 
+266             dialogue.LogDebugMessage(string.Format(\textcolor{stringliteral}{"Set \{0\} to \{1\}"}, variableName, finalValue));
+267             dialogue.continuity.SetValue (variableName, finalValue);
+268         \}
+\end{DoxyCode}
+\hypertarget{a00083_aa71f63255bc062c21ed9283dc6ecec73}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Node@{Run\-Node}}
+\index{Run\-Node@{Run\-Node}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Parser.\-Node}}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00083_aa71f63255bc062c21ed9283dc6ecec73}
+
+\begin{DoxyCode}
+51         \{
+52 
+53             \textcolor{comment}{// Clear the list of options when we start a new node}
+54             \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions} = \textcolor{keyword}{new} List<Parser.OptionStatement> ();
+55 
+56             \textcolor{comment}{// Run all of the statements in this node}
+57             \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (node.statements)) \{
+58                 yield \textcolor{keywordflow}{return} command;
+59             \}
+60 
+61             \textcolor{comment}{// If we have no options, we're all done}
+62             \textcolor{keywordflow}{if} (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}.Count == 0) \{
+63                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult (null);
+64                 yield \textcolor{keywordflow}{break};
+65             \} \textcolor{keywordflow}{else} \{
+66                 \textcolor{comment}{// We have options!}
+67 
+68                 \textcolor{comment}{// If we have precisely one option and it's got no label, jump to it}
+69                 \textcolor{keywordflow}{if} (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}.Count == 1 &&
+70                     \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}[0].label == null) \{
+71                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult (\hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions} [0]
+      .destination);
+72                     yield \textcolor{keywordflow}{break};
+73                 \}
+74 
+75                 \textcolor{comment}{// Otherwise, ask which option to pick...}
+76                 var optionStrings = \textcolor{keyword}{new} List<string> ();
+77                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} \hyperlink{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{currentOptions}) \{
+78                     var label = option.label ?? option.destination;
+79                     optionStrings.Add (label);
+80                 \}
+81 
+82                 Parser.OptionStatement selectedOption = null;
+83 
+84                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.OptionSetResult (optionStrings, delegate(\textcolor{keywordtype}{int} selectedOptionIndex)
+       \{
+85                     selectedOption = currentOptions[selectedOptionIndex];
+86                 \});
+87 
+88                 \textcolor{keywordflow}{if} (selectedOption == null) \{
+89                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Option chooser was never called!"});
+90                     yield \textcolor{keywordflow}{break};
+91                 \}
+92 
+93                 \textcolor{comment}{// And jump to its destination!}
+94                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.NodeCompleteResult(selectedOption.destination);
+95             \}
+96             yield \textcolor{keywordflow}{break};
+97 
+98         \}
+\end{DoxyCode}
+\hypertarget{a00083_a231488eace774d92f5c55034d075016d}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Shortcut\-Option\-Group@{Run\-Shortcut\-Option\-Group}}
+\index{Run\-Shortcut\-Option\-Group@{Run\-Shortcut\-Option\-Group}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Shortcut\-Option\-Group (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Shortcut\-Option\-Group}}]{shortcut\-Option\-Group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a231488eace774d92f5c55034d075016d}
+
+\begin{DoxyCode}
+271         \{
+272             var optionsToDisplay = \textcolor{keyword}{new} List<Parser.ShortcutOption> ();
+273 
+274             \textcolor{comment}{// Determine which options to present}
+275             \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} shortcutOptionGroup.options) \{
+276                 var include = \textcolor{keyword}{true};
+277                 \textcolor{keywordflow}{if} (option.condition != null) \{
+278                     include = \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression}(option.condition).AsBool != \textcolor{keyword}{false};
+279                 \}
+280                 \textcolor{keywordflow}{if} (include) \{
+281                     optionsToDisplay.Add(option);
+282                 \}
+283             \}
+284 
+285             \textcolor{keywordflow}{if} (optionsToDisplay.Count > 0) \{
+286                 \textcolor{comment}{// Give this list to our client}
+287                 var optionStrings = \textcolor{keyword}{new} List<string> ();
+288 
+289                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} optionsToDisplay) \{
+290                     optionStrings.Add(option.label);
+291                 \}
+292 
+293                 Parser.ShortcutOption selectedOption = null;
+294 
+295                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.OptionSetResult (optionStrings, delegate(\textcolor{keywordtype}{int} selectedOptionIndex)
+       \{
+296                     selectedOption = optionsToDisplay[selectedOptionIndex];
+297                 \});
+298 
+299                 \textcolor{keywordflow}{if} (selectedOption == null) \{
+300                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"The OptionChooser I provided was not called before the "} +
+301                         \textcolor{stringliteral}{"next line was run! Stopping dialogue."});
+302                     yield \textcolor{keywordflow}{break};
+303                 \}
+304 
+305                 \textcolor{keywordflow}{if} (selectedOption.optionNode != null) \{
+306                     \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements}(selectedOption.optionNode.statements
+      )) \{
+307                         yield \textcolor{keywordflow}{return} command;
+308                     \}
+309                 \}
+310                     
+311             \}
+312 
+313         \}
+\end{DoxyCode}
+\hypertarget{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Statement@{Run\-Statement}}
+\index{Run\-Statement@{Run\-Statement}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser.\-Statement}}]{statement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a4a0f51fa1a54f8df77557cab086e43b7}
+
+\begin{DoxyCode}
+116                                                                                              \{
+117 
+118 
+119             \textcolor{keywordflow}{switch} (statement.type) \{
+120 
+121             \textcolor{keywordflow}{case} Parser.Statement.Type.Block:
+122                 \textcolor{comment}{// Blocks just contain statements, so run them!}
+123                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (statement.block.statements)) \{
+124                     yield \textcolor{keywordflow}{return} command;
+125                 \}
+126                 \textcolor{keywordflow}{break};
+127 
+128             \textcolor{keywordflow}{case} Parser.Statement.Type.Line:
+129                 \textcolor{comment}{// Lines get forwarded to the client for display}
+130                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.LineResult(statement.line);
+131                 \textcolor{keywordflow}{break};
+132 
+133             \textcolor{keywordflow}{case} Parser.Statement.Type.IfStatement:
+134 
+135                 \textcolor{comment}{// Evaluate each clause in the statement, and run its statements if appropriate}
+136                 \textcolor{keywordflow}{foreach} (var clause \textcolor{keywordflow}{in} statement.ifStatement.clauses) \{
+137                     \textcolor{comment}{// if this clause's expression doesn't evaluate to 0, run it; alternatively,}
+138                     \textcolor{comment}{// if this clause has no expression (ie it's the 'else' clause) then also run it}
+139                     \textcolor{keywordflow}{if} (clause.expression == null || \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression}(clause.expression
+      ).AsBool != \textcolor{keyword}{false}) \{
+140                         \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in}  \hyperlink{a00083_aa436557ec45c8e98d194d9af139d9170}{RunStatements} (clause.statements)) \{
+141                             yield \textcolor{keywordflow}{return} command;
+142                         \}
+143                         \textcolor{comment}{// don't continue on to the other clauses}
+144                         \textcolor{keywordflow}{break};
+145                     \}
+146                 \}
+147                 \textcolor{keywordflow}{break};
+148 
+149             \textcolor{keywordflow}{case} Parser.Statement.Type.OptionStatement:
+150                 \textcolor{comment}{// If we encounter an option, record it so that we can present it later}
+151                 currentOptions.Add (statement.optionStatement);
+152                 \textcolor{keywordflow}{break};
+153 
+154             \textcolor{keywordflow}{case} Parser.Statement.Type.AssignmentStatement:
+155                 \textcolor{comment}{// Evaluate the expression and assign it to a variable}
+156                 \hyperlink{a00083_a217c6205821aff5ba31daeb8b3bf2846}{RunAssignmentStatement} (statement.assignmentStatement);
+157                 \textcolor{keywordflow}{break};
+158 
+159             \textcolor{keywordflow}{case} Parser.Statement.Type.ShortcutOptionGroup:
+160                 \textcolor{comment}{// Evaluate and present the options, then run the stuff that came after the options}
+161                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_a231488eace774d92f5c55034d075016d}{RunShortcutOptionGroup} (statement.
+      shortcutOptionGroup)) \{
+162                     yield \textcolor{keywordflow}{return} command;
+163                 \}
+164                 \textcolor{keywordflow}{break};
+165 
+166             \textcolor{keywordflow}{case} Parser.Statement.Type.CustomCommand:
+167                 \textcolor{comment}{// Deal with a custom command - it's either an expression or a client command}
+168                 \textcolor{comment}{// If it's an expression, evaluate it}
+169                 \textcolor{comment}{// If it's a client command, yield it to the client}
+170 
+171                 \textcolor{keywordflow}{switch} (statement.customCommand.type) \{
+172                 \textcolor{keywordflow}{case} Parser.CustomCommand.Type.Expression:
+173                     \hyperlink{a00083_ac57271c72da4ec456a32c94d951c8b65}{EvaluateExpression} (statement.customCommand.expression);
+174                     \textcolor{keywordflow}{break};
+175                 \textcolor{keywordflow}{case} Parser.CustomCommand.Type.ClientCommand:
+176                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} Dialogue.CommandResult (statement.customCommand.clientCommand);
+177                     \textcolor{keywordflow}{break};
+178                 \}
+179 
+180                 \textcolor{keywordflow}{break};
+181 
+182             \textcolor{keywordflow}{default}:
+183                 \textcolor{comment}{// Just in case we added a new type of statement and didn't implement it here}
+184                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} NotImplementedException (\textcolor{stringliteral}{"YarnRunner: Unimplemented statement type "} + statement.
+      type);
+185             \}
+186         
+187 
+188         \}
+\end{DoxyCode}
+\hypertarget{a00083_aa436557ec45c8e98d194d9af139d9170}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!Run\-Statements@{Run\-Statements}}
+\index{Run\-Statements@{Run\-Statements}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{Run\-Statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Dialogue.\-Runner\-Result}$>$ Yarn.\-Tree\-Runner.\-Run\-Statements (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ {\bf Parser.\-Statement} $>$}]{statements}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_aa436557ec45c8e98d194d9af139d9170}
+
+\begin{DoxyCode}
+101                                                                                                            
+      \{
+102             
+103             \textcolor{keywordflow}{if} (statements == null) \{
+104                 yield \textcolor{keywordflow}{break};
+105             \}
+106 
+107             \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} statements) \{
+108                 \textcolor{keywordflow}{foreach} (var command \textcolor{keywordflow}{in} \hyperlink{a00083_a4a0f51fa1a54f8df77557cab086e43b7}{RunStatement} (statement)) \{
+109                     yield \textcolor{keywordflow}{return} command;
+110                 \}
+111 
+112             \}
+113         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00083_a1ff25426f4da4236acc741bbbb8c0d56}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!current\-Options@{current\-Options}}
+\index{current\-Options@{current\-Options}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Parser.\-Option\-Statement}$>$ Yarn.\-Tree\-Runner.\-current\-Options\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_a1ff25426f4da4236acc741bbbb8c0d56}
+\hypertarget{a00083_aa4f386822db0dee7a07079271cb968a4}{\index{Yarn\-::\-Tree\-Runner@{Yarn\-::\-Tree\-Runner}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!Yarn::TreeRunner@{Yarn\-::\-Tree\-Runner}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Tree\-Runner.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00083_aa4f386822db0dee7a07079271cb968a4}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00125}{Tree\-Runner.\-cs}\end{DoxyCompactItemize}

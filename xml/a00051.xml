@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00051" kind="class" prot="package">
+    <compoundname>Yarn::Loader</compoundname>
+    <innerclass refid="a00056" prot="private">Yarn::Loader::NodeInfo</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00051_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" static="no" mutable="no">
+        <type><ref refid="a00036" kindref="compound">Dialogue</ref></type>
+        <definition>Dialogue Yarn.Loader.dialogue</definition>
+        <argsstring></argsstring>
+        <name>dialogue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00051_1a6d8296076823c0c082df9024367f4860" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00067" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.Loader.program</definition>
+        <argsstring></argsstring>
+        <name>program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00051_1a9321fce224021841ce6f70ca7fbe531b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Loader.PrintTokenList</definition>
+        <argsstring>(IEnumerable&lt; Token &gt; tokenList)</argsstring>
+        <name>PrintTokenList</name>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00079" kindref="compound">Token</ref> &gt;</type>
+          <declname>tokenList</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="44" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1aa105ea8e5d65a420d1089616523feecc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Loader.PrintParseTree</definition>
+        <argsstring>(Yarn.Parser.ParseNode rootNode)</argsstring>
+        <name>PrintParseTree</name>
+        <param>
+          <type><ref refid="a00063" kindref="compound">Yarn.Parser.ParseNode</ref></type>
+          <declname>rootNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1a2f635405d2b624ac67a27da0787a3524" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00056" kindref="compound">NodeInfo</ref>[]</type>
+        <definition>NodeInfo [] Yarn.Loader.ParseInput</definition>
+        <argsstring>(string text)</argsstring>
+        <name>ParseInput</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="170" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="170" bodyend="215"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00051_1a1972fc413e1679ecbe91eef536ca8479" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Loader.Loader</definition>
+        <argsstring>(Dialogue dialogue)</argsstring>
+        <name>Loader</name>
+        <param>
+          <type><ref refid="a00036" kindref="compound">Dialogue</ref></type>
+          <declname>dialogue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="65" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="a00051_1ab6044e0d99dd4e6961ae7daaf1532c99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00067" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.Loader.Load</definition>
+        <argsstring>(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <param>
+          <type><ref refid="a00049" kindref="compound">Library</ref></type>
+          <declname>library</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00067" kindref="compound">Program</ref></type>
+          <declname>includeProgram</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>showTokens</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>showParseTree</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>onlyConsiderNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="77" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="77" bodyend="154"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="548">
+        <label>Yarn.Program</label>
+        <link refid="a00067"/>
+      </node>
+      <node id="545">
+        <label>Yarn.Dialogue</label>
+        <link refid="a00036"/>
+        <childnode refid="546" relation="usage">
+          <edgelabel>-vm</edgelabel>
+        </childnode>
+        <childnode refid="550" relation="usage">
+          <edgelabel>+library</edgelabel>
+        </childnode>
+        <childnode refid="548" relation="usage">
+          <edgelabel>-program</edgelabel>
+        </childnode>
+        <childnode refid="544" relation="usage">
+          <edgelabel>-loader</edgelabel>
+        </childnode>
+        <childnode refid="551" relation="usage">
+          <edgelabel>~continuity</edgelabel>
+        </childnode>
+      </node>
+      <node id="550">
+        <label>Yarn.Library</label>
+        <link refid="a00049"/>
+      </node>
+      <node id="549">
+        <label>Yarn.VirtualMachine.State</label>
+        <link refid="a00075"/>
+      </node>
+      <node id="544">
+        <label>Yarn.Loader</label>
+        <link refid="a00051"/>
+        <childnode refid="545" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+      </node>
+      <node id="551">
+        <label>Yarn.VariableStorage</label>
+        <link refid="a00088"/>
+      </node>
+      <node id="547">
+        <label>Yarn.Node</label>
+        <link refid="a00160"/>
+      </node>
+      <node id="546">
+        <label>Yarn.VirtualMachine</label>
+        <link refid="a00072"/>
+        <childnode refid="545" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+        <childnode refid="547" relation="usage">
+          <edgelabel>-currentNode</edgelabel>
+        </childnode>
+        <childnode refid="548" relation="usage">
+          <edgelabel>-program</edgelabel>
+        </childnode>
+        <childnode refid="549" relation="usage">
+          <edgelabel>-state</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="37" bodyend="217"/>
+    <listofallmembers>
+      <member refid="a00051_1a89d1f29eba1c52c96c62a4cfe7859a1d" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>dialogue</name></member>
+      <member refid="a00051_1ab6044e0d99dd4e6961ae7daaf1532c99" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Load</name></member>
+      <member refid="a00051_1a1972fc413e1679ecbe91eef536ca8479" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>Loader</name></member>
+      <member refid="a00051_1a2f635405d2b624ac67a27da0787a3524" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>ParseInput</name></member>
+      <member refid="a00051_1aa105ea8e5d65a420d1089616523feecc" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintParseTree</name></member>
+      <member refid="a00051_1a9321fce224021841ce6f70ca7fbe531b" prot="private" virt="non-virtual"><scope>Yarn::Loader</scope><name>PrintTokenList</name></member>
+      <member refid="a00051_1a6d8296076823c0c082df9024367f4860" prot="public" virt="non-virtual"><scope>Yarn::Loader</scope><name>program</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00095" kind="file">
+    <compoundname>CONTRIBUTORS.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributors<sp/>to<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">*<sp/>20??-ongoing:<sp/>Secret<sp/>Lab<sp/>Team<sp/>-<sp/>Dr<sp/>Jon<sp/>Manning<sp/>and<sp/>Dr<sp/>Paris<sp/>Buttfield-Addison<sp/>&lt;lab@secretlab.com.au&gt;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">*<sp/>2017:<sp/>Rev<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">*<sp/>2017:<sp/>Dr<sp/>Tim<sp/></highlight><highlight class="stringliteral">&apos;McJones&apos;</highlight><highlight class="normal"><sp/>Nugent<sp/>&lt;tim@lonely.coffee&gt;</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTORS.md"/>
+  </compounddef>
+</doxygen>
