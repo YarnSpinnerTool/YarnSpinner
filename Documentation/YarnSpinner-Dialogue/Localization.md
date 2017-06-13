@@ -1,5 +1,5 @@
 # LOCALIZATION
-Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the [YarnSpinnerConsole](../YarnSpinnerConsole) tool.
+Yarn Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the [YarnSpinnerConsole](../YarnSpinnerConsole) tool. At the moment, this tool is not available standalone and needs to be [built from source](../YarnSpinner-Programming/Building.md).
 
 ## Localisation procedure
 
