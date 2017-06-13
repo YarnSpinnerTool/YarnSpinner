@@ -1,6 +1,6 @@
 # Yarn for Writers
 
-This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](Unity.md).
+This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
 ## Lines
 
@@ -31,7 +31,6 @@ If an option has no label, Yarn will automatically jump to that node when that l
 When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
 
 If there are no options when we reach the end of a node, then we've reached the end of a conversation, and Yarn Spinner will let your game know.
-
 
 ## Shortcut Options
 

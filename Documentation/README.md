@@ -4,33 +4,20 @@
 
 Documentation for Yarn Spinner is under active development. Please submit any suggestions you may have.
 
-YarnSpinner documentation is generated automatically by the [Doxygen](http://www.doxygen.org) system.
+Yarn Spinner API documentation is generated automatically by the [Doxygen](http://www.doxygen.org) system.
 
-## Building Yarnspinner
-Yarnspinner is automatically built by Travis Continual Integration system. For information on how to build it yourself, please refer to the [Building](Building.md) document.
+The documentation is currently automatically generated every time a commit is made to the Master branch on GitHub. The documentation is availabe on our GitHub Page in [HTML](http://thesecretlab.github.io/YarnSpinner/html/) and in our Github Repository in [Latex](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/latex), PDF, [RTF](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/rtf), and [XML](https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/xml) formats.
 
-## Using Yarnspinner
-For information on how to write stories for Yarnspinner, refer to the [Usage](Usage.md) document.
+If you are working on the [Development branch](https://github.com/thesecretlab/YarnSpinner/tree/development), the [build.sh](../build.sh) script is capable of generating documents for you locally by utilising the -d switch.
+
+## Building Yarn Spinner
+Yarn Spinner is automatically built by [Travis Continual Integration](https://travis-ci.org/thesecretlab/YarnSpinner) system. For information on how to build it yourself, please refer to the [Building](YarnSpinner-Programming/Building.md) document.
+
+## Creating Yarn Dialogue for Yarn Spinner
+For information on how to write dialogue for Yarn Spinner, refer to the [Usage](YarnSpinner-Dialogue/Usage.md) document. We are currently expanding this documentation for writers, and our first new document is a walk through on [how to create the dialogue for the Simple Example](YarnSpinner-Dialogue/YarnSpinner-Writing-Yarn-Dialogue-Simple-Example-Script.md)
 
 ## Using Unity
-At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future.  Please refer to the [Unity](Unity.md) document for more information.
+At this point in time, only examples for the [Unity](http://www.unity3d.com) game engine are available. We hope to include a more generic example in the future. Please refer to the [Yarn Spinner Unity](YarnSpinner-Unity/) documents for more information.
 
-### Tips during Unity install
-
-### Windows
-
-Find the temp folder the installer has executed from and back it up before it completes installing.
-
-### Mac
-
-(This space left intentionally blank)
-
-### Linux
-
-Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of [Unity for Linux](https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/), although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).
-
-We encourge Linux users to test Yarnspinner using the [Monodevelop FlatPak](http://www.monodevelop.com/download/linux/). Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.
-
-## Extending Tarnspinner
-For information on how to extend Yarnspinner's functionality, please refer to the [Extending Yarnspinner](Extending.md) document.
-
+## Extending Yarn Spinner
+For information on how to extend Yarn Spinner's functionality, please refer to the [Extending Yarn Spinner](YarnSpinner-Programming/Extending.md) document.
