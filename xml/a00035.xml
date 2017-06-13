@@ -1,135 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00035" kind="class" prot="public">
-    <compoundname>Yarn::Analysis::Diagnosis</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="a00035_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" static="no">
-        <name>Severity</name>
-        <enumvalue id="a00035_1a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
-          <name>Error</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00035_1a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa" prot="public">
-          <name>Warning</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00035_1a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec" prot="public">
-          <name>Note</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="13" bodyend="17"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00035_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.message</definition>
-        <argsstring></argsstring>
-        <name>message</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="8" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00035_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.nodeName</definition>
-        <argsstring></argsstring>
-        <name>nodeName</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="9" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00035_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Analysis.Diagnosis.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="10" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00035_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.Analysis.Diagnosis.columnNumber</definition>
-        <argsstring></argsstring>
-        <name>columnNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="11" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00035_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" static="no" mutable="no">
-        <type><ref refid="a00035_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
-        <definition>Severity Yarn.Analysis.Diagnosis.severity</definition>
-        <argsstring></argsstring>
-        <name>severity</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00035" kind="class" prot="public" abstract="yes">
+    <compoundname>Yarn::BaseVariableStorage</compoundname>
+    <basecompoundref refid="a00102" prot="public" virt="non-virtual">Yarn.VariableStorage</basecompoundref>
+    <derivedcompoundref refid="a00066" prot="public" virt="non-virtual">Yarn.MemoryVariableStore</derivedcompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00035_1ad3fd818f1be98dc803e5bec959153824" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Analysis.Diagnosis.Diagnosis</definition>
-        <argsstring>(string message, Severity severity, string nodeName=null, int lineNumber=-1, int columnNumber=-1)</argsstring>
-        <name>Diagnosis</name>
+      <memberdef kind="function" id="a00035_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BaseVariableStorage.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00102_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
         <param>
           <type>string</type>
-          <declname>message</declname>
+          <declname>variableName</declname>
         </param>
         <param>
-          <type><ref refid="a00035_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
-          <declname>severity</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>nodeName</declname>
-          <defval>null</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-          <defval>-1</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>columnNumber</declname>
-          <defval>-1</defval>
+          <type>float</type>
+          <declname>number</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -137,60 +25,125 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="20" bodyend="27"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="68" bodyend="70"/>
       </memberdef>
-      <memberdef kind="function" id="a00035_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Analysis.Diagnosis.ToString</definition>
+      <memberdef kind="function" id="a00035_1a1b7f7f4468b2463e7b47986d99362279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Yarn.BaseVariableStorage.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00102_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="73" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="a00035_1a1c57d6d208b78abec0a670396771448e" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00102_1aa90ff61224432c5ed3ce72199c55f440">SetValue</reimplements>
+        <reimplementedby refid="a00066_1a653a459811e5c19549f4b31269093ef5">SetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00100" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="77" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00035_1a13b142df804d9842e97e628e252928e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract <ref refid="a00100" kindref="compound">Value</ref></type>
+        <definition>abstract Value Yarn.BaseVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00102_1accab1fc5c8fc353dbfc53ca0f4029576">GetValue</reimplements>
+        <reimplementedby refid="a00066_1a0ce77e8245c504a777540e359704aa2a">GetValue</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="78" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00035_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void Yarn.BaseVariableStorage.Clear</definition>
         <argsstring>()</argsstring>
-        <name>ToString</name>
+        <name>Clear</name>
+        <reimplements refid="a00102_1af98c1e41f351cb96e13f668ca2fd9d92">Clear</reimplements>
+        <reimplementedby refid="a00066_1aa6d243e7ef02b91f793a221f509dae69">Clear</reimplementedby>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="29" bodyend="32"/>
-      </memberdef>
-      <memberdef kind="function" id="a00035_1a985dee7ca27aa896332590133606b6a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
-        <definition>string Yarn.Analysis.Diagnosis.ToString</definition>
-        <argsstring>(bool showSeverity)</argsstring>
-        <name>ToString</name>
-        <param>
-          <type>bool</type>
-          <declname>showSeverity</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="34" bodyend="76"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="79" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="456">
-        <label>Yarn.Analysis.Diagnosis</label>
+    <inheritancegraph>
+      <node id="399">
+        <label>VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="400">
+        <label>Yarn.MemoryVariableStore</label>
+        <link refid="a00066"/>
+        <childnode refid="398" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="398">
+        <label>Yarn.BaseVariableStorage</label>
         <link refid="a00035"/>
+        <childnode refid="399" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="402">
+        <label>VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="401">
+        <label>Yarn.BaseVariableStorage</label>
+        <link refid="a00035"/>
+        <childnode refid="402" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="6" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="6" bodyend="79"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="66" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="66" bodyend="80"/>
     <listofallmembers>
-      <member refid="a00035_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>columnNumber</name></member>
-      <member refid="a00035_1ad3fd818f1be98dc803e5bec959153824" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Diagnosis</name></member>
-      <member refid="a00035_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>lineNumber</name></member>
-      <member refid="a00035_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>message</name></member>
-      <member refid="a00035_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>nodeName</name></member>
-      <member refid="a00035_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Severity</name></member>
-      <member refid="a00035_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>severity</name></member>
-      <member refid="a00035_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
-      <member refid="a00035_1a985dee7ca27aa896332590133606b6a9" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
+      <member refid="a00035_1a7e45c37f3662ce9f2643e306bb2b3adc" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00035_1a1b7f7f4468b2463e7b47986d99362279" prot="public" virt="non-virtual"><scope>Yarn::BaseVariableStorage</scope><name>GetNumber</name></member>
+      <member refid="a00035_1a13b142df804d9842e97e628e252928e8" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00035_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" virt="non-virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetNumber</name></member>
+      <member refid="a00035_1a1c57d6d208b78abec0a670396771448e" prot="public" virt="pure-virtual"><scope>Yarn::BaseVariableStorage</scope><name>SetValue</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

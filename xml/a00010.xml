@@ -1,18 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00010" kind="page">
-    <compoundname>md_Documentation_README</compoundname>
-    <title>Yarn Spinner Documentation</title>
+    <compoundname>md_Documentation_YarnSpinner-Dialogue_README</compoundname>
+    <title>Writing Yarn Dialogue - README</title>
     <detaileddescription>
-<para><heading level="2"><ref refid="a00026" kindref="compound">Yarn</ref> Documentation</heading>
-</para><para>Documentation for <ref refid="a00026" kindref="compound">Yarn</ref> Spinner is under active development. Please submit any suggestions you may have.</para><para><ref refid="a00154" kindref="compound">YarnSpinner</ref> documentation is generated automatically by the <ulink url="http://www.doxygen.org">Doxygen</ulink> system.</para><para><heading level="2">Building Yarnspinner</heading>
-</para><para>Yarnspinner is automatically built by Travis Continual Integration system. For information on how to build it yourself, please refer to the <ref refid="a00096" kindref="compound">Building</ref> document.</para><para><heading level="2">Using Yarnspinner</heading>
-</para><para>For information on how to write stories for Yarnspinner, refer to the <ref refid="a00101" kindref="compound">Usage</ref> document.</para><para><heading level="2">Using Unity</heading>
-</para><para>At this point in time, only examples for the Unity game engine are available. We hope to include a more generic example in the future. Please refer to the <ref refid="a00100" kindref="compound">Unity</ref> document for more information.</para><para><heading level="3">Tips during Unity install</heading>
-</para><para><heading level="3">Windows</heading>
-</para><para>Find the temp folder the installer has executed from and back it up before it completes installing.</para><para><heading level="3">Mac</heading>
-</para><para>(This space left intentionally blank)</para><para><heading level="3">Linux</heading>
-</para><para>Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of <ulink url="https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/">Unity for Linux</ulink>, although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).</para><para>We encourge Linux users to test Yarnspinner using the <ulink url="http://www.monodevelop.com/download/linux/">Monodevelop FlatPak</ulink>. Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback.</para><para><heading level="2">Extending Tarnspinner</heading>
-</para><para>For information on how to extend Yarnspinner&apos;s functionality, please refer to the <ref refid="a00097" kindref="compound">Extending Yarnspinner</ref> document. </para>    </detaileddescription>
+<para><heading level="2">Introducing <ref refid="a00040" kindref="compound">Yarn</ref> Dialogue</heading>
+</para><para><ref refid="a00040" kindref="compound">Yarn</ref> Dialogue is designed for Authors who have little or no programming knowledge. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. These tasks are left to the game production team, using programming and design tools such as Unity3D and C#.</para><para><heading level="3">Simple Example Dialogue</heading>
+</para><para>In <ref refid="a00118" kindref="compound">our simple example</ref>, we will create a very simple Dialogue that demonstrates the very basic usage of <ref refid="a00040" kindref="compound">Yarn</ref>.</para><para><heading level="3">Complex Example Dialogue</heading>
+</para><para>In the <ref refid="a00117" kindref="compound">complex example</ref>, we will create a slightly more complex Dialogue to the simple example above. This example demonstrates more advanced possibilities that exist within telling stories in a narrative game environment.</para><para><heading level="3">Localisation</heading>
+</para><para>Our localisation document describes how localisation, or translating the text into other languages, takes place. <blockquote><para>***Note:*** At the moment, it is a requirement that a programmer run a special tool across the Dialogue to produce the files to be translated.</para><para></para></blockquote></para><para><heading level="3">General Usage</heading>
+</para><para>We have a page of <ref refid="a00116" kindref="compound">general usage</ref>, describing many further features of the <ref refid="a00040" kindref="compound">Yarn</ref> Language. It also containins small Dialogue snippets as well as tips and suggestions you might find useful. </para>    </detaileddescription>
   </compounddef>
 </doxygen>

@@ -1,76 +1,134 @@
-\subsection*{\hyperlink{a00026}{Yarn} Spinner Quick Start}
+This document talks about how to use \hyperlink{a00040}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00040}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
 
-Here's how to quickly jump in to \hyperlink{a00026}{Yarn} Spinner, if you're already reasonably comfortable with Unity.
+\subsection*{Lines}
+
+\hyperlink{a00040}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
+
+Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: \begin{DoxyVerb}Alice: Hey, I'm a character speaking in a dialogue!
+Bob: Wild!
+\end{DoxyVerb}
+
+
+Each line is delivered to your game one at a time.
+
+\subsection*{Options}
+
+To link a node to another node, you provide {\itshape options}. Options look like this\-: \begin{DoxyVerb}[[Go to the woods|GoToWoods]]
+[[Go back to the city|GoToCity]]
+\end{DoxyVerb}
+
+
+Options have two parts\-: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar ({\ttfamily $\vert$}).
+
+You don't have to provide the label. Instead, you can just provide the node name, like so\-: \begin{DoxyVerb}[[GoToCity]]
+\end{DoxyVerb}
+
+
+If an option has no label, \hyperlink{a00040}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
+
+When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
+
+If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00040}{Yarn} Spinner will let your game know.
+
+\subsection*{Shortcut Options}
+
+Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: \begin{DoxyVerb}Mae: What did you say to her?
+-> Nothing.
+    Mae: Oh, man. Maybe you should have.
+-> That she was an idiot.
+    Mae: Hah! I bet that pissed her off.
+Mae: Anyway, I'd better get going.
+\end{DoxyVerb}
+
+
+When this is run, \hyperlink{a00040}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
+
+You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: \begin{DoxyVerb}Bob: What would you like?
+-> A burger. <<if $money >= 5>>
+    Bob: Nice. Enjoy!
+-> A soda. <<if $money >= 2>>
+    Bob: Yum!
+-> Nothing.
+Bob: Thanks for coming!
+\end{DoxyVerb}
+
+
+Note that in the last example, there wasn't any attached text. If the player selected the last option (\char`\"{}\-Nothing.\char`\"{}), then the next line to appear would be \char`\"{}\-Bob\-: Thanks for coming!\char`\"{}
+
+You can also nest these shortcut options, if you like. Be careful, though -\/ too much nested options can make your text difficult to read.
+
+\subsection*{Commands}
+
+In addition to showing lines of dialogue, your game will probably want to run actions -\/ things like \char`\"{}move the camera to position X\char`\"{}, or \char`\"{}make character start smiling\char`\"{}. You can use commands for this.
+
+Commands look like this\-: \begin{DoxyVerb}<<move alice to under_bridge>>
+\end{DoxyVerb}
+
+
+Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
+
+\hyperlink{a00040}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00040}{Yarn} will stop the entire conversation when it reaches it.
+
+\subsection*{Variables and If statements}
+
+You can store numbers in variables. To do this, use the {\ttfamily set} command\-: \begin{DoxyVerb}<<set $door_unlocked to 1>>
+\end{DoxyVerb}
+
+
+You can check the value of a variable using the {\ttfamily if} command\-: \begin{DoxyVerb}<<if $door_unlocked is 1>>
+    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Expressions}
+
+You can do math in an {\ttfamily if} command. For example\-: \begin{DoxyVerb}<<if $number_of_stars_collected > 5>>
+    You have more than 5 stars!
+<<endif>>
+\end{DoxyVerb}
+
+
+You can also get fancier, and do stuff like this\-: \begin{DoxyVerb}<<if $hostages_saved == $number_of_hostages and $time_remaining > 0>>
+    You win the game!
+<<elseif $hostages_saved < $number_of_hostages and $time_remaining > 0>>
+    You need to rescue more hostages!
+<<elseif $bomb_has_exploded == 0>>
+    You failed to rescue the hostages before time ran out!
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Types}
+
+There are four different types of value in \hyperlink{a00040}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
 
 
 \begin{DoxyItemize}
-\item {\bfseries Download and import \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt the Yarn\-Spinner package} into your project.}
-\item {\bfseries Inside the \hyperlink{a00154}{Yarn\-Spinner} folder, open the {\ttfamily Examples/\-Yarn Spinner Basic Example} scene.}
-\item {\bfseries Start the game. Play through the dialogue.}
+\item Strings contain text.
+\item Numbers are floating-\/point numbers.
+\item Booleans are either true or false.
+\item {\ttfamily null} means no value.
 \end{DoxyItemize}
 
-Once you've played with it, open the Example Script file in the \hyperlink{a00026}{Yarn} editor (it's in the {\ttfamily Examples/\-Demo Assets} folder), and make some changes to the script. Once you've done that, take a look at how {\ttfamily \hyperlink{a00105}{Code/\-Dialogue\-Runner.\-cs}}, {\ttfamily Examples/\-Demo \hyperlink{a00109}{Scripts/\-Example\-Dialogue\-U\-I.\-cs}} and {\ttfamily Examples/\-Demo \hyperlink{a00110}{Scripts/\-Example\-Variable\-Storage.\-cs}} work. You can also \hyperlink{a00097}{add your own functions to Yarn}.
+\hyperlink{a00040}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
+    The two strings are the same!
+<<endif>>
 
-\subsection*{Tutorial}
-
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know at least a little bit about \href{http://www.unity3d.com}{\tt Unity}. In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C\#. If you don't know these things, check out \href{http://unity3d.com/learn}{\tt Unity's documentation}!
-
-\end{quotation}
-
-
-\hyperlink{a00026}{Yarn} Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.
-
-To use \hyperlink{a00026}{Yarn} Spinner, you use three classes\-:
-
-
-\begin{DoxyItemize}
-\item {\ttfamily Dialogue\-Runner}, which is responsible for loading and running your dialogue script;
-\item A subclass of {\ttfamily Dialogue\-U\-I\-Behaviour}, which is reponsible for displaying the lines and dialogue choices to the player; and
-\item A subclass of {\ttfamily Variable\-Storage\-Behaviour}, which is responsible for storing the state of the conversation.
-\end{DoxyItemize}
-
-These three classes exist in the {\ttfamily \hyperlink{a00152}{Yarn.\-Unity}} namespace. To create your subclasses of {\ttfamily Dialogue\-U\-I\-Behaviour} and {\ttfamily Variable\-Storage\-Behaviour}, you'll need to add the following code to the top of your C\# code\-: \begin{DoxyVerb}using Yarn.Unity;
+<<if 1+1+"hi" == "2hi">>
+    Strings get joined together with other values!
+<<endif>>
 \end{DoxyVerb}
 
 
-Additionally, you store your \hyperlink{a00026}{Yarn} files as {\ttfamily .json} assets in your Unity projects. These can be stored anywhere -\/ you simply provide add them to the {\ttfamily Dialogue\-Runner}'s inspector. You can also call {\ttfamily Add\-Script} on the {\ttfamily Dialogue\-Runner} at runtime; this is useful for cases like spawning a character who comes with some extra dialogue -\/ all that needs to happen is that character just needs to pass their \hyperlink{a00026}{Yarn} script to the {\ttfamily Dialogue\-Runner}.
+{\bfseries Warning\-:} Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
 
-\subsubsection*{Load your conversation with {\ttfamily Dialogue\-Runner}}
+\subsection*{Functions}
 
-\hyperlink{a00026}{Yarn} conversations are loaded and managed by a {\ttfamily Dialogue\-Runner} object. This object is responsible for loading and parsing your \hyperlink{a00026}{Yarn} {\ttfamily .json} files. It also runs the script when it's told to -\/ for example, when you walk up to a character in your game and talk to them.
-
-\subsubsection*{Display your conversation with {\ttfamily Dialogue\-U\-I}}
-
-Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.
-
-\hyperlink{a00026}{Yarn} Spinner makes no assumptions about how you want to handle your dialogue's U\-I. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-\/based U\-I with a countdown timer? Oh man that would be sweet.
-
-\hyperlink{a00026}{Yarn} Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying \hyperlink{a00026}{Yarn} Spinner about what response the user selected.
-
-\hyperlink{a00026}{Yarn} Spinner comes with an example script that uses Unity's U\-I system. It's a good place to start.
-
-\subsubsection*{Store your conversation state with a {\ttfamily Variable\-Storage\-Behaviour}}
-
-There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00026}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C\# $\ast$\href{C# interface}{\tt interface}$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
-
-The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
-
-\subsubsection*{Respond to commands with {\ttfamily Yarn\-Command}}
-
-In \hyperlink{a00026}{Yarn}, you can create {\itshape commands} that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this\-: \begin{DoxyVerb}<<move Sally exit>>
+You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00040}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
+    We have gone to the city before!
+<<endif>>
 \end{DoxyVerb}
 
 
-For this to work, the game object named \char`\"{}\-Sally\char`\"{} needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this\-: \begin{DoxyVerb}[YarnCommand("move")]
-public void MoveCharacter(string destinationName) {
-    // move to the destination
-}
-\end{DoxyVerb}
-
-
-When \hyperlink{a00026}{Yarn} encounters a command that contains two or more words, it looks for a game object with the same name as the second word (\char`\"{}\-Sally\char`\"{}, in the above example), and then searches that object's scripts for any method that has a {\ttfamily Yarn\-Command} with the same name as the first word (in this case, \char`\"{}move\char`\"{}).
-
-Any further words in the command are passed as string parameters to the method (\char`\"{}exit\char`\"{}, in this case, which is used as the {\ttfamily destination\-Name} parameter)
-
-Note that {\bfseries all} parameters must be strings. {\ttfamily Dialogue\-Runner} will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers. 
+You can't define your own functions inside \hyperlink{a00040}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00120}{Extending.\-md}Extending \hyperlink{a00040}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

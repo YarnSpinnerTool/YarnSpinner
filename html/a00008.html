@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Extending Yarn Spinner</title>
+<title>YarnSpinner: LOCALIZATION</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,39 +99,28 @@ $(document).ready(function(){initNavTree('a00008.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Extending <a class="el" href="a00026.html">Yarn</a> Spinner </div>  </div>
+<div class="title">LOCALIZATION </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This is a quick-and-dirty document that shows how to add new functions so that they can be called from inside <a class="el" href="a00026.html">Yarn</a>.</p>
-<p>First, get your <code>Dialogue</code> object: </p>
-<pre class="fragment">// some_implementation is the object that handles variable storage - 
-// it's not important in this example
-var dialogue = new Dialogue(some_implementation);
-</pre><p>Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns <code>true</code> if it's even:</p>
-<pre class="fragment">dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
-    return (int)parameters[0].AsNumber % 2 == 0;
-});
-</pre><p>When the function is called, the delegate you provide will be run.</p>
-<p>Some notes:</p>
+<div class="textblock"><p><a class="el" href="a00040.html">Yarn</a> Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the <a href="../YarnSpinnerConsole">YarnSpinnerConsole</a> tool. At the moment, this tool is not available standalone and needs to be ../YarnSpinner-Programming/Building.md "built from source".</p>
+<h2>Localisation procedure</h2>
+<ol type="1">
+<li>We first use the tool to place unique <b>taglines</b> on each line of text that the end user will see. To do this, we execute the tool with the <b>taglines</b> command, eg: <code>YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt</code>.</li>
+<li>Next, we use the tool to generate a file of strings (<b>genstrings</b>) in '<a href="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value</a>' (csv) format. <code>YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt</code> will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` MyYarnFIle.yarn_lines.enAU.csv MyYarnFIle.yarn_lines.ptTL.csv ```</li>
+<li>When the file is returned from translators, we then use <a class="el" href="a00040.html">Yarn</a> Spinner's DialogueRunner inside Unity to set String Groups for the required language.</li>
+</ol>
+<h2>Footnotes</h2>
 <ul>
-<li>You don't have to return a value from your function.</li>
-<li>The parameters passed to your function are of type <a class="el" href="a00086.html">Yarn.Value</a>. You can get their value as numbers, bools or strings by using the <code>AsNumber</code>, <code>AsString</code> and <code>AsBool</code> properties.</li>
-<li>You can only return values of the following types:<ul>
-<li>String</li>
-<li>Float</li>
-<li>Double</li>
-<li>Integer</li>
-<li><a class="el" href="a00086.html">Yarn.Value</a></li>
-</ul>
-</li>
-<li><a class="el" href="a00026.html">Yarn</a> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <code>-1</code> as your parameter count, the function may have any number of parameters. </li>
+<li>While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en">ISO-15897</a></li>
+<li>Originally, <a class="el" href="a00040.html">Yarn</a> Spinner used .json format. The <a class="el" href="a00040.html">Yarn</a> Spinner Console can convert this json format to the new improved text format: <code>YarnSpinnerConsole.exe convert --yarn Ship.json</code></li>
+<li>Command reference is available for YarnSpinnerConsole.exe by either running it with no arguments or by utilising the help command (<code>YarnSpinnerConsole.exe help</code>). Help for each command is available by using 'help command' (eg <code>YarnSpinnderConsole.exe help compile</code>) </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:52 for YarnSpinner by
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

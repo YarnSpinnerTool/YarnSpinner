@@ -1,4 +1,2 @@
-<map id="Yarn.Dialogue.OptionSetResult" name="Yarn.Dialogue.OptionSetResult">
-<area shape="rect" id="node2" href="$a00069.html" title="{RunnerResult\n||}" alt="" coords="5,5,107,83"/>
-<area shape="rect" id="node3" href="$a00026.html#a00161" title="{Yarn.Options\n|+ options\l|}" alt="" coords="132,5,231,83"/>
+<map id="Yarn.YarnException" name="Yarn.YarnException">
 </map>

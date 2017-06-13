@@ -1,2 +1,4 @@
-<map id="Yarn.Unity.Example.PlayerCharacter" name="Yarn.Unity.Example.PlayerCharacter">
+<map id="Yarn.Unity.VariableStorageBehaviour" name="Yarn.Unity.VariableStorageBehaviour">
+<area shape="rect" id="node4" href="$a00047.html" title="{ExampleVariableStorage\n|+ defaultVariables\l+ debugTextView\l&#45; variables\l|+ ResetToDefaults()\l+ SetValue()\l+ GetValue()\l+ Clear()\l&#45; Awake()\l&#45; Update()\l}" alt="" coords="56,403,220,583"/>
+<area shape="rect" id="node3" href="$a00102.html" title="{Yarn::VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="141,5,289,141"/>
 </map>

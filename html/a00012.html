@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Using Yarn Spinner in your Unity game</title>
+<title>YarnSpinner: Yarn for Writers</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,59 +99,100 @@ $(document).ready(function(){initNavTree('a00012.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Using <a class="el" href="a00026.html">Yarn</a> Spinner in your Unity game </div>  </div>
+<div class="title"><a class="el" href="a00040.html">Yarn</a> for Writers </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="el" href="a00026.html">Yarn</a> Spinner Quick Start</h2>
-<p>Here's how to quickly jump in to <a class="el" href="a00026.html">Yarn</a> Spinner, if you're already reasonably comfortable with Unity.</p>
+<div class="textblock"><p>This document talks about how to use <a class="el" href="a00040.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="a00040.html">Yarn</a> Spinner into your project; for that, see <a href="../YarnSpinner-Unity">"Using Yarn Spinner in your Unity game"</a>.</p>
+<h2>Lines</h2>
+<p><a class="el" href="a00040.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
+<p>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: </p>
+<pre class="fragment">Alice: Hey, I'm a character speaking in a dialogue!
+Bob: Wild!
+</pre><p>Each line is delivered to your game one at a time.</p>
+<h2>Options</h2>
+<p>To link a node to another node, you provide <em>options</em>. Options look like this: </p>
+<pre class="fragment">[[Go to the woods|GoToWoods]]
+[[Go back to the city|GoToCity]]
+</pre><p>Options have two parts: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (<code>|</code>).</p>
+<p>You don't have to provide the label. Instead, you can just provide the node name, like so: </p>
+<pre class="fragment">[[GoToCity]]
+</pre><p>If an option has no label, <a class="el" href="a00040.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
+<p>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</p>
+<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="a00040.html">Yarn</a> Spinner will let your game know.</p>
+<h2>Shortcut Options</h2>
+<p>Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use <em>shortcut options</em>: </p>
+<pre class="fragment">Mae: What did you say to her?
+-&gt; Nothing.
+    Mae: Oh, man. Maybe you should have.
+-&gt; That she was an idiot.
+    Mae: Hah! I bet that pissed her off.
+Mae: Anyway, I'd better get going.
+</pre><p>When this is run, <a class="el" href="a00040.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
+<p>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: </p>
+<pre class="fragment">Bob: What would you like?
+-&gt; A burger. &lt;&lt;if $money &gt;= 5&gt;&gt;
+    Bob: Nice. Enjoy!
+-&gt; A soda. &lt;&lt;if $money &gt;= 2&gt;&gt;
+    Bob: Yum!
+-&gt; Nothing.
+Bob: Thanks for coming!
+</pre><p>Note that in the last example, there wasn't any attached text. If the player selected the last option ("Nothing."), then the next line to appear would be "Bob: Thanks for coming!"</p>
+<p>You can also nest these shortcut options, if you like. Be careful, though - too much nested options can make your text difficult to read.</p>
+<h2>Commands</h2>
+<p>In addition to showing lines of dialogue, your game will probably want to run actions - things like "move the camera to position X", or "make character start smiling". You can use commands for this.</p>
+<p>Commands look like this: </p>
+<pre class="fragment">&lt;&lt;move alice to under_bridge&gt;&gt;
+</pre><p>Any text inside the double-chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.</p>
+<p><a class="el" href="a00040.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="a00040.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
+<h2>Variables and If statements</h2>
+<p>You can store numbers in variables. To do this, use the <code>set</code> command: </p>
+<pre class="fragment">&lt;&lt;set $door_unlocked to 1&gt;&gt;
+</pre><p>You can check the value of a variable using the <code>if</code> command: </p>
+<pre class="fragment">&lt;&lt;if $door_unlocked is 1&gt;&gt;
+    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
+&lt;&lt;endif&gt;&gt;
+</pre><h2>Expressions</h2>
+<p>You can do math in an <code>if</code> command. For example: </p>
+<pre class="fragment">&lt;&lt;if $number_of_stars_collected &gt; 5&gt;&gt;
+    You have more than 5 stars!
+&lt;&lt;endif&gt;&gt;
+</pre><p>You can also get fancier, and do stuff like this: </p>
+<pre class="fragment">&lt;&lt;if $hostages_saved == $number_of_hostages and $time_remaining &gt; 0&gt;&gt;
+    You win the game!
+&lt;&lt;elseif $hostages_saved &lt; $number_of_hostages and $time_remaining &gt; 0&gt;&gt;
+    You need to rescue more hostages!
+&lt;&lt;elseif $bomb_has_exploded == 0&gt;&gt;
+    You failed to rescue the hostages before time ran out!
+&lt;&lt;endif&gt;&gt;
+</pre><h2>Types</h2>
+<p>There are four different types of value in <a class="el" href="a00040.html">Yarn</a>: strings, numbers, booleans, and <code>null</code>.</p>
 <ul>
-<li><b>Download and import <a href="https://github.com/thesecretlab/YarnSpinner/releases">the YarnSpinner package</a> into your project.</b></li>
-<li><b>Inside the <a class="el" href="a00154.html">YarnSpinner</a> folder, open the <code>Examples/Yarn Spinner Basic Example</code> scene.</b></li>
-<li><b>Start the game. Play through the dialogue.</b></li>
+<li>Strings contain text.</li>
+<li>Numbers are floating-point numbers.</li>
+<li>Booleans are either true or false.</li>
+<li><code>null</code> means no value.</li>
 </ul>
-<p>Once you've played with it, open the Example Script file in the <a class="el" href="a00026.html">Yarn</a> editor (it's in the <code>Examples/Demo Assets</code> folder), and make some changes to the script. Once you've done that, take a look at how <code><a class="el" href="a00105.html">Code/DialogueRunner.cs</a></code>, <code>Examples/Demo <a class="el" href="a00109.html">Scripts/ExampleDialogueUI.cs</a></code> and <code>Examples/Demo <a class="el" href="a00110.html">Scripts/ExampleVariableStorage.cs</a></code> work. You can also <a class="el" href="a00097.html">add your own functions to Yarn</a>.</p>
-<h2>Tutorial</h2>
-<blockquote class="doxtable">
-<p>***Note:*** This tutorial assumes that you know at least a little bit about <a href="http://www.unity3d.com">Unity</a>. In particular, it assumes that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, check out <a href="http://unity3d.com/learn">Unity's documentation</a>!</p>
-<p></p>
-</blockquote>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.</p>
-<p>To use <a class="el" href="a00026.html">Yarn</a> Spinner, you use three classes:</p>
-<ul>
-<li><code>DialogueRunner</code>, which is responsible for loading and running your dialogue script;</li>
-<li>A subclass of <code>DialogueUIBehaviour</code>, which is reponsible for displaying the lines and dialogue choices to the player; and</li>
-<li>A subclass of <code>VariableStorageBehaviour</code>, which is responsible for storing the state of the conversation.</li>
-</ul>
-<p>These three classes exist in the <code><a class="el" href="a00152.html">Yarn.Unity</a></code> namespace. To create your subclasses of <code>DialogueUIBehaviour</code> and <code>VariableStorageBehaviour</code>, you'll need to add the following code to the top of your C# code: </p>
-<pre class="fragment">using Yarn.Unity;
-</pre><p>Additionally, you store your <a class="el" href="a00026.html">Yarn</a> files as <code>.json</code> assets in your Unity projects. These can be stored anywhere - you simply provide add them to the <code>DialogueRunner</code>'s inspector. You can also call <code>AddScript</code> on the <code>DialogueRunner</code> at runtime; this is useful for cases like spawning a character who comes with some extra dialogue - all that needs to happen is that character just needs to pass their <a class="el" href="a00026.html">Yarn</a> script to the <code>DialogueRunner</code>.</p>
-<h3>Load your conversation with <code>DialogueRunner</code></h3>
-<p><a class="el" href="a00026.html">Yarn</a> conversations are loaded and managed by a <code>DialogueRunner</code> object. This object is responsible for loading and parsing your <a class="el" href="a00026.html">Yarn</a> <code>.json</code> files. It also runs the script when it's told to - for example, when you walk up to a character in your game and talk to them.</p>
-<h3>Display your conversation with <code>DialogueUI</code></h3>
-<p>Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.</p>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner makes no assumptions about how you want to handle your dialogue's UI. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-based UI with a countdown timer? Oh man that would be sweet.</p>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying <a class="el" href="a00026.html">Yarn</a> Spinner about what response the user selected.</p>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner comes with an example script that uses Unity's UI system. It's a good place to start.</p>
-<h3>Store your conversation state with a <code>VariableStorageBehaviour</code></h3>
-<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="a00026.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C# *<a href="C# interface">interface</a>*, which defines methods like "set variable" and "get value of variable".</p>
-<p>The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.</p>
-<h3>Respond to commands with <code>YarnCommand</code></h3>
-<p>In <a class="el" href="a00026.html">Yarn</a>, you can create <em>commands</em> that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this: </p>
-<pre class="fragment">&lt;&lt;move Sally exit&gt;&gt;
-</pre><p>For this to work, the game object named "Sally" needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this: </p>
-<pre class="fragment">[YarnCommand("move")]
-public void MoveCharacter(string destinationName) {
-    // move to the destination
-}
-</pre><p>When <a class="el" href="a00026.html">Yarn</a> encounters a command that contains two or more words, it looks for a game object with the same name as the second word ("Sally", in the above example), and then searches that object's scripts for any method that has a <code>YarnCommand</code> with the same name as the first word (in this case, "move").</p>
-<p>Any further words in the command are passed as string parameters to the method ("exit", in this case, which is used as the <code>destinationName</code> parameter)</p>
-<p>Note that <b>all</b> parameters must be strings. <code>DialogueRunner</code> will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers. </p>
+<p><a class="el" href="a00040.html">Yarn</a> will automatically convert between types for you. For example: </p>
+<pre class="fragment">&lt;&lt;if "hi" == "hi"&gt;&gt;
+    The two strings are the same!
+&lt;&lt;endif&gt;&gt;
+
+&lt;&lt;if 1+1+"hi" == "2hi"&gt;&gt;
+    Strings get joined together with other values!
+&lt;&lt;endif&gt;&gt;
+</pre><p><b>Warning:</b> Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.</p>
+<h2>Functions</h2>
+<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="a00040.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. </p>
+<pre class="fragment">&lt;&lt;if visited("GoToCity")&gt;&gt;
+    We have gone to the city before!
+&lt;&lt;endif&gt;&gt;
+</pre><p>You can't define your own functions inside <a class="el" href="a00040.html">Yarn</a> itself, but they can be added at run-time. See <a class="el" href="a00120.html">Extending.md</a>Extending <a class="el" href="a00040.html">Yarn</a> Spinner"" for more info. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:52 for YarnSpinner by
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

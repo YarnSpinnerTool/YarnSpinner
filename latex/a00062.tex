@@ -1,42 +1,41 @@
-\hypertarget{a00062}{\section{Yarn.\-Parse\-Exception Class Reference}
-\label{a00062}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
+\hypertarget{a00062}{\section{Yarn.\-Lexer.\-Lexer\-State Class Reference}
+\label{a00062}\index{Yarn.\-Lexer.\-Lexer\-State@{Yarn.\-Lexer.\-Lexer\-State}}
 }
 
 
-Inheritance diagram for Yarn.\-Parse\-Exception\-:
+Collaboration diagram for Yarn.\-Lexer.\-Lexer\-State\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00250}
+\includegraphics[width=212pt]{a00258}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Parse\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=188pt]{a00251}
-\end{center}
-\end{figure}
-\subsection*{Package Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00062_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
+\hyperlink{a00062_ac67a7c0e09d7b4350f75b105723a4f6c}{Lexer\-State} (Dictionary$<$ \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00062_a951f91e9522ffe84851f2e25e9445106}{patterns})
+\item 
+\hyperlink{a00096}{Token\-Rule} \hyperlink{a00062_a71ba52744e853ff142de19e97cf5daed}{Add\-Transition} (\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null, bool delimits\-Text=false)
+\item 
+\hyperlink{a00096}{Token\-Rule} \hyperlink{a00062_af183111863c651ae5681665a2c379830}{Add\-Text\-Rule} (\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type, string enters\-State=null)
 \end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00062}{Parse\-Exception} \hyperlink{a00062_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00079}{Token} found\-Token, params \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
+List$<$ \hyperlink{a00096}{Token\-Rule} $>$ \hyperlink{a00062_adf6563b1dc6f3ef80ed13c2b15b7be03}{token\-Rules} = new List$<$\hyperlink{a00096}{Token\-Rule}$>$()
 \item 
-static \hyperlink{a00062}{Parse\-Exception} \hyperlink{a00062_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00079}{Token} most\-Recent\-Token, string message)
+bool \hyperlink{a00062_ad8b6ccac53bedd9dc202ffe6ac5698b2}{set\-Track\-Next\-Indentation} = false
 \end{DoxyCompactItemize}
-\subsection*{Package Attributes}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
+bool \hyperlink{a00062_a69948f05c35eeae9cb8448c849a053e6}{contains\-Text\-Rule} \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}, string $>$ \hyperlink{a00062_a951f91e9522ffe84851f2e25e9445106}{patterns}
 \end{DoxyCompactItemize}
 
 
@@ -44,80 +43,102 @@ int \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00062_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
-\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
+\hypertarget{a00062_ac67a7c0e09d7b4350f75b105723a4f6c}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Lexer\-State@{Lexer\-State}}
+\index{Lexer\-State@{Lexer\-State}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Lexer\-State}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Lexer\-State.\-Lexer\-State (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+\item[{Dictionary$<$ {\bf Token\-Type}, string $>$}]{patterns}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00062_aa3c4f5c8b0ae86097bbc46044df9f317}
+)}}\label{a00062_ac67a7c0e09d7b4350f75b105723a4f6c}
 
 \begin{DoxyCode}
-73 : base(message) \{\}
+212             \{
+213                 this.patterns = \hyperlink{a00062_a951f91e9522ffe84851f2e25e9445106}{patterns};
+214             \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00062_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\hypertarget{a00062_af183111863c651ae5681665a2c379830}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Text\-Rule@{Add\-Text\-Rule}}
+\index{Add\-Text\-Rule@{Add\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Text\-Rule (
 \begin{DoxyParamCaption}
-\item[{{\bf Token}}]{found\-Token, }
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00062_a511a51bb42dc5bb107eb68f7e5cf5ff1}
+)}}\label{a00062_af183111863c651ae5681665a2c379830}
 
 \begin{DoxyCode}
-41                                                                                                 \{
-42 
-43             var \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber+1;
-44 
-45             var expectedTypeNames = \textcolor{keyword}{new} List<String> ();
-46             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes) \{
-47                 expectedTypeNames.Add (type.ToString ());
-48             \}
-49 
-50             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
-51             \textcolor{keywordtype}{string} message = string.Format(\textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but found \{3\}"},
-52                                            \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-53                                            foundToken.columnNumber,
-54                                            possibleValues,
-55                                            foundToken.type.ToString()
-56                                            );
-57             var e = \textcolor{keyword}{new} \hyperlink{a00062_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (message);
-58             e.lineNumber = \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-59             \textcolor{keywordflow}{return} e;
-60         \}
+233             \{
+234                 \textcolor{keywordflow}{if} (\hyperlink{a00062_a69948f05c35eeae9cb8448c849a053e6}{containsTextRule}) \{
+235                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (\textcolor{stringliteral}{"State already contains a text rule"});
+236                 \}
+237 
+238                 var delimiterRules = \textcolor{keyword}{new} List<string>();
+239 
+240                 \textcolor{keywordflow}{foreach} (var otherRule \textcolor{keywordflow}{in} \hyperlink{a00062_adf6563b1dc6f3ef80ed13c2b15b7be03}{tokenRules}) \{
+241                     \textcolor{keywordflow}{if} (otherRule.delimitsText == \textcolor{keyword}{true})
+242                         delimiterRules.Add (string.Format (\textcolor{stringliteral}{"(\{0\})"}, otherRule.regex.ToString().Substring(2)
+      ));
+243                 \}
+244 
+245                 \textcolor{comment}{// Create a regex that matches all text up to but not including}
+246                 \textcolor{comment}{// any of the delimiter rules}
+247                 var pattern = string.Format (\textcolor{stringliteral}{@"\(\backslash\)G((?!\{0\}).)*"}, 
+248                     string.Join (\textcolor{stringliteral}{"|"}, delimiterRules.ToArray()));
+249 
+250                 var rule = \hyperlink{a00062_a71ba52744e853ff142de19e97cf5daed}{AddTransition}(type, entersState);
+251 
+252                 rule.regex = \textcolor{keyword}{new} Regex (pattern);
+253                 rule.isTextRule = \textcolor{keyword}{true};
+254 
+255 
+256                 \textcolor{keywordflow}{return} rule;
+257             \}
 \end{DoxyCode}
-\hypertarget{a00062_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\hypertarget{a00062_a71ba52744e853ff142de19e97cf5daed}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!Add\-Transition@{Add\-Transition}}
+\index{Add\-Transition@{Add\-Transition}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{Add\-Transition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Rule} Yarn.\-Lexer.\-Lexer\-State.\-Add\-Transition (
 \begin{DoxyParamCaption}
-\item[{{\bf Token}}]{most\-Recent\-Token, }
-\item[{string}]{message}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{string}]{enters\-State = {\ttfamily null}, }
+\item[{bool}]{delimits\-Text = {\ttfamily false}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00062_a173f3cabc4741d9d9e016310e90c1c9f}
+)}}\label{a00062_a71ba52744e853ff142de19e97cf5daed}
 
 \begin{DoxyCode}
-62                                                                                    \{
-63             var \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber+1;
-64             \textcolor{keywordtype}{string} theMessage = string.Format (\textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
-65                                  \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-66                                 mostRecentToken.columnNumber,
-67                                  message);
-68             var e = \textcolor{keyword}{new} \hyperlink{a00062_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (theMessage);
-69             e.lineNumber = \hyperlink{a00062_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-70             \textcolor{keywordflow}{return} e;
-71         \}
+218                                                                                                            
+            \{
+219 
+220                 var pattern = string.Format (\textcolor{stringliteral}{@"\(\backslash\)G\{0\}"}, \hyperlink{a00062_a951f91e9522ffe84851f2e25e9445106}{patterns} [type]);
+221 
+222                 var rule = \textcolor{keyword}{new} TokenRule (type, \textcolor{keyword}{new} Regex(pattern), entersState, delimitsText);
+223 
+224                 tokenRules.Add(rule);
+225 
+226                 \textcolor{keywordflow}{return} rule;
+227             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00062_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00062_ab335169367e64fd6d89d58b3ac573751}
+\hypertarget{a00062_a951f91e9522ffe84851f2e25e9445106}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!patterns@{patterns}}
+\index{patterns@{patterns}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{patterns}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<${\bf Token\-Type}, string$>$ Yarn.\-Lexer.\-Lexer\-State.\-patterns\hspace{0.3cm}{\ttfamily [private]}}}\label{a00062_a951f91e9522ffe84851f2e25e9445106}
+\hypertarget{a00062_ad8b6ccac53bedd9dc202ffe6ac5698b2}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}}
+\index{set\-Track\-Next\-Indentation@{set\-Track\-Next\-Indentation}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{set\-Track\-Next\-Indentation}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-set\-Track\-Next\-Indentation = false}}\label{a00062_ad8b6ccac53bedd9dc202ffe6ac5698b2}
+\hypertarget{a00062_adf6563b1dc6f3ef80ed13c2b15b7be03}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!token\-Rules@{token\-Rules}}
+\index{token\-Rules@{token\-Rules}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{token\-Rules}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Token\-Rule}$>$ Yarn.\-Lexer.\-Lexer\-State.\-token\-Rules = new List$<${\bf Token\-Rule}$>$()}}\label{a00062_adf6563b1dc6f3ef80ed13c2b15b7be03}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00062_a69948f05c35eeae9cb8448c849a053e6}{\index{Yarn\-::\-Lexer\-::\-Lexer\-State@{Yarn\-::\-Lexer\-::\-Lexer\-State}!contains\-Text\-Rule@{contains\-Text\-Rule}}
+\index{contains\-Text\-Rule@{contains\-Text\-Rule}!Yarn::Lexer::LexerState@{Yarn\-::\-Lexer\-::\-Lexer\-State}}
+\subsubsection[{contains\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Lexer\-State.\-contains\-Text\-Rule \textbackslash{}G((?!\{0\}).)$\ast$\char`\"{}\hspace{0.3cm}{\ttfamily [get]}}}\label{a00062_a69948f05c35eeae9cb8448c849a053e6}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00122}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00140}{Lexer.\-cs}\end{DoxyCompactItemize}

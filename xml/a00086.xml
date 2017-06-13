@@ -1,42 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00086" kind="class" prot="public">
-    <compoundname>Yarn::Value</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">IComparable</basecompoundref>
-    <basecompoundref prot="public" virt="non-virtual">IComparable&lt; Value &gt;</basecompoundref>
+  <compounddef id="a00086" kind="class" prot="package">
+    <compoundname>Yarn::VirtualMachine</compoundname>
+    <innerclass refid="a00183" prot="package">Yarn::VirtualMachine::SpecialVariables</innerclass>
+    <innerclass refid="a00089" prot="package">Yarn::VirtualMachine::State</innerclass>
       <sectiondef kind="public-type">
-      <memberdef kind="enum" id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884" prot="public" static="no">
-        <name>Type</name>
-        <enumvalue id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f" prot="public">
-          <name>Number</name>
+      <memberdef kind="enum" id="a00086_1add28fa9c8a45ca579e84d05920bbc42d" prot="public" static="no">
+        <name>ExecutionState</name>
+        <enumvalue id="a00086_1add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2" prot="public">
+          <name>Stopped</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98" prot="public">
-          <name>String</name>
+        <enumvalue id="a00086_1add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b" prot="public">
+          <name>WaitingOnOptionSelection</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034" prot="public">
-          <name>Bool</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9" prot="public">
-          <name>Variable</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00086_1ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94" prot="public">
-          <name>Null</name>
+        <enumvalue id="a00086_1add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09" prot="public">
+          <name>Running</name>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -48,266 +34,392 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="10" bodyend="16"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="86" bodyend="90"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="a00086_1a1ed2964965baca8621c45efa23f37660" prot="public" static="yes" mutable="no">
-        <type>readonly <ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>readonly Value Yarn.Value.NULL</definition>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00086_1a29b30454f068fc7e107d48bff4346fd9" prot="public" static="no" mutable="no">
+        <type><ref refid="a00086_1aac9ec1011ea2c01460044d7c8355f398" kindref="member">LineHandler</ref></type>
+        <definition>LineHandler Yarn.VirtualMachine.lineHandler</definition>
         <argsstring></argsstring>
-        <name>NULL</name>
-        <initializer>= new <ref refid="a00086" kindref="compound">Value</ref>()</initializer>
+        <name>lineHandler</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="8" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1acd25fe2e3aa90dc87ba25d9af904465b" prot="public" static="no" mutable="no">
+        <type><ref refid="a00086_1a78dfd54b743e53078eed19ab7be2b6cf" kindref="member">OptionsHandler</ref></type>
+        <definition>OptionsHandler Yarn.VirtualMachine.optionsHandler</definition>
+        <argsstring></argsstring>
+        <name>optionsHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1ab89b02227b92c74552f719afd47848e4" prot="public" static="no" mutable="no">
+        <type><ref refid="a00086_1a1b57359378059b134ba76acddafd8d81" kindref="member">CommandHandler</ref></type>
+        <definition>CommandHandler Yarn.VirtualMachine.commandHandler</definition>
+        <argsstring></argsstring>
+        <name>commandHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1a5129c63e67e2d4e2780d86b8351320a2" prot="public" static="no" mutable="no">
+        <type><ref refid="a00086_1a5bf3aa51578847c18191fec665a840f9" kindref="member">NodeCompleteHandler</ref></type>
+        <definition>NodeCompleteHandler Yarn.VirtualMachine.nodeCompleteHandler</definition>
+        <argsstring></argsstring>
+        <name>nodeCompleteHandler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00086_1ac506426c503da5f033247c29e11c5e82" prot="private" static="no" mutable="no">
+        <type><ref refid="a00050" kindref="compound">Dialogue</ref></type>
+        <definition>Dialogue Yarn.VirtualMachine.dialogue</definition>
+        <argsstring></argsstring>
+        <name>dialogue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1a2695dbfe3d9df7ffa3f13ad2231217fb" prot="private" static="no" mutable="no">
+        <type><ref refid="a00081" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.VirtualMachine.program</definition>
+        <argsstring></argsstring>
+        <name>program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1a70f2ce6201cdd2430ceaa764ac614ca0" prot="private" static="no" mutable="no">
+        <type><ref refid="a00089" kindref="compound">State</ref></type>
+        <definition>State Yarn.VirtualMachine.state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <initializer>= new <ref refid="a00089" kindref="compound">State</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1a408485a00c7cc558428c86ed9dd04fca" prot="private" static="no" mutable="no">
+        <type>Random</type>
+        <definition>Random Yarn.VirtualMachine.random</definition>
+        <argsstring></argsstring>
+        <name>random</name>
+        <initializer>= new Random()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="77" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1a0ae362616d85f028b7ec3230388926f4" prot="private" static="no" mutable="no">
+        <type><ref refid="a00086_1add28fa9c8a45ca579e84d05920bbc42d" kindref="member">ExecutionState</ref></type>
+        <definition>ExecutionState Yarn.VirtualMachine._executionState</definition>
+        <argsstring></argsstring>
+        <name>_executionState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="92" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1ab7594e14981ad75cecea3b2e7dcf895c" prot="private" static="no" mutable="no">
+        <type><ref refid="a00181" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.VirtualMachine.currentNode</definition>
+        <argsstring></argsstring>
+        <name>currentNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00086_1ae84c732dc75a64589808e1e0fad1a85f" prot="private" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int Yarn.VirtualMachine.STATE_VERSION_NUMBER</definition>
+        <argsstring></argsstring>
+        <name>STATE_VERSION_NUMBER</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="132" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="132" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00086_1a6d5820fafa766911b9da84d1ed33e51a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00086_1ad5aaf60ee4504608fcc2ffadefa14884" kindref="member">Value.Type</ref></type>
-        <definition>Value.Type Yarn.Value.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="18" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00086_1ae1892c1c7a8177537d1caa39a2e51da6" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>float</type>
-        <definition>float Yarn.Value.numberValue</definition>
-        <argsstring></argsstring>
-        <name>numberValue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="21" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00086_1a8ee2b09b7d28eaf97bf63c74d0023bfd" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="property" id="a00086_1ab3afe8360a344c16c21213edb3641481" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
         <type>string</type>
-        <definition>string Yarn.Value.variableName</definition>
+        <definition>string Yarn.VirtualMachine.currentNodeName</definition>
         <argsstring></argsstring>
-        <name>variableName</name>
+        <name>currentNodeName</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="22" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="80" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="80" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1add1b07146f1a9e4b655b33c93d07dff9" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Value.stringValue</definition>
+      <memberdef kind="property" id="a00086_1a66491da06023dabfb63d09e6ccbba74f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00086_1add28fa9c8a45ca579e84d05920bbc42d" kindref="member">ExecutionState</ref></type>
+        <definition>ExecutionState Yarn.VirtualMachine.executionState</definition>
         <argsstring></argsstring>
-        <name>stringValue</name>
+        <name>executionState</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="23" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="93" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="93" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1acb140e3466e132528409d4c441fd67da" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>bool</type>
-        <definition>bool Yarn.Value.boolValue</definition>
-        <argsstring></argsstring>
-        <name>boolValue</name>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00086_1aefa64c4353e5c261f1189649638e49a6" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.VirtualMachine.VirtualMachine</definition>
+        <argsstring>(Dialogue d, Program p)</argsstring>
+        <name>VirtualMachine</name>
+        <param>
+          <type><ref refid="a00050" kindref="compound">Dialogue</ref></type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="a00081" kindref="compound">Program</ref></type>
+          <declname>p</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="24" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="51" bodyend="56"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1a051dd30c6cb184f1fe941a95be8781ab" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>object</type>
-        <definition>object Yarn.Value.backingValue</definition>
-        <argsstring></argsstring>
-        <name>backingValue</name>
+      <memberdef kind="function" id="a00086_1af3cc0337914b9f66454a3d52208dba5f" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.RunNext</definition>
+        <argsstring>()</argsstring>
+        <name>RunNext</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="26" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="154" bodyend="177"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1a751419743761562bf902246d6e6a3c0a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>float</type>
-        <definition>float Yarn.Value.AsNumber</definition>
-        <argsstring></argsstring>
-        <name>AsNumber</name>
+      <memberdef kind="function" id="a00086_1af613c8b2d098678b6ea05b509c0a0cb6" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Yarn.VirtualMachine.FindInstructionPointForLabel</definition>
+        <argsstring>(string labelName)</argsstring>
+        <name>FindInstructionPointForLabel</name>
+        <param>
+          <type>string</type>
+          <declname>labelName</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="40" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="180" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="180" bodyend="191"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1a5805faef3b3d376090ff096d6dd6c064" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Value.AsBool</definition>
-        <argsstring></argsstring>
-        <name>AsBool</name>
+      <memberdef kind="function" id="a00086_1ad2caf9ca4f00cdcbd58983be7c106971" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.RunInstruction</definition>
+        <argsstring>(Instruction i)</argsstring>
+        <name>RunInstruction</name>
+        <param>
+          <type><ref refid="a00058" kindref="compound">Instruction</ref></type>
+          <declname>i</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="61" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="195" bodyend="425"/>
       </memberdef>
-      <memberdef kind="property" id="a00086_1a2d5d0ec41c50c642c1d0eeeb6bb2b1c0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string Yarn.Value.AsString</definition>
-        <argsstring></argsstring>
-        <name>AsString</name>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00086_1a3ba945c66cb8ba031357a1771453f82b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.ResetState</definition>
+        <argsstring>()</argsstring>
+        <name>ResetState</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="78" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="58" bodyend="60"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00086_1a7d2db75682c57463bf43c13499991ad4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Value.Value</definition>
+      <memberdef kind="function" id="a00086_1aac9ec1011ea2c01460044d7c8355f398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.VirtualMachine.LineHandler</definition>
+        <argsstring>(Dialogue.LineResult line)</argsstring>
+        <name>LineHandler</name>
+        <param>
+          <type><ref refid="a00064" kindref="compound">Dialogue.LineResult</ref></type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="62" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00086_1a78dfd54b743e53078eed19ab7be2b6cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.VirtualMachine.OptionsHandler</definition>
+        <argsstring>(Dialogue.OptionSetResult options)</argsstring>
+        <name>OptionsHandler</name>
+        <param>
+          <type><ref refid="a00074" kindref="compound">Dialogue.OptionSetResult</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00086_1a1b57359378059b134ba76acddafd8d81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.VirtualMachine.CommandHandler</definition>
+        <argsstring>(Dialogue.CommandResult command)</argsstring>
+        <name>CommandHandler</name>
+        <param>
+          <type><ref refid="a00041" kindref="compound">Dialogue.CommandResult</ref></type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="64" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00086_1a5bf3aa51578847c18191fec665a840f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.VirtualMachine.NodeCompleteHandler</definition>
+        <argsstring>(Dialogue.NodeCompleteResult complete)</argsstring>
+        <name>NodeCompleteHandler</name>
+        <param>
+          <type><ref refid="a00069" kindref="compound">Dialogue.NodeCompleteResult</ref></type>
+          <declname>complete</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="65" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00086_1a6364593ea1115d65e34b343422cfbbbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.VirtualMachine.SetNode</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>SetNode</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="107" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="a00086_1a78b8c4078471af59ba505c28824d84d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.Stop</definition>
         <argsstring>()</argsstring>
-        <name>Value</name>
+        <name>Stop</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="99" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="99" bodyend="99"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="128" bodyend="130"/>
       </memberdef>
-      <memberdef kind="function" id="a00086_1a960a015e35ea66270fe2713f39490e09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Value.Value</definition>
-        <argsstring>(object value)</argsstring>
-        <name>Value</name>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="102" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="102" bodyend="152"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1abf4dccca577017dff90912c01024ff6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>int</type>
-        <definition>virtual int Yarn.Value.CompareTo</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>CompareTo</name>
-        <param>
-          <type>object</type>
-          <declname>obj</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="154" bodyend="165"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a66de8cb38561c6589f01ca667267f4c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>int</type>
-        <definition>virtual int Yarn.Value.CompareTo</definition>
-        <argsstring>(Value other)</argsstring>
-        <name>CompareTo</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>other</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="167" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="167" bodyend="187"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a5f4e343c2a82ddca84008ac7d155071d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool Yarn.Value.Equals</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>Equals</name>
-        <param>
-          <type>object</type>
-          <declname>obj</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="189" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="189" bodyend="210"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a4c8412105c2ed3058bddac30ecf49916" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override int</type>
-        <definition>override int Yarn.Value.GetHashCode</definition>
+      <memberdef kind="function" id="a00086_1ae66d8c267611573b649233f511beb646" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.VirtualMachine.SerializeVM</definition>
         <argsstring>()</argsstring>
-        <name>GetHashCode</name>
+        <name>SerializeVM</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="213" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="213" bodyend="223"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="134" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="134" bodyend="140"/>
       </memberdef>
-      <memberdef kind="function" id="a00086_1a70460d2f12485c8b980d75ad178e180b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Value.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="225" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="225" bodyend="228"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00086_1abfd48481b0ac28ff5485a850a8271dfd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>static Value Yarn.Value.operator+</definition>
-        <argsstring>(Value a, Value b)</argsstring>
-        <name>operator+</name>
+      <memberdef kind="function" id="a00086_1a52055e419ba627f0788ad3f6d0f9cb1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.DeserializeVM</definition>
+        <argsstring>(string encoded)</argsstring>
+        <name>DeserializeVM</name>
         <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>a</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>b</declname>
+          <type>string</type>
+          <declname>encoded</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -315,241 +427,106 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="230" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="230" bodyend="258"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1aef1135f5d3e8925fa2c1b4c66cc8bd0c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>static Value Yarn.Value.operator-</definition>
-        <argsstring>(Value a, Value b)</argsstring>
-        <name>operator-</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>a</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>b</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="260" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="260" bodyend="270"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a946a02ecefe18d7c82cad0e2632d19c8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>static Value Yarn.Value.operator*</definition>
-        <argsstring>(Value a, Value b)</argsstring>
-        <name>operator*</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>a</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>b</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="272" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="272" bodyend="282"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1afe3559ae2e0f3db33a23a640ee7832d4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>static Value Yarn.Value.operator/</definition>
-        <argsstring>(Value a, Value b)</argsstring>
-        <name>operator/</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>a</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>b</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="284" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="284" bodyend="294"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1aeaf119fa2885dbd1685d1efcd9594316" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00086" kindref="compound">Value</ref></type>
-        <definition>static Value Yarn.Value.operator-</definition>
-        <argsstring>(Value a)</argsstring>
-        <name>operator-</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>a</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="296" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="296" bodyend="307"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a02509b7c4eb702d86c1ffb7be99f7aeb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Value.operator&gt;</definition>
-        <argsstring>(Value operand1, Value operand2)</argsstring>
-        <name>operator&gt;</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand1</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="310" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="310" bodyend="313"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a0d1d9c4ee3fd55ad97d30279db525e4b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Value.operator&lt;</definition>
-        <argsstring>(Value operand1, Value operand2)</argsstring>
-        <name>operator&lt;</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand1</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="316" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="316" bodyend="319"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1ac7680e8a5ef93dc1d1266a06c0a29dbf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Value.operator&gt;=</definition>
-        <argsstring>(Value operand1, Value operand2)</argsstring>
-        <name>operator&gt;=</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand1</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="322" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="322" bodyend="325"/>
-      </memberdef>
-      <memberdef kind="function" id="a00086_1a4822bad5d6dc0fa6f7b9bd71b71855aa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool Yarn.Value.operator&lt;=</definition>
-        <argsstring>(Value operand1, Value operand2)</argsstring>
-        <name>operator&lt;=</name>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand1</declname>
-        </param>
-        <param>
-          <type><ref refid="a00086" kindref="compound">Value</ref></type>
-          <declname>operand2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="328" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="328" bodyend="331"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="142" bodyend="151"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="709">
-        <label>Yarn.Value</label>
-        <link refid="a00086"/>
-        <childnode refid="710" relation="public-inheritance">
-        </childnode>
-        <childnode refid="711" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="710">
-        <label>IComparable</label>
-      </node>
-      <node id="711">
-        <label>IComparable&lt; Value &gt;</label>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="712">
-        <label>Yarn.Value</label>
+      <node id="738">
+        <label>Yarn.Program</label>
+        <link refid="a00081"/>
+      </node>
+      <node id="736">
+        <label>Yarn.Dialogue</label>
+        <link refid="a00050"/>
+        <childnode refid="735" relation="usage">
+          <edgelabel>-vm</edgelabel>
+        </childnode>
+        <childnode refid="737" relation="usage">
+          <edgelabel>+library</edgelabel>
+        </childnode>
+        <childnode refid="738" relation="usage">
+          <edgelabel>-program</edgelabel>
+        </childnode>
+        <childnode refid="739" relation="usage">
+          <edgelabel>-loader</edgelabel>
+        </childnode>
+        <childnode refid="740" relation="usage">
+          <edgelabel>~continuity</edgelabel>
+        </childnode>
+      </node>
+      <node id="737">
+        <label>Yarn.Library</label>
+        <link refid="a00063"/>
+      </node>
+      <node id="742">
+        <label>Yarn.VirtualMachine.State</label>
+        <link refid="a00089"/>
+      </node>
+      <node id="739">
+        <label>Yarn.Loader</label>
+        <link refid="a00065"/>
+        <childnode refid="736" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+      </node>
+      <node id="740">
+        <label>Yarn.VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="741">
+        <label>Yarn.Node</label>
+        <link refid="a00181"/>
+      </node>
+      <node id="735">
+        <label>Yarn.VirtualMachine</label>
         <link refid="a00086"/>
-        <childnode refid="713" relation="public-inheritance">
+        <childnode refid="736" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
         </childnode>
-        <childnode refid="714" relation="public-inheritance">
+        <childnode refid="741" relation="usage">
+          <edgelabel>-currentNode</edgelabel>
         </childnode>
-        <childnode refid="712" relation="usage">
-          <edgelabel>+NULL</edgelabel>
+        <childnode refid="738" relation="usage">
+          <edgelabel>-program</edgelabel>
         </childnode>
-      </node>
-      <node id="713">
-        <label>IComparable</label>
-      </node>
-      <node id="714">
-        <label>IComparable&lt; Value &gt;</label>
+        <childnode refid="742" relation="usage">
+          <edgelabel>-state</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Value.cs" bodystart="7" bodyend="332"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="8" bodyend="428"/>
     <listofallmembers>
-      <member refid="a00086_1a5805faef3b3d376090ff096d6dd6c064" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>AsBool</name></member>
-      <member refid="a00086_1a751419743761562bf902246d6e6a3c0a" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>AsNumber</name></member>
-      <member refid="a00086_1a2d5d0ec41c50c642c1d0eeeb6bb2b1c0" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>AsString</name></member>
-      <member refid="a00086_1a051dd30c6cb184f1fe941a95be8781ab" prot="private" virt="non-virtual"><scope>Yarn::Value</scope><name>backingValue</name></member>
-      <member refid="a00086_1acb140e3466e132528409d4c441fd67da" prot="package" virt="non-virtual"><scope>Yarn::Value</scope><name>boolValue</name></member>
-      <member refid="a00086_1abf4dccca577017dff90912c01024ff6a" prot="public" virt="virtual"><scope>Yarn::Value</scope><name>CompareTo</name></member>
-      <member refid="a00086_1a66de8cb38561c6589f01ca667267f4c6" prot="public" virt="virtual"><scope>Yarn::Value</scope><name>CompareTo</name></member>
-      <member refid="a00086_1a5f4e343c2a82ddca84008ac7d155071d" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>Equals</name></member>
-      <member refid="a00086_1a4c8412105c2ed3058bddac30ecf49916" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>GetHashCode</name></member>
-      <member refid="a00086_1a1ed2964965baca8621c45efa23f37660" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>NULL</name></member>
-      <member refid="a00086_1ae1892c1c7a8177537d1caa39a2e51da6" prot="package" virt="non-virtual"><scope>Yarn::Value</scope><name>numberValue</name></member>
-      <member refid="a00086_1a946a02ecefe18d7c82cad0e2632d19c8" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator*</name></member>
-      <member refid="a00086_1abfd48481b0ac28ff5485a850a8271dfd" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator+</name></member>
-      <member refid="a00086_1aef1135f5d3e8925fa2c1b4c66cc8bd0c" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator-</name></member>
-      <member refid="a00086_1aeaf119fa2885dbd1685d1efcd9594316" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator-</name></member>
-      <member refid="a00086_1afe3559ae2e0f3db33a23a640ee7832d4" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator/</name></member>
-      <member refid="a00086_1a0d1d9c4ee3fd55ad97d30279db525e4b" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator&lt;</name></member>
-      <member refid="a00086_1a4822bad5d6dc0fa6f7b9bd71b71855aa" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator&lt;=</name></member>
-      <member refid="a00086_1a02509b7c4eb702d86c1ffb7be99f7aeb" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator&gt;</name></member>
-      <member refid="a00086_1ac7680e8a5ef93dc1d1266a06c0a29dbf" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>operator&gt;=</name></member>
-      <member refid="a00086_1add1b07146f1a9e4b655b33c93d07dff9" prot="package" virt="non-virtual"><scope>Yarn::Value</scope><name>stringValue</name></member>
-      <member refid="a00086_1a70460d2f12485c8b980d75ad178e180b" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>ToString</name></member>
-      <member refid="a00086_1ad5aaf60ee4504608fcc2ffadefa14884" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>Type</name></member>
-      <member refid="a00086_1a6d5820fafa766911b9da84d1ed33e51a" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>type</name></member>
-      <member refid="a00086_1a7d2db75682c57463bf43c13499991ad4" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>Value</name></member>
-      <member refid="a00086_1a960a015e35ea66270fe2713f39490e09" prot="public" virt="non-virtual"><scope>Yarn::Value</scope><name>Value</name></member>
-      <member refid="a00086_1a8ee2b09b7d28eaf97bf63c74d0023bfd" prot="package" virt="non-virtual"><scope>Yarn::Value</scope><name>variableName</name></member>
+      <member refid="a00086_1a0ae362616d85f028b7ec3230388926f4" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>_executionState</name></member>
+      <member refid="a00086_1ab89b02227b92c74552f719afd47848e4" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>commandHandler</name></member>
+      <member refid="a00086_1a1b57359378059b134ba76acddafd8d81" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>CommandHandler</name></member>
+      <member refid="a00086_1ab7594e14981ad75cecea3b2e7dcf895c" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>currentNode</name></member>
+      <member refid="a00086_1ab3afe8360a344c16c21213edb3641481" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>currentNodeName</name></member>
+      <member refid="a00086_1a52055e419ba627f0788ad3f6d0f9cb1c" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>DeserializeVM</name></member>
+      <member refid="a00086_1ac506426c503da5f033247c29e11c5e82" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>dialogue</name></member>
+      <member refid="a00086_1add28fa9c8a45ca579e84d05920bbc42d" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>ExecutionState</name></member>
+      <member refid="a00086_1a66491da06023dabfb63d09e6ccbba74f" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>executionState</name></member>
+      <member refid="a00086_1af613c8b2d098678b6ea05b509c0a0cb6" prot="package" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>FindInstructionPointForLabel</name></member>
+      <member refid="a00086_1aac9ec1011ea2c01460044d7c8355f398" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>LineHandler</name></member>
+      <member refid="a00086_1a29b30454f068fc7e107d48bff4346fd9" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>lineHandler</name></member>
+      <member refid="a00086_1a5129c63e67e2d4e2780d86b8351320a2" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>nodeCompleteHandler</name></member>
+      <member refid="a00086_1a5bf3aa51578847c18191fec665a840f9" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>NodeCompleteHandler</name></member>
+      <member refid="a00086_1a78dfd54b743e53078eed19ab7be2b6cf" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>OptionsHandler</name></member>
+      <member refid="a00086_1acd25fe2e3aa90dc87ba25d9af904465b" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>optionsHandler</name></member>
+      <member refid="a00086_1a2695dbfe3d9df7ffa3f13ad2231217fb" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>program</name></member>
+      <member refid="a00086_1a408485a00c7cc558428c86ed9dd04fca" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>random</name></member>
+      <member refid="a00086_1a3ba945c66cb8ba031357a1771453f82b" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>ResetState</name></member>
+      <member refid="a00086_1ad2caf9ca4f00cdcbd58983be7c106971" prot="package" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>RunInstruction</name></member>
+      <member refid="a00086_1af3cc0337914b9f66454a3d52208dba5f" prot="package" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>RunNext</name></member>
+      <member refid="a00086_1ae66d8c267611573b649233f511beb646" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>SerializeVM</name></member>
+      <member refid="a00086_1a6364593ea1115d65e34b343422cfbbbd" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>SetNode</name></member>
+      <member refid="a00086_1a70f2ce6201cdd2430ceaa764ac614ca0" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>state</name></member>
+      <member refid="a00086_1ae84c732dc75a64589808e1e0fad1a85f" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>STATE_VERSION_NUMBER</name></member>
+      <member refid="a00086_1a78b8c4078471af59ba505c28824d84d1" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>Stop</name></member>
+      <member refid="a00086_1aefa64c4353e5c261f1189649638e49a6" prot="package" virt="non-virtual"><scope>Yarn::VirtualMachine</scope><name>VirtualMachine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

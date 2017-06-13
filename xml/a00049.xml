@@ -1,117 +1,135 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00049" kind="class" prot="public">
-    <compoundname>Yarn::Library</compoundname>
-    <derivedcompoundref refid="a00074" prot="public" virt="non-virtual">Yarn.Dialogue.StandardLibrary</derivedcompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00049_1a2fcc78a63963be5320cf09783b66fab6" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00041" kindref="compound">FunctionInfo</ref> &gt;</type>
-        <definition>Dictionary&lt;string, FunctionInfo&gt; Yarn.Library.functions</definition>
-        <argsstring></argsstring>
-        <name>functions</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="a00041" kindref="compound">FunctionInfo</ref>&gt;()</initializer>
+    <compoundname>Yarn::Analysis::Diagnosis</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="a00049_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" static="no">
+        <name>Severity</name>
+        <enumvalue id="a00049_1a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd" prot="public">
+          <name>Error</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00049_1a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa" prot="public">
+          <name>Warning</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00049_1a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec" prot="public">
+          <name>Note</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="86" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="13" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00049_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Analysis.Diagnosis.message</definition>
+        <argsstring></argsstring>
+        <name>message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00049_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Analysis.Diagnosis.nodeName</definition>
+        <argsstring></argsstring>
+        <name>nodeName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00049_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Analysis.Diagnosis.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00049_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Analysis.Diagnosis.columnNumber</definition>
+        <argsstring></argsstring>
+        <name>columnNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00049_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" static="no" mutable="no">
+        <type><ref refid="a00049_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
+        <definition>Severity Yarn.Analysis.Diagnosis.severity</definition>
+        <argsstring></argsstring>
+        <name>severity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="18" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00049_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00041" kindref="compound">FunctionInfo</ref></type>
-        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>GetFunction</name>
+      <memberdef kind="function" id="a00049_1ad3fd818f1be98dc803e5bec959153824" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Analysis.Diagnosis.Diagnosis</definition>
+        <argsstring>(string message, Severity severity, string nodeName=null, int lineNumber=-1, int columnNumber=-1)</argsstring>
+        <name>Diagnosis</name>
         <param>
           <type>string</type>
-          <declname>name</declname>
+          <declname>message</declname>
         </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="90" bodyend="96"/>
-      </memberdef>
-      <memberdef kind="function" id="a00049_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.ImportLibrary</definition>
-        <argsstring>(Library otherLibrary)</argsstring>
-        <name>ImportLibrary</name>
         <param>
-          <type><ref refid="a00049" kindref="compound">Library</ref></type>
-          <declname>otherLibrary</declname>
+          <type><ref refid="a00049_1a227813cbc8fa03c3448a612ffc909d1c" kindref="member">Severity</ref></type>
+          <declname>severity</declname>
         </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="101" bodyend="105"/>
-      </memberdef>
-      <memberdef kind="function" id="a00049_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(FunctionInfo function)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type><ref refid="a00041" kindref="compound">FunctionInfo</ref></type>
-          <declname>function</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="107" bodyend="109"/>
-      </memberdef>
-      <memberdef kind="function" id="a00049_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
-        <name>RegisterFunction</name>
         <param>
           <type>string</type>
-          <declname>name</declname>
+          <declname>nodeName</declname>
+          <defval>null</defval>
         </param>
         <param>
           <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00026_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="111" bodyend="114"/>
-      </memberdef>
-      <memberdef kind="function" id="a00049_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
+          <declname>lineNumber</declname>
+          <defval>-1</defval>
         </param>
         <param>
           <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00026_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
+          <declname>columnNumber</declname>
+          <defval>-1</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -119,33 +137,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="116" bodyend="119"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="20" bodyend="27"/>
       </memberdef>
-      <memberdef kind="function" id="a00049_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Yarn.Library.FunctionExists</definition>
-        <argsstring>(string name)</argsstring>
-        <name>FunctionExists</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
+      <memberdef kind="function" id="a00049_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Analysis.Diagnosis.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="121" bodyend="123"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="29" bodyend="32"/>
       </memberdef>
-      <memberdef kind="function" id="a00049_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.DeregisterFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>DeregisterFunction</name>
+      <memberdef kind="function" id="a00049_1a985dee7ca27aa896332590133606b6a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Analysis.Diagnosis.ToString</definition>
+        <argsstring>(bool showSeverity)</argsstring>
+        <name>ToString</name>
         <param>
-          <type>string</type>
-          <declname>name</declname>
+          <type>bool</type>
+          <declname>showSeverity</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -153,41 +167,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="125" bodyend="128"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="34" bodyend="76"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="534">
-        <label>Yarn.Dialogue.StandardLibrary</label>
-        <link refid="a00074"/>
-        <childnode refid="533" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="533">
-        <label>Yarn.Library</label>
-        <link refid="a00049"/>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="535">
-        <label>Yarn.Library</label>
+      <node id="456">
+        <label>Yarn.Analysis.Diagnosis</label>
         <link refid="a00049"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="83" bodyend="131"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="6" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="6" bodyend="79"/>
     <listofallmembers>
-      <member refid="a00049_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>DeregisterFunction</name></member>
-      <member refid="a00049_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>FunctionExists</name></member>
-      <member refid="a00049_1a2fcc78a63963be5320cf09783b66fab6" prot="private" virt="non-virtual"><scope>Yarn::Library</scope><name>functions</name></member>
-      <member refid="a00049_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>GetFunction</name></member>
-      <member refid="a00049_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>ImportLibrary</name></member>
-      <member refid="a00049_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="a00049_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="a00049_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00049_1a658e7fb05555c0f9ab5f80057bdc1408" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>columnNumber</name></member>
+      <member refid="a00049_1ad3fd818f1be98dc803e5bec959153824" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Diagnosis</name></member>
+      <member refid="a00049_1a0bd73f1c684bfd66ae7b6bef8f2972d0" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>lineNumber</name></member>
+      <member refid="a00049_1ac7ed070dddd2613c08e7874ea5afb3af" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>message</name></member>
+      <member refid="a00049_1a662aca4ad2af5116c2cf6773daf1a847" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>nodeName</name></member>
+      <member refid="a00049_1a227813cbc8fa03c3448a612ffc909d1c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>Severity</name></member>
+      <member refid="a00049_1ad90ffa839ce0f568a099bb37b4a6c4da" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>severity</name></member>
+      <member refid="a00049_1a4475eb5890c340da5c0012e25c2c86ae" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
+      <member refid="a00049_1a985dee7ca27aa896332590133606b6a9" prot="public" virt="non-virtual"><scope>Yarn::Analysis::Diagnosis</scope><name>ToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

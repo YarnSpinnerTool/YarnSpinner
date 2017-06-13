@@ -1,258 +1,146 @@
-\hypertarget{a00058}{\section{Yarn.\-Parser.\-Operator Class Reference}
-\label{a00058}\index{Yarn.\-Parser.\-Operator@{Yarn.\-Parser.\-Operator}}
+\hypertarget{a00058}{\section{Yarn.\-Instruction Struct Reference}
+\label{a00058}\index{Yarn.\-Instruction@{Yarn.\-Instruction}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-Operator\-:
+Collaboration diagram for Yarn.\-Instruction\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00275}
+\includegraphics[width=166pt]{a00216}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Parser.\-Operator\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=251pt]{a00276}
-\end{center}
-\end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00059}{Operator\-Info}
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override string \hyperlink{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+string \hyperlink{a00058_a939d511f211e8a61cfbca902e802564f}{To\-String} (\hyperlink{a00081}{Program} p, \hyperlink{a00063}{Library} l)
 \end{DoxyCompactItemize}
-\subsection*{Package Types}
+\subsection*{Package Attributes}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity} \{ \hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff}{Associativity.\-Left}, 
-\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c}{Associativity.\-Right}, 
-\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754}{Associativity.\-None}
- \}
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
+\hyperlink{a00040_ad5dfb6ee68ca7469623ad3e459f98894}{Byte\-Code} \hyperlink{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}
 \item 
-\hyperlink{a00058_a91a9fcc02c55cbc107fe2687fc0f05d4}{Operator} (\hyperlink{a00063}{Parse\-Node} \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} t)
+object \hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operand\-A}
 \item 
-\hyperlink{a00058_a50f9f95cd7aefe2a601a7d5b5ee7801a}{Operator} (\hyperlink{a00063}{Parse\-Node} \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00064}{Parser} p)
-\item 
-override string \hyperlink{a00058_a0c2ad7c4d6837ffc7b5325bbb8330c51}{Print\-Tree} (int indent\-Level)
-\item 
-\hyperlink{a00054}{Node} \hyperlink{a00063_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static \hyperlink{a00059}{Operator\-Info} \hyperlink{a00058_a871e7b4652c48f456647d3950ac37531}{Info\-For\-Operator} (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} op)
-\item 
-static bool \hyperlink{a00058_a77a9edf71f86263e1695869e69505007}{Is\-Operator} (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type)
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00058_ac2de2f59be0e69b316627a4de16fadd3}{operator\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-static \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} \hyperlink{a00058_a8dca7db3b76b8c358aba6068274e07df}{operator\-Types}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+object \hyperlink{a00058_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00058_a83fa1b8db0e6678006920812b6f33f62}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Associativity@{Associativity}}
-\index{Associativity@{Associativity}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Associativity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Operator.\-Associativity}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_a83fa1b8db0e6678006920812b6f33f62}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Left@{Left}!Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}}\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Left@{Left}}\item[{\em 
-\hypertarget{a00058_a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff}{Left}\label{a00058_a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff}
-}]\index{Right@{Right}!Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}}\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Right@{Right}}\item[{\em 
-\hypertarget{a00058_a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c}{Right}\label{a00058_a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c}
-}]\index{None@{None}!Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}}\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!None@{None}}\item[{\em 
-\hypertarget{a00058_a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754}{None}\label{a00058_a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754}
-}]\end{description}
-\end{Desc}
-
-\begin{DoxyCode}
-1125                                         \{
-1126                 \hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff}{Left}, \textcolor{comment}{// resolve leftmost operand first}
-1127                 \hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c}{Right}, \textcolor{comment}{// resolve rightmost operand first}
-1128                 \hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754}{None} \textcolor{comment}{// special-case (like "(", ")", ","}
-1129             \}
-\end{DoxyCode}
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00058_a91a9fcc02c55cbc107fe2687fc0f05d4}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Operator@{Operator}}
-\index{Operator@{Operator}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Operator}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Operator.\-Operator (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Token\-Type}}]{t}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_a91a9fcc02c55cbc107fe2687fc0f05d4}
-
-\begin{DoxyCode}
-1216                                                              : base(\hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, null) \{
-1217                 \hyperlink{a00058_ac2de2f59be0e69b316627a4de16fadd3}{operatorType} = t;
-1218             \}
-\end{DoxyCode}
-\hypertarget{a00058_a50f9f95cd7aefe2a601a7d5b5ee7801a}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Operator@{Operator}}
-\index{Operator@{Operator}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Operator}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Operator.\-Operator (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_a50f9f95cd7aefe2a601a7d5b5ee7801a}
-
-\begin{DoxyCode}
-1220                                                           : base(\hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-1221                 \hyperlink{a00058_ac2de2f59be0e69b316627a4de16fadd3}{operatorType} = p.ExpectSymbol(\hyperlink{a00058_a8dca7db3b76b8c358aba6068274e07df}{Operator.operatorTypes}).
-      type;
-1222             \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00058_a871e7b4652c48f456647d3950ac37531}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Info\-For\-Operator@{Info\-For\-Operator}}
-\index{Info\-For\-Operator@{Info\-For\-Operator}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Info\-For\-Operator}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Operator\-Info} Yarn.\-Parser.\-Operator.\-Info\-For\-Operator (
+\hypertarget{a00058_a939d511f211e8a61cfbca902e802564f}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Instruction.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{{\bf Token\-Type}}]{op}
+\item[{{\bf Program}}]{p, }
+\item[{{\bf Library}}]{l}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00058_a871e7b4652c48f456647d3950ac37531}
+)}}\label{a00058_a939d511f211e8a61cfbca902e802564f}
 
 \begin{DoxyCode}
-1143                                                                        \{
-1144                 \textcolor{keywordflow}{if} (Array.IndexOf(\hyperlink{a00058_a8dca7db3b76b8c358aba6068274e07df}{operatorTypes}, op) == -1) \{
-1145                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ParseException (op.ToString () + \textcolor{stringliteral}{" is not a valid operator"});
-1146                 \}
-1147 
-1148                 \textcolor{comment}{// Determine the precendence, associativity and}
-1149                 \textcolor{comment}{// number of operands that each operator has.}
-1150                 \textcolor{keywordflow}{switch} (op) \{
-1151 
-1152                 \textcolor{keywordflow}{case} TokenType.Not:
-1153                 \textcolor{keywordflow}{case} TokenType.UnaryMinus:
-1154                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo (\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Right, 30, 1);
-1155 
-1156                 \textcolor{keywordflow}{case} TokenType.Multiply:
-1157                 \textcolor{keywordflow}{case} TokenType.Divide:
-1158                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 20,2);
-1159                 \textcolor{keywordflow}{case} TokenType.Add:
-1160                 \textcolor{keywordflow}{case} TokenType.Minus:
-1161                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 15,2);
-1162                 \textcolor{keywordflow}{case} TokenType.GreaterThan:
-1163                 \textcolor{keywordflow}{case} TokenType.LessThan:
-1164                 \textcolor{keywordflow}{case} TokenType.GreaterThanOrEqualTo:
-1165                 \textcolor{keywordflow}{case} TokenType.LessThanOrEqualTo:
-1166                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 10,2);
-1167                 \textcolor{keywordflow}{case} TokenType.EqualTo:
-1168                 \textcolor{keywordflow}{case} TokenType.EqualToOrAssign:
-1169                 \textcolor{keywordflow}{case} TokenType.NotEqualTo:
-1170                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 5,2);
-1171                 \textcolor{keywordflow}{case} TokenType.And:
-1172                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 4,2);
-1173                 \textcolor{keywordflow}{case} TokenType.Or:
-1174                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 3,2);
-1175                 \textcolor{keywordflow}{case} TokenType.Xor:
-1176                     \textcolor{keywordflow}{return} \textcolor{keyword}{new} OperatorInfo(\hyperlink{a00058_a83fa1b8db0e6678006920812b6f33f62}{Associativity}.Left, 2,2);
-1177 
-1178                 \}
-1179                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException ();
-1180                 
-1181             \}
-\end{DoxyCode}
-\hypertarget{a00058_a77a9edf71f86263e1695869e69505007}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Is\-Operator@{Is\-Operator}}
-\index{Is\-Operator@{Is\-Operator}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Is\-Operator}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Operator.\-Is\-Operator (
-\begin{DoxyParamCaption}
-\item[{{\bf Token\-Type}}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00058_a77a9edf71f86263e1695869e69505007}
-
-\begin{DoxyCode}
-1183                                                             \{
-1184                 \textcolor{keywordflow}{return} Array.IndexOf (\hyperlink{a00058_a8dca7db3b76b8c358aba6068274e07df}{operatorTypes}, type) != -1;
-1185             \}
-\end{DoxyCode}
-\hypertarget{a00063_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00063_a580e520a29444fc23ac3660cbe514a09}
-
-\begin{DoxyCode}
-116                                        \{
-117                 var node = \textcolor{keyword}{this};
-118 
-119                 \textcolor{keywordflow}{do} \{
-120                     \textcolor{keywordflow}{if} (node is Node) \{
-121                         \textcolor{keywordflow}{return} node as Node;
-122                     \}
-123                     node = node.parent;
-124                 \} \textcolor{keywordflow}{while} (node 
-125                     != null);                   
-126 
-127                 \textcolor{keywordflow}{return} null;
-128             \}
-\end{DoxyCode}
-\hypertarget{a00058_a0c2ad7c4d6837ffc7b5325bbb8330c51}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Operator.\-Print\-Tree (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00058_a0c2ad7c4d6837ffc7b5325bbb8330c51}
-
-
-Implements \hyperlink{a00063_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
-
-
-\begin{DoxyCode}
-1225             \{
-1226                 \textcolor{keywordflow}{return} \hyperlink{a00064_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \hyperlink{a00058_ac2de2f59be0e69b316627a4de16fadd3}{operatorType}.ToString ());
-1227             \}
-\end{DoxyCode}
-\hypertarget{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}
-
-\begin{DoxyCode}
-111             \{
-112                 \textcolor{keywordflow}{return} this.GetType ().Name;
-113             \}
+128                                                       \{
+129 
+130             \textcolor{comment}{// Labels are easy: just dump out the name}
+131             \textcolor{keywordflow}{if} (\hyperlink{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00040_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label) \{
+132                 \textcolor{keywordflow}{return} \hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
+133             \}
+134 
+135             \textcolor{comment}{// Convert the operands to strings}
+136             var opAString = \hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? operandA.ToString () : \textcolor{stringliteral}{""};
+137             var opBString = \hyperlink{a00058_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? operandB.ToString () : \textcolor{stringliteral}{""};
+138 
+139             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
+140             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
+141 
+142             \textcolor{comment}{// Stack manipulation comments}
+143             var pops = 0;
+144             var pushes = 0;
+145 
+146             \textcolor{keywordflow}{switch} (\hyperlink{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}) \{
+147 
+148             \textcolor{comment}{// These operations all push a single value to the stack}
+149             \textcolor{keywordflow}{case} ByteCode.PushBool:
+150             \textcolor{keywordflow}{case} ByteCode.PushNull:
+151             \textcolor{keywordflow}{case} ByteCode.PushNumber:
+152             \textcolor{keywordflow}{case} ByteCode.PushString:
+153             \textcolor{keywordflow}{case} ByteCode.PushVariable:
+154             \textcolor{keywordflow}{case} ByteCode.ShowOptions:
+155                 pushes = 1;
+156                 \textcolor{keywordflow}{break};
+157 
+158             \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1 }
+159             \textcolor{keywordflow}{case} ByteCode.CallFunc:
+160                 var \textcolor{keyword}{function} = l.GetFunction ((string)\hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operandA});
+161 
+162                 pops = function.paramCount;
+163 
+164                 \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
+165                     pushes = 1;
+166                 
+167 
+168                 \textcolor{keywordflow}{break};
+169             
+170             \textcolor{comment}{// Pop always pops a single value}
+171             \textcolor{keywordflow}{case} ByteCode.Pop:
+172                 pops = 1;
+173                 \textcolor{keywordflow}{break};
+174             
+175             \textcolor{comment}{// Switching to a different node will always clear the stack}
+176             \textcolor{keywordflow}{case} ByteCode.RunNode:
+177                 comment += \textcolor{stringliteral}{"Clears stack"};
+178                 \textcolor{keywordflow}{break};
+179             \}
+180 
+181             \textcolor{comment}{// If we had any pushes or pops, report them}
+182 
+183             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
+184                 comment += string.Format (\textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes);
+185             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
+186                 comment += string.Format (\textcolor{stringliteral}{"Pops \{0\}"}, pops);
+187             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
+188                 comment += string.Format (\textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
+189 
+190             \textcolor{comment}{// String lookup comments}
+191             \textcolor{keywordflow}{switch} (\hyperlink{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}{operation}) \{
+192             \textcolor{keywordflow}{case} ByteCode.PushString:
+193             \textcolor{keywordflow}{case} ByteCode.RunLine:
+194             \textcolor{keywordflow}{case} ByteCode.AddOption:
+195 
+196                 \textcolor{comment}{// Add the string for this option, if it has one}
+197                 \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})\hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null) \{
+198                     var text = p.GetString((string)\hyperlink{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{operandA});
+199                     comment += string.Format (\textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
+200                 \}
+201 
+202                 \textcolor{keywordflow}{break};
+203             
+204             \}
+205 
+206             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""}) \{
+207                 comment = \textcolor{stringliteral}{"; "} + comment;
+208             \}
+209 
+210             \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, operation.ToString (), opAString, 
+      opBString, comment);
+211         \}
 \end{DoxyCode}
 
 
-\subsection{Property Documentation}
-\hypertarget{a00058_ac2de2f59be0e69b316627a4de16fadd3}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!operator\-Type@{operator\-Type}}
-\index{operator\-Type@{operator\-Type}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{operator\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Parser.\-Operator.\-operator\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00058_ac2de2f59be0e69b316627a4de16fadd3}
-\hypertarget{a00058_a8dca7db3b76b8c358aba6068274e07df}{\index{Yarn\-::\-Parser\-::\-Operator@{Yarn\-::\-Parser\-::\-Operator}!operator\-Types@{operator\-Types}}
-\index{operator\-Types@{operator\-Types}!Yarn::Parser::Operator@{Yarn\-::\-Parser\-::\-Operator}}
-\subsubsection[{operator\-Types}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Operator.\-operator\-Types\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [package]}}}\label{a00058_a8dca7db3b76b8c358aba6068274e07df}
+\subsection{Member Data Documentation}
+\hypertarget{a00058_ab5d386faa0d3dbc23db80f8e62706afd}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-A@{operand\-A}}
+\index{operand\-A@{operand\-A}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_ab5d386faa0d3dbc23db80f8e62706afd}
+\hypertarget{a00058_a56348c6fe7eb919b7277afc06e5b224a}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operand\-B@{operand\-B}}
+\index{operand\-B@{operand\-B}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_a56348c6fe7eb919b7277afc06e5b224a}
+\hypertarget{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}{\index{Yarn\-::\-Instruction@{Yarn\-::\-Instruction}!operation@{operation}}
+\index{operation@{operation}!Yarn::Instruction@{Yarn\-::\-Instruction}}
+\subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation\hspace{0.3cm}{\ttfamily [package]}}}\label{a00058_a566bf5f7198cc353ea5c3710cb3a31cb}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00122}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00137}{Compiler.\-cs}\end{DoxyCompactItemize}

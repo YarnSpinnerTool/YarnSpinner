@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Building Yarn Spinner</title>
+<title>YarnSpinner: Yarn Spinner Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,38 +99,28 @@ $(document).ready(function(){initNavTree('a00006.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Building <a class="el" href="a00026.html">Yarn</a> Spinner </div>  </div>
+<div class="title"><a class="el" href="a00040.html">Yarn</a> Spinner Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><blockquote class="doxtable">
-<p>***Important:*** This document only matters to you if you want to build <a class="el" href="a00026.html">Yarn</a> Spinner from source. In almost all cases, you'll be totally fine with <a href="https://github.com/thesecretlab/YarnSpinner/releases">downloading a build</a>, and using that in your project.</p>
-<p></p>
-</blockquote>
-<h2>Windows, Mac and Linux using MonoDevelop</h2>
-<p>To build <a class="el" href="a00026.html">Yarn</a> Spinner on Windows or Mac, you'll need MonoDevelop. You can <a href="http://www.monodevelop.com/download/">download MonoDevelop for your OS from the MonoDevelop site</a>. To build <a class="el" href="a00026.html">Yarn</a> Spinner on Linux, you'll need MonoDevelop's Flatpak. Once you have installed <a href="http://flatpak.org/getting.html">Flatpak for your distribution</a>, you can <a href="http://www.monodevelop.com/download/linux/">download MonoDevelop from the MonoDevelop site</a>.</p>
-<p>Once it's downloaded, follow these steps:</p>
-<ul>
-<li>Open <b>YarnSpinner.sln</b>.</li>
-<li>Open the <b>Build menu</b>, and choose <b>Build All</b>.</li>
-<li>Open the <b>Unity/Assets/Yarn Spinner</b> folder. You'll find a copy of <b>YarnSpinner.dll</b> there. You can now copy that DLL file wherever you need it.</li>
-</ul>
-<h2>Linux</h2>
-<p>As well as using MonoDevelop, you can use xbuild to build on Linux. At this stage, see the <a href="../build.sh">build.sh</a> script for information on how to do this.</p>
-<h2>Building Documentation</h2>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner uses <a href="https://www.stack.nl/~dimitri/doxygen">Doxygen</a> to generate <a href="http://docbook.org/">DocBook</a>, <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, <a href="https://www.latex-project.org/help/documentation/">LaTeX</a>, <a href="https://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>, and <a href="https://en.wikipedia.org/wiki/XML">XML</a> documentation. <a href="https://www.gnu.org/software/global/">GNU GLOBAL</a> is also used.</p>
-<p>Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of <a class="el" href="a00154.html">YarnSpinner</a> itself and not an actual error in the documentation.</p>
-<ul>
-<li>rm -fr Documentation/{docbook,html,latex,rtf,xml}</li>
-<li>doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1</li>
-<li>grep -i error doxyoutput.txt</li>
-</ul>
-<p><a href="https://daringfireball.net/projects/markdown/">MarkDown</a> documentation is available via conversion of the XML output to Markdown using third party tools such as <a href="http://pandoc.org">Pandoc</a> or <a href="https://github.com/pferdinand/doxygen2md">doxygen2md</a> </p>
+<div class="textblock"><h2><a class="el" href="a00040.html">Yarn</a> Documentation</h2>
+<p>Documentation for <a class="el" href="a00040.html">Yarn</a> Spinner is under active development. Please submit any suggestions you may have.</p>
+<p><a class="el" href="a00040.html">Yarn</a> Spinner API documentation is generated automatically by the <a href="http://www.doxygen.org">Doxygen</a> system.</p>
+<p>The documentation is currently automatically generated every time a commit is made to the Master branch on GitHub. The documentation is availabe on our GitHub Page in <a href="http://thesecretlab.github.io/YarnSpinner/html/">HTML</a> and in our Github Repository in <a href="https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/latex">Latex</a>, PDF, <a href="https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/rtf">RTF</a>, and <a href="https://github.com/thesecretlab/YarnSpinner/tree/gh-pages/xml">XML</a> formats.</p>
+<p>If you are working on the <a href="https://github.com/thesecretlab/YarnSpinner/tree/development">Development branch</a>, the <a href="../build.sh">build.sh</a> script is capable of generating documents for you locally by utilising the -d switch.</p>
+<h2>Building <a class="el" href="a00040.html">Yarn</a> Spinner</h2>
+<p><a class="el" href="a00040.html">Yarn</a> Spinner is automatically built by <a href="https://travis-ci.org/thesecretlab/YarnSpinner">Travis Continual Integration</a> system. For information on how to build it yourself, please refer to the <a class="el" href="a00119.html">Building</a> document.</p>
+<h2>Creating <a class="el" href="a00040.html">Yarn</a> Dialogue for <a class="el" href="a00040.html">Yarn</a> Spinner</h2>
+<p>For information on how to write dialogue for <a class="el" href="a00040.html">Yarn</a> Spinner, refer to the <a class="el" href="a00116.html">Usage</a> document. We are currently expanding this documentation for writers, and our first new document is a walk through on how to create the dialogue for the Simple Example</p>
+<h2>Using Unity</h2>
+<p>At this point in time, only examples for the <a href="http://www.unity3d.com">Unity</a> game engine are available. We hope to include a more generic example in the future. Please refer to the <a href="YarnSpinner-Unity/">Yarn Spinner Unity</a> documents for more information.</p>
+<h2>Extending <a class="el" href="a00040.html">Yarn</a> Spinner</h2>
+<p>For information on how to extend <a class="el" href="a00040.html">Yarn</a> Spinner's functionality, please refer to the <a class="el" href="a00120.html">Extending Yarn Spinner</a> document. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:52 for YarnSpinner by
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -1,8 +1,8 @@
-This document talks about how to use \hyperlink{a00026}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00026}{Yarn} Spinner into your project; for that, see \hyperlink{a00100}{Unity.\-md}Using \hyperlink{a00026}{Yarn} Spinner in your Unity game\char`\"{}\char`\"{}.
+This document talks about how to use \hyperlink{a00040}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00040}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
 
 \subsection*{Lines}
 
-\hyperlink{a00026}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
+\hyperlink{a00040}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
 
 Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: \begin{DoxyVerb}Alice: Hey, I'm a character speaking in a dialogue!
 Bob: Wild!
@@ -24,11 +24,11 @@ You don't have to provide the label. Instead, you can just provide the node name
 \end{DoxyVerb}
 
 
-If an option has no label, \hyperlink{a00026}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
+If an option has no label, \hyperlink{a00040}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
 
 When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
 
-If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00026}{Yarn} Spinner will let your game know.
+If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00040}{Yarn} Spinner will let your game know.
 
 \subsection*{Shortcut Options}
 
@@ -41,7 +41,7 @@ Mae: Anyway, I'd better get going.
 \end{DoxyVerb}
 
 
-When this is run, \hyperlink{a00026}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
+When this is run, \hyperlink{a00040}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
 
 You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: \begin{DoxyVerb}Bob: What would you like?
 -> A burger. <<if $money >= 5>>
@@ -67,7 +67,7 @@ Commands look like this\-: \begin{DoxyVerb}<<move alice to under_bridge>>
 
 Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
 
-\hyperlink{a00026}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00026}{Yarn} will stop the entire conversation when it reaches it.
+\hyperlink{a00040}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00040}{Yarn} will stop the entire conversation when it reaches it.
 
 \subsection*{Variables and If statements}
 
@@ -101,7 +101,7 @@ You can also get fancier, and do stuff like this\-: \begin{DoxyVerb}<<if $hostag
 
 \subsection*{Types}
 
-There are four different types of value in \hyperlink{a00026}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
+There are four different types of value in \hyperlink{a00040}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
 
 
 \begin{DoxyItemize}
@@ -111,7 +111,7 @@ There are four different types of value in \hyperlink{a00026}{Yarn}\-: strings, 
 \item {\ttfamily null} means no value.
 \end{DoxyItemize}
 
-\hyperlink{a00026}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
+\hyperlink{a00040}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
     The two strings are the same!
 <<endif>>
 
@@ -125,10 +125,10 @@ There are four different types of value in \hyperlink{a00026}{Yarn}\-: strings, 
 
 \subsection*{Functions}
 
-You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00026}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
+You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00040}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
     We have gone to the city before!
 <<endif>>
 \end{DoxyVerb}
 
 
-You can't define your own functions inside \hyperlink{a00026}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00097}{Extending.\-md}Extending \hyperlink{a00026}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 
+You can't define your own functions inside \hyperlink{a00040}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00120}{Extending.\-md}Extending \hyperlink{a00040}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

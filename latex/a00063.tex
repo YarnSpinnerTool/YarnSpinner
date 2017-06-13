@@ -1,121 +1,166 @@
-\hypertarget{a00063}{\section{Yarn.\-Parser.\-Parse\-Node Class Reference}
-\label{a00063}\index{Yarn.\-Parser.\-Parse\-Node@{Yarn.\-Parser.\-Parse\-Node}}
+\hypertarget{a00063}{\section{Yarn.\-Library Class Reference}
+\label{a00063}\index{Yarn.\-Library@{Yarn.\-Library}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-Parse\-Node\-:
+Inheritance diagram for Yarn.\-Library\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00283}
+\includegraphics[width=228pt]{a00264}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parser.\-Parse\-Node\-:
+Collaboration diagram for Yarn.\-Library\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=251pt]{a00284}
+\includegraphics[width=194pt]{a00265}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override string \hyperlink{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
+\hyperlink{a00055}{Function\-Info} \hyperlink{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
 \item 
-\hyperlink{a00063_a9e7e90bbaed268529230512e4b5a2f77}{Parse\-Node} (\hyperlink{a00063}{Parse\-Node} \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00064}{Parser} p)
+void \hyperlink{a00063_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00063}{Library} other\-Library)
 \item 
-abstract string \hyperlink{a00063_a0d6611653f20c2e4d90a97a96c657137}{Print\-Tree} (int indent\-Level)
+void \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00055}{Function\-Info} function)
 \item 
-\hyperlink{a00054}{Node} \hyperlink{a00063_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+void \hyperlink{a00063_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00040_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
+\item 
+void \hyperlink{a00063_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00040_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
+\item 
+bool \hyperlink{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
+\item 
+void \hyperlink{a00063_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00063}{Parse\-Node} \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+Dictionary$<$ string, \hyperlink{a00055}{Function\-Info} $>$ \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} = new Dictionary$<$string, \hyperlink{a00055}{Function\-Info}$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00063_a9e7e90bbaed268529230512e4b5a2f77}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Parse\-Node@{Parse\-Node}}
-\index{Parse\-Node@{Parse\-Node}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
-\subsubsection[{Parse\-Node}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00063_a9e7e90bbaed268529230512e4b5a2f77}
-
-\begin{DoxyCode}
-105 \{ this.parent = \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}; \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00063_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\hypertarget{a00063_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Deregister\-Function@{Deregister\-Function}}
+\index{Deregister\-Function@{Deregister\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00063_a580e520a29444fc23ac3660cbe514a09}
+)}}\label{a00063_a47d1b3664733207d5cda15f4a4a7af7a}
 
 \begin{DoxyCode}
-116                                        \{
-117                 var node = \textcolor{keyword}{this};
-118 
-119                 \textcolor{keywordflow}{do} \{
-120                     \textcolor{keywordflow}{if} (node is Node) \{
-121                         \textcolor{keywordflow}{return} node as Node;
-122                     \}
-123                     node = node.parent;
-124                 \} \textcolor{keywordflow}{while} (node 
-125                     != null);                   
-126 
-127                 \textcolor{keywordflow}{return} null;
-128             \}
+125                                                     \{
+126             \textcolor{keywordflow}{if} (\hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
+127                 \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
+128         \}
 \end{DoxyCode}
-\hypertarget{a00063_a0d6611653f20c2e4d90a97a96c657137}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}abstract string Yarn.\-Parser.\-Parse\-Node.\-Print\-Tree (
+\hypertarget{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Function\-Exists@{Function\-Exists}}
+\index{Function\-Exists@{Function\-Exists}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
 \begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [pure virtual]}}}\label{a00063_a0d6611653f20c2e4d90a97a96c657137}
-
-
-Implemented in \hyperlink{a00058_a0c2ad7c4d6837ffc7b5325bbb8330c51}{Yarn.\-Parser.\-Operator}, \hyperlink{a00019_accb9ddcb472eb035a65188c857b8efd8}{Yarn.\-Parser.\-Assignment\-Statement}, \hyperlink{a00040_a509ba6d93218203bae56a5a7a82e8261}{Yarn.\-Parser.\-Expression}, \hyperlink{a00087_ae4659e4431e9846a45e0d048c960781a}{Yarn.\-Parser.\-Value\-Node}, \hyperlink{a00043_a5494c1daef8e0f3ac3ab68f91db4f332}{Yarn.\-Parser.\-If\-Statement}, \hyperlink{a00061_aafba8c941dbd3d0ef841ac9d472e1ba3}{Yarn.\-Parser.\-Option\-Statement}, \hyperlink{a00022_aaaacfc4e3ff2871fa5e2fb75e48636de}{Yarn.\-Parser.\-Block}, \hyperlink{a00070_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{Yarn.\-Parser.\-Shortcut\-Option}, \hyperlink{a00071_a7b60f85e46b8767db81177ec40e83104}{Yarn.\-Parser.\-Shortcut\-Option\-Group}, \hyperlink{a00032_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Yarn.\-Parser.\-Custom\-Command}, \hyperlink{a00076_aaac6d1e0c3b31f33e1c6f964c205153e}{Yarn.\-Parser.\-Statement}, and \hyperlink{a00054_ab11501ebf251fdaa7cfe44edfa993068}{Yarn.\-Parser.\-Node}.
-
-\hypertarget{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}
+)}}\label{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}
 
 \begin{DoxyCode}
-111             \{
-112                 \textcolor{keywordflow}{return} this.GetType ().Name;
-113             \}
+121                                                 \{
+122             \textcolor{keywordflow}{return} functions.ContainsKey (name);
+123         \}
+\end{DoxyCode}
+\hypertarget{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Get\-Function@{Get\-Function}}
+\index{Get\-Function@{Get\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}
+
+\begin{DoxyCode}
+90                                                      \{
+91             \textcolor{keywordflow}{try} \{
+92                 \textcolor{keywordflow}{return} \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
+93             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
+94                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
+95             \}
+96         \}
+\end{DoxyCode}
+\hypertarget{a00063_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Import\-Library@{Import\-Library}}
+\index{Import\-Library@{Import\-Library}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
+\begin{DoxyParamCaption}
+\item[{{\bf Library}}]{other\-Library}
+\end{DoxyParamCaption}
+)}}\label{a00063_ab42a4fd30a72156cafa685f959deef78}
+
+\begin{DoxyCode}
+101                                                         \{
+102             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
+103                 \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
+104             \}
+105         \}
+\end{DoxyCode}
+\hypertarget{a00063_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{{\bf Function\-Info}}]{function}
+\end{DoxyParamCaption}
+)}}\label{a00063_a001ab29d21fe7db10fc9c250914287f9}
+
+\begin{DoxyCode}
+107                                                             \{
+108             \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
+109         \}
+\end{DoxyCode}
+\hypertarget{a00063_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Returning\-Function}}]{implementation}
+\end{DoxyParamCaption}
+)}}\label{a00063_a2a698de0b528b2bac17bd85f57d45d4b}
+
+\begin{DoxyCode}
+111                                                                                                         \{
+112             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+113             \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+114         \}
+\end{DoxyCode}
+\hypertarget{a00063_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
+\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{int}]{parameter\-Count, }
+\item[{{\bf Function}}]{implementation}
+\end{DoxyParamCaption}
+)}}\label{a00063_a6820eaa082077f16496effbc9041b7ad}
+
+\begin{DoxyCode}
+116                                                                                                \{
+117             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
+118             \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
+119         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Parse\-Node@{Yarn\-::\-Parser\-::\-Parse\-Node}!parent@{parent}}
-\index{parent@{parent}!Yarn::Parser::ParseNode@{Yarn\-::\-Parser\-::\-Parse\-Node}}
-\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [private]}}}\label{a00063_af313a82103fcc2ff5a177dbb06b92f7b}
+\hypertarget{a00063_a2fcc78a63963be5320cf09783b66fab6}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!functions@{functions}}
+\index{functions@{functions}!Yarn::Library@{Yarn\-::\-Library}}
+\subsubsection[{functions}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Function\-Info}$>$ Yarn.\-Library.\-functions = new Dictionary$<$string, {\bf Function\-Info}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00063_a2fcc78a63963be5320cf09783b66fab6}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00122}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00141}{Library.\-cs}\end{DoxyCompactItemize}

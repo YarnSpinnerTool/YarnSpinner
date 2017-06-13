@@ -1,16 +1,109 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00151" kind="namespace">
-    <compoundname>Yarn::Analysis</compoundname>
-    <innerclass refid="a00035" prot="public">Yarn::Analysis::Diagnosis</innerclass>
-    <innerclass refid="a00031" prot="public">Yarn::Analysis::Context</innerclass>
-    <innerclass refid="a00020" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
-    <innerclass refid="a00028" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
-    <innerclass refid="a00084" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
+    <compoundname>Json</compoundname>
+    <innerclass refid="a00059" prot="public">Json::InvalidJsonException</innerclass>
+    <innerclass refid="a00060" prot="public">Json::JsonParser</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="a00151_1a9d0536e3d8d9353112cfd292cc41b236" prot="public" static="no">
+        <name>JsonToken</name>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e" prot="public">
+          <name>Unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f" prot="public">
+          <name>LeftBrace</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a" prot="public">
+          <name>RightBrace</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83" prot="public">
+          <name>Colon</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6" prot="public">
+          <name>Comma</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17" prot="public">
+          <name>LeftBracket</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c" prot="public">
+          <name>RightBracket</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98" prot="public">
+          <name>String</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f" prot="public">
+          <name>Number</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74" prot="public">
+          <name>True</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c" prot="public">
+          <name>False</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00151_1a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94" prot="public">
+          <name>Null</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Possible JSON tokens in parsed input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="22" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="5" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="18" column="1"/>
   </compounddef>
 </doxygen>

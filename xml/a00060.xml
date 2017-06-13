@@ -1,49 +1,88 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00060" kind="class" prot="public">
-    <compoundname>Yarn::Dialogue::OptionSetResult</compoundname>
-    <basecompoundref refid="a00069" prot="public" virt="non-virtual">Yarn.Dialogue.RunnerResult</basecompoundref>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00060_1abda9c3047ff9d3c3ec5540566a239315" prot="public" static="no" mutable="no">
-        <type><ref refid="a00161" kindref="compound">Options</ref></type>
-        <definition>Options Yarn.Dialogue.OptionSetResult.options</definition>
+    <compoundname>Json::JsonParser</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00060_1ad05db33540abe9864b13b6b5c637a354" prot="private" static="no" mutable="no">
+        <type>const NumberStyles</type>
+        <definition>const NumberStyles Json.JsonParser.JsonNumbers</definition>
         <argsstring></argsstring>
-        <name>options</name>
+        <name>JsonNumbers</name>
+        <initializer>= NumberStyles.Float</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="120" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00060_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" static="no" mutable="no">
-        <type><ref refid="a00026_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-        <definition>OptionChooser Yarn.Dialogue.OptionSetResult.setSelectedOptionDelegate</definition>
-        <argsstring></argsstring>
-        <name>setSelectedOptionDelegate</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="121" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="137" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="137" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00060_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Dialogue.OptionSetResult.OptionSetResult</definition>
-        <argsstring>(IList&lt; string &gt; optionStrings, OptionChooser setSelectedOption)</argsstring>
-        <name>OptionSetResult</name>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="a00060_1ae6f928a5caa81742eb3bac3e986f92f6" prot="private" static="yes" mutable="no">
+        <type>readonly IDictionary&lt; Type, PropertyInfo[]&gt;</type>
+        <definition>readonly IDictionary&lt;Type, PropertyInfo[]&gt; Json.JsonParser._cache</definition>
+        <argsstring></argsstring>
+        <name>_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="139" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00060_1a9d97f297996ac634f58dd842ebc00171" prot="private" static="yes" mutable="no">
+        <type>readonly char[]</type>
+        <definition>readonly char [] Json.JsonParser._base16</definition>
+        <argsstring></argsstring>
+        <name>_base16</name>
+        <initializer>= new[]
+                             {
+                                 &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, 
+                                 &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, 
+                                 &apos;8&apos;, &apos;9&apos;, &apos;A&apos;, &apos;B&apos;, 
+                                 &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;
+                             }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00060_1a1544c040c7ea06b664fdc4860a2f9bf8" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>static</type>
+        <definition>static Json.JsonParser.JsonParser</definition>
+        <argsstring>()</argsstring>
+        <name>JsonParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="149" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a67dcda2f39de7721d92a69dc4191f664" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.DeserializeImpl</definition>
+        <argsstring>(IEnumerable&lt; PropertyInfo &gt; map, IDictionary&lt; string, object &gt; bag, object instance)</argsstring>
+        <name>DeserializeImpl</name>
         <param>
-          <type>IList&lt; string &gt;</type>
-          <declname>optionStrings</declname>
+          <type>IEnumerable&lt; PropertyInfo &gt;</type>
+          <declname>map</declname>
         </param>
         <param>
-          <type><ref refid="a00026_1a39866cbb03c03a35805d598b5d4ad553" kindref="member">OptionChooser</ref></type>
-          <declname>setSelectedOption</declname>
+          <type>IDictionary&lt; string, object &gt;</type>
+          <declname>bag</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>instance</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -51,49 +90,771 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="123" bodyend="128"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="204" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="204" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a2630a01783ba0cda2e4e29c922951a66" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.DeserializeImpl&lt; T &gt;</definition>
+        <argsstring>(IEnumerable&lt; PropertyInfo &gt; map, IDictionary&lt; string, object &gt; bag, T instance)</argsstring>
+        <name>DeserializeImpl&lt; T &gt;</name>
+        <param>
+          <type>IEnumerable&lt; PropertyInfo &gt;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>IDictionary&lt; string, object &gt;</type>
+          <declname>bag</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="211" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="211" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a551f727b71d49c59cd7a101790764e5b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.DeserializeType</definition>
+        <argsstring>(IEnumerable&lt; PropertyInfo &gt; map, IDictionary&lt; string, object &gt; bag, object instance)</argsstring>
+        <name>DeserializeType</name>
+        <param>
+          <type>IEnumerable&lt; PropertyInfo &gt;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>IDictionary&lt; string, object &gt;</type>
+          <declname>bag</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="218" bodyend="270"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00060_1a49728c8da4904f2fc8b2d9a97cd93f2f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Json.JsonParser.Serialize&lt; T &gt;</definition>
+        <argsstring>(T instance)</argsstring>
+        <name>Serialize&lt; T &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="154" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a7a247a376140fc0937c0b6ddeaa19d2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>static object Json.JsonParser.Deserialize</definition>
+        <argsstring>(string json, Type type)</argsstring>
+        <name>Deserialize</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="161" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="161" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a17292a3090b1cc75139caa4fd1986474" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T Json.JsonParser.Deserialize&lt; T &gt;</definition>
+        <argsstring>(string json)</argsstring>
+        <name>Deserialize&lt; T &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="171" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="171" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a25f408d4c36efa0ff4a1a2a9fe519cc2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IDictionary&lt; string, object &gt;</type>
+        <definition>static IDictionary&lt;string, object&gt; Json.JsonParser.FromJson</definition>
+        <argsstring>(string json)</argsstring>
+        <name>FromJson</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="272" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="272" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a6c8678fcf08beb342f2a9b722870ac1b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IDictionary&lt; string, object &gt;</type>
+        <definition>static IDictionary&lt;string, object&gt; Json.JsonParser.FromJson</definition>
+        <argsstring>(string json, out JsonToken type)</argsstring>
+        <name>FromJson</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <param>
+          <type>out <ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="288" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a4c5b7984378951474675cccdd6bde72c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Json.JsonParser.ToJson</definition>
+        <argsstring>(IDictionary&lt; string, object &gt; bag)</argsstring>
+        <name>ToJson</name>
+        <param>
+          <type>IDictionary&lt; string, object &gt;</type>
+          <declname>bag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="309" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="309" bodyend="316"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00060_1a3589b9943dbb8872cd4030d4b9ff1a7a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IDictionary&lt; string, object &gt;</type>
+        <definition>static IDictionary&lt;string, object&gt; Json.JsonParser.GetBagForObject</definition>
+        <argsstring>(Type type, object instance)</argsstring>
+        <name>GetBagForObject</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="318" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="318" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a9ce835f1af37bfb8f65176a0d3185d69" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IDictionary&lt; string, object &gt;</type>
+        <definition>static IDictionary&lt;string, object&gt; Json.JsonParser.GetBagForObject&lt; T &gt;</definition>
+        <argsstring>(T instance)</argsstring>
+        <name>GetBagForObject&lt; T &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="345" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="345" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a9f62c2e79312364d7161b13a64b89c8e" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Dictionary&lt; string, object &gt;</type>
+        <definition>static Dictionary&lt;string, object&gt; Json.JsonParser.InitializeBag</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeBag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="350" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="350" bodyend="355"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1ab61372226682d7b1d17f54345dfd17b5" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; PropertyInfo &gt;</type>
+        <definition>static IEnumerable&lt;PropertyInfo&gt; Json.JsonParser.PrepareInstance</definition>
+        <argsstring>(out object instance, Type type)</argsstring>
+        <name>PrepareInstance</name>
+        <param>
+          <type>out object</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="357" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="357" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a48baaa0a217d05b48e049a4c5f2784a9" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; PropertyInfo &gt;</type>
+        <definition>static IEnumerable&lt;PropertyInfo&gt; Json.JsonParser.PrepareInstance&lt; T &gt;</definition>
+        <argsstring>(out T instance)</argsstring>
+        <name>PrepareInstance&lt; T &gt;</name>
+        <param>
+          <type>out T</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="366" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="366" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a1bb8d04c0c686da8bf81c0b273cc0591" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.CacheReflection</definition>
+        <argsstring>(Type item)</argsstring>
+        <name>CacheReflection</name>
+        <param>
+          <type>Type</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="376" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="376" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a1ce11382c35fcbc0902e73deec3e617b" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.SerializeItem</definition>
+        <argsstring>(StringBuilder sb, object item)</argsstring>
+        <name>SerializeItem</name>
+        <param>
+          <type>StringBuilder</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="394" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="394" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a6874a321c86a87ddeafb25e1f5b37a42" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.SerializeDateTime</definition>
+        <argsstring>(StringBuilder sb)</argsstring>
+        <name>SerializeDateTime</name>
+        <param>
+          <type>StringBuilder</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="444" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="444" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a38298480de46941b764cbbae3ec00ac0" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.SerializeArray</definition>
+        <argsstring>(object item, StringBuilder sb)</argsstring>
+        <name>SerializeArray</name>
+        <param>
+          <type>object</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>StringBuilder</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="451" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="451" bodyend="468"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a2a63df270c38b1c9ce7de54b268cdc4f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.SerializeObject</definition>
+        <argsstring>(object item, StringBuilder sb)</argsstring>
+        <name>SerializeObject</name>
+        <param>
+          <type>object</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type>StringBuilder</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="470" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="470" bodyend="498"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a9322c1bf740844d26a732c091004063f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.SerializeString</definition>
+        <argsstring>(StringBuilder sb, object item)</argsstring>
+        <name>SerializeString</name>
+        <param>
+          <type>StringBuilder</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="501" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="501" bodyend="514"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a03595e6253700fbdb86440704e1f2e66" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Json.JsonParser.GetUnicode</definition>
+        <argsstring>(int code)</argsstring>
+        <name>GetUnicode</name>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="516" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="516" bodyend="528"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a59a67256e67e7a4edd4c9905ecd1aec8" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>KeyValuePair&lt; string, object &gt;</type>
+        <definition>static KeyValuePair&lt;string, object&gt; Json.JsonParser.ParsePair</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParsePair</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="530" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="530" bodyend="555"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a8865158aad79660d9c4cc83a7c6d8544" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Json.JsonParser.ParseToken</definition>
+        <argsstring>(JsonToken token, IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseToken</name>
+        <param>
+          <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="557" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="557" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a7e18de40259814b5ab9d0100bdeab4fe" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Json.JsonParser.ParseString</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseString</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="563" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="563" bodyend="634"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1aa84c3b3d395c5990f202ef55321dfa1a" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>static object Json.JsonParser.ParseValue</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseValue</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="636" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="636" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a49577a43cf31e147b6d46ea28f7f617e" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IDictionary&lt; string, object &gt;</type>
+        <definition>static IDictionary&lt;string, object&gt; Json.JsonParser.ParseObject</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseObject</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="670" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="670" bodyend="726"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1ae0b95fd2671c34c64b6a2c6275d69111" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; object &gt;</type>
+        <definition>static IEnumerable&lt;object&gt; Json.JsonParser.ParseArray</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseArray</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="728" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="728" bodyend="772"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1ae0f7085f6d03e4e5cfcba42467cbd0b8" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>static object Json.JsonParser.ParseNumber</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>ParseNumber</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="774" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="774" bodyend="809"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a1d2daab9b052b186da7a2b6711be5803" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <definition>static JsonToken Json.JsonParser.NextToken</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index)</argsstring>
+        <name>NextToken</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="811" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="811" bodyend="822"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1afe1d461122e927aae8a2cb0c7269c3c6" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <definition>static JsonToken Json.JsonParser.GetTokenFromSymbol</definition>
+        <argsstring>(char symbol)</argsstring>
+        <name>GetTokenFromSymbol</name>
+        <param>
+          <type>char</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="824" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="824" bodyend="827"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a5600fe22f246bcf8f7488801f0c9724d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <definition>static JsonToken Json.JsonParser.GetTokenFromSymbol</definition>
+        <argsstring>(char symbol, JsonToken token)</argsstring>
+        <name>GetTokenFromSymbol</name>
+        <param>
+          <type>char</type>
+          <declname>symbol</declname>
+        </param>
+        <param>
+          <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="829" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="829" bodyend="873"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a2c524a3d0510dd2e4ec91dd63acbf61d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.IgnoreWhitespace</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index, char symbol)</argsstring>
+        <name>IgnoreWhitespace</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="875" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="875" bodyend="880"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a8e00ac0c0d9380bc5d07d1fd8982a0df" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+        <definition>static JsonToken Json.JsonParser.IgnoreWhitespace</definition>
+        <argsstring>(IList&lt; char &gt; data, ref int index, ref JsonToken token, char symbol)</argsstring>
+        <name>IgnoreWhitespace</name>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>symbol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="882" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="882" bodyend="899"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a01fac43195f80e1e8660240b1d1104cd" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Json.JsonParser.GetKeyword</definition>
+        <argsstring>(string word, JsonToken target, IList&lt; char &gt; data, ref int index, ref JsonToken result)</argsstring>
+        <name>GetKeyword</name>
+        <param>
+          <type>string</type>
+          <declname>word</declname>
+        </param>
+        <param>
+          <type><ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>IList&lt; char &gt;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="a00151_1a9d0536e3d8d9353112cfd292cc41b236" kindref="member">JsonToken</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="901" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="901" bodyend="923"/>
+      </memberdef>
+      <memberdef kind="function" id="a00060_1a40c3e9c7c786e6bd8577d2e00bdcea73" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Json.JsonParser.BaseConvert</definition>
+        <argsstring>(int input, char[] charSet, int minLength)</argsstring>
+        <name>BaseConvert</name>
+        <param>
+          <type>int</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>char[]</type>
+          <declname>charSet</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>minLength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="925" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="925" bodyend="943"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A parser for JSON. <simplesect kind="see"><para>http://json.org</para></simplesect>
+</para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="589">
-        <label>RunnerResult</label>
-        <link refid="a00069"/>
-      </node>
-      <node id="588">
-        <label>Yarn.Dialogue.OptionSetResult</label>
-        <link refid="a00060"/>
-        <childnode refid="589" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="592">
-        <label>Yarn.Options</label>
-        <link refid="a00161"/>
-      </node>
-      <node id="591">
-        <label>RunnerResult</label>
-        <link refid="a00069"/>
-      </node>
-      <node id="590">
-        <label>Yarn.Dialogue.OptionSetResult</label>
+      <node id="527">
+        <label>Json.JsonParser</label>
         <link refid="a00060"/>
-        <childnode refid="591" relation="public-inheritance">
-        </childnode>
-        <childnode refid="592" relation="usage">
-          <edgelabel>+options</edgelabel>
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="119" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="119" bodyend="130"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" bodystart="134" bodyend="944"/>
     <listofallmembers>
-      <member refid="a00060_1abda9c3047ff9d3c3ec5540566a239315" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>options</name></member>
-      <member refid="a00060_1a934c02fb1047ffd05b2b5a9c6fcd7acb" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>OptionSetResult</name></member>
-      <member refid="a00060_1a6f2683598cf0f62b76bb864640cc79dd" prot="public" virt="non-virtual"><scope>Yarn::Dialogue::OptionSetResult</scope><name>setSelectedOptionDelegate</name></member>
+      <member refid="a00060_1a9d97f297996ac634f58dd842ebc00171" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>_base16</name></member>
+      <member refid="a00060_1ae6f928a5caa81742eb3bac3e986f92f6" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>_cache</name></member>
+      <member refid="a00060_1a40c3e9c7c786e6bd8577d2e00bdcea73" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>BaseConvert</name></member>
+      <member refid="a00060_1a1bb8d04c0c686da8bf81c0b273cc0591" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>CacheReflection</name></member>
+      <member refid="a00060_1a7a247a376140fc0937c0b6ddeaa19d2c" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>Deserialize</name></member>
+      <member refid="a00060_1a17292a3090b1cc75139caa4fd1986474" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>Deserialize&lt; T &gt;</name></member>
+      <member refid="a00060_1a67dcda2f39de7721d92a69dc4191f664" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>DeserializeImpl</name></member>
+      <member refid="a00060_1a2630a01783ba0cda2e4e29c922951a66" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>DeserializeImpl&lt; T &gt;</name></member>
+      <member refid="a00060_1a551f727b71d49c59cd7a101790764e5b" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>DeserializeType</name></member>
+      <member refid="a00060_1a25f408d4c36efa0ff4a1a2a9fe519cc2" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>FromJson</name></member>
+      <member refid="a00060_1a6c8678fcf08beb342f2a9b722870ac1b" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>FromJson</name></member>
+      <member refid="a00060_1a3589b9943dbb8872cd4030d4b9ff1a7a" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetBagForObject</name></member>
+      <member refid="a00060_1a9ce835f1af37bfb8f65176a0d3185d69" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetBagForObject&lt; T &gt;</name></member>
+      <member refid="a00060_1a01fac43195f80e1e8660240b1d1104cd" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetKeyword</name></member>
+      <member refid="a00060_1afe1d461122e927aae8a2cb0c7269c3c6" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetTokenFromSymbol</name></member>
+      <member refid="a00060_1a5600fe22f246bcf8f7488801f0c9724d" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetTokenFromSymbol</name></member>
+      <member refid="a00060_1a03595e6253700fbdb86440704e1f2e66" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>GetUnicode</name></member>
+      <member refid="a00060_1a2c524a3d0510dd2e4ec91dd63acbf61d" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>IgnoreWhitespace</name></member>
+      <member refid="a00060_1a8e00ac0c0d9380bc5d07d1fd8982a0df" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>IgnoreWhitespace</name></member>
+      <member refid="a00060_1a9f62c2e79312364d7161b13a64b89c8e" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>InitializeBag</name></member>
+      <member refid="a00060_1ad05db33540abe9864b13b6b5c637a354" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>JsonNumbers</name></member>
+      <member refid="a00060_1a1544c040c7ea06b664fdc4860a2f9bf8" prot="private" virt="non-virtual"><scope>Json::JsonParser</scope><name>JsonParser</name></member>
+      <member refid="a00060_1a1d2daab9b052b186da7a2b6711be5803" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>NextToken</name></member>
+      <member refid="a00060_1ae0b95fd2671c34c64b6a2c6275d69111" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseArray</name></member>
+      <member refid="a00060_1ae0f7085f6d03e4e5cfcba42467cbd0b8" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseNumber</name></member>
+      <member refid="a00060_1a49577a43cf31e147b6d46ea28f7f617e" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseObject</name></member>
+      <member refid="a00060_1a59a67256e67e7a4edd4c9905ecd1aec8" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParsePair</name></member>
+      <member refid="a00060_1a7e18de40259814b5ab9d0100bdeab4fe" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseString</name></member>
+      <member refid="a00060_1a8865158aad79660d9c4cc83a7c6d8544" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseToken</name></member>
+      <member refid="a00060_1aa84c3b3d395c5990f202ef55321dfa1a" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>ParseValue</name></member>
+      <member refid="a00060_1ab61372226682d7b1d17f54345dfd17b5" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>PrepareInstance</name></member>
+      <member refid="a00060_1a48baaa0a217d05b48e049a4c5f2784a9" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>PrepareInstance&lt; T &gt;</name></member>
+      <member refid="a00060_1a49728c8da4904f2fc8b2d9a97cd93f2f" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>Serialize&lt; T &gt;</name></member>
+      <member refid="a00060_1a38298480de46941b764cbbae3ec00ac0" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>SerializeArray</name></member>
+      <member refid="a00060_1a6874a321c86a87ddeafb25e1f5b37a42" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>SerializeDateTime</name></member>
+      <member refid="a00060_1a1ce11382c35fcbc0902e73deec3e617b" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>SerializeItem</name></member>
+      <member refid="a00060_1a2a63df270c38b1c9ce7de54b268cdc4f" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>SerializeObject</name></member>
+      <member refid="a00060_1a9322c1bf740844d26a732c091004063f" prot="package" virt="non-virtual"><scope>Json::JsonParser</scope><name>SerializeString</name></member>
+      <member refid="a00060_1a4c5b7984378951474675cccdd6bde72c" prot="public" virt="non-virtual"><scope>Json::JsonParser</scope><name>ToJson</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

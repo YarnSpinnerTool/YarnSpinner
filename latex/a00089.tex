@@ -1,40 +1,41 @@
-\hypertarget{a00089}{\section{Yarn.\-Unity.\-Variable\-Storage\-Behaviour Class Reference}
-\label{a00089}\index{Yarn.\-Unity.\-Variable\-Storage\-Behaviour@{Yarn.\-Unity.\-Variable\-Storage\-Behaviour}}
+\hypertarget{a00089}{\section{Yarn.\-Virtual\-Machine.\-State Class Reference}
+\label{a00089}\index{Yarn.\-Virtual\-Machine.\-State@{Yarn.\-Virtual\-Machine.\-State}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
+Collaboration diagram for Yarn.\-Virtual\-Machine.\-State\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=294pt]{a00336}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Variable\-Storage\-Behaviour\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=294pt]{a00337}
+\includegraphics[width=210pt]{a00329}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00089_ac0d2f2e081944ad197992a26ad1a833c}{Set\-Number} (string variable\-Name, float number)
+void \hyperlink{a00089_aace44f5b85b9f746fede834becda4a8e}{Push\-Value} (object o)
 \item 
-virtual float \hyperlink{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}{Get\-Number} (string variable\-Name)
+\hyperlink{a00100}{Value} \hyperlink{a00089_a36881a888ea2839d74c3d4e7c199f4ee}{Pop\-Value} ()
 \item 
-virtual \hyperlink{a00086}{Value} \hyperlink{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}{Get\-Value} (string variable\-Name)
+\hyperlink{a00100}{Value} \hyperlink{a00089_a54fd5b64ec94e937e771846167242dc2}{Peek\-Value} ()
 \item 
-virtual void \hyperlink{a00089_a25f979b062d63c9e886fe7070ce4561b}{Set\-Value} (string variable\-Name, \hyperlink{a00086}{Value} value)
+void \hyperlink{a00089_a9c787097fbbbbf1680e4960cda092535}{Clear\-Stack} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00089_a587fe10b367ace190e10f3bcb590a53c}{Clear} ()
+string \hyperlink{a00089_a86f481fad527f719b49f8fee6ff79764}{current\-Node\-Name}
 \item 
-abstract void \hyperlink{a00089_a33fcbff56561e53e0a70b59c56f0c3af}{Reset\-To\-Defaults} ()
+int \hyperlink{a00089_a2c76546b54b4fb573d7f14d79ce230a3}{program\-Counter} = 0
+\item 
+List$<$ Key\-Value\-Pair$<$ string, \\*
+string $>$ $>$ \hyperlink{a00089_ab816dfea32ecda23282700f01454e0a9}{current\-Options} = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Stack$<$ \hyperlink{a00100}{Value} $>$ \hyperlink{a00089_a0bc84abf38b3ff31cbb47363b851c233}{stack} = new Stack$<$\hyperlink{a00100}{Value}$>$()
 \end{DoxyCompactItemize}
 
 
@@ -42,118 +43,79 @@ abstract void \hyperlink{a00089_a33fcbff56561e53e0a70b59c56f0c3af}{Reset\-To\-De
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00089_a587fe10b367ace190e10f3bcb590a53c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Clear (
+\hypertarget{a00089_a9c787097fbbbbf1680e4960cda092535}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Clear\-Stack@{Clear\-Stack}}
+\index{Clear\-Stack@{Clear\-Stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Clear\-Stack}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Clear\-Stack (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a587fe10b367ace190e10f3bcb590a53c}
-
-
-Implements \hyperlink{a00088_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
-
-
-
-Reimplemented in \hyperlink{a00033_a0ce614bee8d5b220500fb765390b4ca3}{Example\-Variable\-Storage}.
-
+)}}\label{a00089_a9c787097fbbbbf1680e4960cda092535}
 
 \begin{DoxyCode}
-388         \{
-389             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-390         \}
+42                                      \{
+43                 stack.Clear ();
+44             \}
 \end{DoxyCode}
-\hypertarget{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual float Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_add85a45dd65a5d4bd41c9d5ce5f77d19}
-
-
-Implements \hyperlink{a00088_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
-
-
-\begin{DoxyCode}
-375         \{
-376             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-377         \}
-\end{DoxyCode}
-\hypertarget{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Value} Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Get\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_ac6ebafcbebc2b2d71eba8562490a2f1e}
-
-
-Implements \hyperlink{a00088_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
-
-
-
-Reimplemented in \hyperlink{a00033_a741593be1a299dcc2136f05b9b4a995a}{Example\-Variable\-Storage}.
-
-
-\begin{DoxyCode}
-379                                                            \{
-380             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00086}{Yarn.Value}(this.GetNumber(variableName));
-381         \}
-\end{DoxyCode}
-\hypertarget{a00089_a33fcbff56561e53e0a70b59c56f0c3af}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Reset\-To\-Defaults@{Reset\-To\-Defaults}}
-\index{Reset\-To\-Defaults@{Reset\-To\-Defaults}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Reset\-To\-Defaults}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Reset\-To\-Defaults (
+\hypertarget{a00089_a54fd5b64ec94e937e771846167242dc2}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Peek\-Value@{Peek\-Value}}
+\index{Peek\-Value@{Peek\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Peek\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Peek\-Value (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00089_a33fcbff56561e53e0a70b59c56f0c3af}
-
-
-Implemented in \hyperlink{a00033_a3a05d66cdacadb2e9b618cd0aef45f84}{Example\-Variable\-Storage}.
-
-\hypertarget{a00089_ac0d2f2e081944ad197992a26ad1a833c}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_ac0d2f2e081944ad197992a26ad1a833c}
-
-
-Implements \hyperlink{a00088_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
-
+)}}\label{a00089_a54fd5b64ec94e937e771846167242dc2}
 
 \begin{DoxyCode}
-370         \{
-371             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.NotImplementedException ();
-372         \}
+38                                      \{
+39                 \textcolor{keywordflow}{return} stack.Peek ();
+40             \}
 \end{DoxyCode}
-\hypertarget{a00089_a25f979b062d63c9e886fe7070ce4561b}{\index{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::Unity::VariableStorageBehaviour@{Yarn\-::\-Unity\-::\-Variable\-Storage\-Behaviour}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn.\-Unity.\-Variable\-Storage\-Behaviour.\-Set\-Value (
+\hypertarget{a00089_a36881a888ea2839d74c3d4e7c199f4ee}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Pop\-Value@{Pop\-Value}}
+\index{Pop\-Value@{Pop\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Pop\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Pop\-Value (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00089_a25f979b062d63c9e886fe7070ce4561b}
-
-
-Implements \hyperlink{a00088_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
-
-
-
-Reimplemented in \hyperlink{a00033_ac4265c1c9da485f13a6b05784b0f668d}{Example\-Variable\-Storage}.
-
+)}}\label{a00089_a36881a888ea2839d74c3d4e7c199f4ee}
 
 \begin{DoxyCode}
-383                                                                        \{
-384             this.SetNumber(variableName, value.AsNumber);
-385         \}
+34                                     \{
+35                 \textcolor{keywordflow}{return} stack.Pop ();
+36             \}
 \end{DoxyCode}
+\hypertarget{a00089_aace44f5b85b9f746fede834becda4a8e}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Push\-Value@{Push\-Value}}
+\index{Push\-Value@{Push\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{Push\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Push\-Value (
+\begin{DoxyParamCaption}
+\item[{object}]{o}
+\end{DoxyParamCaption}
+)}}\label{a00089_aace44f5b85b9f746fede834becda4a8e}
+
+\begin{DoxyCode}
+26                                             \{
+27                 \textcolor{keywordflow}{if}( o is Value ) \{
+28                     stack.Push(o as Value);
+29                 \} \textcolor{keywordflow}{else} \{
+30                     stack.Push (\textcolor{keyword}{new} Value(o));
+31                 \}
+32             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00089_a86f481fad527f719b49f8fee6ff79764}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Node\-Name@{current\-Node\-Name}}
+\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Virtual\-Machine.\-State.\-current\-Node\-Name}}\label{a00089_a86f481fad527f719b49f8fee6ff79764}
+\hypertarget{a00089_ab816dfea32ecda23282700f01454e0a9}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Options@{current\-Options}}
+\index{current\-Options@{current\-Options}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Key\-Value\-Pair$<$string,string$>$ $>$ Yarn.\-Virtual\-Machine.\-State.\-current\-Options = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()}}\label{a00089_ab816dfea32ecda23282700f01454e0a9}
+\hypertarget{a00089_a2c76546b54b4fb573d7f14d79ce230a3}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!program\-Counter@{program\-Counter}}
+\index{program\-Counter@{program\-Counter}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{program\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Virtual\-Machine.\-State.\-program\-Counter = 0}}\label{a00089_a2c76546b54b4fb573d7f14d79ce230a3}
+\hypertarget{a00089_a0bc84abf38b3ff31cbb47363b851c233}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!stack@{stack}}
+\index{stack@{stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
+\subsubsection[{stack}]{\setlength{\rightskip}{0pt plus 5cm}Stack$<${\bf Value}$>$ Yarn.\-Virtual\-Machine.\-State.\-stack = new Stack$<${\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00089_a0bc84abf38b3ff31cbb47363b851c233}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Code/\hyperlink{a00105}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00148}{Virtual\-Machine.\-cs}\end{DoxyCompactItemize}

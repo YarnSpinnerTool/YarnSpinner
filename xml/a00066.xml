@@ -1,47 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00066" kind="class" prot="public">
-    <compoundname>NUnitLite::Tests::Program</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00066_1af0872d2d78e93b98528e399a1f19f63f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void NUnitLite.Tests.Program.Main</definition>
-        <argsstring>(string[] args)</argsstring>
-        <name>Main</name>
-        <param>
-          <type>string[]</type>
-          <declname>args</declname>
-        </param>
+    <compoundname>Yarn::MemoryVariableStore</compoundname>
+    <basecompoundref refid="a00035" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00066_1aad18acd95297edb8ed496857337f8071" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00100" kindref="compound">Value</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Value&gt; Yarn.MemoryVariableStore.variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00100" kindref="compound">Value</ref>&gt;()</initializer>
         <briefdescription>
-<para>The main program executes the tests. Output may be routed to various locations, depending on the arguments passed. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para>Run with <ndash/>help for a full list of arguments supported</para><para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>args</parametername>
-</parameternamelist>
-<parameterdescription>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" bodystart="36" bodyend="39"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="318" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00066_1a653a459811e5c19549f4b31269093ef5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
+        <argsstring>(string variableName, Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00035_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00100" kindref="compound">Value</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="320" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="320" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="a00066_1a0ce77e8245c504a777540e359704aa2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override <ref refid="a00100" kindref="compound">Value</ref></type>
+        <definition>override Value Yarn.MemoryVariableStore.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00035_1a13b142df804d9842e97e628e252928e8">GetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="325" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="325" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="a00066_1aa6d243e7ef02b91f793a221f509dae69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Yarn.MemoryVariableStore.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00035_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="336" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="336" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="a00035_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BaseVariableStorage.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00102_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="a00035_1a1b7f7f4468b2463e7b47986d99362279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Yarn.BaseVariableStorage.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00102_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="73" bodyend="75"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="624">
-        <label>NUnitLite.Tests.Program</label>
+    <inheritancegraph>
+      <node id="554">
+        <label>VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="552">
+        <label>Yarn.MemoryVariableStore</label>
         <link refid="a00066"/>
+        <childnode refid="553" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="553">
+        <label>Yarn::BaseVariableStorage</label>
+        <link refid="a00035"/>
+        <childnode refid="554" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="557">
+        <label>VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="555">
+        <label>Yarn.MemoryVariableStore</label>
+        <link refid="a00066"/>
+        <childnode refid="556" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="556">
+        <label>Yarn::BaseVariableStorage</label>
+        <link refid="a00035"/>
+        <childnode refid="557" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/NUnitLite.3.0.1/content/Program.cs" bodystart="28" bodyend="40"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="317" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="317" bodyend="339"/>
     <listofallmembers>
-      <member refid="a00066_1af0872d2d78e93b98528e399a1f19f63f" prot="public" virt="non-virtual"><scope>NUnitLite::Tests::Program</scope><name>Main</name></member>
+      <member refid="a00066_1aa6d243e7ef02b91f793a221f509dae69" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>Clear</name></member>
+      <member refid="a00035_1a1b7f7f4468b2463e7b47986d99362279" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetNumber</name></member>
+      <member refid="a00066_1a0ce77e8245c504a777540e359704aa2a" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetValue</name></member>
+      <member refid="a00035_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetNumber</name></member>
+      <member refid="a00066_1a653a459811e5c19549f4b31269093ef5" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
+      <member refid="a00066_1aad18acd95297edb8ed496857337f8071" prot="private" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

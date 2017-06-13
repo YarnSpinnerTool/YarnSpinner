@@ -1,449 +1,174 @@
-\hypertarget{a00085}{\section{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window Class Reference}
-\label{a00085}\index{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window@{Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window}}
+\hypertarget{a00085}{\section{Yarn.\-Parser.\-Shortcut\-Option\-Group Class Reference}
+\label{a00085}\index{Yarn.\-Parser.\-Shortcut\-Option\-Group@{Yarn.\-Parser.\-Shortcut\-Option\-Group}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window\-:
+Inheritance diagram for Yarn.\-Parser.\-Shortcut\-Option\-Group\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{a00339}
+\includegraphics[width=216pt]{a00310}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window\-:
+Collaboration diagram for Yarn.\-Parser.\-Shortcut\-Option\-Group\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{a00340}
+\includegraphics[width=260pt]{a00311}
 \end{center}
 \end{figure}
-\subsection*{Classes}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00024}{Checker\-Result}
-\item 
-struct \hyperlink{a00034}{Deprecation}
-\item 
-struct \hyperlink{a00085_a00164}{Validation\-Message}
+override string \hyperlink{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00085_a8b798cbc0fad966781e9cc0de177fbd9}{Update\-J\-S\-O\-N\-List} ()
+\hyperlink{a00085_aa4ee47826640ad8dff651603c940c7f4}{Shortcut\-Option\-Group} (\hyperlink{a00077}{Parse\-Node} \hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00078}{Parser} p)
 \item 
-void \hyperlink{a00085_aeba1f39189758bd91bdce298e8859947}{On\-Enable} ()
+override string \hyperlink{a00085_a7b60f85e46b8767db81177ec40e83104}{Print\-Tree} (int indent\-Level)
 \item 
-void \hyperlink{a00085_aec84840262ae8fd7d84605778de1dc39}{On\-G\-U\-I} ()
-\item 
-void \hyperlink{a00085_ac4dbc30419c5647c1a2587b2ff7abd7c}{Validate} ()
-\item 
-\hyperlink{a00085_a00164}{Validation\-Message}\mbox{[}$\,$\mbox{]} \hyperlink{a00085_a6f2bf42b228ea29c6477e369226db8b6}{Validate\-File} (Text\-Asset script, \hyperlink{a00031}{Analysis.\-Context} analysis\-Context, out \hyperlink{a00024_ab24848d7951ce44eb3c7768c6ee10385}{Checker\-Result.\-State} result)
-\item 
-I\-Enumerable\\*
-$<$ \hyperlink{a00035}{Yarn.\-Analysis.\-Diagnosis} $>$ \hyperlink{a00085_a9c207786c349120dc439bdce53072191}{Analyse\-Environment} ()
+\hyperlink{a00068}{Node} \hyperlink{a00077_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{a00085_a2084e2ce6ccf18094a992985aa5330fb}{Show\-Window} ()
+static bool \hyperlink{a00085_a906962aae2ecb11535f34249a34703f8}{Can\-Parse} (\hyperlink{a00078}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{a00085_a1a7e1a855bb2a9549eb1c0eb292c9b85}{Draw\-Script\-G\-U\-I} (\hyperlink{a00024}{Checker\-Result} result)
+I\-Enumerable$<$ \hyperlink{a00084}{Shortcut\-Option} $>$ \hyperlink{a00085_a91b28e9dce684c476c526c4103b6c488}{options}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-List$<$ \hyperlink{a00024}{Checker\-Result} $>$ \hyperlink{a00085_aa85ab7bd194e5425b991b9c216d4d10e}{check\-Results} = new List$<$\hyperlink{a00024}{Checker\-Result}$>$()
-\item 
-I\-Enumerable\\*
-$<$ \hyperlink{a00035}{Yarn.\-Analysis.\-Diagnosis} $>$ \hyperlink{a00085_ab4784aaee761b7c60bb142cd410eb774}{diagnoses} = new List$<$\hyperlink{a00035}{Yarn.\-Analysis.\-Diagnosis}$>$()
-\item 
-Vector2 \hyperlink{a00085_a2d9b9702b0980af9d4202aebd440124b}{scroll\-Pos}
+List$<$ \hyperlink{a00084}{Shortcut\-Option} $>$ \hyperlink{a00085_a494c8c422cebbea5c50878db64334873}{\-\_\-options} = new List$<$\hyperlink{a00084}{Shortcut\-Option}$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Validation\-Message@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window\-::\-Validation\-Message}}\label{a00164}
-\hypertarget{a00085_a00164}{}
-\subsubsection{struct Yarn\-:\-:Unity\-:\-:Yarn\-Spinner\-Editor\-Window\-:\-:Validation\-Message}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00085_aa4ee47826640ad8dff651603c940c7f4}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Shortcut\-Option\-Group@{Shortcut\-Option\-Group}}
+\index{Shortcut\-Option\-Group@{Shortcut\-Option\-Group}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Shortcut\-Option\-Group (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00085_aa4ee47826640ad8dff651603c940c7f4}
 
-
-Collaboration diagram for Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Validation\-Message\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=224pt]{a00165}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00085_a636dce6708e779c201fa5e7d01cf2955}{string}\label{a00085_a636dce6708e779c201fa5e7d01cf2955}
-&
-message&
-\\
-\hline
-
-\hypertarget{a00085_a7d342190c7657fbbe85eb6fa66bcabb8}{Message\-Type}\label{a00085_a7d342190c7657fbbe85eb6fa66bcabb8}
-&
-type&
-\\
-\hline
-
-\end{DoxyFields}
+\begin{DoxyCode}
+339                                                                      : base(
+      \hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+340 
+341                 \textcolor{comment}{// keep parsing options until we can't, but expect at least one (otherwise it's}
+342                 \textcolor{comment}{// not actually a list of options)}
+343                 \textcolor{keywordtype}{int} shortcutIndex = 1; \textcolor{comment}{// give each option a number so it can name itself}
+344                 \textcolor{keywordflow}{do} \{                        
+345                     \_options.Add(\textcolor{keyword}{new} \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}{ShortcutOption}(shortcutIndex++, \textcolor{keyword}{this}, p));
+346                 \} \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ShortcutOption));
+347 
+348             \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00085_a9c207786c349120dc439bdce53072191}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Analyse\-Environment@{Analyse\-Environment}}
-\index{Analyse\-Environment@{Analyse\-Environment}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Analyse\-Environment}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Analyse\-Environment (
+\hypertarget{a00085_a906962aae2ecb11535f34249a34703f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00085_a906962aae2ecb11535f34249a34703f8}
+
+\begin{DoxyCode}
+330             \{
+331                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.ShortcutOption);
+332             \}
+\end{DoxyCode}
+\hypertarget{a00077_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_a9c207786c349120dc439bdce53072191}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00077_a580e520a29444fc23ac3660cbe514a09}
 
 \begin{DoxyCode}
-306         \{
-307 
-308             var deprecations = \textcolor{keyword}{new} List<Deprecation>();
-309 
-310             deprecations.Add(\textcolor{keyword}{new} Deprecation(
-311                 typeof(Yarn.Unity.VariableStorageBehaviour),
-312                 \textcolor{stringliteral}{"SetNumber"},
-313                 \textcolor{stringliteral}{"This method is obsolete, and will not be called in future versions of Yarn Spinner. Use
-       SetValue instead."}
-314             ));
-315 
-316             deprecations.Add(\textcolor{keyword}{new} Deprecation(
-317                 typeof(Yarn.Unity.VariableStorageBehaviour),
-318                 \textcolor{stringliteral}{"GetNumber"},
-319                 \textcolor{stringliteral}{"This method is obsolete, and will not be called in future versions of Yarn Spinner. Use
-       GetValue instead."}
-320             ));
-321 
-322             var results = \textcolor{keyword}{new} List<\hyperlink{a00035}{Yarn.Analysis.Diagnosis}>();
-323 
-324             var assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-325 
-326 
-327             \textcolor{keywordflow}{foreach} (var assembly \textcolor{keywordflow}{in} assemblies) \{
-328                 \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} assembly.GetTypes()) \{
-329 
-330                     \textcolor{keywordflow}{foreach} (var deprecation \textcolor{keywordflow}{in} deprecations) \{
-331                         \textcolor{keywordflow}{if} (!type.IsSubclassOf (deprecation.type))
-332                             \textcolor{keywordflow}{continue};
-333 
-334                         \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods ()) \{
-335                             \textcolor{keywordflow}{if} (method.Name == deprecation.methodName && method.DeclaringType == type) \{
-336                                 var message = \textcolor{stringliteral}{"\{0\} implements the \{1\} method. \{2\}"};
-337                                 message = string.Format (message, type.Name, deprecation.methodName, 
-      deprecation.usageNotes);
-338                                 var diagnosis = \textcolor{keyword}{new} \hyperlink{a00035}{Yarn.Analysis.Diagnosis} (message
-      , Yarn.Analysis.Diagnosis.Severity.Warning);
-339                                 results.Add (diagnosis);
-340                             \}
-341                         \}
-342 
-343                     \}
-344 
-345 
-346 
-347                 \}
-348             \}
-349             \textcolor{keywordflow}{return} results;
-350         \}
+116                                        \{
+117                 var node = \textcolor{keyword}{this};
+118 
+119                 \textcolor{keywordflow}{do} \{
+120                     \textcolor{keywordflow}{if} (node is Node) \{
+121                         \textcolor{keywordflow}{return} node as Node;
+122                     \}
+123                     node = node.parent;
+124                 \} \textcolor{keywordflow}{while} (node 
+125                     != null);                   
+126 
+127                 \textcolor{keywordflow}{return} null;
+128             \}
 \end{DoxyCode}
-\hypertarget{a00085_a1a7e1a855bb2a9549eb1c0eb292c9b85}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Draw\-Script\-G\-U\-I@{Draw\-Script\-G\-U\-I}}
-\index{Draw\-Script\-G\-U\-I@{Draw\-Script\-G\-U\-I}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Draw\-Script\-G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Draw\-Script\-G\-U\-I (
+\hypertarget{a00085_a7b60f85e46b8767db81177ec40e83104}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Print\-Tree (
 \begin{DoxyParamCaption}
-\item[{{\bf Checker\-Result}}]{result}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00085_a1a7e1a855bb2a9549eb1c0eb292c9b85}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00085_a7b60f85e46b8767db81177ec40e83104}
+
+
+Implements \hyperlink{a00077_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
 
 \begin{DoxyCode}
-155         \{
-156             EditorGUILayout.BeginHorizontal ();
-157 
-158             \textcolor{comment}{// What icon should we use for this script?}
-159             Texture image;
-160             \textcolor{keywordflow}{switch} (result.state) \{
-161             \textcolor{keywordflow}{case} CheckerResult.State.NotTested:
-162                 image = null;
-163                 \textcolor{keywordflow}{break};
-164             \textcolor{keywordflow}{case} CheckerResult.State.Ignored:
-165                 image = \hyperlink{a00042_a3f03f2f0fa137e349853d755e79f2e4a}{Icons.ignoredIcon};
-166                 \textcolor{keywordflow}{break};
-167             \textcolor{keywordflow}{case} CheckerResult.State.Passed:
-168                 image = \hyperlink{a00042_aec8aea03eb6e31771ebc98e0611fff79}{Icons.successIcon};
-169                 \textcolor{keywordflow}{break};
-170             \textcolor{keywordflow}{case} CheckerResult.State.Failed:
-171                 image = \hyperlink{a00042_aae7cc0e5016db04a90b2aa0e80957626}{Icons.failedIcon};
-172                 \textcolor{keywordflow}{break};
-173             \textcolor{keywordflow}{default}:
-174                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
-175             \}
-176 
-177             \textcolor{comment}{// Draw the image and the label name}
-178             EditorGUILayout.LabelField (\textcolor{keyword}{new} GUIContent (image), GUILayout.Width (20));
-179             EditorGUILayout.LabelField (result.script.name);
-180 
-181             EditorGUILayout.EndHorizontal ();
-182 
-183             \textcolor{comment}{// Draw any messages resulting from this script}
-184             \textcolor{keywordflow}{if} (result.messages.Length > 0) \{
-185 
-186                 EditorGUI.indentLevel += 2;
-187 
-188                 \textcolor{keywordflow}{foreach} (var message \textcolor{keywordflow}{in} result.messages) \{
-189                     
-190                     EditorGUILayout.HelpBox(message.message, message.type);
-191 
-192                 \}
-193 
-194                 EditorGUI.indentLevel -= 2;
-195             \}
-196 
-197         \}
+351             \{
+352                 var sb = \textcolor{keyword}{new} StringBuilder ();
+353                 sb.Append (\hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Shortcut option group \{"}));
+354 
+355                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} \hyperlink{a00085_a91b28e9dce684c476c526c4103b6c488}{options}) \{
+356                     sb.Append (option.PrintTree (indentLevel + 1));
+357                 \}
+358                 sb.Append (\hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+359 
+360                 \textcolor{keywordflow}{return} sb.ToString ();
+361             \}
 \end{DoxyCode}
-\hypertarget{a00085_aeba1f39189758bd91bdce298e8859947}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!On\-Enable@{On\-Enable}}
-\index{On\-Enable@{On\-Enable}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{On\-Enable}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-On\-Enable (
+\hypertarget{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_aeba1f39189758bd91bdce298e8859947}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}
 
 \begin{DoxyCode}
-97                         \{
-98 
-99             \textcolor{comment}{// Set the window title}
-100             this.titleContent.text = \textcolor{stringliteral}{"Yarn Spinner"};
-101             this.titleContent.image = \hyperlink{a00042_aa78ab016ad041bc36850c8b20ba63972}{Icons.windowIcon};
-102 
-103             \hyperlink{a00085_ac4dbc30419c5647c1a2587b2ff7abd7c}{Validate}();
-104 
-105         \}
-\end{DoxyCode}
-\hypertarget{a00085_aec84840262ae8fd7d84605778de1dc39}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!On\-G\-U\-I@{On\-G\-U\-I}}
-\index{On\-G\-U\-I@{On\-G\-U\-I}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{On\-G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-On\-G\-U\-I (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_aec84840262ae8fd7d84605778de1dc39}
-
-\begin{DoxyCode}
-108                      \{
-109 
-110             EditorGUILayout.BeginVertical();
-111 
-112             EditorGUILayout.Space();
-113 
-114             \hyperlink{a00085_a2d9b9702b0980af9d4202aebd440124b}{scrollPos} = EditorGUILayout.BeginScrollView(\hyperlink{a00085_a2d9b9702b0980af9d4202aebd440124b}{scrollPos});
-115 
-116             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00085_aa85ab7bd194e5425b991b9c216d4d10e}{checkResults}) \{
-117                 \hyperlink{a00085_a1a7e1a855bb2a9549eb1c0eb292c9b85}{DrawScriptGUI} (result);
-118             \}
-119 
-120             \textcolor{comment}{// Draw any diagnoses that resulted}
-121             \textcolor{keywordflow}{foreach} (var diagnosis \textcolor{keywordflow}{in} \hyperlink{a00085_ab4784aaee761b7c60bb142cd410eb774}{diagnoses}) \{
-122 
-123                 MessageType messageType;
-124 
-125                 \textcolor{keywordflow}{switch} (diagnosis.severity) \{
-126                 \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Error:
-127                     messageType = MessageType.Error;
-128                     \textcolor{keywordflow}{break};
-129                 \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Warning:
-130                     messageType = MessageType.Warning;
-131                     \textcolor{keywordflow}{break};
-132                 \textcolor{keywordflow}{case} Yarn.Analysis.Diagnosis.Severity.Note:
-133                     messageType = MessageType.Info;
-134                     \textcolor{keywordflow}{break};
-135                 \textcolor{keywordflow}{default}:
-136                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.ArgumentOutOfRangeException ();
-137                 \}
-138 
-139                 EditorGUILayout.HelpBox(diagnosis.ToString(showSeverity:\textcolor{keyword}{false}), messageType);
-140             \}
-141 
-142             \textcolor{comment}{// Bottom box}
-143             EditorGUILayout.EndScrollView();
-144 
-145             EditorGUILayout.BeginHorizontal();
-146             \textcolor{keywordflow}{if} (GUILayout.Button(\textcolor{stringliteral}{"Refresh"})) \{
-147                 \hyperlink{a00085_ac4dbc30419c5647c1a2587b2ff7abd7c}{Validate}();
-148             \}
-149             EditorGUILayout.EndHorizontal();
-150 
-151             EditorGUILayout.EndVertical();
-152         \}
-\end{DoxyCode}
-\hypertarget{a00085_a2084e2ce6ccf18094a992985aa5330fb}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Show\-Window@{Show\-Window}}
-\index{Show\-Window@{Show\-Window}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Show\-Window}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Show\-Window (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00085_a2084e2ce6ccf18094a992985aa5330fb}
-
-\begin{DoxyCode}
-93                                  \{
-94             EditorWindow.GetWindow(typeof(YarnSpinnerEditorWindow));
-95         \}
-\end{DoxyCode}
-\hypertarget{a00085_a8b798cbc0fad966781e9cc0de177fbd9}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Update\-J\-S\-O\-N\-List@{Update\-J\-S\-O\-N\-List}}
-\index{Update\-J\-S\-O\-N\-List@{Update\-J\-S\-O\-N\-List}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Update\-J\-S\-O\-N\-List}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Update\-J\-S\-O\-N\-List (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_a8b798cbc0fad966781e9cc0de177fbd9}
-
-\begin{DoxyCode}
-70                               \{
-71             \textcolor{comment}{// Find all TextAssets}
-72 
-73             var list = AssetDatabase.FindAssets(\textcolor{stringliteral}{"t:textasset"});
-74 
-75             checkResults.Clear();
-76             \hyperlink{a00085_ab4784aaee761b7c60bb142cd410eb774}{diagnoses} = \textcolor{keyword}{new} List<\hyperlink{a00035}{Yarn.Analysis.Diagnosis}>();;
-77 
-78             \textcolor{keywordflow}{foreach} (var guid \textcolor{keywordflow}{in} list) \{
-79 
-80                 var path = AssetDatabase.GUIDToAssetPath(guid);
-81                 \textcolor{keywordflow}{if} (path.EndsWith(\textcolor{stringliteral}{".json"})) \{
-82                     var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
-83 
-84                     var newResult = \textcolor{keyword}{new} CheckerResult(asset);
-85 
-86                     checkResults.Add(newResult);
-87                 \}
-88 
-89             \}
-90         \}
-\end{DoxyCode}
-\hypertarget{a00085_ac4dbc30419c5647c1a2587b2ff7abd7c}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Validate@{Validate}}
-\index{Validate@{Validate}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Validate}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Validate (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_ac4dbc30419c5647c1a2587b2ff7abd7c}
-
-\begin{DoxyCode}
-201         \{
-202             \hyperlink{a00085_a8b798cbc0fad966781e9cc0de177fbd9}{UpdateJSONList}();
-203 
-204             var analysisContext = \textcolor{keyword}{new} \hyperlink{a00031}{Yarn.Analysis.Context}();
-205 
-206             \textcolor{keywordtype}{bool} shouldPerformAnalysis = \textcolor{keyword}{true};
-207 
-208             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00085_aa85ab7bd194e5425b991b9c216d4d10e}{checkResults}) \{
-209 
-210                 CheckerResult.State state;
-211 
-212                 var messages = \hyperlink{a00085_a6f2bf42b228ea29c6477e369226db8b6}{ValidateFile}(result.script, analysisContext, out state);
-213 
-214                 result.state = state;
-215                 result.messages = messages;
-216 
-217                 \textcolor{comment}{// Don't perform whole-program analysis if any file failed to compile}
-218                 \textcolor{keywordflow}{if} (result.state != CheckerResult.State.Passed) \{
-219                     shouldPerformAnalysis = \textcolor{keyword}{false};
-220                 \}
-221 
-222             \}
-223 
-224             var results = \textcolor{keyword}{new} List<\hyperlink{a00035}{Yarn.Analysis.Diagnosis}>();
-225 
-226 
-227             \textcolor{keywordflow}{if} (shouldPerformAnalysis)
-228                 results.AddRange(analysisContext.FinishAnalysis());
-229 
-230             results.AddRange(\hyperlink{a00085_a9c207786c349120dc439bdce53072191}{AnalyseEnvironment}());
-231 
-232             \hyperlink{a00085_ab4784aaee761b7c60bb142cd410eb774}{diagnoses} = results;
-233 
-234         \}
-\end{DoxyCode}
-\hypertarget{a00085_a6f2bf42b228ea29c6477e369226db8b6}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!Validate\-File@{Validate\-File}}
-\index{Validate\-File@{Validate\-File}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{Validate\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Validation\-Message} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-Validate\-File (
-\begin{DoxyParamCaption}
-\item[{Text\-Asset}]{script, }
-\item[{{\bf Analysis.\-Context}}]{analysis\-Context, }
-\item[{out {\bf Checker\-Result.\-State}}]{result}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_a6f2bf42b228ea29c6477e369226db8b6}
-
-\begin{DoxyCode}
-239                                                                                                            
-                        \{
-240 
-241             var messageList = \textcolor{keyword}{new} List<ValidationMessage>();
-242 
-243             var variableStorage = \textcolor{keyword}{new} \hyperlink{a00052}{Yarn.MemoryVariableStore}();
-244 
-245             var dialog = \textcolor{keyword}{new} Dialogue(variableStorage);
-246 
-247             \textcolor{keywordtype}{bool} failed = \textcolor{keyword}{false};
-248 
-249             dialog.LogErrorMessage = delegate (\textcolor{keywordtype}{string} message) \{
-250                 var msg = \textcolor{keyword}{new} ValidationMessage();
-251                 msg.type = MessageType.Error;
-252                 msg.message = message;
-253                 messageList.Add(msg);
-254 
-255                 \textcolor{comment}{// any errors means this validation failed}
-256                 failed = \textcolor{keyword}{true};
-257             \};
-258 
-259             dialog.LogDebugMessage = delegate (\textcolor{keywordtype}{string} message) \{
-260                 var msg = \textcolor{keyword}{new} ValidationMessage();
-261                 msg.type = MessageType.Info;
-262                 msg.message = message;
-263                 messageList.Add(msg);
-264             \};
-265 
-266             \textcolor{keywordflow}{try} \{
-267                 dialog.LoadString(script.text,script.name);
-268             \} \textcolor{keywordflow}{catch} (System.Exception e) \{
-269                 dialog.LogErrorMessage(e.Message);
-270             \}
-271 
-272             dialog.Analyse(analysisContext);
-273 
-274             \textcolor{keywordflow}{if} (failed) \{
-275                 result = CheckerResult.State.Failed;
-276             \} \textcolor{keywordflow}{else} \{
-277                 result = CheckerResult.State.Passed;
-278             \}
-279 
-280             \textcolor{keywordflow}{return} messageList.ToArray();
-281 
-282         \}
+111             \{
+112                 \textcolor{keywordflow}{return} this.GetType ().Name;
+113             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00085_aa85ab7bd194e5425b991b9c216d4d10e}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!check\-Results@{check\-Results}}
-\index{check\-Results@{check\-Results}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{check\-Results}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Checker\-Result}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-check\-Results = new List$<${\bf Checker\-Result}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_aa85ab7bd194e5425b991b9c216d4d10e}
-\hypertarget{a00085_ab4784aaee761b7c60bb142cd410eb774}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!diagnoses@{diagnoses}}
-\index{diagnoses@{diagnoses}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$ Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-diagnoses = new List$<${\bf Yarn.\-Analysis.\-Diagnosis}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_ab4784aaee761b7c60bb142cd410eb774}
-\hypertarget{a00085_a2d9b9702b0980af9d4202aebd440124b}{\index{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}!scroll\-Pos@{scroll\-Pos}}
-\index{scroll\-Pos@{scroll\-Pos}!Yarn::Unity::YarnSpinnerEditorWindow@{Yarn\-::\-Unity\-::\-Yarn\-Spinner\-Editor\-Window}}
-\subsubsection[{scroll\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Yarn.\-Unity.\-Yarn\-Spinner\-Editor\-Window.\-scroll\-Pos\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_a2d9b9702b0980af9d4202aebd440124b}
+\hypertarget{a00085_a494c8c422cebbea5c50878db64334873}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!\-\_\-options@{\-\_\-options}}
+\index{\-\_\-options@{\-\_\-options}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{\-\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Shortcut\-Option}$>$ Yarn.\-Parser.\-Shortcut\-Option\-Group.\-\_\-options = new List$<${\bf Shortcut\-Option}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00085_a494c8c422cebbea5c50878db64334873}
+
+
+\subsection{Property Documentation}
+\hypertarget{a00085_a91b28e9dce684c476c526c4103b6c488}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!options@{options}}
+\index{options@{options}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Shortcut\-Option}$>$ Yarn.\-Parser.\-Shortcut\-Option\-Group.\-options\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00085_a91b28e9dce684c476c526c4103b6c488}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00106}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00143}{Parser.\-cs}\end{DoxyCompactItemize}

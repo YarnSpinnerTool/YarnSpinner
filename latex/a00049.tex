@@ -1,166 +1,186 @@
-\hypertarget{a00049}{\section{Yarn.\-Library Class Reference}
-\label{a00049}\index{Yarn.\-Library@{Yarn.\-Library}}
+\hypertarget{a00049}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
+\label{a00049}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
 }
 
 
-Inheritance diagram for Yarn.\-Library\-:
+Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00243}
+\includegraphics[width=202pt]{a00336}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Library\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=194pt]{a00244}
-\end{center}
-\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
+\hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
+\hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00041}{Function\-Info} \hyperlink{a00049_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
+\hyperlink{a00049_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00049_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00049_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
 \item 
-void \hyperlink{a00049_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00049}{Library} other\-Library)
+override string \hyperlink{a00049_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
 \item 
-void \hyperlink{a00049_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00041}{Function\-Info} function)
-\item 
-void \hyperlink{a00049_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00026_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-void \hyperlink{a00049_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00026_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
-\item 
-bool \hyperlink{a00049_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
-\item 
-void \hyperlink{a00049_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
+string \hyperlink{a00049_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, \hyperlink{a00041}{Function\-Info} $>$ \hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions} = new Dictionary$<$string, \hyperlink{a00041}{Function\-Info}$>$()
+string \hyperlink{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{message}
+\item 
+string \hyperlink{a00049_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
+\item 
+int \hyperlink{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
+\item 
+int \hyperlink{a00049_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
+\item 
+\hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00049_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
+\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00049_a227813cbc8fa03c3448a612ffc909d1c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
+\hypertarget{a00049_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00049_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
+}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
+\hypertarget{a00049_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00049_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
+}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
+\hypertarget{a00049_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00049_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
+}]\end{description}
+\end{Desc}
+
+\begin{DoxyCode}
+13                              \{
+14             \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
+15             \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
+16             \hyperlink{a00049_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
+17         \}
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00049_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
+\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{{\bf Severity}}]{severity, }
+\item[{string}]{node\-Name = {\ttfamily null}, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{a00049_ad3fd818f1be98dc803e5bec959153824}
+
+\begin{DoxyCode}
+21         \{
+22             this.message = \hyperlink{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+23             this.nodeName = \hyperlink{a00049_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
+24             this.lineNumber = \hyperlink{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
+25             this.columnNumber = \hyperlink{a00049_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
+26             this.severity = \hyperlink{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
+27         \}
+\end{DoxyCode}
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00049_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Deregister\-Function@{Deregister\-Function}}
-\index{Deregister\-Function@{Deregister\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
+\hypertarget{a00049_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00049_a47d1b3664733207d5cda15f4a4a7af7a}
+)}}\label{a00049_a4475eb5890c340da5c0012e25c2c86ae}
 
 \begin{DoxyCode}
-125                                                     \{
-126             \textcolor{keywordflow}{if} (\hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
-127                 \hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
-128         \}
+30         \{
+31             \textcolor{keywordflow}{return} \hyperlink{a00049_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
+32         \}
 \end{DoxyCode}
-\hypertarget{a00049_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Function\-Exists@{Function\-Exists}}
-\index{Function\-Exists@{Function\-Exists}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
+\hypertarget{a00049_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{bool}]{show\-Severity}
 \end{DoxyParamCaption}
-)}}\label{a00049_a6c9a1cc3e25b6aae25e210d8a0d68c09}
+)}}\label{a00049_a985dee7ca27aa896332590133606b6a9}
 
 \begin{DoxyCode}
-121                                                 \{
-122             \textcolor{keywordflow}{return} functions.ContainsKey (name);
-123         \}
-\end{DoxyCode}
-\hypertarget{a00049_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Get\-Function@{Get\-Function}}
-\index{Get\-Function@{Get\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name}
-\end{DoxyParamCaption}
-)}}\label{a00049_aacfb1f00ad8aa3921941b8d8af0960e0}
-
-\begin{DoxyCode}
-90                                                      \{
-91             \textcolor{keywordflow}{try} \{
-92                 \textcolor{keywordflow}{return} \hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
-93             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-94                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
-95             \}
-96         \}
-\end{DoxyCode}
-\hypertarget{a00049_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Import\-Library@{Import\-Library}}
-\index{Import\-Library@{Import\-Library}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
-\begin{DoxyParamCaption}
-\item[{{\bf Library}}]{other\-Library}
-\end{DoxyParamCaption}
-)}}\label{a00049_ab42a4fd30a72156cafa685f959deef78}
-
-\begin{DoxyCode}
-101                                                         \{
-102             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
-103                 \hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
-104             \}
-105         \}
-\end{DoxyCode}
-\hypertarget{a00049_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{{\bf Function\-Info}}]{function}
-\end{DoxyParamCaption}
-)}}\label{a00049_a001ab29d21fe7db10fc9c250914287f9}
-
-\begin{DoxyCode}
-107                                                             \{
-108             \hyperlink{a00049_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
-109         \}
-\end{DoxyCode}
-\hypertarget{a00049_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00049_a2a698de0b528b2bac17bd85f57d45d4b}
-
-\begin{DoxyCode}
-111                                                                                                         \{
-112             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-113             \hyperlink{a00049_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-114         \}
-\end{DoxyCode}
-\hypertarget{a00049_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00049_a6820eaa082077f16496effbc9041b7ad}
-
-\begin{DoxyCode}
-116                                                                                                \{
-117             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-118             \hyperlink{a00049_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-119         \}
+35         \{
+36 
+37             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
+38 
+39             \textcolor{keywordflow}{if} (showSeverity) \{
+40                 \textcolor{keywordflow}{switch} (\hyperlink{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
+41                 \textcolor{keywordflow}{case} Severity.Error:
+42                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
+43                     \textcolor{keywordflow}{break};
+44                 \textcolor{keywordflow}{case} Severity.Warning:
+45                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
+46                     \textcolor{keywordflow}{break};
+47                 \textcolor{keywordflow}{case} Severity.Note:
+48                     contextLabel = \textcolor{stringliteral}{"Note: "};
+49                     \textcolor{keywordflow}{break};
+50                 \textcolor{keywordflow}{default}:
+51                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
+52                 \}
+53             \}
+54 
+55             \textcolor{keywordflow}{if} (this.\hyperlink{a00049_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
+56 
+57                 contextLabel += this.nodeName;
+58                 \textcolor{keywordflow}{if} (this.\hyperlink{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
+59                     contextLabel += string.Format (\textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
+60 
+61                     \textcolor{keywordflow}{if} (this.\hyperlink{a00049_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
+62                         contextLabel += string.Format (\textcolor{stringliteral}{":\{0\}"}, this.columnNumber);
+63                     \}
+64                 \}
+65             \} 
+66 
+67             \textcolor{keywordtype}{string} \hyperlink{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+68 
+69             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
+70                 message = this.message;
+71             \} \textcolor{keywordflow}{else} \{
+72                 message = string.Format (\textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message);
+73             \}
+74 
+75             \textcolor{keywordflow}{return} \hyperlink{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{message};
+76         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00049_a2fcc78a63963be5320cf09783b66fab6}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!functions@{functions}}
-\index{functions@{functions}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{functions}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Function\-Info}$>$ Yarn.\-Library.\-functions = new Dictionary$<$string, {\bf Function\-Info}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00049_a2fcc78a63963be5320cf09783b66fab6}
+\hypertarget{a00049_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00049_a658e7fb05555c0f9ab5f80057bdc1408}
+\hypertarget{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00049_a0bd73f1c684bfd66ae7b6bef8f2972d0}
+\hypertarget{a00049_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
+\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00049_ac7ed070dddd2613c08e7874ea5afb3af}
+\hypertarget{a00049_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
+\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00049_a662aca4ad2af5116c2cf6773daf1a847}
+\hypertarget{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
+\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
+\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00049_ad90ffa839ce0f568a099bb37b4a6c4da}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00120}{Library.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00136}{Analyser.\-cs}\end{DoxyCompactItemize}

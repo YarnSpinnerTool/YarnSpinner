@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn Spinner</title>
+<title>YarnSpinner: Building Yarn Spinner</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,75 +99,41 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="a00026.html">Yarn</a> Spinner </div>  </div>
+<div class="title">Building <a class="el" href="a00040.html">Yarn</a> Spinner </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="image">
-<img src="Documentation/YarnSpinnerLogo.png"  alt="Yarn Spinner logo" width="100px;" align="right"/>
-</div>
-<p><b><a class="el" href="a00026.html">Yarn</a> Spinner</b> is an interpreter for the <a href="https://github.com/infiniteammoinc/Yarn">Yarn</a> language, written in C#.</p>
-<blockquote class="doxtable">
-<p><b>New!</b> Join our <a href="http://lab.to/narrativegamedev">narrative game development</a> Slack! <b>New!</b> Continual integration <a href="https://thesecretlab.github.io/YarnSpinner/html/">API documentation</a> now available</p>
+<div class="textblock"><blockquote class="doxtable">
+<p>***Important:*** This document only matters to you if you want to build <a class="el" href="a00040.html">Yarn</a> Spinner from source. In almost all cases, you'll be totally fine with <a href="https://github.com/thesecretlab/YarnSpinner/releases">downloading a build</a>, and using that in your project.</p>
 <p></p>
 </blockquote>
-<p><a class="el" href="a00026.html">Yarn</a> is a language that's designed to make it <em>super easy</em> to create interactive dialogue for games. <a class="el" href="a00026.html">Yarn</a>'s very similar in style to <a href="http://twinery.org">Twine</a>, so if you already know that, you'll be right at home! If you don't, that's cool - <a class="el" href="a00026.html">Yarn</a>'s syntax is extremely minimal, and there's not much there to learn. The <a class="el" href="a00026.html">Yarn</a> language is used in a number of cool games, including <a href="http://nightinthewoods.com">Night In The Woods</a> and <a href="https://www.kickstarter.com/projects/foamsword/knights-and-bikes">Knights and Bikes</a>.</p>
-<blockquote class="doxtable">
-<p>***Important:*** <a class="el" href="a00026.html">Yarn</a> Spinner is still under development, and we haven't made our 1.0 release yet. It's <em>probably</em> fine to use right now, but there are a few bits and pieces that might change between now and first release.</p>
-<p></p>
-</blockquote>
-<p><a href="https://travis-ci.org/thesecretlab/YarnSpinner">![Build Status](https://travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)</a></p>
-<div class="image">
-<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1"  title="Night in the Woods" style="width: 80%; margin: 0 auto;"/>
-</div>
-<blockquote class="doxtable">
-<p>(Image from "[Night in the Woods](http://nightinthewoods.com)" by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)</p>
-<p></p>
-</blockquote>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.</p>
-<h2>Quick Start</h2>
-<ol type="1">
-<li>Download the <a href="https://github.com/InfiniteAmmoInc/Yarn">Yarn editor</a>, so that you can create and edit <a class="el" href="a00026.html">Yarn</a> files.</li>
-</ol>
-<ol type="1">
-<li>Create a new project in <a href="https://unity3d.com/get-unity">Unity</a>.</li>
-<li>Download the <a href="https://github.com/thesecretlab/YarnSpinner/releases">latest release's Unity package</a>.</li>
-<li>Import the package.</li>
-<li>Go to the <code><a class="el" href="a00026.html">Yarn</a> Spinner/Examples/</code> folder in Unity, and open one of the demo scenes.</li>
-<li>Run the game, and poke around!</li>
-</ol>
-<h2>What To Do Next</h2>
+<h2>Windows and Mac using MonoDevelop</h2>
+<p>To build <a class="el" href="a00040.html">Yarn</a> Spinner on Windows or Mac, you'll need MonoDevelop. You can <a href="http://www.monodevelop.com/download/">download MonoDevelop for your OS from the MonoDevelop site</a>.</p>
+<h2>Linux</h2>
+<p>To build <a class="el" href="a00040.html">Yarn</a> Spinner on Linux, you can either</p>
 <ul>
-<li><a href="https://github.com/thesecretlab/YarnSpinner/releases">Download Yarn Spinner.</a></li>
-<li><a class="el" href="a00006.html">Learn how to build Yarn Spinner from source.</a></li>
-<li><a href="https://github.com/infiniteammoinc/Yarn">Learn more about Yarn, and the Yarn editor.</a></li>
-<li><a class="el" href="a00014.html">Learn more about writing dialogue in Yarn.</a></li>
-<li><a class="el" href="a00012.html">Learn about using Yarn Spinner in your Unity game.</a></li>
+<li>use <a href="http://www.mono-project.com/docs/tools+libraries/tools/xbuild/">xbuild</a> and <a href="http://www.nuget.org">nuget</a>.</li>
+<li>Then ensure you have the correct packages installed by nuget, <code>nuget restore YarnSpinner.sln</code>.</li>
+<li>See the <a href="../../build.sh">build.sh</a> script for further information on how using mono to build. or</li>
+<li>use <a href="http://flatpak.org/getting.html">Flatpak</a>, you can <a href="http://www.monodevelop.com/download/linux/">download MonoDevelop from the MonoDevelop site</a>.</li>
 </ul>
-<p><a href="http://shop.oreilly.com/product/0636920055105.do"></a></p>
-<p>We also produced a training video on integrating and using the basics of <a class="el" href="a00026.html">Yarn</a> Spinner in Unity games, <a href="http://shop.oreilly.com/product/0636920055105.do">available commercially from O'Reilly Media</a> (and <a href="https://www.safaribooksonline.com/library/view/creating-narrative-games/9781491969830/">also on Safari</a>).</p>
-<h2>License</h2>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner is available under the <a class="el" href="a00016.html">MIT License</a>. This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.</p>
+<h2>Using MonoDevelop</h2>
 <ul>
-<li><a href="https://tldrlegal.com/license/mit-license">Learn more about what this license lets you do</a>.</li>
+<li>Open <b>YarnSpinner.sln</b>.</li>
+<li>Open the <b>Build menu</b>, and choose <b>Build All</b>.</li>
+<li>Open the <b>Unity/Assets/Yarn Spinner</b> folder. You'll find a copy of <b>YarnSpinner.dll</b> there.</li>
+<li>Copy that DLL file wherever you need it.</li>
 </ul>
-<h2>Made by Secret Lab!</h2>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner was originally created by <a href="http://secretlab.com.au">Secret Lab</a>, an Australian game dev studio! <a href="https://twitter.com/thesecretlab">Come say hi</a>! You can visit the <a href="http://www.secretlab.com.au/yarnspinner">Yarn Spinner page</a> on the Secret Lab website for a little more info, and to donate to <a class="el" href="a00026.html">Yarn</a> Spinner open source development at Secret Lab.</p>
-<p>The awesome <a href="Documentation/YarnSpinnerLogo.png">logo</a> was made by the excellent <a href="https://twitter.com/RexSmeal">Rex Smeal</a>, and is under the <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<h2>Help Us Make <a class="el" href="a00026.html">Yarn</a> Spinner!</h2>
-<p><a class="el" href="a00026.html">Yarn</a> Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our <a class="el" href="a00012.html">documentation</a>, in spreading the word, and in finding bugs.</p>
-<ul>
-<li>Our <a href="https://github.com/thesecretlab/YarnSpinner/issues">issues page</a> contains a list of things we'd love your help in improving.</li>
-<li>Hop into our IRC channel, which is <a href="https://webchat.freenode.net/?channels=yarnspinner">#yarnspinner on Freenode</a>, to chat to the team, lend a hand, or ask questions.</li>
-<li><b>New!</b> Join our <a href="http://lab.to/narrativegamedev">narrative game development</a> Slack!</li>
-<li><b>New!</b> Continual integration <a href="https://thesecretlab.github.io/YarnSpinner/html/">API documentation</a> now available</li>
-</ul>
-<p>If you want to contribute to <a class="el" href="a00026.html">Yarn</a> Spinner (!!), <a class="el" href="a00002.html">go read our contributor's guide!</a> </p>
+<h2>Building Documentation</h2>
+<p><a class="el" href="a00040.html">Yarn</a> Spinner uses <a href="https://www.stack.nl/~dimitri/doxygen">Doxygen</a> to generate <a href="http://docbook.org/">DocBook</a>, <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, <a href="https://www.latex-project.org/help/documentation/">LaTeX</a>, <a href="https://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>, and <a href="https://en.wikipedia.org/wiki/XML">XML</a> documentation. <a href="https://www.gnu.org/software/global/">GNU GLOBAL</a> is also used.</p>
+<p>Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of <a class="el" href="a00175.html">YarnSpinner</a> itself and not an actual error in the documentation.</p>
+<p>``` rm -fr Documentation/{docbook,html,latex,rtf,xml} doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1 grep -i error doxyoutput.txt ```</p>
+<p><a href="https://daringfireball.net/projects/markdown/">MarkDown</a> documentation is available via conversion of the XML output to Markdown using third party tools such as <a href="http://pandoc.org">Pandoc</a> or <a href="https://github.com/pferdinand/doxygen2md">doxygen2md</a> </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:52 for YarnSpinner by
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

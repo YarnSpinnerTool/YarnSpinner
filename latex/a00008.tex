@@ -1,34 +1,19 @@
-This is a quick-\/and-\/dirty document that shows how to add new functions so that they can be called from inside \hyperlink{a00026}{Yarn}.
+\hyperlink{a00040}{Yarn} Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the \href{../YarnSpinnerConsole}{\tt Yarn\-Spinner\-Console} tool. At the moment, this tool is not available standalone and needs to be ../\-Yarn\-Spinner-\/\-Programming/\-Building.md \char`\"{}built from source\char`\"{}.
 
-First, get your {\ttfamily Dialogue} object\-: \begin{DoxyVerb}// some_implementation is the object that handles variable storage - 
-// it's not important in this example
-var dialogue = new Dialogue(some_implementation);
-\end{DoxyVerb}
+\subsection*{Localisation procedure}
 
 
-Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns {\ttfamily true} if it's even\-:
+\begin{DoxyEnumerate}
+\item We first use the tool to place unique {\bfseries taglines} on each line of text that the end user will see. To do this, we execute the tool with the {\bfseries taglines} command, eg\-: {\ttfamily Yarn\-Spinner\-Console.\-exe taglines My\-Yarn\-File.\-yarn.\-txt}.
+\item Next, we use the tool to generate a file of strings ({\bfseries genstrings}) in '\href{https://en.wikipedia.org/wiki/Comma-separated_values}{\tt comma separated value}' (csv) format. {\ttfamily Yarn\-Spinner\-Console.\-exe genstrings My\-Yarn\-File.\-yarn.\-txt} will generate a file, (in this example My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-en\-A\-U.\-csv My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-pt\-T\-L.\-csv ```
+\item When the file is returned from translators, we then use \hyperlink{a00040}{Yarn} Spinner's Dialogue\-Runner inside Unity to set String Groups for the required language.
+\end{DoxyEnumerate}
 
-\begin{DoxyVerb}dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
-    return (int)parameters[0].AsNumber % 2 == 0;
-});
-\end{DoxyVerb}
-
-
-When the function is called, the delegate you provide will be run.
-
-Some notes\-:
+\subsection*{Footnotes}
 
 
 \begin{DoxyItemize}
-\item You don't have to return a value from your function.
-\item The parameters passed to your function are of type \hyperlink{a00086}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
-\item You can only return values of the following types\-:
-\begin{DoxyItemize}
-\item String
-\item Float
-\item Double
-\item Integer
-\item \hyperlink{a00086}{Yarn.\-Value}
-\end{DoxyItemize}
-\item \hyperlink{a00026}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
+\item While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg \href{https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en}{\tt I\-S\-O-\/15897}
+\item Originally, \hyperlink{a00040}{Yarn} Spinner used .json format. The \hyperlink{a00040}{Yarn} Spinner Console can convert this json format to the new improved text format\-: {\ttfamily Yarn\-Spinner\-Console.\-exe convert -\/-\/yarn Ship.\-json}
+\item Command reference is available for Yarn\-Spinner\-Console.\-exe by either running it with no arguments or by utilising the help command ({\ttfamily Yarn\-Spinner\-Console.\-exe help}). Help for each command is available by using 'help command' (eg {\ttfamily Yarn\-Spinnder\-Console.\-exe help compile}) 
 \end{DoxyItemize}

@@ -1,36 +1,55 @@
-\hypertarget{a00020}{\section{Yarn.\-Analysis.\-A\-S\-T\-Analyser Class Reference}
-\label{a00020}\index{Yarn.\-Analysis.\-A\-S\-T\-Analyser@{Yarn.\-Analysis.\-A\-S\-T\-Analyser}}
-}
+\subsection*{Style Guide}
+
+{\ttfamily Inline Code} contain short snippets of code for your project \begin{DoxyVerb}Code Blocks contain segments or chunks of code for your project
+\end{DoxyVerb}
 
 
-Collaboration diagram for Yarn.\-Analysis.\-A\-S\-T\-Analyser\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=218pt]{a00319}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-abstract I\-Enumerable$<$ \hyperlink{a00035}{Diagnosis} $>$ \hyperlink{a00020_a07bb220dead44ed12c8842de706ecdf7}{Diagnose} (\hyperlink{a00054}{Yarn.\-Parser.\-Node} node)
-\end{DoxyCompactItemize}
+{\bfseries Bold indicate actions (Select menu item, copying file, etc.)}
+
+$\ast$$\ast$$\ast$\-Bold italic text indicates emphasis$\ast$$\ast$$\ast$
+
+\begin{quotation}
+Blockquotes contain essential information
+
+\end{quotation}
 
 
-\subsection{Detailed Description}
+\subsection*{Introduction}
+
+This document intends to demonstrate to a developer how they can add new functions so that they can be called from inside \hyperlink{a00040}{Yarn}.
+
+\subsubsection*{Programming style}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00020_a07bb220dead44ed12c8842de706ecdf7}{\index{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser@{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::ASTAnalyser@{Yarn\-::\-Analysis\-::\-A\-S\-T\-Analyser}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-A\-S\-T\-Analyser.\-Diagnose (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Parser.\-Node}}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00020_a07bb220dead44ed12c8842de706ecdf7}
+\begin{DoxyItemize}
+\item It is recommended that you follow our programming style so that in the case of bug or patch submission, it makes it easier for us to read. As such, indents should be four spaces and not tab stops.
+\item We use the Doxygen format for documentation, thus three forward slashes {\ttfamily ///} indicate the head of a documentation comment and details for documentation comments are contained within the {\ttfamily /$\ast$ ....} structure. Please refer to the Doxygen site for more information.
+\item Other comments should use two forward slashes. This will ensure proper code commentary without it appearing in generated A\-P\-I documentation.
+\end{DoxyItemize}
+
+\subsection*{Creating a custom command}
+
+Creating a custom command is a simple two step procedure.\-i
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-Yarn\-Spinner/\hyperlink{a00115}{Analyser.\-cs}\end{DoxyCompactItemize}
+\begin{DoxyEnumerate}
+\item We need to get the dialogue object that's in use, then regiser a new function for it. ``` // get the Dialogue object // varstorage\-\_\-implementation is the object that handles variable storage -\/ it's not important in this example var dialogue = new Dialogue(varstorage\-\_\-implementation); ``{\ttfamily }
+\item {\ttfamily Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns}true{\ttfamily if it's even\-: }`` // Register\-Function(name, parameter\-Count, implementation) dialogue.\-library.\-Register\-Function (\char`\"{}is\-\_\-even\char`\"{}, 1, delegate(\-Value\mbox{[}$\,$\mbox{]} parameters) \{ return (int)parameters\mbox{[}0\mbox{]}.As\-Number \% 2 == 0; \}); ``` When the function is called, the delegate you provide will be run.
+\end{DoxyEnumerate}
+
+Some notes\-:
+
+
+\begin{DoxyItemize}
+\item You don't have to return a value from your function.
+\item The parameters passed to your function are of type \hyperlink{a00100}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
+\item You can only return values of the following types\-:
+\begin{DoxyItemize}
+\item String
+\item Float
+\item Double
+\item Integer
+\item \hyperlink{a00100}{Yarn.\-Value}
+\end{DoxyItemize}
+\item \hyperlink{a00040}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
+\end{DoxyItemize}

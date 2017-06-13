@@ -1,49 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00163" kind="struct" prot="public">
-    <compoundname>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00163_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</definition>
-        <argsstring></argsstring>
-        <name>name</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="37" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00163_1adc58df011dc2841837b6cf775b372061" prot="public" static="no" mutable="no">
-        <type>Sprite</type>
-        <definition>Sprite Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</definition>
-        <argsstring></argsstring>
-        <name>sprite</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00163" kind="namespace">
+    <compoundname>System::Reflection</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="648">
-        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
-        <link refid="a00163"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="36" bodyend="39"/>
-    <listofallmembers>
-      <member refid="a00163_1a3f5bca2fff413dfe075c1fcf7e58369c" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>name</name></member>
-      <member refid="a00163_1adc58df011dc2841837b6cf775b372061" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</scope><name>sprite</name></member>
-    </listofallmembers>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="14" column="1"/>
   </compounddef>
 </doxygen>

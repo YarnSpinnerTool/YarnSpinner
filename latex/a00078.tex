@@ -1,297 +1,246 @@
-\hypertarget{a00078}{\section{Test\-Dialogue\-U\-I\-Behaviour Class Reference}
-\label{a00078}\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
+\hypertarget{a00078}{\section{Yarn.\-Parser Class Reference}
+\label{a00078}\index{Yarn.\-Parser@{Yarn.\-Parser}}
 }
 
 
-Inheritance diagram for Test\-Dialogue\-U\-I\-Behaviour\-:
+Collaboration diagram for Yarn.\-Parser\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{a00181}
+\includegraphics[width=194pt]{a00274}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Test\-Dialogue\-U\-I\-Behaviour\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=244pt]{a00182}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}{Expect\-Line} (string line)
+class \hyperlink{a00033}{Assignment\-Statement}
 \item 
-void \hyperlink{a00078_adc743ade599769e968fecea525add7b3}{Select\-Option} (string option)
+class \hyperlink{a00036}{Block}
 \item 
-delegate void \hyperlink{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{Line\-Handler} (\hyperlink{a00026_a00159}{Yarn.\-Line} line)
+class \hyperlink{a00046}{Custom\-Command}
 \item 
-delegate void \hyperlink{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{Options\-Handler} (\hyperlink{a00026_a00161}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+class \hyperlink{a00054}{Expression}
 \item 
-delegate void \hyperlink{a00078_afc93c5cf370b31eceab3671c9eca0d94}{Command\-Handler} (\hyperlink{a00026_a00156}{Yarn.\-Command} command)
+class \hyperlink{a00057}{If\-Statement}
 \item 
-override \\*
-System.\-Collections.\-I\-Enumerator \hyperlink{a00078_ae274e39b640908d04aacc6cf6624d9da}{Run\-Line} (\hyperlink{a00026_a00159}{Yarn.\-Line} line)
+class \hyperlink{a00068}{Node}
 \item 
-override \\*
-System.\-Collections.\-I\-Enumerator \hyperlink{a00078_ad2ac83f91814d8666482bf8b6f3721d1}{Run\-Options} (\hyperlink{a00026_a00161}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+class \hyperlink{a00072}{Operator}
 \item 
-override \\*
-System.\-Collections.\-I\-Enumerator \hyperlink{a00078_a01e67009071f9ee5ac5ef3c970cd3695}{Run\-Command} (\hyperlink{a00026_a00156}{Yarn.\-Command} command)
+class \hyperlink{a00075}{Option\-Statement}
 \item 
-virtual I\-Enumerator \hyperlink{a00038_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
+class \hyperlink{a00077}{Parse\-Node}
 \item 
-abstract I\-Enumerator \hyperlink{a00038_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00026_a00159}{Yarn.\-Line} line)
+class \hyperlink{a00084}{Shortcut\-Option}
 \item 
-abstract I\-Enumerator \hyperlink{a00038_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00026_a00161}{Yarn.\-Options} options\-Collection, \hyperlink{a00026_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+class \hyperlink{a00085}{Shortcut\-Option\-Group}
 \item 
-abstract I\-Enumerator \hyperlink{a00038_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00026_a00156}{Yarn.\-Command} command)
+class \hyperlink{a00090}{Statement}
 \item 
-virtual I\-Enumerator \hyperlink{a00038_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
-\item 
-virtual I\-Enumerator \hyperlink{a00038_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
+class \hyperlink{a00101}{Value\-Node}
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{Line\-Handler} \hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{line\-Handler}
+\hyperlink{a00078_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser} (I\-Collection$<$ \hyperlink{a00093}{Token} $>$ \hyperlink{a00078_a1a4de646937057988b59d2ff8035eae3}{tokens}, \hyperlink{a00063}{Library} \hyperlink{a00078_a1313951b09177a1c83b6cf035139197a}{library})
 \item 
-\hyperlink{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{Options\-Handler} \hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{options\-Handler}
+\hyperlink{a00068}{Node} \hyperlink{a00078_a811cc7226f4f4a2f3440cdb67ad14468}{Parse} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00078_afc93c5cf370b31eceab3671c9eca0d94}{Command\-Handler} \hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{command\-Handler}
+bool \hyperlink{a00078_a666a945da1a7845b02b92592fccac291}{Next\-Symbol\-Is} (params \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+\item 
+bool \hyperlink{a00078_afaa7e96d4cdaf6b1fde9ecd273c00c34}{Next\-Symbols\-Are} (params \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+\item 
+\hyperlink{a00093}{Token} \hyperlink{a00078_a8a396d05e7dad704009e8c77657b31d3}{Expect\-Symbol} (\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} type)
+\item 
+\hyperlink{a00093}{Token} \hyperlink{a00078_a5a8f02cd87335aae2f2aa7de13c7512c}{Expect\-Symbol} ()
+\item 
+\hyperlink{a00093}{Token} \hyperlink{a00078_ae69620071ecfd16807c5dfc0948ee7f5}{Expect\-Symbol} (params \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} valid\-Types)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (int indent\-Level, string input, bool new\-Line=true)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Queue$<$ string $>$ \hyperlink{a00078_ab0f7b55e776ae494a651c845b496916c}{expected\-Lines} = new Queue$<$string$>$()
+Queue$<$ \hyperlink{a00093}{Token} $>$ \hyperlink{a00078_a1a4de646937057988b59d2ff8035eae3}{tokens}
 \item 
-Queue$<$ string $>$ \hyperlink{a00078_a94e4308d412945c977b2deb63f139009}{expected\-Options} = new Queue$<$string$>$()
+\hyperlink{a00063}{Library} \hyperlink{a00078_a1313951b09177a1c83b6cf035139197a}{library}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00078_acd2714b911fb5e7c38f0e07a9dc1af58}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Parser}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Parser (
+\begin{DoxyParamCaption}
+\item[{I\-Collection$<$ {\bf Token} $>$}]{tokens, }
+\item[{{\bf Library}}]{library}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00078_acd2714b911fb5e7c38f0e07a9dc1af58}
+
+\begin{DoxyCode}
+1238                                                                     \{
+1239             this.tokens = \textcolor{keyword}{new} Queue<Token>(\hyperlink{a00078_a1a4de646937057988b59d2ff8035eae3}{tokens});
+1240             this.library = \hyperlink{a00078_a1313951b09177a1c83b6cf035139197a}{library};
+1241         \}
+\end{DoxyCode}
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00078_afc93c5cf370b31eceab3671c9eca0d94}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Command\-Handler@{Command\-Handler}}
-\index{Command\-Handler@{Command\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Command\-Handler (
+\hypertarget{a00078_a8a396d05e7dad704009e8c77657b31d3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
+\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
+\item[{{\bf Token\-Type}}]{type}
 \end{DoxyParamCaption}
-)}}\label{a00078_afc93c5cf370b31eceab3671c9eca0d94}
-\hypertarget{a00038_aecc60aee9e9386da1f71fb183f43c52d}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
-\index{Dialogue\-Complete@{Dialogue\-Complete}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a8a396d05e7dad704009e8c77657b31d3}
+
+\begin{DoxyCode}
+1276                                            \{
+1277             var t = this.tokens.Dequeue();
+1278             \textcolor{keywordflow}{if} (t.type != type) \{
+1279 
+1280                 \textcolor{keywordflow}{throw} ParseException.Make(t, type);
+1281             \}
+1282             \textcolor{keywordflow}{return} t;
+1283         \}
+\end{DoxyCode}
+\hypertarget{a00078_a5a8f02cd87335aae2f2aa7de13c7512c}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
+\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_aecc60aee9e9386da1f71fb183f43c52d}
-
-
-Reimplemented in \hyperlink{a00039_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a5a8f02cd87335aae2f2aa7de13c7512c}
 
 \begin{DoxyCode}
-359                                                        \{
-360             \textcolor{comment}{// Default implementation does nothing.}
-361             yield \textcolor{keywordflow}{break};
-362         \}
+1286                              \{
+1287             var token = this.tokens.Dequeue ();
+1288             \textcolor{keywordflow}{if} (token.type == \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndOfInput) \{
+1289                 \textcolor{keywordflow}{throw} ParseException.Make (token, \textcolor{stringliteral}{"Unexpected end of input"});
+1290             \}
+1291             \textcolor{keywordflow}{return} token;
+1292         \}
 \end{DoxyCode}
-\hypertarget{a00038_af9d88ca81ac536d43046ca6572e3ff54}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
-\index{Dialogue\-Started@{Dialogue\-Started}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
+\hypertarget{a00078_ae69620071ecfd16807c5dfc0948ee7f5}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Expect\-Symbol@{Expect\-Symbol}}
+\index{Expect\-Symbol@{Expect\-Symbol}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Expect\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token} Yarn.\-Parser.\-Expect\-Symbol (
+\begin{DoxyParamCaption}
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_ae69620071ecfd16807c5dfc0948ee7f5}
+
+\begin{DoxyCode}
+1296                                                           \{
+1297             var t = this.tokens.Dequeue();
+1298 
+1299             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
+1300                 \textcolor{keywordflow}{if} (t.type == validType) \{
+1301                     \textcolor{keywordflow}{return} t;
+1302                 \}
+1303             \}
+1304 
+1305             \textcolor{keywordflow}{throw} ParseException.Make(t, validTypes);
+1306         \}
+\end{DoxyCode}
+\hypertarget{a00078_a666a945da1a7845b02b92592fccac291}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbol\-Is@{Next\-Symbol\-Is}}
+\index{Next\-Symbol\-Is@{Next\-Symbol\-Is}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Next\-Symbol\-Is}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbol\-Is (
+\begin{DoxyParamCaption}
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a666a945da1a7845b02b92592fccac291}
+
+\begin{DoxyCode}
+1250                                                          \{
+1251             var t = this.tokens.Peek().type;
+1252 
+1253             \textcolor{keywordflow}{foreach} (var validType \textcolor{keywordflow}{in} validTypes) \{
+1254                 \textcolor{keywordflow}{if} (t == validType) \{
+1255                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+1256                 \}
+1257             \}
+1258             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+1259         \}
+\end{DoxyCode}
+\hypertarget{a00078_afaa7e96d4cdaf6b1fde9ecd273c00c34}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Next\-Symbols\-Are@{Next\-Symbols\-Are}}
+\index{Next\-Symbols\-Are@{Next\-Symbols\-Are}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Next\-Symbols\-Are}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Parser.\-Next\-Symbols\-Are (
+\begin{DoxyParamCaption}
+\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{valid\-Types}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_afaa7e96d4cdaf6b1fde9ecd273c00c34}
+
+\begin{DoxyCode}
+1264                                                            \{
+1265             var tempQueue = \textcolor{keyword}{new} Queue<Token> (\hyperlink{a00078_a1a4de646937057988b59d2ff8035eae3}{tokens});
+1266             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} validTypes) \{
+1267                 \textcolor{keywordflow}{if} (tempQueue.Dequeue ().type != type)
+1268                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+1269             \}
+1270             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+1271         \}
+\end{DoxyCode}
+\hypertarget{a00078_a811cc7226f4f4a2f3440cdb67ad14468}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Parse@{Parse}}
+\index{Parse@{Parse}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Parse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_af9d88ca81ac536d43046ca6572e3ff54}
-
-
-Reimplemented in \hyperlink{a00039_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00078_a811cc7226f4f4a2f3440cdb67ad14468}
 
 \begin{DoxyCode}
-337                                                      \{
-338             \textcolor{comment}{// Default implementation does nothing.}
-339             yield \textcolor{keywordflow}{break};
-340         \}
+1243                               \{
+1244 
+1245             \textcolor{comment}{// Kick off the parsing process by trying to parse a whole node}
+1246             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Node(\textcolor{stringliteral}{"Start"}, null, \textcolor{keyword}{this});
+1247         \}
 \end{DoxyCode}
-\hypertarget{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Expect\-Line@{Expect\-Line}}
-\index{Expect\-Line@{Expect\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Test\-Dialogue\-U\-I\-Behaviour.\-Expect\-Line (
+\hypertarget{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!Tab@{Tab}}
+\index{Tab@{Tab}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{Tab}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-Parser.\-Tab (
 \begin{DoxyParamCaption}
-\item[{string}]{line}
+\item[{int}]{indent\-Level, }
+\item[{string}]{input, }
+\item[{bool}]{new\-Line = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}}\label{a00078_af51a4e0d00f92dcc991f6c1ac62ac8c3}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}
 
 \begin{DoxyCode}
-9                                         \{
-10         expectedLines.Enqueue(line);
-11     \}
-\end{DoxyCode}
-\hypertarget{a00078_ac6c30953edbd1cd4181e2a3854a1642b}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Line\-Handler@{Line\-Handler}}
-\index{Line\-Handler@{Line\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Line\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)}}\label{a00078_ac6c30953edbd1cd4181e2a3854a1642b}
-\hypertarget{a00038_a2900548a0704d39d4502a153945f4bef}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
-\index{Node\-Complete@{Node\-Complete}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
-\begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00038_a2900548a0704d39d4502a153945f4bef}
-
-\begin{DoxyCode}
-353                                                                  \{
-354             \textcolor{comment}{// Default implementation does nothing.}
-355             yield \textcolor{keywordflow}{break};
-356         \}
-\end{DoxyCode}
-\hypertarget{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Options\-Handler@{Options\-Handler}}
-\index{Options\-Handler@{Options\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Test\-Dialogue\-U\-I\-Behaviour.\-Options\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)}}\label{a00078_a7fe2e6bc2d5471d9af14a9d35de821bd}
-\hypertarget{a00078_a01e67009071f9ee5ac5ef3c970cd3695}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
-\end{DoxyParamCaption}
-)}}\label{a00078_a01e67009071f9ee5ac5ef3c970cd3695}
-
-\begin{DoxyCode}
-59     \{
-60         \textcolor{keywordflow}{if} (\hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{commandHandler} != null)
-61             \hyperlink{a00078_a5c2003ece8aeab171db3a749bef5f770}{commandHandler}(command);
-62         yield \textcolor{keywordflow}{break};
-63     \}
-\end{DoxyCode}
-\hypertarget{a00038_a3dffe84b9e7a10fdec6749baf697d111}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_a3dffe84b9e7a10fdec6749baf697d111}
-
-
-Implemented in \hyperlink{a00039_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-\hypertarget{a00078_ae274e39b640908d04aacc6cf6624d9da}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)}}\label{a00078_ae274e39b640908d04aacc6cf6624d9da}
-
-\begin{DoxyCode}
-30     \{
-31         \textcolor{keywordflow}{if} (\hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{lineHandler} != null)
-32             \hyperlink{a00078_af87332992e1420a8b2047822fab2b03c}{lineHandler}(line);
-33         
-34         \textcolor{keywordflow}{if} (\hyperlink{a00078_ab0f7b55e776ae494a651c845b496916c}{expectedLines}.Count > 0) \{
-35             Assert.AreEqual(expectedLines.Dequeue(), line.text);
-36         \}
-37 
-38         yield \textcolor{keywordflow}{break};
-39     \}
-\end{DoxyCode}
-\hypertarget{a00038_a754c6dd0bc67895d11f878fe4477d698}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_a754c6dd0bc67895d11f878fe4477d698}
-
-
-Implemented in \hyperlink{a00039_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-\hypertarget{a00078_ad2ac83f91814d8666482bf8b6f3721d1}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}override System.\-Collections.\-I\-Enumerator Test\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)}}\label{a00078_ad2ac83f91814d8666482bf8b6f3721d1}
-
-\begin{DoxyCode}
-41     \{
-42         \textcolor{keywordflow}{if} (\hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{optionsHandler} != null)
-43             \hyperlink{a00078_adcbea72eb6f5ab305b3757789919f961}{optionsHandler}(optionsCollection, optionChooser);
-44 
-45         \textcolor{keywordflow}{if} (\hyperlink{a00078_a94e4308d412945c977b2deb63f139009}{expectedOptions}.Count > 0) \{
-46             var selection = expectedOptions.Dequeue();
-47 
-48             var index = optionsCollection.options.IndexOf(selection);
-49 
-50             Assert.AreNotEqual(index, -1, \textcolor{stringliteral}{"Failed to find option \(\backslash\)"\{0\}\(\backslash\)""}, selection);
-51 
-52             Assert.Less(index, optionsCollection.options.Count);
-53             optionChooser(index);
-54         \}
-55 
-56         yield \textcolor{keywordflow}{break};
-57     \}
-\end{DoxyCode}
-\hypertarget{a00038_ac5b29079f638f2ceb078627ef1e60004}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00038_ac5b29079f638f2ceb078627ef1e60004}
-
-
-Implemented in \hyperlink{a00039_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
-
-\hypertarget{a00078_adc743ade599769e968fecea525add7b3}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!Select\-Option@{Select\-Option}}
-\index{Select\-Option@{Select\-Option}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{Select\-Option}]{\setlength{\rightskip}{0pt plus 5cm}void Test\-Dialogue\-U\-I\-Behaviour.\-Select\-Option (
-\begin{DoxyParamCaption}
-\item[{string}]{option}
-\end{DoxyParamCaption}
-)}}\label{a00078_adc743ade599769e968fecea525add7b3}
-
-\begin{DoxyCode}
-14                                             \{
-15         expectedOptions.Enqueue(option);
-16     \}
+83                                                                                       \{
+84             var sb = \textcolor{keyword}{new} StringBuilder();
+85 
+86             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < indentLevel; i++) \{
+87                 sb.Append (\textcolor{stringliteral}{"| "});
+88             \}
+89             sb.Append (input);
+90 
+91             \textcolor{keywordflow}{if} (newLine)
+92                 sb.Append (\textcolor{stringliteral}{"\(\backslash\)n"});
+93             
+94             \textcolor{keywordflow}{return} sb.ToString ();
+95         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00078_a5c2003ece8aeab171db3a749bef5f770}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!command\-Handler@{command\-Handler}}
-\index{command\-Handler@{command\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-command\-Handler}}\label{a00078_a5c2003ece8aeab171db3a749bef5f770}
-\hypertarget{a00078_ab0f7b55e776ae494a651c845b496916c}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!expected\-Lines@{expected\-Lines}}
-\index{expected\-Lines@{expected\-Lines}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{expected\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<$string$>$ Test\-Dialogue\-U\-I\-Behaviour.\-expected\-Lines = new Queue$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_ab0f7b55e776ae494a651c845b496916c}
-\hypertarget{a00078_a94e4308d412945c977b2deb63f139009}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!expected\-Options@{expected\-Options}}
-\index{expected\-Options@{expected\-Options}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{expected\-Options}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<$string$>$ Test\-Dialogue\-U\-I\-Behaviour.\-expected\-Options = new Queue$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a94e4308d412945c977b2deb63f139009}
-\hypertarget{a00078_af87332992e1420a8b2047822fab2b03c}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!line\-Handler@{line\-Handler}}
-\index{line\-Handler@{line\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-line\-Handler}}\label{a00078_af87332992e1420a8b2047822fab2b03c}
-\hypertarget{a00078_adcbea72eb6f5ab305b3757789919f961}{\index{Test\-Dialogue\-U\-I\-Behaviour@{Test\-Dialogue\-U\-I\-Behaviour}!options\-Handler@{options\-Handler}}
-\index{options\-Handler@{options\-Handler}!TestDialogueUIBehaviour@{Test\-Dialogue\-U\-I\-Behaviour}}
-\subsubsection[{options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options\-Handler} Test\-Dialogue\-U\-I\-Behaviour.\-options\-Handler}}\label{a00078_adcbea72eb6f5ab305b3757789919f961}
+\hypertarget{a00078_a1313951b09177a1c83b6cf035139197a}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!library@{library}}
+\index{library@{library}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{library}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Library} Yarn.\-Parser.\-library\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a1313951b09177a1c83b6cf035139197a}
+\hypertarget{a00078_a1a4de646937057988b59d2ff8035eae3}{\index{Yarn\-::\-Parser@{Yarn\-::\-Parser}!tokens@{tokens}}
+\index{tokens@{tokens}!Yarn::Parser@{Yarn\-::\-Parser}}
+\subsubsection[{tokens}]{\setlength{\rightskip}{0pt plus 5cm}Queue$<${\bf Token}$>$ Yarn.\-Parser.\-tokens\hspace{0.3cm}{\ttfamily [private]}}}\label{a00078_a1a4de646937057988b59d2ff8035eae3}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00107}{Yarn\-Spinner\-Tests.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00143}{Parser.\-cs}\end{DoxyCompactItemize}

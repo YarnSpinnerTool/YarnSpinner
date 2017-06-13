@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Package Yarn.Analysis</title>
+<title>YarnSpinner: Package Json</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,32 +105,120 @@ $(document).ready(function(){initNavTree('a00151.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">Package Yarn.Analysis</div>  </div>
+<div class="title">Package Json</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html">Diagnosis</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html">InvalidJsonException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception raised when <a class="el" href="a00060.html" title="A parser for JSON. http://json.org">JsonParser</a> encounters an invalid token.  <a href="a00059.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00031.html">Context</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00060.html">JsonParser</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parser for JSON. </p>
+<dl class="section see"><dt>See Also</dt><dd>http://json.org</dd></dl>
+ <a href="a00060.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html">ASTAnalyser</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html">CompiledProgramAnalyser</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html">UnusedVariableChecker</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a9d0536e3d8d9353112cfd292cc41b236"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236">JsonToken</a> { <br/>
+&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e">JsonToken.Unknown</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f">JsonToken.LeftBrace</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a">JsonToken.RightBrace</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83">JsonToken.Colon</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6">JsonToken.Comma</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17">JsonToken.LeftBracket</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c">JsonToken.RightBracket</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98">JsonToken.String</a>, 
+<br/>
+&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f">JsonToken.Number</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74">JsonToken.True</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c">JsonToken.False</a>, 
+<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94">JsonToken.Null</a>
+<br/>
+ }</td></tr>
+<tr class="memdesc:a9d0536e3d8d9353112cfd292cc41b236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible JSON tokens in parsed input.  <a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236">More...</a><br/></td></tr>
+<tr class="separator:a9d0536e3d8d9353112cfd292cc41b236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236">Json.JsonToken</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Possible JSON tokens in parsed input. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e"></a>Unknown</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f"></a>LeftBrace</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a"></a>RightBrace</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83"></a>Colon</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6"></a>Comma</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17"></a>LeftBracket</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c"></a>RightBracket</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98"></a>String</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f"></a>Number</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74"></a>True</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c"></a>False</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94"></a>Null</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e">Unknown</a>,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f">LeftBrace</a>,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a">RightBrace</a>,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83">Colon</a>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6">Comma</a>,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17">LeftBracket</a>,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c">RightBracket</a>,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98">String</a>,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f">Number</a>,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74">True</a>,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c">False</a>,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94">Null</a></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98">Json.String</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6">Json.Comma</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83">Json.Colon</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f">Json.Number</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a">Json.RightBrace</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c">Json.False</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94">Json.Null</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f">Json.LeftBrace</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74">Json.True</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e">Json.Unknown</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17">Json.LeftBracket</a></div></div>
+<div class="ttc" id="a00151_html_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c"><div class="ttname"><a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c">Json.RightBracket</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00026.html">Yarn</a></li><li class="navelem"><a class="el" href="a00151.html">Analysis</a></li>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:53 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00151.html">Json</a></li>
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

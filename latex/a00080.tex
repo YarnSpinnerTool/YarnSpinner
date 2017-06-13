@@ -1,127 +1,53 @@
-\hypertarget{a00080}{\section{Yarn.\-Tokeniser\-Exception Class Reference}
-\label{a00080}\index{Yarn.\-Tokeniser\-Exception@{Yarn.\-Tokeniser\-Exception}}
+\hypertarget{a00080}{\section{N\-Unit\-Lite.\-Tests.\-Program Class Reference}
+\label{a00080}\index{N\-Unit\-Lite.\-Tests.\-Program@{N\-Unit\-Lite.\-Tests.\-Program}}
 }
 
 
-Inheritance diagram for Yarn.\-Tokeniser\-Exception\-:
+Collaboration diagram for N\-Unit\-Lite.\-Tests.\-Program\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=230pt]{a00227}
+\includegraphics[width=204pt]{a00212}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Tokeniser\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=230pt]{a00228}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{Tokeniser\-Exception} (string message)
-\item 
-\hyperlink{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}{Tokeniser\-Exception} (int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, string message)
-\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00080}{Tokeniser\-Exception} \hyperlink{a00080_af88cfa5eafdee355e1abb67e358497bd}{Expected\-Tokens\-From\-State} (int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, \hyperlink{a00048}{Lexer.\-Lexer\-State} state)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}
-\item 
-int \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}
-\end{DoxyCompactItemize}
+static void \hyperlink{a00080_af0872d2d78e93b98528e399a1f19f63f}{Main} (string\mbox{[}$\,$\mbox{]} args)
+\begin{DoxyCompactList}\small\item\em The main program executes the tests. Output may be routed to various locations, depending on the arguments passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}
-
-\begin{DoxyCode}
-38 : base (message) \{\}
-\end{DoxyCode}
-\hypertarget{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
-\begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00080_aa8674d006a0d29081a7b87bdd8ff2f4f}
-
-\begin{DoxyCode}
-40             : base(\textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"\{0\}:\{1\}: \{2\}"}, \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message))
-41         \{
-42             this.lineNumber = \hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber};
-43             this.columnNumber = \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber};
-44         \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00080_af88cfa5eafdee355e1abb67e358497bd}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}}
-\index{Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Expected\-Tokens\-From\-State}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tokeniser\-Exception} Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State (
+\hypertarget{a00080_af0872d2d78e93b98528e399a1f19f63f}{\index{N\-Unit\-Lite\-::\-Tests\-::\-Program@{N\-Unit\-Lite\-::\-Tests\-::\-Program}!Main@{Main}}
+\index{Main@{Main}!NUnitLite::Tests::Program@{N\-Unit\-Lite\-::\-Tests\-::\-Program}}
+\subsubsection[{Main}]{\setlength{\rightskip}{0pt plus 5cm}static void N\-Unit\-Lite.\-Tests.\-Program.\-Main (
 \begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{{\bf Lexer.\-Lexer\-State}}]{state}
+\item[{string\mbox{[}$\,$\mbox{]}}]{args}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00080_af88cfa5eafdee355e1abb67e358497bd}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00080_af0872d2d78e93b98528e399a1f19f63f}
+
+
+The main program executes the tests. Output may be routed to various locations, depending on the arguments passed. 
+
+Run with --help for a full list of arguments supported
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyCode}
-47                                                                                                            
-                       \{
-48 
-49             var names = \textcolor{keyword}{new} List<string> ();
-50             \textcolor{keywordflow}{foreach} (var tokenRule \textcolor{keywordflow}{in} state.tokenRules) \{
-51                 names.Add (tokenRule.type.ToString ());
-52             \}
-53 
-54             \textcolor{keywordtype}{string} nameList;
-55             \textcolor{keywordflow}{if} (names.Count > 1) \{
-56                 nameList = String.Join (\textcolor{stringliteral}{", "}, names.ToArray (), 0, names.Count - 1);
-57                 nameList += \textcolor{stringliteral}{", or "} + names [names.Count - 1];
-58             \} \textcolor{keywordflow}{else} \{
-59                 nameList = names [0];
-60             \}
-61 
-62             var message = string.Format (\textcolor{stringliteral}{"Expected "} + nameList);
-63             
-64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00080_ad00fcf742d2b0d476ce43b27a3f3b6c1}{TokeniserException} (\hyperlink{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00080_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message);
-65         \}
+37         \{
+38             \textcolor{keyword}{new} AutoRun().Execute(args);
+39         \}
 \end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00080_aabf2ad38f3984297c1daede9be55e3d6}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-column\-Number}}\label{a00080_aabf2ad38f3984297c1daede9be55e3d6}
-\hypertarget{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-line\-Number}}\label{a00080_a54b936d7b4f26f88a07a66c5fc1d1ad1}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00119}{Lexer.\-cs}\end{DoxyCompactItemize}
+packages/\-N\-Unit\-Lite.\-3.\-0.\-1/content/\hyperlink{a00124}{Program.\-cs}\end{DoxyCompactItemize}

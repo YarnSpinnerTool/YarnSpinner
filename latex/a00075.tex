@@ -1,121 +1,190 @@
-\hypertarget{a00075}{\section{Yarn.\-Virtual\-Machine.\-State Class Reference}
-\label{a00075}\index{Yarn.\-Virtual\-Machine.\-State@{Yarn.\-Virtual\-Machine.\-State}}
+\hypertarget{a00075}{\section{Yarn.\-Parser.\-Option\-Statement Class Reference}
+\label{a00075}\index{Yarn.\-Parser.\-Option\-Statement@{Yarn.\-Parser.\-Option\-Statement}}
 }
 
 
-Collaboration diagram for Yarn.\-Virtual\-Machine.\-State\-:
+Inheritance diagram for Yarn.\-Parser.\-Option\-Statement\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00308}
+\includegraphics[width=224pt]{a00301}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Option\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{a00302}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00075_aace44f5b85b9f746fede834becda4a8e}{Push\-Value} (object o)
-\item 
-\hyperlink{a00086}{Value} \hyperlink{a00075_a36881a888ea2839d74c3d4e7c199f4ee}{Pop\-Value} ()
-\item 
-\hyperlink{a00086}{Value} \hyperlink{a00075_a54fd5b64ec94e937e771846167242dc2}{Peek\-Value} ()
-\item 
-void \hyperlink{a00075_a9c787097fbbbbf1680e4960cda092535}{Clear\-Stack} ()
+override string \hyperlink{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00075_a86f481fad527f719b49f8fee6ff79764}{current\-Node\-Name}
+\hyperlink{a00075_ad18938712d01cf71edbc75d4974cd0e0}{Option\-Statement} (\hyperlink{a00077}{Parse\-Node} \hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00078}{Parser} p)
 \item 
-int \hyperlink{a00075_a2c76546b54b4fb573d7f14d79ce230a3}{program\-Counter} = 0
+override string \hyperlink{a00075_aafba8c941dbd3d0ef841ac9d472e1ba3}{Print\-Tree} (int indent\-Level)
 \item 
-List$<$ Key\-Value\-Pair$<$ string, \\*
-string $>$ $>$ \hyperlink{a00075_ab816dfea32ecda23282700f01454e0a9}{current\-Options} = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()
+\hyperlink{a00068}{Node} \hyperlink{a00077_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-Stack$<$ \hyperlink{a00086}{Value} $>$ \hyperlink{a00075_a0bc84abf38b3ff31cbb47363b851c233}{stack} = new Stack$<$\hyperlink{a00086}{Value}$>$()
+static bool \hyperlink{a00075_a1ffeca22df52451120cb362f90fd4e9f}{Can\-Parse} (\hyperlink{a00078}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00075_abbe56fba06169901508e6c659f06c236}{destination}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00075_a7f27d78e67fed6992767e995e70fc468}{label}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00075_ad18938712d01cf71edbc75d4974cd0e0}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Option\-Statement@{Option\-Statement}}
+\index{Option\-Statement@{Option\-Statement}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Option\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Option\-Statement.\-Option\-Statement (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00075_ad18938712d01cf71edbc75d4974cd0e0}
+
+\begin{DoxyCode}
+474                                                                  : base(\hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+475 
+476                 \textcolor{comment}{// The meaning of the string(s) we have changes}
+477                 \textcolor{comment}{// depending on whether we have one or two, so}
+478                 \textcolor{comment}{// keep them both and decide their meaning once}
+479                 \textcolor{comment}{// we know more}
+480 
+481                 \textcolor{keywordtype}{string} firstString;
+482                 \textcolor{keywordtype}{string} secondString;
+483 
+484                 \textcolor{comment}{// Parse "[[LABEL"}
+485                 p.ExpectSymbol(TokenType.OptionStart);
+486                 firstString = p.ExpectSymbol(TokenType.Text).value as \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String};
+487 
+488                 \textcolor{comment}{// If there's a | in there, get the string that comes after it}
+489                 \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.OptionDelimit)) \{
+490 
+491                     p.ExpectSymbol(TokenType.OptionDelimit);
+492                     secondString = p.ExpectSymbol(TokenType.Text, TokenType.Identifier).value as 
+      \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String};
+493 
+494                     \textcolor{comment}{// Two strings mean that the first is the label, and the second}
+495                     \textcolor{comment}{// is the name of the node that we should head to if this option}
+496                     \textcolor{comment}{// is selected}
+497                     \hyperlink{a00075_a7f27d78e67fed6992767e995e70fc468}{label} = firstString;
+498                     \hyperlink{a00075_abbe56fba06169901508e6c659f06c236}{destination} = secondString;
+499                 \} \textcolor{keywordflow}{else} \{
+500                     \textcolor{comment}{// One string means we don't have a label}
+501                     \hyperlink{a00075_a7f27d78e67fed6992767e995e70fc468}{label} = null;
+502                     \hyperlink{a00075_abbe56fba06169901508e6c659f06c236}{destination} = firstString;
+503                 \}
+504 
+505                 \textcolor{comment}{// Parse the closing ]]}
+506                 p.ExpectSymbol(TokenType.OptionEnd);
+507             \}
+\end{DoxyCode}
+
+
 \subsection{Member Function Documentation}
-\hypertarget{a00075_a9c787097fbbbbf1680e4960cda092535}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Clear\-Stack@{Clear\-Stack}}
-\index{Clear\-Stack@{Clear\-Stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Clear\-Stack}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Clear\-Stack (
+\hypertarget{a00075_a1ffeca22df52451120cb362f90fd4e9f}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Option\-Statement.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00075_a1ffeca22df52451120cb362f90fd4e9f}
+
+\begin{DoxyCode}
+466             \{
+467                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.OptionStart);
+468             \}
+\end{DoxyCode}
+\hypertarget{a00077_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00075_a9c787097fbbbbf1680e4960cda092535}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00077_a580e520a29444fc23ac3660cbe514a09}
 
 \begin{DoxyCode}
-42                                      \{
-43                 stack.Clear ();
-44             \}
+116                                        \{
+117                 var node = \textcolor{keyword}{this};
+118 
+119                 \textcolor{keywordflow}{do} \{
+120                     \textcolor{keywordflow}{if} (node is Node) \{
+121                         \textcolor{keywordflow}{return} node as Node;
+122                     \}
+123                     node = node.parent;
+124                 \} \textcolor{keywordflow}{while} (node 
+125                     != null);                   
+126 
+127                 \textcolor{keywordflow}{return} null;
+128             \}
 \end{DoxyCode}
-\hypertarget{a00075_a54fd5b64ec94e937e771846167242dc2}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Peek\-Value@{Peek\-Value}}
-\index{Peek\-Value@{Peek\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Peek\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Peek\-Value (
+\hypertarget{a00075_aafba8c941dbd3d0ef841ac9d472e1ba3}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Option\-Statement.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00075_aafba8c941dbd3d0ef841ac9d472e1ba3}
+
+
+Implements \hyperlink{a00077_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+\begin{DoxyCode}
+511             \{
+512                 \textcolor{keywordflow}{if} (\hyperlink{a00075_a7f27d78e67fed6992767e995e70fc468}{label} != null) \{
+513                     \textcolor{keywordflow}{return} \hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"Option: \(\backslash\)"\{0\}\(\backslash\)" -> \{1\}"}, 
+      \hyperlink{a00075_a7f27d78e67fed6992767e995e70fc468}{label}, \hyperlink{a00075_abbe56fba06169901508e6c659f06c236}{destination}));
+514                 \} \textcolor{keywordflow}{else} \{
+515                     \textcolor{keywordflow}{return} \hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"Option: -> \{0\}"}, 
+      \hyperlink{a00075_abbe56fba06169901508e6c659f06c236}{destination}));
+516                 \}
+517             \}
+\end{DoxyCode}
+\hypertarget{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00075_a54fd5b64ec94e937e771846167242dc2}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}
 
 \begin{DoxyCode}
-38                                      \{
-39                 \textcolor{keywordflow}{return} stack.Peek ();
-40             \}
-\end{DoxyCode}
-\hypertarget{a00075_a36881a888ea2839d74c3d4e7c199f4ee}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Pop\-Value@{Pop\-Value}}
-\index{Pop\-Value@{Pop\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Pop\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value} Yarn.\-Virtual\-Machine.\-State.\-Pop\-Value (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00075_a36881a888ea2839d74c3d4e7c199f4ee}
-
-\begin{DoxyCode}
-34                                     \{
-35                 \textcolor{keywordflow}{return} stack.Pop ();
-36             \}
-\end{DoxyCode}
-\hypertarget{a00075_aace44f5b85b9f746fede834becda4a8e}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!Push\-Value@{Push\-Value}}
-\index{Push\-Value@{Push\-Value}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{Push\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-State.\-Push\-Value (
-\begin{DoxyParamCaption}
-\item[{object}]{o}
-\end{DoxyParamCaption}
-)}}\label{a00075_aace44f5b85b9f746fede834becda4a8e}
-
-\begin{DoxyCode}
-26                                             \{
-27                 \textcolor{keywordflow}{if}( o is Value ) \{
-28                     stack.Push(o as Value);
-29                 \} \textcolor{keywordflow}{else} \{
-30                     stack.Push (\textcolor{keyword}{new} Value(o));
-31                 \}
-32             \}
+111             \{
+112                 \textcolor{keywordflow}{return} this.GetType ().Name;
+113             \}
 \end{DoxyCode}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00075_a86f481fad527f719b49f8fee6ff79764}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Node\-Name@{current\-Node\-Name}}
-\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Virtual\-Machine.\-State.\-current\-Node\-Name}}\label{a00075_a86f481fad527f719b49f8fee6ff79764}
-\hypertarget{a00075_ab816dfea32ecda23282700f01454e0a9}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!current\-Options@{current\-Options}}
-\index{current\-Options@{current\-Options}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{current\-Options}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Key\-Value\-Pair$<$string,string$>$ $>$ Yarn.\-Virtual\-Machine.\-State.\-current\-Options = new List$<$Key\-Value\-Pair$<$string, string$>$$>$()}}\label{a00075_ab816dfea32ecda23282700f01454e0a9}
-\hypertarget{a00075_a2c76546b54b4fb573d7f14d79ce230a3}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!program\-Counter@{program\-Counter}}
-\index{program\-Counter@{program\-Counter}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{program\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Virtual\-Machine.\-State.\-program\-Counter = 0}}\label{a00075_a2c76546b54b4fb573d7f14d79ce230a3}
-\hypertarget{a00075_a0bc84abf38b3ff31cbb47363b851c233}{\index{Yarn\-::\-Virtual\-Machine\-::\-State@{Yarn\-::\-Virtual\-Machine\-::\-State}!stack@{stack}}
-\index{stack@{stack}!Yarn::VirtualMachine::State@{Yarn\-::\-Virtual\-Machine\-::\-State}}
-\subsubsection[{stack}]{\setlength{\rightskip}{0pt plus 5cm}Stack$<${\bf Value}$>$ Yarn.\-Virtual\-Machine.\-State.\-stack = new Stack$<${\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00075_a0bc84abf38b3ff31cbb47363b851c233}
+\subsection{Property Documentation}
+\hypertarget{a00075_abbe56fba06169901508e6c659f06c236}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!destination@{destination}}
+\index{destination@{destination}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{destination}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Option\-Statement.\-destination\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00075_abbe56fba06169901508e6c659f06c236}
+\hypertarget{a00075_a7f27d78e67fed6992767e995e70fc468}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!label@{label}}
+\index{label@{label}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{label}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Option\-Statement.\-label\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00075_a7f27d78e67fed6992767e995e70fc468}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00127}{Virtual\-Machine.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00143}{Parser.\-cs}\end{DoxyCompactItemize}

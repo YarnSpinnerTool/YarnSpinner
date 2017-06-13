@@ -1,42 +1,142 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00096" kind="file">
-    <compoundname>Building.md</compoundname>
+  <compounddef id="a00096" kind="class" prot="package">
+    <compoundname>Yarn::Lexer::TokenRule</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00096_1a47a404d6637fae489c3c77729a01cc69" prot="public" static="no" mutable="no">
+        <type>Regex</type>
+        <definition>Regex Yarn.Lexer.TokenRule.regex</definition>
+        <argsstring></argsstring>
+        <name>regex</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="274" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00096_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Lexer.TokenRule.entersState</definition>
+        <argsstring></argsstring>
+        <name>entersState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="277" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00096_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+        <definition>TokenType Yarn.Lexer.TokenRule.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="278" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00096_1a09f49e6edf9ace38a92d723998181f8f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.TokenRule.isTextRule</definition>
+        <argsstring></argsstring>
+        <name>isTextRule</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="279" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00096_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.TokenRule.delimitsText</definition>
+        <argsstring></argsstring>
+        <name>delimitsText</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="280" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00096_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.TokenRule.TokenRule</definition>
+        <argsstring>(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</argsstring>
+        <name>TokenRule</name>
+        <param>
+          <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Regex</type>
+          <declname>regex</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>entersState</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>delimitsText</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="282" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="282" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="a00096_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Lexer.TokenRule.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="290" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="290" bodyend="293"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">&gt;<sp/>***Important:***<sp/>This<sp/>document<sp/>only<sp/>matters<sp/>to<sp/>you<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.<sp/>In<sp/>almost<sp/>all<sp/>cases,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>be<sp/>totally<sp/>fine<sp/>with<sp/>[downloading<sp/>a<sp/>build](https://github.com/thesecretlab/YarnSpinner/releases),<sp/>and<sp/>using<sp/>that<sp/>in<sp/>your<sp/>project.</highlight></codeline>
-<codeline lineno="4"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="5"><highlight class="stringliteral">##<sp/>Windows,<sp/>Mac<sp/>and<sp/>Linux<sp/>using<sp/>MonoDevelop</highlight></codeline>
-<codeline lineno="6"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="7"><highlight class="stringliteral">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Windows<sp/>or<sp/>Mac,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>MonoDevelop.<sp/>You<sp/>can<sp/>[download<sp/>MonoDevelop<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>OS<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http:</highlight><highlight class="comment">//www.monodevelop.com/download/).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Linux,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>need<sp/>MonoDevelop&apos;</highlight><highlight class="normal">s<sp/>Flatpak.<sp/>Once<sp/>you<sp/>have<sp/>installed<sp/>[Flatpak<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>distribution](http:</highlight><highlight class="comment">//flatpak.org/getting.html),<sp/>you<sp/>can<sp/>[download<sp/>MonoDevelop<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http://www.monodevelop.com/download/linux/).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal">Once<sp/>it</highlight><highlight class="stringliteral">&apos;s<sp/>downloaded,<sp/>follow<sp/>these<sp/>steps:</highlight></codeline>
-<codeline lineno="11"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="12"><highlight class="stringliteral">*<sp/>Open<sp/>**YarnSpinner.sln**.</highlight></codeline>
-<codeline lineno="13"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Build<sp/>menu**,<sp/>and<sp/>choose<sp/>**Build<sp/>All**.</highlight></codeline>
-<codeline lineno="14"><highlight class="stringliteral">*<sp/>Open<sp/>the<sp/>**Unity/Assets/Yarn<sp/>Spinner**<sp/>folder.<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>find<sp/>a<sp/>copy<sp/>of<sp/>**YarnSpinner.dll**<sp/>there.<sp/>You<sp/>can<sp/>now<sp/>copy<sp/>that<sp/>DLL<sp/>file<sp/>wherever<sp/>you<sp/>need<sp/>it.</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal">##<sp/>Linux</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">As<sp/>well<sp/>as<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>MonoDevelop,<sp/>you<sp/>can<sp/>use<sp/>xbuild<sp/>to<sp/>build<sp/>on<sp/>Linux.<sp/>At<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>stage,<sp/>see<sp/>the<sp/>[build.sh](../build.sh)<sp/>script<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>information<sp/>on<sp/>how<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>this.</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal">##<sp/>Building<sp/>Documentation</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">Yarn<sp/>Spinner<sp/>uses<sp/>[Doxygen](https:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen)<sp/>to<sp/>generate<sp/>[DocBook](http://docbook.org/),<sp/>[HTML](https://en.wikipedia.org/wiki/HTML),<sp/>[LaTeX](https://www.latex-project.org/help/documentation/),<sp/>[RTF](https://en.wikipedia.org/wiki/Rich_Text_Format),<sp/>and<sp/>[XML](https://en.wikipedia.org/wiki/XML)<sp/>documentation.<sp/>[GNU<sp/>GLOBAL](https://www.gnu.org/software/global/)<sp/>is<sp/>also<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">Basic<sp/>steps<sp/>to<sp/>clean<sp/>out<sp/>existing<sp/>documentation,<sp/>generate<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/>and<sp/>check<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>generation<sp/>errors.<sp/>Note<sp/>that<sp/>some<sp/>ocurrences<sp/>of<sp/>the<sp/>word<sp/></highlight><highlight class="stringliteral">&apos;error&apos;</highlight><highlight class="normal"><sp/>will<sp/>be<sp/>due<sp/>to<sp/>classes/methods<sp/>etc.<sp/>of<sp/>YarnSpinner<sp/>itself<sp/>and<sp/>not<sp/>an<sp/>actual<sp/>error<sp/>in<sp/>the<sp/>documentation.</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">*<sp/>rm<sp/>-fr<sp/>Documentation/{docbook,html,latex,rtf,xml}</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">*<sp/>doxygen<sp/>Documentation/Doxyfile<sp/>&gt;<sp/>doxyoutput.txt<sp/>2&gt;&amp;1</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">*<sp/>grep<sp/>-i<sp/>error<sp/>doxyoutput.txt</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">[MarkDown](https:</highlight><highlight class="comment">//daringfireball.net/projects/markdown/)<sp/>documentation<sp/>is<sp/>available<sp/>via<sp/>conversion<sp/>of<sp/>the<sp/>XML<sp/>output<sp/>to<sp/>Markdown<sp/>using<sp/>third<sp/>party<sp/>tools<sp/>such<sp/>as<sp/>[Pandoc](http://pandoc.org)<sp/>or<sp/>[doxygen2md](https://github.com/pferdinand/doxygen2md)</highlight><highlight class="normal"></highlight></codeline>
-    </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/Building.md"/>
+    <collaborationgraph>
+      <node id="692">
+        <label>Yarn.Lexer.TokenRule</label>
+        <link refid="a00096"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="273" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="273" bodyend="295"/>
+    <listofallmembers>
+      <member refid="a00096_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>delimitsText</name></member>
+      <member refid="a00096_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>entersState</name></member>
+      <member refid="a00096_1a09f49e6edf9ace38a92d723998181f8f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>isTextRule</name></member>
+      <member refid="a00096_1a47a404d6637fae489c3c77729a01cc69" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>regex</name></member>
+      <member refid="a00096_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>TokenRule</name></member>
+      <member refid="a00096_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>ToString</name></member>
+      <member refid="a00096_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>type</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

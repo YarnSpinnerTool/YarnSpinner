@@ -1,2 +1,3 @@
-<map id="Yarn.YarnSpinnerConsole" name="Yarn.YarnSpinnerConsole">
+<map id="Yarn.Parser.ShortcutOptionGroup" name="Yarn.Parser.ShortcutOptionGroup">
+<area shape="rect" id="node2" href="$a00077.html" title="{ParseNode\n|&#45; parent\l|+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="41,6,151,127"/>
 </map>

@@ -1,10 +1,7 @@
 var a00070 =
 [
-    [ "ShortcutOption", "a00070.html#a2c80b137d65f31b24533987233074605", null ],
-    [ "NodeParent", "a00070.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00070.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2", null ],
-    [ "ToString", "a00070.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "condition", "a00070.html#a31ece7f65af1e43961b68ba0275cdfaf", null ],
-    [ "label", "a00070.html#ab43ec731479a56891389f6ece87f5f62", null ],
-    [ "optionNode", "a00070.html#a33d667370031f58b054b79a39891c3f3", null ]
+    [ "NodeInfo", "a00070.html#aa56085ea115b77cb9ee975686e726c29", null ],
+    [ "tags", "a00070.html#acd4d4915f6cc14f8b0f1f92d27da8b36", null ],
+    [ "text", "a00070.html#a63d7ebed8095a20fc5d0d74c84a34f6c", null ],
+    [ "title", "a00070.html#aafc45bbc86a9acb9bdbcf7877695a96c", null ]
 ];

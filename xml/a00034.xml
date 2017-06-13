@@ -1,65 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00034" kind="struct" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00034_1a750904df254223bf3131c39017f90a0b" prot="public" static="no" mutable="no">
-        <type>System.Type</type>
-        <definition>System.Type Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="292" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="292" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00034_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.methodName</definition>
-        <argsstring></argsstring>
-        <name>methodName</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="293" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="293" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00034_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.usageNotes</definition>
-        <argsstring></argsstring>
-        <name>usageNotes</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="294" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="294" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00034" kind="class" prot="package" abstract="yes">
+    <compoundname>Yarn::Analysis::ASTAnalyser</compoundname>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00034_1ae80171841e97a48611c51a9a574a2fc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.Deprecation</definition>
-        <argsstring>(System.Type type, string methodName, string usageNotes)</argsstring>
-        <name>Deprecation</name>
+      <memberdef kind="function" id="a00034_1a07bb220dead44ed12c8842de706ecdf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerable&lt; <ref refid="a00049" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.ASTAnalyser.Diagnose</definition>
+        <argsstring>(Yarn.Parser.Node node)</argsstring>
+        <name>Diagnose</name>
         <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>methodName</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>usageNotes</declname>
+          <type><ref refid="a00068" kindref="compound">Yarn.Parser.Node</ref></type>
+          <declname>node</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -67,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="296" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="296" bodyend="301"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="139" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -75,23 +26,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="453">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation</label>
+      <node id="397">
+        <label>Yarn.Analysis.ASTAnalyser</label>
         <link refid="a00034"/>
-        <childnode refid="454" relation="usage">
-          <edgelabel>+type</edgelabel>
-        </childnode>
-      </node>
-      <node id="454">
-        <label>System</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="291" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="291" bodyend="303"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="138" bodyend="140"/>
     <listofallmembers>
-      <member refid="a00034_1ae80171841e97a48611c51a9a574a2fc0" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>Deprecation</name></member>
-      <member refid="a00034_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>methodName</name></member>
-      <member refid="a00034_1a750904df254223bf3131c39017f90a0b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>type</name></member>
-      <member refid="a00034_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>usageNotes</name></member>
+      <member refid="a00034_1a07bb220dead44ed12c8842de706ecdf7" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::ASTAnalyser</scope><name>Diagnose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

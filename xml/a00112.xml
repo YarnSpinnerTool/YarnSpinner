@@ -1,73 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00112" kind="file">
-    <compoundname>NPC.cs</compoundname>
-    <innerclass refid="a00057" prot="public">Yarn::Unity::Example::NPC</innerclass>
-    <innernamespace refid="a00153">Yarn::Unity::Example</innernamespace>
-    <innernamespace refid="a00149">UnityEngine::Serialization</innernamespace>
+    <compoundname>README.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="2"><highlight class="comment"></highlight></codeline>
-<codeline lineno="3"><highlight class="comment">The<sp/>MIT<sp/>License<sp/>(MIT)</highlight></codeline>
-<codeline lineno="4"><highlight class="comment"></highlight></codeline>
-<codeline lineno="5"><highlight class="comment">Copyright<sp/>(c)<sp/>2015-2017<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>and<sp/>Yarn<sp/>Spinner<sp/>contributors.</highlight></codeline>
-<codeline lineno="6"><highlight class="comment"></highlight></codeline>
-<codeline lineno="7"><highlight class="comment">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/>copy</highlight></codeline>
-<codeline lineno="8"><highlight class="comment">of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the<sp/>&quot;Software&quot;),<sp/>to<sp/>deal</highlight></codeline>
-<codeline lineno="9"><highlight class="comment">in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights</highlight></codeline>
-<codeline lineno="10"><highlight class="comment">to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell</highlight></codeline>
-<codeline lineno="11"><highlight class="comment">copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is</highlight></codeline>
-<codeline lineno="12"><highlight class="comment">furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>conditions:</highlight></codeline>
-<codeline lineno="13"><highlight class="comment"></highlight></codeline>
-<codeline lineno="14"><highlight class="comment">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all</highlight></codeline>
-<codeline lineno="15"><highlight class="comment">copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight></codeline>
-<codeline lineno="16"><highlight class="comment"></highlight></codeline>
-<codeline lineno="17"><highlight class="comment">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>EXPRESS<sp/>OR</highlight></codeline>
-<codeline lineno="18"><highlight class="comment">IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY,</highlight></codeline>
-<codeline lineno="19"><highlight class="comment">FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
-<codeline lineno="20"><highlight class="comment">AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER</highlight></codeline>
-<codeline lineno="21"><highlight class="comment">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
-<codeline lineno="22"><highlight class="comment">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
-<codeline lineno="23"><highlight class="comment">SOFTWARE.</highlight></codeline>
-<codeline lineno="24"><highlight class="comment"></highlight></codeline>
-<codeline lineno="25"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine.Serialization;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Yarn.Unity.Example<sp/>{</highlight></codeline>
-<codeline lineno="32" refid="a00057" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00057" kindref="compound">NPC</ref><sp/>:<sp/>MonoBehaviour<sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="34" refid="a00057_1a418ea7095bd8201559ed392f07905ca3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>characterName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[FormerlySerializedAs(</highlight><highlight class="stringliteral">&quot;startNode&quot;</highlight><highlight class="normal">)]</highlight></codeline>
-<codeline lineno="37" refid="a00057_1a64f4f1fb66b2046a674e3ebf3b9fdb56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>talkToNode<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[Header(</highlight><highlight class="stringliteral">&quot;Optional&quot;</highlight><highlight class="normal">)]</highlight></codeline>
-<codeline lineno="40" refid="a00057_1a63145fb6ddf357e604d71bac04ca8a60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>TextAsset<sp/><ref refid="a00057_1a63145fb6ddf357e604d71bac04ca8a60" kindref="member">scriptToLoad</ref>;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>this<sp/>for<sp/>initialization</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="a00057_1a0bf37075312ea87c2e329cc363a328a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00057_1a0bf37075312ea87c2e329cc363a328a6" kindref="member">Start</ref><sp/>()<sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(scriptToLoad<sp/>!=<sp/>null)<sp/>{</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FindObjectOfType&lt;<ref refid="a00037" kindref="compound">Yarn.Unity.DialogueRunner</ref>&gt;().AddScript(scriptToLoad);</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>is<sp/>called<sp/>once<sp/>per<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52" refid="a00057_1ab1bea5afabd1c2e1e991063b1579d062" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a00057_1ab1bea5afabd1c2e1e991063b1579d062" kindref="member">Update</ref><sp/>()<sp/>{</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner<sp/>Programming<sp/>README</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Introduction</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">This<sp/>document<sp/>lists<sp/>the<sp/>other<sp/>document<sp/>that<sp/>comprise<sp/>the<sp/>Programming<sp/>documentation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner.<sp/>Programming<sp/>Yarn<sp/>Spinner<sp/>is<sp/>intended<sp/>to<sp/>mean<sp/>coding<sp/>C#<sp/>to<sp/>achieve<sp/>the<sp/>goals<sp/>set<sp/>out<sp/>in<sp/>Yarn<sp/>Dialogue<sp/>to<sp/>meet<sp/>the<sp/>proudction<sp/>requirements<sp/>of<sp/>producing<sp/>a<sp/>game.<sp/>The<sp/>game<sp/>can<sp/>be<sp/>produced<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>any<sp/>engine,<sp/>however<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>now<sp/>we<sp/>only<sp/>document<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Unity.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">##<sp/>Building</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">The<sp/>[Building](Building.md)<sp/>assists<sp/>you<sp/>in<sp/>compiling<sp/>the<sp/>Yarn<sp/>Spinner<sp/>software.<sp/>You<sp/>may<sp/>need<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>yourself,<sp/>particularly<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>wish<sp/>to<sp/>test<sp/>out<sp/>certain<sp/>code<sp/>or<sp/>use<sp/>tools<sp/>(such<sp/>as<sp/>[Localiisation](../YarnSpinner-Dialogue/Localization.md).</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">##<sp/>Extending</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">The<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>Yarn<sp/>Spinner<sp/>code<sp/>may<sp/>not<sp/>provide<sp/>enough<sp/>functionality<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>game,<sp/>so<sp/>you<sp/>will<sp/>need<sp/>to<sp/>extend<sp/>it<sp/>by<sp/>adding<sp/>your<sp/>own<sp/>functions.<sp/><sp/>The<sp/>[Extending](Extending.md)<sp/>documentation<sp/>provides<sp/>an<sp/>example<sp/>on<sp/>how<sp/>to<sp/>create<sp/>custom<sp/>C#<sp/>code<sp/>to<sp/>integrate<sp/>with<sp/>[Yarn<sp/>Dialogue](../YarnSpinner-Dialogue/)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>API<sp/>Reference</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"></highlight><highlight class="normal">The<sp/>[API<sp/>Reference](https:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)<sp/>is<sp/>available<sp/>online<sp/>for<sp/>the<sp/>current<sp/>release.<sp/>It&apos;s<sp/>possible<sp/>to<sp/>use<sp/>the<sp/>build<sp/>script<sp/>to<sp/>create<sp/>your<sp/>own.<sp/>See<sp/>the<sp/>[Building](Building.md)<sp/>documentation<sp/>for<sp/>information<sp/>on<sp/>how<sp/>to<sp/>do<sp/>this.</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/NPC.cs"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Programming/README.md"/>
   </compounddef>
 </doxygen>

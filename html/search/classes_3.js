@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['defaultvariable',['DefaultVariable',['../a00033.html#a00158',1,'ExampleVariableStorage']]],
-  ['deprecation',['Deprecation',['../a00034.html',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
-  ['diagnosis',['Diagnosis',['../a00035.html',1,'Yarn::Analysis']]],
-  ['dialogue',['Dialogue',['../a00036.html',1,'Yarn']]],
-  ['dialoguerunner',['DialogueRunner',['../a00037.html',1,'Yarn::Unity']]],
-  ['dialogueuibehaviour',['DialogueUIBehaviour',['../a00038.html',1,'Yarn::Unity']]]
+  ['defaultvariable',['DefaultVariable',['../a00047.html#a00179',1,'ExampleVariableStorage']]],
+  ['deprecation',['Deprecation',['../a00048.html',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
+  ['diagnosis',['Diagnosis',['../a00049.html',1,'Yarn::Analysis']]],
+  ['dialogue',['Dialogue',['../a00050.html',1,'Yarn']]],
+  ['dialoguerunner',['DialogueRunner',['../a00051.html',1,'Yarn::Unity']]],
+  ['dialogueuibehaviour',['DialogueUIBehaviour',['../a00052.html',1,'Yarn::Unity']]]
 ];

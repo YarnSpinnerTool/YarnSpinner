@@ -1,11 +1,16 @@
 var a00049 =
 [
-    [ "DeregisterFunction", "a00049.html#a47d1b3664733207d5cda15f4a4a7af7a", null ],
-    [ "FunctionExists", "a00049.html#a6c9a1cc3e25b6aae25e210d8a0d68c09", null ],
-    [ "GetFunction", "a00049.html#aacfb1f00ad8aa3921941b8d8af0960e0", null ],
-    [ "ImportLibrary", "a00049.html#ab42a4fd30a72156cafa685f959deef78", null ],
-    [ "RegisterFunction", "a00049.html#a001ab29d21fe7db10fc9c250914287f9", null ],
-    [ "RegisterFunction", "a00049.html#a2a698de0b528b2bac17bd85f57d45d4b", null ],
-    [ "RegisterFunction", "a00049.html#a6820eaa082077f16496effbc9041b7ad", null ],
-    [ "functions", "a00049.html#a2fcc78a63963be5320cf09783b66fab6", null ]
+    [ "Severity", "a00049.html#a227813cbc8fa03c3448a612ffc909d1c", [
+      [ "Error", "a00049.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
+      [ "Warning", "a00049.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
+      [ "Note", "a00049.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    ] ],
+    [ "Diagnosis", "a00049.html#ad3fd818f1be98dc803e5bec959153824", null ],
+    [ "ToString", "a00049.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
+    [ "ToString", "a00049.html#a985dee7ca27aa896332590133606b6a9", null ],
+    [ "columnNumber", "a00049.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
+    [ "lineNumber", "a00049.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
+    [ "message", "a00049.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
+    [ "nodeName", "a00049.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
+    [ "severity", "a00049.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
 ];

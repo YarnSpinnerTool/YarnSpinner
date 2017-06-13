@@ -1,38 +1,18 @@
 var a00072 =
 [
-    [ "SpecialVariables", "a00072.html#a00162", [
-      [ "ShuffleOptions", "a00072.html#aecbb8ab9becd96457d836100b2818078", null ]
+    [ "OperatorInfo", "a00073.html", "a00073" ],
+    [ "Associativity", "a00072.html#a83fa1b8db0e6678006920812b6f33f62", [
+      [ "Left", "a00072.html#a83fa1b8db0e6678006920812b6f33f62a945d5e233cf7d6240f6b783b36a374ff", null ],
+      [ "Right", "a00072.html#a83fa1b8db0e6678006920812b6f33f62a92b09c7c48c520c3c55e497875da437c", null ],
+      [ "None", "a00072.html#a83fa1b8db0e6678006920812b6f33f62a6adf97f83acf6453d4a6a4b1070f3754", null ]
     ] ],
-    [ "State", "a00075.html", "a00075" ],
-    [ "ExecutionState", "a00072.html#add28fa9c8a45ca579e84d05920bbc42d", [
-      [ "Stopped", "a00072.html#add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2", null ],
-      [ "WaitingOnOptionSelection", "a00072.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b", null ],
-      [ "Running", "a00072.html#add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09", null ]
-    ] ],
-    [ "VirtualMachine", "a00072.html#aefa64c4353e5c261f1189649638e49a6", null ],
-    [ "CommandHandler", "a00072.html#a1b57359378059b134ba76acddafd8d81", null ],
-    [ "DeserializeVM", "a00072.html#a52055e419ba627f0788ad3f6d0f9cb1c", null ],
-    [ "FindInstructionPointForLabel", "a00072.html#af613c8b2d098678b6ea05b509c0a0cb6", null ],
-    [ "LineHandler", "a00072.html#aac9ec1011ea2c01460044d7c8355f398", null ],
-    [ "NodeCompleteHandler", "a00072.html#a5bf3aa51578847c18191fec665a840f9", null ],
-    [ "OptionsHandler", "a00072.html#a78dfd54b743e53078eed19ab7be2b6cf", null ],
-    [ "ResetState", "a00072.html#a3ba945c66cb8ba031357a1771453f82b", null ],
-    [ "RunInstruction", "a00072.html#ad2caf9ca4f00cdcbd58983be7c106971", null ],
-    [ "RunNext", "a00072.html#af3cc0337914b9f66454a3d52208dba5f", null ],
-    [ "SerializeVM", "a00072.html#ae66d8c267611573b649233f511beb646", null ],
-    [ "SetNode", "a00072.html#a6364593ea1115d65e34b343422cfbbbd", null ],
-    [ "Stop", "a00072.html#a78b8c4078471af59ba505c28824d84d1", null ],
-    [ "_executionState", "a00072.html#a0ae362616d85f028b7ec3230388926f4", null ],
-    [ "commandHandler", "a00072.html#ab89b02227b92c74552f719afd47848e4", null ],
-    [ "currentNode", "a00072.html#ab7594e14981ad75cecea3b2e7dcf895c", null ],
-    [ "dialogue", "a00072.html#ac506426c503da5f033247c29e11c5e82", null ],
-    [ "lineHandler", "a00072.html#a29b30454f068fc7e107d48bff4346fd9", null ],
-    [ "nodeCompleteHandler", "a00072.html#a5129c63e67e2d4e2780d86b8351320a2", null ],
-    [ "optionsHandler", "a00072.html#acd25fe2e3aa90dc87ba25d9af904465b", null ],
-    [ "program", "a00072.html#a2695dbfe3d9df7ffa3f13ad2231217fb", null ],
-    [ "random", "a00072.html#a408485a00c7cc558428c86ed9dd04fca", null ],
-    [ "state", "a00072.html#a70f2ce6201cdd2430ceaa764ac614ca0", null ],
-    [ "STATE_VERSION_NUMBER", "a00072.html#ae84c732dc75a64589808e1e0fad1a85f", null ],
-    [ "currentNodeName", "a00072.html#ab3afe8360a344c16c21213edb3641481", null ],
-    [ "executionState", "a00072.html#a66491da06023dabfb63d09e6ccbba74f", null ]
+    [ "Operator", "a00072.html#a91a9fcc02c55cbc107fe2687fc0f05d4", null ],
+    [ "Operator", "a00072.html#a50f9f95cd7aefe2a601a7d5b5ee7801a", null ],
+    [ "InfoForOperator", "a00072.html#a871e7b4652c48f456647d3950ac37531", null ],
+    [ "IsOperator", "a00072.html#a77a9edf71f86263e1695869e69505007", null ],
+    [ "NodeParent", "a00072.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00072.html#a0c2ad7c4d6837ffc7b5325bbb8330c51", null ],
+    [ "ToString", "a00072.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "operatorType", "a00072.html#ac2de2f59be0e69b316627a4de16fadd3", null ],
+    [ "operatorTypes", "a00072.html#a8dca7db3b76b8c358aba6068274e07df", null ]
 ];

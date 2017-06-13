@@ -1,9 +1,0 @@
-<map id="Yarn.VirtualMachine" name="Yarn.VirtualMachine">
-<area shape="rect" id="node2" href="$a00036.html" title="{Yarn.Dialogue\n|+ LogDebugMessage\l+ LogErrorMessage\l+ DEFAULT_START\l+ visitedNodes\l+ allNodes\l+ currentNode\l&#45; visitedNodeNames\l|+ Dialogue()\l+ LoadFile()\l+ LoadString()\l+ Run()\l+ SerializeVM()\l+ DeserializeVM()\l+ Stop()\l+ GetTextForNode()\l+ UnloadAll()\l+ Compile()\l+ GetByteCode()\l+ NodeExists()\l+ Analyse()\l}" alt="" coords="228,669,375,1011"/>
-<area shape="rect" id="node5" href="$a00051.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; ParseInput()\l}" alt="" coords="239,1075,364,1211"/>
-<area shape="rect" id="node3" href="$a00049.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="5,337,157,503"/>
-<area shape="rect" id="node4" href="$a00067.html" title="{Yarn.Program\n|+ strings\l+ nodes\l&#45; stringCount\l|+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ Include()\l}" alt="" coords="144,5,283,171"/>
-<area shape="rect" id="node6" href="$a00088.html" title="{Yarn.VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="518,352,663,488"/>
-<area shape="rect" id="node7" href="$a00026.html#a00160" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l|}" alt="" coords="311,27,457,149"/>
-<area shape="rect" id="node8" href="$a00075.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="482,5,656,171"/>
-</map>

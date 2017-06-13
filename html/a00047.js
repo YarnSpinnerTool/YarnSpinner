@@ -1,17 +1,19 @@
 var a00047 =
 [
-    [ "LexerState", "a00048.html", "a00048" ],
-    [ "TokenRule", "a00082.html", "a00082" ],
-    [ "Lexer", "a00047.html#a4bf394bcf675142f33c90541be7dd571", null ],
-    [ "CreateStates", "a00047.html#a646081a52b241abaafe5e0cfaeafd751", null ],
-    [ "EnterState", "a00047.html#ad3ef08f822b310d9864774b057b96995", null ],
-    [ "LineIndentation", "a00047.html#a4079b10b099e5d85f5482f9e7eac4179", null ],
-    [ "Tokenise", "a00047.html#a6a09f1bb13f28acd95fd081954b45437", null ],
-    [ "TokeniseLine", "a00047.html#a20b63f6ef434f6a40fd388f262f03fa8", null ],
-    [ "currentState", "a00047.html#ac90b7dce8103425a148f9e8588f14137", null ],
-    [ "defaultState", "a00047.html#a16b5dbf27a377cde5e8ba0eaa05b5710", null ],
-    [ "indentationStack", "a00047.html#a6631a1b1a9109258ab18927e7587ff9b", null ],
-    [ "LINE_COMMENT", "a00047.html#a29c457125cc4876f8571f5d9afa372e2", null ],
-    [ "shouldTrackNextIndentation", "a00047.html#ac670aac2245cbd4694dfbd5b69313218", null ],
-    [ "states", "a00047.html#a2c65c0ba90f973e459583badefef216a", null ]
+    [ "DefaultVariable", "a00047.html#a00179", [
+      [ "name", "a00047.html#a609feaa53936e7dc42248ff2ba68454a", null ],
+      [ "type", "a00047.html#a904347efdca12f40243c7dedb646153d", null ],
+      [ "value", "a00047.html#a0f00ecb21b58aa754a4bbb61edf62818", null ]
+    ] ],
+    [ "Awake", "a00047.html#ab6a56afc687455f360876eff67891163", null ],
+    [ "Clear", "a00047.html#a0ce614bee8d5b220500fb765390b4ca3", null ],
+    [ "GetNumber", "a00047.html#add85a45dd65a5d4bd41c9d5ce5f77d19", null ],
+    [ "GetValue", "a00047.html#a741593be1a299dcc2136f05b9b4a995a", null ],
+    [ "ResetToDefaults", "a00047.html#a3a05d66cdacadb2e9b618cd0aef45f84", null ],
+    [ "SetNumber", "a00047.html#ac0d2f2e081944ad197992a26ad1a833c", null ],
+    [ "SetValue", "a00047.html#ac4265c1c9da485f13a6b05784b0f668d", null ],
+    [ "Update", "a00047.html#af646a17cfd63039a25149f8fc0776dcb", null ],
+    [ "debugTextView", "a00047.html#a9893656e3683711eb78441b30c52a600", null ],
+    [ "defaultVariables", "a00047.html#a464c8a4ff6a3c624602d0adc55dfc59a", null ],
+    [ "variables", "a00047.html#a4a4fec7b4ad707cd0603393dd57de96c", null ]
 ];

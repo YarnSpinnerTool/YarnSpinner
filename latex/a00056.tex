@@ -1,67 +1,99 @@
-\hypertarget{a00056}{\section{Yarn.\-Loader.\-Node\-Info Struct Reference}
-\label{a00056}\index{Yarn.\-Loader.\-Node\-Info@{Yarn.\-Loader.\-Node\-Info}}
+\hypertarget{a00056}{\section{Yarn.\-Unity.\-Icons Class Reference}
+\label{a00056}\index{Yarn.\-Unity.\-Icons@{Yarn.\-Unity.\-Icons}}
 }
 
 
-Collaboration diagram for Yarn.\-Loader.\-Node\-Info\-:
+Collaboration diagram for Yarn.\-Unity.\-Icons\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{a00248}
+\includegraphics[width=170pt]{a00367}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_aa56085ea115b77cb9ee975686e726c29}{Node\-Info} (string \hyperlink{a00056_aafc45bbc86a9acb9bdbcf7877695a96c}{title}, string \hyperlink{a00056_a63d7ebed8095a20fc5d0d74c84a34f6c}{text}, string \hyperlink{a00056_acd4d4915f6cc14f8b0f1f92d27da8b36}{tags})
+static Texture \hyperlink{a00056_aec8aea03eb6e31771ebc98e0611fff79}{success\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00056_aae7cc0e5016db04a90b2aa0e80957626}{failed\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00056_a3f03f2f0fa137e349853d755e79f2e4a}{ignored\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static Texture \hyperlink{a00056_aa78ab016ad041bc36850c8b20ba63972}{window\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00056_aafc45bbc86a9acb9bdbcf7877695a96c}{title}
+static Texture \hyperlink{a00056_a267896b2c4512f5b17772e7e1e46d6da}{Get\-Texture} (string texture\-Name)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00056_a63d7ebed8095a20fc5d0d74c84a34f6c}{text}
+static Texture \hyperlink{a00056_a40e137f48495168d4423c103c8935a1b}{\-\_\-success\-Icon}
 \item 
-string \hyperlink{a00056_acd4d4915f6cc14f8b0f1f92d27da8b36}{tags}
+static Texture \hyperlink{a00056_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\-\_\-failed\-Icon}
+\item 
+static Texture \hyperlink{a00056_aeb6761c6115d55f24df4ad963a2d224c}{\-\_\-ignored\-Icon}
+\item 
+static Texture \hyperlink{a00056_abba8fef6cc12836ea431a8a7c9e2f3db}{\-\_\-window\-Icon}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00056_aa56085ea115b77cb9ee975686e726c29}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!Node\-Info@{Node\-Info}}
-\index{Node\-Info@{Node\-Info}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
-\subsubsection[{Node\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Node\-Info.\-Node\-Info (
+\subsection{Member Function Documentation}
+\hypertarget{a00056_a267896b2c4512f5b17772e7e1e46d6da}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!Get\-Texture@{Get\-Texture}}
+\index{Get\-Texture@{Get\-Texture}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{Get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}static Texture Yarn.\-Unity.\-Icons.\-Get\-Texture (
 \begin{DoxyParamCaption}
-\item[{string}]{title, }
-\item[{string}]{text, }
-\item[{string}]{tags}
+\item[{string}]{texture\-Name}
 \end{DoxyParamCaption}
-)}}\label{a00056_aa56085ea115b77cb9ee975686e726c29}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00056_a267896b2c4512f5b17772e7e1e46d6da}
 
 \begin{DoxyCode}
-161                                                                     \{
-162                 this.title = \hyperlink{a00056_aafc45bbc86a9acb9bdbcf7877695a96c}{title};
-163                 this.text = \hyperlink{a00056_a63d7ebed8095a20fc5d0d74c84a34f6c}{text};
-164                 this.tags = \hyperlink{a00056_acd4d4915f6cc14f8b0f1f92d27da8b36}{tags};
-165             \}
+357                                                               \{
+358             var guids = AssetDatabase.FindAssets (string.Format (\textcolor{stringliteral}{"\{0\} t:texture"}, textureName));
+359             \textcolor{keywordflow}{if} (guids.Length == 0)
+360                 \textcolor{keywordflow}{return} null;
+361 
+362             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+363             \textcolor{keywordflow}{return} AssetDatabase.LoadAssetAtPath<Texture>(path);
+364         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00056_acd4d4915f6cc14f8b0f1f92d27da8b36}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!tags@{tags}}
-\index{tags@{tags}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
-\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-tags}}\label{a00056_acd4d4915f6cc14f8b0f1f92d27da8b36}
-\hypertarget{a00056_a63d7ebed8095a20fc5d0d74c84a34f6c}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!text@{text}}
-\index{text@{text}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
-\subsubsection[{text}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-text}}\label{a00056_a63d7ebed8095a20fc5d0d74c84a34f6c}
-\hypertarget{a00056_aafc45bbc86a9acb9bdbcf7877695a96c}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!title@{title}}
-\index{title@{title}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
-\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-title}}\label{a00056_aafc45bbc86a9acb9bdbcf7877695a96c}
+\hypertarget{a00056_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-failed\-Icon@{\-\_\-failed\-Icon}}
+\index{\-\_\-failed\-Icon@{\-\_\-failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00056_a75ef0bcf3f5968f11949e6bfa4fdddd5}
+\hypertarget{a00056_aeb6761c6115d55f24df4ad963a2d224c}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-ignored\-Icon@{\-\_\-ignored\-Icon}}
+\index{\-\_\-ignored\-Icon@{\-\_\-ignored\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-ignored\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-ignored\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00056_aeb6761c6115d55f24df4ad963a2d224c}
+\hypertarget{a00056_a40e137f48495168d4423c103c8935a1b}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-success\-Icon@{\-\_\-success\-Icon}}
+\index{\-\_\-success\-Icon@{\-\_\-success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00056_a40e137f48495168d4423c103c8935a1b}
+\hypertarget{a00056_abba8fef6cc12836ea431a8a7c9e2f3db}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-window\-Icon@{\-\_\-window\-Icon}}
+\index{\-\_\-window\-Icon@{\-\_\-window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00056_abba8fef6cc12836ea431a8a7c9e2f3db}
 
 
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Property Documentation}
+\hypertarget{a00056_aae7cc0e5016db04a90b2aa0e80957626}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!failed\-Icon@{failed\-Icon}}
+\index{failed\-Icon@{failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00056_aae7cc0e5016db04a90b2aa0e80957626}
+\hypertarget{a00056_a3f03f2f0fa137e349853d755e79f2e4a}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!ignored\-Icon@{ignored\-Icon}}
+\index{ignored\-Icon@{ignored\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{ignored\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-ignored\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00056_a3f03f2f0fa137e349853d755e79f2e4a}
+\hypertarget{a00056_aec8aea03eb6e31771ebc98e0611fff79}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!success\-Icon@{success\-Icon}}
+\index{success\-Icon@{success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00056_aec8aea03eb6e31771ebc98e0611fff79}
+\hypertarget{a00056_aa78ab016ad041bc36850c8b20ba63972}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!window\-Icon@{window\-Icon}}
+\index{window\-Icon@{window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00056_aa78ab016ad041bc36850c8b20ba63972}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00121}{Loader.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\-Editor/\hyperlink{a00127}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

@@ -1,87 +1,39 @@
-
-
-{\bfseries \hyperlink{a00026}{Yarn} Spinner} is an interpreter for the \href{https://github.com/infiniteammoinc/Yarn}{\tt Yarn} language, written in C\#.
-
 \begin{quotation}
-{\bfseries New!} Join our \href{http://lab.to/narrativegamedev}{\tt narrative game development} Slack! {\bfseries New!} Continual integration \href{https://thesecretlab.github.io/YarnSpinner/html/}{\tt A\-P\-I documentation} now available
+$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ This document only matters to you if you want to build \hyperlink{a00040}{Yarn} Spinner from source. In almost all cases, you'll be totally fine with \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt downloading a build}, and using that in your project.
 
 \end{quotation}
 
 
-\hyperlink{a00026}{Yarn} is a language that's designed to make it {\itshape super easy} to create interactive dialogue for games. \hyperlink{a00026}{Yarn}'s very similar in style to \href{http://twinery.org}{\tt Twine}, so if you already know that, you'll be right at home! If you don't, that's cool -\/ \hyperlink{a00026}{Yarn}'s syntax is extremely minimal, and there's not much there to learn. The \hyperlink{a00026}{Yarn} language is used in a number of cool games, including \href{http://nightinthewoods.com}{\tt Night In The Woods} and \href{https://www.kickstarter.com/projects/foamsword/knights-and-bikes}{\tt Knights and Bikes}.
+\subsection*{Windows and Mac using Mono\-Develop}
 
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ \hyperlink{a00026}{Yarn} Spinner is still under development, and we haven't made our 1.\-0 release yet. It's {\itshape probably} fine to use right now, but there are a few bits and pieces that might change between now and first release.
+To build \hyperlink{a00040}{Yarn} Spinner on Windows or Mac, you'll need Mono\-Develop. You can \href{http://www.monodevelop.com/download/}{\tt download Mono\-Develop for your O\-S from the Mono\-Develop site}.
 
-\end{quotation}
+\subsection*{Linux}
 
+To build \hyperlink{a00040}{Yarn} Spinner on Linux, you can either
+\begin{DoxyItemize}
+\item use \href{http://www.mono-project.com/docs/tools+libraries/tools/xbuild/}{\tt xbuild} and \href{http://www.nuget.org}{\tt nuget}.
+\item Then ensure you have the correct packages installed by nuget, {\ttfamily nuget restore Yarn\-Spinner.\-sln}.
+\item See the \href{../../build.sh}{\tt build.\-sh} script for further information on how using mono to build. or
+\item use \href{http://flatpak.org/getting.html}{\tt Flatpak}, you can \href{http://www.monodevelop.com/download/linux/}{\tt download Mono\-Develop from the Mono\-Develop site}.
+\end{DoxyItemize}
 
-\href{https://travis-ci.org/thesecretlab/YarnSpinner}{\tt !\mbox{[}Build Status\mbox{]}(https\-://travis-\/ci.\-org/thesecretlab/\-Yarn\-Spinner.\-svg?branch=master)}
-
-
-
-\begin{quotation}
-(Image from \char`\"{}\mbox{[}\-Night in the Woods\mbox{]}(http\-://nightinthewoods.\-com)\char`\"{} by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
-
-\end{quotation}
-
-
-\hyperlink{a00026}{Yarn} Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
-
-\subsection*{Quick Start}
-
-
-\begin{DoxyEnumerate}
-\item Download the \href{https://github.com/InfiniteAmmoInc/Yarn}{\tt Yarn editor}, so that you can create and edit \hyperlink{a00026}{Yarn} files.
-\end{DoxyEnumerate}
-\begin{DoxyEnumerate}
-\item Create a new project in \href{https://unity3d.com/get-unity}{\tt Unity}.
-\item Download the \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt latest release's Unity package}.
-\item Import the package.
-\item Go to the {\ttfamily \hyperlink{a00026}{Yarn} Spinner/\-Examples/} folder in Unity, and open one of the demo scenes.
-\item Run the game, and poke around!
-\end{DoxyEnumerate}
-
-\subsection*{What To Do Next}
+\subsection*{Using Mono\-Develop}
 
 
 \begin{DoxyItemize}
-\item \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt Download Yarn Spinner.}
-\item \hyperlink{a00006}{Learn how to build Yarn Spinner from source.}
-\item \href{https://github.com/infiniteammoinc/Yarn}{\tt Learn more about Yarn, and the Yarn editor.}
-\item \hyperlink{a00014}{Learn more about writing dialogue in Yarn.}
-\item \hyperlink{a00012}{Learn about using Yarn Spinner in your Unity game.}
+\item Open {\bfseries Yarn\-Spinner.\-sln}.
+\item Open the {\bfseries Build menu}, and choose {\bfseries Build All}.
+\item Open the {\bfseries Unity/\-Assets/\-Yarn Spinner} folder. You'll find a copy of {\bfseries Yarn\-Spinner.\-dll} there.
+\item Copy that D\-L\-L file wherever you need it.
 \end{DoxyItemize}
 
-\href{http://shop.oreilly.com/product/0636920055105.do}{\tt }
+\subsection*{Building Documentation}
 
-We also produced a training video on integrating and using the basics of \hyperlink{a00026}{Yarn} Spinner in Unity games, \href{http://shop.oreilly.com/product/0636920055105.do}{\tt available commercially from O'Reilly Media} (and \href{https://www.safaribooksonline.com/library/view/creating-narrative-games/9781491969830/}{\tt also on Safari}).
+\hyperlink{a00040}{Yarn} Spinner uses \href{https://www.stack.nl/~dimitri/doxygen}{\tt Doxygen} to generate \href{http://docbook.org/}{\tt Doc\-Book}, \href{https://en.wikipedia.org/wiki/HTML}{\tt H\-T\-M\-L}, \href{https://www.latex-project.org/help/documentation/}{\tt La\-Te\-X}, \href{https://en.wikipedia.org/wiki/Rich_Text_Format}{\tt R\-T\-F}, and \href{https://en.wikipedia.org/wiki/XML}{\tt X\-M\-L} documentation. \href{https://www.gnu.org/software/global/}{\tt G\-N\-U G\-L\-O\-B\-A\-L} is also used.
 
-\subsection*{License}
+Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of \hyperlink{a00175}{Yarn\-Spinner} itself and not an actual error in the documentation.
 
-\hyperlink{a00026}{Yarn} Spinner is available under the \hyperlink{a00016}{M\-I\-T License}. This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
+``` rm -\/fr Documentation/\{docbook,html,latex,rtf,xml\} doxygen Documentation/\-Doxyfile $>$ doxyoutput.\-txt 2$>$\&1 grep -\/i error doxyoutput.\-txt ```
 
-
-\begin{DoxyItemize}
-\item \href{https://tldrlegal.com/license/mit-license}{\tt Learn more about what this license lets you do}.
-\end{DoxyItemize}
-
-\subsection*{Made by Secret Lab!}
-
-\hyperlink{a00026}{Yarn} Spinner was originally created by \href{http://secretlab.com.au}{\tt Secret Lab}, an Australian game dev studio! \href{https://twitter.com/thesecretlab}{\tt Come say hi}! You can visit the \href{http://www.secretlab.com.au/yarnspinner}{\tt Yarn Spinner page} on the Secret Lab website for a little more info, and to donate to \hyperlink{a00026}{Yarn} Spinner open source development at Secret Lab.
-
-The awesome \href{Documentation/YarnSpinnerLogo.png}{\tt logo} was made by the excellent \href{https://twitter.com/RexSmeal}{\tt Rex Smeal}, and is under the \href{http://creativecommons.org/licenses/by-sa/4.0/}{\tt Creative Commons Attribution-\/\-Share\-Alike 4.\-0 International License}.
-
-\subsection*{Help Us Make \hyperlink{a00026}{Yarn} Spinner!}
-
-\hyperlink{a00026}{Yarn} Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out -\/ we'd love to have your help in improving our \hyperlink{a00012}{documentation}, in spreading the word, and in finding bugs.
-
-
-\begin{DoxyItemize}
-\item Our \href{https://github.com/thesecretlab/YarnSpinner/issues}{\tt issues page} contains a list of things we'd love your help in improving.
-\item Hop into our I\-R\-C channel, which is \href{https://webchat.freenode.net/?channels=yarnspinner}{\tt \#yarnspinner on Freenode}, to chat to the team, lend a hand, or ask questions.
-\item {\bfseries New!} Join our \href{http://lab.to/narrativegamedev}{\tt narrative game development} Slack!
-\item {\bfseries New!} Continual integration \href{https://thesecretlab.github.io/YarnSpinner/html/}{\tt A\-P\-I documentation} now available
-\end{DoxyItemize}
-
-If you want to contribute to \hyperlink{a00026}{Yarn} Spinner (!!), \hyperlink{a00002}{go read our contributor's guide!} 
+\href{https://daringfireball.net/projects/markdown/}{\tt Mark\-Down} documentation is available via conversion of the X\-M\-L output to Markdown using third party tools such as \href{http://pandoc.org}{\tt Pandoc} or \href{https://github.com/pferdinand/doxygen2md}{\tt doxygen2md} 

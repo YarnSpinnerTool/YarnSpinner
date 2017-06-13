@@ -1,186 +1,109 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00047" kind="class" prot="package">
-    <compoundname>Yarn::Lexer</compoundname>
-    <innerclass refid="a00048" prot="package">Yarn::Lexer::LexerState</innerclass>
-    <innerclass refid="a00082" prot="package">Yarn::Lexer::TokenRule</innerclass>
+  <compounddef id="a00047" kind="class" prot="public">
+    <compoundname>ExampleVariableStorage</compoundname>
+    <basecompoundref refid="a00103" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
+    <innerclass refid="a00179" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00047_1a29c457125cc4876f8571f5d9afa372e2" prot="private" static="no" mutable="no">
-        <type>const string</type>
-        <definition>const string Yarn.Lexer.LINE_COMMENT</definition>
+      <memberdef kind="variable" id="a00047_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00100" kindref="compound">Yarn.Value</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Yarn.Value&gt; ExampleVariableStorage.variables</definition>
         <argsstring></argsstring>
-        <name>LINE_COMMENT</name>
-        <initializer>= &quot;//&quot;</initializer>
+        <name>variables</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00100" kindref="compound">Yarn.Value</ref>&gt; ()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="298" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="298" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00047_1a2c65c0ba90f973e459583badefef216a" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00048" kindref="compound">LexerState</ref> &gt;</type>
-        <definition>Dictionary&lt;string, LexerState&gt; Yarn.Lexer.states</definition>
-        <argsstring></argsstring>
-        <name>states</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="300" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="300" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00047_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" static="no" mutable="no">
-        <type><ref refid="a00048" kindref="compound">LexerState</ref></type>
-        <definition>LexerState Yarn.Lexer.defaultState</definition>
-        <argsstring></argsstring>
-        <name>defaultState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="302" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="302" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00047_1ac90b7dce8103425a148f9e8588f14137" prot="private" static="no" mutable="no">
-        <type><ref refid="a00048" kindref="compound">LexerState</ref></type>
-        <definition>LexerState Yarn.Lexer.currentState</definition>
-        <argsstring></argsstring>
-        <name>currentState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="303" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="303" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00047_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" static="no" mutable="no">
-        <type>Stack&lt; KeyValuePair&lt; int, bool &gt; &gt;</type>
-        <definition>Stack&lt;KeyValuePair&lt;int,bool&gt; &gt; Yarn.Lexer.indentationStack</definition>
-        <argsstring></argsstring>
-        <name>indentationStack</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="307" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="307" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00047_1ac670aac2245cbd4694dfbd5b69313218" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.shouldTrackNextIndentation</definition>
-        <argsstring></argsstring>
-        <name>shouldTrackNextIndentation</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="308" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="308" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="38" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00047_1a4bf394bcf675142f33c90541be7dd571" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Lexer.Lexer</definition>
-        <argsstring>()</argsstring>
-        <name>Lexer</name>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00047_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
+        <type><ref refid="a00179" kindref="compound">DefaultVariable</ref>[]</type>
+        <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
+        <argsstring></argsstring>
+        <name>defaultVariables</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="310" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="310" bodyend="313"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="51" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00047_1a6a09f1bb13f28acd95fd081954b45437" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00081" kindref="compound">TokenList</ref></type>
-        <definition>TokenList Yarn.Lexer.Tokenise</definition>
-        <argsstring>(string title, string text)</argsstring>
-        <name>Tokenise</name>
-        <param>
-          <type>string</type>
-          <declname>title</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
+      <memberdef kind="variable" id="a00047_1a9893656e3683711eb78441b30c52a600" prot="public" static="no" mutable="no">
+        <type>UnityEngine.UI.Text</type>
+        <definition>UnityEngine.UI.Text ExampleVariableStorage.debugTextView</definition>
+        <argsstring></argsstring>
+        <name>debugTextView</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="447" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="447" bodyend="475"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="55" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00047_1a646081a52b241abaafe5e0cfaeafd751" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00047_1ab6a56afc687455f360876eff67891163" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.Lexer.CreateStates</definition>
+        <definition>void ExampleVariableStorage.Awake</definition>
         <argsstring>()</argsstring>
-        <name>CreateStates</name>
+        <name>Awake</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="315" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="315" bodyend="445"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="58" bodyend="61"/>
       </memberdef>
-      <memberdef kind="function" id="a00047_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00081" kindref="compound">TokenList</ref></type>
-        <definition>TokenList Yarn.Lexer.TokeniseLine</definition>
-        <argsstring>(string line, int lineNumber)</argsstring>
-        <name>TokeniseLine</name>
-        <param>
-          <type>string</type>
-          <declname>line</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="477" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="477" bodyend="641"/>
-      </memberdef>
-      <memberdef kind="function" id="a00047_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>int Yarn.Lexer.LineIndentation</definition>
-        <argsstring>(string line)</argsstring>
-        <name>LineIndentation</name>
-        <param>
-          <type>string</type>
-          <declname>line</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="644" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="644" bodyend="654"/>
-      </memberdef>
-      <memberdef kind="function" id="a00047_1ad3ef08f822b310d9864774b057b96995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00047_1af646a17cfd63039a25149f8fc0776dcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.Lexer.EnterState</definition>
-        <argsstring>(LexerState state)</argsstring>
-        <name>EnterState</name>
+        <definition>void ExampleVariableStorage.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="146" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00047_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.ResetToDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>ResetToDefaults</name>
+        <reimplements refid="a00103_1a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="64" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="a00047_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Yarn.Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00103_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplements>
         <param>
-          <type><ref refid="a00048" kindref="compound">LexerState</ref></type>
-          <declname>state</declname>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type><ref refid="a00100" kindref="compound">Yarn.Value</ref></type>
+          <declname>value</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -188,41 +111,163 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="656" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="656" bodyend="661"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="a00047_1a741593be1a299dcc2136f05b9b4a995a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override <ref refid="a00100" kindref="compound">Yarn.Value</ref></type>
+        <definition>override Yarn.Value ExampleVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00103_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="130" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="a00047_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00103_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="140" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="140" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="a00103_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00102_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="369" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="369" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="a00103_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>float</type>
+        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00102_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="374" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" bodystart="374" bodyend="377"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="530">
-        <label>Yarn.Lexer.LexerState</label>
-        <link refid="a00048"/>
-      </node>
-      <node id="529">
-        <label>Yarn.Lexer</label>
-        <link refid="a00047"/>
-        <childnode refid="530" relation="usage">
-          <edgelabel>-currentState</edgelabel>
-          <edgelabel>-defaultState</edgelabel>
+    <inheritancegraph>
+      <node id="494">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00103"/>
+        <childnode refid="495" relation="public-inheritance">
+        </childnode>
+        <childnode refid="496" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="493">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00047"/>
+        <childnode refid="494" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="496">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="495">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="498">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00103"/>
+        <childnode refid="499" relation="public-inheritance">
+        </childnode>
+        <childnode refid="500" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="497">
+        <label>ExampleVariableStorage</label>
+        <link refid="a00047"/>
+        <childnode refid="498" relation="public-inheritance">
+        </childnode>
+        <childnode refid="501" relation="usage">
+          <edgelabel>+defaultVariables</edgelabel>
+        </childnode>
+        <childnode refid="503" relation="usage">
+          <edgelabel>+debugTextView</edgelabel>
+        </childnode>
+      </node>
+      <node id="500">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00102"/>
+      </node>
+      <node id="503">
+        <label>UnityEngine</label>
+      </node>
+      <node id="501">
+        <label>ExampleVariableStorage.DefaultVariable</label>
+        <link refid="a00179"/>
+        <childnode refid="502" relation="usage">
+          <edgelabel>+type</edgelabel>
+        </childnode>
+      </node>
+      <node id="499">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="502">
+        <label>Yarn</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="205" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="205" bodyend="663"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleVariableStorage.cs" bodystart="34" bodyend="160"/>
     <listofallmembers>
-      <member refid="a00047_1a646081a52b241abaafe5e0cfaeafd751" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>CreateStates</name></member>
-      <member refid="a00047_1ac90b7dce8103425a148f9e8588f14137" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>currentState</name></member>
-      <member refid="a00047_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>defaultState</name></member>
-      <member refid="a00047_1ad3ef08f822b310d9864774b057b96995" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>EnterState</name></member>
-      <member refid="a00047_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>indentationStack</name></member>
-      <member refid="a00047_1a4bf394bcf675142f33c90541be7dd571" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Lexer</name></member>
-      <member refid="a00047_1a29c457125cc4876f8571f5d9afa372e2" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LINE_COMMENT</name></member>
-      <member refid="a00047_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LineIndentation</name></member>
-      <member refid="a00047_1ac670aac2245cbd4694dfbd5b69313218" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>shouldTrackNextIndentation</name></member>
-      <member refid="a00047_1a2c65c0ba90f973e459583badefef216a" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>states</name></member>
-      <member refid="a00047_1a6a09f1bb13f28acd95fd081954b45437" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Tokenise</name></member>
-      <member refid="a00047_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>TokeniseLine</name></member>
+      <member refid="a00047_1ab6a56afc687455f360876eff67891163" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Awake</name></member>
+      <member refid="a00047_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00047_1a9893656e3683711eb78441b30c52a600" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>debugTextView</name></member>
+      <member refid="a00047_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>defaultVariables</name></member>
+      <member refid="a00103_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetNumber</name></member>
+      <member refid="a00047_1a741593be1a299dcc2136f05b9b4a995a" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00047_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>ResetToDefaults</name></member>
+      <member refid="a00103_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetNumber</name></member>
+      <member refid="a00047_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00047_1af646a17cfd63039a25149f8fc0776dcb" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Update</name></member>
+      <member refid="a00047_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

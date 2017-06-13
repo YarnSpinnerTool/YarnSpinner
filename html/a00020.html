@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Analysis.ASTAnalyser Class Reference</title>
+<title>YarnSpinner: Extending Yarn Spinner</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,9 +46,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -66,14 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
           </span>
         </div>
       </li>
-    </ul>
-  </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -106,64 +98,53 @@ $(document).ready(function(){initNavTree('a00020.html','');});
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00318.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Analysis.ASTAnalyser Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Extending <a class="el" href="a00040.html">Yarn</a> Spinner </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.ASTAnalyser:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00319.png" border="0" usemap="#_yarn_8_analysis_8_a_s_t_analyser_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_analysis_8_a_s_t_analyser_coll__map" id="_yarn_8_analysis_8_a_s_t_analyser_coll__map">
-</map>
-</div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a07bb220dead44ed12c8842de706ecdf7"><td class="memItemLeft" align="right" valign="top">abstract IEnumerable&lt; <a class="el" href="a00035.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#a07bb220dead44ed12c8842de706ecdf7">Diagnose</a> (<a class="el" href="a00054.html">Yarn.Parser.Node</a> node)</td></tr>
-<tr class="separator:a07bb220dead44ed12c8842de706ecdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a07bb220dead44ed12c8842de706ecdf7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract IEnumerable&lt;<a class="el" href="a00035.html">Diagnosis</a>&gt; Yarn.Analysis.ASTAnalyser.Diagnose </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00054.html">Yarn.Parser.Node</a>&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="">Analyser.cs</a></li>
+<div class="textblock"><h2>Style Guide</h2>
+<p><code>Inline Code</code> contain short snippets of code for your project </p>
+<pre class="fragment">Code Blocks contain segments or chunks of code for your project
+</pre><p><b>Bold indicate actions (Select menu item, copying file, etc.)</b></p>
+<p>***Bold italic text indicates emphasis***</p>
+<blockquote class="doxtable">
+<p>Blockquotes contain essential information</p>
+<p></p>
+</blockquote>
+<h2>Introduction</h2>
+<p>This document intends to demonstrate to a developer how they can add new functions so that they can be called from inside <a class="el" href="a00040.html">Yarn</a>.</p>
+<h3>Programming style</h3>
+<ul>
+<li>It is recommended that you follow our programming style so that in the case of bug or patch submission, it makes it easier for us to read. As such, indents should be four spaces and not tab stops.</li>
+<li>We use the Doxygen format for documentation, thus three forward slashes <code>///</code> indicate the head of a documentation comment and details for documentation comments are contained within the <code>/* ....</code> structure. Please refer to the Doxygen site for more information.</li>
+<li>Other comments should use two forward slashes. This will ensure proper code commentary without it appearing in generated API documentation.</li>
 </ul>
-</div><!-- contents -->
+<h2>Creating a custom command</h2>
+<p>Creating a custom command is a simple two step procedure.i</p>
+<ol type="1">
+<li>We need to get the dialogue object that's in use, then regiser a new function for it. ``` // get the Dialogue object // varstorage_implementation is the object that handles variable storage - it's not important in this example var dialogue = new Dialogue(varstorage_implementation); ``<code></code></li>
+<li><code>Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns</code>true<code>if it's even: </code>`` // RegisterFunction(name, parameterCount, implementation) dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) { return (int)parameters[0].AsNumber % 2 == 0; }); ``` When the function is called, the delegate you provide will be run.</li>
+</ol>
+<p>Some notes:</p>
+<ul>
+<li>You don't have to return a value from your function.</li>
+<li>The parameters passed to your function are of type <a class="el" href="a00100.html">Yarn.Value</a>. You can get their value as numbers, bools or strings by using the <code>AsNumber</code>, <code>AsString</code> and <code>AsBool</code> properties.</li>
+<li>You can only return values of the following types:<ul>
+<li>String</li>
+<li>Float</li>
+<li>Double</li>
+<li>Integer</li>
+<li><a class="el" href="a00100.html">Yarn.Value</a></li>
+</ul>
+</li>
+<li><a class="el" href="a00040.html">Yarn</a> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <code>-1</code> as your parameter count, the function may have any number of parameters. </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00026.html">Yarn</a></li><li class="navelem"><a class="el" href="a00151.html">Analysis</a></li><li class="navelem"><a class="el" href="a00020.html">ASTAnalyser</a></li>
-    <li class="footer">Generated on Tue Jun 13 2017 01:27:53 for YarnSpinner by
+    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

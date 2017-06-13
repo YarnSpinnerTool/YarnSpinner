@@ -1,11 +1,18 @@
 var a00054 =
 [
-    [ "Node", "a00054.html#ae0562dc06ca747307b66039ef2f28772", null ],
+    [ "Type", "a00054.html#aceddb5496ccffe668bced2d131e4bf86", [
+      [ "Value", "a00054.html#aceddb5496ccffe668bced2d131e4bf86a689202409e48743b914713f96d93947c", null ],
+      [ "FunctionCall", "a00054.html#aceddb5496ccffe668bced2d131e4bf86affb017548928ab2305e7c55cb67c04ca", null ]
+    ] ],
+    [ "Expression", "a00054.html#a91f0536300ebb39eaf9b7526c7e97364", null ],
+    [ "Expression", "a00054.html#ac2a8b8fd554b8006b5e2f1d1ca3cf93e", null ],
     [ "NodeParent", "a00054.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00054.html#ab11501ebf251fdaa7cfe44edfa993068", null ],
+    [ "Parse", "a00054.html#a686da57aaf67d50d2832f9ee0028a979", null ],
+    [ "PrintTree", "a00054.html#a509ba6d93218203bae56a5a7a82e8261", null ],
+    [ "ShouldApplyPrecedence", "a00054.html#a5004a8eaa00b2b55856ecb4f339033fb", null ],
     [ "ToString", "a00054.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "_statements", "a00054.html#ae910a20906be9b1964499efaefa48274", null ],
-    [ "name", "a00054.html#a3cfa07840da3a7a92c820788e902aefb", null ],
-    [ "source", "a00054.html#a005a6b0f614beb77708fc5ce8fea66e1", null ],
-    [ "statements", "a00054.html#abdae3fb1c6927b38ce29b1b71a00cb12", null ]
+    [ "function", "a00054.html#a9c1859ce5ad4c86ded8dd0d61da61320", null ],
+    [ "parameters", "a00054.html#a7b21380bead8ae08b2cfc6594edab32c", null ],
+    [ "type", "a00054.html#ad55c92df835006328bc2a79a8f91efb9", null ],
+    [ "value", "a00054.html#a569e516782891544c334ff8131b23108", null ]
 ];

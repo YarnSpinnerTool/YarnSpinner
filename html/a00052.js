@@ -1,9 +1,9 @@
 var a00052 =
 [
-    [ "Clear", "a00052.html#aa6d243e7ef02b91f793a221f509dae69", null ],
-    [ "GetNumber", "a00052.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "a00052.html#a0ce77e8245c504a777540e359704aa2a", null ],
-    [ "SetNumber", "a00052.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "a00052.html#a653a459811e5c19549f4b31269093ef5", null ],
-    [ "variables", "a00052.html#aad18acd95297edb8ed496857337f8071", null ]
+    [ "DialogueComplete", "a00052.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "a00052.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "a00052.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "a00052.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "a00052.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "a00052.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

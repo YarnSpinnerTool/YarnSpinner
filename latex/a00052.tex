@@ -1,43 +1,40 @@
-\hypertarget{a00052}{\section{Yarn.\-Memory\-Variable\-Store Class Reference}
-\label{a00052}\index{Yarn.\-Memory\-Variable\-Store@{Yarn.\-Memory\-Variable\-Store}}
+\hypertarget{a00052}{\section{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour Class Reference}
+\label{a00052}\index{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour@{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}}
 }
 
 
-Inheritance diagram for Yarn.\-Memory\-Variable\-Store\-:
+Inheritance diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{a00300}
+\includegraphics[width=350pt]{a00354}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Memory\-Variable\-Store\-:
+Collaboration diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{a00301}
+\includegraphics[width=236pt]{a00355}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override void \hyperlink{a00052_a653a459811e5c19549f4b31269093ef5}{Set\-Value} (string variable\-Name, \hyperlink{a00086}{Value} value)
+virtual I\-Enumerator \hyperlink{a00052_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
 \item 
-override \hyperlink{a00086}{Value} \hyperlink{a00052_a0ce77e8245c504a777540e359704aa2a}{Get\-Value} (string variable\-Name)
+abstract I\-Enumerator \hyperlink{a00052_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00040_a00180}{Yarn.\-Line} line)
 \item 
-override void \hyperlink{a00052_aa6d243e7ef02b91f793a221f509dae69}{Clear} ()
+abstract I\-Enumerator \hyperlink{a00052_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00040_a00182}{Yarn.\-Options} options\-Collection, \hyperlink{a00040_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
 \item 
-void \hyperlink{a00021_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
+abstract I\-Enumerator \hyperlink{a00052_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00040_a00177}{Yarn.\-Command} command)
 \item 
-float \hyperlink{a00021_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
+virtual I\-Enumerator \hyperlink{a00052_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
 \item 
-Dictionary$<$ string, \hyperlink{a00086}{Value} $>$ \hyperlink{a00052_aad18acd95297edb8ed496857337f8071}{variables} = new Dictionary$<$string, \hyperlink{a00086}{Value}$>$()
+virtual I\-Enumerator \hyperlink{a00052_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
 \end{DoxyCompactItemize}
 
 
@@ -45,107 +42,92 @@ Dictionary$<$ string, \hyperlink{a00086}{Value} $>$ \hyperlink{a00052_aad18acd95
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00052_aa6d243e7ef02b91f793a221f509dae69}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Memory\-Variable\-Store.\-Clear (
+\hypertarget{a00052_aecc60aee9e9386da1f71fb183f43c52d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
+\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_aa6d243e7ef02b91f793a221f509dae69}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_aecc60aee9e9386da1f71fb183f43c52d}
 
 
-Implements \hyperlink{a00021_a7e45c37f3662ce9f2643e306bb2b3adc}{Yarn.\-Base\-Variable\-Storage}.
+Reimplemented in \hyperlink{a00053_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
 
 \begin{DoxyCode}
-336                                      \{
-337             variables.Clear ();
-338         \}
+359                                                        \{
+360             \textcolor{comment}{// Default implementation does nothing.}
+361             yield \textcolor{keywordflow}{break};
+362         \}
 \end{DoxyCode}
-\hypertarget{a00021_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
+\hypertarget{a00052_af9d88ca81ac536d43046ca6572e3ff54}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
+\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00021_a1b7f7f4468b2463e7b47986d99362279}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_af9d88ca81ac536d43046ca6572e3ff54}
 
 
-Implements \hyperlink{a00088_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+Reimplemented in \hyperlink{a00053_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
 
 \begin{DoxyCode}
-73                                                     \{
-74             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
-75         \}
+337                                                      \{
+338             \textcolor{comment}{// Default implementation does nothing.}
+339             yield \textcolor{keywordflow}{break};
+340         \}
 \end{DoxyCode}
-\hypertarget{a00052_a0ce77e8245c504a777540e359704aa2a}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Value} Yarn.\-Memory\-Variable\-Store.\-Get\-Value (
+\hypertarget{a00052_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
+\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
+\item[{string}]{next\-Node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_a0ce77e8245c504a777540e359704aa2a}
-
-
-Implements \hyperlink{a00021_a13b142df804d9842e97e628e252928e8}{Yarn.\-Base\-Variable\-Storage}.
-
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_a2900548a0704d39d4502a153945f4bef}
 
 \begin{DoxyCode}
-326         \{
-327             Value value = \hyperlink{a00086_a1ed2964965baca8621c45efa23f37660}{Value.NULL};
-328             \textcolor{keywordflow}{if} (\hyperlink{a00052_aad18acd95297edb8ed496857337f8071}{variables}.ContainsKey(variableName)) \{
-329 
-330                 value = \hyperlink{a00052_aad18acd95297edb8ed496857337f8071}{variables} [variableName];
-331 
-332             \}
-333             \textcolor{keywordflow}{return} value;
-334         \}               
+353                                                                  \{
+354             \textcolor{comment}{// Default implementation does nothing.}
+355             yield \textcolor{keywordflow}{break};
+356         \}
 \end{DoxyCode}
-\hypertarget{a00021_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
+\hypertarget{a00052_a3dffe84b9e7a10fdec6749baf697d111}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
+\item[{{\bf Yarn.\-Command}}]{command}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00021_a48b93de9cd7ae61d0cd9583c8330d3ee}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00052_a3dffe84b9e7a10fdec6749baf697d111}
 
 
-Implements \hyperlink{a00088_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+Implemented in \hyperlink{a00053_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
-
-\begin{DoxyCode}
-68                                                                  \{
-69             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
-70         \}
-\end{DoxyCode}
-\hypertarget{a00052_a653a459811e5c19549f4b31269093ef5}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Memory\-Variable\-Store.\-Set\-Value (
+\hypertarget{a00052_a754c6dd0bc67895d11f878fe4477d698}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
+\item[{{\bf Yarn.\-Line}}]{line}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00052_a653a459811e5c19549f4b31269093ef5}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00052_a754c6dd0bc67895d11f878fe4477d698}
 
 
-Implements \hyperlink{a00021_a1c57d6d208b78abec0a670396771448e}{Yarn.\-Base\-Variable\-Storage}.
+Implemented in \hyperlink{a00053_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00052_ac5b29079f638f2ceb078627ef1e60004}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00052_ac5b29079f638f2ceb078627ef1e60004}
 
 
-\begin{DoxyCode}
-321         \{
-322             \hyperlink{a00052_aad18acd95297edb8ed496857337f8071}{variables} [variableName] = value;
-323         \}
-\end{DoxyCode}
+Implemented in \hyperlink{a00053_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
-
-\subsection{Member Data Documentation}
-\hypertarget{a00052_aad18acd95297edb8ed496857337f8071}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!variables@{variables}}
-\index{variables@{variables}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Value}$>$ Yarn.\-Memory\-Variable\-Store.\-variables = new Dictionary$<$string, {\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00052_aad18acd95297edb8ed496857337f8071}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00125}{Tree\-Runner.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\hyperlink{a00126}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

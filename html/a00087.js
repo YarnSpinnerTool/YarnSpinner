@@ -1,10 +1,9 @@
 var a00087 =
 [
-    [ "ValueNode", "a00087.html#a4d2911dde809291a8615262b9b0b4b46", null ],
-    [ "ValueNode", "a00087.html#ac63fbe99131dc3b42af16a2d087c0655", null ],
-    [ "NodeParent", "a00087.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00087.html#ae4659e4431e9846a45e0d048c960781a", null ],
-    [ "ToString", "a00087.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "UseToken", "a00087.html#a7be6a979ee21b2d07ce541fb9c5b52df", null ],
-    [ "value", "a00087.html#a51ab5939344f9bfa21181c02cf0e341d", null ]
+    [ "SpriteInfo", "a00087.html#a00184", [
+      [ "name", "a00087.html#a3f5bca2fff413dfe075c1fcf7e58369c", null ],
+      [ "sprite", "a00087.html#adc58df011dc2841837b6cf775b372061", null ]
+    ] ],
+    [ "UseSprite", "a00087.html#ac26718b713f342f3de8f3e569c5b62da", null ],
+    [ "sprites", "a00087.html#a1e85d9f4f6b33ca7ae638cce2eb704aa", null ]
 ];

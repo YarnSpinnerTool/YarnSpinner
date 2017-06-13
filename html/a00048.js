@@ -1,10 +1,7 @@
 var a00048 =
 [
-    [ "LexerState", "a00048.html#ac67a7c0e09d7b4350f75b105723a4f6c", null ],
-    [ "AddTextRule", "a00048.html#af183111863c651ae5681665a2c379830", null ],
-    [ "AddTransition", "a00048.html#a71ba52744e853ff142de19e97cf5daed", null ],
-    [ "patterns", "a00048.html#a951f91e9522ffe84851f2e25e9445106", null ],
-    [ "setTrackNextIndentation", "a00048.html#ad8b6ccac53bedd9dc202ffe6ac5698b2", null ],
-    [ "tokenRules", "a00048.html#adf6563b1dc6f3ef80ed13c2b15b7be03", null ],
-    [ "containsTextRule", "a00048.html#a69948f05c35eeae9cb8448c849a053e6", null ]
+    [ "Deprecation", "a00048.html#ae80171841e97a48611c51a9a574a2fc0", null ],
+    [ "methodName", "a00048.html#a61605b2d0a17dfdf9c62952270d44fbd", null ],
+    [ "type", "a00048.html#a750904df254223bf3131c39017f90a0b", null ],
+    [ "usageNotes", "a00048.html#ac23509be7ae6b43a3e2154dd430954a7", null ]
 ];

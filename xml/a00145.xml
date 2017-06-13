@@ -1,11 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00145" kind="namespace">
-    <compoundname>System::Text</compoundname>
+  <compounddef id="a00145" kind="file">
+    <compoundname>AssemblyInfo.cs</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/ExampleDialogueUI.cs" line="30" column="1"/>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Reflection;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Runtime.CompilerServices;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Information<sp/>about<sp/>this<sp/>assembly<sp/>is<sp/>defined<sp/>by<sp/>the<sp/>following<sp/>attributes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Change<sp/>them<sp/>to<sp/>the<sp/>values<sp/>specific<sp/>to<sp/>your<sp/>project.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">[assembly:<sp/>AssemblyTitle<sp/>(</highlight><highlight class="stringliteral">&quot;YarnSpinnerConsole&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">[assembly:<sp/>AssemblyDescription<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">[assembly:<sp/>AssemblyConfiguration<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">[assembly:<sp/>AssemblyCompany<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">[assembly:<sp/>AssemblyProduct<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">[assembly:<sp/>AssemblyCopyright<sp/>(</highlight><highlight class="stringliteral">&quot;desplesda&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">[assembly:<sp/>AssemblyTrademark<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">[assembly:<sp/>AssemblyCulture<sp/>(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>assembly<sp/>version<sp/>has<sp/>the<sp/>format<sp/>&quot;{Major}.{Minor}.{Build}.{Revision}&quot;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>form<sp/>&quot;{Major}.{Minor}.*&quot;<sp/>will<sp/>automatically<sp/>update<sp/>the<sp/>build<sp/>and<sp/>revision,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>and<sp/>&quot;{Major}.{Minor}.{Build}.*&quot;<sp/>will<sp/>update<sp/>just<sp/>the<sp/>revision.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">[assembly:<sp/>AssemblyVersion<sp/>(</highlight><highlight class="stringliteral">&quot;1.0.*&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>following<sp/>attributes<sp/>are<sp/>used<sp/>to<sp/>specify<sp/>the<sp/>signing<sp/>key<sp/>for<sp/>the<sp/>assembly,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>if<sp/>desired.<sp/>See<sp/>the<sp/>Mono<sp/>documentation<sp/>for<sp/>more<sp/>information<sp/>about<sp/>signing.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//[assembly:<sp/>AssemblyDelaySign(false)]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//[assembly:<sp/>AssemblyKeyFile(&quot;&quot;)]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Properties/AssemblyInfo.cs"/>
   </compounddef>
 </doxygen>

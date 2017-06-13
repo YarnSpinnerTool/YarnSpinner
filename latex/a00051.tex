@@ -1,279 +1,487 @@
-\hypertarget{a00051}{\section{Yarn.\-Loader Class Reference}
-\label{a00051}\index{Yarn.\-Loader@{Yarn.\-Loader}}
+\hypertarget{a00051}{\section{Yarn.\-Unity.\-Dialogue\-Runner Class Reference}
+\label{a00051}\index{Yarn.\-Unity.\-Dialogue\-Runner@{Yarn.\-Unity.\-Dialogue\-Runner}}
 }
 
 
-Collaboration diagram for Yarn.\-Loader\-:
+Inheritance diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00246}
+\includegraphics[width=216pt]{a00348}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00056}{Node\-Info}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Dialogue\-Runner\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00349}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00051_a1972fc413e1679ecbe91eef536ca8479}{Loader} (\hyperlink{a00036}{Dialogue} \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue})
+void \hyperlink{a00051_a88d161b1be7c99b1e202e6ae9e0d1e73}{Add\-Script} (string text)
 \item 
-\hyperlink{a00067}{Program} \hyperlink{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}{Load} (string text, \hyperlink{a00049}{Library} library, string file\-Name, \hyperlink{a00067}{Program} include\-Program, bool show\-Tokens, bool show\-Parse\-Tree, string only\-Consider\-Node)
+void \hyperlink{a00051_a2fd7f165afff0b8bc2004f10ce4537dd}{Add\-Script} (Text\-Asset asset)
+\item 
+void \hyperlink{a00051_ac08900ac15b3ca90446b9454c7fd117e}{Reset\-Dialogue} ()
+\item 
+void \hyperlink{a00051_ab083d0ac60b41958b591c632e3c3a53e}{Start\-Dialogue} ()
+\item 
+void \hyperlink{a00051_a7d04224de4b27657edcfb3449dd182c1}{Save} (string file\-Name=\char`\"{}main\char`\"{})
+\item 
+void \hyperlink{a00051_a3ea5779e3b7b34853f640451616f7308}{Load} (string file\-Name=\char`\"{}main\char`\"{})
+\item 
+void \hyperlink{a00051_abda765c6804853e264282a0f45920cd3}{Start\-Dialogue} (string \hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node})
+\item 
+void \hyperlink{a00051_a09f5769c0c0921a21e659fed0af09c01}{Clear} ()
+\item 
+void \hyperlink{a00051_af94e66876098f8b187181014973645e6}{Stop} ()
+\item 
+bool \hyperlink{a00051_aadf7711b9ba101d6ce8ba491d9c5a4c3}{Node\-Exists} (string node\-Name)
+\item 
+bool \hyperlink{a00051_a7b200f8ddcf77f50906a6341aadeb671}{Dispatch\-Command} (string command)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Text\-Asset\mbox{[}$\,$\mbox{]} \hyperlink{a00051_a71eae33d06990a3aec5d444fae017492}{source\-Text}
+\item 
+\hyperlink{a00103}{Yarn.\-Unity.\-Variable\-Storage\-Behaviour} \hyperlink{a00051_a6cca3d33f8b0ce3e750caed9fd8fc734}{variable\-Storage}
+\item 
+\hyperlink{a00052}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} \hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogue\-U\-I}
+\item 
+string \hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node} = \hyperlink{a00050_a1b643f15f734090e6a58cbf13dafd28f}{Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}
+\item 
+bool \hyperlink{a00051_a6476a987f9788dba653976bcbe72980c}{start\-Automatically} = true
+\item 
+bool \hyperlink{a00051_a6aac5e877d5396a8141da5e85243f462}{automatic\-Commands} = true
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00067}{Program} \hyperlink{a00051_a6d8296076823c0c082df9024367f4860}{program}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+bool \hyperlink{a00051_a9eb0fd7b600a4667595042832af1d655}{is\-Dialogue\-Running}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00050}{Dialogue} \hyperlink{a00051_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+string \hyperlink{a00051_a8589c66769e89906eaff3c2263bdad5d}{current\-Node\-Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00051_a9321fce224021841ce6f70ca7fbe531b}{Print\-Token\-List} (I\-Enumerable$<$ \hyperlink{a00079}{Token} $>$ token\-List)
+void \hyperlink{a00051_a18eb3750a0161dbfc20d7eb39e151b6c}{Start} ()
 \item 
-void \hyperlink{a00051_aa105ea8e5d65a420d1089616523feecc}{Print\-Parse\-Tree} (\hyperlink{a00063}{Yarn.\-Parser.\-Parse\-Node} root\-Node)
-\item 
-\hyperlink{a00056}{Node\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00051_a2f635405d2b624ac67a27da0787a3524}{Parse\-Input} (string text)
+I\-Enumerator \hyperlink{a00051_adf4e816844b7d9ab4ed99265fd3f3ea9}{Run\-Dialogue} (string \hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{start\-Node}=\char`\"{}Start\char`\"{})
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00036}{Dialogue} \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue}
+\hyperlink{a00050}{Dialogue} \hyperlink{a00051_a822055443227d3b76c6a8fb509812820}{\-\_\-dialogue}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00051_a1972fc413e1679ecbe91eef536ca8479}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Loader@{Loader}}
-\index{Loader@{Loader}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Loader}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Loader.\-Loader (
-\begin{DoxyParamCaption}
-\item[{{\bf Dialogue}}]{dialogue}
-\end{DoxyParamCaption}
-)}}\label{a00051_a1972fc413e1679ecbe91eef536ca8479}
-
-\begin{DoxyCode}
-65                                          \{
-66             \textcolor{keywordflow}{if} (\hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue} == null)
-67                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException (\textcolor{stringliteral}{"dialogue"});
-68             
-69             this.dialogue = \hyperlink{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{dialogue};
-70 
-71         \}
-\end{DoxyCode}
-
-
 \subsection{Member Function Documentation}
-\hypertarget{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Load@{Load}}
-\index{Load@{Load}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Load}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-Load (
-\begin{DoxyParamCaption}
-\item[{string}]{text, }
-\item[{{\bf Library}}]{library, }
-\item[{string}]{file\-Name, }
-\item[{{\bf Program}}]{include\-Program, }
-\item[{bool}]{show\-Tokens, }
-\item[{bool}]{show\-Parse\-Tree, }
-\item[{string}]{only\-Consider\-Node}
-\end{DoxyParamCaption}
-)}}\label{a00051_ab6044e0d99dd4e6961ae7daaf1532c99}
-
-\begin{DoxyCode}
-77                                                                                                            
-                                                            \{
-78 
-79             \textcolor{comment}{// The final parsed nodes that were in the file we were given}
-80             Dictionary<string, \hyperlink{a00054}{Yarn.Parser.Node}> nodes = \textcolor{keyword}{new} Dictionary<string, Parser.Node
-      >();
-81 
-82             \textcolor{comment}{// Load the raw data and get the array of node title-text pairs}
-83             var nodeInfos = \hyperlink{a00051_a2f635405d2b624ac67a27da0787a3524}{ParseInput} (text);
-84 
-85             \textcolor{keywordtype}{int} nodesLoaded = 0;
-86 
-87             \textcolor{keywordflow}{foreach} (NodeInfo nodeInfo \textcolor{keywordflow}{in} nodeInfos) \{
-88 
-89                 \textcolor{keywordflow}{if} (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
-90                     \textcolor{keywordflow}{continue};
-91 
-92                 \textcolor{comment}{// Attempt to parse every node; log if we encounter any errors}
-93 \textcolor{preprocessor}{                #if CATCH\_EXCEPTIONS}
-94 \textcolor{preprocessor}{}                \textcolor{keywordflow}{try} \{
-95 \textcolor{preprocessor}{                #endif }
-96 \textcolor{preprocessor}{}                    
-97                     \textcolor{keywordflow}{if} (nodes.ContainsKey(nodeInfo.title)) \{
-98                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{stringliteral}{"Attempted to load a node called "}+
-99                             nodeInfo.title+\textcolor{stringliteral}{", but a node with that name has already been loaded!"});
-100                     \}
-101 
-102                     var lexer = \textcolor{keyword}{new} Lexer ();
-103                     var tokens = lexer.Tokenise (nodeInfo.title, nodeInfo.text);
-104 
-105                     \textcolor{keywordflow}{if} (showTokens)
-106                         \hyperlink{a00051_a9321fce224021841ce6f70ca7fbe531b}{PrintTokenList} (tokens);
-107 
-108                     var node = \textcolor{keyword}{new} Parser (tokens, library).Parse();
-109 
-110                     \textcolor{comment}{// If this node is tagged "rawText", then preserve its source}
-111                     \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(nodeInfo.tags) == \textcolor{keyword}{false} && 
-112                         nodeInfo.tags.Contains(\textcolor{stringliteral}{"rawText"})) \{
-113                         node.source = nodeInfo.text;
-114                     \}
-115 
-116                     node.name = nodeInfo.title;
-117 
-118                     \textcolor{keywordflow}{if} (showParseTree)
-119                         \hyperlink{a00051_aa105ea8e5d65a420d1089616523feecc}{PrintParseTree}(node);
-120 
-121                     nodes[nodeInfo.title] = node;
-122 
-123                     nodesLoaded++;
-124 
-125 \textcolor{preprocessor}{                #if CATCH\_EXCEPTIONS}
-126 \textcolor{preprocessor}{}                \} \textcolor{keywordflow}{catch} (Yarn.TokeniserException t) \{
-127                     \textcolor{comment}{// Add file information}
-128                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error reading node \{1\}: \{2\}"}, fileName, 
-      nodeInfo.title, t.Message);
-129                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00080}{Yarn.TokeniserException} (message);
-130                 \} \textcolor{keywordflow}{catch} (Yarn.ParseException p) \{
-131                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error parsing node \{1\}: \{2\}"}, fileName, 
-      nodeInfo.title, p.Message);
-132                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00062}{Yarn.ParseException} (message);
-133                 \} \textcolor{keywordflow}{catch} (InvalidOperationException e) \{
-134                     var message = string.Format (\textcolor{stringliteral}{"In file \{0\}: Error reading node \{1\}: \{2\}"}, fileName, 
-      nodeInfo.title, e.Message);
-135                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (message);
-136                 \}
-137 \textcolor{preprocessor}{                #endif }
-138 \textcolor{preprocessor}{}
-139 
-140             \}
-141 
-142             var compiler = \textcolor{keyword}{new} \hyperlink{a00029}{Yarn.Compiler}(fileName);
-143 
-144             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
-145                 compiler.CompileNode (node.Value);
-146             \}
-147 
-148             \textcolor{keywordflow}{if} (includeProgram != null) \{
-149                 compiler.program.Include (includeProgram);
-150             \}
-151 
-152             \textcolor{keywordflow}{return} compiler.program;
-153 
-154         \}
-\end{DoxyCode}
-\hypertarget{a00051_a2f635405d2b624ac67a27da0787a3524}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Parse\-Input@{Parse\-Input}}
-\index{Parse\-Input@{Parse\-Input}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Parse\-Input}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Loader.\-Parse\-Input (
+\hypertarget{a00051_a88d161b1be7c99b1e202e6ae9e0d1e73}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
+\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
 \begin{DoxyParamCaption}
 \item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a2f635405d2b624ac67a27da0787a3524}
+)}}\label{a00051_a88d161b1be7c99b1e202e6ae9e0d1e73}
 
 \begin{DoxyCode}
-171         \{
-172             \textcolor{comment}{// All the nodes we found in this file}
-173             var nodes = \textcolor{keyword}{new} List<NodeInfo> ();
-174 
-175             \textcolor{keywordflow}{if} (text.IndexOf(\textcolor{stringliteral}{"//"}) == 0) \{
-176                 \textcolor{comment}{// If it starts with a comment, treat it as a single-node file}
-177                 nodes.Add (\textcolor{keyword}{new} NodeInfo (\textcolor{stringliteral}{"Start"}, text, null));
-178             \} \textcolor{keywordflow}{else} \{
-179                 \textcolor{comment}{// Blindly assume it's JSON! \(\backslash\):D/}
-180                 \textcolor{keywordflow}{try} \{
-181 
-182                     \textcolor{comment}{// First, parse the raw text}
-183                     var loadedJSON = JsonParser.FromJson (text);
-184 
-185                     \textcolor{comment}{// Process each item that was found (probably just a single one)}
-186                     \textcolor{keywordflow}{foreach} (var item \textcolor{keywordflow}{in} loadedJSON) \{
-187 
-188                         \textcolor{comment}{// We expect it to be an array of dictionaries}
-189                         var list = item.Value as IList<object>;
-190 
-191                         \textcolor{comment}{// For each dictionary in the list..}
-192                         \textcolor{keywordflow}{foreach} (IDictionary<string,object> nodeJSON \textcolor{keywordflow}{in} list) \{
-193 
-194                             \textcolor{comment}{// Pull out the node's title and body, and use that}
-195                             nodes.Add(
-196                                 \textcolor{keyword}{new} NodeInfo(
-197                                     nodeJSON[\textcolor{stringliteral}{"title"}] as \textcolor{keywordtype}{string}, 
-198                                     nodeJSON[\textcolor{stringliteral}{"body"}] as \textcolor{keywordtype}{string},
-199                                     nodeJSON[\textcolor{stringliteral}{"tags"}] as \textcolor{keywordtype}{string}
-200                                 )
-201                             );
-202                         \}
-203                     \}
-204 
-205                 \} \textcolor{keywordflow}{catch} (InvalidCastException) \{
-206                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Error parsing Yarn input: it's valid JSON, but "} +
-207                         \textcolor{stringliteral}{"it didn't match the data layout I was expecting."});
-208                 \} \textcolor{keywordflow}{catch} (\hyperlink{a00045}{InvalidJsonException} e) \{
-209                     dialogue.LogErrorMessage (\textcolor{stringliteral}{"Error parsing Yarn input: "} + e.Message);
-210                 \}
-211             \}
-212 
-213             \textcolor{comment}{// hooray we're done}
-214             \textcolor{keywordflow}{return} nodes.ToArray();
-215         \}
+104                                            \{
+105             dialogue.LoadString(text);
+106         \}
 \end{DoxyCode}
-\hypertarget{a00051_aa105ea8e5d65a420d1089616523feecc}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Print\-Parse\-Tree@{Print\-Parse\-Tree}}
-\index{Print\-Parse\-Tree@{Print\-Parse\-Tree}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Print\-Parse\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Loader.\-Print\-Parse\-Tree (
+\hypertarget{a00051_a2fd7f165afff0b8bc2004f10ce4537dd}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Add\-Script@{Add\-Script}}
+\index{Add\-Script@{Add\-Script}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Add\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Add\-Script (
 \begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Parser.\-Parse\-Node}}]{root\-Node}
+\item[{Text\-Asset}]{asset}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_aa105ea8e5d65a420d1089616523feecc}
+)}}\label{a00051_a2fd7f165afff0b8bc2004f10ce4537dd}
 
 \begin{DoxyCode}
-58                                                             \{
-59             dialogue.LogDebugMessage(\textcolor{stringliteral}{"Parse Tree:"});
-60             dialogue.LogDebugMessage(rootNode.PrintTree(0));
-61 
-62         \}
+108                                                \{
+109             dialogue.LoadString(asset.text);
+110         \}
 \end{DoxyCode}
-\hypertarget{a00051_a9321fce224021841ce6f70ca7fbe531b}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!Print\-Token\-List@{Print\-Token\-List}}
-\index{Print\-Token\-List@{Print\-Token\-List}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{Print\-Token\-List}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Loader.\-Print\-Token\-List (
+\hypertarget{a00051_a09f5769c0c0921a21e659fed0af09c01}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Clear (
 \begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Token} $>$}]{token\-List}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a9321fce224021841ce6f70ca7fbe531b}
+)}}\label{a00051_a09f5769c0c0921a21e659fed0af09c01}
 
 \begin{DoxyCode}
-44                                                           \{
-45             \textcolor{comment}{// Sum up the result}
-46             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-47             \textcolor{keywordflow}{foreach} (var t \textcolor{keywordflow}{in} tokenList) \{
-48                 sb.AppendLine (string.Format(\textcolor{stringliteral}{"\{0\} (\{1\} line \{2\})"}, t.ToString (), t.context, t.lineNumber))
+202                             \{
+203 
+204             \textcolor{keywordflow}{if} (\hyperlink{a00051_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning}) \{
+205                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} System.InvalidOperationException(\textcolor{stringliteral}{"You cannot clear the dialogue system while a
+       dialogue is running."});
+206             \}
+207 
+208             dialogue.UnloadAll();
+209         \}
+\end{DoxyCode}
+\hypertarget{a00051_a7b200f8ddcf77f50906a6341aadeb671}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Dispatch\-Command@{Dispatch\-Command}}
+\index{Dispatch\-Command@{Dispatch\-Command}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Dispatch\-Command}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Dispatch\-Command (
+\begin{DoxyParamCaption}
+\item[{string}]{command}
+\end{DoxyParamCaption}
+)}}\label{a00051_a7b200f8ddcf77f50906a6341aadeb671}
+
+\begin{DoxyCode}
+225                                                     \{
+226 
+227             \textcolor{comment}{// commands that can be automatically dispatched look like this:}
+228             \textcolor{comment}{// COMMANDNAME OBJECTNAME <param> <param> <param> ...}
+229 
+230             \textcolor{comment}{// We can dispatch this command if:}
+231             \textcolor{comment}{// 1. it has at least 2 words}
+232             \textcolor{comment}{// 2. the second word is the name of an object}
+233             \textcolor{comment}{// 3. that object has components that have methods }
+234             \textcolor{comment}{//    with the YarnCommand attribute that have the}
+235             \textcolor{comment}{//    correct commandString set}
+236 
+237             var words = command.Split(\textcolor{charliteral}{' '});
+238 
+239             \textcolor{comment}{// need 2 parameters in order to have both a command name}
+240             \textcolor{comment}{// and the name of an object to find}
+241             \textcolor{keywordflow}{if} (words.Length < 2)
+242                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+243 
+244             var commandName = words[0];
+245 
+246             var objectName = words[1];
+247 
+248             var sceneObject = GameObject.Find(objectName);
+249 
+250             \textcolor{comment}{// If we can't find an object, we can't dispatch a command}
+251             \textcolor{keywordflow}{if} (sceneObject == null)
+252                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+253 
+254             \textcolor{keywordtype}{int} numberOfMethodsFound = 0;
+255 
+256             List<string> parameters;
+257 
+258             \textcolor{keywordflow}{if} (words.Length > 2) \{
+259                 parameters = \textcolor{keyword}{new} List<string>(words);
+260                 parameters.RemoveRange(0, 2);
+261             \} \textcolor{keywordflow}{else} \{
+262                 parameters = \textcolor{keyword}{new} List<string>();
+263             \}
+264 
+265             \textcolor{comment}{// Find every MonoBehaviour (or subclass) on the object}
+266             \textcolor{keywordflow}{foreach} (var component \textcolor{keywordflow}{in} sceneObject.GetComponents<MonoBehaviour>()) \{
+267                 var type = component.GetType();
+268 
+269                 \textcolor{comment}{// Find every method in this component}
+270                 \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods()) \{
+271 
+272                     \textcolor{comment}{// Find the YarnCommand attributes on this method}
+273                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(
+      YarnCommandAttribute), \textcolor{keyword}{true});
+274 
+275                     \textcolor{comment}{// Find the YarnCommand whose commandString is equal to the command name}
+276                     \textcolor{keywordflow}{foreach} (var attribute \textcolor{keywordflow}{in} attributes) \{
+277                         \textcolor{keywordflow}{if} (attribute.commandString == commandName) \{
+278 
+279                             \textcolor{comment}{// Verify that this method has the right number of parameters}
+280                             var methodParameters = method.GetParameters();
+281 
+282                             \textcolor{keywordflow}{if} (methodParameters.Length != parameters.Count) \{
+283                                 Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to Yarn
+       command \(\backslash\)"\{1\}\(\backslash\)", but it has a different number of parameters (\{2\}) to those provided (\{3\})!"}, method.Name, 
+      commandName, methodParameters.Length, parameters.Count);
+284                                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+285                             \}
+286 
+287                             \textcolor{comment}{// Verify that this method has only string parameters (or no parameters)}
+288                             \textcolor{keywordflow}{foreach} (var paramInfo \textcolor{keywordflow}{in} methodParameters) \{
+289                                 \textcolor{keywordflow}{if} (paramInfo.ParameterType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})) == \textcolor{keyword}{false}) \{
+290                                     Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to
+       Yarn command \(\backslash\)"\{1\}\(\backslash\)", but not all of its parameters are strings!"}, method.Name, commandName);
+291                                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+292                                 \}
+293                             \}
+294 
+295                             \textcolor{comment}{// Cool, we can send the command!}
+296                             method.Invoke(component, parameters.ToArray());
+297                             numberOfMethodsFound ++;
+298 
+299                         \}
+300                     \}
+301                 \} 
+302             \}
+303 
+304             \textcolor{comment}{// Warn if we found multiple things that could respond}
+305             \textcolor{comment}{// to this command.}
+306             \textcolor{keywordflow}{if} (numberOfMethodsFound > 1) \{
+307                 Debug.LogWarningFormat(sceneObject, \textcolor{stringliteral}{"The command \(\backslash\)"\{0\}\(\backslash\)" found \{1\} targets. "} +
+308                     \textcolor{stringliteral}{"You should only have one - check your scripts."});
+309             \}
+310 
+311             \textcolor{keywordflow}{return} numberOfMethodsFound > 0;
+312         \}
+\end{DoxyCode}
+\hypertarget{a00051_a3ea5779e3b7b34853f640451616f7308}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Load@{Load}}
+\index{Load@{Load}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Load}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Load (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-Name = {\ttfamily \char`\"{}main\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{a00051_a3ea5779e3b7b34853f640451616f7308}
+
+\begin{DoxyCode}
+129         \{
+130             variableStorage.GetValue(\textcolor{stringliteral}{"SaveFile"} + fileName);
+131         \}
+\end{DoxyCode}
+\hypertarget{a00051_aadf7711b9ba101d6ce8ba491d9c5a4c3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Node\-Exists@{Node\-Exists}}
+\index{Node\-Exists@{Node\-Exists}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Node\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Node\-Exists (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00051_aadf7711b9ba101d6ce8ba491d9c5a4c3}
+
+\begin{DoxyCode}
+215                                                 \{
+216             \textcolor{keywordflow}{return} dialogue.NodeExists(nodeName);
+217         \}
+\end{DoxyCode}
+\hypertarget{a00051_ac08900ac15b3ca90446b9454c7fd117e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Reset\-Dialogue@{Reset\-Dialogue}}
+\index{Reset\-Dialogue@{Reset\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Reset\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Reset\-Dialogue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00051_ac08900ac15b3ca90446b9454c7fd117e}
+
+\begin{DoxyCode}
+114         \{
+115             variableStorage.ResetToDefaults ();
+116             \hyperlink{a00051_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue} ();
+117         \}
+\end{DoxyCode}
+\hypertarget{a00051_adf4e816844b7d9ab4ed99265fd3f3ea9}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Run\-Dialogue@{Run\-Dialogue}}
+\index{Run\-Dialogue@{Run\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Run\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator Yarn.\-Unity.\-Dialogue\-Runner.\-Run\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{string}]{start\-Node = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_adf4e816844b7d9ab4ed99265fd3f3ea9}
+
+\begin{DoxyCode}
+145         \{
+146             \textcolor{comment}{// Mark that we're in conversation.}
+147             \hyperlink{a00051_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{true};
+148 
+149             \textcolor{comment}{// Signal that we're starting up.}
+150             yield \textcolor{keywordflow}{return} StartCoroutine(this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00052_af9d88ca81ac536d43046ca6572e3ff54}{DialogueStarted}());
+151 
+152             \textcolor{comment}{// Get lines, options and commands from the Dialogue object,}
+153             \textcolor{comment}{// one at a time.}
+154             \textcolor{keywordflow}{foreach} (Yarn.Dialogue.RunnerResult step in \hyperlink{a00051_a4f9712a847ca6d53ec8d2dd64dfcffd8}{dialogue}.\hyperlink{a00050_aead84ee50cb113ca45724894290ce9c2}{Run}(
+      \hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode})) \{
+155 
+156                 \textcolor{keywordflow}{if} (step is Yarn.Dialogue.LineResult) \{
+157 
+158                     \textcolor{comment}{// Wait for line to finish displaying}
+159                     var lineResult = step as \hyperlink{a00064}{Yarn.Dialogue.LineResult};
+160                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00052_a754c6dd0bc67895d11f878fe4477d698}{RunLine} (lineResult.line));
+161 
+162                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.OptionSetResult) \{
+163 
+164                     \textcolor{comment}{// Wait for user to finish picking an option}
+165                     var optionSetResult = step as \hyperlink{a00074}{Yarn.Dialogue.OptionSetResult}
       ;
-49             \}
-50 
-51             \textcolor{comment}{// Let's see what we got}
-52             dialogue.LogDebugMessage(\textcolor{stringliteral}{"Tokens:"});
-53             dialogue.LogDebugMessage(sb.ToString());
-54 
-55         \}
+166                     yield \textcolor{keywordflow}{return} StartCoroutine (
+167                         this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.\hyperlink{a00052_ac5b29079f638f2ceb078627ef1e60004}{RunOptions} (
+168                         optionSetResult.options,
+169                         optionSetResult.setSelectedOptionDelegate
+170                     ));
+171 
+172                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (step is Yarn.Dialogue.CommandResult) \{
+173 
+174                     \textcolor{comment}{// Wait for command to finish running}
+175 
+176                     var commandResult = step as \hyperlink{a00041}{Yarn.Dialogue.CommandResult};
+177 
+178                     \textcolor{keywordflow}{if} (\hyperlink{a00051_a7b200f8ddcf77f50906a6341aadeb671}{DispatchCommand}(commandResult.command.text) == \textcolor{keyword}{true}) \{
+179                         \textcolor{comment}{// command was dispatched}
+180                     \} \textcolor{keywordflow}{else} \{
+181                         yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00052_a3dffe84b9e7a10fdec6749baf697d111}{RunCommand} (commandResult.command));
+182                     \}
+183 
+184 
+185                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(step is Yarn.Dialogue.NodeCompleteResult) \{
+186 
+187                     \textcolor{comment}{// Wait for post-node action}
+188                     var nodeResult = step as \hyperlink{a00069}{Yarn.Dialogue.NodeCompleteResult}
+      ;
+189                     yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00052_a2900548a0704d39d4502a153945f4bef}{NodeComplete} (nodeResult.nextNode));
+190                 \}
+191             \}
+192 
+193             \textcolor{comment}{// No more results! The dialogue is done.}
+194             yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00052_aecc60aee9e9386da1f71fb183f43c52d}{DialogueComplete} ());
+195 
+196             \textcolor{comment}{// Clear the 'is running' flag. We do this after DialogueComplete returns,}
+197             \textcolor{comment}{// to allow time for any animations that might run while transitioning}
+198             \textcolor{comment}{// out of a conversation (ie letterboxing going away, etc)}
+199             \hyperlink{a00051_a9eb0fd7b600a4667595042832af1d655}{isDialogueRunning} = \textcolor{keyword}{false};
+200         \}
+\end{DoxyCode}
+\hypertarget{a00051_a7d04224de4b27657edcfb3449dd182c1}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Save@{Save}}
+\index{Save@{Save}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Save}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Save (
+\begin{DoxyParamCaption}
+\item[{string}]{file\-Name = {\ttfamily \char`\"{}main\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{a00051_a7d04224de4b27657edcfb3449dd182c1}
+
+\begin{DoxyCode}
+124         \{
+125             variableStorage.SetValue(\textcolor{stringliteral}{"SaveFile"} + fileName, dialogue.SerializeVM());
+126         \}
+\end{DoxyCode}
+\hypertarget{a00051_a18eb3750a0161dbfc20d7eb39e151b6c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start@{Start}}
+\index{Start@{Start}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a18eb3750a0161dbfc20d7eb39e151b6c}
+
+\begin{DoxyCode}
+76         \{
+77             \textcolor{comment}{// Ensure that we have our Implementation object}
+78             \textcolor{keywordflow}{if} (\hyperlink{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI} == null) \{
+79                 Debug.LogError (\textcolor{stringliteral}{"Implementation was not set! Can't run the dialogue!"});
+80                 \textcolor{keywordflow}{return};
+81             \}
+82 
+83             \textcolor{comment}{// And that we have our variable storage object}
+84             \textcolor{keywordflow}{if} (\hyperlink{a00051_a6cca3d33f8b0ce3e750caed9fd8fc734}{variableStorage} == null) \{
+85                 Debug.LogError (\textcolor{stringliteral}{"Variable storage was not set! Can't run the dialogue!"});
+86                 \textcolor{keywordflow}{return};
+87             \}
+88 
+89             \textcolor{comment}{// Ensure that the variable storage has the right stuff in it}
+90             variableStorage.ResetToDefaults ();
+91 
+92             \textcolor{comment}{// Load all JSON}
+93             \textcolor{keywordflow}{if} (\hyperlink{a00051_a71eae33d06990a3aec5d444fae017492}{sourceText} != null) \{
+94                 \textcolor{keywordflow}{foreach} (var source \textcolor{keywordflow}{in} \hyperlink{a00051_a71eae33d06990a3aec5d444fae017492}{sourceText}) \{
+95                     dialogue.LoadString (source.text, source.name);
+96                 \}
+97             \}
+98 
+99             \textcolor{keywordflow}{if} (\hyperlink{a00051_a6476a987f9788dba653976bcbe72980c}{startAutomatically}) \{
+100                 \hyperlink{a00051_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}();
+101             \}
+102         \}
+\end{DoxyCode}
+\hypertarget{a00051_ab083d0ac60b41958b591c632e3c3a53e}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
+\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00051_ab083d0ac60b41958b591c632e3c3a53e}
+
+\begin{DoxyCode}
+119                                      \{
+120             \hyperlink{a00051_ab083d0ac60b41958b591c632e3c3a53e}{StartDialogue}(\hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode});
+121         \}
+\end{DoxyCode}
+\hypertarget{a00051_abda765c6804853e264282a0f45920cd3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Start\-Dialogue@{Start\-Dialogue}}
+\index{Start\-Dialogue@{Start\-Dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Start\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Start\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{string}]{start\-Node}
+\end{DoxyParamCaption}
+)}}\label{a00051_abda765c6804853e264282a0f45920cd3}
+
+\begin{DoxyCode}
+134         \{
+135 
+136             \textcolor{comment}{// Stop any processes that might be running already}
+137             StopAllCoroutines ();
+138             dialogueUI.StopAllCoroutines ();
+139 
+140             \textcolor{comment}{// Get it going}
+141             StartCoroutine (\hyperlink{a00051_adf4e816844b7d9ab4ed99265fd3f3ea9}{RunDialogue} (\hyperlink{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{startNode}));
+142         \}
+\end{DoxyCode}
+\hypertarget{a00051_af94e66876098f8b187181014973645e6}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Stop@{Stop}}
+\index{Stop@{Stop}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Dialogue\-Runner.\-Stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00051_af94e66876098f8b187181014973645e6}
+
+\begin{DoxyCode}
+211                            \{
+212             dialogue.Stop();
+213         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!dialogue@{dialogue}}
-\index{dialogue@{dialogue}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Loader.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a89d1f29eba1c52c96c62a4cfe7859a1d}
+\hypertarget{a00051_a822055443227d3b76c6a8fb509812820}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!\-\_\-dialogue@{\-\_\-dialogue}}
+\index{\-\_\-dialogue@{\-\_\-dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{\-\_\-dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-\_\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00051_a822055443227d3b76c6a8fb509812820}
+\hypertarget{a00051_a6aac5e877d5396a8141da5e85243f462}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!automatic\-Commands@{automatic\-Commands}}
+\index{automatic\-Commands@{automatic\-Commands}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{automatic\-Commands}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-automatic\-Commands = true}}\label{a00051_a6aac5e877d5396a8141da5e85243f462}
+\hypertarget{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue\-U\-I@{dialogue\-U\-I}}
+\index{dialogue\-U\-I@{dialogue\-U\-I}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{dialogue\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\-U\-I}}\label{a00051_ac87fdc65b0be57868f80c0fcd62ffd6d}
+\hypertarget{a00051_a71eae33d06990a3aec5d444fae017492}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!source\-Text@{source\-Text}}
+\index{source\-Text@{source\-Text}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{source\-Text}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Dialogue\-Runner.\-source\-Text}}\label{a00051_a71eae33d06990a3aec5d444fae017492}
+\hypertarget{a00051_a6476a987f9788dba653976bcbe72980c}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Automatically@{start\-Automatically}}
+\index{start\-Automatically@{start\-Automatically}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{start\-Automatically}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Automatically = true}}\label{a00051_a6476a987f9788dba653976bcbe72980c}
+\hypertarget{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!start\-Node@{start\-Node}}
+\index{start\-Node@{start\-Node}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-start\-Node = {\bf Yarn.\-Dialogue.\-D\-E\-F\-A\-U\-L\-T\-\_\-\-S\-T\-A\-R\-T}}}\label{a00051_a61c92b8d2228d01d8ac123b73bbb41a0}
+\hypertarget{a00051_a6cca3d33f8b0ce3e750caed9fd8fc734}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!variable\-Storage@{variable\-Storage}}
+\index{variable\-Storage@{variable\-Storage}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{variable\-Storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Unity.\-Variable\-Storage\-Behaviour} Yarn.\-Unity.\-Dialogue\-Runner.\-variable\-Storage}}\label{a00051_a6cca3d33f8b0ce3e750caed9fd8fc734}
 
 
 \subsection{Property Documentation}
-\hypertarget{a00051_a6d8296076823c0c082df9024367f4860}{\index{Yarn\-::\-Loader@{Yarn\-::\-Loader}!program@{program}}
-\index{program@{program}!Yarn::Loader@{Yarn\-::\-Loader}}
-\subsubsection[{program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Loader.\-program\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00051_a6d8296076823c0c082df9024367f4860}
+\hypertarget{a00051_a8589c66769e89906eaff3c2263bdad5d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!current\-Node\-Name@{current\-Node\-Name}}
+\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Dialogue\-Runner.\-current\-Node\-Name\hspace{0.3cm}{\ttfamily [get]}}}\label{a00051_a8589c66769e89906eaff3c2263bdad5d}
+\hypertarget{a00051_a4f9712a847ca6d53ec8d2dd64dfcffd8}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Unity.\-Dialogue\-Runner.\-dialogue\hspace{0.3cm}{\ttfamily [get]}}}\label{a00051_a4f9712a847ca6d53ec8d2dd64dfcffd8}
+\hypertarget{a00051_a9eb0fd7b600a4667595042832af1d655}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!is\-Dialogue\-Running@{is\-Dialogue\-Running}}
+\index{is\-Dialogue\-Running@{is\-Dialogue\-Running}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
+\subsubsection[{is\-Dialogue\-Running}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-is\-Dialogue\-Running\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00051_a9eb0fd7b600a4667595042832af1d655}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00121}{Loader.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn Spinner/\-Code/\hyperlink{a00126}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

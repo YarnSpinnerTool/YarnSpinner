@@ -1,19 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00008" kind="page">
-    <compoundname>md_Documentation_Extending</compoundname>
-    <title>Extending Yarn Spinner</title>
+    <compoundname>md_Documentation_YarnSpinner-Dialogue_Localization</compoundname>
+    <title>LOCALIZATION</title>
     <detaileddescription>
-<para>This is a quick-and-dirty document that shows how to add new functions so that they can be called from inside <ref refid="a00026" kindref="compound">Yarn</ref>.</para><para>First, get your <computeroutput>Dialogue</computeroutput> object: <verbatim>// some_implementation is the object that handles variable storage - 
-// it&apos;s not important in this example
-var dialogue = new Dialogue(some_implementation);
-</verbatim></para><para>Next, register your new function. For example, let&apos;s make a function that takes 1 parameter, which is a number, and returns <computeroutput>true</computeroutput> if it&apos;s even:</para><para><verbatim>dialogue.library.RegisterFunction (&quot;is_even&quot;, 1, delegate(Value[] parameters) {
-    return (int)parameters[0].AsNumber % 2 == 0;
-});
-</verbatim></para><para>When the function is called, the delegate you provide will be run.</para><para>Some notes:</para><para><itemizedlist>
-<listitem><para>You don&apos;t have to return a value from your function.</para></listitem><listitem><para>The parameters passed to your function are of type <ref refid="a00086" kindref="compound">Yarn.Value</ref>. You can get their value as numbers, bools or strings by using the <computeroutput>AsNumber</computeroutput>, <computeroutput>AsString</computeroutput> and <computeroutput>AsBool</computeroutput> properties.</para></listitem><listitem><para>You can only return values of the following types:<itemizedlist>
-<listitem><para>String</para></listitem><listitem><para>Float</para></listitem><listitem><para>Double</para></listitem><listitem><para>Integer</para></listitem><listitem><para><ref refid="a00086" kindref="compound">Yarn.Value</ref></para></listitem></itemizedlist>
-</para></listitem><listitem><para><ref refid="a00026" kindref="compound">Yarn</ref> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <computeroutput>-1</computeroutput> as your parameter count, the function may have any number of parameters. </para></listitem></itemizedlist>
+<para><ref refid="a00040" kindref="compound">Yarn</ref> Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the <ulink url="../YarnSpinnerConsole">YarnSpinnerConsole</ulink> tool. At the moment, this tool is not available standalone and needs to be ../YarnSpinner-Programming/Building.md &quot;built from source&quot;.</para><para><heading level="2">Localisation procedure</heading>
+</para><para><orderedlist>
+<listitem><para>We first use the tool to place unique <bold>taglines</bold> on each line of text that the end user will see. To do this, we execute the tool with the <bold>taglines</bold> command, eg: <computeroutput>YarnSpinnerConsole.exe taglines MyYarnFile.yarn.txt</computeroutput>.</para></listitem><listitem><para>Next, we use the tool to generate a file of strings (<bold>genstrings</bold>) in &apos;<ulink url="https://en.wikipedia.org/wiki/Comma-separated_values">comma separated value</ulink>&apos; (csv) format. <computeroutput>YarnSpinnerConsole.exe genstrings MyYarnFile.yarn.txt</computeroutput> will generate a file, (in this example MyYarnFIle.yarn_lines.csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` MyYarnFIle.yarn_lines.enAU.csv MyYarnFIle.yarn_lines.ptTL.csv ```</para></listitem><listitem><para>When the file is returned from translators, we then use <ref refid="a00040" kindref="compound">Yarn</ref> Spinner&apos;s DialogueRunner inside Unity to set String Groups for the required language.</para></listitem></orderedlist>
+</para><para><heading level="2">Footnotes</heading>
+</para><para><itemizedlist>
+<listitem><para>While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg <ulink url="https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en">ISO-15897</ulink></para></listitem><listitem><para>Originally, <ref refid="a00040" kindref="compound">Yarn</ref> Spinner used .json format. The <ref refid="a00040" kindref="compound">Yarn</ref> Spinner Console can convert this json format to the new improved text format: <computeroutput>YarnSpinnerConsole.exe convert --yarn Ship.json</computeroutput></para></listitem><listitem><para>Command reference is available for YarnSpinnerConsole.exe by either running it with no arguments or by utilising the help command (<computeroutput>YarnSpinnerConsole.exe help</computeroutput>). Help for each command is available by using &apos;help command&apos; (eg <computeroutput>YarnSpinnderConsole.exe help compile</computeroutput>) </para></listitem></itemizedlist>
 </para>    </detaileddescription>
   </compounddef>
 </doxygen>

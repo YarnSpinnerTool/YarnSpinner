@@ -1,229 +1,87 @@
-\hypertarget{a00032}{\section{Yarn.\-Parser.\-Custom\-Command Class Reference}
-\label{a00032}\index{Yarn.\-Parser.\-Custom\-Command@{Yarn.\-Parser.\-Custom\-Command}}
-}
 
 
-Inheritance diagram for Yarn.\-Parser.\-Custom\-Command\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=230pt]{a00261}
-\end{center}
-\end{figure}
+{\bfseries \hyperlink{a00040}{Yarn} Spinner} is an interpreter for the \href{https://github.com/infiniteammoinc/Yarn}{\tt Yarn} language, written in C\#.
+
+\begin{quotation}
+{\bfseries New!} Join our \href{http://lab.to/narrativegamedev}{\tt narrative game development} Slack! {\bfseries New!} Continual integration \href{https://thesecretlab.github.io/YarnSpinner/html/}{\tt A\-P\-I documentation} now available
+
+\end{quotation}
 
 
-Collaboration diagram for Yarn.\-Parser.\-Custom\-Command\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=267pt]{a00262}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-override string \hyperlink{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
-\end{DoxyCompactItemize}
-\subsection*{Package Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576}{Type} \{ \hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Type.\-Expression}, 
-\hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Type.\-Client\-Command}
- \}
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00032_a49150c9046dcad61d61ce35c51816313}{Custom\-Command} (\hyperlink{a00063}{Parse\-Node} \hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00064}{Parser} p)
-\item 
-override string \hyperlink{a00032_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Print\-Tree} (int indent\-Level)
-\item 
-\hyperlink{a00054}{Node} \hyperlink{a00063_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static bool \hyperlink{a00032_a02ee2902115c823bdb46715041b3a2f6}{Can\-Parse} (\hyperlink{a00064}{Parser} p)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576}{Type} \hyperlink{a00032_a5ef3bc96812be224d91548bfcdfd4b92}{type}
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00040}{Expression} \hyperlink{a00032_a4250d192d5b58e2404a14c68eb616f16}{expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00032_a1a362244273df822233359d8fe4e9f5d}{client\-Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\hyperlink{a00040}{Yarn} is a language that's designed to make it {\itshape super easy} to create interactive dialogue for games. \hyperlink{a00040}{Yarn}'s very similar in style to \href{http://twinery.org}{\tt Twine}, so if you already know that, you'll be right at home! If you don't, that's cool -\/ \hyperlink{a00040}{Yarn}'s syntax is extremely minimal, and there's not much there to learn. The \hyperlink{a00040}{Yarn} language is used in a number of cool games, including \href{http://nightinthewoods.com}{\tt Night In The Woods} and \href{https://www.kickstarter.com/projects/foamsword/knights-and-bikes}{\tt Knights and Bikes}.
+
+\begin{quotation}
+$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ \hyperlink{a00040}{Yarn} Spinner is still under development, and we haven't made our 1.\-0 release yet. It's {\itshape probably} fine to use right now, but there are a few bits and pieces that might change between now and first release.
+
+\end{quotation}
 
 
-\subsection{Detailed Description}
+\href{https://travis-ci.org/thesecretlab/YarnSpinner}{\tt !\mbox{[}Build Status\mbox{]}(https\-://travis-\/ci.\-org/thesecretlab/\-Yarn\-Spinner.\-svg?branch=master)}
 
 
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00032_a1d9f9f57c44e1a0d228793b658339576}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Type@{Type}}
-\index{Type@{Type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Custom\-Command.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00032_a1d9f9f57c44e1a0d228793b658339576}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Expression@{Expression}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Expression@{Expression}}\item[{\em 
-\hypertarget{a00032_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression}\label{a00032_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}
-}]\index{Client\-Command@{Client\-Command}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Client\-Command@{Client\-Command}}\item[{\em 
-\hypertarget{a00032_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Client\-Command}\label{a00032_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}
-}]\end{description}
-\end{Desc}
 
-\begin{DoxyCode}
-263                                \{
-264                 \hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression},
-265                 \hyperlink{a00032_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{ClientCommand}
-266             \}
-\end{DoxyCode}
+\begin{quotation}
+(Image from \char`\"{}\mbox{[}\-Night in the Woods\mbox{]}(http\-://nightinthewoods.\-com)\char`\"{} by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
+
+\end{quotation}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00032_a49150c9046dcad61d61ce35c51816313}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Custom\-Command@{Custom\-Command}}
-\index{Custom\-Command@{Custom\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{Custom\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00032_a49150c9046dcad61d61ce35c51816313}
+\hyperlink{a00040}{Yarn} Spinner is designed to be easy to add to Unity games, but it's also intended for use in other contexts as well.
 
-\begin{DoxyCode}
-279                                                                : base(\hyperlink{a00063_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-280 
-281                 p.ExpectSymbol(TokenType.BeginCommand);
-282 
-283                 \textcolor{comment}{// Custom commands can have ANY token in them. Read them all until we hit the}
-284                 \textcolor{comment}{// end command token.}
-285                 var commandTokens = \textcolor{keyword}{new} List<Token>();
-286                 \textcolor{keywordflow}{do} \{
-287                     commandTokens.Add(p.ExpectSymbol());
-288                 \} \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndCommand) == \textcolor{keyword}{false});
-289                 p.ExpectSymbol(TokenType.EndCommand);
-290 
-291                 \textcolor{comment}{// If the first token is an identifier and the second is}
-292                 \textcolor{comment}{// a left paren, it may be a function call expression;}
-293                 \textcolor{comment}{// evaluate it as such}
-294                 \textcolor{keywordflow}{if} (commandTokens.Count > 1 && 
-295                     commandTokens[0].type == \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier &&
-296                     commandTokens[1].type == \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen) \{            
-297                     var parser = \textcolor{keyword}{new} \hyperlink{a00064_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser}(commandTokens, p.library);
-298                     var \hyperlink{a00032_a4250d192d5b58e2404a14c68eb616f16}{expression} = Expression.Parse(\textcolor{keyword}{this}, parser);
-299                     \hyperlink{a00032_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.Expression;
-300                     this.expression = \hyperlink{a00032_a4250d192d5b58e2404a14c68eb616f16}{expression};
-301                 \} \textcolor{keywordflow}{else} \{
-302                     \textcolor{comment}{// Otherwise, evaluate it as a command}
-303                     \hyperlink{a00032_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.ClientCommand;
-304 
-305                     this.clientCommand = commandTokens[0].value;
-306                 \}
-307 
-308 
-309 
-310             \}
-\end{DoxyCode}
+\subsection*{Quick Start}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00032_a02ee2902115c823bdb46715041b3a2f6}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Can\-Parse@{Can\-Parse}}
-\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Custom\-Command.\-Can\-Parse (
-\begin{DoxyParamCaption}
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00032_a02ee2902115c823bdb46715041b3a2f6}
+\begin{DoxyEnumerate}
+\item Download the \href{https://github.com/InfiniteAmmoInc/Yarn}{\tt Yarn editor}, so that you can create and edit \hyperlink{a00040}{Yarn} files.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Create a new project in \href{https://unity3d.com/get-unity}{\tt Unity}.
+\item Download the \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt latest release's Unity package}.
+\item Import the package.
+\item Go to the {\ttfamily \hyperlink{a00040}{Yarn} Spinner/\-Examples/} folder in Unity, and open one of the demo scenes.
+\item Run the game, and poke around!
+\end{DoxyEnumerate}
 
-\begin{DoxyCode}
-274             \{
-275                 \textcolor{keywordflow}{return} p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
-276                     p.NextSymbolsAre (\hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00026_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier);
-277             \}
-\end{DoxyCode}
-\hypertarget{a00063_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00063_a580e520a29444fc23ac3660cbe514a09}
-
-\begin{DoxyCode}
-116                                        \{
-117                 var node = \textcolor{keyword}{this};
-118 
-119                 \textcolor{keywordflow}{do} \{
-120                     \textcolor{keywordflow}{if} (node is Node) \{
-121                         \textcolor{keywordflow}{return} node as Node;
-122                     \}
-123                     node = node.parent;
-124                 \} \textcolor{keywordflow}{while} (node 
-125                     != null);                   
-126 
-127                 \textcolor{keywordflow}{return} null;
-128             \}
-\end{DoxyCode}
-\hypertarget{a00032_ad8c821f5f5671cdbac6e4a6fc0b9174b}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00032_ad8c821f5f5671cdbac6e4a6fc0b9174b}
+\subsection*{What To Do Next}
 
 
-Implements \hyperlink{a00063_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+\begin{DoxyItemize}
+\item \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt Download Yarn Spinner.}
+\item Learn how to build Yarn Spinner from source.
+\item \href{https://github.com/infiniteammoinc/Yarn}{\tt Learn more about Yarn, and the Yarn editor.}
+\item Learn more about writing dialogue in Yarn.
+\item Learn about using Yarn Spinner in your Unity game.
+\end{DoxyItemize}
+
+\href{http://shop.oreilly.com/product/0636920055105.do}{\tt }
+
+We also produced a training video on integrating and using the basics of \hyperlink{a00040}{Yarn} Spinner in Unity games, \href{http://shop.oreilly.com/product/0636920055105.do}{\tt available commercially from O'Reilly Media} (and \href{https://www.safaribooksonline.com/library/view/creating-narrative-games/9781491969830/}{\tt also on Safari}).
+
+\subsection*{License}
+
+\hyperlink{a00040}{Yarn} Spinner is available under the \hyperlink{a00030}{M\-I\-T License}. This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
 
 
-\begin{DoxyCode}
-313             \{
-314                 \textcolor{keywordflow}{switch} (\hyperlink{a00032_a5ef3bc96812be224d91548bfcdfd4b92}{type}) \{
-315                 \textcolor{keywordflow}{case} Type.Expression:
-316                     \textcolor{keywordflow}{return} \hyperlink{a00064_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Expression: "}) + expression.PrintTree (indentLevel + 1);
-317                 \textcolor{keywordflow}{case} Type.ClientCommand:
-318                     \textcolor{keywordflow}{return} \hyperlink{a00064_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Command: "} + \hyperlink{a00032_a1a362244273df822233359d8fe4e9f5d}{clientCommand});
-319                 \}
-320                 \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
-321 
-322             \}
-\end{DoxyCode}
-\hypertarget{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00063_a18c67cb16090d0889bb9d6c8c6c565f8}
+\begin{DoxyItemize}
+\item \href{https://tldrlegal.com/license/mit-license}{\tt Learn more about what this license lets you do}.
+\end{DoxyItemize}
 
-\begin{DoxyCode}
-111             \{
-112                 \textcolor{keywordflow}{return} this.GetType ().Name;
-113             \}
-\end{DoxyCode}
+\subsection*{Made by Secret Lab!}
+
+\hyperlink{a00040}{Yarn} Spinner was originally created by \href{http://secretlab.com.au}{\tt Secret Lab}, an Australian game dev studio! \href{https://twitter.com/thesecretlab}{\tt Come say hi}! You can visit the \href{http://www.secretlab.com.au/yarnspinner}{\tt Yarn Spinner page} on the Secret Lab website for a little more info, and to donate to \hyperlink{a00040}{Yarn} Spinner open source development at Secret Lab.
+
+The awesome \href{Documentation/YarnSpinnerLogo.png}{\tt logo} was made by the excellent \href{https://twitter.com/RexSmeal}{\tt Rex Smeal}, and is under the \href{http://creativecommons.org/licenses/by-sa/4.0/}{\tt Creative Commons Attribution-\/\-Share\-Alike 4.\-0 International License}.
+
+\subsection*{Help Us Make \hyperlink{a00040}{Yarn} Spinner!}
+
+\hyperlink{a00040}{Yarn} Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out -\/ we'd love to have your help in improving our documentation, in spreading the word, and in finding bugs.
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00032_a5ef3bc96812be224d91548bfcdfd4b92}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!type@{type}}
-\index{type@{type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Type} Yarn.\-Parser.\-Custom\-Command.\-type\hspace{0.3cm}{\ttfamily [package]}}}\label{a00032_a5ef3bc96812be224d91548bfcdfd4b92}
+\begin{DoxyItemize}
+\item Our \href{https://github.com/thesecretlab/YarnSpinner/issues}{\tt issues page} contains a list of things we'd love your help in improving.
+\item Hop into our I\-R\-C channel, which is \href{https://webchat.freenode.net/?channels=yarnspinner}{\tt \#yarnspinner on Freenode}, to chat to the team, lend a hand, or ask questions.
+\item {\bfseries New!} Join our \href{http://lab.to/narrativegamedev}{\tt narrative game development} Slack!
+\item {\bfseries New!} Continual integration \href{https://thesecretlab.github.io/YarnSpinner/html/}{\tt A\-P\-I documentation} now available
+\end{DoxyItemize}
 
-
-\subsection{Property Documentation}
-\hypertarget{a00032_a1a362244273df822233359d8fe4e9f5d}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!client\-Command@{client\-Command}}
-\index{client\-Command@{client\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{client\-Command}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Custom\-Command.\-client\-Command\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00032_a1a362244273df822233359d8fe4e9f5d}
-\hypertarget{a00032_a4250d192d5b58e2404a14c68eb616f16}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!expression@{expression}}
-\index{expression@{expression}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
-\subsubsection[{expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-Custom\-Command.\-expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00032_a4250d192d5b58e2404a14c68eb616f16}
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-Yarn\-Spinner/\hyperlink{a00122}{Parser.\-cs}\end{DoxyCompactItemize}
+If you want to contribute to \hyperlink{a00040}{Yarn} Spinner (!!), \hyperlink{a00002}{go read our contributor's guide!} 

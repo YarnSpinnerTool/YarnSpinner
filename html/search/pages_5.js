@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['yarn_20spinner_20documentation',['Yarn Spinner Documentation',['../a00010.html',1,'']]],
-  ['yarn_20for_20writers',['Yarn for Writers',['../a00014.html',1,'']]],
-  ['yarn_20spinner',['Yarn Spinner',['../a00018.html',1,'']]]
+  ['step_20by_20step_20to_20using_20yarn_20spinner_20in_20your_20unity_20game',['Step by Step to Using Yarn Spinner in your Unity game',['../a00028.html',1,'']]]
 ];

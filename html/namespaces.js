@@ -1,7 +1,7 @@
 var namespaces =
 [
-    [ "Json", "a00130.html", null ],
-    [ "NUnitLite", "a00134.html", "a00134" ],
-    [ "Yarn", "a00026.html", "a00026" ],
-    [ "YarnSpinner", "a00154.html", "a00154" ]
+    [ "Json", "a00151.html", null ],
+    [ "NUnitLite", "a00155.html", "a00155" ],
+    [ "Yarn", "a00040.html", "a00040" ],
+    [ "YarnSpinner", "a00175.html", "a00175" ]
 ];

@@ -1,11 +1,11 @@
 var a00065 =
 [
-    [ "CheckForNearbyNPC", "a00065.html#a574b6d984b8671c7a780d3d10e040a9b", null ],
-    [ "OnDrawGizmosSelected", "a00065.html#a9e83ec3c6e45ee4dd17215e3030f6403", null ],
-    [ "Update", "a00065.html#a8e78b2dc1cd221fb9d05b89e70155df4", null ],
-    [ "interactionRadius", "a00065.html#af89807d2195915ee9a0c42317e110fc6", null ],
-    [ "maxPosition", "a00065.html#ada9dd748a1d89a7f9b12ac8967a07ae6", null ],
-    [ "minPosition", "a00065.html#ac025d4f4afaf854f8256e0d2d03e5b52", null ],
-    [ "moveSpeed", "a00065.html#adc602a4b2c7e44e4b15a11f1ffcf07e4", null ],
-    [ "movementFromButtons", "a00065.html#a7bcde19f080bfd09bbc833b8fb555cf7", null ]
+    [ "NodeInfo", "a00070.html", "a00070" ],
+    [ "Loader", "a00065.html#a1972fc413e1679ecbe91eef536ca8479", null ],
+    [ "Load", "a00065.html#ab6044e0d99dd4e6961ae7daaf1532c99", null ],
+    [ "ParseInput", "a00065.html#a2f635405d2b624ac67a27da0787a3524", null ],
+    [ "PrintParseTree", "a00065.html#aa105ea8e5d65a420d1089616523feecc", null ],
+    [ "PrintTokenList", "a00065.html#a9321fce224021841ce6f70ca7fbe531b", null ],
+    [ "dialogue", "a00065.html#a89d1f29eba1c52c96c62a4cfe7859a1d", null ],
+    [ "program", "a00065.html#a6d8296076823c0c082df9024367f4860", null ]
 ];

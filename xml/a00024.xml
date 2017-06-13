@@ -1,164 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00024" kind="class" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="a00024_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" static="no">
-        <name>State</name>
-        <enumvalue id="a00024_1ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5" prot="public">
-          <name>NotTested</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00024_1ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62" prot="public">
-          <name>Ignored</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00024_1ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15" prot="public">
-          <name>Passed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00024_1ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca" prot="public">
-          <name>Failed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="36" bodyend="41"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00024_1a7202b24bd068da24d7e28bec5668b13a" prot="public" static="no" mutable="no">
-        <type><ref refid="a00024_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">State</ref></type>
-        <definition>State Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</definition>
-        <argsstring></argsstring>
-        <name>state</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00024_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" static="no" mutable="no">
-        <type>TextAsset</type>
-        <definition>TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</definition>
-        <argsstring></argsstring>
-        <name>script</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="44" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00024_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
-        <type><ref refid="a00164" kindref="compound">ValidationMessage</ref>[]</type>
-        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
-        <argsstring></argsstring>
-        <name>messages</name>
-        <initializer>= new <ref refid="a00164" kindref="compound">ValidationMessage</ref>[0]</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="46" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00024_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>Equals</name>
-        <param>
-          <type>object</type>
-          <declname>obj</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="48" bodyend="54"/>
-      </memberdef>
-      <memberdef kind="function" id="a00024_1a85d50993390cdd8ba30ac44043b18de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override int</type>
-        <definition>override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode</definition>
-        <argsstring>()</argsstring>
-        <name>GetHashCode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="56" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="a00024_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</definition>
-        <argsstring>(TextAsset script)</argsstring>
-        <name>CheckerResult</name>
-        <param>
-          <type>TextAsset</type>
-          <declname>script</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="61" bodyend="64"/>
-      </memberdef>
-      </sectiondef>
-    <briefdescription>
-    </briefdescription>
+  <compounddef id="a00024" kind="page">
+    <compoundname>md_Documentation_YarnSpinner-Unity_README</compoundname>
+    <title>Using Yarn Spinner in your Unity game</title>
     <detaileddescription>
-    </detaileddescription>
-    <collaborationgraph>
-      <node id="413">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult</label>
-        <link refid="a00024"/>
-        <childnode refid="414" relation="usage">
-          <edgelabel>+messages</edgelabel>
-        </childnode>
-      </node>
-      <node id="414">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
-        <link refid="a00164"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="35" bodyend="65"/>
-    <listofallmembers>
-      <member refid="a00024_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>CheckerResult</name></member>
-      <member refid="a00024_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>Equals</name></member>
-      <member refid="a00024_1a85d50993390cdd8ba30ac44043b18de7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>GetHashCode</name></member>
-      <member refid="a00024_1a808a039e280cf875cb3c9e9385148498" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>messages</name></member>
-      <member refid="a00024_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>script</name></member>
-      <member refid="a00024_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>State</name></member>
-      <member refid="a00024_1a7202b24bd068da24d7e28bec5668b13a" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>state</name></member>
-    </listofallmembers>
+<para><heading level="3">Style Guide</heading>
+</para><para><computeroutput>Inline Code</computeroutput> contain short snippets of code for your project <verbatim>Code Blocks contain segments or chunks of code for your project
+</verbatim></para><para><bold>Bold indicate actions (Select menu item, copying file, etc.)</bold></para><para>***Bold italic text indicates emphasis***</para><para><blockquote><para>Blockquotes contain essential information</para><para></para></blockquote></para><para><heading level="2">Tutorial</heading>
+</para><para><blockquote><para>***Note:*** This tutorial assumes that you know a little bit about <ulink url="http://www.unity3d.com">Unity</ulink>. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don&apos;t know these things, please refer to <ulink url="http://unity3d.com/learn">Unity&apos;s documentation</ulink>. We recommend their <ulink url="https://unity3d.com/learn/tutorials/">tutorials</ulink>, starting with the <ulink url="https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial">Roll-a-ball tutorial</ulink>. It is also helpful if you know a little about the <ulink url="https://github.com/InfiniteAmmoInc/Yarn">Yarn Editor</ulink>.</para><para></para></blockquote></para><para><heading level="2"><ref refid="a00040" kindref="compound">Yarn</ref> Spinner Quick Start</heading>
+</para><para>If you&apos;re already familiar with Unity and the <ref refid="a00040" kindref="compound">Yarn</ref> Editor, we have a <ref refid="a00121" kindref="compound">Unity Quickstart</ref> guide.</para><para><heading level="2">Step by Step</heading>
+</para><para>If you&apos;ve not done much more than install Unity and the <ref refid="a00040" kindref="compound">Yarn</ref> Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity <ulink url="https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial">Roll-a-ball tutorial</ulink>, our <ref refid="a00122" kindref="compound">Step By Step</ref> guide is intended to walk you through the creation of a very basic game using <ref refid="a00040" kindref="compound">Yarn</ref> Spinner.</para><para><heading level="2">Tips during Unity install</heading>
+</para><para><heading level="3">Windows</heading>
+</para><para><itemizedlist>
+<listitem><para>If you install to Unity the default file location, find the temp folder the installer has executed from and back it up before it completes installing.</para></listitem><listitem><para>If you decide to install Visual Studio seperately, be aware that there are files from this program that insist on being installed on the C:\ drive and that your development experience may be restricted.</para></listitem></itemizedlist>
+</para><para><heading level="3">Mac</heading>
+</para><para>(This space left intentionally blank)</para><para><heading level="3">Linux</heading>
+</para><para><itemizedlist>
+<listitem><para>Unity is only officially supported on Ubuntu. <ref refid="a00175" kindref="compound">YarnSpinner</ref> is built on Ubuntu. However, we use Debian for some of our development and testing.</para></listitem><listitem><para>Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of <ulink url="https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/">Unity for Linux</ulink>, although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).</para></listitem><listitem><para>npm is needed for Unity. It is available in Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the <ulink url="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions">nodejs.org website</ulink>.</para></listitem><listitem><para>Some 32bit support is required to run Unity. If you are running a 64bit environment, please refer to your distribution&apos;s documentation on how to do this. Once you have that enabled, ensure lib32gcc1, lib32stdc++6 and libc6-i386 are installed (eg, <computeroutput>sudo apt install lib32gcc1 lib32stdc++6 libc6-i386</computeroutput>)</para></listitem><listitem><para>We encourge Linux users to test Yarnspinner using the <ulink url="http://www.monodevelop.com/download/linux/">Monodevelop FlatPak</ulink>. Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback. </para></listitem></itemizedlist>
+</para>    </detaileddescription>
   </compounddef>
 </doxygen>
