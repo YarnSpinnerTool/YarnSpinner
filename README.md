@@ -23,26 +23,24 @@
 
 * Learn how to [build Yarn Spinner from source.](Documentation/Building.md)
 * Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.
-* Learn more about [writing dialogue in Yarn.](Documentation/Usage.md)
-* Learn about using [Yarn Spinner in your Unity](Documentation/Unity.md) game.
-* If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-with-Unity-StepByStep.md) document.
-* We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity.md) on your system.
+* Learn more about [writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/)
+* Learn about using [Yarn Spinner in your Unity](Documentation/YarnSpinner-Unity/) game.
+* If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.
+* We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.
 
 ## License
 
-Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required.
-
-* [Learn more about what this license lets you do](https://tldrlegal.com/license/mit-license). 
+Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required. If you'd like to know more about what this license lets you do tldrlegal.com have a [very nice write up about the MIT license](https://tldrlegal.com/license/mit-license) that you might find useful.
 
 ## Made by Secret Lab!
 
-Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio! [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
+Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio. [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
 
 The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent [Rex Smeal](https://twitter.com/RexSmeal), and is under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Help Us Make Yarn Spinner!
 
-Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/Unity.md), in spreading the word, and in finding bugs.
+Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/), in spreading the word, and in finding bugs.
 
 * Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we'd love your help in improving.
 * Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
