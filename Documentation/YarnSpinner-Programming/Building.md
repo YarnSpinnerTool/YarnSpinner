@@ -14,7 +14,7 @@ To build Yarn Spinner on Linux, you can either
 or
 * use [Flatpak](http://flatpak.org/getting.html), you can [download MonoDevelop from the MonoDevelop site](http://www.monodevelop.com/download/linux/).
 
-### Using MonoDevelop
+## Using MonoDevelop
 * Open **YarnSpinner.sln**.
 * Open the **Build menu**, and choose **Build All**.
 * Open the **Unity/Assets/Yarn Spinner** folder. You'll find a copy of **YarnSpinner.dll** there.
