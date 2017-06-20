@@ -145,18 +145,25 @@ unit_tests () (
 
 build_documentation () {
     # Quick statement to build documents
-    if [ "$(which doxygen)" ]; then
-        if [ "$CLEAN" ]; then
-            echo "Cleaning documentation"
-            rm -fvr Documentation/{docbook,html,latex,rtf,xml}
-            rm -fvr GPATH GRTAGS GTAGS doxygen
-        fi
-        doxygen Documentation/Doxyfile
-    else
+    FAILED_PREREQ=""
+    if [ ! "$(which doxygen)" ]; then
         echo "doxygen not found or not in \${PATH}"
-        echo "Aborting"
+        FAILED_PREREQ="true"
+    fi
+    if [ ! "$(which dot)" ]; then
+        echo "dot not found or not in \${PATH}"
+        FAILED_PREREQ="true"
+    fi
+    if [ -n "${FAILED_PREREQ}" ]; then
+        echo "Failed pre-requisite checks, aborting"
         exit 1
     fi
+    if [ "$CLEAN" ]; then
+        echo "Cleaning documentation"
+        rm -fvr Documentation/{docbook,html,latex,rtf,xml}
+        rm -fvr GPATH GRTAGS GTAGS doxygen
+    fi
+    doxygen Documentation/Doxyfile
 }
 
 # Pass all command line options to inuit_build
