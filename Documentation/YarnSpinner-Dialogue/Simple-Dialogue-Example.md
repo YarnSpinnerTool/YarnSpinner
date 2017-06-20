@@ -1,4 +1,4 @@
-# Writing Yarn Dialogue - Simple Example
+# Yarn Dialogue - Simple Example
 
 ### Style Guide
 

@@ -1,4 +1,4 @@
-# Writing Yarn Dialogue - Advanced Usage
+# Yarn Dialogue - Advanced Usage
 
 This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
@@ -130,4 +130,4 @@ You can call functions in your `if` commands. For example, Yarn Spinner provides
 		We have gone to the city before!
 	<<endif>>
 	
-You can't define your own functions inside Yarn itself, but they can be added at run-time. See ["Extending Yarn Spinner"](Extending.md) for more info.
+You can't define your own functions inside Yarn itself, but they can be added at run-time. See ["Extending Yarn Spinner"](../YarnSpinner-Programming/Extending.md) for more info.
