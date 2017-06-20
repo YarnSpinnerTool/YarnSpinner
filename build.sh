@@ -67,7 +67,11 @@ init_build () {
             echo "nuget not installed or not in \$PATH"
             FAILED_PREREQ="true"
         fi
-        if [ -z "${FAILED_PREREQ}" ]; then
+        if [ ! $(which doxygen) ]; then
+            echo "doxygen not installed or not in \$PATH"
+            FAILED_PREREQ="true"
+        fi
+        if [ -n "${FAILED_PREREQ}" ]; then
             echo "Failed pre-requisite checks, aborting"
             exit 1
         fi
