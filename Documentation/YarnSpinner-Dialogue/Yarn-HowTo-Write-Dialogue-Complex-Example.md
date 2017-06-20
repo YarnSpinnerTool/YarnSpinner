@@ -1,4 +1,4 @@
-# Yarn for Writers
+# Writing Yarn Dialogue - Complex Example
 
 This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
