@@ -14,7 +14,7 @@ If you are working on the [Development branch](https://github.com/thesecretlab/Y
 Yarn Spinner is automatically built by [Travis Continual Integration](https://travis-ci.org/thesecretlab/YarnSpinner) system. For information on how to build it yourself, please refer to the [Building](YarnSpinner-Programming/Building.md) document.
 
 ## Creating Yarn Dialogue for Yarn Spinner
-For information on how to write dialogue for Yarn Spinner, refer to the [Usage](YarnSpinner-Dialogue/Advanced-Dialogue-Usage.md) document. We are currently expanding this documentation for writers, and our first new document is a walk through on [how to create the dialogue for the Simple Example](YarnSpinner-Dialogue/Simple-Dialogue-Example.md)
+For information on how to write dialogue for Yarn Spinner, refer to the [Usage](YarnSpinner-Dialogue/Advanced-Dialogue-Usage.md) document. We are currently expanding this documentation for writers, and we have a document on [how to create the dialogue for the Simple Example](YarnSpinner-Dialogue/Simple-Dialogue-Example.md) and are currently working on covering [the more complex example](YarnSpinner-Dialogue/Complex-Dialogue-Example.md)
 
 ## Using Unity
 At this point in time, only examples for the [Unity](http://www.unity3d.com) game engine are available. We hope to include a more generic example in the future. Please refer to the [Yarn Spinner Unity](YarnSpinner-Unity/) documents for more information.
