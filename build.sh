@@ -58,12 +58,17 @@ init_build () {
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
+        FAILED_PREREQ=""
         if [ ! $(which xbuild) ]; then
             echo "xbuild not installed or not in \$PATH"
-            exit 1
+            FAILED_PREREQ="true"
         fi
         if [ ! $(which nuget) ]; then
             echo "nuget not installed or not in \$PATH"
+            FAILED_PREREQ="true"
+        fi
+        if [ -z "${FAILED_PREREQ}" ]; then
+            echo "Failed pre-requisite checks, aborting"
             exit 1
         fi
         XBUILD_ARGS="${XBUILD_ARGS} /p:TargetFrameworkVersion=v4.5"
