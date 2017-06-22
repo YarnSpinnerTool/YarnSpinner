@@ -81,10 +81,11 @@ expression
 
 // can add in support for more values in here
 value
-    : BODY_NUMBER   #valueNumber
-    | KEYWORD_TRUE  #valueTrue
-    | KEYWORD_FALSE #valueFalse
-	| variable 		#valueVar
+    : BODY_NUMBER	 #valueNumber
+    | KEYWORD_TRUE   #valueTrue
+    | KEYWORD_FALSE  #valueFalse
+	| variable		 #valueVar
+	| COMMAND_STRING #valueString
     ;
 variable
     : VAR_ID
