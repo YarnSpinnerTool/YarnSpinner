@@ -38,7 +38,7 @@ SHORTCUT_ENTER : '->' ;
 // these play the role that { and } play in many other languages
 // not sure if this is the best idea, feels like it might break
 // but at this stage the yarn file has gone through the preprocessor so it shouldnt really matter
-// have ruled out people using /a and /v as normal text, not likely to cause issue but worth pointing out
+// have ruled out people using \a and \v as normal text, not likely to cause issue but worth pointing out
 INDENT : '\u0007' ;//'{' ;
 DEDENT : '\u000B';//'}' ;
 

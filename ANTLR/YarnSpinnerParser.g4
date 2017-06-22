@@ -73,10 +73,9 @@ expression
     | expression op=('+' | '-') expression                                                         #expAddSub
     | expression op=('<' | '>' | '<=' | '>=' ) expression                                          #expComparison
     | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression             #expEquality
-    | expression op=('*=' | '/=' | '%=') expression                                                #expMultDivModEquals
-    | expression op=('+=' | '-=') expression                                                       #expPlusMinusEquals
+    | variable op=('*=' | '/=' | '%=') expression                                                  #expMultDivModEquals
+    | variable op=('+=' | '-=') expression                                                         #expPlusMinusEquals
     | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
-    | variable                                                                                     #expVariable
     | value                                                                                        #expValue
     ;
 
@@ -85,6 +84,7 @@ value
     : BODY_NUMBER   #valueNumber
     | KEYWORD_TRUE  #valueTrue
     | KEYWORD_FALSE #valueFalse
+	| variable 		#valueVar
     ;
 variable
     : VAR_ID
