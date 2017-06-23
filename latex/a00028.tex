@@ -103,7 +103,7 @@ Your game's dialogue needs to be shown to the user. Additionally, you need a way
 
 \subsubsection*{Store your conversation state with a {\ttfamily Variable\-Storage\-Behaviour}}
 
-There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00040}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C\# $\ast$\href{C# interface}{\tt interface}$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
+There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. \hyperlink{a00040}{Yarn} Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a $\ast$$\ast$$\ast$\href{https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index}{\tt C\# interface}$\ast$$\ast$$\ast$, which defines methods like \char`\"{}set variable\char`\"{} and \char`\"{}get value of variable\char`\"{}.
 
 The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
 

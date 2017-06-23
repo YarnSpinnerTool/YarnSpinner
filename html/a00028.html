@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('a00028.html','');});
 <p><a class="el" href="a00040.html">Yarn</a> Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying <a class="el" href="a00040.html">Yarn</a> Spinner about what response the user selected.</p>
 <p><a class="el" href="a00040.html">Yarn</a> Spinner comes with an example script that uses Unity's UI system. It's a good place to start.</p>
 <h3>Store your conversation state with a <code>VariableStorageBehaviour</code></h3>
-<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="a00040.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a C# *<a href="C# interface">interface</a>*, which defines methods like "set variable" and "get value of variable".</p>
+<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="a00040.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index">C# interface</a>***, which defines methods like "set variable" and "get value of variable".</p>
 <p>The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.</p>
 <ul>
 <li><b>Create a new game object</b>, and add the <code><a class="el" href="a00047.html">ExampleVariableStorage</a></code> script to it.</li>
@@ -199,7 +199,7 @@ public void MoveCharacter(string destinationName) {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 13 2017 07:32:38 for YarnSpinner by
+    <li class="footer">Generated on Fri Jun 23 2017 02:24:14 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
