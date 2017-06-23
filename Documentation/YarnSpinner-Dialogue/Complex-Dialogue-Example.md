@@ -40,7 +40,7 @@ Ship: Oh, man.
 ```
 
 ## Yarn Dialogue Files
-### [Ship.yarn.txt](../../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Ship.yarn.txt)
+### [Ship.yarn.txt](../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Ship.yarn.txt)
 ```
 title: Ship
 ---
@@ -75,7 +75,7 @@ Player: Uh.
 
 ===
 ```
-### [Sally.yarn.txt](../../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Sally.yarn.txt)
+### [Sally.yarn.txt](../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Sally.yarn.txt)
 ```
 title: Sally
 ---
