@@ -2,13 +2,17 @@
 
 This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
-## Complex example
-In our complex example, we will establish a multiple file dialogue. This dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
+## Complex Example
+In our Complex Example, we will establish a multiple file dialogue. This dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
 
-A limited amount of programming knowledge is required for narrative adventure dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce the concepts of ***commands*** and ***conditionals***. Commands instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder). We will demonstrate how interaction between players and NPCs can create what are known as [conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming)), a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available.
+A limited amount of programming knowledge is required for narrative adventure dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce the concepts of ***[commands](https://en.wikipedia.org/wiki/Command_(computing))***, ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))***.
+
+Commands instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
+Conditionals are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
+Functions, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
 
 ### Initial Dialogue Setup
-First off, we'll create a background scene. Because our complex example is set inside a space ship, we''ll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
+First off, we'll create a background scene. Because our Complex Example is set inside a space ship, we''ll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
 ```
 Ship: Hey, friend.
 Player: Hi, Ship.
@@ -36,7 +40,7 @@ Ship: Oh, man.
 ```
 
 ## Yarn Dialogue Files
-### Ship.yarn.txt
+### [Ship.yarn.txt](../../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Ship.yarn.txt)
 ```
 title: Ship
 ---
@@ -71,7 +75,7 @@ Player: Uh.
 
 ===
 ```
-### Sally.yarn.txt
+### [Sally.yarn.txt](../../../Unity/Assets/Yarn%20Spinner/Examples/Demo%20Assets/Space/Sally.yarn.txt)
 ```
 title: Sally
 ---
