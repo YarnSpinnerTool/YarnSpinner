@@ -21,9 +21,9 @@ In our Complex Example, we will establish a multiple file dialogue. This dialogu
 
 A limited amount of programming knowledge is required for narrative adventure dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as  ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative.
 
-* Commands instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
-* Conditionals are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
-* Functions, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
+* ***Commands*** instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
+* ***Conditionals*** are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
+* ***Functions***, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
 
 ### Initial Dialogue Setup
 First off, we'll create a background scene. Because our Complex Example is set inside a space ship, we''ll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
@@ -51,6 +51,41 @@ Ship: Oh, man.
 <<setsprite ShipFace happy>>
     Ship: It's HUGE!
 <<setsprite ShipFace neutral>>
+```
+This is some simple introductory text for our Ship character, but it wouldn't make much sense to repeat this if our player has already visited Ship. We will need to write a little bit of code to ensure that the second time we visit Ship, it acts differently. We need to check the state of having visited the ship.
+
+### Conditionals and Functions
+Yarn Spinner has an inbuild function called ***visited***. This function checks to see if a node has previously been access by the player. We can use this function to create a conditional to see whether a node has been visited. The basic syntax of such a conditional is:
+```
+<<if visted("NodeName") is true>>
+    NPC: You have visited me before, player
+<<else>>
+    NPC: You have not visited me before, player
+<<fi>>
+```
+> ***Note:*** The above can be re-written to provide the same outcome by reversing the test from true to false and inverting the NPC text:
+```
+<<if visted("NodeName") is false>>
+    NPC: You have not visited me before, player
+<<else>>
+    NPC: You have visited me before, player
+<<fi>>
+```
+From this basic understanding of the ***'if then else'*** conditional, and usage of the ***'visited'*** function, we can then establish whether a player has visited the NPC Ship and change the dialogue Ship presents:
+```
+<<if visited("Ship") is false>>
+    Ship: Hey, friend.
+    Player: Hi, Ship.
+    Player: How's space?
+    Ship: Oh, man.
+    <<setsprite ShipFace happy>>
+        Ship: It's HUGE!
+    <<setsprite ShipFace neutral>>
+<<else>>
+    <<setsprite ShipFace happy>>
+        Ship: Hey!!
+    <<setsprite ShipFace neutral>>
+<<endif>>
 ```
 
 ## Yarn Dialogue Files
