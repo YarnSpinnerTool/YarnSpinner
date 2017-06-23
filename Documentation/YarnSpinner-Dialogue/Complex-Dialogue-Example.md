@@ -1,6 +1,20 @@
 # Yarn Dialogue - Complex Example
 
-This document talks about how to use Yarn if you're using it to write content. It doesn't talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
+### Style Guide
+
+`Inline Code` contain short snippets of code for your project
+
+    Code Blocks contain segments or chunks of code for your project
+
+**Bold indicate actions (Select menu item, copying file, etc.)**
+
+***Bold italic text indicates emphasis***
+
+> Blockquotes contain essential information
+
+## Tutorial
+
+> ***Note*** This document talks about how to use Yarn if you're using it to write Yarn Dialogue. It is strongly suggested you have first read through the [Simple Example](Simple-Dialogue-Example.md) document. Neither the Simple Example or this document talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
 ## Complex Example
 In our Complex Example, we will establish a multiple file dialogue. This dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
