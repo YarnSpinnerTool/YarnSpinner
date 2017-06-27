@@ -37,8 +37,11 @@ shortcut_statement : shortcut+ ;
 shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? (INDENT statement* DEDENT)? ;
 
 if_statement
-    : '<<' KEYWORD_IF expression '>>' statement* ('<<' KEYWORD_ELSE_IF expression '>>' statement*)* ('<<' KEYWORD_ELSE '>>' statement*)* '<<' KEYWORD_ENDIF '>>'
+    : if_clause (else_if_clause)* (else_clause)? '<<' KEYWORD_ENDIF '>>'
     ;
+if_clause :'<<' KEYWORD_IF expression '>>' statement* ;
+else_if_clause : '<<' KEYWORD_ELSE_IF expression '>>' statement* ;
+else_clause : '<<' KEYWORD_ELSE '>>' statement* ;
 
 // this is a hack until I can work out exactly what the rules for setting are
 set_statement
