@@ -54,12 +54,10 @@ option_statement
     | '[[' OPTION_TEXT ']]'
     ;
 
-// the two unkey-worded commands
-// solo function and an action
 function : ACTION_TEXT '(' expression? (COMMAND_COMMA expression)* ')' ;
-action : (ACTION_TEXT | BODY_NUMBER | '+' | '-')+ ;
 function_statement : '<<' function '>>' ;
-action_statement : '<<' action '>>' ;
+
+action_statement : '<<' (ACTION_TEXT | BODY_NUMBER | '+' | '-')+ '>>' ;
 
 line_statement : TEXT ;
 
