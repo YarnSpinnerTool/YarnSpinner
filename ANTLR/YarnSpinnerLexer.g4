@@ -95,16 +95,15 @@ OPERATOR_MATHS_MULTIPLICATION : '*' ;
 OPERATOR_MATHS_DIVISION : '/' ;
 OPERATOR_MATHS_MODULUS : '%' ;
 
-LPAREN: '(' ;
-RPAREN: ')' ;
+LPAREN : '(' ;
+RPAREN : ')' ;
+COMMAND_COMMA : COMMA ;
 
 VAR_ID : '$' ID ;
 
 // this should allow for 1, 1.1, and .1 all fine
 BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
-
-FUNCTION_TEXT : ID '(' .*? ')' ;
 
 ACTION_TEXT : ID ;
 

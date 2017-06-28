@@ -28,7 +28,7 @@ statement
     | if_statement
     | set_statement
     | option_statement
-    | function_statement
+	| function_statement
     | action_statement
     | line_statement
     ;
@@ -54,18 +54,14 @@ option_statement
     | '[[' OPTION_TEXT ']]'
     ;
 
-function_statement
-    : '<<' FUNCTION_TEXT '>>'
-    ;
+// the two unkey-worded commands
+// solo function and an action
+function : ACTION_TEXT '(' expression? (COMMAND_COMMA expression)* ')' ;
+action : (ACTION_TEXT | BODY_NUMBER | '+' | '-')+ ;
+function_statement : '<<' function '>>' ;
+action_statement : '<<' action '>>' ;
 
-// temporary hack because I was getting annoyed with the red text
-action_statement
-    : '<<' (COMMAND_STRING | (ACTION_TEXT|BODY_NUMBER|'+'|'-')+) '>>'
-    ;
-
-line_statement
-    : TEXT
-    ;
+line_statement : TEXT ;
 
 // this feel a bit crude
 // need to work on this
@@ -89,6 +85,7 @@ value
     | KEYWORD_FALSE  #valueFalse
 	| variable		 #valueVar
 	| COMMAND_STRING #valueString
+	| function		 #valueFunc
     ;
 variable
     : VAR_ID
