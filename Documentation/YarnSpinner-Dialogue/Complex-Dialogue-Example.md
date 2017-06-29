@@ -24,6 +24,8 @@ A limited amount of programming knowledge is required for narrative adventure di
 * ***Commands*** instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
 * ***Conditionals*** are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
 * ***Functions***, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
+* ***Variables*** hold pieces of information relating to the state of the game that may change depending on events happening in the game.  For example, if a player picks up sticks the number of sticks can be stored in a variable called '$sticks_collected'
+> ***Note*** Variable names ***MUST*** always start with the $ character otherwise Yarn Spinner will freak the crap out.
 
 ### Initial Dialogue Setup
 First off, we'll create a background scene. Because our Complex Example is set inside a space ship, we''ll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
@@ -106,7 +108,8 @@ We will now add in some dialogue that responds to whether we've interacted with 
 <<endif>>
 ===
 ```
-We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file  [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt)
+We can see from this code that there a few more conditionals that will be introduced by Sally. They are `should_see_ship` and `received_warning_from_sally`. We shall address that in the second node, [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
+> ***Note:*** We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file  [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt). It is replicated below so as to be easily read here as a complete file.
 ```
 title: Ship
 ---
@@ -139,8 +142,23 @@ title: Ship
 <<endif>>
 ===
 ```
-We can see from this code that there a few more conditionals that will be introduced by Sally. They are `should_see_ship` and `received_warning_from_sally`.
-
+Our Yarn Dialogue for Sally will start out as simply as before, with her words changing depending on whether the player has previously `visited` her.
+```
+<<if visited("Sally") is false>>
+    Sally: Oh! Hi.
+    Sally: You snuck up on me.
+    Sally: Don't do that.
+<<else>>
+    Player: Hey.
+    Sally: Hi.
+<<endif>>
+```
+The next step is to have Sally react to whether we've visited her Watch node
+```
+<<if not visited("Sally.Watch")>>
+    [[Anything exciting happen on your watch?|Sally.Watch]]
+<<endif>>
+```
 ### [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
 ```
 title: Sally
