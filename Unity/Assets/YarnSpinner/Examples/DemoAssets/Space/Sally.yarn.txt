@@ -17,7 +17,7 @@ position: 524,111
     [[Anything exciting happen on your watch?|Sally.Watch]]
 <<endif>>
 
-<<if $received_warning_from_sally and not visited("Sally.Sorry")>>
+<<if $sally_warning and not visited("Sally.Sorry")>>
     [[Sorry about the console.|Sally.Sorry]]
 <<endif>>
 [[See you later.|Sally.Exit]]
