@@ -34,11 +34,9 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? (INDENT statement* DEDENT)? ;
+shortcut : '->' TEXT ('<<' KEYWORD_IF expression '>>')? (hashtag_block)? (INDENT statement* DEDENT)? ;
 
-if_statement
-    : if_clause (else_if_clause)* (else_clause)? '<<' KEYWORD_ENDIF '>>'
-    ;
+if_statement : if_clause (else_if_clause)* (else_clause)? '<<' KEYWORD_ENDIF '>>' (hashtag_block)? ;
 if_clause :'<<' KEYWORD_IF expression '>>' statement* ;
 else_if_clause : '<<' KEYWORD_ELSE_IF expression '>>' statement* ;
 else_clause : '<<' KEYWORD_ELSE '>>' statement* ;
@@ -49,17 +47,20 @@ set_statement
     | '<<' KEYWORD_SET expression '>>'
     ;
 
-option_statement
-    : '[[' OPTION_TEXT '|' OPTION_LINK ']]'
-    | '[[' OPTION_TEXT ']]'
-    ;
+option_statement 
+	: ('[[' OPTION_TEXT '|' OPTION_LINK ']]'
+	| '[[' OPTION_TEXT ']]')
+	(hashtag_block)? ;
 
 function : ACTION_TEXT '(' expression? (COMMAND_COMMA expression)* ')' ;
 function_statement : '<<' function '>>' ;
 
 action_statement : '<<' (ACTION_TEXT | BODY_NUMBER | '+' | '-')+ '>>' ;
 
-line_statement : TEXT ;
+line_statement : TEXT (hashtag_block)? ;
+
+hashtag_block : hashtag+ ;
+hashtag : HASHTAG ;
 
 // this feel a bit crude
 // need to work on this

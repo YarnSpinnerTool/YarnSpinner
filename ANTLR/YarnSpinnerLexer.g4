@@ -47,11 +47,14 @@ OPTION_ENTER : '[[' -> pushMode(Option) ;
 
 BODY_NEWLINE : [\r\n]+ -> skip ;
 
+HASHTAG : '#' TEXT ;
+
+WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
 TEXT : STRING | TEXTCOMPONENT+ ;
-fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B') ;
+fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
-WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------
 // Command mode
