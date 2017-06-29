@@ -17,9 +17,9 @@
 > ***Note*** This document talks about how to use Yarn if you're using it to write Yarn Dialogue. It is strongly suggested you have first read through the [Simple Example](Simple-Dialogue-Example.md) document. Neither the Simple Example or this document talk about how to integrate Yarn Spinner into your project; for that, see ["Using Yarn Spinner in your Unity game"](../YarnSpinner-Unity).
 
 ## Complex Example
-In our Complex Example, we will establish a multiple file dialogue. This dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
+In our Complex Example, we will establish a multiple files of Yarn Dialogue. This Dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
 
-A limited amount of programming knowledge is required for narrative adventure dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as  ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** along with ***[tests](https://en.wikipedia.org/wiki/Relational_operator)*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative. We shall also discuss ***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))*** and how to use them to influence Dialogue interaction.
+A limited amount of programming knowledge is required for narrative adventure Yarn Dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as  ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** along with ***[tests](https://en.wikipedia.org/wiki/Relational_operator)*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative. We shall also discuss ***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))*** and how to use them to influence Dialogue interaction.
 
 * ***Commands*** instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
 * ***Conditionals*** are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
@@ -28,8 +28,8 @@ A limited amount of programming knowledge is required for narrative adventure di
 * ***Variables*** hold pieces of information relating to the state of the game that may change depending on events happening in the game.  For example, if a player picks up sticks the number of sticks can be stored in a variable called '$sticks_collected'
 > ***Note*** Variable names ***MUST*** always start with the $ character otherwise Yarn Spinner will freak the crap out.
 
-### Initial Dialogue Setup
-First off, we'll create a background scene. Because our Complex Example is set inside a space ship, we''ll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
+## First Dialogue File
+First off, we'll create an initial scene. Because our Complex Example is set inside a space ship, we'll give the name of the node 'Ship'. We'll give this node some initial Dialogue.
 ```
 Ship: Hey, friend.
 Player: Hi, Ship.
@@ -45,7 +45,7 @@ Next, we'll add a ***command*** to make the face of the ship change, the ship to
 ```
 Do not be concerned that you do not have any graphics for the ShipFace.  Nor, in fact, don't be too concerned if you'd rather call the graphic FaceOfShip. In fact, the name can be anything. However to be compatible with the existing example, for comparison sake we are using ShipFace.
 
-Our dialogue now reads
+Our Dialogue now reads
 ```
 Ship: Hey, friend.
 Player: Hi, Ship.
@@ -74,7 +74,7 @@ Yarn Spinner has an inbuilt ***function*** called `visited`. This function check
     NPC: You have visited me before, player
 <<endif>>
 ```
-From this basic understanding of the ***'if then else'*** conditional, and usage of the `visited` function, we can then establish whether a player has visited Ship and change the dialogue Ship presents:
+From this basic understanding of the ***'if then else'*** conditional, and usage of the `visited` function, we can then establish whether a player has visited Ship and change the Dialogue that Ship presents:
 ```
 <<if visited("Ship") is false>>
     Ship: Hey, friend.
@@ -92,7 +92,7 @@ From this basic understanding of the ***'if then else'*** conditional, and usage
 ```
 >***Note:*** Remember, if we have `if visited("Ship") is true`, the order of the content of the ***'if then else'*** would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.
 
-We will now add in some dialogue that responds to whether we've interacted with another NPC, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yarn Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters. This is the remainder of the text required for the Ship Node of Yarn Dialogue.
+We will now add in some Dialogue that responds to whether we've interacted with another NPC, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yarn Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters. This is the remainder of the text required for the Ship Node of Yarn Dialogue.
 ```
 <<if $should_see_ship is true and $sally_warning is false>>
     Player: Sally said you wanted to see me?
@@ -148,6 +148,7 @@ title: Ship
 <<endif>>
 ===
 ```
+### Second Yarn Dialogue file
 Our Yarn Dialogue for Sally will start out as simply as before, with her words changing depending on whether the player has previously `visited` her.
 ```
 <<if visited("Sally") is false>>
@@ -177,7 +178,7 @@ After all the above Yarn Dialogue is executed, and the nodes are visited, we wil
 ```
 [[See you later.|Sally.Exit]]
 ```
-The first node in our Sally dialogue now reads as follows
+The first node in our Yarn Dialogue for Sally now reads:
 ```
 title: Sally
 ---
@@ -200,7 +201,7 @@ title: Sally
 ```
 We're near the end, as all we have to do now is write the `Sally.Watch`, `Sally.Exit` and `Sally.Sorry` nodes.
 
-`Sally.Watch` is rather straight forward Yarn Dialogue. It sets a ***variable*** `$should_see_ship` when Sally tells us to go visit the ship. It also tests to see if we've visited already visited the ship and if so, presents some additional dialogue.
+`Sally.Watch` is rather straight forward Yarn Dialogue. It sets a ***variable*** `$should_see_ship` when Sally tells us to go visit the ship. It also tests to see if we've visited already visited the ship and if so, presents some additional Dialogue.
 ```
 Sally: Not really.
 Sally: Same old nebula, doing the same old thing.
@@ -218,13 +219,11 @@ as the Dialogue completes:
 ```
 Sally: Bye.
 ```
-And the text containing the dialogue containing the text of Sally
-scolding the player:
+And the text containing the Dialogue containing the text of Sally scolding the player:
 ```
 Sally: Yeah. Don't do it again.
 ```
-
-### [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
+We now have our completed [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt) file, and have finished creating the Yarn Dialogue for our Complex Example.
 ```
 title: Sally
 ---
