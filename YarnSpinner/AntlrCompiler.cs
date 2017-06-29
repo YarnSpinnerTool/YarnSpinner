@@ -59,6 +59,23 @@ namespace Yarn
         {
             this.Emit(this.currentNode, code, operandA, operandB);
         }
+        // returns the lineID for this statement if it has one
+        // otherwise returns null
+        // takes in a hashtag block which it handles here
+        // may need to be changed as future hashtags get support
+        internal string GetLineID(YarnSpinnerParser.Hashtag_blockContext context)
+        {
+            foreach (var hashtag in context.hashtag())
+            {
+                string tagText = hashtag.GetText().Trim('#');
+                if (tagText.StartsWith("line:"))
+                {
+                    return tagText;
+                }
+            }
+
+            return null;
+        }
 
         // this replaces the CompileNode from the old compiler
         // will start walking the parse tree
@@ -219,9 +236,8 @@ namespace Yarn
             // grabbing the line of text and stripping off any "'s if they had them
             string lineText = context.TEXT().GetText().Trim('"');
 
-			// TODO: change the grammar to allow hashtags at the end of statements
-			//string lineID = GetLineIDFromNodeTags(parseNode);
-			string lineID = null;
+            // getting the lineID from the hashtags if it has one
+            string lineID = compiler.GetLineID(context.hashtag_block());
 
             // technically this only gets the line the statement started on
             int lineNumber = context.Start.Line;
@@ -246,9 +262,8 @@ namespace Yarn
 
 				int lineNumber = context.Start.Line;
 
-                // TODO: hashtag
-				//string lineID = GetLineIDFromNodeTags(statement.parent);
-				string lineID = null;
+				// getting the lineID from the hashtags if it has one
+				string lineID = compiler.GetLineID(context.hashtag_block());
 
                 string stringID = compiler.program.RegisterString(label, compiler.currentNode.name, lineID, lineNumber, true);
                 compiler.Emit(ByteCode.AddOption, stringID, destination);
@@ -440,9 +455,9 @@ namespace Yarn
                     compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
                 }
 
-                // TODO: hashtags
-                //var lineID = GetLineIDFromNodeTags(shortcutOption);
-                string lineID = null;
+				// getting the lineID from the hashtags if it has one
+                string lineID = compiler.GetLineID(shortcut.hashtag_block());
+
                 string shortcutLine = shortcut.TEXT().GetText();
                 string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.name, lineID, shortcut.Start.Line, true);
 
