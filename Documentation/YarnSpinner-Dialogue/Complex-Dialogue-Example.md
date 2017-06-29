@@ -89,10 +89,24 @@ From this basic understanding of the ***'if then else'*** conditional, and usage
 ```
 >***Note:*** Remember, if we have `if visited("Ship") is true`, the order of the content of the ***'if then else'*** would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.
 
-We will now add in some dialogue that responds to whether we've interacted with another NPC, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yar Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters.
-
-## Yarn Dialogue Files
-### [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt)
+We will now add in some dialogue that responds to whether we've interacted with another NPC, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yarn Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters. This is the remainder of the text required for the Ship Node of Yarn Dialogue.
+```
+<<if $should_see_ship is true and $received_warning_from_sally is false>>
+    Player: Sally said you wanted to see me?
+    <<setsprite ShipFace happy>>
+    Ship: She totally did!!
+    <<setsprite ShipFace neutral>>
+    Ship: She wanted me to tell you...
+    Ship: If you ever go off-watch without resetting the console again...
+    <<setsprite ShipFace happy>>
+    Ship: She'll flay you alive!
+    <<set $received_warning_from_sally to true>>
+    Player: Uh.
+    <<setsprite ShipFace neutral>>
+<<endif>>
+===
+```
+We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file  [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt)
 ```
 title: Ship
 ---
@@ -123,9 +137,10 @@ title: Ship
     Player: Uh.
     <<setsprite ShipFace neutral>>
 <<endif>>
-
 ===
 ```
+We can see from this code that there a few more conditionals that will be introduced by Sally. They are `should_see_ship` and `received_warning_from_sally`.
+
 ### [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
 ```
 title: Sally
