@@ -14,6 +14,7 @@ B: What would you prefer to do next? #line:d35a9665
 [[Leave|Leave]] #line:e6cebba9
 [[Learn more|LearnMore]] #line:30ee1a0e
 ===
+
 title: Leave
 tags: 
 colorID: 0
@@ -21,7 +22,7 @@ position: 387,487
 ---
 A: Oh, goodbye! #line:1971e104
 B: You'll be back soon! #line:39d35a39
-===
+o===
 title: LearnMore
 tags: 
 colorID: 0
