@@ -110,7 +110,7 @@ We will now add in some Dialogue that responds to whether we've interacted with 
 ===
 ```
 ### Variables and Tests
-We can see from this code that there a coupl of new things in this code snipped. They are `$should_see_ship is true` and `$sally_warning is false`.
+We can see from this code that there a couple of new things in this code snippet. They are `$should_see_ship is true` and `$sally_warning is false`.
 
 `$should_see_ship` and `$sally_warning` are examples of what are known as a ***variable***. In this case, they are a variable of [boolean data type](https://en.wikipedia.org/wiki/Boolean_data_type) and both `$should_see_ship is true` and `$sally_warning is false` are known as [boolean expressions](https://en.wikipedia.org/wiki/Boolean_expression). In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable to either of these two states and later evaluating it, determinations can be made as to which section of Yarn Dialogue should be displayed.
 
