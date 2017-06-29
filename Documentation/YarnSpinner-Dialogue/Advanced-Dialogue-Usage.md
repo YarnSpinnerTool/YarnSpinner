@@ -85,7 +85,7 @@ You can check the value of a variable using the `if` command:
 
 ## Expressions
 
-You can do math in an `if` command. For example:
+You can do maths in an `if` command. For example:
 
 	<<if $number_of_stars_collected > 5>>
 		You have more than 5 stars!
