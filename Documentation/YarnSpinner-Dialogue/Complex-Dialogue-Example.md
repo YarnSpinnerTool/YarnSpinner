@@ -61,7 +61,7 @@ Yarn Spinner has an inbuilt ***function*** called `visited`. This function check
     NPC: You have visited me before, player
 <<else>>
     NPC: You have not visited me before, player
-<<fi>>
+<<endif>>
 ```
 > ***Note:*** The above can be re-written to provide the same outcome by reversing the test from true to false and inverting the NPC text:
 ```
@@ -69,7 +69,7 @@ Yarn Spinner has an inbuilt ***function*** called `visited`. This function check
     NPC: You have not visited me before, player
 <<else>>
     NPC: You have visited me before, player
-<<fi>>
+<<endif>>
 ```
 From this basic understanding of the ***'if then else'*** conditional, and usage of the `visited` function, we can then establish whether a player has visited Ship and change the dialogue Ship presents:
 ```
