@@ -30,6 +30,9 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 
 
 namespace Yarn {
@@ -90,7 +93,7 @@ namespace Yarn {
 		// Returns the number of nodes that were loaded.
 		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format)
 		{
-
+            bool legacyMode = false;
 			// The final parsed nodes that were in the file we were given
 			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
 
@@ -100,91 +103,114 @@ namespace Yarn {
 				format = GetFormatFromFileName(fileName);
 			}
 
+			// TODO: testing only tim!
+            if (!legacyMode)
+            {
+                string inputString;
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
+                {
+                    inputString = reader.ReadToEnd();
+                }
+                ICharStream input = CharStreams.fromstring(inputString);
 
-			var nodeInfos = GetNodesFromText(text, format);
+                YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
-			int nodesLoaded = 0;
+                IParseTree tree = parser.dialogue();
+                AntlrCompiler antlrcompiler = new AntlrCompiler(library);
+                antlrcompiler.Compile(tree);
 
-			foreach (NodeInfo nodeInfo in nodeInfos)
-			{
+                return antlrcompiler.program;
+            }
+            else
+            {
 
-				if (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
-					continue;
+                var nodeInfos = GetNodesFromText(text, format);
 
-				// Attempt to parse every node; log if we encounter any errors
+                int nodesLoaded = 0;
+
+                foreach (NodeInfo nodeInfo in nodeInfos)
+                {
+
+                    if (onlyConsiderNode != null && nodeInfo.title != onlyConsiderNode)
+                        continue;
+
+                    // Attempt to parse every node; log if we encounter any errors
 #if CATCH_EXCEPTIONS
-				try
-				{
+                    try
+                    {
 #endif
 
-					if (nodes.ContainsKey(nodeInfo.title))
-					{
-						throw new InvalidOperationException("Attempted to load a node called " +
-							nodeInfo.title + ", but a node with that name has already been loaded!");
-					}
+                        if (nodes.ContainsKey(nodeInfo.title))
+                        {
+                            throw new InvalidOperationException("Attempted to load a node called " +
+                                nodeInfo.title + ", but a node with that name has already been loaded!");
+                        }
 
-					var lexer = new Lexer();
-					var tokens = lexer.Tokenise(nodeInfo.title, nodeInfo.body);
+                        var lexer = new Lexer();
+                        var tokens = lexer.Tokenise(nodeInfo.title, nodeInfo.body);
 
-					if (showTokens)
-						PrintTokenList(tokens);
+                        if (showTokens)
+                            PrintTokenList(tokens);
 
-					var node = new Parser(tokens, library).Parse();
+                        var node = new Parser(tokens, library).Parse();
 
-					// If this node is tagged "rawText", then preserve its source
-					if (string.IsNullOrEmpty(nodeInfo.tags) == false &&
-						nodeInfo.tags.Contains("rawText"))
-					{
-						node.source = nodeInfo.body;
-					}
+                        // If this node is tagged "rawText", then preserve its source
+                        if (string.IsNullOrEmpty(nodeInfo.tags) == false &&
+                            nodeInfo.tags.Contains("rawText"))
+                        {
+                            node.source = nodeInfo.body;
+                        }
 
-					node.name = nodeInfo.title;
+                        node.name = nodeInfo.title;
 
-					node.nodeTags = nodeInfo.tagsList;
+                        node.nodeTags = nodeInfo.tagsList;
 
-					if (showParseTree)
-						PrintParseTree(node);
+                        if (showParseTree)
+                            PrintParseTree(node);
 
-					nodes[nodeInfo.title] = node;
+                        nodes[nodeInfo.title] = node;
 
-					nodesLoaded++;
+                        nodesLoaded++;
 
 #if CATCH_EXCEPTIONS
-				}
-				catch (Yarn.TokeniserException t)
-				{
-					// Add file information
-					var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
-					throw new Yarn.TokeniserException(message);
-				}
-				catch (Yarn.ParseException p)
-				{
-					var message = string.Format("In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
-					throw new Yarn.ParseException(message);
-				}
-				catch (InvalidOperationException e)
-				{
-					var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
-					throw new InvalidOperationException(message);
-				}
+                    }
+                    catch (Yarn.TokeniserException t)
+                    {
+                        // Add file information
+                        var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
+                        throw new Yarn.TokeniserException(message);
+                    }
+                    catch (Yarn.ParseException p)
+                    {
+                        var message = string.Format("In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
+                        throw new Yarn.ParseException(message);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
+                        throw new InvalidOperationException(message);
+                    }
 #endif
 
 
-			}
+                }
 
-			var compiler = new Yarn.Compiler(fileName);
+                var compiler = new Yarn.Compiler(fileName);
 
-			foreach (var node in nodes)
-			{
-				compiler.CompileNode(node.Value);
-			}
+                foreach (var node in nodes)
+                {
+                    compiler.CompileNode(node.Value);
+                }
 
-			if (includeProgram != null)
-			{
-				compiler.program.Include(includeProgram);
-			}
+                if (includeProgram != null)
+                {
+                    compiler.program.Include(includeProgram);
+                }
 
-			return compiler.program;
+                return compiler.program;
+            }
 
 		}
 

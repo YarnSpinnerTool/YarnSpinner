@@ -23,7 +23,11 @@
     <ConsolePause>False</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot; " workingdir="${SolutionDir}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>cp ${TargetPath} "Unity/Assets/Yarn Spinner/Code/" </command>
+          <workingdir>${SolutionDir}</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -36,7 +40,11 @@
     <ConsolePause>False</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="cp ${TargetPath} &quot;Unity/Assets/Yarn Spinner/Code/&quot; " workingdir="${SolutionDir}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>cp ${TargetPath} "Unity/Assets/Yarn Spinner/Code/" </command>
+          <workingdir>${SolutionDir}</workingdir>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -44,6 +52,9 @@
     <Reference Include="System" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.1\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +68,19 @@
     <Compile Include="Compiler.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Analyser.cs" />
+    <Compile Include="YarnSpinnerLexer.cs" />
+    <Compile Include="AntlrCompiler.cs" />
+    <Compile Include="YarnSpinnerParser.cs" />
+    <Compile Include="YarnSpinnerParserBaseListener.cs" />
+    <Compile Include="YarnSpinnerParserBaseVisitor.cs" />
+    <Compile Include="YarnSpinnerParserListener.cs" />
+    <Compile Include="YarnSpinnerParserVisitor.cs" />
+    <Compile Include="YarnSpinnerVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="YarnSpinnerLexer.tokens" />
+    <None Include="YarnSpinnerParser.tokens" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

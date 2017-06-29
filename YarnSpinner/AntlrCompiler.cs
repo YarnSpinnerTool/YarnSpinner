@@ -1,0 +1,755 @@
+﻿using System;
+using System.Text;
+using System.Collections.Generic;
+using Antlr4.Runtime.Misc;
+using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
+
+namespace Yarn
+{
+    public class AntlrCompiler : YarnSpinnerParserBaseListener
+    {
+        internal struct CompileFlags
+        {
+            // should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
+            // after the next RunOptions bytecode?
+            public bool DisableShuffleOptionsAfterNextSet;
+        }
+
+        internal CompileFlags flags;
+
+        private int labelCount = 0;
+
+        internal Program program { get; private set; }
+
+        internal Node currentNode = null;
+
+        internal Library library;
+
+        internal AntlrCompiler(Library library)
+        {
+            program = new Program();
+            this.library = library;
+        }
+
+        // Generates a unique label name to use
+        internal string RegisterLabel(string commentary = null)
+        {
+            return "L" + labelCount++ + commentary;
+        }
+        // creates the relevant instruction and adds it to the stack
+        void Emit(Node node, ByteCode code, object operandA = null, object operandB = null)
+        {
+            var instruction = new Instruction();
+            instruction.operation = code;
+            instruction.operandA = operandA;
+            instruction.operandB = operandB;
+
+            node.instructions.Add(instruction);
+
+            if (code == ByteCode.Label)
+            {
+                // Add this label to the label table
+                node.labels.Add((string)instruction.operandA, node.instructions.Count - 1);
+            }
+        }
+        // exactly same as above but defaults to using currentNode
+        // creates the relevant instruction and adds it to the stack
+        internal void Emit(ByteCode code, object operandA = null, object operandB = null)
+        {
+            this.Emit(this.currentNode, code, operandA, operandB);
+        }
+
+        // this replaces the CompileNode from the old compiler
+        // will start walking the parse tree
+        // emitting byte code as it goes along
+        // this will all get stored into our program var
+        // needs a tree to walk, this comes from the ANTLR Parser/Lexer steps
+        internal void Compile(IParseTree tree)
+        {
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(this, tree);
+        }
+
+        // we have found a new node
+        // set up the currentNode var ready to hold it and otherwise continue
+        public override void EnterNode(YarnSpinnerParser.NodeContext context)
+        {
+            if (currentNode != null)
+            {
+                // TODO: replace with an error/warning
+                Console.WriteLine("ERROR: discovered a node when another is still active");
+            }
+            currentNode = new Node();
+        }
+        // have left the current node
+        // store it into the program
+        // wipe the var and make it ready to go again
+        public override void ExitNode(YarnSpinnerParser.NodeContext context)
+        {
+            program.nodes[currentNode.name] = currentNode;
+            currentNode = null;
+        }
+
+        // quick check to make sure we have the required number of headers
+        // basically only allowed one of each tags, position, colourID
+        // don't need to check for title because without it'll be a parse error
+        public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
+        {
+            if (context.header_tags().Length > 1)
+            {
+                // TODO: replace with an error/warning
+                Console.WriteLine("ERROR: Too many tags defined in node");
+            }
+            if (context.header_colour().Length > 1)
+            {
+                // TODO: replace with an error/warning
+                Console.WriteLine("ERROR: Too many colourIDs defined in node");
+            }
+            if (context.header_position().Length > 1)
+            {
+                // TODO: replace with an error/warning
+                Console.WriteLine("ERROR: Too many positions defined in node");
+            }
+        }
+        public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
+        {
+            currentNode.name = context.ID().GetText();
+        }
+        public override void EnterHeader_tags(YarnSpinnerParser.Header_tagsContext context)
+        {
+            // need to turn this into a list of tags
+            // realising now this is far from what we need
+            // needs to be comma separated...
+            // TODO: fix the grammar to account for this
+            var tags = new List<string>();
+            foreach (var tag in context.ID())
+            {
+                string tagString = tag.GetText();
+                tags.Add(tagString);
+            }
+            currentNode.tags = tags;
+        }
+        // have finished with the header
+        // so about to enter the node body and all its statements
+        // do the initial setup required before compiling that body statements
+        // eg emit a new startlabel
+        public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
+        {
+            Emit(currentNode, ByteCode.Label, RegisterLabel());
+        }
+
+        // have entered the body
+        // the header should have finished being parsed and currentNode ready
+        // all we do is set up a body visitor and tell it to run through all the statements
+        // it handles everything from that point onwards
+        public override void EnterBody(YarnSpinnerParser.BodyContext context)
+        {
+            BodyVisitor visitor = new BodyVisitor(this);
+
+            foreach (var statement in context.statement())
+            {
+                visitor.Visit(statement);
+            }
+        }
+
+        // exiting the body of the node, time for last minute work before moving on
+		// Does this node end after emitting AddOptions codes
+		// without calling ShowOptions?
+		public override void ExitBody(YarnSpinnerParser.BodyContext context)
+        {
+			// Note: this only works when we know that we don't have
+			// AddOptions and then Jump up back into the code to run them.
+			// TODO: A better solution would be for the parser to flag
+			// whether a node has Options at the end.
+			var hasRemainingOptions = false;
+            foreach (var instruction in currentNode.instructions)
+			{
+				if (instruction.operation == ByteCode.AddOption)
+				{
+					hasRemainingOptions = true;
+				}
+				if (instruction.operation == ByteCode.ShowOptions)
+				{
+					hasRemainingOptions = false;
+				}
+			}
+
+			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
+			if (hasRemainingOptions == false)
+			{
+                Emit(currentNode, ByteCode.Stop);
+			}
+			else
+			{
+				// Otherwise, show the accumulated nodes and then jump to the selected node
+                Emit(currentNode, ByteCode.ShowOptions);
+
+				if (flags.DisableShuffleOptionsAfterNextSet == true)
+				{
+					Emit(currentNode, ByteCode.PushBool, false);
+					Emit(currentNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+					Emit(currentNode, ByteCode.Pop);
+					flags.DisableShuffleOptionsAfterNextSet = false;
+				}
+
+				Emit(currentNode, ByteCode.RunNode);
+			}
+        }
+    }
+
+    // the visitor for the body of the node
+    // does not really return ints, just has to return something
+    // might be worth later investigating returning Instructions
+    public class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
+    {
+		internal AntlrCompiler compiler;
+
+		public BodyVisitor(AntlrCompiler compiler)
+		{
+			this.compiler = compiler;
+            this.loadOperators();
+		}
+
+        // a regular ol' line of text
+        public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
+        {
+            // grabbing the line of text and stripping off any "'s if they had them
+            string lineText = context.TEXT().GetText().Trim('"');
+
+			// TODO: change the grammar to allow hashtags at the end of statements
+			//string lineID = GetLineIDFromNodeTags(parseNode);
+			string lineID = null;
+
+            // technically this only gets the line the statement started on
+            int lineNumber = context.Start.Line;
+
+            // TODO: why is this called num?
+            string num = compiler.program.RegisterString(lineText, compiler.currentNode.name, lineID, lineNumber, true);
+
+            compiler.Emit(ByteCode.RunLine, num);
+
+			return 0;
+        }
+
+		// an option statement
+		// [[ OPTION_TEXT | OPTION_LINK]] or [[OPTION_TEXT]]
+        public override int VisitOption_statement(YarnSpinnerParser.Option_statementContext context)
+        {
+            // if it is a split style option
+            if (context.OPTION_LINK() != null)
+            {
+				string destination = context.OPTION_LINK().GetText();
+				string label = context.OPTION_TEXT().GetText();
+
+				int lineNumber = context.Start.Line;
+
+                // TODO: hashtag
+				//string lineID = GetLineIDFromNodeTags(statement.parent);
+				string lineID = null;
+
+                string stringID = compiler.program.RegisterString(label, compiler.currentNode.name, lineID, lineNumber, true);
+                compiler.Emit(ByteCode.AddOption, stringID, destination);
+            }
+            else
+            {
+				string destination = context.OPTION_TEXT().GetText();
+				compiler.Emit(ByteCode.RunNode, destination);
+            }
+            return 0;
+        }
+
+		// for setting variables, has two forms
+		// << SET variable TO/= expression >>
+		// << SET expression >>
+        // the second form does need to match the structure:
+        // variable (+= -= *= /= %=) expression
+		public override int VisitSet_statement(YarnSpinnerParser.Set_statementContext context)
+		{
+            // if it is the first form
+            // a regular << SET $varName TO expression >>
+            if (context.variable() != null)
+            {
+                // add the expression (whatever it resolves to)
+                Visit(context.expression());
+
+				// now store the variable and clean up the stack
+				string variableName = context.variable().GetText();
+				compiler.Emit(ByteCode.StoreVariable, variableName);
+				compiler.Emit(ByteCode.Pop);
+            }
+            // it is the second form
+            else
+            {
+                // checking the expression is of the correct form
+                var expression = context.expression();
+                // TODO: is there really no more elegant way of doing this?!
+                if (expression is YarnSpinnerParser.ExpMultDivModEqualsContext ||
+                    expression is YarnSpinnerParser.ExpPlusMinusEqualsContext)
+                {
+                    // run the expression, it handles it from here
+                    Visit(expression);
+                }
+                else
+                {
+                    // TODO: replace with an error
+                    Console.WriteLine("ERROR: invalid expression inside an assignment statement");
+                }
+            }
+
+            return 0;
+		}
+
+		// semi-free form text that gets passed along to the game
+		// for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
+		public override int VisitAction_statement(YarnSpinnerParser.Action_statementContext context)
+        {
+            char[] trimming = { '<', '>' };
+            compiler.Emit(ByteCode.RunCommand,context.GetText().Trim(trimming));
+
+            return 0;
+        }
+
+        //solo function statements
+        // this is such a weird thing...
+        // << functionName( expression, expression, etc) >>
+        public override int VisitFunction_statement(YarnSpinnerParser.Function_statementContext context)
+        {
+            // all we need do is visit the function itself, it handles everything
+
+            Visit(context.function());
+
+            return 0;
+        }
+        // handles emiting the correct instructions for the function
+        public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
+        {
+            string functionName = context.ACTION_TEXT().GetText();
+
+            // this will throw an exception if it doesn't exist
+            FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
+
+            // if the function is not variadic we need to check it has the right number of params
+            if (functionInfo.paramCount != -1)
+            {
+				if (context.expression().Length != functionInfo.paramCount)
+				{
+                    // TODO: replace with error
+                    Console.WriteLine("ERROR: incorrect number of params in " + functionName);
+				}  
+            }
+
+            // generate the instructions for all of the parameters
+            foreach (var parameter in context.expression())
+            {
+                Visit(parameter);
+            }
+
+            // if the function is variadic we push the parameter number onto the stack
+            // variadic functions are those with paramCount of -1
+            if (functionInfo.paramCount == -1)
+            {
+                compiler.Emit(ByteCode.PushNumber, context.expression().Length);
+            }
+
+            // then call the function itself
+            compiler.Emit(ByteCode.CallFunc, functionName);
+
+            return 0;
+        }
+
+        // if statement
+        // ifclause (elseifclause)* (elseclause)? <<endif>>
+        public override int VisitIf_statement(YarnSpinnerParser.If_statementContext context)
+        {
+            // label to give us a jump point for when the if finishes
+            string endOfIfStatementLabel = compiler.RegisterLabel("endif");
+
+            // handle the if
+            var ifClause = context.if_clause();
+            generateClause(endOfIfStatementLabel, ifClause.statement(), ifClause.expression());
+
+            // all elseifs
+            foreach (var elseIfClause in context.else_if_clause())
+            {
+                generateClause(endOfIfStatementLabel, elseIfClause.statement(), elseIfClause.expression());
+            }
+
+            // the else, if there is one
+            var elseClause = context.else_clause();
+            if (elseClause != null)
+            {
+                generateClause(endOfIfStatementLabel, elseClause.statement(), null);
+            }
+
+            compiler.Emit(ByteCode.Label, endOfIfStatementLabel);
+
+            return 0;
+        }
+        internal void generateClause(string jumpLabel, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)
+        {
+            string endOfClauseLabel = compiler.RegisterLabel("skipclause");
+
+            // handling the expression (if it has one)
+            // will only be called on ifs and elseifs
+            if (expression != null)
+            {
+				Visit(expression);
+				compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+            }
+
+			// running through all of the children statements
+			foreach (var child in children)
+			{
+				Visit(child);
+			}
+
+            compiler.Emit(ByteCode.JumpTo, jumpLabel);
+
+            if (expression != null)
+            {
+				compiler.Emit(ByteCode.Label, endOfClauseLabel);
+				compiler.Emit(ByteCode.Pop);
+            }
+        }
+
+        // for the shortcut options
+        // (-> line of text <<if expression>> indent statements dedent)+
+        public override int VisitShortcut_statement(YarnSpinnerParser.Shortcut_statementContext context)
+        {
+            string endOfGroupLabel = compiler.RegisterLabel("group_end");
+
+            var labels = new List<string>();
+
+            int optionCount = 0;
+
+            foreach (var shortcut in context.shortcut())
+            {
+                string optionDestinationLabel = compiler.RegisterLabel("option_" + (optionCount + 1));
+                labels.Add(optionDestinationLabel);
+
+                string endOfClauseLabel = null;
+                if (shortcut.expression() != null)
+                {
+                    endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
+
+                    Visit(shortcut.expression());
+
+                    compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+                }
+
+                // TODO: hashtags
+                //var lineID = GetLineIDFromNodeTags(shortcutOption);
+                string lineID = null;
+                string shortcutLine = shortcut.TEXT().GetText();
+                string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.name, lineID, shortcut.Start.Line, true);
+
+                compiler.Emit(ByteCode.AddOption, labelStringID, optionDestinationLabel);
+
+                if (shortcut.expression() != null)
+                {
+					compiler.Emit(ByteCode.Label, endOfClauseLabel);
+					compiler.Emit(ByteCode.Pop);
+                }
+                optionCount++;
+            }
+
+            compiler.Emit(ByteCode.ShowOptions);
+
+			// TODO: investigate a cleaner way because this is odd...
+			if (compiler.flags.DisableShuffleOptionsAfterNextSet == true)
+			{
+				compiler.Emit(ByteCode.PushBool, false);
+				compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+				compiler.Emit(ByteCode.Pop);
+				compiler.flags.DisableShuffleOptionsAfterNextSet = false;
+			}
+
+            compiler.Emit(ByteCode.Jump);
+
+            optionCount = 0;
+            foreach (var shortcut in context.shortcut())
+            {
+                compiler.Emit(ByteCode.Label, labels[optionCount]);
+
+                // running through all the children statements of the shortcut
+                foreach (var child in shortcut.statement())
+                {
+                    Visit(child);
+                }
+
+                compiler.Emit(ByteCode.JumpTo, endOfGroupLabel);
+
+                optionCount++;
+            }
+
+            compiler.Emit(ByteCode.Label, endOfGroupLabel);
+            compiler.Emit(ByteCode.Pop);
+
+            return 0;
+        }
+
+        // the calls for the various operations and expressions
+        // first the three special cases (), unary - and if it is just a value by itself
+        #region specialCaseCalls
+        public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
+		{
+			return Visit(context.expression());
+		}
+		public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
+		{
+			int expression = Visit(context.expression());
+
+            // TODO: temp operator call
+			//compiler.Emit(ByteCode.CallFunc, "-");
+            compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
+
+			return 0;
+		}
+        public override int VisitExpValue(YarnSpinnerParser.ExpValueContext context)
+        {
+            return Visit(context.value());
+        }
+        #endregion
+
+		// left OPERATOR right style expressions
+        // the most common form of expressions
+        // for things like 1 + 3
+		#region LvalueOperatorRvalueCalls
+		internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, string op)
+		{
+			Visit(left);
+			Visit(right);
+
+            // TODO: temp operator call
+			//compiler.Emit(ByteCode.CallFunc, op);
+            compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
+		}
+		// * / %
+		public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
+		{
+			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+
+			return 0;
+		}
+		// + -
+		public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
+		{
+			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+
+			return 0;
+		}
+		// < <= > >=
+		public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
+		{
+			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+
+			return 0;
+		}
+		// == !=
+		public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
+		{
+			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+
+			return 0;
+		}
+        // and && or || xor ^
+        public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
+        {
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+
+            return 0;
+        }
+        #endregion
+
+        // operatorEquals style operators, eg +=
+        // these two should only be called during a SET operation
+        // eg << set $var += 1 >>
+        // the left expression has to be a variable
+        // the right value can be anything
+        #region operatorEqualsCalls
+        // generic helper for these types of expressions
+        internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, string op)
+        {
+			// Get the current value of the variable
+			compiler.Emit(ByteCode.PushVariable, varName);
+
+			// run the expression
+            Visit(expression);
+
+			// Stack now contains [currentValue, expressionValue]
+
+			// now we evaluate the operator
+			// op is now one of + - / * %
+			string trimmedOp = op.TrimEnd(new char[] { '=' });
+            // TODO: work out how to do operators better
+            compiler.Emit(ByteCode.CallFunc, tokens[trimmedOp].ToString());
+
+			// Stack now has the destination value
+			// now store the variable and clean up the stack
+			compiler.Emit(ByteCode.StoreVariable, varName);
+			compiler.Emit(ByteCode.Pop);
+        }
+		// *= /= %=
+		public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
+		{
+			// call the helper to deal with this
+			opEquals(context.variable().GetText(), context.expression(), context.op.Text);
+			return 0;
+		}
+        // += -=
+        public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
+        {
+            // call the helper to deal with this
+            opEquals(context.variable().GetText(), context.expression(), context.op.Text);
+
+            return 0;
+        }
+        #endregion
+
+        // the calls for the various value types
+        // this is a wee bit messy but is easy to extend, easy to read
+        // and requires minimal checking as ANTLR has already done all that
+        // does have code duplication though
+        // TODO: add in support for null as a value type...
+        #region valueCalls
+        public override int VisitValueVar(YarnSpinnerParser.ValueVarContext context)
+		{
+			return Visit(context.variable());
+		}
+		public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
+		{
+			float number = float.Parse(context.BODY_NUMBER().GetText());
+			compiler.Emit(ByteCode.PushNumber, number);
+
+			return 0;
+		}
+		public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
+		{
+			compiler.Emit(ByteCode.PushBool, true);
+
+			return 0;
+		}
+		public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
+		{
+			compiler.Emit(ByteCode.PushBool, false);
+			return 0;
+		}
+		public override int VisitVariable(YarnSpinnerParser.VariableContext context)
+		{
+			string variableName = context.VAR_ID().GetText();
+			compiler.Emit(ByteCode.PushVariable, variableName);
+
+			return 0;
+		}
+		public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
+		{
+			// stripping the " off the front and back
+			// actually is this what we want?
+			string stringVal = context.COMMAND_STRING().GetText().Trim('"');
+
+			int lineNumber = context.Start.Line;
+			string id = compiler.program.RegisterString(stringVal, compiler.currentNode.name, null, lineNumber, false);
+			compiler.Emit(ByteCode.PushString, id);
+
+			return 0;
+		}
+        // all we need do is visit the function itself, it will handle everything
+        public override int VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
+        {
+            Visit(context.function());
+
+            return 0;
+        }
+		#endregion
+
+		// TODO: figure out a better way to do operators
+		Dictionary<string, TokenType> tokens = new Dictionary<string, TokenType>();
+        private void loadOperators()
+        {
+            tokens["<="] = TokenType.LessThanOrEqualTo;
+            tokens[">="] = TokenType.GreaterThanOrEqualTo;
+            tokens["=="] = TokenType.EqualTo;
+            tokens["IS"] = TokenType.EqualTo;
+            tokens["is"] = TokenType.EqualTo;
+            tokens["<"] = TokenType.LessThan;
+            tokens[">"] = TokenType.GreaterThan;
+            tokens["!="] = TokenType.NotEqualTo;
+            tokens["and"] = TokenType.And;
+            tokens["AND"] = TokenType.And;
+            tokens["&&"] = TokenType.And;
+            tokens["or"] = TokenType.Or;
+            tokens["OR"] = TokenType.Or;
+            tokens["||"] = TokenType.Or;
+            tokens["xor"] = TokenType.Xor;
+            tokens["XOR"] = TokenType.Xor;
+            tokens["^"] = TokenType.Xor;
+            tokens["+"] = TokenType.Add;
+            tokens["-"] = TokenType.Minus;
+            tokens["*"] = TokenType.Multiply;
+            tokens["/"] = TokenType.Divide;
+            tokens["%"] = TokenType.Modulo;
+        }
+	}
+
+	public class Graph
+	{
+		public ArrayList<String> nodes = new ArrayList<String>();
+		public MultiMap<String, String> edges = new MultiMap<String, String>();
+
+		public void edge(String source, String target)
+		{
+			edges.Map(source, target);
+		}
+		public String toDot()
+		{
+			StringBuilder buf = new StringBuilder();
+			buf.Append("digraph G {\n");
+			buf.Append("  ");
+			foreach (String node in nodes)
+			{ // print all nodes first
+				buf.Append(node);
+				buf.Append("; ");
+			}
+			buf.Append("\n");
+			foreach (String src in edges.Keys)
+			{
+				if (edges.TryGetValue(src, out var output))
+				{
+					foreach (String trg in output)
+					{
+						buf.Append("  ");
+						buf.Append(src);
+						buf.Append(" -> ");
+						buf.Append(trg);
+						buf.Append(";\n");
+					}
+				}
+			}
+			buf.Append("}\n");
+			return buf.ToString();
+		}
+	}
+    public class YarnSpinnerListener:YarnSpinnerParserBaseListener
+    {
+        String currentNode = null;
+        public Graph graph = new Graph();
+        public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
+        {
+            currentNode = context.ID().GetText();
+            graph.nodes.Add(currentNode);
+        }
+        public override void ExitOption_statement(YarnSpinnerParser.Option_statementContext context)
+        {
+            var link = context.OPTION_LINK();
+            if (link != null)
+            {
+                graph.edge(currentNode,link.GetText());
+            }
+            else
+            {
+                graph.edge(currentNode, context.OPTION_TEXT().GetText());
+            }
+        }
+    }
+}
