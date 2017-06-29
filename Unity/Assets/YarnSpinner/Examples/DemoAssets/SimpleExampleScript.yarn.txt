@@ -22,7 +22,8 @@ position: 387,487
 ---
 A: Oh, goodbye! #line:1971e104
 B: You'll be back soon! #line:39d35a39
-o===
+===
+
 title: LearnMore
 tags: 
 colorID: 0
