@@ -159,12 +159,71 @@ Our Yarn Dialogue for Sally will start out as simply as before, with her words c
     Sally: Hi.
 <<endif>>
 ```
-The next step is to have Sally react to whether we've visited her Watch node
+The next step is to have Sally react to whether we've visited her Watch node, and if not perform a ***jump*** to that node.. We do this by constructing a ***conditional*** that ***tests*** to see if the player has ***visited*** the `Sally.Watch` node.
 ```
 <<if not visited("Sally.Watch")>>
     [[Anything exciting happen on your watch?|Sally.Watch]]
 <<endif>>
 ```
+The next section of the Sally node will be to have Sally scold us about going off watch, but only if we've received the warning from the Ship about her as well as only if she has not scolded us previously.
+```
+<<if $sally_warning and not visited("Sally.Sorry")>>
+    [[Sorry about the console.|Sally.Sorry]]
+<<endif>>
+```
+> ***Note:*** We're using the `visited` state of a singular node, `Sally.Sorry`. We could set a singular additional boolean value in the node, but as it would provide no increased functionality over usage of the built in `visited` command, it is written this way.
+
+After all the above Yarn Dialogue is executed, and the nodes are visited, we will jump to the final node.
+```
+[[See you later.|Sally.Exit]]
+```
+The first node in our Sally dialogue now reads as follows
+```
+title: Sally
+---
+<<if visited("Sally") is false>>
+    Sally: Oh! Hi.
+    Sally: You snuck up on me.
+    Sally: Don't do that.
+<<else>>
+    Player: Hey.
+    Sally: Hi.
+<<endif>>
+
+<<if not visited("Sally.Watch")>>
+    [[Anything exciting happen on your watch?|Sally.Watch]]
+<<endif>>
+<<if $sally_warning and not visited("Sally.Sorry")>>
+    [[Sorry about the console.|Sally.Sorry]]
+<<endif>>
+[[See you later.|Sally.Exit]]
+```
+We're near the end, as all we have to do now is write the `Sally.Watch`, `Sally.Exit` and `Sally.Sorry` nodes.
+
+`Sally.Watch` is rather straight forward Yarn Dialogue. It sets a ***variable*** `$should_see_ship` when Sally tells us to go visit the ship. It also tests to see if we've visited already visited the ship and if so, presents some additional dialogue.
+```
+Sally: Not really.
+Sally: Same old nebula, doing the same old thing.
+Sally: Oh, Ship wanted to see you. Go say hi to it.
+<<set $should_see_ship to true>>
+<<if visited("Ship") is true>>
+    Player: Already done!
+    Sally: Go say hi again.
+<<endif>>
+```
+> ***Note:*** There are no new concepts in Yarn Dialogue in the previous code snippet. If you are having difficulties understanding this snippet, please re-read the sub-sections on Variables and Conditionals.
+
+Finally, we have two short nodes. Firstly, the node containing the text
+as the Dialogue completes:
+```
+Sally: Bye.
+```
+And the text containing the dialogue containing the text of Sally
+scolding the player:
+```
+Sally: Yeah. Don't do it again.
+```
+
 ### [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
 ```
 title: Sally
