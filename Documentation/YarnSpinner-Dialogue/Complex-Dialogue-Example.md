@@ -52,10 +52,10 @@ Ship: Oh, man.
     Ship: It's HUGE!
 <<setsprite ShipFace neutral>>
 ```
-This is some simple introductory text for our Ship character, but it wouldn't make much sense to repeat this if our player has already visited Ship. We will need to write a little bit of code to ensure that the second time we visit Ship, it acts differently. We need to check the state of having visited the ship.
+This is some simple introductory text for our Ship character, but it wouldn't make much sense to repeat this if our player has already visited Ship. So we will need to write a little bit of code to ensure that the second time we visit Ship, it acts differently. We need to check the state of having ***visited*** the ship.
 
 ### Conditionals and Functions
-Yarn Spinner has an inbuild function called ***visited***. This function checks to see if a node has previously been access by the player. We can use this function to create a conditional to see whether a node has been visited. The basic syntax of such a conditional is:
+Yarn Spinner has an inbuilt ***function*** called `visited`. This function checks to see if a node has previously been accessed by the player. We can combine this function with a ***conditional*** to see whether a node has been previously displayed to the player. The basic syntax of such a conditional is:
 ```
 <<if visted("NodeName") is true>>
     NPC: You have visited me before, player
@@ -71,7 +71,7 @@ Yarn Spinner has an inbuild function called ***visited***. This function checks 
     NPC: You have visited me before, player
 <<fi>>
 ```
-From this basic understanding of the ***'if then else'*** conditional, and usage of the ***'visited'*** function, we can then establish whether a player has visited the NPC Ship and change the dialogue Ship presents:
+From this basic understanding of the ***'if then else'*** conditional, and usage of the `visited` function, we can then establish whether a player has visited Ship and change the dialogue Ship presents:
 ```
 <<if visited("Ship") is false>>
     Ship: Hey, friend.
@@ -87,6 +87,7 @@ From this basic understanding of the ***'if then else'*** conditional, and usage
     <<setsprite ShipFace neutral>>
 <<endif>>
 ```
+>***Note:*** Remember, if we have `if visited("Ship") is true`, the order of the content of the ***'if then else'*** would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.
 
 ## Yarn Dialogue Files
 ### [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt)
