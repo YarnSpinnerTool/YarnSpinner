@@ -89,6 +89,8 @@ From this basic understanding of the ***'if then else'*** conditional, and usage
 ```
 >***Note:*** Remember, if we have `if visited("Ship") is true`, the order of the content of the ***'if then else'*** would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.
 
+We will now add in some dialogue that responds to whether we've interacted with another NPC, Sally. Sally's nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yar Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters.
+
 ## Yarn Dialogue Files
 ### [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt)
 ```
@@ -109,18 +111,17 @@ title: Ship
 <<endif>>
 
 <<if $should_see_ship is true and $received_warning_from_sally is false>>
-Player: Sally said you wanted to see me?
-<<setsprite ShipFace happy>>
-Ship: She totally did!!
-<<setsprite ShipFace neutral>>
-Ship: She wanted me to tell you...
-Ship: If you ever go off-watch without resetting the console again...
-<<setsprite ShipFace happy>>
-Ship: She'll flay you alive!
-<<set $received_warning_from_sally to true>>
-Player: Uh.
-<<setsprite ShipFace neutral>>
-
+    Player: Sally said you wanted to see me?
+    <<setsprite ShipFace happy>>
+    Ship: She totally did!!
+    <<setsprite ShipFace neutral>>
+    Ship: She wanted me to tell you...
+    Ship: If you ever go off-watch without resetting the console again...
+    <<setsprite ShipFace happy>>
+    Ship: She'll flay you alive!
+    <<set $received_warning_from_sally to true>>
+    Player: Uh.
+    <<setsprite ShipFace neutral>>
 <<endif>>
 
 ===
@@ -130,23 +131,23 @@ Player: Uh.
 title: Sally
 ---
 <<if visited("Sally") is false>>
-Player: Hey, Sally.
-Sally: Oh! Hi.
-Sally: You snuck up on me.
-Sally: Don't do that.
+    Sally: Oh! Hi.
+    Sally: You snuck up on me.
+    Sally: Don't do that.
 <<else>>
-Player: Hey.
-Sally: Hi.
+    Player: Hey.
+    Sally: Hi.
 <<endif>>
 
 <<if not visited("Sally.Watch")>>
-[[Anything exciting happen on your watch?|Sally.Watch]]
+    [[Anything exciting happen on your watch?|Sally.Watch]]
 <<endif>>
 <<if $received_warning_from_sally and not visited("Sally.Sorry")>>
-[[Sorry about the console.|Sally.Sorry]]
+    [[Sorry about the console.|Sally.Sorry]]
 <<endif>>
 [[See you later.|Sally.Exit]]
 ===
+
 title: Sally.Watch
 ---
 Sally: Not really.
@@ -154,14 +155,16 @@ Sally: Same old nebula, doing the same old thing.
 Sally: Oh, Ship wanted to see you. Go say hi to it.
 <<set $should_see_ship to true>>
 <<if visited("Ship") is true>>
-Player: Already done!
-Sally: Go say hi again.
+    Player: Already done!
+    Sally: Go say hi again.
 <<endif>>
 ===
+
 title: Sally.Exit
 ---
 Sally: Bye.
 ===
+
 title: Sally.Sorry
 ---
 Sally: Yeah. Don't do it again.
