@@ -112,6 +112,7 @@ namespace Yarn
                 Console.WriteLine("ERROR: Too many positions defined in node");
             }
         }
+        // all we need to do is store the title as the name of the node
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
             currentNode.name = context.ID().GetText();
@@ -153,7 +154,8 @@ namespace Yarn
             }
         }
 
-        // exiting the body of the node, time for last minute work before moving on
+        // exiting the body of the node, time for last minute work
+        // before moving onto the next node
 		// Does this node end after emitting AddOptions codes
 		// without calling ShowOptions?
 		public override void ExitBody(YarnSpinnerParser.BodyContext context)
