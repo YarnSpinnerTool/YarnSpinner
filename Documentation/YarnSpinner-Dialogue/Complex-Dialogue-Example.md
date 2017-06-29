@@ -111,9 +111,9 @@ We will now add in some dialogue that responds to whether we've interacted with 
 ### Variables and Tests
 We can see from this code that there a coupl of new things in this code snipped. They are `$should_see_ship is true` and `$sally_warning is false`.
 
-`$should_see_ship` is what is known as a ***variable***. In this case, it is a variable of [boolean data type](https://en.wikipedia.org/wiki/Boolean_data_type) and `$should_see_ship is true` is known as a [boolean expression] (https://en.wikipedia.org/wiki/Boolean_expression). In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable and evaluating it, determinations as to which section of Yarn Dialogue be run at any given time can be made.
+`$should_see_ship` and `$sally_warning` are examples of what are known as a ***variable***. In this case, they are a variable of [boolean data type](https://en.wikipedia.org/wiki/Boolean_data_type) and both `$should_see_ship is true` and `$sally_warning is false` are known as [boolean expressions](https://en.wikipedia.org/wiki/Boolean_expression). In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable to either of these two states and later evaluating it, determinations can be made as to which section of Yarn Dialogue should be displayed.
 
-We shall address thie setting on the first boolean, `$shoud_see_ship` in the nodes for the Sally character contained in the file [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt)
+We shall address the setting on the first boolean, `$shoud_see_ship`, in the nodes for the Sally character contained in the file [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt). The boolean `$sally_warning` is set to `true` via the code `<<set $sally_warning to true>>` after Ship warns us that sally will flay us alive.
 > ***Note:*** We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file  [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt). It is replicated below so as to be easily read here as a complete file.
 ```
 title: Ship
