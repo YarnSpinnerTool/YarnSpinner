@@ -1,9 +1,11 @@
 # Lets talk about the WIP ANTLR YarnSpinner parser
 
 So this is a WIP parser/lexer for YarnSpinner written in ANTLR with that plan being that it will eventually replace the hand made one currently in use.
-In its current form it is good for generating a Parse Tree of your Yarn files and that's about it!
 
-**THIS IS IN NO WAY READY FOR USE! WHEN WE GET CLOSER TO THIS BEING READY WE WILL INTEGRATE THIS INTO THE PROJECT PROPERLY, STAY TUNED!**
+**THIS IS ALL STILL WORK IN PROGRESS AND OPEN TO CHANGE**
+
+This is now partially built into YarnSpinner. `Dialogue` objects have an `experimentalMode` bool flag that if set to true, they will use the ANTLR compiler.
+This can only be done on objects using the yarn.txt format, all others will fail to parse.
 
 For discussion on this jump into the #yarnspinner channel on the [Narrative Game Development](https://narrativegamedev.slack.com/) slack.
 
@@ -24,7 +26,7 @@ This is a peeve of mine because it complicates design and implementation for, wh
 - Backwards compatibility
 - Initially makes more sense than `==` (subjective)
 
-### Reasons to change to my way
+### Reasons to change
 
 - easy enough to explain to people where to use `==` vs. `=`
 - limit confusion for users if they see dialogue using `==` and `=`
@@ -34,14 +36,15 @@ This is a peeve of mine because it complicates design and implementation for, wh
 
 ## The `->`  shortcut syntax
 
-Shortcuts are now implemented using a two stage approach, where the Yarn files are run through a preprocessor (currently written in Python) to add in indents and dedents to build up the blocks for shortcuts.
+Shortcuts are now implemented using a two stage approach, where the Yarn files are run through a preprocessor (the reference preprocesser and one used for tests is currently written in Python, the one inside the project is written in C#) to add in indents and dedents to build up the blocks for shortcuts.
+
 Due to the nature of ANTLR and YarnSpinners rather unusual approach to whitespace this was found to be the simplest approach as it means there is no code in the grammar file itself.
 There is now however an extra step and the preprocessor will need to be ported to each language.
 It was done this way as the preprocessor itself is quite straightforward compared to what the extra code in the grammar would be.
 
 A side-effect of this is that a symbol had to be chosen to represent the indents/dedents.
 I went with the `\a` or bell for indents (playing the role `{` normally does) and `\v` or vertical tab for dedent (`}` equivalent).
-Both of these were chosen as they are invisible and unlikely (especially in the case of bell) to be used in existing Yarn files, additionally as control characters they don't limit the amount of available characters in text lines.
+Both of these were chosen as they are invisible (somewhat) and unlikely (especially in the case of bell) to be used in existing Yarn files, additionally as control characters they don't limit the amount of available characters in text lines.
 This does mean however if someone was using either of those two in their Yarn files their files won't parse correctly.
 
 While this works this also allows for an opportunity to discuss the `->` syntax.
@@ -55,6 +58,7 @@ Options to change include:
 - Using a close tag similar to `<<endif>>` perhaps `<-`.
 
 At this stage it isn't worth changing as it is currently working fine, but this is something to consider going forward.
+It might well be worth changing the ident and dedent characters to ^] and ^^ (Group Separator and Record Separator) as these are *more* invisible than bell and vertical tab and semantically make more sense and are in even less use than bell or vertical tab.
 
 ### Reasons to keep to old style
 
@@ -82,9 +86,9 @@ Purely an implementation issue, I see literally no reason this shouldn't happen,
 ## Option parsing is far from ideal
 
 Because the structure of the option syntax is `[[free text | nodeName]]`, when creating single structure option `[[nodeName]]` this is not being correctly identified as an option link but instead as an option text.
-This isn't really a huge issue as I think it won't impact how it gets handled with it comes time to implement YarnSpinner from the generated code, but it is still not perfect.
+This isn't really a huge issue and it doesn't impact the implementation of the ANTLR compiler, it just looks messy to me.
 
-Options are to change the syntax, or for me to put in more effort.
+Options are to change the syntax.
 My suggestion to change the syntax so that it goes `[[nodeName | free text]]`, this makes it easier to parse.
 This also makes more semantic sense to me as the link to the node is more important than the dialogue line that triggers it.
 
@@ -104,17 +108,25 @@ This is something I did quickly as it took almost zero effort to do and personal
 
 The question is, is it worth keeping this, picking a single case approach, extending it to allowed mixed case (eg `eNDiF`), extending to allow Titled case (eg `True`, `true`, `TRUE` all being valid but `tRue` not valid)?
 
-## functions vs actions vs expressions
+## functions vs actions vs commands
 
-Currently actions work fine, as do functions, the question is is this good?
-As it currently stands the way the system determines if it is a function is if it matches as pattern of `<<bunchOfCharactersFromAnAllowedSet(some sort of expression)>>`, if it finds a space in there it determines it is an action instead.
-Expressions on the other hand go `<<keyword expression>>`.
+As it currently stands YarnSpinner has three different ways of controlling the game and dialogue.
+
+Commands use a keyword (like `if` or `set`) and are followed by an expression:
+`<<if expression>>`
+
+Actions allow for the dialogue to send a message back to the game and don't use keywords and are allowed most text:
+`<<unlockAchievement doAThing>>`
+
+Functions don't use keywords and return as an expression and can influence both the game and the dialogue (depending how used):
+`<<assert(1 < 3)>>`
+
 This is not only messy in my mind from a readability perspective it also makes it trickier to parse.
-This means we have 3 uses of the `<<>>` syntax, one of which has keywords to control and two which are determined entirely on the text inside.
-The expressions impact the dialogue, functions impact yarn spinner, actions impact the game.
+We have 3 uses of the `<<>>` syntax, one of which has keywords to control and two which are determined entirely on the text inside.
+The commands impact the dialogue, functions impact YarnSpinner itself, and actions impact the game.
 In my mind these are completely unrelated to each other in functionality yet share a very common syntax, leading to confusion or small typos resulting in unexpected behaviour, eg:
 
-- should `<<if 5>>` be an expression or an action?
+- should `<<if 5>>` be a command or an action?
 - is `<<hello there()>>` a function or an action?
 - how is `<<assert(2 < 3)>>` different from `<<assert 2 < 3>>`?
 
@@ -132,6 +144,7 @@ What should and shouldn't be allowed as identifiers and why?
 
 As it currently stands the allowed headers are `title` (required) and `tags`, `position`, and `colorID` all being optional.
 Because of a combination of my hesitance to in line code, and ANTLR4 syntax there is nothing stopping you putting as many of the optional headers in as you want.
+When it comes time to compile the Yarn files the compiler will complain about this but the parser will not.
 
 This is another area that needs to be discussed, not everything can be done in ANTLR, in places where it can be solved with in lining code we need to work out some rules for when we should and should not do this.
 As it currently stands there are no code sections in the the grammar.
