@@ -30,6 +30,7 @@ namespace Yarn
         {
             program = new Program();
             this.library = library;
+            Console.WriteLine("Yep using experimental compiler");
         }
 
         // Generates a unique label name to use

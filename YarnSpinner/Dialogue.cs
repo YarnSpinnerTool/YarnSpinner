@@ -121,6 +121,10 @@ namespace Yarn {
 	/// The Dialogue class is the main thing that clients will use.
 	public class Dialogue  {
 
+        // used to determine if the dialogue should use the experimental features
+        // currently this is just the ANTLR compiler but it could change over time
+        internal bool experimentalMode = false;
+
 		/// We'll ask this object for the state of variables
 		internal VariableStorage continuity;
 
@@ -364,7 +368,7 @@ namespace Yarn {
 				format = NodeFormat.SingleNodeText;
 			}
 
-			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format);
+            program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode, format, this.experimentalMode);
 
 		}
 

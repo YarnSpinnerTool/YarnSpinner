@@ -73,6 +73,9 @@ namespace Yarn
 		[Option('v', "list-variables", HelpText = "List the variables used in the program.")]
 		public bool listVariables { get; set; }
 
+		[Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
+		public bool experimental { get; set; }
+
 	}
 
 	[Verb("run", HelpText = "Runs files.")]
@@ -344,6 +347,11 @@ namespace Yarn
 			{
 				return 1;
 			}
+
+            if (options.experimental)
+            {
+                Warn("The experimental mode of YarnSpinner may have unexpected side-effects.");
+            }
 
 			if (options.compileAndExit)
 			{
