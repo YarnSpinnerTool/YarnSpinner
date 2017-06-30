@@ -219,7 +219,7 @@ namespace Yarn {
 		// Returns the number of nodes that were loaded.
 		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format, bool experimentalMode = false)
 		{
-            if (!experimentalMode)
+            if (experimentalMode)
             {
 				string inputString;
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
