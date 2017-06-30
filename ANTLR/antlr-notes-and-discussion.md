@@ -4,9 +4,6 @@ So this is a WIP parser/lexer for YarnSpinner written in ANTLR with that plan be
 
 **THIS IS ALL STILL WORK IN PROGRESS AND OPEN TO CHANGE**
 
-This is now partially built into YarnSpinner. `Dialogue` objects have an `experimentalMode` bool flag that if set to true, they will use the ANTLR compiler.
-This can only be done on objects using the yarn.txt format, all others will fail to parse.
-
 For discussion on this jump into the #yarnspinner channel on the [Narrative Game Development](https://narrativegamedev.slack.com/) slack.
 
 I thought it might be worth documenting what this WIP version does/doesn't do and why it is that way, should make moving forward a bit simpler.
@@ -15,6 +12,19 @@ Additionally because we are doing this I think it is a good time to open up disc
 I am of the opinion that the syntax should be changed as it currently grew organically rather than by design.
 That doesn't mean what it currently is is garbage or that is worth throwing out the design already done as there is a LOT of great stuff in there.
 This is also NOT me saying how it should be done, this is just how I am doing it and ideally forms the beginning of a discussion around the future of YarnSpinner syntax and features.
+
+## using the ANTRL compiler
+This is now partially built into YarnSpinner. `Dialogue` objects have an `experimentalMode` bool flag that if set to true, they will use the ANTLR compiler.
+This can only be done on objects using the yarn.txt format, all others will fail to parse.
+To use this you will need to install ANTLR on your system and run it across the grammar files.
+At this point in time the output of ANTLR is not stored in source control (and probably never should be).
+
+Assuming you have an alias for antlr already set up, to generate the files you will need the command is as follows:
+```
+antlr -Dlanguage=CSharp -visitor *.g4
+```
+
+Then copy these into the YarnSpinner project.
 
 ## `=` is for assignment and assignment alone
 
