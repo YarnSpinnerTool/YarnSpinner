@@ -33,6 +33,9 @@ using Newtonsoft.Json;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using System.Text;
+using System.IO;
+using System.Linq;
 
 
 namespace Yarn {
@@ -87,44 +90,171 @@ namespace Yarn {
 
 		}
 
+        // the preprocessor that cleans up things to make it easier on ANTLR
+        // replaces \r\n with \n
+        // adds in INDENTS and DEDENTS where necessary
+        // replaces \t with four spaces
+        // takes in a string of yarn and returns a string the compiler can then use
+        private struct EmissionTuple
+        {
+            public int depth;
+            public bool emitted;
+            public EmissionTuple(int depth, bool emitted)
+            {
+                this.depth = depth;
+                this.emitted = emitted;
+            }
+        }
+        private string preprocessor(string fileName)
+        {
+            string processed = null;
+
+            using (StringReader reader = new StringReader(fileName))
+            {
+                // a list to hold outputLines once they have been cleaned up
+                List<string> outputLines = new List<string>();
+
+				// a stack to keep track of how far indented we are
+				// made up of ints and bools
+				// ints track the depth, bool tracks if we emitted an indent token
+				// starts with 0 and false so we can never fall off the end of the stack
+				Stack<EmissionTuple> indents = new Stack<EmissionTuple>();
+				indents.Push(new EmissionTuple(0, false));
+
+                // a bool to determine if we are in a mode where we need to track indents
+                bool shouldTrackNextIndentation = false;
+
+                string INDENT = "\a";
+                string DEDENT = "\v";
+
+                string OPTION = "->";
+
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // stripping out any \r
+                    //string tweakedLine = line.Replace("\r", "");
+                    // replacing \t with 4 spaces
+                    string tweakedLine = line.Replace("\t", "    ");
+                    // stripping of any trailing newlines, will add them back in later
+                    tweakedLine = tweakedLine.TrimEnd('\r', '\n');
+
+                    // getting the number of indents on this line
+                    int lineIndent = tweakedLine.TakeWhile(Char.IsWhiteSpace).Count();
+
+                    // working out if it is an option (ie does it start with ->)
+                    bool isOption = tweakedLine.TrimStart(' ').StartsWith(OPTION);
+
+                    // are we in a state where we need to track indents?
+                    var previous = indents.Peek();
+                    if (shouldTrackNextIndentation && (lineIndent > previous.depth))
+                    {
+                        indents.Push(new EmissionTuple(lineIndent, true));
+                        // adding an indent to the stream
+                        // tries to add it to the end of the previous line where possible
+                        if (outputLines.Count == 0)
+                        {
+                            tweakedLine = INDENT + tweakedLine;
+                        }
+                        else
+                        {
+                            outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + INDENT;
+                        }
+
+                        shouldTrackNextIndentation = false;
+                    }
+                    // have we finished with the current block of statements
+                    else if (lineIndent < previous.depth)
+                    {
+                        while (lineIndent < indents.Peek().depth)
+                        {
+                            var topLevel = indents.Pop();
+
+                            if (topLevel.emitted)
+                            {
+                                // adding dedents
+								if (outputLines.Count == 0)
+								{
+                                    tweakedLine = DEDENT + tweakedLine;
+								}
+								else
+								{
+                                    outputLines[outputLines.Count - 1] = outputLines[outputLines.Count - 1] + DEDENT;
+								}
+                            }
+                        }
+                    }
+                    else
+                    {
+                        shouldTrackNextIndentation = false;
+                    }
+
+                    // do we need to track the indents for the next statement?
+                    if (isOption)
+                    {
+                        shouldTrackNextIndentation = true;
+                        if (indents.Peek().depth < lineIndent)
+                        {
+                            indents.Push(new EmissionTuple(lineIndent, false));
+                        }
+                    }
+                    outputLines.Add(tweakedLine);
+                }
+                // mash it all back together now
+                StringBuilder builder = new StringBuilder();
+                foreach (string outLine in outputLines)
+                {
+                    builder.Append(outLine);
+                    builder.Append("\n");
+                }
+                processed = builder.ToString();
+            }
+
+            return processed;
+        }
+
 		// Given a bunch of raw text, load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
 		// Returns the number of nodes that were loaded.
-		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format)
+		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format, bool experimentalMode = false)
 		{
-            bool legacyMode = false;
-			// The final parsed nodes that were in the file we were given
-			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
-
-			// Load the raw data and get the array of node title-text pairs
-
-			if (format == NodeFormat.Unknown) {
-				format = GetFormatFromFileName(fileName);
-			}
-
-			// TODO: testing only tim!
-            if (!legacyMode)
+            if (!experimentalMode)
             {
-                string inputString;
+				string inputString;
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
-                {
-                    inputString = reader.ReadToEnd();
-                }
-                ICharStream input = CharStreams.fromstring(inputString);
+				{
+					inputString = preprocessor(reader.ReadToEnd());
+				}
+				ICharStream input = CharStreams.fromstring(inputString);
 
-                YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
-                CommonTokenStream tokens = new CommonTokenStream(lexer);
-                YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
+				YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
+				CommonTokenStream tokens = new CommonTokenStream(lexer);
+				YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
 
-                IParseTree tree = parser.dialogue();
-                AntlrCompiler antlrcompiler = new AntlrCompiler(library);
-                antlrcompiler.Compile(tree);
+				IParseTree tree = parser.dialogue();
+				AntlrCompiler antlrcompiler = new AntlrCompiler(library);
+				antlrcompiler.Compile(tree);
 
-                return antlrcompiler.program;
+				// merging in the other program if requested
+				if (includeProgram != null)
+				{
+					antlrcompiler.program.Include(includeProgram);
+				}
+
+				return antlrcompiler.program;
             }
             else
             {
+				// The final parsed nodes that were in the file we were given
+				Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
+
+				// Load the raw data and get the array of node title-text pairs
+
+				if (format == NodeFormat.Unknown) {
+					format = GetFormatFromFileName(fileName);
+				}
+
 
                 var nodeInfos = GetNodesFromText(text, format);
 

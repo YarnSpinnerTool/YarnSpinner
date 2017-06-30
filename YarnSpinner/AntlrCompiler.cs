@@ -65,15 +65,18 @@ namespace Yarn
         // may need to be changed as future hashtags get support
         internal string GetLineID(YarnSpinnerParser.Hashtag_blockContext context)
         {
-            foreach (var hashtag in context.hashtag())
+            // if there are any hashtags
+            if (context != null)
             {
-                string tagText = hashtag.GetText().Trim('#');
-                if (tagText.StartsWith("line:"))
+                foreach (var hashtag in context.hashtag())
                 {
-                    return tagText;
+                    string tagText = hashtag.GetText().Trim('#');
+                    if (tagText.StartsWith("line:"))
+                    {
+                        return tagText;
+                    }
                 }
             }
-
             return null;
         }
 
