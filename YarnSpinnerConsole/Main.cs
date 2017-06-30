@@ -56,6 +56,9 @@ namespace Yarn
 
 		[Option('o', "only-node", HelpText = "Only consider this node.")]
 		public string onlyConsiderNode { get; set; }
+
+		[Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
+		public bool experimental { get; set; }
 	}
 
 	[Verb("verify", HelpText = "Verifies files.")]
@@ -72,10 +75,6 @@ namespace Yarn
 
 		[Option('v', "list-variables", HelpText = "List the variables used in the program.")]
 		public bool listVariables { get; set; }
-
-		[Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
-		public bool experimental { get; set; }
-
 	}
 
 	[Verb("run", HelpText = "Runs files.")]
@@ -348,11 +347,6 @@ namespace Yarn
 				return 1;
 			}
 
-            if (options.experimental)
-            {
-                Warn("The experimental mode of YarnSpinner may have unexpected side-effects.");
-            }
-
 			if (options.compileAndExit)
 			{
 				var result = dialogue.GetByteCode();
@@ -391,6 +385,12 @@ namespace Yarn
 
 			// Load nodes
 			var dialogue = new Dialogue(impl);
+
+			if (options.experimental)
+			{
+				Warn("Running YarnSpinner in experimental mode may have unexpected side-effects.");
+				dialogue.experimentalMode = true;
+			}
 
 			// Add some methods for testing
 			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
