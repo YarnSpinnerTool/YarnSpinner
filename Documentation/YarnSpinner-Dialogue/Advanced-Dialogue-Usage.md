@@ -90,7 +90,7 @@ Maths is easy in Yarn.
 << set $number_of_stars_collected = 1 >>
 << set $number_of_stars_collected = $number_of_stars_collected + 1 >>
 ```
-> ***Note:*** `to` and `=` are synonyms. It is up to you which you use. However it is strongly recommended to maintain consistency through your Dialogue for readability purposes. A list of operator synonyms is provided  below.
+> ***Note:*** `to` and `=` are synonyms. It is up to you which you use. However it is strongly recommended to maintain consistency through your Dialogue for readability purposes. At the end of this document, you will find a [list of operator synonyms](#operator-synonyms).
 
 [Order of operations](https://en.wikipedia.org/wiki/Order_of_operations) is as expected, but usage of brackets is encouraged for readability purposes.
 ```
