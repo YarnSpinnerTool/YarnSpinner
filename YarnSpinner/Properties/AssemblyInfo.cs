@@ -35,7 +35,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("Secret Lab Pty Ltd")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("© 2016 Secret Lab Pty Ltd and Yarn Spinner contributors")]
+[assembly: AssemblyCopyright ("© 2016-2017 Secret Lab Pty Ltd and Yarn Spinner contributors")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

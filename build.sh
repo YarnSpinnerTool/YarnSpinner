@@ -58,12 +58,17 @@ init_build () {
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
+        FAILED_PREREQ=""
         if [ ! $(which xbuild) ]; then
             echo "xbuild not installed or not in \$PATH"
-            exit 1
+            FAILED_PREREQ="true"
         fi
         if [ ! $(which nuget) ]; then
             echo "nuget not installed or not in \$PATH"
+            FAILED_PREREQ="true"
+        fi
+        if [ -n "${FAILED_PREREQ}" ]; then
+            echo "Failed pre-requisite checks, aborting"
             exit 1
         fi
         XBUILD_ARGS="${XBUILD_ARGS} /p:TargetFrameworkVersion=v4.5"
@@ -140,16 +145,25 @@ unit_tests () (
 
 build_documentation () {
     # Quick statement to build documents
-    if [ "$(which doxygen)" ]; then
-        if [ "$CLEAN" ]; then
-            echo "Cleaning documentation"
-            rm -fvr Documentation/{docbook,html,latex,rtf,xml}
-            rm -fvr GPATH GRTAGS GTAGS doxygen
-        fi
-        doxygen Documentation/Doxyfile
-    else
+    FAILED_PREREQ=""
+    if [ ! "$(which doxygen)" ]; then
         echo "doxygen not found or not in \${PATH}"
+        FAILED_PREREQ="true"
     fi
+    if [ ! "$(which dot)" ]; then
+        echo "dot not found or not in \${PATH}"
+        FAILED_PREREQ="true"
+    fi
+    if [ -n "${FAILED_PREREQ}" ]; then
+        echo "Failed pre-requisite checks, aborting"
+        exit 1
+    fi
+    if [ "$CLEAN" ]; then
+        echo "Cleaning documentation"
+        rm -fvr Documentation/{docbook,html,latex,rtf,xml}
+        rm -fvr GPATH GRTAGS GTAGS doxygen
+    fi
+    doxygen Documentation/Doxyfile
 }
 
 # Pass all command line options to inuit_build
