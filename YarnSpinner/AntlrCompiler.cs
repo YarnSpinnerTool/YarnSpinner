@@ -510,22 +510,34 @@ namespace Yarn
         }
 
         // the calls for the various operations and expressions
-        // first the three special cases (), unary - and if it is just a value by itself
+        // first the special cases (), unary -, !, and if it is just a value by itself
         #region specialCaseCalls
+        // (expression)
         public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
 		{
 			return Visit(context.expression());
 		}
+        // -expression
 		public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
 		{
 			int expression = Visit(context.expression());
 
             // TODO: temp operator call
-			//compiler.Emit(ByteCode.CallFunc, "-");
             compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
 
 			return 0;
 		}
+        // (not NOT !)expression
+        public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
+        {
+            Visit(context.expression());
+
+            // TODO: temp operator call
+            compiler.Emit(ByteCode.CallFunc, TokenType.Not.ToString());
+
+            return 0;
+        }
+        // variable
         public override int VisitExpValue(YarnSpinnerParser.ExpValueContext context)
         {
             return Visit(context.value());
@@ -536,7 +548,7 @@ namespace Yarn
         // the most common form of expressions
         // for things like 1 + 3
 		#region LvalueOperatorRvalueCalls
-		internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, string op)
+		internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
 		{
 			Visit(left);
 			Visit(right);
@@ -548,35 +560,35 @@ namespace Yarn
 		// * / %
 		public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
 		{
-			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
 			return 0;
 		}
 		// + -
 		public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
 		{
-			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
 			return 0;
 		}
 		// < <= > >=
 		public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
 		{
-			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
 			return 0;
 		}
 		// == !=
 		public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
 		{
-			genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+			genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
 			return 0;
 		}
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
-            genericExpVisitor(context.expression(0), context.expression(1), context.op.Text);
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
             return 0;
         }
@@ -589,7 +601,7 @@ namespace Yarn
         // the right value can be anything
         #region operatorEqualsCalls
         // generic helper for these types of expressions
-        internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, string op)
+        internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
         {
 			// Get the current value of the variable
 			compiler.Emit(ByteCode.PushVariable, varName);
@@ -600,10 +612,8 @@ namespace Yarn
 			// Stack now contains [currentValue, expressionValue]
 
 			// now we evaluate the operator
-			// op is now one of + - / * %
-			string trimmedOp = op.TrimEnd(new char[] { '=' });
-            // TODO: work out how to do operators better
-            compiler.Emit(ByteCode.CallFunc, tokens[trimmedOp].ToString());
+			// op will match to one of + - / * %
+            compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
 
 			// Stack now has the destination value
 			// now store the variable and clean up the stack
@@ -614,14 +624,14 @@ namespace Yarn
 		public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
 		{
 			// call the helper to deal with this
-			opEquals(context.variable().GetText(), context.expression(), context.op.Text);
+			opEquals(context.variable().GetText(), context.expression(), context.op.Type);
 			return 0;
 		}
         // += -=
         public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
         {
             // call the helper to deal with this
-            opEquals(context.variable().GetText(), context.expression(), context.op.Text);
+            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
 
             return 0;
         }
@@ -684,31 +694,34 @@ namespace Yarn
 		#endregion
 
 		// TODO: figure out a better way to do operators
-		Dictionary<string, TokenType> tokens = new Dictionary<string, TokenType>();
+        Dictionary<int, TokenType> tokens = new Dictionary<int, TokenType>();
         private void loadOperators()
         {
-            tokens["<="] = TokenType.LessThanOrEqualTo;
-            tokens[">="] = TokenType.GreaterThanOrEqualTo;
-            tokens["=="] = TokenType.EqualTo;
-            tokens["IS"] = TokenType.EqualTo;
-            tokens["is"] = TokenType.EqualTo;
-            tokens["<"] = TokenType.LessThan;
-            tokens[">"] = TokenType.GreaterThan;
-            tokens["!="] = TokenType.NotEqualTo;
-            tokens["and"] = TokenType.And;
-            tokens["AND"] = TokenType.And;
-            tokens["&&"] = TokenType.And;
-            tokens["or"] = TokenType.Or;
-            tokens["OR"] = TokenType.Or;
-            tokens["||"] = TokenType.Or;
-            tokens["xor"] = TokenType.Xor;
-            tokens["XOR"] = TokenType.Xor;
-            tokens["^"] = TokenType.Xor;
-            tokens["+"] = TokenType.Add;
-            tokens["-"] = TokenType.Minus;
-            tokens["*"] = TokenType.Multiply;
-            tokens["/"] = TokenType.Divide;
-            tokens["%"] = TokenType.Modulo;
+            // operators for the standard expressions
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS_THAN_EQUALS] = TokenType.LessThanOrEqualTo;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER_THAN_EQUALS] = TokenType.GreaterThanOrEqualTo;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_LESS] = TokenType.LessThan;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_GREATER] = TokenType.GreaterThan;
+
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_EQUALS] = TokenType.EqualTo;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_NOT_EQUALS] = TokenType.NotEqualTo;
+
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_AND] = TokenType.And;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_OR] = TokenType.Or;
+            tokens[YarnSpinnerLexer.OPERATOR_LOGICAL_XOR] = TokenType.Xor;
+
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION] = TokenType.Add;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION] = TokenType.Minus;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION] = TokenType.Multiply;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION] = TokenType.Divide;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS] = TokenType.Modulo;
+            // operators for the set expressions
+            // these map directly to the operator if they didn't have the =
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_ADDITION_EQUALS] = TokenType.Add;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_SUBTRACTION_EQUALS] = TokenType.Minus;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MULTIPLICATION_EQUALS] = TokenType.Multiply;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_DIVISION_EQUALS] = TokenType.Divide;
+            tokens[YarnSpinnerLexer.OPERATOR_MATHS_MODULUS_EQUALS] = TokenType.Modulo;
         }
 	}
 

@@ -65,16 +65,18 @@ hashtag : HASHTAG ;
 // this feel a bit crude
 // need to work on this
 expression
-    : '(' expression ')'                                                                           #expParens
-    | <assoc=right>'-' expression                                                                  #expNegative
-    | expression op=('*' | '/' | '%') expression                                                   #expMultDivMod
-    | expression op=('+' | '-') expression                                                         #expAddSub
-    | expression op=('<' | '>' | '<=' | '>=' ) expression                                          #expComparison
-    | expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression             #expEquality
-    | variable op=('*=' | '/=' | '%=') expression                                                  #expMultDivModEquals
-    | variable op=('+=' | '-=') expression                                                         #expPlusMinusEquals
-    | expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
-    | value                                                                                        #expValue
+	: '(' expression ')' #expParens
+	| <assoc=right>'-' expression #expNegative
+	| <assoc=right>OPERATOR_LOGICAL_NOT expression #expNot
+	| expression op=('*' | '/' | '%') expression #expMultDivMod
+	| expression op=('+' | '-') expression #expAddSub
+	| expression op=(OPERATOR_LOGICAL_LESS_THAN_EQUALS | OPERATOR_LOGICAL_GREATER_THAN_EQUALS | OPERATOR_LOGICAL_LESS | OPERATOR_LOGICAL_GREATER ) expression #expComparison
+	| expression op=(OPERATOR_LOGICAL_EQUALS | OPERATOR_LOGICAL_NOT_EQUALS) expression #expEquality
+	| variable op=('*=' | '/=' | '%=') expression #expMultDivModEquals
+	| variable op=('+=' | '-=') expression #expPlusMinusEquals
+	| expression op=(OPERATOR_LOGICAL_AND | OPERATOR_LOGICAL_OR | OPERATOR_LOGICAL_XOR) expression #expAndOrXor
+	| value #expValue
+	;
     ;
 
 // can add in support for more values in here
