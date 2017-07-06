@@ -36,5 +36,5 @@ deploy:
 after_success:
 - cd $TRAVIS_BUILD_DIR
 - chmod +x DeployDocumentation.sh
-- "./build.sh -cdv"
+- "./build.sh -cduv"
 - "./DeployDocumentation.sh"
