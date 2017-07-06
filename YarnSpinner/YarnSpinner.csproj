@@ -76,6 +76,7 @@
     <Compile Include="YarnSpinnerParserListener.cs" />
     <Compile Include="YarnSpinnerParserVisitor.cs" />
     <Compile Include="YarnSpinnerVisitor.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
