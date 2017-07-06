@@ -139,15 +139,11 @@ namespace Yarn
 
 			sb.AppendLine("String table:");
 
-			int stringCount = 0;
 			foreach (var entry in strings)
 			{
-
 				var lineInfo = this.lineInfo[entry.Key];
 
-				sb.AppendLine(string.Format("{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
-
-				stringCount++;
+                sb.AppendLine(string.Format("{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
 			}
 
 			return sb.ToString();
