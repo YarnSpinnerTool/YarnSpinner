@@ -3,6 +3,7 @@ sudo: required
 branches:
   except:
   - gh-pages
+  - feature/ANTLR
 language: csharp
 solution: YarnSpinner.sln
 env:
