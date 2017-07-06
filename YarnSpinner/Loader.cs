@@ -132,8 +132,6 @@ namespace Yarn {
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    // stripping out any \r
-                    //string tweakedLine = line.Replace("\r", "");
                     // replacing \t with 4 spaces
                     string tweakedLine = line.Replace("\t", "    ");
                     // stripping of any trailing newlines, will add them back in later
