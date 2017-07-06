@@ -91,7 +91,7 @@ Maths is easy in Yarn.
 << $number_of_stars_collected = $number_of_stars_collected + 1 >>
 << $iglobular_clusters_collected = 2 >>
 ```
-[Order of operations](https://en.wikipedia.org/wiki/Order_of_operations) is as would be expected, but usage of brackets is encouraged for readability purposes.
+[Order of operations](https://en.wikipedia.org/wiki/Order_of_operations) is as expected, but usage of brackets is encouraged for readability purposes.
 ```
 << $number_of_stars_collected = $number_of_stars_collected + ( $globular_clusters_collected * 1000 ) >>
 ```
