@@ -716,6 +716,7 @@ namespace Yarn
 	{
 		public ArrayList<String> nodes = new ArrayList<String>();
 		public MultiMap<String, String> edges = new MultiMap<String, String>();
+        public string graphName = "G";
 
 		public void edge(String source, String target)
 		{
@@ -724,7 +725,8 @@ namespace Yarn
 		public String toDot()
 		{
 			StringBuilder buf = new StringBuilder();
-			buf.Append("digraph G {\n");
+            buf.AppendFormat("digraph {0} ",graphName);
+            buf.Append("{\n");
 			buf.Append("  ");
 			foreach (String node in nodes)
 			{ // print all nodes first
@@ -750,10 +752,11 @@ namespace Yarn
 			return buf.ToString();
 		}
 	}
-    public class YarnSpinnerListener:YarnSpinnerParserBaseListener
+    public class GraphListener:YarnSpinnerParserBaseListener
     {
         String currentNode = null;
         public Graph graph = new Graph();
+        String yarnName = "G";
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
             currentNode = context.ID().GetText();
