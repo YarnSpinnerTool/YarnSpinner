@@ -137,7 +137,7 @@ unit_tests () (
         fi
         nuget restore YarnSpinner.sln
         nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
-        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.dll ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
+        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
     else
         echo "Failed to find unit tests; exiting"; exit 1
     fi
