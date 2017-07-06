@@ -147,12 +147,12 @@ You can't define your own functions inside Yarn itself, but they can be added at
 ## Operator synonyms
 ### Assignment
 | word | symbol
-| --- | --- |
+|:---:|:---:|
 | `to` | `=` |
 
 ### Comparison
 | word | symbol
-| --- | --- |
+|:---:|:---:|
 | `and` | `&` |
 | `le`  | `<` |
 | `gt`  | `>` |
