@@ -156,7 +156,7 @@ You can't define your own functions inside Yarn itself, but they can be added at
 | `and` | `&` |
 | `le`  | `<` |
 | `gt`  | `>` |
-| `or`  | `||` |
+| `or`  | `\|\|` |
 | `leq` | `<=` |
 | `geq` | `>=` |
 | `eq`  | `==` |
