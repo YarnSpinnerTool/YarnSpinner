@@ -87,13 +87,15 @@ You can check the value of a variable using the `if` command:
 
 Maths is easy in Yarn.
 ```
-<< $number_of_stars_collected = 1 >>
-<< $number_of_stars_collected = $number_of_stars_collected + 1 >>
-<< $iglobular_clusters_collected = 2 >>
+<< set $number_of_stars_collected = 1 >>
+<< set $number_of_stars_collected = $number_of_stars_collected + 1 >>
 ```
+> ***Note:*** `to` and `=` are synonyms. It is up to you which you use. However it is strongly recommended to maintain consistency through your Dialogue for readability purposes. A list of operator synonyms is provided  below.
+
 [Order of operations](https://en.wikipedia.org/wiki/Order_of_operations) is as expected, but usage of brackets is encouraged for readability purposes.
 ```
-<< $number_of_stars_collected = $number_of_stars_collected + ( $globular_clusters_collected * 1000 ) >>
+<< set $globular_clusters_collected = 2 >>
+<< set $number_of_stars_collected = $number_of_stars_collected + ( $globular_clusters_collected * 1000 ) >>
 ```
 You can also do maths inside an `if` command. For example:
 ```
@@ -141,3 +143,23 @@ You can call functions in your `if` commands. For example, Yarn Spinner provides
 <<endif>>
 ```
 You can't define your own functions inside Yarn itself, but they can be added at run-time. See ["Extending Yarn Spinner"](../YarnSpinner-Programming/Extending.md) for more info.
+
+## Operator synonyms
+### Assignment
+| word | symbol
+| --- | --- |
+| `to` | `=` |
+
+### Comparison
+| word | symbol
+| --- | --- |
+| `and` | `&` |
+| `le`  | `<` |
+| `gt`  | `>` |
+| `or`  | `||` |
+| `leq` | `<=` |
+| `geq` | `>=` |
+| `eq`  | `==` |
+| `is`  | `==` |
+| `neq` | `!=` |
+| `not` | `!` |
