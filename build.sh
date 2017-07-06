@@ -125,14 +125,14 @@ build_native () {
 }
 
 unit_tests () (
-    if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.dll ]; then
+    if [ -r ./YarnSpinnerTests/bin/${CONFIGURATION}/YarnSpinnerTests.exe ]; then
         if [ ! $(which nuget) ]; then
             echo "nuget not installed or not in \$PATH"
             exit 1
         fi
         nuget restore YarnSpinner.sln
         nuget install NUnit.ConsoleRunner -Version 3.6.1 -OutputDirectory testrunner
-        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.dll
+        mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./YarnSpinnerTests/bin/Release/YarnSpinnerTests.exe
     else
         echo "Failed to find unit tests; exiting"; exit 1
     fi
