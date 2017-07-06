@@ -18,7 +18,7 @@ namespace YarnSpinner.Tests
         public void TestNodeExists ()
         {
 
-            var path = Path.Combine(UnityDemoScriptsPath, "Sally.json");
+            var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
 
             dialogue.LoadFile (path);
 
@@ -59,8 +59,8 @@ namespace YarnSpinner.Tests
 
             context = new Yarn.Analysis.Context (typeof(Yarn.Analysis.UnusedVariableChecker));
 
-            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Ship.json"));
-            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Ship.yarn.txt"));
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
             dialogue.Analyse (context);
             diagnoses = new List<Yarn.Analysis.Diagnosis>(context.FinishAnalysis ());
 
@@ -96,7 +96,7 @@ namespace YarnSpinner.Tests
 
         [Test]
         public void TestGettingCurrentNodeName()  {
-            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.json"));
+            dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
 
             // dialogue should not be running yet
             Assert.IsNull (dialogue.currentNode);
