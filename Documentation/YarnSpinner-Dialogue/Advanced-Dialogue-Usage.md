@@ -92,9 +92,10 @@ Maths is easy in Yarn.
 << $iglobular_clusters_collected = 2 >>
 ```
 [Order of operations](https://en.wikipedia.org/wiki/Order_of_operations) is as would be expected, but usage of brackets is encouraged for readability purposes.
+```
 << $number_of_stars_collected = $number_of_stars_collected + ( $globular_clusters_collected * 1000 ) >>
 ```
-You can also do maths in an `if` command. For example:
+You can also do maths inside an `if` command. For example:
 ```
 <<if $number_of_stars_collected > 5>>
     You have more than 5 stars!
