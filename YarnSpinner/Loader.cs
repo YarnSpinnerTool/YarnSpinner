@@ -102,11 +102,11 @@ namespace Yarn {
                 this.emitted = emitted;
             }
         }
-        private string preprocessor(string fileName)
+        private string preprocessor(string nodeText)
         {
             string processed = null;
 
-            using (StringReader reader = new StringReader(fileName))
+            using (StringReader reader = new StringReader(nodeText))
             {
                 // a list to hold outputLines once they have been cleaned up
                 List<string> outputLines = new List<string>();
@@ -214,13 +214,15 @@ namespace Yarn {
         // Returns the number of nodes that were loaded.
         public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode, NodeFormat format, bool experimentalMode = false)
         {
-            if (experimentalMode)
+			if (format == NodeFormat.Unknown)
+			{
+				format = GetFormatFromFileName(fileName);
+			}
+
+            // currently experimental node can only be used on yarn.txt yarn files
+            if (experimentalMode && format == NodeFormat.Text)
             {
-                string inputString;
-                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileName))
-                {
-                    inputString = preprocessor(reader.ReadToEnd());
-                }
+                string inputString = preprocessor(text);
                 ICharStream input = CharStreams.fromstring(inputString);
 
                 YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
@@ -245,12 +247,6 @@ namespace Yarn {
                 Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
 
                 // Load the raw data and get the array of node title-text pairs
-
-                if (format == NodeFormat.Unknown)
-                {
-                    format = GetFormatFromFileName(fileName);
-                }
-
 
                 var nodeInfos = GetNodesFromText(text, format);
 
