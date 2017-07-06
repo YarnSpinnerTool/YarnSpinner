@@ -44,7 +44,7 @@ namespace YarnSpinner.Tests
         [Test]
         public void TestMergingNodes()
         {
-            var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.json");
+            var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
             var examplePath = Path.Combine(TestDataPath, "Example.json");
 
             dialogue.LoadFile(sallyPath);

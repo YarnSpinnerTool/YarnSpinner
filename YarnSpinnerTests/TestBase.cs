@@ -53,8 +53,6 @@ namespace YarnSpinner.Tests
             get
             {
                 return Path.Combine(ProjectRootPath, "Tests");
-
-
             }
         }
 
@@ -62,7 +60,7 @@ namespace YarnSpinner.Tests
         {
             get
             {
-                return Path.Combine(ProjectRootPath, "Unity/Assets/Yarn Spinner/Examples/Demo Assets/Space");
+                return Path.Combine(ProjectRootPath, "Unity/Assets/YarnSpinner/Examples/DemoAssets/Space");
             }
         }
 
