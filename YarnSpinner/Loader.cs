@@ -219,9 +219,22 @@ namespace Yarn {
 				format = GetFormatFromFileName(fileName);
 			}
 
-            // currently experimental node can only be used on yarn.txt yarn files
-            if (experimentalMode && format == NodeFormat.Text)
+            // currently experimental node can only be used on yarn.txt yarn files and single nodes
+            if (experimentalMode && (format == NodeFormat.Text || format == NodeFormat.SingleNodeText))
             {
+                // this isn't the greatest...
+                if (format == NodeFormat.SingleNodeText)
+                {
+                    // it is just the body
+                    // need to add a dummy header and body delimiters
+                    StringBuilder builder = new StringBuilder();
+                    builder.Append("title:Start\n");
+                    builder.Append("---\n");
+                    builder.Append(text);
+                    builder.Append("===\n");
+                    text = builder.ToString();
+                }
+
                 string inputString = preprocessor(text);
                 ICharStream input = CharStreams.fromstring(inputString);
 
