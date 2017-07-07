@@ -8,22 +8,46 @@ lexer grammar YarnSpinnerLexer;
 
 BODY_ENTER : '---' -> pushMode(Body) ;
 
-HEADER_TITLE : 'title' ;
-HEADER_TAGS : 'tags' ;
-HEADER_COLOUR : 'colorID' ;
-HEADER_POSITION : 'position' ;
-HEADER_SEPARATOR : ':' ;
-COMMA : ',' ;
+// the two predetermined and important headers
+HEADER_TITLE : 'title:' -> pushMode(Title) ;
+HEADER_TAGS : 'tags:' -> pushMode(Tags) ;
+// the catchall for all other headers, anything except spaces ending in a :
+HEADER_NAME : ~(':' | ' ' | '\n')+ ;
+
+HEADER_SEPARATOR : ':' -> pushMode(HeaderText);
 
 // this should allow normal "programming style" strings
 STRING : '"' .*? '"';
-//STRING : '"' (~('"' | '\\' | '\n') | '\\' ('"' | '\\'))* '"' ;
-
-NUMBER : [0-9]+('.'[0-9]+)? ; // match numbers
+// format for identifiers used in numerous places
 ID : (([a-zA-Z0-9])|('_'))+ ;
 
 NEWLINE : [\r\n]+ ;
-WS : (' '|'\t') -> skip ;
+
+// ----------------------
+// Title mode
+// for handling the title of the node
+// pops when it hits the end of the line
+// A title is allowed to be anything excluding a space or newline
+mode Title;
+TITLE_WS : (' ' | '\t') -> skip ;
+TITLE_TEXT : ~('\n' | ' ')+ -> popMode ;
+
+// ----------------------
+// Tag mode
+// for handling the tags of the node
+// pops when it hits the end of the line
+// currently this is just the same as the Header Text
+// but will likely change so better to set it up now
+mode Tags;
+TAG_TEXT : ~('\n')+ -> popMode ;
+
+// ----------------------
+// Header Text mode
+// for grabbing all the non-title/tag header text
+// pops when it hits the end of a line
+mode HeaderText;
+HEADER_WS : (' ' | '\t') -> skip ;
+HEADER_TEXT : ~('\n')+ -> popMode;
 
 // ----------------------
 // Body mode
@@ -101,7 +125,7 @@ OPERATOR_MATHS_MODULUS : '%' ;
 
 LPAREN : '(' ;
 RPAREN : ')' ;
-COMMAND_COMMA : COMMA ;
+COMMA : ',' ;
 
 VAR_ID : '$' ID ;
 
