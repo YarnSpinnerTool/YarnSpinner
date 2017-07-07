@@ -107,7 +107,7 @@ KEYWORD_NULL : 'null' | 'NULL' ;
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' | 'LTE' ;
 OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' | 'gte' | 'GTE' ;
 OPERATOR_LOGICAL_EQUALS : '==' | 'IS' | 'is' | 'eq' | 'EQ' ;
-OPERATOR_LOGICAL_LESS : '<' 'lt' | 'LT' ;
+OPERATOR_LOGICAL_LESS : '<' | 'lt' | 'LT' ;
 OPERATOR_LOGICAL_GREATER : '>' | 'gt' | 'GT' ;
 OPERATOR_LOGICAL_NOT_EQUALS : '!=' | 'neq' | 'NEQ' ;
 OPERATOR_LOGICAL_AND : 'and' | 'AND' | '&&' ;
