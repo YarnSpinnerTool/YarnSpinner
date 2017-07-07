@@ -83,6 +83,7 @@ value
 	| variable		 #valueVar
 	| COMMAND_STRING #valueString
 	| function		 #valueFunc
+    | KEYWORD_NULL   #valueNull
     ;
 variable
     : VAR_ID

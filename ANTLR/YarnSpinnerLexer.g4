@@ -101,6 +101,8 @@ KEYWORD_TO : 'to' | 'TO' | '=' ;
 KEYWORD_TRUE  : 'true' | 'TRUE' ;
 KEYWORD_FALSE : 'false' | 'FALSE' ;
 
+KEYWORD_NULL : 'null' | 'NULL' ;
+
 // All the operators YarnSpinner currently supports
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' | 'LTE' ;
 OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' | 'gte' | 'GTE' ;

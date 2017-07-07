@@ -249,13 +249,13 @@ namespace Yarn
     // might be worth later investigating returning Instructions
     public class BodyVisitor : YarnSpinnerParserBaseVisitor<int>
     {
-		internal AntlrCompiler compiler;
+        internal AntlrCompiler compiler;
 
-		public BodyVisitor(AntlrCompiler compiler)
-		{
-			this.compiler = compiler;
+        public BodyVisitor(AntlrCompiler compiler)
+        {
+            this.compiler = compiler;
             this.loadOperators();
-		}
+        }
 
         // a regular ol' line of text
         public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
@@ -274,42 +274,42 @@ namespace Yarn
 
             compiler.Emit(ByteCode.RunLine, num);
 
-			return 0;
+            return 0;
         }
 
-		// an option statement
-		// [[ OPTION_TEXT | OPTION_LINK]] or [[OPTION_TEXT]]
+        // an option statement
+        // [[ OPTION_TEXT | OPTION_LINK]] or [[OPTION_TEXT]]
         public override int VisitOption_statement(YarnSpinnerParser.Option_statementContext context)
         {
             // if it is a split style option
             if (context.OPTION_LINK() != null)
             {
-				string destination = context.OPTION_LINK().GetText();
-				string label = context.OPTION_TEXT().GetText();
+                string destination = context.OPTION_LINK().GetText();
+                string label = context.OPTION_TEXT().GetText();
 
-				int lineNumber = context.Start.Line;
+                int lineNumber = context.Start.Line;
 
-				// getting the lineID from the hashtags if it has one
-				string lineID = compiler.GetLineID(context.hashtag_block());
+                // getting the lineID from the hashtags if it has one
+                string lineID = compiler.GetLineID(context.hashtag_block());
 
                 string stringID = compiler.program.RegisterString(label, compiler.currentNode.name, lineID, lineNumber, true);
                 compiler.Emit(ByteCode.AddOption, stringID, destination);
             }
             else
             {
-				string destination = context.OPTION_TEXT().GetText();
-				compiler.Emit(ByteCode.RunNode, destination);
+                string destination = context.OPTION_TEXT().GetText();
+                compiler.Emit(ByteCode.RunNode, destination);
             }
             return 0;
         }
 
-		// for setting variables, has two forms
-		// << SET variable TO/= expression >>
-		// << SET expression >>
+        // for setting variables, has two forms
+        // << SET variable TO/= expression >>
+        // << SET expression >>
         // the second form does need to match the structure:
         // variable (+= -= *= /= %=) expression
-		public override int VisitSet_statement(YarnSpinnerParser.Set_statementContext context)
-		{
+        public override int VisitSet_statement(YarnSpinnerParser.Set_statementContext context)
+        {
             // if it is the first form
             // a regular << SET $varName TO expression >>
             if (context.variable() != null)
@@ -317,10 +317,10 @@ namespace Yarn
                 // add the expression (whatever it resolves to)
                 Visit(context.expression());
 
-				// now store the variable and clean up the stack
-				string variableName = context.variable().GetText();
-				compiler.Emit(ByteCode.StoreVariable, variableName);
-				compiler.Emit(ByteCode.Pop);
+                // now store the variable and clean up the stack
+                string variableName = context.variable().GetText();
+                compiler.Emit(ByteCode.StoreVariable, variableName);
+                compiler.Emit(ByteCode.Pop);
             }
             // it is the second form
             else
@@ -342,14 +342,14 @@ namespace Yarn
             }
 
             return 0;
-		}
+        }
 
-		// semi-free form text that gets passed along to the game
-		// for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
-		public override int VisitAction_statement(YarnSpinnerParser.Action_statementContext context)
+        // semi-free form text that gets passed along to the game
+        // for things like <<turn fred left>> or <<unlockAchievement FacePlant>>
+        public override int VisitAction_statement(YarnSpinnerParser.Action_statementContext context)
         {
             char[] trimming = { '<', '>' };
-            compiler.Emit(ByteCode.RunCommand,context.GetText().Trim(trimming));
+            compiler.Emit(ByteCode.RunCommand, context.GetText().Trim(trimming));
 
             return 0;
         }
@@ -376,11 +376,11 @@ namespace Yarn
             // if the function is not variadic we need to check it has the right number of params
             if (functionInfo.paramCount != -1)
             {
-				if (context.expression().Length != functionInfo.paramCount)
-				{
+                if (context.expression().Length != functionInfo.paramCount)
+                {
                     // TODO: replace with error
                     Console.WriteLine("ERROR: incorrect number of params in " + functionName);
-				}  
+                }
             }
 
             // generate the instructions for all of the parameters
@@ -438,22 +438,22 @@ namespace Yarn
             // will only be called on ifs and elseifs
             if (expression != null)
             {
-				Visit(expression);
-				compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
+                Visit(expression);
+                compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
             }
 
-			// running through all of the children statements
-			foreach (var child in children)
-			{
-				Visit(child);
-			}
+            // running through all of the children statements
+            foreach (var child in children)
+            {
+                Visit(child);
+            }
 
             compiler.Emit(ByteCode.JumpTo, jumpLabel);
 
             if (expression != null)
             {
-				compiler.Emit(ByteCode.Label, endOfClauseLabel);
-				compiler.Emit(ByteCode.Pop);
+                compiler.Emit(ByteCode.Label, endOfClauseLabel);
+                compiler.Emit(ByteCode.Pop);
             }
         }
 
@@ -482,7 +482,7 @@ namespace Yarn
                     compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
                 }
 
-				// getting the lineID from the hashtags if it has one
+                // getting the lineID from the hashtags if it has one
                 string lineID = compiler.GetLineID(shortcut.hashtag_block());
 
                 string shortcutLine = shortcut.TEXT().GetText();
@@ -492,22 +492,22 @@ namespace Yarn
 
                 if (shortcut.expression() != null)
                 {
-					compiler.Emit(ByteCode.Label, endOfClauseLabel);
-					compiler.Emit(ByteCode.Pop);
+                    compiler.Emit(ByteCode.Label, endOfClauseLabel);
+                    compiler.Emit(ByteCode.Pop);
                 }
                 optionCount++;
             }
 
             compiler.Emit(ByteCode.ShowOptions);
 
-			// TODO: investigate a cleaner way because this is odd...
-			if (compiler.flags.DisableShuffleOptionsAfterNextSet == true)
-			{
-				compiler.Emit(ByteCode.PushBool, false);
-				compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-				compiler.Emit(ByteCode.Pop);
-				compiler.flags.DisableShuffleOptionsAfterNextSet = false;
-			}
+            // TODO: investigate a cleaner way because this is odd...
+            if (compiler.flags.DisableShuffleOptionsAfterNextSet == true)
+            {
+                compiler.Emit(ByteCode.PushBool, false);
+                compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                compiler.Emit(ByteCode.Pop);
+                compiler.flags.DisableShuffleOptionsAfterNextSet = false;
+            }
 
             compiler.Emit(ByteCode.Jump);
 
@@ -538,19 +538,19 @@ namespace Yarn
         #region specialCaseCalls
         // (expression)
         public override int VisitExpParens(YarnSpinnerParser.ExpParensContext context)
-		{
-			return Visit(context.expression());
-		}
+        {
+            return Visit(context.expression());
+        }
         // -expression
-		public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
-		{
-			int expression = Visit(context.expression());
+        public override int VisitExpNegative(YarnSpinnerParser.ExpNegativeContext context)
+        {
+            int expression = Visit(context.expression());
 
             // TODO: temp operator call
             compiler.Emit(ByteCode.CallFunc, TokenType.UnaryMinus.ToString());
 
-			return 0;
-		}
+            return 0;
+        }
         // (not NOT !)expression
         public override int VisitExpNot(YarnSpinnerParser.ExpNotContext context)
         {
@@ -568,47 +568,47 @@ namespace Yarn
         }
         #endregion
 
-		// left OPERATOR right style expressions
+        // left OPERATOR right style expressions
         // the most common form of expressions
         // for things like 1 + 3
-		#region LvalueOperatorRvalueCalls
-		internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
-		{
-			Visit(left);
-			Visit(right);
+        #region lValueOperatorrValueCalls
+        internal void genericExpVisitor(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)
+        {
+            Visit(left);
+            Visit(right);
 
             // TODO: temp operator call
-			//compiler.Emit(ByteCode.CallFunc, op);
+            //compiler.Emit(ByteCode.CallFunc, op);
             compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
-		}
-		// * / %
-		public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
-		{
+        }
+        // * / %
+        public override int VisitExpMultDivMod(YarnSpinnerParser.ExpMultDivModContext context)
+        {
             genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
-			return 0;
-		}
-		// + -
-		public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
-		{
+            return 0;
+        }
+        // + -
+        public override int VisitExpAddSub(YarnSpinnerParser.ExpAddSubContext context)
+        {
             genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
-			return 0;
-		}
-		// < <= > >=
-		public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
-		{
+            return 0;
+        }
+        // < <= > >=
+        public override int VisitExpComparison(YarnSpinnerParser.ExpComparisonContext context)
+        {
             genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
-			return 0;
-		}
-		// == !=
-		public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
-		{
-			genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
+            return 0;
+        }
+        // == !=
+        public override int VisitExpEquality(YarnSpinnerParser.ExpEqualityContext context)
+        {
+            genericExpVisitor(context.expression(0), context.expression(1), context.op.Type);
 
-			return 0;
-		}
+            return 0;
+        }
         // and && or || xor ^
         public override int VisitExpAndOrXor(YarnSpinnerParser.ExpAndOrXorContext context)
         {
@@ -627,30 +627,30 @@ namespace Yarn
         // generic helper for these types of expressions
         internal void opEquals(string varName, YarnSpinnerParser.ExpressionContext expression, int op)
         {
-			// Get the current value of the variable
-			compiler.Emit(ByteCode.PushVariable, varName);
+            // Get the current value of the variable
+            compiler.Emit(ByteCode.PushVariable, varName);
 
-			// run the expression
+            // run the expression
             Visit(expression);
 
-			// Stack now contains [currentValue, expressionValue]
+            // Stack now contains [currentValue, expressionValue]
 
-			// now we evaluate the operator
-			// op will match to one of + - / * %
+            // now we evaluate the operator
+            // op will match to one of + - / * %
             compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
 
-			// Stack now has the destination value
-			// now store the variable and clean up the stack
-			compiler.Emit(ByteCode.StoreVariable, varName);
-			compiler.Emit(ByteCode.Pop);
+            // Stack now has the destination value
+            // now store the variable and clean up the stack
+            compiler.Emit(ByteCode.StoreVariable, varName);
+            compiler.Emit(ByteCode.Pop);
         }
-		// *= /= %=
-		public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
-		{
-			// call the helper to deal with this
-			opEquals(context.variable().GetText(), context.expression(), context.op.Type);
-			return 0;
-		}
+        // *= /= %=
+        public override int VisitExpMultDivModEquals(YarnSpinnerParser.ExpMultDivModEqualsContext context)
+        {
+            // call the helper to deal with this
+            opEquals(context.variable().GetText(), context.expression(), context.op.Type);
+            return 0;
+        }
         // += -=
         public override int VisitExpPlusMinusEquals(YarnSpinnerParser.ExpPlusMinusEqualsContext context)
         {
@@ -668,51 +668,57 @@ namespace Yarn
         // TODO: add in support for null as a value type...
         #region valueCalls
         public override int VisitValueVar(YarnSpinnerParser.ValueVarContext context)
-		{
-			return Visit(context.variable());
-		}
-		public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
-		{
-			float number = float.Parse(context.BODY_NUMBER().GetText());
-			compiler.Emit(ByteCode.PushNumber, number);
+        {
+            return Visit(context.variable());
+        }
+        public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
+        {
+            float number = float.Parse(context.BODY_NUMBER().GetText());
+            compiler.Emit(ByteCode.PushNumber, number);
 
-			return 0;
-		}
-		public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
-		{
-			compiler.Emit(ByteCode.PushBool, true);
+            return 0;
+        }
+        public override int VisitValueTrue(YarnSpinnerParser.ValueTrueContext context)
+        {
+            compiler.Emit(ByteCode.PushBool, true);
 
-			return 0;
-		}
-		public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
-		{
-			compiler.Emit(ByteCode.PushBool, false);
-			return 0;
-		}
-		public override int VisitVariable(YarnSpinnerParser.VariableContext context)
-		{
-			string variableName = context.VAR_ID().GetText();
-			compiler.Emit(ByteCode.PushVariable, variableName);
+            return 0;
+        }
+        public override int VisitValueFalse(YarnSpinnerParser.ValueFalseContext context)
+        {
+            compiler.Emit(ByteCode.PushBool, false);
+            return 0;
+        }
+        public override int VisitVariable(YarnSpinnerParser.VariableContext context)
+        {
+            string variableName = context.VAR_ID().GetText();
+            compiler.Emit(ByteCode.PushVariable, variableName);
 
-			return 0;
-		}
-		public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
-		{
-			// stripping the " off the front and back
-			// actually is this what we want?
-			string stringVal = context.COMMAND_STRING().GetText().Trim('"');
+            return 0;
+        }
+        public override int VisitValueString(YarnSpinnerParser.ValueStringContext context)
+        {
+            // stripping the " off the front and back
+            // actually is this what we want?
+            string stringVal = context.COMMAND_STRING().GetText().Trim('"');
 
-			int lineNumber = context.Start.Line;
-			string id = compiler.program.RegisterString(stringVal, compiler.currentNode.name, null, lineNumber, false);
-			compiler.Emit(ByteCode.PushString, id);
+            int lineNumber = context.Start.Line;
+            string id = compiler.program.RegisterString(stringVal, compiler.currentNode.name, null, lineNumber, false);
+            compiler.Emit(ByteCode.PushString, id);
 
-			return 0;
-		}
+            return 0;
+        }
         // all we need do is visit the function itself, it will handle everything
         public override int VisitValueFunc(YarnSpinnerParser.ValueFuncContext context)
         {
             Visit(context.function());
 
+            return 0;
+        }
+        // null value
+        public override int VisitValueNull(YarnSpinnerParser.ValueNullContext context)
+        {
+            compiler.Emit(ByteCode.PushNull);
             return 0;
         }
 		#endregion
