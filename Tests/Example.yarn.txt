@@ -1,0 +1,31 @@
+title: Start
+tags: 
+colorID: 0
+position: 592,181
+---
+A: Hey, I'm a character in a script!
+B: And I am too! You are talking to me!
+-> What's going on
+    A: Why this is a demo of the script system!
+    B: And you're in it!
+-> Um ok
+A: How delightful!
+B: What would you prefer to do next?
+[[Leave|Leave]]
+[[Learn more|LearnMore]]
+===
+title: Leave
+tags: 
+colorID: 0
+position: 387,487
+---
+A: Oh, goodbye!
+B: You'll be back soon!
+===
+title: LearnMore
+tags: rawText
+colorID: 0
+position: 763,472
+---
+A: HAHAHA
+===

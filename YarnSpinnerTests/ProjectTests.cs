@@ -65,9 +65,6 @@ namespace YarnSpinner.Tests
 
             // the third node's body is empty
             Assert.IsEmpty(nodes[2].body);
-
-
-
         }
     }
 }

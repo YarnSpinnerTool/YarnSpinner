@@ -36,7 +36,7 @@ namespace YarnSpinner.Tests
         {
 
             errorsCauseFailures = false;
-            var path = Path.Combine(TestDataPath, "Example.json");
+            var path = Path.Combine(TestDataPath, "Example.yarn.txt");
             dialogue.LoadFile(path);
             RunStandardTestcase();
         }
@@ -45,7 +45,7 @@ namespace YarnSpinner.Tests
         public void TestMergingNodes()
         {
             var sallyPath = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
-            var examplePath = Path.Combine(TestDataPath, "Example.json");
+            var examplePath = Path.Combine(TestDataPath, "Example.yarn.txt");
 
             dialogue.LoadFile(sallyPath);
             dialogue.LoadFile(examplePath);
@@ -53,7 +53,7 @@ namespace YarnSpinner.Tests
             // Loading code with the same contents should throw
             Assert.Throws<InvalidOperationException>(delegate ()
             {
-                var path = Path.Combine(TestDataPath, "Example.json");
+                var path = Path.Combine(TestDataPath, "Example.yarn.txt");
                 dialogue.LoadFile(path);
                 return;
             });
