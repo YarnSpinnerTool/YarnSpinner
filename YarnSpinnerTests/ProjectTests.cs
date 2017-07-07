@@ -24,12 +24,12 @@ namespace YarnSpinner.Tests
 
             Assert.AreEqual(3, dialogue.program.nodes.Count);
 
-            Assert.True(dialogue.NodeExists("Test node"));
-            Assert.True(dialogue.NodeExists("Another test node"));
-            Assert.True(dialogue.NodeExists("Third node"));
+            Assert.True(dialogue.NodeExists("TestNode"));
+            Assert.True(dialogue.NodeExists("AnotherTestNode"));
+            Assert.True(dialogue.NodeExists("ThirdNode"));
 
             // execute a node
-            var secondNodeName = "Another test node";
+            var secondNodeName = "AnotherTestNode";
             ExpectLine("This is a second test node!");
 
             // we are now expecting a node

@@ -40,7 +40,6 @@ namespace YarnSpinner.Tests
             ICollection<Yarn.Analysis.Diagnosis> diagnoses;
             Yarn.Analysis.Context context;
 
-
             // this script has the following variables:
             // $foo is read from and written to
             // $bar is written to but never read
@@ -66,8 +65,6 @@ namespace YarnSpinner.Tests
 
             // This script should contain no unused variables
             Assert.IsEmpty (diagnoses);
-
-
         }
 
         [Test]

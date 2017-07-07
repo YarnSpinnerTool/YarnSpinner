@@ -70,6 +70,7 @@ namespace YarnSpinner.Tests
         {
 
             dialogue = new Dialogue (storage);
+            dialogue.experimentalMode = true;
 
             dialogue.LogDebugMessage = delegate(string message) {
 

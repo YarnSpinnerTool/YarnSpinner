@@ -26,6 +26,10 @@ namespace Yarn
 
         internal Library library;
 
+        // this is used to determine if we are to do any parsing
+        // or just dump the entire node body as raw text
+        internal bool rawTextNode = false;
+
         internal AntlrCompiler(Library library)
         {
             program = new Program();
@@ -101,6 +105,7 @@ namespace Yarn
                 Console.WriteLine("ERROR: discovered a node when another is still active");
             }
             currentNode = new Node();
+            rawTextNode = false;
         }
         // have left the current node
         // store it into the program
@@ -109,6 +114,7 @@ namespace Yarn
         {
             program.nodes[currentNode.name] = currentNode;
             currentNode = null;
+            rawTextNode = false;
         }
 
         // quick check to make sure we have the required number of headers
@@ -116,39 +122,30 @@ namespace Yarn
         // don't need to check for title because without it'll be a parse error
         public override void EnterHeader(YarnSpinnerParser.HeaderContext context)
         {
-            if (context.header_tags().Length > 1)
+            if (context.header_tag().Length > 1)
             {
-                // TODO: replace with an error/warning
-                Console.WriteLine("ERROR: Too many tags defined in node");
-            }
-            if (context.header_colour().Length > 1)
-            {
-                // TODO: replace with an error/warning
-                Console.WriteLine("ERROR: Too many colourIDs defined in node");
-            }
-            if (context.header_position().Length > 1)
-            {
-                // TODO: replace with an error/warning
-                Console.WriteLine("ERROR: Too many positions defined in node");
+				// TODO: replace with an error/warning
+				Console.WriteLine("ERROR: Too many tags defined in node");
             }
         }
         // all we need to do is store the title as the name of the node
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
-            currentNode.name = context.ID().GetText();
+            currentNode.name = context.TITLE_TEXT().GetText().Trim();
         }
-        public override void EnterHeader_tags(YarnSpinnerParser.Header_tagsContext context)
+        // parsing the header tags
+        // will not enter if there aren't any
+        public override void EnterHeader_tag(YarnSpinnerParser.Header_tagContext context)
         {
-            // need to turn this into a list of tags
-            // realising now this is far from what we need
-            // needs to be comma separated...
-            // TODO: fix the grammar to account for this
-            var tags = new List<string>();
-            foreach (var tag in context.ID())
+            var tags = new List<string>(context.TAG_TEXT().GetText().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            // if the node is to be parsed as raw text
+            // ie just straight passthrough
+            // this is for things like if you want to store books in YarnSpinner
+            if (tags.Contains("rawText"))
             {
-                string tagString = tag.GetText();
-                tags.Add(tagString);
+                rawTextNode = true;
             }
+            // storing the tags in the node
             currentNode.tags = tags;
         }
         // have finished with the header
@@ -157,7 +154,11 @@ namespace Yarn
         // eg emit a new startlabel
         public override void ExitHeader(YarnSpinnerParser.HeaderContext context)
         {
-            Emit(currentNode, ByteCode.Label, RegisterLabel());
+            // if this is flagged as a regular node
+            if (!rawTextNode)
+            {
+                Emit(currentNode, ByteCode.Label, RegisterLabel());
+            }
         }
 
         // have entered the body
@@ -166,57 +167,80 @@ namespace Yarn
         // it handles everything from that point onwards
         public override void EnterBody(YarnSpinnerParser.BodyContext context)
         {
-            BodyVisitor visitor = new BodyVisitor(this);
-
-            foreach (var statement in context.statement())
+            // if it is a regular node
+            if (!rawTextNode)
             {
-                visitor.Visit(statement);
+                BodyVisitor visitor = new BodyVisitor(this);
+
+                foreach (var statement in context.statement())
+                {
+                    visitor.Visit(statement);
+                }
             }
+            // we are a rawText node
+            // turn the body into text
+            // save that into the node
+            // perform no compilation
+            // TODO: oh glob! there has to be a better way
+            else
+            {
+                // moving in by 4 from the end to cut off the ---/=== delimiters
+                // and their associated /n's
+				int start = context.Start.StartIndex + 4;
+				int end = context.Stop.StopIndex - 4;
+                string body = context.Start.InputStream.GetText(new Interval(start, end));
+
+                currentNode.sourceTextStringID = program.RegisterString(body, currentNode.name, "line:" + currentNode.name, context.Start.Line, true);
+			}
         }
 
         // exiting the body of the node, time for last minute work
         // before moving onto the next node
-		// Does this node end after emitting AddOptions codes
-		// without calling ShowOptions?
-		public override void ExitBody(YarnSpinnerParser.BodyContext context)
+        // Does this node end after emitting AddOptions codes
+        // without calling ShowOptions?
+        public override void ExitBody(YarnSpinnerParser.BodyContext context)
         {
-			// Note: this only works when we know that we don't have
-			// AddOptions and then Jump up back into the code to run them.
-			// TODO: A better solution would be for the parser to flag
-			// whether a node has Options at the end.
-			var hasRemainingOptions = false;
-            foreach (var instruction in currentNode.instructions)
-			{
-				if (instruction.operation == ByteCode.AddOption)
-				{
-					hasRemainingOptions = true;
-				}
-				if (instruction.operation == ByteCode.ShowOptions)
-				{
-					hasRemainingOptions = false;
-				}
-			}
+            // if it is a regular node
+            if (!rawTextNode)
+            {
+                // Note: this only works when we know that we don't have
+                // AddOptions and then Jump up back into the code to run them.
+                // TODO: A better solution would be for the parser to flag
+                // whether a node has Options at the end.
+                var hasRemainingOptions = false;
+                foreach (var instruction in currentNode.instructions)
+                {
+                    if (instruction.operation == ByteCode.AddOption)
+                    {
+                        hasRemainingOptions = true;
+                    }
+                    if (instruction.operation == ByteCode.ShowOptions)
+                    {
+                        hasRemainingOptions = false;
+                    }
+                }
 
-			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
-			if (hasRemainingOptions == false)
-			{
-                Emit(currentNode, ByteCode.Stop);
-			}
-			else
-			{
-				// Otherwise, show the accumulated nodes and then jump to the selected node
-                Emit(currentNode, ByteCode.ShowOptions);
+                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
+                if (hasRemainingOptions == false)
+                {
+                    Emit(currentNode, ByteCode.Stop);
+                }
+                else
+                {
+                    // Otherwise, show the accumulated nodes and then jump to the selected node
+                    Emit(currentNode, ByteCode.ShowOptions);
 
-				if (flags.DisableShuffleOptionsAfterNextSet == true)
-				{
-					Emit(currentNode, ByteCode.PushBool, false);
-					Emit(currentNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-					Emit(currentNode, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = false;
-				}
+                    if (flags.DisableShuffleOptionsAfterNextSet == true)
+                    {
+                        Emit(currentNode, ByteCode.PushBool, false);
+                        Emit(currentNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                        Emit(currentNode, ByteCode.Pop);
+                        flags.DisableShuffleOptionsAfterNextSet = false;
+                    }
 
-				Emit(currentNode, ByteCode.RunNode);
-			}
+                    Emit(currentNode, ByteCode.RunNode);
+                }
+            }
         }
     }
 
@@ -772,7 +796,7 @@ namespace Yarn
         String yarnName = "G";
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
-            currentNode = context.ID().GetText();
+            currentNode = context.HEADER_TITLE().GetText();
             graph.nodes.Add(currentNode);
         }
         public override void ExitOption_statement(YarnSpinnerParser.Option_statementContext context)
