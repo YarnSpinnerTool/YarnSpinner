@@ -31,10 +31,10 @@ Yarn Spinner is designed to be easy to add to Unity games, but it's also intende
 ## What To Do Next
 
 * [Download Yarn Spinner.](https://github.com/thesecretlab/YarnSpinner/releases)
-* [Learn how to build Yarn Spinner from source.](Documentation/Building.md)
+* [Learn how to build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)
 * [Learn more about Yarn, and the Yarn editor.](https://github.com/infiniteammoinc/Yarn)
-* [Learn more about writing dialogue in Yarn.](Documentation/Usage.md)
-* [Learn about using Yarn Spinner in your Unity game.](Documentation/Unity.md)
+* [Learn more about writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/Usage.md)
+* [Learn about using Yarn Spinner in your Unity game.](Documentation/YarnSpinner-Unity/README.md)
 
 <a href="http://shop.oreilly.com/product/0636920055105.do"><img src="http://akamaicovers.oreilly.com/images/0636920055105/lrg.jpg" alt="Yarn Spinner training" width="100px;" align="right"></a>
 
