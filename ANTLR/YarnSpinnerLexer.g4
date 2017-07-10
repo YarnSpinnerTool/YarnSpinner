@@ -66,14 +66,22 @@ SHORTCUT_ENTER : '->' ;
 INDENT : '\u0007' ;//'{' ;
 DEDENT : '\u000B';//'}' ;
 
-COMMAND_ENTER : '<<' -> pushMode(Command) ;
+WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+//COMMAND_ENTER : '<<' -> pushMode(Command) ;
+COMMAND_IF : '<<' KEYWORD_IF -> pushMode(Command) ;
+COMMAND_ELSE : '<<' KEYWORD_ELSE -> pushMode(Command) ;
+COMMAND_ELSE_IF : '<<' KEYWORD_ELSE_IF -> pushMode(Command) ;
+COMMAND_ENDIF : '<<' ('endif' | 'ENDIF') '>>' ;
+COMMAND_SET : '<<' KEYWORD_SET -> pushMode(Command) ;
+COMMAND_FUNC : '<<' KEYWORD_FUNC -> pushMode(Command) ;
+
+ACTION_CMD : '<<' -> more, pushMode(Action) ;
+
 OPTION_ENTER : '[[' -> pushMode(Option) ;
 
 BODY_NEWLINE : [\r\n]+ -> skip ;
 
 HASHTAG : '#' TEXT ;
-
-WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 
 TEXT : STRING | TEXTCOMPONENT+ ;
 fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
@@ -86,6 +94,8 @@ COMMENT : '//' .*? '\n' -> skip ;
 
 mode Command;
 
+COMMAND_WS : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
+
 COMMAND_CLOSE : '>>' -> popMode ;
 
 COMMAND_STRING : STRING ;
@@ -93,16 +103,17 @@ COMMAND_STRING : STRING ;
 KEYWORD_IF : 'if' | 'IF' ;
 KEYWORD_ELSE : 'else' | 'ELSE' ;
 KEYWORD_ELSE_IF : 'elseif' | 'ELSEIF' ;
-KEYWORD_ENDIF : 'endif' | 'ENDIF' ;
+
+KEYWORD_FUNC : 'func' | 'FUNC' ;
 
 KEYWORD_SET : 'set' | 'SET' ;
-KEYWORD_TO : 'to' | 'TO' | '=' ;
 
 KEYWORD_TRUE  : 'true' | 'TRUE' ;
 KEYWORD_FALSE : 'false' | 'FALSE' ;
 
 KEYWORD_NULL : 'null' | 'NULL' ;
 
+KEYWORD_TO : 'to' | 'TO' | '=' ;
 // All the operators YarnSpinner currently supports
 OPERATOR_LOGICAL_LESS_THAN_EQUALS : '<=' | 'lte' | 'LTE' ;
 OPERATOR_LOGICAL_GREATER_THAN_EQUALS : '>=' | 'gte' | 'GTE' ;
@@ -135,9 +146,18 @@ VAR_ID : '$' ID ;
 BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
 
-ACTION_TEXT : ID ;
+FUNC_ID : ID ;
 
-WS_IN_COMMAND : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
+// ----------------------
+// Action mode
+// handles the <<anything you want>> command
+mode Action;
+ACTION : '>>' -> popMode ;
+IGNORE : . -> more ;
+
+//ACTION_TEXT : ID ;
+
+//WS_IN_COMMAND : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
 
 // ----------------------
 // Option mode
