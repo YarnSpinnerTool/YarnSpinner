@@ -68,14 +68,14 @@ DEDENT : '\u000B';//'}' ;
 
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 //COMMAND_ENTER : '<<' -> pushMode(Command) ;
+ACTION_CMD : '<<' -> more, pushMode(Action) ;
+
 COMMAND_IF : '<<' KEYWORD_IF -> pushMode(Command) ;
 COMMAND_ELSE : '<<' KEYWORD_ELSE -> pushMode(Command) ;
 COMMAND_ELSE_IF : '<<' KEYWORD_ELSE_IF -> pushMode(Command) ;
 COMMAND_ENDIF : '<<' ('endif' | 'ENDIF') '>>' ;
 COMMAND_SET : '<<' KEYWORD_SET -> pushMode(Command) ;
-COMMAND_FUNC : '<<' KEYWORD_FUNC -> pushMode(Command) ;
-
-ACTION_CMD : '<<' -> more, pushMode(Action) ;
+COMMAND_FUNC : '<<' ID '(' -> pushMode(Command) ;
 
 OPTION_ENTER : '[[' -> pushMode(Option) ;
 
@@ -100,13 +100,13 @@ COMMAND_CLOSE : '>>' -> popMode ;
 
 COMMAND_STRING : STRING ;
 
-KEYWORD_IF : 'if' | 'IF' ;
-KEYWORD_ELSE : 'else' | 'ELSE' ;
-KEYWORD_ELSE_IF : 'elseif' | 'ELSEIF' ;
-
-KEYWORD_FUNC : 'func' | 'FUNC' ;
-
-KEYWORD_SET : 'set' | 'SET' ;
+// adding a space after the keywords to get around the issue of
+//<<iffy>> being detected as an if statement
+KEYWORD_IF : ('if' | 'IF') ' ' ;
+KEYWORD_ELSE : ('else' | 'ELSE') ' ' ;
+KEYWORD_ELSE_IF : ('elseif' | 'ELSEIF') ' ' ;
+//KEYWORD_FUNC : 'func' | 'FUNC' ;
+KEYWORD_SET : ('set' | 'SET') ' ' ;
 
 KEYWORD_TRUE  : 'true' | 'TRUE' ;
 KEYWORD_FALSE : 'false' | 'FALSE' ;

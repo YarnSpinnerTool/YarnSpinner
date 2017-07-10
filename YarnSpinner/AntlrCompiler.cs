@@ -354,50 +354,57 @@ namespace Yarn
             return 0;
         }
 
-        //solo function statements
+        // solo function statements
         // this is such a weird thing...
-        // << functionName( expression, expression, etc) >>
+        // COMMAND_FUNC expression, expression ) >>
+        // COMMAND_FUNC = << ID (
         public override int VisitFunction_statement(YarnSpinnerParser.Function_statementContext context)
         {
-            // all we need do is visit the function itself, it handles everything
+            char[] lTrim = { '<' };
+            char[] rTrim = { '(' };
+            string functionName = context.GetChild(0).GetText().TrimStart(lTrim).TrimEnd(rTrim);
 
-            Visit(context.function());
+            this.HandleFunction(functionName, context.expression());
 
             return 0;
+        }
+        private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
+        {
+			// this will throw an exception if it doesn't exist
+			FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
+
+			// if the function is not variadic we need to check it has the right number of params
+			if (functionInfo.paramCount != -1)
+			{
+				if (parameters.Length != functionInfo.paramCount)
+				{
+					// TODO: replace with error
+					Console.WriteLine("ERROR: incorrect number of params in " + functionName);
+				}
+			}
+
+			// generate the instructions for all of the parameters
+			foreach (var parameter in parameters)
+			{
+				Visit(parameter);
+			}
+
+			// if the function is variadic we push the parameter number onto the stack
+			// variadic functions are those with paramCount of -1
+			if (functionInfo.paramCount == -1)
+			{
+				compiler.Emit(ByteCode.PushNumber, parameters.Length);
+			}
+
+			// then call the function itself
+			compiler.Emit(ByteCode.CallFunc, functionName);
         }
         // handles emiting the correct instructions for the function
         public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
         {
-            string functionName = context.ACTION_TEXT().GetText();
+            string functionName = context.FUNC_ID().GetText();
 
-            // this will throw an exception if it doesn't exist
-            FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
-
-            // if the function is not variadic we need to check it has the right number of params
-            if (functionInfo.paramCount != -1)
-            {
-                if (context.expression().Length != functionInfo.paramCount)
-                {
-                    // TODO: replace with error
-                    Console.WriteLine("ERROR: incorrect number of params in " + functionName);
-                }
-            }
-
-            // generate the instructions for all of the parameters
-            foreach (var parameter in context.expression())
-            {
-                Visit(parameter);
-            }
-
-            // if the function is variadic we push the parameter number onto the stack
-            // variadic functions are those with paramCount of -1
-            if (functionInfo.paramCount == -1)
-            {
-                compiler.Emit(ByteCode.PushNumber, context.expression().Length);
-            }
-
-            // then call the function itself
-            compiler.Emit(ByteCode.CallFunc, functionName);
+            this.HandleFunction(functionName, context.expression());
 
             return 0;
         }

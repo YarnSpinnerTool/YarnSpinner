@@ -35,17 +35,12 @@ shortcut : '->' TEXT (COMMAND_IF expression COMMAND_CLOSE)? (hashtag_block)? (IN
 
 if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
 if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
-//if_clause :'<<' KEYWORD_IF expression '>>' statement* ;
 else_if_clause : COMMAND_ELSE_IF expression COMMAND_CLOSE statement* ;
-//else_if_clause : '<<' KEYWORD_ELSE_IF expression '>>' statement* ;
 else_clause : COMMAND_ELSE COMMAND_CLOSE statement* ;
-//else_clause : '<<' KEYWORD_ELSE '>>' statement* ;
 
 // this is a hack until I can work out exactly what the rules for setting are
 set_statement
     : COMMAND_SET variable KEYWORD_TO* expression COMMAND_CLOSE
-    //: '<<' KEYWORD_SET variable KEYWORD_TO* expression '>>'
-    //| '<<' KEYWORD_SET expression '>>'
     | COMMAND_SET expression COMMAND_CLOSE
     ;
 
@@ -55,11 +50,9 @@ option_statement
 	(hashtag_block)? ;
 
 function : FUNC_ID '(' expression? (COMMA expression)* ')' ;
-//function_statement : '<<' function '>>' ;
-function_statement : COMMAND_FUNC function COMMAND_CLOSE ;
-
-//action_statement : '<<' (ACTION_TEXT | BODY_NUMBER | '+' | '-')+ '>>' ;
-//action_statement : '<<' BLORK '>>' ;
+// this is messy
+function_statement : COMMAND_FUNC expression (COMMA expression)* ')' COMMAND_CLOSE ;
+// this isn't ideal but works quite well
 action_statement : ACTION ;
 
 line_statement : TEXT (hashtag_block)? ;
