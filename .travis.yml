@@ -25,7 +25,7 @@ addons:
     - doxygen-latex
     - doxygen-gui
 script:
-- "./build.sh -bcv"
+- "./build.sh -bcuv"
 #deploy:
 #  provider: releases
 #  api_key:
@@ -37,5 +37,5 @@ script:
 after_success:
 - cd $TRAVIS_BUILD_DIR
 - chmod +x DeployDocumentation.sh
-- "./build.sh -cduv"
+- "./build.sh -cdv"
 - "./DeployDocumentation.sh"
