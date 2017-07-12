@@ -388,7 +388,7 @@ namespace Yarn
 
 			if (options.experimental)
 			{
-				Warn("Running YarnSpinner in experimental mode may have unexpected side-effects.");
+				Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
 				dialogue.experimentalMode = true;
 			}
 

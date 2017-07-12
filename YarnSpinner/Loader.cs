@@ -240,7 +240,11 @@ namespace Yarn {
 
                 YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
+
                 YarnSpinnerParser parser = new YarnSpinnerParser(tokens);
+                // turning off the normal error listener and using ours
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(new ErrorListener());
 
                 IParseTree tree = parser.dialogue();
                 AntlrCompiler antlrcompiler = new AntlrCompiler(library);
