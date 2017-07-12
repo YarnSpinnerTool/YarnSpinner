@@ -32,48 +32,6 @@ using System.Text;
 
 namespace Yarn {
 
-    // An exception representing something going wrong during parsing
-    [Serializable]
-    internal class ParseException : Exception {
-
-        internal int lineNumber = 0;
-
-        internal static ParseException Make(Token foundToken, params TokenType[] expectedTypes) {
-
-            var lineNumber = foundToken.lineNumber+1;
-
-            var expectedTypeNames = new List<String> ();
-            foreach (var type in expectedTypes) {
-                expectedTypeNames.Add (type.ToString ());
-            }
-
-            string possibleValues = string.Join(",", expectedTypeNames.ToArray());
-            string message = string.Format("Line {0}:{1}: Expected {2}, but found {3}",
-                                           lineNumber,
-                                           foundToken.columnNumber,
-                                           possibleValues,
-                                           foundToken.type.ToString()
-                                           );
-            var e = new ParseException (message);
-            e.lineNumber = lineNumber;
-            return e;
-        }
-
-        internal static ParseException Make(Token mostRecentToken, string message) {
-            var lineNumber = mostRecentToken.lineNumber+1;
-            string theMessage = string.Format ("Line {0}:{1}: {2}",
-                                 lineNumber,
-                                mostRecentToken.columnNumber,
-                                 message);
-            var e = new ParseException (theMessage);
-            e.lineNumber = lineNumber;
-            return e;
-        }
-
-        internal ParseException (string message) : base(message) {}
-
-    }
-
     // Magic abstract syntax tree producer - feed it tokens, and it gives you
     // a tree representation! Or an error!
     internal class Parser {

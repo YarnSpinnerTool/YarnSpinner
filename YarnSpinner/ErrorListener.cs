@@ -1,11 +1,22 @@
 ﻿using System;
 using Antlr4.Runtime;
 using System.Text;
+using System.IO;
 
 namespace Yarn
 {
-    public class ErrorListener : BaseErrorListener
+    public sealed class ErrorListener : BaseErrorListener
     {
+        private static readonly ErrorListener instance = new ErrorListener();
+        private ErrorListener(){}
+        public static ErrorListener Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public override void SyntaxError(System.IO.TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
             StringBuilder builder = new StringBuilder();
@@ -13,6 +24,8 @@ namespace Yarn
             // the human readable message
             object[] format = new object[] { line, charPositionInLine + 1 };
             builder.AppendFormat("Error on line {0} at position {1}:\n", format);
+            // the actual error message
+            builder.AppendLine(msg);
 
             // the line with the error on it
             string input = offendingSymbol.TokenSource.InputStream.ToString();
@@ -40,12 +53,7 @@ namespace Yarn
                     }
                 }
             }
-            builder.AppendLine();
-
-            // the actual error message
-            builder.AppendLine(msg);
-
-            Console.WriteLine(builder.ToString());
+            throw new Yarn.ParseException(builder.ToString());
         }
     }
 }

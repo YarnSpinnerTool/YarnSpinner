@@ -101,8 +101,9 @@ namespace Yarn
         {
             if (currentNode != null)
             {
-                // TODO: replace with an error/warning
-                Console.WriteLine("ERROR: discovered a node when another is still active");
+                string newNode = context.header().header_title().TITLE_TEXT().GetText().Trim();
+                string message = string.Format("Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.name);
+				throw new Yarn.ParseException(message);
             }
             currentNode = new Node();
             rawTextNode = false;
@@ -124,8 +125,8 @@ namespace Yarn
         {
             if (context.header_tag().Length > 1)
             {
-				// TODO: replace with an error/warning
-				Console.WriteLine("ERROR: Too many tags defined in node");
+                string message = string.Format("Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
+                throw new Yarn.ParseException(message);
             }
         }
         // all we need to do is store the title as the name of the node
@@ -336,8 +337,8 @@ namespace Yarn
                 }
                 else
                 {
-                    // TODO: replace with an error
-                    Console.WriteLine("ERROR: invalid expression inside an assignment statement");
+                    // throw an error
+                    throw Yarn.ParseException.Make(context,"Invalid expression inside assignment statement");
                 }
             }
 
@@ -364,11 +365,18 @@ namespace Yarn
             char[] rTrim = { '(' };
             string functionName = context.GetChild(0).GetText().TrimStart(lTrim).TrimEnd(rTrim);
 
-            this.HandleFunction(functionName, context.expression());
+            var output = this.HandleFunction(functionName, context.expression());
+            // failed to handle the function
+            if (output == false)
+            {
+                Yarn.ParseException.Make(context, "Invalid number of parameters for " + functionName);
+            }
 
             return 0;
         }
-        private void HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
+        // emits the required tokens for the function call
+        // returns a bool indicating if the function was valid
+        private bool HandleFunction(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)
         {
 			// this will throw an exception if it doesn't exist
 			FunctionInfo functionInfo = compiler.library.GetFunction(functionName);
@@ -378,8 +386,8 @@ namespace Yarn
 			{
 				if (parameters.Length != functionInfo.paramCount)
 				{
-					// TODO: replace with error
-					Console.WriteLine("ERROR: incorrect number of params in " + functionName);
+                    // invalid function, return false
+                    return false;
 				}
 			}
 
@@ -398,6 +406,8 @@ namespace Yarn
 
 			// then call the function itself
 			compiler.Emit(ByteCode.CallFunc, functionName);
+            // everything went fine, return true
+            return true;
         }
         // handles emiting the correct instructions for the function
         public override int VisitFunction(YarnSpinnerParser.FunctionContext context)
@@ -585,7 +595,6 @@ namespace Yarn
             Visit(right);
 
             // TODO: temp operator call
-            //compiler.Emit(ByteCode.CallFunc, op);
             compiler.Emit(ByteCode.CallFunc, tokens[op].ToString());
         }
         // * / %
@@ -672,7 +681,6 @@ namespace Yarn
         // this is a wee bit messy but is easy to extend, easy to read
         // and requires minimal checking as ANTLR has already done all that
         // does have code duplication though
-        // TODO: add in support for null as a value type...
         #region valueCalls
         public override int VisitValueVar(YarnSpinnerParser.ValueVarContext context)
         {

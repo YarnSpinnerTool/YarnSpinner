@@ -23,6 +23,8 @@ ID : (([a-zA-Z0-9])|('_'))+ ;
 
 NEWLINE : [\r\n]+ ;
 
+UNKNOWN : . ;
+
 // ----------------------
 // Title mode
 // for handling the title of the node
@@ -88,6 +90,8 @@ fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
 
 COMMENT : '//' .*? '\n' -> skip ;
 
+BODY_UNKNOWN : . ;
+
 // ----------------------
 // Command mode
 // for handling branching and expression
@@ -147,6 +151,8 @@ BODY_NUMBER : '-'? DIGIT+('.'DIGIT+)? ;
 fragment DIGIT : [0-9] ;
 
 FUNC_ID : ID ;
+
+COMMAND_UNKNOWN : . ;
 
 // ----------------------
 // Action mode
