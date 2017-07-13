@@ -23,7 +23,7 @@ addons:
     - doxygen-doc
     - doxygen-latex
     - doxygen-gui
-	- antlr4
+    - antlr4
 script:
 - "./build.sh -bcuv"
 #deploy:
