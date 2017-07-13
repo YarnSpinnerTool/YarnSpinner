@@ -59,7 +59,9 @@ mode Body;
 
 BODY_CLOSE : '===' -> popMode ;
 
-SHORTCUT_ENTER : '->' ;
+WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
+SHORTCUT_ENTER : '->' | '-> ';
 // currently using \a and \v as the indent and dedent symbols
 // these play the role that { and } play in many other languages
 // not sure if this is the best idea, feels like it might break
@@ -68,7 +70,6 @@ SHORTCUT_ENTER : '->' ;
 INDENT : '\u0007' ;//'{' ;
 DEDENT : '\u000B';//'}' ;
 
-WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 //COMMAND_ENTER : '<<' -> pushMode(Command) ;
 ACTION_CMD : '<<' -> more, pushMode(Action) ;
 
@@ -85,7 +86,8 @@ BODY_NEWLINE : [\r\n]+ -> skip ;
 
 HASHTAG : '#' TEXT ;
 
-TEXT : STRING | TEXTCOMPONENT+ ;
+TEXT : BODY_STRING | TEXTCOMPONENT+ ;
+BODY_STRING : '"' .*? '"';
 fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
 
 COMMENT : '//' .*? '\n' -> skip ;

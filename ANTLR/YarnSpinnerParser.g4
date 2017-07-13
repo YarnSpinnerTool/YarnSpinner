@@ -31,7 +31,7 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : '->' TEXT (COMMAND_IF expression COMMAND_CLOSE)? (hashtag_block)? (INDENT statement* DEDENT)? ;
+shortcut : SHORTCUT_ENTER TEXT (COMMAND_IF expression COMMAND_CLOSE)? (hashtag_block)? (INDENT statement* DEDENT)? ;
 
 if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
 if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
