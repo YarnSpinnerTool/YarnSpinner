@@ -75,7 +75,6 @@
     <Compile Include="YarnSpinnerParserBaseVisitor.cs" />
     <Compile Include="YarnSpinnerParserListener.cs" />
     <Compile Include="YarnSpinnerParserVisitor.cs" />
-    <Compile Include="YarnSpinnerVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ErrorListener.cs" />
   </ItemGroup>
@@ -83,6 +82,8 @@
     <None Include="packages.config" />
     <None Include="YarnSpinnerLexer.tokens" />
     <None Include="YarnSpinnerParser.tokens" />
+    <None Include="YarnSpinnerLexer.g4" />
+    <None Include="YarnSpinnerParser.g4" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

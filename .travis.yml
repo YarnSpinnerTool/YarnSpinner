@@ -3,7 +3,6 @@ sudo: required
 branches:
   except:
   - gh-pages
-  - feature/ANTLR
 language: csharp
 solution: YarnSpinner.sln
 env:
@@ -24,6 +23,7 @@ addons:
     - doxygen-doc
     - doxygen-latex
     - doxygen-gui
+	- antlr4
 script:
 - "./build.sh -bcuv"
 #deploy:
