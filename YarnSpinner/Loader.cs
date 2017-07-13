@@ -231,7 +231,7 @@ namespace Yarn {
                     builder.Append("title:Start\n");
                     builder.Append("---\n");
                     builder.Append(text);
-                    builder.Append("===\n");
+                    builder.Append("\n===\n");
                     text = builder.ToString();
                 }
 
