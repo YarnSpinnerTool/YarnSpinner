@@ -10,14 +10,28 @@ namespace YarnSpinner.Tests
 {
 
 
-    [TestFixture]
-    public class DialogueTests : TestBase {
+    [TestFixture(true)]
+    [TestFixture(false)]
+    public class DialogueTests : TestBase
+    {
+        private bool experimentalMode;
+        public DialogueTests(bool experimental)
+        {
+            this.experimentalMode = experimental;
+        }
+
+		[SetUp]
+		public new void Init()
+		{
+			base.Init();
+
+			dialogue.experimentalMode = this.experimentalMode;
+		}
 
 
         [Test]
         public void TestNodeExists ()
         {
-
             var path = Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt");
 
             dialogue.LoadFile (path);
@@ -35,7 +49,8 @@ namespace YarnSpinner.Tests
         }
 
         [Test]
-        public void TestAnalysis() {
+        public void TestAnalysis() 
+        {
 
             ICollection<Yarn.Analysis.Diagnosis> diagnoses;
             Yarn.Analysis.Context context;
@@ -70,6 +85,7 @@ namespace YarnSpinner.Tests
         [Test]
         public void TestDumpingCode()
         {
+
             var path = Path.Combine(TestDataPath, "Example.yarn.txt");
             dialogue.LoadFile (path);
 
@@ -93,6 +109,7 @@ namespace YarnSpinner.Tests
 
         [Test]
         public void TestGettingCurrentNodeName()  {
+
             dialogue.LoadFile (Path.Combine(UnityDemoScriptsPath, "Sally.yarn.txt"));
 
             // dialogue should not be running yet
@@ -111,6 +128,7 @@ namespace YarnSpinner.Tests
 
         [Test]
         public void TestGettingRawSource() {
+
             dialogue.LoadFile (Path.Combine(TestDataPath, "Example.yarn.txt"));
 
             var source = dialogue.GetTextForNode ("LearnMore");
@@ -122,6 +140,7 @@ namespace YarnSpinner.Tests
 
         [Test]
         public void TestNodeVistation() {
+
             dialogue.LoadFile(Path.Combine(TestDataPath, "Example.yarn.txt"));
 
             foreach (var result in dialogue.Run("Leave")) {

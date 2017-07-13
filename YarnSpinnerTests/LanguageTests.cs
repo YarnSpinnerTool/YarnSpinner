@@ -10,13 +10,21 @@ namespace YarnSpinner.Tests
 {
 
 
-    [TestFixture]
+	[TestFixture(true)]
+	[TestFixture(false)]
     public class LanguageTests : TestBase
     {
+		private bool experimentalMode;
+        public LanguageTests(bool experimental)
+		{
+			this.experimentalMode = experimental;
+		}
 
         [SetUp]
         public new void Init() {
             base.Init();
+
+            dialogue.experimentalMode = this.experimentalMode;
 
             // Register some additional functions
             dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters) {
