@@ -23,8 +23,9 @@ addons:
     - doxygen-doc
     - doxygen-latex
     - doxygen-gui
-    - antlr4
+    - default-jre
 script:
+- "./antlr.sh"
 - "./build.sh -bcuv"
 #deploy:
 #  provider: releases
