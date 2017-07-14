@@ -214,10 +214,6 @@ namespace Yarn {
         // runs through each line of the yarn statement, wrapping textlines inside ""
         private string TempHack(string nodeText)
         {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-			Console.Write("DANGER: ");
-			Console.ResetColor();
-            Console.Write("TempHack is in place!\n");
             using (StringReader reader = new StringReader(nodeText))
             {
                 string line;
@@ -227,8 +223,9 @@ namespace Yarn {
                     // removing any opening/trailing spaces (eg for indents)
                     string tweakedline = line.Trim();
                     // if it has a special character in it we have to go looking
+                    // and if it isn't a comment
                     string[] reserved = { "[","<",">", "]" };
-                    if (reserved.Any(tweakedline.Contains))
+                    if (reserved.Any(tweakedline.Contains) && !tweakedline.StartsWith("//"))
                     {
                         bool marked = false;
                         string[] delimiters = { "<<", "#", "[[", "\a", "\v", "\n" };

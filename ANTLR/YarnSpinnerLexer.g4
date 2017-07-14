@@ -60,6 +60,7 @@ mode Body;
 BODY_CLOSE : '===' -> popMode ;
 
 WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+COMMENT : '//' .*? '\n' -> skip ;
 
 SHORTCUT_ENTER : '->' | '-> ';
 // currently using \a and \v as the indent and dedent symbols
@@ -89,8 +90,6 @@ HASHTAG : '#' TEXT ;
 TEXT : BODY_STRING | TEXTCOMPONENT+ ;
 BODY_STRING : '"' .*? '"';
 fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
-
-COMMENT : '//' .*? '\n' -> skip ;
 
 BODY_UNKNOWN : . ;
 
