@@ -21,7 +21,7 @@ STRING : '"' .*? '"';
 // format for identifiers used in numerous places
 ID : (([a-zA-Z0-9])|('_'))+ ;
 
-NEWLINE : [\r\n]+ ;
+NEWLINE : [\n]+ ;
 
 UNKNOWN : . ;
 
@@ -32,7 +32,7 @@ UNKNOWN : . ;
 // A title is allowed to be anything excluding a space or newline
 mode Title;
 TITLE_WS : (' ' | '\t') -> skip ;
-TITLE_TEXT : ~('\n' | ' ')+ -> popMode ;
+TITLE_TEXT : ~('\n' | ' ' | '\t')+ -> popMode ;
 
 // ----------------------
 // Tag mode
@@ -57,41 +57,70 @@ HEADER_TEXT : ~('\n')+ -> popMode;
 
 mode Body;
 
-BODY_CLOSE : '===' -> popMode ;
-
-WS_IN_BODY : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+WS_IN_BODY : (' ' | '\t' | '\n')+ -> skip ; // skip spaces, tabs, newlines
 COMMENT : '//' .*? '\n' -> skip ;
 
-SHORTCUT_ENTER : '->' | '-> ';
+BODY_CLOSE : '===' -> popMode ;
+
+TEXT_STRING : '"' .*? '"' ;
+
+SHORTCUT_ENTER : ('->' | '-> ') -> pushMode(Shortcuts);
+
 // currently using \a and \v as the indent and dedent symbols
 // these play the role that { and } play in many other languages
 // not sure if this is the best idea, feels like it might break
 // but at this stage the yarn file has gone through the preprocessor so it shouldnt really matter
 // have ruled out people using \a and \v as normal text, not likely to cause issue but worth pointing out
-INDENT : '\u0007' ;//'{' ;
-DEDENT : '\u000B';//'}' ;
 
-//COMMAND_ENTER : '<<' -> pushMode(Command) ;
-ACTION_CMD : '<<' -> more, pushMode(Action) ;
+//INDENT : '{' ;
+//DEDENT : '}' ;
+INDENT : '\u0007';
+DEDENT : '\u000B';
 
-COMMAND_IF : '<<' KEYWORD_IF -> pushMode(Command) ;
-COMMAND_ELSE : '<<' KEYWORD_ELSE -> pushMode(Command) ;
-COMMAND_ELSE_IF : '<<' KEYWORD_ELSE_IF -> pushMode(Command) ;
-COMMAND_ENDIF : '<<' ('endif' | 'ENDIF') '>>' ;
-COMMAND_SET : '<<' KEYWORD_SET -> pushMode(Command) ;
-COMMAND_FUNC : '<<' ID '(' -> pushMode(Command) ;
+COMMAND_IF : COMMAND_OPEN KEYWORD_IF -> pushMode(Command) ;
+COMMAND_ELSE : COMMAND_OPEN KEYWORD_ELSE -> pushMode(Command) ;
+COMMAND_ELSE_IF : COMMAND_OPEN KEYWORD_ELSE_IF -> pushMode(Command) ;
+COMMAND_ENDIF : COMMAND_OPEN ('endif' | 'ENDIF') '>>' ;
+COMMAND_SET : COMMAND_OPEN KEYWORD_SET -> pushMode(Command) ;
+COMMAND_FUNC : COMMAND_OPEN ID '(' -> pushMode(Command) ;
+
+ACTION_CMD : COMMAND_OPEN -> more, pushMode(Action) ;
+
+COMMAND_OPEN : '<<' ' '* ;
 
 OPTION_ENTER : '[[' -> pushMode(Option) ;
 
-BODY_NEWLINE : [\r\n]+ -> skip ;
-
 HASHTAG : '#' TEXT ;
 
-TEXT : BODY_STRING | TEXTCOMPONENT+ ;
-BODY_STRING : '"' .*? '"';
-fragment TEXTCOMPONENT : ~('>'|'<'|'['|']'|'\n'|'\u0007'|'\u000B'|'#') ;
+BODY_GOBBLE : . -> more, pushMode(Text);
 
-BODY_UNKNOWN : . ;
+// ----------------------
+// Text mode
+// for handling the raw lines of dialogue
+// goes until it hits a hashtag, or an indent/dedent and then pops
+// is zero or more as it will always have the first symbol passed by BODY_GOBBLE
+mode Text;
+
+TEXT : ~('\n'|'\u0007'|'\u000B'|'#')* -> popMode;
+
+// ----------------------
+// Shortcut mode
+// Handles any form of text except the delimiters or <<
+// currently uses a semantic predicate to handle << which I don't like and would like to change
+mode Shortcuts;
+
+// these 3 commented out bits work but use a semantic predicate
+fragment CHEVRON : '<' ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
+fragment PARTIAL : (~('<'|'#'|'\n'|'\u0007'|'\u000B') | CHEVRON)+ ;
+SHORTCUT_TEXT : (PARTIAL | PARTIAL* '<' {_input.LA(1) != '<'}?) -> popMode ;
+
+// this is the bit I am trying to get working based on what was said on SO
+//SHORTCUT_TEXT : CHAR+ -> popMode;
+
+//SHORTCUT_COMMAND : '<<' -> popMode, pushMode(Command);
+//SHORTCUT_COMMAND : '<<' -> popMode, pushMode(Command);
+//CHEVRON : '<' -> type(SHORTCUT_TEXT) ;
+//fragment CHAR : ~('<'|'#'|'\n'|'\u0007'|'\u000B') ;
 
 // ----------------------
 // Command mode
@@ -99,7 +128,7 @@ BODY_UNKNOWN : . ;
 
 mode Command;
 
-COMMAND_WS : (' ' | '\n' | '\t') -> skip ; // skip spaces, tabs, newlines
+COMMAND_WS : (' ' | '\n' | '\t')+ -> skip ; // skip spaces, tabs, newlines
 
 COMMAND_CLOSE : '>>' -> popMode ;
 

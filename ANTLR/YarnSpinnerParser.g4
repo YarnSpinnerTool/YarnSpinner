@@ -31,7 +31,9 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : SHORTCUT_ENTER TEXT (COMMAND_IF expression COMMAND_CLOSE)? (hashtag_block)? (INDENT statement* DEDENT)? ;
+shortcut : SHORTCUT_ENTER shortcut_text shortcut_conditional? hashtag_block? (INDENT statement* DEDENT)? ;
+shortcut_conditional : COMMAND_IF expression COMMAND_CLOSE ;
+shortcut_text : SHORTCUT_TEXT ;
 
 if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
 if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
@@ -55,7 +57,8 @@ function_statement : COMMAND_FUNC expression (COMMA expression)* ')' COMMAND_CLO
 // this isn't ideal but works quite well
 action_statement : ACTION ;
 
-line_statement : TEXT (hashtag_block)? ;
+text : TEXT | TEXT_STRING ;
+line_statement : text (hashtag_block)? ;
 
 hashtag_block : hashtag+ ;
 hashtag : HASHTAG ;

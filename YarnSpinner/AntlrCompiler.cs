@@ -262,7 +262,7 @@ namespace Yarn
         public override int VisitLine_statement(YarnSpinnerParser.Line_statementContext context)
         {
             // grabbing the line of text and stripping off any "'s if they had them
-            string lineText = context.TEXT().GetText().Trim('"');
+            string lineText = context.text().GetText().Trim('"');
 
             // getting the lineID from the hashtags if it has one
             string lineID = compiler.GetLineID(context.hashtag_block());
@@ -474,6 +474,12 @@ namespace Yarn
             }
         }
 
+        // tiny helper to return the text of a short cut
+        // making it a separate method call because I am positive shortcuts will change
+        private string ShortcutText(YarnSpinnerParser.Shortcut_textContext context)
+        {
+            return context.SHORTCUT_TEXT().GetText().Trim();
+        }
         // for the shortcut options
         // (-> line of text <<if expression>> indent statements dedent)+
         public override int VisitShortcut_statement(YarnSpinnerParser.Shortcut_statementContext context)
@@ -490,11 +496,11 @@ namespace Yarn
                 labels.Add(optionDestinationLabel);
 
                 string endOfClauseLabel = null;
-                if (shortcut.expression() != null)
+                if (shortcut.shortcut_conditional() != null)
                 {
                     endOfClauseLabel = compiler.RegisterLabel("conditional_" + optionCount);
 
-                    Visit(shortcut.expression());
+                    Visit(shortcut.shortcut_conditional().expression());
 
                     compiler.Emit(ByteCode.JumpIfFalse, endOfClauseLabel);
                 }
@@ -502,12 +508,12 @@ namespace Yarn
                 // getting the lineID from the hashtags if it has one
                 string lineID = compiler.GetLineID(shortcut.hashtag_block());
 
-                string shortcutLine = shortcut.TEXT().GetText();
+                string shortcutLine = ShortcutText(shortcut.shortcut_text());
                 string labelStringID = compiler.program.RegisterString(shortcutLine, compiler.currentNode.name, lineID, shortcut.Start.Line, true);
 
                 compiler.Emit(ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
-                if (shortcut.expression() != null)
+                if (shortcut.shortcut_conditional() != null)
                 {
                     compiler.Emit(ByteCode.Label, endOfClauseLabel);
                     compiler.Emit(ByteCode.Pop);

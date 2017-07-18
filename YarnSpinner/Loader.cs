@@ -121,8 +121,10 @@ namespace Yarn {
                 // a bool to determine if we are in a mode where we need to track indents
                 bool shouldTrackNextIndentation = false;
 
-                string INDENT = "\a";
-                string DEDENT = "\v";
+                char INDENT = '\a';
+                char DEDENT = '\v';
+                //string INDENT = "{";
+                //string DEDENT = "}";
 
                 string OPTION = "->";
 
@@ -207,132 +209,6 @@ namespace Yarn {
 
             return processed;
         }
-        // TODO: Fix grammar to not need this
-        // a complete and utter temporary hack to prevent text lines like:
-        // A: <o>
-        // causing issues with the current lexer
-        // runs through each line of the yarn statement, wrapping textlines inside ""
-        private string TempHack(string nodeText)
-        {
-            using (StringReader reader = new StringReader(nodeText))
-            {
-                string line;
-                List<string> outputLines = new List<string>();
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // removing any opening/trailing spaces (eg for indents)
-                    string tweakedline = line.Trim();
-                    // if it has a special character in it we have to go looking
-                    // and if it isn't a comment
-                    string[] reserved = { "[","<",">", "]" };
-                    if (reserved.Any(tweakedline.Contains) && !tweakedline.StartsWith("//"))
-                    {
-                        bool marked = false;
-                        string[] delimiters = { "<<", "#", "[[", "\a", "\v", "\n" };
-                        // handling shortcuts, the weird case
-                        if (tweakedline.StartsWith("->"))
-                        {
-                            // stripping off the ->
-                            string tempLine = tweakedline.Remove(0, 2);
-
-                            // is it not already wrapped up in ""?
-                            if (!(tempLine.StartsWith("\"") || tempLine.StartsWith(" \"")))
-                            {
-                                int endPos = 0;
-								// basically we wrap everything that isn't the -> or the << or the \n or the #
-								// getting the position of the delim
-								foreach (string delim in delimiters)
-								{
-									int position = tweakedline.IndexOf(delim);
-									if (position > endPos)
-									{
-                                        endPos = position;
-										break;
-									}
-								}
-                                // if we fell off the end (because /ns are eating by the string splitter)
-                                if (endPos == 0){
-                                    endPos = tweakedline.Length;
-                                }
-
-                                // if we found a delim
-                                if (endPos > 0)
-                                {
-									int startPos = tweakedline.IndexOf("->") + 2;
-									//-> hashline #yep
-									//start of 2
-									//end of 11
-									string substring = tweakedline.Substring(startPos, endPos - startPos);
-									if (substring.Length > 0)
-									{
-                                        string newLine = "\"" + substring.Trim() + "\"";
-                                        line = line.Replace(substring.Trim(), newLine);
-									}
-                                }
-                            }
-                            marked = true;
-                        }
-
-                        if (!marked)
-                        {
-							// trimming off indents/dedent if they are there and spaces
-							char[] frontTrim = { '\a', '\v' };
-							tweakedline = tweakedline.TrimStart(frontTrim).Trim();
-							// if we are not a string
-							if (!tweakedline.StartsWith("\""))
-							{
-								// are we not command or option?
-								if (!(tweakedline.StartsWith("<<") || tweakedline.StartsWith("[[")))
-								{
-									// ok so move through the line until I hit a dedent
-									// capture that index
-									// create substring ending at that index
-									// wrap it in ""
-									// insert that into line
-									int endPos = 0;
-									foreach (var delim in delimiters)
-									{
-										int position = tweakedline.IndexOf(delim);
-										if (position > endPos)
-										{
-											endPos = position;
-											break;
-										}
-									}
-
-									// it is possible to fall off the edge because of how I am readinglines
-									// if endPos = 0 we fell off
-									// so endPos is then the length of the string
-									if (endPos == 0)
-									{
-										endPos = tweakedline.Length;
-									}
-
-									if (endPos > 0)
-									{
-										string substring = tweakedline.Substring(0, endPos);
-										if (substring.Length > 0)
-										{
-											string newLine = "\"" + substring.Trim() + "\"";
-											line = line.Replace(substring.Trim(), newLine);
-										}
-									}
-								}
-							}
-                        }
-                    }
-                    outputLines.Add(line);
-                }
-				StringBuilder builder = new StringBuilder();
-				foreach (string outLine in outputLines)
-				{
-					builder.Append(outLine);
-                    builder.Append("\n");
-				}
-                nodeText = builder.ToString();
-            }
-            return nodeText;
-        }
 
         // Given a bunch of raw text, load all nodes that were inside it.
         // You can call this multiple times to append to the collection of nodes,
@@ -361,9 +237,7 @@ namespace Yarn {
                     text = builder.ToString();
                 }
 
-                //string inputString = preprocessor(text);
-                // TODO: temporary hack until I fix the grammar
-                string inputString = TempHack(preprocessor(text));
+                string inputString = preprocessor(text);
                 ICharStream input = CharStreams.fromstring(inputString);
 
                 YarnSpinnerLexer lexer = new YarnSpinnerLexer(input);

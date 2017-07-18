@@ -131,6 +131,26 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitShortcut([NotNull] YarnSpinnerParser.ShortcutContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.shortcut_conditional"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterShortcut_conditional([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.shortcut_conditional"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitShortcut_conditional([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.shortcut_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterShortcut_text([NotNull] YarnSpinnerParser.Shortcut_textContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.shortcut_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitShortcut_text([NotNull] YarnSpinnerParser.Shortcut_textContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.if_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -220,6 +240,16 @@ public interface IYarnSpinnerParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAction_statement([NotNull] YarnSpinnerParser.Action_statementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterText([NotNull] YarnSpinnerParser.TextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="YarnSpinnerParser.text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitText([NotNull] YarnSpinnerParser.TextContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="YarnSpinnerParser.line_statement"/>.
 	/// </summary>
