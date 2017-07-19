@@ -38,7 +38,7 @@ shortcut_text : SHORTCUT_TEXT ;
 if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
 if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
 else_if_clause : COMMAND_ELSE_IF expression COMMAND_CLOSE statement* ;
-else_clause : COMMAND_ELSE COMMAND_CLOSE statement* ;
+else_clause : COMMAND_ELSE statement* ;
 
 // this is a hack until I can work out exactly what the rules for setting are
 set_statement

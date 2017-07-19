@@ -350,9 +350,26 @@ namespace Yarn
         public override int VisitAction_statement(YarnSpinnerParser.Action_statementContext context)
         {
             char[] trimming = { '<', '>' };
-            compiler.Emit(ByteCode.RunCommand, context.GetText().Trim(trimming));
+            string action = context.GetText().Trim(trimming);
 
-            return 0;
+            // TODO: look into replacing this as it seems a bit odd
+            switch (action)
+            {
+                case "stop":
+                    compiler.Emit(ByteCode.Stop);
+                    break;
+                case "shuffleNextOptions":
+                    compiler.Emit(ByteCode.PushBool, true);
+                    compiler.Emit(ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                    compiler.Emit(ByteCode.Pop);
+                    compiler.flags.DisableShuffleOptionsAfterNextSet = true;
+                    break;
+                default:
+                    compiler.Emit(ByteCode.RunCommand, action);
+                    break;
+            }
+
+			return 0;
         }
 
         // solo function statements

@@ -31,14 +31,14 @@ statement
     ;
 
 shortcut_statement : shortcut+ ;
-shortcut : SHORTCUT_ENTER shortcut_text shortcut_conditional? (hashtag_block)? (INDENT statement* DEDENT)? ;
+shortcut : SHORTCUT_ENTER shortcut_text shortcut_conditional? hashtag_block? (INDENT statement* DEDENT)? ;
 shortcut_conditional : COMMAND_IF expression COMMAND_CLOSE ;
 shortcut_text : SHORTCUT_TEXT ;
 
 if_statement : if_clause (else_if_clause)* (else_clause)? COMMAND_ENDIF (hashtag_block)? ;
 if_clause : COMMAND_IF expression COMMAND_CLOSE statement* ;
 else_if_clause : COMMAND_ELSE_IF expression COMMAND_CLOSE statement* ;
-else_clause : COMMAND_ELSE COMMAND_CLOSE statement* ;
+else_clause : COMMAND_ELSE statement* ;
 
 // this is a hack until I can work out exactly what the rules for setting are
 set_statement
