@@ -58,7 +58,7 @@ The awesome [logo](Documentation/YarnSpinnerLogo.png) was made by the excellent 
 Yarn Spinner needs your help to be as awesome as it can be! You don't have to be a coder to help out - we'd love to have your help in improving our [documentation](Documentation/Unity.md), in spreading the word, and in finding bugs.
 
 * Our [issues page](https://github.com/thesecretlab/YarnSpinner/issues) contains a list of things we'd love your help in improving.
-* Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
+* Hop into our channel, which is [#yarnspinner](http://narrativegamedev.slack.com/messages/yarnspinner) on the [narrative game development](http://narrative-game-dev-slack.herokuapp.com) Slack!
 * **New!** Join our [narrative game development](http://lab.to/narrativegamedev) Slack!
 * **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available
 
