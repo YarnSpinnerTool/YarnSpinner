@@ -160,11 +160,11 @@ namespace Yarn
             state.programCounter++;
 
             if (state.programCounter >= currentNode.instructions.Count) {
-                executionState = ExecutionState.Stopped;
-                nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
-                dialogue.LogDebugMessage ("Run complete.");
+                if (!unwind())
+                {
+                    dialogue.LogDebugMessage ("Run complete.");    
+                }
             }
-
         }
 
         /// Looks up the instruction number for a named label in the current node.
@@ -337,20 +337,7 @@ namespace Yarn
                 /** Immediately stop execution, and report that fact unless this was a returnable call; in which case,
                     start unwinding the stack
                  */
-
-                if (_returnStates.Count > 0)
-                {
-                    var oldState = _returnStates[_returnStates.Count - 1];
-                    _returnStates.Remove(oldState);
-                    nodeCompleteHandler(new Dialogue.NodeCompleteResult(currentNodeName));
-                    oldState.programCounter++;
-                    SetNode(oldState.currentNodeName, oldState);
-                }
-                else
-                {
-                    nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
-                    executionState = ExecutionState.Stopped;    
-                }
+                unwind();
                 break;
             case ByteCode.RunNodeAndReturn:
             case ByteCode.RunNode:
@@ -385,8 +372,7 @@ namespace Yarn
                 /** If we have no options to show, immediately stop.
                  */
                 if (state.currentOptions.Count == 0) {
-                    nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
-                    executionState = ExecutionState.Stopped;
+                    unwind();
                     break;
                 }
 
@@ -449,6 +435,21 @@ namespace Yarn
             }
         }
 
+        internal bool unwind()
+        {
+            if (_returnStates.Count > 0) {
+                var oldState = _returnStates[_returnStates.Count - 1];
+                _returnStates.Remove(oldState);
+                nodeCompleteHandler(new Dialogue.NodeCompleteResult(currentNodeName));
+                oldState.programCounter++;
+                SetNode(oldState.currentNodeName, oldState);
+                return true;
+            } else {
+                nodeCompleteHandler(new Dialogue.NodeCompleteResult(null));
+                executionState = ExecutionState.Stopped;
+                return false;
+            }
+        }
     }
 }
 
