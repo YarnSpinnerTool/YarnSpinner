@@ -56,13 +56,12 @@ namespace Yarn {
 		}
 
 		// Prints the parse tree for the node
-		void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
+		public void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
 			LogDebugMessage("Parse Tree:");
 			LogDebugMessage(rootNode.PrintTree(0));
-
 		}
 
-		// Prepares a loader. 'implementation' is used for logging.
+		// Prepares a loader, using the given callbacks for logging.
 		public Loader(Logger logDebug, Logger logError) {
 			if (logDebug == null || logError == null)
 				throw new ArgumentNullException ("logDebug or logError");
@@ -72,7 +71,7 @@ namespace Yarn {
 
 		}
 
-		public Dictionary<string, Yarn.Parser.Node> Parse(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
+		public Dictionary<string, Yarn.Parser.Node> Parse(string text, Library library, string fileName, Program includeProgram, bool showTokens, string onlyConsiderNode) {
 // The final parsed nodes that were in the file we were given
 			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
 
@@ -112,9 +111,6 @@ namespace Yarn {
 
 					node.name = nodeInfo.title;
 
-					if (showParseTree)
-						PrintParseTree(node);
-
 					nodes[nodeInfo.title] = node;
 
 					nodesLoaded++;
@@ -136,15 +132,12 @@ namespace Yarn {
 			return nodes;
 		}
 
-		// Given a bunch of raw text, load all nodes that were inside it.
+
+		// Given a set of parsed nodes, compile and load all nodes that were inside it.
 		// You can call this multiple times to append to the collection of nodes,
 		// but note that new nodes will replace older ones with the same name.
 		// Returns the number of nodes that were loaded.
-		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
-
-			var nodes = this.Parse(text, library, fileName, includeProgram, showTokens, showParseTree, onlyConsiderNode);
-			Console.WriteLine("Dumping nodes, presumably");
-
+		public Program Load(Dictionary<string, Yarn.Parser.Node> nodes, string fileName, Program includeProgram) {
 			var compiler = new Yarn.Compiler(fileName);
 
 			foreach (var node in nodes) {
@@ -156,6 +149,15 @@ namespace Yarn {
 			}
 
 			return compiler.program;
+		}
+
+
+		// Given a bunch of raw text, parse it, then load all the nodes with
+		// Load()
+		public Program LoadString(string text, Library library, string fileName, Program includeProgram, bool showTokens, string onlyConsiderNode) {
+
+			var nodes = this.Parse(text, library, fileName, includeProgram, showTokens, onlyConsiderNode);
+			return this.Load(nodes, fileName, includeProgram);
 		}
 
 		// The raw text of the Yarn node, plus metadata

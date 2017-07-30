@@ -195,7 +195,18 @@ namespace Yarn {
 				throw new YarnException ("LogErrorMessage must be set before loading");
 			}
 
-			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode);
+			var nodes = loader.Parse(text, library, fileName, program, showTokens, onlyConsiderNode);
+
+
+			if (showParseTree) {
+				foreach(var kvp in nodes) {
+					// this is a litlte untidy because PrintParseTree() no longer
+					// needs to be part of Loader
+					loader.PrintParseTree(kvp.Value);
+				}
+			}
+
+			program = loader.Load(nodes, fileName, program);
 		}
 
 		private VirtualMachine vm;
