@@ -104,8 +104,13 @@ namespace Yarn {
 			// You parse tokens into a ParseNode by using its constructor.
 			internal ParseNode(ParseNode parent, Parser p) { this.parent = parent; }
 
-			// Recursively prints the ParseNode and all of its child ParseNodes.
+			// Returns a string containing the contents of the ParseNode and 
+			// all of its child ParseNodes.
 			internal abstract string PrintTree (int indentLevel);
+
+			// Returns a string containing the contents of the ParseNode and 
+			// all of its child ParseNodes, formatted as pure JSON.
+			internal abstract string ToJson(int indentLevel=0);
 
 			public override string ToString ()
 			{
@@ -125,11 +130,6 @@ namespace Yarn {
 					!= null);					
 
 				return null;
-			}
-
-			public virtual string ToJson()
-			{
-				return "{\"nodeType\": \"ParseNode\"}";
 			}
 		}
 
@@ -165,6 +165,12 @@ namespace Yarn {
 					sb.Append( statement.PrintTree (indentLevel + 1));
 				}
 				sb.Append (Tab (indentLevel, "}"));
+				return sb.ToString();
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
 				return sb.ToString();
 			}
 
@@ -258,6 +264,11 @@ namespace Yarn {
 				throw new ArgumentNullException ();
 			}
 
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// Custom commands are meant to be interpreted by whatever
@@ -325,6 +336,12 @@ namespace Yarn {
 				return "";
 
 			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// Shortcut option groups are groups of shortcut options,
@@ -365,7 +382,11 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// Shortcut options are a convenient way to define new options.
@@ -416,7 +437,11 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// Blocks are indented groups of statements
@@ -460,6 +485,12 @@ namespace Yarn {
 				sb.Append (Tab(indentLevel, "}"));
 
 				return sb.ToString ();
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
 			}
 		}
 
@@ -519,6 +550,12 @@ namespace Yarn {
 				} else {
 					return Tab (indentLevel, string.Format ("Option: -> {0}", destination));
 				}
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
 			}
 		}
 
@@ -659,6 +696,12 @@ namespace Yarn {
 
 				return sb.ToString ();
 			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// A value, which forms part of an expression.
@@ -730,6 +773,12 @@ namespace Yarn {
 					return Tab (indentLevel, "(null)");
 				}
 				throw new ArgumentException ();
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
 			}
 		}
 
@@ -1076,6 +1125,12 @@ namespace Yarn {
 
 				return Tab(indentLevel, "<error printing expression!>");
 			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
+			}
 		}
 
 		// AssignmentStatements are things like <<set $foo = 1>>
@@ -1120,6 +1175,12 @@ namespace Yarn {
 				sb.Append (valueExpression.PrintTree (indentLevel + 1));
 				return sb.ToString ();
 
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
 			}
 		}
 
@@ -1229,6 +1290,12 @@ namespace Yarn {
 			internal override string PrintTree (int indentLevel)
 			{
 				return Tab (indentLevel, operatorType.ToString ());
+			}
+
+			internal override string ToJson(int indentLevel=0) {
+				var sb = new StringBuilder();
+				sb.Append("Placeholder");
+				return sb.ToString();
 			}
 		}
 		#endregion Parse Nodes
