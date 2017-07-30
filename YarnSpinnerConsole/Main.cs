@@ -76,7 +76,7 @@ namespace Yarn
 			bool verifyOnly = false;
 			bool autoSelectFirstOption = false;
 			bool analyseOnly = false;
-			bool dumpToJson = false;
+			bool showJson = false;
 			string outputFile = null;
 
 			var inputFiles = new List<string> ();
@@ -179,7 +179,7 @@ namespace Yarn
 					analyseOnly = true;
 					break;
 				case "-j":
-					dumpToJson = true;
+					showJson = true;
 					break;
 				default:
 
@@ -280,14 +280,14 @@ namespace Yarn
 
 			if (verifyOnly) {
 				try {
-					dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+					dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, showJson, onlyConsiderNode);
 				} catch (Exception e) {
 					Console.WriteLine ("Error: " + e.Message);
 				}
 				return;
 			}
 
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
+			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, showJson, onlyConsiderNode);
 
 			if (outputFile != null) {
 				var result = dialogue.GetByteCode();
@@ -295,11 +295,6 @@ namespace Yarn
 				using (System.IO.StreamWriter file = new System.IO.StreamWriter(outputFile, false, utf8)) {
 					file.Write(result);
 				}
-				return;
-			}
-
-			if (dumpToJson) {
-				Console.WriteLine("Should dump to json");
 				return;
 			}
 
@@ -326,6 +321,7 @@ namespace Yarn
 				showTokens == false &&
 				showParseTree == false &&
 				compileToBytecodeOnly == false &&
+				showJson == false &&
 				analyseOnly == false;
 
 			if (runProgram) {

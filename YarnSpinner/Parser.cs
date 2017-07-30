@@ -126,6 +126,11 @@ namespace Yarn {
 
 				return null;
 			}
+
+			public virtual string ToJson()
+			{
+				return "{\"nodeType\": \"ParseNode\"}";
+			}
 		}
 
 		// The top-level unit of parsing.

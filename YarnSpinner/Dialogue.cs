@@ -176,16 +176,16 @@ namespace Yarn {
 		}
 
 		// Load a file from disk.
-		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
+		public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, bool showJson = false, string onlyConsiderNode=null) {
 			System.IO.StreamReader reader = new System.IO.StreamReader(fileName);
 			string inputString = reader.ReadToEnd ();
 			reader.Close ();
 
-			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
+			LoadString (inputString, fileName, showTokens, showParseTree, showJson, onlyConsiderNode);
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
-		public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, string onlyConsiderNode=null) {
+		public void LoadString(string text, string fileName="<input>", bool showTokens=false, bool showParseTree=false, bool showJson=false, string onlyConsiderNode=null) {
 
 			if (LogDebugMessage == null) {
 				throw new YarnException ("LogDebugMessage must be set before loading");
@@ -203,6 +203,15 @@ namespace Yarn {
 					// this is a litlte untidy because PrintParseTree() no longer
 					// needs to be part of Loader
 					loader.PrintParseTree(kvp.Value);
+				}
+			}
+
+
+			if (showJson) {
+				foreach(var kvp in nodes) {
+					// this is a litlte untidy because PrintParseTree() no longer
+					// needs to be part of Loader
+					Console.WriteLine(kvp.Value.ToJson());
 				}
 			}
 
