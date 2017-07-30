@@ -39,15 +39,13 @@ namespace YarnSpinner.Tests
 			}
 
 
-			dialogue = new Yarn.Dialogue (storage);
-
-			dialogue.LogDebugMessage = delegate(string message) {
-				
+			Logger debugLogger = delegate(string message) {
 				Console.WriteLine (message);
-
 			};
 
-			dialogue.LogErrorMessage = delegate(string message) {
+
+
+			Logger errorLogger = delegate(string message) {
 				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine ("ERROR: " + message);
 				Console.ResetColor ();
@@ -55,6 +53,9 @@ namespace YarnSpinner.Tests
 				if (errorsCauseFailures == true)
 					Assert.Fail();
 			};
+
+			dialogue = new Yarn.Dialogue (storage, debugLogger, errorLogger);
+
 
 			dialogue.library.RegisterFunction ("assert", -1, delegate(Yarn.Value[] parameters) {
 				if (parameters[0].AsBool == false) {

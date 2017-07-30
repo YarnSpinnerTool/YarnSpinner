@@ -211,9 +211,24 @@ namespace Yarn
 				impl.SetNumber (variable.Key, variable.Value);
 			}
 
-			// Load nodes
-			var dialogue = new Dialogue(impl);
 
+
+
+			// If debugging is enabled, log debug messages; otherwise, ignore them
+			Logger debugLogger =  delegate(string message) {};
+			if (showDebugging) {
+				debugLogger = delegate(string message) {
+					Console.WriteLine ("Debug: " + message);
+				};
+			}
+
+			Logger errorLogger = delegate(string message) {
+				Console.WriteLine ("ERROR: " + message);
+			};
+
+
+			// Load nodes
+			var dialogue = new Dialogue(impl, debugLogger, errorLogger);
 
 			// Add some methods for testing
 			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
@@ -262,19 +277,6 @@ namespace Yarn
 			if (autoSelectFirstOption == true) {
 				impl.autoSelectFirstOption = true;
 			}
-
-			// If debugging is enabled, log debug messages; otherwise, ignore them
-			if (showDebugging) {
-				dialogue.LogDebugMessage = delegate(string message) {
-					Console.WriteLine ("Debug: " + message);
-				};
-			} else {
-				dialogue.LogDebugMessage = delegate(string message) {};
-			}
-
-			dialogue.LogErrorMessage = delegate(string message) {
-				Console.WriteLine ("ERROR: " + message);
-			};
 
 			if (verifyOnly) {
 				try {

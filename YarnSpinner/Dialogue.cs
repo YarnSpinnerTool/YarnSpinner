@@ -157,9 +157,11 @@ namespace Yarn {
 		// The collection of nodes that we've seen.
 		private HashSet<String> visitedNodeNames = new HashSet<string>();
 
-		public Dialogue(Yarn.VariableStorage continuity) {
+		public Dialogue(Yarn.VariableStorage continuity, Logger debugLogger, Logger errorLogger) {
+			LogDebugMessage = debugLogger;
+			LogErrorMessage = errorLogger;
 			this.continuity = continuity;
-			loader = new Loader (this);
+			loader = new Loader (LogDebugMessage, LogErrorMessage);
 			library = new Library ();
 
 			library.ImportLibrary (new StandardLibrary ());

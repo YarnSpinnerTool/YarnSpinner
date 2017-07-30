@@ -36,7 +36,8 @@ namespace Yarn {
 
 	internal class Loader {
 
-		private Dialogue dialogue;
+		Logger LogDebugMessage;
+		Logger LogErrorMessage;
 
 		public Program program { get; private set; }
 
@@ -49,24 +50,25 @@ namespace Yarn {
 			}
 
 			// Let's see what we got
-			dialogue.LogDebugMessage("Tokens:");
-			dialogue.LogDebugMessage(sb.ToString());
+			LogDebugMessage("Tokens:");
+			LogDebugMessage(sb.ToString());
 
 		}
 
 		// Prints the parse tree for the node
 		void PrintParseTree(Yarn.Parser.ParseNode rootNode) {
-			dialogue.LogDebugMessage("Parse Tree:");
-			dialogue.LogDebugMessage(rootNode.PrintTree(0));
+			LogDebugMessage("Parse Tree:");
+			LogDebugMessage(rootNode.PrintTree(0));
 
 		}
 
 		// Prepares a loader. 'implementation' is used for logging.
-		public Loader(Dialogue dialogue) {
-			if (dialogue == null)
-				throw new ArgumentNullException ("dialogue");
+		public Loader(Logger logDebug, Logger logError) {
+			if (logDebug == null || logError == null)
+				throw new ArgumentNullException ("logDebug or logError");
 			
-			this.dialogue = dialogue;
+			this.LogDebugMessage = logDebug;
+			this.LogErrorMessage = logDebug;
 
 		}
 
@@ -206,10 +208,10 @@ namespace Yarn {
 					}
 
 				} catch (InvalidCastException) {
-					dialogue.LogErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
+					LogErrorMessage ("Error parsing Yarn input: it's valid JSON, but " +
 						"it didn't match the data layout I was expecting.");
 				} catch (InvalidJsonException e) {
-					dialogue.LogErrorMessage ("Error parsing Yarn input: " + e.Message);
+					LogErrorMessage ("Error parsing Yarn input: " + e.Message);
 				}
 			}
 
