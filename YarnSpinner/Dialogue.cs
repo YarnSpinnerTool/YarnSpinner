@@ -180,7 +180,6 @@ namespace Yarn {
 			reader.Close ();
 
 			LoadString (inputString, fileName, showTokens, showParseTree, onlyConsiderNode);
-
 		}
 
 		// Ask the loader to parse a string. Returns the number of nodes that were loaded.
@@ -195,7 +194,6 @@ namespace Yarn {
 			}
 
 			program = loader.Load(text, library, fileName, program, showTokens, showParseTree, onlyConsiderNode);
-
 		}
 
 		private VirtualMachine vm;

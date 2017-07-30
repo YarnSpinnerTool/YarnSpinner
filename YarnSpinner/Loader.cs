@@ -70,13 +70,8 @@ namespace Yarn {
 
 		}
 
-		// Given a bunch of raw text, load all nodes that were inside it.
-		// You can call this multiple times to append to the collection of nodes,
-		// but note that new nodes will replace older ones with the same name.
-		// Returns the number of nodes that were loaded.
-		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
-
-			// The final parsed nodes that were in the file we were given
+		public Dictionary<string, Yarn.Parser.Node> Parse(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
+// The final parsed nodes that were in the file we were given
 			Dictionary<string, Yarn.Parser.Node> nodes = new Dictionary<string, Parser.Node>();
 
 			// Load the raw data and get the array of node title-text pairs
@@ -135,9 +130,18 @@ namespace Yarn {
 					throw new InvalidOperationException (message);
 				}
 				#endif 
-
-
 			}
+			return nodes;
+		}
+
+		// Given a bunch of raw text, load all nodes that were inside it.
+		// You can call this multiple times to append to the collection of nodes,
+		// but note that new nodes will replace older ones with the same name.
+		// Returns the number of nodes that were loaded.
+		public Program Load(string text, Library library, string fileName, Program includeProgram, bool showTokens, bool showParseTree, string onlyConsiderNode) {
+
+			var nodes = this.Parse(text, library, fileName, includeProgram, showTokens, showParseTree, onlyConsiderNode);
+			Console.WriteLine("Dumping nodes, presumably");
 
 			var compiler = new Yarn.Compiler(fileName);
 
@@ -150,7 +154,6 @@ namespace Yarn {
 			}
 
 			return compiler.program;
-
 		}
 
 		// The raw text of the Yarn node, plus metadata

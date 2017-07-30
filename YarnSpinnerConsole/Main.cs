@@ -53,6 +53,7 @@ namespace Yarn
 			Console.WriteLine ("\t-f: Write program bytecode to file and exit.");
 			Console.WriteLine ("\t-a: Show analysis of the program and exit.");
 			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
+			Console.WriteLine ("\t-j: Dump parse tree to pure JSON and exit.");
 			Console.WriteLine ("\t-h: Show this message and exit.");
 
 			Environment.Exit (0);
@@ -75,6 +76,7 @@ namespace Yarn
 			bool verifyOnly = false;
 			bool autoSelectFirstOption = false;
 			bool analyseOnly = false;
+			bool dumpToJson = false;
 			string outputFile = null;
 
 			var inputFiles = new List<string> ();
@@ -175,6 +177,9 @@ namespace Yarn
 					break;
 				case "-a":
 					analyseOnly = true;
+					break;
+				case "-j":
+					dumpToJson = true;
 					break;
 				default:
 
@@ -288,6 +293,11 @@ namespace Yarn
 				using (System.IO.StreamWriter file = new System.IO.StreamWriter(outputFile, false, utf8)) {
 					file.Write(result);
 				}
+				return;
+			}
+
+			if (dumpToJson) {
+				Console.WriteLine("Should dump to json");
 				return;
 			}
 
