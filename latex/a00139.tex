@@ -1,40 +1,101 @@
-\hypertarget{a00139}{\section{Yarn\-Spinner/\-Json\-Parser.cs File Reference}
-\label{a00139}\index{Yarn\-Spinner/\-Json\-Parser.\-cs@{Yarn\-Spinner/\-Json\-Parser.\-cs}}
+\hypertarget{a00139}{\section{Yarn.\-Dialogue.\-Option\-Set\-Result Class Reference}
+\label{a00139}\index{Yarn.\-Dialogue.\-Option\-Set\-Result@{Yarn.\-Dialogue.\-Option\-Set\-Result}}
 }
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00059}{Json.\-Invalid\-Json\-Exception}
-\begin{DoxyCompactList}\small\item\em Exception raised when \hyperlink{a00060}{Json\-Parser} encounters an invalid token. \end{DoxyCompactList}\item 
-class \hyperlink{a00060}{Json.\-Json\-Parser}
-\begin{DoxyCompactList}\small\item\em A parser for J\-S\-O\-N. \begin{DoxySeeAlso}{See Also}
-http\-://json.\-org
 
 
-\end{DoxySeeAlso}
-\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Namespaces}
+The client should show a list of options, and call set\-Selected\-Option\-Delegate before asking for the next line. It's an error if you don't.  
+
+
+
+
+Inheritance diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{a00617}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{a00618}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00151}{Json}
+\hyperlink{a00139_a934c02fb1047ffd05b2b5a9c6fcd7acb}{Option\-Set\-Result} (I\-List$<$ string $>$ option\-Strings, \hyperlink{a00045_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} set\-Selected\-Option)
 \end{DoxyCompactItemize}
-\subsection*{Enumerations}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236}{Json.\-Json\-Token} \{ \\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e}{Json.\-Json\-Token.\-Unknown}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f}{Json.\-Json\-Token.\-Left\-Brace}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a}{Json.\-Json\-Token.\-Right\-Brace}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83}{Json.\-Json\-Token.\-Colon}, 
-\\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6}{Json.\-Json\-Token.\-Comma}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17}{Json.\-Json\-Token.\-Left\-Bracket}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c}{Json.\-Json\-Token.\-Right\-Bracket}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98}{Json.\-Json\-Token.\-String}, 
-\\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f}{Json.\-Json\-Token.\-Number}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74}{Json.\-Json\-Token.\-True}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c}{Json.\-Json\-Token.\-False}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94}{Json.\-Json\-Token.\-Null}
- \}
-\begin{DoxyCompactList}\small\item\em Possible J\-S\-O\-N tokens in parsed input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00045_a00368}{Options} \hyperlink{a00139_abda9c3047ff9d3c3ec5540566a239315}{options}
+\item 
+\hyperlink{a00045_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} \hyperlink{a00139_a6f2683598cf0f62b76bb864640cc79dd}{set\-Selected\-Option\-Delegate}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The client should show a list of options, and call set\-Selected\-Option\-Delegate before asking for the next line. It's an error if you don't. 
+
+Definition at line 162 of file Dialogue.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00139_a934c02fb1047ffd05b2b5a9c6fcd7acb}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!Option\-Set\-Result@{Option\-Set\-Result}}
+\index{Option\-Set\-Result@{Option\-Set\-Result}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{Option\-Set\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Option\-Set\-Result.\-Option\-Set\-Result (
+\begin{DoxyParamCaption}
+\item[{I\-List$<$ string $>$}]{option\-Strings, }
+\item[{{\bf Option\-Chooser}}]{set\-Selected\-Option}
+\end{DoxyParamCaption}
+)}}\label{a00139_a934c02fb1047ffd05b2b5a9c6fcd7acb}
+
+
+Definition at line 166 of file Dialogue.\-cs.
+
+
+
+References Yarn.\-Dialogue.\-Option\-Set\-Result.\-options.
+
+
+\begin{DoxyCode}
+166                                                                                                   \{
+167                 var \hyperlink{a00139_abda9c3047ff9d3c3ec5540566a239315}{options} = \textcolor{keyword}{new} Options();
+168                 options.options = optionStrings;
+169                 this.options = \hyperlink{a00139_abda9c3047ff9d3c3ec5540566a239315}{options};
+170                 this.setSelectedOptionDelegate = setSelectedOption;
+171             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00139_abda9c3047ff9d3c3ec5540566a239315}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!options@{options}}
+\index{options@{options}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options} Yarn.\-Dialogue.\-Option\-Set\-Result.\-options}}\label{a00139_abda9c3047ff9d3c3ec5540566a239315}
+
+
+Definition at line 163 of file Dialogue.\-cs.
+
+
+
+Referenced by Yarn.\-Dialogue.\-Option\-Set\-Result.\-Option\-Set\-Result().
+
+\hypertarget{a00139_a6f2683598cf0f62b76bb864640cc79dd}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}}
+\index{set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
+\subsubsection[{set\-Selected\-Option\-Delegate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Option\-Chooser} Yarn.\-Dialogue.\-Option\-Set\-Result.\-set\-Selected\-Option\-Delegate}}\label{a00139_a6f2683598cf0f62b76bb864640cc79dd}
+
+
+Definition at line 164 of file Dialogue.\-cs.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00296}{Dialogue.\-cs}\end{DoxyCompactItemize}

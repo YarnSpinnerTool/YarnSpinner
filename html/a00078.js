@@ -1,26 +1,7 @@
 var a00078 =
 [
-    [ "AssignmentStatement", "a00033.html", "a00033" ],
-    [ "Block", "a00036.html", "a00036" ],
-    [ "CustomCommand", "a00046.html", "a00046" ],
-    [ "Expression", "a00054.html", "a00054" ],
-    [ "IfStatement", "a00057.html", "a00057" ],
-    [ "Node", "a00068.html", "a00068" ],
-    [ "Operator", "a00072.html", "a00072" ],
-    [ "OptionStatement", "a00075.html", "a00075" ],
-    [ "ParseNode", "a00077.html", "a00077" ],
-    [ "ShortcutOption", "a00084.html", "a00084" ],
-    [ "ShortcutOptionGroup", "a00085.html", "a00085" ],
-    [ "Statement", "a00090.html", "a00090" ],
-    [ "ValueNode", "a00101.html", "a00101" ],
-    [ "Parser", "a00078.html#acd2714b911fb5e7c38f0e07a9dc1af58", null ],
-    [ "ExpectSymbol", "a00078.html#a8a396d05e7dad704009e8c77657b31d3", null ],
-    [ "ExpectSymbol", "a00078.html#a5a8f02cd87335aae2f2aa7de13c7512c", null ],
-    [ "ExpectSymbol", "a00078.html#ae69620071ecfd16807c5dfc0948ee7f5", null ],
-    [ "NextSymbolIs", "a00078.html#a666a945da1a7845b02b92592fccac291", null ],
-    [ "NextSymbolsAre", "a00078.html#afaa7e96d4cdaf6b1fde9ecd273c00c34", null ],
-    [ "Parse", "a00078.html#a811cc7226f4f4a2f3440cdb67ad14468", null ],
-    [ "Tab", "a00078.html#aa8fa36b46de12a1c561d77b99c4b9ae3", null ],
-    [ "library", "a00078.html#a1313951b09177a1c83b6cf035139197a", null ],
-    [ "tokens", "a00078.html#a1a4de646937057988b59d2ff8035eae3", null ]
+    [ "CanConvertFrom", "a00078.html#af44239d3bd014b1423fa80f7440bbd25", null ],
+    [ "CanConvertTo", "a00078.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00078.html#a6b1b54cb2d1b200beb8fa3c63e4c064a", null ],
+    [ "ConvertToString", "a00078.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

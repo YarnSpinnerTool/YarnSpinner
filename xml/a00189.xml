@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00189" kind="class" prot="public">
+    <compoundname>Yarn::YarnSpinnerConsole</compoundname>
+    <innerclass refid="a00050" prot="package">Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</innerclass>
+      <sectiondef kind="package-static-attrib">
+      <memberdef kind="variable" id="a00189_1a0979de7ea02c8c0375b8220a12e6575e" prot="package" static="yes" mutable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</definition>
+        <argsstring></argsstring>
+        <name>ALLOWED_EXTENSIONS</name>
+        <initializer>= new List&lt;string&gt;(new string[] { &quot;.json&quot;, &quot;.node&quot;, &quot;.yarn.bytes&quot;, &quot;.yarn.txt&quot; })</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="270" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="270" bodyend="-1"/>
+        <referencedby refid="a00124_1aa2b8af349e709b8a45d42af5146ca848" compoundref="a00312" startline="11" endline="207">Yarn.LineAdder.AddLines</referencedby>
+        <referencedby refid="a00099_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00311" startline="10" endline="28">Yarn.FileFormatConverter.ConvertFormat</referencedby>
+        <referencedby refid="a00147_1a3679a1f144471ea411fed34f6a79a18d" compoundref="a00314" startline="13" endline="49">Yarn.ProgramExporter.Export</referencedby>
+        <referencedby refid="a00163_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00315" startline="10" endline="122">Yarn.TableGenerator.GenerateTables</referencedby>
+        <referencedby refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00189_1aff69d6e16dddb077f87a616a57cd3c66" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00086" kindref="compound">Dialogue</ref></type>
+        <definition>static Dialogue Yarn.YarnSpinnerConsole.CreateDialogueForUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>CreateDialogueForUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="142" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="142" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1ad77564b25725a771f0fd4da430582e6f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.YarnSpinnerConsole.CheckFileList</definition>
+        <argsstring>(IList&lt; string &gt; paths, List&lt; string &gt; allowedExtensions)</argsstring>
+        <name>CheckFileList</name>
+        <param>
+          <type>IList&lt; string &gt;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>allowedExtensions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="203" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="203" bodyend="240"/>
+        <references refid="a00189_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00313" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00313" startline="192" endline="201">Yarn.YarnSpinnerConsole.Warn</references>
+        <referencedby refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1aab244361a510cee18ad2f636d110e0d5" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00086" kindref="compound">Dialogue</ref></type>
+        <definition>static Dialogue Yarn.YarnSpinnerConsole.CreateDialogue</definition>
+        <argsstring>(ExecutionOptions options, ConsoleRunnerImplementation impl)</argsstring>
+        <name>CreateDialogue</name>
+        <param>
+          <type><ref refid="a00097" kindref="compound">ExecutionOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type><ref refid="a00050" kindref="compound">ConsoleRunnerImplementation</ref></type>
+          <declname>impl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="383" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="383" bodyend="503"/>
+        <references refid="a00181_1a5805faef3b3d376090ff096d6dd6c064" compoundref="a00303" startline="61">Yarn.Value.AsBool</references>
+        <references refid="a00189_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00313" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00097_1ad97950e47ce2aaeb598295b7c3c44b13" compoundref="a00313" startline="61">Yarn.ExecutionOptions.experimental</references>
+        <references refid="a00189_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00313" startline="178" endline="190">Yarn.YarnSpinnerConsole.Note</references>
+        <references refid="a00035_1a89964ea17bd19caf00cb5bff563ed01c" compoundref="a00313" startline="40">Yarn.BaseOptions.showDebuggingInfo</references>
+        <references refid="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00313" startline="192" endline="201">Yarn.YarnSpinnerConsole.Warn</references>
+        <referencedby refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00189_1a2f63f9f5b7634cb50ee75ff2eb18b137" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.YarnSpinnerConsole.Error</definition>
+        <argsstring>(params string[] messages)</argsstring>
+        <name>Error</name>
+        <param>
+          <type>params string[]</type>
+          <declname>messages</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="164" bodyend="176"/>
+        <referencedby refid="a00189_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00313" startline="203" endline="240">Yarn.YarnSpinnerConsole.CheckFileList</referencedby>
+        <referencedby refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+        <referencedby refid="a00050_1a925ecf432875c3831adc1a9959db8b46" compoundref="a00313" startline="651" endline="654">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleErrorMessage</referencedby>
+        <referencedby refid="a00050_1aef048f9dbd90258eacc2886aa48ef6af" compoundref="a00313" startline="631" endline="644">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunCommand</referencedby>
+        <referencedby refid="a00050_1a13bc6c3a8ba43223a20befae50dbbcb4" compoundref="a00313" startline="533" endline="551">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunLine</referencedby>
+        <referencedby refid="a00050_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00313" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1a939cc9e943c574b36c6af93e9c772702" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.YarnSpinnerConsole.Note</definition>
+        <argsstring>(params string[] messages)</argsstring>
+        <name>Note</name>
+        <param>
+          <type>params string[]</type>
+          <declname>messages</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="178" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="178" bodyend="190"/>
+        <referencedby refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+        <referencedby refid="a00050_1ab656ffe1f6e66f2e6d2cb3e970f54b90" compoundref="a00313" startline="656" endline="659">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.HandleDebugMessage</referencedby>
+        <referencedby refid="a00050_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00313" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.YarnSpinnerConsole.Warn</definition>
+        <argsstring>(params string[] messages)</argsstring>
+        <name>Warn</name>
+        <param>
+          <type>params string[]</type>
+          <declname>messages</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="192" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="192" bodyend="201"/>
+        <referencedby refid="a00189_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00313" startline="203" endline="240">Yarn.YarnSpinnerConsole.CheckFileList</referencedby>
+        <referencedby refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
+        <referencedby refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.YarnSpinnerConsole.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="241" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="241" bodyend="268"/>
+        <references refid="a00124_1aa2b8af349e709b8a45d42af5146ca848" compoundref="a00312" startline="11" endline="207">Yarn.LineAdder.AddLines</references>
+        <references refid="a00099_1aa4db4ccac799c5f047a8b1a9efbe109d" compoundref="a00311" startline="10" endline="28">Yarn.FileFormatConverter.ConvertFormat</references>
+        <references refid="a00147_1a3679a1f144471ea411fed34f6a79a18d" compoundref="a00314" startline="13" endline="49">Yarn.ProgramExporter.Export</references>
+        <references refid="a00163_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00315" startline="10" endline="122">Yarn.TableGenerator.GenerateTables</references>
+        <references refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</references>
+        <references refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00189_1a1b974c55540795a9e643c2ec055fbd51" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.YarnSpinnerConsole.Run</definition>
+        <argsstring>(RunOptions options)</argsstring>
+        <name>Run</name>
+        <param>
+          <type><ref refid="a00151" kindref="compound">RunOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="272" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="272" bodyend="333"/>
+        <references refid="a00189_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00313" startline="270">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <references refid="a00189_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00313" startline="203" endline="240">Yarn.YarnSpinnerConsole.CheckFileList</references>
+        <references refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</references>
+        <references refid="a00035_1aa93cbb1bc1d5328e0a417012621e92d2" compoundref="a00313" startline="47">Yarn.BaseOptions.files</references>
+        <references refid="a00086_1aead84ee50cb113ca45724894290ce9c2" compoundref="a00296" startline="379" endline="439">Yarn.Dialogue.Run</references>
+        <references refid="a00151_1a4b385e83338d14947c4d840d2d1ee266" compoundref="a00313" startline="85">Yarn.RunOptions.waitForInput</references>
+        <references refid="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00313" startline="192" endline="201">Yarn.YarnSpinnerConsole.Warn</references>
+        <referencedby refid="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00313" startline="241" endline="268">Yarn.YarnSpinnerConsole.Main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00189_1a029a5624e7cc3a16ae586b64f13049de" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.YarnSpinnerConsole.Verify</definition>
+        <argsstring>(VerifyOptions options)</argsstring>
+        <name>Verify</name>
+        <param>
+          <type><ref refid="a00186" kindref="compound">VerifyOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="335" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="335" bodyend="381"/>
+        <references refid="a00189_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00313" startline="270">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <references refid="a00189_1ad77564b25725a771f0fd4da430582e6f" compoundref="a00313" startline="203" endline="240">Yarn.YarnSpinnerConsole.CheckFileList</references>
+        <references refid="a00186_1af9b6917244075618720f2a90bbe6ef56" compoundref="a00313" startline="74">Yarn.VerifyOptions.compileAndExit</references>
+        <references refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</references>
+        <references refid="a00189_1a2f63f9f5b7634cb50ee75ff2eb18b137" compoundref="a00313" startline="164" endline="176">Yarn.YarnSpinnerConsole.Error</references>
+        <references refid="a00035_1aa93cbb1bc1d5328e0a417012621e92d2" compoundref="a00313" startline="47">Yarn.BaseOptions.files</references>
+        <references refid="a00189_1a939cc9e943c574b36c6af93e9c772702" compoundref="a00313" startline="178" endline="190">Yarn.YarnSpinnerConsole.Note</references>
+        <references refid="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" compoundref="a00313" startline="192" endline="201">Yarn.YarnSpinnerConsole.Warn</references>
+        <referencedby refid="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00313" startline="241" endline="268">Yarn.YarnSpinnerConsole.Main</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1801">
+        <label>Yarn.YarnSpinnerConsole</label>
+        <link refid="a00189"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="140" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="139" bodyend="688"/>
+    <listofallmembers>
+      <member refid="a00189_1a0979de7ea02c8c0375b8220a12e6575e" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>ALLOWED_EXTENSIONS</name></member>
+      <member refid="a00189_1ad77564b25725a771f0fd4da430582e6f" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CheckFileList</name></member>
+      <member refid="a00189_1aab244361a510cee18ad2f636d110e0d5" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CreateDialogue</name></member>
+      <member refid="a00189_1aff69d6e16dddb077f87a616a57cd3c66" prot="package" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>CreateDialogueForUtilities</name></member>
+      <member refid="a00189_1a2f63f9f5b7634cb50ee75ff2eb18b137" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Error</name></member>
+      <member refid="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Main</name></member>
+      <member refid="a00189_1a939cc9e943c574b36c6af93e9c772702" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Note</name></member>
+      <member refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Run</name></member>
+      <member refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Verify</name></member>
+      <member refid="a00189_1a979bb6f049b6c5294f745a19e24ddd9d" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Warn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

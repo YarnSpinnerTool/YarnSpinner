@@ -1,128 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00038" kind="class" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</compoundname>
-      <sectiondef kind="public-type">
-      <memberdef kind="enum" id="a00038_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" static="no">
-        <name>State</name>
-        <enumvalue id="a00038_1ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5" prot="public">
-          <name>NotTested</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00038_1ab24848d7951ce44eb3c7768c6ee10385ad96143ba1b15645919cea00ec9d1be62" prot="public">
-          <name>Ignored</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00038_1ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15" prot="public">
-          <name>Passed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="a00038_1ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca" prot="public">
-          <name>Failed</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
+  <compounddef id="a00038" kind="class" prot="public">
+    <compoundname>Yarn::BodyVisitor</compoundname>
+    <basecompoundref refid="a00191" prot="public" virt="non-virtual">YarnSpinnerParserBaseVisitor&lt; Result &gt;</basecompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00038_1a39d71c6de5e1c9f7d2f78ac2ccd5743d" prot="package" static="no" mutable="no">
+        <type><ref refid="a00032" kindref="compound">AntlrCompiler</ref></type>
+        <definition>AntlrCompiler Yarn.BodyVisitor.compiler</definition>
+        <argsstring></argsstring>
+        <name>compiler</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="36" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="36" bodyend="41"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="253" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="253" bodyend="-1"/>
+        <referencedby refid="a00038_1a97eb0e112b7c5257fde6c92d088b6c53" compoundref="a00294" startline="255" endline="259">Yarn.BodyVisitor.BodyVisitor</referencedby>
+        <referencedby refid="a00038_1ad1576a22d74304c3155a0c2fa91be5b9" compoundref="a00294" startline="502" endline="574">Yarn.BodyVisitor.VisitShortcut_statement</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00038_1a7202b24bd068da24d7e28bec5668b13a" prot="public" static="no" mutable="no">
-        <type><ref refid="a00038_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">State</ref></type>
-        <definition>State Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</definition>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00038_1ab8aa4dbe47a807e3d973df2b85e3fffc" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, <ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref> &gt;</type>
+        <definition>Dictionary&lt;int, TokenType&gt; Yarn.BodyVisitor.tokens</definition>
         <argsstring></argsstring>
-        <name>state</name>
+        <name>tokens</name>
+        <initializer>= new Dictionary&lt;int, <ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="43" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00038_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" static="no" mutable="no">
-        <type>TextAsset</type>
-        <definition>TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</definition>
-        <argsstring></argsstring>
-        <name>script</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="44" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00038_1a808a039e280cf875cb3c9e9385148498" prot="public" static="no" mutable="no">
-        <type><ref refid="a00185" kindref="compound">ValidationMessage</ref>[]</type>
-        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</definition>
-        <argsstring></argsstring>
-        <name>messages</name>
-        <initializer>= new <ref refid="a00185" kindref="compound">ValidationMessage</ref>[0]</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="46" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="765" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="765" bodyend="-1"/>
+        <referencedby refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</referencedby>
+        <referencedby refid="a00038_1a3a8fcf4591bdb2213bc48260645fdcba" compoundref="a00294" startline="766" endline="793">Yarn.BodyVisitor.loadOperators</referencedby>
+        <referencedby refid="a00038_1a7abaef665ca4e60e37ba8942a41a0551" compoundref="a00294" startline="667" endline="685">Yarn.BodyVisitor.opEquals</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00038_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals</definition>
-        <argsstring>(object obj)</argsstring>
-        <name>Equals</name>
-        <param>
-          <type>object</type>
-          <declname>obj</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="48" bodyend="54"/>
-      </memberdef>
-      <memberdef kind="function" id="a00038_1a85d50993390cdd8ba30ac44043b18de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override int</type>
-        <definition>override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode</definition>
-        <argsstring>()</argsstring>
-        <name>GetHashCode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="56" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="a00038_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00038_1a97eb0e112b7c5257fde6c92d088b6c53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</definition>
-        <argsstring>(TextAsset script)</argsstring>
-        <name>CheckerResult</name>
+        <definition>Yarn.BodyVisitor.BodyVisitor</definition>
+        <argsstring>(AntlrCompiler compiler)</argsstring>
+        <name>BodyVisitor</name>
         <param>
-          <type>TextAsset</type>
-          <declname>script</declname>
+          <type><ref refid="a00032" kindref="compound">AntlrCompiler</ref></type>
+          <declname>compiler</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -130,35 +55,1487 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="61" bodyend="64"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="255" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="255" bodyend="259"/>
+        <references refid="a00038_1a39d71c6de5e1c9f7d2f78ac2ccd5743d" compoundref="a00294" startline="253">Yarn.BodyVisitor.compiler</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a0469d0cd00e8737385144157d7dbc436" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitLine_statement</definition>
+        <argsstring>(YarnSpinnerParser.Line_statementContext context)</argsstring>
+        <name>VisitLine_statement</name>
+        <reimplements refid="a00191_1a8439dc653550b8522eaf97298b54c0c4">VisitLine_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Line_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.line_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="262" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="262" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1abf95a48291ee85c0f9327f0c3ed3dc3c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitOption_statement</definition>
+        <argsstring>(YarnSpinnerParser.Option_statementContext context)</argsstring>
+        <name>VisitOption_statement</name>
+        <reimplements refid="a00191_1a2d06e22c32b7bb86030fe40224f8a3f2">VisitOption_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Option_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.option_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="283" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="283" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a8d47becbb77d7c75a2d9e6aa777fd5df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitSet_statement</definition>
+        <argsstring>(YarnSpinnerParser.Set_statementContext context)</argsstring>
+        <name>VisitSet_statement</name>
+        <reimplements refid="a00191_1a8d1aa112df14a3492905930adcb664b5">VisitSet_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Set_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.set_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="312" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="312" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a1974944d85b5250c60a4ffc07f958cd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitAction_statement</definition>
+        <argsstring>(YarnSpinnerParser.Action_statementContext context)</argsstring>
+        <name>VisitAction_statement</name>
+        <reimplements refid="a00191_1a2007b8ca6078d351b39ad4df496dd00d">VisitAction_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Action_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.action_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="350" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="350" bodyend="373"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1aa30d181ed0c8b5ea56912db147b35091" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitFunction_statement</definition>
+        <argsstring>(YarnSpinnerParser.Function_statementContext context)</argsstring>
+        <name>VisitFunction_statement</name>
+        <reimplements refid="a00191_1a41ebea13c8b494629f3854ac3b02acb1">VisitFunction_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Function_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.function_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="379" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="379" bodyend="393"/>
+        <references refid="a00336_1a3da6d48778c7b08a040bf24377f67792" compoundref="a00194" startline="92">preprocessor.output</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1adaf7ebcc18546fc41a78928606fae5cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitFunction</definition>
+        <argsstring>(YarnSpinnerParser.FunctionContext context)</argsstring>
+        <name>VisitFunction</name>
+        <reimplements refid="a00191_1aa7cf0de1076cfa2e859cbd0ba92226ab">VisitFunction</reimplements>
+        <param>
+          <type>YarnSpinnerParser.FunctionContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.function. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="430" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="430" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ae2d46c57ab716ded9d7f66cfb7a20a03" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitIf_statement</definition>
+        <argsstring>(YarnSpinnerParser.If_statementContext context)</argsstring>
+        <name>VisitIf_statement</name>
+        <reimplements refid="a00191_1a005f9655da52de2581762a4b61912ecd">VisitIf_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.If_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.if_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="441" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="441" bodyend="466"/>
+        <references refid="a00038_1a5f246aeaea2ba795d78abb0f8918cca4" compoundref="a00294" startline="467" endline="492">Yarn.BodyVisitor.generateClause</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ad1576a22d74304c3155a0c2fa91be5b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitShortcut_statement</definition>
+        <argsstring>(YarnSpinnerParser.Shortcut_statementContext context)</argsstring>
+        <name>VisitShortcut_statement</name>
+        <reimplements refid="a00191_1a8299d25bc796f9c126635cf72aa3ea12">VisitShortcut_statement</reimplements>
+        <param>
+          <type>YarnSpinnerParser.Shortcut_statementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.shortcut_statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="502" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="502" bodyend="574"/>
+        <references refid="a00038_1a39d71c6de5e1c9f7d2f78ac2ccd5743d" compoundref="a00294" startline="253">Yarn.BodyVisitor.compiler</references>
+        <references refid="a00362_1ae27568d71aa82edfd7841d425969a4fb" compoundref="a00294" startline="16">Yarn.AntlrCompiler.CompileFlags.DisableShuffleOptionsAfterNextSet</references>
+        <references refid="a00032_1aeba873449ff9fb1c6d731ff7eb25f0a0" compoundref="a00294" startline="19">Yarn.AntlrCompiler.flags</references>
+        <references refid="a00038_1ad8448dacbbd94adebf38c29c3f50e499" compoundref="a00294" startline="496" endline="499">Yarn.BodyVisitor.ShortcutText</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a51f5522367e1b35dbe15abd3363a7c4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpParens</definition>
+        <argsstring>(YarnSpinnerParser.ExpParensContext context)</argsstring>
+        <name>VisitExpParens</name>
+        <reimplements refid="a00191_1a55fe0021b48203160ea72d53e2f97dd8">VisitExpParens</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpParensContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expParens</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="580" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="580" bodyend="583"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1aa6e290a205fcacca64071255c1901161" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpNegative</definition>
+        <argsstring>(YarnSpinnerParser.ExpNegativeContext context)</argsstring>
+        <name>VisitExpNegative</name>
+        <reimplements refid="a00191_1a6992d2e7a09d1e9e6c3f6f1ebfa686a6">VisitExpNegative</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpNegativeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expNegative</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="585" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="585" bodyend="593"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1af5870b979203df0e9bc78dd3d8c41b27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpNot</definition>
+        <argsstring>(YarnSpinnerParser.ExpNotContext context)</argsstring>
+        <name>VisitExpNot</name>
+        <reimplements refid="a00191_1a2b3a3e9b5395b0311e644146a896a21a">VisitExpNot</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpNotContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expNot</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="595" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="595" bodyend="603"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ac820130b8eb85146442f4124d5212877" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpValue</definition>
+        <argsstring>(YarnSpinnerParser.ExpValueContext context)</argsstring>
+        <name>VisitExpValue</name>
+        <reimplements refid="a00191_1a54fd207b9821555dbbd9f41d82ccab00">VisitExpValue</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpValueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expValue</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="605" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="605" bodyend="608"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a305e4197937bc3b6336592b61ba01eca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpMultDivMod</definition>
+        <argsstring>(YarnSpinnerParser.ExpMultDivModContext context)</argsstring>
+        <name>VisitExpMultDivMod</name>
+        <reimplements refid="a00191_1ae585d346692cb437d1fc433cb3e2070f">VisitExpMultDivMod</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpMultDivModContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expMultDivMod</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="624" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="624" bodyend="629"/>
+        <references refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a5eb6df63b55c3ba8e8568d8b0ebd0369" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpAddSub</definition>
+        <argsstring>(YarnSpinnerParser.ExpAddSubContext context)</argsstring>
+        <name>VisitExpAddSub</name>
+        <reimplements refid="a00191_1ab13841b276eed71099a86898cccacd99">VisitExpAddSub</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpAddSubContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expAddSub</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="631" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="631" bodyend="636"/>
+        <references refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a3e2bd74ec27b6e603b075e0468db3fb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpComparison</definition>
+        <argsstring>(YarnSpinnerParser.ExpComparisonContext context)</argsstring>
+        <name>VisitExpComparison</name>
+        <reimplements refid="a00191_1aa3e8b61abdf6737bb2f2ebbb302f10dc">VisitExpComparison</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpComparisonContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expComparison</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="638" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="638" bodyend="643"/>
+        <references refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ae5da558219f42b518a5483f7f794ed0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpEquality</definition>
+        <argsstring>(YarnSpinnerParser.ExpEqualityContext context)</argsstring>
+        <name>VisitExpEquality</name>
+        <reimplements refid="a00191_1ae1ab6fcbc8f14f578dc3e9f2f16be450">VisitExpEquality</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpEqualityContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expEquality</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="645" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="645" bodyend="650"/>
+        <references refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a19491adb347becea5f216e805763f582" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpAndOrXor</definition>
+        <argsstring>(YarnSpinnerParser.ExpAndOrXorContext context)</argsstring>
+        <name>VisitExpAndOrXor</name>
+        <reimplements refid="a00191_1a39ca6a0cef25c14575a6e28e8e9e8745">VisitExpAndOrXor</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpAndOrXorContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expAndOrXor</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="652" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="652" bodyend="657"/>
+        <references refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" compoundref="a00294" startline="615" endline="622">Yarn.BodyVisitor.genericExpVisitor</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ab073a73cd379ee0130e2588c08573345" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpMultDivModEquals</definition>
+        <argsstring>(YarnSpinnerParser.ExpMultDivModEqualsContext context)</argsstring>
+        <name>VisitExpMultDivModEquals</name>
+        <reimplements refid="a00191_1a288f0fef2f1dde71faacfceddee9b954">VisitExpMultDivModEquals</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpMultDivModEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expMultDivModEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="687" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="687" bodyend="692"/>
+        <references refid="a00038_1a7abaef665ca4e60e37ba8942a41a0551" compoundref="a00294" startline="667" endline="685">Yarn.BodyVisitor.opEquals</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a573f37ce6260e0f112d3c6210fadf638" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitExpPlusMinusEquals</definition>
+        <argsstring>(YarnSpinnerParser.ExpPlusMinusEqualsContext context)</argsstring>
+        <name>VisitExpPlusMinusEquals</name>
+        <reimplements refid="a00191_1a824ff62e60e13295f2fae5e96c573f0e">VisitExpPlusMinusEquals</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ExpPlusMinusEqualsContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>expPlusMinusEquals</computeroutput> labeled alternative in YarnSpinnerParser.expression. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="694" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="694" bodyend="700"/>
+        <references refid="a00038_1a7abaef665ca4e60e37ba8942a41a0551" compoundref="a00294" startline="667" endline="685">Yarn.BodyVisitor.opEquals</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1aa9e7f9f7310448cb44d0acb88512bc71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueVar</definition>
+        <argsstring>(YarnSpinnerParser.ValueVarContext context)</argsstring>
+        <name>VisitValueVar</name>
+        <reimplements refid="a00191_1a206d2a25cd566e2209fd4cedfae312c9">VisitValueVar</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueVarContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueVar</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="708" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="708" bodyend="711"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a2acb075ab60f6aca5319dce40074880f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueNumber</definition>
+        <argsstring>(YarnSpinnerParser.ValueNumberContext context)</argsstring>
+        <name>VisitValueNumber</name>
+        <reimplements refid="a00191_1abf395acc2fa3c6eab664d211c8afa8fd">VisitValueNumber</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueNumberContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueNumber</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="712" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="712" bodyend="718"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ab627c2664656eedcefd9c2be4231cc51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueTrue</definition>
+        <argsstring>(YarnSpinnerParser.ValueTrueContext context)</argsstring>
+        <name>VisitValueTrue</name>
+        <reimplements refid="a00191_1ad42a85096cd1000bac437166c879f0ec">VisitValueTrue</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueTrueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueTrue</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="719" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="719" bodyend="724"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a35ff313be01c2bb671f4d20917a27aae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueFalse</definition>
+        <argsstring>(YarnSpinnerParser.ValueFalseContext context)</argsstring>
+        <name>VisitValueFalse</name>
+        <reimplements refid="a00191_1aec30451186238928bd135298139b94e9">VisitValueFalse</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueFalseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueFalse</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="725" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="725" bodyend="729"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a884faf4566a71978ca12e671988c740b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitVariable</definition>
+        <argsstring>(YarnSpinnerParser.VariableContext context)</argsstring>
+        <name>VisitVariable</name>
+        <reimplements refid="a00191_1a51d3d21fc833b5b4676ac84a46cdef87">VisitVariable</reimplements>
+        <param>
+          <type>YarnSpinnerParser.VariableContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.variable. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="730" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="730" bodyend="736"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a33229651713a1b788e8841added0e2db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueString</definition>
+        <argsstring>(YarnSpinnerParser.ValueStringContext context)</argsstring>
+        <name>VisitValueString</name>
+        <reimplements refid="a00191_1a190b9ce38685ffe5b2ce451f9afed24b">VisitValueString</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueStringContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueString</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="737" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="737" bodyend="748"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1aa2c789583bec673fa64cbf141eae19aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueFunc</definition>
+        <argsstring>(YarnSpinnerParser.ValueFuncContext context)</argsstring>
+        <name>VisitValueFunc</name>
+        <reimplements refid="a00191_1a48cbb1894a0d0232f8961361344a6728">VisitValueFunc</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueFuncContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueFunc</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="750" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="750" bodyend="755"/>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a888533459a53d98ff4891ca5aa21763c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override int</type>
+        <definition>override int Yarn.BodyVisitor.VisitValueNull</definition>
+        <argsstring>(YarnSpinnerParser.ValueNullContext context)</argsstring>
+        <name>VisitValueNull</name>
+        <reimplements refid="a00191_1adc657b05087e7cdeff4b38fe7bd440f5">VisitValueNull</reimplements>
+        <param>
+          <type>YarnSpinnerParser.ValueNullContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by the <computeroutput>valueNull</computeroutput> labeled alternative in YarnSpinnerParser.value. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="757" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="757" bodyend="761"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1ad2daefa4c88b72128606682d094e2485" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitDialogue</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.DialogueContext context)</argsstring>
+        <name>VisitDialogue</name>
+        <reimplements refid="a00119_1ac2d13d69995b3a8bf8c0733341d0c72e">VisitDialogue</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.DialogueContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.dialogue. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="45" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a45882fee8dd45b1a7a04d000be825dce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitNode</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.NodeContext context)</argsstring>
+        <name>VisitNode</name>
+        <reimplements refid="a00119_1a59c84bd2dbaab540b8db77eb20e67be6">VisitNode</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.NodeContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.node. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a08145c313b49a2c5e1a9d4a607f1a57c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHeader</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.HeaderContext context)</argsstring>
+        <name>VisitHeader</name>
+        <reimplements refid="a00119_1a24b0bc51bfd9d2fbdd2a4f0211b92e72">VisitHeader</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.HeaderContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.header. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a3c54ba6115ce150b2303f3bd37754269" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHeader_title</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_titleContext context)</argsstring>
+        <name>VisitHeader_title</name>
+        <reimplements refid="a00119_1a2f554200966a70217bcb285ad4176d03">VisitHeader_title</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_titleContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.header_title. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a0b88799d0a6f7c51d51403bc6f60c01e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHeader_tag</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_tagContext context)</argsstring>
+        <name>VisitHeader_tag</name>
+        <reimplements refid="a00119_1a0a1489c13aa25b6d92dcc064298e618e">VisitHeader_tag</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_tagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.header_tag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1aa553a267b8ce2984ed2a80a1d28aae9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHeader_line</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Header_lineContext context)</argsstring>
+        <name>VisitHeader_line</name>
+        <reimplements refid="a00119_1a1a51687aef1d08ea7230e6a41d7cf61a">VisitHeader_line</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Header_lineContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.header_line. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="95" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a3b84a7518f955a935b1ac327e568f29d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitBody</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.BodyContext context)</argsstring>
+        <name>VisitBody</name>
+        <reimplements refid="a00119_1ab308423e3e80579ec8bac951788f988b">VisitBody</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.BodyContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.body. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a6856fdb64dfc47bb9f1650683a1ccf97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitStatement</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.StatementContext context)</argsstring>
+        <name>VisitStatement</name>
+        <reimplements refid="a00119_1a2122e68c51db45bb8cb757cfd2af7683">VisitStatement</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.StatementContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.statement. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="115" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a167e9a44ea7d404370390528fdd70115" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitShortcut</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.ShortcutContext context)</argsstring>
+        <name>VisitShortcut</name>
+        <reimplements refid="a00119_1a7b5a47e26ccf33cd524062dbb98a0830">VisitShortcut</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.ShortcutContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.shortcut. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a4a4adcbdf2ba70878b015aa47d54b398" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitShortcut_conditional</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context)</argsstring>
+        <name>VisitShortcut_conditional</name>
+        <reimplements refid="a00119_1a2d05d4bf6c088ca182a3017e1431be72">VisitShortcut_conditional</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_conditionalContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.shortcut_conditional. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="145" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="145" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a34e4b7e3d1c1c78dab3d017632cdca1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitShortcut_text</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Shortcut_textContext context)</argsstring>
+        <name>VisitShortcut_text</name>
+        <reimplements refid="a00119_1adb7363aa1905c378122a785a4f1a8475">VisitShortcut_text</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Shortcut_textContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.shortcut_text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a6b9c14146ced835495bb48bc5c63ebb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitIf_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.If_clauseContext context)</argsstring>
+        <name>VisitIf_clause</name>
+        <reimplements refid="a00119_1a3069b103a0f46e9d5353822d5042ecc5">VisitIf_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.If_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="175" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1aa646fda5f6cd91b1e8e6be24e686a25a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitElse_if_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_if_clauseContext context)</argsstring>
+        <name>VisitElse_if_clause</name>
+        <reimplements refid="a00119_1a03d1e78faa25780e97fe6e643c0ffe8b">VisitElse_if_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_if_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.else_if_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="185" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="185" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1acb4799ad5491a7c3f35b8851dc4745e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitElse_clause</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Else_clauseContext context)</argsstring>
+        <name>VisitElse_clause</name>
+        <reimplements refid="a00119_1a0e4ddbac78cfa60c490d8a85f39093fd">VisitElse_clause</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Else_clauseContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.else_clause. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="195" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="195" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1ac8a0d095d59f4ef49178ba70353fe9a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitText</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.TextContext context)</argsstring>
+        <name>VisitText</name>
+        <reimplements refid="a00119_1acd505d5a1c6c6ac264f44d23f0684ffa">VisitText</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.TextContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.text. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="255" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="255" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a9400d1b4e26fb2b640320da88ba787d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHashtag_block</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.Hashtag_blockContext context)</argsstring>
+        <name>VisitHashtag_block</name>
+        <reimplements refid="a00119_1a899c6a6b0bf44607a125f5b34cc25263">VisitHashtag_block</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.Hashtag_blockContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.hashtag_block. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="275" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="275" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="a00191_1a36bcc3e07dedf9354a2c9967cde577d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Result</type>
+        <definition>virtual Result YarnSpinnerParserBaseVisitor&lt; Result &gt;.VisitHashtag</definition>
+        <argsstring>([NotNull] YarnSpinnerParser.HashtagContext context)</argsstring>
+        <name>VisitHashtag</name>
+        <reimplements refid="a00119_1a5a9eb068239ecf7a9f22efcbab257c26">VisitHashtag</reimplements>
+        <param>
+          <attributes>[NotNull]</attributes>
+          <type>YarnSpinnerParser.HashtagContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Visit a parse tree produced by YarnSpinnerParser.hashtag. </para>        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns the result of calling AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode) on <emphasis>context</emphasis> . </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parse tree.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+&lt;return&gt;The visitor result.&lt;/return&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" line="285" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/YarnSpinnerParserBaseVisitor.cs" bodystart="285" bodyend="285"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00038_1a88cf0e74393aa67719a08e1332c6e62e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.BodyVisitor.HandleFunction</definition>
+        <argsstring>(string functionName, YarnSpinnerParser.ExpressionContext[] parameters)</argsstring>
+        <name>HandleFunction</name>
+        <param>
+          <type>string</type>
+          <declname>functionName</declname>
+        </param>
+        <param>
+          <type>YarnSpinnerParser.ExpressionContext[]</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="396" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="396" bodyend="428"/>
+        <references refid="a00100_1aa8527de9e4f153b05164ccaf167c3186" compoundref="a00299" startline="16">Yarn.FunctionInfo.paramCount</references>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1ad8448dacbbd94adebf38c29c3f50e499" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.BodyVisitor.ShortcutText</definition>
+        <argsstring>(YarnSpinnerParser.Shortcut_textContext context)</argsstring>
+        <name>ShortcutText</name>
+        <param>
+          <type>YarnSpinnerParser.Shortcut_textContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="496" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="496" bodyend="499"/>
+        <referencedby refid="a00038_1ad1576a22d74304c3155a0c2fa91be5b9" compoundref="a00294" startline="502" endline="574">Yarn.BodyVisitor.VisitShortcut_statement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a3a8fcf4591bdb2213bc48260645fdcba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BodyVisitor.loadOperators</definition>
+        <argsstring>()</argsstring>
+        <name>loadOperators</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="766" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="766" bodyend="793"/>
+        <references refid="a00038_1ab8aa4dbe47a807e3d973df2b85e3fffc" compoundref="a00294" startline="765">Yarn.BodyVisitor.tokens</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00038_1a5f246aeaea2ba795d78abb0f8918cca4" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BodyVisitor.generateClause</definition>
+        <argsstring>(string jumpLabel, YarnSpinnerParser.StatementContext[] children, YarnSpinnerParser.ExpressionContext expression)</argsstring>
+        <name>generateClause</name>
+        <param>
+          <type>string</type>
+          <declname>jumpLabel</declname>
+        </param>
+        <param>
+          <type>YarnSpinnerParser.StatementContext[]</type>
+          <declname>children</declname>
+        </param>
+        <param>
+          <type>YarnSpinnerParser.ExpressionContext</type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="467" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="467" bodyend="492"/>
+        <referencedby refid="a00038_1ae2d46c57ab716ded9d7f66cfb7a20a03" compoundref="a00294" startline="441" endline="466">Yarn.BodyVisitor.VisitIf_statement</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BodyVisitor.genericExpVisitor</definition>
+        <argsstring>(YarnSpinnerParser.ExpressionContext left, YarnSpinnerParser.ExpressionContext right, int op)</argsstring>
+        <name>genericExpVisitor</name>
+        <param>
+          <type>YarnSpinnerParser.ExpressionContext</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>YarnSpinnerParser.ExpressionContext</type>
+          <declname>right</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="615" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="615" bodyend="622"/>
+        <references refid="a00038_1ab8aa4dbe47a807e3d973df2b85e3fffc" compoundref="a00294" startline="765">Yarn.BodyVisitor.tokens</references>
+        <referencedby refid="a00038_1a5eb6df63b55c3ba8e8568d8b0ebd0369" compoundref="a00294" startline="631" endline="636">Yarn.BodyVisitor.VisitExpAddSub</referencedby>
+        <referencedby refid="a00038_1a19491adb347becea5f216e805763f582" compoundref="a00294" startline="652" endline="657">Yarn.BodyVisitor.VisitExpAndOrXor</referencedby>
+        <referencedby refid="a00038_1a3e2bd74ec27b6e603b075e0468db3fb5" compoundref="a00294" startline="638" endline="643">Yarn.BodyVisitor.VisitExpComparison</referencedby>
+        <referencedby refid="a00038_1ae5da558219f42b518a5483f7f794ed0a" compoundref="a00294" startline="645" endline="650">Yarn.BodyVisitor.VisitExpEquality</referencedby>
+        <referencedby refid="a00038_1a305e4197937bc3b6336592b61ba01eca" compoundref="a00294" startline="624" endline="629">Yarn.BodyVisitor.VisitExpMultDivMod</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00038_1a7abaef665ca4e60e37ba8942a41a0551" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.BodyVisitor.opEquals</definition>
+        <argsstring>(string varName, YarnSpinnerParser.ExpressionContext expression, int op)</argsstring>
+        <name>opEquals</name>
+        <param>
+          <type>string</type>
+          <declname>varName</declname>
+        </param>
+        <param>
+          <type>YarnSpinnerParser.ExpressionContext</type>
+          <declname>expression</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="667" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="667" bodyend="685"/>
+        <references refid="a00038_1ab8aa4dbe47a807e3d973df2b85e3fffc" compoundref="a00294" startline="765">Yarn.BodyVisitor.tokens</references>
+        <referencedby refid="a00038_1ab073a73cd379ee0130e2588c08573345" compoundref="a00294" startline="687" endline="692">Yarn.BodyVisitor.VisitExpMultDivModEquals</referencedby>
+        <referencedby refid="a00038_1a573f37ce6260e0f112d3c6210fadf638" compoundref="a00294" startline="694" endline="700">Yarn.BodyVisitor.VisitExpPlusMinusEquals</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="413">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult</label>
+    <inheritancegraph>
+      <node id="971">
+        <label>IParseTreeVisitor&lt; Result &gt;</label>
+      </node>
+      <node id="967">
+        <label>Yarn.BodyVisitor</label>
         <link refid="a00038"/>
-        <childnode refid="414" relation="usage">
-          <edgelabel>+messages</edgelabel>
+        <childnode refid="968" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="414">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage</label>
-        <link refid="a00185"/>
+      <node id="969">
+        <label>AbstractParseTreeVisitor&lt; Result &gt;</label>
+      </node>
+      <node id="968">
+        <label>YarnSpinnerParserBaseVisitor&lt; int &gt;</label>
+        <link refid="a00191"/>
+        <childnode refid="969" relation="public-inheritance">
+        </childnode>
+        <childnode refid="970" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="970">
+        <label>IYarnSpinnerParserVisitor&lt; Result &gt;</label>
+        <link refid="a00119"/>
+        <childnode refid="971" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="976">
+        <label>IParseTreeVisitor&lt; Result &gt;</label>
+      </node>
+      <node id="972">
+        <label>Yarn.BodyVisitor</label>
+        <link refid="a00038"/>
+        <childnode refid="973" relation="public-inheritance">
+        </childnode>
+        <childnode refid="977" relation="usage">
+          <edgelabel>~compiler</edgelabel>
+        </childnode>
+      </node>
+      <node id="982">
+        <label>Yarn.Library</label>
+        <link refid="a00123"/>
+      </node>
+      <node id="974">
+        <label>AbstractParseTreeVisitor&lt; Result &gt;</label>
+      </node>
+      <node id="978">
+        <label>YarnSpinnerParserBaseListener</label>
+        <link refid="a00190"/>
+        <childnode refid="979" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="973">
+        <label>YarnSpinnerParserBaseVisitor&lt; int &gt;</label>
+        <link refid="a00191"/>
+        <childnode refid="974" relation="public-inheritance">
+        </childnode>
+        <childnode refid="975" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="977">
+        <label>Yarn.AntlrCompiler</label>
+        <link refid="a00032"/>
+        <childnode refid="978" relation="public-inheritance">
+        </childnode>
+        <childnode refid="981" relation="usage">
+          <edgelabel>~currentNode</edgelabel>
+        </childnode>
+        <childnode refid="982" relation="usage">
+          <edgelabel>~library</edgelabel>
+        </childnode>
+        <childnode refid="983" relation="usage">
+          <edgelabel>~flags</edgelabel>
+        </childnode>
+      </node>
+      <node id="979">
+        <label>IYarnSpinnerParserListener</label>
+        <link refid="a00118"/>
+        <childnode refid="980" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="983">
+        <label>Yarn.AntlrCompiler.CompileFlags</label>
+        <link refid="a00362"/>
+      </node>
+      <node id="981">
+        <label>Yarn.Node</label>
+        <link refid="a00367"/>
+      </node>
+      <node id="980">
+        <label>IParseTreeListener</label>
+      </node>
+      <node id="975">
+        <label>IYarnSpinnerParserVisitor&lt; Result &gt;</label>
+        <link refid="a00119"/>
+        <childnode refid="976" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="35" bodyend="65"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="252" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="251" bodyend="794"/>
     <listofallmembers>
-      <member refid="a00038_1af1c9b3d1757d33ad2141c639c3827c97" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>CheckerResult</name></member>
-      <member refid="a00038_1a1e653caad5ab99847c26ff8f67da8f45" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>Equals</name></member>
-      <member refid="a00038_1a85d50993390cdd8ba30ac44043b18de7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>GetHashCode</name></member>
-      <member refid="a00038_1a808a039e280cf875cb3c9e9385148498" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>messages</name></member>
-      <member refid="a00038_1a6c852f7521c0a91b519aa3d391f63e6b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>script</name></member>
-      <member refid="a00038_1ab24848d7951ce44eb3c7768c6ee10385" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>State</name></member>
-      <member refid="a00038_1a7202b24bd068da24d7e28bec5668b13a" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</scope><name>state</name></member>
+      <member refid="a00038_1a97eb0e112b7c5257fde6c92d088b6c53" prot="public" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>BodyVisitor</name></member>
+      <member refid="a00038_1a39d71c6de5e1c9f7d2f78ac2ccd5743d" prot="package" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>compiler</name></member>
+      <member refid="a00038_1a5f246aeaea2ba795d78abb0f8918cca4" prot="package" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>generateClause</name></member>
+      <member refid="a00038_1afb8e572f8ba0a50f7e9ea480c24831e7" prot="package" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>genericExpVisitor</name></member>
+      <member refid="a00038_1a88cf0e74393aa67719a08e1332c6e62e" prot="private" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>HandleFunction</name></member>
+      <member refid="a00038_1a3a8fcf4591bdb2213bc48260645fdcba" prot="private" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>loadOperators</name></member>
+      <member refid="a00038_1a7abaef665ca4e60e37ba8942a41a0551" prot="package" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>opEquals</name></member>
+      <member refid="a00038_1ad8448dacbbd94adebf38c29c3f50e499" prot="private" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>ShortcutText</name></member>
+      <member refid="a00038_1ab8aa4dbe47a807e3d973df2b85e3fffc" prot="private" virt="non-virtual"><scope>Yarn::BodyVisitor</scope><name>tokens</name></member>
+      <member refid="a00038_1a1974944d85b5250c60a4ffc07f958cd0" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitAction_statement</name></member>
+      <member refid="a00191_1a3b84a7518f955a935b1ac327e568f29d" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitBody</name></member>
+      <member refid="a00191_1ad2daefa4c88b72128606682d094e2485" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitDialogue</name></member>
+      <member refid="a00191_1acb4799ad5491a7c3f35b8851dc4745e3" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitElse_clause</name></member>
+      <member refid="a00191_1aa646fda5f6cd91b1e8e6be24e686a25a" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitElse_if_clause</name></member>
+      <member refid="a00038_1a5eb6df63b55c3ba8e8568d8b0ebd0369" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpAddSub</name></member>
+      <member refid="a00038_1a19491adb347becea5f216e805763f582" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpAndOrXor</name></member>
+      <member refid="a00038_1a3e2bd74ec27b6e603b075e0468db3fb5" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpComparison</name></member>
+      <member refid="a00038_1ae5da558219f42b518a5483f7f794ed0a" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpEquality</name></member>
+      <member refid="a00038_1a305e4197937bc3b6336592b61ba01eca" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpMultDivMod</name></member>
+      <member refid="a00038_1ab073a73cd379ee0130e2588c08573345" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpMultDivModEquals</name></member>
+      <member refid="a00038_1aa6e290a205fcacca64071255c1901161" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpNegative</name></member>
+      <member refid="a00038_1af5870b979203df0e9bc78dd3d8c41b27" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpNot</name></member>
+      <member refid="a00038_1a51f5522367e1b35dbe15abd3363a7c4b" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpParens</name></member>
+      <member refid="a00038_1a573f37ce6260e0f112d3c6210fadf638" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpPlusMinusEquals</name></member>
+      <member refid="a00038_1ac820130b8eb85146442f4124d5212877" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitExpValue</name></member>
+      <member refid="a00038_1adaf7ebcc18546fc41a78928606fae5cb" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitFunction</name></member>
+      <member refid="a00038_1aa30d181ed0c8b5ea56912db147b35091" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitFunction_statement</name></member>
+      <member refid="a00191_1a36bcc3e07dedf9354a2c9967cde577d2" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHashtag</name></member>
+      <member refid="a00191_1a9400d1b4e26fb2b640320da88ba787d6" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHashtag_block</name></member>
+      <member refid="a00191_1a08145c313b49a2c5e1a9d4a607f1a57c" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHeader</name></member>
+      <member refid="a00191_1aa553a267b8ce2984ed2a80a1d28aae9c" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHeader_line</name></member>
+      <member refid="a00191_1a0b88799d0a6f7c51d51403bc6f60c01e" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHeader_tag</name></member>
+      <member refid="a00191_1a3c54ba6115ce150b2303f3bd37754269" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitHeader_title</name></member>
+      <member refid="a00191_1a6b9c14146ced835495bb48bc5c63ebb5" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitIf_clause</name></member>
+      <member refid="a00038_1ae2d46c57ab716ded9d7f66cfb7a20a03" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitIf_statement</name></member>
+      <member refid="a00038_1a0469d0cd00e8737385144157d7dbc436" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitLine_statement</name></member>
+      <member refid="a00191_1a45882fee8dd45b1a7a04d000be825dce" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitNode</name></member>
+      <member refid="a00038_1abf95a48291ee85c0f9327f0c3ed3dc3c" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitOption_statement</name></member>
+      <member refid="a00038_1a8d47becbb77d7c75a2d9e6aa777fd5df" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitSet_statement</name></member>
+      <member refid="a00191_1a167e9a44ea7d404370390528fdd70115" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitShortcut</name></member>
+      <member refid="a00191_1a4a4adcbdf2ba70878b015aa47d54b398" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitShortcut_conditional</name></member>
+      <member refid="a00038_1ad1576a22d74304c3155a0c2fa91be5b9" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitShortcut_statement</name></member>
+      <member refid="a00191_1a34e4b7e3d1c1c78dab3d017632cdca1f" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitShortcut_text</name></member>
+      <member refid="a00191_1a6856fdb64dfc47bb9f1650683a1ccf97" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitStatement</name></member>
+      <member refid="a00191_1ac8a0d095d59f4ef49178ba70353fe9a6" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitText</name></member>
+      <member refid="a00038_1a35ff313be01c2bb671f4d20917a27aae" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueFalse</name></member>
+      <member refid="a00038_1aa2c789583bec673fa64cbf141eae19aa" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueFunc</name></member>
+      <member refid="a00038_1a888533459a53d98ff4891ca5aa21763c" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueNull</name></member>
+      <member refid="a00038_1a2acb075ab60f6aca5319dce40074880f" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueNumber</name></member>
+      <member refid="a00038_1a33229651713a1b788e8841added0e2db" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueString</name></member>
+      <member refid="a00038_1ab627c2664656eedcefd9c2be4231cc51" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueTrue</name></member>
+      <member refid="a00038_1aa9e7f9f7310448cb44d0acb88512bc71" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitValueVar</name></member>
+      <member refid="a00038_1a884faf4566a71978ca12e671988c740b" prot="public" virt="virtual"><scope>Yarn::BodyVisitor</scope><name>VisitVariable</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,8 +1,135 @@
-\hypertarget{a00175}{\section{Package Yarn\-Spinner}
-\label{a00175}\index{Yarn\-Spinner@{Yarn\-Spinner}}
+\hypertarget{a00175}{\section{System.\-Reflection.\-Type\-Info Class Reference}
+\label{a00175}\index{System.\-Reflection.\-Type\-Info@{System.\-Reflection.\-Type\-Info}}
 }
-\subsection*{Namespaces}
+
+
+Collaboration diagram for System.\-Reflection.\-Type\-Info\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{a00577}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00176}{Tests}
+\hyperlink{a00175_ae2bbf4462c274977b6df5c994808cc39}{Type\-Info} (Type \hyperlink{a00175_a71c4f4b000d08808c8965222d4ba1b8d}{type})
+\item 
+bool \hyperlink{a00175_a8c74647f572e998dd7e843a752d5234d}{Is\-Assignable\-From} (\hyperlink{a00175}{Type\-Info} type\-Info)
 \end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Type \hyperlink{a00175_a8bb78c2b0377f57dba1a3e2031216029}{Base\-Type} =$>$ type.\-Base\-Type
+\item 
+bool \hyperlink{a00175_a6ae2d0f4c557010a075a6fecab18fbb5}{Is\-Class} =$>$ type.\-Is\-Class
+\item 
+bool \hyperlink{a00175_a6a532f6a581b3280d1837fc242f314af}{Is\-Generic\-Type} =$>$ type.\-Is\-Generic\-Type
+\item 
+bool \hyperlink{a00175_ab38ba26ebc21ec6fb908b74eede99a5c}{Is\-Primitive} =$>$ type.\-Is\-Primitive
+\item 
+bool \hyperlink{a00175_ae2255904b8743c47a185d62909404aed}{Is\-Value\-Type} =$>$ type.\-Is\-Value\-Type
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+readonly Type \hyperlink{a00175_a71c4f4b000d08808c8965222d4ba1b8d}{type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 6 of file Type\-Info.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00175_ae2bbf4462c274977b6df5c994808cc39}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Type\-Info@{Type\-Info}}
+\index{Type\-Info@{Type\-Info}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Type\-Info}]{\setlength{\rightskip}{0pt plus 5cm}System.\-Reflection.\-Type\-Info.\-Type\-Info (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00175_ae2bbf4462c274977b6df5c994808cc39}
+
+
+Definition at line 20 of file Type\-Info.\-cs.
+
+
+\begin{DoxyCode}
+21         \{
+22             this.type = \hyperlink{a00175_a71c4f4b000d08808c8965222d4ba1b8d}{type};
+23         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00175_a8c74647f572e998dd7e843a752d5234d}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Is\-Assignable\-From@{Is\-Assignable\-From}}
+\index{Is\-Assignable\-From@{Is\-Assignable\-From}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Is\-Assignable\-From}]{\setlength{\rightskip}{0pt plus 5cm}bool System.\-Reflection.\-Type\-Info.\-Is\-Assignable\-From (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Info}}]{type\-Info}
+\end{DoxyParamCaption}
+)}}\label{a00175_a8c74647f572e998dd7e843a752d5234d}
+
+
+Definition at line 25 of file Type\-Info.\-cs.
+
+
+\begin{DoxyCode}
+26         \{
+27             \textcolor{keywordflow}{return} type.IsAssignableFrom( typeInfo.type );
+28         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00175_a8bb78c2b0377f57dba1a3e2031216029}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Base\-Type@{Base\-Type}}
+\index{Base\-Type@{Base\-Type}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Base\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type System.\-Reflection.\-Type\-Info.\-Base\-Type =$>$ type.\-Base\-Type}}\label{a00175_a8bb78c2b0377f57dba1a3e2031216029}
+
+
+Definition at line 10 of file Type\-Info.\-cs.
+
+\hypertarget{a00175_a6ae2d0f4c557010a075a6fecab18fbb5}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Is\-Class@{Is\-Class}}
+\index{Is\-Class@{Is\-Class}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Is\-Class}]{\setlength{\rightskip}{0pt plus 5cm}bool System.\-Reflection.\-Type\-Info.\-Is\-Class =$>$ type.\-Is\-Class}}\label{a00175_a6ae2d0f4c557010a075a6fecab18fbb5}
+
+
+Definition at line 12 of file Type\-Info.\-cs.
+
+\hypertarget{a00175_a6a532f6a581b3280d1837fc242f314af}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Is\-Generic\-Type@{Is\-Generic\-Type}}
+\index{Is\-Generic\-Type@{Is\-Generic\-Type}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Is\-Generic\-Type}]{\setlength{\rightskip}{0pt plus 5cm}bool System.\-Reflection.\-Type\-Info.\-Is\-Generic\-Type =$>$ type.\-Is\-Generic\-Type}}\label{a00175_a6a532f6a581b3280d1837fc242f314af}
+
+
+Definition at line 14 of file Type\-Info.\-cs.
+
+\hypertarget{a00175_ab38ba26ebc21ec6fb908b74eede99a5c}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Is\-Primitive@{Is\-Primitive}}
+\index{Is\-Primitive@{Is\-Primitive}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Is\-Primitive}]{\setlength{\rightskip}{0pt plus 5cm}bool System.\-Reflection.\-Type\-Info.\-Is\-Primitive =$>$ type.\-Is\-Primitive}}\label{a00175_ab38ba26ebc21ec6fb908b74eede99a5c}
+
+
+Definition at line 16 of file Type\-Info.\-cs.
+
+\hypertarget{a00175_ae2255904b8743c47a185d62909404aed}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!Is\-Value\-Type@{Is\-Value\-Type}}
+\index{Is\-Value\-Type@{Is\-Value\-Type}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{Is\-Value\-Type}]{\setlength{\rightskip}{0pt plus 5cm}bool System.\-Reflection.\-Type\-Info.\-Is\-Value\-Type =$>$ type.\-Is\-Value\-Type}}\label{a00175_ae2255904b8743c47a185d62909404aed}
+
+
+Definition at line 18 of file Type\-Info.\-cs.
+
+\hypertarget{a00175_a71c4f4b000d08808c8965222d4ba1b8d}{\index{System\-::\-Reflection\-::\-Type\-Info@{System\-::\-Reflection\-::\-Type\-Info}!type@{type}}
+\index{type@{type}!System::Reflection::TypeInfo@{System\-::\-Reflection\-::\-Type\-Info}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}readonly Type System.\-Reflection.\-Type\-Info.\-type\hspace{0.3cm}{\ttfamily [private]}}}\label{a00175_a71c4f4b000d08808c8965222d4ba1b8d}
+
+
+Definition at line 8 of file Type\-Info.\-cs.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Core\-Fx\-Compatibility/\hyperlink{a00228}{Type\-Info.\-cs}\end{DoxyCompactItemize}

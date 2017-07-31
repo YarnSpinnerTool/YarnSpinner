@@ -1,8 +1,7 @@
 var a00094 =
 [
-    [ "TokeniserException", "a00094.html#ad00fcf742d2b0d476ce43b27a3f3b6c1", null ],
-    [ "TokeniserException", "a00094.html#aa8674d006a0d29081a7b87bdd8ff2f4f", null ],
-    [ "ExpectedTokensFromState", "a00094.html#af88cfa5eafdee355e1abb67e358497bd", null ],
-    [ "columnNumber", "a00094.html#aabf2ad38f3984297c1daede9be55e3d6", null ],
-    [ "lineNumber", "a00094.html#a54b936d7b4f26f88a07a66c5fc1d1ad1", null ]
+    [ "ErrorListener", "a00094.html#a1f0cc41aac10bd8a2402355534c1123c", null ],
+    [ "SyntaxError", "a00094.html#a47fb9f6d50aa6a4e4796dea10b237fe4", null ],
+    [ "instance", "a00094.html#a9421873edea84c51d5905f5a24c62479", null ],
+    [ "Instance", "a00094.html#a47b8f4f1d414afa1ea6067218c7ee34d", null ]
 ];

@@ -1,4 +1,4 @@
-\subsubsection*{Style Guide}
+\subsection*{Style Guide}
 
 {\ttfamily Inline Code} contain short snippets of code for your project \begin{DoxyVerb}Code Blocks contain segments or chunks of code for your project
 \end{DoxyVerb}
@@ -14,43 +14,42 @@ Blockquotes contain essential information
 \end{quotation}
 
 
-\subsection*{Tutorial}
+\subsection*{Introduction}
 
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Note\-:$\ast$$\ast$$\ast$ This tutorial assumes that you know a little bit about \href{http://www.unity3d.com}{\tt Unity}. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C\#. If you don't know these things, please refer to \href{http://unity3d.com/learn}{\tt Unity's documentation}. We recommend their \href{https://unity3d.com/learn/tutorials/}{\tt tutorials}, starting with the \href{https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial}{\tt Roll-\/a-\/ball tutorial}. It is also helpful if you know a little about the \href{https://github.com/InfiniteAmmoInc/Yarn}{\tt Yarn Editor}.
+This document intends to demonstrate to a developer how they can add new functions so that they can be called from inside \hyperlink{a00045}{Yarn}.
 
-\end{quotation}
-
-
-\subsection*{\hyperlink{a00040}{Yarn} Spinner Quick Start}
-
-If you're already familiar with Unity and the \hyperlink{a00040}{Yarn} Editor, we have a \hyperlink{a00121}{Unity Quickstart} guide.
-
-\subsection*{Step by Step}
-
-If you've not done much more than install Unity and the \hyperlink{a00040}{Yarn} Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity \href{https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial}{\tt Roll-\/a-\/ball tutorial}, our \hyperlink{a00122}{Step By Step} guide is intended to walk you through the creation of a very basic game using \hyperlink{a00040}{Yarn} Spinner.
-
-\subsection*{Tips during Unity install}
-
-\subsubsection*{Windows}
+\subsubsection*{Programming style}
 
 
 \begin{DoxyItemize}
-\item If you install to Unity the default file location, find the temp folder the installer has executed from and back it up before it completes installing.
-\item If you decide to install Visual Studio seperately, be aware that there are files from this program that insist on being installed on the C\-:\textbackslash{} drive and that your development experience may be restricted.
+\item It is recommended that you follow our programming style so that in the case of bug or patch submission, it makes it easier for us to read. As such, indents should be four spaces and not tab stops.
+\item We use the Doxygen format for documentation, thus three forward slashes {\ttfamily ///} indicate the head of a documentation comment and details for documentation comments are contained within the {\ttfamily /$\ast$ ....} structure. Please refer to the Doxygen site for more information.
+\item Other comments should use two forward slashes. This will ensure proper code commentary without it appearing in generated A\-P\-I documentation.
 \end{DoxyItemize}
 
-\subsubsection*{Mac}
+\subsection*{Creating a custom command}
 
-(This space left intentionally blank)
+Creating a custom command is a simple two step procedure.\-i
 
-\subsubsection*{Linux}
+
+\begin{DoxyEnumerate}
+\item We need to get the dialogue object that's in use, then regiser a new function for it. ``` // get the Dialogue object // varstorage\-\_\-implementation is the object that handles variable storage -\/ it's not important in this example var dialogue = new Dialogue(varstorage\-\_\-implementation); ``{\ttfamily }
+\item {\ttfamily Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns}true{\ttfamily if it's even\-: }`` // Register\-Function(name, parameter\-Count, implementation) dialogue.\-library.\-Register\-Function (\char`\"{}is\-\_\-even\char`\"{}, 1, delegate(\-Value\mbox{[}$\,$\mbox{]} parameters) \{ return (int)parameters\mbox{[}0\mbox{]}.As\-Number \% 2 == 0; \}); ``` When the function is called, the delegate you provide will be run.
+\end{DoxyEnumerate}
+
+Some notes\-:
 
 
 \begin{DoxyItemize}
-\item Unity is only officially supported on Ubuntu. \hyperlink{a00175}{Yarn\-Spinner} is built on Ubuntu. However, we use Debian for some of our development and testing.
-\item Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.\-6 release of \href{https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/}{\tt Unity for Linux}, although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).
-\item npm is needed for Unity. It is available in Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the \href{https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions}{\tt nodejs.\-org website}.
-\item Some 32bit support is required to run Unity. If you are running a 64bit environment, please refer to your distribution's documentation on how to do this. Once you have that enabled, ensure lib32gcc1, lib32stdc++6 and libc6-\/i386 are installed (eg, {\ttfamily sudo apt install lib32gcc1 lib32stdc++6 libc6-\/i386})
-\item We encourge Linux users to test Yarnspinner using the \href{http://www.monodevelop.com/download/linux/}{\tt Monodevelop Flat\-Pak}. Although Flat\-Pak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback. 
+\item You don't have to return a value from your function.
+\item The parameters passed to your function are of type \hyperlink{a00181}{Yarn.\-Value}. You can get their value as numbers, bools or strings by using the {\ttfamily As\-Number}, {\ttfamily As\-String} and {\ttfamily As\-Bool} properties.
+\item You can only return values of the following types\-:
+\begin{DoxyItemize}
+\item String
+\item Float
+\item Double
+\item Integer
+\item \hyperlink{a00181}{Yarn.\-Value}
+\end{DoxyItemize}
+\item \hyperlink{a00045}{Yarn} Spinner will make sure that the correct number of parameters is passed to your method. If you specify {\ttfamily -\/1} as your parameter count, the function may have any number of parameters. 
 \end{DoxyItemize}

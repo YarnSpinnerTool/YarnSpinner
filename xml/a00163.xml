@@ -1,11 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00163" kind="namespace">
-    <compoundname>System::Reflection</compoundname>
+  <compounddef id="a00163" kind="class" prot="public">
+    <compoundname>Yarn::TableGenerator</compoundname>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00163_1a1d65ef643c3f3495cf9480f86172ff87" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Yarn.TableGenerator.GenerateTables</definition>
+        <argsstring>(GenerateTableOptions options)</argsstring>
+        <name>GenerateTables</name>
+        <param>
+          <type><ref refid="a00101" kindref="compound">GenerateTableOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="10" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="10" bodyend="122"/>
+        <references refid="a00189_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00313" startline="270">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
+        <references refid="a00101_1a8b30c1b7fb1b74eae455a568c1024b3d" compoundref="a00313" startline="112">Yarn.GenerateTableOptions.onlyUseTag</references>
+        <references refid="a00035_1ada4d83d1756918f362d55f6649b82b17" compoundref="a00313" startline="44">Yarn.BaseOptions.verbose</references>
+        <referencedby refid="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00313" startline="241" endline="268">Yarn.YarnSpinnerConsole.Main</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00163_1a72dd508110f2d6ec21a8fa7d3cf35291" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.TableGenerator.CreateCSVRow</definition>
+        <argsstring>(params string[] entries)</argsstring>
+        <name>CreateCSVRow</name>
+        <param>
+          <type>params string[]</type>
+          <declname>entries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="124" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="124" bodyend="126"/>
+        <referencedby refid="a00163_1a1014b76df01db6b9e7936e6ab6d44fb6" compoundref="a00315" startline="128" endline="130">Yarn.TableGenerator.CreateCSVRow</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00163_1a1014b76df01db6b9e7936e6ab6d44fb6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.TableGenerator.CreateCSVRow</definition>
+        <argsstring>(KeyValuePair&lt; string, string &gt; entry)</argsstring>
+        <name>CreateCSVRow</name>
+        <param>
+          <type>KeyValuePair&lt; string, string &gt;</type>
+          <declname>entry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="128" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="128" bodyend="130"/>
+        <references refid="a00163_1a72dd508110f2d6ec21a8fa7d3cf35291" compoundref="a00315" startline="124" endline="126">Yarn.TableGenerator.CreateCSVRow</references>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="14" column="1"/>
+    <collaborationgraph>
+      <node id="1676">
+        <label>Yarn.TableGenerator</label>
+        <link refid="a00163"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/TableGenerator.cs" bodystart="8" bodyend="131"/>
+    <listofallmembers>
+      <member refid="a00163_1a72dd508110f2d6ec21a8fa7d3cf35291" prot="private" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>CreateCSVRow</name></member>
+      <member refid="a00163_1a1014b76df01db6b9e7936e6ab6d44fb6" prot="private" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>CreateCSVRow</name></member>
+      <member refid="a00163_1a1d65ef643c3f3495cf9480f86172ff87" prot="package" virt="non-virtual"><scope>Yarn::TableGenerator</scope><name>GenerateTables</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

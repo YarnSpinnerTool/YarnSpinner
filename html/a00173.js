@@ -1,10 +1,11 @@
 var a00173 =
 [
-    [ "Example", "a00174.html", "a00174" ],
-    [ "DialogueRunner", "a00051.html", "a00051" ],
-    [ "YarnCommandAttribute", "a00104.html", "a00104" ],
-    [ "DialogueUIBehaviour", "a00052.html", "a00052" ],
-    [ "VariableStorageBehaviour", "a00103.html", "a00103" ],
-    [ "YarnSpinnerEditorWindow", "a00099.html", "a00099" ],
-    [ "Icons", "a00056.html", "a00056" ]
+    [ "AddOptions", "a00173.html#a3f70014574bc374acbe8a152e9e741f2", null ],
+    [ "AddOptions< T >", "a00173.html#ab65b57d4c987d39e33bc136dfd5cb989", null ],
+    [ "GetOptions", "a00173.html#a2958beb79bb066c2b99c9fc97be9043d", null ],
+    [ "GetOptions< T >", "a00173.html#abff68f203e82218e5d9d316a81d90157", null ],
+    [ "RemoveOptions", "a00173.html#af5ceccd212df16bb55cf90cdcd76c286", null ],
+    [ "RemoveOptions< T >", "a00173.html#a201c3cd79a7bfe46424929150f2b84d8", null ],
+    [ "locker", "a00173.html#aeea3952a7ac1a8cb0291db079800ead4", null ],
+    [ "typeConverterOptions", "a00173.html#abef552dcc7a0c631d09fa8f2ea5fead4", null ]
 ];

@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('a00028.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('a00028.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Step by Step to Using <a class="el" href="a00040.html">Yarn</a> Spinner in your Unity game </div>  </div>
+<div class="title">Step by Step to Using <a class="el" href="a00045.html">Yarn</a> Spinner in your Unity game </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h3>Style Guide</h3>
@@ -117,10 +117,10 @@ $(document).ready(function(){initNavTree('a00028.html','');});
 <p></p>
 </blockquote>
 <h2>Step by Step</h2>
-<h3>Introducing <a class="el" href="a00040.html">Yarn</a> Spinner</h3>
-<p><a class="el" href="a00040.html">Yarn</a> Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.</p>
-<p>To introduce <a class="el" href="a00040.html">Yarn</a> Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to see the finished project, <a href="https://github.com/thesecretlab/YarnSpinner/releases">download Yarn Spinner</a> and open the <a href="https://github.com/thesecretlab/YarnSpinner/tree/master/Unity">Unity folder</a> in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.</p>
-<p>To use <a class="el" href="a00040.html">Yarn</a> Spinner, you use three classes that will exist in the <code><a class="el" href="a00173.html">Yarn.Unity</a></code> namespace.</p>
+<h3>Introducing <a class="el" href="a00045.html">Yarn</a> Spinner</h3>
+<p><a class="el" href="a00045.html">Yarn</a> Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses.</p>
+<p>To introduce <a class="el" href="a00045.html">Yarn</a> Spinner, we'll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you'd first like to see the finished project, <a href="https://github.com/thesecretlab/YarnSpinner/releases">download Yarn Spinner</a> and open the <a href="https://github.com/thesecretlab/YarnSpinner/tree/master/Unity">Unity folder</a> in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.</p>
+<p>To use <a class="el" href="a00045.html">Yarn</a> Spinner, you use three classes that will exist in the <code><a class="el" href="a00129.html">Yarn.Unity</a></code> namespace.</p>
 <ul>
 <li><code>DialogueRunner</code>, which is responsible for loading and running your dialogue script;</li>
 <li>A subclass of <code>DialogueUIBehaviour</code>, which is reponsible for displaying the lines and dialogue choices to the player; and</li>
@@ -128,46 +128,46 @@ $(document).ready(function(){initNavTree('a00028.html','');});
 </ul>
 <p>To create your subclasses of <code>DialogueUIBehaviour</code> and <code>VariableStorageBehaviour</code>, you'll need to add the following code to the top of your C# code: </p>
 <pre class="fragment">using Yarn.Unity;
-</pre><p><a class="el" href="a00040.html">Yarn</a> dialogue is created using the <a href="http://github.com/infiniteammoinc/Yarn">Yarn Editor</a>, and the resulting dialogue is stored as <code>.json</code> assets in the Unity project. If you are using Linux and wish to use the <a class="el" href="a00040.html">Yarn</a> Editor, you will first need to <a href="https://nwjs.io/downloads/">install</a> or build <a href="https://nwjs.io/">NW.js</a> then attempt to build the <a class="el" href="a00040.html">Yarn</a> Editor. <b>NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE</b>.</p>
-<p>The <a class="el" href="a00040.html">Yarn</a> dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the <code>DialogueRunner</code>'s inspector. You can also call <code>AddScript</code> on the <code>DialogueRunner</code> at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their <a class="el" href="a00040.html">Yarn</a> script to the <code>DialogueRunner</code>.</p>
-<h3>Create the <a class="el" href="a00040.html">Yarn</a> conversations</h3>
+</pre><p><a class="el" href="a00045.html">Yarn</a> dialogue is created using the <a href="http://github.com/infiniteammoinc/Yarn">Yarn Editor</a>, and the resulting dialogue is stored as <code>.json</code> assets in the Unity project. If you are using Linux and wish to use the <a class="el" href="a00045.html">Yarn</a> Editor, you will first need to <a href="https://nwjs.io/downloads/">install</a> or build <a href="https://nwjs.io/">NW.js</a> then attempt to build the <a class="el" href="a00045.html">Yarn</a> Editor. <b>NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE</b>.</p>
+<p>The <a class="el" href="a00045.html">Yarn</a> dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the <code>DialogueRunner</code>'s inspector. You can also call <code>AddScript</code> on the <code>DialogueRunner</code> at runtime; this is useful for cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their <a class="el" href="a00045.html">Yarn</a> script to the <code>DialogueRunner</code>.</p>
+<h3>Create the <a class="el" href="a00045.html">Yarn</a> conversations</h3>
 <ul>
-<li>In the <a class="el" href="a00040.html">Yarn</a> Editor, <b>Create a new conversation</b>, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!). For information on how to create a <a class="el" href="a00040.html">Yarn</a> conversation, please refer to the <a class="el" href="a00040.html">Yarn</a> Editor site.</li>
+<li>In the <a class="el" href="a00045.html">Yarn</a> Editor, <b>Create a new conversation</b>, and save it as a JSON file. (Alternatively, if you already have a dialogue file you'd like to use, go ahead and use that instead!). For information on how to create a <a class="el" href="a00045.html">Yarn</a> conversation, please refer to the <a class="el" href="a00045.html">Yarn</a> Editor site.</li>
 </ul>
 <h3>Create the Unity project</h3>
 <ul>
 <li><b>Launch Unity</b>, and <b>create a new project</b>. The name of the project doesn't matter.</li>
 </ul>
-<h3>Import the <a class="el" href="a00040.html">Yarn</a> Spinner package.</h3>
+<h3>Import the <a class="el" href="a00045.html">Yarn</a> Spinner package.</h3>
 <ul>
 <li><p class="startli">**<a href="https://github.com/thesecretlab/YarnSpinner/releases">Import YarnSpinner.unitypackage</a>** into your project.</p>
-<p class="startli"><a class="el" href="a00040.html">Yarn</a> Spinner is composed of a <code>yarnspinner.dll</code> file, and a couple of supporting scripts for Unity. This dll file does the heavy lifting involved in parsing your <a class="el" href="a00040.html">Yarn</a> files, and executing them.</p>
-<p class="startli">To show <a class="el" href="a00040.html">Yarn</a> dialogue in your game, you will need to add it to your project as well.</p>
+<p class="startli"><a class="el" href="a00045.html">Yarn</a> Spinner is composed of a <code>yarnspinner.dll</code> file, and a couple of supporting scripts for Unity. This dll file does the heavy lifting involved in parsing your <a class="el" href="a00045.html">Yarn</a> files, and executing them.</p>
+<p class="startli">To show <a class="el" href="a00045.html">Yarn</a> dialogue in your game, you will need to add it to your project as well.</p>
 </li>
-<li><b>Copy your <a class="el" href="a00040.html">Yarn</a> JSON file</b> into your project.</li>
+<li><b>Copy your <a class="el" href="a00045.html">Yarn</a> JSON file</b> into your project.</li>
 </ul>
-<p>You're now ready to start using <a class="el" href="a00040.html">Yarn</a> Spinner!</p>
+<p>You're now ready to start using <a class="el" href="a00045.html">Yarn</a> Spinner!</p>
 <h3>Load your conversation with <code>DialogueRunner</code></h3>
-<p><a class="el" href="a00040.html">Yarn</a> conversations are loaded and managed by a <code>DialogueRunner</code> object. This object is responsible for loading and parsing your <a class="el" href="a00040.html">Yarn</a> <code>.json</code> files. It also runs the script when it's told to - for example, when you walk up to a character in your game and talk to them.</p>
+<p><a class="el" href="a00045.html">Yarn</a> conversations are loaded and managed by a <code>DialogueRunner</code> object. This object is responsible for loading and parsing your <a class="el" href="a00045.html">Yarn</a> <code>.json</code> files. It also runs the script when it's told to - for example, when you walk up to a character in your game and talk to them.</p>
 <p>We'll start by creating an empty object, and then we'll add the <code>DialogueRunner</code> component to it.</p>
 <ul>
 <li><b>Create a new empty game object</b>.</li>
 <li><b>Rename it to "Dialogue Runner"</b>.</li>
-<li><p class="startli">With the Dialogue Runner object selected, <b>open the Component menu</b>, and choose <b>Scripts → <a class="el" href="a00040.html">Yarn</a> Spinner → Dialogue Runner</b>.</p>
-<p class="startli">Next you need to add the <a class="el" href="a00040.html">Yarn</a> files that you want to show. The Dialogue runner can load multiple <a class="el" href="a00040.html">Yarn</a> files at the same time. The only requirement is that <b>no nodes are allowed to have the same name</b>. (This is a requirement that may change in the future.)</p>
+<li><p class="startli">With the Dialogue Runner object selected, <b>open the Component menu</b>, and choose <b>Scripts → <a class="el" href="a00045.html">Yarn</a> Spinner → Dialogue Runner</b>.</p>
+<p class="startli">Next you need to add the <a class="el" href="a00045.html">Yarn</a> files that you want to show. The Dialogue runner can load multiple <a class="el" href="a00045.html">Yarn</a> files at the same time. The only requirement is that <b>no nodes are allowed to have the same name</b>. (This is a requirement that may change in the future.)</p>
 </li>
-<li><b>Drag your <a class="el" href="a00040.html">Yarn</a> JSON file into the <code>Source Text</code> array.</b></li>
+<li><b>Drag your <a class="el" href="a00045.html">Yarn</a> JSON file into the <code>Source Text</code> array.</b></li>
 </ul>
 <h3>Display your conversation with <code>DialogueUI</code></h3>
 <p>Your game's dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.</p>
-<p><a class="el" href="a00040.html">Yarn</a> Spinner makes no assumptions about how you want to handle your dialogue's UI. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-based UI with a countdown timer? Oh man that would be sweet.</p>
-<p><a class="el" href="a00040.html">Yarn</a> Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying <a class="el" href="a00040.html">Yarn</a> Spinner about what response the user selected.</p>
-<p><a class="el" href="a00040.html">Yarn</a> Spinner comes with an example script that uses Unity's UI system. It's a good place to start.</p>
+<p><a class="el" href="a00045.html">Yarn</a> Spinner makes no assumptions about how you want to handle your dialogue's UI. Want to present as simple list of options? That's fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-based UI with a countdown timer? Oh man that would be sweet.</p>
+<p><a class="el" href="a00045.html">Yarn</a> Spinner leaves all of the work of actually presenting the conversation up to you; all it's responsible for is delivering the lines that the player should see, and notifying <a class="el" href="a00045.html">Yarn</a> Spinner about what response the user selected.</p>
+<p><a class="el" href="a00045.html">Yarn</a> Spinner comes with an example script that uses Unity's UI system. It's a good place to start.</p>
 <h3>Store your conversation state with a <code>VariableStorageBehaviour</code></h3>
-<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="a00040.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index">C# interface</a>***, which defines methods like "set variable" and "get value of variable".</p>
+<p>There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. <a class="el" href="a00045.html">Yarn</a> Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index">C# interface</a>)***, which defines methods like "set variable" and "get value of variable".</p>
 <p>The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.</p>
 <ul>
-<li><b>Create a new game object</b>, and add the <code><a class="el" href="a00047.html">ExampleVariableStorage</a></code> script to it.</li>
+<li><b>Create a new game object</b>, and add the <code><a class="el" href="a00083.html" title="An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a...">ExampleVariableStorage</a></code> script to it.</li>
 </ul>
 <p>Or:</p>
 <ul>
@@ -175,20 +175,20 @@ $(document).ready(function(){initNavTree('a00028.html','');});
 <li>Once you've done that, <b>drag this new object into the Dialoge Runner's <code>Variable Storage</code> slot.</b></li>
 </ul>
 <h3>Run your conversation</h3>
-<p>There's only one thing left to do: <a class="el" href="a00040.html">Yarn</a> Spinner just needs to know what node in the <a class="el" href="a00040.html">Yarn</a> file to start from. It will default to "Start", but you can override it.</p>
+<p>There's only one thing left to do: <a class="el" href="a00045.html">Yarn</a> Spinner just needs to know what node in the <a class="el" href="a00045.html">Yarn</a> file to start from. It will default to "Start", but you can override it.</p>
 <ul>
 <li><b>Change the Dialogue Runner's <code>Start Node</code></b> to the <b>name of the node you'd like to start run.</b></li>
 <li>Finally, <b>run the game.</b> The conversation will play!</li>
 </ul>
 <h3>Respond to commands with <code>YarnCommand</code></h3>
-<p>In <a class="el" href="a00040.html">Yarn</a>, you can create <em>commands</em> that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this: </p>
+<p>In <a class="el" href="a00045.html">Yarn</a>, you can create <em>commands</em> that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this: </p>
 <pre class="fragment">&lt;&lt;move Sally exit&gt;&gt;
 </pre><p>For this to work, the game object named "Sally" needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this: </p>
 <pre class="fragment">[YarnCommand("move")]
 public void MoveCharacter(string destinationName) {
     // move to the destination
 }
-</pre><p>When <a class="el" href="a00040.html">Yarn</a> encounters a command that contains two or more words, it looks for a game object with the same name as the second word ("Sally", in the above example), and then searches that object's scripts for any method that has a <code>YarnCommand</code> with the same name as the first word (in this case, "move").</p>
+</pre><p>When <a class="el" href="a00045.html">Yarn</a> encounters a command that contains two or more words, it looks for a game object with the same name as the second word ("Sally", in the above example), and then searches that object's scripts for any method that has a <code>YarnCommand</code> with the same name as the first word (in this case, "move").</p>
 <p>Any further words in the command are passed as string parameters to the method ("exit", in this case, which is used as the <code>destinationName</code> parameter)</p>
 <p>Note that <b>all</b> parameters must be strings. <code>DialogueRunner</code> will throw an error if it finds a method that has parameters of any other type. It's up to your method to convert the strings into other types, like numbers.</p>
 <h3>Finishing up</h3>
@@ -199,7 +199,7 @@ public void MoveCharacter(string destinationName) {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:45 for YarnSpinner by
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:00 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

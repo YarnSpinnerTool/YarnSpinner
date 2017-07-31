@@ -4,12 +4,12 @@
     <compoundname>Yarn::Analysis::ASTAnalyser</compoundname>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="a00034_1a07bb220dead44ed12c8842de706ecdf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract IEnumerable&lt; <ref refid="a00049" kindref="compound">Diagnosis</ref> &gt;</type>
+        <type>abstract IEnumerable&lt; <ref refid="a00085" kindref="compound">Diagnosis</ref> &gt;</type>
         <definition>abstract IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.ASTAnalyser.Diagnose</definition>
         <argsstring>(Yarn.Parser.Node node)</argsstring>
         <name>Diagnose</name>
         <param>
-          <type><ref refid="a00068" kindref="compound">Yarn.Parser.Node</ref></type>
+          <type><ref refid="a00132" kindref="compound">Yarn.Parser.Node</ref></type>
           <declname>node</declname>
         </param>
         <briefdescription>
@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="139" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="147" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -26,12 +26,12 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="397">
+      <node id="947">
         <label>Yarn.Analysis.ASTAnalyser</label>
         <link refid="a00034"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="138" bodyend="140"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="146" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="146" bodyend="148"/>
     <listofallmembers>
       <member refid="a00034_1a07bb220dead44ed12c8842de706ecdf7" prot="public" virt="pure-virtual"><scope>Yarn::Analysis::ASTAnalyser</scope><name>Diagnose</name></member>
     </listofallmembers>

@@ -1,142 +1,175 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00096" kind="class" prot="package">
-    <compoundname>Yarn::Lexer::TokenRule</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00096_1a47a404d6637fae489c3c77729a01cc69" prot="public" static="no" mutable="no">
-        <type>Regex</type>
-        <definition>Regex Yarn.Lexer.TokenRule.regex</definition>
-        <argsstring></argsstring>
-        <name>regex</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="274" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="274" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00096_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Lexer.TokenRule.entersState</definition>
-        <argsstring></argsstring>
-        <name>entersState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="277" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="277" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00096_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-        <definition>TokenType Yarn.Lexer.TokenRule.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="278" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00096_1a09f49e6edf9ace38a92d723998181f8f" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.isTextRule</definition>
-        <argsstring></argsstring>
-        <name>isTextRule</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="279" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="279" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00096_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.delimitsText</definition>
-        <argsstring></argsstring>
-        <name>delimitsText</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="280" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="280" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00096_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Lexer.TokenRule.TokenRule</definition>
-        <argsstring>(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</argsstring>
-        <name>TokenRule</name>
+    <compoundname>CsvHelper::ExceptionHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00096_1a7415ea84b6d462b9d61ecf2128282837" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void CsvHelper.ExceptionHelper.AddExceptionDataMessage</definition>
+        <argsstring>(Exception exception, ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>AddExceptionDataMessage</name>
         <param>
-          <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <type>Exception</type>
+          <declname>exception</declname>
+        </param>
+        <param>
+          <type><ref refid="a00107" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
           <declname>type</declname>
         </param>
         <param>
-          <type>Regex</type>
-          <declname>regex</declname>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
         </param>
         <param>
-          <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
+          <type>int?</type>
+          <declname>currentIndex</declname>
         </param>
         <param>
-          <type>bool</type>
-          <declname>delimitsText</declname>
-          <defval>false</defval>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Adds <ref refid="a00325" kindref="compound">CsvHelper</ref> specific information to Exception.Data. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exception</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception to add the info to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="282" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="282" bodyend="288"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="28" bodyend="46"/>
+        <references refid="a00096_1a11e421dc9f9fdb2b72d060a24471b5be" compoundref="a00240" startline="57" endline="100">CsvHelper.ExceptionHelper.GetErrorMessage</references>
       </memberdef>
-      <memberdef kind="function" id="a00096_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Lexer.TokenRule.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
+      <memberdef kind="function" id="a00096_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string CsvHelper.ExceptionHelper.GetErrorMessage</definition>
+        <argsstring>(ICsvParser parser, Type type, Dictionary&lt; string, List&lt; int &gt;&gt; namedIndexes, int?currentIndex, string[] currentRecord)</argsstring>
+        <name>GetErrorMessage</name>
+        <param>
+          <type><ref refid="a00107" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; string, List&lt; int &gt;&gt;</type>
+          <declname>namedIndexes</declname>
+        </param>
+        <param>
+          <type>int?</type>
+          <declname>currentIndex</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>currentRecord</declname>
+        </param>
         <briefdescription>
-        </briefdescription>
+<para>Gets <ref refid="a00325" kindref="compound">CsvHelper</ref> information to be added to an exception. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of object that was being created in the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>namedIndexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The named indexes in the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current index of the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentRecord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current record of the <ref refid="a00071" kindref="compound">CsvReader</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="a00325" kindref="compound">CsvHelper</ref> information.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="290" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="290" bodyend="293"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="57" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="57" bodyend="100"/>
+        <referencedby refid="a00096_1a7415ea84b6d462b9d61ecf2128282837" compoundref="a00240" startline="28" endline="46">CsvHelper.ExceptionHelper.AddExceptionDataMessage</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Common exception tasks. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="692">
-        <label>Yarn.Lexer.TokenRule</label>
+      <node id="1340">
+        <label>CsvHelper.ExceptionHelper</label>
         <link refid="a00096"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="273" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="273" bodyend="295"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ExceptionHelper.cs" bodystart="17" bodyend="101"/>
     <listofallmembers>
-      <member refid="a00096_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>delimitsText</name></member>
-      <member refid="a00096_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>entersState</name></member>
-      <member refid="a00096_1a09f49e6edf9ace38a92d723998181f8f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>isTextRule</name></member>
-      <member refid="a00096_1a47a404d6637fae489c3c77729a01cc69" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>regex</name></member>
-      <member refid="a00096_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>TokenRule</name></member>
-      <member refid="a00096_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>ToString</name></member>
-      <member refid="a00096_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>type</name></member>
+      <member refid="a00096_1a7415ea84b6d462b9d61ecf2128282837" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>AddExceptionDataMessage</name></member>
+      <member refid="a00096_1a11e421dc9f9fdb2b72d060a24471b5be" prot="public" virt="non-virtual"><scope>CsvHelper::ExceptionHelper</scope><name>GetErrorMessage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

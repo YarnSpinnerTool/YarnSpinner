@@ -2,8 +2,10 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_2870522f32e1cc12c0615fa0200eb498" kind="dir">
     <compoundname>YarnSpinnerTests</compoundname>
-    <innerfile refid="a00125">Program.cs</innerfile>
-    <innerfile refid="a00150">Test.cs</innerfile>
+    <innerfile refid="a00316">DialogueTests.cs</innerfile>
+    <innerfile refid="a00317">LanguageTests.cs</innerfile>
+    <innerfile refid="a00318">ProjectTests.cs</innerfile>
+    <innerfile refid="a00319">TestBase.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

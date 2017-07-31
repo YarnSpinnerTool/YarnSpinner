@@ -1,36 +1,205 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00123" kind="file">
-    <compoundname>LICENSE.md</compoundname>
+  <compounddef id="a00123" kind="class" prot="public">
+    <compoundname>Yarn::Library</compoundname>
+    <derivedcompoundref refid="a00158" prot="public" virt="non-virtual">Yarn.Dialogue.StandardLibrary</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00123_1a2fcc78a63963be5320cf09783b66fab6" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00100" kindref="compound">FunctionInfo</ref> &gt;</type>
+        <definition>Dictionary&lt;string, FunctionInfo&gt; Yarn.Library.functions</definition>
+        <argsstring></argsstring>
+        <name>functions</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00100" kindref="compound">FunctionInfo</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="90" bodyend="-1"/>
+        <referencedby refid="a00123_1a47d1b3664733207d5cda15f4a4a7af7a" compoundref="a00299" startline="129" endline="132">Yarn.Library.DeregisterFunction</referencedby>
+        <referencedby refid="a00123_1aacfb1f00ad8aa3921941b8d8af0960e0" compoundref="a00299" startline="94" endline="100">Yarn.Library.GetFunction</referencedby>
+        <referencedby refid="a00123_1ab42a4fd30a72156cafa685f959deef78" compoundref="a00299" startline="105" endline="109">Yarn.Library.ImportLibrary</referencedby>
+        <referencedby refid="a00123_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00299" startline="111" endline="113">Yarn.Library.RegisterFunction</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00123_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00100" kindref="compound">FunctionInfo</ref></type>
+        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>GetFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="94" bodyend="100"/>
+        <references refid="a00123_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00299" startline="90">Yarn.Library.functions</references>
+        <referencedby refid="a00156_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00304" startline="175" endline="427">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.ImportLibrary</definition>
+        <argsstring>(Library otherLibrary)</argsstring>
+        <name>ImportLibrary</name>
+        <param>
+          <type><ref refid="a00123" kindref="compound">Library</ref></type>
+          <declname>otherLibrary</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="105" bodyend="109"/>
+        <references refid="a00123_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00299" startline="90">Yarn.Library.functions</references>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(FunctionInfo function)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type><ref refid="a00100" kindref="compound">FunctionInfo</ref></type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="111" bodyend="113"/>
+        <references refid="a00123_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00299" startline="90">Yarn.Library.functions</references>
+        <referencedby refid="a00123_1a2a698de0b528b2bac17bd85f57d45d4b" compoundref="a00299" startline="115" endline="118">Yarn.Library.RegisterFunction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>parameterCount</declname>
+        </param>
+        <param>
+          <type><ref refid="a00045_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
+          <declname>implementation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="115" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="115" bodyend="118"/>
+        <references refid="a00123_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00299" startline="111" endline="113">Yarn.Library.RegisterFunction</references>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.RegisterFunction</definition>
+        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
+        <name>RegisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>parameterCount</declname>
+        </param>
+        <param>
+          <type><ref refid="a00045_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
+          <declname>implementation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="120" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="120" bodyend="123"/>
+        <references refid="a00123_1a001ab29d21fe7db10fc9c250914287f9" compoundref="a00299" startline="111" endline="113">Yarn.Library.RegisterFunction</references>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Library.FunctionExists</definition>
+        <argsstring>(string name)</argsstring>
+        <name>FunctionExists</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="125" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="a00123_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Library.DeregisterFunction</definition>
+        <argsstring>(string name)</argsstring>
+        <name>DeregisterFunction</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="129" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="129" bodyend="132"/>
+        <references refid="a00123_1a2fcc78a63963be5320cf09783b66fab6" compoundref="a00299" startline="90">Yarn.Library.functions</references>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <programlisting>
-<codeline lineno="1"><highlight class="normal">The<sp/>MIT<sp/>License<sp/>(MIT)</highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">Copyright<sp/>(c)<sp/>2015-2017<sp/>Secret<sp/>Lab<sp/>Pty.<sp/>Ltd.<sp/>and<sp/>Yarn<sp/>Spinner<sp/>contributors.</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Permission<sp/>is<sp/>hereby<sp/>granted,<sp/>free<sp/>of<sp/>charge,<sp/>to<sp/>any<sp/>person<sp/>obtaining<sp/>a<sp/>copy</highlight></codeline>
-<codeline lineno="6"><highlight class="normal">of<sp/>this<sp/>software<sp/>and<sp/>associated<sp/>documentation<sp/>files<sp/>(the<sp/>&quot;Software&quot;),<sp/>to<sp/>deal</highlight></codeline>
-<codeline lineno="7"><highlight class="normal">in<sp/>the<sp/>Software<sp/>without<sp/>restriction,<sp/>including<sp/>without<sp/>limitation<sp/>the<sp/>rights</highlight></codeline>
-<codeline lineno="8"><highlight class="normal">to<sp/>use,<sp/>copy,<sp/>modify,<sp/>merge,<sp/>publish,<sp/>distribute,<sp/>sublicense,<sp/>and/or<sp/>sell</highlight></codeline>
-<codeline lineno="9"><highlight class="normal">copies<sp/>of<sp/>the<sp/>Software,<sp/>and<sp/>to<sp/>permit<sp/>persons<sp/>to<sp/>whom<sp/>the<sp/>Software<sp/>is</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">furnished<sp/>to<sp/>do<sp/>so,<sp/>subject<sp/>to<sp/>the<sp/>following<sp/>conditions:</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">The<sp/>above<sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>shall<sp/>be<sp/>included<sp/>in<sp/>all</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">copies<sp/>or<sp/>substantial<sp/>portions<sp/>of<sp/>the<sp/>Software.</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;,<sp/>WITHOUT<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>EXPRESS<sp/>OR</highlight></codeline>
-<codeline lineno="16"><highlight class="normal">IMPLIED,<sp/>INCLUDING<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO<sp/>THE<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY,</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>AND<sp/>NONINFRINGEMENT.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE</highlight></codeline>
-<codeline lineno="18"><highlight class="normal">AUTHORS<sp/>OR<sp/>COPYRIGHT<sp/>HOLDERS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>CLAIM,<sp/>DAMAGES<sp/>OR<sp/>OTHER</highlight></codeline>
-<codeline lineno="19"><highlight class="normal">LIABILITY,<sp/>WHETHER<sp/>IN<sp/>AN<sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>TORT<sp/>OR<sp/>OTHERWISE,<sp/>ARISING<sp/>FROM,</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">OUT<sp/>OF<sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>SOFTWARE<sp/>OR<sp/>THE<sp/>USE<sp/>OR<sp/>OTHER<sp/>DEALINGS<sp/>IN<sp/>THE</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">SOFTWARE.</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">This<sp/>software<sp/>contains<sp/>third-party<sp/>code:<sp/>Unity<sp/>Test<sp/>Tools<sp/>(MIT<sp/>license),<sp/>NUnit<sp/>(BSD<sp/>license),<sp/>NSubstitute<sp/>(BSD<sp/>license)<sp/>and<sp/>Cecil<sp/>(MIT/X11<sp/>license).<sp/>For<sp/>more<sp/>information,<sp/>see<sp/>the<sp/>[Unity<sp/>Test<sp/>Tools<sp/>license<sp/>file](Unity/Assets/UnityTestTools/LICENSE.txt).</highlight></codeline>
-    </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/LICENSE.md"/>
+    <inheritancegraph>
+      <node id="1490">
+        <label>Yarn.Dialogue.StandardLibrary</label>
+        <link refid="a00158"/>
+        <childnode refid="1489" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1489">
+        <label>Yarn.Library</label>
+        <link refid="a00123"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1491">
+        <label>Yarn.Library</label>
+        <link refid="a00123"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="87" bodyend="134"/>
+    <listofallmembers>
+      <member refid="a00123_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>DeregisterFunction</name></member>
+      <member refid="a00123_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>FunctionExists</name></member>
+      <member refid="a00123_1a2fcc78a63963be5320cf09783b66fab6" prot="private" virt="non-virtual"><scope>Yarn::Library</scope><name>functions</name></member>
+      <member refid="a00123_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>GetFunction</name></member>
+      <member refid="a00123_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>ImportLibrary</name></member>
+      <member refid="a00123_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00123_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00123_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

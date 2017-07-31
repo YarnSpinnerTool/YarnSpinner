@@ -1,10 +1,16 @@
 var a00085 =
 [
-    [ "ShortcutOptionGroup", "a00085.html#aa4ee47826640ad8dff651603c940c7f4", null ],
-    [ "CanParse", "a00085.html#a906962aae2ecb11535f34249a34703f8", null ],
-    [ "NodeParent", "a00085.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00085.html#a7b60f85e46b8767db81177ec40e83104", null ],
-    [ "ToString", "a00085.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "_options", "a00085.html#a494c8c422cebbea5c50878db64334873", null ],
-    [ "options", "a00085.html#a91b28e9dce684c476c526c4103b6c488", null ]
+    [ "Severity", "a00085.html#a227813cbc8fa03c3448a612ffc909d1c", [
+      [ "Error", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
+      [ "Warning", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
+      [ "Note", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    ] ],
+    [ "Diagnosis", "a00085.html#ad3fd818f1be98dc803e5bec959153824", null ],
+    [ "ToString", "a00085.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
+    [ "ToString", "a00085.html#a985dee7ca27aa896332590133606b6a9", null ],
+    [ "columnNumber", "a00085.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
+    [ "lineNumber", "a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
+    [ "message", "a00085.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
+    [ "nodeName", "a00085.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
+    [ "severity", "a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
 ];

@@ -1,27 +1,27 @@
 var NAVTREE =
 [
   [ "YarnSpinner", "index.html", [
-    [ "Contributing to Yarn Spinner", "a00002.html", null ],
-    [ "Contributors to Yarn Spinner", "a00004.html", null ],
-    [ "Yarn Spinner Documentation", "a00006.html", null ],
-    [ "LOCALIZATION", "a00008.html", null ],
-    [ "Writing Yarn Dialogue - README", "a00010.html", null ],
-    [ "Yarn for Writers", "a00012.html", null ],
-    [ "Yarn for Writers", "a00014.html", null ],
-    [ "Writing Yarn Dialogue - Simple Example", "a00016.html", null ],
-    [ "Building Yarn Spinner", "a00018.html", null ],
-    [ "Extending Yarn Spinner", "a00020.html", null ],
-    [ "Yarn Spinner Programming README", "a00022.html", null ],
-    [ "Using Yarn Spinner in your Unity game", "a00024.html", null ],
+    [ "Lets talk about the WIP ANTLR YarnSpinner parser", "a00002.html", null ],
+    [ "Contributing to Yarn Spinner", "a00004.html", null ],
+    [ "Contributors", "a00006.html", null ],
+    [ "Yarn Dialogue - Advanced Usage", "a00008.html", null ],
+    [ "Yarn Dialogue - Complex Example", "a00010.html", null ],
+    [ "Localisation", "a00012.html", null ],
+    [ "LOCALIZATION", "a00014.html", null ],
+    [ "Yarn Dialogue - Simple Example", "a00016.html", null ],
+    [ "Yarn for Writers", "a00018.html", null ],
+    [ "Writing Yarn Dialogue - Simple Example", "a00020.html", null ],
+    [ "Building Yarn Spinner", "a00022.html", null ],
+    [ "Extending Yarn Spinner", "a00024.html", null ],
     [ "Quickstart to Using Yarn Spinner in your Unity game", "a00026.html", null ],
     [ "Step by Step to Using Yarn Spinner in your Unity game", "a00028.html", null ],
     [ "LICENSE", "a00030.html", null ],
-    [ "Yarn Spinner", "a00032.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
         [ "Enumerations", "namespacemembers_enum.html", null ],
         [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
@@ -33,16 +33,17 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
-        [ "Properties", "functions_prop.html", null ]
+        [ "Properties", "functions_prop.html", "functions_prop" ]
       ] ]
     ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -51,10 +52,17 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-".html",
-"a00051.html#ac87fdc65b0be57868f80c0fcd62ffd6d",
-"a00079.html#af89807d2195915ee9a0c42317e110fc6",
-"a00101.html#a51ab5939344f9bfa21181c02cf0e341d"
+"a00002.html",
+"a00043.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15",
+"a00062.html#aeb171813d1526839ccd41d60ab6483b2",
+"a00077.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586",
+"a00099.html#aa4db4ccac799c5f047a8b1a9efbe109d",
+"a00111.html#a51b990d9a9615159631494390d8b53b6",
+"a00127.html#a0b09a29edd2ed13d52203f1b71a47081",
+"a00156.html#add28fa9c8a45ca579e84d05920bbc42d",
+"a00181.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034",
+"a00228.html",
+"a00309.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,123 +1,153 @@
-\hypertarget{a00076}{\section{Yarn.\-Parse\-Exception Class Reference}
-\label{a00076}\index{Yarn.\-Parse\-Exception@{Yarn.\-Parse\-Exception}}
+\hypertarget{a00076}{\section{Csv\-Helper.\-Csv\-Writer\-Exception Class Reference}
+\label{a00076}\index{Csv\-Helper.\-Csv\-Writer\-Exception@{Csv\-Helper.\-Csv\-Writer\-Exception}}
 }
 
 
-Inheritance diagram for Yarn.\-Parse\-Exception\-:
+Represents errors that occur while writing a C\-S\-V file.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Writer\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00271}
+\includegraphics[width=234pt]{a00437}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parse\-Exception\-:
+Collaboration diagram for Csv\-Helper.\-Csv\-Writer\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=188pt]{a00272}
+\includegraphics[width=234pt]{a00438}
 \end{center}
 \end{figure}
-\subsection*{Package Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00076_aa3c4f5c8b0ae86097bbc46044df9f317}{Parse\-Exception} (string message)
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static \hyperlink{a00076}{Parse\-Exception} \hyperlink{a00076_a511a51bb42dc5bb107eb68f7e5cf5ff1}{Make} (\hyperlink{a00093}{Token} found\-Token, params \hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type}\mbox{[}$\,$\mbox{]} expected\-Types)
-\item 
-static \hyperlink{a00076}{Parse\-Exception} \hyperlink{a00076_a173f3cabc4741d9d9e016310e90c1c9f}{Make} (\hyperlink{a00093}{Token} most\-Recent\-Token, string message)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{line\-Number} = 0
-\end{DoxyCompactItemize}
+\hyperlink{a00076_a4e5030012e1258c3db3da1725c0d9332}{Csv\-Writer\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00076_a6d01cb3854a95d77cd1f9e2d8b1aa304}{Csv\-Writer\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00076_aedacd3e9a9161a62991cc1d388298a14}{Csv\-Writer\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00076_ac4ae90ce8433632c2047d4de364effa6}{Csv\-Writer\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Represents errors that occur while writing a C\-S\-V file. 
+
+
+
+Definition at line 18 of file Csv\-Writer\-Exception.\-cs.
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00076_aa3c4f5c8b0ae86097bbc46044df9f317}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Parse\-Exception@{Parse\-Exception}}
-\index{Parse\-Exception@{Parse\-Exception}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Parse\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parse\-Exception.\-Parse\-Exception (
+\hypertarget{a00076_a4e5030012e1258c3db3da1725c0d9332}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
+\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
+\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00076_a4e5030012e1258c3db3da1725c0d9332}
+
+
+Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class. 
+
+
+
+Definition at line 23 of file Csv\-Writer\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+23 \{\}
+\end{DoxyCode}
+\hypertarget{a00076_a6d01cb3854a95d77cd1f9e2d8b1aa304}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
+\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
+\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
 \begin{DoxyParamCaption}
 \item[{string}]{message}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00076_aa3c4f5c8b0ae86097bbc46044df9f317}
+)}}\label{a00076_a6d01cb3854a95d77cd1f9e2d8b1aa304}
+
+
+Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file Csv\-Writer\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-73 : base(message) \{\}
+30 : base( message ) \{\}
 \end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00076_a511a51bb42dc5bb107eb68f7e5cf5ff1}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\hypertarget{a00076_aedacd3e9a9161a62991cc1d388298a14}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
+\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
+\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
 \begin{DoxyParamCaption}
-\item[{{\bf Token}}]{found\-Token, }
-\item[{params {\bf Token\-Type}\mbox{[}$\,$\mbox{]}}]{expected\-Types}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00076_a511a51bb42dc5bb107eb68f7e5cf5ff1}
+)}}\label{a00076_aedacd3e9a9161a62991cc1d388298a14}
+
+
+Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Csv\-Writer\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-41                                                                                                 \{
-42 
-43             var \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = foundToken.lineNumber+1;
-44 
-45             var expectedTypeNames = \textcolor{keyword}{new} List<String> ();
-46             \textcolor{keywordflow}{foreach} (var type \textcolor{keywordflow}{in} expectedTypes) \{
-47                 expectedTypeNames.Add (type.ToString ());
-48             \}
-49 
-50             \textcolor{keywordtype}{string} possibleValues = string.Join(\textcolor{stringliteral}{","}, expectedTypeNames.ToArray());
-51             \textcolor{keywordtype}{string} message = string.Format(\textcolor{stringliteral}{"Line \{0\}:\{1\}: Expected \{2\}, but found \{3\}"},
-52                                            \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-53                                            foundToken.columnNumber,
-54                                            possibleValues,
-55                                            foundToken.type.ToString()
-56                                            );
-57             var e = \textcolor{keyword}{new} \hyperlink{a00076_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (message);
-58             e.lineNumber = \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-59             \textcolor{keywordflow}{return} e;
-60         \}
+39 : base( message, innerException ) \{ \}
 \end{DoxyCode}
-\hypertarget{a00076_a173f3cabc4741d9d9e016310e90c1c9f}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!Make@{Make}}
-\index{Make@{Make}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{Make}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Parse\-Exception} Yarn.\-Parse\-Exception.\-Make (
+\hypertarget{a00076_ac4ae90ce8433632c2047d4de364effa6}{\index{Csv\-Helper\-::\-Csv\-Writer\-Exception@{Csv\-Helper\-::\-Csv\-Writer\-Exception}!Csv\-Writer\-Exception@{Csv\-Writer\-Exception}}
+\index{Csv\-Writer\-Exception@{Csv\-Writer\-Exception}!CsvHelper::CsvWriterException@{Csv\-Helper\-::\-Csv\-Writer\-Exception}}
+\subsubsection[{Csv\-Writer\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Writer\-Exception.\-Csv\-Writer\-Exception (
 \begin{DoxyParamCaption}
-\item[{{\bf Token}}]{most\-Recent\-Token, }
-\item[{string}]{message}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00076_a173f3cabc4741d9d9e016310e90c1c9f}
+)}}\label{a00076_ac4ae90ce8433632c2047d4de364effa6}
+
+
+Initializes a new instance of the \hyperlink{a00076}{Csv\-Writer\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file Csv\-Writer\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-62                                                                                    \{
-63             var \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber} = mostRecentToken.lineNumber+1;
-64             \textcolor{keywordtype}{string} theMessage = string.Format (\textcolor{stringliteral}{"Line \{0\}:\{1\}: \{2\}"},
-65                                  \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber},
-66                                 mostRecentToken.columnNumber,
-67                                  message);
-68             var e = \textcolor{keyword}{new} \hyperlink{a00076_aa3c4f5c8b0ae86097bbc46044df9f317}{ParseException} (theMessage);
-69             e.lineNumber = \hyperlink{a00076_ab335169367e64fd6d89d58b3ac573751}{lineNumber};
-70             \textcolor{keywordflow}{return} e;
-71         \}
+48 : base( info, context ) \{ \}
 \end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00076_ab335169367e64fd6d89d58b3ac573751}{\index{Yarn\-::\-Parse\-Exception@{Yarn\-::\-Parse\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::ParseException@{Yarn\-::\-Parse\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parse\-Exception.\-line\-Number = 0\hspace{0.3cm}{\ttfamily [package]}}}\label{a00076_ab335169367e64fd6d89d58b3ac573751}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00143}{Parser.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00239}{Csv\-Writer\-Exception.\-cs}\end{DoxyCompactItemize}

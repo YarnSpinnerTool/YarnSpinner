@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Member List</title>
+<title>YarnSpinner: YarnSpinner/YarnSpinnerParser.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,8 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,10 +70,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -88,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('a00084.html','');});
+$(document).ready(function(){initNavTree('a00306.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -96,7 +94,7 @@ $(document).ready(function(){initNavTree('a00084.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,27 +104,42 @@ $(document).ready(function(){initNavTree('a00084.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Parser.ShortcutOption Member List</div>  </div>
+<div class="title">YarnSpinnerParser.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="a00084.html#a31ece7f65af1e43961b68ba0275cdfaf">condition</a></td><td class="entry"><a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr><td class="entry"><a class="el" href="a00084.html#ab43ec731479a56891389f6ece87f5f62">label</a></td><td class="entry"><a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="a00077.html#a580e520a29444fc23ac3660cbe514a09">NodeParent</a>()</td><td class="entry"><a class="el" href="a00077.html">Yarn.Parser.ParseNode</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr><td class="entry"><a class="el" href="a00084.html#a33d667370031f58b054b79a39891c3f3">optionNode</a></td><td class="entry"><a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="a00077.html#a9e7e90bbaed268529230512e4b5a2f77">ParseNode</a>(ParseNode parent, Parser p)</td><td class="entry"><a class="el" href="a00077.html">Yarn.Parser.ParseNode</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr><td class="entry"><a class="el" href="a00084.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2">PrintTree</a>(int indentLevel)</td><td class="entry"><a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a></td><td class="entry"><span class="mlabel">package</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="a00084.html#a2c80b137d65f31b24533987233074605">ShortcutOption</a>(int optionIndex, ParseNode parent, Parser p)</td><td class="entry"><a class="el" href="a00084.html">Yarn.Parser.ShortcutOption</a></td><td class="entry"><span class="mlabel">package</span></td></tr>
-  <tr><td class="entry"><a class="el" href="a00077.html#a18c67cb16090d0889bb9d6c8c6c565f8">ToString</a>()</td><td class="entry"><a class="el" href="a00077.html">Yarn.Parser.ParseNode</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<p><a href="a00306_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:adff82417cdaed8e1b025db27c7c11fc3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00306.html#adff82417cdaed8e1b025db27c7c11fc3">DFA</a> = Antlr4.Runtime.Dfa.DFA</td></tr>
+<tr class="separator:adff82417cdaed8e1b025db27c7c11fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="adff82417cdaed8e1b025db27c7c11fc3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="a00305.html#adff82417cdaed8e1b025db27c7c11fc3">DFA</a> =  Antlr4.Runtime.Dfa.DFA</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00306_source.html#l00031">31</a> of file <a class="el" href="a00306_source.html">YarnSpinnerParser.cs</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:45 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00306.html">YarnSpinnerParser.cs</a></li>
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:00 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

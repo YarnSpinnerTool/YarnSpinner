@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/JsonParser.cs File Reference</title>
+<title>YarnSpinner: Yarn.Dialogue.OptionSetResult Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,8 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,8 +70,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -94,7 +96,7 @@ $(document).ready(function(){initNavTree('a00139.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,61 +107,130 @@ $(document).ready(function(){initNavTree('a00139.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="a00616.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">JsonParser.cs File Reference</div>  </div>
+<div class="title">Yarn.Dialogue.OptionSetResult Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a href="">Go to the source code of this file.</a></p>
+<p>The client should show a list of options, and call setSelectedOptionDelegate before asking for the next line. It's an error if you don't.  
+ <a href="a00139.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Dialogue.OptionSetResult:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00617.png" border="0" usemap="#_yarn_8_dialogue_8_option_set_result_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_dialogue_8_option_set_result_inherit__map" id="_yarn_8_dialogue_8_option_set_result_inherit__map">
+<area shape="rect" id="node2" href="a00150.html" title="Represents something for the end user (&quot;client&quot;) of the Dialogue class to do. " alt="" coords="55,5,157,83"/></map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Dialogue.OptionSetResult:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00618.png" border="0" usemap="#_yarn_8_dialogue_8_option_set_result_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_dialogue_8_option_set_result_coll__map" id="_yarn_8_dialogue_8_option_set_result_coll__map">
+<area shape="rect" id="node2" href="a00150.html" title="Represents something for the end user (&quot;client&quot;) of the Dialogue class to do. " alt="" coords="5,5,107,83"/><area shape="rect" id="node3" href="a00045.html#a00368" title="{Yarn.Options\n|+ options\l|}" alt="" coords="132,5,231,83"/></map>
+</div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html">Json.InvalidJsonException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception raised when <a class="el" href="a00060.html" title="A parser for JSON. http://json.org">JsonParser</a> encounters an invalid token.  <a href="a00059.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00060.html">Json.JsonParser</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A parser for JSON. </p>
-<dl class="section see"><dt>See Also</dt><dd>http://json.org</dd></dl>
- <a href="a00060.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a934c02fb1047ffd05b2b5a9c6fcd7acb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html#a934c02fb1047ffd05b2b5a9c6fcd7acb">OptionSetResult</a> (IList&lt; string &gt; optionStrings, <a class="el" href="a00045.html#a39866cbb03c03a35805d598b5d4ad553">OptionChooser</a> setSelectedOption)</td></tr>
+<tr class="separator:a934c02fb1047ffd05b2b5a9c6fcd7acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:a00151"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00151.html">Json</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a9d0536e3d8d9353112cfd292cc41b236"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236">Json.JsonToken</a> { <br/>
-&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e">Json.JsonToken.Unknown</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f">Json.JsonToken.LeftBrace</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a">Json.JsonToken.RightBrace</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83">Json.JsonToken.Colon</a>, 
-<br/>
-&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6">Json.JsonToken.Comma</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17">Json.JsonToken.LeftBracket</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c">Json.JsonToken.RightBracket</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98">Json.JsonToken.String</a>, 
-<br/>
-&#160;&#160;<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f">Json.JsonToken.Number</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74">Json.JsonToken.True</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c">Json.JsonToken.False</a>, 
-<a class="el" href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94">Json.JsonToken.Null</a>
-<br/>
- }</td></tr>
-<tr class="memdesc:a9d0536e3d8d9353112cfd292cc41b236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible JSON tokens in parsed input.  <a href="a00151.html#a9d0536e3d8d9353112cfd292cc41b236">More...</a><br/></td></tr>
-<tr class="separator:a9d0536e3d8d9353112cfd292cc41b236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:abda9c3047ff9d3c3ec5540566a239315"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00045.html#a00368">Options</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html#abda9c3047ff9d3c3ec5540566a239315">options</a></td></tr>
+<tr class="separator:abda9c3047ff9d3c3ec5540566a239315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2683598cf0f62b76bb864640cc79dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00045.html#a39866cbb03c03a35805d598b5d4ad553">OptionChooser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html#a6f2683598cf0f62b76bb864640cc79dd">setSelectedOptionDelegate</a></td></tr>
+<tr class="separator:a6f2683598cf0f62b76bb864640cc79dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The client should show a list of options, and call setSelectedOptionDelegate before asking for the next line. It's an error if you don't. </p>
+
+<p>Definition at line <a class="el" href="a00296_source.html#l00162">162</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a934c02fb1047ffd05b2b5a9c6fcd7acb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Yarn.Dialogue.OptionSetResult.OptionSetResult </td>
+          <td>(</td>
+          <td class="paramtype">IList&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>optionStrings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00045.html#a39866cbb03c03a35805d598b5d4ad553">OptionChooser</a>&#160;</td>
+          <td class="paramname"><em>setSelectedOption</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00296_source.html#l00166">166</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
+
+<p>References <a class="el" href="a00296_source.html#l00163">Yarn.Dialogue.OptionSetResult.options</a>.</p>
+<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                                                                                                  {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                var <a class="code" href="a00139.html#abda9c3047ff9d3c3ec5540566a239315">options</a> = <span class="keyword">new</span> Options();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                options.options = optionStrings;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                this.options = <a class="code" href="a00139.html#abda9c3047ff9d3c3ec5540566a239315">options</a>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                this.setSelectedOptionDelegate = setSelectedOption;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            }</div>
+<div class="ttc" id="a00139_html_abda9c3047ff9d3c3ec5540566a239315"><div class="ttname"><a href="a00139.html#abda9c3047ff9d3c3ec5540566a239315">Yarn.Dialogue.OptionSetResult.options</a></div><div class="ttdeci">Options options</div><div class="ttdef"><b>Definition:</b> <a href="a00296_source.html#l00163">Dialogue.cs:163</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="abda9c3047ff9d3c3ec5540566a239315"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00045.html#a00368">Options</a> Yarn.Dialogue.OptionSetResult.options</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00296_source.html#l00163">163</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00296_source.html#l00166">Yarn.Dialogue.OptionSetResult.OptionSetResult()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f2683598cf0f62b76bb864640cc79dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00045.html#a39866cbb03c03a35805d598b5d4ad553">OptionChooser</a> Yarn.Dialogue.OptionSetResult.setSelectedOptionDelegate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00296_source.html#l00164">164</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00296_source.html">Dialogue.cs</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00139.html">JsonParser.cs</a></li>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:44 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00086.html">Dialogue</a></li><li class="navelem"><a class="el" href="a00139.html">OptionSetResult</a></li>
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:02 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

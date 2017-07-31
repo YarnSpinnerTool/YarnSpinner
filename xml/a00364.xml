@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00364" kind="class" prot="public">
+    <compoundname>ExampleVariableStorage::DefaultVariable</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00364_1a609feaa53936e7dc42248ff2ba68454a" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ExampleVariableStorage.DefaultVariable.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+<para>Name of the variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00364_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ExampleVariableStorage.DefaultVariable.value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+<para>Value of the variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00364_1a904347efdca12f40243c7dedb646153d" prot="public" static="no" mutable="no">
+        <type><ref refid="a00181_1ad5aaf60ee4504608fcc2ffadefa14884" kindref="member">Yarn.Value.Type</ref></type>
+        <definition>Yarn.Value.Type ExampleVariableStorage.DefaultVariable.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+<para>Type of the variable. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="50" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A default value to apply when the object wakes up, or when ResetToDefaults is called. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1248">
+        <label>ExampleVariableStorage.DefaultVariable</label>
+        <link refid="a00364"/>
+        <childnode refid="1249" relation="usage">
+          <edgelabel>+type</edgelabel>
+        </childnode>
+      </node>
+      <node id="1249">
+        <label>Yarn</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="43" bodyend="51"/>
+    <listofallmembers>
+      <member refid="a00364_1a609feaa53936e7dc42248ff2ba68454a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>name</name></member>
+      <member refid="a00364_1a904347efdca12f40243c7dedb646153d" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>type</name></member>
+      <member refid="a00364_1a0f00ecb21b58aa754a4bbb61edf62818" prot="public" virt="non-virtual"><scope>ExampleVariableStorage::DefaultVariable</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

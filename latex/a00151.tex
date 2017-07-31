@@ -1,91 +1,160 @@
-\hypertarget{a00151}{\section{Package Json}
-\label{a00151}\index{Json@{Json}}
+\hypertarget{a00151}{\section{Yarn.\-Run\-Options Class Reference}
+\label{a00151}\index{Yarn.\-Run\-Options@{Yarn.\-Run\-Options}}
 }
-\subsection*{Classes}
+
+
+Inheritance diagram for Yarn.\-Run\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{a00729}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Run\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{a00730}
+\end{center}
+\end{figure}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00059}{Invalid\-Json\-Exception}
-\begin{DoxyCompactList}\small\item\em Exception raised when \hyperlink{a00060}{Json\-Parser} encounters an invalid token. \end{DoxyCompactList}\item 
-class \hyperlink{a00060}{Json\-Parser}
-\begin{DoxyCompactList}\small\item\em A parser for J\-S\-O\-N. \begin{DoxySeeAlso}{See Also}
-http\-://json.\-org
-
-
-\end{DoxySeeAlso}
-\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Enumerations}
-\begin{DoxyCompactItemize}
+bool \hyperlink{a00151_a4b385e83338d14947c4d840d2d1ee266}{wait\-For\-Input}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-enum \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236}{Json\-Token} \{ \\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e}{Json\-Token.\-Unknown}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f}{Json\-Token.\-Left\-Brace}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a}{Json\-Token.\-Right\-Brace}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83}{Json\-Token.\-Colon}, 
-\\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6}{Json\-Token.\-Comma}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17}{Json\-Token.\-Left\-Bracket}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c}{Json\-Token.\-Right\-Bracket}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98}{Json\-Token.\-String}, 
-\\*
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f}{Json\-Token.\-Number}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74}{Json\-Token.\-True}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c}{Json\-Token.\-False}, 
-\hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94}{Json\-Token.\-Null}
- \}
-\begin{DoxyCompactList}\small\item\em Possible J\-S\-O\-N tokens in parsed input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}{start\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00151_a2222c73ce5366b02490c6123b711f596}{variables}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00151_a525bb1890b29f86002c2f163ace4a3d8}{run\-Times}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00151_ae21d271c37dabee023771a951f6e774e}{automatically\-Select\-First\-Option}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00097_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00097_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00097_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00035_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
 
 
-\subsection{Enumeration Type Documentation}
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236}{\index{Json@{Json}!Json\-Token@{Json\-Token}}
-\index{Json\-Token@{Json\-Token}!Json@{Json}}
-\subsubsection[{Json\-Token}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Json.\-Json\-Token}}}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236}
+\subsection{Detailed Description}
 
 
-Possible J\-S\-O\-N tokens in parsed input. 
+Definition at line 81 of file Main.\-cs.
 
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Unknown@{Unknown}!Json@{Json}}\index{Json@{Json}!Unknown@{Unknown}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e}
-}]\index{Left\-Brace@{Left\-Brace}!Json@{Json}}\index{Json@{Json}!Left\-Brace@{Left\-Brace}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f}{Left\-Brace}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f}
-}]\index{Right\-Brace@{Right\-Brace}!Json@{Json}}\index{Json@{Json}!Right\-Brace@{Right\-Brace}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a}{Right\-Brace}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a}
-}]\index{Colon@{Colon}!Json@{Json}}\index{Json@{Json}!Colon@{Colon}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83}{Colon}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83}
-}]\index{Comma@{Comma}!Json@{Json}}\index{Json@{Json}!Comma@{Comma}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6}{Comma}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6}
-}]\index{Left\-Bracket@{Left\-Bracket}!Json@{Json}}\index{Json@{Json}!Left\-Bracket@{Left\-Bracket}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17}{Left\-Bracket}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17}
-}]\index{Right\-Bracket@{Right\-Bracket}!Json@{Json}}\index{Json@{Json}!Right\-Bracket@{Right\-Bracket}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c}{Right\-Bracket}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c}
-}]\index{String@{String}!Json@{Json}}\index{Json@{Json}!String@{String}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98}{String}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98}
-}]\index{Number@{Number}!Json@{Json}}\index{Json@{Json}!Number@{Number}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f}{Number}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f}
-}]\index{True@{True}!Json@{Json}}\index{Json@{Json}!True@{True}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74}{True}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74}
-}]\index{False@{False}!Json@{Json}}\index{Json@{Json}!False@{False}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c}{False}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c}
-}]\index{Null@{Null}!Json@{Json}}\index{Json@{Json}!Null@{Null}}\item[{\em 
-\hypertarget{a00151_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94}{Null}\label{a00151_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94}
-}]\end{description}
-\end{Desc}
 
-\begin{DoxyCode}
-23     \{
-24         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown},
-25         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a9a590bb59f32c0c4689f171f92dfbe8f}{LeftBrace},
-26         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af6b8627fb24d257c2eb8509a4094803a}{RightBrace},
-27         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a3ccf74d463f8895cef06727cb9709d83}{Colon},
-28         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a58be47db9455679e6a44df2eff9c9fa6}{Comma},
-29         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a481c09f513474b2d31ba5c2992947b17}{LeftBracket},
-30         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a455364d8991395f71ef9ccc5cc449e5c}{RightBracket},
-31         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236a27118326006d3829667a400ad23d5d98}{String},
-32         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236ab2ee912b91d69b435159c7c3f6df7f5f}{Number},
-33         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af827cf462f62848df37c5e1e94a4da74}{True},
-34         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236af8320b26d30ab433c5a54546d21f414c}{False},
-35         \hyperlink{a00151_a9d0536e3d8d9353112cfd292cc41b236abbb93ef26e3c101ff11cdd21cab08a94}{Null}
-36     \}
-\end{DoxyCode}
+
+\subsection{Property Documentation}
+\hypertarget{a00151_ae21d271c37dabee023771a951f6e774e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}}
+\index{automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{automatically\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-automatically\-Select\-First\-Option\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_ae21d271c37dabee023771a951f6e774e}
+
+
+Definition at line 97 of file Main.\-cs.
+
+\hypertarget{a00097_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!experimental@{experimental}}
+\index{experimental@{experimental}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_ad97950e47ce2aaeb598295b7c3c44b13}
+
+
+Definition at line 61 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!files@{files}}
+\index{files@{files}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_aa93cbb1bc1d5328e0a417012621e92d2}
+
+
+Definition at line 47 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
+
+\hypertarget{a00097_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
+\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_af4c0062a1d46281d377f87084fde374e}
+
+
+Definition at line 59 of file Main.\-cs.
+
+\hypertarget{a00151_a525bb1890b29f86002c2f163ace4a3d8}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!run\-Times@{run\-Times}}
+\index{run\-Times@{run\-Times}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{run\-Times}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Run\-Options.\-run\-Times\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a525bb1890b29f86002c2f163ace4a3d8}
+
+
+Definition at line 94 of file Main.\-cs.
+
+\hypertarget{a00035_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_a89964ea17bd19caf00cb5bff563ed01c}
+
+
+Definition at line 40 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!start\-Node@{start\-Node}}
+\index{start\-Node@{start\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Run\-Options.\-start\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}
+
+
+Definition at line 88 of file Main.\-cs.
+
+\hypertarget{a00097_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!string\-Table@{string\-Table}}
+\index{string\-Table@{string\-Table}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_a7e43c3b73722956cb0f5d507e4eef527}
+
+
+Definition at line 55 of file Main.\-cs.
+
+\hypertarget{a00151_a2222c73ce5366b02490c6123b711f596}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!variables@{variables}}
+\index{variables@{variables}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Run\-Options.\-variables\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a2222c73ce5366b02490c6123b711f596}
+
+
+Definition at line 91 of file Main.\-cs.
+
+\hypertarget{a00035_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 44 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+
+\hypertarget{a00151_a4b385e83338d14947c4d840d2d1ee266}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!wait\-For\-Input@{wait\-For\-Input}}
+\index{wait\-For\-Input@{wait\-For\-Input}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{wait\-For\-Input}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-wait\-For\-Input\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a4b385e83338d14947c4d840d2d1ee266}
+
+
+Definition at line 85 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner\-Console/\hyperlink{a00313}{Main.\-cs}\end{DoxyCompactItemize}

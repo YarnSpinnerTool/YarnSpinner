@@ -1,8 +1,10 @@
 var a00107 =
 [
-    [ "EditorTest", "a00107.html#a60ab8ed8dc30ec30e74baa1916d47324", null ],
-    [ "SetUp", "a00107.html#ad6e4c6a92bb5ed6187949264df6aaf1b", null ],
-    [ "dialogueRunner", "a00107.html#a9791840e0b5987e5bd09bce83ce2d8d9", null ],
-    [ "dialogueUI", "a00107.html#aace025d2a9a703154a1989c47b0a0737", null ],
-    [ "variableStorage", "a00107.html#a27dbc8c3f7f23ce142d1d5d1fd3df8bc", null ]
+    [ "Read", "a00107.html#a411461b4cd33dce0b42c81715359f687", null ],
+    [ "BytePosition", "a00107.html#a23dee37412eeb387df1d336e7bf07cc2", null ],
+    [ "CharPosition", "a00107.html#aa47c7ce6c764dddc78bb4d3ee83714eb", null ],
+    [ "Configuration", "a00107.html#af1303d18a827bf46a56f9cb6ba05ed64", null ],
+    [ "FieldCount", "a00107.html#a50c0428defc2ada782c6863d72a990e4", null ],
+    [ "RawRecord", "a00107.html#a1b238e3bb053f2f6c122ee0d77bb48d7", null ],
+    [ "Row", "a00107.html#a0ec83f976594f51a002448fa2fe2e392", null ]
 ];

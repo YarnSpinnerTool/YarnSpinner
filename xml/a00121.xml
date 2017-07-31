@@ -1,44 +1,265 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00121" kind="file">
-    <compoundname>YarnSpinner-with-Unity-QuickStart.md</compoundname>
+  <compounddef id="a00121" kind="class" prot="package">
+    <compoundname>Yarn::Lexer</compoundname>
+    <innerclass refid="a00122" prot="package">Yarn::Lexer::LexerState</innerclass>
+    <innerclass refid="a00170" prot="package">Yarn::Lexer::TokenRule</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00121_1a29c457125cc4876f8571f5d9afa372e2" prot="private" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Yarn.Lexer.LINE_COMMENT</definition>
+        <argsstring></argsstring>
+        <name>LINE_COMMENT</name>
+        <initializer>= &quot;//&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="304" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="304" bodyend="-1"/>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00121_1a2c65c0ba90f973e459583badefef216a" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00122" kindref="compound">LexerState</ref> &gt;</type>
+        <definition>Dictionary&lt;string, LexerState&gt; Yarn.Lexer.states</definition>
+        <argsstring></argsstring>
+        <name>states</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="306" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="306" bodyend="-1"/>
+        <referencedby refid="a00121_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00298" startline="321" endline="464">Yarn.Lexer.CreateStates</referencedby>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00121_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" static="no" mutable="no">
+        <type><ref refid="a00122" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.defaultState</definition>
+        <argsstring></argsstring>
+        <name>defaultState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="308" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="308" bodyend="-1"/>
+        <referencedby refid="a00121_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00298" startline="321" endline="464">Yarn.Lexer.CreateStates</referencedby>
+        <referencedby refid="a00121_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00298" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00121_1ac90b7dce8103425a148f9e8588f14137" prot="private" static="no" mutable="no">
+        <type><ref refid="a00122" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.currentState</definition>
+        <argsstring></argsstring>
+        <name>currentState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="309" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="309" bodyend="-1"/>
+        <referencedby refid="a00121_1ad3ef08f822b310d9864774b057b96995" compoundref="a00298" startline="672" endline="677">Yarn.Lexer.EnterState</referencedby>
+        <referencedby refid="a00121_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00298" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00121_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" static="no" mutable="no">
+        <type>Stack&lt; KeyValuePair&lt; int, bool &gt; &gt;</type>
+        <definition>Stack&lt;KeyValuePair&lt;int,bool&gt; &gt; Yarn.Lexer.indentationStack</definition>
+        <argsstring></argsstring>
+        <name>indentationStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="313" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="313" bodyend="-1"/>
+        <referencedby refid="a00121_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00298" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00121_1ac670aac2245cbd4694dfbd5b69313218" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.shouldTrackNextIndentation</definition>
+        <argsstring></argsstring>
+        <name>shouldTrackNextIndentation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="314" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="314" bodyend="-1"/>
+        <referencedby refid="a00121_1ad3ef08f822b310d9864774b057b96995" compoundref="a00298" startline="672" endline="677">Yarn.Lexer.EnterState</referencedby>
+        <referencedby refid="a00121_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00298" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00121_1a4bf394bcf675142f33c90541be7dd571" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.Lexer</definition>
+        <argsstring>()</argsstring>
+        <name>Lexer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="316" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="316" bodyend="319"/>
+        <references refid="a00121_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00298" startline="321" endline="464">Yarn.Lexer.CreateStates</references>
+      </memberdef>
+      <memberdef kind="function" id="a00121_1a6a09f1bb13f28acd95fd081954b45437" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00169" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.Tokenise</definition>
+        <argsstring>(string title, string text)</argsstring>
+        <name>Tokenise</name>
+        <param>
+          <type>string</type>
+          <declname>title</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="466" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="466" bodyend="494"/>
+        <references refid="a00121_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00298" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00121_1a16b5dbf27a377cde5e8ba0eaa05b5710" compoundref="a00298" startline="308">Yarn.Lexer.defaultState</references>
+        <references refid="a00121_1a6631a1b1a9109258ab18927e7587ff9b" compoundref="a00298" startline="313">Yarn.Lexer.indentationStack</references>
+        <references refid="a00121_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00298" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00121_1a646081a52b241abaafe5e0cfaeafd751" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.CreateStates</definition>
+        <argsstring>()</argsstring>
+        <name>CreateStates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="321" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="321" bodyend="464"/>
+        <references refid="a00121_1a16b5dbf27a377cde5e8ba0eaa05b5710" compoundref="a00298" startline="308">Yarn.Lexer.defaultState</references>
+        <references refid="a00121_1a2c65c0ba90f973e459583badefef216a" compoundref="a00298" startline="306">Yarn.Lexer.states</references>
+        <referencedby refid="a00121_1a4bf394bcf675142f33c90541be7dd571" compoundref="a00298" startline="316" endline="319">Yarn.Lexer.Lexer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00169" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.TokeniseLine</definition>
+        <argsstring>(string line, int lineNumber)</argsstring>
+        <name>TokeniseLine</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="496" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="496" bodyend="658"/>
+        <references refid="a00121_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00298" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00121_1ad3ef08f822b310d9864774b057b96995" compoundref="a00298" startline="672" endline="677">Yarn.Lexer.EnterState</references>
+        <references refid="a00121_1a6631a1b1a9109258ab18927e7587ff9b" compoundref="a00298" startline="313">Yarn.Lexer.indentationStack</references>
+        <references refid="a00121_1a29c457125cc4876f8571f5d9afa372e2" compoundref="a00298" startline="304">Yarn.Lexer.LINE_COMMENT</references>
+        <references refid="a00121_1a4079b10b099e5d85f5482f9e7eac4179" compoundref="a00298" startline="660" endline="670">Yarn.Lexer.LineIndentation</references>
+        <references refid="a00336_1ade44b858578c3eab7b6f90030a0e3ea1" compoundref="a00194" startline="52">preprocessor.previousIndentation</references>
+        <references refid="a00121_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00298" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
+        <references refid="a00121_1a2c65c0ba90f973e459583badefef216a" compoundref="a00298" startline="306">Yarn.Lexer.states</references>
+        <references refid="a00336_1a0e59365a4aa5811f6495b92a51e23573" compoundref="a00194" startline="47">preprocessor.thisIndentation</references>
+        <references refid="a00122_1adf6563b1dc6f3ef80ed13c2b15b7be03" compoundref="a00298" startline="224">Yarn.Lexer.LexerState.tokenRules</references>
+        <references refid="a00336_1a8b7e5c0b2c6870eaa8f9454b4f33678b" compoundref="a00194" startline="70">preprocessor.topLevel</references>
+      </memberdef>
+      <memberdef kind="function" id="a00121_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Yarn.Lexer.LineIndentation</definition>
+        <argsstring>(string line)</argsstring>
+        <name>LineIndentation</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="660" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="660" bodyend="670"/>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00121_1ad3ef08f822b310d9864774b057b96995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.EnterState</definition>
+        <argsstring>(LexerState state)</argsstring>
+        <name>EnterState</name>
+        <param>
+          <type><ref refid="a00122" kindref="compound">LexerState</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="672" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="672" bodyend="677"/>
+        <references refid="a00121_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00298" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00122_1ad8b6ccac53bedd9dc202ffe6ac5698b2" compoundref="a00298" startline="275">Yarn.Lexer.LexerState.setTrackNextIndentation</references>
+        <references refid="a00121_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00298" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
+        <referencedby refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00298" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Quickstart<sp/>to<sp/>Using<sp/>Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity<sp/>game</highlight></codeline>
-<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
-<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicate<sp/>actions<sp/>(Select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc.)**</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis***</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
-<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>a<sp/>little<sp/>bit<sp/>about<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com).<sp/>In<sp/>particular,<sp/>it<sp/>is<sp/>helpful<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>get<sp/>around<sp/>the<sp/>Unity<sp/>editor,<sp/>how<sp/>to<sp/>work<sp/>with<sp/>game<sp/>objects,<sp/>and<sp/>how<sp/>to<sp/>write<sp/>scripts<sp/>in<sp/>C#.<sp/>If<sp/>you<sp/>don&apos;t<sp/>know<sp/>these<sp/>things,<sp/>please<sp/>refer<sp/>to<sp/>[Unity&apos;s<sp/>documentation](http://unity3d.com/learn).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Yarn<sp/>Spinner<sp/>Quick<sp/>Start</highlight></codeline>
-<codeline lineno="20"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">Here</highlight><highlight class="stringliteral">&apos;s<sp/>how<sp/>to<sp/>quickly<sp/>jump<sp/>in<sp/>to<sp/>Yarn<sp/>Spinner<sp/>if<sp/>you&apos;</highlight><highlight class="normal">re<sp/>already<sp/>familiar<sp/>with<sp/>Unity.</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">*<sp/>**Download**<sp/>[the<sp/>YarnSpinner<sp/>package](https:</highlight><highlight class="comment">//github.com/thesecretlab/YarnSpinner/releases)<sp/>into<sp/>your<sp/>Unity<sp/>project.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">*<sp/>**Import**<sp/>the<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">into<sp/>your<sp/>project.</highlight></codeline>
-<codeline lineno="25"><highlight class="normal">*<sp/>Inside<sp/>the<sp/>YarnSpinner<sp/>folder,<sp/>**open<sp/>the<sp/>`Examples/Yarn<sp/>Spinner<sp/>Basic<sp/>Example`<sp/>scene.**</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">*<sp/>**Start<sp/>the<sp/>game.**</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">*<sp/>**Play<sp/>through<sp/>the<sp/>dialogue.**</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal">Once<sp/>you&apos;ve<sp/>played<sp/>with<sp/>it,<sp/>open<sp/>the<sp/>Example<sp/>Script<sp/>file<sp/>in<sp/>the<sp/>[Yarn<sp/>Editor](http:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn),<sp/>(it&apos;s<sp/>in<sp/>the<sp/>`Examples/Demo<sp/>Assets`<sp/>folder),<sp/>and<sp/>make<sp/>some<sp/>changes<sp/>to<sp/>the<sp/>script.<sp/>Once<sp/>you&apos;ve<sp/>done<sp/>that,<sp/>take<sp/>a<sp/>look<sp/>at<sp/>how<sp/>`Code/DialogueRunner.cs`,<sp/>`Examples/Demo<sp/>Scripts/ExampleDialogueUI.cs`<sp/>and<sp/>`Examples/Demo<sp/>Scripts/ExampleVariableStorage.cs`<sp/>work.<sp/>You<sp/>can<sp/>also<sp/>[add<sp/>your<sp/>own<sp/>functions<sp/>to<sp/>Yarn](Extending.md).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
-    </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md"/>
+    <collaborationgraph>
+      <node id="1486">
+        <label>Yarn.Lexer.LexerState</label>
+        <link refid="a00122"/>
+      </node>
+      <node id="1485">
+        <label>Yarn.Lexer</label>
+        <link refid="a00121"/>
+        <childnode refid="1486" relation="usage">
+          <edgelabel>-currentState</edgelabel>
+          <edgelabel>-defaultState</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="211" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="211" bodyend="679"/>
+    <listofallmembers>
+      <member refid="a00121_1a646081a52b241abaafe5e0cfaeafd751" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>CreateStates</name></member>
+      <member refid="a00121_1ac90b7dce8103425a148f9e8588f14137" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>currentState</name></member>
+      <member refid="a00121_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>defaultState</name></member>
+      <member refid="a00121_1ad3ef08f822b310d9864774b057b96995" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>EnterState</name></member>
+      <member refid="a00121_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>indentationStack</name></member>
+      <member refid="a00121_1a4bf394bcf675142f33c90541be7dd571" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Lexer</name></member>
+      <member refid="a00121_1a29c457125cc4876f8571f5d9afa372e2" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LINE_COMMENT</name></member>
+      <member refid="a00121_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LineIndentation</name></member>
+      <member refid="a00121_1ac670aac2245cbd4694dfbd5b69313218" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>shouldTrackNextIndentation</name></member>
+      <member refid="a00121_1a2c65c0ba90f973e459583badefef216a" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>states</name></member>
+      <member refid="a00121_1a6a09f1bb13f28acd95fd081954b45437" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Tokenise</name></member>
+      <member refid="a00121_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>TokeniseLine</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

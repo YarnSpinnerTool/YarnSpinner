@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00205" kind="file">
+    <compoundname>Localization.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>LOCALIZATION</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal">Yarn<sp/>Spinner<sp/>provides<sp/>tools<sp/>to<sp/>help<sp/>convert<sp/>your<sp/>game<sp/>in<sp/>to<sp/>any<sp/>language<sp/>you<sp/>like.<sp/>This<sp/>is<sp/>achieved<sp/>by<sp/>usage<sp/>of<sp/>the<sp/>[YarnSpinnerConsole](../YarnSpinnerConsole)<sp/>tool.<sp/>At<sp/>the<sp/>moment,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>tool<sp/>is<sp/>not<sp/>available<sp/>standalone<sp/>and<sp/>needs<sp/>to<sp/>be<sp/>[built<sp/>from<sp/>source](../YarnSpinner-Programming/Building.md).</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">##<sp/>Localisation<sp/>procedure</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">1.<sp/>We<sp/>first<sp/>use<sp/>the<sp/>tool<sp/>to<sp/>place<sp/>unique<sp/>**taglines**<sp/>on<sp/>each<sp/>line<sp/>of<sp/>text<sp/>that<sp/>the<sp/>end<sp/>user<sp/>will<sp/>see.<sp/>To<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>we<sp/>execute<sp/>the<sp/>tool<sp/>with<sp/>the<sp/>**taglines**<sp/>command,<sp/>eg:<sp/><sp/>`YarnSpinnerConsole.exe<sp/>taglines<sp/>MyYarnFile.yarn.txt`.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">2.<sp/>Next,<sp/>we<sp/>use<sp/>the<sp/>tool<sp/>to<sp/>generate<sp/>a<sp/>file<sp/>of<sp/>strings<sp/>(**genstrings**)<sp/>in<sp/>&apos;[comma<sp/>separated<sp/>value](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Comma-separated_values)&apos;<sp/>(csv)<sp/>format.<sp/>`YarnSpinnerConsole.exe<sp/>genstrings<sp/>MyYarnFile.yarn.txt`<sp/>will<sp/>generate<sp/>a<sp/>file,<sp/>(in<sp/>this<sp/>example<sp/>MyYarnFIle.yarn_lines.csv),<sp/>that<sp/>can<sp/>then<sp/>distributed<sp/>to<sp/>translators.<sp/>It<sp/>is<sp/>recommended<sp/>that<sp/>this<sp/>file<sp/>first<sp/>be<sp/>renamed<sp/>using<sp/>a<sp/>language<sp/>identifier<sp/>before<sp/>distribution,<sp/>eg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>MyYarnFIle.yarn_lines.enAU.csv</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>MyYarnFIle.yarn_lines.ptTL.csv</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">3.<sp/>When<sp/>the<sp/>file<sp/>is<sp/>returned<sp/>from<sp/>translators,<sp/>we<sp/>then<sp/>use<sp/>Yarn<sp/>Spinner&apos;s<sp/>DialogueRunner<sp/>inside<sp/>Unity<sp/>to<sp/>set<sp/>String<sp/>Groups<sp/>for<sp/>the<sp/>required<sp/>language.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">&lt;!--<sp/>Placeholder<sp/>for<sp/>image<sp/>of<sp/>DialogueRunner<sp/>--&gt;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Footnotes</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal">*<sp/>While<sp/>not<sp/>essential<sp/>that<sp/>all<sp/>files<sp/>follow<sp/>a<sp/>standard,<sp/>but<sp/>highly<sp/>recommended<sp/>that<sp/>consistency<sp/>of<sp/>format<sp/>be<sp/>used<sp/>across<sp/>all<sp/>localisation<sp/>files<sp/>within<sp/>a<sp/>project<sp/>eg<sp/>[ISO-15897](https:</highlight><highlight class="comment">//www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">*<sp/>Originally,<sp/>Yarn<sp/>Spinner<sp/>used<sp/>.json<sp/>format.<sp/>The<sp/>Yarn<sp/>Spinner<sp/>Console<sp/>can<sp/>convert<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>json<sp/>format<sp/>to<sp/>the<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>improved<sp/>text<sp/>format:<sp/>`YarnSpinnerConsole.exe<sp/>convert<sp/>--yarn<sp/>Ship.json`</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">*<sp/>Command<sp/>reference<sp/>is<sp/>available<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>YarnSpinnerConsole.exe<sp/>by<sp/>either<sp/>running<sp/>it<sp/>with<sp/>no<sp/>arguments<sp/>or<sp/>by<sp/>utilising<sp/>the<sp/>help<sp/>command<sp/>(`YarnSpinnerConsole.exe<sp/>help`).<sp/>Help<sp/></highlight><highlight class="keywordflow">for<sp/>each</highlight><highlight class="normal"><sp/>command<sp/>is<sp/>available<sp/>by<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&apos;help<sp/>command&apos;</highlight><highlight class="normal"><sp/>(eg<sp/>`YarnSpinnderConsole.exe<sp/>help<sp/>compile`)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Localization.md"/>
+  </compounddef>
+</doxygen>

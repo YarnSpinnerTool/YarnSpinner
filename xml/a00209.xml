@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00209" kind="file">
+    <compoundname>Building.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Building<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">&gt;<sp/>***Important:***<sp/>This<sp/>document<sp/>only<sp/>matters<sp/>to<sp/>you<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>want<sp/>to<sp/>build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.<sp/>In<sp/>almost<sp/>all<sp/>cases,<sp/>you</highlight><highlight class="stringliteral">&apos;ll<sp/>be<sp/>totally<sp/>fine<sp/>with<sp/>[downloading<sp/>a<sp/>build](https://github.com/thesecretlab/YarnSpinner/releases),<sp/>and<sp/>using<sp/>that<sp/>in<sp/>your<sp/>project.</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">##<sp/>Windows<sp/>and<sp/>Mac<sp/>using<sp/>MonoDevelop</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Windows<sp/>or<sp/>Mac,<sp/>you&apos;</highlight><highlight class="normal">ll<sp/>need<sp/>MonoDevelop.<sp/>You<sp/>can<sp/>[download<sp/>MonoDevelop<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>OS<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http:</highlight><highlight class="comment">//www.monodevelop.com/download/).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Linux</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"></highlight><highlight class="normal">To<sp/>build<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Linux,<sp/>you<sp/>can<sp/>either</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">*<sp/>use<sp/>[xbuild](http:</highlight><highlight class="comment">//www.mono-project.com/docs/tools+libraries/tools/xbuild/)<sp/>and<sp/>[nuget](http://www.nuget.org).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">*<sp/>Then<sp/>ensure<sp/>you<sp/>have<sp/>the<sp/>correct<sp/>packages<sp/>installed<sp/>by<sp/>nuget,<sp/>`nuget<sp/>restore<sp/>YarnSpinner.sln`.</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">*<sp/>See<sp/>the<sp/>[build.sh](../../build.sh)<sp/>script<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>further<sp/>information<sp/>on<sp/>how<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mono<sp/>to<sp/>build.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">or</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">*<sp/>use<sp/>[Flatpak](http:</highlight><highlight class="comment">//flatpak.org/getting.html),<sp/>you<sp/>can<sp/>[download<sp/>MonoDevelop<sp/>from<sp/>the<sp/>MonoDevelop<sp/>site](http://www.monodevelop.com/download/linux/).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">##<sp/>Using<sp/>MonoDevelop</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">*<sp/>Open<sp/>**YarnSpinner.sln**.</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">*<sp/>Open<sp/>the<sp/>**Build<sp/>menu**,<sp/>and<sp/>choose<sp/>**Build<sp/>All**.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">*<sp/>Open<sp/>the<sp/>**Unity/Assets/Yarn<sp/>Spinner**<sp/>folder.<sp/>You</highlight><highlight class="stringliteral">&apos;ll<sp/>find<sp/>a<sp/>copy<sp/>of<sp/>**YarnSpinner.dll**<sp/>there.</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral">*<sp/>Copy<sp/>that<sp/>DLL<sp/>file<sp/>wherever<sp/>you<sp/>need<sp/>it.</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral">##<sp/>Building<sp/>Documentation</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>uses<sp/>[Doxygen](https://www.stack.nl/~dimitri/doxygen)<sp/>to<sp/>generate<sp/>[DocBook](http://docbook.org/),<sp/>[HTML](https://en.wikipedia.org/wiki/HTML),<sp/>[LaTeX](https://www.latex-project.org/help/documentation/),<sp/>[RTF](https://en.wikipedia.org/wiki/Rich_Text_Format),<sp/>and<sp/>[XML](https://en.wikipedia.org/wiki/XML)<sp/>documentation.<sp/>[GNU<sp/>GLOBAL](https://www.gnu.org/software/global/)<sp/>is<sp/>also<sp/>used.</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">Basic<sp/>steps<sp/>to<sp/>clean<sp/>out<sp/>existing<sp/>documentation,<sp/>generate<sp/>new<sp/>documentation<sp/>and<sp/>check<sp/>the<sp/>new<sp/>documentation<sp/>for<sp/>generation<sp/>errors.<sp/>Note<sp/>that<sp/>some<sp/>ocurrences<sp/>of<sp/>the<sp/>word<sp/>&apos;</highlight><highlight class="normal">error</highlight><highlight class="stringliteral">&apos;<sp/>will<sp/>be<sp/>due<sp/>to<sp/>classes/methods<sp/>etc.<sp/>of<sp/>YarnSpinner<sp/>itself<sp/>and<sp/>not<sp/>an<sp/>actual<sp/>error<sp/>in<sp/>the<sp/>documentation.</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral">rm<sp/>-fr<sp/>Documentation/{docbook,html,latex,rtf,xml}</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral">doxygen<sp/>Documentation/Doxyfile<sp/>&gt;<sp/>doxyoutput.txt<sp/>2&gt;&amp;1</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral">grep<sp/>-i<sp/>error<sp/>doxyoutput.txt</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral">[MarkDown](https://daringfireball.net/projects/markdown/)<sp/>documentation<sp/>is<sp/>available<sp/>via<sp/>conversion<sp/>of<sp/>the<sp/>XML<sp/>output<sp/>to<sp/>Markdown<sp/>using<sp/>third<sp/>party<sp/>tools<sp/>such<sp/>as<sp/>[Pandoc](http://pandoc.org)<sp/>or<sp/>[doxygen2md](https://github.com/pferdinand/doxygen2md)</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Programming/Building.md"/>
+  </compounddef>
+</doxygen>

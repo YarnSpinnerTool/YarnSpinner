@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['severity',['Severity',['../a00049.html#a227813cbc8fa03c3448a612ffc909d1c',1,'Yarn::Analysis::Diagnosis']]],
-  ['state',['State',['../a00038.html#ab24848d7951ce44eb3c7768c6ee10385',1,'Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult']]]
+  ['nodeformat',['NodeFormat',['../a00045.html#ad7ebb46e7309ead8767383a672b3272f',1,'Yarn']]]
 ];

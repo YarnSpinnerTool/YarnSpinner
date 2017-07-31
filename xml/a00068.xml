@@ -1,187 +1,220 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00068" kind="class" prot="package">
-    <compoundname>Yarn::Parser::Node</compoundname>
-    <basecompoundref refid="a00077" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00068_1a3cfa07840da3a7a92c820788e902aefb" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Parser.Node.name</definition>
-        <argsstring></argsstring>
-        <name>name</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="135" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00068_1a005a6b0f614beb77708fc5ce8fea66e1" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Parser.Node.source</definition>
-        <argsstring></argsstring>
-        <name>source</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="137" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="137" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00068_1abdae3fb1c6927b38ce29b1b71a00cb12" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>IEnumerable&lt; <ref refid="a00090" kindref="compound">Statement</ref> &gt;</type>
-        <definition>IEnumerable&lt;Statement&gt; Yarn.Parser.Node.statements</definition>
-        <argsstring></argsstring>
-        <name>statements</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="140" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="140" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00068" kind="class" prot="public">
+    <compoundname>CsvHelper::Configuration::CsvPropertyNameCollection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEnumerable&lt; string &gt;</basecompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00068_1ae910a20906be9b1964499efaefa48274" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00090" kindref="compound">Statement</ref> &gt;</type>
-        <definition>List&lt;Statement&gt; Yarn.Parser.Node._statements</definition>
+      <memberdef kind="variable" id="a00068_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; string &gt;</type>
+        <definition>readonly List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.names</definition>
         <argsstring></argsstring>
-        <name>_statements</name>
-        <initializer>= new List&lt;<ref refid="a00090" kindref="compound">Statement</ref>&gt; ()</initializer>
+        <name>names</name>
+        <initializer>= new List&lt;string&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="143" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="16" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00068_1ae0562dc06ca747307b66039ef2f28772" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Parser.Node.Node</definition>
-        <argsstring>(string name, ParseNode parent, Parser p)</argsstring>
-        <name>Node</name>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00068_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+<para>Gets the name at the given index. If a prefix is set, it will be prepended to the name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00068_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string CsvHelper.Configuration.CsvPropertyNameCollection.Prefix</definition>
+        <argsstring></argsstring>
+        <name>Prefix</name>
+        <briefdescription>
+<para>Gets the prefix to use for each name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00068_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.Names</definition>
+        <argsstring></argsstring>
+        <name>Names</name>
+        <briefdescription>
+<para>Gets the raw list of names without the prefix being prepended. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00068_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int CsvHelper.Configuration.CsvPropertyNameCollection.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+<para>Gets the count. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00068_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Add</definition>
+        <argsstring>(string name)</argsstring>
+        <name>Add</name>
         <param>
           <type>string</type>
           <declname>name</declname>
         </param>
-        <param>
-          <type><ref refid="a00077" kindref="compound">ParseNode</ref></type>
-          <declname>parent</declname>
-        </param>
-        <param>
-          <type><ref refid="a00078" kindref="compound">Parser</ref></type>
-          <declname>p</declname>
-        </param>
         <briefdescription>
-        </briefdescription>
+<para>Adds the given name to the collection. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name to add.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="145" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="145" bodyend="152"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="56" bodyend="59"/>
       </memberdef>
-      <memberdef kind="function" id="a00068_1ab11501ebf251fdaa7cfe44edfa993068" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.Node.PrintTree</definition>
-        <argsstring>(int indentLevel)</argsstring>
-        <name>PrintTree</name>
-        <reimplements refid="a00077_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
-        <param>
-          <type>int</type>
-          <declname>indentLevel</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="155" bodyend="164"/>
-      </memberdef>
-      <memberdef kind="function" id="a00077_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00068" kindref="compound">Node</ref></type>
-        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+      <memberdef kind="function" id="a00068_1abec990435c8dccfb4553602b89f93201" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.Clear</definition>
         <argsstring>()</argsstring>
-        <name>NodeParent</name>
+        <name>Clear</name>
         <briefdescription>
-        </briefdescription>
+<para>Clears all names from the collection. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="116" bodyend="128"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="a00068_1ac568746273968080890abca50b882802" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.Configuration.CsvPropertyNameCollection.AddRange</definition>
+        <argsstring>(IEnumerable&lt; string &gt; names)</argsstring>
+        <name>AddRange</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>names</declname>
+        </param>
+        <briefdescription>
+<para>Adds a range of names to the collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>names</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The range to add.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="a00068_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator&lt; string &gt;</type>
+        <definition>IEnumerator&lt;string&gt; CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+<para>Returns an enumerator that iterates through the collection. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A T:System.Collections.Generic.IEnumerator`1 that can be used to iterate through the collection. </para></simplesect>
+&lt;filterpriority&gt;1&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="85" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="85" bodyend="91"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00077_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00068_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator IEnumerable.</type>
+        <definition>IEnumerator IEnumerable. CsvHelper.Configuration.CsvPropertyNameCollection.GetEnumerator</definition>
         <argsstring>()</argsstring>
-        <name>ToString</name>
+        <name>GetEnumerator</name>
         <briefdescription>
-        </briefdescription>
+<para>Returns an enumerator that iterates through a collection. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>An T:System.Collections.IEnumerator object that can be used to iterate through the collection. </para></simplesect>
+&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="110" bodyend="113"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="100" bodyend="103"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A collection that holds property names. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="564">
-        <label>Yarn.Parser.Node</label>
+      <node id="1135">
+        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
         <link refid="a00068"/>
-        <childnode refid="565" relation="public-inheritance">
+        <childnode refid="1136" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="565">
-        <label>ParseNode</label>
-        <link refid="a00077"/>
+      <node id="1136">
+        <label>IEnumerable&lt; string &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="568">
-        <label>Yarn.Parser.ParseNode</label>
-        <link refid="a00077"/>
-        <childnode refid="568" relation="usage">
-          <edgelabel>-parent</edgelabel>
-        </childnode>
-      </node>
-      <node id="566">
-        <label>Yarn.Parser.Node</label>
+      <node id="1137">
+        <label>CsvHelper.Configuration.CsvPropertyNameCollection</label>
         <link refid="a00068"/>
-        <childnode refid="567" relation="public-inheritance">
+        <childnode refid="1138" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="567">
-        <label>ParseNode</label>
-        <link refid="a00077"/>
-        <childnode refid="568" relation="usage">
-          <edgelabel>-parent</edgelabel>
-        </childnode>
+      <node id="1138">
+        <label>IEnumerable&lt; string &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="133" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="133" bodyend="166"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyNameCollection.cs" bodystart="14" bodyend="104"/>
     <listofallmembers>
-      <member refid="a00068_1ae910a20906be9b1964499efaefa48274" prot="private" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>_statements</name></member>
-      <member refid="a00068_1a3cfa07840da3a7a92c820788e902aefb" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>name</name></member>
-      <member refid="a00068_1ae0562dc06ca747307b66039ef2f28772" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>Node</name></member>
-      <member refid="a00077_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>NodeParent</name></member>
-      <member refid="a00077_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>ParseNode</name></member>
-      <member refid="a00068_1ab11501ebf251fdaa7cfe44edfa993068" prot="package" virt="virtual"><scope>Yarn::Parser::Node</scope><name>PrintTree</name></member>
-      <member refid="a00068_1a005a6b0f614beb77708fc5ce8fea66e1" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>source</name></member>
-      <member refid="a00068_1abdae3fb1c6927b38ce29b1b71a00cb12" prot="package" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>statements</name></member>
-      <member refid="a00077_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::Node</scope><name>ToString</name></member>
+      <member refid="a00068_1ad7b7d11d5814bcce5ed38e054ef71b4e" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Add</name></member>
+      <member refid="a00068_1ac568746273968080890abca50b882802" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>AddRange</name></member>
+      <member refid="a00068_1abec990435c8dccfb4553602b89f93201" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Clear</name></member>
+      <member refid="a00068_1a4b7b56286ad80183e1a33554a49eefa1" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Count</name></member>
+      <member refid="a00068_1a61b6a80e51d06f17d0043ec6aef89f1b" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
+      <member refid="a00068_1a76b5c67fcecf55dbdd4b680cde1a78f7" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>GetEnumerator</name></member>
+      <member refid="a00068_1a1aa06a47337f6ab576b23fe63854dcbe" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Names</name></member>
+      <member refid="a00068_1a41eb6804d8afe8d674e64d71f66962ce" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>names</name></member>
+      <member refid="a00068_1ab8f3256d8435a1c93f0280064aa3ff06" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>Prefix</name></member>
+      <member refid="a00068_1acdce91a755be3bec6218e3d82f4dfe82" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyNameCollection</scope><name>this[int index]</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,10 +1,5 @@
 var a00096 =
 [
-    [ "TokenRule", "a00096.html#a3d171ae7c4870659d2d1d977a216bdd7", null ],
-    [ "ToString", "a00096.html#a1ed23ad16b116ecb06dd75b157bf752f", null ],
-    [ "delimitsText", "a00096.html#ab0849136a1f27b4d13cb7a45e2fe7130", null ],
-    [ "entersState", "a00096.html#af6a4bd3416c4e1b8e56f9db461d52d18", null ],
-    [ "isTextRule", "a00096.html#a09f49e6edf9ace38a92d723998181f8f", null ],
-    [ "regex", "a00096.html#a47a404d6637fae489c3c77729a01cc69", null ],
-    [ "type", "a00096.html#a0de6fac3b55cf0c61e07cea53ce67caa", null ]
+    [ "AddExceptionDataMessage", "a00096.html#a7415ea84b6d462b9d61ecf2128282837", null ],
+    [ "GetErrorMessage", "a00096.html#a11e421dc9f9fdb2b72d060a24471b5be", null ]
 ];

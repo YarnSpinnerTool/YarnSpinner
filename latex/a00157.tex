@@ -1,0 +1,136 @@
+\hypertarget{a00157}{\section{Yarn.\-Unity.\-Example.\-Sprite\-Switcher Class Reference}
+\label{a00157}\index{Yarn.\-Unity.\-Example.\-Sprite\-Switcher@{Yarn.\-Unity.\-Example.\-Sprite\-Switcher}}
+}
+
+
+Attach \hyperlink{a00157}{Sprite\-Switcher} to game object.  
+
+
+
+
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{a00801}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{a00802}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00157_a00370}{Sprite\-Info}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00157_ac26718b713f342f3de8f3e569c5b62da}{Use\-Sprite} (string sprite\-Name)
+\begin{DoxyCompactList}\small\item\em Create a command to use on a sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00157_a00370}{Sprite\-Info}\mbox{[}$\,$\mbox{]} \hyperlink{a00157_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Attach \hyperlink{a00157}{Sprite\-Switcher} to game object. 
+
+Definition at line 34 of file Sprite\-Switcher.\-cs.
+
+
+
+\subsection{Class Documentation}
+\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher\-::\-Sprite\-Info}}\label{a00370}
+\hypertarget{a00157_a00370}{}
+\subsubsection{struct Yarn\-:\-:Unity\-:\-:Example\-:\-:Sprite\-Switcher\-:\-:Sprite\-Info}
+
+
+Definition at line 37 of file Sprite\-Switcher.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Sprite\-Info\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{a00375}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00157_a3f5bca2fff413dfe075c1fcf7e58369c}{string}\label{a00157_a3f5bca2fff413dfe075c1fcf7e58369c}
+&
+name&
+\\
+\hline
+
+\hypertarget{a00157_adc58df011dc2841837b6cf775b372061}{Sprite}\label{a00157_adc58df011dc2841837b6cf775b372061}
+&
+sprite&
+\\
+\hline
+
+\end{DoxyFields}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00157_ac26718b713f342f3de8f3e569c5b62da}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!Use\-Sprite@{Use\-Sprite}}
+\index{Use\-Sprite@{Use\-Sprite}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
+\subsubsection[{Use\-Sprite}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-Use\-Sprite (
+\begin{DoxyParamCaption}
+\item[{string}]{sprite\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00157_ac26718b713f342f3de8f3e569c5b62da}
+
+
+Create a command to use on a sprite. 
+
+
+
+Definition at line 46 of file Sprite\-Switcher.\-cs.
+
+
+\begin{DoxyCode}
+46                                                  \{
+47 
+48             Sprite s = null;
+49             \textcolor{keywordflow}{foreach}(var info \textcolor{keywordflow}{in} \hyperlink{a00157_a1e85d9f4f6b33ca7ae638cce2eb704aa}{sprites}) \{
+50                 \textcolor{keywordflow}{if} (info.name == spriteName) \{
+51                     s = info.sprite;
+52                     \textcolor{keywordflow}{break};
+53                 \}
+54              \}
+55             \textcolor{keywordflow}{if} (s == null) \{
+56                 Debug.LogErrorFormat(\textcolor{stringliteral}{"Can't find sprite named \{0\}!"}, spriteName);
+57                 \textcolor{keywordflow}{return};
+58             \}
+59 
+60             GetComponent<SpriteRenderer>().sprite = s;
+61         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00157_a1e85d9f4f6b33ca7ae638cce2eb704aa}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}!sprites@{sprites}}
+\index{sprites@{sprites}!Yarn::Unity::Example::SpriteSwitcher@{Yarn\-::\-Unity\-::\-Example\-::\-Sprite\-Switcher}}
+\subsubsection[{sprites}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sprite\-Info} \mbox{[}$\,$\mbox{]} Yarn.\-Unity.\-Example.\-Sprite\-Switcher.\-sprites}}\label{a00157_a1e85d9f4f6b33ca7ae638cce2eb704aa}
+
+
+Definition at line 42 of file Sprite\-Switcher.\-cs.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00292}{Sprite\-Switcher.\-cs}\end{DoxyCompactItemize}

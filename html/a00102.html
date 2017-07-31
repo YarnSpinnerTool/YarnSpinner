@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.VariableStorage Interface Reference</title>
+<title>YarnSpinner: Yarn.Graph Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('a00102.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,51 +108,79 @@ $(document).ready(function(){initNavTree('a00102.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00222.html">List of all members</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="a00584.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.VariableStorage Interface Reference</div>  </div>
+<div class="title">Yarn.Graph Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.VariableStorage:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Graph:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00223.png" border="0" usemap="#_yarn_8_variable_storage_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_variable_storage_inherit__map" id="_yarn_8_variable_storage_inherit__map">
-<area shape="rect" id="node2" href="a00035.html" title="{Yarn.BaseVariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="7,292,181,428"/><area shape="rect" id="node4" href="a00103.html" title="{Yarn.Unity.VariableStorage\lBehaviour\n||+ SetNumber()\l+ GetNumber()\l+ GetValue()\l+ SetValue()\l+ Clear()\l+ ResetToDefaults()\l}" alt="" coords="206,277,385,443"/><area shape="rect" id="node6" href="a00044.html" title="{Yarn.YarnSpinnerConsole.\lConsoleRunnerImplementation\n|+ numberOfExpectedOptions\l+ autoSelectOptionNumber\l+ expectedNextLine\l+ expectedNextCommand\l+ autoSelectFirstOption\l&#45; waitForLines\l&#45; variableStore\l|+ ConsoleRunnerImplementation()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ DialogueComplete()\l+ HandleErrorMessage()\l+ HandleDebugMessage()\l+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="411,189,632,531"/><area shape="rect" id="node3" href="a00066.html" title="{Yarn.MemoryVariableStore\n|&#45; variables\l|+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="5,616,184,723"/><area shape="rect" id="node5" href="a00047.html" title="{ExampleVariableStorage\n|+ defaultVariables\l+ debugTextView\l&#45; variables\l|+ ResetToDefaults()\l+ SetValue()\l+ GetValue()\l+ Clear()\l&#45; Awake()\l&#45; Update()\l}" alt="" coords="213,579,377,759"/></map>
-</div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VariableStorage:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00224.png" border="0" usemap="#_yarn_8_variable_storage_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_variable_storage_coll__map" id="_yarn_8_variable_storage_coll__map">
+<div class="center"><img src="a00585.png" border="0" usemap="#_yarn_8_graph_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_graph_coll__map" id="_yarn_8_graph_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa28c3694f985cf73489efc301b9d41dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#aa28c3694f985cf73489efc301b9d41dd">SetNumber</a> (string variableName, float number)</td></tr>
-<tr class="separator:aa28c3694f985cf73489efc301b9d41dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04b061c52d8ac814ce559da5286fbc71"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#a04b061c52d8ac814ce559da5286fbc71">GetNumber</a> (string variableName)</td></tr>
-<tr class="separator:a04b061c52d8ac814ce559da5286fbc71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa90ff61224432c5ed3ce72199c55f440"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#aa90ff61224432c5ed3ce72199c55f440">SetValue</a> (string variableName, <a class="el" href="a00100.html">Value</a> value)</td></tr>
-<tr class="separator:aa90ff61224432c5ed3ce72199c55f440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accab1fc5c8fc353dbfc53ca0f4029576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00100.html">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#accab1fc5c8fc353dbfc53ca0f4029576">GetValue</a> (string variableName)</td></tr>
-<tr class="separator:accab1fc5c8fc353dbfc53ca0f4029576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af98c1e41f351cb96e13f668ca2fd9d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#af98c1e41f351cb96e13f668ca2fd9d92">Clear</a> ()</td></tr>
-<tr class="separator:af98c1e41f351cb96e13f668ca2fd9d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb75730e40484ccdf56e805e6dea22a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#aeb75730e40484ccdf56e805e6dea22a1">edge</a> (<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> source, <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> target)</td></tr>
+<tr class="separator:aeb75730e40484ccdf56e805e6dea22a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f89fd1a2dd058002251dfd6411b905"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#aa1f89fd1a2dd058002251dfd6411b905">toDot</a> ()</td></tr>
+<tr class="separator:aa1f89fd1a2dd058002251dfd6411b905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a506df6f737a41748c01239bdea5d82b1"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#a506df6f737a41748c01239bdea5d82b1">nodes</a> = new ArrayList&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt;()</td></tr>
+<tr class="separator:a506df6f737a41748c01239bdea5d82b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8adf7c937ab5c584b49698283e3da150"><td class="memItemLeft" align="right" valign="top">MultiMap&lt; <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a> = new MultiMap&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt;()</td></tr>
+<tr class="separator:a8adf7c937ab5c584b49698283e3da150"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8605f1ec5a4e9cfd07d3ac2be042dac6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html#a8605f1ec5a4e9cfd07d3ac2be042dac6">graphName</a> = &quot;G&quot;</td></tr>
+<tr class="separator:a8605f1ec5a4e9cfd07d3ac2be042dac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af98c1e41f351cb96e13f668ca2fd9d92"></a>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00294_source.html#l00796">796</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aeb75730e40484ccdf56e805e6dea22a1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Yarn.VariableStorage.Clear </td>
+          <td class="memname">void Yarn.Graph.edge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00802">802</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;        {</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;            edges.Map(source, target);</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aa1f89fd1a2dd058002251dfd6411b905"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> Yarn.Graph.toDot </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -160,112 +188,104 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00044.html#a082617cf099d13cb4338935020ced764">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00103.html#a587fe10b367ace190e10f3bcb590a53c">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00066.html#aa6d243e7ef02b91f793a221f509dae69">Yarn.MemoryVariableStore</a>, <a class="el" href="a00047.html#a0ce614bee8d5b220500fb765390b4ca3">ExampleVariableStorage</a>, and <a class="el" href="a00035.html#a7e45c37f3662ce9f2643e306bb2b3adc">Yarn.BaseVariableStorage</a>.</p>
+<p>Definition at line <a class="el" href="a00294_source.html#l00806">806</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
 
+<p>References <a class="el" href="a00294_source.html#l00799">Yarn.Graph.edges</a>, <a class="el" href="a00294_source.html#l00800">Yarn.Graph.graphName</a>, <a class="el" href="a00294_source.html#l00798">Yarn.Graph.nodes</a>, <a class="el" href="a00194_source.html#l00092">preprocessor.output</a>, and <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a>.</p>
+<div class="fragment"><div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        {</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;            StringBuilder buf = <span class="keyword">new</span> StringBuilder();</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;            buf.AppendFormat(<span class="stringliteral">&quot;digraph {0} &quot;</span>,<a class="code" href="a00102.html#a8605f1ec5a4e9cfd07d3ac2be042dac6">graphName</a>);</div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;            buf.Append(<span class="stringliteral">&quot;{\n&quot;</span>);</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;            buf.Append(<span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;            <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> node <span class="keywordflow">in</span> <a class="code" href="a00102.html#a506df6f737a41748c01239bdea5d82b1">nodes</a>)</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;            { <span class="comment">// print all nodes first</span></div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                buf.Append(node);</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;                buf.Append(<span class="stringliteral">&quot;; &quot;</span>);</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;            }</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;            buf.Append(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;            <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> src <span class="keywordflow">in</span> <a class="code" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a>.Keys)</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;            {</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a>.TryGetValue(src, out var <a class="code" href="a00336.html#a3da6d48778c7b08a040bf24377f67792">output</a>))</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                {</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                    <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> trg <span class="keywordflow">in</span> output)</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                    {</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                        buf.Append(<span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                        buf.Append(src);</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                        buf.Append(<span class="stringliteral">&quot; -&gt; &quot;</span>);</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                        buf.Append(trg);</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                        buf.Append(<span class="stringliteral">&quot;;\n&quot;</span>);</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                    }</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                }</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;            }</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            buf.Append(<span class="stringliteral">&quot;}\n&quot;</span>);</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            <span class="keywordflow">return</span> buf.ToString();</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;        }</div>
+<div class="ttc" id="a00336_html_a3da6d48778c7b08a040bf24377f67792"><div class="ttname"><a href="a00336.html#a3da6d48778c7b08a040bf24377f67792">preprocessor.output</a></div><div class="ttdeci">tuple output</div><div class="ttdef"><b>Definition:</b> <a href="a00194_source.html#l00092">preprocessor.py:92</a></div></div>
+<div class="ttc" id="a00102_html_a506df6f737a41748c01239bdea5d82b1"><div class="ttname"><a href="a00102.html#a506df6f737a41748c01239bdea5d82b1">Yarn.Graph.nodes</a></div><div class="ttdeci">ArrayList&lt; String &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00294_source.html#l00798">AntlrCompiler.cs:798</a></div></div>
+<div class="ttc" id="a00102_html_a8adf7c937ab5c584b49698283e3da150"><div class="ttname"><a href="a00102.html#a8adf7c937ab5c584b49698283e3da150">Yarn.Graph.edges</a></div><div class="ttdeci">MultiMap&lt; String, String &gt; edges</div><div class="ttdef"><b>Definition:</b> <a href="a00294_source.html#l00799">AntlrCompiler.cs:799</a></div></div>
+<div class="ttc" id="a00102_html_a8605f1ec5a4e9cfd07d3ac2be042dac6"><div class="ttname"><a href="a00102.html#a8605f1ec5a4e9cfd07d3ac2be042dac6">Yarn.Graph.graphName</a></div><div class="ttdeci">string graphName</div><div class="ttdef"><b>Definition:</b> <a href="a00294_source.html#l00800">AntlrCompiler.cs:800</a></div></div>
+<div class="ttc" id="a00045_html_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">Yarn.String</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a04b061c52d8ac814ce559da5286fbc71"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a8adf7c937ab5c584b49698283e3da150"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float Yarn.VariableStorage.GetNumber </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em></td><td>)</td>
-          <td></td>
+          <td class="memname">MultiMap&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt; Yarn.Graph.edges = new MultiMap&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt;()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00044.html#adf34fa27235fc0fd5fe35c32023220c4">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00103.html#add85a45dd65a5d4bd41c9d5ce5f77d19">Yarn.Unity.VariableStorageBehaviour</a>, and <a class="el" href="a00035.html#a1b7f7f4468b2463e7b47986d99362279">Yarn.BaseVariableStorage</a>.</p>
+<p>Definition at line <a class="el" href="a00294_source.html#l00799">799</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00806">Yarn.Graph.toDot()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="accab1fc5c8fc353dbfc53ca0f4029576"></a>
+<a class="anchor" id="a8605f1ec5a4e9cfd07d3ac2be042dac6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00100.html">Value</a> Yarn.VariableStorage.GetValue </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em></td><td>)</td>
-          <td></td>
+          <td class="memname">string Yarn.Graph.graphName = &quot;G&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00044.html#a66fc86080cd452079f5adf15e97c8e41">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00103.html#ac6ebafcbebc2b2d71eba8562490a2f1e">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00066.html#a0ce77e8245c504a777540e359704aa2a">Yarn.MemoryVariableStore</a>, <a class="el" href="a00047.html#a741593be1a299dcc2136f05b9b4a995a">ExampleVariableStorage</a>, and <a class="el" href="a00035.html#a13b142df804d9842e97e628e252928e8">Yarn.BaseVariableStorage</a>.</p>
+<p>Definition at line <a class="el" href="a00294_source.html#l00800">800</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00806">Yarn.Graph.toDot()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa28c3694f985cf73489efc301b9d41dd"></a>
+<a class="anchor" id="a506df6f737a41748c01239bdea5d82b1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Yarn.VariableStorage.SetNumber </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>number</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">ArrayList&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt; Yarn.Graph.nodes = new ArrayList&lt;<a class="el" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a>&gt;()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="a00044.html#adc9bfad13d8ae2f147deeddbc5c38ea3">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00103.html#ac0d2f2e081944ad197992a26ad1a833c">Yarn.Unity.VariableStorageBehaviour</a>, and <a class="el" href="a00035.html#a48b93de9cd7ae61d0cd9583c8330d3ee">Yarn.BaseVariableStorage</a>.</p>
+<p>Definition at line <a class="el" href="a00294_source.html#l00798">798</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00294_source.html#l00806">Yarn.Graph.toDot()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa90ff61224432c5ed3ce72199c55f440"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.VariableStorage.SetValue </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>variableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00100.html">Value</a>&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="a00044.html#ab6312d89b626ca803a74a9181286d608">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation</a>, <a class="el" href="a00103.html#a25f979b062d63c9e886fe7070ce4561b">Yarn.Unity.VariableStorageBehaviour</a>, <a class="el" href="a00066.html#a653a459811e5c19549f4b31269093ef5">Yarn.MemoryVariableStore</a>, <a class="el" href="a00047.html#ac4265c1c9da485f13a6b05784b0f668d">ExampleVariableStorage</a>, and <a class="el" href="a00035.html#a1c57d6d208b78abec0a670396771448e">Yarn.BaseVariableStorage</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="">Dialogue.cs</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00294_source.html">AntlrCompiler.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00040.html">Yarn</a></li><li class="navelem"><a class="el" href="a00102.html">VariableStorage</a></li>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:45 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00102.html">Graph</a></li>
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:02 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

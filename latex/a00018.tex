@@ -1,39 +1,134 @@
-\begin{quotation}
-$\ast$$\ast$$\ast$\-Important\-:$\ast$$\ast$$\ast$ This document only matters to you if you want to build \hyperlink{a00040}{Yarn} Spinner from source. In almost all cases, you'll be totally fine with \href{https://github.com/thesecretlab/YarnSpinner/releases}{\tt downloading a build}, and using that in your project.
+This document talks about how to use \hyperlink{a00045}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00045}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
 
-\end{quotation}
+\subsection*{Lines}
+
+\hyperlink{a00045}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
+
+Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: \begin{DoxyVerb}Alice: Hey, I'm a character speaking in a dialogue!
+Bob: Wild!
+\end{DoxyVerb}
 
 
-\subsection*{Windows and Mac using Mono\-Develop}
+Each line is delivered to your game one at a time.
 
-To build \hyperlink{a00040}{Yarn} Spinner on Windows or Mac, you'll need Mono\-Develop. You can \href{http://www.monodevelop.com/download/}{\tt download Mono\-Develop for your O\-S from the Mono\-Develop site}.
+\subsection*{Options}
 
-\subsection*{Linux}
+To link a node to another node, you provide {\itshape options}. Options look like this\-: \begin{DoxyVerb}[[Go to the woods|GoToWoods]]
+[[Go back to the city|GoToCity]]
+\end{DoxyVerb}
 
-To build \hyperlink{a00040}{Yarn} Spinner on Linux, you can either
+
+Options have two parts\-: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar ({\ttfamily $\vert$}).
+
+You don't have to provide the label. Instead, you can just provide the node name, like so\-: \begin{DoxyVerb}[[GoToCity]]
+\end{DoxyVerb}
+
+
+If an option has no label, \hyperlink{a00045}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
+
+When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
+
+If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00045}{Yarn} Spinner will let your game know.
+
+\subsection*{Shortcut Options}
+
+Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: \begin{DoxyVerb}Mae: What did you say to her?
+-> Nothing.
+    Mae: Oh, man. Maybe you should have.
+-> That she was an idiot.
+    Mae: Hah! I bet that pissed her off.
+Mae: Anyway, I'd better get going.
+\end{DoxyVerb}
+
+
+When this is run, \hyperlink{a00045}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
+
+You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: \begin{DoxyVerb}Bob: What would you like?
+-> A burger. <<if $money >= 5>>
+    Bob: Nice. Enjoy!
+-> A soda. <<if $money >= 2>>
+    Bob: Yum!
+-> Nothing.
+Bob: Thanks for coming!
+\end{DoxyVerb}
+
+
+Note that in the last example, there wasn't any attached text. If the player selected the last option (\char`\"{}\-Nothing.\char`\"{}), then the next line to appear would be \char`\"{}\-Bob\-: Thanks for coming!\char`\"{}
+
+You can also nest these shortcut options, if you like. Be careful, though -\/ too much nested options can make your text difficult to read.
+
+\subsection*{Commands}
+
+In addition to showing lines of dialogue, your game will probably want to run actions -\/ things like \char`\"{}move the camera to position X\char`\"{}, or \char`\"{}make character start smiling\char`\"{}. You can use commands for this.
+
+Commands look like this\-: \begin{DoxyVerb}<<move alice to under_bridge>>
+\end{DoxyVerb}
+
+
+Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
+
+\hyperlink{a00045}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00045}{Yarn} will stop the entire conversation when it reaches it.
+
+\subsection*{Variables and If statements}
+
+You can store numbers in variables. To do this, use the {\ttfamily set} command\-: \begin{DoxyVerb}<<set $door_unlocked to 1>>
+\end{DoxyVerb}
+
+
+You can check the value of a variable using the {\ttfamily if} command\-: \begin{DoxyVerb}<<if $door_unlocked is 1>>
+    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Expressions}
+
+You can do math in an {\ttfamily if} command. For example\-: \begin{DoxyVerb}<<if $number_of_stars_collected > 5>>
+    You have more than 5 stars!
+<<endif>>
+\end{DoxyVerb}
+
+
+You can also get fancier, and do stuff like this\-: \begin{DoxyVerb}<<if $hostages_saved == $number_of_hostages and $time_remaining > 0>>
+    You win the game!
+<<elseif $hostages_saved < $number_of_hostages and $time_remaining > 0>>
+    You need to rescue more hostages!
+<<elseif $bomb_has_exploded == 0>>
+    You failed to rescue the hostages before time ran out!
+<<endif>>
+\end{DoxyVerb}
+
+
+\subsection*{Types}
+
+There are four different types of value in \hyperlink{a00045}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
+
+
 \begin{DoxyItemize}
-\item use \href{http://www.mono-project.com/docs/tools+libraries/tools/xbuild/}{\tt xbuild} and \href{http://www.nuget.org}{\tt nuget}.
-\item Then ensure you have the correct packages installed by nuget, {\ttfamily nuget restore Yarn\-Spinner.\-sln}.
-\item See the \href{../../build.sh}{\tt build.\-sh} script for further information on how using mono to build. or
-\item use \href{http://flatpak.org/getting.html}{\tt Flatpak}, you can \href{http://www.monodevelop.com/download/linux/}{\tt download Mono\-Develop from the Mono\-Develop site}.
+\item Strings contain text.
+\item Numbers are floating-\/point numbers.
+\item Booleans are either true or false.
+\item {\ttfamily null} means no value.
 \end{DoxyItemize}
 
-\subsection*{Using Mono\-Develop}
+\hyperlink{a00045}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
+    The two strings are the same!
+<<endif>>
+
+<<if 1+1+"hi" == "2hi">>
+    Strings get joined together with other values!
+<<endif>>
+\end{DoxyVerb}
 
 
-\begin{DoxyItemize}
-\item Open {\bfseries Yarn\-Spinner.\-sln}.
-\item Open the {\bfseries Build menu}, and choose {\bfseries Build All}.
-\item Open the {\bfseries Unity/\-Assets/\-Yarn Spinner} folder. You'll find a copy of {\bfseries Yarn\-Spinner.\-dll} there.
-\item Copy that D\-L\-L file wherever you need it.
-\end{DoxyItemize}
+{\bfseries Warning\-:} Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
 
-\subsection*{Building Documentation}
+\subsection*{Functions}
 
-\hyperlink{a00040}{Yarn} Spinner uses \href{https://www.stack.nl/~dimitri/doxygen}{\tt Doxygen} to generate \href{http://docbook.org/}{\tt Doc\-Book}, \href{https://en.wikipedia.org/wiki/HTML}{\tt H\-T\-M\-L}, \href{https://www.latex-project.org/help/documentation/}{\tt La\-Te\-X}, \href{https://en.wikipedia.org/wiki/Rich_Text_Format}{\tt R\-T\-F}, and \href{https://en.wikipedia.org/wiki/XML}{\tt X\-M\-L} documentation. \href{https://www.gnu.org/software/global/}{\tt G\-N\-U G\-L\-O\-B\-A\-L} is also used.
+You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00045}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
+    We have gone to the city before!
+<<endif>>
+\end{DoxyVerb}
 
-Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of \hyperlink{a00175}{Yarn\-Spinner} itself and not an actual error in the documentation.
 
-``` rm -\/fr Documentation/\{docbook,html,latex,rtf,xml\} doxygen Documentation/\-Doxyfile $>$ doxyoutput.\-txt 2$>$\&1 grep -\/i error doxyoutput.\-txt ```
-
-\href{https://daringfireball.net/projects/markdown/}{\tt Mark\-Down} documentation is available via conversion of the X\-M\-L output to Markdown using third party tools such as \href{http://pandoc.org}{\tt Pandoc} or \href{https://github.com/pferdinand/doxygen2md}{\tt doxygen2md} 
+You can't define your own functions inside \hyperlink{a00045}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00210}{Extending.\-md}Extending \hyperlink{a00045}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

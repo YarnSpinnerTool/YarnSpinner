@@ -1,11 +1,7 @@
 var a00079 =
 [
-    [ "CheckForNearbyNPC", "a00079.html#a574b6d984b8671c7a780d3d10e040a9b", null ],
-    [ "OnDrawGizmosSelected", "a00079.html#a9e83ec3c6e45ee4dd17215e3030f6403", null ],
-    [ "Update", "a00079.html#a8e78b2dc1cd221fb9d05b89e70155df4", null ],
-    [ "interactionRadius", "a00079.html#af89807d2195915ee9a0c42317e110fc6", null ],
-    [ "maxPosition", "a00079.html#ada9dd748a1d89a7f9b12ac8967a07ae6", null ],
-    [ "minPosition", "a00079.html#ac025d4f4afaf854f8256e0d2d03e5b52", null ],
-    [ "moveSpeed", "a00079.html#adc602a4b2c7e44e4b15a11f1ffcf07e4", null ],
-    [ "movementFromButtons", "a00079.html#a7bcde19f080bfd09bbc833b8fb555cf7", null ]
+    [ "CanConvertFrom", "a00079.html#a82a8cf4b77600ef49da60deb0c24a708", null ],
+    [ "CanConvertTo", "a00079.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00079.html#aa69835fc086d80a8eabe7ac50cb92f47", null ],
+    [ "ConvertToString", "a00079.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

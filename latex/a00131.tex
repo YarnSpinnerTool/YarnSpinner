@@ -1,46 +1,71 @@
-\hypertarget{a00131}{\section{Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\-Example\-Variable\-Storage.cs File Reference}
-\label{a00131}\index{Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\-Example\-Variable\-Storage.\-cs@{Unity/\-Assets/\-Yarn Spinner/\-Examples/\-Demo Scripts/\-Example\-Variable\-Storage.\-cs}}
+\hypertarget{a00131}{\section{Mobile\-Only Class Reference}
+\label{a00131}\index{Mobile\-Only@{Mobile\-Only}}
 }
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00047}{Example\-Variable\-Storage}
-\item 
-class \hyperlink{a00047_a00179}{Example\-Variable\-Storage.\-Default\-Variable}
-\end{DoxyCompactItemize}
 
 
-\subsection{Class Documentation}
-\index{Example\-Variable\-Storage\-::\-Default\-Variable@{Example\-Variable\-Storage\-::\-Default\-Variable}}\label{a00179}
-\hypertarget{a00047_a00179}{}
-\subsubsection{class Example\-Variable\-Storage\-:\-:Default\-Variable}
+Removes an object from the scene when the game is running on a non-\/mobile platform.  
 
 
-Collaboration diagram for Example\-Variable\-Storage.\-Default\-Variable\-:
+
+
+Inheritance diagram for Mobile\-Only\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=236pt]{a00187}
+\includegraphics[width=162pt]{a00393}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00047_a609feaa53936e7dc42248ff2ba68454a}{string}\label{a00047_a609feaa53936e7dc42248ff2ba68454a}
-&
-name&
-\\
-\hline
 
-\hypertarget{a00047_a904347efdca12f40243c7dedb646153d}{Value}\label{a00047_a904347efdca12f40243c7dedb646153d}
-&
-type&
-\\
-\hline
 
-\hypertarget{a00047_a0f00ecb21b58aa754a4bbb61edf62818}{string}\label{a00047_a0f00ecb21b58aa754a4bbb61edf62818}
-&
-value&
-\\
-\hline
+Collaboration diagram for Mobile\-Only\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{a00394}
+\end{center}
+\end{figure}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00131_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
+\end{DoxyCompactItemize}
 
-\end{DoxyFields}
+
+\subsection{Detailed Description}
+Removes an object from the scene when the game is running on a non-\/mobile platform. 
+
+Definition at line 7 of file Mobile\-Only.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00131_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
+\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_acfb1b3a9c8f62b30300331fb84752022}
+
+
+Definition at line 10 of file Mobile\-Only.\-cs.
+
+
+\begin{DoxyCode}
+10                   \{
+11 
+12         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
+13             \textcolor{comment}{// Hang around}
+14         \} \textcolor{keywordflow}{else} \{
+15             Destroy(gameObject);
+16         \}
+17 
+18     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00289}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}

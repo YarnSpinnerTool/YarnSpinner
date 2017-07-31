@@ -1,0 +1,10 @@
+<map id="YarnSpinner.Tests.TestBase" name="YarnSpinner.Tests.TestBase">
+<area shape="rect" id="node2" href="$a00086.html" title="The Dialogue class is the main thing that clients will use. " alt="" coords="479,281,685,695"/>
+<area shape="rect" id="node3" href="$a00156.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="245,761,453,1087"/>
+<area shape="rect" id="node8" href="$a00127.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; preprocessor()\l}" alt="" coords="483,841,673,1007"/>
+<area shape="rect" id="node4" href="$a00045.html#a00367" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="5,420,152,556"/>
+<area shape="rect" id="node5" href="$a00146.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ Include()\l}" alt="" coords="237,6,376,215"/>
+<area shape="rect" id="node6" href="$a00159.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,405,455,571"/>
+<area shape="rect" id="node7" href="$a00123.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="507,28,659,193"/>
+<area shape="rect" id="node9" href="$a00184.html" title="Where we turn to for storing and loading variable data. " alt="" coords="701,43,845,179"/>
+</map>

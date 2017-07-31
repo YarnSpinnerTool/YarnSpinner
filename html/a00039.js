@@ -1,6 +1,7 @@
 var a00039 =
 [
-    [ "PrintTree", "a00039.html#a7f4fc9399896512b68fdc7bc7cf818c9", null ],
-    [ "expression", "a00039.html#a1abd1f7c41f68ccdf64074ea49365be9", null ],
-    [ "statements", "a00039.html#a6f4765482e98ed042e38a0ede13f171f", null ]
+    [ "CanConvertFrom", "a00039.html#a0be20573af4ee53409bb437125a64268", null ],
+    [ "CanConvertTo", "a00039.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00039.html#abc77c631974272fd1dfe3fe4fcc3bf28", null ],
+    [ "ConvertToString", "a00039.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

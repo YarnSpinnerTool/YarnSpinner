@@ -1,0 +1,377 @@
+\hypertarget{a00154}{\section{Yarn.\-Parser.\-Shortcut\-Option\-Group Class Reference}
+\label{a00154}\index{Yarn.\-Parser.\-Shortcut\-Option\-Group@{Yarn.\-Parser.\-Shortcut\-Option\-Group}}
+}
+
+
+Inheritance diagram for Yarn.\-Parser.\-Shortcut\-Option\-Group\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{a00691}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Shortcut\-Option\-Group\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{a00692}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00142_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00154_aa4ee47826640ad8dff651603c940c7f4}{Shortcut\-Option\-Group} (\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00143}{Parser} p)
+\item 
+override string \hyperlink{a00154_a7b60f85e46b8767db81177ec40e83104}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00132}{Node} \hyperlink{a00142_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00154_a906962aae2ecb11535f34249a34703f8}{Can\-Parse} (\hyperlink{a00143}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00142_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ \hyperlink{a00153}{Shortcut\-Option} $>$ \hyperlink{a00154_a91b28e9dce684c476c526c4103b6c488}{options}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{a00153}{Shortcut\-Option} $>$ \hyperlink{a00154_a494c8c422cebbea5c50878db64334873}{\-\_\-options} = new List$<$\hyperlink{a00153}{Shortcut\-Option}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 330 of file Parser.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00154_aa4ee47826640ad8dff651603c940c7f4}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Shortcut\-Option\-Group@{Shortcut\-Option\-Group}}
+\index{Shortcut\-Option\-Group@{Shortcut\-Option\-Group}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Shortcut\-Option\-Group (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00154_aa4ee47826640ad8dff651603c940c7f4}
+
+
+Definition at line 341 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Next\-Symbol\-Is(), and Yarn.\-Shortcut\-Option.
+
+
+\begin{DoxyCode}
+341                                                                      : base(
+      \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+342 
+343                 \textcolor{comment}{// keep parsing options until we can't, but expect at least one (otherwise it's}
+344                 \textcolor{comment}{// not actually a list of options)}
+345                 \textcolor{keywordtype}{int} shortcutIndex = 1; \textcolor{comment}{// give each option a number so it can name itself}
+346                 \textcolor{keywordflow}{do} \{
+347                     \_options.Add(\textcolor{keyword}{new} \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea07001155edc33437d76742b7ac124529}{ShortcutOption}(shortcutIndex++, \textcolor{keyword}{this}, p));
+348                 \} \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.ShortcutOption));
+349             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00154_aa4ee47826640ad8dff651603c940c7f4_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00154_a906962aae2ecb11535f34249a34703f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00154_a906962aae2ecb11535f34249a34703f8}
+
+
+Definition at line 331 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+
+\begin{DoxyCode}
+332             \{
+333                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.ShortcutOption);
+334             \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00154_a906962aae2ecb11535f34249a34703f8_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00142_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a580e520a29444fc23ac3660cbe514a09}
+
+
+Definition at line 100 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+
+
+\begin{DoxyCode}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
+110 
+111                 \textcolor{keywordflow}{return} null;
+112             \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00154_a7b60f85e46b8767db81177ec40e83104}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00154_a7b60f85e46b8767db81177ec40e83104}
+
+
+Implements \hyperlink{a00142_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+
+Definition at line 351 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Shortcut\-Option\-Group.\-options, and Yarn.\-Parser.\-Tab().
+
+
+\begin{DoxyCode}
+352             \{
+353                 var sb = \textcolor{keyword}{new} StringBuilder ();
+354                 sb.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Shortcut option group \{"}));
+355 
+356                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} \hyperlink{a00154_a91b28e9dce684c476c526c4103b6c488}{options}) \{
+357                     sb.Append (option.PrintTree (indentLevel + 1));
+358                 \}
+359                 sb.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+360 
+361                 \textcolor{keywordflow}{return} sb.ToString ();
+362             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{a00154_a7b60f85e46b8767db81177ec40e83104_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00142_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 78 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
+
+
+\begin{DoxyCode}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 94 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00154_a494c8c422cebbea5c50878db64334873}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!\-\_\-options@{\-\_\-options}}
+\index{\-\_\-options@{\-\_\-options}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{\-\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Shortcut\-Option}$>$ Yarn.\-Parser.\-Shortcut\-Option\-Group.\-\_\-options = new List$<${\bf Shortcut\-Option}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00154_a494c8c422cebbea5c50878db64334873}
+
+
+Definition at line 339 of file Parser.\-cs.
+
+\hypertarget{a00142_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a18b493382de0fde5b4299c1bd2250075}
+
+
+Definition at line 61 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_af313a82103fcc2ff5a177dbb06b92f7b}
+
+
+Definition at line 58 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 76 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00154_a91b28e9dce684c476c526c4103b6c488}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}!options@{options}}
+\index{options@{options}!Yarn::Parser::ShortcutOptionGroup@{Yarn\-::\-Parser\-::\-Shortcut\-Option\-Group}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Shortcut\-Option}$>$ Yarn.\-Parser.\-Shortcut\-Option\-Group.\-options\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00154_a91b28e9dce684c476c526c4103b6c488}
+
+
+Definition at line 336 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Print\-Tree().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00301}{Parser.\-cs}\end{DoxyCompactItemize}

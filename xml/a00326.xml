@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00326" kind="namespace">
+    <compoundname>CsvHelper::Configuration</compoundname>
+    <innerclass refid="a00054" prot="public">CsvHelper::Configuration::CsvClassMap</innerclass>
+    <innerclass refid="a00055" prot="public">CsvHelper::Configuration::CsvClassMap&lt; T &gt;</innerclass>
+    <innerclass refid="a00056" prot="public">CsvHelper::Configuration::CsvClassMapCollection</innerclass>
+    <innerclass refid="a00057" prot="public">CsvHelper::Configuration::CsvConfiguration</innerclass>
+    <innerclass refid="a00058" prot="public">CsvHelper::Configuration::CsvConfigurationException</innerclass>
+    <innerclass refid="a00064" prot="public">CsvHelper::Configuration::CsvPropertyMap</innerclass>
+    <innerclass refid="a00065" prot="public">CsvHelper::Configuration::CsvPropertyMapCollection</innerclass>
+    <innerclass refid="a00066" prot="package">CsvHelper::Configuration::CsvPropertyMapComparer</innerclass>
+    <innerclass refid="a00067" prot="public">CsvHelper::Configuration::CsvPropertyMapData</innerclass>
+    <innerclass refid="a00068" prot="public">CsvHelper::Configuration::CsvPropertyNameCollection</innerclass>
+    <innerclass refid="a00069" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMap</innerclass>
+    <innerclass refid="a00070" prot="public">CsvHelper::Configuration::CsvPropertyReferenceMapData</innerclass>
+    <innerclass refid="a00081" prot="public">CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvClassMap.cs" line="15" column="1"/>
+  </compounddef>
+</doxygen>

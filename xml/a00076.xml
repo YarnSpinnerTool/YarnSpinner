@@ -1,119 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00076" kind="class" prot="package">
-    <compoundname>Yarn::ParseException</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
-      <sectiondef kind="package-attrib">
-      <memberdef kind="variable" id="a00076_1ab335169367e64fd6d89d58b3ac573751" prot="package" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.ParseException.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <initializer>= 0</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00076_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00076" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token foundToken, params TokenType[] expectedTypes)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00093" kindref="compound">Token</ref></type>
-          <declname>foundToken</declname>
-        </param>
-        <param>
-          <type>params <ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>[]</type>
-          <declname>expectedTypes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="41" bodyend="60"/>
-      </memberdef>
-      <memberdef kind="function" id="a00076_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00076" kindref="compound">ParseException</ref></type>
-        <definition>static ParseException Yarn.ParseException.Make</definition>
-        <argsstring>(Token mostRecentToken, string message)</argsstring>
-        <name>Make</name>
-        <param>
-          <type><ref refid="a00093" kindref="compound">Token</ref></type>
-          <declname>mostRecentToken</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="62" bodyend="71"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00076_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+  <compounddef id="a00076" kind="class" prot="public">
+    <compoundname>CsvHelper::CsvWriterException</compoundname>
+    <basecompoundref refid="a00060" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00076_1a4e5030012e1258c3db3da1725c0d9332" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.ParseException.ParseException</definition>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvWriterException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00076" kindref="compound">CsvWriterException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="a00076_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
         <argsstring>(string message)</argsstring>
-        <name>ParseException</name>
+        <name>CsvWriterException</name>
         <param>
           <type>string</type>
           <declname>message</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00076" kindref="compound">CsvWriterException</ref> class with a specified error message. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="73" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="a00076_1aedacd3e9a9161a62991cc1d388298a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvWriterException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>innerException</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00076" kindref="compound">CsvWriterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="a00076_1ac4ae90ce8433632c2047d4de364effa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvWriterException</name>
+        <param>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>StreamingContext</type>
+          <declname>context</declname>
+        </param>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00076" kindref="compound">CsvWriterException</ref> class with serialized data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="48" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Represents errors that occur while writing a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="598">
-        <label>Yarn.ParseException</label>
+      <node id="1185">
+        <label>CsvHelper.CsvWriterException</label>
         <link refid="a00076"/>
-        <childnode refid="599" relation="public-inheritance">
+        <childnode refid="1186" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="599">
+      <node id="1187">
         <label>Exception</label>
+      </node>
+      <node id="1186">
+        <label>CsvHelperException</label>
+        <link refid="a00060"/>
+        <childnode refid="1187" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="600">
-        <label>Yarn.ParseException</label>
+      <node id="1188">
+        <label>CsvHelper.CsvWriterException</label>
         <link refid="a00076"/>
-        <childnode refid="601" relation="public-inheritance">
+        <childnode refid="1189" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="601">
+      <node id="1190">
         <label>Exception</label>
       </node>
+      <node id="1189">
+        <label>CsvHelperException</label>
+        <link refid="a00060"/>
+        <childnode refid="1190" relation="public-inheritance">
+        </childnode>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="37" bodyend="75"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="18" bodyend="50"/>
     <listofallmembers>
-      <member refid="a00076_1ab335169367e64fd6d89d58b3ac573751" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>lineNumber</name></member>
-      <member refid="a00076_1a511a51bb42dc5bb107eb68f7e5cf5ff1" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00076_1a173f3cabc4741d9d9e016310e90c1c9f" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>Make</name></member>
-      <member refid="a00076_1aa3c4f5c8b0ae86097bbc46044df9f317" prot="package" virt="non-virtual"><scope>Yarn::ParseException</scope><name>ParseException</name></member>
+      <member refid="a00060_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00076_1a4e5030012e1258c3db3da1725c0d9332" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00076_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00076_1aedacd3e9a9161a62991cc1d388298a14" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00076_1ac4ae90ce8433632c2047d4de364effa6" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

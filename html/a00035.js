@@ -1,8 +1,6 @@
 var a00035 =
 [
-    [ "Clear", "a00035.html#a7e45c37f3662ce9f2643e306bb2b3adc", null ],
-    [ "GetNumber", "a00035.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "a00035.html#a13b142df804d9842e97e628e252928e8", null ],
-    [ "SetNumber", "a00035.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "a00035.html#a1c57d6d208b78abec0a670396771448e", null ]
+    [ "files", "a00035.html#aa93cbb1bc1d5328e0a417012621e92d2", null ],
+    [ "showDebuggingInfo", "a00035.html#a89964ea17bd19caf00cb5bff563ed01c", null ],
+    [ "verbose", "a00035.html#ada4d83d1756918f362d55f6649b82b17", null ]
 ];

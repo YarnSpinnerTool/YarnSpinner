@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['json',['Json',['../a00151.html',1,'']]]
+  ['configuration',['Configuration',['../a00326.html',1,'CsvHelper']]],
+  ['csvhelper',['CsvHelper',['../a00325.html',1,'']]],
+  ['typeconversion',['TypeConversion',['../a00327.html',1,'CsvHelper']]]
 ];

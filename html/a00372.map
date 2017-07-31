@@ -1,3 +1,2 @@
-<map id="Yarn.Unity.Example.ExampleDialogueUI" name="Yarn.Unity.Example.ExampleDialogueUI">
-<area shape="rect" id="node2" href="$a00052.html" title="{Yarn::Unity::DialogueUIBehaviour\n||+ DialogueStarted()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l+ NodeComplete()\l+ DialogueComplete()\l}" alt="" coords="5,131,224,282"/>
+<map id="Yarn.Unity.LocalisedStringGroup" name="Yarn.Unity.LocalisedStringGroup">
 </map>

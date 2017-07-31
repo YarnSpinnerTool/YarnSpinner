@@ -1,10 +1,13 @@
 var searchData=
 [
-  ['parametercount',['parameterCount',['../a00093.html#adf11c0d29b66935a8d8109d6308d0488',1,'Yarn::Token']]],
-  ['parameters',['parameters',['../a00054.html#a7b21380bead8ae08b2cfc6594edab32c',1,'Yarn::Parser::Expression']]],
-  ['parent',['parent',['../a00077.html#af313a82103fcc2ff5a177dbb06b92f7b',1,'Yarn::Parser::ParseNode']]],
-  ['patterns',['patterns',['../a00062.html#a951f91e9522ffe84851f2e25e9445106',1,'Yarn::Lexer::LexerState']]],
-  ['precedence',['precedence',['../a00073.html#a0b2921d7b863e268d33aa15213395093',1,'Yarn::Parser::Operator::OperatorInfo']]],
-  ['program',['program',['../a00050.html#a0a1cca92325f430425d784d416cb5c2b',1,'Yarn.Dialogue.program()'],['../a00086.html#a2695dbfe3d9df7ffa3f13ad2231217fb',1,'Yarn.VirtualMachine.program()']]],
-  ['programcounter',['programCounter',['../a00089.html#a2c76546b54b4fb573d7f14d79ce230a3',1,'Yarn::VirtualMachine::State']]]
+  ['operanda',['operandA',['../a00113.html#ab5d386faa0d3dbc23db80f8e62706afd',1,'Yarn::Instruction']]],
+  ['operandb',['operandB',['../a00113.html#a56348c6fe7eb919b7277afc06e5b224a',1,'Yarn::Instruction']]],
+  ['operation',['operation',['../a00113.html#a566bf5f7198cc353ea5c3710cb3a31cb',1,'Yarn::Instruction']]],
+  ['option',['OPTION',['../a00336.html#a7ca2dc5371587b21476669a45af013cd',1,'preprocessor']]],
+  ['optionbuttons',['optionButtons',['../a00095.html#a090b7693e7ec6ec43c8c8e2b6b20b015',1,'Yarn::Unity::Example::ExampleDialogueUI']]],
+  ['options',['options',['../a00045.html#ae8c616d923ceeeed192a9436c55d9917',1,'Yarn.Options.options()'],['../a00139.html#abda9c3047ff9d3c3ec5540566a239315',1,'Yarn.Dialogue.OptionSetResult.options()']]],
+  ['optionshandler',['optionsHandler',['../a00165.html#adcbea72eb6f5ab305b3757789919f961',1,'TestDialogueUIBehaviour.optionsHandler()'],['../a00156.html#acd25fe2e3aa90dc87ba25d9af904465b',1,'Yarn.VirtualMachine.optionsHandler()']]],
+  ['output',['output',['../a00336.html#a3da6d48778c7b08a040bf24377f67792',1,'preprocessor']]],
+  ['output_5flines',['output_lines',['../a00336.html#a3766d6a1d728423223fa0743ba62011f',1,'preprocessor']]],
+  ['overridelanguage',['overrideLanguage',['../a00087.html#ad12db159fc3df0819d5b594c33fba834',1,'Yarn::Unity::DialogueRunner']]]
 ];

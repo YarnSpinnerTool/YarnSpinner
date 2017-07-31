@@ -1,127 +1,157 @@
-\hypertarget{a00094}{\section{Yarn.\-Tokeniser\-Exception Class Reference}
-\label{a00094}\index{Yarn.\-Tokeniser\-Exception@{Yarn.\-Tokeniser\-Exception}}
+\hypertarget{a00094}{\section{Yarn.\-Error\-Listener Class Reference}
+\label{a00094}\index{Yarn.\-Error\-Listener@{Yarn.\-Error\-Listener}}
 }
 
 
-Inheritance diagram for Yarn.\-Tokeniser\-Exception\-:
+Inheritance diagram for Yarn.\-Error\-Listener\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=230pt]{a00248}
+\includegraphics[width=174pt]{a00625}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Tokeniser\-Exception\-:
+Collaboration diagram for Yarn.\-Error\-Listener\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=230pt]{a00249}
+\includegraphics[width=235pt]{a00626}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00094_ad00fcf742d2b0d476ce43b27a3f3b6c1}{Tokeniser\-Exception} (string message)
-\item 
-\hyperlink{a00094_aa8674d006a0d29081a7b87bdd8ff2f4f}{Tokeniser\-Exception} (int \hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, string message)
+override void \hyperlink{a00094_a47fb9f6d50aa6a4e4796dea10b237fe4}{Syntax\-Error} (System.\-I\-O.\-Text\-Writer output, I\-Recognizer recognizer, \hyperlink{a00307_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} offending\-Symbol, int line, int char\-Position\-In\-Line, string msg, Recognition\-Exception e)
 \end{DoxyCompactItemize}
-\subsection*{Static Public Member Functions}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00094}{Tokeniser\-Exception} \hyperlink{a00094_af88cfa5eafdee355e1abb67e358497bd}{Expected\-Tokens\-From\-State} (int \hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, \hyperlink{a00062}{Lexer.\-Lexer\-State} state)
+static \hyperlink{a00094}{Error\-Listener} \hyperlink{a00094_a47b8f4f1d414afa1ea6067218c7ee34d}{Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}
+\hyperlink{a00094_a1f0cc41aac10bd8a2402355534c1123c}{Error\-Listener} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}
+static readonly \hyperlink{a00094}{Error\-Listener} \hyperlink{a00094_a9421873edea84c51d5905f5a24c62479}{instance} = new \hyperlink{a00094}{Error\-Listener}()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
+Definition at line 8 of file Error\-Listener.\-cs.
+
+
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00094_ad00fcf742d2b0d476ce43b27a3f3b6c1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
+\hypertarget{a00094_a1f0cc41aac10bd8a2402355534c1123c}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Error\-Listener@{Error\-Listener}}
+\index{Error\-Listener@{Error\-Listener}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
+\subsubsection[{Error\-Listener}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Error\-Listener.\-Error\-Listener (
 \begin{DoxyParamCaption}
-\item[{string}]{message}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00094_ad00fcf742d2b0d476ce43b27a3f3b6c1}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00094_a1f0cc41aac10bd8a2402355534c1123c}
+
+
+Definition at line 11 of file Error\-Listener.\-cs.
+
 
 \begin{DoxyCode}
-38 : base (message) \{\}
-\end{DoxyCode}
-\hypertarget{a00094_aa8674d006a0d29081a7b87bdd8ff2f4f}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
-\begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00094_aa8674d006a0d29081a7b87bdd8ff2f4f}
-
-\begin{DoxyCode}
-40             : base(\textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"\{0\}:\{1\}: \{2\}"}, \hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message))
-41         \{
-42             this.lineNumber = \hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber};
-43             this.columnNumber = \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber};
-44         \}
+11 \{\}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00094_af88cfa5eafdee355e1abb67e358497bd}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}}
-\index{Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Expected\-Tokens\-From\-State}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tokeniser\-Exception} Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State (
+\hypertarget{a00094_a47fb9f6d50aa6a4e4796dea10b237fe4}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Syntax\-Error@{Syntax\-Error}}
+\index{Syntax\-Error@{Syntax\-Error}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
+\subsubsection[{Syntax\-Error}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Error\-Listener.\-Syntax\-Error (
 \begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{{\bf Lexer.\-Lexer\-State}}]{state}
+\item[{System.\-I\-O.\-Text\-Writer}]{output, }
+\item[{I\-Recognizer}]{recognizer, }
+\item[{{\bf I\-Token}}]{offending\-Symbol, }
+\item[{int}]{line, }
+\item[{int}]{char\-Position\-In\-Line, }
+\item[{string}]{msg, }
+\item[{Recognition\-Exception}]{e}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00094_af88cfa5eafdee355e1abb67e358497bd}
+)}}\label{a00094_a47fb9f6d50aa6a4e4796dea10b237fe4}
+
+
+Definition at line 20 of file Error\-Listener.\-cs.
+
 
 \begin{DoxyCode}
-47                                                                                                            
-                       \{
-48 
-49             var names = \textcolor{keyword}{new} List<string> ();
-50             \textcolor{keywordflow}{foreach} (var tokenRule \textcolor{keywordflow}{in} state.tokenRules) \{
-51                 names.Add (tokenRule.type.ToString ());
-52             \}
-53 
-54             \textcolor{keywordtype}{string} nameList;
-55             \textcolor{keywordflow}{if} (names.Count > 1) \{
-56                 nameList = String.Join (\textcolor{stringliteral}{", "}, names.ToArray (), 0, names.Count - 1);
-57                 nameList += \textcolor{stringliteral}{", or "} + names [names.Count - 1];
-58             \} \textcolor{keywordflow}{else} \{
-59                 nameList = names [0];
-60             \}
-61 
-62             var message = string.Format (\textcolor{stringliteral}{"Expected "} + nameList);
-63             
-64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00094_ad00fcf742d2b0d476ce43b27a3f3b6c1}{TokeniserException} (\hyperlink{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00094_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message);
-65         \}
+21         \{
+22             StringBuilder builder = \textcolor{keyword}{new} StringBuilder();
+23 
+24             \textcolor{comment}{// the human readable message}
+25             \textcolor{keywordtype}{object}[] format = \textcolor{keyword}{new} \textcolor{keywordtype}{object}[] \{ line, charPositionInLine + 1 \};
+26             builder.AppendFormat(\textcolor{stringliteral}{"Error on line \{0\} at position \{1\}:\(\backslash\)n"}, format);
+27             \textcolor{comment}{// the actual error message}
+28             builder.AppendLine(msg);
+29 
+30             \textcolor{comment}{// the line with the error on it}
+31             \textcolor{keywordtype}{string} input = offendingSymbol.TokenSource.InputStream.ToString();
+32             \textcolor{keywordtype}{string}[] lines = input.Split(\textcolor{charliteral}{'\(\backslash\)n'});
+33             \textcolor{keywordtype}{string} errorLine = lines[line - 1];
+34             builder.AppendLine(errorLine);
+35 
+36             \textcolor{comment}{// adding indicator symbols pointing out where the error is on the line}
+37             \textcolor{keywordtype}{int} start = offendingSymbol.StartIndex;
+38             \textcolor{keywordtype}{int} stop = offendingSymbol.StopIndex;
+39             \textcolor{keywordflow}{if} (start >= 0 && stop >= 0)
+40             \{
+41                 \textcolor{comment}{// the end point of the error in "line space"}
+42                 \textcolor{keywordtype}{int} end = (stop - start) + charPositionInLine + 1;
+43                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < end; i++)
+44                 \{
+45                     \textcolor{comment}{// move over until we are at the point we need to be}
+46                     \textcolor{keywordflow}{if} (i >= charPositionInLine && i < end)
+47                     \{
+48                         builder.Append(\textcolor{stringliteral}{"^"});
+49                     \}
+50                     \textcolor{keywordflow}{else}
+51                     \{
+52                         builder.Append(\textcolor{stringliteral}{" "});
+53                     \}
+54                 \}
+55             \}
+56             \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00141}{Yarn.ParseException}(builder.ToString());
+57         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00094_aabf2ad38f3984297c1daede9be55e3d6}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-column\-Number}}\label{a00094_aabf2ad38f3984297c1daede9be55e3d6}
-\hypertarget{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-line\-Number}}\label{a00094_a54b936d7b4f26f88a07a66c5fc1d1ad1}
+\hypertarget{a00094_a9421873edea84c51d5905f5a24c62479}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!instance@{instance}}
+\index{instance@{instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Error\-Listener} Yarn.\-Error\-Listener.\-instance = new {\bf Error\-Listener}()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00094_a9421873edea84c51d5905f5a24c62479}
+
+
+Definition at line 10 of file Error\-Listener.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00094_a47b8f4f1d414afa1ea6067218c7ee34d}{\index{Yarn\-::\-Error\-Listener@{Yarn\-::\-Error\-Listener}!Instance@{Instance}}
+\index{Instance@{Instance}!Yarn::ErrorListener@{Yarn\-::\-Error\-Listener}}
+\subsubsection[{Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error\-Listener} Yarn.\-Error\-Listener.\-Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00094_a47b8f4f1d414afa1ea6067218c7ee34d}
+
+
+Definition at line 13 of file Error\-Listener.\-cs.
+
+
+
+Referenced by Yarn.\-Loader.\-Load().
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00140}{Lexer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00297}{Error\-Listener.\-cs}\end{DoxyCompactItemize}

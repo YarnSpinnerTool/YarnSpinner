@@ -1,0 +1,128 @@
+\hypertarget{a00296}{\section{Yarn\-Spinner/\-Dialogue.cs File Reference}
+\label{a00296}\index{Yarn\-Spinner/\-Dialogue.\-cs@{Yarn\-Spinner/\-Dialogue.\-cs}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00188}{Yarn.\-Yarn\-Exception}
+\begin{DoxyCompactList}\small\item\em Represents things that can go wrong while loading or running a dialogue. \end{DoxyCompactList}\item 
+struct \hyperlink{a00045_a00365}{Yarn.\-Line}
+\begin{DoxyCompactList}\small\item\em Information about stuff that the client should handle.  \hyperlink{a00045_a00365}{More...}\end{DoxyCompactList}\item 
+struct \hyperlink{a00045_a00368}{Yarn.\-Options}
+\item 
+struct \hyperlink{a00045_a00361}{Yarn.\-Command}
+\item 
+interface \hyperlink{a00184}{Yarn.\-Variable\-Storage}
+\begin{DoxyCompactList}\small\item\em Where we turn to for storing and loading variable data. \end{DoxyCompactList}\item 
+class \hyperlink{a00036}{Yarn.\-Base\-Variable\-Storage}
+\item 
+class \hyperlink{a00128}{Yarn.\-Localised\-Line}
+\begin{DoxyCompactList}\small\item\em A line, localised into the current locale. \end{DoxyCompactList}\item 
+class \hyperlink{a00130}{Yarn.\-Memory\-Variable\-Store}
+\begin{DoxyCompactList}\small\item\em Very simple continuity class that keeps all variables in memory. \end{DoxyCompactList}\item 
+class \hyperlink{a00086}{Yarn.\-Dialogue}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{a00086}{Dialogue} class is the main thing that clients will use. \end{DoxyCompactList}\item 
+class \hyperlink{a00150}{Yarn.\-Dialogue.\-Runner\-Result}
+\begin{DoxyCompactList}\small\item\em Represents something for the end user (\char`\"{}client\char`\"{}) of the \hyperlink{a00086}{Dialogue} class to do. \end{DoxyCompactList}\item 
+class \hyperlink{a00126}{Yarn.\-Dialogue.\-Line\-Result}
+\begin{DoxyCompactList}\small\item\em The client should run a line of dialogue. \end{DoxyCompactList}\item 
+class \hyperlink{a00046}{Yarn.\-Dialogue.\-Command\-Result}
+\begin{DoxyCompactList}\small\item\em The client should run a command (it's up to them to parse the string) \end{DoxyCompactList}\item 
+class \hyperlink{a00139}{Yarn.\-Dialogue.\-Option\-Set\-Result}
+\begin{DoxyCompactList}\small\item\em The client should show a list of options, and call set\-Selected\-Option\-Delegate before asking for the next line. It's an error if you don't. \end{DoxyCompactList}\item 
+class \hyperlink{a00133}{Yarn.\-Dialogue.\-Node\-Complete\-Result}
+\begin{DoxyCompactList}\small\item\em We've reached the end of this node. \end{DoxyCompactList}\item 
+class \hyperlink{a00158}{Yarn.\-Dialogue.\-Standard\-Library}
+\begin{DoxyCompactList}\small\item\em The standard, built-\/in library of functions and operators. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{a00045}{Yarn}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate void \hyperlink{a00045_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} (int selected\-Option\-Index)
+\begin{DoxyCompactList}\small\item\em Option\-Choosers let the client tell the \hyperlink{a00086}{Dialogue} about what response option the user selected. \end{DoxyCompactList}\item 
+delegate void \hyperlink{a00045_a1e50031b945a3a2afafee6f590730568}{Yarn.\-Logger} (string message)
+\begin{DoxyCompactList}\small\item\em Loggers let the client send output to a console, for both debugging and error logging. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Class Documentation}
+\index{Yarn\-::\-Line@{Yarn\-::\-Line}}\label{a00365}
+\hypertarget{a00045_a00365}{}
+\subsubsection{struct Yarn\-:\-:Line}
+Information about stuff that the client should handle. 
+
+(Currently this just wraps a single field, but doing it like this gives us the option to add more stuff later without breaking the A\-P\-I.) 
+
+Definition at line 52 of file Dialogue.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Line\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{a00378}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00045_a81d1f04bbb4cf6642d2bd685bda1da20}{string}\label{a00045_a81d1f04bbb4cf6642d2bd685bda1da20}
+&
+text&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Yarn\-::\-Options@{Yarn\-::\-Options}}\label{a00368}
+\hypertarget{a00045_a00368}{}
+\subsubsection{struct Yarn\-:\-:Options}
+
+
+Definition at line 53 of file Dialogue.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{a00379}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00045_ae8c616d923ceeeed192a9436c55d9917}{I\-List$<$ string $>$}\label{a00045_ae8c616d923ceeeed192a9436c55d9917}
+&
+options&
+\\
+\hline
+
+\end{DoxyFields}
+\index{Yarn\-::\-Command@{Yarn\-::\-Command}}\label{a00361}
+\hypertarget{a00045_a00361}{}
+\subsubsection{struct Yarn\-:\-:Command}
+
+
+Definition at line 54 of file Dialogue.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Command\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{a00380}
+\end{center}
+\end{figure}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00045_a8564e5104566e145f5d917ec846444d9}{string}\label{a00045_a8564e5104566e145f5d917ec846444d9}
+&
+text&
+\\
+\hline
+
+\end{DoxyFields}

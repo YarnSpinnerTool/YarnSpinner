@@ -1,72 +1,153 @@
-\hypertarget{a00074}{\section{Yarn.\-Dialogue.\-Option\-Set\-Result Class Reference}
-\label{a00074}\index{Yarn.\-Dialogue.\-Option\-Set\-Result@{Yarn.\-Dialogue.\-Option\-Set\-Result}}
+\hypertarget{a00074}{\section{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception Class Reference}
+\label{a00074}\index{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception@{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception}}
 }
 
 
-Inheritance diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
+Represents errors that occur while reading a C\-S\-V file.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{a00240}
+\includegraphics[width=236pt]{a00506}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Dialogue.\-Option\-Set\-Result\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=249pt]{a00241}
+\includegraphics[width=236pt]{a00507}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00074_a934c02fb1047ffd05b2b5a9c6fcd7acb}{Option\-Set\-Result} (I\-List$<$ string $>$ option\-Strings, \hyperlink{a00040_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} set\-Selected\-Option)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00040_a00182}{Options} \hyperlink{a00074_abda9c3047ff9d3c3ec5540566a239315}{options}
-\item 
-\hyperlink{a00040_a39866cbb03c03a35805d598b5d4ad553}{Option\-Chooser} \hyperlink{a00074_a6f2683598cf0f62b76bb864640cc79dd}{set\-Selected\-Option\-Delegate}
-\end{DoxyCompactItemize}
+\hyperlink{a00074_af2278af1cb915e9b8485c005148c430b}{Csv\-Type\-Converter\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00074_a4e4e9bdf9280d14be37fc42d887b7360}{Csv\-Type\-Converter\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00074_afbea8720637f53c27ef4a9ca99c41955}{Csv\-Type\-Converter\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00074_a118ca20beb2ce0c2b4591502a52b0163}{Csv\-Type\-Converter\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Represents errors that occur while reading a C\-S\-V file. 
+
+
+
+Definition at line 15 of file Csv\-Type\-Converter\-Exception.\-cs.
+
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00074_a934c02fb1047ffd05b2b5a9c6fcd7acb}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!Option\-Set\-Result@{Option\-Set\-Result}}
-\index{Option\-Set\-Result@{Option\-Set\-Result}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
-\subsubsection[{Option\-Set\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Option\-Set\-Result.\-Option\-Set\-Result (
+\hypertarget{a00074_af2278af1cb915e9b8485c005148c430b}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
 \begin{DoxyParamCaption}
-\item[{I\-List$<$ string $>$}]{option\-Strings, }
-\item[{{\bf Option\-Chooser}}]{set\-Selected\-Option}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00074_a934c02fb1047ffd05b2b5a9c6fcd7acb}
+)}}\label{a00074_af2278af1cb915e9b8485c005148c430b}
+
+
+Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class. 
+
+
+
+Definition at line 20 of file Csv\-Type\-Converter\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-123                                                                                                   \{
-124                 var \hyperlink{a00074_abda9c3047ff9d3c3ec5540566a239315}{options} = \textcolor{keyword}{new} Options();
-125                 options.options = optionStrings;
-126                 this.options = \hyperlink{a00074_abda9c3047ff9d3c3ec5540566a239315}{options};
-127                 this.setSelectedOptionDelegate = setSelectedOption;
-128             \}
+20 \{\}
 \end{DoxyCode}
+\hypertarget{a00074_a4e4e9bdf9280d14be37fc42d887b7360}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00074_a4e4e9bdf9280d14be37fc42d887b7360}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00074_abda9c3047ff9d3c3ec5540566a239315}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!options@{options}}
-\index{options@{options}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
-\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options} Yarn.\-Dialogue.\-Option\-Set\-Result.\-options}}\label{a00074_abda9c3047ff9d3c3ec5540566a239315}
-\hypertarget{a00074_a6f2683598cf0f62b76bb864640cc79dd}{\index{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}!set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}}
-\index{set\-Selected\-Option\-Delegate@{set\-Selected\-Option\-Delegate}!Yarn::Dialogue::OptionSetResult@{Yarn\-::\-Dialogue\-::\-Option\-Set\-Result}}
-\subsubsection[{set\-Selected\-Option\-Delegate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Option\-Chooser} Yarn.\-Dialogue.\-Option\-Set\-Result.\-set\-Selected\-Option\-Delegate}}\label{a00074_a6f2683598cf0f62b76bb864640cc79dd}
+Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file Csv\-Type\-Converter\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+27 : base( message ) \{\}
+\end{DoxyCode}
+\hypertarget{a00074_afbea8720637f53c27ef4a9ca99c41955}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00074_afbea8720637f53c27ef4a9ca99c41955}
+
+
+Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file Csv\-Type\-Converter\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+36 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00074_a118ca20beb2ce0c2b4591502a52b0163}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00074_a118ca20beb2ce0c2b4591502a52b0163}
+
+
+Initializes a new instance of the \hyperlink{a00074}{Csv\-Type\-Converter\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file Csv\-Type\-Converter\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+45 : base( info, context ) \{ \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00138}{Dialogue.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00259}{Csv\-Type\-Converter\-Exception.\-cs}\end{DoxyCompactItemize}

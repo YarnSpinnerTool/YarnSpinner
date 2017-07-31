@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['using_20yarn_20spinner_20in_20your_20unity_20game',['Using Yarn Spinner in your Unity game',['../a00024.html',1,'']]]
+  ['writing_20yarn_20dialogue_20_2d_20simple_20example',['Writing Yarn Dialogue - Simple Example',['../a00020.html',1,'']]]
 ];

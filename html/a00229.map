@@ -1,9 +1,0 @@
-<map id="Yarn.Dialogue" name="Yarn.Dialogue">
-<area shape="rect" id="node2" href="$a00086.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l&#45; STATE_VERSION_NUMBER\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l+ SerializeVM()\l+ DeserializeVM()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="249,640,457,1011"/>
-<area shape="rect" id="node7" href="$a00065.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; ParseInput()\l}" alt="" coords="548,757,673,893"/>
-<area shape="rect" id="node3" href="$a00040.html#a00181" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l|}" alt="" coords="5,345,152,466"/>
-<area shape="rect" id="node4" href="$a00081.html" title="{Yarn.Program\n|+ strings\l+ nodes\l&#45; stringCount\l|+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ Include()\l}" alt="" coords="167,5,305,171"/>
-<area shape="rect" id="node5" href="$a00089.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,323,455,488"/>
-<area shape="rect" id="node6" href="$a00063.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="335,5,487,171"/>
-<area shape="rect" id="node8" href="$a00102.html" title="{Yarn.VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="511,20,656,156"/>
-</map>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/Dialogue.cs File Reference</title>
+<title>YarnSpinner: Yarn.Parser.Operator.OperatorInfo Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,8 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,8 +70,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -94,7 +96,7 @@ $(document).ready(function(){initNavTree('a00138.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,155 +107,176 @@ $(document).ready(function(){initNavTree('a00138.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#pac-methods">Package Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="a00679.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Dialogue.cs File Reference</div>  </div>
+<div class="title">Yarn.Parser.Operator.OperatorInfo Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00105.html">Yarn.YarnException</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00180"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a00180">Yarn.Line</a></td></tr>
-<tr class="separator:a00180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00182"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a00182">Yarn.Options</a></td></tr>
-<tr class="separator:a00182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00177"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a00177">Yarn.Command</a></td></tr>
-<tr class="separator:a00177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">Yarn.VariableStorage</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html">Yarn.BaseVariableStorage</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00050.html">Yarn.Dialogue</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html">Yarn.Dialogue.RunnerResult</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00064.html">Yarn.Dialogue.LineResult</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html">Yarn.Dialogue.CommandResult</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00074.html">Yarn.Dialogue.OptionSetResult</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00069.html">Yarn.Dialogue.NodeCompleteResult</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00088.html">Yarn.Dialogue.StandardLibrary</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:a00040"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html">Yarn</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a39866cbb03c03a35805d598b5d4ad553"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> (int selectedOptionIndex)</td></tr>
-<tr class="separator:a39866cbb03c03a35805d598b5d4ad553"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e50031b945a3a2afafee6f590730568"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00040.html#a1e50031b945a3a2afafee6f590730568">Yarn.Logger</a> (string message)</td></tr>
-<tr class="separator:a1e50031b945a3a2afafee6f590730568"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="a00180" id="a00180"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct Yarn::Line</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"></div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Line:</div>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.Operator.OperatorInfo:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00191.png" border="0" usemap="#_yarn_8_line_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_line_coll__map" id="_yarn_8_line_coll__map">
+<div class="center"><img src="a00680.png" border="0" usemap="#_yarn_8_parser_8_operator_8_operator_info_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_parser_8_operator_8_operator_info_coll__map" id="_yarn_8_parser_8_operator_8_operator_info_coll__map">
 </map>
 </div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a81d1f04bbb4cf6642d2bd685bda1da20"></a>string</td>
-<td class="fieldname">
-text</td>
-<td class="fielddoc">
-</td></tr>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:a25faca62235c9f8542e4a071ba8ebc0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a25faca62235c9f8542e4a071ba8ebc0b">OperatorInfo</a> (<a class="el" href="a00137.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a> <a class="el" href="a00138.html#accba40a72d9709ca3c18810b8661afe3">associativity</a>, int <a class="el" href="a00138.html#a0b2921d7b863e268d33aa15213395093">precedence</a>, int <a class="el" href="a00138.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a>)</td></tr>
+<tr class="separator:a25faca62235c9f8542e4a071ba8ebc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:accba40a72d9709ca3c18810b8661afe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00137.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#accba40a72d9709ca3c18810b8661afe3">associativity</a></td></tr>
+<tr class="separator:accba40a72d9709ca3c18810b8661afe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2921d7b863e268d33aa15213395093"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a0b2921d7b863e268d33aa15213395093">precedence</a></td></tr>
+<tr class="separator:a0b2921d7b863e268d33aa15213395093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0758c6f7dac4b205f616b43b1af95b95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a></td></tr>
+<tr class="separator:a0758c6f7dac4b205f616b43b1af95b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-
-</div>
-</div>
-<a name="a00182" id="a00182"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00301_source.html#l01154">1154</a> of file <a class="el" href="a00301_source.html">Parser.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a25faca62235c9f8542e4a071ba8ebc0b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct Yarn::Options</td>
+          <td class="memname">Yarn.Parser.Operator.OperatorInfo.OperatorInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00137.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a>&#160;</td>
+          <td class="paramname"><em>associativity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>precedence</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arguments</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-<div class="textblock"></div><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Options:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00192.png" border="0" usemap="#_yarn_8_options_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_options_coll__map" id="_yarn_8_options_coll__map">
-</map>
-</div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae8c616d923ceeeed192a9436c55d9917"></a>IList&lt; string &gt;</td>
-<td class="fieldname">
-options</td>
-<td class="fielddoc">
-</td></tr>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
 </table>
+</div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="a00301_source.html#l01158">1158</a> of file <a class="el" href="a00301_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00301_source.html#l01157">Yarn.Parser.Operator.OperatorInfo.arguments</a>, <a class="el" href="a00301_source.html#l01155">Yarn.Parser.Operator.OperatorInfo.associativity</a>, and <a class="el" href="a00301_source.html#l01156">Yarn.Parser.Operator.OperatorInfo.precedence</a>.</p>
+<div class="fragment"><div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;                                                                                                  {</div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;                    this.associativity = <a class="code" href="a00138.html#accba40a72d9709ca3c18810b8661afe3">associativity</a>;</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;                    this.precedence = <a class="code" href="a00138.html#a0b2921d7b863e268d33aa15213395093">precedence</a>;</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;                    this.arguments = <a class="code" href="a00138.html#a0758c6f7dac4b205f616b43b1af95b95">arguments</a>;</div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;                }</div>
+<div class="ttc" id="a00138_html_a0758c6f7dac4b205f616b43b1af95b95"><div class="ttname"><a href="a00138.html#a0758c6f7dac4b205f616b43b1af95b95">Yarn.Parser.Operator.OperatorInfo.arguments</a></div><div class="ttdeci">int arguments</div><div class="ttdef"><b>Definition:</b> <a href="a00301_source.html#l01157">Parser.cs:1157</a></div></div>
+<div class="ttc" id="a00138_html_accba40a72d9709ca3c18810b8661afe3"><div class="ttname"><a href="a00138.html#accba40a72d9709ca3c18810b8661afe3">Yarn.Parser.Operator.OperatorInfo.associativity</a></div><div class="ttdeci">Associativity associativity</div><div class="ttdef"><b>Definition:</b> <a href="a00301_source.html#l01155">Parser.cs:1155</a></div></div>
+<div class="ttc" id="a00138_html_a0b2921d7b863e268d33aa15213395093"><div class="ttname"><a href="a00138.html#a0b2921d7b863e268d33aa15213395093">Yarn.Parser.Operator.OperatorInfo.precedence</a></div><div class="ttdeci">int precedence</div><div class="ttdef"><b>Definition:</b> <a href="a00301_source.html#l01156">Parser.cs:1156</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a name="a00177" id="a00177"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a0758c6f7dac4b205f616b43b1af95b95"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct Yarn::Command</td>
+          <td class="memname">int Yarn.Parser.Operator.OperatorInfo.arguments</td>
         </tr>
       </table>
-</div><div class="memdoc">
-<div class="textblock"></div><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Command:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00193.png" border="0" usemap="#_yarn_8_command_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_command_coll__map" id="_yarn_8_command_coll__map">
-</map>
-</div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="a8564e5104566e145f5d917ec846444d9"></a>string</td>
-<td class="fieldname">
-text</td>
-<td class="fielddoc">
-</td></tr>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
 </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00301_source.html#l01157">1157</a> of file <a class="el" href="a00301_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00301_source.html#l01158">Yarn.Parser.Operator.OperatorInfo.OperatorInfo()</a>.</p>
 
 </div>
 </div>
+<a class="anchor" id="accba40a72d9709ca3c18810b8661afe3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00137.html#a83fa1b8db0e6678006920812b6f33f62">Associativity</a> Yarn.Parser.Operator.OperatorInfo.associativity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00301_source.html#l01155">1155</a> of file <a class="el" href="a00301_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00301_source.html#l01158">Yarn.Parser.Operator.OperatorInfo.OperatorInfo()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0b2921d7b863e268d33aa15213395093"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Yarn.Parser.Operator.OperatorInfo.precedence</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00301_source.html#l01156">1156</a> of file <a class="el" href="a00301_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00301_source.html#l01158">Yarn.Parser.Operator.OperatorInfo.OperatorInfo()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00301_source.html">Parser.cs</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00138.html">Dialogue.cs</a></li>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:44 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00143.html">Parser</a></li><li class="navelem"><a class="el" href="a00137.html">Operator</a></li><li class="navelem"><a class="el" href="a00138.html">OperatorInfo</a></li>
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:03 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

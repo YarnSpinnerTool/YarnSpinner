@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['tags',['tags',['../a00070.html#acd4d4915f6cc14f8b0f1f92d27da8b36',1,'Yarn::Loader::NodeInfo']]],
-  ['talktonode',['talkToNode',['../a00071.html#a64f4f1fb66b2046a674e3ebf3b9fdb56',1,'Yarn::Unity::Example::NPC']]],
-  ['target',['target',['../a00037.html#aa5d6958fb14a14ebb74e21c372fcca8b',1,'Yarn::Unity::Example::CameraFollow']]],
-  ['text',['text',['../a00040.html#a81d1f04bbb4cf6642d2bd685bda1da20',1,'Yarn.Line.text()'],['../a00040.html#a8564e5104566e145f5d917ec846444d9',1,'Yarn.Command.text()'],['../a00070.html#a63d7ebed8095a20fc5d0d74c84a34f6c',1,'Yarn.Loader.NodeInfo.text()']]],
-  ['textspeed',['textSpeed',['../a00053.html#a6053aa65534195d626031413ef3a0828',1,'Yarn::Unity::Example::ExampleDialogueUI']]],
-  ['title',['title',['../a00070.html#aafc45bbc86a9acb9bdbcf7877695a96c',1,'Yarn::Loader::NodeInfo']]],
-  ['tokenrules',['tokenRules',['../a00062.html#adf6563b1dc6f3ef80ed13c2b15b7be03',1,'Yarn::Lexer::LexerState']]],
-  ['tokens',['tokens',['../a00078.html#a1a4de646937057988b59d2ff8035eae3',1,'Yarn::Parser']]],
-  ['type',['type',['../a00099.html#a7d342190c7657fbbe85eb6fa66bcabb8',1,'Yarn.Unity.YarnSpinnerEditorWindow.ValidationMessage.type()'],['../a00048.html#a750904df254223bf3131c39017f90a0b',1,'Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.type()'],['../a00047.html#a904347efdca12f40243c7dedb646153d',1,'ExampleVariableStorage.DefaultVariable.type()'],['../a00093.html#a471a25da67fda0524f2375f9a882aafa',1,'Yarn.Token.type()'],['../a00096.html#a0de6fac3b55cf0c61e07cea53ce67caa',1,'Yarn.Lexer.TokenRule.type()'],['../a00046.html#a5ef3bc96812be224d91548bfcdfd4b92',1,'Yarn.Parser.CustomCommand.type()'],['../a00054.html#ad55c92df835006328bc2a79a8f91efb9',1,'Yarn.Parser.Expression.type()']]]
+  ['random',['random',['../a00156.html#a408485a00c7cc558428c86ed9dd04fca',1,'Yarn.VirtualMachine.random()'],['../a00124.html#ad887744b1b813fc081be814958742c37',1,'Yarn.LineAdder.random()']]],
+  ['rawtextnode',['rawTextNode',['../a00032.html#ac72e8a2a8207103d34b3d564e78fae93',1,'Yarn::AntlrCompiler']]],
+  ['read',['read',['../a00062.html#aad0c78d3f0233589a8657e2aa22677c2',1,'CsvHelper::CsvParser']]],
+  ['reader',['reader',['../a00062.html#a6ab23daf45e84a211b4010c213504f7e',1,'CsvHelper::CsvParser']]],
+  ['readerbuffer',['readerBuffer',['../a00062.html#ad8b27f20be101a15ef390fcc37f8631b',1,'CsvHelper::CsvParser']]],
+  ['readerbufferposition',['readerBufferPosition',['../a00062.html#a76b0cbb3c14e0397d2ca1144e538a33c',1,'CsvHelper::CsvParser']]],
+  ['readvariables',['readVariables',['../a00179.html#a6b542092ddce1b92c9455d60899518a9',1,'Yarn::Analysis::UnusedVariableChecker']]],
+  ['record',['record',['../a00062.html#a4c748c464a59715ecf7e21b21d0a26bb',1,'CsvHelper::CsvParser']]],
+  ['recordfuncs',['recordFuncs',['../a00071.html#af8fa2e4c94750a1d6df3112d5f1d701c',1,'CsvHelper::CsvReader']]],
+  ['referencemaps',['referenceMaps',['../a00054.html#a440e190c61de45479816430d67930463',1,'CsvHelper::Configuration::CsvClassMap']]],
+  ['regex',['regex',['../a00170.html#a47a404d6637fae489c3c77729a01cc69',1,'Yarn::Lexer::TokenRule']]]
 ];

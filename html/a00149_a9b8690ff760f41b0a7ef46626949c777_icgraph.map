@@ -1,0 +1,8 @@
+<map id="CsvHelper.ReflectionHelper.CreateInstance" name="CsvHelper.ReflectionHelper.CreateInstance">
+<area shape="rect" id="node2" href="$a00057.html#ad9c837ded7144bbd2f5a991dc1ae68c1" title="Generates a CsvClassMap for the type. " alt="" coords="275,5,453,46"/>
+<area shape="rect" id="node3" href="$a00054.html#a16b5bb84064e86c2b319348d8a42693d" title="Auto maps the given map and checks for circular references as it goes. " alt="" coords="262,70,466,111"/>
+<area shape="rect" id="node4" href="$a00149.html#a45f0f552711f33392f33693a88fb20b3" title="Creates an instance of type T. " alt="" coords="269,135,459,177"/>
+<area shape="rect" id="node5" href="$a00055.html#a68caeee244e978110a2acae6d3042fc3" title="Maps a property to another class map. " alt="" coords="260,201,468,242"/>
+<area shape="rect" id="node6" href="$a00057.html#adf4b355d089af6f33b90f17a689b0084" title="Use a CsvClassMap{T} to configure mappings. When using a class map, no properties are mapped by defau..." alt="" coords="247,266,481,307"/>
+<area shape="rect" id="node7" href="$a00064.html#a129110c34e2c12709f25948794390f97" title="Specifies the TypeConverter to use when converting the property to and from a CSV field..." alt="" coords="243,331,485,373"/>
+</map>

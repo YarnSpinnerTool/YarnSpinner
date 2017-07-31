@@ -1,11 +1,16 @@
 var annotated =
 [
-    [ "Json", "a00151.html", "a00151" ],
-    [ "NUnitLite", "a00155.html", "a00155" ],
-    [ "Yarn", "a00040.html", "a00040" ],
-    [ "YarnSpinner", "a00175.html", "a00175" ],
-    [ "ExampleVariableStorage", "a00047.html", "a00047" ],
-    [ "MobileOnly", "a00067.html", "a00067" ],
-    [ "TestDialogueUIBehaviour", "a00092.html", "a00092" ],
-    [ "YarnSpinnerTests", "a00107.html", "a00107" ]
+    [ "CsvHelper", "a00325.html", "a00325" ],
+    [ "preprocessor", "a00336.html", null ],
+    [ "System", "a00338.html", "a00338" ],
+    [ "Yarn", "a00045.html", "a00045" ],
+    [ "YarnSpinner", "a00359.html", "a00359" ],
+    [ "ExampleVariableStorage", "a00083.html", "a00083" ],
+    [ "IYarnSpinnerParserListener", "a00118.html", "a00118" ],
+    [ "IYarnSpinnerParserVisitor< Result >", "a00119.html", "a00119" ],
+    [ "MobileOnly", "a00131.html", "a00131" ],
+    [ "TestDialogueUIBehaviour", "a00165.html", "a00165" ],
+    [ "YarnSpinnerParserBaseListener", "a00190.html", "a00190" ],
+    [ "YarnSpinnerParserBaseVisitor< Result >", "a00191.html", "a00191" ],
+    [ "YarnSpinnerTests", "a00192.html", "a00192" ]
 ];

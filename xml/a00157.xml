@@ -1,86 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00157" kind="namespace">
-    <compoundname>std</compoundname>
-    <innerclass refid="a00388" prot="public">std::allocator</innerclass>
-    <innerclass refid="a00389" prot="public">std::array</innerclass>
-    <innerclass refid="a00390" prot="public">std::auto_ptr</innerclass>
-    <innerclass refid="a00391" prot="public">std::smart_ptr</innerclass>
-    <innerclass refid="a00392" prot="public">std::unique_ptr</innerclass>
-    <innerclass refid="a00393" prot="public">std::weak_ptr</innerclass>
-    <innerclass refid="a00394" prot="public">std::ios_base</innerclass>
-    <innerclass refid="a00395" prot="public">std::error_code</innerclass>
-    <innerclass refid="a00396" prot="public">std::error_category</innerclass>
-    <innerclass refid="a00397" prot="public">std::system_error</innerclass>
-    <innerclass refid="a00398" prot="public">std::error_condition</innerclass>
-    <innerclass refid="a00399" prot="public">std::thread</innerclass>
-    <innerclass refid="a00400" prot="public">std::basic_ios</innerclass>
-    <innerclass refid="a00401" prot="public">std::basic_istream</innerclass>
-    <innerclass refid="a00402" prot="public">std::basic_ostream</innerclass>
-    <innerclass refid="a00403" prot="public">std::basic_iostream</innerclass>
-    <innerclass refid="a00404" prot="public">std::basic_ifstream</innerclass>
-    <innerclass refid="a00405" prot="public">std::basic_ofstream</innerclass>
-    <innerclass refid="a00406" prot="public">std::basic_fstream</innerclass>
-    <innerclass refid="a00407" prot="public">std::basic_istringstream</innerclass>
-    <innerclass refid="a00408" prot="public">std::basic_ostringstream</innerclass>
-    <innerclass refid="a00409" prot="public">std::basic_stringstream</innerclass>
-    <innerclass refid="a00410" prot="public">std::ios</innerclass>
-    <innerclass refid="a00411" prot="public">std::wios</innerclass>
-    <innerclass refid="a00412" prot="public">std::istream</innerclass>
-    <innerclass refid="a00413" prot="public">std::wistream</innerclass>
-    <innerclass refid="a00414" prot="public">std::ostream</innerclass>
-    <innerclass refid="a00415" prot="public">std::wostream</innerclass>
-    <innerclass refid="a00416" prot="public">std::ifstream</innerclass>
-    <innerclass refid="a00417" prot="public">std::wifstream</innerclass>
-    <innerclass refid="a00418" prot="public">std::ofstream</innerclass>
-    <innerclass refid="a00419" prot="public">std::wofstream</innerclass>
-    <innerclass refid="a00420" prot="public">std::fstream</innerclass>
-    <innerclass refid="a00421" prot="public">std::wfstream</innerclass>
-    <innerclass refid="a00422" prot="public">std::istringstream</innerclass>
-    <innerclass refid="a00423" prot="public">std::wistringstream</innerclass>
-    <innerclass refid="a00424" prot="public">std::ostringstream</innerclass>
-    <innerclass refid="a00425" prot="public">std::wostringstream</innerclass>
-    <innerclass refid="a00426" prot="public">std::stringstream</innerclass>
-    <innerclass refid="a00427" prot="public">std::wstringstream</innerclass>
-    <innerclass refid="a00428" prot="public">std::basic_string</innerclass>
-    <innerclass refid="a00429" prot="public">std::string</innerclass>
-    <innerclass refid="a00430" prot="public">std::wstring</innerclass>
-    <innerclass refid="a00431" prot="public">std::complex</innerclass>
-    <innerclass refid="a00432" prot="public">std::bitset</innerclass>
-    <innerclass refid="a00433" prot="public">std::deque</innerclass>
-    <innerclass refid="a00434" prot="public">std::list</innerclass>
-    <innerclass refid="a00435" prot="public">std::forward_list</innerclass>
-    <innerclass refid="a00436" prot="public">std::map</innerclass>
-    <innerclass refid="a00437" prot="public">std::unordered_map</innerclass>
-    <innerclass refid="a00438" prot="public">std::multimap</innerclass>
-    <innerclass refid="a00439" prot="public">std::unordered_multimap</innerclass>
-    <innerclass refid="a00440" prot="public">std::set</innerclass>
-    <innerclass refid="a00441" prot="public">std::unordered_set</innerclass>
-    <innerclass refid="a00442" prot="public">std::multiset</innerclass>
-    <innerclass refid="a00443" prot="public">std::unordered_multiset</innerclass>
-    <innerclass refid="a00444" prot="public">std::vector</innerclass>
-    <innerclass refid="a00445" prot="public">std::queue</innerclass>
-    <innerclass refid="a00446" prot="public">std::priority_queue</innerclass>
-    <innerclass refid="a00447" prot="public">std::stack</innerclass>
-    <innerclass refid="a00448" prot="public">std::valarray</innerclass>
-    <innerclass refid="a00449" prot="public">std::exception</innerclass>
-    <innerclass refid="a00450" prot="public">std::bad_alloc</innerclass>
-    <innerclass refid="a00451" prot="public">std::bad_cast</innerclass>
-    <innerclass refid="a00452" prot="public">std::bad_typeid</innerclass>
-    <innerclass refid="a00453" prot="public">std::logic_error</innerclass>
-    <innerclass refid="a00454" prot="public">std::runtime_error</innerclass>
-    <innerclass refid="a00455" prot="public">std::bad_exception</innerclass>
-    <innerclass refid="a00456" prot="public">std::domain_error</innerclass>
-    <innerclass refid="a00457" prot="public">std::invalid_argument</innerclass>
-    <innerclass refid="a00458" prot="public">std::length_error</innerclass>
-    <innerclass refid="a00459" prot="public">std::out_of_range</innerclass>
-    <innerclass refid="a00460" prot="public">std::range_error</innerclass>
-    <innerclass refid="a00461" prot="public">std::overflow_error</innerclass>
-    <innerclass refid="a00462" prot="public">std::underflow_error</innerclass>
+  <compounddef id="a00157" kind="class" prot="public">
+    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <innerclass refid="a00370" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00157_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
+        <type><ref refid="a00370" kindref="compound">SpriteInfo</ref>[]</type>
+        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
+        <argsstring></argsstring>
+        <name>sprites</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00157_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
+        <argsstring>(string spriteName)</argsstring>
+        <name>UseSprite</name>
+        <param>
+          <type>string</type>
+          <declname>spriteName</declname>
+        </param>
+        <briefdescription>
+<para>Create a command to use on a sprite. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="46" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
-<para>STL namespace. </para>    </briefdescription>
+<para>Attach <ref refid="a00157" kindref="compound">SpriteSwitcher</ref> to game object. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="[STL]" line="1" column="1"/>
+    <inheritancegraph>
+      <node id="1651">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00157"/>
+        <childnode refid="1652" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1652">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1653">
+        <label>Yarn.Unity.Example.SpriteSwitcher</label>
+        <link refid="a00157"/>
+        <childnode refid="1654" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1655" relation="usage">
+          <edgelabel>+sprites</edgelabel>
+        </childnode>
+      </node>
+      <node id="1655">
+        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
+        <link refid="a00370"/>
+      </node>
+      <node id="1654">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs" bodystart="34" bodyend="62"/>
+    <listofallmembers>
+      <member refid="a00157_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
+      <member refid="a00157_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

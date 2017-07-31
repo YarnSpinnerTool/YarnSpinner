@@ -1,155 +1,878 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00062" kind="class" prot="package">
-    <compoundname>Yarn::Lexer::LexerState</compoundname>
+  <compounddef id="a00062" kind="class" prot="public">
+    <compoundname>CsvHelper::CsvParser</compoundname>
+    <basecompoundref refid="a00107" prot="public" virt="non-virtual">CsvHelper.ICsvParser</basecompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00062_1a951f91e9522ffe84851f2e25e9445106" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; <ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
-        <definition>Dictionary&lt;TokenType, string&gt; Yarn.Lexer.LexerState.patterns</definition>
-        <argsstring></argsstring>
-        <name>patterns</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="209" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="209" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00062_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00096" kindref="compound">TokenRule</ref> &gt;</type>
-        <definition>List&lt;TokenRule&gt; Yarn.Lexer.LexerState.tokenRules</definition>
-        <argsstring></argsstring>
-        <name>tokenRules</name>
-        <initializer>= new List&lt;<ref refid="a00096" kindref="compound">TokenRule</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="216" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="216" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00062_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="a00062_1abeead9997a4c1ec20866458a2e0928bb" prot="private" static="no" mutable="no">
         <type>bool</type>
-        <definition>bool Yarn.Lexer.LexerState.setTrackNextIndentation</definition>
+        <definition>bool CsvHelper.CsvParser.disposed</definition>
         <argsstring></argsstring>
-        <name>setTrackNextIndentation</name>
-        <initializer>= false</initializer>
+        <name>disposed</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="269" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="269" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="a00062_1a294664b81d5e4e61289785fa2c1c5820" compoundref="a00233" startline="174" endline="180">CsvHelper.CsvParser.CheckDisposed</referencedby>
+        <referencedby refid="a00062_1a67eb636585d4e43642b0ad795413f2a2" compoundref="a00233" startline="151" endline="168">CsvHelper.CsvParser.Dispose</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1a6ab23daf45e84a211b4010c213504f7e" prot="private" static="no" mutable="no">
+        <type>TextReader</type>
+        <definition>TextReader CsvHelper.CsvParser.reader</definition>
+        <argsstring></argsstring>
+        <name>reader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="19" bodyend="-1"/>
+        <referencedby refid="a00062_1a94820d35d587215da53e0a5f2bf229d0" compoundref="a00233" startline="84" endline="100">CsvHelper.CsvParser.CsvParser</referencedby>
+        <referencedby refid="a00062_1a67eb636585d4e43642b0ad795413f2a2" compoundref="a00233" startline="151" endline="168">CsvHelper.CsvParser.Dispose</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1ad8b27f20be101a15ef390fcc37f8631b" prot="private" static="no" mutable="no">
+        <type>readonly char[]</type>
+        <definition>readonly char [] CsvHelper.CsvParser.readerBuffer</definition>
+        <argsstring></argsstring>
+        <name>readerBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="20" bodyend="-1"/>
+        <referencedby refid="a00062_1a699a73656cc4d6b06df34b37460a0963" compoundref="a00233" startline="227" endline="230">CsvHelper.CsvParser.AppendField</referencedby>
+        <referencedby refid="a00062_1a94820d35d587215da53e0a5f2bf229d0" compoundref="a00233" startline="84" endline="100">CsvHelper.CsvParser.CsvParser</referencedby>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+        <referencedby refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" compoundref="a00233" startline="237" endline="243">CsvHelper.CsvParser.UpdateBytePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1a76b0cbb3c14e0397d2ca1144e538a33c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CsvHelper.CsvParser.readerBufferPosition</definition>
+        <argsstring></argsstring>
+        <name>readerBufferPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="21" bodyend="-1"/>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1a9300effd525a71c2a377bde2586da9ae" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CsvHelper.CsvParser.charsRead</definition>
+        <argsstring></argsstring>
+        <name>charsRead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1a4c748c464a59715ecf7e21b21d0a26bb" prot="private" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] CsvHelper.CsvParser.record</definition>
+        <argsstring></argsstring>
+        <name>record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="23" bodyend="-1"/>
+        <referencedby refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</referencedby>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1abf91f9e65b160b9e835a2991ddced457" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CsvHelper.CsvParser.currentRow</definition>
+        <argsstring></argsstring>
+        <name>currentRow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1abea7b56f7571998c07fbf18043852835" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CsvHelper.CsvParser.currentRawRow</definition>
+        <argsstring></argsstring>
+        <name>currentRawRow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="25" bodyend="-1"/>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1aeb171813d1526839ccd41d60ab6483b2" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+        <definition>readonly CsvConfiguration CsvHelper.CsvParser.configuration</definition>
+        <argsstring></argsstring>
+        <name>configuration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="26" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</referencedby>
+        <referencedby refid="a00062_1a94820d35d587215da53e0a5f2bf229d0" compoundref="a00233" startline="84" endline="100">CsvHelper.CsvParser.CsvParser</referencedby>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+        <referencedby refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" compoundref="a00233" startline="237" endline="243">CsvHelper.CsvParser.UpdateBytePosition</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1a55bb91346d092b3c8dc74b48f6c87bdc" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CsvHelper.CsvParser.cPrev</definition>
+        <argsstring></argsstring>
+        <name>cPrev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="27" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="27" bodyend="-1"/>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1ae56cb79868b308d55a44c4c4b7cd22d1" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CsvHelper.CsvParser.c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <initializer>= &apos;\0&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="28" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1aad0c78d3f0233589a8657e2aa22677c2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.CsvParser.read</definition>
+        <argsstring></argsstring>
+        <name>read</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="29" bodyend="-1"/>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00062_1abcc5896fa941dd33377a660909940589" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.CsvParser.hasExcelSeparatorBeenRead</definition>
+        <argsstring></argsstring>
+        <name>hasExcelSeparatorBeenRead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
+        <referencedby refid="a00062_1a47414bb437abd9918ff4501beaa9ff1c" compoundref="a00233" startline="604" endline="614">CsvHelper.CsvParser.ReadExcelSeparator</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00062_1a69948f05c35eeae9cb8448c849a053e6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.LexerState.containsTextRule</definition>
+      <memberdef kind="property" id="a00062_1a417fc0dca5536811d7a8571ccdf0d46e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+        <definition>virtual CsvConfiguration CsvHelper.CsvParser.Configuration</definition>
         <argsstring></argsstring>
-        <name>containsTextRule</name>
-        <initializer>\G((?!{0}).)*&quot;</initializer>
+        <name>Configuration</name>
         <briefdescription>
-        </briefdescription>
+<para>Gets the configuration. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="259" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="259" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1aa9cb95463f5328b8c85884f434975249" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>virtual int CsvHelper.CsvParser.FieldCount</definition>
+        <argsstring></argsstring>
+        <name>FieldCount</name>
+        <briefdescription>
+<para>Gets the field count. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</referencedby>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1a1e9b4aa434c3095d383e0c20b0c0b64c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>long</type>
+        <definition>virtual long CsvHelper.CsvParser.CharPosition</definition>
+        <argsstring></argsstring>
+        <name>CharPosition</name>
+        <briefdescription>
+<para>Gets the character position that the parser is currently on. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="48" bodyend="-1"/>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1a6fd7255ce9ae33029aafcaab07205047" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>long</type>
+        <definition>virtual long CsvHelper.CsvParser.BytePosition</definition>
+        <argsstring></argsstring>
+        <name>BytePosition</name>
+        <briefdescription>
+<para>Gets the byte position that the parser is currently on. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" compoundref="a00233" startline="237" endline="243">CsvHelper.CsvParser.UpdateBytePosition</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1aae6f5e516189e2b2f9e80c33d235c7b4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>virtual int CsvHelper.CsvParser.Row</definition>
+        <argsstring></argsstring>
+        <name>Row</name>
+        <briefdescription>
+<para>Gets the row of the CSV file that the parser is currently on. This is the logical CSV row. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1a87a7563b2835f1ccd09dbf0185b1b66c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>virtual int CsvHelper.CsvParser.RawRow</definition>
+        <argsstring></argsstring>
+        <name>RawRow</name>
+        <briefdescription>
+<para>Gets the row of the CSV file that the parser is currently on. This is the actual file row. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00062_1ae2c14a3790234029587b817784bdd158" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>virtual string CsvHelper.CsvParser.RawRecord</definition>
+        <argsstring></argsstring>
+        <name>RawRecord</name>
+        <briefdescription>
+<para>Gets the raw row for the current record that was parsed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="70" bodyend="-1"/>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00062_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00062_1a28afb6761bc195a6f20c284c46811b76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.Lexer.LexerState.LexerState</definition>
-        <argsstring>(Dictionary&lt; TokenType, string &gt; patterns)</argsstring>
-        <name>LexerState</name>
+        <definition>CsvHelper.CsvParser.CsvParser</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>CsvParser</name>
         <param>
-          <type>Dictionary&lt; <ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref>, string &gt;</type>
-          <declname>patterns</declname>
+          <type>TextReader</type>
+          <declname>reader</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Creates a new parser using the given TextReader. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TextReader with the CSV file data.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="211" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="211" bodyend="214"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="76" bodyend="76"/>
       </memberdef>
-      <memberdef kind="function" id="a00062_1a71ba52744e853ff142de19e97cf5daed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00096" kindref="compound">TokenRule</ref></type>
-        <definition>TokenRule Yarn.Lexer.LexerState.AddTransition</definition>
-        <argsstring>(TokenType type, string entersState=null, bool delimitsText=false)</argsstring>
-        <name>AddTransition</name>
+      <memberdef kind="function" id="a00062_1a94820d35d587215da53e0a5f2bf229d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParser.CsvParser</definition>
+        <argsstring>(TextReader reader, CsvConfiguration configuration)</argsstring>
+        <name>CsvParser</name>
         <param>
-          <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new parser using the given TextReader and CsvConfiguration. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TextReader with the CSV file data.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>configuration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="84" bodyend="100"/>
+        <references refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" compoundref="a00233" startline="26">CsvHelper.CsvParser.configuration</references>
+        <references refid="a00062_1a6ab23daf45e84a211b4010c213504f7e" compoundref="a00233" startline="19">CsvHelper.CsvParser.reader</references>
+        <references refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" compoundref="a00233" startline="20">CsvHelper.CsvParser.readerBuffer</references>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a8e938842c6267343128babd111df9710" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string[]</type>
+        <definition>virtual string [] CsvHelper.CsvParser.Read</definition>
+        <argsstring>()</argsstring>
+        <name>Read</name>
+        <reimplements refid="a00107_1a411461b4cd33dce0b42c81715359f687">Read</reimplements>
+        <briefdescription>
+<para>Reads a record from the CSV file. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A List{String} of fields for the record read. If there are no more records, null is returned.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="107" bodyend="135"/>
+        <references refid="a00062_1a294664b81d5e4e61289785fa2c1c5820" compoundref="a00233" startline="174" endline="180">CsvHelper.CsvParser.CheckDisposed</references>
+        <references refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" compoundref="a00233" startline="26">CsvHelper.CsvParser.configuration</references>
+        <references refid="a00057_1a615120d2e42818bc37d87181b72d4ad3" compoundref="a00217" startline="100">CsvHelper.Configuration.CsvConfiguration.DetectColumnCountChanges</references>
+        <references refid="a00062_1aa9cb95463f5328b8c85884f434975249" compoundref="a00233" startline="43">CsvHelper.CsvParser.FieldCount</references>
+        <references refid="a00057_1a1ec30ebdadc1050686b22d1f518df042" compoundref="a00217" startline="78">CsvHelper.Configuration.CsvConfiguration.HasExcelSeparator</references>
+        <references refid="a00062_1abcc5896fa941dd33377a660909940589" compoundref="a00233" startline="30">CsvHelper.CsvParser.hasExcelSeparatorBeenRead</references>
+        <references refid="a00062_1a47414bb437abd9918ff4501beaa9ff1c" compoundref="a00233" startline="604" endline="614">CsvHelper.CsvParser.ReadExcelSeparator</references>
+        <references refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</references>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1aa13f93a198206179cd19cdc12332d842" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.CsvParser.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <briefdescription>
+<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
+        <detaileddescription>
+<para>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="141" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="a00062_1a67eb636585d4e43642b0ad795413f2a2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
+        <briefdescription>
+<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disposing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True if the instance needs to be disposed of.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="151" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="151" bodyend="168"/>
+        <references refid="a00062_1abeead9997a4c1ec20866458a2e0928bb" compoundref="a00233" startline="18">CsvHelper.CsvParser.disposed</references>
+        <references refid="a00062_1a6ab23daf45e84a211b4010c213504f7e" compoundref="a00233" startline="19">CsvHelper.CsvParser.reader</references>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a294664b81d5e4e61289785fa2c1c5820" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.CheckDisposed</definition>
+        <argsstring>()</argsstring>
+        <name>CheckDisposed</name>
+        <briefdescription>
+<para>Checks if the instance has been disposed of. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ObjectDisposedException</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="174" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="174" bodyend="180"/>
+        <references refid="a00062_1abeead9997a4c1ec20866458a2e0928bb" compoundref="a00233" startline="18">CsvHelper.CsvParser.disposed</references>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.AddFieldToRecord</definition>
+        <argsstring>(ref int recordPosition, string field, ref bool fieldIsBad)</argsstring>
+        <name>AddFieldToRecord</name>
+        <param>
+          <type>ref int</type>
+          <declname>recordPosition</declname>
         </param>
         <param>
           <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>fieldIsBad</declname>
+        </param>
+        <briefdescription>
+<para>Adds the field to the current record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>recordPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The record position to add the field to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to add.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="187" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="187" bodyend="219"/>
+        <references refid="a00057_1a1a59e8f40f9629658d47a6f163dda8ed" compoundref="a00217" startline="408">CsvHelper.Configuration.CsvConfiguration.BadDataCallback</references>
+        <references refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" compoundref="a00233" startline="26">CsvHelper.CsvParser.configuration</references>
+        <references refid="a00062_1abf91f9e65b160b9e835a2991ddced457" compoundref="a00233" startline="24">CsvHelper.CsvParser.currentRow</references>
+        <references refid="a00062_1aa9cb95463f5328b8c85884f434975249" compoundref="a00233" startline="43">CsvHelper.CsvParser.FieldCount</references>
+        <references refid="a00062_1a4c748c464a59715ecf7e21b21d0a26bb" compoundref="a00233" startline="23">CsvHelper.CsvParser.record</references>
+        <references refid="a00057_1ac20c0f1cc282f4b13ce15b6a91305c10" compoundref="a00217" startline="402">CsvHelper.Configuration.CsvConfiguration.ThrowOnBadData</references>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a699a73656cc4d6b06df34b37460a0963" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.AppendField</definition>
+        <argsstring>(ref string field, int fieldStartPosition, int length)</argsstring>
+        <name>AppendField</name>
+        <param>
+          <type>ref string</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fieldStartPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Appends the current buffer data to the field. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to append the current buffer to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fieldStartPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start position in the buffer that the .</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="227" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="227" bodyend="230"/>
+        <references refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" compoundref="a00233" startline="20">CsvHelper.CsvParser.readerBuffer</references>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.UpdateBytePosition</definition>
+        <argsstring>(int fieldStartPosition, int length)</argsstring>
+        <name>UpdateBytePosition</name>
+        <param>
+          <type>int</type>
+          <declname>fieldStartPosition</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Updates the byte position using the data from the reader buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fieldStartPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field start position.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="237" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="237" bodyend="243"/>
+        <references refid="a00062_1a6fd7255ce9ae33029aafcaab07205047" compoundref="a00233" startline="53">CsvHelper.CsvParser.BytePosition</references>
+        <references refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" compoundref="a00233" startline="26">CsvHelper.CsvParser.configuration</references>
+        <references refid="a00057_1af774e3cb6d18788006deec71879f54a1" compoundref="a00217" startline="321">CsvHelper.Configuration.CsvConfiguration.CountBytes</references>
+        <references refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" compoundref="a00233" startline="20">CsvHelper.CsvParser.readerBuffer</references>
+        <referencedby refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</referencedby>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string[]</type>
+        <definition>virtual string [] CsvHelper.CsvParser.ReadLine</definition>
+        <argsstring>()</argsstring>
+        <name>ReadLine</name>
+        <briefdescription>
+<para>Reads the next line. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The line separated into fields.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="249" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="249" bodyend="521"/>
+        <references refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</references>
+        <references refid="a00057_1a0799eaadd40d70a70cb2d50a3f6f5836" compoundref="a00217" startline="257">CsvHelper.Configuration.CsvConfiguration.AllowComments</references>
+        <references refid="a00062_1a699a73656cc4d6b06df34b37460a0963" compoundref="a00233" startline="227" endline="230">CsvHelper.CsvParser.AppendField</references>
+        <references refid="a00062_1ae56cb79868b308d55a44c4c4b7cd22d1" compoundref="a00233" startline="28">CsvHelper.CsvParser.c</references>
+        <references refid="a00062_1a1e9b4aa434c3095d383e0c20b0c0b64c" compoundref="a00233" startline="48">CsvHelper.CsvParser.CharPosition</references>
+        <references refid="a00057_1a7df1aa9462eff1da4a271cb3a53feb95" compoundref="a00217" startline="248">CsvHelper.Configuration.CsvConfiguration.Comment</references>
+        <references refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" compoundref="a00233" startline="26">CsvHelper.CsvParser.configuration</references>
+        <references refid="a00062_1a55bb91346d092b3c8dc74b48f6c87bdc" compoundref="a00233" startline="27">CsvHelper.CsvParser.cPrev</references>
+        <references refid="a00062_1abea7b56f7571998c07fbf18043852835" compoundref="a00233" startline="25">CsvHelper.CsvParser.currentRawRow</references>
+        <references refid="a00062_1abf91f9e65b160b9e835a2991ddced457" compoundref="a00233" startline="24">CsvHelper.CsvParser.currentRow</references>
+        <references refid="a00057_1a611063826803f98b7cfc275247c1d883" compoundref="a00217" startline="146">CsvHelper.Configuration.CsvConfiguration.Delimiter</references>
+        <references refid="a00062_1aa9cb95463f5328b8c85884f434975249" compoundref="a00233" startline="43">CsvHelper.CsvParser.FieldCount</references>
+        <references refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" compoundref="a00233" startline="538" endline="599">CsvHelper.CsvParser.GetChar</references>
+        <references refid="a00057_1abec66869c9418966fe5bbf74e32b46a2" compoundref="a00217" startline="377">CsvHelper.Configuration.CsvConfiguration.IgnoreBlankLines</references>
+        <references refid="a00057_1abb9b54f3fb2aefa066598d74f01d00d8" compoundref="a00217" startline="361">CsvHelper.Configuration.CsvConfiguration.IgnoreQuotes</references>
+        <references refid="a00057_1a2a8217dbd09f7d7e4c2895893743e25f" compoundref="a00217" startline="181">CsvHelper.Configuration.CsvConfiguration.Quote</references>
+        <references refid="a00062_1ae2c14a3790234029587b817784bdd158" compoundref="a00233" startline="70">CsvHelper.CsvParser.RawRecord</references>
+        <references refid="a00062_1aad0c78d3f0233589a8657e2aa22677c2" compoundref="a00233" startline="29">CsvHelper.CsvParser.read</references>
+        <references refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" compoundref="a00233" startline="20">CsvHelper.CsvParser.readerBuffer</references>
+        <references refid="a00062_1a76b0cbb3c14e0397d2ca1144e538a33c" compoundref="a00233" startline="21">CsvHelper.CsvParser.readerBufferPosition</references>
+        <references refid="a00062_1a4c748c464a59715ecf7e21b21d0a26bb" compoundref="a00233" startline="23">CsvHelper.CsvParser.record</references>
+        <references refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" compoundref="a00233" startline="237" endline="243">CsvHelper.CsvParser.UpdateBytePosition</references>
+        <references refid="a00057_1a5d2eed13b8836f0397f8c39a709de1cc" compoundref="a00217" startline="387">CsvHelper.Configuration.CsvConfiguration.UseExcelLeadingZerosFormatForNumerics</references>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00062_1ac425b45e53d095d825f0fa8a52041a69" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CsvHelper.CsvParser.GetChar</definition>
+        <argsstring>(out char ch, ref int fieldStartPosition, ref int rawFieldStartPosition, ref string field, ref bool fieldIsBad, bool prevCharWasDelimiter, ref int recordPosition, ref int fieldLength, bool inComment, bool inDelimiter, bool inQuotes, bool isPeek)</argsstring>
+        <name>GetChar</name>
+        <param>
+          <type>out char</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>fieldStartPosition</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>rawFieldStartPosition</declname>
+        </param>
+        <param>
+          <type>ref string</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>ref bool</type>
+          <declname>fieldIsBad</declname>
         </param>
         <param>
           <type>bool</type>
-          <declname>delimitsText</declname>
-          <defval>false</defval>
+          <declname>prevCharWasDelimiter</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>recordPosition</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>fieldLength</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inComment</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inDelimiter</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>inQuotes</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isPeek</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Gets the current character from the buffer while advancing the buffer if it ran out. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The char that gets the read char set to.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fieldStartPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start position of the current field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rawFieldStartPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start position of the raw field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prevCharWasDelimiter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if the previous char read was a delimiter.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>recordPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position in the record we are currently at.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fieldLength</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the field in the buffer.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inComment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if the row is current a comment row.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>isPeek</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A value indicating if this call is a peek. If true and the end of the record was found no record handling will be done.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A value indicating if read a char was read. True if a char was read, otherwise false.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="218" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="218" bodyend="227"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="538" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="538" bodyend="599"/>
+        <references refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" compoundref="a00233" startline="187" endline="219">CsvHelper.CsvParser.AddFieldToRecord</references>
+        <references refid="a00062_1a699a73656cc4d6b06df34b37460a0963" compoundref="a00233" startline="227" endline="230">CsvHelper.CsvParser.AppendField</references>
+        <references refid="a00062_1ae56cb79868b308d55a44c4c4b7cd22d1" compoundref="a00233" startline="28">CsvHelper.CsvParser.c</references>
+        <references refid="a00062_1a9300effd525a71c2a377bde2586da9ae" compoundref="a00233" startline="22">CsvHelper.CsvParser.charsRead</references>
+        <references refid="a00062_1ae2c14a3790234029587b817784bdd158" compoundref="a00233" startline="70">CsvHelper.CsvParser.RawRecord</references>
+        <references refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" compoundref="a00233" startline="20">CsvHelper.CsvParser.readerBuffer</references>
+        <references refid="a00062_1a76b0cbb3c14e0397d2ca1144e538a33c" compoundref="a00233" startline="21">CsvHelper.CsvParser.readerBufferPosition</references>
+        <references refid="a00062_1a4c748c464a59715ecf7e21b21d0a26bb" compoundref="a00233" startline="23">CsvHelper.CsvParser.record</references>
+        <references refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" compoundref="a00233" startline="237" endline="243">CsvHelper.CsvParser.UpdateBytePosition</references>
+        <referencedby refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" compoundref="a00233" startline="249" endline="521">CsvHelper.CsvParser.ReadLine</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00062_1af183111863c651ae5681665a2c379830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00096" kindref="compound">TokenRule</ref></type>
-        <definition>TokenRule Yarn.Lexer.LexerState.AddTextRule</definition>
-        <argsstring>(TokenType type, string entersState=null)</argsstring>
-        <name>AddTextRule</name>
-        <param>
-          <type><ref refid="a00040_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-          <declname>type</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
-        </param>
+      <memberdef kind="function" id="a00062_1a47414bb437abd9918ff4501beaa9ff1c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvParser.ReadExcelSeparator</definition>
+        <argsstring>()</argsstring>
+        <name>ReadExcelSeparator</name>
         <briefdescription>
-        </briefdescription>
+<para>Reads the Excel seperator and sets it to the delimiter. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="232" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="232" bodyend="257"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="604" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="604" bodyend="614"/>
+        <references refid="a00062_1abcc5896fa941dd33377a660909940589" compoundref="a00233" startline="30">CsvHelper.CsvParser.hasExcelSeparatorBeenRead</references>
+        <referencedby refid="a00062_1a8e938842c6267343128babd111df9710" compoundref="a00233" startline="107" endline="135">CsvHelper.CsvParser.Read</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Parses a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="532">
-        <label>Yarn.Lexer.LexerState</label>
+    <inheritancegraph>
+      <node id="1103">
+        <label>ICsvParser</label>
+        <link refid="a00107"/>
+        <childnode refid="1104" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1104">
+        <label>IDisposable</label>
+      </node>
+      <node id="1102">
+        <label>CsvHelper.CsvParser</label>
         <link refid="a00062"/>
+        <childnode refid="1103" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1108">
+        <label>CsvHelper.Configuration.CsvConfiguration</label>
+        <link refid="a00057"/>
+        <childnode refid="1109" relation="usage">
+          <edgelabel>-maps</edgelabel>
+        </childnode>
+      </node>
+      <node id="1106">
+        <label>ICsvParser</label>
+        <link refid="a00107"/>
+        <childnode refid="1107" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1107">
+        <label>IDisposable</label>
+      </node>
+      <node id="1109">
+        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
+        <link refid="a00056"/>
+      </node>
+      <node id="1105">
+        <label>CsvHelper.CsvParser</label>
+        <link refid="a00062"/>
+        <childnode refid="1106" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1108" relation="usage">
+          <edgelabel>-configuration</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="207" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="207" bodyend="272"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParser.cs" bodystart="16" bodyend="615"/>
     <listofallmembers>
-      <member refid="a00062_1af183111863c651ae5681665a2c379830" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTextRule</name></member>
-      <member refid="a00062_1a71ba52744e853ff142de19e97cf5daed" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>AddTransition</name></member>
-      <member refid="a00062_1a69948f05c35eeae9cb8448c849a053e6" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>containsTextRule</name></member>
-      <member refid="a00062_1ac67a7c0e09d7b4350f75b105723a4f6c" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>LexerState</name></member>
-      <member refid="a00062_1a951f91e9522ffe84851f2e25e9445106" prot="private" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>patterns</name></member>
-      <member refid="a00062_1ad8b6ccac53bedd9dc202ffe6ac5698b2" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>setTrackNextIndentation</name></member>
-      <member refid="a00062_1adf6563b1dc6f3ef80ed13c2b15b7be03" prot="public" virt="non-virtual"><scope>Yarn::Lexer::LexerState</scope><name>tokenRules</name></member>
+      <member refid="a00062_1a5ccc63fca7b292e0a313ccf81c5ac48c" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>AddFieldToRecord</name></member>
+      <member refid="a00062_1a699a73656cc4d6b06df34b37460a0963" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>AppendField</name></member>
+      <member refid="a00062_1a6fd7255ce9ae33029aafcaab07205047" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>BytePosition</name></member>
+      <member refid="a00062_1ae56cb79868b308d55a44c4c4b7cd22d1" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>c</name></member>
+      <member refid="a00062_1a1e9b4aa434c3095d383e0c20b0c0b64c" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>CharPosition</name></member>
+      <member refid="a00062_1a9300effd525a71c2a377bde2586da9ae" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>charsRead</name></member>
+      <member refid="a00062_1a294664b81d5e4e61289785fa2c1c5820" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>CheckDisposed</name></member>
+      <member refid="a00062_1aeb171813d1526839ccd41d60ab6483b2" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>configuration</name></member>
+      <member refid="a00062_1a417fc0dca5536811d7a8571ccdf0d46e" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>Configuration</name></member>
+      <member refid="a00062_1a55bb91346d092b3c8dc74b48f6c87bdc" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>cPrev</name></member>
+      <member refid="a00062_1a28afb6761bc195a6f20c284c46811b76" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>CsvParser</name></member>
+      <member refid="a00062_1a94820d35d587215da53e0a5f2bf229d0" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>CsvParser</name></member>
+      <member refid="a00062_1abea7b56f7571998c07fbf18043852835" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>currentRawRow</name></member>
+      <member refid="a00062_1abf91f9e65b160b9e835a2991ddced457" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>currentRow</name></member>
+      <member refid="a00062_1aa13f93a198206179cd19cdc12332d842" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>Dispose</name></member>
+      <member refid="a00062_1a67eb636585d4e43642b0ad795413f2a2" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>Dispose</name></member>
+      <member refid="a00062_1abeead9997a4c1ec20866458a2e0928bb" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>disposed</name></member>
+      <member refid="a00062_1aa9cb95463f5328b8c85884f434975249" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>FieldCount</name></member>
+      <member refid="a00062_1ac425b45e53d095d825f0fa8a52041a69" prot="protected" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>GetChar</name></member>
+      <member refid="a00062_1abcc5896fa941dd33377a660909940589" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>hasExcelSeparatorBeenRead</name></member>
+      <member refid="a00062_1ae2c14a3790234029587b817784bdd158" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>RawRecord</name></member>
+      <member refid="a00062_1a87a7563b2835f1ccd09dbf0185b1b66c" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>RawRow</name></member>
+      <member refid="a00062_1a8e938842c6267343128babd111df9710" prot="public" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>Read</name></member>
+      <member refid="a00062_1aad0c78d3f0233589a8657e2aa22677c2" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>read</name></member>
+      <member refid="a00062_1a6ab23daf45e84a211b4010c213504f7e" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>reader</name></member>
+      <member refid="a00062_1ad8b27f20be101a15ef390fcc37f8631b" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>readerBuffer</name></member>
+      <member refid="a00062_1a76b0cbb3c14e0397d2ca1144e538a33c" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>readerBufferPosition</name></member>
+      <member refid="a00062_1a47414bb437abd9918ff4501beaa9ff1c" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>ReadExcelSeparator</name></member>
+      <member refid="a00062_1a5420fbd5e54c6ed9a856f2d92e610957" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>ReadLine</name></member>
+      <member refid="a00062_1a4c748c464a59715ecf7e21b21d0a26bb" prot="private" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>record</name></member>
+      <member refid="a00062_1aae6f5e516189e2b2f9e80c33d235c7b4" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParser</scope><name>Row</name></member>
+      <member refid="a00062_1a80b65e1df274bb8ef11d8bc5ba142982" prot="protected" virt="virtual"><scope>CsvHelper::CsvParser</scope><name>UpdateBytePosition</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

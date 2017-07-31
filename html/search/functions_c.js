@@ -1,13 +1,22 @@
 var searchData=
 [
-  ['nextsymbolis',['NextSymbolIs',['../a00078.html#a666a945da1a7845b02b92592fccac291',1,'Yarn::Parser']]],
-  ['nextsymbolsare',['NextSymbolsAre',['../a00078.html#afaa7e96d4cdaf6b1fde9ecd273c00c34',1,'Yarn::Parser']]],
-  ['nexttoken',['NextToken',['../a00060.html#a1d2daab9b052b186da7a2b6711be5803',1,'Json::JsonParser']]],
-  ['node',['Node',['../a00068.html#ae0562dc06ca747307b66039ef2f28772',1,'Yarn::Parser::Node']]],
-  ['nodecomplete',['NodeComplete',['../a00052.html#a2900548a0704d39d4502a153945f4bef',1,'Yarn::Unity::DialogueUIBehaviour']]],
-  ['nodecompletehandler',['NodeCompleteHandler',['../a00086.html#a5bf3aa51578847c18191fec665a840f9',1,'Yarn::VirtualMachine']]],
-  ['nodecompleteresult',['NodeCompleteResult',['../a00069.html#a88c81469a69987c05aa92780c5a5c1f9',1,'Yarn::Dialogue::NodeCompleteResult']]],
-  ['nodeexists',['NodeExists',['../a00051.html#aadf7711b9ba101d6ce8ba491d9c5a4c3',1,'Yarn.Unity.DialogueRunner.NodeExists()'],['../a00050.html#a93bb76a1f9a4058f225ff4cee97483c6',1,'Yarn.Dialogue.NodeExists()']]],
-  ['nodeinfo',['NodeInfo',['../a00070.html#aa56085ea115b77cb9ee975686e726c29',1,'Yarn::Loader::NodeInfo']]],
-  ['nodeparent',['NodeParent',['../a00077.html#a580e520a29444fc23ac3660cbe514a09',1,'Yarn::Parser::ParseNode']]]
+  ['ondrawgizmosselected',['OnDrawGizmosSelected',['../a00144.html#a9e83ec3c6e45ee4dd17215e3030f6403',1,'Yarn::Unity::Example::PlayerCharacter']]],
+  ['onenable',['OnEnable',['../a00180.html#aeba1f39189758bd91bdce298e8859947',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
+  ['ongui',['OnGUI',['../a00180.html#aec84840262ae8fd7d84605778de1dc39',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
+  ['opequals',['opEquals',['../a00038.html#a7abaef665ca4e60e37ba8942a41a0551',1,'Yarn::BodyVisitor']]],
+  ['operator',['Operator',['../a00137.html#a171027dbddf208784c824ae7fe72cb71',1,'Yarn.Parser.Operator.Operator(ParseNode parent, TokenType t, Parser p)'],['../a00137.html#a50f9f95cd7aefe2a601a7d5b5ee7801a',1,'Yarn.Parser.Operator.Operator(ParseNode parent, Parser p)']]],
+  ['operator_25',['operator%',['../a00181.html#a00875685b4619a7bcf0d1a77e529657c',1,'Yarn::Value']]],
+  ['operator_2a',['operator*',['../a00181.html#a946a02ecefe18d7c82cad0e2632d19c8',1,'Yarn::Value']]],
+  ['operator_2b',['operator+',['../a00181.html#abfd48481b0ac28ff5485a850a8271dfd',1,'Yarn::Value']]],
+  ['operator_2d',['operator-',['../a00181.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c',1,'Yarn.Value.operator-(Value a, Value b)'],['../a00181.html#aeaf119fa2885dbd1685d1efcd9594316',1,'Yarn.Value.operator-(Value a)']]],
+  ['operator_2f',['operator/',['../a00181.html#afe3559ae2e0f3db33a23a640ee7832d4',1,'Yarn::Value']]],
+  ['operator_3c',['operator&lt;',['../a00181.html#a0d1d9c4ee3fd55ad97d30279db525e4b',1,'Yarn::Value']]],
+  ['operator_3c_3d',['operator&lt;=',['../a00181.html#a4822bad5d6dc0fa6f7b9bd71b71855aa',1,'Yarn::Value']]],
+  ['operator_3e',['operator&gt;',['../a00181.html#a02509b7c4eb702d86c1ffb7be99f7aeb',1,'Yarn::Value']]],
+  ['operator_3e_3d',['operator&gt;=',['../a00181.html#ac7680e8a5ef93dc1d1266a06c0a29dbf',1,'Yarn::Value']]],
+  ['operatorinfo',['OperatorInfo',['../a00138.html#a25faca62235c9f8542e4a071ba8ebc0b',1,'Yarn::Parser::Operator::OperatorInfo']]],
+  ['optionchooser',['OptionChooser',['../a00045.html#a39866cbb03c03a35805d598b5d4ad553',1,'Yarn']]],
+  ['optionsetresult',['OptionSetResult',['../a00139.html#a934c02fb1047ffd05b2b5a9c6fcd7acb',1,'Yarn::Dialogue::OptionSetResult']]],
+  ['optionshandler',['OptionsHandler',['../a00165.html#a7fe2e6bc2d5471d9af14a9d35de821bd',1,'TestDialogueUIBehaviour.OptionsHandler()'],['../a00156.html#a78dfd54b743e53078eed19ab7be2b6cf',1,'Yarn.VirtualMachine.OptionsHandler()']]],
+  ['optionstatement',['OptionStatement',['../a00140.html#ad18938712d01cf71edbc75d4974cd0e0',1,'Yarn::Parser::OptionStatement']]]
 ];

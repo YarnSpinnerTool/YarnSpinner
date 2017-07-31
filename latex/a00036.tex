@@ -1,178 +1,140 @@
-\hypertarget{a00036}{\section{Yarn.\-Parser.\-Block Class Reference}
-\label{a00036}\index{Yarn.\-Parser.\-Block@{Yarn.\-Parser.\-Block}}
+\hypertarget{a00036}{\section{Yarn.\-Base\-Variable\-Storage Class Reference}
+\label{a00036}\index{Yarn.\-Base\-Variable\-Storage@{Yarn.\-Base\-Variable\-Storage}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-Block\-:
+Inheritance diagram for Yarn.\-Base\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=176pt]{a00279}
+\includegraphics[width=214pt]{a00598}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parser.\-Block\-:
+Collaboration diagram for Yarn.\-Base\-Variable\-Storage\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=251pt]{a00280}
+\includegraphics[width=210pt]{a00599}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override string \hyperlink{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
-\begin{DoxyCompactItemize}
+void \hyperlink{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
 \item 
-\hyperlink{a00036_a943abeb93be783da7ff6ca595b6a34e7}{Block} (\hyperlink{a00077}{Parse\-Node} \hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00078}{Parser} p)
+float \hyperlink{a00036_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
 \item 
-override string \hyperlink{a00036_aaaacfc4e3ff2871fa5e2fb75e48636de}{Print\-Tree} (int indent\-Level)
+abstract void \hyperlink{a00036_a1c57d6d208b78abec0a670396771448e}{Set\-Value} (string variable\-Name, \hyperlink{a00181}{Value} value)
 \item 
-\hyperlink{a00068}{Node} \hyperlink{a00077_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
+abstract \hyperlink{a00181}{Value} \hyperlink{a00036_a13b142df804d9842e97e628e252928e8}{Get\-Value} (string variable\-Name)
 \item 
-static bool \hyperlink{a00036_a7fa97243e2a807c2255988547d31cac7}{Can\-Parse} (\hyperlink{a00078}{Parser} p)
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-I\-Enumerable$<$ \hyperlink{a00090}{Statement} $>$ \hyperlink{a00036_a42e3d555bbd5ecbdf61c45ad715be7e1}{statements}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-List$<$ \hyperlink{a00090}{Statement} $>$ \hyperlink{a00036_ad79f9582e55ec75b68fd72ffcae0f41b}{\-\_\-statements} = new List$<$\hyperlink{a00090}{Statement}$>$ ()
+abstract void \hyperlink{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}{Clear} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00036_a943abeb93be783da7ff6ca595b6a34e7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Block@{Block}}
-\index{Block@{Block}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Block}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Block.\-Block (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00036_a943abeb93be783da7ff6ca595b6a34e7}
+Definition at line 66 of file Dialogue.\-cs.
 
-\begin{DoxyCode}
-430                                                        : base(\hyperlink{a00077_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-431 
-432                 \textcolor{comment}{// Read the indent token}
-433                 p.ExpectSymbol(TokenType.Indent);
-434 
-435                 \textcolor{comment}{// Keep reading statements until we hit a dedent}
-436                 \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00040_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent) == \textcolor{keyword}{false}) \{
-437                     \textcolor{comment}{// fun fact! because Blocks are a type of Statement,}
-438                     \textcolor{comment}{// we get nested block parsing for free! \(\backslash\):D/}
-439                     \_statements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-440                 \}
-441 
-442                 \textcolor{comment}{// Tidy up by reading the dedent}
-443                 p.ExpectSymbol(TokenType.Dedent);
-444 
-445             \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00036_a7fa97243e2a807c2255988547d31cac7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Can\-Parse@{Can\-Parse}}
-\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Block.\-Can\-Parse (
-\begin{DoxyParamCaption}
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00036_a7fa97243e2a807c2255988547d31cac7}
-
-\begin{DoxyCode}
-421             \{
-422                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.Indent);
-423             \}
-\end{DoxyCode}
-\hypertarget{a00077_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\hypertarget{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Clear@{Clear}}
+\index{Clear@{Clear}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00077_a580e520a29444fc23ac3660cbe514a09}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}
 
-\begin{DoxyCode}
-116                                        \{
-117                 var node = \textcolor{keyword}{this};
-118 
-119                 \textcolor{keywordflow}{do} \{
-120                     \textcolor{keywordflow}{if} (node is Node) \{
-121                         \textcolor{keywordflow}{return} node as Node;
-122                     \}
-123                     node = node.parent;
-124                 \} \textcolor{keywordflow}{while} (node 
-125                     != null);                   
-126 
-127                 \textcolor{keywordflow}{return} null;
-128             \}
-\end{DoxyCode}
-\hypertarget{a00036_aaaacfc4e3ff2871fa5e2fb75e48636de}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Block.\-Print\-Tree (
+
+Implements \hyperlink{a00184_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
+
+
+
+Implemented in \hyperlink{a00130_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}.
+
+\hypertarget{a00036_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Number@{Get\-Number}}
+\index{Get\-Number@{Get\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
 \begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00036_aaaacfc4e3ff2871fa5e2fb75e48636de}
+)}}\label{a00036_a1b7f7f4468b2463e7b47986d99362279}
 
 
-Implements \hyperlink{a00077_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+Implements \hyperlink{a00184_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 73 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-449             \{
-450                 var sb = \textcolor{keyword}{new} StringBuilder ();
-451                 sb.Append (\hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"Block \{"}));
-452                 \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} \hyperlink{a00036_ad79f9582e55ec75b68fd72ffcae0f41b}{\_statements}) \{
-453                     sb.Append (statement.PrintTree (indentLevel + 1));
-454                 \}
-455                 sb.Append (\hyperlink{a00078_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"\}"}));
-456 
-457                 \textcolor{keywordflow}{return} sb.ToString ();
-458             \}
+73                                                     \{
+74             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
+75         \}
 \end{DoxyCode}
-\hypertarget{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\hypertarget{a00036_a13b142df804d9842e97e628e252928e8}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Value@{Get\-Value}}
+\index{Get\-Value@{Get\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Value} Yarn.\-Base\-Variable\-Storage.\-Get\-Value (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{variable\-Name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00077_a18c67cb16090d0889bb9d6c8c6c565f8}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a13b142df804d9842e97e628e252928e8}
+
+
+Implements \hyperlink{a00184_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
+
+
+
+Implemented in \hyperlink{a00130_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}.
+
+\hypertarget{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Number@{Set\-Number}}
+\index{Set\-Number@{Set\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{float}]{number}
+\end{DoxyParamCaption}
+)}}\label{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}
+
+
+Implements \hyperlink{a00184_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+
+
+
+Definition at line 68 of file Dialogue.\-cs.
+
 
 \begin{DoxyCode}
-111             \{
-112                 \textcolor{keywordflow}{return} this.GetType ().Name;
-113             \}
+68                                                                  \{
+69             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
+70         \}
 \end{DoxyCode}
+\hypertarget{a00036_a1c57d6d208b78abec0a670396771448e}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Value@{Set\-Value}}
+\index{Set\-Value@{Set\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
+\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Set\-Value (
+\begin{DoxyParamCaption}
+\item[{string}]{variable\-Name, }
+\item[{{\bf Value}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a1c57d6d208b78abec0a670396771448e}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00036_ad79f9582e55ec75b68fd72ffcae0f41b}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!\-\_\-statements@{\-\_\-statements}}
-\index{\-\_\-statements@{\-\_\-statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{\-\_\-statements}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-\_\-statements = new List$<${\bf Statement}$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00036_ad79f9582e55ec75b68fd72ffcae0f41b}
+Implements \hyperlink{a00184_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
 
 
-\subsection{Property Documentation}
-\hypertarget{a00036_a42e3d555bbd5ecbdf61c45ad715be7e1}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!statements@{statements}}
-\index{statements@{statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-statements\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00036_a42e3d555bbd5ecbdf61c45ad715be7e1}
+
+Implemented in \hyperlink{a00130_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00143}{Parser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00296}{Dialogue.\-cs}\end{DoxyCompactItemize}

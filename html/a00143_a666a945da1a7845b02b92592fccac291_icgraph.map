@@ -1,0 +1,11 @@
+<map id="Yarn.Parser.NextSymbolIs" name="Yarn.Parser.NextSymbolIs">
+<area shape="rect" id="node2" href="$a00037.html#a943abeb93be783da7ff6ca595b6a34e7" title="Yarn.Parser.Block.Block" alt="" coords="259,5,424,32"/>
+<area shape="rect" id="node3" href="$a00077.html#a49150c9046dcad61d61ce35c51816313" title="Yarn.Parser.CustomCommand.\lCustomCommand" alt="" coords="239,57,444,98"/>
+<area shape="rect" id="node4" href="$a00112.html#ae534078389e8663edf7660403acf3cbc" title="Yarn.Parser.IfStatement.\lIfStatement" alt="" coords="258,122,425,163"/>
+<area shape="rect" id="node5" href="$a00132.html#ae0562dc06ca747307b66039ef2f28772" title="Yarn.Parser.Node.Node" alt="" coords="261,188,422,215"/>
+<area shape="rect" id="node6" href="$a00140.html#ad18938712d01cf71edbc75d4974cd0e0" title="Yarn.Parser.OptionStatement.\lOptionStatement" alt="" coords="243,239,440,281"/>
+<area shape="rect" id="node7" href="$a00098.html#a686da57aaf67d50d2832f9ee0028a979" title="Yarn.Parser.Expression.Parse" alt="" coords="242,305,441,332"/>
+<area shape="rect" id="node8" href="$a00153.html#a2c80b137d65f31b24533987233074605" title="Yarn.Parser.ShortcutOption.\lShortcutOption" alt="" coords="248,357,435,398"/>
+<area shape="rect" id="node9" href="$a00154.html#aa4ee47826640ad8dff651603c940c7f4" title="Yarn.Parser.ShortcutOption\lGroup.ShortcutOptionGroup" alt="" coords="250,422,433,463"/>
+<area shape="rect" id="node10" href="$a00160.html#acba736ffbcc0f8bf5cee2b23f7733dff" title="Yarn.Parser.Statement.Statement" alt="" coords="232,488,451,515"/>
+</map>

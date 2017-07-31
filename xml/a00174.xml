@@ -1,16 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00174" kind="namespace">
-    <compoundname>Yarn::Unity::Example</compoundname>
-    <innerclass refid="a00037" prot="public">Yarn::Unity::Example::CameraFollow</innerclass>
-    <innerclass refid="a00053" prot="public">Yarn::Unity::Example::ExampleDialogueUI</innerclass>
-    <innerclass refid="a00071" prot="public">Yarn::Unity::Example::NPC</innerclass>
-    <innerclass refid="a00079" prot="public">Yarn::Unity::Example::PlayerCharacter</innerclass>
-    <innerclass refid="a00087" prot="public">Yarn::Unity::Example::SpriteSwitcher</innerclass>
+  <compounddef id="a00174" kind="class" prot="public">
+    <compoundname>System::Reflection::TypeExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00174_1acbfc3dfbd616c1a87fe0158092215639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00175" kindref="compound">TypeInfo</ref></type>
+        <definition>static TypeInfo System.Reflection.TypeExtensions.GetTypeInfo</definition>
+        <argsstring>(this Type type)</argsstring>
+        <name>GetTypeInfo</name>
+        <param>
+          <type>this Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="8" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/CameraFollow.cs" line="30" column="1"/>
+    <collaborationgraph>
+      <node id="1721">
+        <label>System.Reflection.TypeExtensions</label>
+        <link refid="a00174"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="a00174_1acbfc3dfbd616c1a87fe0158092215639" prot="public" virt="non-virtual"><scope>System::Reflection::TypeExtensions</scope><name>GetTypeInfo</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

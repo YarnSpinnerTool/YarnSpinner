@@ -1,166 +1,153 @@
-\hypertarget{a00063}{\section{Yarn.\-Library Class Reference}
-\label{a00063}\index{Yarn.\-Library@{Yarn.\-Library}}
+\hypertarget{a00063}{\section{Csv\-Helper.\-Csv\-Parser\-Exception Class Reference}
+\label{a00063}\index{Csv\-Helper.\-Csv\-Parser\-Exception@{Csv\-Helper.\-Csv\-Parser\-Exception}}
 }
 
 
-Inheritance diagram for Yarn.\-Library\-:
+Represents errors that occur while parsing a C\-S\-V file.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Parser\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00264}
+\includegraphics[width=236pt]{a00422}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Library\-:
+Collaboration diagram for Csv\-Helper.\-Csv\-Parser\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=194pt]{a00265}
+\includegraphics[width=236pt]{a00423}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00055}{Function\-Info} \hyperlink{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}{Get\-Function} (string name)
-\item 
-void \hyperlink{a00063_ab42a4fd30a72156cafa685f959deef78}{Import\-Library} (\hyperlink{a00063}{Library} other\-Library)
-\item 
-void \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{Register\-Function} (\hyperlink{a00055}{Function\-Info} function)
-\item 
-void \hyperlink{a00063_a2a698de0b528b2bac17bd85f57d45d4b}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00040_a5177bf74fbfe7303fac9d8236c2e514b}{Returning\-Function} implementation)
-\item 
-void \hyperlink{a00063_a6820eaa082077f16496effbc9041b7ad}{Register\-Function} (string name, int parameter\-Count, \hyperlink{a00040_ae0be2e5cf13d5779816102439e61ff1a}{Function} implementation)
-\item 
-bool \hyperlink{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}{Function\-Exists} (string name)
-\item 
-void \hyperlink{a00063_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} (string name)
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Dictionary$<$ string, \hyperlink{a00055}{Function\-Info} $>$ \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} = new Dictionary$<$string, \hyperlink{a00055}{Function\-Info}$>$()
-\end{DoxyCompactItemize}
+\hyperlink{a00063_a4a87a8cbca18790562bab5f571e6e87b}{Csv\-Parser\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00063_a6ac692a1b7bb39afc66a7c701963e9c2}{Csv\-Parser\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00063_a62b6bf7ba1ab79737a049a6ced4555d4}{Csv\-Parser\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00063_a3ce8a09ae6e88787d47f47a108d33f21}{Csv\-Parser\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Represents errors that occur while parsing a C\-S\-V file. 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00063_a47d1b3664733207d5cda15f4a4a7af7a}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Deregister\-Function@{Deregister\-Function}}
-\index{Deregister\-Function@{Deregister\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Deregister\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Deregister\-Function (
+
+Definition at line 18 of file Csv\-Parser\-Exception.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00063_a4a87a8cbca18790562bab5f571e6e87b}{\index{Csv\-Helper\-::\-Csv\-Parser\-Exception@{Csv\-Helper\-::\-Csv\-Parser\-Exception}!Csv\-Parser\-Exception@{Csv\-Parser\-Exception}}
+\index{Csv\-Parser\-Exception@{Csv\-Parser\-Exception}!CsvHelper::CsvParserException@{Csv\-Helper\-::\-Csv\-Parser\-Exception}}
+\subsubsection[{Csv\-Parser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser\-Exception.\-Csv\-Parser\-Exception (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00063_a47d1b3664733207d5cda15f4a4a7af7a}
+)}}\label{a00063_a4a87a8cbca18790562bab5f571e6e87b}
+
+
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class. 
+
+
+
+Definition at line 23 of file Csv\-Parser\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-125                                                     \{
-126             \textcolor{keywordflow}{if} (\hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions}.ContainsKey(name))
-127                 \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions}.Remove (name);
-128         \}
+23 \{\}
 \end{DoxyCode}
-\hypertarget{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Function\-Exists@{Function\-Exists}}
-\index{Function\-Exists@{Function\-Exists}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Function\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Library.\-Function\-Exists (
+\hypertarget{a00063_a6ac692a1b7bb39afc66a7c701963e9c2}{\index{Csv\-Helper\-::\-Csv\-Parser\-Exception@{Csv\-Helper\-::\-Csv\-Parser\-Exception}!Csv\-Parser\-Exception@{Csv\-Parser\-Exception}}
+\index{Csv\-Parser\-Exception@{Csv\-Parser\-Exception}!CsvHelper::CsvParserException@{Csv\-Helper\-::\-Csv\-Parser\-Exception}}
+\subsubsection[{Csv\-Parser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser\-Exception.\-Csv\-Parser\-Exception (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{string}]{message}
 \end{DoxyParamCaption}
-)}}\label{a00063_a6c9a1cc3e25b6aae25e210d8a0d68c09}
+)}}\label{a00063_a6ac692a1b7bb39afc66a7c701963e9c2}
+
+
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file Csv\-Parser\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-121                                                 \{
-122             \textcolor{keywordflow}{return} functions.ContainsKey (name);
-123         \}
+30 : base( message ) \{\}
 \end{DoxyCode}
-\hypertarget{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Get\-Function@{Get\-Function}}
-\index{Get\-Function@{Get\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Get\-Function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Library.\-Get\-Function (
+\hypertarget{a00063_a62b6bf7ba1ab79737a049a6ced4555d4}{\index{Csv\-Helper\-::\-Csv\-Parser\-Exception@{Csv\-Helper\-::\-Csv\-Parser\-Exception}!Csv\-Parser\-Exception@{Csv\-Parser\-Exception}}
+\index{Csv\-Parser\-Exception@{Csv\-Parser\-Exception}!CsvHelper::CsvParserException@{Csv\-Helper\-::\-Csv\-Parser\-Exception}}
+\subsubsection[{Csv\-Parser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser\-Exception.\-Csv\-Parser\-Exception (
 \begin{DoxyParamCaption}
-\item[{string}]{name}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
 \end{DoxyParamCaption}
-)}}\label{a00063_aacfb1f00ad8aa3921941b8d8af0960e0}
+)}}\label{a00063_a62b6bf7ba1ab79737a049a6ced4555d4}
+
+
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Csv\-Parser\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-90                                                      \{
-91             \textcolor{keywordflow}{try} \{
-92                 \textcolor{keywordflow}{return} \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [name];
-93             \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-94                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException (name + \textcolor{stringliteral}{" is not a valid function"});
-95             \}
-96         \}
+39 : base( message, innerException ) \{ \}
 \end{DoxyCode}
-\hypertarget{a00063_ab42a4fd30a72156cafa685f959deef78}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Import\-Library@{Import\-Library}}
-\index{Import\-Library@{Import\-Library}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Import\-Library}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Import\-Library (
+\hypertarget{a00063_a3ce8a09ae6e88787d47f47a108d33f21}{\index{Csv\-Helper\-::\-Csv\-Parser\-Exception@{Csv\-Helper\-::\-Csv\-Parser\-Exception}!Csv\-Parser\-Exception@{Csv\-Parser\-Exception}}
+\index{Csv\-Parser\-Exception@{Csv\-Parser\-Exception}!CsvHelper::CsvParserException@{Csv\-Helper\-::\-Csv\-Parser\-Exception}}
+\subsubsection[{Csv\-Parser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Parser\-Exception.\-Csv\-Parser\-Exception (
 \begin{DoxyParamCaption}
-\item[{{\bf Library}}]{other\-Library}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
 \end{DoxyParamCaption}
-)}}\label{a00063_ab42a4fd30a72156cafa685f959deef78}
+)}}\label{a00063_a3ce8a09ae6e88787d47f47a108d33f21}
+
+
+Initializes a new instance of the \hyperlink{a00063}{Csv\-Parser\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file Csv\-Parser\-Exception.\-cs.
+
 
 \begin{DoxyCode}
-101                                                         \{
-102             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} otherLibrary.functions) \{
-103                 \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [entry.Key] = entry.Value;
-104             \}
-105         \}
+48 : base( info, context ) \{ \}
 \end{DoxyCode}
-\hypertarget{a00063_a001ab29d21fe7db10fc9c250914287f9}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{{\bf Function\-Info}}]{function}
-\end{DoxyParamCaption}
-)}}\label{a00063_a001ab29d21fe7db10fc9c250914287f9}
-
-\begin{DoxyCode}
-107                                                             \{
-108             \hyperlink{a00063_a2fcc78a63963be5320cf09783b66fab6}{functions} [function.name] = \textcolor{keyword}{function};
-109         \}
-\end{DoxyCode}
-\hypertarget{a00063_a2a698de0b528b2bac17bd85f57d45d4b}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Returning\-Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00063_a2a698de0b528b2bac17bd85f57d45d4b}
-
-\begin{DoxyCode}
-111                                                                                                         \{
-112             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-113             \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-114         \}
-\end{DoxyCode}
-\hypertarget{a00063_a6820eaa082077f16496effbc9041b7ad}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!Register\-Function@{Register\-Function}}
-\index{Register\-Function@{Register\-Function}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{Register\-Function}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Library.\-Register\-Function (
-\begin{DoxyParamCaption}
-\item[{string}]{name, }
-\item[{int}]{parameter\-Count, }
-\item[{{\bf Function}}]{implementation}
-\end{DoxyParamCaption}
-)}}\label{a00063_a6820eaa082077f16496effbc9041b7ad}
-
-\begin{DoxyCode}
-116                                                                                                \{
-117             var info = \textcolor{keyword}{new} FunctionInfo (name, parameterCount, implementation);
-118             \hyperlink{a00063_a001ab29d21fe7db10fc9c250914287f9}{RegisterFunction} (info);
-119         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00063_a2fcc78a63963be5320cf09783b66fab6}{\index{Yarn\-::\-Library@{Yarn\-::\-Library}!functions@{functions}}
-\index{functions@{functions}!Yarn::Library@{Yarn\-::\-Library}}
-\subsubsection[{functions}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Function\-Info}$>$ Yarn.\-Library.\-functions = new Dictionary$<$string, {\bf Function\-Info}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00063_a2fcc78a63963be5320cf09783b66fab6}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00141}{Library.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00234}{Csv\-Parser\-Exception.\-cs}\end{DoxyCompactItemize}

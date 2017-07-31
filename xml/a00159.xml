@@ -1,11 +1,149 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00159" kind="namespace">
-    <compoundname>System::Collections</compoundname>
+  <compounddef id="a00159" kind="class" prot="package">
+    <compoundname>Yarn::VirtualMachine::State</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00159_1a86f481fad527f719b49f8fee6ff79764" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.VirtualMachine.State.currentNodeName</definition>
+        <argsstring></argsstring>
+        <name>currentNodeName</name>
+        <briefdescription>
+<para>The name of the node that we&apos;re currently in. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="12" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="12" bodyend="-1"/>
+        <referencedby refid="a00156_1af613c8b2d098678b6ea05b509c0a0cb6" compoundref="a00304" startline="163" endline="173">Yarn.VirtualMachine.FindInstructionPointForLabel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00159_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.VirtualMachine.State.programCounter</definition>
+        <argsstring></argsstring>
+        <name>programCounter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>The instruction number in the current node. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="a00156_1af3cc0337914b9f66454a3d52208dba5f" compoundref="a00304" startline="137" endline="160">Yarn.VirtualMachine.RunNext</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00159_1ab816dfea32ecda23282700f01454e0a9" prot="public" static="no" mutable="no">
+        <type>List&lt; KeyValuePair&lt; string, string &gt; &gt;</type>
+        <definition>List&lt;KeyValuePair&lt;string,string&gt; &gt; Yarn.VirtualMachine.State.currentOptions</definition>
+        <argsstring></argsstring>
+        <name>currentOptions</name>
+        <initializer>= new List&lt;KeyValuePair&lt;string, string&gt;&gt;()</initializer>
+        <briefdescription>
+<para>List of options, where each option = &lt;string id, destination node&gt; </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="a00156_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00304" startline="175" endline="427">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00159_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" static="no" mutable="no">
+        <type>Stack&lt; <ref refid="a00181" kindref="compound">Value</ref> &gt;</type>
+        <definition>Stack&lt;Value&gt; Yarn.VirtualMachine.State.stack</definition>
+        <argsstring></argsstring>
+        <name>stack</name>
+        <initializer>= new Stack&lt;<ref refid="a00181" kindref="compound">Value</ref>&gt;()</initializer>
+        <briefdescription>
+<para>The value stack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00159_1aace44f5b85b9f746fede834becda4a8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.State.PushValue</definition>
+        <argsstring>(object o)</argsstring>
+        <name>PushValue</name>
+        <param>
+          <type>object</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+<para>Methods for working with the stack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="24" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="a00159_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00181" kindref="compound">Value</ref></type>
+        <definition>Value Yarn.VirtualMachine.State.PopValue</definition>
+        <argsstring>()</argsstring>
+        <name>PopValue</name>
+        <briefdescription>
+<para>Pop a value from the stack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="33" bodyend="35"/>
+        <referencedby refid="a00156_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00304" startline="175" endline="427">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00159_1a54fd5b64ec94e937e771846167242dc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00181" kindref="compound">Value</ref></type>
+        <definition>Value Yarn.VirtualMachine.State.PeekValue</definition>
+        <argsstring>()</argsstring>
+        <name>PeekValue</name>
+        <briefdescription>
+<para>Peek at a value from the stack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="38" bodyend="40"/>
+        <referencedby refid="a00156_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00304" startline="175" endline="427">Yarn.VirtualMachine.RunInstruction</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00159_1a9c787097fbbbbf1680e4960cda092535" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.VirtualMachine.State.ClearStack</definition>
+        <argsstring>()</argsstring>
+        <name>ClearStack</name>
+        <briefdescription>
+<para>Clear the stack. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="43" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="43" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/DialogueRunner.cs" line="28" column="1"/>
+    <collaborationgraph>
+      <node id="1661">
+        <label>Yarn.VirtualMachine.State</label>
+        <link refid="a00159"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="9" bodyend="46"/>
+    <listofallmembers>
+      <member refid="a00159_1a9c787097fbbbbf1680e4960cda092535" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>ClearStack</name></member>
+      <member refid="a00159_1a86f481fad527f719b49f8fee6ff79764" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentNodeName</name></member>
+      <member refid="a00159_1ab816dfea32ecda23282700f01454e0a9" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>currentOptions</name></member>
+      <member refid="a00159_1a54fd5b64ec94e937e771846167242dc2" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PeekValue</name></member>
+      <member refid="a00159_1a36881a888ea2839d74c3d4e7c199f4ee" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PopValue</name></member>
+      <member refid="a00159_1a2c76546b54b4fb573d7f14d79ce230a3" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>programCounter</name></member>
+      <member refid="a00159_1aace44f5b85b9f746fede834becda4a8e" prot="public" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>PushValue</name></member>
+      <member refid="a00159_1a0bc84abf38b3ff31cbb47363b851c233" prot="private" virt="non-virtual"><scope>Yarn::VirtualMachine::State</scope><name>stack</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

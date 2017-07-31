@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00187" kind="class" prot="public">
+    <compoundname>Yarn::Unity::YarnCommandAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00187_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnCommandAttribute.commandString</definition>
+        <argsstring></argsstring>
+        <name>commandString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="421" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="421" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00187_1a9c0d57cd72c091f63895944959e98330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute</definition>
+        <argsstring>(string commandString)</argsstring>
+        <name>YarnCommandAttribute</name>
+        <param>
+          <type>string</type>
+          <declname>commandString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="423" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="423" bodyend="425"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Apply this attribute to methods in your scripts to expose them to <ref refid="a00045" kindref="compound">Yarn</ref>. </para>    </briefdescription>
+    <detaileddescription>
+<para>For example: [YarnCommand(&quot;dosomething&quot;)] void Foo() { do something! } </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="1792">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
+        <link refid="a00187"/>
+        <childnode refid="1793" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1793">
+        <label>System::Attribute</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1794">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
+        <link refid="a00187"/>
+        <childnode refid="1795" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1795">
+        <label>System::Attribute</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="420" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="419" bodyend="426"/>
+    <listofallmembers>
+      <member refid="a00187_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>commandString</name></member>
+      <member refid="a00187_1a9c0d57cd72c091f63895944959e98330" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>YarnCommandAttribute</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

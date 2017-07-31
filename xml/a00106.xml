@@ -1,56 +1,263 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00106" kind="class" prot="public">
-    <compoundname>Yarn::YarnSpinnerConsole</compoundname>
-    <innerclass refid="a00044" prot="private">Yarn::YarnSpinnerConsole::ConsoleRunnerImplementation</innerclass>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00106_1a0ce7698dabf6d60f3cd33fe5d23c11b3" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.ShowHelpAndExit</definition>
-        <argsstring>()</argsstring>
-        <name>ShowHelpAndExit</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="37" bodyend="59"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00106_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>static void Yarn.YarnSpinnerConsole.Main</definition>
-        <argsstring>(string[] args)</argsstring>
-        <name>Main</name>
+  <compounddef id="a00106" kind="interface" prot="public">
+    <compoundname>CsvHelper::ICsvFactory</compoundname>
+    <derivedcompoundref refid="a00059" prot="public" virt="non-virtual">CsvHelper.CsvFactory</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00106_1a9b68cbd7292c76037959d51ecc7c374d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00107" kindref="compound">ICsvParser</ref></type>
+        <definition>ICsvParser CsvHelper.ICsvFactory.CreateParser</definition>
+        <argsstring>(TextReader reader, CsvConfiguration configuration)</argsstring>
+        <name>CreateParser</name>
+        <reimplementedby refid="a00059_1a741fb4a1622778af65bfa27606bf6f25">CreateParser</reimplementedby>
         <param>
-          <type>string[]</type>
-          <declname>args</declname>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+          <declname>configuration</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Creates an <ref refid="a00107" kindref="compound">ICsvParser</ref>. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text reader to use for the csv parser.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>configuration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration to use for the csv parser.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created parser.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="345"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="22" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1ab085a057f1b80ebf03ed2247d8759314" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00107" kindref="compound">ICsvParser</ref></type>
+        <definition>ICsvParser CsvHelper.ICsvFactory.CreateParser</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>CreateParser</name>
+        <reimplementedby refid="a00059_1a07665ae71961a161552189877d11a5be">CreateParser</reimplementedby>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00107" kindref="compound">ICsvParser</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text reader to use for the csv parser.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created parser.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="29" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1ade2a6e776fad6aa36c201901d6427058" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00108" kindref="compound">ICsvReader</ref></type>
+        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
+        <argsstring>(TextReader reader, CsvConfiguration configuration)</argsstring>
+        <name>CreateReader</name>
+        <reimplementedby refid="a00059_1a12b1358fc847e407519a76b7fe003a34">CreateReader</reimplementedby>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00108" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text reader to use for the csv reader.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>configuration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration to use for the reader.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created reader.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1ae1ebb61244b36ddecb986d047ac9c217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00108" kindref="compound">ICsvReader</ref></type>
+        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>CreateReader</name>
+        <reimplementedby refid="a00059_1a77bcca4ad5023f5628c519c2914da5bb">CreateReader</reimplementedby>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00108" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text reader to use for the csv reader.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created reader.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1af5b755ba2825f781d501402f1d765b33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00108" kindref="compound">ICsvReader</ref></type>
+        <definition>ICsvReader CsvHelper.ICsvFactory.CreateReader</definition>
+        <argsstring>(ICsvParser parser)</argsstring>
+        <name>CreateReader</name>
+        <reimplementedby refid="a00059_1a4e7e06df9265cbd53219c964424cec1e">CreateReader</reimplementedby>
+        <param>
+          <type><ref refid="a00107" kindref="compound">ICsvParser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00108" kindref="compound">ICsvReader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parser used to create the reader.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created reader.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1ae77852d2702bc2caad76c045a538933e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00111" kindref="compound">ICsvWriter</ref></type>
+        <definition>ICsvWriter CsvHelper.ICsvFactory.CreateWriter</definition>
+        <argsstring>(TextWriter writer, CsvConfiguration configuration)</argsstring>
+        <name>CreateWriter</name>
+        <reimplementedby refid="a00059_1a6bfe534b70ff92ea3809f1a372d160cc">CreateWriter</reimplementedby>
+        <param>
+          <type>TextWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00111" kindref="compound">ICsvWriter</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>writer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text writer to use for the csv writer.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>configuration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration to use for the writer.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created writer.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00106_1ab6df59078b6245e653c06c00358b402a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="a00111" kindref="compound">ICsvWriter</ref></type>
+        <definition>ICsvWriter CsvHelper.ICsvFactory.CreateWriter</definition>
+        <argsstring>(TextWriter writer)</argsstring>
+        <name>CreateWriter</name>
+        <reimplementedby refid="a00059_1a0cec3a639b206f2d88debdc50413202a">CreateWriter</reimplementedby>
+        <param>
+          <type>TextWriter</type>
+          <declname>writer</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="a00111" kindref="compound">ICsvWriter</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>writer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The text writer to use for the csv writer.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The created writer.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="66" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Defines methods used to create <ref refid="a00325" kindref="compound">CsvHelper</ref> classes. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
+    <inheritancegraph>
+      <node id="1381">
+        <label>CsvHelper.ICsvFactory</label>
+        <link refid="a00106"/>
+      </node>
+      <node id="1382">
+        <label>CsvHelper.CsvFactory</label>
+        <link refid="a00059"/>
+        <childnode refid="1381" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
     <collaborationgraph>
-      <node id="752">
-        <label>Yarn.YarnSpinnerConsole</label>
+      <node id="1383">
+        <label>CsvHelper.ICsvFactory</label>
         <link refid="a00106"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="34" bodyend="506"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvFactory.cs" bodystart="14" bodyend="67"/>
     <listofallmembers>
-      <member refid="a00106_1a1d71ff2eb190449ea1d42ce86f44489f" prot="public" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>Main</name></member>
-      <member refid="a00106_1a0ce7698dabf6d60f3cd33fe5d23c11b3" prot="private" virt="non-virtual"><scope>Yarn::YarnSpinnerConsole</scope><name>ShowHelpAndExit</name></member>
+      <member refid="a00106_1a9b68cbd7292c76037959d51ecc7c374d" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateParser</name></member>
+      <member refid="a00106_1ab085a057f1b80ebf03ed2247d8759314" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateParser</name></member>
+      <member refid="a00106_1ade2a6e776fad6aa36c201901d6427058" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
+      <member refid="a00106_1ae1ebb61244b36ddecb986d047ac9c217" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
+      <member refid="a00106_1af5b755ba2825f781d501402f1d765b33" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateReader</name></member>
+      <member refid="a00106_1ae77852d2702bc2caad76c045a538933e" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateWriter</name></member>
+      <member refid="a00106_1ab6df59078b6245e653c06c00358b402a" prot="public" virt="non-virtual"><scope>CsvHelper::ICsvFactory</scope><name>CreateWriter</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

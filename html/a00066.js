@@ -1,9 +1,5 @@
 var a00066 =
 [
-    [ "Clear", "a00066.html#aa6d243e7ef02b91f793a221f509dae69", null ],
-    [ "GetNumber", "a00066.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "a00066.html#a0ce77e8245c504a777540e359704aa2a", null ],
-    [ "SetNumber", "a00066.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "a00066.html#a653a459811e5c19549f4b31269093ef5", null ],
-    [ "variables", "a00066.html#aad18acd95297edb8ed496857337f8071", null ]
+    [ "Compare", "a00066.html#a41ab777503459b3984a2e2826a14d52a", null ],
+    [ "Compare", "a00066.html#ab9c855cf5389c8f1ae1b476d508ade5d", null ]
 ];

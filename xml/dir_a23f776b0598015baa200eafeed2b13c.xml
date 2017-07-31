@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_a23f776b0598015baa200eafeed2b13c" kind="dir">
+    <compoundname>Unity/Assets/YarnSpinner/Examples/DemoScripts</compoundname>
+    <innerfile refid="a00286">CameraFollow.cs</innerfile>
+    <innerfile refid="a00287">ExampleDialogueUI.cs</innerfile>
+    <innerfile refid="a00288">ExampleVariableStorage.cs</innerfile>
+    <innerfile refid="a00289">MobileOnly.cs</innerfile>
+    <innerfile refid="a00290">NPC.cs</innerfile>
+    <innerfile refid="a00291">PlayerCharacter.cs</innerfile>
+    <innerfile refid="a00292">SpriteSwitcher.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/"/>
+  </compounddef>
+</doxygen>

@@ -1,134 +1,19 @@
-This document talks about how to use \hyperlink{a00040}{Yarn} if you're using it to write content. It doesn't talk about how to integrate \hyperlink{a00040}{Yarn} Spinner into your project; for that, see \href{../YarnSpinner-Unity}{\tt \char`\"{}\-Using Yarn Spinner in your Unity game\char`\"{}}.
+\hyperlink{a00045}{Yarn} Spinner provides tools to help convert your game in to any language you like. This is achieved by usage of the \href{../YarnSpinnerConsole}{\tt Yarn\-Spinner\-Console} tool. At the moment, this tool is not available standalone and needs to be ../\-Yarn\-Spinner-\/\-Programming/\-Building.md \char`\"{}built from source\char`\"{}.
 
-\subsection*{Lines}
-
-\hyperlink{a00040}{Yarn} lets you define multiple chunks of dialogue that are linked together. Each chunk is called a {\itshape node}.
-
-Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this\-: \begin{DoxyVerb}Alice: Hey, I'm a character speaking in a dialogue!
-Bob: Wild!
-\end{DoxyVerb}
+\subsection*{Localisation procedure}
 
 
-Each line is delivered to your game one at a time.
+\begin{DoxyEnumerate}
+\item We first use the tool to place unique {\bfseries taglines} on each line of text that the end user will see. To do this, we execute the tool with the {\bfseries taglines} command, eg\-: {\ttfamily Yarn\-Spinner\-Console.\-exe taglines My\-Yarn\-File.\-yarn.\-txt}.
+\item Next, we use the tool to generate a file of strings ({\bfseries genstrings}) in '\href{https://en.wikipedia.org/wiki/Comma-separated_values}{\tt comma separated value}' (csv) format. {\ttfamily Yarn\-Spinner\-Console.\-exe genstrings My\-Yarn\-File.\-yarn.\-txt} will generate a file, (in this example My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-csv), that can then distributed to translators. It is recommended that this file first be renamed using a language identifier before distribution, eg ``` My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-en\-A\-U.\-csv My\-Yarn\-F\-Ile.\-yarn\-\_\-lines.\-pt\-T\-L.\-csv ```
+\item When the file is returned from translators, we then use \hyperlink{a00045}{Yarn} Spinner's Dialogue\-Runner inside Unity to set String Groups for the required language.
+\end{DoxyEnumerate}
 
-\subsection*{Options}
-
-To link a node to another node, you provide {\itshape options}. Options look like this\-: \begin{DoxyVerb}[[Go to the woods|GoToWoods]]
-[[Go back to the city|GoToCity]]
-\end{DoxyVerb}
-
-
-Options have two parts\-: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar ({\ttfamily $\vert$}).
-
-You don't have to provide the label. Instead, you can just provide the node name, like so\-: \begin{DoxyVerb}[[GoToCity]]
-\end{DoxyVerb}
-
-
-If an option has no label, \hyperlink{a00040}{Yarn} will automatically jump to that node when that line is run, and it won't show options to the player.
-
-When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.
-
-If there are no options when we reach the end of a node, then we've reached the end of a conversation, and \hyperlink{a00040}{Yarn} Spinner will let your game know.
-
-\subsection*{Shortcut Options}
-
-Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use {\itshape shortcut options}\-: \begin{DoxyVerb}Mae: What did you say to her?
--> Nothing.
-    Mae: Oh, man. Maybe you should have.
--> That she was an idiot.
-    Mae: Hah! I bet that pissed her off.
-Mae: Anyway, I'd better get going.
-\end{DoxyVerb}
-
-
-When this is run, \hyperlink{a00040}{Yarn} Spinner will behave just as if you'd broken all of this up into multiple nodes.
-
-You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes\-: \begin{DoxyVerb}Bob: What would you like?
--> A burger. <<if $money >= 5>>
-    Bob: Nice. Enjoy!
--> A soda. <<if $money >= 2>>
-    Bob: Yum!
--> Nothing.
-Bob: Thanks for coming!
-\end{DoxyVerb}
-
-
-Note that in the last example, there wasn't any attached text. If the player selected the last option (\char`\"{}\-Nothing.\char`\"{}), then the next line to appear would be \char`\"{}\-Bob\-: Thanks for coming!\char`\"{}
-
-You can also nest these shortcut options, if you like. Be careful, though -\/ too much nested options can make your text difficult to read.
-
-\subsection*{Commands}
-
-In addition to showing lines of dialogue, your game will probably want to run actions -\/ things like \char`\"{}move the camera to position X\char`\"{}, or \char`\"{}make character start smiling\char`\"{}. You can use commands for this.
-
-Commands look like this\-: \begin{DoxyVerb}<<move alice to under_bridge>>
-\end{DoxyVerb}
-
-
-Any text inside the double-\/chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.
-
-\hyperlink{a00040}{Yarn} has a special command, called {\ttfamily stop}. If you include {\ttfamily $<$$<$stop$>$$>$} in your node, \hyperlink{a00040}{Yarn} will stop the entire conversation when it reaches it.
-
-\subsection*{Variables and If statements}
-
-You can store numbers in variables. To do this, use the {\ttfamily set} command\-: \begin{DoxyVerb}<<set $door_unlocked to 1>>
-\end{DoxyVerb}
-
-
-You can check the value of a variable using the {\ttfamily if} command\-: \begin{DoxyVerb}<<if $door_unlocked is 1>>
-    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
-<<endif>>
-\end{DoxyVerb}
-
-
-\subsection*{Expressions}
-
-You can do math in an {\ttfamily if} command. For example\-: \begin{DoxyVerb}<<if $number_of_stars_collected > 5>>
-    You have more than 5 stars!
-<<endif>>
-\end{DoxyVerb}
-
-
-You can also get fancier, and do stuff like this\-: \begin{DoxyVerb}<<if $hostages_saved == $number_of_hostages and $time_remaining > 0>>
-    You win the game!
-<<elseif $hostages_saved < $number_of_hostages and $time_remaining > 0>>
-    You need to rescue more hostages!
-<<elseif $bomb_has_exploded == 0>>
-    You failed to rescue the hostages before time ran out!
-<<endif>>
-\end{DoxyVerb}
-
-
-\subsection*{Types}
-
-There are four different types of value in \hyperlink{a00040}{Yarn}\-: strings, numbers, booleans, and {\ttfamily null}.
+\subsection*{Footnotes}
 
 
 \begin{DoxyItemize}
-\item Strings contain text.
-\item Numbers are floating-\/point numbers.
-\item Booleans are either true or false.
-\item {\ttfamily null} means no value.
+\item While not essential that all files follow a standard, but highly recommended that consistency of format be used across all localisation files within a project eg \href{https://www.iso.org/obp/ui/#iso:std:iso-iec:15897:ed-2:v1:en}{\tt I\-S\-O-\/15897}
+\item Originally, \hyperlink{a00045}{Yarn} Spinner used .json format. The \hyperlink{a00045}{Yarn} Spinner Console can convert this json format to the new improved text format\-: {\ttfamily Yarn\-Spinner\-Console.\-exe convert -\/-\/yarn Ship.\-json}
+\item Command reference is available for Yarn\-Spinner\-Console.\-exe by either running it with no arguments or by utilising the help command ({\ttfamily Yarn\-Spinner\-Console.\-exe help}). Help for each command is available by using 'help command' (eg {\ttfamily Yarn\-Spinnder\-Console.\-exe help compile}) 
 \end{DoxyItemize}
-
-\hyperlink{a00040}{Yarn} will automatically convert between types for you. For example\-: \begin{DoxyVerb}<<if "hi" == "hi">>
-    The two strings are the same!
-<<endif>>
-
-<<if 1+1+"hi" == "2hi">>
-    Strings get joined together with other values!
-<<endif>>
-\end{DoxyVerb}
-
-
-{\bfseries Warning\-:} Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
-
-\subsection*{Functions}
-
-You can call functions in your {\ttfamily if} commands. For example, \hyperlink{a00040}{Yarn} Spinner provides a function called {\ttfamily visited}, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. \begin{DoxyVerb}<<if visited("GoToCity")>>
-    We have gone to the city before!
-<<endif>>
-\end{DoxyVerb}
-
-
-You can't define your own functions inside \hyperlink{a00040}{Yarn} itself, but they can be added at run-\/time. See \hyperlink{a00120}{Extending.\-md}Extending \hyperlink{a00040}{Yarn} Spinner\char`\"{}\char`\"{} for more info. 

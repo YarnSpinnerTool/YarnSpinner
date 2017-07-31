@@ -1,140 +1,825 @@
-\hypertarget{a00098}{\section{Yarn.\-Analysis.\-Unused\-Variable\-Checker Class Reference}
-\label{a00098}\index{Yarn.\-Analysis.\-Unused\-Variable\-Checker@{Yarn.\-Analysis.\-Unused\-Variable\-Checker}}
+\hypertarget{a00098}{\section{Yarn.\-Parser.\-Expression Class Reference}
+\label{a00098}\index{Yarn.\-Parser.\-Expression@{Yarn.\-Parser.\-Expression}}
 }
 
 
-Inheritance diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
+Inheritance diagram for Yarn.\-Parser.\-Expression\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00345}
+\includegraphics[width=214pt]{a00666}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Analysis.\-Unused\-Variable\-Checker\-:
+Collaboration diagram for Yarn.\-Parser.\-Expression\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=228pt]{a00346}
+\includegraphics[height=550pt]{a00667}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override void \hyperlink{a00098_aeac8f333d4dcc85f4d4a716bf8fea01f}{Diagnose} (\hyperlink{a00081}{Program} program)
+string \hyperlink{a00142_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
 \item 
-override I\-Enumerable$<$ \hyperlink{a00049}{Diagnosis} $>$ \hyperlink{a00098_a107aecf707b130c4b733930a95f9154e}{Gather\-Diagnoses} ()
-\item 
-abstract void \hyperlink{a00042_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00081}{Yarn.\-Program} program)
+override string \hyperlink{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Package Types}
 \begin{DoxyCompactItemize}
 \item 
-Hash\-Set$<$ string $>$ \hyperlink{a00098_a6b542092ddce1b92c9455d60899518a9}{read\-Variables} = new Hash\-Set$<$string$>$ ()
+enum \hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86}{Type} \{ \hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86a689202409e48743b914713f96d93947c}{Type.\-Value}, 
+\hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86affb017548928ab2305e7c55cb67c04ca}{Type.\-Function\-Call}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
 \item 
-Hash\-Set$<$ string $>$ \hyperlink{a00098_a0c2fe6eded1b10b135ca2469f5980a39}{written\-Variables} = new Hash\-Set$<$string$>$ ()
+\hyperlink{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{Expression} (\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00182}{Value\-Node} \hyperlink{a00098_a569e516782891544c334ff8131b23108}{value}, \hyperlink{a00143}{Parser} p)
+\item 
+\hyperlink{a00098_a5047d9b3301d6c7367f8095267ea9b07}{Expression} (\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00100}{Function\-Info} \hyperlink{a00098_a9c1859ce5ad4c86ded8dd0d61da61320}{function}, List$<$ \hyperlink{a00098}{Expression} $>$ \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}, \hyperlink{a00143}{Parser} p)
+\item 
+override string \hyperlink{a00098_a509ba6d93218203bae56a5a7a82e8261}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00132}{Node} \hyperlink{a00142_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00098}{Expression} \hyperlink{a00098_a686da57aaf67d50d2832f9ee0028a979}{Parse} (\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00143}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86}{Type} \hyperlink{a00098_ad55c92df835006328bc2a79a8f91efb9}{type}
+\item 
+\hyperlink{a00182}{Value\-Node} \hyperlink{a00098_a569e516782891544c334ff8131b23108}{value}
+\item 
+\hyperlink{a00100}{Function\-Info} \hyperlink{a00098_a9c1859ce5ad4c86ded8dd0d61da61320}{function}
+\item 
+List$<$ \hyperlink{a00098}{Expression} $>$ \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}
+\item 
+\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00142_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00098_a5004a8eaa00b2b55856ecb4f339033fb}{Should\-Apply\-Precedence} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} o1, Stack$<$ \hyperlink{a00167}{Token} $>$ operator\-Stack)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00042_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Program}}]{program}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [inherited]}}}\label{a00042_aba4a36cb823b11ee491074e26477d084}
-\hypertarget{a00098_aeac8f333d4dcc85f4d4a716bf8fea01f}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Diagnose (
-\begin{DoxyParamCaption}
-\item[{{\bf Program}}]{program}
-\end{DoxyParamCaption}
-)}}\label{a00098_aeac8f333d4dcc85f4d4a716bf8fea01f}
+Definition at line 747 of file Parser.\-cs.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00098_aceddb5496ccffe668bced2d131e4bf86}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Type@{Type}}
+\index{Type@{Type}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Expression.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_aceddb5496ccffe668bced2d131e4bf86}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Value@{Value}!Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}}\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Value@{Value}}\item[{\em 
+\hypertarget{a00098_aceddb5496ccffe668bced2d131e4bf86a689202409e48743b914713f96d93947c}{Value}\label{a00098_aceddb5496ccffe668bced2d131e4bf86a689202409e48743b914713f96d93947c}
+}]\index{Function\-Call@{Function\-Call}!Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}}\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Function\-Call@{Function\-Call}}\item[{\em 
+\hypertarget{a00098_aceddb5496ccffe668bced2d131e4bf86affb017548928ab2305e7c55cb67c04ca}{Function\-Call}\label{a00098_aceddb5496ccffe668bced2d131e4bf86affb017548928ab2305e7c55cb67c04ca}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 749 of file Parser.\-cs.
+
 
 \begin{DoxyCode}
-154         \{
-155             
-156             \textcolor{comment}{// In each node, find all reads and writes to variables}
-157             \textcolor{keywordflow}{foreach} (var nodeInfo \textcolor{keywordflow}{in} program.nodes) \{
-158 
-159                 var nodeName = nodeInfo.Key;
-160                 var theNode = nodeInfo.Value;
-161 
-162                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} theNode.instructions) \{
-163 
-164                     \textcolor{keywordflow}{switch} (instruction.operation) \{
-165                     \textcolor{keywordflow}{case} ByteCode.PushVariable:
-166                         readVariables.Add ((string)instruction.operandA);
-167                         \textcolor{keywordflow}{break};
-168                     \textcolor{keywordflow}{case} ByteCode.StoreVariable:
-169                         writtenVariables.Add ((string)instruction.operandA);
-170                         \textcolor{keywordflow}{break};
-171                     \}
-172                 \}
-173             \}
-174 
-175 
-176         \}
+749                                \{
+750                 \hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86a689202409e48743b914713f96d93947c}{Value},
+751                 \hyperlink{a00098_aceddb5496ccffe668bced2d131e4bf86affb017548928ab2305e7c55cb67c04ca}{FunctionCall}
+752             \}
 \end{DoxyCode}
-\hypertarget{a00098_a107aecf707b130c4b733930a95f9154e}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!Gather\-Diagnoses@{Gather\-Diagnoses}}
-\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-Gather\-Diagnoses (
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Expression@{Expression}}
+\index{Expression@{Expression}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Expression}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Expression.\-Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Value\-Node}}]{value, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_a17e5101d02b96d0071e7a0223e4daa3d}
+
+
+Definition at line 761 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Expression.\-value.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Parse().
+
+
+\begin{DoxyCode}
+761                                                                              : base(
+      \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+762                 this.type = Type.Value;
+763                 this.value = \hyperlink{a00098_a569e516782891544c334ff8131b23108}{value};
+764             \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00098_a17e5101d02b96d0071e7a0223e4daa3d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00098_a5047d9b3301d6c7367f8095267ea9b07}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Expression@{Expression}}
+\index{Expression@{Expression}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Expression}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Expression.\-Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Function\-Info}}]{function, }
+\item[{List$<$ {\bf Expression} $>$}]{parameters, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_a5047d9b3301d6c7367f8095267ea9b07}
+
+
+Definition at line 766 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Expression.\-parameters, and Yarn.\-Parser.\-Expression.\-type.
+
+
+\begin{DoxyCode}
+766                                                                                                            
+           : base(\hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+767                 \hyperlink{a00098_ad55c92df835006328bc2a79a8f91efb9}{type} = Type.FunctionCall;
+768                 this.function = \textcolor{keyword}{function};
+769                 this.parameters = \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters};
+770             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00142_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00098_a107aecf707b130c4b733930a95f9154e}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a580e520a29444fc23ac3660cbe514a09}
 
 
-Implements \hyperlink{a00042_afe059a2ceeabe50380b000420e512bd6}{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}.
+Definition at line 100 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-179         \{
-180 
-181             \textcolor{comment}{// Exclude read variables that are also written}
-182             var readOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00098_a6b542092ddce1b92c9455d60899518a9}{readVariables});
-183             readOnlyVariables.ExceptWith (\hyperlink{a00098_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
-184 
-185             \textcolor{comment}{// Exclude written variables that are also read}
-186             var writeOnlyVariables = \textcolor{keyword}{new} HashSet<string> (\hyperlink{a00098_a0c2fe6eded1b10b135ca2469f5980a39}{writtenVariables});
-187             writeOnlyVariables.ExceptWith (\hyperlink{a00098_a6b542092ddce1b92c9455d60899518a9}{readVariables});
-188 
-189             \textcolor{comment}{// Generate diagnoses}
-190             var diagnoses = \textcolor{keyword}{new} List<Diagnosis>();
-191 
-192             \textcolor{keywordflow}{foreach} (var readOnlyVariable \textcolor{keywordflow}{in} readOnlyVariables) \{
-193                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is read from, but never assigned"}, 
-      readOnlyVariable);
-194                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
-195             \}
-196 
-197             \textcolor{keywordflow}{foreach} (var writeOnlyVariable \textcolor{keywordflow}{in} writeOnlyVariables) \{
-198                 var message = string.Format (\textcolor{stringliteral}{"Variable \{0\} is assigned, but never read from"}, 
-      writeOnlyVariable);
-199                 diagnoses.Add(\textcolor{keyword}{new} Diagnosis (message, Diagnosis.Severity.Warning));
-200             \}
-201 
-202             \textcolor{keywordflow}{return} diagnoses;
-203         \}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
+110 
+111                 \textcolor{keywordflow}{return} null;
+112             \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00098_a686da57aaf67d50d2832f9ee0028a979}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Parse@{Parse}}
+\index{Parse@{Parse}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Parse}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Expression} Yarn.\-Parser.\-Expression.\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00098_a686da57aaf67d50d2832f9ee0028a979}
+
+
+Definition at line 772 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Expression.\-Expression(), Yarn.\-Function(), Yarn.\-Parser.\-Operator.\-Is\-Operator(), Yarn.\-Function\-Info.\-Is\-Parameter\-Count\-Correct(), Yarn.\-Parser.\-library, Yarn.\-Parser.\-Next\-Symbol\-Is(), Yarn.\-Parser.\-Operator.\-Operator\-Types, Yarn.\-Parser.\-Expression.\-parameters, Yarn.\-Parser.\-Expression.\-Should\-Apply\-Precedence(), Yarn.\-String, Yarn.\-Parser.\-tokens, and Yarn.\-Token.\-type.
+
+
+\begin{DoxyCode}
+772                                                                          \{
+773 
+774                 \textcolor{comment}{// Applies Djikstra's "shunting-yard" algorithm to convert the}
+775                 \textcolor{comment}{// stream of infix expressions into postfix notation; we then}
+776                 \textcolor{comment}{// build a tree of expressions from the result}
+777 
+778                 \textcolor{comment}{// https://en.wikipedia.org/wiki/Shunting-yard\_algorithm}
+779 
+780                 Queue<Token> \_expressionRPN = \textcolor{keyword}{new} Queue<Token> ();
+781                 var operatorStack = \textcolor{keyword}{new} Stack<Token>();
+782 
+783                 \textcolor{comment}{// used for keeping count of parameters for each function}
+784                 var functionStack = \textcolor{keyword}{new} Stack<Token> ();
+785 
+786                 var allValidTokenTypes = \textcolor{keyword}{new} List<TokenType>(
+      \hyperlink{a00137_ad8a4bb1b46dbc3d1b7708e78a2d97e1c}{Operator.OperatorTypes});
+787                 allValidTokenTypes.Add(TokenType.Number);
+788                 allValidTokenTypes.Add(TokenType.Variable);
+789                 allValidTokenTypes.Add(TokenType.String);
+790                 allValidTokenTypes.Add(TokenType.LeftParen);
+791                 allValidTokenTypes.Add(TokenType.RightParen);
+792                 allValidTokenTypes.Add(TokenType.Identifier);
+793                 allValidTokenTypes.Add(TokenType.Comma);
+794                 allValidTokenTypes.Add(TokenType.True);
+795                 allValidTokenTypes.Add(TokenType.False);
+796                 allValidTokenTypes.Add(TokenType.Null);
+797 
+798                 Token lastToken = null;
+799 
+800                 \textcolor{comment}{// Read all the contents of the expression}
+801                 \textcolor{keywordflow}{while} (p.tokens.Count > 0 && p.NextSymbolIs(allValidTokenTypes.ToArray())) \{
+802 
+803                     Token nextToken = p.ExpectSymbol(allValidTokenTypes.ToArray());
+804 
+805                     \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Number ||
+806                         nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Variable ||
+807                         nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.String ||
+808                         nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.True ||
+809                         nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.False ||
+810                         nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Null) \{
+811 
+812                         \textcolor{comment}{// Primitive values go straight onto the output}
+813                         \_expressionRPN.Enqueue (nextToken);
+814                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier) \{
+815                         operatorStack.Push (nextToken);
+816                         functionStack.Push (nextToken);
+817 
+818                         \textcolor{comment}{// next token must be a left paren, so process that immediately}
+819                         nextToken = p.ExpectSymbol (TokenType.LeftParen);
+820                         \textcolor{comment}{// enter that sub-expression}
+821                         operatorStack.Push (nextToken);
+822 
+823                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Comma) \{
+824 
+825                         \textcolor{comment}{// Resolve this sub-expression before moving on to the}
+826                         \textcolor{comment}{// next parameter}
+827                         \textcolor{keywordflow}{try} \{
+828                             \textcolor{comment}{// pop operators until we reach a left paren}
+829                             \textcolor{keywordflow}{while} (operatorStack.Peek().type != TokenType.LeftParen) \{
+830                                 \_expressionRPN.Enqueue(operatorStack.Pop());
+831                             \}
+832                         \} \textcolor{keywordflow}{catch} (InvalidOperationException) \{
+833                             \textcolor{comment}{// we reached the end of the stack prematurely}
+834                             \textcolor{comment}{// this means unbalanced parens!}
+835                             \textcolor{keywordflow}{throw} ParseException.Make(nextToken, \textcolor{stringliteral}{"Error parsing expression: "} +
+836                                 \textcolor{stringliteral}{"unbalanced parentheses"});
+837                         \}
+838 
+839                         \textcolor{comment}{// We expect the top of the stack to now contain the left paren that}
+840                         \textcolor{comment}{// began the list of parameters}
+841                         \textcolor{keywordflow}{if} (operatorStack.Peek().type != TokenType.LeftParen) \{
+842                             \textcolor{keywordflow}{throw} ParseException.Make (operatorStack.Peek (), \textcolor{stringliteral}{"Expression parser got "} +
+843                                 \textcolor{stringliteral}{"confused dealing with a function"});
+844                         \}
+845 
+846                         \textcolor{comment}{// The next token is not allowed to be a right-paren or a comma}
+847                         \textcolor{comment}{// (that is, you can't say "foo(2,,)")}
+848                         \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.RightParen, 
+      \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Comma)) \{
+849                             \textcolor{keywordflow}{throw} ParseException.Make (p.tokens.Peek(), \textcolor{stringliteral}{"Expected expression"});
+850                         \}
+851 
+852                         \textcolor{comment}{// Find the closest function on the stack}
+853                         \textcolor{comment}{// and increment the number of parameters}
+854                         functionStack.Peek().parameterCount++;
+855 
+856                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (Operator.IsOperator(nextToken.type)) \{
+857                         \textcolor{comment}{// This is an operator}
+858 
+859                         \textcolor{comment}{// If this is a Minus, we need to determine if it's a}
+860                         \textcolor{comment}{// unary minus or a binary minus.}
+861                         \textcolor{comment}{// Unary minus looks like this: "-1"}
+862                         \textcolor{comment}{// Binary minus looks like this: "2 - 3"}
+863                         \textcolor{comment}{// Things get complex when we say stuff like "1 + -1".}
+864                         \textcolor{comment}{// But it's easier when we realise that a minus}
+865                         \textcolor{comment}{// is ONLY unary when the last token was a left paren,}
+866                         \textcolor{comment}{// an operator, or it's the first token.}
+867 
+868                         \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Minus) \{
+869 
+870                             \textcolor{keywordflow}{if} (lastToken == null ||
+871                                 lastToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen ||
+872                                 Operator.IsOperator(lastToken.type)) \{
+873 
+874                                 \textcolor{comment}{// This is actually a unary minus.}
+875                                 nextToken.type = TokenType.UnaryMinus;
+876                             \}
+877                         \}
+878 
+879                         \textcolor{comment}{// We cannot assign values inside an expression. That is,}
+880                         \textcolor{comment}{// saying "$foo = 2" in an express does not assign $foo to 2}
+881                         \textcolor{comment}{// and then evaluate to 2. Instead, Yarn defines this}
+882                         \textcolor{comment}{// to mean "$foo == 2"}
+883                         \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EqualToOrAssign) \{
+884                             nextToken.type = TokenType.EqualTo;
+885                         \}
+886 
+887                         \textcolor{comment}{// O1 = this operator}
+888                         \textcolor{comment}{// O2 = the token at the top of the stack}
+889                         \textcolor{comment}{// While O2 is an operator, and EITHER: 1. O1 is left-associative and}
+890                         \textcolor{comment}{// has precedence <= O2, or 2. O1 is right-associative and}
+891                         \textcolor{comment}{// has precedence > O2:}
+892                         \textcolor{keywordflow}{while} (\hyperlink{a00098_a5004a8eaa00b2b55856ecb4f339033fb}{ShouldApplyPrecedence}(nextToken.type, operatorStack)) \{
+893                             var o = operatorStack.Pop();
+894                             \_expressionRPN.Enqueue(o);
+895                         \}
+896                         operatorStack.Push(nextToken);
+897 
+898                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen) \{
+899 
+900                         \textcolor{comment}{// Record that we have entered a paren-delimited}
+901                         \textcolor{comment}{// subexpression}
+902                         operatorStack.Push(nextToken);
+903 
+904                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (nextToken.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.RightParen) \{
+905 
+906                         \textcolor{comment}{// We're leaving a subexpression; time to resolve the}
+907                         \textcolor{comment}{// order of operations that we saw in between the parens.}
+908 
+909                         \textcolor{keywordflow}{try} \{
+910                             \textcolor{comment}{// pop operators until we reach a left paren}
+911                             \textcolor{keywordflow}{while} (operatorStack.Peek().type != TokenType.LeftParen) \{
+912                                 \_expressionRPN.Enqueue(operatorStack.Pop());
+913                             \}
+914                             \textcolor{comment}{// pop the left paren}
+915                             operatorStack.Pop();
+916                         \} \textcolor{keywordflow}{catch} (InvalidOperationException) \{
+917                             \textcolor{comment}{// we reached the end of the stack prematurely}
+918                             \textcolor{comment}{// this means unbalanced parens!}
+919                             \textcolor{keywordflow}{throw} ParseException.Make(nextToken, \textcolor{stringliteral}{"Error parsing expression: unbalanced
+       parentheses"});
+920                         \}
+921 
+922                         \textcolor{keywordflow}{if} (operatorStack.Peek().type == TokenType.Identifier) \{
+923                             \textcolor{comment}{// This whole paren-delimited subexpression is actually}
+924                             \textcolor{comment}{// a function call}
+925 
+926                             \textcolor{comment}{// If the last token was a left-paren, then this}
+927                             \textcolor{comment}{// was a function with no parameters; otherwise, we}
+928                             \textcolor{comment}{// have an additional parameter (on top of the ones we counted}
+929                             \textcolor{comment}{// while encountering commas)}
+930 
+931                             \textcolor{keywordflow}{if} (lastToken.type != \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen) \{
+932                                 functionStack.Peek ().parameterCount++;
+933                             \}
+934 
+935                             \_expressionRPN.Enqueue(operatorStack.Pop());
+936                             functionStack.Pop ();
+937                         \}
+938 
+939                     \}
+940 
+941                     \textcolor{comment}{// Record this as the last token we saw; we'll use}
+942                     \textcolor{comment}{// this to figure out if minuses are unary or not}
+943                     lastToken = nextToken;
+944 
+945                 \}
+946 
+947                 \textcolor{comment}{// No more tokens; pop all operators onto the output queue}
+948                 \textcolor{keywordflow}{while} (operatorStack.Count > 0) \{
+949                     \_expressionRPN.Enqueue(operatorStack.Pop());
+950                 \}
+951 
+952                 \textcolor{comment}{// If the output queue is empty, then this is not an expression}
+953                 \textcolor{keywordflow}{if} (\_expressionRPN.Count == 0) \{
+954                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ParseException (\textcolor{stringliteral}{"Error parsing expression: no expression found!"});
+955                 \}
+956 
+957                 \textcolor{comment}{// We've now got this in more easily parsed RPN form;}
+958                 \textcolor{comment}{// time to build the expression tree.}
+959                 Token firstToken = \_expressionRPN.Peek();
+960                 var evaluationStack = \textcolor{keyword}{new} Stack<Expression>();
+961                 \textcolor{keywordflow}{while} (\_expressionRPN.Count > 0) \{
+962 
+963                     var next = \_expressionRPN.Dequeue();
+964                     \textcolor{keywordflow}{if} (Operator.IsOperator(next.type)) \{
+965 
+966                         \textcolor{comment}{// This is an operation}
+967 
+968                         var info = Operator.InfoForOperator(next.type);
+969                         \textcolor{keywordflow}{if} (evaluationStack.Count < info.arguments) \{
+970                             \textcolor{keywordflow}{throw} ParseException.Make(next, \textcolor{stringliteral}{"Error parsing expression: not enough "} +
+971                                 \textcolor{stringliteral}{"arguments for operator "}+next.type.ToString());
+972                         \}
+973 
+974                         var \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters} = \textcolor{keyword}{new} List<Expression> ();
+975 
+976                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < info.arguments; i++) \{
+977                             parameters.Add (evaluationStack.Pop ());
+978                         \}
+979                         parameters.Reverse ();
+980 
+981                         var operatorFunc = p.library.GetFunction (next.type.ToString());
+982 
+983                         var expr = \textcolor{keyword}{new} \hyperlink{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{Expression} (\hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, operatorFunc, 
+      \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}, p);
+984 
+985                         evaluationStack.Push(expr);
+986                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (next.type == \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier) \{
+987                         \textcolor{comment}{// This is a function call}
+988 
+989                         FunctionInfo info = null;
+990 
+991                         \textcolor{comment}{// If we have a library, use it to check if the}
+992                         \textcolor{comment}{// number of parameters provided is correct}
+993                         \textcolor{keywordflow}{if} (p.library != null) \{
+994                             info = p.library.GetFunction(next.value as \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String});
+995 
+996                             \textcolor{comment}{// Ensure that this call has the right number of params}
+997                             \textcolor{keywordflow}{if} (info.IsParameterCountCorrect(next.parameterCount) == \textcolor{keyword}{false}) \{
+998                                 \textcolor{keywordtype}{string} error = string.Format(\textcolor{stringliteral}{"Error parsing expression: "} +
+999                                     \textcolor{stringliteral}{"Unsupported number of parameters for function \{0\} (expected \{1\}, got
+       \{2\})"},
+1000                                     next.value as \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String},
+1001                                     info.paramCount,
+1002                                     next.parameterCount
+1003                                 );
+1004                                 \textcolor{keywordflow}{throw} ParseException.Make(next, error);
+1005                             \}
+1006                         \} \textcolor{keywordflow}{else} \{
+1007                             \textcolor{comment}{// Use a dummy FunctionInfo to represent info about the}
+1008                             \textcolor{comment}{// fact that a function is called; note that}
+1009                             \textcolor{comment}{// attempting to call this will fail}
+1010                             info = \textcolor{keyword}{new} FunctionInfo (next.value, next.parameterCount, (
+      \hyperlink{a00045_ae0be2e5cf13d5779816102439e61ff1a}{Function})null);
+1011                         \}
+1012 
+1013                         var parameterList = \textcolor{keyword}{new} List<Expression> ();
+1014                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < next.parameterCount; i++) \{
+1015                             parameterList.Add (evaluationStack.Pop());
+1016                         \}
+1017                         parameterList.Reverse ();
+1018 
+1019                         var expr = \textcolor{keyword}{new} \hyperlink{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{Expression} (\hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, info, parameterList, p);
+1020 
+1021                         evaluationStack.Push (expr);
+1022 
+1023                     \} \textcolor{keywordflow}{else} \{
+1024 
+1025                         \textcolor{comment}{// This is a raw value}
+1026                         var v = \textcolor{keyword}{new} ValueNode(\hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, next, p);
+1027                         \hyperlink{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{Expression} expr = \textcolor{keyword}{new} \hyperlink{a00098_a17e5101d02b96d0071e7a0223e4daa3d}{Expression}(
+      \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, v, p);
+1028                         evaluationStack.Push(expr);
+1029 
+1030                     \}
+1031                 \}
+1032                 \textcolor{comment}{// We should now have a single expression in this stack, which is the root}
+1033                 \textcolor{comment}{// of the expression's tree. If we have more than one, then we have a problem.}
+1034                 \textcolor{keywordflow}{if} (evaluationStack.Count != 1) \{
+1035                     \textcolor{keywordflow}{throw} ParseException.Make(firstToken, \textcolor{stringliteral}{"Error parsing expression "} +
+1036                         \textcolor{stringliteral}{"(stack did not reduce correctly)"});
+1037                 \}
+1038 
+1039                 \textcolor{comment}{// Return it}
+1040                 \textcolor{keywordflow}{return} evaluationStack.Pop ();
+1041 
+1042             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00098_a686da57aaf67d50d2832f9ee0028a979_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00098_a509ba6d93218203bae56a5a7a82e8261}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Expression.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00098_a509ba6d93218203bae56a5a7a82e8261}
+
+
+Implements \hyperlink{a00142_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+
+Definition at line 1073 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Expression.\-parameters, Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Expression.\-type.
+
+
+\begin{DoxyCode}
+1074             \{
+1075                 var stringBuilder = \textcolor{keyword}{new} StringBuilder ();
+1076                 \textcolor{keywordflow}{switch} (\hyperlink{a00098_ad55c92df835006328bc2a79a8f91efb9}{type}) \{
+1077                 \textcolor{keywordflow}{case} Type.Value:
+1078                     \textcolor{keywordflow}{return} value.PrintTree (indentLevel);
+1079                 \textcolor{keywordflow}{case} Type.FunctionCall:
+1080 
+1081                     \textcolor{keywordflow}{if} (\hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}.Count == 0) \{
+1082                         stringBuilder.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"Function call to "} + \textcolor{keyword}{function}.name + \textcolor{stringliteral}{"
+       (no parameters)"}));
+1083                     \} \textcolor{keywordflow}{else} \{
+1084                         stringBuilder.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"Function call to "} + \textcolor{keyword}{function}.name + \textcolor{stringliteral}{" ("}
+       +\hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}.Count+\textcolor{stringliteral}{" parameters) \{"}));
+1085                         \textcolor{keywordflow}{foreach} (var param \textcolor{keywordflow}{in} \hyperlink{a00098_a7b21380bead8ae08b2cfc6594edab32c}{parameters}) \{
+1086                             stringBuilder.Append(param.PrintTree(indentLevel+1));
+1087                         \}
+1088                         stringBuilder.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"\}"}));
+1089                     \}
+1090                     \textcolor{keywordflow}{return} stringBuilder.ToString();
+1091 
+1092                 \}
+1093 
+1094                 \textcolor{keywordflow}{return} \hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"<error printing expression!>"});
+1095             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00098_a509ba6d93218203bae56a5a7a82e8261_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00098_a5004a8eaa00b2b55856ecb4f339033fb}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Should\-Apply\-Precedence@{Should\-Apply\-Precedence}}
+\index{Should\-Apply\-Precedence@{Should\-Apply\-Precedence}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Should\-Apply\-Precedence}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Expression.\-Should\-Apply\-Precedence (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{o1, }
+\item[{Stack$<$ {\bf Token} $>$}]{operator\-Stack}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00098_a5004a8eaa00b2b55856ecb4f339033fb}
+
+
+Definition at line 1046 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Operator.\-Is\-Operator(), and Yarn.\-Parser.\-Expression.\-type.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Parse().
+
+
+\begin{DoxyCode}
+1046                                                                                                 \{
+1047 
+1048                 \textcolor{keywordflow}{if} (operatorStack.Count == 0) \{
+1049                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+1050                 \}
+1051                 \textcolor{keywordflow}{if} (Operator.IsOperator (o1) == \textcolor{keyword}{false}) \{
+1052                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ParseException (\textcolor{stringliteral}{"Internal error parsing expression"});
+1053                 \}
+1054                 \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType} o2 = operatorStack.Peek ().\hyperlink{a00098_ad55c92df835006328bc2a79a8f91efb9}{type};
+1055 
+1056                 \textcolor{keywordflow}{if} (Operator.IsOperator (o2) == \textcolor{keyword}{false})
+1057                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+1058 
+1059                 var o1Info = Operator.InfoForOperator (o1);
+1060                 var o2Info = Operator.InfoForOperator (o2);
+1061 
+1062                 \textcolor{keywordflow}{if} (o1Info.associativity == Operator.Associativity.Left && o1Info.precedence <= o2Info.
+      precedence) \{
+1063                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+1064                 \}
+1065 
+1066                 \textcolor{keywordflow}{if} (o1Info.associativity == Operator.Associativity.Right && o1Info.precedence < o2Info.
+      precedence) \{
+1067                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+1068                 \}
+1069 
+1070                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+1071             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00098_a5004a8eaa00b2b55856ecb4f339033fb_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00098_a5004a8eaa00b2b55856ecb4f339033fb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00142_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 78 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
+
+
+\begin{DoxyCode}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 94 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00098_a6b542092ddce1b92c9455d60899518a9}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!read\-Variables@{read\-Variables}}
-\index{read\-Variables@{read\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{read\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-read\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00098_a6b542092ddce1b92c9455d60899518a9}
-\hypertarget{a00098_a0c2fe6eded1b10b135ca2469f5980a39}{\index{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}!written\-Variables@{written\-Variables}}
-\index{written\-Variables@{written\-Variables}!Yarn::Analysis::UnusedVariableChecker@{Yarn\-::\-Analysis\-::\-Unused\-Variable\-Checker}}
-\subsubsection[{written\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}Hash\-Set$<$string$>$ Yarn.\-Analysis.\-Unused\-Variable\-Checker.\-written\-Variables = new Hash\-Set$<$string$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00098_a0c2fe6eded1b10b135ca2469f5980a39}
+\hypertarget{a00098_a9c1859ce5ad4c86ded8dd0d61da61320}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!function@{function}}
+\index{function@{function}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{function}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Function\-Info} Yarn.\-Parser.\-Expression.\-function\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_a9c1859ce5ad4c86ded8dd0d61da61320}
+
+
+Definition at line 758 of file Parser.\-cs.
+
+\hypertarget{a00142_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a18b493382de0fde5b4299c1bd2250075}
+
+
+Definition at line 61 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00098_a7b21380bead8ae08b2cfc6594edab32c}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!parameters@{parameters}}
+\index{parameters@{parameters}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{parameters}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Expression}$>$ Yarn.\-Parser.\-Expression.\-parameters\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_a7b21380bead8ae08b2cfc6594edab32c}
+
+
+Definition at line 759 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Expression(), Yarn.\-Parser.\-Expression.\-Parse(), and Yarn.\-Parser.\-Expression.\-Print\-Tree().
+
+\hypertarget{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_af313a82103fcc2ff5a177dbb06b92f7b}
+
+
+Definition at line 58 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 76 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
+\hypertarget{a00098_ad55c92df835006328bc2a79a8f91efb9}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!type@{type}}
+\index{type@{type}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Type} Yarn.\-Parser.\-Expression.\-type\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_ad55c92df835006328bc2a79a8f91efb9}
+
+
+Definition at line 754 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Expression(), Yarn.\-Parser.\-Expression.\-Print\-Tree(), and Yarn.\-Parser.\-Expression.\-Should\-Apply\-Precedence().
+
+\hypertarget{a00098_a569e516782891544c334ff8131b23108}{\index{Yarn\-::\-Parser\-::\-Expression@{Yarn\-::\-Parser\-::\-Expression}!value@{value}}
+\index{value@{value}!Yarn::Parser::Expression@{Yarn\-::\-Parser\-::\-Expression}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Value\-Node} Yarn.\-Parser.\-Expression.\-value\hspace{0.3cm}{\ttfamily [package]}}}\label{a00098_a569e516782891544c334ff8131b23108}
+
+
+Definition at line 756 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Expression().
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00136}{Analyser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00301}{Parser.\-cs}\end{DoxyCompactItemize}

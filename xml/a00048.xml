@@ -1,65 +1,66 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00048" kind="struct" prot="private">
-    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00048_1a750904df254223bf3131c39017f90a0b" prot="public" static="no" mutable="no">
-        <type>System.Type</type>
-        <definition>System.Type Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.type</definition>
+  <compounddef id="a00048" kind="class" prot="package">
+    <compoundname>Yarn::Compiler</compoundname>
+    <innerclass refid="a00363" prot="private">Yarn::Compiler::CompileFlags</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00048_1a541022d89bcf9bc8f794eb6d6b438d08" prot="private" static="no" mutable="no">
+        <type><ref refid="a00363" kindref="compound">CompileFlags</ref></type>
+        <definition>CompileFlags Yarn.Compiler.flags</definition>
         <argsstring></argsstring>
-        <name>type</name>
+        <name>flags</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="292" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="292" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="15" bodyend="-1"/>
+        <referencedby refid="a00048_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00295" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
+        <referencedby refid="a00048_1a3e492edcefdfeacec80e528f8c4fa6cc" compoundref="a00295" startline="213" endline="279">Yarn.Compiler.GenerateCode</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00048_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.methodName</definition>
+      <memberdef kind="variable" id="a00048_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Compiler.labelCount</definition>
         <argsstring></argsstring>
-        <name>methodName</name>
+        <name>labelCount</name>
+        <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="293" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="293" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00048_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.usageNotes</definition>
-        <argsstring></argsstring>
-        <name>usageNotes</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="294" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="294" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="103" bodyend="-1"/>
+        <referencedby refid="a00048_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00295" startline="106" endline="108">Yarn.Compiler.RegisterLabel</referencedby>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00048_1ae80171841e97a48611c51a9a574a2fc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00048_1aa1737da428ec7d597009661dd8a47829" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00146" kindref="compound">Program</ref></type>
+        <definition>Program Yarn.Compiler.program</definition>
+        <argsstring></argsstring>
+        <name>program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="a00048_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00295" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
+        <referencedby refid="a00048_1a47bfde319a618a1e11d00cb282a84364" compoundref="a00295" startline="19" endline="22">Yarn.Compiler.Compiler</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00048_1a47bfde319a618a1e11d00cb282a84364" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation.Deprecation</definition>
-        <argsstring>(System.Type type, string methodName, string usageNotes)</argsstring>
-        <name>Deprecation</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
+        <definition>Yarn.Compiler.Compiler</definition>
+        <argsstring>(string programName)</argsstring>
+        <name>Compiler</name>
         <param>
           <type>string</type>
-          <declname>methodName</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>usageNotes</declname>
+          <declname>programName</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -67,7 +68,345 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="296" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="296" bodyend="301"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="19" bodyend="22"/>
+        <references refid="a00048_1aa1737da428ec7d597009661dd8a47829" compoundref="a00295" startline="17">Yarn.Compiler.program</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a10b52c5694f78285d087a455e3654eaa" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.CompileNode</definition>
+        <argsstring>(Parser.Node node)</argsstring>
+        <name>CompileNode</name>
+        <param>
+          <type><ref refid="a00132" kindref="compound">Parser.Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="24" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="24" bodyend="101"/>
+        <references refid="a00363_1a8b49bb7763ff477cba21d7c771ef3ed0" compoundref="a00295" startline="12">Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</references>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a541022d89bcf9bc8f794eb6d6b438d08" compoundref="a00295" startline="15">Yarn.Compiler.flags</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+        <references refid="a00146_1a3f4928a577c88263ad016be259b175c4" compoundref="a00302" startline="90">Yarn.Program.nodes</references>
+        <references refid="a00048_1aa1737da428ec7d597009661dd8a47829" compoundref="a00295" startline="17">Yarn.Compiler.program</references>
+        <references refid="a00048_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00295" startline="106" endline="108">Yarn.Compiler.RegisterLabel</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00048_1a1bae0d8b701a59708641aa36ea971fa5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.RegisterLabel</definition>
+        <argsstring>(string commentary=null)</argsstring>
+        <name>RegisterLabel</name>
+        <param>
+          <type>string</type>
+          <declname>commentary</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="106" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="106" bodyend="108"/>
+        <references refid="a00048_1a87758397eba2e84cda8e0d6c40656f3f" compoundref="a00295" startline="103">Yarn.Compiler.labelCount</references>
+        <referencedby refid="a00048_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00295" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
+        <referencedby refid="a00048_1a3e492edcefdfeacec80e528f8c4fa6cc" compoundref="a00295" startline="213" endline="279">Yarn.Compiler.GenerateCode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a774e8c143cdda0584fcfdda98626a83c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.Emit</definition>
+        <argsstring>(Node node, ByteCode code, object operandA=null, object operandB=null)</argsstring>
+        <name>Emit</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00045_1ad5dfb6ee68ca7469623ad3e459f98894" kindref="member">ByteCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandA</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>operandB</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="122"/>
+        <references refid="a00367_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00302" startline="249">Yarn.Node.instructions</references>
+        <referencedby refid="a00048_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00295" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
+        <referencedby refid="a00048_1a656b6c7fcd08d24300ec592465274f66" compoundref="a00295" startline="164" endline="188">Yarn.Compiler.GenerateCode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a006f3becd521cc179ba3d3352f6f930b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Statement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00160" kindref="compound">Parser.Statement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="125" bodyend="162"/>
+        <referencedby refid="a00048_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00295" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
+        <referencedby refid="a00048_1a656b6c7fcd08d24300ec592465274f66" compoundref="a00295" startline="164" endline="188">Yarn.Compiler.GenerateCode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a656b6c7fcd08d24300ec592465274f66" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.CustomCommand statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00077" kindref="compound">Parser.CustomCommand</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="164" bodyend="188"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a5117b9c2253de15d3fd3557c8b037235" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Compiler.GetLineIDFromNodeTags</definition>
+        <argsstring>(Parser.ParseNode node)</argsstring>
+        <name>GetLineIDFromNodeTags</name>
+        <param>
+          <type><ref refid="a00142" kindref="compound">Parser.ParseNode</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="190" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="190" bodyend="200"/>
+        <referencedby refid="a00048_1af1ee28d67902b27ee0816e2a47343652" compoundref="a00295" startline="202" endline="211">Yarn.Compiler.GenerateCode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1af1ee28d67902b27ee0816e2a47343652" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Statement parseNode, string line)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00160" kindref="compound">Parser.Statement</ref></type>
+          <declname>parseNode</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="202" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="202" bodyend="211"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a5117b9c2253de15d3fd3557c8b037235" compoundref="a00295" startline="190" endline="200">Yarn.Compiler.GetLineIDFromNodeTags</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a3e492edcefdfeacec80e528f8c4fa6cc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.ShortcutOptionGroup statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00154" kindref="compound">Parser.ShortcutOptionGroup</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="213" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="213" bodyend="279"/>
+        <references refid="a00363_1a8b49bb7763ff477cba21d7c771ef3ed0" compoundref="a00295" startline="12">Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</references>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a541022d89bcf9bc8f794eb6d6b438d08" compoundref="a00295" startline="15">Yarn.Compiler.flags</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+        <references refid="a00048_1a5117b9c2253de15d3fd3557c8b037235" compoundref="a00295" startline="190" endline="200">Yarn.Compiler.GetLineIDFromNodeTags</references>
+        <references refid="a00048_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00295" startline="106" endline="108">Yarn.Compiler.RegisterLabel</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1ab4f6dd2ddf38b0c5bfb2b8a40869a09a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, IEnumerable&lt; Yarn.Parser.Statement &gt; statementList)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>IEnumerable&lt; <ref refid="a00160" kindref="compound">Yarn.Parser.Statement</ref> &gt;</type>
+          <declname>statementList</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="281" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="281" bodyend="289"/>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a6ab14514a3b0644ae39c626e5e5e180d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.IfStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00112" kindref="compound">Parser.IfStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="291" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="291" bodyend="321"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+        <references refid="a00048_1a1bae0d8b701a59708641aa36ea971fa5" compoundref="a00295" startline="106" endline="108">Yarn.Compiler.RegisterLabel</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a5cb3cbcd9727bdef018ec5299bd13142" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.OptionStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00140" kindref="compound">Parser.OptionStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="323" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="323" bodyend="339"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a5117b9c2253de15d3fd3557c8b037235" compoundref="a00295" startline="190" endline="200">Yarn.Compiler.GetLineIDFromNodeTags</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1afb86d9228f66896abe31d47d72a267ce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.AssignmentStatement statement)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00033" kindref="compound">Parser.AssignmentStatement</ref></type>
+          <declname>statement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="341" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="341" bodyend="390"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a5c762915320958c3a03b193b06a7e279" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.Expression expression)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00098" kindref="compound">Parser.Expression</ref></type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="392" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="392" bodyend="416"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
+        <references refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00295" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
+        <references refid="a00367_1a107b0de3fcfc65e99913edc01b5ce9db" compoundref="a00302" startline="251">Yarn.Node.name</references>
+      </memberdef>
+      <memberdef kind="function" id="a00048_1a41438a0b25f2668a180372d05127d891" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Compiler.GenerateCode</definition>
+        <argsstring>(Node node, Parser.ValueNode value)</argsstring>
+        <name>GenerateCode</name>
+        <param>
+          <type><ref refid="a00367" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type><ref refid="a00182" kindref="compound">Parser.ValueNode</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="418" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="418" bodyend="444"/>
+        <references refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00295" startline="110" endline="122">Yarn.Compiler.Emit</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -75,23 +414,38 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="453">
-        <label>Yarn.Unity.YarnSpinnerEditorWindow.Deprecation</label>
+      <node id="1036">
+        <label>Yarn.Compiler</label>
         <link refid="a00048"/>
-        <childnode refid="454" relation="usage">
-          <edgelabel>+type</edgelabel>
+        <childnode refid="1037" relation="usage">
+          <edgelabel>-flags</edgelabel>
         </childnode>
       </node>
-      <node id="454">
-        <label>System</label>
+      <node id="1037">
+        <label>Yarn.Compiler.CompileFlags</label>
+        <link refid="a00363"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="291" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="291" bodyend="303"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="7" bodyend="446"/>
     <listofallmembers>
-      <member refid="a00048_1ae80171841e97a48611c51a9a574a2fc0" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>Deprecation</name></member>
-      <member refid="a00048_1a61605b2d0a17dfdf9c62952270d44fbd" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>methodName</name></member>
-      <member refid="a00048_1a750904df254223bf3131c39017f90a0b" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>type</name></member>
-      <member refid="a00048_1ac23509be7ae6b43a3e2154dd430954a7" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</scope><name>usageNotes</name></member>
+      <member refid="a00048_1a10b52c5694f78285d087a455e3654eaa" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>CompileNode</name></member>
+      <member refid="a00048_1a47bfde319a618a1e11d00cb282a84364" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Compiler</name></member>
+      <member refid="a00048_1a774e8c143cdda0584fcfdda98626a83c" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>Emit</name></member>
+      <member refid="a00048_1a541022d89bcf9bc8f794eb6d6b438d08" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>flags</name></member>
+      <member refid="a00048_1a006f3becd521cc179ba3d3352f6f930b" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a656b6c7fcd08d24300ec592465274f66" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1af1ee28d67902b27ee0816e2a47343652" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a3e492edcefdfeacec80e528f8c4fa6cc" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1ab4f6dd2ddf38b0c5bfb2b8a40869a09a" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a6ab14514a3b0644ae39c626e5e5e180d" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a5cb3cbcd9727bdef018ec5299bd13142" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1afb86d9228f66896abe31d47d72a267ce" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a5c762915320958c3a03b193b06a7e279" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a41438a0b25f2668a180372d05127d891" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GenerateCode</name></member>
+      <member refid="a00048_1a5117b9c2253de15d3fd3557c8b037235" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>GetLineIDFromNodeTags</name></member>
+      <member refid="a00048_1a87758397eba2e84cda8e0d6c40656f3f" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>labelCount</name></member>
+      <member refid="a00048_1aa1737da428ec7d597009661dd8a47829" prot="package" virt="non-virtual"><scope>Yarn::Compiler</scope><name>program</name></member>
+      <member refid="a00048_1a1bae0d8b701a59708641aa36ea971fa5" prot="private" virt="non-virtual"><scope>Yarn::Compiler</scope><name>RegisterLabel</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

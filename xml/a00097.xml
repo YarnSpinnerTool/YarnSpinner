@@ -1,262 +1,144 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00097" kind="class" prot="package">
-    <compoundname>Yarn::TreeRunner</compoundname>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00097_1a1ff25426f4da4236acc741bbbb8c0d56" prot="private" static="no" mutable="no">
-        <type>List&lt; <ref refid="a00075" kindref="compound">Parser.OptionStatement</ref> &gt;</type>
-        <definition>List&lt;Parser.OptionStatement&gt; Yarn.TreeRunner.currentOptions</definition>
+  <compounddef id="a00097" kind="class" prot="public">
+    <compoundname>Yarn::ExecutionOptions</compoundname>
+    <basecompoundref refid="a00035" prot="public" virt="non-virtual">Yarn.BaseOptions</basecompoundref>
+    <derivedcompoundref refid="a00151" prot="public" virt="non-virtual">Yarn.RunOptions</derivedcompoundref>
+    <derivedcompoundref refid="a00186" prot="public" virt="non-virtual">Yarn.VerifyOptions</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00097_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.stringTable</definition>
         <argsstring></argsstring>
-        <name>currentOptions</name>
+        <name>stringTable</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="39" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="55" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="a00097_1aa4f386822db0dee7a07079271cb968a4" prot="private" static="no" mutable="no">
-        <type><ref refid="a00050" kindref="compound">Dialogue</ref></type>
-        <definition>Dialogue Yarn.TreeRunner.dialogue</definition>
+      <memberdef kind="property" id="a00097_1af4c0062a1d46281d377f87084fde374e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.ExecutionOptions.onlyConsiderNode</definition>
         <argsstring></argsstring>
-        <name>dialogue</name>
+        <name>onlyConsiderNode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="42" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="42" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="59" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00097_1a2b5fb685b706c0b46035201baf40361a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.TreeRunner.TreeRunner</definition>
-        <argsstring>(Dialogue dialogue)</argsstring>
-        <name>TreeRunner</name>
-        <param>
-          <type><ref refid="a00050" kindref="compound">Dialogue</ref></type>
-          <declname>dialogue</declname>
-        </param>
+      <memberdef kind="property" id="a00097_1ad97950e47ce2aaeb598295b7c3c44b13" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.ExecutionOptions.experimental</definition>
+        <argsstring></argsstring>
+        <name>experimental</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="44" bodyend="46"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="61" bodyend="-1"/>
+        <referencedby refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00097_1aa71f63255bc062c21ed9283dc6ecec73" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00083" kindref="compound">Dialogue.RunnerResult</ref> &gt;</type>
-        <definition>IEnumerable&lt;Dialogue.RunnerResult&gt; Yarn.TreeRunner.RunNode</definition>
-        <argsstring>(Yarn.Parser.Node node)</argsstring>
-        <name>RunNode</name>
-        <param>
-          <type><ref refid="a00068" kindref="compound">Yarn.Parser.Node</ref></type>
-          <declname>node</declname>
-        </param>
+      <memberdef kind="property" id="a00035_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.showDebuggingInfo</definition>
+        <argsstring></argsstring>
+        <name>showDebuggingInfo</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="50" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="50" bodyend="98"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="a00189_1aab244361a510cee18ad2f636d110e0d5" compoundref="a00313" startline="383" endline="503">Yarn.YarnSpinnerConsole.CreateDialogue</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="a00097_1aa436557ec45c8e98d194d9af139d9170" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00083" kindref="compound">Dialogue.RunnerResult</ref> &gt;</type>
-        <definition>IEnumerable&lt;Dialogue.RunnerResult&gt; Yarn.TreeRunner.RunStatements</definition>
-        <argsstring>(IEnumerable&lt; Parser.Statement &gt; statements)</argsstring>
-        <name>RunStatements</name>
-        <param>
-          <type>IEnumerable&lt; <ref refid="a00090" kindref="compound">Parser.Statement</ref> &gt;</type>
-          <declname>statements</declname>
-        </param>
+      <memberdef kind="property" id="a00035_1ada4d83d1756918f362d55f6649b82b17" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.BaseOptions.verbose</definition>
+        <argsstring></argsstring>
+        <name>verbose</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="101" bodyend="113"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="44" bodyend="-1"/>
+        <referencedby refid="a00099_1aa72838be584177b5592c31d73c0febdb" compoundref="a00311" startline="143" endline="184">Yarn.FileFormatConverter.ConvertNodesInFile</referencedby>
+        <referencedby refid="a00163_1a1d65ef643c3f3495cf9480f86172ff87" compoundref="a00315" startline="10" endline="122">Yarn.TableGenerator.GenerateTables</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00097_1a4a0f51fa1a54f8df77557cab086e43b7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00083" kindref="compound">Dialogue.RunnerResult</ref> &gt;</type>
-        <definition>IEnumerable&lt;Dialogue.RunnerResult&gt; Yarn.TreeRunner.RunStatement</definition>
-        <argsstring>(Parser.Statement statement)</argsstring>
-        <name>RunStatement</name>
-        <param>
-          <type><ref refid="a00090" kindref="compound">Parser.Statement</ref></type>
-          <declname>statement</declname>
-        </param>
+      <memberdef kind="property" id="a00035_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.BaseOptions.files</definition>
+        <argsstring></argsstring>
+        <name>files</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="116" bodyend="188"/>
-      </memberdef>
-      <memberdef kind="function" id="a00097_1ac57271c72da4ec456a32c94d951c8b65" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00100" kindref="compound">Yarn.Value</ref></type>
-        <definition>Yarn.Value Yarn.TreeRunner.EvaluateExpression</definition>
-        <argsstring>(Parser.Expression expression)</argsstring>
-        <name>EvaluateExpression</name>
-        <param>
-          <type><ref refid="a00054" kindref="compound">Parser.Expression</ref></type>
-          <declname>expression</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="190" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="190" bodyend="220"/>
-      </memberdef>
-      <memberdef kind="function" id="a00097_1a352ca6c227f278419b252bc46ba30d0d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00100" kindref="compound">Yarn.Value</ref></type>
-        <definition>Yarn.Value Yarn.TreeRunner.EvaluateValue</definition>
-        <argsstring>(Value value)</argsstring>
-        <name>EvaluateValue</name>
-        <param>
-          <type><ref refid="a00100" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="223" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="223" bodyend="231"/>
-      </memberdef>
-      <memberdef kind="function" id="a00097_1a217c6205821aff5ba31daeb8b3bf2846" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.TreeRunner.RunAssignmentStatement</definition>
-        <argsstring>(Parser.AssignmentStatement assignment)</argsstring>
-        <name>RunAssignmentStatement</name>
-        <param>
-          <type><ref refid="a00033" kindref="compound">Parser.AssignmentStatement</ref></type>
-          <declname>assignment</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="234" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="234" bodyend="268"/>
-      </memberdef>
-      <memberdef kind="function" id="a00097_1a231488eace774d92f5c55034d075016d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>IEnumerable&lt; <ref refid="a00083" kindref="compound">Dialogue.RunnerResult</ref> &gt;</type>
-        <definition>IEnumerable&lt;Dialogue.RunnerResult&gt; Yarn.TreeRunner.RunShortcutOptionGroup</definition>
-        <argsstring>(Parser.ShortcutOptionGroup shortcutOptionGroup)</argsstring>
-        <name>RunShortcutOptionGroup</name>
-        <param>
-          <type><ref refid="a00085" kindref="compound">Parser.ShortcutOptionGroup</ref></type>
-          <declname>shortcutOptionGroup</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="270" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="270" bodyend="313"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="47" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="a00189_1a1b974c55540795a9e643c2ec055fbd51" compoundref="a00313" startline="272" endline="333">Yarn.YarnSpinnerConsole.Run</referencedby>
+        <referencedby refid="a00189_1a029a5624e7cc3a16ae586b64f13049de" compoundref="a00313" startline="335" endline="381">Yarn.YarnSpinnerConsole.Verify</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="698">
-        <label>Yarn.Program</label>
-        <link refid="a00081"/>
-      </node>
-      <node id="695">
-        <label>Yarn.Dialogue</label>
-        <link refid="a00050"/>
-        <childnode refid="696" relation="usage">
-          <edgelabel>-vm</edgelabel>
-        </childnode>
-        <childnode refid="700" relation="usage">
-          <edgelabel>+library</edgelabel>
-        </childnode>
-        <childnode refid="698" relation="usage">
-          <edgelabel>-program</edgelabel>
-        </childnode>
-        <childnode refid="701" relation="usage">
-          <edgelabel>-loader</edgelabel>
-        </childnode>
-        <childnode refid="702" relation="usage">
-          <edgelabel>~continuity</edgelabel>
+    <inheritancegraph>
+      <node id="1343">
+        <label>Yarn.RunOptions</label>
+        <link refid="a00151"/>
+        <childnode refid="1341" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="700">
-        <label>Yarn.Library</label>
-        <link refid="a00063"/>
+      <node id="1344">
+        <label>Yarn.VerifyOptions</label>
+        <link refid="a00186"/>
+        <childnode refid="1341" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="699">
-        <label>Yarn.VirtualMachine.State</label>
-        <link refid="a00089"/>
-      </node>
-      <node id="694">
-        <label>Yarn.TreeRunner</label>
+      <node id="1341">
+        <label>Yarn.ExecutionOptions</label>
         <link refid="a00097"/>
-        <childnode refid="695" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
+        <childnode refid="1342" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="701">
-        <label>Yarn.Loader</label>
-        <link refid="a00065"/>
-        <childnode refid="695" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
+      <node id="1342">
+        <label>BaseOptions</label>
+        <link refid="a00035"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1345">
+        <label>Yarn.ExecutionOptions</label>
+        <link refid="a00097"/>
+        <childnode refid="1346" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="702">
-        <label>Yarn.VariableStorage</label>
-        <link refid="a00102"/>
-      </node>
-      <node id="697">
-        <label>Yarn.Node</label>
-        <link refid="a00181"/>
-      </node>
-      <node id="696">
-        <label>Yarn.VirtualMachine</label>
-        <link refid="a00086"/>
-        <childnode refid="695" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
-        </childnode>
-        <childnode refid="697" relation="usage">
-          <edgelabel>-currentNode</edgelabel>
-        </childnode>
-        <childnode refid="698" relation="usage">
-          <edgelabel>-program</edgelabel>
-        </childnode>
-        <childnode refid="699" relation="usage">
-          <edgelabel>-state</edgelabel>
-        </childnode>
+      <node id="1346">
+        <label>BaseOptions</label>
+        <link refid="a00035"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" line="37" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/TreeRunner.cs" bodystart="36" bodyend="314"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/Main.cs" bodystart="52" bodyend="62"/>
     <listofallmembers>
-      <member refid="a00097_1a1ff25426f4da4236acc741bbbb8c0d56" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>currentOptions</name></member>
-      <member refid="a00097_1aa4f386822db0dee7a07079271cb968a4" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>dialogue</name></member>
-      <member refid="a00097_1ac57271c72da4ec456a32c94d951c8b65" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>EvaluateExpression</name></member>
-      <member refid="a00097_1a352ca6c227f278419b252bc46ba30d0d" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>EvaluateValue</name></member>
-      <member refid="a00097_1a217c6205821aff5ba31daeb8b3bf2846" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>RunAssignmentStatement</name></member>
-      <member refid="a00097_1aa71f63255bc062c21ed9283dc6ecec73" prot="package" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>RunNode</name></member>
-      <member refid="a00097_1a231488eace774d92f5c55034d075016d" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>RunShortcutOptionGroup</name></member>
-      <member refid="a00097_1a4a0f51fa1a54f8df77557cab086e43b7" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>RunStatement</name></member>
-      <member refid="a00097_1aa436557ec45c8e98d194d9af139d9170" prot="private" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>RunStatements</name></member>
-      <member refid="a00097_1a2b5fb685b706c0b46035201baf40361a" prot="package" virt="non-virtual"><scope>Yarn::TreeRunner</scope><name>TreeRunner</name></member>
+      <member refid="a00097_1ad97950e47ce2aaeb598295b7c3c44b13" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>experimental</name></member>
+      <member refid="a00035_1aa93cbb1bc1d5328e0a417012621e92d2" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>files</name></member>
+      <member refid="a00097_1af4c0062a1d46281d377f87084fde374e" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>onlyConsiderNode</name></member>
+      <member refid="a00035_1a89964ea17bd19caf00cb5bff563ed01c" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>showDebuggingInfo</name></member>
+      <member refid="a00097_1a7e43c3b73722956cb0f5d507e4eef527" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>stringTable</name></member>
+      <member refid="a00035_1ada4d83d1756918f362d55f6649b82b17" prot="public" virt="non-virtual"><scope>Yarn::ExecutionOptions</scope><name>verbose</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

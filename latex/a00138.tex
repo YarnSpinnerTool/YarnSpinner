@@ -1,110 +1,103 @@
-\hypertarget{a00138}{\section{Yarn\-Spinner/\-Dialogue.cs File Reference}
-\label{a00138}\index{Yarn\-Spinner/\-Dialogue.\-cs@{Yarn\-Spinner/\-Dialogue.\-cs}}
+\hypertarget{a00138}{\section{Yarn.\-Parser.\-Operator.\-Operator\-Info Struct Reference}
+\label{a00138}\index{Yarn.\-Parser.\-Operator.\-Operator\-Info@{Yarn.\-Parser.\-Operator.\-Operator\-Info}}
 }
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00105}{Yarn.\-Yarn\-Exception}
-\item 
-struct \hyperlink{a00040_a00180}{Yarn.\-Line}
-\item 
-struct \hyperlink{a00040_a00182}{Yarn.\-Options}
-\item 
-struct \hyperlink{a00040_a00177}{Yarn.\-Command}
-\item 
-interface \hyperlink{a00102}{Yarn.\-Variable\-Storage}
-\item 
-class \hyperlink{a00035}{Yarn.\-Base\-Variable\-Storage}
-\item 
-class \hyperlink{a00050}{Yarn.\-Dialogue}
-\item 
-class \hyperlink{a00083}{Yarn.\-Dialogue.\-Runner\-Result}
-\item 
-class \hyperlink{a00064}{Yarn.\-Dialogue.\-Line\-Result}
-\item 
-class \hyperlink{a00041}{Yarn.\-Dialogue.\-Command\-Result}
-\item 
-class \hyperlink{a00074}{Yarn.\-Dialogue.\-Option\-Set\-Result}
-\item 
-class \hyperlink{a00069}{Yarn.\-Dialogue.\-Node\-Complete\-Result}
-\item 
-class \hyperlink{a00088}{Yarn.\-Dialogue.\-Standard\-Library}
-\end{DoxyCompactItemize}
-\subsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-package \hyperlink{a00040}{Yarn}
-\end{DoxyCompactItemize}
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-delegate void \hyperlink{a00040_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} (int selected\-Option\-Index)
-\item 
-delegate void \hyperlink{a00040_a1e50031b945a3a2afafee6f590730568}{Yarn.\-Logger} (string message)
-\end{DoxyCompactItemize}
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Line@{Yarn\-::\-Line}}\label{a00180}
-\hypertarget{a00040_a00180}{}
-\subsubsection{struct Yarn\-:\-:Line}
-
-
-Collaboration diagram for Yarn.\-Line\-:
+Collaboration diagram for Yarn.\-Parser.\-Operator.\-Operator\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=136pt]{a00191}
+\includegraphics[width=246pt]{a00680}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00040_a81d1f04bbb4cf6642d2bd685bda1da20}{string}\label{a00040_a81d1f04bbb4cf6642d2bd685bda1da20}
-&
-text&
-\\
-\hline
-
-\end{DoxyFields}
-\index{Yarn\-::\-Options@{Yarn\-::\-Options}}\label{a00182}
-\hypertarget{a00040_a00182}{}
-\subsubsection{struct Yarn\-:\-:Options}
-
-
-Collaboration diagram for Yarn.\-Options\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=154pt]{a00192}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00040_ae8c616d923ceeeed192a9436c55d9917}{I\-List$<$ string $>$}\label{a00040_ae8c616d923ceeeed192a9436c55d9917}
-&
-options&
-\\
-\hline
-
-\end{DoxyFields}
-\index{Yarn\-::\-Command@{Yarn\-::\-Command}}\label{a00177}
-\hypertarget{a00040_a00177}{}
-\subsubsection{struct Yarn\-:\-:Command}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00138_a25faca62235c9f8542e4a071ba8ebc0b}{Operator\-Info} (\hyperlink{a00137_a83fa1b8db0e6678006920812b6f33f62}{Associativity} \hyperlink{a00138_accba40a72d9709ca3c18810b8661afe3}{associativity}, int \hyperlink{a00138_a0b2921d7b863e268d33aa15213395093}{precedence}, int \hyperlink{a00138_a0758c6f7dac4b205f616b43b1af95b95}{arguments})
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00137_a83fa1b8db0e6678006920812b6f33f62}{Associativity} \hyperlink{a00138_accba40a72d9709ca3c18810b8661afe3}{associativity}
+\item 
+int \hyperlink{a00138_a0b2921d7b863e268d33aa15213395093}{precedence}
+\item 
+int \hyperlink{a00138_a0758c6f7dac4b205f616b43b1af95b95}{arguments}
+\end{DoxyCompactItemize}
 
 
-Collaboration diagram for Yarn.\-Command\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=164pt]{a00193}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00040_a8564e5104566e145f5d917ec846444d9}{string}\label{a00040_a8564e5104566e145f5d917ec846444d9}
-&
-text&
-\\
-\hline
+\subsection{Detailed Description}
 
-\end{DoxyFields}
+
+Definition at line 1154 of file Parser.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00138_a25faca62235c9f8542e4a071ba8ebc0b}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!Operator\-Info@{Operator\-Info}}
+\index{Operator\-Info@{Operator\-Info}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
+\subsubsection[{Operator\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info (
+\begin{DoxyParamCaption}
+\item[{{\bf Associativity}}]{associativity, }
+\item[{int}]{precedence, }
+\item[{int}]{arguments}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00138_a25faca62235c9f8542e4a071ba8ebc0b}
+
+
+Definition at line 1158 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Operator.\-Operator\-Info.\-arguments, Yarn.\-Parser.\-Operator.\-Operator\-Info.\-associativity, and Yarn.\-Parser.\-Operator.\-Operator\-Info.\-precedence.
+
+
+\begin{DoxyCode}
+1158                                                                                                   \{
+1159                     this.associativity = \hyperlink{a00138_accba40a72d9709ca3c18810b8661afe3}{associativity};
+1160                     this.precedence = \hyperlink{a00138_a0b2921d7b863e268d33aa15213395093}{precedence};
+1161                     this.arguments = \hyperlink{a00138_a0758c6f7dac4b205f616b43b1af95b95}{arguments};
+1162                 \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00138_a0758c6f7dac4b205f616b43b1af95b95}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!arguments@{arguments}}
+\index{arguments@{arguments}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
+\subsubsection[{arguments}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Operator.\-Operator\-Info.\-arguments\hspace{0.3cm}{\ttfamily [package]}}}\label{a00138_a0758c6f7dac4b205f616b43b1af95b95}
+
+
+Definition at line 1157 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
+
+\hypertarget{a00138_accba40a72d9709ca3c18810b8661afe3}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!associativity@{associativity}}
+\index{associativity@{associativity}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
+\subsubsection[{associativity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Associativity} Yarn.\-Parser.\-Operator.\-Operator\-Info.\-associativity\hspace{0.3cm}{\ttfamily [package]}}}\label{a00138_accba40a72d9709ca3c18810b8661afe3}
+
+
+Definition at line 1155 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
+
+\hypertarget{a00138_a0b2921d7b863e268d33aa15213395093}{\index{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}!precedence@{precedence}}
+\index{precedence@{precedence}!Yarn::Parser::Operator::OperatorInfo@{Yarn\-::\-Parser\-::\-Operator\-::\-Operator\-Info}}
+\subsubsection[{precedence}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Operator.\-Operator\-Info.\-precedence\hspace{0.3cm}{\ttfamily [package]}}}\label{a00138_a0b2921d7b863e268d33aa15213395093}
+
+
+Definition at line 1156 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Operator.\-Operator\-Info.\-Operator\-Info().
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00301}{Parser.\-cs}\end{DoxyCompactItemize}

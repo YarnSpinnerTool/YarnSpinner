@@ -1,0 +1,194 @@
+\hypertarget{a00167}{\section{Yarn.\-Token Class Reference}
+\label{a00167}\index{Yarn.\-Token@{Yarn.\-Token}}
+}
+
+
+Collaboration diagram for Yarn.\-Token\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{a00634}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00167_ab8531150354ef148b8929a727f29ae39}{Token} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00167_a471a25da67fda0524f2375f9a882aafa}{type}, \hyperlink{a00122}{Lexer.\-Lexer\-State} \hyperlink{a00167_a710099e7abe84f30864a320cc7464214}{lexer\-State}, int \hyperlink{a00167_a80fe710713201bb793a41452e314a721}{line\-Number}=-\/1, int \hyperlink{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}=-\/1, string \hyperlink{a00167_a3df6b32d6190a639619a3f064c2154e2}{value}=null)
+\item 
+override string \hyperlink{a00167_abf676a737679ec2fb1dffd75dc4d7976}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00167_a471a25da67fda0524f2375f9a882aafa}{type}
+\item 
+string \hyperlink{a00167_a3df6b32d6190a639619a3f064c2154e2}{value}
+\item 
+int \hyperlink{a00167_a80fe710713201bb793a41452e314a721}{line\-Number}
+\item 
+int \hyperlink{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}
+\item 
+string \hyperlink{a00167_a089d248c904a6e8366b81c2c47ff5af8}{context}
+\item 
+bool \hyperlink{a00167_af15d26fa4e6f276ab58ff66d3c4203da}{delimits\-Text} = false
+\item 
+int \hyperlink{a00167_adf11c0d29b66935a8d8109d6308d0488}{parameter\-Count}
+\item 
+string \hyperlink{a00167_a710099e7abe84f30864a320cc7464214}{lexer\-State}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 174 of file Lexer.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00167_ab8531150354ef148b8929a727f29ae39}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!Token@{Token}}
+\index{Token@{Token}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{Token}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Token.\-Token (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{{\bf Lexer.\-Lexer\-State}}]{lexer\-State, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}, }
+\item[{string}]{value = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{a00167_ab8531150354ef148b8929a727f29ae39}
+
+
+Definition at line 194 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Token.\-column\-Number, Yarn.\-Token.\-line\-Number, Yarn.\-Token.\-type, and Yarn.\-Token.\-value.
+
+
+\begin{DoxyCode}
+194                                                                                                            
+                            \{
+195             this.type = \hyperlink{a00167_a471a25da67fda0524f2375f9a882aafa}{type};
+196             this.value = \hyperlink{a00167_a3df6b32d6190a639619a3f064c2154e2}{value};
+197             this.lineNumber = \hyperlink{a00167_a80fe710713201bb793a41452e314a721}{lineNumber};
+198             this.columnNumber = \hyperlink{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber};
+199             this.lexerState = lexerState.name;
+200         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00167_abf676a737679ec2fb1dffd75dc4d7976}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Token.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00167_abf676a737679ec2fb1dffd75dc4d7976}
+
+
+Definition at line 202 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Token.\-column\-Number, Yarn.\-Token.\-lexer\-State, Yarn.\-Token.\-line\-Number, Yarn.\-Token.\-type, and Yarn.\-Token.\-value.
+
+
+\begin{DoxyCode}
+202                                           \{
+203             \textcolor{keywordflow}{if} (this.\hyperlink{a00167_a3df6b32d6190a639619a3f064c2154e2}{value} != null) \{
+204                 \textcolor{keywordflow}{return} string.Format(\textcolor{stringliteral}{"\{0\} (\{1\}) at \{2\}:\{3\} (state: \{4\})"}, type.ToString(), 
+      \hyperlink{a00167_a3df6b32d6190a639619a3f064c2154e2}{value}.ToString(), \hyperlink{a00167_a80fe710713201bb793a41452e314a721}{lineNumber}, \hyperlink{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber}, 
+      \hyperlink{a00167_a710099e7abe84f30864a320cc7464214}{lexerState});
+205             \} \textcolor{keywordflow}{else} \{
+206                 \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"\{0\} at \{1\}:\{2\} (state: \{3\})"}, \hyperlink{a00167_a471a25da67fda0524f2375f9a882aafa}{type}, 
+      \hyperlink{a00167_a80fe710713201bb793a41452e314a721}{lineNumber}, \hyperlink{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber}, \hyperlink{a00167_a710099e7abe84f30864a320cc7464214}{lexerState});
+207             \}
+208         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-column\-Number}}\label{a00167_a9a0f0a8a7ab1e90ab48f15192323ffca}
+
+
+Definition at line 182 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Token.\-Token(), and Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00167_a089d248c904a6e8366b81c2c47ff5af8}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!context@{context}}
+\index{context@{context}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{context}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-context}}\label{a00167_a089d248c904a6e8366b81c2c47ff5af8}
+
+
+Definition at line 183 of file Lexer.\-cs.
+
+\hypertarget{a00167_af15d26fa4e6f276ab58ff66d3c4203da}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!delimits\-Text@{delimits\-Text}}
+\index{delimits\-Text@{delimits\-Text}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Token.\-delimits\-Text = false}}\label{a00167_af15d26fa4e6f276ab58ff66d3c4203da}
+
+
+Definition at line 185 of file Lexer.\-cs.
+
+\hypertarget{a00167_a710099e7abe84f30864a320cc7464214}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!lexer\-State@{lexer\-State}}
+\index{lexer\-State@{lexer\-State}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{lexer\-State}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-lexer\-State}}\label{a00167_a710099e7abe84f30864a320cc7464214}
+
+
+Definition at line 192 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00167_a80fe710713201bb793a41452e314a721}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-line\-Number}}\label{a00167_a80fe710713201bb793a41452e314a721}
+
+
+Definition at line 181 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Token.\-Token(), and Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00167_adf11c0d29b66935a8d8109d6308d0488}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!parameter\-Count@{parameter\-Count}}
+\index{parameter\-Count@{parameter\-Count}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{parameter\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-parameter\-Count}}\label{a00167_adf11c0d29b66935a8d8109d6308d0488}
+
+
+Definition at line 189 of file Lexer.\-cs.
+
+\hypertarget{a00167_a471a25da67fda0524f2375f9a882aafa}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!type@{type}}
+\index{type@{type}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Token.\-type}}\label{a00167_a471a25da67fda0524f2375f9a882aafa}
+
+
+Definition at line 177 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Parse(), Yarn.\-Token.\-Token(), Yarn.\-Token.\-To\-String(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+
+\hypertarget{a00167_a3df6b32d6190a639619a3f064c2154e2}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!value@{value}}
+\index{value@{value}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-value}}\label{a00167_a3df6b32d6190a639619a3f064c2154e2}
+
+
+Definition at line 178 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Token.\-Token(), Yarn.\-Token.\-To\-String(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00298}{Lexer.\-cs}\end{DoxyCompactItemize}

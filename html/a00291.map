@@ -1,7 +1,0 @@
-<map id="Yarn.Parser.IfStatement.Clause" name="Yarn.Parser.IfStatement.Clause">
-<area shape="rect" id="node2" href="$a00054.html" title="{Yarn.Parser.Expression\n|~ type\l~ parameters\l|~ Expression()\l~ Expression()\l~ PrintTree()\l~ Parse()\l&#45; ShouldApplyPrecedence()\l}" alt="" coords="75,625,255,775"/>
-<area shape="rect" id="node3" href="$a00077.html" title="{ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="30,193,140,314"/>
-<area shape="rect" id="node6" href="$a00101.html" title="{Yarn.Parser.ValueNode\n|+ value\l|~ ValueNode()\l~ ValueNode()\l~ PrintTree()\l&#45; UseToken()\l}" alt="" coords="86,402,244,523"/>
-<area shape="rect" id="node4" href="$a00077.html" title="{Yarn.Parser.ParseNode\n||+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="5,6,164,127"/>
-<area shape="rect" id="node5" href="$a00055.html" title="{Yarn.FunctionInfo\n|+ name\l+ paramCount\l+ function\l+ returningFunction\l+ returnsValue\l|+ Invoke()\l+ InvokeWithArray()\l~ FunctionInfo()\l~ FunctionInfo()\l~ IsParameterCountCorrect()\l}" alt="" coords="269,365,459,560"/>
-</map>

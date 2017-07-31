@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="a00196" kind="file">
+    <compoundname>CONTRIBUTORS.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Contributors</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">The<sp/>following<sp/>people<sp/>have<sp/>contributed<sp/>to<sp/>the<sp/>development<sp/>of<sp/>Yarn<sp/>Spinner.<sp/><ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you<sp/>submit<sp/>a<sp/>pull<sp/>request,<sp/>please<sp/>add<sp/>your<sp/>name<sp/>to<sp/>the<sp/>list<sp/>below.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">*<sp/>20??-ongoing:<sp/>Secret<sp/>Lab<sp/>Team<sp/>-<sp/>Dr<sp/>Jon<sp/>Manning<sp/>and<sp/>Dr<sp/>Paris<sp/>Buttfield-Addison<sp/>&lt;lab@secretlab.com.au&gt;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">*<sp/>2017:<sp/>Rev<sp/>Peter<sp/>Lawler<sp/>&lt;relwalretep@gmail.com&gt;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">*<sp/>2017:<sp/>Dr<sp/>Tim<sp/></highlight><highlight class="stringliteral">&apos;McJones&apos;</highlight><highlight class="normal"><sp/>Nugent<sp/>&lt;tim@lonely.coffee&gt;</highlight></codeline>
+    </programlisting>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/CONTRIBUTORS.md"/>
+  </compounddef>
+</doxygen>

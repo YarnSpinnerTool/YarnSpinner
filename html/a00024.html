@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Using Yarn Spinner in your Unity game</title>
+<title>YarnSpinner: Extending Yarn Spinner</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,7 +88,7 @@ $(document).ready(function(){initNavTree('a00024.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -99,10 +99,10 @@ $(document).ready(function(){initNavTree('a00024.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Using <a class="el" href="a00040.html">Yarn</a> Spinner in your Unity game </div>  </div>
+<div class="title">Extending <a class="el" href="a00045.html">Yarn</a> Spinner </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3>Style Guide</h3>
+<div class="textblock"><h2>Style Guide</h2>
 <p><code>Inline Code</code> contain short snippets of code for your project </p>
 <pre class="fragment">Code Blocks contain segments or chunks of code for your project
 </pre><p><b>Bold indicate actions (Select menu item, copying file, etc.)</b></p>
@@ -111,37 +111,40 @@ $(document).ready(function(){initNavTree('a00024.html','');});
 <p>Blockquotes contain essential information</p>
 <p></p>
 </blockquote>
-<h2>Tutorial</h2>
-<blockquote class="doxtable">
-<p>***Note:*** This tutorial assumes that you know a little bit about <a href="http://www.unity3d.com">Unity</a>. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to <a href="http://unity3d.com/learn">Unity's documentation</a>. We recommend their <a href="https://unity3d.com/learn/tutorials/">tutorials</a>, starting with the <a href="https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial">Roll-a-ball tutorial</a>. It is also helpful if you know a little about the <a href="https://github.com/InfiniteAmmoInc/Yarn">Yarn Editor</a>.</p>
-<p></p>
-</blockquote>
-<h2><a class="el" href="a00040.html">Yarn</a> Spinner Quick Start</h2>
-<p>If you're already familiar with Unity and the <a class="el" href="a00040.html">Yarn</a> Editor, we have a <a class="el" href="a00121.html">Unity Quickstart</a> guide.</p>
-<h2>Step by Step</h2>
-<p>If you've not done much more than install Unity and the <a class="el" href="a00040.html">Yarn</a> Editor, confirmed that menu and dialogue functions of these applications appear operational and gone through the Unity <a href="https://unity3d.com/learn/tutorials/projects/roll-ball-tutorial">Roll-a-ball tutorial</a>, our <a class="el" href="a00122.html">Step By Step</a> guide is intended to walk you through the creation of a very basic game using <a class="el" href="a00040.html">Yarn</a> Spinner.</p>
-<h2>Tips during Unity install</h2>
-<h3>Windows</h3>
+<h2>Introduction</h2>
+<p>This document intends to demonstrate to a developer how they can add new functions so that they can be called from inside <a class="el" href="a00045.html">Yarn</a>.</p>
+<h3>Programming style</h3>
 <ul>
-<li>If you install to Unity the default file location, find the temp folder the installer has executed from and back it up before it completes installing.</li>
-<li>If you decide to install Visual Studio seperately, be aware that there are files from this program that insist on being installed on the C:\ drive and that your development experience may be restricted.</li>
+<li>It is recommended that you follow our programming style so that in the case of bug or patch submission, it makes it easier for us to read. As such, indents should be four spaces and not tab stops.</li>
+<li>We use the Doxygen format for documentation, thus three forward slashes <code>///</code> indicate the head of a documentation comment and details for documentation comments are contained within the <code>/* ....</code> structure. Please refer to the Doxygen site for more information.</li>
+<li>Other comments should use two forward slashes. This will ensure proper code commentary without it appearing in generated API documentation.</li>
 </ul>
-<h3>Mac</h3>
-<p>(This space left intentionally blank)</p>
-<h3>Linux</h3>
+<h2>Creating a custom command</h2>
+<p>Creating a custom command is a simple two step procedure.i</p>
+<ol type="1">
+<li>We need to get the dialogue object that's in use, then regiser a new function for it. ``` // get the Dialogue object // varstorage_implementation is the object that handles variable storage - it's not important in this example var dialogue = new Dialogue(varstorage_implementation); ``<code></code></li>
+<li><code>Next, register your new function. For example, let's make a function that takes 1 parameter, which is a number, and returns</code>true<code>if it's even: </code>`` // RegisterFunction(name, parameterCount, implementation) dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) { return (int)parameters[0].AsNumber % 2 == 0; }); ``` When the function is called, the delegate you provide will be run.</li>
+</ol>
+<p>Some notes:</p>
 <ul>
-<li>Unity is only officially supported on Ubuntu. <a class="el" href="a00175.html">YarnSpinner</a> is built on Ubuntu. However, we use Debian for some of our development and testing.</li>
-<li>Unity for Linux is not available in formal release and we are not actively pursuing this platform, however we are very enthusastic about this future prospect. We have confirmed that Yarnspinner works with the current 5.6 release of <a href="https://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/">Unity for Linux</a>, although this has only been tested with our example Unity code on Debian Stretch (amd64 architecture).</li>
-<li>npm is needed for Unity. It is available in Debian Jessie, however it is not available in Debian Stretch. For Debian Stretch or later releases, or other Debian derived distributions, please refer to the <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions">nodejs.org website</a>.</li>
-<li>Some 32bit support is required to run Unity. If you are running a 64bit environment, please refer to your distribution's documentation on how to do this. Once you have that enabled, ensure lib32gcc1, lib32stdc++6 and libc6-i386 are installed (eg, <code>sudo apt install lib32gcc1 lib32stdc++6 libc6-i386</code>)</li>
-<li>We encourge Linux users to test Yarnspinner using the <a href="http://www.monodevelop.com/download/linux/">Monodevelop FlatPak</a>. Although FlatPak is designed to be Linux agnostic, we are currently utilising Gnome3 on Debian Stretch for desktop development purposes. Your mileage may vary on other Linux combinations and flavours, we are eager to receive your feedback. </li>
+<li>You don't have to return a value from your function.</li>
+<li>The parameters passed to your function are of type <a class="el" href="a00181.html">Yarn.Value</a>. You can get their value as numbers, bools or strings by using the <code>AsNumber</code>, <code>AsString</code> and <code>AsBool</code> properties.</li>
+<li>You can only return values of the following types:<ul>
+<li>String</li>
+<li>Float</li>
+<li>Double</li>
+<li>Integer</li>
+<li><a class="el" href="a00181.html">Yarn.Value</a></li>
+</ul>
+</li>
+<li><a class="el" href="a00045.html">Yarn</a> Spinner will make sure that the correct number of parameters is passed to your method. If you specify <code>-1</code> as your parameter count, the function may have any number of parameters. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jul 20 2017 04:48:45 for YarnSpinner by
+    <li class="footer">Generated on Mon Jul 31 2017 05:22:00 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

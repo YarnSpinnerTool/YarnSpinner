@@ -1,193 +1,168 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00063" kind="class" prot="public">
-    <compoundname>Yarn::Library</compoundname>
-    <derivedcompoundref refid="a00088" prot="public" virt="non-virtual">Yarn.Dialogue.StandardLibrary</derivedcompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00063_1a2fcc78a63963be5320cf09783b66fab6" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00055" kindref="compound">FunctionInfo</ref> &gt;</type>
-        <definition>Dictionary&lt;string, FunctionInfo&gt; Yarn.Library.functions</definition>
-        <argsstring></argsstring>
-        <name>functions</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="a00055" kindref="compound">FunctionInfo</ref>&gt;()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="86" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="86" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::CsvParserException</compoundname>
+    <basecompoundref refid="a00060" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00063_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00055" kindref="compound">FunctionInfo</ref></type>
-        <definition>FunctionInfo Yarn.Library.GetFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>GetFunction</name>
+      <memberdef kind="function" id="a00063_1a4a87a8cbca18790562bab5f571e6e87b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>()</argsstring>
+        <name>CsvParserException</name>
+        <briefdescription>
+<para>Initializes a new instance of the <ref refid="a00063" kindref="compound">CsvParserException</ref> class. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="a00063_1a6ac692a1b7bb39afc66a7c701963e9c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>CsvParserException</name>
         <param>
           <type>string</type>
-          <declname>name</declname>
+          <declname>message</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00063" kindref="compound">CsvParserException</ref> class with a specified error message. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message that describes the error.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="90" bodyend="96"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="30" bodyend="30"/>
       </memberdef>
-      <memberdef kind="function" id="a00063_1ab42a4fd30a72156cafa685f959deef78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.ImportLibrary</definition>
-        <argsstring>(Library otherLibrary)</argsstring>
-        <name>ImportLibrary</name>
-        <param>
-          <type><ref refid="a00063" kindref="compound">Library</ref></type>
-          <declname>otherLibrary</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="101" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="101" bodyend="105"/>
-      </memberdef>
-      <memberdef kind="function" id="a00063_1a001ab29d21fe7db10fc9c250914287f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(FunctionInfo function)</argsstring>
-        <name>RegisterFunction</name>
-        <param>
-          <type><ref refid="a00055" kindref="compound">FunctionInfo</ref></type>
-          <declname>function</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="107" bodyend="109"/>
-      </memberdef>
-      <memberdef kind="function" id="a00063_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, ReturningFunction implementation)</argsstring>
-        <name>RegisterFunction</name>
+      <memberdef kind="function" id="a00063_1a62b6bf7ba1ab79737a049a6ced4555d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(string message, Exception innerException)</argsstring>
+        <name>CsvParserException</name>
         <param>
           <type>string</type>
-          <declname>name</declname>
+          <declname>message</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00040_1a5177bf74fbfe7303fac9d8236c2e514b" kindref="member">ReturningFunction</ref></type>
-          <declname>implementation</declname>
+          <type>Exception</type>
+          <declname>innerException</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00063" kindref="compound">CsvParserException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The error message that explains the reason for the exception.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>innerException</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="111" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="111" bodyend="114"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="39" bodyend="39"/>
       </memberdef>
-      <memberdef kind="function" id="a00063_1a6820eaa082077f16496effbc9041b7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.RegisterFunction</definition>
-        <argsstring>(string name, int parameterCount, Function implementation)</argsstring>
-        <name>RegisterFunction</name>
+      <memberdef kind="function" id="a00063_1a3ce8a09ae6e88787d47f47a108d33f21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvParserException.CsvParserException</definition>
+        <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
+        <name>CsvParserException</name>
         <param>
-          <type>string</type>
-          <declname>name</declname>
+          <type>SerializationInfo</type>
+          <declname>info</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>parameterCount</declname>
-        </param>
-        <param>
-          <type><ref refid="a00040_1ae0be2e5cf13d5779816102439e61ff1a" kindref="member">Function</ref></type>
-          <declname>implementation</declname>
+          <type>StreamingContext</type>
+          <declname>context</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00063" kindref="compound">CsvParserException</ref> class with serialized data. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The SerializationInfo that holds the serialized object data about the exception being thrown.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The StreamingContext that contains contextual information about the source or destination.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="116" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="116" bodyend="119"/>
-      </memberdef>
-      <memberdef kind="function" id="a00063_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Yarn.Library.FunctionExists</definition>
-        <argsstring>(string name)</argsstring>
-        <name>FunctionExists</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="121" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="121" bodyend="123"/>
-      </memberdef>
-      <memberdef kind="function" id="a00063_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.Library.DeregisterFunction</definition>
-        <argsstring>(string name)</argsstring>
-        <name>DeregisterFunction</name>
-        <param>
-          <type>string</type>
-          <declname>name</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="125" bodyend="128"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="48" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Represents errors that occur while parsing a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="534">
-        <label>Yarn.Dialogue.StandardLibrary</label>
-        <link refid="a00088"/>
-        <childnode refid="533" relation="public-inheritance">
+      <node id="1110">
+        <label>CsvHelper.CsvParserException</label>
+        <link refid="a00063"/>
+        <childnode refid="1111" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="533">
-        <label>Yarn.Library</label>
-        <link refid="a00063"/>
+      <node id="1112">
+        <label>Exception</label>
+      </node>
+      <node id="1111">
+        <label>CsvHelperException</label>
+        <link refid="a00060"/>
+        <childnode refid="1112" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="535">
-        <label>Yarn.Library</label>
+      <node id="1113">
+        <label>CsvHelper.CsvParserException</label>
         <link refid="a00063"/>
+        <childnode refid="1114" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1115">
+        <label>Exception</label>
+      </node>
+      <node id="1114">
+        <label>CsvHelperException</label>
+        <link refid="a00060"/>
+        <childnode refid="1115" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" line="84" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Library.cs" bodystart="83" bodyend="131"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvParserException.cs" bodystart="18" bodyend="50"/>
     <listofallmembers>
-      <member refid="a00063_1a47d1b3664733207d5cda15f4a4a7af7a" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>DeregisterFunction</name></member>
-      <member refid="a00063_1a6c9a1cc3e25b6aae25e210d8a0d68c09" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>FunctionExists</name></member>
-      <member refid="a00063_1a2fcc78a63963be5320cf09783b66fab6" prot="private" virt="non-virtual"><scope>Yarn::Library</scope><name>functions</name></member>
-      <member refid="a00063_1aacfb1f00ad8aa3921941b8d8af0960e0" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>GetFunction</name></member>
-      <member refid="a00063_1ab42a4fd30a72156cafa685f959deef78" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>ImportLibrary</name></member>
-      <member refid="a00063_1a001ab29d21fe7db10fc9c250914287f9" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="a00063_1a2a698de0b528b2bac17bd85f57d45d4b" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
-      <member refid="a00063_1a6820eaa082077f16496effbc9041b7ad" prot="public" virt="non-virtual"><scope>Yarn::Library</scope><name>RegisterFunction</name></member>
+      <member refid="a00060_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="a00060_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvHelperException</name></member>
+      <member refid="a00063_1a4a87a8cbca18790562bab5f571e6e87b" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="a00063_1a6ac692a1b7bb39afc66a7c701963e9c2" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="a00063_1a62b6bf7ba1ab79737a049a6ced4555d4" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
+      <member refid="a00063_1a3ce8a09ae6e88787d47f47a108d33f21" prot="public" virt="non-virtual"><scope>CsvHelper::CsvParserException</scope><name>CsvParserException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

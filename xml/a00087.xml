@@ -1,33 +1,211 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00087" kind="class" prot="public">
-    <compoundname>Yarn::Unity::Example::SpriteSwitcher</compoundname>
+    <compoundname>Yarn::Unity::DialogueRunner</compoundname>
     <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
-    <innerclass refid="a00184" prot="public">Yarn::Unity::Example::SpriteSwitcher::SpriteInfo</innerclass>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00087_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00184" kindref="compound">SpriteInfo</ref>[]</type>
-        <definition>SpriteInfo [] Yarn.Unity.Example.SpriteSwitcher.sprites</definition>
+      <memberdef kind="variable" id="a00087_1a71eae33d06990a3aec5d444fae017492" prot="public" static="no" mutable="no">
+        <type>TextAsset[]</type>
+        <definition>TextAsset [] Yarn.Unity.DialogueRunner.sourceText</definition>
         <argsstring></argsstring>
-        <name>sprites</name>
+        <name>sourceText</name>
+        <briefdescription>
+<para>The JSON files to load the conversation from. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a4d00a0671c2966b88d1c806c675fe915" prot="public" static="no" mutable="no">
+        <type><ref refid="a00366" kindref="compound">LocalisedStringGroup</ref>[]</type>
+        <definition>LocalisedStringGroup [] Yarn.Unity.DialogueRunner.stringGroups</definition>
+        <argsstring></argsstring>
+        <name>stringGroups</name>
+        <briefdescription>
+<para>The group of JSON files to be used for this language. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a3e093d36845924378a8b2fd9ea3ac73d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.shouldOverrideLanguage</definition>
+        <argsstring></argsstring>
+        <name>shouldOverrideLanguage</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Language debugging options. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1ad12db159fc3df0819d5b594c33fba834" prot="public" static="no" mutable="no">
+        <type>SystemLanguage</type>
+        <definition>SystemLanguage Yarn.Unity.DialogueRunner.overrideLanguage</definition>
+        <argsstring></argsstring>
+        <name>overrideLanguage</name>
+        <initializer>= SystemLanguage.English</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="41" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="56" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a6cca3d33f8b0ce3e750caed9fd8fc734" prot="public" static="no" mutable="no">
+        <type><ref refid="a00185" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref></type>
+        <definition>Yarn.Unity.VariableStorageBehaviour Yarn.Unity.DialogueRunner.variableStorage</definition>
+        <argsstring></argsstring>
+        <name>variableStorage</name>
+        <briefdescription>
+<para>Our variable storage. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1ac87fdc65b0be57868f80c0fcd62ffd6d" prot="public" static="no" mutable="no">
+        <type><ref refid="a00089" kindref="compound">Yarn.Unity.DialogueUIBehaviour</ref></type>
+        <definition>Yarn.Unity.DialogueUIBehaviour Yarn.Unity.DialogueRunner.dialogueUI</definition>
+        <argsstring></argsstring>
+        <name>dialogueUI</name>
+        <briefdescription>
+<para>The object that will handle the actual display and user input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="62" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a61c92b8d2228d01d8ac123b73bbb41a0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.DialogueRunner.startNode</definition>
+        <argsstring></argsstring>
+        <name>startNode</name>
+        <initializer>= <ref refid="a00086_1a1b643f15f734090e6a58cbf13dafd28f" kindref="member">Yarn.Dialogue.DEFAULT_START</ref></initializer>
+        <briefdescription>
+<para>Which node to start from. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="65" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a6476a987f9788dba653976bcbe72980c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.startAutomatically</definition>
+        <argsstring></argsstring>
+        <name>startAutomatically</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Whether we should start dialogue when the scene starts. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00087_1a6aac5e877d5396a8141da5e85243f462" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.automaticCommands</definition>
+        <argsstring></argsstring>
+        <name>automaticCommands</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="73" bodyend="-1"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00087_1ac26718b713f342f3de8f3e569c5b62da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00087_1a9eb0fd7b600a4667595042832af1d655" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.isDialogueRunning</definition>
+        <argsstring></argsstring>
+        <name>isDialogueRunning</name>
+        <briefdescription>
+<para>Tests to see if the dialogue is running. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00087_1a4f9712a847ca6d53ec8d2dd64dfcffd8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00086" kindref="compound">Dialogue</ref></type>
+        <definition>Dialogue Yarn.Unity.DialogueRunner.dialogue</definition>
+        <argsstring></argsstring>
+        <name>dialogue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="79" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00087_1a8589c66769e89906eaff3c2263bdad5d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string Yarn.Unity.DialogueRunner.currentNodeName</definition>
+        <argsstring></argsstring>
+        <name>currentNodeName</name>
+        <briefdescription>
+<para>Return the current node name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="289" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00087_1a822055443227d3b76c6a8fb509812820" prot="private" static="no" mutable="no">
+        <type><ref refid="a00086" kindref="compound">Dialogue</ref></type>
+        <definition>Dialogue Yarn.Unity.DialogueRunner._dialogue</definition>
+        <argsstring></argsstring>
+        <name>_dialogue</name>
+        <briefdescription>
+<para>Our conversation engine. </para>        </briefdescription>
+        <detaileddescription>
+<para>Automatically created on first access </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00087_1a18eb3750a0161dbfc20d7eb39e151b6c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void Yarn.Unity.Example.SpriteSwitcher.UseSprite</definition>
-        <argsstring>(string spriteName)</argsstring>
-        <name>UseSprite</name>
+        <definition>void Yarn.Unity.DialogueRunner.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+<para>Start the dialogue. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="98" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1adf4e816844b7d9ab4ed99265fd3f3ea9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator Yarn.Unity.DialogueRunner.RunDialogue</definition>
+        <argsstring>(string startNode=&quot;Start&quot;)</argsstring>
+        <name>RunDialogue</name>
         <param>
           <type>string</type>
-          <declname>spriteName</declname>
+          <declname>startNode</declname>
+          <defval>&quot;Start&quot;</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -35,46 +213,335 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="44" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="44" bodyend="59"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="209" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="209" bodyend="265"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00087_1a88d161b1be7c99b1e202e6ae9e0d1e73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.AddScript</definition>
+        <argsstring>(string text)</argsstring>
+        <name>AddScript</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Add a string of text to a script. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="143" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="143" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1a2fd7f165afff0b8bc2004f10ce4537dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.AddScript</definition>
+        <argsstring>(TextAsset asset)</argsstring>
+        <name>AddScript</name>
+        <param>
+          <type>TextAsset</type>
+          <declname>asset</declname>
+        </param>
+        <briefdescription>
+<para>Add a TextAsset to a script. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="148" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="148" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1a2e9d9472b4dba699ef72ab558c89e009" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.AddStringTable</definition>
+        <argsstring>(Dictionary&lt; string, string &gt; stringTable)</argsstring>
+        <name>AddStringTable</name>
+        <param>
+          <type>Dictionary&lt; string, string &gt;</type>
+          <declname>stringTable</declname>
+        </param>
+        <briefdescription>
+<para>Loads a string table, replacing any existing strings with the same key. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="154" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1a08d4eb5038b23aad6d59d74ac89806a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.AddStringTable</definition>
+        <argsstring>(string text)</argsstring>
+        <name>AddStringTable</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Add a string of text to a table. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="159" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="159" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1abc595a490988ca712d37af540c2e0df9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.AddStringTable</definition>
+        <argsstring>(TextAsset text)</argsstring>
+        <name>AddStringTable</name>
+        <param>
+          <type>TextAsset</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Add a TextAsset to a table. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="181" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1ac08900ac15b3ca90446b9454c7fd117e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.ResetDialogue</definition>
+        <argsstring>()</argsstring>
+        <name>ResetDialogue</name>
+        <briefdescription>
+<para>Destroy the variable store and start again. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="186" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="186" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1ab083d0ac60b41958b591c632e3c3a53e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.StartDialogue</definition>
+        <argsstring>()</argsstring>
+        <name>StartDialogue</name>
+        <briefdescription>
+<para>Start the dialogue. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="193" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="193" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1abda765c6804853e264282a0f45920cd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.StartDialogue</definition>
+        <argsstring>(string startNode)</argsstring>
+        <name>StartDialogue</name>
+        <param>
+          <type>string</type>
+          <declname>startNode</declname>
+        </param>
+        <briefdescription>
+<para>Start the dialogue from a given node. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="198" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="198" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1a09f5769c0c0921a21e659fed0af09c01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clear the dialogue system. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="268" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="268" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1af94e66876098f8b187181014973645e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.DialogueRunner.Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+<para>Stop the dialogue. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="278" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="278" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1aadf7711b9ba101d6ce8ba491d9c5a4c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.NodeExists</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>NodeExists</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+<para>Test to see if a node name exists. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="284" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="284" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="a00087_1a7b200f8ddcf77f50906a6341aadeb671" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Yarn.Unity.DialogueRunner.DispatchCommand</definition>
+        <argsstring>(string command)</argsstring>
+        <name>DispatchCommand</name>
+        <param>
+          <type>string</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ... </para>        </briefdescription>
+        <detaileddescription>
+<para>We can dispatch this command if:<orderedlist>
+<listitem><para>it has at least 2 words</para></listitem><listitem><para>the second word is the name of an object</para></listitem><listitem><para>that object has components that have methods with the YarnCommand attribute that have the correct commandString set </para></listitem></orderedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="303" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="303" bodyend="406"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>DialogueRunners act as the interface between your game and <ref refid="a00359" kindref="compound">YarnSpinner</ref>. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>Make our menu item slightly nicer looking </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="649">
-        <label>Yarn.Unity.Example.SpriteSwitcher</label>
-        <link refid="a00087"/>
-        <childnode refid="650" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="650">
+      <node id="1265">
         <label>MonoBehaviour</label>
+      </node>
+      <node id="1264">
+        <label>Yarn.Unity.DialogueRunner</label>
+        <link refid="a00087"/>
+        <childnode refid="1265" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="651">
-        <label>Yarn.Unity.Example.SpriteSwitcher</label>
-        <link refid="a00087"/>
-        <childnode refid="652" relation="public-inheritance">
+      <node id="1271">
+        <label>Yarn.Program</label>
+        <link refid="a00146"/>
+      </node>
+      <node id="1268">
+        <label>Yarn.Dialogue</label>
+        <link refid="a00086"/>
+        <childnode refid="1269" relation="usage">
+          <edgelabel>-vm</edgelabel>
         </childnode>
-        <childnode refid="653" relation="usage">
-          <edgelabel>+sprites</edgelabel>
+        <childnode refid="1273" relation="usage">
+          <edgelabel>+library</edgelabel>
+        </childnode>
+        <childnode refid="1271" relation="usage">
+          <edgelabel>~program</edgelabel>
+        </childnode>
+        <childnode refid="1274" relation="usage">
+          <edgelabel>~loader</edgelabel>
+        </childnode>
+        <childnode refid="1275" relation="usage">
+          <edgelabel>~continuity</edgelabel>
         </childnode>
       </node>
-      <node id="653">
-        <label>Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</label>
-        <link refid="a00184"/>
+      <node id="1273">
+        <label>Yarn.Library</label>
+        <link refid="a00123"/>
       </node>
-      <node id="652">
+      <node id="1272">
+        <label>Yarn.VirtualMachine.State</label>
+        <link refid="a00159"/>
+      </node>
+      <node id="1277">
+        <label>Yarn.Unity.LocalisedStringGroup</label>
+        <link refid="a00366"/>
+      </node>
+      <node id="1267">
         <label>MonoBehaviour</label>
       </node>
+      <node id="1276">
+        <label>Yarn</label>
+      </node>
+      <node id="1274">
+        <label>Yarn.Loader</label>
+        <link refid="a00127"/>
+        <childnode refid="1268" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+      </node>
+      <node id="1275">
+        <label>Yarn.VariableStorage</label>
+        <link refid="a00184"/>
+      </node>
+      <node id="1270">
+        <label>Yarn.Node</label>
+        <link refid="a00367"/>
+      </node>
+      <node id="1269">
+        <label>Yarn.VirtualMachine</label>
+        <link refid="a00156"/>
+        <childnode refid="1268" relation="usage">
+          <edgelabel>-dialogue</edgelabel>
+        </childnode>
+        <childnode refid="1270" relation="usage">
+          <edgelabel>-currentNode</edgelabel>
+        </childnode>
+        <childnode refid="1271" relation="usage">
+          <edgelabel>-program</edgelabel>
+        </childnode>
+        <childnode refid="1272" relation="usage">
+          <edgelabel>-state</edgelabel>
+        </childnode>
+      </node>
+      <node id="1266">
+        <label>Yarn.Unity.DialogueRunner</label>
+        <link refid="a00087"/>
+        <childnode refid="1267" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1268" relation="usage">
+          <edgelabel>-_dialogue</edgelabel>
+        </childnode>
+        <childnode refid="1276" relation="usage">
+          <edgelabel>+dialogueUI</edgelabel>
+          <edgelabel>+variableStorage</edgelabel>
+        </childnode>
+        <childnode refid="1277" relation="usage">
+          <edgelabel>+stringGroups</edgelabel>
+        </childnode>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/Yarn Spinner/Examples/Demo Scripts/SpriteSwitcher.cs" bodystart="33" bodyend="60"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="45" bodyend="408"/>
     <listofallmembers>
-      <member refid="a00087_1a1e85d9f4f6b33ca7ae638cce2eb704aa" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>sprites</name></member>
-      <member refid="a00087_1ac26718b713f342f3de8f3e569c5b62da" prot="public" virt="non-virtual"><scope>Yarn::Unity::Example::SpriteSwitcher</scope><name>UseSprite</name></member>
+      <member refid="a00087_1a822055443227d3b76c6a8fb509812820" prot="private" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>_dialogue</name></member>
+      <member refid="a00087_1a88d161b1be7c99b1e202e6ae9e0d1e73" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddScript</name></member>
+      <member refid="a00087_1a2fd7f165afff0b8bc2004f10ce4537dd" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddScript</name></member>
+      <member refid="a00087_1a2e9d9472b4dba699ef72ab558c89e009" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddStringTable</name></member>
+      <member refid="a00087_1a08d4eb5038b23aad6d59d74ac89806a9" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddStringTable</name></member>
+      <member refid="a00087_1abc595a490988ca712d37af540c2e0df9" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddStringTable</name></member>
+      <member refid="a00087_1a6aac5e877d5396a8141da5e85243f462" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>automaticCommands</name></member>
+      <member refid="a00087_1a09f5769c0c0921a21e659fed0af09c01" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>Clear</name></member>
+      <member refid="a00087_1a8589c66769e89906eaff3c2263bdad5d" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>currentNodeName</name></member>
+      <member refid="a00087_1a4f9712a847ca6d53ec8d2dd64dfcffd8" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>dialogue</name></member>
+      <member refid="a00087_1ac87fdc65b0be57868f80c0fcd62ffd6d" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>dialogueUI</name></member>
+      <member refid="a00087_1a7b200f8ddcf77f50906a6341aadeb671" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>DispatchCommand</name></member>
+      <member refid="a00087_1a9eb0fd7b600a4667595042832af1d655" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>isDialogueRunning</name></member>
+      <member refid="a00087_1aadf7711b9ba101d6ce8ba491d9c5a4c3" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>NodeExists</name></member>
+      <member refid="a00087_1ad12db159fc3df0819d5b594c33fba834" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>overrideLanguage</name></member>
+      <member refid="a00087_1ac08900ac15b3ca90446b9454c7fd117e" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>ResetDialogue</name></member>
+      <member refid="a00087_1adf4e816844b7d9ab4ed99265fd3f3ea9" prot="private" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>RunDialogue</name></member>
+      <member refid="a00087_1a3e093d36845924378a8b2fd9ea3ac73d" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>shouldOverrideLanguage</name></member>
+      <member refid="a00087_1a71eae33d06990a3aec5d444fae017492" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>sourceText</name></member>
+      <member refid="a00087_1a18eb3750a0161dbfc20d7eb39e151b6c" prot="private" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>Start</name></member>
+      <member refid="a00087_1a6476a987f9788dba653976bcbe72980c" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>startAutomatically</name></member>
+      <member refid="a00087_1ab083d0ac60b41958b591c632e3c3a53e" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>StartDialogue</name></member>
+      <member refid="a00087_1abda765c6804853e264282a0f45920cd3" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>StartDialogue</name></member>
+      <member refid="a00087_1a61c92b8d2228d01d8ac123b73bbb41a0" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>startNode</name></member>
+      <member refid="a00087_1af94e66876098f8b187181014973645e6" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>Stop</name></member>
+      <member refid="a00087_1a4d00a0671c2966b88d1c806c675fe915" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>stringGroups</name></member>
+      <member refid="a00087_1a6cca3d33f8b0ce3e750caed9fd8fc734" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>variableStorage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

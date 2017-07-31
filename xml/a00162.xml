@@ -1,11 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00162" kind="namespace">
-    <compoundname>System::Linq</compoundname>
+  <compounddef id="a00162" kind="class" prot="package">
+    <compoundname>CsvHelper::StringHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00162_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool CsvHelper.StringHelper.IsNullOrWhiteSpace</definition>
+        <argsstring>(string s)</argsstring>
+        <name>IsNullOrWhiteSpace</name>
+        <param>
+          <type>string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Tests is a string is null or whitespace. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to test.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the string is null or whitespace, otherwise false.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="17" bodyend="33"/>
+        <referencedby refid="a00071_1ad1d1cde1588bb56eca326d5d92592956" compoundref="a00235" startline="1163" endline="1175">CsvHelper.CsvReader.GetEmtpyStringMethod</referencedby>
+        <referencedby refid="a00071_1aa8622306f74940386663fa4020eb8971" compoundref="a00235" startline="747" endline="777">CsvHelper.CsvReader.TryGetField&lt; T &gt;</referencedby>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Common string tasks. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/JsonParser.cs" line="13" column="1"/>
+    <collaborationgraph>
+      <node id="1674">
+        <label>CsvHelper.StringHelper</label>
+        <link refid="a00162"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="10" bodyend="34"/>
+    <listofallmembers>
+      <member refid="a00162_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" virt="non-virtual"><scope>CsvHelper::StringHelper</scope><name>IsNullOrWhiteSpace</name></member>
+    </listofallmembers>
   </compounddef>
 </doxygen>

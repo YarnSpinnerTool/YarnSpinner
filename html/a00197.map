@@ -1,5 +1,0 @@
-<map id="ExampleVariableStorage" name="ExampleVariableStorage">
-<area shape="rect" id="node2" href="$a00103.html" title="{VariableStorageBehaviour\n||+ SetNumber()\l+ GetNumber()\l+ GetValue()\l+ SetValue()\l+ Clear()\l+ ResetToDefaults()\l}" alt="" coords="83,206,255,357"/>
-<area shape="rect" id="node4" href="$a00102.html" title="{Yarn::VariableStorage\n||+ SetNumber()\l+ GetNumber()\l+ SetValue()\l+ GetValue()\l+ Clear()\l}" alt="" coords="141,5,289,141"/>
-<area shape="rect" id="node5" href="$a00047.html#a00179" title="{ExampleVariableStorage.Default\lVariable\n|+ name\l+ value\l|}" alt="" coords="280,228,489,335"/>
-</map>

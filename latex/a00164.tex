@@ -1,0 +1,326 @@
+\hypertarget{a00164}{\section{Yarn\-Spinner.\-Tests.\-Test\-Base Class Reference}
+\label{a00164}\index{Yarn\-Spinner.\-Tests.\-Test\-Base@{Yarn\-Spinner.\-Tests.\-Test\-Base}}
+}
+
+
+Inheritance diagram for Yarn\-Spinner.\-Tests.\-Test\-Base\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00813}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yarn\-Spinner.\-Tests.\-Test\-Base\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00814}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00164_a357a0dab579f9e45666c10779683dc27}{Init} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00164_abffa134d40d72b21e6b35c3bf05fc53f}{Run\-Standard\-Testcase} (string node\-Name=\char`\"{}Start\char`\"{})
+\item 
+void \hyperlink{a00164_a7b525f85a26d7c942e1cbfa5d6453893}{Handle\-Result} (\hyperlink{a00150}{Yarn.\-Dialogue.\-Runner\-Result} result)
+\item 
+void \hyperlink{a00164_ac21a5082ddac1da9db17ae54038df44e}{Expect\-Line} (string line)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00184}{Variable\-Storage} \hyperlink{a00164_a23d59ace1516ca72924c6fe3feafd3f7}{storage} = new \hyperlink{a00130}{Memory\-Variable\-Store}()
+\item 
+\hyperlink{a00086}{Dialogue} \hyperlink{a00164_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}
+\item 
+bool \hyperlink{a00164_ac978fe85db843c51411f5517bdbe0eb8}{errors\-Cause\-Failures} = true
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{a00164_ab1ad614f465a49447da31c4000ec6b3e}{Project\-Root\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00164_aa9b4d902d61adad7165154a265f69aa4}{Test\-Data\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00164_a39922286f6255e4fd0e433a4fc7521c4}{Unity\-Demo\-Scripts\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+bool \hyperlink{a00164_a47f35b8e8123ed9471883d02b8bc9f3e}{is\-Expecting\-Line}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{next\-Expected\-Line} = null
+\item 
+int \hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{next\-Expected\-Option\-Count} = -\/1
+\item 
+int \hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{next\-Option\-To\-Select} = -\/1
+\item 
+string \hyperlink{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{next\-Expected\-Command} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file Test\-Base.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00164_ac21a5082ddac1da9db17ae54038df44e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Expect\-Line@{Expect\-Line}}
+\index{Expect\-Line@{Expect\-Line}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Expect\-Line (
+\begin{DoxyParamCaption}
+\item[{string}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_ac21a5082ddac1da9db17ae54038df44e}
+
+
+Definition at line 171 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+171                                                \{
+172             \hyperlink{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = line;
+173         \}
+\end{DoxyCode}
+\hypertarget{a00164_a7b525f85a26d7c942e1cbfa5d6453893}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Handle\-Result@{Handle\-Result}}
+\index{Handle\-Result@{Handle\-Result}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Handle\-Result}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Handle\-Result (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Dialogue.\-Runner\-Result}}]{result}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_a7b525f85a26d7c942e1cbfa5d6453893}
+
+
+Definition at line 123 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+123                                                                        \{
+124 
+125             \textcolor{keywordflow}{if} (result is Yarn.Dialogue.LineResult) \{
+126                 var text = (result as \hyperlink{a00126}{Yarn.Dialogue.LineResult}).line.text;
+127 
+128                 Console.WriteLine(\textcolor{stringliteral}{"Line: "} + text);
+129 
+130                 \textcolor{keywordflow}{if} (\hyperlink{a00164_a47f35b8e8123ed9471883d02b8bc9f3e}{isExpectingLine}) \{
+131                     Assert.AreEqual (text, \hyperlink{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine});
+132                 \}
+133 
+134             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.OptionSetResult) \{
+135                 var options = (result as \hyperlink{a00139}{Yarn.Dialogue.OptionSetResult}).
+      options.options;
+136                 var optionCount = options.Count;
+137                 var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+138 
+139                 Console.WriteLine(\textcolor{stringliteral}{"Options:"});
+140                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} options) \{
+141                     Console.WriteLine(\textcolor{stringliteral}{" - "} + option);
+142                 \}
+143 
+144                 \textcolor{keywordflow}{if} (\hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} != -1) \{
+145                     Assert.AreEqual (\hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount}, optionCount);
+146                 \}
+147 
+148                 \textcolor{keywordflow}{if} (\hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} != -1) \{
+149                     resultDelegate (\hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect});
+150                 \} \textcolor{keywordflow}{else} \{
+151                     resultDelegate(0);
+152                 \}
+153             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.CommandResult) \{
+154                 var commandText = (result as \hyperlink{a00046}{Yarn.Dialogue.CommandResult}).
+      command.text;
+155 
+156                 Console.WriteLine(\textcolor{stringliteral}{"Command: "} + commandText);
+157 
+158                 \textcolor{keywordflow}{if} (\hyperlink{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} != null) \{
+159                     Assert.AreEqual (\hyperlink{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand}, commandText);
+160                 \}
+161             \}
+162 
+163             \textcolor{comment}{// Reset all 'expected' stuff}
+164             \hyperlink{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = null;
+165             \hyperlink{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} = null;
+166             \hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = -1;
+167             \hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = -1;
+168 
+169         \}
+\end{DoxyCode}
+\hypertarget{a00164_a357a0dab579f9e45666c10779683dc27}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Init@{Init}}
+\index{Init@{Init}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00164_a357a0dab579f9e45666c10779683dc27}
+
+
+Definition at line 69 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+70         \{
+71 
+72             \hyperlink{a00164_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue} = \textcolor{keyword}{new} \hyperlink{a00086}{Dialogue} (\hyperlink{a00164_a23d59ace1516ca72924c6fe3feafd3f7}{storage});
+73 
+74             dialogue.LogDebugMessage = delegate(\textcolor{keywordtype}{string} message) \{
+75 
+76                 Console.WriteLine (message);
+77 
+78             \};
+79 
+80             dialogue.LogErrorMessage = delegate(\textcolor{keywordtype}{string} message) \{
+81                 Console.ForegroundColor = ConsoleColor.Red;
+82                 Console.WriteLine (\textcolor{stringliteral}{"ERROR: "} + message);
+83                 Console.ResetColor ();
+84 
+85                 \textcolor{keywordflow}{if} (\hyperlink{a00164_ac978fe85db843c51411f5517bdbe0eb8}{errorsCauseFailures} == \textcolor{keyword}{true})
+86                     Assert.Fail(message);
+87             \};
+88 
+89             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"assert"}, -1, delegate(Yarn.Value[] parameters) \{
+90                 \textcolor{keywordflow}{if} (parameters[0].AsBool == \textcolor{keyword}{false}) \{
+91                     \textcolor{keywordflow}{if}( parameters.Length > 1 && parameters[1].AsBool ) \{
+92                         Assert.Fail (\textcolor{stringliteral}{"Assertion failed: "} + parameters[1].AsString);
+93                     \} \textcolor{keywordflow}{else} \{
+94                         Assert.Fail (\textcolor{stringliteral}{"Assertion failed"});
+95                     \}
+96                 \}
+97             \});
+98 
+99             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"prepare\_for\_options"}, 2, delegate(
+      \hyperlink{a00181}{Value}[] parameters) \{
+100                 \hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = (int)parameters[0].AsNumber;
+101                 \hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = (int)parameters[1].AsNumber;
+102             \});
+103 
+104             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"expect\_line"}, -1, delegate(\hyperlink{a00181}{Value}[] parameters) \{
+105                 \hyperlink{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = parameters[0].AsString;
+106             \});
+107 
+108             dialogue.library.RegisterFunction (\textcolor{stringliteral}{"expect\_command"}, -1, delegate(
+      \hyperlink{a00181}{Value}[] parameters) \{
+109                 \hyperlink{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} = parameters[0].AsString;
+110             \});
+111 
+112             \hyperlink{a00164_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = -1;
+113             \hyperlink{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = -1;
+114         \}
+\end{DoxyCode}
+\hypertarget{a00164_abffa134d40d72b21e6b35c3bf05fc53f}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Run\-Standard\-Testcase@{Run\-Standard\-Testcase}}
+\index{Run\-Standard\-Testcase@{Run\-Standard\-Testcase}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Run\-Standard\-Testcase}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Run\-Standard\-Testcase (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_abffa134d40d72b21e6b35c3bf05fc53f}
+
+
+Definition at line 117 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+117                                                                       \{
+118             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00164_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00086_aead84ee50cb113ca45724894290ce9c2}{Run}(nodeName)) \{
+119                 \hyperlink{a00164_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
+120             \}
+121         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00164_a4cff5de56c4b8a91c76b6eb2d622a795}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn\-Spinner.\-Tests.\-Test\-Base.\-dialogue\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_a4cff5de56c4b8a91c76b6eb2d622a795}
+
+
+Definition at line 23 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_ac978fe85db843c51411f5517bdbe0eb8}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!errors\-Cause\-Failures@{errors\-Cause\-Failures}}
+\index{errors\-Cause\-Failures@{errors\-Cause\-Failures}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{errors\-Cause\-Failures}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-errors\-Cause\-Failures = true\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_ac978fe85db843c51411f5517bdbe0eb8}
+
+
+Definition at line 25 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_a26fae5694fc06c3cdb12d3108dbc34de}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!next\-Expected\-Command@{next\-Expected\-Command}}
+\index{next\-Expected\-Command@{next\-Expected\-Command}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{next\-Expected\-Command}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-next\-Expected\-Command = null\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a26fae5694fc06c3cdb12d3108dbc34de}
+
+
+Definition at line 19 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_a3651ffb5425ab15bd1e42749347c1ee7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!next\-Expected\-Line@{next\-Expected\-Line}}
+\index{next\-Expected\-Line@{next\-Expected\-Line}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{next\-Expected\-Line}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-next\-Expected\-Line = null\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a3651ffb5425ab15bd1e42749347c1ee7}
+
+
+Definition at line 16 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_aaabaf15249efe42f3d857129bdbc2864}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!next\-Expected\-Option\-Count@{next\-Expected\-Option\-Count}}
+\index{next\-Expected\-Option\-Count@{next\-Expected\-Option\-Count}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{next\-Expected\-Option\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn\-Spinner.\-Tests.\-Test\-Base.\-next\-Expected\-Option\-Count = -\/1\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_aaabaf15249efe42f3d857129bdbc2864}
+
+
+Definition at line 17 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!next\-Option\-To\-Select@{next\-Option\-To\-Select}}
+\index{next\-Option\-To\-Select@{next\-Option\-To\-Select}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{next\-Option\-To\-Select}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn\-Spinner.\-Tests.\-Test\-Base.\-next\-Option\-To\-Select = -\/1\hspace{0.3cm}{\ttfamily [private]}}}\label{a00164_a343055fa693e9d5dfc1bdbfcd0f02676}
+
+
+Definition at line 18 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_a23d59ace1516ca72924c6fe3feafd3f7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!storage@{storage}}
+\index{storage@{storage}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Variable\-Storage} Yarn\-Spinner.\-Tests.\-Test\-Base.\-storage = new {\bf Memory\-Variable\-Store}()\hspace{0.3cm}{\ttfamily [protected]}}}\label{a00164_a23d59ace1516ca72924c6fe3feafd3f7}
+
+
+Definition at line 22 of file Test\-Base.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00164_a47f35b8e8123ed9471883d02b8bc9f3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!is\-Expecting\-Line@{is\-Expecting\-Line}}
+\index{is\-Expecting\-Line@{is\-Expecting\-Line}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{is\-Expecting\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-is\-Expecting\-Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}}}\label{a00164_a47f35b8e8123ed9471883d02b8bc9f3e}
+
+
+Definition at line 175 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_ab1ad614f465a49447da31c4000ec6b3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Project\-Root\-Path@{Project\-Root\-Path}}
+\index{Project\-Root\-Path@{Project\-Root\-Path}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Project\-Root\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Project\-Root\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00164_ab1ad614f465a49447da31c4000ec6b3e}
+
+
+Definition at line 29 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_aa9b4d902d61adad7165154a265f69aa4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Test\-Data\-Path@{Test\-Data\-Path}}
+\index{Test\-Data\-Path@{Test\-Data\-Path}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Test\-Data\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Test\-Data\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00164_aa9b4d902d61adad7165154a265f69aa4}
+
+
+Definition at line 52 of file Test\-Base.\-cs.
+
+\hypertarget{a00164_a39922286f6255e4fd0e433a4fc7521c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}!Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}}
+\index{Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}!YarnSpinner::Tests::TestBase@{Yarn\-Spinner\-::\-Tests\-::\-Test\-Base}}
+\subsubsection[{Unity\-Demo\-Scripts\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Unity\-Demo\-Scripts\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00164_a39922286f6255e4fd0e433a4fc7521c4}
+
+
+Definition at line 60 of file Test\-Base.\-cs.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner\-Tests/\hyperlink{a00319}{Test\-Base.\-cs}\end{DoxyCompactItemize}

@@ -1,7 +1,8 @@
 var a00070 =
 [
-    [ "NodeInfo", "a00070.html#aa56085ea115b77cb9ee975686e726c29", null ],
-    [ "tags", "a00070.html#acd4d4915f6cc14f8b0f1f92d27da8b36", null ],
-    [ "text", "a00070.html#a63d7ebed8095a20fc5d0d74c84a34f6c", null ],
-    [ "title", "a00070.html#aafc45bbc86a9acb9bdbcf7877695a96c", null ]
+    [ "CsvPropertyReferenceMapData", "a00070.html#ad6fe2913932a9fe434f8a908dec30e8b", null ],
+    [ "prefix", "a00070.html#a24263cbdacd2dd0db9bbe22676a6d989", null ],
+    [ "Mapping", "a00070.html#af2343065df03de92b6b9803ed2bb4f87", null ],
+    [ "Prefix", "a00070.html#a687fe65f1a2b4301f283e9333c282f9c", null ],
+    [ "Property", "a00070.html#a5386ac40fb3ea290944f05cbee99bfcb", null ]
 ];
