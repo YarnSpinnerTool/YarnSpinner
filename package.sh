@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 LOGFILE="export.log"
-OUTDIR="`pwd`/Builds"
+OUTDIR="$(pwd)/Builds"
 SOURCE_FILES="YarnSpinner/*.cs"
 
 NO_EXAMPLES=0
@@ -34,7 +34,7 @@ CLEAN_ONLY=0
 
 COPY_ONLY=0
 
-CURRENT_BRANCH_NAME="`git rev-parse --abbrev-ref HEAD`"
+CURRENT_BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
 
 set -e
 
@@ -51,17 +51,17 @@ function show_help {
 }
 
 function show_changes {
-    LATEST_TAG=`git describe --abbrev=0 --tags`
-    COMMITS_SINCE_THEN=`git rev-list $LATEST_TAG.. --count`
+    LATEST_TAG=$(git describe --abbrev=0 --tags)
+    COMMITS_SINCE_THEN=$(git rev-list "$LATEST_TAG".. --count)
 
     echo "You are currently on branch $CURRENT_BRANCH_NAME."
 
-    if [ $COMMITS_SINCE_THEN -eq "0" ]; then
+    if [ "$COMMITS_SINCE_THEN" -eq "0" ]; then
         echo "There has been no further work since the last tag."
     else
         echo "There have been $COMMITS_SINCE_THEN commits since $LATEST_TAG on this branch:"
 
-        git log $LATEST_TAG.. --pretty=format:"* %s"
+        git log "$LATEST_TAG".. --pretty=format:"* %s"
     fi
 }
 
@@ -79,7 +79,7 @@ while getopts ":xhsScC" opt; do
 
 done
 
-if [ `uname -s` != "Darwin" ]; then
+if [ "$(uname -s)" != "Darwin" ]; then
     echo "This script only works on OS X."
     exit 1
 fi
@@ -103,7 +103,7 @@ if [ $SOURCE_BUILD == 1 ]; then
 
     echo "Copying Yarn Spinner source in..."
     # Copy the source files in
-    cp -v $SOURCE_FILES "Unity/Assets/Yarn Spinner/Code/"
+    cp -v "$SOURCE_FILES" "Unity/Assets/Yarn Spinner/Code/"
 
 fi
 
@@ -116,9 +116,9 @@ fi
 # Strips "v" from tag names
 function strip-v () { echo -n "${1#v}"; }
 
-FULL_VERSION=$(strip-v $(git describe --tags --match 'v[0-9]*' --always --dirty))
+FULL_VERSION=$(strip-v "$(git describe --tags --match 'v[0-9]*' --always --dirty)")
 
-if [ $CURRENT_BRANCH_NAME != "master" ]; then
+if [ "$CURRENT_BRANCH_NAME" != "master" ]; then
     FULL_VERSION="$FULL_VERSION-$CURRENT_BRANCH_NAME"
 fi
 
@@ -131,7 +131,7 @@ if [ $NO_EXAMPLES == 1 ]; then
 fi
 
 # sanity check that the examples folder is where we expect
-expected_examples_location="`pwd`/Unity/Assets/Yarn Spinner/Examples"
+expected_examples_location="$(pwd)/Unity/Assets/Yarn Spinner/Examples"
 
 if [ ! -d "$expected_examples_location" ]; then
     echo "Failed to find Examples folder at $expected_examples_location"
@@ -141,7 +141,7 @@ fi
 if [ $NO_EXAMPLES == 1 ]; then
     # move the Examples folder to a temporary location
 
-    temp_folder="`mktemp -d`/Examples"
+    temp_folder="$(mktemp -d)/Examples"
 
     echo "Moving Examples out of the way..."
     mv "$expected_examples_location" "$temp_folder"
@@ -155,7 +155,7 @@ OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 # Find where Unity is installed; filter out any copies that include "b[num]"
 # (that is, beta versions); sort it to put the latest version name at the end,
 # then pick the last one
-UNITY="`mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1`/Contents/MacOS/Unity"
+UNITY="$(mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1)/Contents/MacOS/Unity"
 
 if [[ -f $UNITY ]]; then
     echo "Using $UNITY"
@@ -165,7 +165,7 @@ if [[ -f $UNITY ]]; then
     # Disable stop-on-error for this - we want better reporting
     set +e
 
-    "$UNITY" -batchmode -projectPath "`pwd`/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
+    "$UNITY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
 
     if [ $? -ne 0 ]; then
 
@@ -173,7 +173,7 @@ if [[ -f $UNITY ]]; then
         exit 1
     fi
 
-    if [ -f $OUTFILE ]; then
+    if [ -f "$OUTFILE" ]; then
         echo "Package created in $OUTFILE"
     else
         echo "Error: Unity reported no error, but the package wasn't created. Check $LOGFILE."

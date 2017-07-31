@@ -1,0 +1,33 @@
+title: Ship
+tags: 
+colorID: 0
+position: 721,130
+---
+<<if visited("Ship") is false>>
+    Ship: Hey, friend.
+    Player: Hi, Ship.
+    Player: How's space?
+    Ship: Oh, man.
+    <<setsprite ShipFace happy>>
+        Ship: It's HUGE!
+    <<setsprite ShipFace neutral>>
+<<else>>
+    <<setsprite ShipFace happy>>
+        Ship: Hey!!
+    <<setsprite ShipFace neutral>>
+<<endif>>
+
+<<if $should_see_ship is true and $sally_warning is false>>
+    Player: Sally said you wanted to see me?
+    <<setsprite ShipFace happy>>
+    Ship: She totally did!!
+    <<setsprite ShipFace neutral>>
+    Ship: She wanted me to tell you...
+    Ship: If you ever go off-watch without resetting the console again...
+    <<setsprite ShipFace happy>>
+    Ship: She'll flay you alive!
+    <<set $sally_warning to true>>
+    Player: Uh.
+    <<setsprite ShipFace neutral>>
+<<endif>>
+===

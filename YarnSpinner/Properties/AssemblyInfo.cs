@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,9 +33,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle ("YarnSpinner")]
 [assembly: AssemblyDescription ("A parser and runtime for the Yarn dialogue system.")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Secret Lab")]
+[assembly: AssemblyCompany ("Secret Lab Pty Ltd")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("© 2015 Jon Manning")]
+[assembly: AssemblyCopyright ("© 2016-2017 Secret Lab Pty Ltd and Yarn Spinner contributors")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
@@ -50,4 +50,8 @@ using System.Runtime.CompilerServices;
 
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
+
+// Make internals available to the localisation tool
+[assembly: InternalsVisibleTo("YarnSpinnerConsole")]
+[assembly: InternalsVisibleTo("YarnSpinnerTests")]
 

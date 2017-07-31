@@ -1,0 +1,25 @@
+title: TestNode
+colorID: 3
+---
+This is a test node!
+
+===
+
+title: AnotherTestNode
+position: 2,4
+
+---
+This is a second test node!
+
+<<if 1 == 1>>
+This still works!
+<<set $x to 23>>
+<<endif>>
+
+===
+
+title: ThirdNode
+tags: multiple tags!
+---
+
+===

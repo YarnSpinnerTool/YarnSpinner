@@ -99,7 +99,7 @@ The `ExampleDialogueUI` script uses a `Text` object to display the current line 
 
 ### Store your conversation state with a `VariableStorageBehaviour`
 
-There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. Yarn Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***[C# interface](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index)***, which defines methods like "set variable" and "get value of variable".
+There's one last necessary component. As you play through a conversation, you'll probably want to record the user's choices somewhere. Yarn Spinner doesn't care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***[C# interface](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index))***, which defines methods like "set variable" and "get value of variable".
 
 The simplest implementation of this is one that just keeps your variables in memory, but it's pretty straightforward to adapt an existing save game system to use it.
 

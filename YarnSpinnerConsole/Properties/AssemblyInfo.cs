@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("YarnSpinnerConsole")]
-[assembly: AssemblyDescription ("")]
+[assembly: AssemblyTitle ("Yarn Spinner")]
+[assembly: AssemblyDescription ("The all-in-one toolbox for working with Yarn.")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
+[assembly: AssemblyCompany ("Secret Lab Pty Ltd")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("desplesda")]
+[assembly: AssemblyCopyright("© 2016-2017 Secret Lab Pty Ltd and Yarn Spinner contributors")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

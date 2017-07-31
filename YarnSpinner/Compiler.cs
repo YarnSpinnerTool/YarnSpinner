@@ -1,645 +1,448 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Yarn
 {
-	
+    internal class Compiler
+    {
+        struct CompileFlags {
+            // should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
+            // after the next RunOptions bytecode?
+            public bool DisableShuffleOptionsAfterNextSet;
+        }
+
+        CompileFlags flags;
+
+        internal Program program { get; private set; }
+
+        internal Compiler (string programName)
+        {
+            program = new Program ();
+        }
+
+        internal void CompileNode(Parser.Node node) {
+
+            if (program.nodes.ContainsKey(node.name)) {
+                throw new ArgumentException ("Duplicate node name " + node.name);
+            }
+
+            var compiledNode =  new Node();
+
+            compiledNode.name = node.name;
+
+            compiledNode.tags = node.nodeTags;
+
+            // Register the entire text of this node if we have it
+            if (node.source != null)
+            {
+                // Dump the entire contents of this node into the string table
+                // instead of compiling its contents.
+
+                // the line number is 0 because the string starts at the start of the node
+                compiledNode.sourceTextStringID = program.RegisterString(node.source, node.name, "line:"+node.name, 0, true);
+            } else {
+
+                // Compile the node.
+
+                var startLabel = RegisterLabel();
+                Emit(compiledNode, ByteCode.Label, startLabel);
+
+                foreach (var statement in node.statements)
+                {
+                    GenerateCode(compiledNode, statement);
+                }
+
+                // Does this node end after emitting AddOptions codes
+                // without calling ShowOptions?
+
+                // Note: this only works when we know that we don't have
+                // AddOptions and then Jump up back into the code to run them.
+                // TODO: A better solution would be for the parser to flag
+                // whether a node has Options at the end.
+                var hasRemainingOptions = false;
+                foreach (var instruction in compiledNode.instructions)
+                {
+                    if (instruction.operation == ByteCode.AddOption)
+                    {
+                        hasRemainingOptions = true;
+                    }
+                    if (instruction.operation == ByteCode.ShowOptions)
+                    {
+                        hasRemainingOptions = false;
+                    }
+                }
+
+                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
+                if (hasRemainingOptions == false)
+                {
+                    Emit(compiledNode, ByteCode.Stop);
+                }
+                else {
+                    // Otherwise, show the accumulated nodes and then jump to the selected node
+
+                    Emit(compiledNode, ByteCode.ShowOptions);
+
+                    if (flags.DisableShuffleOptionsAfterNextSet == true)
+                    {
+                        Emit(compiledNode, ByteCode.PushBool, false);
+                        Emit(compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                        Emit(compiledNode, ByteCode.Pop);
+                        flags.DisableShuffleOptionsAfterNextSet = false;
+                    }
+
+                    Emit(compiledNode, ByteCode.RunNode);
+                }
+
+            }
+
+            program.nodes[compiledNode.name] = compiledNode;
+
+        }
+
+        private int labelCount = 0;
+
+        // Generates a unique label name to use
+        string RegisterLabel(string commentary = null) {
+            return "L" + labelCount++ + commentary;
+        }
+
+        void Emit(Node node, ByteCode code, object operandA = null, object operandB = null) {
+            var instruction = new Instruction();
+            instruction.operation = code;
+            instruction.operandA = operandA;
+            instruction.operandB = operandB;
+
+            node.instructions.Add (instruction);
+
+            if (code == ByteCode.Label) {
+                // Add this label to the label table
+                node.labels.Add ((string)instruction.operandA, node.instructions.Count - 1);
+            }
+        }
+
+        // Statements
+        void GenerateCode(Node node, Parser.Statement statement) {
+            switch (statement.type) {
+            case Parser.Statement.Type.CustomCommand:
+                GenerateCode (node, statement.customCommand);
+                break;
+            case Parser.Statement.Type.ShortcutOptionGroup:
+                GenerateCode (node, statement.shortcutOptionGroup);
+                break;
+            case Parser.Statement.Type.Block:
+
+                // Blocks are just groups of statements
+                foreach (var blockStatement in statement.block.statements) {
+                    GenerateCode(node, blockStatement);
+                }
 
-	internal class Program {
+                break;
 
-		public Dictionary<string,string> strings = new Dictionary<string, string> ();
+            case Parser.Statement.Type.IfStatement:
+                GenerateCode (node, statement.ifStatement);
+                break;
 
-		public Dictionary<string, Node> nodes = new Dictionary<string, Node> ();
+            case Parser.Statement.Type.OptionStatement:
+                GenerateCode (node, statement.optionStatement);
+                break;
 
-		private int stringCount = 0;
+            case Parser.Statement.Type.AssignmentStatement:
+                GenerateCode (node, statement.assignmentStatement);
+                break;
 
-		public string RegisterString(string theString, string forNode) {
+            case Parser.Statement.Type.Line:
+                GenerateCode (node, statement, statement.line);
+                break;
 
-			var key = string.Format ("{0}-{1}", forNode, stringCount++);
+            default:
+                throw new ArgumentOutOfRangeException ();
+            }
 
-			// It's not in the list; append it
-			strings.Add(key, theString);
+        }
 
-			return key;
-		}
+        void GenerateCode(Node node, Parser.CustomCommand statement) {
 
-		public string GetString(string key) {
-			string value = null;
-			strings.TryGetValue (key, out value);
-			return value;
-		}
+            // If this command is an evaluable expression, evaluate it
+            if (statement.expression != null) {
+                GenerateCode (node, statement.expression);
+            } else {
+                switch (statement.clientCommand) {
+                case "stop":
+                    Emit (node, ByteCode.Stop);
+                    break;
+                case "shuffleNextOptions":
+                    // Emit code that sets "VAR_SHUFFLE_OPTIONS" to true
+                    Emit (node, ByteCode.PushBool, true);
+                    Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                    Emit (node, ByteCode.Pop);
+                    flags.DisableShuffleOptionsAfterNextSet = true;
+                    break;
 
-		public string DumpCode(Library l) {
+                default:
+                    Emit (node, ByteCode.RunCommand, statement.clientCommand);
+                    break;
+                }
+            }
 
-			var sb = new System.Text.StringBuilder ();
+        }
 
-			foreach (var entry in nodes) {
-				sb.AppendLine ("Node " + entry.Key + ":");
+        string GetLineIDFromNodeTags(Parser.ParseNode node) {
+            // TODO: This will use only the first #line: tag, ignoring all others
+            foreach (var tag in node.tags)
+            {
+                if (tag.StartsWith("line:"))
+                {
+                    return tag;
+                }
+            }
+            return null;
+        }
 
-				int instructionCount = 0;
-				foreach (var instruction in entry.Value.instructions) {
-					string instructionText;
+        void GenerateCode(Node node, Parser.Statement parseNode, string line) {
 
-					if (instruction.operation == ByteCode.Label) {
-						instructionText = instruction.ToString (this, l);
-					} else {
-						instructionText = "    " + instruction.ToString (this, l);
-					}
+            // Does this line have a "#line:LINENUM" tag? Use it
+            string lineID = GetLineIDFromNodeTags(parseNode);
 
-					string preface;
+            var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber, true);
 
-					if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1) {
-						preface = string.Format ("{0,6}   ", instructionCount);
-					} else {
-						preface = string.Format ("{0,6}   ", " ");
-					}
+            Emit (node, ByteCode.RunLine, num);
 
-					sb.AppendLine (preface + instructionText);
+        }
 
-					instructionCount++;
-				}
+        void GenerateCode(Node node, Parser.ShortcutOptionGroup statement) {
 
-				/* sb.AppendLine ();
-				sb.AppendLine ("Label table:");
+            var endOfGroupLabel = RegisterLabel ("group_end");
 
-				foreach (var label in entry.Value.labels) {
-					sb.AppendLine (string.Format ("{0,12} : {1}", label.Key, label.Value));
-				}*/
+            var labels = new List<string> ();
 
-				sb.AppendLine ();
-			}
+            int optionCount = 0;
+            foreach (var shortcutOption in statement.options) {
 
-			sb.AppendLine ("String table:");
+                var optionDestinationLabel = RegisterLabel ("option_" + (optionCount+1));
+                labels.Add (optionDestinationLabel);
 
-			int stringCount = 0;
-			foreach (var entry in strings) {
-				sb.AppendLine(string.Format("{0, 4}: {1}", stringCount, entry));
-				stringCount++;
-			}
+                string endOfClauseLabel = null;
 
+                if (shortcutOption.condition != null) {
+                    endOfClauseLabel = RegisterLabel ("conditional_"+optionCount);
+                    GenerateCode (node, shortcutOption.condition);
 
-			return sb.ToString ();
-		}
+                    Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
+                }
 
-		public string GetTextForNode(string nodeName) {
-			return this.GetString (nodes [nodeName].sourceTextStringID);
-		}
+                var labelLineID = GetLineIDFromNodeTags(shortcutOption);
 
-		public void Include (Program otherProgram)
-		{
-			foreach (var otherNodeName in otherProgram.nodes) {
+                var labelStringID = program.RegisterString (shortcutOption.label, node.name, labelLineID, shortcutOption.lineNumber, true);
 
-				if (nodes.ContainsKey(otherNodeName.Key)) {
-					throw new InvalidOperationException (string.Format ("This program already contains a node named {0}", otherNodeName.Key));
-				}
+                Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
 
-				nodes [otherNodeName.Key] = otherNodeName.Value;
-			}
+                if (shortcutOption.condition != null) {
+                    Emit (node, ByteCode.Label, endOfClauseLabel);
+                    Emit (node, ByteCode.Pop);
+                }
 
-			foreach (var otherString in otherProgram.strings) {
+                optionCount++;
+            }
 
-				if (nodes.ContainsKey(otherString.Key)) {
-					throw new InvalidOperationException (string.Format ("This program already contains a string with key {0}", otherString.Key));
-				}
+            Emit (node, ByteCode.ShowOptions);
 
-				strings [otherString.Key] = otherString.Value;
-			}
-		}
-	}
-
-	internal class Node {
-
-		public List<Instruction> instructions = new List<Instruction>();
-
-		public string name;
-
-		// the entry in the program's string table that contains
-		// the original text of this node; -1 if this is not available
-		public string sourceTextStringID = null;
-
-		public Dictionary<string, int> labels = new Dictionary<string, int>();
-	}
-
-	internal struct Instruction {
-		internal ByteCode operation;
-		internal object operandA;
-		internal object operandB;
-
-		public  string ToString(Program p, Library l) {
-
-			// Labels are easy: just dump out the name
-			if (operation == ByteCode.Label) {
-				return operandA + ":";
-			}
-
-			// Convert the operands to strings
-			var opAString = operandA != null ? operandA.ToString () : "";
-			var opBString = operandB != null ? operandB.ToString () : "";
-
-			// Generate a comment, if the instruction warrants it
-			string comment = "";
-
-			// Stack manipulation comments
-			var pops = 0;
-			var pushes = 0;
-
-			switch (operation) {
-
-			// These operations all push a single value to the stack
-			case ByteCode.PushBool:
-			case ByteCode.PushNull:
-			case ByteCode.PushNumber:
-			case ByteCode.PushString:
-			case ByteCode.PushVariable:
-			case ByteCode.ShowOptions:
-				pushes = 1;
-				break;
-
-			// Functions pop 0 or more values, and pop 0 or 1 
-			case ByteCode.CallFunc:
-				var function = l.GetFunction ((string)operandA);
-
-				pops = function.paramCount;
-
-				if (function.returnsValue)
-					pushes = 1;
-				
-
-				break;
-			
-			// Pop always pops a single value
-			case ByteCode.Pop:
-				pops = 1;
-				break;
-			
-			// Switching to a different node will always clear the stack
-			case ByteCode.RunNode:
-				comment += "Clears stack";
-				break;
-			}
-
-			// If we had any pushes or pops, report them
-
-			if (pops > 0 && pushes > 0)
-				comment += string.Format ("Pops {0}, Pushes {1}", pops, pushes);
-			else if (pops > 0)
-				comment += string.Format ("Pops {0}", pops);
-			else if (pushes > 0)
-				comment += string.Format ("Pushes {0}", pushes);
-
-			// String lookup comments
-			switch (operation) {
-			case ByteCode.PushString:
-			case ByteCode.RunLine:
-			case ByteCode.AddOption:
-
-				// Add the string for this option, if it has one
-				if ((string)operandA != null) {
-					var text = p.GetString((string)operandA);
-					comment += string.Format ("\"{0}\"", text);
-				}
-
-				break;
-			
-			}
-
-			if (comment != "") {
-				comment = "; " + comment;
-			}
-
-			return string.Format ("{0,-15} {1,-10} {2,-10} {3, -10}", operation.ToString (), opAString, opBString, comment);
-		}
-	}
-
-	internal enum ByteCode {
-		
-		Label,			    // opA = string: label name
-		JumpTo,			    // opA = string: label name
-		Jump,				// peek string from stack and jump to that label
-		RunLine,		    // opA = int: string number
-		RunCommand,		    // opA = string: command text
-		AddOption,		    // opA = int: string number for option to add
-		ShowOptions,	    // present the current list of options, then clear the list; most recently selected option will be on the top of the stack
-		PushString,		    // opA = int: string number in table; push string to stack
-		PushNumber,		    // opA = float: number to push to stack
-		PushBool,		    // opA = int (0 or 1): bool to push to stack
-		PushNull,		    // pushes a null value onto the stack
-		JumpIfFalse,	    // opA = string: label name if top of stack is not null, zero or false, jumps to that label
-		Pop,			    // discard top of stack
-		CallFunc,		    // opA = string; looks up function, pops as many arguments as needed, result is pushed to stack
-		PushVariable,			    // opA = name of variable to get value of and push to stack
-		StoreVariable,			    // opA = name of variable to store top of stack in
-		Stop,			    // stops execution
-		RunNode			    // run the node whose name is at the top of the stack
-
-	}
-
-
-
-	internal class Compiler
-	{
-		
-
-		struct CompileFlags {
-			// should we emit code that turns (VAR_SHUFFLE_OPTIONS) off
-			// after the next RunOptions bytecode?
-			public bool DisableShuffleOptionsAfterNextSet;
-		}
-
-		CompileFlags flags;
-
-		internal Program program { get; private set; }
-
-		internal Compiler (string programName)
-		{
-			program = new Program ();
-		}
-
-		internal void CompileNode(Parser.Node node) {
-
-			if (program.nodes.ContainsKey(node.name)) {
-				throw new ArgumentException ("Duplicate node name " + node.name);
-			}
-
-			var compiledNode =  new Node();
-
-			compiledNode.name = node.name;
-
-			var startLabel = RegisterLabel ();
-			Emit (compiledNode, ByteCode.Label, startLabel);
-
-			foreach (var statement in node.statements) {
-				GenerateCode (compiledNode, statement);
-			}
-
-			// Does this node end after emitting AddOptions codes
-			// without calling ShowOptions?
-
-			// Note: this only works when we know that we don't have
-			// AddOptions and then Jump up back into the code to run them.
-			// TODO: A better solution would be for the parser to flag
-			// whether a node has Options at the end.
-			var hasRemainingOptions = false;
-			foreach (var instruction in compiledNode.instructions) {
-				if (instruction.operation == ByteCode.AddOption) {
-					hasRemainingOptions = true;
-				}
-				if (instruction.operation == ByteCode.ShowOptions) {
-					hasRemainingOptions = false;
-				}
-			}
-
-			// If this compiled node has no lingering options to show at the end of the node, then stop at the end
-			if (hasRemainingOptions == false) {
-				Emit (compiledNode, ByteCode.Stop);
-			} else {
-				// Otherwise, show the accumulated nodes and then jump to the selected node
-
-				Emit (compiledNode, ByteCode.ShowOptions);
-
-				if (flags.DisableShuffleOptionsAfterNextSet == true) {
-					Emit (compiledNode, ByteCode.PushBool, false);
-					Emit (compiledNode, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-					Emit (compiledNode, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = false;
-				}
-
-				Emit (compiledNode, ByteCode.RunNode);
-			}
-
-			if (node.source != null) {
-				compiledNode.sourceTextStringID = program.RegisterString (node.source, node.name);
-			}
-
-			program.nodes [compiledNode.name] = compiledNode;
-		}
-
-		private int labelCount = 0;
-
-		// Generates a unique label name to use
-		string RegisterLabel(string commentary = null) {
-			return "L" + labelCount++ + commentary;
-		}
-
-		void Emit(Node node, ByteCode code, object operandA = null, object operandB = null) {
-			var instruction = new Instruction();
-			instruction.operation = code;
-			instruction.operandA = operandA;
-			instruction.operandB = operandB;
-
-			node.instructions.Add (instruction);
-
-			if (code == ByteCode.Label) {
-				// Add this label to the label table
-				node.labels.Add ((string)instruction.operandA, node.instructions.Count - 1);
-			}
-		}
-
-		// Statements
-		void GenerateCode(Node node, Parser.Statement statement) {
-			switch (statement.type) {
-			case Parser.Statement.Type.CustomCommand:
-				GenerateCode (node, statement.customCommand);
-				break;
-			case Parser.Statement.Type.ShortcutOptionGroup:
-				GenerateCode (node, statement.shortcutOptionGroup);
-				break;
-			case Parser.Statement.Type.Block:
-				
-				// Blocks are just groups of statements
-				foreach (var blockStatement in statement.block.statements) {
-					GenerateCode(node, blockStatement);
-				}
-
-				break;
-
-
-			case Parser.Statement.Type.IfStatement:
-				GenerateCode (node, statement.ifStatement);
-				break;
-
-			case Parser.Statement.Type.OptionStatement:
-				GenerateCode (node, statement.optionStatement);
-				break;
-
-			case Parser.Statement.Type.AssignmentStatement:
-				GenerateCode (node, statement.assignmentStatement);
-				break;
-
-			case Parser.Statement.Type.Line:
-				GenerateCode (node, statement.line);
-				break;
-
-			default:
-				throw new ArgumentOutOfRangeException ();
-			}
-
+            if (flags.DisableShuffleOptionsAfterNextSet == true) {
+                Emit (node, ByteCode.PushBool, false);
+                Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
+                Emit (node, ByteCode.Pop);
+                flags.DisableShuffleOptionsAfterNextSet = false;
+            }
 
-		}
+            Emit (node, ByteCode.Jump);
 
-		void GenerateCode(Node node, Parser.CustomCommand statement) {
+            optionCount = 0;
+            foreach (var shortcutOption in statement.options) {
 
-			// If this command is an evaluable expression, evaluate it
-			if (statement.expression != null) {
-				GenerateCode (node, statement.expression);
-			} else {
-				switch (statement.clientCommand) {
-				case "stop":
-					Emit (node, ByteCode.Stop);
-					break;
-				case "shuffleNextOptions":
-					// Emit code that sets "VAR_SHUFFLE_OPTIONS" to true
-					Emit (node, ByteCode.PushBool, true);
-					Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-					Emit (node, ByteCode.Pop);
-					flags.DisableShuffleOptionsAfterNextSet = true;
-					break;
+                Emit (node, ByteCode.Label, labels [optionCount]);
 
-				default:
-					Emit (node, ByteCode.RunCommand, statement.clientCommand);
-					break;
-				}
-			}
+                if (shortcutOption.optionNode != null)
+                    GenerateCode (node, shortcutOption.optionNode.statements);
 
-		}
+                Emit (node, ByteCode.JumpTo, endOfGroupLabel);
 
-		void GenerateCode(Node node, string line) {
-			var num = program.RegisterString (line, node.name);
+                optionCount++;
 
-			Emit (node, ByteCode.RunLine, num);
+            }
 
-		}
+            // reached the end of the option group
+            Emit (node, ByteCode.Label, endOfGroupLabel);
 
-		void GenerateCode(Node node, Parser.ShortcutOptionGroup statement) {
+            // clean up after the jump
+            Emit (node, ByteCode.Pop);
 
-			var endOfGroupLabel = RegisterLabel ("group_end");
+        }
 
-			var labels = new List<string> ();
+        void GenerateCode(Node node, IEnumerable<Yarn.Parser.Statement> statementList) {
 
-			int optionCount = 0;
-			foreach (var shortcutOption in statement.options) {
+            if (statementList == null)
+                return;
 
-				var optionDestinationLabel = RegisterLabel ("option_" + (optionCount+1));
-				labels.Add (optionDestinationLabel);
+            foreach (var statement in statementList) {
+                GenerateCode (node, statement);
+            }
+        }
 
-				string endOfClauseLabel = null;
+        void GenerateCode(Node node, Parser.IfStatement statement) {
 
-				if (shortcutOption.condition != null) {
-					endOfClauseLabel = RegisterLabel ("conditional_"+optionCount);
-					GenerateCode (node, shortcutOption.condition);
+            // We'll jump to this label at the end of every clause
+            var endOfIfStatementLabel = RegisterLabel ("endif");
 
-					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
-				}
+            foreach (var clause in statement.clauses) {
+                var endOfClauseLabel = RegisterLabel ("skipclause");
 
-				var labelStringID = program.RegisterString (shortcutOption.label, node.name);
+                if (clause.expression != null) {
 
-				Emit (node, ByteCode.AddOption, labelStringID, optionDestinationLabel);
+                    GenerateCode (node, clause.expression);
 
-				if (shortcutOption.condition != null) {
-					Emit (node, ByteCode.Label, endOfClauseLabel);
-					Emit (node, ByteCode.Pop);
-				}
+                    Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
 
-				optionCount++;
-			}
+                }
 
-			Emit (node, ByteCode.ShowOptions);
+                GenerateCode (node, clause.statements);
 
-			if (flags.DisableShuffleOptionsAfterNextSet == true) {
-				Emit (node, ByteCode.PushBool, false);
-				Emit (node, ByteCode.StoreVariable, VirtualMachine.SpecialVariables.ShuffleOptions);
-				Emit (node, ByteCode.Pop);
-				flags.DisableShuffleOptionsAfterNextSet = false;
-			}
+                Emit (node, ByteCode.JumpTo, endOfIfStatementLabel);
 
-			Emit (node, ByteCode.Jump);
+                if (clause.expression != null) {
+                    Emit (node, ByteCode.Label, endOfClauseLabel);
+                }
+                // Clean up the stack by popping the expression that was tested earlier
+                if (clause.expression != null) {
+                    Emit (node, ByteCode.Pop);
+                }
+            }
 
-			optionCount = 0;
-			foreach (var shortcutOption in statement.options) {
+            Emit (node, ByteCode.Label, endOfIfStatementLabel);
+        }
 
-				Emit (node, ByteCode.Label, labels [optionCount]);
+        void GenerateCode(Node node, Parser.OptionStatement statement) {
 
-				if (shortcutOption.optionNode != null)
-					GenerateCode (node, shortcutOption.optionNode.statements);
+            var destination = statement.destination;
 
-				Emit (node, ByteCode.JumpTo, endOfGroupLabel);
+            if (statement.label == null) {
+                // this is a jump to another node
+                Emit(node, ByteCode.RunNode, destination);
+            } else {
 
-				optionCount++;
+                var lineID = GetLineIDFromNodeTags(statement.parent);
 
-			}
+                var stringID = program.RegisterString (statement.label, node.name, lineID, statement.lineNumber, true);
 
-			// reached the end of the option group
-			Emit (node, ByteCode.Label, endOfGroupLabel);
+                Emit (node, ByteCode.AddOption, stringID, destination);
+            }
 
-			// clean up after the jump
-			Emit (node, ByteCode.Pop);
+        }
 
+        void GenerateCode(Node node, Parser.AssignmentStatement statement) {
 
-		}
+            // Is it a straight assignment?
+            if (statement.operation == TokenType.EqualToOrAssign) {
+                // Evaluate the expression, which will result in a value
+                // on the stack
+                GenerateCode (node, statement.valueExpression);
 
-		void GenerateCode(Node node, IEnumerable<Yarn.Parser.Statement> statementList) {
+                // Stack now contains [destinationValue]
+            } else {
 
-			if (statementList == null)
-				return;
+                // It's a combined operation-plus-assignment
 
-			foreach (var statement in statementList) {
-				GenerateCode (node, statement);
-			}
-		}
+                // Get the current value of the variable
+                Emit(node, ByteCode.PushVariable, statement.destinationVariableName);
 
-		void GenerateCode(Node node, Parser.IfStatement statement) {
+                // Evaluate the expression, which will result in a value
+                // on the stack
+                GenerateCode (node, statement.valueExpression);
 
-			// We'll jump to this label at the end of every clause
-			var endOfIfStatementLabel = RegisterLabel ("endif");
+                // Stack now contains [currentValue, expressionValue]
 
-			foreach (var clause in statement.clauses) {
-				var endOfClauseLabel = RegisterLabel ("skipclause");
+                switch (statement.operation) {
 
-				if (clause.expression != null) {
-					
-					GenerateCode (node, clause.expression);
+                case TokenType.AddAssign:
+                    Emit (node, ByteCode.CallFunc, TokenType.Add.ToString ());
+                    break;
+                case TokenType.MinusAssign:
+                    Emit (node, ByteCode.CallFunc, TokenType.Minus.ToString ());
+                    break;
+                case TokenType.MultiplyAssign:
+                    Emit (node, ByteCode.CallFunc, TokenType.Multiply.ToString ());
+                    break;
+                case TokenType.DivideAssign:
+                    Emit (node, ByteCode.CallFunc, TokenType.Divide.ToString ());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException ();
+                }
 
-					Emit (node, ByteCode.JumpIfFalse, endOfClauseLabel);
+                // Stack now contains [destinationValue]
+            }
 
-				}
+            // Store the top of the stack in the variable
+            Emit(node, ByteCode.StoreVariable, statement.destinationVariableName);
 
-				GenerateCode (node, clause.statements);
+            // Clean up the stack
+            Emit (node, ByteCode.Pop);
 
-				Emit (node, ByteCode.JumpTo, endOfIfStatementLabel);
+        }
 
-				if (clause.expression != null) {
-					Emit (node, ByteCode.Label, endOfClauseLabel);
-				}
-				// Clean up the stack by popping the expression that was tested earlier
-				if (clause.expression != null) {
-					Emit (node, ByteCode.Pop);
-				}
-			}
+        void GenerateCode(Node node, Parser.Expression expression) {
 
-			Emit (node, ByteCode.Label, endOfIfStatementLabel);
-		}
+            // Expressions are either plain values, or function calls
+            switch (expression.type) {
+            case Parser.Expression.Type.Value:
+                // Plain value? Emit that
+                GenerateCode (node, expression.value);
+                break;
+            case Parser.Expression.Type.FunctionCall:
+                // Evaluate all parameter expressions (which will
+                // push them to the stack)
+                foreach (var parameter in expression.parameters) {
+                    GenerateCode (node, parameter);
+                }
+                // If this function has a variable number of parameters, put
+                // the number of parameters that were passed onto the stack
+                if (expression.function.paramCount == -1) {
+                    Emit (node, ByteCode.PushNumber, expression.parameters.Count);
+                }
 
-		void GenerateCode(Node node, Parser.OptionStatement statement) {
+                // And then call the function
+                Emit (node, ByteCode.CallFunc, expression.function.name);
+                break;
+            }
+        }
 
-			var destination = statement.destination;
+        void GenerateCode(Node node, Parser.ValueNode value) {
 
-			if (statement.label == null) {
-				// this is a jump to another node
-				Emit(node, ByteCode.RunNode, destination); 
-			} else {
-				var stringID = program.RegisterString (statement.label, node.name);
-
-				Emit (node, ByteCode.AddOption, stringID, destination);
-			}
-
-		}
-
-		void GenerateCode(Node node, Parser.AssignmentStatement statement) {
-
-			// Is it a straight assignment?
-			if (statement.operation == TokenType.EqualToOrAssign) {
-				// Evaluate the expression, which will result in a value
-				// on the stack
-				GenerateCode (node, statement.valueExpression);
+            // Push a value onto the stack
 
-				// Stack now contains [destinationValue]
-			} else {
+            switch (value.value.type) {
+            case Value.Type.Number:
+                Emit (node, ByteCode.PushNumber, value.value.numberValue);
+                break;
+            case Value.Type.String:
+                // TODO: we use 'null' as the line ID here because strings used in expressions
+                // don't have a #line: tag we can use
+                var id = program.RegisterString (value.value.stringValue, node.name, null, value.lineNumber, false);
+                Emit (node, ByteCode.PushString, id);
+                break;
+            case Value.Type.Bool:
+                Emit (node, ByteCode.PushBool, value.value.boolValue);
+                break;
+            case Value.Type.Variable:
+                Emit (node, ByteCode.PushVariable, value.value.variableName);
+                break;
+            case Value.Type.Null:
+                Emit (node, ByteCode.PushNull);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException ();
+            }
+        }
 
-				// It's a combined operation-plus-assignment
-
-				// Get the current value of the variable
-				Emit(node, ByteCode.PushVariable, statement.destinationVariableName);
-
-				// Evaluate the expression, which will result in a value
-				// on the stack
-				GenerateCode (node, statement.valueExpression);
-
-				// Stack now contains [currentValue, expressionValue]
-
-				switch (statement.operation) {
-
-				case TokenType.AddAssign:
-					Emit (node, ByteCode.CallFunc, TokenType.Add.ToString ());
-					break;
-				case TokenType.MinusAssign:
-					Emit (node, ByteCode.CallFunc, TokenType.Minus.ToString ());
-					break;
-				case TokenType.MultiplyAssign:
-					Emit (node, ByteCode.CallFunc, TokenType.Multiply.ToString ());
-					break;
-				case TokenType.DivideAssign:
-					Emit (node, ByteCode.CallFunc, TokenType.Divide.ToString ());
-					break;
-				default:
-					throw new ArgumentOutOfRangeException ();
-				}
-
-				// Stack now contains [destinationValue]
-			}
-
-			// Store the top of the stack in the variable
-			Emit(node, ByteCode.StoreVariable, statement.destinationVariableName);
-
-			// Clean up the stack
-			Emit (node, ByteCode.Pop);
-
-		}
-
-		void GenerateCode(Node node, Parser.Expression expression) {
-
-			// Expressions are either plain values, or function calls
-			switch (expression.type) {
-			case Parser.Expression.Type.Value:
-				// Plain value? Emit that
-				GenerateCode (node, expression.value);
-				break;
-			case Parser.Expression.Type.FunctionCall:
-				// Evaluate all parameter expressions (which will
-				// push them to the stack)
-				foreach (var parameter in expression.parameters) {
-					GenerateCode (node, parameter);
-				}
-				// If this function has a variable number of parameters, put
-				// the number of parameters that were passed onto the stack
-				if (expression.function.paramCount == -1) {
-					Emit (node, ByteCode.PushNumber, expression.parameters.Count);
-				}
-
-				// And then call the function
-				Emit (node, ByteCode.CallFunc, expression.function.name);
-				break;
-			}
-		}
-
-		void GenerateCode(Node node, Parser.ValueNode value) {
-
-			// Push a value onto the stack
-
-			switch (value.value.type) {
-			case Value.Type.Number:
-				Emit (node, ByteCode.PushNumber, value.value.numberValue);
-				break;
-			case Value.Type.String:
-				var id = program.RegisterString (value.value.stringValue, node.name);
-				Emit (node, ByteCode.PushString, id);
-				break;
-			case Value.Type.Bool:
-				Emit (node, ByteCode.PushBool, value.value.boolValue);
-				break;
-			case Value.Type.Variable:
-				Emit (node, ByteCode.PushVariable, value.value.variableName);
-				break;
-			case Value.Type.Null:
-				Emit (node, ByteCode.PushNull);
-				break;
-			default:
-				throw new ArgumentOutOfRangeException ();
-			}
-		}
-
-
-
-
-	}
+    }
 }
 

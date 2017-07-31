@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
+Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,482 +27,664 @@ SOFTWARE.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CsvHelper;
+using CommandLine;
 
 namespace Yarn
 {
 
-	class YarnSpinnerConsole
-	{
+    // Shared options for all commands
+    class BaseOptions
+    {
+        [Option('d', "debug", HelpText = "Show debugging information.")]
+        public bool showDebuggingInfo { get; set; }
 
-		static void ShowHelpAndExit() {
-			Console.WriteLine ("YarnSpinner: Executes Yarn dialog files.");
-			Console.WriteLine ();
-			Console.WriteLine ("Usage:");
-			Console.WriteLine ("YarnSpinner [-t] [-p] [-h] [-w] [-o=<node>] [-r=<run times>] [-s=<start>] [-v<argname>=<value>] <inputfile>");
-			Console.WriteLine ();
-			Console.WriteLine ("\t-t: Show the list of parsed tokens and exit.");
-			Console.WriteLine ("\t-p: Show the parse tree and exit.");
-			Console.WriteLine ("\t-w: After showing each line, wait for the user to press a key.");
-			Console.WriteLine ("\t-s: Start at the given node, instead of the default ('" + Dialogue.DEFAULT_START + "').");
-			Console.WriteLine ("\t-v: Sets the variable 'argname' to 'value'.");
-			Console.WriteLine ("\t-V: Verifies the provided script");
-			Console.WriteLine ("\t-o: Only consider the node named <node>.");
-			Console.WriteLine ("\t-r: Run the script N times. Default is 1.");
-			Console.WriteLine ("\t-d: Show debugging information.");
-			Console.WriteLine ("\t-c: Show program bytecode and exit.");
-			Console.WriteLine ("\t-f: Write program bytecode to file and exit.");
-			Console.WriteLine ("\t-a: Show analysis of the program and exit.");
-			Console.WriteLine ("\t-1: Automatically select the the first option when presented with options.");
-			Console.WriteLine ("\t-h: Show this message and exit.");
 
-			Environment.Exit (0);
-		}
+        [Option('v', "verbose", HelpText = "Be verbose.")]
+        public bool verbose { get; set; }
 
-		public static void Main (string[] args)
-		{
+        [Value(0, MetaName = "source files", HelpText = "The files to use.")]
+        public IList<string> files { get; set; }
 
-			if (args.Length == 0) {
-				ShowHelpAndExit ();
+    }
+
+    // Options that pertain to compilation/execution
+    class ExecutionOptions : BaseOptions
+    {
+        [Option('T', "string-table", HelpText = "The string table to use.")]
+        public string stringTable { get; set; }
+
+		[Option('o', "only-node", HelpText = "Only consider this node.")]
+
+		public string onlyConsiderNode { get; set; }
+		[Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
+		public bool experimental { get; set; }
+	}
+
+    [Verb("verify", HelpText = "Verifies files.")]
+    class VerifyOptions : ExecutionOptions
+    {
+        [Option('t', "show-tokens", HelpText = "Show the list of parsed tokens and exit.")]
+        public bool showTokensAndExit { get; set; }
+
+        [Option('p', "show-parse-tree", HelpText = "Show the parse tree and exit.")]
+        public bool showParseTreeAndExit { get; set; }
+
+        [Option('c', "dump-bytecode", HelpText = "Show program bytecode and exit.")]
+        public bool compileAndExit { get; set; }
+
+		[Option('v', "list-variables", HelpText = "List the variables used in the program.")]
+		public bool listVariables { get; set; }
+	}
+
+    [Verb("run", HelpText = "Runs files.")]
+    class RunOptions : ExecutionOptions
+    {
+
+        [Option('w', "wait-for-input", HelpText = "After showing each line, wait for the user to press a key.")]
+        public bool waitForInput { get; set; }
+
+        [Option('s', "start-node", Default = Dialogue.DEFAULT_START, HelpText = "Start at the given node.")]
+        public string startNode { get; set; }
+
+        [Option('V', "variables", HelpText = "Set default variable.")]
+        public IList<string> variables { get; set; }
+
+        [Option('r', "run-times", HelpText = "Run the script this many times.", Default = 1)]
+        public int runTimes { get; set; }
+
+        [Option('1', "select-first-choice", HelpText = "Automatically select the the first option when presented with options.")]
+        public bool automaticallySelectFirstOption { get; set; }
+
+    }
+
+    [Verb("compile", HelpText = "Compiles the provided files.")]
+    class CompileOptions : BaseOptions
+    {
+        [Option("format", HelpText = "The file format version to use.")]
+        public Dialogue.CompiledFormat format { get; set; }
+    }
+
+    [Verb("genstrings", HelpText = "Generates string tables from provided files.")]
+    class GenerateTableOptions : BaseOptions
+    {
+        [Option("only-tag", HelpText = "Only use nodes that have this tag.")]
+        public string onlyUseTag { get; set; }
+    }
+
+    [Verb("taglines", HelpText = "Adds localisation tags to the provided files, where necessary.")]
+    class AddLabelsOptions : BaseOptions
+    {
+
+        [Option("dry-run", HelpText = "Don't actually modify the contents of any files.")]
+        public bool dryRun { get; set; }
+
+        [Option("only-tag", HelpText = "Only use nodes that have this tag.")]
+        public string onlyUseTag { get; set; }
+
+    }
+    [Verb("convert", HelpText = "Converts files from one format to another.")]
+    class ConvertFormatOptions : BaseOptions
+    {
+        [Option("json", HelpText = "Convert to JSON", SetName = "format")]
+        public bool convertToJSON { get; set; }
+
+        [Option("yarn", HelpText = "Convert to Yarn", SetName = "format")]
+        public bool convertToYarn { get; set; }
+
+        [Option('o', "output-dir", HelpText = "The destination directory. Defaults to each file's source folder.")]
+        public string outputDirectory { get; set; }
+    }
+
+    class YarnSpinnerConsole
+    {
+
+        internal static Dialogue CreateDialogueForUtilities()
+        {
+
+            // Note that we're passing in with a null library - this means
+            // that all function checking will be disabled, and missing funcs
+            // will not cause a compile error. If a func IS missing at runtime,
+            // THAT will throw an exception.
+
+            // We do this because this tool has no idea about any of the custom
+            // functions that you might be using.
+
+            Dialogue d = new Dialogue(null);
+
+            // Debug logging goes to Note
+            d.LogDebugMessage = message => YarnSpinnerConsole.Note(message);
+
+            // When erroring, call Warn, not Error, which terminates the program
+            d.LogErrorMessage = message => YarnSpinnerConsole.Warn(message);
+
+            return d;
+        }
+
+        public static void Error(params string[] messages)
+        {
+
+            foreach (var message in messages)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("Error: ");
+                Console.ResetColor();
+                Console.WriteLine(message);
+            }
+
+            Environment.Exit(1);
+        }
+
+        public static void Note(params string[] messages)
+        {
+
+            foreach (var message in messages)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.Write("Note: ");
+                Console.ResetColor();
+                Console.WriteLine(message);
+            }
+
+
+        }
+
+        public static void Warn(params string[] messages)
+        {
+            foreach (var message in messages)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("Warning: ");
+                Console.ResetColor();
+                Console.WriteLine(message);
+            }
+        }
+
+        static internal void CheckFileList(IList<string> paths, List<string> allowedExtensions)
+        {
+
+            if (paths.Count == 0)
+            {
+                Warn("No files provided.");
+                return;
+            }
+
+            var invalid = new List<string>();
+
+            foreach (var path in paths)
+            {
+                // Does this file exist?
+                var exists = System.IO.File.Exists(path);
+
+                // Does this file have the right extension?
+
+                var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item)) != -1;
+
+                if (!exists || !hasAllowedExtension)
+                {
+                    invalid.Add(string.Format("\"{0}\"", path));
+                }
+            }
+
+            if (invalid.Count != 0)
+            {
+
+                var message = string.Format("The file{0} {1} {2}.",
+                    invalid.Count == 1 ? "" : "s",
+                                            string.Join(", ", invalid.ToArray()),
+                    invalid.Count == 1 ? "is not valid" : "are not valid"
+                );
+
+                Error(message);
+            }
+        }
+        public static void Main(string[] args)
+        {
+
+            // Read and dispatch the appropriate command
+            var results = CommandLine.Parser.Default.ParseArguments
+            <
+            RunOptions,
+            VerifyOptions,
+            CompileOptions,
+            GenerateTableOptions,
+            AddLabelsOptions,
+            ConvertFormatOptions
+            >(args);
+
+            var returnCode = results.MapResult(
+                (RunOptions options) => Run(options),
+                (VerifyOptions options) => Verify(options),
+                (CompileOptions options) => ProgramExporter.Export(options),
+                (AddLabelsOptions options) => LineAdder.AddLines(options),
+                (GenerateTableOptions options) => TableGenerator.GenerateTables(options),
+                (ConvertFormatOptions options) => FileFormatConverter.ConvertFormat(options),
+
+                errors => { return 1; });
+
+            Environment.Exit(returnCode);
+
+
+        }
+
+        static internal List<string> ALLOWED_EXTENSIONS = new List<string>(new string[] { ".json", ".node", ".yarn.bytes", ".yarn.txt" });
+
+        static int Run(RunOptions options)
+        {
+
+            CheckFileList(options.files, ALLOWED_EXTENSIONS);
+
+            // Create the object that handles callbacks
+            var impl = new ConsoleRunnerImplementation(waitForLines: options.waitForInput);
+
+            // load the default variables we got on the command line
+            foreach (var variable in options.variables)
+            {
+                var entry = variable.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
+
+                float value;
+                // If there aren't two parts to this or the second part isn't a float, fail
+                if (entry.Length != 2 || float.TryParse(entry[1], out value) == false)
+                {
+                    Warn(string.Format("Skipping invalid variable {0}", variable));
+                    continue;
+                }
+                var name = entry[0];
+
+                impl.SetNumber(name, value);
+            }
+
+            if (options.automaticallySelectFirstOption == true)
+            {
+                impl.autoSelectFirstOption = true;
+            }
+
+            Dialogue dialogue = CreateDialogue(options, impl);
+
+            // Run the conversation
+
+            for (int run = 0; run < options.runTimes; run++)
+            {
+                foreach (var step in dialogue.Run(options.startNode))
+                {
+
+                    // It can be one of three types: a line to show, options
+                    // to present to the user, or an internal command to run
+
+                    if (step is Dialogue.LineResult)
+                    {
+                        var lineResult = step as Dialogue.LineResult;
+                        impl.RunLine(lineResult.line);
+                    }
+                    else if (step is Dialogue.OptionSetResult)
+                    {
+                        var optionsResult = step as Dialogue.OptionSetResult;
+                        impl.RunOptions(optionsResult.options, optionsResult.setSelectedOptionDelegate);
+                    }
+                    else if (step is Dialogue.CommandResult)
+                    {
+                        var commandResult = step as Dialogue.CommandResult;
+                        impl.RunCommand(commandResult.command.text);
+                    }
+                }
+                impl.DialogueComplete();
+            }
+            return 0;
+        }
+
+        static int Verify(VerifyOptions options)
+        {
+
+            CheckFileList(options.files, ALLOWED_EXTENSIONS);
+
+            Dialogue dialogue;
+            try
+            {
+                dialogue = CreateDialogue(options, null);
+            }
+            catch
+            {
+                return 1;
+            }
+
+            if (options.compileAndExit)
+            {
+                var result = dialogue.GetByteCode();
+                Console.WriteLine(result);
+                return 0;
+            }
+
+            var context = new Yarn.Analysis.Context();
+
+            dialogue.Analyse(context);
+
+            foreach (var diagnosis in context.FinishAnalysis())
+            {
+                switch (diagnosis.severity)
+                {
+                    case Analysis.Diagnosis.Severity.Error:
+                        Error(diagnosis.ToString(showSeverity: false));
+                        break;
+                    case Analysis.Diagnosis.Severity.Warning:
+                        Warn(diagnosis.ToString(showSeverity: false));
+                        break;
+                    case Analysis.Diagnosis.Severity.Note:
+                        Note(diagnosis.ToString(showSeverity: false));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+            }
+            return 0;
+
+        }
+
+        static internal Dialogue CreateDialogue(ExecutionOptions options, ConsoleRunnerImplementation impl)
+        {
+
+            // Load nodes
+            var dialogue = new Dialogue(impl);
+
+			if (options.experimental)
+			{
+				Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
+				dialogue.experimentalMode = true;
 			}
-
-			bool showTokens = false;
-			bool showParseTree = false;
-			bool waitForLines = false;
-			string onlyConsiderNode = null;
-			bool showDebugging = false;
-			int runTimes = 1;
-			bool compileToBytecodeOnly = false;
-			bool verifyOnly = false;
-			bool autoSelectFirstOption = false;
-			bool analyseOnly = false;
-			string outputFile = null;
-
-			var inputFiles = new List<string> ();
-			string startNode = Dialogue.DEFAULT_START;
-
-			string[] allowedExtensions = {".node", ".json" };
-
-			var defaultVariables = new Dictionary<string,float> ();
-
-			foreach (var arg in args) {
-
-				// Handle 'start' parameter
-				if (arg.IndexOf("-s=") != -1) {
-					var startArray = arg.Split (new char[]{ '=' });
-					if (startArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						startNode = startArray [1];
-						continue;
-					}
-				}
-
-				// Handle variable input
-				if (arg.IndexOf("-v") != -1) {
-					var variable = arg.Substring (2);
-					var variableArray = variable.Split (new char[]{ '=' });
-					if (variableArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						var varName = "$" + variableArray [0];
-						var varValue = float.Parse (variableArray [1]);
-						defaultVariables [varName] = varValue;
-						continue;
-					}
-
-				}
-
-				// Handle 'only this node' parameter
-				if (arg.IndexOf("-o=") != -1) {
-					var startArray = arg.Split (new char[]{ '=' });
-					if (startArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						onlyConsiderNode = startArray [1];
-						continue;
-					}
-				}
-
-				// Handle 'run times' parameter
-				if (arg.IndexOf("-r=") != -1) {
-					var argArray = arg.Split ('=');
-					if (argArray.Length != 2) {
-						ShowHelpAndExit ();
-					} else {
-						runTimes = int.Parse (argArray [1]);
-						continue;
-					}
-
-				}
-
-				// Handle 'output file' parameter
-				if (arg.IndexOf("-f=") != -1) {
-					var argArray = arg.Split('=');
-					if (argArray.Length != 2) {
-						ShowHelpAndExit();
-					} else {
-						outputFile = argArray[1];
-						continue;
-					}
-				}
-
-				switch (arg) {
-				case "-V":
-					verifyOnly = true;
-					break;
-				case "-t":
-					showTokens = true;
-					showDebugging = true;
-					break;
-				case "-p":
-					showParseTree = true;
-					showDebugging = true;
-					break;
-				case "-w":
-					waitForLines = true;
-					break;
-				case "-d":
-					showDebugging = true;
-					break;
-				case "-c":
-					compileToBytecodeOnly = true;
-					break;
-				case "-1":
-					autoSelectFirstOption = true;
-					break;
-				case "-h":
-					ShowHelpAndExit ();
-					break;
-				case "-a":
-					analyseOnly = true;
-					break;
-				default:
-
-					// only allow one file
-					if (inputFiles.Count > 0) {
-						Console.Error.WriteLine ("Error: Too many files specified.");
-						Environment.Exit (1);
-					}
-
-					var extension = System.IO.Path.GetExtension (arg);
-					if (Array.IndexOf(allowedExtensions, extension) != -1) {
-						inputFiles.Add (arg);
-					}
-					break;
-				}
-			}
-
-			if (inputFiles.Count == 0) {
-				Console.Error.WriteLine ("Error: No files specified.");
-				Environment.Exit (1);
-			}
-
-			// Create the object that handles callbacks
-			var impl = new ConsoleRunnerImplementation (waitForLines:waitForLines);
-
-			// load the default variables we got on the command line
-			foreach (var variable in defaultVariables) {
-
-				impl.SetNumber (variable.Key, variable.Value);
-			}
-
-			// Load nodes
-			var dialogue = new Dialogue(impl);
-
 
 			// Add some methods for testing
-			dialogue.library.RegisterFunction ("add_three_operands", 3, delegate(Value[] parameters) {
-				return parameters[0]+parameters[1]+parameters[2];
+			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
+			{
+				return parameters[0] + parameters[1] + parameters[2];
 			});
 
-			dialogue.library.RegisterFunction ("last_value", -1, delegate(Value[] parameters) {
-				// return the last value
-				return parameters[parameters.Length-1];
-			});
-
-			dialogue.library.RegisterFunction ("is_even", 1, delegate(Value[] parameters) {
-				return (int)parameters[0].AsNumber % 2 == 0;
-			});
-
-			// Register the "assert" function, which stops execution if its parameter evaluates to false
-			dialogue.library.RegisterFunction ("assert", -1, delegate(Value[] parameters) {
-				if (parameters[0].AsBool == false) {
-
-					// TODO: Include file, node and line number
-					if( parameters.Length > 1 && parameters[1].AsBool ) {
-						dialogue.LogErrorMessage ("ASSERTION FAILED: " + parameters[1].AsString);
-					} else {
-						dialogue.LogErrorMessage ("ASSERTION FAILED");
-					}
-					Environment.Exit(1);
-				}
-			});
-
-
-			// Register a function to let test scripts register how many
-			// options they expect to send
-			dialogue.library.RegisterFunction ("prepare_for_options", 2, delegate(Value[] parameters) {
-				impl.numberOfExpectedOptions = (int)parameters [0].AsNumber;
-				impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
-			});
-
-			dialogue.library.RegisterFunction ("expect_line", 1, delegate(Value[] parameters) {
-				impl.expectedNextLine = parameters[0].AsString;
-			});
-
-			dialogue.library.RegisterFunction ("expect_command", 1, delegate(Value[] parameters) {
-				impl.expectedNextCommand = parameters[0].AsString;
-			});
-
-			if (autoSelectFirstOption == true) {
-				impl.autoSelectFirstOption = true;
-			}
-
-			// If debugging is enabled, log debug messages; otherwise, ignore them
-			if (showDebugging) {
-				dialogue.LogDebugMessage = delegate(string message) {
-					Console.WriteLine ("Debug: " + message);
-				};
-			} else {
-				dialogue.LogDebugMessage = delegate(string message) {};
-			}
-
-			dialogue.LogErrorMessage = delegate(string message) {
-				Console.WriteLine ("ERROR: " + message);
-			};
-
-			if (verifyOnly) {
-				try {
-					dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
-				} catch (Exception e) {
-					Console.WriteLine ("Error: " + e.Message);
-				}
-				return;
-			}
-
-			dialogue.LoadFile (inputFiles [0],showTokens, showParseTree, onlyConsiderNode);
-
-			if (outputFile != null) {
-				var result = dialogue.GetByteCode();
-				System.Text.UTF8Encoding utf8 = new System.Text.UTF8Encoding();
-				using (System.IO.StreamWriter file = new System.IO.StreamWriter(outputFile, false, utf8)) {
-					file.Write(result);
-				}
-				return;
-			}
-
-			if (compileToBytecodeOnly) {
-				var result = dialogue.GetByteCode ();
-				Console.WriteLine (result);
-				return;
-			}
-
-			if (analyseOnly) {
-
-				var context = new Yarn.Analysis.Context ();
-
-				dialogue.Analyse (context);
-
-				foreach (var diagnosis in context.FinishAnalysis()) {
-					Console.WriteLine (diagnosis.ToString(showSeverity:true));
-				}
-				return;
-			}
-
-			// Only run the program when we're not emitting debug output of some kind
-			var runProgram =
-				showTokens == false &&
-				showParseTree == false &&
-				compileToBytecodeOnly == false &&
-				analyseOnly == false;
-
-			if (runProgram) {
-				// Run the conversation
+            dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
+            {
+                // return the last value
+                return parameters[parameters.Length - 1];
+            });
+
+            dialogue.library.RegisterFunction("is_even", 1, delegate (Value[] parameters)
+            {
+                return (int)parameters[0].AsNumber % 2 == 0;
+            });
+
+            // Register the "assert" function, which stops execution if its parameter evaluates to false
+            dialogue.library.RegisterFunction("assert", -1, delegate (Value[] parameters)
+            {
+                if (parameters[0].AsBool == false)
+                {
+
+                    // TODO: Include file, node and line number
+                    if (parameters.Length > 1 && parameters[1].AsBool)
+                    {
+                        dialogue.LogErrorMessage("ASSERTION FAILED: " + parameters[1].AsString);
+                    }
+                    else {
+                        dialogue.LogErrorMessage("ASSERTION FAILED");
+                    }
+                    Environment.Exit(1);
+                }
+            });
+
+
+            // Register a function to let test scripts register how many
+            // options they expect to send
+            dialogue.library.RegisterFunction("prepare_for_options", 2, delegate (Value[] parameters)
+            {
+                impl.numberOfExpectedOptions = (int)parameters[0].AsNumber;
+                impl.autoSelectOptionNumber = (int)parameters[1].AsNumber;
+            });
+
+            dialogue.library.RegisterFunction("expect_line", 1, delegate (Value[] parameters)
+            {
+                impl.expectedNextLine = parameters[0].AsString;
+            });
+
+            dialogue.library.RegisterFunction("expect_command", 1, delegate (Value[] parameters)
+            {
+                impl.expectedNextCommand = parameters[0].AsString;
+            });
+
+            // If debugging is enabled, log debug messages; otherwise, ignore them
+            if (options.showDebuggingInfo)
+            {
+                dialogue.LogDebugMessage = delegate (string message)
+                {
+                    Note(message);
+                };
+            }
+            else {
+                dialogue.LogDebugMessage = delegate (string message) { };
+            }
+
+            dialogue.LogErrorMessage = delegate (string message)
+            {
+                Warn("Yarn Error: " + message);
+            };
+
+            foreach (var file in options.files) {
+                try {
+                    dialogue.LoadFile(file, false, false, options.onlyConsiderNode);
+                } catch (Yarn.TokeniserException e) {
+                    Warn(e.Message);
+                } catch (Yarn.ParseException e) {
+                    Warn(e.Message);
+                }
+
+            }
+
+            // Load string table
+            if (options.stringTable != null)
+            {
+
+                var parsedTable = new Dictionary<string, string>();
+
+                using (var reader = new System.IO.StreamReader(options.stringTable))
+                {
+                    using (var csvReader = new CsvReader(reader))
+                    {
+                        if (csvReader.ReadHeader() == false)
+                        {
+                            Error(string.Format("{0} is not a valid string table", options.stringTable));
+                        }
+
+                        foreach (var row in csvReader.GetRecords<LocalisedLine>())
+                        {
+                            parsedTable[row.LineCode] = row.LineText;
+                        }
+                    }
+                }
+
+                dialogue.AddStringTable(parsedTable);
+            }
+
+            return dialogue;
+        }
 
-				for (int run = 0; run < runTimes; run++) {
-					foreach (var step in dialogue.Run (startNode)) {
+        // A simple Implementation for the command line.
+        internal class ConsoleRunnerImplementation : Yarn.VariableStorage
+        {
 
-						// It can be one of three types: a line to show, options
-						// to present to the user, or an internal command to run
+            private bool waitForLines = false;
 
-						if (step is Dialogue.LineResult) {
-							var lineResult = step as Dialogue.LineResult;
-							impl.RunLine (lineResult.line);
-						} else if (step is Dialogue.OptionSetResult) {
-							var optionsResult = step as Dialogue.OptionSetResult;
-							impl.RunOptions (optionsResult.options, optionsResult.setSelectedOptionDelegate);
-						} else if (step is Dialogue.CommandResult) {
-							var commandResult = step as Dialogue.CommandResult;
-							impl.RunCommand (commandResult.command.text);
-						}
-					}
-					impl.DialogueComplete ();
-				}
+            Yarn.MemoryVariableStore variableStore;
 
+            // The number of options we expect to see when we next
+            // receive options. -1 means "don't care"
+            public int numberOfExpectedOptions = -1;
 
-			}
+            // The index of the option to automatically select, starting from 0.
+            // -1 means "do not automatically select an option".
+            public int autoSelectOptionNumber = -1;
 
-		}
+            public string expectedNextLine = null;
 
-		// A simple Implementation for the command line.
-		private class ConsoleRunnerImplementation : Yarn.VariableStorage {
+            public string expectedNextCommand = null;
 
-			private bool waitForLines = false;
+            public bool autoSelectFirstOption = false;
 
-			Yarn.MemoryVariableStore variableStore;
+            public ConsoleRunnerImplementation(bool waitForLines = false)
+            {
+                this.variableStore = new MemoryVariableStore();
+                this.waitForLines = waitForLines;
+            }
 
-			// The number of options we expect to see when we next
-			// receive options. -1 means "don't care"
-			public int numberOfExpectedOptions = -1;
+            public void RunLine(Yarn.Line lineText)
+            {
 
-			// The index of the option to automatically select, starting from 0.
-			// -1 means "do not automatically select an option".
-			public int autoSelectOptionNumber = -1;
+                if (expectedNextLine != null && expectedNextLine != lineText.text)
+                {
+                    // TODO: Output diagnostic info here
+                    Error(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
+                        expectedNextLine, lineText.text));
 
-			public string expectedNextLine = null;
+                }
 
-			public string expectedNextCommand = null;
+                expectedNextLine = null;
 
-			public bool autoSelectFirstOption = false;
+                Console.WriteLine(lineText.text);
+                if (waitForLines == true)
+                {
+                    Console.Read();
+                }
+            }
 
-			public ConsoleRunnerImplementation(bool waitForLines = false) {
-				this.variableStore = new MemoryVariableStore();
-				this.waitForLines = waitForLines;
-			}
+            public void RunOptions(Options optionsGroup, OptionChooser optionChooser)
+            {
 
-			public void RunLine (Yarn.Line lineText)
-			{
+                Console.WriteLine("Options:");
+                for (int i = 0; i < optionsGroup.options.Count; i++)
+                {
+                    var optionDisplay = string.Format("{0}. {1}", i + 1, optionsGroup.options[i]);
+                    Console.WriteLine(optionDisplay);
+                }
 
-				if (expectedNextLine != null && expectedNextLine != lineText.text) {
-					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
-						expectedNextLine, lineText.text));
-					Environment.Exit (1);
-				}
 
-				expectedNextLine = null;
+                // Check to see if the number of expected options
+                // is what we're expecting to see
+                if (numberOfExpectedOptions != -1 &&
+                    optionsGroup.options.Count != numberOfExpectedOptions)
+                {
+                    // TODO: Output diagnostic info here
+                    Error(string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
 
-				Console.WriteLine (lineText.text);
-				if (waitForLines == true) {
-					Console.Read();
-				}
-			}
+                }
 
-			public void RunOptions (Options optionsGroup, OptionChooser optionChooser)
-			{
+                // If we were told to automatically select an option, do so
+                if (autoSelectOptionNumber != -1)
+                {
+                    Note(string.Format("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
 
-				Console.WriteLine("Options:");
-				for (int i = 0; i < optionsGroup.options.Count; i++) {
-					var optionDisplay = string.Format ("{0}. {1}", i + 1, optionsGroup.options [i]);
-					Console.WriteLine (optionDisplay);
-				}
+                    optionChooser(autoSelectOptionNumber);
 
+                    autoSelectOptionNumber = -1;
 
-				// Check to see if the number of expected options
-				// is what we're expecting to see
-				if (numberOfExpectedOptions != -1 &&
-					optionsGroup.options.Count != numberOfExpectedOptions) {
-					// TODO: Output diagnostic info here
-					Console.WriteLine (string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
-					Environment.Exit (1);
-				}
+                    return;
 
-				// If we were told to automatically select an option, do so
-				if (autoSelectOptionNumber != -1) {
-					Console.WriteLine ("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber);
+                }
 
-					optionChooser (autoSelectOptionNumber);
+                // Reset the expected options counter
+                numberOfExpectedOptions = -1;
 
-					autoSelectOptionNumber = -1;
 
-					return;
 
-				}
+                if (autoSelectFirstOption == true)
+                {
+                    Note("[automatically choosing option 1]");
+                    optionChooser(0);
+                    return;
+                }
 
-				// Reset the expected options counter
-				numberOfExpectedOptions = -1;
+                do
+                {
+                    Console.Write("? ");
+                    try
+                    {
+                        var selectedKey = Console.ReadKey().KeyChar.ToString();
+                        int selection;
 
+                        if (int.TryParse(selectedKey, out selection) == true)
+                        {
+                            Console.WriteLine();
 
+                            // we present the list as 1,2,3, but the API expects
+                            // answers as 0,1,2
+                            selection -= 1;
 
-				if (autoSelectFirstOption == true) {
-					Console.WriteLine ("[automatically choosing option 1]");
-					optionChooser (0);
-					return;
-				}
+                            if (selection > optionsGroup.options.Count)
+                            {
+                                Console.WriteLine("Invalid option.");
+                            }
+                            else {
+                                optionChooser(selection);
+                                break;
+                            }
+                        }
 
-				do {
-					Console.Write ("? ");
-					try {
-						var selectedKey = Console.ReadKey ().KeyChar.ToString();
-						var selection = int.Parse (selectedKey) - 1;
-						Console.WriteLine();
+                    }
+                    catch (FormatException) { }
 
-						if (selection > optionsGroup.options.Count) {
-							Console.WriteLine ("Invalid option.");
-						} else {
-							optionChooser(selection);
-							break;
-						}
-					} catch (FormatException) {}
+                } while (true);
+            }
 
-				} while (true);
-			}
+            public void RunCommand(string command)
+            {
 
-			public void RunCommand (string command)
-			{
+                if (expectedNextCommand != null && expectedNextCommand != command)
+                {
+                    // TODO: Output diagnostic info here
+                    Error(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
+                                        expectedNextCommand, command));
+                }
 
-				if (expectedNextCommand != null && expectedNextCommand != command) {
-					// TODO: Output diagnostic info here
-					Console.WriteLine(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
-						expectedNextCommand, command));
-					Environment.Exit (1);
-				}
+                expectedNextCommand = null;
 
-				expectedNextCommand = null;
+                Console.WriteLine("Command: <<" + command + ">>");
+            }
 
-				Console.WriteLine("Command: <<"+command+">>");
-			}
+            public void DialogueComplete()
+            {
+                // All done
+            }
 
-			public void DialogueComplete ()
-			{
-				// All done
-			}
+            public void HandleErrorMessage(string error)
+            {
+                Error(error);
+            }
 
-			public void HandleErrorMessage (string error)
-			{
-				Console.WriteLine("Error: " + error);
-			}
+            public void HandleDebugMessage(string message)
+            {
+                Note(message);
+            }
 
-			public void HandleDebugMessage (string message)
-			{
-				Console.WriteLine("Debug: " + message);
-			}
+            public virtual void SetNumber(string variableName, float number)
+            {
+                variableStore.SetValue(variableName, new Value(number));
+            }
 
-			public virtual void SetNumber (string variableName, float number)
-			{
-				variableStore.SetNumber(variableName, number);
-			}
+            public virtual float GetNumber(string variableName)
+            {
+                return variableStore.GetValue(variableName).AsNumber;
+            }
 
-			public virtual float GetNumber (string variableName)
-			{
-				return variableStore.GetNumber(variableName);
-			}
+            public virtual void SetValue(string variableName, Value value)
+            {
+                variableStore.SetValue(variableName, value);
+            }
 
-			public virtual void SetValue (string variableName, Value value) {
-				variableStore.SetValue(variableName, value);
-			}
+            public virtual Value GetValue(string variableName)
+            {
+                return variableStore.GetValue(variableName);
+            }
 
-			public virtual Value GetValue (string variableName) {
-				return variableStore.GetValue(variableName);
-			}
+            public void Clear()
+            {
+                variableStore.Clear();
+            }
+        }
 
-			public void Clear()
-			{
-				variableStore.Clear();
-			}
-		}
 
-
-	}
+    }
 }
 
