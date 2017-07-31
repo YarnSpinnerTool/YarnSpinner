@@ -1,4 +1,4 @@
-# Yarn Dialogue - README
+# Writing Yarn Dialogue - README
 
 ## Introducing Yarn Dialogue
 

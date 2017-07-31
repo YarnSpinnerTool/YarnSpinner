@@ -20,6 +20,8 @@ bin/
 obj/
 *.userprefs
 
+### Visual Studio ###
+.vs/
 
 ### OSX ###
 .DS_Store
@@ -84,3 +86,4 @@ GPATH
 GRTAGS
 GTAGS
 GSYMS
+(??)
