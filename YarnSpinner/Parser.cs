@@ -170,7 +170,14 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("{type: \"Node\"; contents: [");
+				foreach(var statement in _statements) {
+					sb.Append(statement.ToJson(indentLevel+1));
+					// BUGGO: Trailing commas are theoretically 
+					// not allowed in json.
+					sb.Append(", ");
+				}
+				sb.Append("]}");
 				return sb.ToString();
 			}
 
@@ -265,9 +272,25 @@ namespace Yarn {
 			}
 
 			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("Placeholder");
-				return sb.ToString();
+				
+				switch (type) {
+				case Type.Block:
+					return block.ToJson (indentLevel);
+				case Type.IfStatement:
+					return ifStatement.ToJson (indentLevel);
+				case Type.OptionStatement:
+					return optionStatement.ToJson (indentLevel);
+				case Type.AssignmentStatement:
+					return assignmentStatement.ToJson (indentLevel);
+				case Type.ShortcutOptionGroup:
+					return shortcutOptionGroup.ToJson (indentLevel);
+				case Type.CustomCommand:
+					return customCommand.ToJson (indentLevel);
+				case Type.Line:
+					return "{type: \"Line\", contents: \"" + line + "\"}";
+				}
+
+				throw new ArgumentNullException ();
 			}
 		}
 
@@ -338,9 +361,13 @@ namespace Yarn {
 			}
 
 			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("Placeholder");
-				return sb.ToString();
+				switch (type) {
+				case Type.Expression:
+					return expression.ToJson (indentLevel + 1);
+				case Type.ClientCommand:
+					return "{type: \"Command\", contents: \"" + clientCommand + "\"}";
+				}
+				return "";
 			}
 		}
 
@@ -384,7 +411,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("ShortcutGroupPlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -439,7 +466,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("ShortcutOptionPlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -489,7 +516,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("PBlocklaceholder");
 				return sb.ToString();
 			}
 		}
@@ -554,7 +581,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("OptionPlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -699,7 +726,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("IfPlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -777,7 +804,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("ValuePlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -1128,7 +1155,7 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("ExpressionPlaceholder");
 				return sb.ToString();
 			}
 		}
@@ -1179,7 +1206,14 @@ namespace Yarn {
 
 			internal override string ToJson(int indentLevel=0) {
 				var sb = new StringBuilder();
-				sb.Append("Placeholder");
+				sb.Append("{type: \"Assignment\", ");
+				sb.Append("\"destination:\" \"");
+				sb.Append(destinationVariableName);
+				sb.Append("\", operation: \"");
+				sb.Append(operation.ToString());
+				sb.Append("\", value: ");
+				sb.Append(valueExpression.ToJson(indentLevel + 1));
+				sb.Append("}");
 				return sb.ToString();
 			}
 		}
@@ -1293,9 +1327,7 @@ namespace Yarn {
 			}
 
 			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("Placeholder");
-				return sb.ToString();
+				return "\"" + operatorType.ToString() + "\"";
 			}
 		}
 		#endregion Parse Nodes
