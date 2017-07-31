@@ -36,8 +36,8 @@ namespace YarnSpinner.Tests
                 return parameters[parameters.Length - 1];
             });
 
-
-        }
+			
+		}
 
         [Test]
         public void TestExampleScript()
@@ -102,7 +102,11 @@ namespace YarnSpinner.Tests
             {
                 dialogue.LoadFile(scriptFilePath);
 
-                RunStandardTestcase();
+                // If this file contains a Start node, run the test case
+                // (otherwise, we're just testing its parsability, which
+                // we did in the last line)
+                if (dialogue.NodeExists("Start"))
+                    RunStandardTestcase();
             }
         }
 
@@ -110,20 +114,32 @@ namespace YarnSpinner.Tests
         // Tests/TestCases directory.
         public static IEnumerable<string> FileSources() {
 
-            var testCasesPath = Path.Combine(TestDataPath, "TestCases");
+            var directory = "TestCases";
 
-            var allowedExtensions = new[] { ".node", ".json", ".yarn.txt" };
+            var allowedExtensions = new[] { ".node", ".json", ".txt" };
 
-            // taking only the filename to make the test case more readable in lists
-            // - it gets re-added in TestSources
+            var path = Path.Combine(TestDataPath, directory);
 
-            return Directory
-                .EnumerateFiles(testCasesPath)
-                .Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
-                .Select(p => Path.GetFileName(p));
+
+            var files = GetFilesInDirectory(path);
+
+            return files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+                        .Select(p => Path.GetFileName(p));
         }
 
-
+        // Returns the list of files in a directory. If that directory doesn't
+        // exist, returns an empty list.
+        static IEnumerable<string> GetFilesInDirectory(string path)
+        {
+            try
+            {
+                return Directory.EnumerateFiles(path);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return new string[] { };
+            }
+        }
     }
 
 }
