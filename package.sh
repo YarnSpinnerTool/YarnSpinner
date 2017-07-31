@@ -24,7 +24,6 @@
 
 LOGFILE="export.log"
 OUTDIR="$(pwd)/Builds"
-SOURCE_FILES="YarnSpinner/*.cs"
 
 NO_EXAMPLES=0
 
@@ -94,7 +93,7 @@ fi
 
 # Build the Yarn Spinner DLL
 echo "Building Yarn Spinner..."
-./build.sh
+./build.sh -b
 
 if [ $SOURCE_BUILD == 1 ]; then
     echo "Removing YarnSpinner.dll..."
@@ -103,7 +102,7 @@ if [ $SOURCE_BUILD == 1 ]; then
 
     echo "Copying Yarn Spinner source in..."
     # Copy the source files in
-    cp -v "$SOURCE_FILES" "Unity/Assets/YarnSpinner/Code/"
+    cp -v YarnSpinner/*.cs "Unity/Assets/YarnSpinner/Code/"
 
 fi
 
@@ -152,20 +151,20 @@ echo "Packaging Version $FULL_VERSION with Unity..."
 
 OUTFILE="$OUTDIR/YarnSpinner-$FULL_VERSION.unitypackage"
 
-# Find where Unity is installed; filter out any copies that include "b[num]"
-# (that is, beta versions); sort it to put the latest version name at the end,
-# then pick the last one
-UNITY="$(mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail -n 1)/Contents/MacOS/Unity"
+UNITY="/Applications/Unity 2017.1.0f3/Unity.app"
+UNITY_BINARY="$UNITY/Contents/MacOS/Unity"
 
-if [[ -f $UNITY ]]; then
+if [[ -f $UNITY_BINARY ]]; then
     echo "Using $UNITY"
 
     ASSET_PATH="Assets/YarnSpinner"
 
     # Disable stop-on-error for this - we want better reporting
     set +e
+    
+    
 
-    "$UNITY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
+    "$UNITY_BINARY" -batchmode -projectPath "$(pwd)/Unity" -logFile $LOGFILE -exportPackage "$ASSET_PATH" "$OUTFILE" -quit
 
     if [ $? -ne 0 ]; then
 
