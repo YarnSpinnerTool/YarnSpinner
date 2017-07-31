@@ -99,11 +99,11 @@ echo "Building Yarn Spinner..."
 if [ $SOURCE_BUILD == 1 ]; then
     echo "Removing YarnSpinner.dll..."
     # Remove the built DLL from the Unity project (we built it to ensure that it actually works)
-    rm -v "Unity/Assets/Yarn Spinner/Code/YarnSpinner.dll"
+    rm -v "Unity/Assets/YarnSpinner/Code/YarnSpinner.dll"
 
     echo "Copying Yarn Spinner source in..."
     # Copy the source files in
-    cp -v "$SOURCE_FILES" "Unity/Assets/Yarn Spinner/Code/"
+    cp -v "$SOURCE_FILES" "Unity/Assets/YarnSpinner/Code/"
 
 fi
 
@@ -131,7 +131,7 @@ if [ $NO_EXAMPLES == 1 ]; then
 fi
 
 # sanity check that the examples folder is where we expect
-expected_examples_location="$(pwd)/Unity/Assets/Yarn Spinner/Examples"
+expected_examples_location="$(pwd)/Unity/Assets/YarnSpinner/Examples"
 
 if [ ! -d "$expected_examples_location" ]; then
     echo "Failed to find Examples folder at $expected_examples_location"
@@ -160,7 +160,7 @@ UNITY="$(mdfind "kind:application Unity.app" | grep -vE "b[0-9]+" | sort | tail 
 if [[ -f $UNITY ]]; then
     echo "Using $UNITY"
 
-    ASSET_PATH="Assets/Yarn Spinner"
+    ASSET_PATH="Assets/YarnSpinner"
 
     # Disable stop-on-error for this - we want better reporting
     set +e
