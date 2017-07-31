@@ -124,7 +124,7 @@ namespace Yarn {
 
 		internal VariableStorage continuity;
 		/// We'll ask this object for the state of variables
-        internal bool experimentalMode = false;
+        public bool experimentalMode = false;
         // currently this is just the ANTLR compiler but it could change over time
         // used to determine if the dialogue should use the experimental features
 
