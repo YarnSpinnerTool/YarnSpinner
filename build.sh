@@ -99,7 +99,7 @@ build_yarnspinner () {
     if [ "${OSTYPE}" != "linux-gnu" ]; then
         OUTPUT_DLL="YarnSpinner.dll"
         BUILD_DIR="YarnSpinner/bin/${CONFIGURATION}/"
-        UNITY_DIR="Unity/Assets/Yarn Spinner/Code/"
+        UNITY_DIR="Unity/Assets/YarnSpinner/Code/"
 
         if [ -f "$BUILD_DIR/$OUTPUT_DLL" ]; then
             cp -v "$BUILD_DIR/$OUTPUT_DLL" "$UNITY_DIR/$OUTPUT_DLL"
