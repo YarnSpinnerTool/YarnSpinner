@@ -27,6 +27,9 @@ SOFTWARE.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Yarn {
 
@@ -208,11 +211,17 @@ namespace Yarn {
 
 
 			if (showJson) {
+			    var sb = new StringBuilder();
+			    var sw = new StringWriter(sb);
+			    using(var jw = new JsonTextWriter(sw)) {
+				jw.Formatting = Formatting.Indented;
+				jw.WriteStartArray();
 				foreach(var kvp in nodes) {
-					// this is a litlte untidy because PrintParseTree() no longer
-					// needs to be part of Loader
-					Console.WriteLine(kvp.Value.ToJson());
+				    kvp.Value.ToJson(jw);
 				}
+				jw.WriteEnd();
+			    }
+			    Console.WriteLine(sb.ToString());
 			}
 
 			program = loader.Load(nodes, fileName, program);

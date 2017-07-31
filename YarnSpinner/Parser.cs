@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Yarn {
 
@@ -110,7 +111,7 @@ namespace Yarn {
 
 			// Returns a string containing the contents of the ParseNode and 
 			// all of its child ParseNodes, formatted as pure JSON.
-			internal abstract string ToJson(int indentLevel=0);
+			internal abstract void ToJson(JsonWriter jw);
 
 			public override string ToString ()
 			{
@@ -168,17 +169,19 @@ namespace Yarn {
 				return sb.ToString();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("{type: \"Node\"; contents: [");
-				foreach(var statement in _statements) {
-					sb.Append(statement.ToJson(indentLevel+1));
-					// BUGGO: Trailing commas are theoretically 
-					// not allowed in json.
-					sb.Append(", ");
-				}
-				sb.Append("]}");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("Node");
+			    jw.WritePropertyName("name");
+			    jw.WriteValue(name);
+			    jw.WritePropertyName("contents");
+			    jw.WriteStartArray();
+			    foreach(var statement in _statements) {
+				statement.ToJson(jw);
+			    }
+			    jw.WriteEnd();
+			    jw.WriteEndObject();
 			}
 
 		}
@@ -271,26 +274,37 @@ namespace Yarn {
 				throw new ArgumentNullException ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				
-				switch (type) {
+		    internal override void ToJson(JsonWriter jw) {
+			switch (type) {
 				case Type.Block:
-					return block.ToJson (indentLevel);
+					block.ToJson (jw);
+					break;
 				case Type.IfStatement:
-					return ifStatement.ToJson (indentLevel);
+					ifStatement.ToJson (jw);
+					break;
 				case Type.OptionStatement:
-					return optionStatement.ToJson (indentLevel);
+					optionStatement.ToJson (jw);
+					break;
 				case Type.AssignmentStatement:
-					return assignmentStatement.ToJson (indentLevel);
+					assignmentStatement.ToJson (jw);
+					break;
 				case Type.ShortcutOptionGroup:
-					return shortcutOptionGroup.ToJson (indentLevel);
+					shortcutOptionGroup.ToJson (jw);
+					break;
 				case Type.CustomCommand:
-					return customCommand.ToJson (indentLevel);
+					customCommand.ToJson (jw);
+					break;
 				case Type.Line:
-					return "{type: \"Line\", contents: \"" + line + "\"}";
-				}
-
+				    jw.WriteStartObject();
+				    jw.WritePropertyName("type");
+				    jw.WriteValue("Line");
+				    jw.WritePropertyName("contents");
+				    jw.WriteValue(line);
+				    jw.WriteEndObject();
+				    break;
+			    default:
 				throw new ArgumentNullException ();
+				}
 			}
 		}
 
@@ -360,14 +374,22 @@ namespace Yarn {
 
 			}
 
-			internal override string ToJson(int indentLevel=0) {
+			    internal override void ToJson(JsonWriter jw) {
 				switch (type) {
 				case Type.Expression:
-					return expression.ToJson (indentLevel + 1);
+					expression.ToJson (jw);
+					break;
 				case Type.ClientCommand:
-					return "{type: \"Command\", contents: \"" + clientCommand + "\"}";
+				    jw.WriteStartObject();
+				    jw.WritePropertyName("type");
+				    jw.WriteValue("Command");
+				    jw.WritePropertyName("contents");
+				    jw.WriteValue(clientCommand);
+				    jw.WriteEndObject();
+				    break;
+				default:
+				    break;
 				}
-				return "";
 			}
 		}
 
@@ -409,10 +431,17 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("ShortcutGroupPlaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("ShortcutGroup");
+			    jw.WritePropertyName("contents");
+			    jw.WriteStartArray();
+			    foreach(var option in options) {
+				option.ToJson(jw);
+			    }
+			    jw.WriteEnd();
+			    jw.WriteEndObject();
 			}
 		}
 
@@ -464,10 +493,21 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("ShortcutOptionPlaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("ShortcutOption");
+			    jw.WritePropertyName("label");
+			    jw.WriteValue(label);
+			    if(condition != null) {
+				jw.WritePropertyName("condition");
+				condition.ToJson(jw);
+			    }
+			    if(optionNode != null) {
+				jw.WritePropertyName("option");
+				optionNode.ToJson(jw);
+			    }
+			    jw.WriteEndObject();
 			}
 		}
 
@@ -514,10 +554,18 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("PBlocklaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("Block");
+			    jw.WritePropertyName("contents");
+			    jw.WriteStartArray();
+			    foreach(var statement in _statements) {
+				statement.ToJson(jw);
+			    }
+			    jw.WriteEnd();
+			    jw.WriteEndObject();
+			    
 			}
 		}
 
@@ -579,10 +627,17 @@ namespace Yarn {
 				}
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("OptionPlaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("Option");
+			    jw.WritePropertyName("destination");
+			    jw.WriteValue(destination);
+			    if (label != null) {
+				jw.WritePropertyName("label");
+				jw.WriteValue(label);
+			    }
+			    jw.WriteEndObject();			    
 			}
 		}
 
@@ -613,6 +668,26 @@ namespace Yarn {
 					sb.Append (Tab (indentLevel, "}"));
 					return sb.ToString ();
 				}
+
+			    internal void ToJson(JsonWriter jw) {
+				jw.WriteStartObject();
+				jw.WritePropertyName("condition");
+				if (expression != null) {
+				     expression.ToJson(jw);
+				} else {
+				    jw.WriteNull();
+				}
+				
+				jw.WritePropertyName("contents");
+				jw.WriteStartArray();
+				foreach (var statement in statements) {
+				    statement.ToJson(jw);
+				}
+				jw.WriteEnd();
+				
+				jw.WriteEndObject();
+			    }
+
 			}
 
 			internal List<Clause> clauses = new List<Clause>(); 
@@ -724,10 +799,17 @@ namespace Yarn {
 				return sb.ToString ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("IfPlaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("If");
+			    jw.WritePropertyName("clauses");
+			    jw.WriteStartArray();
+			    foreach (var clause in clauses) {
+				clause.ToJson(jw);
+			    }
+			    jw.WriteEnd();
+			    jw.WriteEndObject();
 			}
 		}
 
@@ -802,10 +884,26 @@ namespace Yarn {
 				throw new ArgumentException ();
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("ValuePlaceholder");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+				switch (value.type) {
+				case Value.Type.Number:
+				    jw.WriteValue(value.numberValue);
+				    break;
+				case Value.Type.String:
+				    jw.WriteValue(value.stringValue);
+				    break;
+				case Value.Type.Bool:
+				    jw.WriteValue(value.boolValue);
+				    break;
+				case Value.Type.Variable:
+				    jw.WriteValue(value.variableName);
+				    break;
+				case Value.Type.Null:
+				    jw.WriteNull();
+				    break;
+				default:
+				    throw new ArgumentException ();
+				}
 			}
 		}
 
@@ -1153,11 +1251,27 @@ namespace Yarn {
 				return Tab(indentLevel, "<error printing expression!>");
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("ExpressionPlaceholder");
-				return sb.ToString();
+		    internal override void ToJson(JsonWriter jw) {
+			switch (type) {
+			    case Type.Value:
+				value.ToJson(jw);
+				break;
+			    case Type.FunctionCall:
+				jw.WriteStartObject();
+				jw.WritePropertyName("type");
+				jw.WriteValue("FunctionCall");
+				jw.WritePropertyName("parameters");
+				jw.WriteStartArray();
+				foreach (var param in parameters) {
+				    param.ToJson(jw);
+				}
+				jw.WriteEnd();
+				jw.WriteEndObject();
+				break;
+			    default:
+				throw new ArgumentException();
 			}
+		    }
 		}
 
 		// AssignmentStatements are things like <<set $foo = 1>>
@@ -1204,17 +1318,17 @@ namespace Yarn {
 
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				var sb = new StringBuilder();
-				sb.Append("{type: \"Assignment\", ");
-				sb.Append("\"destination:\" \"");
-				sb.Append(destinationVariableName);
-				sb.Append("\", operation: \"");
-				sb.Append(operation.ToString());
-				sb.Append("\", value: ");
-				sb.Append(valueExpression.ToJson(indentLevel + 1));
-				sb.Append("}");
-				return sb.ToString();
+			internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("Assignment");
+			    jw.WritePropertyName("destination");
+			    jw.WriteValue(destinationVariableName);
+			    jw.WritePropertyName("operation");
+			    jw.WriteValue(operation.ToString());
+			    jw.WritePropertyName("value");
+			    valueExpression.ToJson(jw);
+			    jw.WriteEndObject();
 			}
 		}
 
@@ -1326,8 +1440,13 @@ namespace Yarn {
 				return Tab (indentLevel, operatorType.ToString ());
 			}
 
-			internal override string ToJson(int indentLevel=0) {
-				return "\"" + operatorType.ToString() + "\"";
+		    internal override void ToJson(JsonWriter jw) {
+			    jw.WriteStartObject();
+			    jw.WritePropertyName("type");
+			    jw.WriteValue("Operator");
+			    jw.WritePropertyName("contents");
+			    jw.WriteValue(operatorType.ToString());
+			    jw.WriteEndObject();
 			}
 		}
 		#endregion Parse Nodes
