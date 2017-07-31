@@ -817,7 +817,8 @@ namespace Yarn
 			buf.Append("\n");
 			foreach (String src in edges.Keys)
 			{
-				if (edges.TryGetValue(src, out var output))
+                IList<string> output;
+				if (edges.TryGetValue(src, out output))
 				{
 					foreach (String trg in output)
 					{
