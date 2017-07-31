@@ -395,7 +395,8 @@ namespace Yarn
 		/// stops execution
 		Stop,
 		/// run the node whose name is at the top of the stack
-		RunNode
-
+		RunNode,
+		/// run the node whose name is at the top of the stack but come back again
+		RunNodeAndReturn
 	}
 }

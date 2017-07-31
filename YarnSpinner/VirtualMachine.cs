@@ -77,6 +77,8 @@ namespace Yarn
         private State state = new State();
 
         private Random random = new Random();
+        
+        private List<State> _returnStates = new List<State>();
 
         public string currentNodeName {
             get {
@@ -108,7 +110,7 @@ namespace Yarn
 
         Node currentNode;
 
-        public bool SetNode(string nodeName) {
+        public bool SetNode(string nodeName, State oldState=null) {
             if (program.nodes.ContainsKey(nodeName) == false) {
 
                 var error = "No node named " + nodeName;
@@ -123,9 +125,15 @@ namespace Yarn
             dialogue.continuity.SetValue(SpecialVariables.ShuffleOptions, new Value(false));
 
             currentNode = program.nodes [nodeName];
-            ResetState ();
-            state.currentNodeName = nodeName;
-
+            if (oldState != null)
+            {
+                state = oldState;
+            }
+            else
+            {
+                ResetState ();
+                state.currentNodeName = nodeName;
+            }
             return true;
         }
 
@@ -326,12 +334,25 @@ namespace Yarn
                 break;
             case ByteCode.Stop:
                 /// - Stop
-                /** Immediately stop execution, and report that fact.
+                /** Immediately stop execution, and report that fact unless this was a returnable call; in which case,
+                    start unwinding the stack
                  */
-                nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
-                executionState = ExecutionState.Stopped;
 
+                if (_returnStates.Count > 0)
+                {
+                    var oldState = _returnStates[_returnStates.Count - 1];
+                    _returnStates.Remove(oldState);
+                    nodeCompleteHandler(new Dialogue.NodeCompleteResult(currentNodeName));
+                    oldState.programCounter++;
+                    SetNode(oldState.currentNodeName, oldState);
+                }
+                else
+                {
+                    nodeCompleteHandler (new Dialogue.NodeCompleteResult (null));
+                    executionState = ExecutionState.Stopped;    
+                }
                 break;
+            case ByteCode.RunNodeAndReturn:
             case ByteCode.RunNode:
                 /// - RunNode
                 /** Run a node
@@ -345,10 +366,12 @@ namespace Yarn
                     // jump straight to the node
                     nodeName = (string)i.operandA;
                 }
-
+                if (i.operation == ByteCode.RunNodeAndReturn)
+                {
+                    _returnStates.Add(state);
+                }
                 nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
                 SetNode (nodeName);
-
                 break;
             case ByteCode.AddOption:
                 /// - AddOption

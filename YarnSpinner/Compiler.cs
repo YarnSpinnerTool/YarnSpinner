@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace Yarn
@@ -61,6 +62,9 @@ namespace Yarn
                 // TODO: A better solution would be for the parser to flag
                 // whether a node has Options at the end.
                 var hasRemainingOptions = false;
+                // Does this node go away and then come back again?
+                var isReturnable = false;
+                
                 foreach (var instruction in compiledNode.instructions)
                 {
                     if (instruction.operation == ByteCode.AddOption)
@@ -71,10 +75,16 @@ namespace Yarn
                     {
                         hasRemainingOptions = false;
                     }
+                    if (instruction.operation == ByteCode.RunNodeAndReturn)
+                    {
+                        // Flag that this node is one we'll be coming back to so ignore the default END condition here.
+                        isReturnable = true;
+                    }
                 }
 
-                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
-                if (hasRemainingOptions == false)
+                // If this compiled node has no lingering options to show at the end of the node,
+                // AND it isn't a special returnable node then stop at the end.
+                if (hasRemainingOptions == false && isReturnable == false )
                 {
                     Emit(compiledNode, ByteCode.Stop);
                 }
@@ -325,7 +335,12 @@ namespace Yarn
             var destination = statement.destination;
 
             if (statement.label == null) {
-                // this is a jump to another node
+                if (statement.parent.tags.Contains("return"))
+                {
+                    // this is a jump to another node and return here when done.
+                    Emit(node, ByteCode.RunNodeAndReturn, destination);
+                }
+                // otherwise this this is a jump to another node and keep going
                 Emit(node, ByteCode.RunNode, destination);
             } else {
 
