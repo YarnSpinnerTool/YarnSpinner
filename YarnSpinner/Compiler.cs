@@ -84,7 +84,7 @@ namespace Yarn
 
                 // If this compiled node has no lingering options to show at the end of the node,
                 // AND it isn't a special returnable node then stop at the end.
-                if (hasRemainingOptions == false && isReturnable == false )
+                if (hasRemainingOptions == false && !isReturnable)
                 {
                     Emit(compiledNode, ByteCode.Stop);
                 }

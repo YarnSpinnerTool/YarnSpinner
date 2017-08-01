@@ -84,6 +84,23 @@ namespace Yarn
             return null;
         }
 
+        internal bool IsReturnHashtagBlock(YarnSpinnerParser.Hashtag_blockContext context)
+        {
+            // if there are any hashtags
+            if (context != null)
+            {
+                foreach (var hashtag in context.hashtag())
+                {
+                    string tagText = hashtag.GetText().Trim('#');
+                    if (tagText.Equals("return"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         // this replaces the CompileNode from the old compiler
         // will start walking the parse tree
         // emitting byte code as it goes along
@@ -209,6 +226,9 @@ namespace Yarn
                 // TODO: A better solution would be for the parser to flag
                 // whether a node has Options at the end.
                 var hasRemainingOptions = false;
+                // Does this node go away and then come back again?
+                var isReturnable = false;
+                
                 foreach (var instruction in currentNode.instructions)
                 {
                     if (instruction.operation == ByteCode.AddOption)
@@ -219,10 +239,15 @@ namespace Yarn
                     {
                         hasRemainingOptions = false;
                     }
+                    if (instruction.operation == ByteCode.RunNodeAndReturn)
+                    {
+                        // Flag that this node is one we'll be coming back to so ignore the default END condition here.
+                        isReturnable = true;
+                    }
                 }
 
-                // If this compiled node has no lingering options to show at the end of the node, then stop at the end
-                if (hasRemainingOptions == false)
+                // If this compiled node has no lingering options to show at the end of the node,
+                if (hasRemainingOptions == false && !isReturnable)
                 {
                     Emit(currentNode, ByteCode.Stop);
                 }
@@ -299,6 +324,10 @@ namespace Yarn
             else
             {
                 string destination = context.OPTION_TEXT().GetText();
+                if (compiler.IsReturnHashtagBlock(context.hashtag_block()))
+                {
+                    compiler.Emit(ByteCode.RunNodeAndReturn, destination);
+                }
                 compiler.Emit(ByteCode.RunNode, destination);
             }
             return 0;

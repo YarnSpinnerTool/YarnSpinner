@@ -357,7 +357,11 @@ namespace Yarn
                 {
                     _returnStates.Add(state);
                 }
-                nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));
+                else
+                {
+                    nodeCompleteHandler (new Dialogue.NodeCompleteResult (nodeName));    
+                }
+                
                 SetNode (nodeName);
                 break;
             case ByteCode.AddOption:
