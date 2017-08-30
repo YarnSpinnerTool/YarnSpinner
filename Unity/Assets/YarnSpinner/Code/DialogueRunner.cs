@@ -240,8 +240,37 @@ namespace Yarn.Unity
 
                     var commandResult = step as Yarn.Dialogue.CommandResult;
 
-                    if (DispatchCommand(commandResult.command.text) == true) {
-                        // command was dispatched
+                    List<CommandInfo> commands = new List<CommandInfo>();
+                    if (DispatchCommand(commandResult.command.text, commands) == true) {
+                        // Iterate through methods, and yield on Coroutines
+                        foreach (CommandInfo commandInfo in commands)
+                        {
+                            System.Reflection.MethodInfo method = commandInfo.method;
+                            MonoBehaviour component = commandInfo.component;
+                            if (method.ReturnType == typeof(IEnumerator))
+                            {
+                                if (commandInfo.parameters != null)
+                                {
+                                    yield return StartCoroutine((IEnumerator)method.Invoke(component, commandInfo.parameters));
+                                }
+                                else
+                                {
+
+                                    yield return StartCoroutine((IEnumerator)method.Invoke(component, commandInfo.parameterWrapper));
+                                }
+                            }
+                            else
+                            {
+                                if (commandInfo.parameters != null)
+                                {
+                                    method.Invoke(component, commandInfo.parameters);
+                                }
+                                else
+                                {
+                                    method.Invoke(component, commandInfo.parameterWrapper);
+                                }
+                            }
+                        }
                     } else {
                         yield return StartCoroutine (this.dialogueUI.RunCommand (commandResult.command));
                     }
@@ -300,7 +329,7 @@ namespace Yarn.Unity
          * 2. the second word is the name of an object
          * 3. that object has components that have methods with the YarnCommand attribute that have the correct commandString set
          */
-        public bool DispatchCommand(string command) {
+        public bool DispatchCommand(string command, List<CommandInfo> commandInfo) {
 
             var words = command.Split(' ');
 
@@ -354,7 +383,7 @@ namespace Yarn.Unity
                                     // Cool, we can send the command!
                                     string[][] paramWrapper = new string[1][];
                                     paramWrapper[0] = parameters.ToArray();
-                                    method.Invoke(component, paramWrapper);
+                                    commandInfo.Add(new CommandInfo(component, method, paramWrapper));
                                     numberOfMethodsFound++;
                                     paramsMatch = true;
 
@@ -375,7 +404,7 @@ namespace Yarn.Unity
                                 if (paramsMatch)
                                 {
                                     // Cool, we can send the command!
-                                    method.Invoke(component, parameters.ToArray());
+                                    commandInfo.Add(new CommandInfo(component, method, parameters.ToArray()));
                                     numberOfMethodsFound++;
                                 }
                             }
@@ -405,6 +434,31 @@ namespace Yarn.Unity
             return numberOfMethodsFound > 0;
         }
 
+    }
+
+    /*
+     * A container for methods created via YarnCommand
+     */
+    public class CommandInfo
+    {
+        public MonoBehaviour component;
+        public System.Reflection.MethodInfo method;
+        public string[] parameters;
+        public string[][] parameterWrapper;
+
+        public CommandInfo(MonoBehaviour component, System.Reflection.MethodInfo method, string[] parameters)
+        {
+            this.component = component;
+            this.method = method;
+            this.parameters = parameters;
+        }
+
+        public CommandInfo(MonoBehaviour component, System.Reflection.MethodInfo method, string[][] parameterWrapper)
+        {
+            this.component = component;
+            this.method = method;
+            this.parameterWrapper = parameterWrapper;
+        }
     }
 
     /// Apply this attribute to methods in your scripts to expose
