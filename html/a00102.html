@@ -204,21 +204,22 @@ Public Attributes</h2></td></tr>
 <div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;            buf.Append(<span class="stringliteral">&quot;\n&quot;</span>);</div>
 <div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;            <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> src <span class="keywordflow">in</span> <a class="code" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a>.Keys)</div>
 <div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;            {</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a>.TryGetValue(src, out var <a class="code" href="a00336.html#a3da6d48778c7b08a040bf24377f67792">output</a>))</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                {</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                    <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> trg <span class="keywordflow">in</span> output)</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                    {</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                        buf.Append(<span class="stringliteral">&quot;  &quot;</span>);</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                        buf.Append(src);</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                        buf.Append(<span class="stringliteral">&quot; -&gt; &quot;</span>);</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                        buf.Append(trg);</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                        buf.Append(<span class="stringliteral">&quot;;\n&quot;</span>);</div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                    }</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                }</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;            }</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            buf.Append(<span class="stringliteral">&quot;}\n&quot;</span>);</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            <span class="keywordflow">return</span> buf.ToString();</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;        }</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                IList&lt;string&gt; <a class="code" href="a00336.html#a3da6d48778c7b08a040bf24377f67792">output</a>;</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00102.html#a8adf7c937ab5c584b49698283e3da150">edges</a>.TryGetValue(src, out output))</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                {</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                    <span class="keywordflow">foreach</span> (<a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98">String</a> trg <span class="keywordflow">in</span> output)</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                    {</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                        buf.Append(<span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                        buf.Append(src);</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                        buf.Append(<span class="stringliteral">&quot; -&gt; &quot;</span>);</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                        buf.Append(trg);</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                        buf.Append(<span class="stringliteral">&quot;;\n&quot;</span>);</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                    }</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                }</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            }</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            buf.Append(<span class="stringliteral">&quot;}\n&quot;</span>);</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;            <span class="keywordflow">return</span> buf.ToString();</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;        }</div>
 <div class="ttc" id="a00336_html_a3da6d48778c7b08a040bf24377f67792"><div class="ttname"><a href="a00336.html#a3da6d48778c7b08a040bf24377f67792">preprocessor.output</a></div><div class="ttdeci">tuple output</div><div class="ttdef"><b>Definition:</b> <a href="a00194_source.html#l00092">preprocessor.py:92</a></div></div>
 <div class="ttc" id="a00102_html_a506df6f737a41748c01239bdea5d82b1"><div class="ttname"><a href="a00102.html#a506df6f737a41748c01239bdea5d82b1">Yarn.Graph.nodes</a></div><div class="ttdeci">ArrayList&lt; String &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00294_source.html#l00798">AntlrCompiler.cs:798</a></div></div>
 <div class="ttc" id="a00102_html_a8adf7c937ab5c584b49698283e3da150"><div class="ttname"><a href="a00102.html#a8adf7c937ab5c584b49698283e3da150">Yarn.Graph.edges</a></div><div class="ttdeci">MultiMap&lt; String, String &gt; edges</div><div class="ttdef"><b>Definition:</b> <a href="a00294_source.html#l00799">AntlrCompiler.cs:799</a></div></div>
@@ -285,7 +286,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00102.html">Graph</a></li>
-    <li class="footer">Generated on Mon Jul 31 2017 06:10:23 for YarnSpinner by
+    <li class="footer">Generated on Mon Sep 18 2017 05:51:08 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

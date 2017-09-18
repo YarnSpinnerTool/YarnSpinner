@@ -85,21 +85,22 @@ References Yarn.\-Graph.\-edges, Yarn.\-Graph.\-graph\-Name, Yarn.\-Graph.\-node
 817             buf.Append(\textcolor{stringliteral}{"\(\backslash\)n"});
 818             \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} src \textcolor{keywordflow}{in} \hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges}.Keys)
 819             \{
-820                 \textcolor{keywordflow}{if} (\hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges}.TryGetValue(src, out var \hyperlink{a00336_a3da6d48778c7b08a040bf24377f67792}{output}))
-821                 \{
-822                     \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} trg \textcolor{keywordflow}{in} output)
-823                     \{
-824                         buf.Append(\textcolor{stringliteral}{"  "});
-825                         buf.Append(src);
-826                         buf.Append(\textcolor{stringliteral}{" -> "});
-827                         buf.Append(trg);
-828                         buf.Append(\textcolor{stringliteral}{";\(\backslash\)n"});
-829                     \}
-830                 \}
-831             \}
-832             buf.Append(\textcolor{stringliteral}{"\}\(\backslash\)n"});
-833             \textcolor{keywordflow}{return} buf.ToString();
-834         \}
+820                 IList<string> \hyperlink{a00336_a3da6d48778c7b08a040bf24377f67792}{output};
+821                 \textcolor{keywordflow}{if} (\hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges}.TryGetValue(src, out output))
+822                 \{
+823                     \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} trg \textcolor{keywordflow}{in} output)
+824                     \{
+825                         buf.Append(\textcolor{stringliteral}{"  "});
+826                         buf.Append(src);
+827                         buf.Append(\textcolor{stringliteral}{" -> "});
+828                         buf.Append(trg);
+829                         buf.Append(\textcolor{stringliteral}{";\(\backslash\)n"});
+830                     \}
+831                 \}
+832             \}
+833             buf.Append(\textcolor{stringliteral}{"\}\(\backslash\)n"});
+834             \textcolor{keywordflow}{return} buf.ToString();
+835         \}
 \end{DoxyCode}
 
 
