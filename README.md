@@ -13,7 +13,7 @@
 
 [![Build Status](https://travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)
 
-<img src="https://dl.dropboxusercontent.com/u/627682/YarnSpinner/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
+<img src="https://www.dropbox.com/s/wcd7rspsdi6ifxk/NITW-Promo-Screenshot.jpg?dl=1" title="Night in the Woods" style="width: 80%; margin: 0 auto;" />
 
 > (Image from "[Night in the Woods](http://nightinthewoods.com)" by Scott Benson, Bethany Hockenberry and Alec Holowka. Used with permission.)
 
