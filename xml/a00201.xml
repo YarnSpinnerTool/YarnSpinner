@@ -32,7 +32,7 @@
 <codeline lineno="23"><highlight class="normal">*<sp/><ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>already<sp/>familiar<sp/>with<sp/>Unity,<sp/>we<sp/>recommend<sp/>you<sp/>head<sp/>straight<sp/>to<sp/>our<sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity<sp/>Quickstart](Documentation/YarnSpinner-with-Unity-QuickStart.md)<sp/>document.</highlight></codeline>
 <codeline lineno="24"><highlight class="stringliteral">##<sp/>What<sp/>To<sp/>Do<sp/>Next</highlight></codeline>
 <codeline lineno="25"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="26"><highlight class="stringliteral">*<sp/>Learn<sp/>how<sp/>to<sp/>[build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.](Documentation/Building.md)</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral">*<sp/>Learn<sp/>how<sp/>to<sp/>[build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.](Documentation/YarnSpinner-Programming/Building.md)</highlight></codeline>
 <codeline lineno="27"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[Yarn](https://github.com/infiniteammoinc/Yarn),<sp/>and<sp/>the<sp/>Yarn<sp/>editor.</highlight></codeline>
 <codeline lineno="28"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[writing<sp/>dialogue<sp/>in<sp/>Yarn.](Documentation/YarnSpinner-Dialogue/README.md)</highlight></codeline>
 <codeline lineno="29"><highlight class="stringliteral">*<sp/>Learn<sp/>about<sp/>using<sp/>[Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity](Documentation/YarnSpinner-Unity/README.md)<sp/>game.</highlight></codeline>
