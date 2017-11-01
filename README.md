@@ -20,7 +20,7 @@
 
 ## Quick Start - Documentation
 
-* If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-with-Unity-QuickStart.md) document.
+* If you're already familiar with Unity, we recommend you head straight to our [Yarn Spinner With Unity Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md) document.
 ## What To Do Next
 
 * Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)
