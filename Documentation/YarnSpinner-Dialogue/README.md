@@ -10,8 +10,8 @@ In [our simple example](Simple-Dialogue-Example.md), we will create a very simpl
 ### Complex Example Dialogue
 In the [complex example](Complex-Dialogue-Example.md), we will create a slightly more complex Dialogue to the simple example above. This example demonstrates more advanced possibilities that exist within telling stories in a narrative game environment. 
 
-### Localisation
-Our [localization](Dialogue-Localization.md) document describes how localisation,
+### Localization
+Our [localization](Dialogue-Localization.md) document describes how localization,
 or translating the text into other languages, takes place.
 > ***Note:*** At the moment, it is a requirement that a programmer run a special tool across the Dialogue to produce the files to be translated.
 
