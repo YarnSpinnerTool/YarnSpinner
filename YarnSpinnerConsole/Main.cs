@@ -112,7 +112,7 @@ namespace Yarn
         public string onlyUseTag { get; set; }
     }
 
-    [Verb("taglines", HelpText = "Adds localisation tags to the provided files, where necessary.")]
+    [Verb("taglines", HelpText = "Adds localization tags to the provided files, where necessary.")]
     class AddLabelsOptions : BaseOptions
     {
 

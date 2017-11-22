@@ -51,7 +51,7 @@ using System.Runtime.CompilerServices;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
-// Make internals available to the localisation tool
+// Make internals available to the localization tool
 [assembly: InternalsVisibleTo("YarnSpinnerConsole")]
 [assembly: InternalsVisibleTo("YarnSpinnerTests")]
 
