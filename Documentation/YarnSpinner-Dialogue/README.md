@@ -11,7 +11,7 @@ In [our simple example](Simple-Dialogue-Example.md), we will create a very simpl
 In the [complex example](Complex-Dialogue-Example.md), we will create a slightly more complex Dialogue to the simple example above. This example demonstrates more advanced possibilities that exist within telling stories in a narrative game environment. 
 
 ### Localisation
-Our [localisation](Dialogue-Localisation.md) document describes how localisation,
+Our [localization](Dialogue-Localization.md) document describes how localisation,
 or translating the text into other languages, takes place.
 > ***Note:*** At the moment, it is a requirement that a programmer run a special tool across the Dialogue to produce the files to be translated.
 
