@@ -72,7 +72,7 @@ Congratulations, you've just written your very first piece of Yarn Dialogue!
 ### Adding Options and Replies
 
 #### Options
-The next step we'll take is to add in some options to present to the player.  We wish to present the player with the choice of two options. To do this, we use the `->` marker as the first characters in our line of text to tell the system the text is an option.
+The next step we'll take is to add in some options to present to the player. We wish to present the player with the choice of two options. To do this, we use the `->` marker as the first characters in our line of text to tell the system the text is an option.
 
 We add this after the A and B character Dialogue, but before the ending tag.
 ```

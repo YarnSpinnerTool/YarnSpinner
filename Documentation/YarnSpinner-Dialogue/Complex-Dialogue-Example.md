@@ -19,13 +19,13 @@
 ## Complex Example
 In our Complex Example, we will establish a multiple files of Yarn Dialogue. This Dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.
 
-A limited amount of programming knowledge is required for narrative adventure Yarn Dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as  ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** along with ***[tests](https://en.wikipedia.org/wiki/Relational_operator)*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative. We shall also discuss ***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))*** and how to use them to influence Dialogue interaction.
+A limited amount of programming knowledge is required for narrative adventure Yarn Dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** along with ***[tests](https://en.wikipedia.org/wiki/Relational_operator)*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative. We shall also discuss ***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))*** and how to use them to influence Dialogue interaction.
 
 * ***Commands*** instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).
 * ***Conditionals*** are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Example.md), you've already learned a little about [control flow](https://en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.
 * ***Tests*** utilise a combination of variables, functions to contruct a ***conditional***.
 * ***Functions***, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In this example, we use a function called 'Visited' to see if a node has been reached by a player in the context of a narrative story. Based upon this visit, or lack thereof, different narrative events take place.
-* ***Variables*** hold pieces of information relating to the state of the game that may change depending on events happening in the game.  For example, if a player picks up sticks the number of sticks can be stored in a variable called '$sticks_collected'
+* ***Variables*** hold pieces of information relating to the state of the game that may change depending on events happening in the game. For example, if a player picks up sticks the number of sticks can be stored in a variable called '$sticks_collected'
 > ***Note*** Variable names ***MUST*** always start with the $ character otherwise Yarn Spinner will freak the crap out.
 
 ## First Dialogue File
@@ -43,7 +43,7 @@ Next, we'll add a ***command*** to make the face of the ship change, the ship to
     Ship: It's HUGE!
 <<setsprite ShipFace neutral>>
 ```
-Do not be concerned that you do not have any graphics for the ShipFace.  Nor, in fact, don't be too concerned if you'd rather call the graphic FaceOfShip. In fact, the name can be anything. However to be compatible with the existing example, for comparison sake we are using ShipFace.
+Do not be concerned that you do not have any graphics for the ShipFace. Nor, in fact, don't be too concerned if you'd rather call the graphic FaceOfShip. In fact, the name can be anything. However to be compatible with the existing example, for comparison sake we are using ShipFace.
 
 Our Dialogue now reads
 ```
@@ -115,7 +115,7 @@ We can see from this code that there a couple of new things in this code snippet
 `$should_see_ship` and `$sally_warning` are examples of what are known as a ***variable***. In this case, they are a variable of [boolean data type](https://en.wikipedia.org/wiki/Boolean_data_type) and both `$should_see_ship is true` and `$sally_warning is false` are known as [boolean expressions](https://en.wikipedia.org/wiki/Boolean_expression). In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable to either of these two states and later evaluating it, determinations can be made as to which section of Yarn Dialogue should be displayed.
 
 We shall address the setting on the first boolean, `$shoud_see_ship`, in the nodes for the Sally character contained in the file [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt). The boolean `$sally_warning` is set to `true` via the code `<<set $sally_warning to true>>` after Ship warns us that sally will flay us alive.
-> ***Note:*** We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file  [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt). It is replicated below so as to be easily read here as a complete file.
+> ***Note:*** We have now completed the Yarn Dialogue for the Ship node. The source for this node can be found in the example file [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt). It is replicated below so as to be easily read here as a complete file.
 ```
 title: Ship
 ---
