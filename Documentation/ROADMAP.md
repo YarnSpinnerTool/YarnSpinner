@@ -15,7 +15,7 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 * Check for inconsistencies or incorrect information.
 * Establish list of blind spots in documentation (i.e. style guide).
 
-### 2. Cleanup & Content Creation
+### 2. Cleanup & content creation
 
 * Create style guide.
 * Remove duplicate information.
@@ -26,13 +26,15 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 
 ## Triage
 
-### Duplicate Files to be removed:
+#### Duplicate files to be removed:
 
-* Yarn-HowTo-Write-Dialogue-Simple-Example.md (old dupe of Simple-Dialogue-Example.md)
-* Yarn-HowTo-Write-Dialogue-Complex-Example.md (old dupe of Complex-Dialogue-Example.md)
-* Localization.md (old dupe of Dialogue-Localization.md)
+* ~~Yarn-HowTo-Write-Dialogue-Simple-Example.md (old dupe of Simple-Dialogue-Example.md)~~
+* ~~Yarn-HowTo-Write-Dialogue-Complex-Example.md (old dupe of Complex-Dialogue-Example.md)~~
+* ~~Localization.md (old dupe of Dialogue-Localization.md)~~
 
-### Files to be touched:
+Done.
+
+#### Files to be touched:
 
 Rework:
 * Advanced-Dialogue-Usage.md
@@ -40,11 +42,8 @@ Rework:
 Rename:
 * All of 'em
 
-### Issues with existing documentation
+### Issues/inconsistencies/pain points with existing documentation
 
 1. ~~Multiple duplicate files exist to explain Yarn dialogue.~~ **Fixed.**
 2. Naming schema is inconsistent and unclear (Simple-Dialogue-Example should be Dialogue-Simple or something).
 3. Does not explicitly address use cases, let alone common edge cases.
-
-### Inconsistencies in existing documentation
-

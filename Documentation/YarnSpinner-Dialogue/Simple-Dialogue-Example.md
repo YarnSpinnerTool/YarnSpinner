@@ -6,9 +6,9 @@
 
     Code Blocks contain segments or chunks of code for your project
 
-**Bold indicate actions (Select menu item, copying file, etc.)**
+**Bold indicates actions (select menu item, copying file, etc).**
 
-***Bold italic text indicates emphasis***
+***Bold italic text indicates emphasis.***
 
 > Blockquotes contain essential information
 
