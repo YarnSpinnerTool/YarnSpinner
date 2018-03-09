@@ -1,4 +1,4 @@
-# Yarn Dialogue - Complex Example
+# Complex Yarn Dialogue - Tutorial
 
 ### Style Guide
 
