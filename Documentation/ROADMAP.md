@@ -6,7 +6,7 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 
 ## Phases:
 
-### 1. Triage
+#### 1. Triage
 
 * Write planning document. (check!)
 * Find where information is duplicated.
@@ -15,7 +15,7 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 * Check for inconsistencies or incorrect information.
 * Establish list of blind spots in documentation (i.e. style guide).
 
-### 2. Cleanup & content creation
+#### 2. Cleanup & content creation
 
 * Create style guide.
 * Remove duplicate information.
@@ -23,6 +23,12 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
     * Check all existing documentation (Programming + Unity) for broken links to removed or renamed files.
 * Edit/rework/rewrite existing documentation for conciseness, etc.
 * **Write syntax reference documentation.** (priority/the reason I'm doing this whole thing)
+
+#### 3. Final pass
+
+* Check all links.
+* Check that all content conforms to style guide.
+* 
 
 ## Triage
 
@@ -42,8 +48,15 @@ Rework:
 Rename:
 * All of 'em
 
-### Issues/inconsistencies/pain points with existing documentation
+#### Issues/inconsistencies/pain points with existing documentation
 
 1. ~~Multiple duplicate files exist to explain Yarn dialogue.~~ **Fixed.**
 2. Naming schema is inconsistent and unclear (Simple-Dialogue-Example should be Dialogue-Simple or something).
 3. Does not explicitly address use cases, let alone common edge cases.
+
+
+
+
+## Cleanup & content creation
+
+## Final pass
