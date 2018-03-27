@@ -28,7 +28,7 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 
 * Check all links.
 * Check that all content conforms to style guide.
-* 
+* Search "TODO"
 
 ## Triage
 
@@ -40,13 +40,11 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 
 Done.
 
-#### Files to be touched:
+#### Todo:
 
-Rework:
-* Advanced-Dialogue-Usage.md
-
-Rename:
-* All of 'em
+* Rework Advanced-Dialogue-Usage.md into Yarn-Syntax.md
+* Rename all of 'em
+* Look at Simple/Complex examples, reframe as tutorials?
 
 #### Issues/inconsistencies/pain points with existing documentation
 
