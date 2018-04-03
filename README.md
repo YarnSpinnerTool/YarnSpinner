@@ -26,9 +26,8 @@
 * Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)
 * Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.
 * Learn more about [writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/README.md)
-* Learn about using [Yarn Spinner in your Unity](Documentation/YarnSpinner-Unity/README.md) game.
+* Learn about using [Yarn Spinner in your Unity game.](Documentation/YarnSpinner-Unity/README.md)
 * If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.
-* We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.
 
 ## License
 

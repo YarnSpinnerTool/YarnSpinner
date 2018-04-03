@@ -13,7 +13,7 @@ In the [complex dialogue tutorial](Complex-Dialogue-Example.md), we create a sli
 ## Reference Documentation
 
 ### General Usage Guide
-The [general usage](Advanced-Dialogue-Usage.md) page describes most features of the Yarn Language. It also contains small Dialogue snippets, as well as tips and suggestions.
+The [general usage](General-Usage.md) page describes most features of the Yarn Language. It also contains small Dialogue snippets, as well as tips and suggestions.
 
 ### Syntax Reference
 The [syntax reference](Yarn-Syntax.md) page contains a comprehensive list of Yarn syntax and commands for quick reference.
