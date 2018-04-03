@@ -5,10 +5,10 @@ Yarn Dialogue is designed to be accessible to writers who have little or no prog
 ## Tutorials
 
 ### Simple Dialogue Tutorial
-In [our simple dialogue tutorial](Simple-Dialogue-Example.md), we create a simple piece of Dialogue that demonstrates basic Yarn functionality. 
+In [our simple dialogue tutorial](Simple-Dialogue-Tutorial.md), we create a simple piece of Dialogue that demonstrates basic Yarn functionality. 
 
 ### Complex Dialogue Tutorial
-In the [complex dialogue tutorial](Complex-Dialogue-Example.md), we create a slightly more complex piece of Dialogue. This example demonstrates more advanced Yarn functionality, such as commands, variables, and logic statements. 
+In the [complex dialogue tutorial](Complex-Dialogue-Tutorial.md), we create a slightly more complex piece of Dialogue. This example demonstrates more advanced Yarn functionality, such as commands, variables, and logic statements. 
 
 ## Reference Documentation
 

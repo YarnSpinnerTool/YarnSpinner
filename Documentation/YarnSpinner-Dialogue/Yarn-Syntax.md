@@ -1,6 +1,19 @@
 # Yarn Quick Reference
 
-This document is intended to act as a comprehensive and concise reference for Yarn syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming
+This document is intended to act as a comprehensive and concise reference for Yarn syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages.
+
+##Table of Contents
+
++ [Nodes](#nodes)
++ [Links Between Nodes](#links-between-nodes)
+    * [Menu Syntax](#menu-syntax)
+    * [Option Syntax](#option-syntax)
++ [Variables & Conditionals](#variables---conditionals)
+    * [Declaring and Setting Variables](#declaring-and-setting-variables)
+    * [Variable Types](#variable-types)
+    * [If/Else Statements](#if-else-statements)
+    * [Operator Synonyms](#operator-synonyms)
++ [Commands and Functions](#commands-and-functions)
 
 ### Nodes
 
