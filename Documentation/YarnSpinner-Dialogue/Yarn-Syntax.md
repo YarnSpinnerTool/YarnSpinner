@@ -2,7 +2,7 @@
 
 This document is intended to act as a comprehensive and concise reference for Yarn syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages.
 
-##Table of Contents
+## Table of Contents
 
 + [Nodes](#nodes)
 + [Links Between Nodes](#links-between-nodes)
@@ -14,7 +14,7 @@ This document is intended to act as a comprehensive and concise reference for Ya
     * [If/Else Statements](#if-else-statements)
     * [Operator Synonyms](#operator-synonyms)
 + [Commands and Functions](#commands-and-functions)
-
+<!-- used https://ecotrust-canada.github.io/markdown-toc/ for this -->
 ### Nodes
 
 Nodes act as containers for Yarn script, and must have unique titles. The script in the body of a node is processed line by line.
@@ -46,7 +46,7 @@ Nodes link to other nodes through *options*. An option is composed of a label (o
 
 If a node link with no label is provided (`[[Node1]]`), Yarn will automatically navigate to the linked node.
 
-##### Menu Syntax
+#### Menu Syntax
 
 Shortcut options allow for small branches in Yarn scripts without requiring extra nodes. Shortcut option sets allow for an arbitrary number of sub-branches, but it's recommended that users stick to as few as possible for the sake of script readability.
 
@@ -79,7 +79,7 @@ Bob: What would you like?
 Bob: Thanks for coming!
 ```
 
-##### Option Syntax
+#### Option Syntax
 <!-- *Note: option syntax is in the process of being deprecated.* -->
 Multiple labeled node links on consecutive lines will be parsed as a menu. Example:
 
@@ -89,9 +89,9 @@ Multiple labeled node links on consecutive lines will be parsed as a menu. Examp
 [[Third Option|Node3]]
 ```
 
-### Variables & Conditionals
+## Variables & Conditionals
 
-##### Declaring and Setting Variables
+#### Declaring and Setting Variables
 
 ```
 <<set $ExampleVariable to 1>>
@@ -101,7 +101,7 @@ This statement serves to set a variable's value. No declarative statement is req
 
 Variable names must start with a `$` character.
 
-##### Variable Types
+#### Variable Types
 
 There are four different types of variable in Yarn: strings, floating-point numbers, booleans, and `null`.
 
@@ -119,7 +119,7 @@ Yarn will automatically convert between types. For example:
 
 **Note:** Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
 
-##### If/Else Statements
+#### If/Else Statements
 
 Yarn supports standard if/else/elseif statements.
 
@@ -139,15 +139,15 @@ Yarn supports standard if/else/elseif statements.
 <<endif>>
 ```
 
-##### Operator Synonyms
+#### Operator Synonyms
 
-###### Assignment
+##### Assignment
 
 | word | symbol
 |:---:|:---:|
 | `to` | `=` |
 
-###### Comparison
+##### Comparison
 
 | word | symbol
 |:---:|:---:|
@@ -162,7 +162,7 @@ Yarn supports standard if/else/elseif statements.
 | `neq` | `!=` |
 | `not` | `!` |
 
-### Commands and Functions
+## Commands and Functions
 
 By default, Yarn Spinner includes a `visited()` function, used to check whether a node has been entered.
 ```
