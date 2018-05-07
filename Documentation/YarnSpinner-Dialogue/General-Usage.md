@@ -115,7 +115,7 @@ You can also get fancier, and do stuff like this:
 ```
 ## Types
 
-There are four different types of value in Yarn: strings, numbers, booleans, and `null`.
+There are four different types of value in Yarn: strings, numbers, [booleans](http://eesemi.com/boolean.htm), and `null`.
 
 * Strings contain text.
 * Numbers are floating-point numbers.
@@ -132,7 +132,6 @@ Yarn will automatically convert between types for you. For example:
     Strings get joined together with other values!
 <<endif>>
 ```
-**Warning:** Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
 
 ## Functions
 

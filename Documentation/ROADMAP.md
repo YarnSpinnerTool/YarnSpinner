@@ -8,10 +8,10 @@ This is my notes document for planning/executing the YarnSpinner-Dialogue docume
 
 #### 1. Triage
 
-* Write planning document. (check!)
-* Find where information is duplicated.
-* **Identify user needs.**
-* Document test cases and syntax used within.
+* ~~Write planning document. (check!)~~
+* ~~Find where information is duplicated.~~
+* ~~**Identify user needs.**~~
+* ~~Document test cases and syntax used within.~~
 * Check for inconsistencies or incorrect information.
 * Establish list of blind spots in documentation (i.e. style guide).
 

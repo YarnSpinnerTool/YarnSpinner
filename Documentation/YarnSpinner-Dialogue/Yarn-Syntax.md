@@ -1,6 +1,6 @@
 # Yarn Quick Reference
 
-This document is intended to act as a comprehensive and concise reference for Yarn syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages.
+This document is intended to act as a comprehensive and concise reference for Yarn syntax and structure, for use by programmers and content creators. It assumes a working knowledge of modern programming/scripting languages. For a more thorough explanation of Yarn usage, see the [General Usage Guide](General-Usage.md)
 
 ## Table of Contents
 
@@ -15,6 +15,7 @@ This document is intended to act as a comprehensive and concise reference for Ya
     * [Operator Synonyms](#operator-synonyms)
 + [Commands and Functions](#commands-and-functions)
 <!-- used https://ecotrust-canada.github.io/markdown-toc/ for this -->
+
 ### Nodes
 
 Nodes act as containers for Yarn script, and must have unique titles. The script in the body of a node is processed line by line.
@@ -58,24 +59,24 @@ Mae: What did you say to her?
     Mae: Hah! I bet that pissed her off.
     Mae: How'd she react?
     -> She didn't.
-    	Mae: Booooo. That's boring.
+        Mae: Booooo. That's boring.
     -> Furiously.
-    	Mae: That's what I like to hear!
+        Mae: That's what I like to hear!
 Mae: Anyway, I'd better get going.
 ```
 
-Additionally, shortcut options can utilize conditional logic, commands and functions (detailed below), and standard node links. If a condition is attached to a shortcut option, the option will only appear to the reader if the condition passes: <!-- TODO: CHECK UP ON SHORTCUT LOGIC -->
+Additionally, shortcut options can utilize conditional logic, commands and functions (detailed below), and can include standard node links. If a condition is attached to a shortcut option, the option will only appear to the reader if the condition passes: <!-- TODO: CHECK UP ON SHORTCUT LOGIC -->
 
 ```
 Bob: What would you like?
 -> A burger. <<if $money > 5>> 
-	Bob: Nice. Enjoy!
-	[[AteABurger]]
+    Bob: Nice. Enjoy!
+    [[AteABurger]]
 -> A soda. <<if $money > 2>>
-	Bob: Yum!
-	[[DrankASoda]]
+    Bob: Yum!
+    [[DrankASoda]]
 -> Nothing.
-	Bob: Okay.
+    Bob: Okay.
 Bob: Thanks for coming!
 ```
 
@@ -103,7 +104,7 @@ Variable names must start with a `$` character.
 
 #### Variable Types
 
-There are four different types of variable in Yarn: strings, floating-point numbers, booleans, and `null`.
+There are four different types of variable in Yarn: strings, floating-point numbers, [booleans](http://eesemi.com/boolean.htm), and `null`.
 
 Yarn will automatically convert between types. For example:
 
@@ -116,8 +117,6 @@ Yarn will automatically convert between types. For example:
     Strings get joined together with other values!
 <<endif>>
 ```
-
-**Note:** Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.
 
 #### If/Else Statements
 
@@ -133,7 +132,7 @@ Yarn supports standard if/else/elseif statements.
 <<if $variable == 1>>
     Success!
 <<elseif $variable == "hello">>
-	Success...?
+    Success...?
 <<else>>
     No success. :(
 <<endif>>
