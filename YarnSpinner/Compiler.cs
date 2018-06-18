@@ -204,8 +204,6 @@ namespace Yarn
             // Does this line have a "#line:LINENUM" tag? Use it
             string lineID = GetLineIDFromNodeTags(parseNode);
 
-            // Should the parts be registered instead?
-
             var parts = new List<String>();
             var currentPart = "";
             foreach (var c in line)
