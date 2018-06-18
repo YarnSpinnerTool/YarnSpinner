@@ -204,10 +204,81 @@ namespace Yarn
             // Does this line have a "#line:LINENUM" tag? Use it
             string lineID = GetLineIDFromNodeTags(parseNode);
 
-            var num = program.RegisterString (line, node.name, lineID, parseNode.lineNumber, true);
+            // Should the parts be registered instead?
 
-            Emit (node, ByteCode.RunLine, num);
+            var parts = new List<String>();
+            var currentPart = "";
+            foreach (var c in line)
+            {
+                if (c == '$')
+                {
+                    if (currentPart.Length > 0) parts.Add(currentPart);
+                    currentPart = "$";
+                }
+                else
+                {
+                    if (currentPart.Length > 0 && currentPart[0] == '$' && ",.?! ".Contains(new string(c,1)))
+                    {
+                        parts.Add(currentPart);
+                        currentPart = new string(c, 1);
+                    }
+                    else
+                    {
+                        currentPart += c;
+                    }
+                }
+            }
+            if (currentPart.Length > 0) parts.Add(currentPart);
 
+            if (parts.Count == 1)
+            {
+                var num = program.RegisterString(line, node.name, lineID, parseNode.lineNumber, true);
+                Emit(node, ByteCode.RunLine, num);
+            }
+            else
+            {
+                EmitLinePart(node, parseNode, parts[0], lineID);
+                for (var i = 1; i < parts.Count; ++i)
+                {
+                    EmitLinePart(node, parseNode, parts[i], lineID);
+                    node.instructions.Add(new Instruction
+                    {
+                        operation = ByteCode.Concat,
+                        operandA = null,
+                        operandB = null
+                    });
+                }
+
+                node.instructions.Add(new Instruction
+                {
+                    operation = ByteCode.RunLineFromStack,
+                    operandA = null,
+                    operandB = null
+                });
+            }
+        }
+
+        private void EmitLinePart(Node node, Parser.Statement parseNode, String part, String lineID)
+        {
+            if (part[0] == '$')
+            {
+                node.instructions.Add(new Instruction
+                {
+                    operation = ByteCode.PushVariable,
+                    operandA = part,
+                    operandB = null
+                });
+            }
+            else
+            {
+                var num = program.RegisterString(part, node.name, lineID, parseNode.lineNumber, true);
+                node.instructions.Add(new Instruction
+                {
+                    operation = ByteCode.PushString,
+                    operandA = num,
+                    operandB = null
+                });
+            }
         }
 
         void GenerateCode(Node node, Parser.ShortcutOptionGroup statement) {

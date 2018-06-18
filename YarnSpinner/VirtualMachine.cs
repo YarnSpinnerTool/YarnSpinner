@@ -416,7 +416,24 @@ namespace Yarn
                 }));
 
                 break;
-            default:
+            case ByteCode.Concat:
+                    /// = Concat
+                    /** Pop two items off the stack, concat them, and push the result onto the stack.
+                     */
+                    {
+                        var second = state.PopValue();
+                        var first = state.PopValue();
+                        state.PushValue(first.AsString + second.AsString);
+                    }
+                    break;
+            case ByteCode.RunLineFromStack:
+                    /// - RunLineFromStack
+                    /** Pop a string from the stack and pass to client as a line.
+                     */
+                    lineHandler(new Dialogue.LineResult(state.PopValue().AsString));
+
+                    break;
+                default:
                 /// - default
                 /** Whoa, no idea what bytecode this is. Stop the program
                  * and throw an exception.

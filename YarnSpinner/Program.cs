@@ -395,7 +395,11 @@ namespace Yarn
 		/// stops execution
 		Stop,
 		/// run the node whose name is at the top of the stack
-		RunNode
+		RunNode,
+        /// Pop two strings, concat them, and push back to the stack
+        Concat,
+        /// Run a line, but get the text from the stack instead of the table.
+        RunLineFromStack,
 
 	}
 }
