@@ -29,10 +29,12 @@
 * Learn about using [Yarn Spinner in your Unity](Documentation/YarnSpinner-Unity/README.md) game.
 * If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.
 * We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.
+* Follow Yarn Spinner on Twitter: [http://twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)
 
 ## License
 
 Yarn Spinner is available under the [MIT License](LICENSE.md). This means that you can use it in any commercial or noncommercial project. The only requirement is that you need to include attribution in your game's docs. A credit would be very, very nice, too, but isn't required. If you'd like to know more about what this license lets you do tldrlegal.com have a [very nice write up about the MIT license](https://tldrlegal.com/license/mit-license) that you might find useful.
+
 ## Made by Secret Lab!
 
 Yarn Spinner was originally created by [Secret Lab](http://secretlab.com.au), an Australian game dev studio. [Come say hi](https://twitter.com/thesecretlab)! You can visit the [Yarn Spinner page](http://www.secretlab.com.au/yarnspinner) on the Secret Lab website for a little more info, and to donate to Yarn Spinner open source development at Secret Lab.
@@ -48,5 +50,6 @@ Yarn Spinner needs your help to be as awesome as it can be! You don't have to be
 * Hop into our IRC channel, which is [#yarnspinner on Freenode](https://webchat.freenode.net/?channels=yarnspinner), to chat to the team, lend a hand, or ask questions.
 * **New!** Join our discussion on Slack by requesting an invite to our [narrative game development](http://lab.to/narrativegamedev) channel.
 * **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available
+* **New!** Follow Yarn Spinner on Twitter: [http://twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)
 
 If you want to contribute to Yarn Spinner (!!), [go read our contributor's guide!](CONTRIBUTING.md)
