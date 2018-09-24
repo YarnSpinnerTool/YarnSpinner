@@ -59,6 +59,10 @@ namespace Yarn.Unity.Example {
         /// the user selected
         private Yarn.OptionChooser SetSelectedOption;
 
+        /// This is a part of DialogueRunner.
+        /// We need it to expose a Dictionary of visited nodes.
+        private Yarn.Dialogue dialogue;
+
         /// How quickly to show the text, in seconds per character
         [Tooltip("How quickly to show the text, in seconds per character")]
         public float textSpeed = 0.025f;
@@ -85,6 +89,10 @@ namespace Yarn.Unity.Example {
             // Hide the continue prompt if it exists
             if (continuePrompt != null)
                 continuePrompt.SetActive (false);
+
+            // Gets the Dialogue instance belonging to the DialogueRunner 
+            // component on our dialogueContainer
+            dialogue = GetComponent<DialogueRunner>().dialogue;
         }
 
         /// Show a line of dialogue, gradually
@@ -126,6 +134,7 @@ namespace Yarn.Unity.Example {
 
         /// Show a list of options, and wait for the player to make a selection.
         public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
+                                                Yarn.OptionNames optionNames,
                                                 Yarn.OptionChooser optionChooser)
         {
             // Do a little bit of safety checking
@@ -140,6 +149,21 @@ namespace Yarn.Unity.Example {
                 optionButtons [i].gameObject.SetActive (true);
                 optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
                 i++;
+            }
+
+            //Print whether the node has been visited, to the console.  
+            //Visited() always returns false for options that are not nodes.  
+            //Determining if an option has been visited will probably require creating a new list?
+            foreach (var optionName in optionNames.optionNames)
+            {
+                if (Visited(optionName))
+                {
+                    Debug.Log("Node " + optionName + " has been visited");
+                }
+                else if (!Visited(optionName))
+                {
+                    Debug.Log("Node " + optionName + " has NOT been visited");
+                }
             }
 
             // Record that we're using it
@@ -211,6 +235,19 @@ namespace Yarn.Unity.Example {
             yield break;
         }
 
+        /// Use this to return whether a Node has been visited.
+        /// Doesn't work for options that are not Nodes.
+        private bool Visited(string nodeName)
+        {
+            if (dialogue.visitedNodeCount.ContainsKey(nodeName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

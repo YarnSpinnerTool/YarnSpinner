@@ -231,6 +231,7 @@ namespace Yarn.Unity
                     yield return StartCoroutine (
                         this.dialogueUI.RunOptions (
                         optionSetResult.options,
+                        optionSetResult.optionNames,
                         optionSetResult.setSelectedOptionDelegate
                     ));
 
@@ -439,6 +440,7 @@ namespace Yarn.Unity
 
         /// Display the options, and call the optionChooser when done.
         public abstract IEnumerator RunOptions (Yarn.Options optionsCollection,
+                                                Yarn.OptionNames optionNames,
                                                 Yarn.OptionChooser optionChooser);
 
         /// Perform some game-specific command.

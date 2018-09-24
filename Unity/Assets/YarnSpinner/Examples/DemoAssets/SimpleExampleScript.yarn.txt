@@ -1,7 +1,7 @@
 title: Start
 tags: 
 colorID: 0
-position: 592,181
+position: 328,224
 ---
 A: Hey, I'm a character in a script! #line:675d661a
 B: And I am too! You are talking to me! #line:cde582fb
@@ -14,20 +14,19 @@ B: What would you prefer to do next? #line:d35a9665
 [[Leave|Leave]] #line:e6cebba9
 [[Learn more|LearnMore]] #line:30ee1a0e
 ===
-
 title: Leave
 tags: 
 colorID: 0
-position: 387,487
+position: 337,514
 ---
 A: Oh, goodbye! #line:1971e104
 B: You'll be back soon! #line:39d35a39
 ===
-
 title: LearnMore
 tags: 
 colorID: 0
-position: 763,472
+position: 745,520
 ---
 A: HAHAHA #line:a2d211b5
+[[Start Over|Start]]
 ===

@@ -51,6 +51,7 @@ namespace Yarn {
      */
     public struct Line { public string text; }
     public struct Options { public IList<string> options; }
+    public struct OptionNames { public IList<string> optionNames; }
     public struct Command { public string text; }
 
     /// Where we turn to for storing and loading variable data.
@@ -161,12 +162,16 @@ namespace Yarn {
         /// next line. It's an error if you don't.
         public class OptionSetResult : RunnerResult {
             public Options options;
+            public OptionNames optionNames;
             public OptionChooser setSelectedOptionDelegate;
 
-            public OptionSetResult (IList<string> optionStrings, OptionChooser setSelectedOption) {
+            public OptionSetResult (IList<string> optionStrings, IList<string> optionNameStrings , OptionChooser setSelectedOption) {
                 var options = new Options();
+                var optionNames = new OptionNames();
                 options.options = optionStrings;
+                optionNames.optionNames = optionNameStrings;
                 this.options = options;
+                this.optionNames = optionNames;
                 this.setSelectedOptionDelegate = setSelectedOption;
             }
 

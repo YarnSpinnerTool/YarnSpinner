@@ -37,7 +37,7 @@ public class TestDialogueUIBehaviour : Yarn.Unity.DialogueUIBehaviour {
 
         yield break;
     }
-    public override System.Collections.IEnumerator RunOptions (Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)
+    public override System.Collections.IEnumerator RunOptions (Yarn.Options optionsCollection, Yarn.OptionNames optionNames, Yarn.OptionChooser optionChooser)
     {
         if (optionsHandler != null)
             optionsHandler(optionsCollection, optionChooser);

@@ -389,9 +389,14 @@ namespace Yarn
 
                 // Otherwise, present the list of options to the user and let them pick
                 var optionStrings = new List<string> ();
+                // Create a list of the option destination Node names
+                var optionNameStrings = new List<string> ();
 
+                int c = 0;
                 foreach (var option in state.currentOptions) {
                     optionStrings.Add (program.GetString (option.Key));
+                    optionNameStrings.Add(state.currentOptions[c].Value);
+                    c++;
                 }
 
                 // We can't continue until our client tell us which option to pick
@@ -399,7 +404,7 @@ namespace Yarn
 
                 // Pass the options set to the client, as well as a delegate for them to call when the
                 // user has made a selection
-                optionsHandler (new Dialogue.OptionSetResult (optionStrings, delegate (int selectedOption) {
+                optionsHandler (new Dialogue.OptionSetResult (optionStrings, optionNameStrings, delegate (int selectedOption) {
 
                     // we now know what number option was selected; push the corresponding node name
                     // to the stack
