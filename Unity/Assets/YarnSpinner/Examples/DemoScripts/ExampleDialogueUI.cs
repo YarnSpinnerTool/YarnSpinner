@@ -153,7 +153,7 @@ namespace Yarn.Unity.Example {
 
             //Print whether the node has been visited, to the console.  
             //Visited() always returns false for options that are not nodes.  
-            //Determining if an option has been visited will probably require creating a new list?
+            //Determining if an option has been visited will probably require creating a new list.
             foreach (var optionName in optionNames.optionNames)
             {
                 if (Visited(optionName))
@@ -162,7 +162,7 @@ namespace Yarn.Unity.Example {
                 }
                 else if (!Visited(optionName))
                 {
-                    Debug.Log("Node " + optionName + " has NOT been visited");
+                    Debug.Log("Option " + optionName + " has not been visited, or is not a Node");
                 }
             }
 

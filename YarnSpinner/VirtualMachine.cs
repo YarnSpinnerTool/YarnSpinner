@@ -389,14 +389,13 @@ namespace Yarn
 
                 // Otherwise, present the list of options to the user and let them pick
                 var optionStrings = new List<string> ();
+
                 // Create a list of the option destination Node names
                 var optionNameStrings = new List<string> ();
 
-                int c = 0;
                 foreach (var option in state.currentOptions) {
                     optionStrings.Add (program.GetString (option.Key));
-                    optionNameStrings.Add(state.currentOptions[c].Value);
-                    c++;
+                    optionNameStrings.Add (option.Value);
                 }
 
                 // We can't continue until our client tell us which option to pick
