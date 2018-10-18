@@ -838,7 +838,6 @@ namespace Yarn
     {
         String currentNode = null;
         public Graph graph = new Graph();
-        String yarnName = "G";
         public override void EnterHeader_title(YarnSpinnerParser.Header_titleContext context)
         {
             currentNode = context.HEADER_TITLE().GetText();
