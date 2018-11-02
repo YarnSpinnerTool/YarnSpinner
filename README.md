@@ -2,10 +2,11 @@
 
 <img src="Documentation/YarnSpinnerLogo.png" alt="Yarn Spinner logo" width="100px;" align="right">
 
-**[Yarn](https://github.com/infiniteammoinc/Yarn)** is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's very similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's syntax is extremely minimal, and there's not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes).
+**[Yarn](https://github.com/infiniteammoinc/Yarn)** is a language that's designed to make it *super easy* to create interactive dialogue for games. Yarn's similar in style to [Twine](http://twinery.org), so if you already know that, you'll be right at home! If you don't, that's cool - Yarn's [syntax](Documentation/YarnSpinner-Dialogue/Yarn-Syntax.md) is extremely minimal, and there's not much there to learn. The Yarn language is used in a number of cool games, including [Night In The Woods](http://nightinthewoods.com) and [Knights and Bikes](http://foamswordgames.com/knights).
 
 > **New!** Join our [narrative game development](http://lab.to/narrativegamedev) Slack!
-> **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available
+>
+> **New!** Continual integration [API documentation](https://thesecretlab.github.io/YarnSpinner/html/) now available.
 
 **Yarn Spinner** interprets the Yarn language, and is written in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29). Yarn Spinner is designed to be easy to add to [Unity](http://www.unity3d.com) games, but it's also intended for use in other contexts as well.
 
@@ -26,7 +27,7 @@
 * Learn how to [build Yarn Spinner from source.](Documentation/YarnSpinner-Programming/Building.md)
 * Learn more about [Yarn](https://github.com/infiniteammoinc/Yarn), and the Yarn editor.
 * Learn more about [writing dialogue in Yarn.](Documentation/YarnSpinner-Dialogue/README.md)
-* Learn about using [Yarn Spinner in your Unity](Documentation/YarnSpinner-Unity/README.md) game.
+* Learn about using [Yarn Spinner in your Unity game.](Documentation/YarnSpinner-Unity/README.md)
 * If you're unfamiliar with Unity, refer to our [Yarn Spinner With Unity Step by Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md) document.
 * We have some information that may be of assistance in using [Yarn Spinner With Unity](Documentation/YarnSpinner-with-Unity/README.md) on your system.
 * Follow Yarn Spinner on Twitter: [http://twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)
