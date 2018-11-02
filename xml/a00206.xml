@@ -46,7 +46,7 @@
 <codeline lineno="37"><highlight class="normal">title:<sp/>start</highlight></codeline>
 <codeline lineno="38"><highlight class="normal">```</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal">&gt;<sp/>Node<sp/>titles<sp/>are<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>insensitive.<sp/>The<sp/>titles<sp/>***start***,<sp/>***Start***,<sp/>***START***<sp/>and<sp/>***StArT***<sp/>are<sp/>different.</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">&gt;<sp/>Node<sp/>titles<sp/>are<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>sensitive.<sp/>The<sp/>titles<sp/>***start***,<sp/>***Start***,<sp/>***START***<sp/>and<sp/>***StArT***<sp/>are<sp/>different.</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal">&gt;<sp/>There<sp/>is<sp/>no<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>title.<sp/>You<sp/>will<sp/>need<sp/>to<sp/>ensure<sp/>that<sp/>your<sp/>game<sp/>programmers<sp/>know<sp/>which<sp/>node<sp/>your<sp/>game<sp/>starts<sp/>on,<sp/>as<sp/>it<sp/>may<sp/>not<sp/>necessarily<sp/>be<sp/>the<sp/>first<sp/>node<sp/>in<sp/>your<sp/>Yarn<sp/>Dialogue<sp/>file.</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
