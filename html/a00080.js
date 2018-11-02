@@ -1,8 +1,7 @@
 var a00080 =
 [
-    [ "CanConvertFrom", "a00080.html#aba0f1c085a1c33779ea791bb814b6aa5", null ],
-    [ "CanConvertFrom", "a00080.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00080.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00080.html#a07444e6f2bb1e49288f9de3b2407dc4f", null ],
-    [ "ConvertToString", "a00080.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "Deprecation", "a00080.html#ae80171841e97a48611c51a9a574a2fc0", null ],
+    [ "methodName", "a00080.html#a61605b2d0a17dfdf9c62952270d44fbd", null ],
+    [ "type", "a00080.html#a750904df254223bf3131c39017f90a0b", null ],
+    [ "usageNotes", "a00080.html#ac23509be7ae6b43a3e2154dd430954a7", null ]
 ];

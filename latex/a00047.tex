@@ -1,63 +1,169 @@
-\hypertarget{a00047}{\section{Yarn.\-Analysis.\-Compiled\-Program\-Analyser Class Reference}
-\label{a00047}\index{Yarn.\-Analysis.\-Compiled\-Program\-Analyser@{Yarn.\-Analysis.\-Compiled\-Program\-Analyser}}
+\hypertarget{a00047}{\section{Yarn.\-Analysis.\-Context Class Reference}
+\label{a00047}\index{Yarn.\-Analysis.\-Context@{Yarn.\-Analysis.\-Context}}
 }
 
 
-Inheritance diagram for Yarn.\-Analysis.\-Compiled\-Program\-Analyser\-:
+Collaboration diagram for Yarn.\-Analysis.\-Context\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00759}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Yarn.\-Analysis.\-Compiled\-Program\-Analyser\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=236pt]{a00760}
+\includegraphics[width=214pt]{a00749}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-abstract void \hyperlink{a00047_aba4a36cb823b11ee491074e26477d084}{Diagnose} (\hyperlink{a00146}{Yarn.\-Program} program)
+\hyperlink{a00047_a8e2c56843e8d374b0f90e23326d8d14a}{Context} ()
 \item 
-abstract I\-Enumerable$<$ \hyperlink{a00085}{Diagnosis} $>$ \hyperlink{a00047_afe059a2ceeabe50380b000420e512bd6}{Gather\-Diagnoses} ()
+\hyperlink{a00047_ad5f41fb64637c4938bce811153492731}{Context} (params Type\mbox{[}$\,$\mbox{]} types)
+\item 
+I\-Enumerable$<$ \hyperlink{a00081}{Diagnosis} $>$ \hyperlink{a00047_a1eadea062a5899a64d00ea0172cbbb43}{Finish\-Analysis} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00047_a60255a6d54f296d199507acef251244c}{Add\-Program\-To\-Analysis} (\hyperlink{a00142}{Program} program)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00047_afdf24f2512251c2203ba1bde8f4a0f90}{default\-Analyser\-Classes}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerable$<$ Type $>$ \hyperlink{a00047_ad06829cf848a5936db5724ebced758ec}{\-\_\-default\-Analyser\-Classes}
+\item 
+List$<$ \hyperlink{a00043}{Compiled\-Program\-Analyser} $>$ \hyperlink{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 150 of file Analyser.\-cs.
+Definition at line 81 of file Analyser.\-cs.
 
 
 
-\subsection{Member Function Documentation}
-\hypertarget{a00047_aba4a36cb823b11ee491074e26477d084}{\index{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}!Diagnose@{Diagnose}}
-\index{Diagnose@{Diagnose}!Yarn::Analysis::CompiledProgramAnalyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}}
-\subsubsection[{Diagnose}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Diagnose (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Program}}]{program}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00047_aba4a36cb823b11ee491074e26477d084}
-\hypertarget{a00047_afe059a2ceeabe50380b000420e512bd6}{\index{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}!Gather\-Diagnoses@{Gather\-Diagnoses}}
-\index{Gather\-Diagnoses@{Gather\-Diagnoses}!Yarn::Analysis::CompiledProgramAnalyser@{Yarn\-::\-Analysis\-::\-Compiled\-Program\-Analyser}}
-\subsubsection[{Gather\-Diagnoses}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Compiled\-Program\-Analyser.\-Gather\-Diagnoses (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00047_a8e2c56843e8d374b0f90e23326d8d14a}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00047_afe059a2ceeabe50380b000420e512bd6}
+)}}\label{a00047_a8e2c56843e8d374b0f90e23326d8d14a}
 
 
-Implemented in \hyperlink{a00179_a107aecf707b130c4b733930a95f9154e}{Yarn.\-Analysis.\-Unused\-Variable\-Checker}, and \hyperlink{a00183_ab84e7a8e68740379dee12a51dca69b07}{Yarn.\-Analysis.\-Variable\-Lister}.
+Definition at line 110 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+111         \{
+112             \hyperlink{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+113 
+114             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} \hyperlink{a00047_afdf24f2512251c2203ba1bde8f4a0f90}{defaultAnalyserClasses}) \{
+115                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+116             \}
+117 
+118         \}
+\end{DoxyCode}
+\hypertarget{a00047_ad5f41fb64637c4938bce811153492731}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Context@{Context}}
+\index{Context@{Context}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Context}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Context.\-Context (
+\begin{DoxyParamCaption}
+\item[{params Type\mbox{[}$\,$\mbox{]}}]{types}
+\end{DoxyParamCaption}
+)}}\label{a00047_ad5f41fb64637c4938bce811153492731}
+
+
+Definition at line 120 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+120                                             \{
+121             \hyperlink{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{analysers} = \textcolor{keyword}{new} List<CompiledProgramAnalyser> ();
+122 
+123             \textcolor{keywordflow}{foreach} (var analyserType \textcolor{keywordflow}{in} types) \{
+124                 analysers.Add((CompiledProgramAnalyser)Activator.CreateInstance (analyserType));
+125             \}
+126         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00047_a60255a6d54f296d199507acef251244c}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}}
+\index{Add\-Program\-To\-Analysis@{Add\-Program\-To\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Add\-Program\-To\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Analysis.\-Context.\-Add\-Program\-To\-Analysis (
+\begin{DoxyParamCaption}
+\item[{{\bf Program}}]{program}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00047_a60255a6d54f296d199507acef251244c}
+
+
+Definition at line 128 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+128                                                             \{
+129             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+130                 analyser.Diagnose (program);
+131             \}
+132         \}
+\end{DoxyCode}
+\hypertarget{a00047_a1eadea062a5899a64d00ea0172cbbb43}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!Finish\-Analysis@{Finish\-Analysis}}
+\index{Finish\-Analysis@{Finish\-Analysis}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{Finish\-Analysis}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Diagnosis}$>$ Yarn.\-Analysis.\-Context.\-Finish\-Analysis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00047_a1eadea062a5899a64d00ea0172cbbb43}
+
+
+Definition at line 134 of file Analyser.\-cs.
+
+
+\begin{DoxyCode}
+134                                                        \{
+135             List<Diagnosis> diagnoses = \textcolor{keyword}{new} List<Diagnosis> ();
+136 
+137             \textcolor{keywordflow}{foreach} (var analyser \textcolor{keywordflow}{in} \hyperlink{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{analysers}) \{
+138                 diagnoses.AddRange (analyser.GatherDiagnoses ());
+139             \}
+140 
+141             \textcolor{keywordflow}{return} diagnoses;
+142         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00047_ad06829cf848a5936db5724ebced758ec}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}}
+\index{\-\_\-default\-Analyser\-Classes@{\-\_\-default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{\-\_\-default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-\_\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [private]}}}\label{a00047_ad06829cf848a5936db5724ebced758ec}
+
+
+Definition at line 83 of file Analyser.\-cs.
+
+\hypertarget{a00047_aa5c7eaa90ad9c47969a3b336080d8991}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!analysers@{analysers}}
+\index{analysers@{analysers}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{analysers}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Compiled\-Program\-Analyser}$>$ Yarn.\-Analysis.\-Context.\-analysers\hspace{0.3cm}{\ttfamily [private]}}}\label{a00047_aa5c7eaa90ad9c47969a3b336080d8991}
+
+
+Definition at line 108 of file Analyser.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00047_afdf24f2512251c2203ba1bde8f4a0f90}{\index{Yarn\-::\-Analysis\-::\-Context@{Yarn\-::\-Analysis\-::\-Context}!default\-Analyser\-Classes@{default\-Analyser\-Classes}}
+\index{default\-Analyser\-Classes@{default\-Analyser\-Classes}!Yarn::Analysis::Context@{Yarn\-::\-Analysis\-::\-Context}}
+\subsubsection[{default\-Analyser\-Classes}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$Type$>$ Yarn.\-Analysis.\-Context.\-default\-Analyser\-Classes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00047_afdf24f2512251c2203ba1bde8f4a0f90}
+
+
+Definition at line 84 of file Analyser.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00293}{Analyser.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00287}{Analyser.\-cs}\end{DoxyCompactItemize}

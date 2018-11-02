@@ -1,11 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00352" kind="namespace">
-    <compoundname>System::Text::RegularExpressions</compoundname>
+    <compoundname>Yarn::Unity::Example</compoundname>
+    <innerclass refid="a00037" prot="public">Yarn::Unity::Example::CameraFollow</innerclass>
+    <innerclass refid="a00091" prot="public">Yarn::Unity::Example::ExampleDialogueUI</innerclass>
+    <innerclass refid="a00131" prot="public">Yarn::Unity::Example::NPC</innerclass>
+    <innerclass refid="a00140" prot="public">Yarn::Unity::Example::PlayerCharacter</innerclass>
+    <innerclass refid="a00153" prot="public">Yarn::Unity::Example::SpriteSwitcher</innerclass>
     <briefdescription>
-    </briefdescription>
+<para>attached to the non-player characters, and stores the name of the <ref refid="a00041" kindref="compound">Yarn</ref> node that should be run when you talk to them. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReader.cs" line="9" column="1"/>
+<para>Attach sprite renderer to game object. </para>    </detaileddescription>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs" line="30" column="1"/>
   </compounddef>
 </doxygen>

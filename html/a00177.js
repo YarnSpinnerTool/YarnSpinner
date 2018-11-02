@@ -1,8 +1,37 @@
 var a00177 =
 [
-    [ "CanConvertFrom", "a00177.html#a2acfe170e7562c745bcb0aaff3d74020", null ],
-    [ "CanConvertFrom", "a00177.html#a470d21adaa704eb281250dbd112ff91a", null ],
-    [ "CanConvertTo", "a00177.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
-    [ "ConvertFromString", "a00177.html#a15686325b6bfa7648b65f201ecf50cd2", null ],
-    [ "ConvertToString", "a00177.html#a36cb2f9b24f15a671293f3a722324c27", null ]
+    [ "Type", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884", [
+      [ "Number", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ab2ee912b91d69b435159c7c3f6df7f5f", null ],
+      [ "String", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a27118326006d3829667a400ad23d5d98", null ],
+      [ "Bool", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034", null ],
+      [ "Variable", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884a47c14840d8e15331fa420b9b2f757cd9", null ],
+      [ "Null", "a00177.html#ad5aaf60ee4504608fcc2ffadefa14884abbb93ef26e3c101ff11cdd21cab08a94", null ]
+    ] ],
+    [ "Value", "a00177.html#a7d2db75682c57463bf43c13499991ad4", null ],
+    [ "Value", "a00177.html#a960a015e35ea66270fe2713f39490e09", null ],
+    [ "CompareTo", "a00177.html#abf4dccca577017dff90912c01024ff6a", null ],
+    [ "CompareTo", "a00177.html#a66de8cb38561c6589f01ca667267f4c6", null ],
+    [ "Equals", "a00177.html#a5f4e343c2a82ddca84008ac7d155071d", null ],
+    [ "GetHashCode", "a00177.html#a4c8412105c2ed3058bddac30ecf49916", null ],
+    [ "operator%", "a00177.html#a00875685b4619a7bcf0d1a77e529657c", null ],
+    [ "operator*", "a00177.html#a946a02ecefe18d7c82cad0e2632d19c8", null ],
+    [ "operator+", "a00177.html#abfd48481b0ac28ff5485a850a8271dfd", null ],
+    [ "operator-", "a00177.html#aef1135f5d3e8925fa2c1b4c66cc8bd0c", null ],
+    [ "operator-", "a00177.html#aeaf119fa2885dbd1685d1efcd9594316", null ],
+    [ "operator/", "a00177.html#afe3559ae2e0f3db33a23a640ee7832d4", null ],
+    [ "operator<", "a00177.html#a0d1d9c4ee3fd55ad97d30279db525e4b", null ],
+    [ "operator<=", "a00177.html#a4822bad5d6dc0fa6f7b9bd71b71855aa", null ],
+    [ "operator>", "a00177.html#a02509b7c4eb702d86c1ffb7be99f7aeb", null ],
+    [ "operator>=", "a00177.html#ac7680e8a5ef93dc1d1266a06c0a29dbf", null ],
+    [ "ToString", "a00177.html#a70460d2f12485c8b980d75ad178e180b", null ],
+    [ "NULL", "a00177.html#a1ed2964965baca8621c45efa23f37660", null ],
+    [ "AsBool", "a00177.html#a5805faef3b3d376090ff096d6dd6c064", null ],
+    [ "AsNumber", "a00177.html#a751419743761562bf902246d6e6a3c0a", null ],
+    [ "AsString", "a00177.html#a2d5d0ec41c50c642c1d0eeeb6bb2b1c0", null ],
+    [ "backingValue", "a00177.html#a051dd30c6cb184f1fe941a95be8781ab", null ],
+    [ "boolValue", "a00177.html#acb140e3466e132528409d4c441fd67da", null ],
+    [ "numberValue", "a00177.html#ae1892c1c7a8177537d1caa39a2e51da6", null ],
+    [ "stringValue", "a00177.html#add1b07146f1a9e4b655b33c93d07dff9", null ],
+    [ "type", "a00177.html#a6d5820fafa766911b9da84d1ed33e51a", null ],
+    [ "variableName", "a00177.html#a8ee2b09b7d28eaf97bf63c74d0023bfd", null ]
 ];

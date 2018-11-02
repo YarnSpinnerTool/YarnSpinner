@@ -1,171 +1,290 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00069" kind="class" prot="public">
-    <compoundname>CsvHelper::Configuration::CsvPropertyReferenceMap</compoundname>
+    <compoundname>CsvHelper::CsvSerializer</compoundname>
+    <basecompoundref refid="a00106" prot="public" virt="non-virtual">CsvHelper.ICsvSerializer</basecompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00069_1aa6926229eec915aa6a71c9ee603064f5" prot="private" static="no" mutable="no">
-        <type>readonly <ref refid="a00070" kindref="compound">CsvPropertyReferenceMapData</ref></type>
-        <definition>readonly CsvPropertyReferenceMapData CsvHelper.Configuration.CsvPropertyReferenceMap.data</definition>
+      <memberdef kind="variable" id="a00069_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CsvHelper.CsvSerializer.disposed</definition>
         <argsstring></argsstring>
-        <name>data</name>
+        <name>disposed</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="16" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="16" bodyend="-1"/>
+        <referencedby refid="a00069_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00231" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</referencedby>
+        <referencedby refid="a00069_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00231" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00069_1ae8c56ff97c0a797245f2205c486833ea" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
+        <definition>readonly CsvConfiguration CsvHelper.CsvSerializer.configuration</definition>
+        <argsstring></argsstring>
+        <name>configuration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="17" bodyend="-1"/>
+        <referencedby refid="a00069_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00231" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00069_1adfb235fa2c868fc79c0376fd12fda767" prot="private" static="no" mutable="no">
+        <type>TextWriter</type>
+        <definition>TextWriter CsvHelper.CsvSerializer.writer</definition>
+        <argsstring></argsstring>
+        <name>writer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="18" bodyend="-1"/>
+        <referencedby refid="a00069_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00231" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
+        <referencedby refid="a00069_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00231" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00069_1a1bf8b55373206c0dc378c8f7247bf149" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>PropertyInfo</type>
-        <definition>PropertyInfo CsvHelper.Configuration.CsvPropertyReferenceMap.Property</definition>
+      <memberdef kind="property" id="a00069_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type><ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
+        <definition>CsvConfiguration CsvHelper.CsvSerializer.Configuration</definition>
         <argsstring></argsstring>
-        <name>Property</name>
+        <name>Configuration</name>
         <briefdescription>
-<para>Gets the property. </para>        </briefdescription>
+<para>Gets the configuration. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00069_1a555d8d59960792aa556002a1a1b942f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00054" kindref="compound">CsvClassMap</ref></type>
-        <definition>CsvClassMap CsvHelper.Configuration.CsvPropertyReferenceMap.Mapping</definition>
-        <argsstring></argsstring>
-        <name>Mapping</name>
-        <briefdescription>
-<para>Gets the mapping. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="32" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00069_1aa83ef91c4eb293a9d035013c8b4af016" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00070" kindref="compound">CsvPropertyReferenceMapData</ref></type>
-        <definition>CsvPropertyReferenceMapData CsvHelper.Configuration.CsvPropertyReferenceMap.Data</definition>
-        <argsstring></argsstring>
-        <name>Data</name>
-        <briefdescription>
-<para>Gets the property reference map data. </para>        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="40" bodyend="-1"/>
-        <referencedby refid="a00071_1a85552a491d9d488db0516324e9870998" compoundref="a00235" startline="1606" endline="1615">CsvHelper.CsvReader.CanRead</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="24" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00069_1a02823d2439667bca75233abbe81651ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00069_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.Configuration.CsvPropertyReferenceMap.CsvPropertyReferenceMap</definition>
-        <argsstring>(PropertyInfo property, CsvClassMap mapping)</argsstring>
-        <name>CsvPropertyReferenceMap</name>
+        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
+        <argsstring>(TextWriter writer)</argsstring>
+        <name>CsvSerializer</name>
         <param>
-          <type>PropertyInfo</type>
-          <declname>property</declname>
-        </param>
-        <param>
-          <type><ref refid="a00054" kindref="compound">CsvClassMap</ref></type>
-          <declname>mapping</declname>
+          <type>TextWriter</type>
+          <declname>writer</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00069" kindref="compound">CsvPropertyReferenceMap</ref> class. </para>        </briefdescription>
+<para>Creates a new serializer using the given TextWriter. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>property</parametername>
+<parametername>writer</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The property.</para></parameterdescription>
+<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="a00069_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
+        <argsstring>(TextWriter writer, CsvConfiguration configuration)</argsstring>
+        <name>CsvSerializer</name>
+        <param>
+          <type>TextWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type><ref refid="a00053" kindref="compound">CsvConfiguration</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new serializer using the given TextWriter and CsvConfiguration. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>writer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>mapping</parametername>
+<parametername>configuration</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The <ref refid="a00054" kindref="compound">CsvClassMap</ref> to use for the reference map.</para></parameterdescription>
+<para>The configuration.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="49" bodyend="57"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="40" bodyend="54"/>
+        <references refid="a00069_1ae8c56ff97c0a797245f2205c486833ea" compoundref="a00231" startline="17">CsvHelper.CsvSerializer.configuration</references>
+        <references refid="a00069_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00231" startline="18">CsvHelper.CsvSerializer.writer</references>
       </memberdef>
-      <memberdef kind="function" id="a00069_1a0ed653de99ec2251fd99837740693789" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="a00069" kindref="compound">CsvPropertyReferenceMap</ref></type>
-        <definition>CsvPropertyReferenceMap CsvHelper.Configuration.CsvPropertyReferenceMap.Prefix</definition>
-        <argsstring>(string prefix=null)</argsstring>
-        <name>Prefix</name>
+      <memberdef kind="function" id="a00069_1aefad906acd048863d3dd414651a44793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.CsvSerializer.Write</definition>
+        <argsstring>(string[] record)</argsstring>
+        <name>Write</name>
+        <reimplements refid="a00106_1a0b442858eef85b7d933662359646fd0b">Write</reimplements>
         <param>
-          <type>string</type>
-          <declname>prefix</declname>
-          <defval>null</defval>
+          <type>string[]</type>
+          <declname>record</declname>
         </param>
         <briefdescription>
-<para>Appends a prefix to the header of each field of the reference property </para>        </briefdescription>
+<para>Writes a record to the CSV file. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>prefix</parametername>
+<parametername>record</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The prefix to be prepended to headers of each reference property</para></parameterdescription>
+<para>The record to write.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The current <ref refid="a00069" kindref="compound">CsvPropertyReferenceMap</ref></para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="64" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="64" bodyend="74"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="60" bodyend="66"/>
+        <references refid="a00069_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00231" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</references>
+      </memberdef>
+      <memberdef kind="function" id="a00069_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CsvHelper.CsvSerializer.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <briefdescription>
+<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
+        <detaileddescription>
+<para>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="72" bodyend="76"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="package-func">
-      <memberdef kind="function" id="a00069_1a1e879f9a6ed84415ac52c44f1f086606" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>int CsvHelper.Configuration.CsvPropertyReferenceMap.GetMaxIndex</definition>
-        <argsstring>()</argsstring>
-        <name>GetMaxIndex</name>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="a00069_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvSerializer.Dispose</definition>
+        <argsstring>(bool disposing)</argsstring>
+        <name>Dispose</name>
+        <param>
+          <type>bool</type>
+          <declname>disposing</declname>
+        </param>
         <briefdescription>
-<para>Get the largest index for the properties and references. </para>        </briefdescription>
+<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>The max index.</para></simplesect>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disposing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True if the instance needs to be disposed of.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="81" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="81" bodyend="84"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="82" bodyend="99"/>
+        <references refid="a00069_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00231" startline="16">CsvHelper.CsvSerializer.disposed</references>
+        <references refid="a00069_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00231" startline="18">CsvHelper.CsvSerializer.writer</references>
+      </memberdef>
+      <memberdef kind="function" id="a00069_1ae14e1913a4e76faf97484c1bde339143" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void CsvHelper.CsvSerializer.CheckDisposed</definition>
+        <argsstring>()</argsstring>
+        <name>CheckDisposed</name>
+        <briefdescription>
+<para>Checks if the instance has been disposed of. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>ObjectDisposedException</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="105" bodyend="111"/>
+        <references refid="a00069_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00231" startline="16">CsvHelper.CsvSerializer.disposed</references>
+        <referencedby refid="a00069_1aefad906acd048863d3dd414651a44793" compoundref="a00231" startline="60" endline="66">CsvHelper.CsvSerializer.Write</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Mapping info for a reference property mapping to a class. </para>    </briefdescription>
+<para>Defines methods used to serialize data into a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1141">
-        <label>CsvHelper.Configuration.CsvPropertyReferenceMapData</label>
-        <link refid="a00070"/>
-      </node>
-      <node id="1140">
-        <label>CsvHelper.Configuration.CsvPropertyReferenceMap</label>
+    <inheritancegraph>
+      <node id="1162">
+        <label>CsvHelper.CsvSerializer</label>
         <link refid="a00069"/>
-        <childnode refid="1141" relation="usage">
-          <edgelabel>-data</edgelabel>
+        <childnode refid="1163" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="1163">
+        <label>ICsvSerializer</label>
+        <link refid="a00106"/>
+        <childnode refid="1164" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1164">
+        <label>IDisposable</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1168">
+        <label>CsvHelper.Configuration.CsvConfiguration</label>
+        <link refid="a00053"/>
+        <childnode refid="1169" relation="usage">
+          <edgelabel>-maps</edgelabel>
+        </childnode>
+      </node>
+      <node id="1165">
+        <label>CsvHelper.CsvSerializer</label>
+        <link refid="a00069"/>
+        <childnode refid="1166" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1168" relation="usage">
+          <edgelabel>-configuration</edgelabel>
+        </childnode>
+      </node>
+      <node id="1166">
+        <label>ICsvSerializer</label>
+        <link refid="a00106"/>
+        <childnode refid="1167" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1167">
+        <label>IDisposable</label>
+      </node>
+      <node id="1169">
+        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
+        <link refid="a00052"/>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyReferenceMap.cs" bodystart="14" bodyend="85"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="14" bodyend="112"/>
     <listofallmembers>
-      <member refid="a00069_1a02823d2439667bca75233abbe81651ff" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>CsvPropertyReferenceMap</name></member>
-      <member refid="a00069_1aa6926229eec915aa6a71c9ee603064f5" prot="private" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>data</name></member>
-      <member refid="a00069_1aa83ef91c4eb293a9d035013c8b4af016" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Data</name></member>
-      <member refid="a00069_1a1e879f9a6ed84415ac52c44f1f086606" prot="package" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>GetMaxIndex</name></member>
-      <member refid="a00069_1a555d8d59960792aa556002a1a1b942f9" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Mapping</name></member>
-      <member refid="a00069_1a0ed653de99ec2251fd99837740693789" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Prefix</name></member>
-      <member refid="a00069_1a1bf8b55373206c0dc378c8f7247bf149" prot="public" virt="non-virtual"><scope>CsvHelper::Configuration::CsvPropertyReferenceMap</scope><name>Property</name></member>
+      <member refid="a00069_1ae14e1913a4e76faf97484c1bde339143" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>CheckDisposed</name></member>
+      <member refid="a00069_1ae8c56ff97c0a797245f2205c486833ea" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>configuration</name></member>
+      <member refid="a00069_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Configuration</name></member>
+      <member refid="a00069_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
+      <member refid="a00069_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
+      <member refid="a00069_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
+      <member refid="a00069_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
+      <member refid="a00069_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>disposed</name></member>
+      <member refid="a00069_1aefad906acd048863d3dd414651a44793" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Write</name></member>
+      <member refid="a00069_1adfb235fa2c868fc79c0376fd12fda767" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>writer</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,331 +1,225 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00148" kind="class" prot="public">
-    <compoundname>YarnSpinner::Tests::ProjectTests</compoundname>
-    <basecompoundref refid="a00164" prot="public" virt="non-virtual">YarnSpinner.Tests.TestBase</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00148_1ad7914a14ec1a746a7d02fb9b2c69e91b" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool YarnSpinner.Tests.ProjectTests.experimentalMode</definition>
-        <argsstring></argsstring>
-        <name>experimentalMode</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" bodystart="16" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    <compoundname>CsvHelper::TypeConversion::SByteConverter</compoundname>
+    <basecompoundref refid="a00078" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00148_1af8cec595dce7455eeace4841d0f71a35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>YarnSpinner.Tests.ProjectTests.ProjectTests</definition>
-        <argsstring>(bool experimental)</argsstring>
-        <name>ProjectTests</name>
+      <memberdef kind="function" id="a00148_1ad16aeb03f418c89b3f78e95b46a46b40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.SByteConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00078_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
         <param>
-          <type>bool</type>
-          <declname>experimental</declname>
+          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
         </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" bodystart="17" bodyend="20"/>
-      </memberdef>
-      <memberdef kind="function" id="a00148_1a09fb3b241843b94176be710e4a2a6833" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>new void</type>
-        <definition>new void YarnSpinner.Tests.ProjectTests.Init</definition>
-        <argsstring>()</argsstring>
-        <name>Init</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" bodystart="23" bodyend="28"/>
-      </memberdef>
-      <memberdef kind="function" id="a00148_1a7d3dccb3f5ddf0b24e65782b7af15369" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void YarnSpinner.Tests.ProjectTests.TestLoadingSingleFile</definition>
-        <argsstring>()</argsstring>
-        <name>TestLoadingSingleFile</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" line="31" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" bodystart="31" bodyend="82"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-attrib">
-      <memberdef kind="variable" id="a00164_1a23d59ace1516ca72924c6fe3feafd3f7" prot="protected" static="no" mutable="no">
-        <type><ref refid="a00184" kindref="compound">VariableStorage</ref></type>
-        <definition>VariableStorage YarnSpinner.Tests.TestBase.storage</definition>
-        <argsstring></argsstring>
-        <name>storage</name>
-        <initializer>= new <ref refid="a00130" kindref="compound">MemoryVariableStore</ref>()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="22" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00164_1a4cff5de56c4b8a91c76b6eb2d622a795" prot="protected" static="no" mutable="no">
-        <type><ref refid="a00086" kindref="compound">Dialogue</ref></type>
-        <definition>Dialogue YarnSpinner.Tests.TestBase.dialogue</definition>
-        <argsstring></argsstring>
-        <name>dialogue</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="23" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00164_1ac978fe85db843c51411f5517bdbe0eb8" prot="protected" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool YarnSpinner.Tests.TestBase.errorsCauseFailures</definition>
-        <argsstring></argsstring>
-        <name>errorsCauseFailures</name>
-        <initializer>= true</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="25" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="25" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00164_1ab1ad614f465a49447da31c4000ec6b3e" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string YarnSpinner.Tests.TestBase.ProjectRootPath</definition>
-        <argsstring></argsstring>
-        <name>ProjectRootPath</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="29" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="29" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00164_1aa9b4d902d61adad7165154a265f69aa4" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string YarnSpinner.Tests.TestBase.TestDataPath</definition>
-        <argsstring></argsstring>
-        <name>TestDataPath</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="51" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="52" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00164_1a39922286f6255e4fd0e433a4fc7521c4" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
-        <type>string</type>
-        <definition>string YarnSpinner.Tests.TestBase.UnityDemoScriptsPath</definition>
-        <argsstring></argsstring>
-        <name>UnityDemoScriptsPath</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="59" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="60" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00164_1a47f35b8e8123ed9471883d02b8bc9f3e" prot="protected" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>bool</type>
-        <definition>bool YarnSpinner.Tests.TestBase.isExpectingLine</definition>
-        <argsstring></argsstring>
-        <name>isExpectingLine</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="175" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="175" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
-      <memberdef kind="function" id="a00164_1abffa134d40d72b21e6b35c3bf05fc53f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void YarnSpinner.Tests.TestBase.RunStandardTestcase</definition>
-        <argsstring>(string nodeName=&quot;Start&quot;)</argsstring>
-        <name>RunStandardTestcase</name>
         <param>
           <type>string</type>
-          <declname>nodeName</declname>
-          <defval>&quot;Start&quot;</defval>
+          <declname>text</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="117" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="117" bodyend="121"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="20" bodyend="31"/>
+        <references refid="a00168_1af6bc545680b477abf9178eb4755572b1" compoundref="a00272" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
       </memberdef>
-      <memberdef kind="function" id="a00164_1a7b525f85a26d7c942e1cbfa5d6453893" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void YarnSpinner.Tests.TestBase.HandleResult</definition>
-        <argsstring>(Yarn.Dialogue.RunnerResult result)</argsstring>
-        <name>HandleResult</name>
+      <memberdef kind="function" id="a00148_1a8f6d23460e0ddfe883cc06ded76bf633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.SByteConverter.CanConvertFrom</definition>
+        <argsstring>(System.Type type)</argsstring>
+        <name>CanConvertFrom</name>
         <param>
-          <type><ref refid="a00150" kindref="compound">Yarn.Dialogue.RunnerResult</ref></type>
-          <declname>result</declname>
+          <type>System.Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="123" bodyend="169"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="40" bodyend="44"/>
       </memberdef>
-      <memberdef kind="function" id="a00164_1ac21a5082ddac1da9db17ae54038df44e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void YarnSpinner.Tests.TestBase.ExpectLine</definition>
-        <argsstring>(string line)</argsstring>
-        <name>ExpectLine</name>
+      <memberdef kind="function" id="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00113_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00089_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00132_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
         <param>
-          <type>string</type>
-          <declname>line</declname>
+          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" line="171" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/TestBase.cs" bodystart="171" bodyend="173"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="a00078_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00113_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
+        <reimplementedby refid="a00162_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00036_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00074_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00075_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00089_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00088_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00035_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
+        <reimplementedby refid="a00132_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00113_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00089_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Converts a SByte to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1600">
-        <label>TestBase</label>
-        <link refid="a00164"/>
+      <node id="1627">
+        <label>ITypeConverter</label>
+        <link refid="a00113"/>
       </node>
-      <node id="1599">
-        <label>YarnSpinner.Tests.ProjectTests</label>
+      <node id="1626">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00078"/>
+        <childnode refid="1627" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1625">
+        <label>CsvHelper.TypeConversion.SByteConverter</label>
         <link refid="a00148"/>
-        <childnode refid="1600" relation="public-inheritance">
+        <childnode refid="1626" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1606">
-        <label>Yarn.Program</label>
-        <link refid="a00146"/>
+      <node id="1630">
+        <label>ITypeConverter</label>
+        <link refid="a00113"/>
       </node>
-      <node id="1603">
-        <label>Yarn.Dialogue</label>
-        <link refid="a00086"/>
-        <childnode refid="1604" relation="usage">
-          <edgelabel>-vm</edgelabel>
-        </childnode>
-        <childnode refid="1608" relation="usage">
-          <edgelabel>+library</edgelabel>
-        </childnode>
-        <childnode refid="1606" relation="usage">
-          <edgelabel>~program</edgelabel>
-        </childnode>
-        <childnode refid="1609" relation="usage">
-          <edgelabel>~loader</edgelabel>
-        </childnode>
-        <childnode refid="1610" relation="usage">
-          <edgelabel>~continuity</edgelabel>
+      <node id="1629">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00078"/>
+        <childnode refid="1630" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1608">
-        <label>Yarn.Library</label>
-        <link refid="a00123"/>
-      </node>
-      <node id="1602">
-        <label>TestBase</label>
-        <link refid="a00164"/>
-        <childnode refid="1603" relation="usage">
-          <edgelabel>#dialogue</edgelabel>
-        </childnode>
-        <childnode refid="1610" relation="usage">
-          <edgelabel>#storage</edgelabel>
-        </childnode>
-      </node>
-      <node id="1607">
-        <label>Yarn.VirtualMachine.State</label>
-        <link refid="a00159"/>
-      </node>
-      <node id="1601">
-        <label>YarnSpinner.Tests.ProjectTests</label>
+      <node id="1628">
+        <label>CsvHelper.TypeConversion.SByteConverter</label>
         <link refid="a00148"/>
-        <childnode refid="1602" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1609">
-        <label>Yarn.Loader</label>
-        <link refid="a00127"/>
-        <childnode refid="1603" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
-        </childnode>
-      </node>
-      <node id="1610">
-        <label>Yarn.VariableStorage</label>
-        <link refid="a00184"/>
-      </node>
-      <node id="1605">
-        <label>Yarn.Node</label>
-        <link refid="a00367"/>
-      </node>
-      <node id="1604">
-        <label>Yarn.VirtualMachine</label>
-        <link refid="a00156"/>
-        <childnode refid="1603" relation="usage">
-          <edgelabel>-dialogue</edgelabel>
-        </childnode>
-        <childnode refid="1605" relation="usage">
-          <edgelabel>-currentNode</edgelabel>
-        </childnode>
-        <childnode refid="1606" relation="usage">
-          <edgelabel>-program</edgelabel>
-        </childnode>
-        <childnode refid="1607" relation="usage">
-          <edgelabel>-state</edgelabel>
+        <childnode refid="1629" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/ProjectTests.cs" bodystart="14" bodyend="83"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SByteConverter.cs" bodystart="12" bodyend="45"/>
     <listofallmembers>
-      <member refid="a00164_1a4cff5de56c4b8a91c76b6eb2d622a795" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>dialogue</name></member>
-      <member refid="a00164_1ac978fe85db843c51411f5517bdbe0eb8" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>errorsCauseFailures</name></member>
-      <member refid="a00164_1ac21a5082ddac1da9db17ae54038df44e" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>ExpectLine</name></member>
-      <member refid="a00148_1ad7914a14ec1a746a7d02fb9b2c69e91b" prot="private" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>experimentalMode</name></member>
-      <member refid="a00164_1a7b525f85a26d7c942e1cbfa5d6453893" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>HandleResult</name></member>
-      <member refid="a00148_1a09fb3b241843b94176be710e4a2a6833" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>Init</name></member>
-      <member refid="a00164_1a47f35b8e8123ed9471883d02b8bc9f3e" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>isExpectingLine</name></member>
-      <member refid="a00164_1ab1ad614f465a49447da31c4000ec6b3e" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>ProjectRootPath</name></member>
-      <member refid="a00148_1af8cec595dce7455eeace4841d0f71a35" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>ProjectTests</name></member>
-      <member refid="a00164_1abffa134d40d72b21e6b35c3bf05fc53f" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>RunStandardTestcase</name></member>
-      <member refid="a00164_1a23d59ace1516ca72924c6fe3feafd3f7" prot="protected" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>storage</name></member>
-      <member refid="a00164_1aa9b4d902d61adad7165154a265f69aa4" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>TestDataPath</name></member>
-      <member refid="a00148_1a7d3dccb3f5ddf0b24e65782b7af15369" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>TestLoadingSingleFile</name></member>
-      <member refid="a00164_1a39922286f6255e4fd0e433a4fc7521c4" prot="public" virt="non-virtual"><scope>YarnSpinner::Tests::ProjectTests</scope><name>UnityDemoScriptsPath</name></member>
+      <member refid="a00148_1a8f6d23460e0ddfe883cc06ded76bf633" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00078_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00148_1ad16aeb03f418c89b3f78e95b46a46b40" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::SByteConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

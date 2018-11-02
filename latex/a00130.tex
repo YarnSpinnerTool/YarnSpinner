@@ -1,197 +1,98 @@
-\hypertarget{a00130}{\section{Yarn.\-Memory\-Variable\-Store Class Reference}
-\label{a00130}\index{Yarn.\-Memory\-Variable\-Store@{Yarn.\-Memory\-Variable\-Store}}
+\hypertarget{a00130}{\section{Yarn.\-Loader.\-Node\-Info Struct Reference}
+\label{a00130}\index{Yarn.\-Loader.\-Node\-Info@{Yarn.\-Loader.\-Node\-Info}}
 }
 
 
-Very simple continuity class that keeps all variables in memory.  
-
-
-
-
-Inheritance diagram for Yarn.\-Memory\-Variable\-Store\-:
+Collaboration diagram for Yarn.\-Loader.\-Node\-Info\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{a00603}
+\includegraphics[width=190pt]{a00645}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Memory\-Variable\-Store\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=214pt]{a00604}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-override void \hyperlink{a00130_a653a459811e5c19549f4b31269093ef5}{Set\-Value} (string variable\-Name, \hyperlink{a00181}{Value} value)
-\item 
-override \hyperlink{a00181}{Value} \hyperlink{a00130_a0ce77e8245c504a777540e359704aa2a}{Get\-Value} (string variable\-Name)
-\item 
-override void \hyperlink{a00130_aa6d243e7ef02b91f793a221f509dae69}{Clear} ()
-\item 
-void \hyperlink{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
-\item 
-float \hyperlink{a00036_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
+struct \hyperlink{a00141}{Position}
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Dictionary$<$ string, \hyperlink{a00181}{Value} $>$ \hyperlink{a00130_aad18acd95297edb8ed496857337f8071}{variables} = new Dictionary$<$string, \hyperlink{a00181}{Value}$>$()
+string \hyperlink{a00130_aafc45bbc86a9acb9bdbcf7877695a96c}{title}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00130_a18a8b97f2173fbcf8f3077582cc6e96e}{body}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00130_acd4d4915f6cc14f8b0f1f92d27da8b36}{tags}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00130_a65f686e0170a9c50b97c4e4eedd1a093}{color\-I\-D}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00141}{Position} \hyperlink{a00130_ac368ed021558af21c4abed88042c1aa8}{position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+List$<$ string $>$ \hyperlink{a00130_ab5010cc4c731e0da871e6002e5fb99a1}{tags\-List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Very simple continuity class that keeps all variables in memory. 
-
-Definition at line 94 of file Dialogue.\-cs.
 
 
-
-\subsection{Member Function Documentation}
-\hypertarget{a00130_aa6d243e7ef02b91f793a221f509dae69}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Memory\-Variable\-Store.\-Clear (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00130_aa6d243e7ef02b91f793a221f509dae69}
-
-
-Implements \hyperlink{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}{Yarn.\-Base\-Variable\-Storage}.
+Definition at line 358 of file Loader.\-cs.
 
 
 
-Definition at line 115 of file Dialogue.\-cs.
+\subsection{Property Documentation}
+\hypertarget{a00130_a18a8b97f2173fbcf8f3077582cc6e96e}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!body@{body}}
+\index{body@{body}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{body}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-body\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00130_a18a8b97f2173fbcf8f3077582cc6e96e}
 
 
-\begin{DoxyCode}
-116         \{
-117             variables.Clear();
-118         \}
-\end{DoxyCode}
-\hypertarget{a00036_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00036_a1b7f7f4468b2463e7b47986d99362279}
+Definition at line 365 of file Loader.\-cs.
+
+\hypertarget{a00130_a65f686e0170a9c50b97c4e4eedd1a093}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!color\-I\-D@{color\-I\-D}}
+\index{color\-I\-D@{color\-I\-D}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{color\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Loader.\-Node\-Info.\-color\-I\-D\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00130_a65f686e0170a9c50b97c4e4eedd1a093}
 
 
-Implements \hyperlink{a00184_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+Definition at line 371 of file Loader.\-cs.
+
+\hypertarget{a00130_ac368ed021558af21c4abed88042c1aa8}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!position@{position}}
+\index{position@{position}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Position} Yarn.\-Loader.\-Node\-Info.\-position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00130_ac368ed021558af21c4abed88042c1aa8}
 
 
+Definition at line 372 of file Loader.\-cs.
 
-Definition at line 73 of file Dialogue.\-cs.
-
-
-\begin{DoxyCode}
-73                                                     \{
-74             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
-75         \}
-\end{DoxyCode}
-\hypertarget{a00130_a0ce77e8245c504a777540e359704aa2a}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Value} Yarn.\-Memory\-Variable\-Store.\-Get\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00130_a0ce77e8245c504a777540e359704aa2a}
+\hypertarget{a00130_acd4d4915f6cc14f8b0f1f92d27da8b36}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!tags@{tags}}
+\index{tags@{tags}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-tags\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00130_acd4d4915f6cc14f8b0f1f92d27da8b36}
 
 
-Implements \hyperlink{a00036_a13b142df804d9842e97e628e252928e8}{Yarn.\-Base\-Variable\-Storage}.
+Definition at line 369 of file Loader.\-cs.
 
 
 
-Definition at line 103 of file Dialogue.\-cs.
+Referenced by Yarn.\-Loader.\-Load().
+
+\hypertarget{a00130_ab5010cc4c731e0da871e6002e5fb99a1}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!tags\-List@{tags\-List}}
+\index{tags\-List@{tags\-List}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{tags\-List}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Yarn.\-Loader.\-Node\-Info.\-tags\-List\hspace{0.3cm}{\ttfamily [get]}}}\label{a00130_ab5010cc4c731e0da871e6002e5fb99a1}
+
+
+Definition at line 377 of file Loader.\-cs.
+
+\hypertarget{a00130_aafc45bbc86a9acb9bdbcf7877695a96c}{\index{Yarn\-::\-Loader\-::\-Node\-Info@{Yarn\-::\-Loader\-::\-Node\-Info}!title@{title}}
+\index{title@{title}!Yarn::Loader::NodeInfo@{Yarn\-::\-Loader\-::\-Node\-Info}}
+\subsubsection[{title}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Loader.\-Node\-Info.\-title\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00130_aafc45bbc86a9acb9bdbcf7877695a96c}
+
+
+Definition at line 364 of file Loader.\-cs.
 
 
 
-References Yarn.\-Value.\-N\-U\-L\-L, and Yarn.\-Memory\-Variable\-Store.\-variables.
-
-
-\begin{DoxyCode}
-104         \{
-105             Value value = \hyperlink{a00181_a1ed2964965baca8621c45efa23f37660}{Value.NULL};
-106             \textcolor{keywordflow}{if} (\hyperlink{a00130_aad18acd95297edb8ed496857337f8071}{variables}.ContainsKey(variableName))
-107             \{
-108 
-109                 value = \hyperlink{a00130_aad18acd95297edb8ed496857337f8071}{variables}[variableName];
-110 
-111             \}
-112             \textcolor{keywordflow}{return} value;
-113         \}
-\end{DoxyCode}
-\hypertarget{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}
-
-
-Implements \hyperlink{a00184_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+Referenced by Yarn.\-Loader.\-Load().
 
 
 
-Definition at line 68 of file Dialogue.\-cs.
-
-
-\begin{DoxyCode}
-68                                                                  \{
-69             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
-70         \}
-\end{DoxyCode}
-\hypertarget{a00130_a653a459811e5c19549f4b31269093ef5}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Memory\-Variable\-Store.\-Set\-Value (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00130_a653a459811e5c19549f4b31269093ef5}
-
-
-Implements \hyperlink{a00036_a1c57d6d208b78abec0a670396771448e}{Yarn.\-Base\-Variable\-Storage}.
-
-
-
-Definition at line 98 of file Dialogue.\-cs.
-
-
-
-References Yarn.\-Memory\-Variable\-Store.\-variables.
-
-
-\begin{DoxyCode}
-99         \{
-100             \hyperlink{a00130_aad18acd95297edb8ed496857337f8071}{variables}[variableName] = value;
-101         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00130_aad18acd95297edb8ed496857337f8071}{\index{Yarn\-::\-Memory\-Variable\-Store@{Yarn\-::\-Memory\-Variable\-Store}!variables@{variables}}
-\index{variables@{variables}!Yarn::MemoryVariableStore@{Yarn\-::\-Memory\-Variable\-Store}}
-\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Value}$>$ Yarn.\-Memory\-Variable\-Store.\-variables = new Dictionary$<$string, {\bf Value}$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00130_aad18acd95297edb8ed496857337f8071}
-
-
-Definition at line 96 of file Dialogue.\-cs.
-
-
-
-Referenced by Yarn.\-Memory\-Variable\-Store.\-Get\-Value(), and Yarn.\-Memory\-Variable\-Store.\-Set\-Value().
-
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00296}{Dialogue.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00294}{Loader.\-cs}\end{DoxyCompactItemize}

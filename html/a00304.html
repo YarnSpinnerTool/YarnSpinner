@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/VirtualMachine.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/YarnSpinnerParserVisitor.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,9 +106,9 @@ $(document).ready(function(){initNavTree('a00304.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
-<div class="title">VirtualMachine.cs File Reference</div>  </div>
+<div class="title">YarnSpinnerParserVisitor.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,48 +116,27 @@ $(document).ready(function(){initNavTree('a00304.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html">Yarn.VirtualMachine</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html">IYarnSpinnerParserVisitor&lt; Result &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser.  <a href="a00115.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00159.html">Yarn.VirtualMachine.State</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00369"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html#a00369">Yarn.VirtualMachine.SpecialVariables</a></td></tr>
-<tr class="separator:a00369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:a00045"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html">Yarn</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ae3d87b0b748ea892bff48f60862e182d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> = Antlr4.Runtime.IToken</td></tr>
+<tr class="separator:ae3d87b0b748ea892bff48f60862e182d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="a00369" id="a00369"></a>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a class="anchor" id="ae3d87b0b748ea892bff48f60862e182d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">class Yarn::VirtualMachine::SpecialVariables</td>
+          <td class="memname">using <a class="el" href="a00301.html#ae3d87b0b748ea892bff48f60862e182d">IToken</a> =  Antlr4.Runtime.IToken</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00304_source.html#l00048">48</a> of file <a class="el" href="a00304_source.html">VirtualMachine.cs</a>.</p>
-</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.VirtualMachine.SpecialVariables:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00382.png" border="0" usemap="#_yarn_8_virtual_machine_8_special_variables_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_virtual_machine_8_special_variables_coll__map" id="_yarn_8_virtual_machine_8_special_variables_coll__map">
-</map>
-</div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="aecbb8ab9becd96457d836100b2818078"></a>const string</td>
-<td class="fieldname">
-ShuffleOptions</td>
-<td class="fielddoc">
-</td></tr>
-</table>
+
+<p>Definition at line <a class="el" href="a00304_source.html#l00024">24</a> of file <a class="el" href="a00304_source.html">YarnSpinnerParserVisitor.cs</a>.</p>
 
 </div>
 </div>
@@ -166,8 +145,8 @@ ShuffleOptions</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00304.html">VirtualMachine.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00304.html">YarnSpinnerParserVisitor.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

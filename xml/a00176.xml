@@ -1,225 +1,289 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00176" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::UInt16Converter</compoundname>
-    <basecompoundref refid="a00082" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00176_1a796e0b7b57d69abee122947166b45a9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.UInt16Converter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00082_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
+    <compoundname>Yarn::Unity::YarnSpinnerEditorWindow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">EditorWindow</basecompoundref>
+    <innerclass refid="a00039" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::CheckerResult</innerclass>
+    <innerclass refid="a00080" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::Deprecation</innerclass>
+    <innerclass refid="a00365" prot="private">Yarn::Unity::YarnSpinnerEditorWindow::ValidationMessage</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00176_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00039" kindref="compound">CheckerResult</ref> &gt;</type>
+        <definition>List&lt;CheckerResult&gt; Yarn.Unity.YarnSpinnerEditorWindow.checkResults</definition>
+        <argsstring></argsstring>
+        <name>checkResults</name>
+        <initializer>= new List&lt;<ref refid="a00039" kindref="compound">CheckerResult</ref>&gt;()</initializer>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="20" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="20" bodyend="31"/>
-        <references refid="a00172_1af6bc545680b477abf9178eb4755572b1" compoundref="a00278" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="67" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00176_1a202a9c2413a59423a51b439eab84a3bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.UInt16Converter.CanConvertFrom</definition>
-        <argsstring>(System.Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <param>
-          <type>System.Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="a00176_1a25c92cbfdd09661a96714d05b14af886" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="a00081" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
+        <definition>List&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.diagnoses</definition>
+        <argsstring></argsstring>
+        <name>diagnoses</name>
+        <initializer>= new List&lt;<ref refid="a00081" kindref="compound">Yarn.Analysis.Diagnosis</ref>&gt;()</initializer>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="40" bodyend="44"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="71" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00093_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00136_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
+      <memberdef kind="variable" id="a00176_1a2d9b9702b0980af9d4202aebd440124b" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 Yarn.Unity.YarnSpinnerEditorWindow.scrollPos</definition>
+        <argsstring></argsstring>
+        <name>scrollPos</name>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="74" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="74" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00082_1a470d21adaa704eb281250dbd112ff91a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00117_1ae1ad863656f4fa96bd846a41344c9349">CanConvertFrom</reimplements>
-        <reimplementedby refid="a00166_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00040_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00078_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00079_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00093_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00092_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00039_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00136_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="a00176_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float Yarn.Unity.YarnSpinnerEditorWindow.timeBeforeProgressBar</definition>
+        <argsstring></argsstring>
+        <name>timeBeforeProgressBar</name>
+        <initializer>= 0.1f</initializer>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="55" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="55" bodyend="60"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="77" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="77" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00093_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00176_1a406febf62d77eaabc235f6316e537345" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.UpdateYarnScriptList</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateYarnScriptList</name>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="80" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="80" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1aeba1f39189758bd91bdce298e8859947" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="112" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="112" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.RefreshAllResults</definition>
+        <argsstring>()</argsstring>
+        <name>RefreshAllResults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="123" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="123" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1ab84b77da285227c4ab4e1366131dd2b5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.CompileAllScripts</definition>
+        <argsstring>()</argsstring>
+        <name>CompileAllScripts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="164" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1aec84840262ae8fd7d84605778de1dc39" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="254" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="254" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void Yarn.Unity.YarnSpinnerEditorWindow.GUICallback</definition>
+        <argsstring>(int complete, int total)</argsstring>
+        <name>GUICallback</name>
+        <param>
+          <type>int</type>
+          <declname>complete</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>total</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="356" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Unity.YarnSpinnerEditorWindow.CheckAllFiles</definition>
+        <argsstring>(GUICallback callback=null)</argsstring>
+        <name>CheckAllFiles</name>
+        <param>
+          <type><ref refid="a00176_1a8f57c8688d68ae4a5ce708e665902bc0" kindref="member">GUICallback</ref></type>
+          <declname>callback</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="357" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="357" bodyend="414"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00365" kindref="compound">ValidationMessage</ref>[]</type>
+        <definition>ValidationMessage [] Yarn.Unity.YarnSpinnerEditorWindow.ValidateFile</definition>
+        <argsstring>(TextAsset script, Analysis.Context analysisContext, out CheckerResult.State result)</argsstring>
+        <name>ValidateFile</name>
+        <param>
+          <type>TextAsset</type>
+          <declname>script</declname>
+        </param>
+        <param>
+          <type><ref refid="a00047" kindref="compound">Analysis.Context</ref></type>
+          <declname>analysisContext</declname>
+        </param>
+        <param>
+          <type>out <ref refid="a00039_1ab24848d7951ce44eb3c7768c6ee10385" kindref="member">CheckerResult.State</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="419" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="419" bodyend="478"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1a9c207786c349120dc439bdce53072191" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; <ref refid="a00081" kindref="compound">Yarn.Analysis.Diagnosis</ref> &gt;</type>
+        <definition>IEnumerable&lt;Yarn.Analysis.Diagnosis&gt; Yarn.Unity.YarnSpinnerEditorWindow.AnalyseEnvironment</definition>
+        <argsstring>()</argsstring>
+        <name>AnalyseEnvironment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="501" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="501" bodyend="545"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="a00176_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.ShowWindow</definition>
+        <argsstring>()</argsstring>
+        <name>ShowWindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="107" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="a00176_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI</definition>
+        <argsstring>(CheckerResult result)</argsstring>
+        <name>DrawScriptGUI</name>
+        <param>
+          <type><ref refid="a00039" kindref="compound">CheckerResult</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="314" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="314" bodyend="353"/>
+        <references refid="a00039_1a808a039e280cf875cb3c9e9385148498" compoundref="a00278" startline="45">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages</references>
+        <references refid="a00039_1a7202b24bd068da24d7e28bec5668b13a" compoundref="a00278" startline="42">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a UInt16 to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1726">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1725">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="1726" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1724">
-        <label>CsvHelper.TypeConversion.UInt16Converter</label>
+      <node id="1802">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
         <link refid="a00176"/>
-        <childnode refid="1725" relation="public-inheritance">
+        <childnode refid="1803" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1803">
+        <label>EditorWindow</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1729">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1728">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="1729" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1727">
-        <label>CsvHelper.TypeConversion.UInt16Converter</label>
+      <node id="1804">
+        <label>Yarn.Unity.YarnSpinnerEditorWindow</label>
         <link refid="a00176"/>
-        <childnode refid="1728" relation="public-inheritance">
+        <childnode refid="1805" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1805">
+        <label>EditorWindow</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs" bodystart="12" bodyend="45"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerEditorWindow.cs" bodystart="33" bodyend="547"/>
     <listofallmembers>
-      <member refid="a00176_1a202a9c2413a59423a51b439eab84a3bd" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00082_1a470d21adaa704eb281250dbd112ff91a" prot="public" virt="virtual" ambiguityscope="CsvHelper::TypeConversion::DefaultTypeConverter."><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>CanConvertTo</name></member>
-      <member refid="a00176_1a796e0b7b57d69abee122947166b45a9a" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertFromString</name></member>
-      <member refid="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::UInt16Converter</scope><name>ConvertToString</name></member>
+      <member refid="a00176_1a9c207786c349120dc439bdce53072191" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>AnalyseEnvironment</name></member>
+      <member refid="a00176_1a8e59ec20bd21bb1f8a6d4f02980f624b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>CheckAllFiles</name></member>
+      <member refid="a00176_1aa85ab7bd194e5425b991b9c216d4d10e" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>checkResults</name></member>
+      <member refid="a00176_1ab84b77da285227c4ab4e1366131dd2b5" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>CompileAllScripts</name></member>
+      <member refid="a00176_1a25c92cbfdd09661a96714d05b14af886" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>diagnoses</name></member>
+      <member refid="a00176_1a1a7e1a855bb2a9549eb1c0eb292c9b85" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>DrawScriptGUI</name></member>
+      <member refid="a00176_1a8f57c8688d68ae4a5ce708e665902bc0" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>GUICallback</name></member>
+      <member refid="a00176_1aeba1f39189758bd91bdce298e8859947" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnEnable</name></member>
+      <member refid="a00176_1aec84840262ae8fd7d84605778de1dc39" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>OnGUI</name></member>
+      <member refid="a00176_1ae4faac1a6b0cc9710b20267dc4b88995" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>RefreshAllResults</name></member>
+      <member refid="a00176_1a2d9b9702b0980af9d4202aebd440124b" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>scrollPos</name></member>
+      <member refid="a00176_1a2084e2ce6ccf18094a992985aa5330fb" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ShowWindow</name></member>
+      <member refid="a00176_1a62a14b3fbaf2da41154ebad0eb7b6d3f" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>timeBeforeProgressBar</name></member>
+      <member refid="a00176_1a406febf62d77eaabc235f6316e537345" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>UpdateYarnScriptList</name></member>
+      <member refid="a00176_1a6f2bf42b228ea29c6477e369226db8b6" prot="private" virt="non-virtual"><scope>Yarn::Unity::YarnSpinnerEditorWindow</scope><name>ValidateFile</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

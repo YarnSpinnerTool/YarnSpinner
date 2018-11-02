@@ -1,46 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00179" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::UnusedVariableChecker</compoundname>
-    <basecompoundref refid="a00047" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
+    <compoundname>Yarn::Analysis::VariableLister</compoundname>
+    <basecompoundref refid="a00043" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00179_1a6b542092ddce1b92c9455d60899518a9" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="a00179_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
         <type>HashSet&lt; string &gt;</type>
-        <definition>HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.readVariables</definition>
+        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
         <argsstring></argsstring>
-        <name>readVariables</name>
-        <initializer>= new HashSet&lt;string&gt; ()</initializer>
+        <name>variables</name>
+        <initializer>= new HashSet&lt;string&gt;()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="196" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="196" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00179_1a0c2fe6eded1b10b135ca2469f5980a39" prot="private" static="no" mutable="no">
-        <type>HashSet&lt; string &gt;</type>
-        <definition>HashSet&lt;string&gt; Yarn.Analysis.UnusedVariableChecker.writtenVariables</definition>
-        <argsstring></argsstring>
-        <name>writtenVariables</name>
-        <initializer>= new HashSet&lt;string&gt; ()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="197" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="197" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="156" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00179_1aeac8f333d4dcc85f4d4a716bf8fea01f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00179_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>override void</type>
-        <definition>override void Yarn.Analysis.UnusedVariableChecker.Diagnose</definition>
+        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
         <argsstring>(Program program)</argsstring>
         <name>Diagnose</name>
         <param>
-          <type><ref refid="a00146" kindref="compound">Program</ref></type>
+          <type><ref refid="a00142" kindref="compound">Program</ref></type>
           <declname>program</declname>
         </param>
         <briefdescription>
@@ -49,29 +35,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="199" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="199" bodyend="221"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="158" bodyend="179"/>
       </memberdef>
-      <memberdef kind="function" id="a00179_1a107aecf707b130c4b733930a95f9154e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override IEnumerable&lt; <ref refid="a00085" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.UnusedVariableChecker.GatherDiagnoses</definition>
+      <memberdef kind="function" id="a00179_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerable&lt; <ref refid="a00081" kindref="compound">Diagnosis</ref> &gt;</type>
+        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
         <argsstring>()</argsstring>
         <name>GatherDiagnoses</name>
-        <reimplements refid="a00047_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
+        <reimplements refid="a00043_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="223" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="223" bodyend="248"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="181" bodyend="191"/>
       </memberdef>
-      <memberdef kind="function" id="a00047_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="a00043_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>abstract void</type>
         <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
         <argsstring>(Yarn.Program program)</argsstring>
         <name>Diagnose</name>
         <param>
-          <type><ref refid="a00146" kindref="compound">Yarn.Program</ref></type>
+          <type><ref refid="a00142" kindref="compound">Yarn.Program</ref></type>
           <declname>program</declname>
         </param>
         <briefdescription>
@@ -88,36 +74,35 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1743">
+      <node id="1760">
         <label>CompiledProgramAnalyser</label>
-        <link refid="a00047"/>
+        <link refid="a00043"/>
       </node>
-      <node id="1742">
-        <label>Yarn.Analysis.UnusedVariableChecker</label>
+      <node id="1759">
+        <label>Yarn.Analysis.VariableLister</label>
         <link refid="a00179"/>
-        <childnode refid="1743" relation="public-inheritance">
+        <childnode refid="1760" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1745">
+      <node id="1762">
         <label>CompiledProgramAnalyser</label>
-        <link refid="a00047"/>
+        <link refid="a00043"/>
       </node>
-      <node id="1744">
-        <label>Yarn.Analysis.UnusedVariableChecker</label>
+      <node id="1761">
+        <label>Yarn.Analysis.VariableLister</label>
         <link refid="a00179"/>
-        <childnode refid="1745" relation="public-inheritance">
+        <childnode refid="1762" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="194" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="194" bodyend="250"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="155" bodyend="192"/>
     <listofallmembers>
-      <member refid="a00179_1aeac8f333d4dcc85f4d4a716bf8fea01f" prot="public" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>Diagnose</name></member>
-      <member refid="a00047_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>Diagnose</name></member>
-      <member refid="a00179_1a107aecf707b130c4b733930a95f9154e" prot="public" virt="virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>GatherDiagnoses</name></member>
-      <member refid="a00179_1a6b542092ddce1b92c9455d60899518a9" prot="private" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>readVariables</name></member>
-      <member refid="a00179_1a0c2fe6eded1b10b135ca2469f5980a39" prot="private" virt="non-virtual"><scope>Yarn::Analysis::UnusedVariableChecker</scope><name>writtenVariables</name></member>
+      <member refid="a00179_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="a00043_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
+      <member refid="a00179_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
+      <member refid="a00179_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

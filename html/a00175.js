@@ -1,11 +1,8 @@
 var a00175 =
 [
-    [ "TypeInfo", "a00175.html#ae2bbf4462c274977b6df5c994808cc39", null ],
-    [ "IsAssignableFrom", "a00175.html#a8c74647f572e998dd7e843a752d5234d", null ],
-    [ "BaseType", "a00175.html#a8bb78c2b0377f57dba1a3e2031216029", null ],
-    [ "IsClass", "a00175.html#a6ae2d0f4c557010a075a6fecab18fbb5", null ],
-    [ "IsGenericType", "a00175.html#a6a532f6a581b3280d1837fc242f314af", null ],
-    [ "IsPrimitive", "a00175.html#ab38ba26ebc21ec6fb908b74eede99a5c", null ],
-    [ "IsValueType", "a00175.html#ae2255904b8743c47a185d62909404aed", null ],
-    [ "type", "a00175.html#a71c4f4b000d08808c8965222d4ba1b8d", null ]
+    [ "Diagnose", "a00175.html#aba4a36cb823b11ee491074e26477d084", null ],
+    [ "Diagnose", "a00175.html#aeac8f333d4dcc85f4d4a716bf8fea01f", null ],
+    [ "GatherDiagnoses", "a00175.html#a107aecf707b130c4b733930a95f9154e", null ],
+    [ "readVariables", "a00175.html#a6b542092ddce1b92c9455d60899518a9", null ],
+    [ "writtenVariables", "a00175.html#a0c2fe6eded1b10b135ca2469f5980a39", null ]
 ];

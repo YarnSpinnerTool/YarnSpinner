@@ -1,0 +1,6 @@
+<map id="Yarn.Dialogue.RunnerResult" name="Yarn.Dialogue.RunnerResult">
+<area shape="rect" id="node2" href="$a00042.html" title="The client should run a command (it&#39;s up to them to parse the string) " alt="" coords="5,139,211,216"/>
+<area shape="rect" id="node3" href="$a00122.html" title="The client should run a line of dialogue. " alt="" coords="236,139,407,216"/>
+<area shape="rect" id="node4" href="$a00129.html" title="We&#39;ve reached the end of this node. " alt="" coords="431,131,625,223"/>
+<area shape="rect" id="node5" href="$a00135.html" title="The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne..." alt="" coords="650,131,853,223"/>
+</map>

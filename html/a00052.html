@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.ConvertFormatOptions Class Reference</title>
+<title>YarnSpinner: CsvHelper.Configuration.CsvClassMapCollection Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,51 +107,71 @@ $(document).ready(function(){initNavTree('a00052.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pac-methods">Package Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="a00740.html">List of all members</a>  </div>
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00463.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.ConvertFormatOptions Class Reference</div>  </div>
+<div class="title">CsvHelper.Configuration.CsvClassMapCollection Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Collection that holds CsvClassMaps for record types.  
+ <a href="a00052.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.ConvertFormatOptions:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.Configuration.CsvClassMapCollection:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00741.png" border="0" usemap="#_yarn_8_convert_format_options_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_convert_format_options_inherit__map" id="_yarn_8_convert_format_options_inherit__map">
-<area shape="rect" id="node2" href="a00035.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="23,5,171,112"/></map>
-</div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.ConvertFormatOptions:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00742.png" border="0" usemap="#_yarn_8_convert_format_options_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_convert_format_options_coll__map" id="_yarn_8_convert_format_options_coll__map">
-<area shape="rect" id="node2" href="a00035.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="23,5,171,112"/></map>
+<div class="center"><img src="a00464.png" border="0" usemap="#_csv_helper_8_configuration_8_csv_class_map_collection_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_configuration_8_csv_class_map_collection_coll__map" id="_csv_helper_8_configuration_8_csv_class_map_collection_coll__map">
+</map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ac75513617b6c256c3d693adf4482e1ed"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00050.html">CsvClassMap</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#ac75513617b6c256c3d693adf4482e1ed">Find&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:ac75513617b6c256c3d693adf4482e1ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type.  <a href="#ac75513617b6c256c3d693adf4482e1ed">More...</a><br/></td></tr>
+<tr class="separator:ac75513617b6c256c3d693adf4482e1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:aab6a14a4c1a614fac511ddd6af2c9e40"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#aab6a14a4c1a614fac511ddd6af2c9e40">Add</a> (<a class="el" href="a00050.html">CsvClassMap</a> map)</td></tr>
+<tr class="memdesc:aab6a14a4c1a614fac511ddd6af2c9e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it.  <a href="#aab6a14a4c1a614fac511ddd6af2c9e40">More...</a><br/></td></tr>
+<tr class="separator:aab6a14a4c1a614fac511ddd6af2c9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b18f7ab62839aa354021986e5a2ef96"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a0b18f7ab62839aa354021986e5a2ef96">Remove</a> (Type classMapType)</td></tr>
+<tr class="memdesc:a0b18f7ab62839aa354021986e5a2ef96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the class map.  <a href="#a0b18f7ab62839aa354021986e5a2ef96">More...</a><br/></td></tr>
+<tr class="separator:a0b18f7ab62839aa354021986e5a2ef96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91718f9b6527a7f833393d24587716cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a91718f9b6527a7f833393d24587716cc">Clear</a> ()</td></tr>
+<tr class="memdesc:a91718f9b6527a7f833393d24587716cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all maps.  <a href="#a91718f9b6527a7f833393d24587716cc">More...</a><br/></td></tr>
+<tr class="separator:a91718f9b6527a7f833393d24587716cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a6a650914fcde92ba06fb5f140af27f11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a6a650914fcde92ba06fb5f140af27f11">convertToJSON</a><code> [get, set]</code></td></tr>
-<tr class="separator:a6a650914fcde92ba06fb5f140af27f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a052d6f00647c503adc5a79a1ff92cdf4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a052d6f00647c503adc5a79a1ff92cdf4">convertToYarn</a><code> [get, set]</code></td></tr>
-<tr class="separator:a052d6f00647c503adc5a79a1ff92cdf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab636bde93c2204b2af1a9306560d9749"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#ab636bde93c2204b2af1a9306560d9749">outputDirectory</a><code> [get, set]</code></td></tr>
-<tr class="separator:ab636bde93c2204b2af1a9306560d9749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89964ea17bd19caf00cb5bff563ed01c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html#a89964ea17bd19caf00cb5bff563ed01c">showDebuggingInfo</a><code> [get, set]</code></td></tr>
-<tr class="separator:a89964ea17bd19caf00cb5bff563ed01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada4d83d1756918f362d55f6649b82b17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html#ada4d83d1756918f362d55f6649b82b17">verbose</a><code> [get, set]</code></td></tr>
-<tr class="separator:ada4d83d1756918f362d55f6649b82b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa93cbb1bc1d5328e0a417012621e92d2"><td class="memItemLeft" align="right" valign="top">IList&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00035.html#aa93cbb1bc1d5328e0a417012621e92d2">files</a><code> [get, set]</code></td></tr>
-<tr class="separator:aa93cbb1bc1d5328e0a417012621e92d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c95d5126b396fcf3f58d7daa59646e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="a00050.html">CsvClassMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a58c95d5126b396fcf3f58d7daa59646e">this[Type type]</a><code> [get]</code></td></tr>
+<tr class="memdesc:a58c95d5126b396fcf3f58d7daa59646e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type.  <a href="#a58c95d5126b396fcf3f58d7daa59646e">More...</a><br/></td></tr>
+<tr class="separator:a58c95d5126b396fcf3f58d7daa59646e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a73e02f782a0c35347d7d035bec5deb99"><td class="memItemLeft" align="right" valign="top">Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">GetGenericCsvClassMapType</a> (Type type)</td></tr>
+<tr class="memdesc:a73e02f782a0c35347d7d035bec5deb99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Goes up the inheritance tree to find the type instance of <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>{}.  <a href="#a73e02f782a0c35347d7d035bec5deb99">More...</a><br/></td></tr>
+<tr class="separator:a73e02f782a0c35347d7d035bec5deb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a6402d0986ae539363780f34eefd5fa99"><td class="memItemLeft" align="right" valign="top">readonly Dictionary&lt; Type, <br class="typebreak"/>
+<a class="el" href="a00050.html">CsvClassMap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html#a6402d0986ae539363780f34eefd5fa99">data</a> = new Dictionary&lt;Type, <a class="el" href="a00050.html">CsvClassMap</a>&gt;()</td></tr>
+<tr class="separator:a6402d0986ae539363780f34eefd5fa99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00313_source.html#l00127">127</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
-</div><h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a6a650914fcde92ba06fb5f140af27f11"></a>
+<div class="textblock"><p>Collection that holds CsvClassMaps for record types. </p>
+
+<p>Definition at line <a class="el" href="a00210_source.html#l00016">16</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aab6a14a4c1a614fac511ddd6af2c9e40"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -159,23 +179,47 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.ConvertFormatOptions.convertToJSON</td>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvClassMapCollection.Add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00050.html">CsvClassMap</a>&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00130">130</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Adds the specified map for it's record type. If a map already exists for the record type, the specified map will replace it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td>The map.</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Referenced by <a class="el" href="a00311_source.html#l00010">Yarn.FileFormatConverter.ConvertFormat()</a>.</p>
-
+<p>Definition at line <a class="el" href="a00210_source.html#l00056">56</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            var type = <a class="code" href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">GetGenericCsvClassMapType</a>( map.GetType() ).GetGenericArguments().First();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00052.html#a6402d0986ae539363780f34eefd5fa99">data</a>.ContainsKey( type ) )</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <a class="code" href="a00052.html#a6402d0986ae539363780f34eefd5fa99">data</a>[type] = map;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                data.Add( type, map );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
+<div class="ttc" id="a00052_html_a73e02f782a0c35347d7d035bec5deb99"><div class="ttname"><a href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType</a></div><div class="ttdeci">Type GetGenericCsvClassMapType(Type type)</div><div class="ttdoc">Goes up the inheritance tree to find the type instance of CsvClassMap{}. </div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00099">CsvClassMapCollection.cs:99</a></div></div>
+<div class="ttc" id="a00052_html_a6402d0986ae539363780f34eefd5fa99"><div class="ttname"><a href="a00052.html#a6402d0986ae539363780f34eefd5fa99">CsvHelper.Configuration.CsvClassMapCollection.data</a></div><div class="ttdeci">readonly Dictionary&lt; Type, CsvClassMap &gt; data</div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00018">CsvClassMapCollection.cs:18</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a052d6f00647c503adc5a79a1ff92cdf4"></a>
+<a class="anchor" id="a91718f9b6527a7f833393d24587716cc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -183,23 +227,29 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.ConvertFormatOptions.convertToYarn</td>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvClassMapCollection.Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00133">133</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Removes all maps. </p>
 
-<p>Referenced by <a class="el" href="a00311_source.html#l00010">Yarn.FileFormatConverter.ConvertFormat()</a>.</p>
-
+<p>Definition at line <a class="el" href="a00210_source.html#l00089">89</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            data.Clear();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="aa93cbb1bc1d5328e0a417012621e92d2"></a>
+<a class="anchor" id="ac75513617b6c256c3d693adf4482e1ed"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -207,23 +257,36 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">IList&lt;string&gt; Yarn.BaseOptions.files</td>
+          <td class="memname">virtual <a class="el" href="a00050.html">CsvClassMap</a>&lt;T&gt; CsvHelper.Configuration.CsvClassMapCollection.Find&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00047">47</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Finds the <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The record type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type.</dd></dl>
 
-<p>Referenced by <a class="el" href="a00313_source.html#l00272">Yarn.YarnSpinnerConsole.Run()</a>, and <a class="el" href="a00313_source.html#l00335">Yarn.YarnSpinnerConsole.Verify()</a>.</p>
-
+<p>Definition at line <a class="el" href="a00210_source.html#l00045">45</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> (CsvClassMap&lt;T&gt;)<span class="keyword">this</span>[typeof( T )];</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ab636bde93c2204b2af1a9306560d9749"></a>
+<a class="anchor" id="a73e02f782a0c35347d7d035bec5deb99"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -231,21 +294,43 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string Yarn.ConvertFormatOptions.outputDirectory</td>
+          <td class="memname">Type CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00136">136</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Goes up the inheritance tree to find the type instance of <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>{}. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type to traverse.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The type that is <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>{}.</dd></dl>
 
+<p>Definition at line <a class="el" href="a00210_source.html#l00099">99</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">if</span>( type.GetTypeInfo().IsGenericType &amp;&amp; type.GetGenericTypeDefinition() == typeof( CsvClassMap&lt;&gt; ) )</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">return</span> type;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">GetGenericCsvClassMapType</a>( type.GetTypeInfo().BaseType );</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="ttc" id="a00052_html_a73e02f782a0c35347d7d035bec5deb99"><div class="ttname"><a href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType</a></div><div class="ttdeci">Type GetGenericCsvClassMapType(Type type)</div><div class="ttdoc">Goes up the inheritance tree to find the type instance of CsvClassMap{}. </div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00099">CsvClassMapCollection.cs:99</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a89964ea17bd19caf00cb5bff563ed01c"></a>
+<a class="anchor" id="a0b18f7ab62839aa354021986e5a2ef96"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -253,23 +338,45 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.BaseOptions.showDebuggingInfo</td>
+          <td class="memname">virtual void CsvHelper.Configuration.CsvClassMapCollection.Remove </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classMapType</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00040">40</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Removes the class map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classMapType</td><td>The class map type.</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Referenced by <a class="el" href="a00313_source.html#l00383">Yarn.YarnSpinnerConsole.CreateDialogue()</a>.</p>
-
+<p>Definition at line <a class="el" href="a00210_source.html#l00074">74</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span>( !typeof( CsvClassMap ).IsAssignableFrom( classMapType ) )</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentException( <span class="stringliteral">&quot;The class map type must inherit from CsvClassMap.&quot;</span> );</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            var type = <a class="code" href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">GetGenericCsvClassMapType</a>( classMapType ).GetGenericArguments().First();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            data.Remove( type );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="ttc" id="a00052_html_a73e02f782a0c35347d7d035bec5deb99"><div class="ttname"><a href="a00052.html#a73e02f782a0c35347d7d035bec5deb99">CsvHelper.Configuration.CsvClassMapCollection.GetGenericCsvClassMapType</a></div><div class="ttdeci">Type GetGenericCsvClassMapType(Type type)</div><div class="ttdoc">Goes up the inheritance tree to find the type instance of CsvClassMap{}. </div><div class="ttdef"><b>Definition:</b> <a href="a00210_source.html#l00099">CsvClassMapCollection.cs:99</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ada4d83d1756918f362d55f6649b82b17"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a6402d0986ae539363780f34eefd5fa99"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -277,32 +384,63 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.BaseOptions.verbose</td>
+          <td class="memname">readonly Dictionary&lt;Type, <a class="el" href="a00050.html">CsvClassMap</a>&gt; CsvHelper.Configuration.CsvClassMapCollection.data = new Dictionary&lt;Type, <a class="el" href="a00050.html">CsvClassMap</a>&gt;()</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00313_source.html#l00044">44</a> of file <a class="el" href="a00313_source.html">Main.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00210_source.html#l00018">18</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00311_source.html#l00143">Yarn.FileFormatConverter.ConvertNodesInFile()</a>, and <a class="el" href="a00315_source.html#l00010">Yarn.TableGenerator.GenerateTables()</a>.</p>
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a58c95d5126b396fcf3f58d7daa59646e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="a00050.html">CsvClassMap</a> CsvHelper.Configuration.CsvClassMapCollection.this[Type type]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type. </p>
+<p>The <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The record type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="a00050.html" title="Maps class properties to CSV fields. ">CsvClassMap</a> for the specified record type.</dd></dl>
+
+<p>Definition at line <a class="el" href="a00210_source.html#l00029">29</a> of file <a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinnerConsole/<a class="el" href="a00313_source.html">Main.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/<a class="el" href="a00210_source.html">CsvClassMapCollection.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00052.html">ConvertFormatOptions</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:31 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00319.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00320.html">Configuration</a></li><li class="navelem"><a class="el" href="a00052.html">CsvClassMapCollection</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:21 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

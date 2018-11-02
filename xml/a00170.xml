@@ -1,131 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00170" kind="class" prot="package">
-    <compoundname>Yarn::Lexer::TokenRule</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00170_1a47a404d6637fae489c3c77729a01cc69" prot="public" static="no" mutable="no">
-        <type>Regex</type>
-        <definition>Regex Yarn.Lexer.TokenRule.regex</definition>
-        <argsstring></argsstring>
-        <name>regex</name>
-        <initializer>= null</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="280" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="280" bodyend="-1"/>
-        <referencedby refid="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" compoundref="a00298" startline="288" endline="294">Yarn.Lexer.TokenRule.TokenRule</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00170_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.Lexer.TokenRule.entersState</definition>
-        <argsstring></argsstring>
-        <name>entersState</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="283" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="283" bodyend="-1"/>
-        <referencedby refid="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" compoundref="a00298" startline="288" endline="294">Yarn.Lexer.TokenRule.TokenRule</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00170_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" static="no" mutable="no">
-        <type><ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
-        <definition>TokenType Yarn.Lexer.TokenRule.type</definition>
-        <argsstring></argsstring>
-        <name>type</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="284" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="284" bodyend="-1"/>
-        <referencedby refid="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" compoundref="a00298" startline="288" endline="294">Yarn.Lexer.TokenRule.TokenRule</referencedby>
-        <referencedby refid="a00170_1a1ed23ad16b116ecb06dd75b157bf752f" compoundref="a00298" startline="296" endline="299">Yarn.Lexer.TokenRule.ToString</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00170_1a09f49e6edf9ace38a92d723998181f8f" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.isTextRule</definition>
-        <argsstring></argsstring>
-        <name>isTextRule</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="285" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="285" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="a00170_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.Lexer.TokenRule.delimitsText</definition>
-        <argsstring></argsstring>
-        <name>delimitsText</name>
-        <initializer>= false</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="286" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="286" bodyend="-1"/>
-        <referencedby refid="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" compoundref="a00298" startline="288" endline="294">Yarn.Lexer.TokenRule.TokenRule</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.Lexer.TokenRule.TokenRule</definition>
-        <argsstring>(TokenType type, Regex regex, string entersState=null, bool delimitsText=false)</argsstring>
-        <name>TokenRule</name>
+  <compounddef id="a00170" kind="class" prot="public">
+    <compoundname>System::Reflection::TypeExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="a00170_1acbfc3dfbd616c1a87fe0158092215639" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00171" kindref="compound">TypeInfo</ref></type>
+        <definition>static TypeInfo System.Reflection.TypeExtensions.GetTypeInfo</definition>
+        <argsstring>(this Type type)</argsstring>
+        <name>GetTypeInfo</name>
         <param>
-          <type><ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeace" kindref="member">TokenType</ref></type>
+          <type>this Type</type>
           <declname>type</declname>
         </param>
-        <param>
-          <type>Regex</type>
-          <declname>regex</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>entersState</declname>
-          <defval>null</defval>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>delimitsText</declname>
-          <defval>false</defval>
-        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="288" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="288" bodyend="294"/>
-        <references refid="a00170_1ab0849136a1f27b4d13cb7a45e2fe7130" compoundref="a00298" startline="286">Yarn.Lexer.TokenRule.delimitsText</references>
-        <references refid="a00170_1af6a4bd3416c4e1b8e56f9db461d52d18" compoundref="a00298" startline="283">Yarn.Lexer.TokenRule.entersState</references>
-        <references refid="a00170_1a47a404d6637fae489c3c77729a01cc69" compoundref="a00298" startline="280">Yarn.Lexer.TokenRule.regex</references>
-        <references refid="a00170_1a0de6fac3b55cf0c61e07cea53ce67caa" compoundref="a00298" startline="284">Yarn.Lexer.TokenRule.type</references>
-      </memberdef>
-      <memberdef kind="function" id="a00170_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override string</type>
-        <definition>override string Yarn.Lexer.TokenRule.ToString</definition>
-        <argsstring>()</argsstring>
-        <name>ToString</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="296" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="296" bodyend="299"/>
-        <references refid="a00170_1a0de6fac3b55cf0c61e07cea53ce67caa" compoundref="a00298" startline="284">Yarn.Lexer.TokenRule.type</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="8" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="8" bodyend="11"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -133,20 +26,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1713">
-        <label>Yarn.Lexer.TokenRule</label>
+      <node id="1721">
+        <label>System.Reflection.TypeExtensions</label>
         <link refid="a00170"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="279" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="279" bodyend="301"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" line="7" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeExtensions.cs" bodystart="6" bodyend="12"/>
     <listofallmembers>
-      <member refid="a00170_1ab0849136a1f27b4d13cb7a45e2fe7130" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>delimitsText</name></member>
-      <member refid="a00170_1af6a4bd3416c4e1b8e56f9db461d52d18" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>entersState</name></member>
-      <member refid="a00170_1a09f49e6edf9ace38a92d723998181f8f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>isTextRule</name></member>
-      <member refid="a00170_1a47a404d6637fae489c3c77729a01cc69" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>regex</name></member>
-      <member refid="a00170_1a3d171ae7c4870659d2d1d977a216bdd7" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>TokenRule</name></member>
-      <member refid="a00170_1a1ed23ad16b116ecb06dd75b157bf752f" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>ToString</name></member>
-      <member refid="a00170_1a0de6fac3b55cf0c61e07cea53ce67caa" prot="public" virt="non-virtual"><scope>Yarn::Lexer::TokenRule</scope><name>type</name></member>
+      <member refid="a00170_1acbfc3dfbd616c1a87fe0158092215639" prot="public" virt="non-virtual"><scope>System::Reflection::TypeExtensions</scope><name>GetTypeInfo</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

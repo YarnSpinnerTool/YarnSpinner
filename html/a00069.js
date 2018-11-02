@@ -1,10 +1,13 @@
 var a00069 =
 [
-    [ "CsvPropertyReferenceMap", "a00069.html#a02823d2439667bca75233abbe81651ff", null ],
-    [ "GetMaxIndex", "a00069.html#a1e879f9a6ed84415ac52c44f1f086606", null ],
-    [ "Prefix", "a00069.html#a0ed653de99ec2251fd99837740693789", null ],
-    [ "data", "a00069.html#aa6926229eec915aa6a71c9ee603064f5", null ],
-    [ "Data", "a00069.html#aa83ef91c4eb293a9d035013c8b4af016", null ],
-    [ "Mapping", "a00069.html#a555d8d59960792aa556002a1a1b942f9", null ],
-    [ "Property", "a00069.html#a1bf8b55373206c0dc378c8f7247bf149", null ]
+    [ "CsvSerializer", "a00069.html#a74ea10f7aaea0a478087d8ff6182f38c", null ],
+    [ "CsvSerializer", "a00069.html#ab14fe4a4f630ce97d57c27e2ee050fac", null ],
+    [ "CheckDisposed", "a00069.html#ae14e1913a4e76faf97484c1bde339143", null ],
+    [ "Dispose", "a00069.html#a9d0e8b3508b377a7f978da2394b09e36", null ],
+    [ "Dispose", "a00069.html#a0be3b74ca7606e27fd16441ecc988f0b", null ],
+    [ "Write", "a00069.html#aefad906acd048863d3dd414651a44793", null ],
+    [ "configuration", "a00069.html#ae8c56ff97c0a797245f2205c486833ea", null ],
+    [ "disposed", "a00069.html#a2687885dae7f7b0eec3c2db81c05f7e4", null ],
+    [ "writer", "a00069.html#adfb235fa2c868fc79c0376fd12fda767", null ],
+    [ "Configuration", "a00069.html#a2ae1b1a629b707fbfb7d636989442f34", null ]
 ];

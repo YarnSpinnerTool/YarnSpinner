@@ -1,0 +1,4 @@
+<map id="CsvHelper.CsvReader.ClearRecordCache&lt; T &gt;" name="CsvHelper.CsvReader.ClearRecordCache&lt; T &gt;">
+<area shape="rect" id="node2" href="$a00067.html#a6fa45a46ed1322dc1872ca2321b5edbc" title="Checks if the instance has been disposed of. " alt="" coords="481,5,677,46"/>
+<area shape="rect" id="node3" href="$a00067.html#a1e115e1f379009b2b1cb91e7c24fdd02" title="Clears the record cache for all types. After ICsvReaderRow.GetRecord{T} is called the first time..." alt="" coords="243,34,432,75"/>
+</map>

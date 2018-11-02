@@ -1,195 +1,250 @@
-\hypertarget{a00168}{\section{Yarn.\-Tokeniser\-Exception Class Reference}
-\label{a00168}\index{Yarn.\-Tokeniser\-Exception@{Yarn.\-Tokeniser\-Exception}}
+\hypertarget{a00168}{\section{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options Class Reference}
+\label{a00168}\index{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options@{Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options}}
 }
 
 
-Inheritance diagram for Yarn.\-Tokeniser\-Exception\-:
+Options used when doing type conversion.  
+
+
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=230pt]{a00628}
+\includegraphics[width=220pt]{a00556}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Tokeniser\-Exception\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=230pt]{a00629}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00168_ad00fcf742d2b0d476ce43b27a3f3b6c1}{Tokeniser\-Exception} (string message)
-\item 
-\hyperlink{a00168_aa8674d006a0d29081a7b87bdd8ff2f4f}{Tokeniser\-Exception} (int \hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, string message)
-\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{a00168}{Tokeniser\-Exception} \hyperlink{a00168_af88cfa5eafdee355e1abb67e358497bd}{Expected\-Tokens\-From\-State} (int \hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}, int \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}, \hyperlink{a00122}{Lexer.\-Lexer\-State} state)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+static \hyperlink{a00168}{Type\-Converter\-Options} \hyperlink{a00168_a0532694cffc600fe984e10c7f1375e0a}{Merge} (params \hyperlink{a00168}{Type\-Converter\-Options}\mbox{[}$\,$\mbox{]} sources)
+\begin{DoxyCompactList}\small\item\em Merges \hyperlink{a00168}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00168}{Type\-Converter\-Options} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{line\-Number}
+Culture\-Info \hyperlink{a00168_af6bc545680b477abf9178eb4755572b1}{Culture\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the culture info. \end{DoxyCompactList}\item 
+Date\-Time\-Styles \hyperlink{a00168_a53dd999cfdfad024682e67b6d5b1267e}{Date\-Time\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the date time style. \end{DoxyCompactList}\item 
+Time\-Span\-Styles \hyperlink{a00168_a5b94fd91ed938c9d0515a5ab419de8b8}{Time\-Span\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the time span style. \end{DoxyCompactList}\item 
+Number\-Styles \hyperlink{a00168_a2bd83a5b0c0d94864ed09563dbab4a36}{Number\-Style}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the number style. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00168_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{Boolean\-True\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of true. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00168_a7735cd4046cf1b21f458aa96c616a01e}{Boolean\-False\-Values}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the list of values that can be used to represent a boolean of false. \end{DoxyCompactList}\item 
+string \hyperlink{a00168_aadc0730de90844e29da6e1ae7fddc4bb}{Format}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the string format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{column\-Number}
+readonly List$<$ string $>$ \hyperlink{a00168_a326ff183b4992ab134f047e6866df092}{boolean\-True\-Values} = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}
+\item 
+readonly List$<$ string $>$ \hyperlink{a00168_a1881a24e1731f70183fdff9c1612b7d5}{boolean\-False\-Values} = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 33 of file Lexer.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00168_ad00fcf742d2b0d476ce43b27a3f3b6c1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
-\begin{DoxyParamCaption}
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00168_ad00fcf742d2b0d476ce43b27a3f3b6c1}
-
-
-Definition at line 38 of file Lexer.\-cs.
+Options used when doing type conversion. 
 
 
 
-Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State().
+Definition at line 15 of file Type\-Converter\-Options.\-cs.
 
-
-\begin{DoxyCode}
-38 : base (message) \{\}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00168_ad00fcf742d2b0d476ce43b27a3f3b6c1_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00168_aa8674d006a0d29081a7b87bdd8ff2f4f}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Tokeniser\-Exception@{Tokeniser\-Exception}}
-\index{Tokeniser\-Exception@{Tokeniser\-Exception}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Tokeniser\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception (
-\begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{string}]{message}
-\end{DoxyParamCaption}
-)}}\label{a00168_aa8674d006a0d29081a7b87bdd8ff2f4f}
-
-
-Definition at line 39 of file Lexer.\-cs.
-
-
-
-References Yarn.\-Tokeniser\-Exception.\-column\-Number, and Yarn.\-Tokeniser\-Exception.\-line\-Number.
-
-
-\begin{DoxyCode}
-40             : base(\textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"\{0\}:\{1\}: \{2\}"}, \hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message))
-41         \{
-42             this.lineNumber = \hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber};
-43             this.columnNumber = \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber};
-44         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00168_af88cfa5eafdee355e1abb67e358497bd}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}}
-\index{Expected\-Tokens\-From\-State@{Expected\-Tokens\-From\-State}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{Expected\-Tokens\-From\-State}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tokeniser\-Exception} Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State (
+\hypertarget{a00168_a0532694cffc600fe984e10c7f1375e0a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Merge@{Merge}}
+\index{Merge@{Merge}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Merge}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Type\-Converter\-Options} Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Merge (
 \begin{DoxyParamCaption}
-\item[{int}]{line\-Number, }
-\item[{int}]{column\-Number, }
-\item[{{\bf Lexer.\-Lexer\-State}}]{state}
+\item[{params {\bf Type\-Converter\-Options}\mbox{[}$\,$\mbox{]}}]{sources}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00168_af88cfa5eafdee355e1abb67e358497bd}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00168_a0532694cffc600fe984e10c7f1375e0a}
 
 
-Definition at line 47 of file Lexer.\-cs.
+Merges \hyperlink{a00168}{Type\-Converter\-Options} by applying the values of sources in order to a new \hyperlink{a00168}{Type\-Converter\-Options} instance. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em sources} & The sources that will be applied.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new instance of \hyperlink{a00168}{Type\-Converter\-Options} with the source applied to it.
+\end{DoxyReturn}
 
-References Yarn.\-Tokeniser\-Exception.\-column\-Number, Yarn.\-Tokeniser\-Exception.\-line\-Number, and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
+
+Definition at line 71 of file Type\-Converter\-Options.\-cs.
 
 
 \begin{DoxyCode}
-47                                                                                                            
-                       \{
-48 
-49             var names = \textcolor{keyword}{new} List<string> ();
-50             \textcolor{keywordflow}{foreach} (var tokenRule \textcolor{keywordflow}{in} state.tokenRules) \{
-51                 names.Add (tokenRule.type.ToString ());
-52             \}
-53 
-54             \textcolor{keywordtype}{string} nameList;
-55             \textcolor{keywordflow}{if} (names.Count > 1) \{
-56                 nameList = String.Join (\textcolor{stringliteral}{", "}, names.ToArray (), 0, names.Count - 1);
-57                 nameList += \textcolor{stringliteral}{", or "} + names [names.Count - 1];
-58             \} \textcolor{keywordflow}{else} \{
-59                 nameList = names [0];
-60             \}
-61 
-62             var message = string.Format (\textcolor{stringliteral}{"Expected \{0\}"}, nameList);
-63 
-64             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{a00168_ad00fcf742d2b0d476ce43b27a3f3b6c1}{TokeniserException} (\hyperlink{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{lineNumber}, 
-      \hyperlink{a00168_aabf2ad38f3984297c1daede9be55e3d6}{columnNumber}, message);
-65         \}
+72         \{
+73             var options = \textcolor{keyword}{new} TypeConverterOptions();
+74             \textcolor{keywordflow}{foreach}( var source \textcolor{keywordflow}{in} sources )
+75             \{
+76                 \textcolor{keywordflow}{if}( source == null )
+77                 \{
+78                     \textcolor{keywordflow}{continue};
+79                 \}
+80 
+81                 \textcolor{keywordflow}{if}( source.CultureInfo != null )
+82                 \{
+83                     options.CultureInfo = source.CultureInfo;
+84                 \}
+85 
+86                 \textcolor{keywordflow}{if}( source.DateTimeStyle != null )
+87                 \{
+88                     options.DateTimeStyle = source.DateTimeStyle;
+89                 \}
+90 
+91 \textcolor{preprocessor}{#if !NET\_2\_0 && !NET\_3\_5 && !PCL}
+92 \textcolor{preprocessor}{}                \textcolor{keywordflow}{if}( source.TimeSpanStyle != null )
+93                 \{
+94                     options.TimeSpanStyle = source.TimeSpanStyle;
+95                 \}
+96 \textcolor{preprocessor}{#endif}
+97 \textcolor{preprocessor}{}
+98                 \textcolor{keywordflow}{if}( source.NumberStyle != null )
+99                 \{
+100                     options.NumberStyle = source.NumberStyle;
+101                 \}
+102 
+103                 \textcolor{keywordflow}{if}( source.Format != null )
+104                 \{
+105                     options.Format = source.Format;
+106                 \}
+107 
+108                 \textcolor{keywordflow}{if}( !options.booleanTrueValues.SequenceEqual( source.booleanTrueValues ) )
+109                 \{
+110                     options.booleanTrueValues.Clear();
+111                     options.booleanTrueValues.AddRange( source.booleanTrueValues );
+112                 \}
+113 
+114                 \textcolor{keywordflow}{if}( !options.booleanFalseValues.SequenceEqual( source.booleanFalseValues ) )
+115                 \{
+116                     options.booleanFalseValues.Clear();
+117                     options.booleanFalseValues.AddRange( source.booleanFalseValues );
+118                 \}
+119             \}
+120 
+121             \textcolor{keywordflow}{return} options;
+122         \}
 \end{DoxyCode}
 
 
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00168_af88cfa5eafdee355e1abb67e358497bd_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
 \subsection{Member Data Documentation}
-\hypertarget{a00168_aabf2ad38f3984297c1daede9be55e3d6}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-column\-Number}}\label{a00168_aabf2ad38f3984297c1daede9be55e3d6}
+\hypertarget{a00168_a1881a24e1731f70183fdff9c1612b7d5}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-False\-Values@{boolean\-False\-Values}}
+\index{boolean\-False\-Values@{boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-False\-Values = new List$<$string$>$ \{ \char`\"{}no\char`\"{}, \char`\"{}n\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00168_a1881a24e1731f70183fdff9c1612b7d5}
 
 
-Definition at line 36 of file Lexer.\-cs.
+Definition at line 18 of file Type\-Converter\-Options.\-cs.
+
+\hypertarget{a00168_a326ff183b4992ab134f047e6866df092}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!boolean\-True\-Values@{boolean\-True\-Values}}
+\index{boolean\-True\-Values@{boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-boolean\-True\-Values = new List$<$string$>$ \{ \char`\"{}yes\char`\"{}, \char`\"{}y\char`\"{} \}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00168_a326ff183b4992ab134f047e6866df092}
 
 
-
-Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State(), and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
-
-\hypertarget{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}{\index{Yarn\-::\-Tokeniser\-Exception@{Yarn\-::\-Tokeniser\-Exception}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::TokeniserException@{Yarn\-::\-Tokeniser\-Exception}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Tokeniser\-Exception.\-line\-Number}}\label{a00168_a54b936d7b4f26f88a07a66c5fc1d1ad1}
-
-
-Definition at line 35 of file Lexer.\-cs.
+Definition at line 17 of file Type\-Converter\-Options.\-cs.
 
 
 
-Referenced by Yarn.\-Tokeniser\-Exception.\-Expected\-Tokens\-From\-State(), and Yarn.\-Tokeniser\-Exception.\-Tokeniser\-Exception().
+\subsection{Property Documentation}
+\hypertarget{a00168_a7735cd4046cf1b21f458aa96c616a01e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-False\-Values@{Boolean\-False\-Values}}
+\index{Boolean\-False\-Values@{Boolean\-False\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Boolean\-False\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-False\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00168_a7735cd4046cf1b21f458aa96c616a01e}
+
+
+Gets the list of values that can be used to represent a boolean of false. 
+
+
+
+Definition at line 56 of file Type\-Converter\-Options.\-cs.
+
+\hypertarget{a00168_a73fe01941a8c2d3cfbd6fa4414e8d8e0}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Boolean\-True\-Values@{Boolean\-True\-Values}}
+\index{Boolean\-True\-Values@{Boolean\-True\-Values}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Boolean\-True\-Values}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Boolean\-True\-Values\hspace{0.3cm}{\ttfamily [get]}}}\label{a00168_a73fe01941a8c2d3cfbd6fa4414e8d8e0}
+
+
+Gets the list of values that can be used to represent a boolean of true. 
+
+
+
+Definition at line 47 of file Type\-Converter\-Options.\-cs.
+
+\hypertarget{a00168_af6bc545680b477abf9178eb4755572b1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Culture\-Info@{Culture\-Info}}
+\index{Culture\-Info@{Culture\-Info}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Culture\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Culture\-Info Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00168_af6bc545680b477abf9178eb4755572b1}
+
+
+Gets or sets the culture info. 
+
+
+
+Definition at line 23 of file Type\-Converter\-Options.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Type\-Conversion.\-Decimal\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int64\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int32\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-S\-Byte\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int16\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-U\-Int16\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Int32\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Double\-Converter.\-Convert\-From\-String(), Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter.\-Convert\-From\-String(), and Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
+
+\hypertarget{a00168_a53dd999cfdfad024682e67b6d5b1267e}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Date\-Time\-Style@{Date\-Time\-Style}}
+\index{Date\-Time\-Style@{Date\-Time\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Date\-Time\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Date\-Time\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Date\-Time\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00168_a53dd999cfdfad024682e67b6d5b1267e}
+
+
+Gets or sets the date time style. 
+
+
+
+Definition at line 28 of file Type\-Converter\-Options.\-cs.
+
+\hypertarget{a00168_aadc0730de90844e29da6e1ae7fddc4bb}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Format@{Format}}
+\index{Format@{Format}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Format}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Format\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00168_aadc0730de90844e29da6e1ae7fddc4bb}
+
+
+Gets or sets the string format. 
+
+
+
+Definition at line 63 of file Type\-Converter\-Options.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
+
+\hypertarget{a00168_a2bd83a5b0c0d94864ed09563dbab4a36}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Number\-Style@{Number\-Style}}
+\index{Number\-Style@{Number\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Number\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Number\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Number\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00168_a2bd83a5b0c0d94864ed09563dbab4a36}
+
+
+Gets or sets the number style. 
+
+
+
+Definition at line 40 of file Type\-Converter\-Options.\-cs.
+
+\hypertarget{a00168_a5b94fd91ed938c9d0515a5ab419de8b8}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}!Time\-Span\-Style@{Time\-Span\-Style}}
+\index{Time\-Span\-Style@{Time\-Span\-Style}!CsvHelper::TypeConversion::TypeConverterOptions@{Csv\-Helper\-::\-Type\-Conversion\-::\-Type\-Converter\-Options}}
+\subsubsection[{Time\-Span\-Style}]{\setlength{\rightskip}{0pt plus 5cm}Time\-Span\-Styles Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Time\-Span\-Style\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00168_a5b94fd91ed938c9d0515a5ab419de8b8}
+
+
+Gets or sets the time span style. 
+
+
+
+Definition at line 34 of file Type\-Converter\-Options.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00298}{Lexer.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00272}{Type\-Converter\-Options.\-cs}\end{DoxyCompactItemize}

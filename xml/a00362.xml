@@ -1,22 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00362" kind="struct" prot="package">
-    <compoundname>Yarn::AntlrCompiler::CompileFlags</compoundname>
+  <compounddef id="a00362" kind="struct" prot="public">
+    <compoundname>Yarn::Options</compoundname>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00362_1ae27568d71aa82edfd7841d425969a4fb" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Yarn.AntlrCompiler.CompileFlags.DisableShuffleOptionsAfterNextSet</definition>
+      <memberdef kind="variable" id="a00362_1ae8c616d923ceeeed192a9436c55d9917" prot="public" static="no" mutable="no">
+        <type>IList&lt; string &gt;</type>
+        <definition>IList&lt;string&gt; Yarn.Options.options</definition>
         <argsstring></argsstring>
-        <name>DisableShuffleOptionsAfterNextSet</name>
+        <name>options</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="16" bodyend="-1"/>
-        <referencedby refid="a00032_1a1dbb5e93105b67b0d85fecb068b1b7db" compoundref="a00294" startline="202" endline="245">Yarn.AntlrCompiler.ExitBody</referencedby>
-        <referencedby refid="a00038_1ad1576a22d74304c3155a0c2fa91be5b9" compoundref="a00294" startline="502" endline="574">Yarn.BodyVisitor.VisitShortcut_statement</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="-1"/>
+        <referencedby refid="a00046_1a62674694fa65e5ae8c0c0da4fbceda51" compoundref="a00307" startline="553" endline="629">Yarn.YarnSpinnerConsole.ConsoleRunnerImplementation.RunOptions</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -24,14 +23,14 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1028">
-        <label>Yarn.AntlrCompiler.CompileFlags</label>
+      <node id="1557">
+        <label>Yarn.Options</label>
         <link refid="a00362"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="13" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="12" bodyend="17"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="53" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="53" bodyend="53"/>
     <listofallmembers>
-      <member refid="a00362_1ae27568d71aa82edfd7841d425969a4fb" prot="public" virt="non-virtual"><scope>Yarn::AntlrCompiler::CompileFlags</scope><name>DisableShuffleOptionsAfterNextSet</name></member>
+      <member refid="a00362_1ae8c616d923ceeeed192a9436c55d9917" prot="public" virt="non-virtual"><scope>Yarn::Options</scope><name>options</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

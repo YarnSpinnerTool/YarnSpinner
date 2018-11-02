@@ -1,190 +1,289 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00079" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::DateTimeOffsetConverter</compoundname>
-    <basecompoundref refid="a00082" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+    <compoundname>ExampleVariableStorage</compoundname>
+    <basecompoundref refid="a00181" prot="public" virt="non-virtual">Yarn.Unity.VariableStorageBehaviour</basecompoundref>
+    <innerclass refid="a00358" prot="public">ExampleVariableStorage::DefaultVariable</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00079_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00177" kindref="compound">Yarn.Value</ref> &gt;</type>
+        <definition>Dictionary&lt;string, Yarn.Value&gt; ExampleVariableStorage.variables</definition>
+        <argsstring></argsstring>
+        <name>variables</name>
+        <initializer>= new Dictionary&lt;string, <ref refid="a00177" kindref="compound">Yarn.Value</ref>&gt; ()</initializer>
+        <briefdescription>
+<para>Where we actually keeping our variables. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="38" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="a00079_1a741593be1a299dcc2136f05b9b4a995a" compoundref="a00282" startline="125" endline="132">GetValue</referencedby>
+        <referencedby refid="a00079_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00282" startline="118" endline="122">SetValue</referencedby>
+        <referencedby refid="a00079_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00282" startline="141" endline="152">Update</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="a00079_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" static="no" mutable="no">
+        <type><ref refid="a00358" kindref="compound">DefaultVariable</ref>[]</type>
+        <definition>DefaultVariable [] ExampleVariableStorage.defaultVariables</definition>
+        <argsstring></argsstring>
+        <name>defaultVariables</name>
+        <briefdescription>
+<para>Our list of default variables, for debugging. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="54" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="54" bodyend="-1"/>
+        <referencedby refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00282" startline="67" endline="115">ResetToDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00079_1a9893656e3683711eb78441b30c52a600" prot="public" static="no" mutable="no">
+        <type>UnityEngine.UI.Text</type>
+        <definition>UnityEngine.UI.Text ExampleVariableStorage.debugTextView</definition>
+        <argsstring></argsstring>
+        <name>debugTextView</name>
+        <briefdescription>
+<para>A UI.Text that can show the current list of all variables. Optional. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="a00079_1af646a17cfd63039a25149f8fc0776dcb" compoundref="a00282" startline="141" endline="152">Update</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00079_1ab6a56afc687455f360876eff67891163" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExampleVariableStorage.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+<para>Reset to our default values when the game starts. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="61" bodyend="64"/>
+        <references refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00282" startline="67" endline="115">ResetToDefaults</references>
+      </memberdef>
+      <memberdef kind="function" id="a00079_1af646a17cfd63039a25149f8fc0776dcb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ExampleVariableStorage.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+<para>If we have a debug view, show the list of all variables in it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="141" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="141" bodyend="152"/>
+        <references refid="a00079_1a9893656e3683711eb78441b30c52a600" compoundref="a00282" startline="58">debugTextView</references>
+        <references refid="a00079_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00282" startline="38">variables</references>
+      </memberdef>
+      </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00079_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.DateTimeOffsetConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00082_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
+      <memberdef kind="function" id="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.ResetToDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>ResetToDefaults</name>
+        <reimplements refid="a00181_1a33fcbff56561e53e0a70b59c56f0c3af">ResetToDefaults</reimplements>
+        <briefdescription>
+<para>Erase all variables and reset to default values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="67" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="67" bodyend="115"/>
+        <references refid="a00079_1a0ce614bee8d5b220500fb765390b4ca3" compoundref="a00282" startline="135" endline="138">Clear</references>
+        <references refid="a00079_1a464c8a4ff6a3c624602d0adc55dfc59a" compoundref="a00282" startline="54">defaultVariables</references>
+        <references refid="a00079_1ac4265c1c9da485f13a6b05784b0f668d" compoundref="a00282" startline="118" endline="122">SetValue</references>
+        <referencedby refid="a00079_1ab6a56afc687455f360876eff67891163" compoundref="a00282" startline="61" endline="64">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00079_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.SetValue</definition>
+        <argsstring>(string variableName, Yarn.Value value)</argsstring>
+        <name>SetValue</name>
+        <reimplements refid="a00181_1a25f979b062d63c9e886fe7070ce4561b">SetValue</reimplements>
         <param>
           <type>string</type>
-          <declname>text</declname>
-        </param>
-        <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="22" bodyend="40"/>
-        <references refid="a00172_1af6bc545680b477abf9178eb4755572b1" compoundref="a00278" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
-      </memberdef>
-      <memberdef kind="function" id="a00079_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.DateTimeOffsetConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00082_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="49" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="49" bodyend="53"/>
-      </memberdef>
-      <memberdef kind="function" id="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00093_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00136_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
+          <declname>variableName</declname>
         </param>
         <param>
-          <type>object</type>
+          <type><ref refid="a00177" kindref="compound">Yarn.Value</ref></type>
           <declname>value</declname>
         </param>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+<para>Set a variable&apos;s value. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="118" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="118" bodyend="122"/>
+        <references refid="a00079_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00282" startline="38">variables</references>
+        <referencedby refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00282" startline="67" endline="115">ResetToDefaults</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00093_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+      <memberdef kind="function" id="a00079_1a741593be1a299dcc2136f05b9b4a995a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override <ref refid="a00177" kindref="compound">Yarn.Value</ref></type>
+        <definition>override Yarn.Value ExampleVariableStorage.GetValue</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetValue</name>
+        <reimplements refid="a00181_1ac6ebafcbebc2b2d71eba8562490a2f1e">GetValue</reimplements>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>variableName</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+<para>Get a variable&apos;s value. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="125" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="125" bodyend="132"/>
+        <references refid="a00079_1a4a4fec7b4ad707cd0603393dd57de96c" compoundref="a00282" startline="38">variables</references>
+      </memberdef>
+      <memberdef kind="function" id="a00079_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ExampleVariableStorage.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <reimplements refid="a00181_1a587fe10b367ace190e10f3bcb590a53c">Clear</reimplements>
+        <briefdescription>
+<para>Erase all variables. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="135" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="135" bodyend="138"/>
+        <referencedby refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" compoundref="a00282" startline="67" endline="115">ResetToDefaults</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00181_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Yarn.Unity.VariableStorageBehaviour.SetNumber</definition>
+        <argsstring>(string variableName, float number)</argsstring>
+        <name>SetNumber</name>
+        <reimplements refid="a00180_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+<para>Not implemented here. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="465" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="465" bodyend="468"/>
+      </memberdef>
+      <memberdef kind="function" id="a00181_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>float</type>
+        <definition>virtual float Yarn.Unity.VariableStorageBehaviour.GetNumber</definition>
+        <argsstring>(string variableName)</argsstring>
+        <name>GetNumber</name>
+        <reimplements refid="a00180_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
+        <param>
+          <type>string</type>
+          <declname>variableName</declname>
+        </param>
+        <briefdescription>
+<para>Not implemented here. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="471" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="471" bodyend="474"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a DateTimeOffset to and from a string. </para>    </briefdescription>
+<para>An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a Dictionary. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1204">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1203">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="1204" relation="public-inheritance">
+      <node id="1329">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00181"/>
+        <childnode refid="1330" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1331" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1202">
-        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
+      <node id="1328">
+        <label>ExampleVariableStorage</label>
         <link refid="a00079"/>
-        <childnode refid="1203" relation="public-inheritance">
+        <childnode refid="1329" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1331">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00180"/>
+      </node>
+      <node id="1330">
+        <label>MonoBehaviour</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1207">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1206">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="1207" relation="public-inheritance">
+      <node id="1333">
+        <label>VariableStorageBehaviour</label>
+        <link refid="a00181"/>
+        <childnode refid="1334" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1335" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1205">
-        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
+      <node id="1332">
+        <label>ExampleVariableStorage</label>
         <link refid="a00079"/>
-        <childnode refid="1206" relation="public-inheritance">
+        <childnode refid="1333" relation="public-inheritance">
         </childnode>
+        <childnode refid="1336" relation="usage">
+          <edgelabel>+defaultVariables</edgelabel>
+        </childnode>
+        <childnode refid="1338" relation="usage">
+          <edgelabel>+debugTextView</edgelabel>
+        </childnode>
+      </node>
+      <node id="1335">
+        <label>Yarn::VariableStorage</label>
+        <link refid="a00180"/>
+      </node>
+      <node id="1338">
+        <label>UnityEngine</label>
+      </node>
+      <node id="1336">
+        <label>ExampleVariableStorage.DefaultVariable</label>
+        <link refid="a00358"/>
+        <childnode refid="1337" relation="usage">
+          <edgelabel>+type</edgelabel>
+        </childnode>
+      </node>
+      <node id="1334">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1337">
+        <label>Yarn</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DateTimeOffsetConverter.cs" bodystart="14" bodyend="54"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Examples/DemoScripts/ExampleVariableStorage.cs" bodystart="34" bodyend="154"/>
     <listofallmembers>
-      <member refid="a00079_1a82a8cf4b77600ef49da60deb0c24a708" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00079_1aa69835fc086d80a8eabe7ac50cb92f47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::DateTimeOffsetConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00079_1ab6a56afc687455f360876eff67891163" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Awake</name></member>
+      <member refid="a00079_1a0ce614bee8d5b220500fb765390b4ca3" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>Clear</name></member>
+      <member refid="a00079_1a9893656e3683711eb78441b30c52a600" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>debugTextView</name></member>
+      <member refid="a00079_1a464c8a4ff6a3c624602d0adc55dfc59a" prot="public" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>defaultVariables</name></member>
+      <member refid="a00181_1add85a45dd65a5d4bd41c9d5ce5f77d19" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetNumber</name></member>
+      <member refid="a00079_1a741593be1a299dcc2136f05b9b4a995a" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>GetValue</name></member>
+      <member refid="a00079_1a3a05d66cdacadb2e9b618cd0aef45f84" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>ResetToDefaults</name></member>
+      <member refid="a00181_1ac0d2f2e081944ad197992a26ad1a833c" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetNumber</name></member>
+      <member refid="a00079_1ac4265c1c9da485f13a6b05784b0f668d" prot="public" virt="virtual"><scope>ExampleVariableStorage</scope><name>SetValue</name></member>
+      <member refid="a00079_1af646a17cfd63039a25149f8fc0776dcb" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>Update</name></member>
+      <member refid="a00079_1a4a4fec7b4ad707cd0603393dd57de96c" prot="private" virt="non-virtual"><scope>ExampleVariableStorage</scope><name>variables</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

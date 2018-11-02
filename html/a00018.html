@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn for Writers</title>
+<title>YarnSpinner: Building Yarn Spinner</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,100 +99,41 @@ $(document).ready(function(){initNavTree('a00018.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="a00045.html">Yarn</a> for Writers </div>  </div>
+<div class="title">Building <a class="el" href="a00041.html">Yarn</a> Spinner </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This document talks about how to use <a class="el" href="a00045.html">Yarn</a> if you're using it to write content. It doesn't talk about how to integrate <a class="el" href="a00045.html">Yarn</a> Spinner into your project; for that, see <a href="../YarnSpinner-Unity">"Using Yarn Spinner in your Unity game"</a>.</p>
-<h2>Lines</h2>
-<p><a class="el" href="a00045.html">Yarn</a> lets you define multiple chunks of dialogue that are linked together. Each chunk is called a <em>node</em>.</p>
-<p>Nodes are filled with different kinds of text. The simplest is lines of dialogue, which look like this: </p>
-<pre class="fragment">Alice: Hey, I'm a character speaking in a dialogue!
-Bob: Wild!
-</pre><p>Each line is delivered to your game one at a time.</p>
-<h2>Options</h2>
-<p>To link a node to another node, you provide <em>options</em>. Options look like this: </p>
-<pre class="fragment">[[Go to the woods|GoToWoods]]
-[[Go back to the city|GoToCity]]
-</pre><p>Options have two parts: the label, which is shown to the user, and the name of the node that we should link to when the user selects the option. The label and the node name are separated by a vertical bar (<code>|</code>).</p>
-<p>You don't have to provide the label. Instead, you can just provide the node name, like so: </p>
-<pre class="fragment">[[GoToCity]]
-</pre><p>If an option has no label, <a class="el" href="a00045.html">Yarn</a> will automatically jump to that node when that line is run, and it won't show options to the player.</p>
-<p>When all of the lines in a node have been displayed, the dialogue system gives your game the list of available options. You then let the user choose an option, and then continue loading lines of dialogue, one at a time.</p>
-<p>If there are no options when we reach the end of a node, then we've reached the end of a conversation, and <a class="el" href="a00045.html">Yarn</a> Spinner will let your game know.</p>
-<h2>Shortcut Options</h2>
-<p>Sometimes, you'll want to add little branches to your conversation, but you don't want to create separate nodes for them. Instead, you can use <em>shortcut options</em>: </p>
-<pre class="fragment">Mae: What did you say to her?
--&gt; Nothing.
-    Mae: Oh, man. Maybe you should have.
--&gt; That she was an idiot.
-    Mae: Hah! I bet that pissed her off.
-Mae: Anyway, I'd better get going.
-</pre><p>When this is run, <a class="el" href="a00045.html">Yarn</a> Spinner will behave just as if you'd broken all of this up into multiple nodes.</p>
-<p>You can also attach conditions to shortcut options, which will make them only appear if a certain condition passes: </p>
-<pre class="fragment">Bob: What would you like?
--&gt; A burger. &lt;&lt;if $money &gt;= 5&gt;&gt;
-    Bob: Nice. Enjoy!
--&gt; A soda. &lt;&lt;if $money &gt;= 2&gt;&gt;
-    Bob: Yum!
--&gt; Nothing.
-Bob: Thanks for coming!
-</pre><p>Note that in the last example, there wasn't any attached text. If the player selected the last option ("Nothing."), then the next line to appear would be "Bob: Thanks for coming!"</p>
-<p>You can also nest these shortcut options, if you like. Be careful, though - too much nested options can make your text difficult to read.</p>
-<h2>Commands</h2>
-<p>In addition to showing lines of dialogue, your game will probably want to run actions - things like "move the camera to position X", or "make character start smiling". You can use commands for this.</p>
-<p>Commands look like this: </p>
-<pre class="fragment">&lt;&lt;move alice to under_bridge&gt;&gt;
-</pre><p>Any text inside the double-chevrons will be sent directly to your game as a string. It's up to you to decide what to do with that string.</p>
-<p><a class="el" href="a00045.html">Yarn</a> has a special command, called <code>stop</code>. If you include <code>&lt;&lt;stop&gt;&gt;</code> in your node, <a class="el" href="a00045.html">Yarn</a> will stop the entire conversation when it reaches it.</p>
-<h2>Variables and If statements</h2>
-<p>You can store numbers in variables. To do this, use the <code>set</code> command: </p>
-<pre class="fragment">&lt;&lt;set $door_unlocked to 1&gt;&gt;
-</pre><p>You can check the value of a variable using the <code>if</code> command: </p>
-<pre class="fragment">&lt;&lt;if $door_unlocked is 1&gt;&gt;
-    The door is unlocked! (This will only appear if $door_unlocked is equal to 1.)
-&lt;&lt;endif&gt;&gt;
-</pre><h2>Expressions</h2>
-<p>You can do math in an <code>if</code> command. For example: </p>
-<pre class="fragment">&lt;&lt;if $number_of_stars_collected &gt; 5&gt;&gt;
-    You have more than 5 stars!
-&lt;&lt;endif&gt;&gt;
-</pre><p>You can also get fancier, and do stuff like this: </p>
-<pre class="fragment">&lt;&lt;if $hostages_saved == $number_of_hostages and $time_remaining &gt; 0&gt;&gt;
-    You win the game!
-&lt;&lt;elseif $hostages_saved &lt; $number_of_hostages and $time_remaining &gt; 0&gt;&gt;
-    You need to rescue more hostages!
-&lt;&lt;elseif $bomb_has_exploded == 0&gt;&gt;
-    You failed to rescue the hostages before time ran out!
-&lt;&lt;endif&gt;&gt;
-</pre><h2>Types</h2>
-<p>There are four different types of value in <a class="el" href="a00045.html">Yarn</a>: strings, numbers, booleans, and <code>null</code>.</p>
+<div class="textblock"><blockquote class="doxtable">
+<p>***Important:*** This document only matters to you if you want to build <a class="el" href="a00041.html">Yarn</a> Spinner from source. In almost all cases, you'll be totally fine with <a href="https://github.com/thesecretlab/YarnSpinner/releases">downloading a build</a>, and using that in your project.</p>
+<p></p>
+</blockquote>
+<h2>Windows and Mac using MonoDevelop</h2>
+<p>To build <a class="el" href="a00041.html">Yarn</a> Spinner on Windows or Mac, you'll need MonoDevelop. You can <a href="http://www.monodevelop.com/download/">download MonoDevelop for your OS from the MonoDevelop site</a>.</p>
+<h2>Linux</h2>
+<p>To build <a class="el" href="a00041.html">Yarn</a> Spinner on Linux, you can either</p>
 <ul>
-<li>Strings contain text.</li>
-<li>Numbers are floating-point numbers.</li>
-<li>Booleans are either true or false.</li>
-<li><code>null</code> means no value.</li>
+<li>use <a href="http://www.mono-project.com/docs/tools+libraries/tools/xbuild/">xbuild</a> and <a href="http://www.nuget.org">nuget</a>.</li>
+<li>Then ensure you have the correct packages installed by nuget, <code>nuget restore YarnSpinner.sln</code>.</li>
+<li>See the <a href="../../build.sh">build.sh</a> script for further information on how using mono to build. or</li>
+<li>use <a href="http://flatpak.org/getting.html">Flatpak</a>, you can <a href="http://www.monodevelop.com/download/linux/">download MonoDevelop from the MonoDevelop site</a>.</li>
 </ul>
-<p><a class="el" href="a00045.html">Yarn</a> will automatically convert between types for you. For example: </p>
-<pre class="fragment">&lt;&lt;if "hi" == "hi"&gt;&gt;
-    The two strings are the same!
-&lt;&lt;endif&gt;&gt;
-
-&lt;&lt;if 1+1+"hi" == "2hi"&gt;&gt;
-    Strings get joined together with other values!
-&lt;&lt;endif&gt;&gt;
-</pre><p><b>Warning:</b> Currently, variables can only store numbers. If you try to store anything else in a variable, it will get converted to a number first.</p>
-<h2>Functions</h2>
-<p>You can call functions in your <code>if</code> commands. For example, <a class="el" href="a00045.html">Yarn</a> Spinner provides a function called <code>visited</code>, which you can use to find out if a node has been entered before or not. It takes a single parameter (which is a string), and returns true or false depending on whether or not the node you specified has been entered. </p>
-<pre class="fragment">&lt;&lt;if visited("GoToCity")&gt;&gt;
-    We have gone to the city before!
-&lt;&lt;endif&gt;&gt;
-</pre><p>You can't define your own functions inside <a class="el" href="a00045.html">Yarn</a> itself, but they can be added at run-time. See <a class="el" href="a00210.html">Extending.md</a>Extending <a class="el" href="a00045.html">Yarn</a> Spinner"" for more info. </p>
+<h2>Using MonoDevelop</h2>
+<ul>
+<li>Open <b>YarnSpinner.sln</b>.</li>
+<li>Open the <b>Build menu</b>, and choose <b>Build All</b>.</li>
+<li>Open the <b>Unity/Assets/Yarn Spinner</b> folder. You'll find a copy of <b>YarnSpinner.dll</b> there.</li>
+<li>Copy that DLL file wherever you need it.</li>
+</ul>
+<h2>Building Documentation</h2>
+<p><a class="el" href="a00041.html">Yarn</a> Spinner uses <a href="https://www.stack.nl/~dimitri/doxygen">Doxygen</a> to generate <a href="http://docbook.org/">DocBook</a>, <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, <a href="https://www.latex-project.org/help/documentation/">LaTeX</a>, <a href="https://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>, and <a href="https://en.wikipedia.org/wiki/XML">XML</a> documentation. <a href="https://www.gnu.org/software/global/">GNU GLOBAL</a> is also used.</p>
+<p>Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of <a class="el" href="a00353.html">YarnSpinner</a> itself and not an actual error in the documentation.</p>
+<p>``` rm -fr Documentation/{docbook,html,latex,rtf,xml} doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1 grep -i error doxyoutput.txt ```</p>
+<p><a href="https://daringfireball.net/projects/markdown/">MarkDown</a> documentation is available via conversion of the XML output to Markdown using third party tools such as <a href="http://pandoc.org">Pandoc</a> or <a href="https://github.com/pferdinand/doxygen2md">doxygen2md</a> </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

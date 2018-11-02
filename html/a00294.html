@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/AntlrCompiler.cs File Reference</title>
+<title>YarnSpinner: YarnSpinner/Loader.cs File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,9 +106,11 @@ $(document).ready(function(){initNavTree('a00294.html','');});
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
-<div class="title">AntlrCompiler.cs File Reference</div>  </div>
+<div class="title">Loader.cs File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -116,52 +118,46 @@ $(document).ready(function(){initNavTree('a00294.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032.html">Yarn.AntlrCompiler</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html">Yarn.Loader</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00362"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032.html#a00362">Yarn.AntlrCompiler.CompileFlags</a></td></tr>
-<tr class="separator:a00362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00038.html">Yarn.BodyVisitor</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00087.html">Yarn.Loader.EmissionTuple</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">Yarn.Graph</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00130.html">Yarn.Loader.NodeInfo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00103.html">Yarn.GraphListener</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00141.html">Yarn.Loader.NodeInfo.Position</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:a00045"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045.html">Yarn</a></td></tr>
+<tr class="memitem:a00041"><td class="memItemLeft" align="right" valign="top">package &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html">Yarn</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a77a5bfa27437777ac8554e94e76e4e43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00294.html#a77a5bfa27437777ac8554e94e76e4e43">CATCH_EXCEPTIONS</a></td></tr>
+<tr class="separator:a77a5bfa27437777ac8554e94e76e4e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad7ebb46e7309ead8767383a672b3272f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041.html#ad7ebb46e7309ead8767383a672b3272f">Yarn.NodeFormat</a> { <a class="el" href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa88183b946cc5f0e8c96b2e66e1c74a7e">Yarn.NodeFormat.Unknown</a>, 
+<a class="el" href="a00041.html#ad7ebb46e7309ead8767383a672b3272faceeb33da53902872b63956f8df786cd8">Yarn.NodeFormat.SingleNodeText</a>, 
+<a class="el" href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8">Yarn.NodeFormat.JSON</a>, 
+<a class="el" href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa9dffbf69ffba8bc38bc4e01abf4b1675">Yarn.NodeFormat.Text</a>
+ }</td></tr>
+<tr class="separator:ad7ebb46e7309ead8767383a672b3272f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="a00362" id="a00362"></a>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a77a5bfa27437777ac8554e94e76e4e43"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct Yarn::AntlrCompiler::CompileFlags</td>
+          <td class="memname">#define CATCH_EXCEPTIONS</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00294_source.html#l00012">12</a> of file <a class="el" href="a00294_source.html">AntlrCompiler.cs</a>.</p>
-</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.AntlrCompiler.CompileFlags:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00376.png" border="0" usemap="#_yarn_8_antlr_compiler_8_compile_flags_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_antlr_compiler_8_compile_flags_coll__map" id="_yarn_8_antlr_compiler_8_compile_flags_coll__map">
-</map>
-</div>
-<table class="fieldtable">
-<tr><th colspan="3">Class Members</th></tr>
-<tr><td class="fieldtype">
-<a class="anchor" id="ae27568d71aa82edfd7841d425969a4fb"></a>bool</td>
-<td class="fieldname">
-DisableShuffleOptionsAfterNextSet</td>
-<td class="fielddoc">
-</td></tr>
-</table>
+
+<p>Definition at line <a class="el" href="a00294_source.html#l00028">28</a> of file <a class="el" href="a00294_source.html">Loader.cs</a>.</p>
 
 </div>
 </div>
@@ -170,8 +166,8 @@ DisableShuffleOptionsAfterNextSet</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00294.html">AntlrCompiler.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="a00294.html">Loader.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

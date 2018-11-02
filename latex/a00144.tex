@@ -1,207 +1,347 @@
-\hypertarget{a00144}{\section{Yarn.\-Unity.\-Example.\-Player\-Character Class Reference}
-\label{a00144}\index{Yarn.\-Unity.\-Example.\-Player\-Character@{Yarn.\-Unity.\-Example.\-Player\-Character}}
+\hypertarget{a00144}{\section{Yarn\-Spinner.\-Tests.\-Project\-Tests Class Reference}
+\label{a00144}\index{Yarn\-Spinner.\-Tests.\-Project\-Tests@{Yarn\-Spinner.\-Tests.\-Project\-Tests}}
 }
 
 
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
+Inheritance diagram for Yarn\-Spinner.\-Tests.\-Project\-Tests\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00798}
+\includegraphics[width=216pt]{a00804}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Player\-Character\-:
+Collaboration diagram for Yarn\-Spinner.\-Tests.\-Project\-Tests\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00799}
+\includegraphics[width=350pt]{a00805}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00144_a574b6d984b8671c7a780d3d10e040a9b}{Check\-For\-Nearby\-N\-P\-C} ()
-\begin{DoxyCompactList}\small\item\em Find all Dialogue\-Participants. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\hyperlink{a00144_af8cec595dce7455eeace4841d0f71a35}{Project\-Tests} (bool experimental)
+\item 
+new void \hyperlink{a00144_a09fb3b241843b94176be710e4a2a6833}{Init} ()
+\item 
+void \hyperlink{a00144_a7d3dccb3f5ddf0b24e65782b7af15369}{Test\-Loading\-Single\-File} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-float \hyperlink{a00144_ac025d4f4afaf854f8256e0d2d03e5b52}{min\-Position} = -\/5.\-3f
+void \hyperlink{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{Run\-Standard\-Testcase} (string node\-Name=\char`\"{}Start\char`\"{})
 \item 
-float \hyperlink{a00144_ada9dd748a1d89a7f9b12ac8967a07ae6}{max\-Position} = 5.\-3f
+void \hyperlink{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{Handle\-Result} (\hyperlink{a00146}{Yarn.\-Dialogue.\-Runner\-Result} result)
 \item 
-float \hyperlink{a00144_adc602a4b2c7e44e4b15a11f1ffcf07e4}{move\-Speed} = 1.\-0f
+void \hyperlink{a00160_ac21a5082ddac1da9db17ae54038df44e}{Expect\-Line} (string line)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
 \item 
-float \hyperlink{a00144_af89807d2195915ee9a0c42317e110fc6}{interaction\-Radius} = 2.\-0f
+\hyperlink{a00180}{Variable\-Storage} \hyperlink{a00160_a23d59ace1516ca72924c6fe3feafd3f7}{storage} = new \hyperlink{a00126}{Memory\-Variable\-Store}()
+\item 
+\hyperlink{a00082}{Dialogue} \hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}
+\item 
+bool \hyperlink{a00160_ac978fe85db843c51411f5517bdbe0eb8}{errors\-Cause\-Failures} = true
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-float \hyperlink{a00144_a7bcde19f080bfd09bbc833b8fb555cf7}{movement\-From\-Buttons}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static string \hyperlink{a00160_ab1ad614f465a49447da31c4000ec6b3e}{Project\-Root\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{Test\-Data\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00160_a39922286f6255e4fd0e433a4fc7521c4}{Unity\-Demo\-Scripts\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+bool \hyperlink{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{is\-Expecting\-Line}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00144_a9e83ec3c6e45ee4dd17215e3030f6403}{On\-Draw\-Gizmos\-Selected} ()
-\begin{DoxyCompactList}\small\item\em Draw the range at which we'll start talking to people. \end{DoxyCompactList}\item 
-void \hyperlink{a00144_a8e78b2dc1cd221fb9d05b89e70155df4}{Update} ()
-\begin{DoxyCompactList}\small\item\em Update is called once per frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \hyperlink{a00144_ad7914a14ec1a746a7d02fb9b2c69e91b}{experimental\-Mode}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 32 of file Player\-Character.\-cs.
+Definition at line 14 of file Project\-Tests.\-cs.
 
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00144_af8cec595dce7455eeace4841d0f71a35}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Project\-Tests@{Project\-Tests}}
+\index{Project\-Tests@{Project\-Tests}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Project\-Tests}]{\setlength{\rightskip}{0pt plus 5cm}Yarn\-Spinner.\-Tests.\-Project\-Tests.\-Project\-Tests (
+\begin{DoxyParamCaption}
+\item[{bool}]{experimental}
+\end{DoxyParamCaption}
+)}}\label{a00144_af8cec595dce7455eeace4841d0f71a35}
+
+
+Definition at line 17 of file Project\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+18         \{
+19             this.experimentalMode = experimental;
+20         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00144_a574b6d984b8671c7a780d3d10e040a9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}}
-\index{Check\-For\-Nearby\-N\-P\-C@{Check\-For\-Nearby\-N\-P\-C}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{Check\-For\-Nearby\-N\-P\-C}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Check\-For\-Nearby\-N\-P\-C (
+\hypertarget{a00160_ac21a5082ddac1da9db17ae54038df44e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Expect\-Line@{Expect\-Line}}
+\index{Expect\-Line@{Expect\-Line}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Expect\-Line (
 \begin{DoxyParamCaption}
-{}
+\item[{string}]{line}
 \end{DoxyParamCaption}
-)}}\label{a00144_a574b6d984b8671c7a780d3d10e040a9b}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_ac21a5082ddac1da9db17ae54038df44e}
 
 
-Find all Dialogue\-Participants. 
-
-Filter them to those that have a \hyperlink{a00045}{Yarn} start node and are in range; then start a conversation with the first one 
-
-Definition at line 84 of file Player\-Character.\-cs.
+Definition at line 171 of file Test\-Base.\-cs.
 
 
 \begin{DoxyCode}
-85         \{
-86             var allParticipants = \textcolor{keyword}{new} List<NPC> (FindObjectsOfType<NPC> ());
-87             var target = allParticipants.Find (delegate (NPC p) \{
-88                 \textcolor{keywordflow}{return} string.IsNullOrEmpty (p.talkToNode) == \textcolor{keyword}{false} && \textcolor{comment}{// has a conversation node?}
-89                 (p.transform.position - \textcolor{keyword}{this}.transform.position)\textcolor{comment}{// is in range?}
-90                 .magnitude <= \hyperlink{a00144_af89807d2195915ee9a0c42317e110fc6}{interactionRadius};
-91             \});
-92             \textcolor{keywordflow}{if} (target != null) \{
-93                 \textcolor{comment}{// Kick off the dialogue at this node.}
-94                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
-95             \}
-96         \}
+171                                                \{
+172             \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = line;
+173         \}
 \end{DoxyCode}
-\hypertarget{a00144_a9e83ec3c6e45ee4dd17215e3030f6403}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}}
-\index{On\-Draw\-Gizmos\-Selected@{On\-Draw\-Gizmos\-Selected}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{On\-Draw\-Gizmos\-Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-On\-Draw\-Gizmos\-Selected (
+\hypertarget{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Handle\-Result@{Handle\-Result}}
+\index{Handle\-Result@{Handle\-Result}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Handle\-Result}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Handle\-Result (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Yarn.\-Dialogue.\-Runner\-Result}}]{result}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00144_a9e83ec3c6e45ee4dd17215e3030f6403}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a7b525f85a26d7c942e1cbfa5d6453893}
 
 
-Draw the range at which we'll start talking to people. 
-
-
-
-Definition at line 44 of file Player\-Character.\-cs.
+Definition at line 123 of file Test\-Base.\-cs.
 
 
 \begin{DoxyCode}
-44                                     \{
-45             Gizmos.color = Color.blue;
-46 
-47             \textcolor{comment}{// Flatten the sphere into a disk, which looks nicer in 2D games}
-48             Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, \textcolor{keyword}{new} Vector3(1,1,0));
-49 
-50             \textcolor{comment}{// Need to draw at position zero because we set position in the line above}
-51             Gizmos.DrawWireSphere(Vector3.zero, \hyperlink{a00144_af89807d2195915ee9a0c42317e110fc6}{interactionRadius});
-52         \}
+123                                                                        \{
+124 
+125             \textcolor{keywordflow}{if} (result is Yarn.Dialogue.LineResult) \{
+126                 var text = (result as \hyperlink{a00122}{Yarn.Dialogue.LineResult}).line.text;
+127 
+128                 Console.WriteLine(\textcolor{stringliteral}{"Line: "} + text);
+129 
+130                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{isExpectingLine}) \{
+131                     Assert.AreEqual (text, \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine});
+132                 \}
+133 
+134             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.OptionSetResult) \{
+135                 var options = (result as \hyperlink{a00135}{Yarn.Dialogue.OptionSetResult}).
+      options.options;
+136                 var optionCount = options.Count;
+137                 var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+138 
+139                 Console.WriteLine(\textcolor{stringliteral}{"Options:"});
+140                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} options) \{
+141                     Console.WriteLine(\textcolor{stringliteral}{" - "} + option);
+142                 \}
+143 
+144                 \textcolor{keywordflow}{if} (\hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} != -1) \{
+145                     Assert.AreEqual (\hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount}, optionCount);
+146                 \}
+147 
+148                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} != -1) \{
+149                     resultDelegate (\hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect});
+150                 \} \textcolor{keywordflow}{else} \{
+151                     resultDelegate(0);
+152                 \}
+153             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.CommandResult) \{
+154                 var commandText = (result as \hyperlink{a00042}{Yarn.Dialogue.CommandResult}).
+      command.text;
+155 
+156                 Console.WriteLine(\textcolor{stringliteral}{"Command: "} + commandText);
+157 
+158                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} != null) \{
+159                     Assert.AreEqual (\hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand}, commandText);
+160                 \}
+161             \}
+162 
+163             \textcolor{comment}{// Reset all 'expected' stuff}
+164             \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = null;
+165             \hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} = null;
+166             \hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = -1;
+167             \hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = -1;
+168 
+169         \}
 \end{DoxyCode}
-\hypertarget{a00144_a8e78b2dc1cd221fb9d05b89e70155df4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!Update@{Update}}
-\index{Update@{Update}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Player\-Character.\-Update (
+\hypertarget{a00144_a09fb3b241843b94176be710e4a2a6833}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Init@{Init}}
+\index{Init@{Init}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}new void Yarn\-Spinner.\-Tests.\-Project\-Tests.\-Init (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00144_a8e78b2dc1cd221fb9d05b89e70155df4}
+)}}\label{a00144_a09fb3b241843b94176be710e4a2a6833}
 
 
-Update is called once per frame. 
-
-
-
-Definition at line 55 of file Player\-Character.\-cs.
+Definition at line 23 of file Project\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-55                        \{
+24         \{
+25             base.Init();
+26 
+27             dialogue.experimentalMode = this.experimentalMode;
+28         \}
+\end{DoxyCode}
+\hypertarget{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Run\-Standard\-Testcase@{Run\-Standard\-Testcase}}
+\index{Run\-Standard\-Testcase@{Run\-Standard\-Testcase}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Run\-Standard\-Testcase}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Run\-Standard\-Testcase (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_abffa134d40d72b21e6b35c3bf05fc53f}
+
+
+Definition at line 117 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+117                                                                       \{
+118             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_aead84ee50cb113ca45724894290ce9c2}{Run}(nodeName)) \{
+119                 \hyperlink{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
+120             \}
+121         \}
+\end{DoxyCode}
+\hypertarget{a00144_a7d3dccb3f5ddf0b24e65782b7af15369}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Test\-Loading\-Single\-File@{Test\-Loading\-Single\-File}}
+\index{Test\-Loading\-Single\-File@{Test\-Loading\-Single\-File}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Test\-Loading\-Single\-File}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Project\-Tests.\-Test\-Loading\-Single\-File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00144_a7d3dccb3f5ddf0b24e65782b7af15369}
+
+
+Definition at line 31 of file Project\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+32         \{
+33             var path = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Projects"}, \textcolor{stringliteral}{"Basic"}, \textcolor{stringliteral}{"Test.yarn.txt"});
+34 
+35             \textcolor{comment}{// high-level test: load the file, verify it has the nodes we want,}
+36             \textcolor{comment}{// and run one}
+37             dialogue.LoadFile(path);
+38 
+39             Assert.AreEqual(3, dialogue.program.nodes.Count);
+40 
+41             Assert.True(dialogue.NodeExists(\textcolor{stringliteral}{"TestNode"}));
+42             Assert.True(dialogue.NodeExists(\textcolor{stringliteral}{"AnotherTestNode"}));
+43             Assert.True(dialogue.NodeExists(\textcolor{stringliteral}{"ThirdNode"}));
+44 
+45             \textcolor{comment}{// execute a node}
+46             var secondNodeName = \textcolor{stringliteral}{"AnotherTestNode"};
+47             \hyperlink{a00160_ac21a5082ddac1da9db17ae54038df44e}{ExpectLine}(\textcolor{stringliteral}{"This is a second test node!"});
+48 
+49             \textcolor{comment}{// we are now expecting a node}
+50             Assert.IsTrue(this.isExpectingLine);
+51 
+52             \hyperlink{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{RunStandardTestcase}(secondNodeName);
+53 
+54             \textcolor{comment}{// the line should have run, so this property should become true}
+55             Assert.IsFalse(this.isExpectingLine);
 56 
-57             \textcolor{comment}{// Remove all player control when we're in dialogue}
-58             \textcolor{keywordflow}{if} (FindObjectOfType<DialogueRunner>().isDialogueRunning == \textcolor{keyword}{true}) \{
-59                 \textcolor{keywordflow}{return};
-60             \}
+57             \textcolor{comment}{// and the variable $x should now have a value}
+58             Assert.AreEqual(23, (int)\hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_ae94eaa4b03b432422f5d205fabe37ff5}{continuity}.
+      \hyperlink{a00180_accab1fc5c8fc353dbfc53ca0f4029576}{GetValue}(\textcolor{stringliteral}{"$x"}).AsNumber);
+59 
+60             \textcolor{comment}{// Next, we'll do a lower-level test, verifying that properties are loaded correctly}
 61 
-62             \textcolor{comment}{// Move the player, clamping them to within the boundaries }
-63             \textcolor{comment}{// of the level.}
-64             var movement = Input.GetAxis(\textcolor{stringliteral}{"Horizontal"});
-65             movement += \hyperlink{a00144_a7bcde19f080bfd09bbc833b8fb555cf7}{movementFromButtons};
-66             movement *= (\hyperlink{a00144_adc602a4b2c7e44e4b15a11f1ffcf07e4}{moveSpeed} * Time.deltaTime);
-67 
-68             var newPosition = transform.position;
-69             newPosition.x += movement;
-70             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00144_ac025d4f4afaf854f8256e0d2d03e5b52}{minPosition}, 
-      \hyperlink{a00144_ada9dd748a1d89a7f9b12ac8967a07ae6}{maxPosition});
-71 
-72             transform.position = newPosition;
-73 
-74             \textcolor{comment}{// Detect if we want to start a conversation}
-75             \textcolor{keywordflow}{if} (Input.GetKeyDown(KeyCode.Space)) \{
-76                 \hyperlink{a00144_a574b6d984b8671c7a780d3d10e040a9b}{CheckForNearbyNPC} ();
-77             \}
-78         \}
+62             \textcolor{comment}{// manually load the NodeInfos and verify data}
+63             var text = File.ReadAllText(path);
+64 
+65             var nodes = dialogue.loader.GetNodesFromText(text, NodeFormat.Text);
+66 
+67             \textcolor{comment}{// first node has a colorID}
+68             Assert.AreEqual(3, nodes[0].colorID);
+69 
+70             \textcolor{comment}{// second node has got a position defined}
+71             var position = nodes[1].position;
+72             Assert.AreEqual(2, position.x);
+73             Assert.AreEqual(4, position.y);
+74 
+75             \textcolor{comment}{// third node has tags}
+76             var expectedTags = \textcolor{keyword}{new} List<string>(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \textcolor{stringliteral}{"multiple"}, \textcolor{stringliteral}{"tags!"}\});
+77 
+78             Assert.AreEqual(expectedTags, nodes[2].tagsList);
+79 
+80             \textcolor{comment}{// the third node's body is empty}
+81             Assert.IsEmpty(nodes[2].body);
+82         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00144_af89807d2195915ee9a0c42317e110fc6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!interaction\-Radius@{interaction\-Radius}}
-\index{interaction\-Radius@{interaction\-Radius}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{interaction\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-interaction\-Radius = 2.\-0f}}\label{a00144_af89807d2195915ee9a0c42317e110fc6}
+\hypertarget{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn\-Spinner.\-Tests.\-Test\-Base.\-dialogue\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}
 
 
-Definition at line 39 of file Player\-Character.\-cs.
+Definition at line 23 of file Test\-Base.\-cs.
 
-\hypertarget{a00144_ada9dd748a1d89a7f9b12ac8967a07ae6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!max\-Position@{max\-Position}}
-\index{max\-Position@{max\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-max\-Position = 5.\-3f}}\label{a00144_ada9dd748a1d89a7f9b12ac8967a07ae6}
-
-
-Definition at line 35 of file Player\-Character.\-cs.
-
-\hypertarget{a00144_ac025d4f4afaf854f8256e0d2d03e5b52}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!min\-Position@{min\-Position}}
-\index{min\-Position@{min\-Position}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-min\-Position = -\/5.\-3f}}\label{a00144_ac025d4f4afaf854f8256e0d2d03e5b52}
+\hypertarget{a00160_ac978fe85db843c51411f5517bdbe0eb8}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!errors\-Cause\-Failures@{errors\-Cause\-Failures}}
+\index{errors\-Cause\-Failures@{errors\-Cause\-Failures}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{errors\-Cause\-Failures}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-errors\-Cause\-Failures = true\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_ac978fe85db843c51411f5517bdbe0eb8}
 
 
-Definition at line 34 of file Player\-Character.\-cs.
+Definition at line 25 of file Test\-Base.\-cs.
 
-\hypertarget{a00144_adc602a4b2c7e44e4b15a11f1ffcf07e4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!move\-Speed@{move\-Speed}}
-\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-move\-Speed = 1.\-0f}}\label{a00144_adc602a4b2c7e44e4b15a11f1ffcf07e4}
+\hypertarget{a00144_ad7914a14ec1a746a7d02fb9b2c69e91b}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!experimental\-Mode@{experimental\-Mode}}
+\index{experimental\-Mode@{experimental\-Mode}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{experimental\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Project\-Tests.\-experimental\-Mode\hspace{0.3cm}{\ttfamily [private]}}}\label{a00144_ad7914a14ec1a746a7d02fb9b2c69e91b}
 
 
-Definition at line 37 of file Player\-Character.\-cs.
+Definition at line 16 of file Project\-Tests.\-cs.
+
+\hypertarget{a00160_a23d59ace1516ca72924c6fe3feafd3f7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!storage@{storage}}
+\index{storage@{storage}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Variable\-Storage} Yarn\-Spinner.\-Tests.\-Test\-Base.\-storage = new {\bf Memory\-Variable\-Store}()\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a23d59ace1516ca72924c6fe3feafd3f7}
+
+
+Definition at line 22 of file Test\-Base.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00144_a7bcde19f080bfd09bbc833b8fb555cf7}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}!movement\-From\-Buttons@{movement\-From\-Buttons}}
-\index{movement\-From\-Buttons@{movement\-From\-Buttons}!Yarn::Unity::Example::PlayerCharacter@{Yarn\-::\-Unity\-::\-Example\-::\-Player\-Character}}
-\subsubsection[{movement\-From\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Player\-Character.\-movement\-From\-Buttons\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00144_a7bcde19f080bfd09bbc833b8fb555cf7}
+\hypertarget{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!is\-Expecting\-Line@{is\-Expecting\-Line}}
+\index{is\-Expecting\-Line@{is\-Expecting\-Line}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{is\-Expecting\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-is\-Expecting\-Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}
 
 
-Definition at line 41 of file Player\-Character.\-cs.
+Definition at line 175 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_ab1ad614f465a49447da31c4000ec6b3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Project\-Root\-Path@{Project\-Root\-Path}}
+\index{Project\-Root\-Path@{Project\-Root\-Path}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Project\-Root\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Project\-Root\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_ab1ad614f465a49447da31c4000ec6b3e}
+
+
+Definition at line 29 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_aa9b4d902d61adad7165154a265f69aa4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Test\-Data\-Path@{Test\-Data\-Path}}
+\index{Test\-Data\-Path@{Test\-Data\-Path}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Test\-Data\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Test\-Data\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_aa9b4d902d61adad7165154a265f69aa4}
+
+
+Definition at line 52 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_a39922286f6255e4fd0e433a4fc7521c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}!Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}}
+\index{Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}!YarnSpinner::Tests::ProjectTests@{Yarn\-Spinner\-::\-Tests\-::\-Project\-Tests}}
+\subsubsection[{Unity\-Demo\-Scripts\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Unity\-Demo\-Scripts\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_a39922286f6255e4fd0e433a4fc7521c4}
+
+
+Definition at line 60 of file Test\-Base.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00291}{Player\-Character.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Tests/\hyperlink{a00312}{Project\-Tests.\-cs}\end{DoxyCompactItemize}

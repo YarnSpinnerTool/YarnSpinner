@@ -1,130 +1,160 @@
-\hypertarget{a00147}{\section{Yarn.\-Program\-Exporter Class Reference}
-\label{a00147}\index{Yarn.\-Program\-Exporter@{Yarn.\-Program\-Exporter}}
+\hypertarget{a00147}{\section{Yarn.\-Run\-Options Class Reference}
+\label{a00147}\index{Yarn.\-Run\-Options@{Yarn.\-Run\-Options}}
 }
 
 
-Collaboration diagram for Yarn.\-Program\-Exporter\-:
+Inheritance diagram for Yarn.\-Run\-Options\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=192pt]{a00749}
+\includegraphics[width=210pt]{a00723}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+
+
+Collaboration diagram for Yarn.\-Run\-Options\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{a00724}
+\end{center}
+\end{figure}
+\subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00147_a2e617f0d69a4a6a1c5307af390067079}{Program\-Exporter} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
+bool \hyperlink{a00147_a4b385e83338d14947c4d840d2d1ee266}{wait\-For\-Input}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-static int \hyperlink{a00147_a3679a1f144471ea411fed34f6a79a18d}{Export} (\hyperlink{a00049}{Compile\-Options} options)
+string \hyperlink{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}{start\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00147_a2222c73ce5366b02490c6123b711f596}{variables}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{a00147_a525bb1890b29f86002c2f163ace4a3d8}{run\-Times}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00147_ae21d271c37dabee023771a951f6e774e}{automatically\-Select\-First\-Option}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00093_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00093_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00093_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00031_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{a00031_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+I\-List$<$ string $>$ \hyperlink{a00031_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 7 of file Program\-Exporter.\-cs.
+Definition at line 81 of file Main.\-cs.
 
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00147_a2e617f0d69a4a6a1c5307af390067079}{\index{Yarn\-::\-Program\-Exporter@{Yarn\-::\-Program\-Exporter}!Program\-Exporter@{Program\-Exporter}}
-\index{Program\-Exporter@{Program\-Exporter}!Yarn::ProgramExporter@{Yarn\-::\-Program\-Exporter}}
-\subsubsection[{Program\-Exporter}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Program\-Exporter.\-Program\-Exporter (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00147_a2e617f0d69a4a6a1c5307af390067079}
+\subsection{Property Documentation}
+\hypertarget{a00147_ae21d271c37dabee023771a951f6e774e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}}
+\index{automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{automatically\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-automatically\-Select\-First\-Option\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_ae21d271c37dabee023771a951f6e774e}
 
 
-Definition at line 9 of file Program\-Exporter.\-cs.
+Definition at line 97 of file Main.\-cs.
+
+\hypertarget{a00093_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!experimental@{experimental}}
+\index{experimental@{experimental}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_ad97950e47ce2aaeb598295b7c3c44b13}
 
 
-\begin{DoxyCode}
-10         \{
-11         \}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00147_a3679a1f144471ea411fed34f6a79a18d}{\index{Yarn\-::\-Program\-Exporter@{Yarn\-::\-Program\-Exporter}!Export@{Export}}
-\index{Export@{Export}!Yarn::ProgramExporter@{Yarn\-::\-Program\-Exporter}}
-\subsubsection[{Export}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Program\-Exporter.\-Export (
-\begin{DoxyParamCaption}
-\item[{{\bf Compile\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00147_a3679a1f144471ea411fed34f6a79a18d}
-
-
-Definition at line 13 of file Program\-Exporter.\-cs.
+Definition at line 61 of file Main.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S.
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00031_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!files@{files}}
+\index{files@{files}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_aa93cbb1bc1d5328e0a417012621e92d2}
+
+
+Definition at line 47 of file Main.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
+
+\hypertarget{a00093_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
+\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_af4c0062a1d46281d377f87084fde374e}
 
 
-\begin{DoxyCode}
-14         \{
-15             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00189_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-16 
-17             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files) \{
-18 
-19                 var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
-20 
-21                 \textcolor{comment}{// Load and compile the program}
-22                 \textcolor{keywordflow}{try}
-23                 \{
-24                     \textcolor{comment}{// First, we need to ensure that this file compiles.}
-25                     dialogue.LoadFile(file);
-26                 \}
-27                 \textcolor{keywordflow}{catch}
-28                 \{
-29                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Skipping file \{0\} due to compilation errors."}, 
-      file));
-30                     \textcolor{keywordflow}{continue};
-31                 \}
-32 
-33                 \textcolor{comment}{// Convert the program into BSON}
-34                 var compiledProgram = dialogue.GetCompiledProgram(options.format);
-35 
-36                 var outputPath = System.IO.Path.ChangeExtension(file, \textcolor{stringliteral}{"yarn.bytes"});
-37 
-38                 \textcolor{keywordflow}{try} \{
-39                     System.IO.File.WriteAllBytes(outputPath, compiledProgram);
-40                 \} \textcolor{keywordflow}{catch} (Exception e) \{
-41                     YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"Error writing \{0\}: \{1\}"}, outputPath, e.Message)
-      );
-42                 \}
-43 
-44 
-45 
-46             \}
-47 
-48             \textcolor{keywordflow}{return} 0;
-49         \}
-\end{DoxyCode}
+Definition at line 59 of file Main.\-cs.
+
+\hypertarget{a00147_a525bb1890b29f86002c2f163ace4a3d8}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!run\-Times@{run\-Times}}
+\index{run\-Times@{run\-Times}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{run\-Times}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Run\-Options.\-run\-Times\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a525bb1890b29f86002c2f163ace4a3d8}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00147_a3679a1f144471ea411fed34f6a79a18d_icgraph}
-\end{center}
-\end{figure}
+Definition at line 94 of file Main.\-cs.
 
+\hypertarget{a00031_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
+\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_a89964ea17bd19caf00cb5bff563ed01c}
+
+
+Definition at line 40 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+
+\hypertarget{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!start\-Node@{start\-Node}}
+\index{start\-Node@{start\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Run\-Options.\-start\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a785bd0f1c8b6674e7a1cfbe38c29b961}
+
+
+Definition at line 88 of file Main.\-cs.
+
+\hypertarget{a00093_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!string\-Table@{string\-Table}}
+\index{string\-Table@{string\-Table}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00093_a7e43c3b73722956cb0f5d507e4eef527}
+
+
+Definition at line 55 of file Main.\-cs.
+
+\hypertarget{a00147_a2222c73ce5366b02490c6123b711f596}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!variables@{variables}}
+\index{variables@{variables}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Run\-Options.\-variables\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a2222c73ce5366b02490c6123b711f596}
+
+
+Definition at line 91 of file Main.\-cs.
+
+\hypertarget{a00031_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!verbose@{verbose}}
+\index{verbose@{verbose}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00031_ada4d83d1756918f362d55f6649b82b17}
+
+
+Definition at line 44 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+
+\hypertarget{a00147_a4b385e83338d14947c4d840d2d1ee266}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!wait\-For\-Input@{wait\-For\-Input}}
+\index{wait\-For\-Input@{wait\-For\-Input}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
+\subsubsection[{wait\-For\-Input}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-wait\-For\-Input\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00147_a4b385e83338d14947c4d840d2d1ee266}
+
+
+Definition at line 85 of file Main.\-cs.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00314}{Program\-Exporter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00307}{Main.\-cs}\end{DoxyCompactItemize}

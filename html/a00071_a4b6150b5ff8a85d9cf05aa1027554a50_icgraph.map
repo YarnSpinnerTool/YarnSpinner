@@ -1,5 +1,0 @@
-<map id="CsvHelper.CsvReader.CreateDynamic" name="CsvHelper.CsvReader.CreateDynamic">
-<area shape="rect" id="node2" href="$a00071.html#a722545ede4e575795ee9a73f6ada0ac7" title="Creates the record for the given type. " alt="" coords="251,23,448,65"/>
-<area shape="rect" id="node3" href="$a00071.html#a10680de48d9c21ef1792661947f9f601" title="Gets the record. " alt="" coords="500,5,721,32"/>
-<area shape="rect" id="node4" href="$a00071.html#aaa94b8f27e410194fbaadd75f38b030e" title="Gets all the records in the CSV file and converts each to Type T. The Read method should not be used ..." alt="" coords="497,56,725,83"/>
-</map>

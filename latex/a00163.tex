@@ -1,257 +1,194 @@
-\hypertarget{a00163}{\section{Yarn.\-Table\-Generator Class Reference}
-\label{a00163}\index{Yarn.\-Table\-Generator@{Yarn.\-Table\-Generator}}
+\hypertarget{a00163}{\section{Yarn.\-Token Class Reference}
+\label{a00163}\index{Yarn.\-Token@{Yarn.\-Token}}
 }
 
 
-Collaboration diagram for Yarn.\-Table\-Generator\-:
+Collaboration diagram for Yarn.\-Token\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=186pt]{a00751}
+\includegraphics[width=174pt]{a00628}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00163_a1d65ef643c3f3495cf9480f86172ff87}{Generate\-Tables} (\hyperlink{a00101}{Generate\-Table\-Options} options)
+\hyperlink{a00163_ab8531150354ef148b8929a727f29ae39}{Token} (\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00163_a471a25da67fda0524f2375f9a882aafa}{type}, \hyperlink{a00118}{Lexer.\-Lexer\-State} \hyperlink{a00163_a710099e7abe84f30864a320cc7464214}{lexer\-State}, int \hyperlink{a00163_a80fe710713201bb793a41452e314a721}{line\-Number}=-\/1, int \hyperlink{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}=-\/1, string \hyperlink{a00163_a3df6b32d6190a639619a3f064c2154e2}{value}=null)
+\item 
+override string \hyperlink{a00163_abf676a737679ec2fb1dffd75dc4d7976}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00163_a72dd508110f2d6ec21a8fa7d3cf35291}{Create\-C\-S\-V\-Row} (params string\mbox{[}$\,$\mbox{]} entries)
+\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00163_a471a25da67fda0524f2375f9a882aafa}{type}
 \item 
-string \hyperlink{a00163_a1014b76df01db6b9e7936e6ab6d44fb6}{Create\-C\-S\-V\-Row} (Key\-Value\-Pair$<$ string, string $>$ entry)
+string \hyperlink{a00163_a3df6b32d6190a639619a3f064c2154e2}{value}
+\item 
+int \hyperlink{a00163_a80fe710713201bb793a41452e314a721}{line\-Number}
+\item 
+int \hyperlink{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{column\-Number}
+\item 
+string \hyperlink{a00163_a089d248c904a6e8366b81c2c47ff5af8}{context}
+\item 
+bool \hyperlink{a00163_af15d26fa4e6f276ab58ff66d3c4203da}{delimits\-Text} = false
+\item 
+int \hyperlink{a00163_adf11c0d29b66935a8d8109d6308d0488}{parameter\-Count}
+\item 
+string \hyperlink{a00163_a710099e7abe84f30864a320cc7464214}{lexer\-State}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 8 of file Table\-Generator.\-cs.
+Definition at line 174 of file Lexer.\-cs.
 
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00163_ab8531150354ef148b8929a727f29ae39}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!Token@{Token}}
+\index{Token@{Token}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{Token}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Token.\-Token (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{{\bf Lexer.\-Lexer\-State}}]{lexer\-State, }
+\item[{int}]{line\-Number = {\ttfamily -\/1}, }
+\item[{int}]{column\-Number = {\ttfamily -\/1}, }
+\item[{string}]{value = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{a00163_ab8531150354ef148b8929a727f29ae39}
+
+
+Definition at line 194 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Token.\-column\-Number, Yarn.\-Token.\-line\-Number, Yarn.\-Token.\-type, and Yarn.\-Token.\-value.
+
+
+\begin{DoxyCode}
+194                                                                                                            
+                            \{
+195             this.type = \hyperlink{a00163_a471a25da67fda0524f2375f9a882aafa}{type};
+196             this.value = \hyperlink{a00163_a3df6b32d6190a639619a3f064c2154e2}{value};
+197             this.lineNumber = \hyperlink{a00163_a80fe710713201bb793a41452e314a721}{lineNumber};
+198             this.columnNumber = \hyperlink{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber};
+199             this.lexerState = lexerState.name;
+200         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00163_a72dd508110f2d6ec21a8fa7d3cf35291}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}}
-\index{Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Create\-C\-S\-V\-Row}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row (
+\hypertarget{a00163_abf676a737679ec2fb1dffd75dc4d7976}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Token.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{params string\mbox{[}$\,$\mbox{]}}]{entries}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00163_a72dd508110f2d6ec21a8fa7d3cf35291}
+)}}\label{a00163_abf676a737679ec2fb1dffd75dc4d7976}
 
 
-Definition at line 124 of file Table\-Generator.\-cs.
+Definition at line 202 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row().
+References Yarn.\-Token.\-column\-Number, Yarn.\-Token.\-lexer\-State, Yarn.\-Token.\-line\-Number, Yarn.\-Token.\-type, and Yarn.\-Token.\-value.
 
 
 \begin{DoxyCode}
-124                                                       \{
-125             \textcolor{keywordflow}{return} string.Join (\textcolor{stringliteral}{","}, entries);
-126         \}
+202                                           \{
+203             \textcolor{keywordflow}{if} (this.\hyperlink{a00163_a3df6b32d6190a639619a3f064c2154e2}{value} != null) \{
+204                 \textcolor{keywordflow}{return} string.Format(\textcolor{stringliteral}{"\{0\} (\{1\}) at \{2\}:\{3\} (state: \{4\})"}, type.ToString(), 
+      \hyperlink{a00163_a3df6b32d6190a639619a3f064c2154e2}{value}.ToString(), \hyperlink{a00163_a80fe710713201bb793a41452e314a721}{lineNumber}, \hyperlink{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber}, 
+      \hyperlink{a00163_a710099e7abe84f30864a320cc7464214}{lexerState});
+205             \} \textcolor{keywordflow}{else} \{
+206                 \textcolor{keywordflow}{return} string.Format (\textcolor{stringliteral}{"\{0\} at \{1\}:\{2\} (state: \{3\})"}, \hyperlink{a00163_a471a25da67fda0524f2375f9a882aafa}{type}, 
+      \hyperlink{a00163_a80fe710713201bb793a41452e314a721}{lineNumber}, \hyperlink{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{columnNumber}, \hyperlink{a00163_a710099e7abe84f30864a320cc7464214}{lexerState});
+207             \}
+208         \}
 \end{DoxyCode}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00163_a72dd508110f2d6ec21a8fa7d3cf35291_icgraph}
-\end{center}
-\end{figure}
+\subsection{Member Data Documentation}
+\hypertarget{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!column\-Number@{column\-Number}}
+\index{column\-Number@{column\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-column\-Number}}\label{a00163_a9a0f0a8a7ab1e90ab48f15192323ffca}
 
 
-\hypertarget{a00163_a1014b76df01db6b9e7936e6ab6d44fb6}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}}
-\index{Create\-C\-S\-V\-Row@{Create\-C\-S\-V\-Row}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Create\-C\-S\-V\-Row}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row (
-\begin{DoxyParamCaption}
-\item[{Key\-Value\-Pair$<$ string, string $>$}]{entry}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00163_a1014b76df01db6b9e7936e6ab6d44fb6}
-
-
-Definition at line 128 of file Table\-Generator.\-cs.
+Definition at line 182 of file Lexer.\-cs.
 
 
 
-References Yarn.\-Table\-Generator.\-Create\-C\-S\-V\-Row().
+Referenced by Yarn.\-Token.\-Token(), and Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00163_a089d248c904a6e8366b81c2c47ff5af8}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!context@{context}}
+\index{context@{context}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{context}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-context}}\label{a00163_a089d248c904a6e8366b81c2c47ff5af8}
 
 
-\begin{DoxyCode}
-128                                                                 \{
-129             \textcolor{keywordflow}{return} \hyperlink{a00163_a72dd508110f2d6ec21a8fa7d3cf35291}{CreateCSVRow} (\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ entry.Key, entry.Value \});
-130         \}
-\end{DoxyCode}
+Definition at line 183 of file Lexer.\-cs.
+
+\hypertarget{a00163_af15d26fa4e6f276ab58ff66d3c4203da}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!delimits\-Text@{delimits\-Text}}
+\index{delimits\-Text@{delimits\-Text}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Token.\-delimits\-Text = false}}\label{a00163_af15d26fa4e6f276ab58ff66d3c4203da}
 
 
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00163_a1014b76df01db6b9e7936e6ab6d44fb6_cgraph}
-\end{center}
-\end{figure}
+Definition at line 185 of file Lexer.\-cs.
+
+\hypertarget{a00163_a710099e7abe84f30864a320cc7464214}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!lexer\-State@{lexer\-State}}
+\index{lexer\-State@{lexer\-State}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{lexer\-State}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-lexer\-State}}\label{a00163_a710099e7abe84f30864a320cc7464214}
 
 
-\hypertarget{a00163_a1d65ef643c3f3495cf9480f86172ff87}{\index{Yarn\-::\-Table\-Generator@{Yarn\-::\-Table\-Generator}!Generate\-Tables@{Generate\-Tables}}
-\index{Generate\-Tables@{Generate\-Tables}!Yarn::TableGenerator@{Yarn\-::\-Table\-Generator}}
-\subsubsection[{Generate\-Tables}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-Table\-Generator.\-Generate\-Tables (
-\begin{DoxyParamCaption}
-\item[{{\bf Generate\-Table\-Options}}]{options}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00163_a1d65ef643c3f3495cf9480f86172ff87}
-
-
-Definition at line 10 of file Table\-Generator.\-cs.
+Definition at line 192 of file Lexer.\-cs.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-Generate\-Table\-Options.\-only\-Use\-Tag, and Yarn.\-Base\-Options.\-verbose.
+Referenced by Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00163_a80fe710713201bb793a41452e314a721}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-line\-Number}}\label{a00163_a80fe710713201bb793a41452e314a721}
+
+
+Definition at line 181 of file Lexer.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+Referenced by Yarn.\-Token.\-Token(), and Yarn.\-Token.\-To\-String().
+
+\hypertarget{a00163_adf11c0d29b66935a8d8109d6308d0488}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!parameter\-Count@{parameter\-Count}}
+\index{parameter\-Count@{parameter\-Count}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{parameter\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Token.\-parameter\-Count}}\label{a00163_adf11c0d29b66935a8d8109d6308d0488}
 
 
-\begin{DoxyCode}
-11         \{
-12 
-13             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00189_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-14 
-15             \textcolor{keywordflow}{if} (options.\hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose} && options.\hyperlink{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag} != null) \{
-16                 YarnSpinnerConsole.Note(string.Format(\textcolor{stringliteral}{"Only using lines from nodes tagged \(\backslash\)"\{0\}\(\backslash\)""}, 
-      options.onlyUseTag));
-17             \}
-18 
-19             \textcolor{keywordtype}{bool} linesWereUntagged = \textcolor{keyword}{false};
-20 
-21             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.\hyperlink{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{files}) \{
-22 
-23                 var dialogue = YarnSpinnerConsole.CreateDialogueForUtilities();
-24 
-25                 dialogue.LoadFile (file);
-26 
-27                 var stringTable = dialogue.GetStringTable ();
-28 
-29                 var emittedStringTable = \textcolor{keyword}{new} Dictionary<string,string> ();
-30 
-31                 var anyLinesAreUntagged = \textcolor{keyword}{false};
-32 
-33                 \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} stringTable) \{
-34 
-35                     \textcolor{comment}{// If options.onlyUseTag is set, we skip all lines in nodes that}
-36                     \textcolor{comment}{// don't have that tag.}
-37                     \textcolor{keywordflow}{if} (options.\hyperlink{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag} != null) \{
-38 
-39                         \textcolor{comment}{// Find the tags for the node that this string is in}
-40                         \hyperlink{a00125}{LineInfo} stringInfo;
-41 
-42                         \textcolor{keywordflow}{try} \{
-43                             stringInfo = dialogue.program.lineInfo[entry.Key];
-44                         \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-45                             YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"\{0\}: lineInfo table does not contain an
-       entry for line \{1\} (\(\backslash\)"\{2\}\(\backslash\)")"}, file, entry.Key, entry.Value));
-46                             \textcolor{keywordflow}{return} 1;
-47                         \}
-48 
-49                         \hyperlink{a00045_a00367}{Node} node;
-50 
-51                         \textcolor{keywordflow}{try} \{
-52                             node = dialogue.program.nodes[stringInfo.nodeName];
-53                         \} \textcolor{keywordflow}{catch} (KeyNotFoundException) \{
-54                             YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"\{0\}: Line \{1\}'s lineInfo claims that
-       the line originates in node \{2\}, but this node is not present in this program."}, file, entry.Key, 
-      stringInfo.nodeName));
-55                             \textcolor{keywordflow}{return} 1;
-56                         \}
-57 
-58 
-59                         var tags = node.tags;
-60 
-61                         \textcolor{comment}{// If the tags don't include the one we're looking for,}
-62                         \textcolor{comment}{// skip this line}
-63                         \textcolor{keywordflow}{if} (tags.FindIndex(i => i == options.\hyperlink{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}{onlyUseTag}) == -1) \{
-64                             \textcolor{keywordflow}{continue};
-65                         \}
-66 
-67                     \}
-68 
-69                     \textcolor{keywordflow}{if} (entry.Key.StartsWith(\textcolor{stringliteral}{"line:"}) == \textcolor{keyword}{false}) \{
-70                         anyLinesAreUntagged = \textcolor{keyword}{true};
-71                     \} \textcolor{keywordflow}{else} \{
-72                         emittedStringTable [entry.Key] = entry.Value;
-73                     \}
-74                 \}
-75 
-76                 \textcolor{keywordflow}{if} (anyLinesAreUntagged) \{
-77                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Untagged lines in \{0\}"}, file));
-78                     linesWereUntagged = \textcolor{keyword}{true};
-79                 \}
-80 
-81                 \textcolor{comment}{// Generate the CSV}
-82 
-83                 \textcolor{keyword}{using} (var w = \textcolor{keyword}{new} System.IO.StringWriter()) \{
-84                     \textcolor{keyword}{using} (var csv = \textcolor{keyword}{new} \hyperlink{a00075}{CsvWriter}(w)) \{
-85 
-86                         csv.WriteHeader<\hyperlink{a00128}{LocalisedLine}>();
-87 
-88                         \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} emittedStringTable)
-89                         \{
-90 
-91                             var l = \textcolor{keyword}{new} \hyperlink{a00128}{LocalisedLine}();
-92                             l.LineCode = entry.Key;
-93                             l.LineText = entry.Value;
-94                             l.Comment = \textcolor{stringliteral}{""};
-95 
-96                             csv.WriteRecord(l);
-97                         \}
-98 
-99                         var dir = System.IO.Path.GetDirectoryName(file);
-100                         var fileName = System.IO.Path.GetFileNameWithoutExtension(file);
-101                         fileName += \textcolor{stringliteral}{"\_lines.csv"};
-102                         var filePath = System.IO.Path.Combine(dir, fileName);
-103 
-104                         System.IO.File.WriteAllText(filePath, w.ToString());
-105 
-106                         \textcolor{keywordflow}{if} (options.\hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose})
-107                         \{
-108                             YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + filePath);
-109                         \}
-110                     \}
-111                 \}
-112 
-113             \}
-114 
-115             \textcolor{keywordflow}{if} (linesWereUntagged) \{
-116                 YarnSpinnerConsole.Warn(\textcolor{stringliteral}{"Some lines were not tagged, so they weren't added to the "} +
-117                                \textcolor{stringliteral}{"string file. Use this tool's 'generate' action to add them."});
-118             \}
-119 
-120             \textcolor{keywordflow}{return} 0;
-121 
-122         \}
-\end{DoxyCode}
+Definition at line 189 of file Lexer.\-cs.
+
+\hypertarget{a00163_a471a25da67fda0524f2375f9a882aafa}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!type@{type}}
+\index{type@{type}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Token.\-type}}\label{a00163_a471a25da67fda0524f2375f9a882aafa}
 
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00163_a1d65ef643c3f3495cf9480f86172ff87_icgraph}
-\end{center}
-\end{figure}
+Definition at line 177 of file Lexer.\-cs.
 
+
+
+Referenced by Yarn.\-Parser.\-Expression.\-Parse(), Yarn.\-Token.\-Token(), Yarn.\-Token.\-To\-String(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
+
+\hypertarget{a00163_a3df6b32d6190a639619a3f064c2154e2}{\index{Yarn\-::\-Token@{Yarn\-::\-Token}!value@{value}}
+\index{value@{value}!Yarn::Token@{Yarn\-::\-Token}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Token.\-value}}\label{a00163_a3df6b32d6190a639619a3f064c2154e2}
+
+
+Definition at line 178 of file Lexer.\-cs.
+
+
+
+Referenced by Yarn.\-Token.\-Token(), Yarn.\-Token.\-To\-String(), and Yarn.\-Parser.\-Value\-Node.\-Use\-Token().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00315}{Table\-Generator.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00292}{Lexer.\-cs}\end{DoxyCompactItemize}

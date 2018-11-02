@@ -1,173 +1,108 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00130" kind="class" prot="public">
-    <compoundname>Yarn::MemoryVariableStore</compoundname>
-    <basecompoundref refid="a00036" prot="public" virt="non-virtual">Yarn.BaseVariableStorage</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00130_1aad18acd95297edb8ed496857337f8071" prot="private" static="no" mutable="no">
-        <type>Dictionary&lt; string, <ref refid="a00181" kindref="compound">Value</ref> &gt;</type>
-        <definition>Dictionary&lt;string, Value&gt; Yarn.MemoryVariableStore.variables</definition>
+  <compounddef id="a00130" kind="struct" prot="public">
+    <compoundname>Yarn::Loader::NodeInfo</compoundname>
+    <innerclass refid="a00141" prot="public">Yarn::Loader::NodeInfo::Position</innerclass>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00130_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.title</definition>
         <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new Dictionary&lt;string, <ref refid="a00181" kindref="compound">Value</ref>&gt;()</initializer>
+        <name>title</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="96" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="96" bodyend="-1"/>
-        <referencedby refid="a00130_1a0ce77e8245c504a777540e359704aa2a" compoundref="a00296" startline="103" endline="113">Yarn.MemoryVariableStore.GetValue</referencedby>
-        <referencedby refid="a00130_1a653a459811e5c19549f4b31269093ef5" compoundref="a00296" startline="98" endline="101">Yarn.MemoryVariableStore.SetValue</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="364" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="364" bodyend="-1"/>
+        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00130_1a653a459811e5c19549f4b31269093ef5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void Yarn.MemoryVariableStore.SetValue</definition>
-        <argsstring>(string variableName, Value value)</argsstring>
-        <name>SetValue</name>
-        <reimplements refid="a00036_1a1c57d6d208b78abec0a670396771448e">SetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type><ref refid="a00181" kindref="compound">Value</ref></type>
-          <declname>value</declname>
-        </param>
+      <memberdef kind="property" id="a00130_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="98" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="98" bodyend="101"/>
-        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00296" startline="96">Yarn.MemoryVariableStore.variables</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="365" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="365" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00130_1a0ce77e8245c504a777540e359704aa2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override <ref refid="a00181" kindref="compound">Value</ref></type>
-        <definition>override Value Yarn.MemoryVariableStore.GetValue</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetValue</name>
-        <reimplements refid="a00036_1a13b142df804d9842e97e628e252928e8">GetValue</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
+      <memberdef kind="property" id="a00130_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Loader.NodeInfo.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="103" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="103" bodyend="113"/>
-        <references refid="a00181_1a1ed2964965baca8621c45efa23f37660" compoundref="a00303" startline="8">Yarn.Value.NULL</references>
-        <references refid="a00130_1aad18acd95297edb8ed496857337f8071" compoundref="a00296" startline="96">Yarn.MemoryVariableStore.variables</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="369" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="369" bodyend="-1"/>
+        <referencedby refid="a00123_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00294" startline="217" endline="353">Yarn.Loader.Load</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00130_1aa6d243e7ef02b91f793a221f509dae69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override void</type>
-        <definition>override void Yarn.MemoryVariableStore.Clear</definition>
-        <argsstring>()</argsstring>
-        <name>Clear</name>
-        <reimplements refid="a00036_1a7e45c37f3662ce9f2643e306bb2b3adc">Clear</reimplements>
+      <memberdef kind="property" id="a00130_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>int Yarn.Loader.NodeInfo.colorID</definition>
+        <argsstring></argsstring>
+        <name>colorID</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="115" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="115" bodyend="118"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="371" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="371" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00036_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void Yarn.BaseVariableStorage.SetNumber</definition>
-        <argsstring>(string variableName, float number)</argsstring>
-        <name>SetNumber</name>
-        <reimplements refid="a00184_1aa28c3694f985cf73489efc301b9d41dd">SetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>number</declname>
-        </param>
+      <memberdef kind="property" id="a00130_1ac368ed021558af21c4abed88042c1aa8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00141" kindref="compound">Position</ref></type>
+        <definition>Position Yarn.Loader.NodeInfo.position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="68" bodyend="70"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="372" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="372" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="a00036_1a1b7f7f4468b2463e7b47986d99362279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>float</type>
-        <definition>float Yarn.BaseVariableStorage.GetNumber</definition>
-        <argsstring>(string variableName)</argsstring>
-        <name>GetNumber</name>
-        <reimplements refid="a00184_1a04b061c52d8ac814ce559da5286fbc71">GetNumber</reimplements>
-        <param>
-          <type>string</type>
-          <declname>variableName</declname>
-        </param>
+      <memberdef kind="property" id="a00130_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; Yarn.Loader.NodeInfo.tagsList</definition>
+        <argsstring></argsstring>
+        <name>tagsList</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="73" bodyend="75"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="376" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="377" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Very simple continuity class that keeps all variables in memory. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1518">
-        <label>VariableStorage</label>
-        <link refid="a00184"/>
-      </node>
-      <node id="1516">
-        <label>Yarn.MemoryVariableStore</label>
-        <link refid="a00130"/>
-        <childnode refid="1517" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1517">
-        <label>Yarn::BaseVariableStorage</label>
-        <link refid="a00036"/>
-        <childnode refid="1518" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1521">
-        <label>VariableStorage</label>
-        <link refid="a00184"/>
-      </node>
-      <node id="1519">
-        <label>Yarn.MemoryVariableStore</label>
+      <node id="1538">
+        <label>Yarn.Loader.NodeInfo</label>
         <link refid="a00130"/>
-        <childnode refid="1520" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1520">
-        <label>Yarn::BaseVariableStorage</label>
-        <link refid="a00036"/>
-        <childnode refid="1521" relation="public-inheritance">
-        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="95" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="94" bodyend="119"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="358" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="358" bodyend="389"/>
     <listofallmembers>
-      <member refid="a00130_1aa6d243e7ef02b91f793a221f509dae69" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>Clear</name></member>
-      <member refid="a00036_1a1b7f7f4468b2463e7b47986d99362279" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetNumber</name></member>
-      <member refid="a00130_1a0ce77e8245c504a777540e359704aa2a" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>GetValue</name></member>
-      <member refid="a00036_1a48b93de9cd7ae61d0cd9583c8330d3ee" prot="public" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetNumber</name></member>
-      <member refid="a00130_1a653a459811e5c19549f4b31269093ef5" prot="public" virt="virtual"><scope>Yarn::MemoryVariableStore</scope><name>SetValue</name></member>
-      <member refid="a00130_1aad18acd95297edb8ed496857337f8071" prot="private" virt="non-virtual"><scope>Yarn::MemoryVariableStore</scope><name>variables</name></member>
+      <member refid="a00130_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>body</name></member>
+      <member refid="a00130_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>colorID</name></member>
+      <member refid="a00130_1ac368ed021558af21c4abed88042c1aa8" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>position</name></member>
+      <member refid="a00130_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tags</name></member>
+      <member refid="a00130_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tagsList</name></member>
+      <member refid="a00130_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

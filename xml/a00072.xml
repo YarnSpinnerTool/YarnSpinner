@@ -1,34 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00072" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvReaderException</compoundname>
-    <basecompoundref refid="a00060" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
-    <derivedcompoundref refid="a00061" prot="public" virt="non-virtual">CsvHelper.CsvMissingFieldException</derivedcompoundref>
+    <compoundname>CsvHelper::CsvWriterException</compoundname>
+    <basecompoundref refid="a00056" prot="public" virt="non-virtual">CsvHelper.CsvHelperException</basecompoundref>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00072_1a92ea35129f92f260c5327bbc3fd330df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00072_1a4e5030012e1258c3db3da1725c0d9332" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
         <argsstring>()</argsstring>
-        <name>CsvReaderException</name>
+        <name>CsvWriterException</name>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvReaderException</ref> class. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="23" bodyend="23"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="23" bodyend="23"/>
       </memberdef>
-      <memberdef kind="function" id="a00072_1abb4803417d6a479385872b608f1791e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00072_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
         <argsstring>(string message)</argsstring>
-        <name>CsvReaderException</name>
+        <name>CsvWriterException</name>
         <param>
           <type>string</type>
           <declname>message</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvReaderException</ref> class with a specified error message. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with a specified error message. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -41,13 +40,13 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="30" bodyend="30"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="30" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="30" bodyend="30"/>
       </memberdef>
-      <memberdef kind="function" id="a00072_1a4507583f079e40d454285c1e4f161aeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00072_1aedacd3e9a9161a62991cc1d388298a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
         <argsstring>(string message, Exception innerException)</argsstring>
-        <name>CsvReaderException</name>
+        <name>CsvWriterException</name>
         <param>
           <type>string</type>
           <declname>message</declname>
@@ -57,7 +56,7 @@
           <declname>innerException</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvReaderException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with a specified error message and a reference to the inner exception that is the cause of this exception. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -77,13 +76,13 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="39" bodyend="39"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="39" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="39" bodyend="39"/>
       </memberdef>
-      <memberdef kind="function" id="a00072_1aefa7020d5317878f91b9f43d3e1475be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="a00072_1ac4ae90ce8433632c2047d4de364effa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>CsvHelper.CsvReaderException.CsvReaderException</definition>
+        <definition>CsvHelper.CsvWriterException.CsvWriterException</definition>
         <argsstring>(SerializationInfo info, StreamingContext context)</argsstring>
-        <name>CsvReaderException</name>
+        <name>CsvWriterException</name>
         <param>
           <type>SerializationInfo</type>
           <declname>info</declname>
@@ -93,7 +92,7 @@
           <declname>context</declname>
         </param>
         <briefdescription>
-<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvReaderException</ref> class with serialized data. </para>        </briefdescription>
+<para>Initializes a new instance of the <ref refid="a00072" kindref="compound">CsvWriterException</ref> class with serialized data. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -113,63 +112,57 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="48" bodyend="48"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="48" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="48" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents errors that occur while reading a CSV file. </para>    </briefdescription>
+<para>Represents errors that occur while writing a CSV file. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1155">
-        <label>CsvHelper.CsvReaderException</label>
+      <node id="1185">
+        <label>CsvHelper.CsvWriterException</label>
         <link refid="a00072"/>
-        <childnode refid="1156" relation="public-inheritance">
+        <childnode refid="1186" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1157">
+      <node id="1187">
         <label>Exception</label>
       </node>
-      <node id="1158">
-        <label>CsvHelper.CsvMissingFieldException</label>
-        <link refid="a00061"/>
-        <childnode refid="1155" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1156">
+      <node id="1186">
         <label>CsvHelperException</label>
-        <link refid="a00060"/>
-        <childnode refid="1157" relation="public-inheritance">
+        <link refid="a00056"/>
+        <childnode refid="1187" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1159">
-        <label>CsvHelper.CsvReaderException</label>
+      <node id="1188">
+        <label>CsvHelper.CsvWriterException</label>
         <link refid="a00072"/>
-        <childnode refid="1160" relation="public-inheritance">
+        <childnode refid="1189" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1161">
+      <node id="1190">
         <label>Exception</label>
       </node>
-      <node id="1160">
+      <node id="1189">
         <label>CsvHelperException</label>
-        <link refid="a00060"/>
-        <childnode refid="1161" relation="public-inheritance">
+        <link refid="a00056"/>
+        <childnode refid="1190" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs" bodystart="18" bodyend="50"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" line="19" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvWriterException.cs" bodystart="18" bodyend="50"/>
     <listofallmembers>
-      <member refid="a00060_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="a00060_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="a00060_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="a00060_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvHelperException</name></member>
-      <member refid="a00072_1a92ea35129f92f260c5327bbc3fd330df" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="a00072_1abb4803417d6a479385872b608f1791e5" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="a00072_1a4507583f079e40d454285c1e4f161aeb" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
-      <member refid="a00072_1aefa7020d5317878f91b9f43d3e1475be" prot="public" virt="non-virtual"><scope>CsvHelper::CsvReaderException</scope><name>CsvReaderException</name></member>
+      <member refid="a00056_1a83571967535529f42bb42b33684e4631" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00056_1a47cbed4fb25c42fd548282b3f8652290" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00056_1ac97c52774cb49f7e5d855b7586cdfa1d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00056_1a1194d6917d1b52a8e15e3701a6e8264d" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvHelperException</name></member>
+      <member refid="a00072_1a4e5030012e1258c3db3da1725c0d9332" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00072_1a6d01cb3854a95d77cd1f9e2d8b1aa304" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00072_1aedacd3e9a9161a62991cc1d388298a14" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
+      <member refid="a00072_1ac4ae90ce8433632c2047d4de364effa6" prot="public" virt="non-virtual"><scope>CsvHelper::CsvWriterException</scope><name>CsvWriterException</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

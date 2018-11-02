@@ -1,33 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00183" kind="class" prot="package" abstract="yes">
-    <compoundname>Yarn::Analysis::VariableLister</compoundname>
-    <basecompoundref refid="a00047" prot="public" virt="non-virtual">Yarn.Analysis.CompiledProgramAnalyser</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00183_1a64ed6c3394c474b6cf5804a35f560746" prot="private" static="no" mutable="no">
-        <type>HashSet&lt; string &gt;</type>
-        <definition>HashSet&lt;string&gt; Yarn.Analysis.VariableLister.variables</definition>
+  <compounddef id="a00183" kind="class" prot="public">
+    <compoundname>Yarn::Unity::YarnCommandAttribute</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Attribute</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00183_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Unity.YarnCommandAttribute.commandString</definition>
         <argsstring></argsstring>
-        <name>variables</name>
-        <initializer>= new HashSet&lt;string&gt;()</initializer>
+        <name>commandString</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="156" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="421" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="421" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00183_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>override void</type>
-        <definition>override void Yarn.Analysis.VariableLister.Diagnose</definition>
-        <argsstring>(Program program)</argsstring>
-        <name>Diagnose</name>
+      <memberdef kind="function" id="a00183_1a9c0d57cd72c091f63895944959e98330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Unity.YarnCommandAttribute.YarnCommandAttribute</definition>
+        <argsstring>(string commandString)</argsstring>
+        <name>YarnCommandAttribute</name>
         <param>
-          <type><ref refid="a00146" kindref="compound">Program</ref></type>
-          <declname>program</declname>
+          <type>string</type>
+          <declname>commandString</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -35,74 +34,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="158" bodyend="179"/>
-      </memberdef>
-      <memberdef kind="function" id="a00183_1ab84e7a8e68740379dee12a51dca69b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override IEnumerable&lt; <ref refid="a00085" kindref="compound">Diagnosis</ref> &gt;</type>
-        <definition>override IEnumerable&lt;Diagnosis&gt; Yarn.Analysis.VariableLister.GatherDiagnoses</definition>
-        <argsstring>()</argsstring>
-        <name>GatherDiagnoses</name>
-        <reimplements refid="a00047_1afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</reimplements>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="181" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="181" bodyend="191"/>
-      </memberdef>
-      <memberdef kind="function" id="a00047_1aba4a36cb823b11ee491074e26477d084" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>abstract void</type>
-        <definition>abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose</definition>
-        <argsstring>(Yarn.Program program)</argsstring>
-        <name>Diagnose</name>
-        <param>
-          <type><ref refid="a00146" kindref="compound">Yarn.Program</ref></type>
-          <declname>program</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="151" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="423" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="423" bodyend="425"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Apply this attribute to methods in your scripts to expose them to <ref refid="a00041" kindref="compound">Yarn</ref>. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>For example: [YarnCommand(&quot;dosomething&quot;)] void Foo() { do something! } </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="1760">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="a00047"/>
-      </node>
-      <node id="1759">
-        <label>Yarn.Analysis.VariableLister</label>
+      <node id="1792">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
         <link refid="a00183"/>
-        <childnode refid="1760" relation="public-inheritance">
+        <childnode refid="1793" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1793">
+        <label>System::Attribute</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1762">
-        <label>CompiledProgramAnalyser</label>
-        <link refid="a00047"/>
-      </node>
-      <node id="1761">
-        <label>Yarn.Analysis.VariableLister</label>
+      <node id="1794">
+        <label>Yarn.Unity.YarnCommandAttribute</label>
         <link refid="a00183"/>
-        <childnode refid="1762" relation="public-inheritance">
+        <childnode refid="1795" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="1795">
+        <label>System::Attribute</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" bodystart="155" bodyend="192"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="420" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="419" bodyend="426"/>
     <listofallmembers>
-      <member refid="a00183_1a980f0e64bc5ad171c35ec19bdf838b5c" prot="public" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="a00047_1aba4a36cb823b11ee491074e26477d084" prot="public" virt="pure-virtual" ambiguityscope="Yarn::Analysis::CompiledProgramAnalyser."><scope>Yarn::Analysis::VariableLister</scope><name>Diagnose</name></member>
-      <member refid="a00183_1ab84e7a8e68740379dee12a51dca69b07" prot="public" virt="virtual"><scope>Yarn::Analysis::VariableLister</scope><name>GatherDiagnoses</name></member>
-      <member refid="a00183_1a64ed6c3394c474b6cf5804a35f560746" prot="private" virt="non-virtual"><scope>Yarn::Analysis::VariableLister</scope><name>variables</name></member>
+      <member refid="a00183_1a6d513a725c819ffcdaa9c5788472ec8d" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>commandString</name></member>
+      <member refid="a00183_1a9c0d57cd72c091f63895944959e98330" prot="public" virt="non-virtual"><scope>Yarn::Unity::YarnCommandAttribute</scope><name>YarnCommandAttribute</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

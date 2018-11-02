@@ -1,71 +1,116 @@
-\hypertarget{a00131}{\section{Mobile\-Only Class Reference}
-\label{a00131}\index{Mobile\-Only@{Mobile\-Only}}
+\hypertarget{a00131}{\section{Yarn.\-Unity.\-Example.\-N\-P\-C Class Reference}
+\label{a00131}\index{Yarn.\-Unity.\-Example.\-N\-P\-C@{Yarn.\-Unity.\-Example.\-N\-P\-C}}
 }
 
 
-Removes an object from the scene when the game is running on a non-\/mobile platform.  
-
-
-
-
-Inheritance diagram for Mobile\-Only\-:
+Inheritance diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=162pt]{a00393}
+\includegraphics[width=208pt]{a00789}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Mobile\-Only\-:
+Collaboration diagram for Yarn.\-Unity.\-Example.\-N\-P\-C\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=162pt]{a00394}
+\includegraphics[width=208pt]{a00790}
 \end{center}
 \end{figure}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00131_a418ea7095bd8201559ed392f07905ca3}{character\-Name} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}{talk\-To\-Node} = \char`\"{}\char`\"{}
+\item 
+Text\-Asset \hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{script\-To\-Load}
+\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00131_acfb1b3a9c8f62b30300331fb84752022}{Awake} ()
+void \hyperlink{a00131_a0bf37075312ea87c2e329cc363a328a6}{Start} ()
+\item 
+void \hyperlink{a00131_ab1bea5afabd1c2e1e991063b1579d062}{Update} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Removes an object from the scene when the game is running on a non-\/mobile platform. 
 
-Definition at line 7 of file Mobile\-Only.\-cs.
+
+Definition at line 33 of file N\-P\-C.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00131_acfb1b3a9c8f62b30300331fb84752022}{\index{Mobile\-Only@{Mobile\-Only}!Awake@{Awake}}
-\index{Awake@{Awake}!MobileOnly@{Mobile\-Only}}
-\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Mobile\-Only.\-Awake (
+\hypertarget{a00131_a0bf37075312ea87c2e329cc363a328a6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Start@{Start}}
+\index{Start@{Start}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{Start}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Start (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_acfb1b3a9c8f62b30300331fb84752022}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_a0bf37075312ea87c2e329cc363a328a6}
 
 
-Definition at line 10 of file Mobile\-Only.\-cs.
+Definition at line 44 of file N\-P\-C.\-cs.
 
 
 \begin{DoxyCode}
-10                   \{
-11 
-12         \textcolor{keywordflow}{if} (Application.isMobilePlatform || Application.platform == RuntimePlatform.WebGLPlayer ) \{
-13             \textcolor{comment}{// Hang around}
-14         \} \textcolor{keywordflow}{else} \{
-15             Destroy(gameObject);
-16         \}
-17 
-18     \}
+44                       \{
+45             \textcolor{keywordflow}{if} (\hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad} != null) \{
+46                 FindObjectOfType<\hyperlink{a00083}{Yarn.Unity.DialogueRunner}>().AddScript(
+      \hyperlink{a00131_a63145fb6ddf357e604d71bac04ca8a60}{scriptToLoad});
+47             \}
+48 
+49         \}
 \end{DoxyCode}
+\hypertarget{a00131_ab1bea5afabd1c2e1e991063b1579d062}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-N\-P\-C.\-Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00131_ab1bea5afabd1c2e1e991063b1579d062}
+
+
+Definition at line 52 of file N\-P\-C.\-cs.
+
+
+\begin{DoxyCode}
+52                        \{
+53 
+54         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00131_a418ea7095bd8201559ed392f07905ca3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!character\-Name@{character\-Name}}
+\index{character\-Name@{character\-Name}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{character\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-character\-Name = \char`\"{}\char`\"{}}}\label{a00131_a418ea7095bd8201559ed392f07905ca3}
+
+
+Definition at line 35 of file N\-P\-C.\-cs.
+
+\hypertarget{a00131_a63145fb6ddf357e604d71bac04ca8a60}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!script\-To\-Load@{script\-To\-Load}}
+\index{script\-To\-Load@{script\-To\-Load}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{script\-To\-Load}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Asset Yarn.\-Unity.\-Example.\-N\-P\-C.\-script\-To\-Load}}\label{a00131_a63145fb6ddf357e604d71bac04ca8a60}
+
+
+Definition at line 41 of file N\-P\-C.\-cs.
+
+\hypertarget{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}{\index{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}!talk\-To\-Node@{talk\-To\-Node}}
+\index{talk\-To\-Node@{talk\-To\-Node}!Yarn::Unity::Example::NPC@{Yarn\-::\-Unity\-::\-Example\-::\-N\-P\-C}}
+\subsubsection[{talk\-To\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Unity.\-Example.\-N\-P\-C.\-talk\-To\-Node = \char`\"{}\char`\"{}}}\label{a00131_a64f4f1fb66b2046a674e3ebf3b9fdb56}
+
+
+Definition at line 38 of file N\-P\-C.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00289}{Mobile\-Only.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00284}{N\-P\-C.\-cs}\end{DoxyCompactItemize}

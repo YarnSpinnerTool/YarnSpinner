@@ -1,382 +1,136 @@
-\hypertarget{a00037}{\section{Yarn.\-Parser.\-Block Class Reference}
-\label{a00037}\index{Yarn.\-Parser.\-Block@{Yarn.\-Parser.\-Block}}
+\hypertarget{a00037}{\section{Yarn.\-Unity.\-Example.\-Camera\-Follow Class Reference}
+\label{a00037}\index{Yarn.\-Unity.\-Example.\-Camera\-Follow@{Yarn.\-Unity.\-Example.\-Camera\-Follow}}
 }
 
 
-Inheritance diagram for Yarn.\-Parser.\-Block\-:
+Control the position of the camera and its behaviour.  
+
+
+
+
+Inheritance diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=176pt]{a00660}
+\includegraphics[width=222pt]{a00783}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Parser.\-Block\-:
+Collaboration diagram for Yarn.\-Unity.\-Example.\-Camera\-Follow\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=254pt]{a00661}
+\includegraphics[width=222pt]{a00784}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00142_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
-\item 
-override string \hyperlink{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
-\end{DoxyCompactItemize}
-\subsection*{Package Functions}
+Transform \hyperlink{a00037_aa5d6958fb14a14ebb74e21c372fcca8b}{target}
+\begin{DoxyCompactList}\small\item\em Target of the camera. \end{DoxyCompactList}\item 
+float \hyperlink{a00037_a08c6f6c0ea423c21af99e4b5467d3c9b}{min\-Position} = -\/5.\-3f
+\begin{DoxyCompactList}\small\item\em Minimum position of camera. \end{DoxyCompactList}\item 
+float \hyperlink{a00037_abb0154dcbc2a7d43795beacd61a56de4}{max\-Position} = 5.\-3f
+\begin{DoxyCompactList}\small\item\em Maximum position of camera. \end{DoxyCompactList}\item 
+float \hyperlink{a00037_a3d4f2efe9c2cee8c7ff797cac03f27ec}{move\-Speed} = 1.\-0f
+\begin{DoxyCompactList}\small\item\em Movement speed of camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00037_a943abeb93be783da7ff6ca595b6a34e7}{Block} (\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00143}{Parser} p)
-\item 
-override string \hyperlink{a00037_aaaacfc4e3ff2871fa5e2fb75e48636de}{Print\-Tree} (int indent\-Level)
-\item 
-\hyperlink{a00132}{Node} \hyperlink{a00142_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
-\end{DoxyCompactItemize}
-\subsection*{Static Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-static bool \hyperlink{a00037_a7fa97243e2a807c2255988547d31cac7}{Can\-Parse} (\hyperlink{a00143}{Parser} p)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00142}{Parse\-Node} \hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
-\item 
-int \hyperlink{a00142_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
-\item 
-string\mbox{[}$\,$\mbox{]} \hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-I\-Enumerable$<$ \hyperlink{a00160}{Statement} $>$ \hyperlink{a00037_a42e3d555bbd5ecbdf61c45ad715be7e1}{statements}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-List$<$ \hyperlink{a00160}{Statement} $>$ \hyperlink{a00037_ad79f9582e55ec75b68fd72ffcae0f41b}{\-\_\-statements} = new List$<$\hyperlink{a00160}{Statement}$>$ ()
+void \hyperlink{a00037_a592ddbf8e493bde0a6536c0234869217}{Update} ()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Control the position of the camera and its behaviour. 
 
+Camera should have min\-Position and max\-Position of the same because we're dealing with 2\-D. The movement speed shouldn't be too fast nor too slow 
 
-Definition at line 435 of file Parser.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00037_a943abeb93be783da7ff6ca595b6a34e7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Block@{Block}}
-\index{Block@{Block}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Block}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Block.\-Block (
-\begin{DoxyParamCaption}
-\item[{{\bf Parse\-Node}}]{parent, }
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00037_a943abeb93be783da7ff6ca595b6a34e7}
-
-
-Definition at line 446 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-Next\-Symbol\-Is().
-
-
-\begin{DoxyCode}
-446                                                        : base(\hyperlink{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
-447 
-448                 \textcolor{comment}{// Read the indent token}
-449                 p.ExpectSymbol(TokenType.Indent);
-450 
-451                 \textcolor{comment}{// Keep reading statements until we hit a dedent}
-452                 \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Dedent) == \textcolor{keyword}{false}) \{
-453                     \textcolor{comment}{// fun fact! because Blocks are a type of Statement,}
-454                     \textcolor{comment}{// we get nested block parsing for free! \(\backslash\):D/}
-455                     \_statements.Add(\textcolor{keyword}{new} Statement(\textcolor{keyword}{this}, p));
-456                 \}
-457 
-458                 \textcolor{comment}{// Tidy up by reading the dedent}
-459                 p.ExpectSymbol(TokenType.Dedent);
-460 
-461             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00037_a943abeb93be783da7ff6ca595b6a34e7_cgraph}
-\end{center}
-\end{figure}
-
+Definition at line 37 of file Camera\-Follow.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00037_a7fa97243e2a807c2255988547d31cac7}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Can\-Parse@{Can\-Parse}}
-\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Block.\-Can\-Parse (
-\begin{DoxyParamCaption}
-\item[{{\bf Parser}}]{p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00037_a7fa97243e2a807c2255988547d31cac7}
-
-
-Definition at line 436 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Statement.\-Statement().
-
-
-\begin{DoxyCode}
-437             \{
-438                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.Indent);
-439             \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00037_a7fa97243e2a807c2255988547d31cac7_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00142_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Node\-Parent@{Node\-Parent}}
-\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\hypertarget{a00037_a592ddbf8e493bde0a6536c0234869217}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!Update@{Update}}
+\index{Update@{Update}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Camera\-Follow.\-Update (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a580e520a29444fc23ac3660cbe514a09}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00037_a592ddbf8e493bde0a6536c0234869217}
 
 
-Definition at line 100 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+Definition at line 52 of file Camera\-Follow.\-cs.
 
 
 \begin{DoxyCode}
-100                                        \{
-101                 var node = \textcolor{keyword}{this};
-102 
-103                 \textcolor{keywordflow}{do} \{
-104                     \textcolor{keywordflow}{if} (node is Node) \{
-105                         \textcolor{keywordflow}{return} node as Node;
-106                     \}
-107                     node = node.parent;
-108                 \} \textcolor{keywordflow}{while} (node
-109                     != null);
-110 
-111                 \textcolor{keywordflow}{return} null;
-112             \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00142_a580e520a29444fc23ac3660cbe514a09_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00037_aaaacfc4e3ff2871fa5e2fb75e48636de}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Print\-Tree@{Print\-Tree}}
-\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Block.\-Print\-Tree (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00037_aaaacfc4e3ff2871fa5e2fb75e48636de}
-
-
-Implements \hyperlink{a00142_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
-
-
-
-Definition at line 463 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-Block.\-\_\-statements, and Yarn.\-Parser.\-Tab().
-
-
-\begin{DoxyCode}
-464             \{
-465                 var sb = \textcolor{keyword}{new} StringBuilder ();
-466                 sb.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"Block \{"}));
-467                 \textcolor{keywordflow}{foreach} (var statement \textcolor{keywordflow}{in} \hyperlink{a00037_ad79f9582e55ec75b68fd72ffcae0f41b}{\_statements}) \{
-468                     sb.Append (statement.PrintTree (indentLevel + 1));
-469                 \}
-470                 sb.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab}(indentLevel, \textcolor{stringliteral}{"\}"}));
-471 
-472                 \textcolor{keywordflow}{return} sb.ToString ();
-473             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=344pt]{a00037_aaaacfc4e3ff2871fa5e2fb75e48636de_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00142_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!Tags\-To\-String@{Tags\-To\-String}}
-\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
-\begin{DoxyParamCaption}
-\item[{int}]{indent\-Level}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a054f36c80d5eeacd569a8859f599af67}
-
-
-Definition at line 78 of file Parser.\-cs.
-
-
-
-References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
-
-
-
-Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
-
-
-\begin{DoxyCode}
-79             \{
-80                 \textcolor{keywordflow}{if} (\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
-81                     var s = \textcolor{keyword}{new} StringBuilder ();
-82 
-83                     s.Append (\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
-84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
-85                         s.Append(\hyperlink{a00143_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
-86                     \}
-87                     \textcolor{keywordflow}{return} s.ToString ();
-88                 \} \textcolor{keywordflow}{else} \{
-89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
-90                 \}
-91 
-92             \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00142_a054f36c80d5eeacd569a8859f599af67_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00142_a18c67cb16090d0889bb9d6c8c6c565f8}
-
-
-Definition at line 94 of file Parser.\-cs.
-
-
-\begin{DoxyCode}
-95             \{
-96                 \textcolor{keywordflow}{return} this.GetType ().Name;
-97             \}
+52                        \{
+53             \textcolor{keywordflow}{if} (\hyperlink{a00037_aa5d6958fb14a14ebb74e21c372fcca8b}{target} == null) \{
+54                 \textcolor{keywordflow}{return};
+55             \}
+56             var newPosition = Vector3.Lerp(transform.position, target.position, 
+      \hyperlink{a00037_a3d4f2efe9c2cee8c7ff797cac03f27ec}{moveSpeed} * Time.deltaTime);
+57 
+58             newPosition.x = Mathf.Clamp(newPosition.x, \hyperlink{a00037_a08c6f6c0ea423c21af99e4b5467d3c9b}{minPosition}, 
+      \hyperlink{a00037_abb0154dcbc2a7d43795beacd61a56de4}{maxPosition});
+59             newPosition.y = transform.position.y;
+60             newPosition.z = transform.position.z;
+61 
+62             transform.position = newPosition;
+63         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00037_ad79f9582e55ec75b68fd72ffcae0f41b}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!\-\_\-statements@{\-\_\-statements}}
-\index{\-\_\-statements@{\-\_\-statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{\-\_\-statements}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-\_\-statements = new List$<${\bf Statement}$>$ ()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00037_ad79f9582e55ec75b68fd72ffcae0f41b}
+\hypertarget{a00037_abb0154dcbc2a7d43795beacd61a56de4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!max\-Position@{max\-Position}}
+\index{max\-Position@{max\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{max\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-max\-Position = 5.\-3f}}\label{a00037_abb0154dcbc2a7d43795beacd61a56de4}
 
 
-Definition at line 444 of file Parser.\-cs.
-
-
-
-Referenced by Yarn.\-Parser.\-Block.\-Print\-Tree().
-
-\hypertarget{a00142_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a18b493382de0fde5b4299c1bd2250075}
-
-
-Definition at line 61 of file Parser.\-cs.
+Maximum position of camera. 
 
 
 
-Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+Definition at line 46 of file Camera\-Follow.\-cs.
 
-\hypertarget{a00142_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!parent@{parent}}
-\index{parent@{parent}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_af313a82103fcc2ff5a177dbb06b92f7b}
-
-
-Definition at line 58 of file Parser.\-cs.
+\hypertarget{a00037_a08c6f6c0ea423c21af99e4b5467d3c9b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!min\-Position@{min\-Position}}
+\index{min\-Position@{min\-Position}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{min\-Position}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-min\-Position = -\/5.\-3f}}\label{a00037_a08c6f6c0ea423c21af99e4b5467d3c9b}
 
 
-
-Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
-
-\hypertarget{a00142_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!tags@{tags}}
-\index{tags@{tags}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00142_a58b3a15788fd2d4127d73619dc6d04ae}
-
-
-Definition at line 76 of file Parser.\-cs.
+Minimum position of camera. 
 
 
 
-Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+Definition at line 43 of file Camera\-Follow.\-cs.
+
+\hypertarget{a00037_a3d4f2efe9c2cee8c7ff797cac03f27ec}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!move\-Speed@{move\-Speed}}
+\index{move\-Speed@{move\-Speed}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Camera\-Follow.\-move\-Speed = 1.\-0f}}\label{a00037_a3d4f2efe9c2cee8c7ff797cac03f27ec}
+
+
+Movement speed of camera. 
 
 
 
-\subsection{Property Documentation}
-\hypertarget{a00037_a42e3d555bbd5ecbdf61c45ad715be7e1}{\index{Yarn\-::\-Parser\-::\-Block@{Yarn\-::\-Parser\-::\-Block}!statements@{statements}}
-\index{statements@{statements}!Yarn::Parser::Block@{Yarn\-::\-Parser\-::\-Block}}
-\subsubsection[{statements}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<${\bf Statement}$>$ Yarn.\-Parser.\-Block.\-statements\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00037_a42e3d555bbd5ecbdf61c45ad715be7e1}
+Definition at line 49 of file Camera\-Follow.\-cs.
+
+\hypertarget{a00037_aa5d6958fb14a14ebb74e21c372fcca8b}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}!target@{target}}
+\index{target@{target}!Yarn::Unity::Example::CameraFollow@{Yarn\-::\-Unity\-::\-Example\-::\-Camera\-Follow}}
+\subsubsection[{target}]{\setlength{\rightskip}{0pt plus 5cm}Transform Yarn.\-Unity.\-Example.\-Camera\-Follow.\-target}}\label{a00037_aa5d6958fb14a14ebb74e21c372fcca8b}
 
 
-Definition at line 442 of file Parser.\-cs.
+Target of the camera. 
+
+
+
+Definition at line 40 of file Camera\-Follow.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00301}{Parser.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00280}{Camera\-Follow.\-cs}\end{DoxyCompactItemize}

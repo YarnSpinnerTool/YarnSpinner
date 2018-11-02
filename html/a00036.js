@@ -1,8 +1,7 @@
 var a00036 =
 [
-    [ "Clear", "a00036.html#a7e45c37f3662ce9f2643e306bb2b3adc", null ],
-    [ "GetNumber", "a00036.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "a00036.html#a13b142df804d9842e97e628e252928e8", null ],
-    [ "SetNumber", "a00036.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "a00036.html#a1c57d6d208b78abec0a670396771448e", null ]
+    [ "CanConvertFrom", "a00036.html#a74a66b405f6c18e69b9fd23a1dea91b0", null ],
+    [ "CanConvertTo", "a00036.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00036.html#a6176d20d761abfc0af4e840553ffae47", null ],
+    [ "ConvertToString", "a00036.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

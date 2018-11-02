@@ -1,4 +1,0 @@
-<map id="Yarn.Parser.IfStatement" name="Yarn.Parser.IfStatement">
-<area shape="rect" id="node2" href="$a00142.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="27,222,147,373"/>
-<area shape="rect" id="node3" href="$a00142.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="7,6,165,157"/>
-</map>

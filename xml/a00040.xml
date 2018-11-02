@@ -1,190 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00040" kind="class" prot="public">
-    <compoundname>CsvHelper::TypeConversion::ByteConverter</compoundname>
-    <basecompoundref refid="a00082" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00040_1a6176d20d761abfc0af4e840553ffae47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override object</type>
-        <definition>override object CsvHelper.TypeConversion.ByteConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplements refid="a00082_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>string</type>
-          <declname>text</declname>
-        </param>
+  <compounddef id="a00040" kind="struct" prot="package">
+    <compoundname>Yarn::Parser::IfStatement::Clause</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00040_1a1abd1f7c41f68ccdf64074ea49365be9" prot="package" static="no" mutable="no">
+        <type><ref refid="a00094" kindref="compound">Expression</ref></type>
+        <definition>Expression Yarn.Parser.IfStatement.Clause.expression</definition>
+        <argsstring></argsstring>
+        <name>expression</name>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="21" bodyend="32"/>
-        <references refid="a00172_1af6bc545680b477abf9178eb4755572b1" compoundref="a00278" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="547" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="547" bodyend="-1"/>
+        <referencedby refid="a00040_1a7f4fc9399896512b68fdc7bc7cf818c9" compoundref="a00295" startline="549" endline="559">Yarn.Parser.IfStatement.Clause.PrintTree</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00040_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>override bool</type>
-        <definition>override bool CsvHelper.TypeConversion.ByteConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplements refid="a00082_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
+      <memberdef kind="variable" id="a00040_1a6f4765482e98ed042e38a0ede13f171f" prot="package" static="no" mutable="no">
+        <type>IEnumerable&lt; <ref refid="a00156" kindref="compound">Statement</ref> &gt;</type>
+        <definition>IEnumerable&lt;Statement&gt; Yarn.Parser.IfStatement.Clause.statements</definition>
+        <argsstring></argsstring>
+        <name>statements</name>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="41" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="41" bodyend="45"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="548" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="548" bodyend="-1"/>
+        <referencedby refid="a00040_1a7f4fc9399896512b68fdc7bc7cf818c9" compoundref="a00295" startline="549" endline="559">Yarn.Parser.IfStatement.Clause.PrintTree</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00040_1a7f4fc9399896512b68fdc7bc7cf818c9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>string</type>
-        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplements refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
-        <reimplementedby refid="a00093_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00136_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <definition>string Yarn.Parser.IfStatement.Clause.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
         <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
+          <type>int</type>
+          <declname>indentLevel</declname>
         </param>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
-      </memberdef>
-      <memberdef kind="function" id="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>bool</type>
-        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplements refid="a00117_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
-        <reimplementedby refid="a00093_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <param>
-          <type>Type</type>
-          <declname>type</declname>
-        </param>
-        <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="549" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="549" bodyend="559"/>
+        <references refid="a00040_1a1abd1f7c41f68ccdf64074ea49365be9" compoundref="a00295" startline="547">Yarn.Parser.IfStatement.Clause.expression</references>
+        <references refid="a00040_1a6f4765482e98ed042e38a0ede13f171f" compoundref="a00295" startline="548">Yarn.Parser.IfStatement.Clause.statements</references>
+        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts a Byte to and from a string. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="990">
-        <label>CsvHelper.TypeConversion.ByteConverter</label>
-        <link refid="a00040"/>
-        <childnode refid="991" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="992">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="991">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="992" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="993">
-        <label>CsvHelper.TypeConversion.ByteConverter</label>
+      <node id="1015">
+        <label>Yarn.Parser.ValueNode</label>
+        <link refid="a00178"/>
+        <childnode refid="1012" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1010">
+        <label>Yarn.Parser.IfStatement.Clause</label>
         <link refid="a00040"/>
-        <childnode refid="994" relation="public-inheritance">
+        <childnode refid="1011" relation="usage">
+          <edgelabel>~expression</edgelabel>
         </childnode>
       </node>
-      <node id="995">
-        <label>ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="994">
-        <label>DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="995" relation="public-inheritance">
+      <node id="1013">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="a00138"/>
+        <childnode refid="1013" relation="usage">
+          <edgelabel>~parent</edgelabel>
         </childnode>
+      </node>
+      <node id="1012">
+        <label>ParseNode</label>
+        <link refid="a00138"/>
+        <childnode refid="1013" relation="usage">
+          <edgelabel>~parent</edgelabel>
+        </childnode>
+      </node>
+      <node id="1011">
+        <label>Yarn.Parser.Expression</label>
+        <link refid="a00094"/>
+        <childnode refid="1012" relation="public-inheritance">
+        </childnode>
+        <childnode refid="1014" relation="usage">
+          <edgelabel>~function</edgelabel>
+        </childnode>
+        <childnode refid="1015" relation="usage">
+          <edgelabel>~value</edgelabel>
+        </childnode>
+      </node>
+      <node id="1014">
+        <label>Yarn.FunctionInfo</label>
+        <link refid="a00096"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ByteConverter.cs" bodystart="13" bodyend="46"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="546" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="546" bodyend="560"/>
     <listofallmembers>
-      <member refid="a00040_1a74a66b405f6c18e69b9fd23a1dea91b0" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00082_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00040_1a6176d20d761abfc0af4e840553ffae47" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00082_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::ByteConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00040_1a1abd1f7c41f68ccdf64074ea49365be9" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement::Clause</scope><name>expression</name></member>
+      <member refid="a00040_1a7f4fc9399896512b68fdc7bc7cf818c9" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement::Clause</scope><name>PrintTree</name></member>
+      <member refid="a00040_1a6f4765482e98ed042e38a0ede13f171f" prot="package" virt="non-virtual"><scope>Yarn::Parser::IfStatement::Clause</scope><name>statements</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

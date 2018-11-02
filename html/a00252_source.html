@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: YarnSpinner/Properties/AssemblyInfo.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/CharConverter.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,73 +105,54 @@ $(document).ready(function(){initNavTree('a00252_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">AssemblyInfo.cs</div>  </div>
+<div class="title">CharConverter.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00252.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">The MIT License (MIT)</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Copyright (c) 2015-2017 Secret Lab Pty. Ltd. and Yarn Spinner contributors.</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">in the Software without restriction, including without limitation the rights</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">copies of the Software, and to permit persons to whom the Software is</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">furnished to do so, subject to the following conditions:</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">The above copyright notice and this permission notice shall be included in all</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">copies or substantial portions of the Software.</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">SOFTWARE.</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">*/</span></div>
+<a href="a00252.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System.Globalization;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>CsvHelper.TypeConversion</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00038.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00038.html">CharConverter</a> : <a class="code" href="a00078.html">DefaultTypeConverter</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00038.html#a7cf201b75714eccdc084b6cc3161bf29">   20</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">object</span> <a class="code" href="a00038.html#a7cf201b75714eccdc084b6cc3161bf29">ConvertFromString</a>( <a class="code" href="a00168.html">TypeConverterOptions</a> options, <span class="keywordtype">string</span> text )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span>( text != null &amp;&amp; text.Length &gt; 1 )</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                text = text.Trim();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Runtime.CompilerServices;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// Information about this assembly is defined by the following attributes.</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Change them to the values specific to your project.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">char</span> c;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">if</span>( <span class="keywordtype">char</span>.TryParse( text, out c ) )</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">return</span> c;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;[assembly: AssemblyTitle (<span class="stringliteral">&quot;YarnSpinner&quot;</span>)]</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;[assembly: AssemblyDescription (<span class="stringliteral">&quot;A parser and runtime for the Yarn dialogue system.&quot;</span>)]</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;[assembly: AssemblyConfiguration (<span class="stringliteral">&quot;&quot;</span>)]</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;[assembly: AssemblyCompany (<span class="stringliteral">&quot;Secret Lab Pty Ltd&quot;</span>)]</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;[assembly: AssemblyProduct (<span class="stringliteral">&quot;&quot;</span>)]</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;[assembly: AssemblyCopyright (<span class="stringliteral">&quot;© 2016-2017 Secret Lab Pty Ltd and Yarn Spinner contributors&quot;</span>)]</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;[assembly: AssemblyTrademark (<span class="stringliteral">&quot;&quot;</span>)]</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;[assembly: AssemblyCulture (<span class="stringliteral">&quot;&quot;</span>)]</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// The assembly version has the format &quot;{Major}.{Minor}.{Build}.{Revision}&quot;.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// The form &quot;{Major}.{Minor}.*&quot; will automatically update the build and revision,</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// and &quot;{Major}.{Minor}.{Build}.*&quot; will update just the revision.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;[assembly: AssemblyVersion (<span class="stringliteral">&quot;1.0.*&quot;</span>)]</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// The following attributes are used to specify the signing key for the assembly,</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// if desired. See the Mono documentation for more information about signing.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//[assembly: AssemblyDelaySign(false)]</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//[assembly: AssemblyKeyFile(&quot;&quot;)]</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">// Make internals available to the localisation tool</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;[assembly: InternalsVisibleTo(<span class="stringliteral">&quot;YarnSpinnerConsole&quot;</span>)]</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;[assembly: InternalsVisibleTo(<span class="stringliteral">&quot;YarnSpinnerTests&quot;</span>)]</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00038.html#ab0ccecf34e8ba3710cc61ad643028a34">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">override</span> <span class="keywordtype">bool</span> <a class="code" href="a00038.html#ab0ccecf34e8ba3710cc61ad643028a34">CanConvertFrom</a>( System.Type type )</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
+<div class="ttc" id="a00168_html"><div class="ttname"><a href="a00168.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00272_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="ttc" id="a00038_html"><div class="ttname"><a href="a00038.html">CsvHelper.TypeConversion.CharConverter</a></div><div class="ttdoc">Converts a Char to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00012">CharConverter.cs:12</a></div></div>
+<div class="ttc" id="a00038_html_ab0ccecf34e8ba3710cc61ad643028a34"><div class="ttname"><a href="a00038.html#ab0ccecf34e8ba3710cc61ad643028a34">CsvHelper.TypeConversion.CharConverter.CanConvertFrom</a></div><div class="ttdeci">override bool CanConvertFrom(System.Type type)</div><div class="ttdoc">Determines whether this instance [can convert from] the specified type. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00043">CharConverter.cs:43</a></div></div>
+<div class="ttc" id="a00078_html"><div class="ttname"><a href="a00078.html">CsvHelper.TypeConversion.DefaultTypeConverter</a></div><div class="ttdoc">Converts an object to and from a string. </div><div class="ttdef"><b>Definition:</b> <a href="a00257_source.html#l00013">DefaultTypeConverter.cs:13</a></div></div>
+<div class="ttc" id="a00038_html_a7cf201b75714eccdc084b6cc3161bf29"><div class="ttname"><a href="a00038.html#a7cf201b75714eccdc084b6cc3161bf29">CsvHelper.TypeConversion.CharConverter.ConvertFromString</a></div><div class="ttdeci">override object ConvertFromString(TypeConverterOptions options, string text)</div><div class="ttdoc">Converts the string to an object. </div><div class="ttdef"><b>Definition:</b> <a href="a00252_source.html#l00020">CharConverter.cs:20</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eca966f73ceaf9660884e1398ef38ac.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_27b0c1af8c4e705ac80588c758eab39a.html">Properties</a></li><li class="navelem"><a class="el" href="a00252.html">AssemblyInfo.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_5c139b908ad2613e3ef99ee52a122286.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00252.html">CharConverter.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

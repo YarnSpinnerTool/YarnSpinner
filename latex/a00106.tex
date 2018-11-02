@@ -1,232 +1,93 @@
-\hypertarget{a00106}{\section{Csv\-Helper.\-I\-Csv\-Factory Interface Reference}
-\label{a00106}\index{Csv\-Helper.\-I\-Csv\-Factory@{Csv\-Helper.\-I\-Csv\-Factory}}
+\hypertarget{a00106}{\section{Csv\-Helper.\-I\-Csv\-Serializer Interface Reference}
+\label{a00106}\index{Csv\-Helper.\-I\-Csv\-Serializer@{Csv\-Helper.\-I\-Csv\-Serializer}}
 }
 
 
-Defines methods used to create \hyperlink{a00325}{Csv\-Helper} classes.  
+Defines methods used to serialize data into a C\-S\-V file.  
 
 
 
 
-Inheritance diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=198pt]{a00442}
+\includegraphics[width=208pt]{a00448}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Serializer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=198pt]{a00443}
+\includegraphics[width=208pt]{a00449}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00107}{I\-Csv\-Parser} \hyperlink{a00106_a9b68cbd7292c76037959d51ecc7c374d}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00057}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00107}{I\-Csv\-Parser} \hyperlink{a00106_ab085a057f1b80ebf03ed2247d8759314}{Create\-Parser} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
-\hyperlink{a00108}{I\-Csv\-Reader} \hyperlink{a00106_ade2a6e776fad6aa36c201901d6427058}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00057}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00108}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00108}{I\-Csv\-Reader} \hyperlink{a00106_ae1ebb61244b36ddecb986d047ac9c217}{Create\-Reader} (Text\-Reader reader)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00108}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00108}{I\-Csv\-Reader} \hyperlink{a00106_af5b755ba2825f781d501402f1d765b33}{Create\-Reader} (\hyperlink{a00107}{I\-Csv\-Parser} parser)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00108}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
-\hyperlink{a00111}{I\-Csv\-Writer} \hyperlink{a00106_ae77852d2702bc2caad76c045a538933e}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00057}{Csv\-Configuration} configuration)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00111}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
-\hyperlink{a00111}{I\-Csv\-Writer} \hyperlink{a00106_ab6df59078b6245e653c06c00358b402a}{Create\-Writer} (Text\-Writer writer)
-\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00111}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00106_a0b442858eef85b7d933662359646fd0b}{Write} (string\mbox{[}$\,$\mbox{]} record)
+\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00106_a54d241fe87517707b6f85c30fe8b3a95}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to create \hyperlink{a00325}{Csv\-Helper} classes. 
+Defines methods used to serialize data into a C\-S\-V file. 
 
 
 
-Definition at line 14 of file I\-Csv\-Factory.\-cs.
+Definition at line 13 of file I\-Csv\-Serializer.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00106_a9b68cbd7292c76037959d51ecc7c374d}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
+\hypertarget{a00106_a0b442858eef85b7d933662359646fd0b}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Write@{Write}}
+\index{Write@{Write}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-I\-Csv\-Serializer.\-Write (
 \begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
+\item[{string\mbox{[}$\,$\mbox{]}}]{record}
 \end{DoxyParamCaption}
-)}}\label{a00106_a9b68cbd7292c76037959d51ecc7c374d}
+)}}\label{a00106_a0b442858eef85b7d933662359646fd0b}
 
 
-Creates an \hyperlink{a00107}{I\-Csv\-Parser}. 
+Writes a record to the C\-S\-V file. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-{\em configuration} & The configuration to use for the csv parser.\\
+{\em record} & The record to write.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
 
 
-Implemented in \hyperlink{a00059_a741fb4a1622778af65bfa27606bf6f25}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00106_ab085a057f1b80ebf03ed2247d8759314}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
-\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
-\end{DoxyParamCaption}
-)}}\label{a00106_ab085a057f1b80ebf03ed2247d8759314}
+Implemented in \hyperlink{a00069_aefad906acd048863d3dd414651a44793}{Csv\-Helper.\-Csv\-Serializer}.
 
 
-Creates an \hyperlink{a00107}{I\-Csv\-Parser}. 
+
+\subsection{Property Documentation}
+\hypertarget{a00106_a54d241fe87517707b6f85c30fe8b3a95}{\index{Csv\-Helper\-::\-I\-Csv\-Serializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CsvHelper::ICsvSerializer@{Csv\-Helper\-::\-I\-Csv\-Serializer}}
+\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-I\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00106_a54d241fe87517707b6f85c30fe8b3a95}
 
 
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv parser.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created parser.
-\end{DoxyReturn}
+Gets the configuration. 
 
 
-Implemented in \hyperlink{a00059_a07665ae71961a161552189877d11a5be}{Csv\-Helper.\-Csv\-Factory}.
 
-\hypertarget{a00106_ade2a6e776fad6aa36c201901d6427058}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00106_ade2a6e776fad6aa36c201901d6427058}
+Definition at line 18 of file I\-Csv\-Serializer.\-cs.
 
 
-Creates an \hyperlink{a00108}{I\-Csv\-Reader}. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-{\em configuration} & The configuration to use for the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00059_a12b1358fc847e407519a76b7fe003a34}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00106_ae1ebb61244b36ddecb986d047ac9c217}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{Text\-Reader}]{reader}
-\end{DoxyParamCaption}
-)}}\label{a00106_ae1ebb61244b36ddecb986d047ac9c217}
-
-
-Creates an \hyperlink{a00108}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em reader} & The text reader to use for the csv reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00059_a77bcca4ad5023f5628c519c2914da5bb}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00106_af5b755ba2825f781d501402f1d765b33}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
-\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
-\begin{DoxyParamCaption}
-\item[{{\bf I\-Csv\-Parser}}]{parser}
-\end{DoxyParamCaption}
-)}}\label{a00106_af5b755ba2825f781d501402f1d765b33}
-
-
-Creates an \hyperlink{a00108}{I\-Csv\-Reader}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em parser} & The parser used to create the reader.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created reader.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00059_a4e7e06df9265cbd53219c964424cec1e}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00106_ae77852d2702bc2caad76c045a538933e}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00106_ae77852d2702bc2caad76c045a538933e}
-
-
-Creates an \hyperlink{a00111}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-{\em configuration} & The configuration to use for the writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00059_a6bfe534b70ff92ea3809f1a372d160cc}{Csv\-Helper.\-Csv\-Factory}.
-
-\hypertarget{a00106_ab6df59078b6245e653c06c00358b402a}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
-\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
-\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
-\end{DoxyParamCaption}
-)}}\label{a00106_ab6df59078b6245e653c06c00358b402a}
-
-
-Creates an \hyperlink{a00111}{I\-Csv\-Writer}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The text writer to use for the csv writer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The created writer.
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{a00059_a0cec3a639b206f2d88debdc50413202a}{Csv\-Helper.\-Csv\-Factory}.
+Referenced by Csv\-Helper.\-Csv\-Writer.\-Csv\-Writer().
 
 
 
 The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00241}{I\-Csv\-Factory.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00239}{I\-Csv\-Serializer.\-cs}\end{DoxyCompactItemize}

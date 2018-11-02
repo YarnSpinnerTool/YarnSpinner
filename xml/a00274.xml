@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00274" kind="file">
-    <compoundname>SingleConverter.cs</compoundname>
-    <innerclass refid="a00155" prot="public">CsvHelper::TypeConversion::SingleConverter</innerclass>
-    <innernamespace refid="a00327">CsvHelper::TypeConversion</innernamespace>
+    <compoundname>UInt16Converter.cs</compoundname>
+    <innerclass refid="a00172" prot="public">CsvHelper::TypeConversion::UInt16Converter</innerclass>
+    <innernamespace refid="a00321">CsvHelper::TypeConversion</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -17,22 +17,22 @@
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.TypeConversion</highlight></codeline>
 <codeline lineno="8"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="12" refid="a00155" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00155" kindref="compound">SingleConverter</ref><sp/>:<sp/><ref refid="a00082" kindref="compound">DefaultTypeConverter</ref></highlight></codeline>
+<codeline lineno="12" refid="a00172" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00172" kindref="compound">UInt16Converter</ref><sp/>:<sp/><ref refid="a00078" kindref="compound">DefaultTypeConverter</ref></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="20" refid="a00155_1a5c8a692325c19551246a589e9ca4a1e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="a00155_1a5c8a692325c19551246a589e9ca4a1e1" kindref="member">ConvertFromString</ref>(<sp/><ref refid="a00172" kindref="compound">TypeConverterOptions</ref><sp/>options,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>text<sp/>)</highlight></codeline>
+<codeline lineno="20" refid="a00172_1a796e0b7b57d69abee122947166b45a9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="a00172_1a796e0b7b57d69abee122947166b45a9a" kindref="member">ConvertFromString</ref>(<sp/><ref refid="a00168" kindref="compound">TypeConverterOptions</ref><sp/>options,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>text<sp/>)</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>numberStyle<sp/>=<sp/>options.NumberStyle<sp/>??<sp/>NumberStyles.Float;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>numberStyle<sp/>=<sp/>options.NumberStyle<sp/>??<sp/>NumberStyles.Integer;</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">.TryParse(<sp/>text,<sp/>numberStyle,<sp/>options.<ref refid="a00172_1af6bc545680b477abf9178eb4755572b1" kindref="member">CultureInfo</ref>,<sp/>out<sp/>f<sp/>)<sp/>)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ushort<sp/>us;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>ushort.TryParse(<sp/>text,<sp/>numberStyle,<sp/>options.<ref refid="a00168_1af6bc545680b477abf9178eb4755572b1" kindref="member">CultureInfo</ref>,<sp/>out<sp/>us<sp/>)<sp/>)</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>f;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>us;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>base.ConvertFromString(<sp/>options,<sp/>text<sp/>);</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="a00155_1a49bc7b2d2d399343a21b691a026dbf99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="a00155_1a49bc7b2d2d399343a21b691a026dbf99" kindref="member">CanConvertFrom</ref>(<sp/>System.Type<sp/>type<sp/>)</highlight></codeline>
+<codeline lineno="40" refid="a00172_1a202a9c2413a59423a51b439eab84a3bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="a00172_1a202a9c2413a59423a51b439eab84a3bd" kindref="member">CanConvertFrom</ref>(<sp/>System.Type<sp/>type<sp/>)</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>only<sp/>care<sp/>about<sp/>strings.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type<sp/>==<sp/>typeof(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>);</highlight></codeline>
@@ -40,6 +40,6 @@
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/SingleConverter.cs"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/UInt16Converter.cs"/>
   </compounddef>
 </doxygen>

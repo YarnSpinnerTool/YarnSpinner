@@ -1,5 +1,10 @@
 var a00047 =
 [
-    [ "Diagnose", "a00047.html#aba4a36cb823b11ee491074e26477d084", null ],
-    [ "GatherDiagnoses", "a00047.html#afe059a2ceeabe50380b000420e512bd6", null ]
+    [ "Context", "a00047.html#a8e2c56843e8d374b0f90e23326d8d14a", null ],
+    [ "Context", "a00047.html#ad5f41fb64637c4938bce811153492731", null ],
+    [ "AddProgramToAnalysis", "a00047.html#a60255a6d54f296d199507acef251244c", null ],
+    [ "FinishAnalysis", "a00047.html#a1eadea062a5899a64d00ea0172cbbb43", null ],
+    [ "_defaultAnalyserClasses", "a00047.html#ad06829cf848a5936db5724ebced758ec", null ],
+    [ "analysers", "a00047.html#aa5c7eaa90ad9c47969a3b336080d8991", null ],
+    [ "defaultAnalyserClasses", "a00047.html#afdf24f2512251c2203ba1bde8f4a0f90", null ]
 ];

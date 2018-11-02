@@ -1,43 +1,50 @@
-\hypertarget{a00301}{\section{Yarn\-Spinner/\-Parser.cs File Reference}
-\label{a00301}\index{Yarn\-Spinner/\-Parser.\-cs@{Yarn\-Spinner/\-Parser.\-cs}}
+\hypertarget{a00301}{\section{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.cs File Reference}
+\label{a00301}\index{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
 }
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00143}{Yarn.\-Parser}
-\item 
-class \hyperlink{a00142}{Yarn.\-Parser.\-Parse\-Node}
-\item 
-class \hyperlink{a00132}{Yarn.\-Parser.\-Node}
-\item 
-class \hyperlink{a00160}{Yarn.\-Parser.\-Statement}
-\item 
-class \hyperlink{a00077}{Yarn.\-Parser.\-Custom\-Command}
-\item 
-class \hyperlink{a00154}{Yarn.\-Parser.\-Shortcut\-Option\-Group}
-\item 
-class \hyperlink{a00153}{Yarn.\-Parser.\-Shortcut\-Option}
-\item 
-class \hyperlink{a00037}{Yarn.\-Parser.\-Block}
-\item 
-class \hyperlink{a00140}{Yarn.\-Parser.\-Option\-Statement}
-\item 
-class \hyperlink{a00112}{Yarn.\-Parser.\-If\-Statement}
-\item 
-struct \hyperlink{a00044}{Yarn.\-Parser.\-If\-Statement.\-Clause}
-\item 
-class \hyperlink{a00182}{Yarn.\-Parser.\-Value\-Node}
-\item 
-class \hyperlink{a00098}{Yarn.\-Parser.\-Expression}
-\item 
-class \hyperlink{a00033}{Yarn.\-Parser.\-Assignment\-Statement}
-\item 
-class \hyperlink{a00137}{Yarn.\-Parser.\-Operator}
-\item 
-struct \hyperlink{a00138}{Yarn.\-Parser.\-Operator.\-Operator\-Info}
-\end{DoxyCompactItemize}
-\subsection*{Namespaces}
+class \hyperlink{a00186}{Yarn\-Spinner\-Parser\-Base\-Listener}
+\begin{DoxyCompactList}\small\item\em This class provides an empty implementation of \hyperlink{a00114}{I\-Yarn\-Spinner\-Parser\-Listener}, which can be extended to create a listener which only needs to handle a subset of the available methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00045}{Yarn}
+using \hyperlink{a00301_af5d51a3c18761c8348444279f29c7007}{I\-Error\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node
+\item 
+using \hyperlink{a00301_a72f9ef657b5686a84acec94a9d7302d1}{I\-Terminal\-Node} = Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node
+\item 
+using \hyperlink{a00301_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} = Antlr4.\-Runtime.\-I\-Token
+\item 
+using \hyperlink{a00301_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} = Antlr4.\-Runtime.\-Parser\-Rule\-Context
 \end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{a00301_af5d51a3c18761c8348444279f29c7007}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Error\-Node@{I\-Error\-Node}}
+\index{I\-Error\-Node@{I\-Error\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Error\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Error\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Error\-Node}}\label{a00301_af5d51a3c18761c8348444279f29c7007}
+
+
+Definition at line 24 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00301_a72f9ef657b5686a84acec94a9d7302d1}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Terminal\-Node@{I\-Terminal\-Node}}
+\index{I\-Terminal\-Node@{I\-Terminal\-Node}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Terminal\-Node}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Terminal\-Node} =  Antlr4.\-Runtime.\-Tree.\-I\-Terminal\-Node}}\label{a00301_a72f9ef657b5686a84acec94a9d7302d1}
+
+
+Definition at line 25 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00301_ae3d87b0b748ea892bff48f60862e182d}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!I\-Token@{I\-Token}}
+\index{I\-Token@{I\-Token}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{I\-Token}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Token} =  Antlr4.\-Runtime.\-I\-Token}}\label{a00301_ae3d87b0b748ea892bff48f60862e182d}
+
+
+Definition at line 26 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+\hypertarget{a00301_a7e45f8222713cb764832fd3c69d0268f}{\index{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}!Parser\-Rule\-Context@{Parser\-Rule\-Context}}
+\index{Parser\-Rule\-Context@{Parser\-Rule\-Context}!YarnSpinnerParserBaseListener.cs@{Yarn\-Spinner\-Parser\-Base\-Listener.\-cs}}
+\subsubsection[{Parser\-Rule\-Context}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf Parser\-Rule\-Context} =  Antlr4.\-Runtime.\-Parser\-Rule\-Context}}\label{a00301_a7e45f8222713cb764832fd3c69d0268f}
+
+
+Definition at line 27 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+

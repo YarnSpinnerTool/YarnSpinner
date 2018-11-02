@@ -1,242 +1,154 @@
-\hypertarget{a00166}{\section{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter Class Reference}
-\label{a00166}\index{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}}
+\hypertarget{a00166}{\section{Yarn.\-Lexer.\-Token\-Rule Class Reference}
+\label{a00166}\index{Yarn.\-Lexer.\-Token\-Rule@{Yarn.\-Lexer.\-Token\-Rule}}
 }
 
 
-Converts a Time\-Span to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter\-:
+Collaboration diagram for Yarn.\-Lexer.\-Token\-Rule\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00557}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00558}
+\includegraphics[width=194pt]{a00634}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override bool \hyperlink{a00166_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-override object \hyperlink{a00166_a0f2536c88227a94822d0b7730eedf3eb}{Convert\-From\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00082_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00082_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00166_a3d171ae7c4870659d2d1d977a216bdd7}{Token\-Rule} (\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, Regex \hyperlink{a00166_a47a404d6637fae489c3c77729a01cc69}{regex}, string \hyperlink{a00166_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}=null, bool \hyperlink{a00166_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text}=false)
+\item 
+override string \hyperlink{a00166_a1ed23ad16b116ecb06dd75b157bf752f}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Regex \hyperlink{a00166_a47a404d6637fae489c3c77729a01cc69}{regex} = null
+\item 
+string \hyperlink{a00166_af6a4bd3416c4e1b8e56f9db461d52d18}{enters\-State}
+\item 
+\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{Token\-Type} \hyperlink{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}{type}
+\item 
+bool \hyperlink{a00166_a09f49e6edf9ace38a92d723998181f8f}{is\-Text\-Rule} = false
+\item 
+bool \hyperlink{a00166_ab0849136a1f27b4d13cb7a45e2fe7130}{delimits\-Text} = false
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Time\-Span to and from a string. 
+
+
+Definition at line 279 of file Lexer.\-cs.
 
 
 
-Definition at line 13 of file Time\-Span\-Converter.\-cs.
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00166_a3d171ae7c4870659d2d1d977a216bdd7}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!Token\-Rule@{Token\-Rule}}
+\index{Token\-Rule@{Token\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{Token\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule (
+\begin{DoxyParamCaption}
+\item[{{\bf Token\-Type}}]{type, }
+\item[{Regex}]{regex, }
+\item[{string}]{enters\-State = {\ttfamily null}, }
+\item[{bool}]{delimits\-Text = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{a00166_a3d171ae7c4870659d2d1d977a216bdd7}
 
+
+Definition at line 288 of file Lexer.\-cs.
+
+
+
+References Yarn.\-Lexer.\-Token\-Rule.\-delimits\-Text, Yarn.\-Lexer.\-Token\-Rule.\-enters\-State, Yarn.\-Lexer.\-Token\-Rule.\-regex, and Yarn.\-Lexer.\-Token\-Rule.\-type.
+
+
+\begin{DoxyCode}
+289             \{
+290                 this.regex = \hyperlink{a00166_a47a404d6637fae489c3c77729a01cc69}{regex};
+291                 this.entersState = \hyperlink{a00166_af6a4bd3416c4e1b8e56f9db461d52d18}{entersState};
+292                 this.type = \hyperlink{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}{type};
+293                 this.delimitsText = \hyperlink{a00166_ab0849136a1f27b4d13cb7a45e2fe7130}{delimitsText};
+294             \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00166_ae3f8d46f5176d2ae08ac3fcdda1951e7}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00166_a1ed23ad16b116ecb06dd75b157bf752f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Lexer.\-Token\-Rule.\-To\-String (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00166_ae3f8d46f5176d2ae08ac3fcdda1951e7}
+)}}\label{a00166_a1ed23ad16b116ecb06dd75b157bf752f}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 296 of file Lexer.\-cs.
 
 
 
-Definition at line 22 of file Time\-Span\-Converter.\-cs.
+References Yarn.\-Lexer.\-Token\-Rule.\-type.
 
 
 \begin{DoxyCode}
-23         \{
-24             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-25         \}
+297             \{
+298                 \textcolor{keywordflow}{return} string.Format (string.Format (\textcolor{stringliteral}{"[TokenRule: \{0\} - \{1\}]"}, 
+      \hyperlink{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}{type}, this.regex));
+299             \}
 \end{DoxyCode}
-\hypertarget{a00082_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
-\begin{DoxyParamCaption}
-\item[{Type}]{type}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+\subsection{Member Data Documentation}
+\hypertarget{a00166_ab0849136a1f27b4d13cb7a45e2fe7130}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!delimits\-Text@{delimits\-Text}}
+\index{delimits\-Text@{delimits\-Text}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{delimits\-Text}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-delimits\-Text = false}}\label{a00166_ab0849136a1f27b4d13cb7a45e2fe7130}
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 286 of file Lexer.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00093_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
+
+\hypertarget{a00166_af6a4bd3416c4e1b8e56f9db461d52d18}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!enters\-State@{enters\-State}}
+\index{enters\-State@{enters\-State}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{enters\-State}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Lexer.\-Token\-Rule.\-enters\-State}}\label{a00166_af6a4bd3416c4e1b8e56f9db461d52d18}
+
+
+Definition at line 283 of file Lexer.\-cs.
 
 
 
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
+
+\hypertarget{a00166_a09f49e6edf9ace38a92d723998181f8f}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!is\-Text\-Rule@{is\-Text\-Rule}}
+\index{is\-Text\-Rule@{is\-Text\-Rule}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{is\-Text\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Lexer.\-Token\-Rule.\-is\-Text\-Rule = false}}\label{a00166_a09f49e6edf9ace38a92d723998181f8f}
 
 
-\begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
-\end{DoxyCode}
-\hypertarget{a00166_a0f2536c88227a94822d0b7730eedf3eb}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter.\-Convert\-From\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00166_a0f2536c88227a94822d0b7730eedf3eb}
+Definition at line 285 of file Lexer.\-cs.
+
+\hypertarget{a00166_a47a404d6637fae489c3c77729a01cc69}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!regex@{regex}}
+\index{regex@{regex}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{regex}]{\setlength{\rightskip}{0pt plus 5cm}Regex Yarn.\-Lexer.\-Token\-Rule.\-regex = null}}\label{a00166_a47a404d6637fae489c3c77729a01cc69}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 280 of file Lexer.\-cs.
 
 
 
-Definition at line 33 of file Time\-Span\-Converter.\-cs.
+Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule().
+
+\hypertarget{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}{\index{Yarn\-::\-Lexer\-::\-Token\-Rule@{Yarn\-::\-Lexer\-::\-Token\-Rule}!type@{type}}
+\index{type@{type}!Yarn::Lexer::TokenRule@{Yarn\-::\-Lexer\-::\-Token\-Rule}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Token\-Type} Yarn.\-Lexer.\-Token\-Rule.\-type}}\label{a00166_a0de6fac3b55cf0c61e07cea53ce67caa}
+
+
+Definition at line 284 of file Lexer.\-cs.
 
 
 
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info, Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Format, and Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Time\-Span\-Style.
+Referenced by Yarn.\-Lexer.\-Token\-Rule.\-Token\-Rule(), and Yarn.\-Lexer.\-Token\-Rule.\-To\-String().
 
-
-\begin{DoxyCode}
-34         \{
-35             var formatProvider = (IFormatProvider)options.CultureInfo;
-36 
-37             TimeSpan span;
-38 
-39 #\textcolor{keywordflow}{if} !NET\_2\_0 && !NET\_3\_5 && !PCL
-40             var timeSpanStyle = options.TimeSpanStyle ?? TimeSpanStyles.None;
-41             \textcolor{keywordflow}{if}( !\textcolor{keywordtype}{string}.IsNullOrEmpty( options.Format ) && TimeSpan.TryParseExact( text, options.Format, 
-      formatProvider, timeSpanStyle, out span ) )
-42             \{
-43                 \textcolor{keywordflow}{return} span;
-44             \}
-45 
-46             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( options.Format ) && TimeSpan.TryParse( text, formatProvider, out span
-       ) )
-47             \{
-48                 \textcolor{keywordflow}{return} span;
-49             \}
-50 \textcolor{preprocessor}{#else}
-51 \textcolor{preprocessor}{}            \textcolor{keywordflow}{if}( TimeSpan.TryParse( text, out span ) )
-52             \{
-53                 \textcolor{keywordflow}{return} span;
-54             \}
-55 \textcolor{preprocessor}{#endif}
-56 \textcolor{preprocessor}{}
-57             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-58         \}
-\end{DoxyCode}
-\hypertarget{a00082_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::TimeSpanConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Time\-Span\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
-\begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_a36cb2f9b24f15a671293f3a722324c27}
-
-
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00136_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00093_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
-
-
-\begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
-33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
-\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00276}{Time\-Span\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00292}{Lexer.\-cs}\end{DoxyCompactItemize}

@@ -1,294 +1,401 @@
-\hypertarget{a00136}{\section{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter Class Reference}
-\label{a00136}\index{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}}
+\hypertarget{a00136}{\section{Yarn.\-Parser.\-Option\-Statement Class Reference}
+\label{a00136}\index{Yarn.\-Parser.\-Option\-Statement@{Yarn.\-Parser.\-Option\-Statement}}
 }
 
 
-Converts a Nullable to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
+Inheritance diagram for Yarn.\-Parser.\-Option\-Statement\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00545}
+\includegraphics[width=224pt]{a00676}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter\-:
+Collaboration diagram for Yarn.\-Parser.\-Option\-Statement\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00546}
+\includegraphics[width=267pt]{a00677}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00136_af18c9435dee98900eb8ade933c62951d}{Nullable\-Converter} (Type type)
-\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00136}{Nullable\-Converter} for the given Nullable\{\-T\} Type. \end{DoxyCompactList}\item 
-override object \hyperlink{a00136_addb6dc12d4927204cd2349202db63e74}{Convert\-From\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override string \hyperlink{a00136_a7205cdb61d2d119582958232b3e63109}{Convert\-To\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00136_ab9761a9f96be2b41103bb1313611d6f9}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00082_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00136_ad18938712d01cf71edbc75d4974cd0e0}{Option\-Statement} (\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00139}{Parser} p)
+\item 
+override string \hyperlink{a00136_aafba8c941dbd3d0ef841ac9d472e1ba3}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00128}{Node} \hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00136_a1ffeca22df52451120cb362f90fd4e9f}{Can\-Parse} (\hyperlink{a00139}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00138_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Type \hyperlink{a00136_add17b913ac5a45cc33ca0fbf10b6603d}{Nullable\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the type of the nullable. \end{DoxyCompactList}\item 
-Type \hyperlink{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}{Underlying\-Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the underlying type of the nullable. \end{DoxyCompactList}\item 
-\hyperlink{a00117}{I\-Type\-Converter} \hyperlink{a00136_aed8934af11e74459f7d37fcf577480a1}{Underlying\-Type\-Converter}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the type converter for the underlying type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00136_abbe56fba06169901508e6c659f06c236}{destination}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{a00136_a7f27d78e67fed6992767e995e70fc468}{label}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts a Nullable to and from a string. 
 
 
-
-Definition at line 13 of file Nullable\-Converter.\-cs.
+Definition at line 479 of file Parser.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00136_af18c9435dee98900eb8ade933c62951d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Converter@{Nullable\-Converter}}
-\index{Nullable\-Converter@{Nullable\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Nullable\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Converter (
+\hypertarget{a00136_ad18938712d01cf71edbc75d4974cd0e0}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Option\-Statement@{Option\-Statement}}
+\index{Option\-Statement@{Option\-Statement}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Option\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Option\-Statement.\-Option\-Statement (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
 \end{DoxyParamCaption}
-)}}\label{a00136_af18c9435dee98900eb8ade933c62951d}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00136_ad18938712d01cf71edbc75d4974cd0e0}
 
 
-Creates a new \hyperlink{a00136}{Nullable\-Converter} for the given Nullable\{\-T\} Type. 
+Definition at line 488 of file Parser.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em type} & The nullable type.\\
-\hline
-\end{DoxyParams}
 
-\begin{DoxyExceptions}{Exceptions}
-{\em System.\-Argument\-Exception} & type is not a nullable type.\\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 44 of file Nullable\-Converter.\-cs.
+References Yarn.\-Parser.\-Option\-Statement.\-destination, Yarn.\-Parser.\-Option\-Statement.\-label, Yarn.\-Parser.\-Next\-Symbol\-Is(), and Yarn.\-String.
 
 
 \begin{DoxyCode}
-45         \{
-46             \hyperlink{a00136_add17b913ac5a45cc33ca0fbf10b6603d}{NullableType} = type;
-47             \hyperlink{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} = Nullable.GetUnderlyingType( type );
-48             \textcolor{keywordflow}{if}( \hyperlink{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} == null )
-49             \{
-50                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"type is not a nullable type."} );
-51             \}
-52 
-53             \hyperlink{a00136_aed8934af11e74459f7d37fcf577480a1}{UnderlyingTypeConverter} = TypeConverterFactory.GetConverter( 
-      \hyperlink{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}{UnderlyingType} );
-54         \}
+488                                                                  : base(\hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+489 
+490                 \textcolor{comment}{// The meaning of the string(s) we have changes}
+491                 \textcolor{comment}{// depending on whether we have one or two, so}
+492                 \textcolor{comment}{// keep them both and decide their meaning once}
+493                 \textcolor{comment}{// we know more}
+494 
+495                 \textcolor{keywordtype}{string} firstString;
+496                 \textcolor{keywordtype}{string} secondString;
+497 
+498                 \textcolor{comment}{// Parse "[[LABEL"}
+499                 p.ExpectSymbol(TokenType.OptionStart);
+500                 firstString = p.ExpectSymbol(TokenType.Text).value as \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String};
+501 
+502                 \textcolor{comment}{// If there's a | in there, get the string that comes after it}
+503                 \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.OptionDelimit)) \{
+504 
+505                     p.ExpectSymbol(TokenType.OptionDelimit);
+506                     secondString = p.ExpectSymbol(TokenType.Text, TokenType.Identifier).value as 
+      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String};
+507 
+508                     \textcolor{comment}{// Two strings mean that the first is the label, and the second}
+509                     \textcolor{comment}{// is the name of the node that we should head to if this option}
+510                     \textcolor{comment}{// is selected}
+511                     \hyperlink{a00136_a7f27d78e67fed6992767e995e70fc468}{label} = firstString;
+512                     \hyperlink{a00136_abbe56fba06169901508e6c659f06c236}{destination} = secondString;
+513                 \} \textcolor{keywordflow}{else} \{
+514                     \textcolor{comment}{// One string means we don't have a label}
+515                     \hyperlink{a00136_a7f27d78e67fed6992767e995e70fc468}{label} = null;
+516                     \hyperlink{a00136_abbe56fba06169901508e6c659f06c236}{destination} = firstString;
+517                 \}
+518 
+519                 \textcolor{comment}{// Parse the closing ]]}
+520                 p.ExpectSymbol(TokenType.OptionEnd);
+521             \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00136_ad18938712d01cf71edbc75d4974cd0e0_cgraph}
+\end{center}
+\end{figure}
+
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00136_ab9761a9f96be2b41103bb1313611d6f9}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00136_a1ffeca22df52451120cb362f90fd4e9f}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Option\-Statement.\-Can\-Parse (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{{\bf Parser}}]{p}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00136_ab9761a9f96be2b41103bb1313611d6f9}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00136_a1ffeca22df52451120cb362f90fd4e9f}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 480 of file Parser.\-cs.
 
 
 
-Definition at line 90 of file Nullable\-Converter.\-cs.
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
 
 
 \begin{DoxyCode}
-91         \{
-92             \textcolor{comment}{// We only care about strings.}
-93             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-94         \}
+481             \{
+482                 \textcolor{keywordflow}{return} p.NextSymbolIs (TokenType.OptionStart);
+483             \}
 \end{DoxyCode}
-\hypertarget{a00082_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00136_a1ffeca22df52451120cb362f90fd4e9f_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a580e520a29444fc23ac3660cbe514a09}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+Definition at line 100 of file Parser.\-cs.
 
 
 
-Reimplemented in \hyperlink{a00093_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
+110 
+111                 \textcolor{keywordflow}{return} null;
+112             \}
 \end{DoxyCode}
-\hypertarget{a00136_addb6dc12d4927204cd2349202db63e74}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-From\-String (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00136_aafba8c941dbd3d0ef841ac9d472e1ba3}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Option\-Statement.\-Print\-Tree (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00136_addb6dc12d4927204cd2349202db63e74}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00136_aafba8c941dbd3d0ef841ac9d472e1ba3}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Implements \hyperlink{a00138_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
 
 
 
-Definition at line 62 of file Nullable\-Converter.\-cs.
+Definition at line 523 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Option\-Statement.\-destination, Yarn.\-Parser.\-Option\-Statement.\-label, and Yarn.\-Parser.\-Tab().
 
 
 \begin{DoxyCode}
-63         \{
-64             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( text ) )
-65             \{
-66                 \textcolor{keywordflow}{return} null;
-67             \}
-68 
-69             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertFromString( options, text );
-70         \}
+524             \{
+525                 \textcolor{keywordflow}{if} (\hyperlink{a00136_a7f27d78e67fed6992767e995e70fc468}{label} != null) \{
+526                     \textcolor{keywordflow}{return} \hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"Option: \(\backslash\)"\{0\}\(\backslash\)" -> \{1\}"}, 
+      \hyperlink{a00136_a7f27d78e67fed6992767e995e70fc468}{label}, \hyperlink{a00136_abbe56fba06169901508e6c659f06c236}{destination}));
+527                 \} \textcolor{keywordflow}{else} \{
+528                     \textcolor{keywordflow}{return} \hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{keywordtype}{string}.Format (\textcolor{stringliteral}{"Option: -> \{0\}"}, 
+      \hyperlink{a00136_abbe56fba06169901508e6c659f06c236}{destination}));
+529                 \}
+530             \}
 \end{DoxyCode}
-\hypertarget{a00136_a7205cdb61d2d119582958232b3e63109}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Convert\-To\-String (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00136_aafba8c941dbd3d0ef841ac9d472e1ba3_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00136_a7205cdb61d2d119582958232b3e63109}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a054f36c80d5eeacd569a8859f599af67}
 
 
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a36cb2f9b24f15a671293f3a722324c27}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+Definition at line 78 of file Parser.\-cs.
 
 
 
-Definition at line 78 of file Nullable\-Converter.\-cs.
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
 
 
 \begin{DoxyCode}
-79         \{
-80             \textcolor{keywordflow}{return} UnderlyingTypeConverter.ConvertToString( options, value );
-81         \}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 94 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00138_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a18b493382de0fde5b4299c1bd2250075}
+
+
+Definition at line 61 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_af313a82103fcc2ff5a177dbb06b92f7b}
+
+
+Definition at line 58 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 76 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
 
 
 \subsection{Property Documentation}
-\hypertarget{a00136_add17b913ac5a45cc33ca0fbf10b6603d}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Nullable\-Type@{Nullable\-Type}}
-\index{Nullable\-Type@{Nullable\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Nullable\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Nullable\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00136_add17b913ac5a45cc33ca0fbf10b6603d}
+\hypertarget{a00136_abbe56fba06169901508e6c659f06c236}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!destination@{destination}}
+\index{destination@{destination}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{destination}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Option\-Statement.\-destination\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00136_abbe56fba06169901508e6c659f06c236}
 
 
-Gets the type of the nullable. 
-
-The type of the nullable. 
-
-Definition at line 21 of file Nullable\-Converter.\-cs.
-
-\hypertarget{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type@{Underlying\-Type}}
-\index{Underlying\-Type@{Underlying\-Type}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Underlying\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Type Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00136_ae6f7f4c0eb8447c7440f01b118e884cf}
+Definition at line 485 of file Parser.\-cs.
 
 
-Gets the underlying type of the nullable. 
 
-The underlying type. 
+Referenced by Yarn.\-Parser.\-Option\-Statement.\-Option\-Statement(), and Yarn.\-Parser.\-Option\-Statement.\-Print\-Tree().
 
-Definition at line 29 of file Nullable\-Converter.\-cs.
-
-\hypertarget{a00136_aed8934af11e74459f7d37fcf577480a1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}!Underlying\-Type\-Converter@{Underlying\-Type\-Converter}}
-\index{Underlying\-Type\-Converter@{Underlying\-Type\-Converter}!CsvHelper::TypeConversion::NullableConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Nullable\-Converter}}
-\subsubsection[{Underlying\-Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Type\-Converter} Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter.\-Underlying\-Type\-Converter\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00136_aed8934af11e74459f7d37fcf577480a1}
+\hypertarget{a00136_a7f27d78e67fed6992767e995e70fc468}{\index{Yarn\-::\-Parser\-::\-Option\-Statement@{Yarn\-::\-Parser\-::\-Option\-Statement}!label@{label}}
+\index{label@{label}!Yarn::Parser::OptionStatement@{Yarn\-::\-Parser\-::\-Option\-Statement}}
+\subsubsection[{label}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Option\-Statement.\-label\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00136_a7f27d78e67fed6992767e995e70fc468}
 
 
-Gets the type converter for the underlying type. 
+Definition at line 486 of file Parser.\-cs.
 
-The type converter. 
 
-Definition at line 37 of file Nullable\-Converter.\-cs.
+
+Referenced by Yarn.\-Parser.\-Option\-Statement.\-Option\-Statement(), and Yarn.\-Parser.\-Option\-Statement.\-Print\-Tree().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00272}{Nullable\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}

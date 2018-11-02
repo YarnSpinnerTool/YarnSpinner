@@ -1,88 +1,59 @@
-\hypertarget{a00125}{\section{Yarn.\-Line\-Info Struct Reference}
-\label{a00125}\index{Yarn.\-Line\-Info@{Yarn.\-Line\-Info}}
+\hypertarget{a00125}{\section{Package Yarn.\-Unity}
+\label{a00125}\index{Yarn.\-Unity@{Yarn.\-Unity}}
 }
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{a00352}{Example}
+\begin{DoxyCompactList}\small\item\em attached to the non-\/player characters, and stores the name of the \hyperlink{a00041}{Yarn} node that should be run when you talk to them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00125_a00360}{Localised\-String\-Group}
+\item 
+class \hyperlink{a00083}{Dialogue\-Runner}
+\begin{DoxyCompactList}\small\item\em Dialogue\-Runners act as the interface between your game and \hyperlink{a00353}{Yarn\-Spinner}. \end{DoxyCompactList}\item 
+class \hyperlink{a00183}{Yarn\-Command\-Attribute}
+\begin{DoxyCompactList}\small\item\em Apply this attribute to methods in your scripts to expose them to \hyperlink{a00041}{Yarn}. \end{DoxyCompactList}\item 
+class \hyperlink{a00085}{Dialogue\-U\-I\-Behaviour}
+\begin{DoxyCompactList}\small\item\em Scripts that can act as the U\-I for the conversation should subclass this. \end{DoxyCompactList}\item 
+class \hyperlink{a00181}{Variable\-Storage\-Behaviour}
+\begin{DoxyCompactList}\small\item\em Scripts that can act as a variable storage should subclass this. \end{DoxyCompactList}\item 
+class \hyperlink{a00176}{Yarn\-Spinner\-Editor\-Window}
+\item 
+class \hyperlink{a00101}{Icons}
+\end{DoxyCompactItemize}
 
 
-Collaboration diagram for Yarn.\-Line\-Info\-:
+\subsection{Class Documentation}
+\index{Yarn\-::\-Unity\-::\-Localised\-String\-Group@{Yarn\-::\-Unity\-::\-Localised\-String\-Group}}\label{a00360}
+\hypertarget{a00125_a00360}{}
+\subsubsection{class Yarn\-:\-:Unity\-:\-:Localised\-String\-Group}
+
+
+Definition at line 37 of file Dialogue\-Runner.\-cs.
+
+
+
+Collaboration diagram for Yarn.\-Unity.\-Localised\-String\-Group\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=154pt]{a00703}
+\includegraphics[width=212pt]{a00366}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00125_a15924fb79c648f2089ff0db955679dd9}{Line\-Info} (string \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}, int \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number})
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{line\-Number}
-\item 
-string \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{node\-Name}
-\end{DoxyCompactItemize}
+\begin{DoxyFields}{Class Members}
+\hypertarget{a00125_a395d808fa32cb4fe68a62d7852534e1a}{System\-Language}\label{a00125_a395d808fa32cb4fe68a62d7852534e1a}
+&
+language&
+\\
+\hline
 
+\hypertarget{a00125_a636624112fd57fedda96d485d20e6b9e}{Text\-Asset\mbox{[}$\,$\mbox{]}}\label{a00125_a636624112fd57fedda96d485d20e6b9e}
+&
+string\-Files&
+\\
+\hline
 
-\subsection{Detailed Description}
-
-
-Definition at line 70 of file Program.\-cs.
-
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00125_a15924fb79c648f2089ff0db955679dd9}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!Line\-Info@{Line\-Info}}
-\index{Line\-Info@{Line\-Info}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
-\subsubsection[{Line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Line\-Info.\-Line\-Info (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Name, }
-\item[{int}]{line\-Number}
-\end{DoxyParamCaption}
-)}}\label{a00125_a15924fb79c648f2089ff0db955679dd9}
-
-
-Definition at line 75 of file Program.\-cs.
-
-
-
-References Yarn.\-Line\-Info.\-line\-Number, and Yarn.\-Line\-Info.\-node\-Name.
-
-
-\begin{DoxyCode}
-76         \{
-77             this.nodeName = \hyperlink{a00125_a5a91331fb123e29d71d69e096f943c2f}{nodeName};
-78             this.lineNumber = \hyperlink{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{lineNumber};
-79         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00125_a7165cafce64a3deafc41b2090ddf8d0e}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Line\-Info.\-line\-Number}}\label{a00125_a7165cafce64a3deafc41b2090ddf8d0e}
-
-
-Definition at line 72 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Line\-Info.\-Line\-Info().
-
-\hypertarget{a00125_a5a91331fb123e29d71d69e096f943c2f}{\index{Yarn\-::\-Line\-Info@{Yarn\-::\-Line\-Info}!node\-Name@{node\-Name}}
-\index{node\-Name@{node\-Name}!Yarn::LineInfo@{Yarn\-::\-Line\-Info}}
-\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Line\-Info.\-node\-Name}}\label{a00125_a5a91331fb123e29d71d69e096f943c2f}
-
-
-Definition at line 73 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Line\-Info.\-Line\-Info().
-
-
-
-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
-\item 
-Yarn\-Spinner/\hyperlink{a00302}{Program.\-cs}\end{DoxyCompactItemize}
+\end{DoxyFields}

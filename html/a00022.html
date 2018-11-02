@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Building Yarn Spinner</title>
+<title>YarnSpinner: Quickstart to Using Yarn Spinner in your Unity game</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,41 +99,39 @@ $(document).ready(function(){initNavTree('a00022.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Building <a class="el" href="a00045.html">Yarn</a> Spinner </div>  </div>
+<div class="title">Quickstart to Using <a class="el" href="a00041.html">Yarn</a> Spinner in your Unity game </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><blockquote class="doxtable">
-<p>***Important:*** This document only matters to you if you want to build <a class="el" href="a00045.html">Yarn</a> Spinner from source. In almost all cases, you'll be totally fine with <a href="https://github.com/thesecretlab/YarnSpinner/releases">downloading a build</a>, and using that in your project.</p>
+<div class="textblock"><h3>Style Guide</h3>
+<p><code>Inline Code</code> contain short snippets of code for your project </p>
+<pre class="fragment">Code Blocks contain segments or chunks of code for your project
+</pre><p><b>Bold indicate actions (Select menu item, copying file, etc.)</b></p>
+<p>***Bold italic text indicates emphasis***</p>
+<blockquote class="doxtable">
+<p>Blockquotes contain essential information</p>
 <p></p>
 </blockquote>
-<h2>Windows and Mac using MonoDevelop</h2>
-<p>To build <a class="el" href="a00045.html">Yarn</a> Spinner on Windows or Mac, you'll need MonoDevelop. You can <a href="http://www.monodevelop.com/download/">download MonoDevelop for your OS from the MonoDevelop site</a>.</p>
-<h2>Linux</h2>
-<p>To build <a class="el" href="a00045.html">Yarn</a> Spinner on Linux, you can either</p>
+<h2>Tutorial</h2>
+<blockquote class="doxtable">
+<p>***Note:*** This tutorial assumes that you know a little bit about <a href="http://www.unity3d.com">Unity</a>. In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don't know these things, please refer to <a href="http://unity3d.com/learn">Unity's documentation</a>.</p>
+<p></p>
+</blockquote>
+<h2><a class="el" href="a00041.html">Yarn</a> Spinner Quick Start</h2>
+<p>Here's how to quickly jump in to <a class="el" href="a00041.html">Yarn</a> Spinner if you're already familiar with Unity.</p>
 <ul>
-<li>use <a href="http://www.mono-project.com/docs/tools+libraries/tools/xbuild/">xbuild</a> and <a href="http://www.nuget.org">nuget</a>.</li>
-<li>Then ensure you have the correct packages installed by nuget, <code>nuget restore YarnSpinner.sln</code>.</li>
-<li>See the <a href="../../build.sh">build.sh</a> script for further information on how using mono to build. or</li>
-<li>use <a href="http://flatpak.org/getting.html">Flatpak</a>, you can <a href="http://www.monodevelop.com/download/linux/">download MonoDevelop from the MonoDevelop site</a>.</li>
+<li><b>Download</b> <a href="https://github.com/thesecretlab/YarnSpinner/releases">the YarnSpinner package</a> into your Unity project.</li>
+<li><b>Import</b> the package into your project.</li>
+<li>Inside the <a class="el" href="a00353.html">YarnSpinner</a> folder, <b>open the <code>Examples/Yarn Spinner Basic Example</code> scene.</b></li>
+<li><b>Start the game.</b></li>
+<li><b>Play through the dialogue.</b></li>
 </ul>
-<h2>Using MonoDevelop</h2>
-<ul>
-<li>Open <b>YarnSpinner.sln</b>.</li>
-<li>Open the <b>Build menu</b>, and choose <b>Build All</b>.</li>
-<li>Open the <b>Unity/Assets/Yarn Spinner</b> folder. You'll find a copy of <b>YarnSpinner.dll</b> there.</li>
-<li>Copy that DLL file wherever you need it.</li>
-</ul>
-<h2>Building Documentation</h2>
-<p><a class="el" href="a00045.html">Yarn</a> Spinner uses <a href="https://www.stack.nl/~dimitri/doxygen">Doxygen</a> to generate <a href="http://docbook.org/">DocBook</a>, <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, <a href="https://www.latex-project.org/help/documentation/">LaTeX</a>, <a href="https://en.wikipedia.org/wiki/Rich_Text_Format">RTF</a>, and <a href="https://en.wikipedia.org/wiki/XML">XML</a> documentation. <a href="https://www.gnu.org/software/global/">GNU GLOBAL</a> is also used.</p>
-<p>Basic steps to clean out existing documentation, generate new documentation and check the new documentation for generation errors. Note that some ocurrences of the word 'error' will be due to classes/methods etc. of <a class="el" href="a00359.html">YarnSpinner</a> itself and not an actual error in the documentation.</p>
-<p>``` rm -fr Documentation/{docbook,html,latex,rtf,xml} doxygen Documentation/Doxyfile &gt; doxyoutput.txt 2&gt;&amp;1 grep -i error doxyoutput.txt ```</p>
-<p><a href="https://daringfireball.net/projects/markdown/">MarkDown</a> documentation is available via conversion of the XML output to Markdown using third party tools such as <a href="http://pandoc.org">Pandoc</a> or <a href="https://github.com/pferdinand/doxygen2md">doxygen2md</a> </p>
+<p>Once you've played with it, open the Example Script file in the <a href="http://github.com/infiniteammoinc/Yarn">Yarn Editor</a>, (it's in the <code>Examples/Demo Assets</code> folder), and make some changes to the script. Once you've done that, take a look at how <code><a class="el" href="a00277.html">Code/DialogueRunner.cs</a></code>, <code>Examples/Demo <a class="el" href="a00281.html">Scripts/ExampleDialogueUI.cs</a></code> and <code>Examples/Demo <a class="el" href="a00282.html">Scripts/ExampleVariableStorage.cs</a></code> work. You can also <a class="el" href="a00204.html">add your own functions to Yarn</a>. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

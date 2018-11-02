@@ -1,456 +1,464 @@
-\hypertarget{a00095}{\section{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I Class Reference}
-\label{a00095}\index{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I@{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}}
+\hypertarget{a00095}{\section{Yarn.\-File\-Format\-Converter Class Reference}
+\label{a00095}\index{Yarn.\-File\-Format\-Converter@{Yarn.\-File\-Format\-Converter}}
 }
 
 
-Displays dialogue lines to the player, and sends user choices back to the dialogue system.  
-
-
-
-
-Inheritance diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
+Collaboration diagram for Yarn.\-File\-Format\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{a00792}
+\includegraphics[width=222pt]{a00710}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00793}
-\end{center}
-\end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Static Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-override I\-Enumerator \hyperlink{a00095_a109aeedc5206dcbc4f629638b7830030}{Run\-Line} (\hyperlink{a00045_a00365}{Yarn.\-Line} line)
-\begin{DoxyCompactList}\small\item\em Show a line of dialogue, gradually. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00095_aaa93672700a456e66c694636460a58f4}{Run\-Options} (\hyperlink{a00045_a00368}{Yarn.\-Options} options\-Collection, \hyperlink{a00045_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
-\begin{DoxyCompactList}\small\item\em Show a list of options, and wait for the player to make a selection. \end{DoxyCompactList}\item 
-void \hyperlink{a00095_ad1ac5781ded20d2950d8dd3af506df37}{Set\-Option} (int selected\-Option)
-\begin{DoxyCompactList}\small\item\em Called by buttons to make a selection. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00095_a7f84b1e7d3c9c1f7507d143e11ba8075}{Run\-Command} (\hyperlink{a00045_a00361}{Yarn.\-Command} command)
-\begin{DoxyCompactList}\small\item\em Run an internal command. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00095_a313283f6c53354b54f25898eb436eba0}{Dialogue\-Started} ()
-\begin{DoxyCompactList}\small\item\em Called when the dialogue system has started running. \end{DoxyCompactList}\item 
-override I\-Enumerator \hyperlink{a00095_a1f2a08baacc25aea09af8e60eb5d3eb1}{Dialogue\-Complete} ()
-\begin{DoxyCompactList}\small\item\em Called when the dialogue system has finished running. \end{DoxyCompactList}\item 
-virtual I\-Enumerator \hyperlink{a00089_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
-\begin{DoxyCompactList}\small\item\em The node has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
+static int \hyperlink{a00095_aa4db4ccac799c5f047a8b1a9efbe109d}{Convert\-Format} (\hyperlink{a00048}{Convert\-Format\-Options} options)
 \item 
-Game\-Object \hyperlink{a00095_a2eaebc844d2ca982ec078708d070dbd3}{dialogue\-Container}
-\begin{DoxyCompactList}\small\item\em The object that contains the dialogue and the options. \end{DoxyCompactList}\item 
-\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text} \hyperlink{a00095_a791f15a67a97fbe06ffc0bdf518edd04}{line\-Text}
-\begin{DoxyCompactList}\small\item\em The U\-I element that displays lines. \end{DoxyCompactList}\item 
-Game\-Object \hyperlink{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}{continue\-Prompt}
-\begin{DoxyCompactList}\small\item\em A U\-I element that appears after lines have finished appearing. \end{DoxyCompactList}\item 
-float \hyperlink{a00095_a6053aa65534195d626031413ef3a0828}{text\-Speed} = 0.\-025f
-\begin{DoxyCompactList}\small\item\em How quickly to show the text, in seconds per character. \end{DoxyCompactList}\item 
-List$<$ Button $>$ \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{option\-Buttons}
-\begin{DoxyCompactList}\small\item\em The buttons that let the user choose an option. \end{DoxyCompactList}\item 
-Rect\-Transform \hyperlink{a00095_a8344106eb22a0ad00e2400c2941b3e5f}{game\-Controls\-Container}
-\begin{DoxyCompactList}\small\item\em Make it possible to temporarily disable the controls when dialogue is active and to restore them when dialogue ends. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static string \hyperlink{a00095_a85596df924468279b2dc44a9f31d8bad}{Convert\-Nodes} (I\-Enumerable$<$ \hyperlink{a00130}{Loader.\-Node\-Info} $>$ nodes, \hyperlink{a00041_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
+\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00095_a6e57983db349b0d9e4526ecb7aa6fed2}{Awake} ()
+delegate string \hyperlink{a00095_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} (I\-Enumerable$<$ \hyperlink{a00130}{Loader.\-Node\-Info} $>$ nodes)
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00045_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} \hyperlink{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{Set\-Selected\-Option}
-\begin{DoxyCompactList}\small\item\em A delegate (ie a function-\/stored-\/in-\/a-\/variable) that we call to tell the dialogue system about what option the user selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static int \hyperlink{a00095_a28a086a7b44ecea7430af40436f38df6}{Convert\-To\-J\-S\-O\-N} (\hyperlink{a00048}{Convert\-Format\-Options} options)
+\item 
+static int \hyperlink{a00095_a1e6cd39b0c813f21da278367dcff76d2}{Convert\-To\-Yarn} (\hyperlink{a00048}{Convert\-Format\-Options} options)
+\item 
+static string \hyperlink{a00095_a282f283f02c9b1d3e53d813ec2f35233}{Convert\-Nodes\-To\-Yarn\-Text} (I\-Enumerable$<$ \hyperlink{a00130}{Loader.\-Node\-Info} $>$ nodes)
+\item 
+static void \hyperlink{a00095_aa72838be584177b5592c31d73c0febdb}{Convert\-Nodes\-In\-File} (\hyperlink{a00048}{Convert\-Format\-Options} options, string file, string file\-Extension, \hyperlink{a00095_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} convert)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Displays dialogue lines to the player, and sends user choices back to the dialogue system. 
 
-Note that this is just one way of presenting the dialogue to the user. The only hard requirement is that you provide the Run\-Line, \hyperlink{a00151}{Run\-Options}, Run\-Command and Dialogue\-Complete coroutines; what they do is up to you. 
 
-Definition at line 42 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 8 of file File\-Format\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00095_a6e57983db349b0d9e4526ecb7aa6fed2}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Awake@{Awake}}
-\index{Awake@{Awake}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Awake (
+\hypertarget{a00095_aa4db4ccac799c5f047a8b1a9efbe109d}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Format@{Convert\-Format}}
+\index{Convert\-Format@{Convert\-Format}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Format}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-Format (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Convert\-Format\-Options}}]{options}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00095_a6e57983db349b0d9e4526ecb7aa6fed2}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00095_aa4db4ccac799c5f047a8b1a9efbe109d}
 
 
-Definition at line 73 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 10 of file File\-Format\-Converter.\-cs.
+
+
+
+References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), Yarn.\-Convert\-Format\-Options.\-convert\-To\-J\-S\-O\-N, Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn(), and Yarn.\-Convert\-Format\-Options.\-convert\-To\-Yarn.
+
+
+
+Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
 
 
 \begin{DoxyCode}
-74         \{
-75             \textcolor{comment}{// Start by hiding the container, line and option buttons}
-76             \textcolor{keywordflow}{if} (\hyperlink{a00095_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-77                 dialogueContainer.SetActive(\textcolor{keyword}{false});
-78 
-79             lineText.gameObject.SetActive (\textcolor{keyword}{false});
-80 
-81             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
-82                 button.gameObject.SetActive (\textcolor{keyword}{false});
-83             \}
-84 
-85             \textcolor{comment}{// Hide the continue prompt if it exists}
-86             \textcolor{keywordflow}{if} (\hyperlink{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-87                 continuePrompt.SetActive (\textcolor{keyword}{false});
-88         \}
+11         \{
+12 
+13             YarnSpinnerConsole.CheckFileList(options.files, 
+      \hyperlink{a00185_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
+14 
+15             \textcolor{keywordflow}{if} (options.convertToJSON)
+16             \{
+17                 \textcolor{keywordflow}{return} \hyperlink{a00095_a28a086a7b44ecea7430af40436f38df6}{ConvertToJSON}(options);
+18             \}
+19             \textcolor{keywordflow}{if} (options.convertToYarn)
+20             \{
+21                 \textcolor{keywordflow}{return} \hyperlink{a00095_a1e6cd39b0c813f21da278367dcff76d2}{ConvertToYarn}(options);
+22             \}
+23 
+24             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+25 
+26             YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"You must specify a destination format. Run '\{0\} help
+       convert' to learn more."}, processName));
+27             \textcolor{keywordflow}{return} 1;
+28         \}
 \end{DoxyCode}
-\hypertarget{a00095_a1f2a08baacc25aea09af8e60eb5d3eb1}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Complete@{Dialogue\-Complete}}
-\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Complete (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_aa4db4ccac799c5f047a8b1a9efbe109d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_aa4db4ccac799c5f047a8b1a9efbe109d_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00095_a85596df924468279b2dc44a9f31d8bad}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes@{Convert\-Nodes}}
+\index{Convert\-Nodes@{Convert\-Nodes}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes (
 \begin{DoxyParamCaption}
-{}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes, }
+\item[{{\bf Node\-Format}}]{format}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a1f2a08baacc25aea09af8e60eb5d3eb1}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00095_a85596df924468279b2dc44a9f31d8bad}
 
 
-Called when the dialogue system has finished running. 
-
-
-
-Reimplemented from \hyperlink{a00089_aecc60aee9e9386da1f71fb183f43c52d}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
+Definition at line 62 of file File\-Format\-Converter.\-cs.
 
 
 
-Definition at line 198 of file Example\-Dialogue\-U\-I.\-cs.
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text().
 
 
 \begin{DoxyCode}
-199         \{
-200             Debug.Log (\textcolor{stringliteral}{"Complete!"});
-201 
-202             \textcolor{comment}{// Hide the dialogue interface.}
-203             \textcolor{keywordflow}{if} (\hyperlink{a00095_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-204                 dialogueContainer.SetActive(\textcolor{keyword}{false});
-205 
-206             \textcolor{comment}{// Show the game controls.}
-207             \textcolor{keywordflow}{if} (\hyperlink{a00095_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-208                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{true});
-209             \}
-210 
-211             yield \textcolor{keywordflow}{break};
-212         \}
+62                                                                                                    \{
+63             \textcolor{keywordflow}{switch} (format)
+64             \{
+65                 \textcolor{keywordflow}{case} NodeFormat.JSON:
+66                     \textcolor{keywordflow}{return} JsonConvert.SerializeObject(nodes, Formatting.Indented);
+67                 \textcolor{keywordflow}{case} NodeFormat.Text:
+68                     \textcolor{keywordflow}{return} \hyperlink{a00095_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText}(nodes);
+69                 \textcolor{keywordflow}{default}:
+70                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+71             \}
+72         \}
 \end{DoxyCode}
-\hypertarget{a00095_a313283f6c53354b54f25898eb436eba0}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Started@{Dialogue\-Started}}
-\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Dialogue\-Started (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a85596df924468279b2dc44a9f31d8bad_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00095_aa72838be584177b5592c31d73c0febdb}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}}
+\index{Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-In\-File}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Convert\-Format\-Options}}]{options, }
+\item[{string}]{file, }
+\item[{string}]{file\-Extension, }
+\item[{{\bf Convert\-Nodes\-To\-Text}}]{convert}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a313283f6c53354b54f25898eb436eba0}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00095_aa72838be584177b5592c31d73c0febdb}
 
 
-Called when the dialogue system has started running. 
-
-
-
-Reimplemented from \hyperlink{a00089_af9d88ca81ac536d43046ca6572e3ff54}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
+Definition at line 143 of file File\-Format\-Converter.\-cs.
 
 
 
-Definition at line 181 of file Example\-Dialogue\-U\-I.\-cs.
+References Yarn.\-Base\-Options.\-verbose.
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
 
 
 \begin{DoxyCode}
-182         \{
-183             Debug.Log (\textcolor{stringliteral}{"Dialogue starting!"});
-184 
-185             \textcolor{comment}{// Enable the dialogue controls.}
-186             \textcolor{keywordflow}{if} (\hyperlink{a00095_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-187                 dialogueContainer.SetActive(\textcolor{keyword}{true});
-188 
-189             \textcolor{comment}{// Hide the game controls.}
-190             \textcolor{keywordflow}{if} (\hyperlink{a00095_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-191                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{false});
-192             \}
-193 
-194             yield \textcolor{keywordflow}{break};
-195         \}
+144         \{
+145             var d = \textcolor{keyword}{new} Dialogue(null);
+146 
+147             var text = File.ReadAllText(file);
+148 
+149             IEnumerable<Loader.NodeInfo> nodes;
+150             \textcolor{keywordflow}{try} \{
+151                 nodes = d.loader.GetNodesFromText(text, Loader.GetFormatFromFileName(file));
+152             \} \textcolor{keywordflow}{catch} (FormatException e) \{
+153                 YarnSpinnerConsole.Error(e.Message);
+154                 \textcolor{keywordflow}{return};
+155             \}
+156 
+157             var serialisedText = convert(nodes);
+158 
+159             var destinationDirectory = options.outputDirectory;
+160 
+161             \textcolor{keywordflow}{if} (destinationDirectory == null)
+162             \{
+163                 destinationDirectory = Path.GetDirectoryName(file);
+164             \}
+165 
+166             var fileName = Path.GetFileName(file);
+167 
+168             \textcolor{comment}{// ChangeExtension thinks that the file "Foo.yarn.txt" has the extension "txt", so}
+169             \textcolor{comment}{// to simplify things, just lop that extension off right away if it's there}
+170             fileName = fileName.Replace(\textcolor{stringliteral}{".yarn.txt"}, \textcolor{stringliteral}{""});
+171 
+172             \textcolor{comment}{// change the filename's extension}
+173             fileName = Path.ChangeExtension(fileName, fileExtension);
+174 
+175             \textcolor{comment}{// figure out where we're writing this file}
+176             var destinationFilePath = Path.Combine(destinationDirectory, fileName);
+177 
+178             File.WriteAllText(destinationFilePath, serialisedText);
+179 
+180             \textcolor{keywordflow}{if} (options.verbose)
+181             \{
+182                 YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + destinationFilePath);
+183             \}
+184         \}
 \end{DoxyCode}
-\hypertarget{a00089_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Node\-Complete@{Node\-Complete}}
-\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_aa72838be584177b5592c31d73c0febdb_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00095_af9bd5d832fdd2bcbdc626d9f8632e05c}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}}
+\index{Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-To\-Text}]{\setlength{\rightskip}{0pt plus 5cm}delegate string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Text (
 \begin{DoxyParamCaption}
-\item[{string}]{next\-Node}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00089_a2900548a0704d39d4502a153945f4bef}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00095_af9bd5d832fdd2bcbdc626d9f8632e05c}
+\hypertarget{a00095_a282f283f02c9b1d3e53d813ec2f35233}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}}
+\index{Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-Nodes\-To\-Yarn\-Text}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text (
+\begin{DoxyParamCaption}
+\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00095_a282f283f02c9b1d3e53d813ec2f35233}
 
 
-The node has ended. 
+Definition at line 74 of file File\-Format\-Converter.\-cs.
 
 
 
-Definition at line 448 of file Dialogue\-Runner.\-cs.
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
 
 
 \begin{DoxyCode}
-448                                                                  \{
-449             \textcolor{comment}{// Default implementation does nothing.}
-450             yield \textcolor{keywordflow}{break};
-451         \}
-\end{DoxyCode}
-\hypertarget{a00095_a7f84b1e7d3c9c1f7507d143e11ba8075}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Command@{Run\-Command}}
-\index{Run\-Command@{Run\-Command}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Command (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Command}}]{command}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a7f84b1e7d3c9c1f7507d143e11ba8075}
-
-
-Run an internal command. 
-
-
-
-Implements \hyperlink{a00089_a3dffe84b9e7a10fdec6749baf697d111}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 172 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-173         \{
-174             \textcolor{comment}{// "Perform" the command}
-175             Debug.Log (\textcolor{stringliteral}{"Command: "} + command.text);
-176 
-177             yield \textcolor{keywordflow}{break};
-178         \}
-\end{DoxyCode}
-\hypertarget{a00095_a109aeedc5206dcbc4f629638b7830030}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Line@{Run\-Line}}
-\index{Run\-Line@{Run\-Line}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Line (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Line}}]{line}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_a109aeedc5206dcbc4f629638b7830030}
-
-
-Show a line of dialogue, gradually. 
-
-
-
-Implements \hyperlink{a00089_a754c6dd0bc67895d11f878fe4477d698}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 91 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-\begin{DoxyCode}
-92         \{
-93             \textcolor{comment}{// Show the text}
-94             lineText.gameObject.SetActive (\textcolor{keyword}{true});
+75         \{
+76             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
+77 
+78             var properties = typeof(Loader.NodeInfo).GetProperties();
+79 
+80             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
+81 
+82                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} properties) \{
+83 
+84                     \textcolor{comment}{// ignore the body attribute}
+85                     \textcolor{keywordflow}{if} (property.Name == \textcolor{stringliteral}{"body"}) \{
+86                         \textcolor{keywordflow}{continue};
+87                     \}
+88 
+89                     \textcolor{comment}{// piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised}
+90                     \textcolor{keywordflow}{if} (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), \textcolor{keyword}{false}).Length > 0) \{
+91                         \textcolor{keywordflow}{continue};
+92                     \}
+93 
+94                     var field = property.Name;
 95 
-96             \textcolor{keywordflow}{if} (\hyperlink{a00095_a6053aa65534195d626031413ef3a0828}{textSpeed} > 0.0f) \{
-97                 \textcolor{comment}{// Display the line one character at a time}
-98                 var stringBuilder = \textcolor{keyword}{new} StringBuilder ();
-99 
-100                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{char} c \textcolor{keywordflow}{in} line.text) \{
-101                     stringBuilder.Append (c);
-102                     lineText.text = stringBuilder.ToString ();
-103                     yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForSeconds (\hyperlink{a00095_a6053aa65534195d626031413ef3a0828}{textSpeed});
-104                 \}
-105             \} \textcolor{keywordflow}{else} \{
-106                 \textcolor{comment}{// Display the line immediately if textSpeed == 0}
-107                 lineText.text = line.text;
-108             \}
-109 
-110             \textcolor{comment}{// Show the 'press any key' prompt when done, if we have one}
-111             \textcolor{keywordflow}{if} (\hyperlink{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-112                 continuePrompt.SetActive (\textcolor{keyword}{true});
-113 
-114             \textcolor{comment}{// Wait for any user input}
-115             \textcolor{keywordflow}{while} (Input.anyKeyDown == \textcolor{keyword}{false}) \{
-116                 yield \textcolor{keywordflow}{return} null;
-117             \}
+96                     \textcolor{keywordtype}{string} value;
+97 
+98                     var propertyType = property.PropertyType;
+99                     \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
+100                     \{
+101                         value = (string)property.GetValue(node, null);
+102 
+103                         \textcolor{comment}{// avoid storing nulls when we could store the empty string instead}
+104                         \textcolor{keywordflow}{if} (value == null)
+105                             value = \textcolor{stringliteral}{""};
+106                     \}
+107                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
+108                     \{
+109                         value = ((int)property.GetValue(node, null)).ToString();
+110                     \}
+111                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
+112                     \{
+113                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
+114 
+115                         value = string.Format(\textcolor{stringliteral}{"\{0\},\{1\}"}, position.x, position.y);
+116                     \} \textcolor{keywordflow}{else} \{
+117                         YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"Internal error: Node \{0\}'s property \{1\} has
+       unsupported type \{2\}"}, node.title, property.Name, propertyType.FullName));
 118 
-119             \textcolor{comment}{// Hide the text and prompt}
-120             lineText.gameObject.SetActive (\textcolor{keyword}{false});
-121 
-122             \textcolor{keywordflow}{if} (\hyperlink{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-123                 continuePrompt.SetActive (\textcolor{keyword}{false});
+119                         \textcolor{comment}{// will never be run, but prevents the compiler being mean about us not returning a
+       value}
+120                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception();
+121                     \}
+122 
+123                     var header = string.Format(\textcolor{stringliteral}{"\{0\}: \{1\}"}, field, value);
 124 
-125         \}
-\end{DoxyCode}
-\hypertarget{a00095_aaa93672700a456e66c694636460a58f4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Options@{Run\-Options}}
-\index{Run\-Options@{Run\-Options}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}override I\-Enumerator Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Run\-Options (
-\begin{DoxyParamCaption}
-\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
-\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00095_aaa93672700a456e66c694636460a58f4}
-
-
-Show a list of options, and wait for the player to make a selection. 
-
-
-
-Implements \hyperlink{a00089_ac5b29079f638f2ceb078627ef1e60004}{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}.
-
-
-
-Definition at line 128 of file Example\-Dialogue\-U\-I.\-cs.
-
-
-
-References Yarn.\-Text.
-
-
-\begin{DoxyCode}
-130         \{
-131             \textcolor{comment}{// Do a little bit of safety checking}
-132             \textcolor{keywordflow}{if} (optionsCollection.options.Count > \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}.Count) \{
-133                 Debug.LogWarning(\textcolor{stringliteral}{"There are more options to present than there are"} +
-134                                  \textcolor{stringliteral}{"buttons to present them in. This will cause problems."});
+125                     sb.AppendLine(header);
+126 
+127                 \}
+128                 \textcolor{comment}{// now write the body}
+129                 sb.AppendLine(\textcolor{stringliteral}{"---"});
+130 
+131                 sb.AppendLine(node.body);
+132 
+133                 sb.AppendLine(\textcolor{stringliteral}{"==="});
+134 
 135             \}
 136 
-137             \textcolor{comment}{// Display each option in a button, and make it visible}
-138             \textcolor{keywordtype}{int} i = 0;
-139             \textcolor{keywordflow}{foreach} (var optionString \textcolor{keywordflow}{in} optionsCollection.options) \{
-140                 \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].gameObject.SetActive (\textcolor{keyword}{true});
-141                 \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].GetComponentInChildren<\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}> ().text = optionString;
-142                 i++;
-143             \}
-144 
-145             \textcolor{comment}{// Record that we're using it}
-146             \hyperlink{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = optionChooser;
-147 
-148             \textcolor{comment}{// Wait until the chooser has been used and then removed (see SetOption below)}
-149             \textcolor{keywordflow}{while} (\hyperlink{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} != null) \{
-150                 yield \textcolor{keywordflow}{return} null;
-151             \}
-152 
-153             \textcolor{comment}{// Hide all the buttons}
-154             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
-155                 button.gameObject.SetActive (\textcolor{keyword}{false});
-156             \}
-157         \}
+137             \textcolor{keywordflow}{return} sb.ToString();
+138         \}
 \end{DoxyCode}
-\hypertarget{a00095_ad1ac5781ded20d2950d8dd3af506df37}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Option@{Set\-Option}}
-\index{Set\-Option@{Set\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Set\-Option}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Option (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a282f283f02c9b1d3e53d813ec2f35233_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00095_a28a086a7b44ecea7430af40436f38df6}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}}
+\index{Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-To\-J\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N (
 \begin{DoxyParamCaption}
-\item[{int}]{selected\-Option}
+\item[{{\bf Convert\-Format\-Options}}]{options}
 \end{DoxyParamCaption}
-)}}\label{a00095_ad1ac5781ded20d2950d8dd3af506df37}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00095_a28a086a7b44ecea7430af40436f38df6}
 
 
-Called by buttons to make a selection. 
+Definition at line 30 of file File\-Format\-Converter.\-cs.
 
 
 
-Definition at line 160 of file Example\-Dialogue\-U\-I.\-cs.
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
+
+
+
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
 
 
 \begin{DoxyCode}
-161         \{
-162 
-163             \textcolor{comment}{// Call the delegate to tell the dialogue system that we've}
-164             \textcolor{comment}{// selected an option.}
-165             \hyperlink{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} (selectedOption);
-166 
-167             \textcolor{comment}{// Now remove the delegate so that the loop in RunOptions will exit}
-168             \hyperlink{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = null; 
-169         \}
+31         \{
+32             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
+33             \{
+34 
+35                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
+36                 \{
+37                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
+       implies it's already in JSON format"}, file));
+38                     \textcolor{keywordflow}{continue};
+39                 \}
+40 
+41                 \hyperlink{a00095_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"json"}, (IEnumerable<Loader.NodeInfo> 
+      nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
+42 
+43             \}
+44             \textcolor{keywordflow}{return} 0;
+45         \}
 \end{DoxyCode}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!continue\-Prompt@{continue\-Prompt}}
-\index{continue\-Prompt@{continue\-Prompt}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{continue\-Prompt}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-continue\-Prompt}}\label{a00095_a74367b77a6a5218fa47dbe1d6266e4c6}
-
-
-A U\-I element that appears after lines have finished appearing. 
-
-
-
-Definition at line 55 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00095_a2eaebc844d2ca982ec078708d070dbd3}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!dialogue\-Container@{dialogue\-Container}}
-\index{dialogue\-Container@{dialogue\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{dialogue\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Game\-Object Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-dialogue\-Container}}\label{a00095_a2eaebc844d2ca982ec078708d070dbd3}
-
-
-The object that contains the dialogue and the options. 
-
-This object will be enabled when conversation starts, and disabled when it ends. 
-
-Definition at line 49 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00095_a8344106eb22a0ad00e2400c2941b3e5f}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!game\-Controls\-Container@{game\-Controls\-Container}}
-\index{game\-Controls\-Container@{game\-Controls\-Container}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{game\-Controls\-Container}]{\setlength{\rightskip}{0pt plus 5cm}Rect\-Transform Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-game\-Controls\-Container}}\label{a00095_a8344106eb22a0ad00e2400c2941b3e5f}
-
-
-Make it possible to temporarily disable the controls when dialogue is active and to restore them when dialogue ends. 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a28a086a7b44ecea7430af40436f38df6_cgraph}
+\end{center}
+\end{figure}
 
 
 
-Definition at line 71 of file Example\-Dialogue\-U\-I.\-cs.
 
-\hypertarget{a00095_a791f15a67a97fbe06ffc0bdf518edd04}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!line\-Text@{line\-Text}}
-\index{line\-Text@{line\-Text}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{line\-Text}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-line\-Text}}\label{a00095_a791f15a67a97fbe06ffc0bdf518edd04}
-
-
-The U\-I element that displays lines. 
-
-
-
-Definition at line 52 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!option\-Buttons@{option\-Buttons}}
-\index{option\-Buttons@{option\-Buttons}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{option\-Buttons}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Button$>$ Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-option\-Buttons}}\label{a00095_a090b7693e7ec6ec43c8c8e2b6b20b015}
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a28a086a7b44ecea7430af40436f38df6_icgraph}
+\end{center}
+\end{figure}
 
 
-The buttons that let the user choose an option. 
+\hypertarget{a00095_a1e6cd39b0c813f21da278367dcff76d2}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-Yarn@{Convert\-To\-Yarn}}
+\index{Convert\-To\-Yarn@{Convert\-To\-Yarn}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
+\subsubsection[{Convert\-To\-Yarn}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn (
+\begin{DoxyParamCaption}
+\item[{{\bf Convert\-Format\-Options}}]{options}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00095_a1e6cd39b0c813f21da278367dcff76d2}
 
 
-
-Definition at line 67 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Selected\-Option@{Set\-Selected\-Option}}
-\index{Set\-Selected\-Option@{Set\-Selected\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{Set\-Selected\-Option}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Yarn.\-Option\-Chooser} Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-Set\-Selected\-Option\hspace{0.3cm}{\ttfamily [private]}}}\label{a00095_a558f60ef9a7bcf887f015ba0d27aa6ef}
-
-
-A delegate (ie a function-\/stored-\/in-\/a-\/variable) that we call to tell the dialogue system about what option the user selected. 
+Definition at line 47 of file File\-Format\-Converter.\-cs.
 
 
 
-Definition at line 60 of file Example\-Dialogue\-U\-I.\-cs.
-
-\hypertarget{a00095_a6053aa65534195d626031413ef3a0828}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!text\-Speed@{text\-Speed}}
-\index{text\-Speed@{text\-Speed}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
-\subsubsection[{text\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I.\-text\-Speed = 0.\-025f}}\label{a00095_a6053aa65534195d626031413ef3a0828}
-
-
-How quickly to show the text, in seconds per character. 
+References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
 
 
 
-Definition at line 64 of file Example\-Dialogue\-U\-I.\-cs.
+Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
+
+
+\begin{DoxyCode}
+48         \{
+49             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
+50             \{
+51                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
+52                 \{
+53                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
+       implies it's already in Yarn format"}, file));
+54                     \textcolor{keywordflow}{continue};
+55                 \}
+56 
+57                 \hyperlink{a00095_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"yarn.txt"}, 
+      \hyperlink{a00095_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText});
+58             \}
+59             \textcolor{keywordflow}{return} 0;
+60         \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a1e6cd39b0c813f21da278367dcff76d2_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00095_a1e6cd39b0c813f21da278367dcff76d2_icgraph}
+\end{center}
+\end{figure}
+
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Unity/\-Assets/\-Yarn\-Spinner/\-Examples/\-Demo\-Scripts/\hyperlink{a00287}{Example\-Dialogue\-U\-I.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Console/\hyperlink{a00305}{File\-Format\-Converter.\-cs}\end{DoxyCompactItemize}

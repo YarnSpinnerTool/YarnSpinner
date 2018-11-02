@@ -1,80 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00124" kind="class" prot="public">
-    <compoundname>Yarn::LineAdder</compoundname>
-      <sectiondef kind="private-static-attrib">
-      <memberdef kind="variable" id="a00124_1ad887744b1b813fc081be814958742c37" prot="private" static="yes" mutable="no">
-        <type>Random</type>
-        <definition>Random Yarn.LineAdder.random</definition>
-        <argsstring></argsstring>
-        <name>random</name>
-        <initializer>= new Random()</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="210" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="210" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="package-static-func">
-      <memberdef kind="function" id="a00124_1aa2b8af349e709b8a45d42af5146ca848" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>static int Yarn.LineAdder.AddLines</definition>
-        <argsstring>(AddLabelsOptions options)</argsstring>
-        <name>AddLines</name>
-        <param>
-          <type><ref refid="a00031" kindref="compound">AddLabelsOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="11" bodyend="207"/>
-        <references refid="a00189_1a0979de7ea02c8c0375b8220a12e6575e" compoundref="a00313" startline="270">Yarn.YarnSpinnerConsole.ALLOWED_EXTENSIONS</references>
-        <references refid="a00124_1a91ad68b679bd3b0bd89fe92ea5068688" compoundref="a00312" startline="213" endline="226">Yarn.LineAdder.GenerateString</references>
-        <referencedby refid="a00189_1a1d71ff2eb190449ea1d42ce86f44489f" compoundref="a00313" startline="241" endline="268">Yarn.YarnSpinnerConsole.Main</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="a00124_1a91ad68b679bd3b0bd89fe92ea5068688" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+    <compoundname>Yarn::LocalisedLine</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="a00124_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
         <type>string</type>
-        <definition>static string Yarn.LineAdder.GenerateString</definition>
-        <argsstring>(List&lt; string &gt; existingKeys)</argsstring>
-        <name>GenerateString</name>
-        <param>
-          <type>List&lt; string &gt;</type>
-          <declname>existingKeys</declname>
-        </param>
+        <definition>string Yarn.LocalisedLine.LineCode</definition>
+        <argsstring></argsstring>
+        <name>LineCode</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="213" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="213" bodyend="226"/>
-        <referencedby refid="a00124_1aa2b8af349e709b8a45d42af5146ca848" compoundref="a00312" startline="11" endline="207">Yarn.LineAdder.AddLines</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="88" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00124_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.LineText</definition>
+        <argsstring></argsstring>
+        <name>LineText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="89" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="a00124_1afbfb834bb1623653fa73945c221c4b9d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.LocalisedLine.Comment</definition>
+        <argsstring></argsstring>
+        <name>Comment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="90" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="90" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A line, localised into the current locale. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>LocalisedLines are used in both lines, options, and shortcut options - basically, anything user-facing. </para>    </detaileddescription>
     <collaborationgraph>
-      <node id="1495">
-        <label>Yarn.LineAdder</label>
+      <node id="1513">
+        <label>Yarn.LocalisedLine</label>
         <link refid="a00124"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" line="9" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerConsole/LineAdder.cs" bodystart="8" bodyend="227"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="87" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="86" bodyend="91"/>
     <listofallmembers>
-      <member refid="a00124_1aa2b8af349e709b8a45d42af5146ca848" prot="package" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>AddLines</name></member>
-      <member refid="a00124_1a91ad68b679bd3b0bd89fe92ea5068688" prot="private" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>GenerateString</name></member>
-      <member refid="a00124_1ad887744b1b813fc081be814958742c37" prot="private" virt="non-virtual"><scope>Yarn::LineAdder</scope><name>random</name></member>
+      <member refid="a00124_1afbfb834bb1623653fa73945c221c4b9d" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>Comment</name></member>
+      <member refid="a00124_1aad88f588cbbe2df9bb83da59eeff3d3c" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineCode</name></member>
+      <member refid="a00124_1ab0b4fa82cfa7693ff3c96fe5c3837fff" prot="public" virt="non-virtual"><scope>Yarn::LocalisedLine</scope><name>LineText</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

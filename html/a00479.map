@@ -1,2 +1,4 @@
-<map id="CsvHelper.Configuration.CsvPropertyMapCollection" name="CsvHelper.Configuration.CsvPropertyMapCollection">
+<map id="CsvHelper.Configuration.CsvPropertyMapData" name="CsvHelper.Configuration.CsvPropertyMapData">
+<area shape="rect" id="node2" href="$a00168.html" title="Options used when doing type conversion. " alt="" coords="5,134,192,343"/>
+<area shape="rect" id="node3" href="$a00064.html" title="A collection that holds property names. " alt="" coords="217,134,404,343"/>
 </map>

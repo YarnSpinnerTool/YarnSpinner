@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvPropertyMapData.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility/TypeInfo.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,89 +105,51 @@ $(document).ready(function(){initNavTree('a00222_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvPropertyMapData.cs</div>  </div>
+<div class="title">TypeInfo.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00222.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if !NET_2_0</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Linq.Expressions;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Reflection;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> CsvHelper.TypeConversion;</div>
+<a href="a00222.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span>System.Reflection</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="a00171.html">    6</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00171.html">TypeInfo</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="a00171.html#a71c4f4b000d08808c8965222d4ba1b8d">    8</a></span>&#160;        <span class="keyword">private</span> readonly Type <a class="code" href="a00171.html#a71c4f4b000d08808c8965222d4ba1b8d">type</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>CsvHelper.Configuration</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="a00067.html">   15</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00067.html">CsvPropertyMapData</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="a00067.html#acb636e590836496473e867897ab79d97">   17</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00068.html">CsvPropertyNameCollection</a> names = <span class="keyword">new</span> <a class="code" href="a00068.html">CsvPropertyNameCollection</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00067.html#a6dfbe771775d4c0d785847b7f0d2299c">   18</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">int</span> index = -1;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="a00067.html#a77d34f2e73ad23e07eb38ee5ecceadf8">   19</a></span>&#160;        <span class="keyword">private</span> <span class="keywordtype">object</span> <a class="code" href="a00067.html#a77d34f2e73ad23e07eb38ee5ecceadf8">defaultValue</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00067.html#a0ca8b71605ad4490ea143c24c8adb1f8">   20</a></span>&#160;        <span class="keyword">private</span> readonly <a class="code" href="a00172.html">TypeConverterOptions</a> typeConverterOptions = <span class="keyword">new</span> <a class="code" href="a00172.html">TypeConverterOptions</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="a00067.html#ad8f34e4f5081de744efc703640e3b7d2">   26</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> PropertyInfo Property { <span class="keyword">get</span>; <span class="keyword">private</span> set; }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00068.html">CsvPropertyNameCollection</a> Names</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="a00067.html#ad37a07fbc2781cdb1dce5cb6fcf953d9">   32</a></span>&#160;        {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> names; }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="a00067.html#acf816322908241de17cad1d9a66add43">   41</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> NameIndex { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="a00067.html#a4edc08c491e692d4b187c4e436a0a216">   48</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsNameSet { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">int</span> Index</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="a00067.html#a14a0ca66dd60cf7685ac511906b04927">   54</a></span>&#160;        {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> index; }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            set { index = value; }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="a00067.html#a6af03961e4cab7536aca530902fe4e43">   64</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsIndexSet { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00067.html#a5d282b88e912b3909072dff40a205f8b">   69</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00117.html">ITypeConverter</a> TypeConverter { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="a00172.html">TypeConverterOptions</a> <a class="code" href="a00172.html">TypeConverterOptions</a></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="a00067.html#ad0d40cffbecb6c5e43d6aae27c97a214">   75</a></span>&#160;        {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> typeConverterOptions; }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="a00067.html#a98ca8f9b7cc478644de267d44c6647b7">   82</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> Ignore { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">object</span> Default</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00067.html#a3740c3b2f1e6e74349ac5fdf1ec0fce8">   88</a></span>&#160;        {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">get</span> { <span class="keywordflow">return</span> defaultValue; }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            set</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                defaultValue = value;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                IsDefaultSet = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="a00067.html#a3b9322c5f0b85df6a3d7662265c75151">  102</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsDefaultSet { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="a00067.html#a1ae48223a4f425b7b315c6ae3235b4c1">  108</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">virtual</span> Expression ConvertExpression { <span class="keyword">get</span>; set; }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="a00067.html#a1a1424683bea80f373e3ea80ae6e39c7">  114</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00067.html#a1a1424683bea80f373e3ea80ae6e39c7">CsvPropertyMapData</a>( PropertyInfo property )</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            Property = property;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif // !NET_2_0</span></div>
-<div class="ttc" id="a00068_html"><div class="ttname"><a href="a00068.html">CsvHelper.Configuration.CsvPropertyNameCollection</a></div><div class="ttdoc">A collection that holds property names. </div><div class="ttdef"><b>Definition:</b> <a href="a00223_source.html#l00014">CsvPropertyNameCollection.cs:14</a></div></div>
-<div class="ttc" id="a00067_html_a1a1424683bea80f373e3ea80ae6e39c7"><div class="ttname"><a href="a00067.html#a1a1424683bea80f373e3ea80ae6e39c7">CsvHelper.Configuration.CsvPropertyMapData.CsvPropertyMapData</a></div><div class="ttdeci">CsvPropertyMapData(PropertyInfo property)</div><div class="ttdoc">Initializes a new instance of the CsvPropertyMapData class. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00114">CsvPropertyMapData.cs:114</a></div></div>
-<div class="ttc" id="a00067_html"><div class="ttname"><a href="a00067.html">CsvHelper.Configuration.CsvPropertyMapData</a></div><div class="ttdoc">The configured data for the property map. </div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00015">CsvPropertyMapData.cs:15</a></div></div>
-<div class="ttc" id="a00067_html_a77d34f2e73ad23e07eb38ee5ecceadf8"><div class="ttname"><a href="a00067.html#a77d34f2e73ad23e07eb38ee5ecceadf8">CsvHelper.Configuration.CsvPropertyMapData.defaultValue</a></div><div class="ttdeci">object defaultValue</div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00019">CsvPropertyMapData.cs:19</a></div></div>
-<div class="ttc" id="a00117_html"><div class="ttname"><a href="a00117.html">CsvHelper.TypeConversion.ITypeConverter</a></div><div class="ttdoc">Converts objects to and from strings. </div><div class="ttdef"><b>Definition:</b> <a href="a00271_source.html#l00013">ITypeConverter.cs:13</a></div></div>
-<div class="ttc" id="a00172_html"><div class="ttname"><a href="a00172.html">CsvHelper.TypeConversion.TypeConverterOptions</a></div><div class="ttdoc">Options used when doing type conversion. </div><div class="ttdef"><b>Definition:</b> <a href="a00278_source.html#l00015">TypeConverterOptions.cs:15</a></div></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="a00171.html#a8bb78c2b0377f57dba1a3e2031216029">   10</a></span>&#160;        <span class="keyword">public</span> Type BaseType =&gt; type.BaseType;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="a00171.html#a6ae2d0f4c557010a075a6fecab18fbb5">   12</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsClass =&gt; type.IsClass;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="a00171.html#a6a532f6a581b3280d1837fc242f314af">   14</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsGenericType =&gt; type.IsGenericType;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="a00171.html#ab38ba26ebc21ec6fb908b74eede99a5c">   16</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsPrimitive =&gt; type.IsPrimitive;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00171.html#ae2255904b8743c47a185d62909404aed">   18</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> IsValueType =&gt; type.IsValueType;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="a00171.html#ae2bbf4462c274977b6df5c994808cc39">   20</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00171.html#ae2bbf4462c274977b6df5c994808cc39">TypeInfo</a>( Type type )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            this.type = type;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="a00171.html#a8c74647f572e998dd7e843a752d5234d">   25</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code" href="a00171.html#a8c74647f572e998dd7e843a752d5234d">IsAssignableFrom</a>( <a class="code" href="a00171.html">TypeInfo</a> typeInfo )</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">return</span> type.IsAssignableFrom( typeInfo.type );</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // !COREFX &amp;&amp; !NET_4_5</span></div>
+<div class="ttc" id="a00171_html_ae2bbf4462c274977b6df5c994808cc39"><div class="ttname"><a href="a00171.html#ae2bbf4462c274977b6df5c994808cc39">System.Reflection.TypeInfo.TypeInfo</a></div><div class="ttdeci">TypeInfo(Type type)</div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00020">TypeInfo.cs:20</a></div></div>
+<div class="ttc" id="a00171_html_a71c4f4b000d08808c8965222d4ba1b8d"><div class="ttname"><a href="a00171.html#a71c4f4b000d08808c8965222d4ba1b8d">System.Reflection.TypeInfo.type</a></div><div class="ttdeci">readonly Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00008">TypeInfo.cs:8</a></div></div>
+<div class="ttc" id="a00171_html_a8c74647f572e998dd7e843a752d5234d"><div class="ttname"><a href="a00171.html#a8c74647f572e998dd7e843a752d5234d">System.Reflection.TypeInfo.IsAssignableFrom</a></div><div class="ttdeci">bool IsAssignableFrom(TypeInfo typeInfo)</div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00025">TypeInfo.cs:25</a></div></div>
+<div class="ttc" id="a00171_html"><div class="ttname"><a href="a00171.html">System.Reflection.TypeInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00222_source.html#l00006">TypeInfo.cs:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_3401b88f0a1c00c4409faa11193eadf6.html">Configuration</a></li><li class="navelem"><a class="el" href="a00222.html">CsvPropertyMapData.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_71f81168fdb7d447b41a115f71f5eda9.html">CoreFxCompatibility</a></li><li class="navelem"><a class="el" href="a00222.html">TypeInfo.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

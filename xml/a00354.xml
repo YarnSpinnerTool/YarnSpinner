@@ -1,11 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00354" kind="namespace">
-    <compoundname>UnityEngine</compoundname>
+    <compoundname>YarnSpinner::Tests</compoundname>
+    <innerclass refid="a00084" prot="public">YarnSpinner::Tests::DialogueTests</innerclass>
+    <innerclass refid="a00116" prot="public">YarnSpinner::Tests::LanguageTests</innerclass>
+    <innerclass refid="a00144" prot="public">YarnSpinner::Tests::ProjectTests</innerclass>
+    <innerclass refid="a00160" prot="public">YarnSpinner::Tests::TestBase</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="27" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinnerTests/DialogueTests.cs" line="10" column="1"/>
   </compounddef>
 </doxygen>

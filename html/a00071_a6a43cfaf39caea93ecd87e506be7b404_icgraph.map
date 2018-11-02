@@ -1,5 +1,0 @@
-<map id="CsvHelper.CsvReader.GetField&lt; T &gt;" name="CsvHelper.CsvReader.GetField&lt; T &gt;">
-<area shape="rect" id="node2" href="$a00071.html#a8ebe0d6e7644eebbbbddef3c9d2922be" title="Gets the field converted to Type T at position (column) name. " alt="" coords="294,5,533,32"/>
-<area shape="rect" id="node3" href="$a00071.html#ac989008aec99a6462d9980a1d8a87072" title="Gets the field converted to Type T at position (column) index using the given ITypeConverter. " alt="" coords="310,57,517,98"/>
-<area shape="rect" id="node4" href="$a00071.html#aa8622306f74940386663fa4020eb8971" title="Gets the field converted to Type T at position (column) index using the specified ITypeConverter..." alt="" coords="314,122,513,163"/>
-</map>

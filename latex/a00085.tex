@@ -1,226 +1,178 @@
-\hypertarget{a00085}{\section{Yarn.\-Analysis.\-Diagnosis Class Reference}
-\label{a00085}\index{Yarn.\-Analysis.\-Diagnosis@{Yarn.\-Analysis.\-Diagnosis}}
+\hypertarget{a00085}{\section{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour Class Reference}
+\label{a00085}\index{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour@{Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour}}
 }
 
 
-Collaboration diagram for Yarn.\-Analysis.\-Diagnosis\-:
+Scripts that can act as the U\-I for the conversation should subclass this.  
+
+
+
+
+Inheritance diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{a00753}
+\includegraphics[width=350pt]{a00768}
 \end{center}
 \end{figure}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \{ \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Severity.\-Error}, 
-\hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Severity.\-Warning}, 
-\hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Severity.\-Note}
- \}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{a00769}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00085_ad3fd818f1be98dc803e5bec959153824}{Diagnosis} (string \hyperlink{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{message}, \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}, string \hyperlink{a00085_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}=null, int \hyperlink{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}=-\/1, int \hyperlink{a00085_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}=-\/1)
-\item 
-override string \hyperlink{a00085_a4475eb5890c340da5c0012e25c2c86ae}{To\-String} ()
-\item 
-string \hyperlink{a00085_a985dee7ca27aa896332590133606b6a9}{To\-String} (bool show\-Severity)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{message}
-\item 
-string \hyperlink{a00085_a662aca4ad2af5116c2cf6773daf1a847}{node\-Name}
-\item 
-int \hyperlink{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}{line\-Number}
-\item 
-int \hyperlink{a00085_a658e7fb05555c0f9ab5f80057bdc1408}{column\-Number}
-\item 
-\hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1c}{Severity} \hyperlink{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}
-\end{DoxyCompactItemize}
+virtual I\-Enumerator \hyperlink{a00085_af9d88ca81ac536d43046ca6572e3ff54}{Dialogue\-Started} ()
+\begin{DoxyCompactList}\small\item\em A conversation has started. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00085_a754c6dd0bc67895d11f878fe4477d698}{Run\-Line} (\hyperlink{a00041_a00359}{Yarn.\-Line} line)
+\begin{DoxyCompactList}\small\item\em Display a line. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00085_ac5b29079f638f2ceb078627ef1e60004}{Run\-Options} (\hyperlink{a00041_a00362}{Yarn.\-Options} options\-Collection, \hyperlink{a00041_a39866cbb03c03a35805d598b5d4ad553}{Yarn.\-Option\-Chooser} option\-Chooser)
+\begin{DoxyCompactList}\small\item\em Display the options, and call the option\-Chooser when done. \end{DoxyCompactList}\item 
+abstract I\-Enumerator \hyperlink{a00085_a3dffe84b9e7a10fdec6749baf697d111}{Run\-Command} (\hyperlink{a00041_a00355}{Yarn.\-Command} command)
+\begin{DoxyCompactList}\small\item\em Perform some game-\/specific command. \end{DoxyCompactList}\item 
+virtual I\-Enumerator \hyperlink{a00085_a2900548a0704d39d4502a153945f4bef}{Node\-Complete} (string next\-Node)
+\begin{DoxyCompactList}\small\item\em The node has ended. \end{DoxyCompactList}\item 
+virtual I\-Enumerator \hyperlink{a00085_aecc60aee9e9386da1f71fb183f43c52d}{Dialogue\-Complete} ()
+\begin{DoxyCompactList}\small\item\em The conversation has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Scripts that can act as the U\-I for the conversation should subclass this. 
 
+Definition at line 429 of file Dialogue\-Runner.\-cs.
 
-Definition at line 6 of file Analyser.\-cs.
-
-
-
-\subsection{Member Enumeration Documentation}
-\hypertarget{a00085_a227813cbc8fa03c3448a612ffc909d1c}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Severity@{Severity}}
-\index{Severity@{Severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Severity}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Analysis.\-Diagnosis.\-Severity}}}\label{a00085_a227813cbc8fa03c3448a612ffc909d1c}
-\begin{Desc}
-\item[Enumerator]\par
-\begin{description}
-\index{Error@{Error}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Error@{Error}}\item[{\em 
-\hypertarget{a00085_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error}\label{a00085_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}
-}]\index{Warning@{Warning}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Warning@{Warning}}\item[{\em 
-\hypertarget{a00085_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}\label{a00085_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}
-}]\index{Note@{Note}!Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Note@{Note}}\item[{\em 
-\hypertarget{a00085_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}\label{a00085_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}
-}]\end{description}
-\end{Desc}
-
-
-Definition at line 13 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-13                              \{
-14             \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd}{Error},
-15             \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning},
-16             \hyperlink{a00085_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec}{Note}
-17         \}
-\end{DoxyCode}
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00085_ad3fd818f1be98dc803e5bec959153824}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!Diagnosis@{Diagnosis}}
-\index{Diagnosis@{Diagnosis}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{Diagnosis}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Analysis.\-Diagnosis.\-Diagnosis (
-\begin{DoxyParamCaption}
-\item[{string}]{message, }
-\item[{{\bf Severity}}]{severity, }
-\item[{string}]{node\-Name = {\ttfamily null}, }
-\item[{int}]{line\-Number = {\ttfamily -\/1}, }
-\item[{int}]{column\-Number = {\ttfamily -\/1}}
-\end{DoxyParamCaption}
-)}}\label{a00085_ad3fd818f1be98dc803e5bec959153824}
-
-
-Definition at line 20 of file Analyser.\-cs.
-
-
-\begin{DoxyCode}
-21         \{
-22             this.message = \hyperlink{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-23             this.nodeName = \hyperlink{a00085_a662aca4ad2af5116c2cf6773daf1a847}{nodeName};
-24             this.lineNumber = \hyperlink{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber};
-25             this.columnNumber = \hyperlink{a00085_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber};
-26             this.severity = \hyperlink{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}{severity};
-27         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00085_a4475eb5890c340da5c0012e25c2c86ae}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+\hypertarget{a00085_aecc60aee9e9386da1f71fb183f43c52d}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Complete@{Dialogue\-Complete}}
+\index{Dialogue\-Complete@{Dialogue\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Complete (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{a00085_a4475eb5890c340da5c0012e25c2c86ae}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_aecc60aee9e9386da1f71fb183f43c52d}
 
 
-Definition at line 29 of file Analyser.\-cs.
+The conversation has ended. 
+
+
+
+Reimplemented in \hyperlink{a00091_a1f2a08baacc25aea09af8e60eb5d3eb1}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+
+
+Definition at line 454 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-30         \{
-31             \textcolor{keywordflow}{return} \hyperlink{a00085_a4475eb5890c340da5c0012e25c2c86ae}{ToString} (showSeverity: \textcolor{keyword}{false});
-32         \}
+454                                                        \{
+455             \textcolor{comment}{// Default implementation does nothing.}
+456             yield \textcolor{keywordflow}{break};
+457         \}
 \end{DoxyCode}
-\hypertarget{a00085_a985dee7ca27aa896332590133606b6a9}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!To\-String@{To\-String}}
-\index{To\-String@{To\-String}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-To\-String (
+\hypertarget{a00085_af9d88ca81ac536d43046ca6572e3ff54}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Dialogue\-Started@{Dialogue\-Started}}
+\index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Dialogue\-Started}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Dialogue\-Started (
 \begin{DoxyParamCaption}
-\item[{bool}]{show\-Severity}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00085_a985dee7ca27aa896332590133606b6a9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_af9d88ca81ac536d43046ca6572e3ff54}
 
 
-Definition at line 34 of file Analyser.\-cs.
+A conversation has started. 
+
+
+
+Reimplemented in \hyperlink{a00091_a313283f6c53354b54f25898eb436eba0}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+
+
+Definition at line 432 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-35         \{
-36 
-37             \textcolor{keywordtype}{string} contextLabel = \textcolor{stringliteral}{""};
-38 
-39             \textcolor{keywordflow}{if} (showSeverity) \{
-40                 \textcolor{keywordflow}{switch} (\hyperlink{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}{severity}) \{
-41                 \textcolor{keywordflow}{case} Severity.Error:
-42                     contextLabel = \textcolor{stringliteral}{"ERROR: "};
-43                     \textcolor{keywordflow}{break};
-44                 \textcolor{keywordflow}{case} Severity.Warning:
-45                     contextLabel = \textcolor{stringliteral}{"WARNING: "};
-46                     \textcolor{keywordflow}{break};
-47                 \textcolor{keywordflow}{case} Severity.Note:
-48                     contextLabel = \textcolor{stringliteral}{"Note: "};
-49                     \textcolor{keywordflow}{break};
-50                 \textcolor{keywordflow}{default}:
-51                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-52                 \}
-53             \}
-54 
-55             \textcolor{keywordflow}{if} (this.\hyperlink{a00085_a662aca4ad2af5116c2cf6773daf1a847}{nodeName} != null) \{
-56 
-57                 contextLabel += this.nodeName;
-58                 \textcolor{keywordflow}{if} (this.\hyperlink{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}{lineNumber} != -1) \{
-59                     contextLabel += string.Format (\textcolor{stringliteral}{": \{0\}"}, this.lineNumber);
-60 
-61                     \textcolor{keywordflow}{if} (this.\hyperlink{a00085_a658e7fb05555c0f9ab5f80057bdc1408}{columnNumber} != -1) \{
-62                         contextLabel += string.Format (\textcolor{stringliteral}{":\{0\}"}, this.columnNumber);
-63                     \}
-64                 \}
-65             \}
-66 
-67             \textcolor{keywordtype}{string} \hyperlink{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-68 
-69             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty(contextLabel)) \{
-70                 message = this.message;
-71             \} \textcolor{keywordflow}{else} \{
-72                 message = string.Format (\textcolor{stringliteral}{"\{0\}: \{1\}"}, contextLabel, this.message);
-73             \}
-74 
-75             \textcolor{keywordflow}{return} \hyperlink{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{message};
-76         \}
+432                                                      \{
+433             \textcolor{comment}{// Default implementation does nothing.}
+434             yield \textcolor{keywordflow}{break};
+435         \}
 \end{DoxyCode}
+\hypertarget{a00085_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Node\-Complete@{Node\-Complete}}
+\index{Node\-Complete@{Node\-Complete}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Node\-Complete}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Node\-Complete (
+\begin{DoxyParamCaption}
+\item[{string}]{next\-Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00085_a2900548a0704d39d4502a153945f4bef}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00085_a658e7fb05555c0f9ab5f80057bdc1408}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!column\-Number@{column\-Number}}
-\index{column\-Number@{column\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{column\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-column\-Number}}\label{a00085_a658e7fb05555c0f9ab5f80057bdc1408}
+The node has ended. 
 
 
-Definition at line 11 of file Analyser.\-cs.
 
-\hypertarget{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!line\-Number@{line\-Number}}
-\index{line\-Number@{line\-Number}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Analysis.\-Diagnosis.\-line\-Number}}\label{a00085_a0bd73f1c684bfd66ae7b6bef8f2972d0}
+Definition at line 448 of file Dialogue\-Runner.\-cs.
 
 
-Definition at line 10 of file Analyser.\-cs.
-
-\hypertarget{a00085_ac7ed070dddd2613c08e7874ea5afb3af}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!message@{message}}
-\index{message@{message}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{message}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-message}}\label{a00085_ac7ed070dddd2613c08e7874ea5afb3af}
-
-
-Definition at line 8 of file Analyser.\-cs.
-
-\hypertarget{a00085_a662aca4ad2af5116c2cf6773daf1a847}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!node\-Name@{node\-Name}}
-\index{node\-Name@{node\-Name}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Analysis.\-Diagnosis.\-node\-Name}}\label{a00085_a662aca4ad2af5116c2cf6773daf1a847}
-
-
-Definition at line 9 of file Analyser.\-cs.
-
-\hypertarget{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}{\index{Yarn\-::\-Analysis\-::\-Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}!severity@{severity}}
-\index{severity@{severity}!Yarn::Analysis::Diagnosis@{Yarn\-::\-Analysis\-::\-Diagnosis}}
-\subsubsection[{severity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Severity} Yarn.\-Analysis.\-Diagnosis.\-severity}}\label{a00085_ad90ffa839ce0f568a099bb37b4a6c4da}
+\begin{DoxyCode}
+448                                                                  \{
+449             \textcolor{comment}{// Default implementation does nothing.}
+450             yield \textcolor{keywordflow}{break};
+451         \}
+\end{DoxyCode}
+\hypertarget{a00085_a3dffe84b9e7a10fdec6749baf697d111}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Command@{Run\-Command}}
+\index{Run\-Command@{Run\-Command}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Command}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Command}}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_a3dffe84b9e7a10fdec6749baf697d111}
 
 
-Definition at line 18 of file Analyser.\-cs.
+Perform some game-\/specific command. 
+
+
+
+Implemented in \hyperlink{a00091_a7f84b1e7d3c9c1f7507d143e11ba8075}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00085_a754c6dd0bc67895d11f878fe4477d698}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Line@{Run\-Line}}
+\index{Run\-Line@{Run\-Line}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Line}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Line (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Line}}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_a754c6dd0bc67895d11f878fe4477d698}
+
+
+Display a line. 
+
+
+
+Implemented in \hyperlink{a00091_a109aeedc5206dcbc4f629638b7830030}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
+
+\hypertarget{a00085_ac5b29079f638f2ceb078627ef1e60004}{\index{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}!Run\-Options@{Run\-Options}}
+\index{Run\-Options@{Run\-Options}!Yarn::Unity::DialogueUIBehaviour@{Yarn\-::\-Unity\-::\-Dialogue\-U\-I\-Behaviour}}
+\subsubsection[{Run\-Options}]{\setlength{\rightskip}{0pt plus 5cm}abstract I\-Enumerator Yarn.\-Unity.\-Dialogue\-U\-I\-Behaviour.\-Run\-Options (
+\begin{DoxyParamCaption}
+\item[{{\bf Yarn.\-Options}}]{options\-Collection, }
+\item[{{\bf Yarn.\-Option\-Chooser}}]{option\-Chooser}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00085_ac5b29079f638f2ceb078627ef1e60004}
+
+
+Display the options, and call the option\-Chooser when done. 
+
+
+
+Implemented in \hyperlink{a00091_aaa93672700a456e66c694636460a58f4}{Yarn.\-Unity.\-Example.\-Example\-Dialogue\-U\-I}.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00293}{Analyser.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\hyperlink{a00277}{Dialogue\-Runner.\-cs}\end{DoxyCompactItemize}

@@ -2,8 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_71f81168fdb7d447b41a115f71f5eda9" kind="dir">
     <compoundname>packages/CsvHelper.2.16.0.0/src/CsvHelper/CoreFxCompatibility</compoundname>
-    <innerfile refid="a00227">TypeExtensions.cs</innerfile>
-    <innerfile refid="a00228">TypeInfo.cs</innerfile>
+    <innerfile refid="a00221">TypeExtensions.cs</innerfile>
+    <innerfile refid="a00222">TypeInfo.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

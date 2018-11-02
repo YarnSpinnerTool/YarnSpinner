@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.CsvSerializer Class Reference</title>
+<title>YarnSpinner: Yarn.Parser.CustomCommand Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,124 +108,138 @@ $(document).ready(function(){initNavTree('a00073.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pac-types">Package Types</a> &#124;
+<a href="#pac-methods">Package Functions</a> &#124;
+<a href="#pac-static-methods">Static Package Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="a00430.html">List of all members</a>  </div>
+<a href="a00656.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.CsvSerializer Class Reference</div>  </div>
+<div class="title">Yarn.Parser.CustomCommand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Defines methods used to serialize data into a CSV file.  
- <a href="a00073.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.CsvSerializer:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Parser.CustomCommand:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00431.png" border="0" usemap="#_csv_helper_8_csv_serializer_inherit__map" alt="Inheritance graph"/></div>
-<map name="_csv_helper_8_csv_serializer_inherit__map" id="_csv_helper_8_csv_serializer_inherit__map">
-<area shape="rect" id="node2" href="a00110.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="33,131,143,208"/></map>
+<div class="center"><img src="a00657.png" border="0" usemap="#_yarn_8_parser_8_custom_command_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_parser_8_custom_command_inherit__map" id="_yarn_8_parser_8_custom_command_inherit__map">
+<area shape="rect" id="node2" href="a00138.html" title="{ParseNode\n|~ parent\l~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="45,5,165,171"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.CsvSerializer:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Parser.CustomCommand:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00432.png" border="0" usemap="#_csv_helper_8_csv_serializer_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_csv_serializer_coll__map" id="_csv_helper_8_csv_serializer_coll__map">
-<area shape="rect" id="node2" href="a00110.html" title="Defines methods used to serialize data into a CSV file. " alt="" coords="5,469,115,547"/><area shape="rect" id="node4" href="a00057.html" title="Configuration used for reading and writing CSV data. " alt="" coords="139,235,345,781"/><area shape="rect" id="node5" href="a00056.html" title="Collection that holds CsvClassMaps for record types. " alt="" coords="135,5,351,171"/></map>
+<div class="center"><img src="a00658.png" border="0" usemap="#_yarn_8_parser_8_custom_command_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_parser_8_custom_command_coll__map" id="_yarn_8_parser_8_custom_command_coll__map">
+<area shape="rect" id="node2" href="a00138.html" title="{ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="45,222,165,373"/><area shape="rect" id="node3" href="a00138.html" title="{Yarn.Parser.ParseNode\n|~ lineNumber\l~ tags\l|+ TagsToString()\l+ ToString()\l~ ParseNode()\l~ PrintTree()\l~ NodeParent()\l}" alt="" coords="25,6,184,157"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a74ea10f7aaea0a478087d8ff6182f38c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a74ea10f7aaea0a478087d8ff6182f38c">CsvSerializer</a> (TextWriter <a class="el" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>)</td></tr>
-<tr class="memdesc:a74ea10f7aaea0a478087d8ff6182f38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new serializer using the given TextWriter.  <a href="#a74ea10f7aaea0a478087d8ff6182f38c">More...</a><br/></td></tr>
-<tr class="separator:a74ea10f7aaea0a478087d8ff6182f38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#ab14fe4a4f630ce97d57c27e2ee050fac">CsvSerializer</a> (TextWriter <a class="el" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>, <a class="el" href="a00057.html">CsvConfiguration</a> <a class="el" href="a00073.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>)</td></tr>
-<tr class="memdesc:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new serializer using the given TextWriter and CsvConfiguration.  <a href="#ab14fe4a4f630ce97d57c27e2ee050fac">More...</a><br/></td></tr>
-<tr class="separator:ab14fe4a4f630ce97d57c27e2ee050fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefad906acd048863d3dd414651a44793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#aefad906acd048863d3dd414651a44793">Write</a> (string[] record)</td></tr>
-<tr class="memdesc:aefad906acd048863d3dd414651a44793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a record to the CSV file.  <a href="#aefad906acd048863d3dd414651a44793">More...</a><br/></td></tr>
-<tr class="separator:aefad906acd048863d3dd414651a44793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0e8b3508b377a7f978da2394b09e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a> ()</td></tr>
-<tr class="memdesc:a9d0e8b3508b377a7f978da2394b09e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.  <a href="#a9d0e8b3508b377a7f978da2394b09e36">More...</a><br/></td></tr>
-<tr class="separator:a9d0e8b3508b377a7f978da2394b09e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a054f36c80d5eeacd569a8859f599af67"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a054f36c80d5eeacd569a8859f599af67">TagsToString</a> (int indentLevel)</td></tr>
+<tr class="separator:a054f36c80d5eeacd569a8859f599af67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a18c67cb16090d0889bb9d6c8c6c565f8">ToString</a> ()</td></tr>
+<tr class="separator:a18c67cb16090d0889bb9d6c8c6c565f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0be3b74ca7606e27fd16441ecc988f0b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a0be3b74ca7606e27fd16441ecc988f0b">Dispose</a> (bool disposing)</td></tr>
-<tr class="memdesc:a0be3b74ca7606e27fd16441ecc988f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.  <a href="#a0be3b74ca7606e27fd16441ecc988f0b">More...</a><br/></td></tr>
-<tr class="separator:a0be3b74ca7606e27fd16441ecc988f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14e1913a4e76faf97484c1bde339143"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a> ()</td></tr>
-<tr class="memdesc:ae14e1913a4e76faf97484c1bde339143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the instance has been disposed of.  <a href="#ae14e1913a4e76faf97484c1bde339143">More...</a><br/></td></tr>
-<tr class="separator:ae14e1913a4e76faf97484c1bde339143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-types"></a>
+Package Types</h2></td></tr>
+<tr class="memitem:a1d9f9f57c44e1a0d228793b658339576"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576">Type</a> { <a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043">Type.Expression</a>, 
+<a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586">Type.ClientCommand</a>
+ }</td></tr>
+<tr class="separator:a1d9f9f57c44e1a0d228793b658339576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:a49150c9046dcad61d61ce35c51816313"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a49150c9046dcad61d61ce35c51816313">CustomCommand</a> (<a class="el" href="a00138.html">ParseNode</a> <a class="el" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, <a class="el" href="a00139.html">Parser</a> p)</td></tr>
+<tr class="separator:a49150c9046dcad61d61ce35c51816313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c821f5f5671cdbac6e4a6fc0b9174b"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#ad8c821f5f5671cdbac6e4a6fc0b9174b">PrintTree</a> (int indentLevel)</td></tr>
+<tr class="separator:ad8c821f5f5671cdbac6e4a6fc0b9174b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580e520a29444fc23ac3660cbe514a09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00128.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a580e520a29444fc23ac3660cbe514a09">NodeParent</a> ()</td></tr>
+<tr class="separator:a580e520a29444fc23ac3660cbe514a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-static-methods"></a>
+Static Package Functions</h2></td></tr>
+<tr class="memitem:a02ee2902115c823bdb46715041b3a2f6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a02ee2902115c823bdb46715041b3a2f6">CanParse</a> (<a class="el" href="a00139.html">Parser</a> p)</td></tr>
+<tr class="separator:a02ee2902115c823bdb46715041b3a2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:a5ef3bc96812be224d91548bfcdfd4b92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">type</a></td></tr>
+<tr class="separator:a5ef3bc96812be224d91548bfcdfd4b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00138.html">ParseNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a></td></tr>
+<tr class="separator:af313a82103fcc2ff5a177dbb06b92f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18b493382de0fde5b4299c1bd2250075"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a18b493382de0fde5b4299c1bd2250075">lineNumber</a></td></tr>
+<tr class="separator:a18b493382de0fde5b4299c1bd2250075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a> = {}</td></tr>
+<tr class="separator:a58b3a15788fd2d4127d73619dc6d04ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a2ae1b1a629b707fbfb7d636989442f34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00057.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a2ae1b1a629b707fbfb7d636989442f34">Configuration</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2ae1b1a629b707fbfb7d636989442f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the configuration.  <a href="#a2ae1b1a629b707fbfb7d636989442f34">More...</a><br/></td></tr>
-<tr class="separator:a2ae1b1a629b707fbfb7d636989442f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a2687885dae7f7b0eec3c2db81c05f7e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a></td></tr>
-<tr class="separator:a2687885dae7f7b0eec3c2db81c05f7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8c56ff97c0a797245f2205c486833ea"><td class="memItemLeft" align="right" valign="top">readonly <a class="el" href="a00057.html">CsvConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a></td></tr>
-<tr class="separator:ae8c56ff97c0a797245f2205c486833ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfb235fa2c868fc79c0376fd12fda767"><td class="memItemLeft" align="right" valign="top">TextWriter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a></td></tr>
-<tr class="separator:adfb235fa2c868fc79c0376fd12fda767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4250d192d5b58e2404a14c68eb616f16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00094.html">Expression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a4250d192d5b58e2404a14c68eb616f16">expression</a><code> [get, set]</code></td></tr>
+<tr class="separator:a4250d192d5b58e2404a14c68eb616f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a362244273df822233359d8fe4e9f5d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00073.html#a1a362244273df822233359d8fe4e9f5d">clientCommand</a><code> [get, set]</code></td></tr>
+<tr class="separator:a1a362244273df822233359d8fe4e9f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines methods used to serialize data into a CSV file. </p>
-
-<p>Definition at line <a class="el" href="a00237_source.html#l00014">14</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a74ea10f7aaea0a478087d8ff6182f38c"></a>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00295_source.html#l00265">265</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a1d9f9f57c44e1a0d228793b658339576"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">CsvHelper.CsvSerializer.CsvSerializer </td>
-          <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em></td><td>)</td>
-          <td></td>
+          <td class="memname">enum <a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576">Yarn.Parser.CustomCommand.Type</a></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043"></a>Expression</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586"></a>ClientCommand</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
 
-<p>Creates a new serializer using the given TextWriter. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">writer</td><td>The TextWriter to write the CSV file data to.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00237_source.html#l00032">32</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;: <span class="keyword">this</span>( <a class="code" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>, <span class="keyword">new</span> <a class="code" href="a00057.html">CsvConfiguration</a>() ) {}</div>
-<div class="ttc" id="a00073_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00018">CsvSerializer.cs:18</a></div></div>
-<div class="ttc" id="a00057_html"><div class="ttname"><a href="a00057.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00217_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<p>Definition at line <a class="el" href="a00295_source.html#l00267">267</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                               {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <a class="code" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043">Expression</a>,</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                <a class="code" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586">ClientCommand</a></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            }</div>
+<div class="ttc" id="a00073_html_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586"><div class="ttname"><a href="a00073.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586">Yarn.Parser.CustomCommand.ClientCommand</a></div></div>
+<div class="ttc" id="a00073_html_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043"><div class="ttname"><a href="a00073.html#a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043">Yarn.Parser.CustomCommand.Expression</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ab14fe4a4f630ce97d57c27e2ee050fac"></a>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a49150c9046dcad61d61ce35c51816313"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">CsvHelper.CsvSerializer.CsvSerializer </td>
+          <td class="memname">Yarn.Parser.CustomCommand.CustomCommand </td>
           <td>(</td>
-          <td class="paramtype">TextWriter&#160;</td>
-          <td class="paramname"><em>writer</em>, </td>
+          <td class="paramtype"><a class="el" href="a00138.html">ParseNode</a>&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="a00057.html">CsvConfiguration</a>&#160;</td>
-          <td class="paramname"><em>configuration</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00139.html">Parser</a>&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -233,121 +247,67 @@ Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-<p>Creates a new serializer using the given TextWriter and CsvConfiguration. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">writer</td><td>The TextWriter to write the CSV file data to.</td></tr>
-    <tr><td class="paramname">configuration</td><td>The configuration.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00237_source.html#l00040">40</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-
-<p>References <a class="el" href="a00237_source.html#l00017">CsvHelper.CsvSerializer.configuration</a>, and <a class="el" href="a00237_source.html#l00018">CsvHelper.CsvSerializer.writer</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> == null )</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;writer&quot;</span> );</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span>( configuration == null )</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;configuration&quot;</span> );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            this.writer = <a class="code" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            this.configuration = <a class="code" href="a00073.html#ae8c56ff97c0a797245f2205c486833ea">configuration</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="ttc" id="a00073_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00018">CsvSerializer.cs:18</a></div></div>
-<div class="ttc" id="a00073_html_ae8c56ff97c0a797245f2205c486833ea"><div class="ttname"><a href="a00073.html#ae8c56ff97c0a797245f2205c486833ea">CsvHelper.CsvSerializer.configuration</a></div><div class="ttdeci">readonly CsvConfiguration configuration</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00017">CsvSerializer.cs:17</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae14e1913a4e76faf97484c1bde339143"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void CsvHelper.CsvSerializer.CheckDisposed </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if the instance has been disposed of. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">ObjectDisposedException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Definition at line <a class="el" href="a00295_source.html#l00283">283</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00105">105</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-
-<p>References <a class="el" href="a00237_source.html#l00016">CsvHelper.CsvSerializer.disposed</a>.</p>
-
-<p>Referenced by <a class="el" href="a00237_source.html#l00060">CsvHelper.CsvSerializer.Write()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ObjectDisposedException( GetType().ToString() );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="ttc" id="a00073_html_a2687885dae7f7b0eec3c2db81c05f7e4"><div class="ttname"><a href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">CsvHelper.CsvSerializer.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00016">CsvSerializer.cs:16</a></div></div>
+<p>References <a class="el" href="a00295_source.html#l00274">Yarn.Parser.CustomCommand.expression</a>, <a class="el" href="a00295_source.html#l01259">Yarn.Parser.library</a>, <a class="el" href="a00295_source.html#l01276">Yarn.Parser.NextSymbolIs()</a>, <a class="el" href="a00295_source.html#l01264">Yarn.Parser.Parser()</a>, and <a class="el" href="a00295_source.html#l00272">Yarn.Parser.CustomCommand.type</a>.</p>
+<div class="fragment"><div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                                                               : base(<a class="code" href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">parent</a>, p) {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                p.ExpectSymbol(TokenType.BeginCommand);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                <span class="comment">// Custom commands can have ANY token in them. Read them all until we hit the</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                <span class="comment">// end command token.</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                var commandTokens = <span class="keyword">new</span> List&lt;Token&gt;();</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                    commandTokens.Add(p.ExpectSymbol());</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                } <span class="keywordflow">while</span> (p.NextSymbolIs(<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.EndCommand) == <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                p.ExpectSymbol(TokenType.EndCommand);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                <span class="comment">// If the first token is an identifier and the second is</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="comment">// a left paren, it may be a function call expression;</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                <span class="comment">// evaluate it as such</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                <span class="keywordflow">if</span> (commandTokens.Count &gt; 1 &amp;&amp;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                    commandTokens[0].type == <a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Identifier &amp;&amp;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                    commandTokens[1].type == <a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.LeftParen) {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                    var parser = <span class="keyword">new</span> <a class="code" href="a00139.html#acd2714b911fb5e7c38f0e07a9dc1af58">Parser</a>(commandTokens, p.library);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                    var <a class="code" href="a00073.html#a4250d192d5b58e2404a14c68eb616f16">expression</a> = Expression.Parse(<span class="keyword">this</span>, parser);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                    <a class="code" href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">type</a> = Type.Expression;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    this.expression = <a class="code" href="a00073.html#a4250d192d5b58e2404a14c68eb616f16">expression</a>;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    <span class="comment">// Otherwise, evaluate it as a command</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                    <a class="code" href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">type</a> = Type.ClientCommand;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                    this.clientCommand = commandTokens[0].value;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                }</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            }</div>
+<div class="ttc" id="a00073_html_a5ef3bc96812be224d91548bfcdfd4b92"><div class="ttname"><a href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">Yarn.Parser.CustomCommand.type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00272">Parser.cs:272</a></div></div>
+<div class="ttc" id="a00138_html_af313a82103fcc2ff5a177dbb06b92f7b"><div class="ttname"><a href="a00138.html#af313a82103fcc2ff5a177dbb06b92f7b">Yarn.Parser.ParseNode.parent</a></div><div class="ttdeci">ParseNode parent</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00058">Parser.cs:58</a></div></div>
+<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeace"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">Yarn.TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00079">Lexer.cs:79</a></div></div>
+<div class="ttc" id="a00139_html_acd2714b911fb5e7c38f0e07a9dc1af58"><div class="ttname"><a href="a00139.html#acd2714b911fb5e7c38f0e07a9dc1af58">Yarn.Parser.Parser</a></div><div class="ttdeci">Parser(ICollection&lt; Token &gt; tokens, Library library)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l01264">Parser.cs:1264</a></div></div>
+<div class="ttc" id="a00073_html_a4250d192d5b58e2404a14c68eb616f16"><div class="ttname"><a href="a00073.html#a4250d192d5b58e2404a14c68eb616f16">Yarn.Parser.CustomCommand.expression</a></div><div class="ttdeci">Expression expression</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00274">Parser.cs:274</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00073_ae14e1913a4e76faf97484c1bde339143_icgraph.png" border="0" usemap="#a00073_ae14e1913a4e76faf97484c1bde339143_icgraph" alt=""/></div>
-<map name="a00073_ae14e1913a4e76faf97484c1bde339143_icgraph" id="a00073_ae14e1913a4e76faf97484c1bde339143_icgraph">
-<area shape="rect" id="node2" href="a00073.html#aefad906acd048863d3dd414651a44793" title="Writes a record to the CSV file. " alt="" coords="224,5,395,46"/></map>
+<div class="center"><img src="a00073_a49150c9046dcad61d61ce35c51816313_cgraph.png" border="0" usemap="#a00073_a49150c9046dcad61d61ce35c51816313_cgraph" alt=""/></div>
+<map name="a00073_a49150c9046dcad61d61ce35c51816313_cgraph" id="a00073_a49150c9046dcad61d61ce35c51816313_cgraph">
+<area shape="rect" id="node2" href="a00139.html#a666a945da1a7845b02b92592fccac291" title="Yarn.Parser.NextSymbolIs" alt="" coords="259,5,437,32"/><area shape="rect" id="node3" href="a00139.html#acd2714b911fb5e7c38f0e07a9dc1af58" title="Yarn.Parser.Parser" alt="" coords="281,56,415,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a9d0e8b3508b377a7f978da2394b09e36"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.CsvSerializer.Dispose </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </p>
-<p>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </p>
-
-<p>Definition at line <a class="el" href="a00237_source.html#l00072">72</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="a00073.html#a9d0e8b3508b377a7f978da2394b09e36">Dispose</a>( <span class="keyword">true</span> );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            GC.SuppressFinalize( this );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="ttc" id="a00073_html_a9d0e8b3508b377a7f978da2394b09e36"><div class="ttname"><a href="a00073.html#a9d0e8b3508b377a7f978da2394b09e36">CsvHelper.CsvSerializer.Dispose</a></div><div class="ttdeci">void Dispose()</div><div class="ttdoc">Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resourc...</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00072">CsvSerializer.cs:72</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a0be3b74ca7606e27fd16441ecc988f0b"></a>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a02ee2902115c823bdb46715041b3a2f6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -355,103 +315,258 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void CsvHelper.CsvSerializer.Dispose </td>
+          <td class="memname">static bool Yarn.Parser.CustomCommand.CanParse </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>disposing</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00139.html">Parser</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">disposing</td><td>True if the instance needs to be disposed of.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Definition at line <a class="el" href="a00295_source.html#l00277">277</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00082">82</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
+<p>References <a class="el" href="a00295_source.html#l01290">Yarn.Parser.NextSymbolsAre()</a>.</p>
 
-<p>References <a class="el" href="a00237_source.html#l00016">CsvHelper.CsvSerializer.disposed</a>, and <a class="el" href="a00237_source.html#l00018">CsvHelper.CsvSerializer.writer</a>.</p>
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span>( <a class="code" href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> )</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span>( disposing )</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">if</span>( <a class="code" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> != null )</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    writer.Dispose();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">disposed</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <a class="code" href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">writer</a> = null;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
-<div class="ttc" id="a00073_html_adfb235fa2c868fc79c0376fd12fda767"><div class="ttname"><a href="a00073.html#adfb235fa2c868fc79c0376fd12fda767">CsvHelper.CsvSerializer.writer</a></div><div class="ttdeci">TextWriter writer</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00018">CsvSerializer.cs:18</a></div></div>
-<div class="ttc" id="a00073_html_a2687885dae7f7b0eec3c2db81c05f7e4"><div class="ttname"><a href="a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4">CsvHelper.CsvSerializer.disposed</a></div><div class="ttdeci">bool disposed</div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00016">CsvSerializer.cs:16</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aefad906acd048863d3dd414651a44793"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CsvHelper.CsvSerializer.Write </td>
-          <td>(</td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>record</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes a record to the CSV file. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">record</td><td>The record to write.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="a00110.html#a0b442858eef85b7d933662359646fd0b">CsvHelper.ICsvSerializer</a>.</p>
-
-<p>Definition at line <a class="el" href="a00237_source.html#l00060">60</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
-
-<p>References <a class="el" href="a00237_source.html#l00105">CsvHelper.CsvSerializer.CheckDisposed()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="a00073.html#ae14e1913a4e76faf97484c1bde339143">CheckDisposed</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            var recordString = string.Join( configuration.Delimiter, record );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            writer.WriteLine( recordString );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
-<div class="ttc" id="a00073_html_ae14e1913a4e76faf97484c1bde339143"><div class="ttname"><a href="a00073.html#ae14e1913a4e76faf97484c1bde339143">CsvHelper.CsvSerializer.CheckDisposed</a></div><div class="ttdeci">virtual void CheckDisposed()</div><div class="ttdoc">Checks if the instance has been disposed of. </div><div class="ttdef"><b>Definition:</b> <a href="a00237_source.html#l00105">CsvSerializer.cs:105</a></div></div>
+<p>Referenced by <a class="el" href="a00295_source.html#l00186">Yarn.Parser.Statement.Statement()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            {</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                <span class="keywordflow">return</span> p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    p.NextSymbolsAre (<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.BeginCommand, <a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">TokenType</a>.Identifier);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            }</div>
+<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeace"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeace">Yarn.TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00079">Lexer.cs:79</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00073_aefad906acd048863d3dd414651a44793_cgraph.png" border="0" usemap="#a00073_aefad906acd048863d3dd414651a44793_cgraph" alt=""/></div>
-<map name="a00073_aefad906acd048863d3dd414651a44793_cgraph" id="a00073_aefad906acd048863d3dd414651a44793_cgraph">
-<area shape="rect" id="node2" href="a00073.html#ae14e1913a4e76faf97484c1bde339143" title="Checks if the instance has been disposed of. " alt="" coords="224,5,395,46"/></map>
+<div class="center"><img src="a00073_a02ee2902115c823bdb46715041b3a2f6_cgraph.png" border="0" usemap="#a00073_a02ee2902115c823bdb46715041b3a2f6_cgraph" alt=""/></div>
+<map name="a00073_a02ee2902115c823bdb46715041b3a2f6_cgraph" id="a00073_a02ee2902115c823bdb46715041b3a2f6_cgraph">
+<area shape="rect" id="node2" href="a00139.html#afaa7e96d4cdaf6b1fde9ecd273c00c34" title="Yarn.Parser.NextSymbolsAre" alt="" coords="259,12,453,39"/></map>
+</div>
+</p>
+
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00073_a02ee2902115c823bdb46715041b3a2f6_icgraph.png" border="0" usemap="#a00073_a02ee2902115c823bdb46715041b3a2f6_icgraph" alt=""/></div>
+<map name="a00073_a02ee2902115c823bdb46715041b3a2f6_icgraph" id="a00073_a02ee2902115c823bdb46715041b3a2f6_icgraph">
+<area shape="rect" id="node2" href="a00156.html#acba736ffbcc0f8bf5cee2b23f7733dff" title="Yarn.Parser.Statement.Statement" alt="" coords="259,12,477,39"/></map>
 </div>
 </p>
 
 </div>
 </div>
+<a class="anchor" id="a580e520a29444fc23ac3660cbe514a09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00128.html">Node</a> Yarn.Parser.ParseNode.NodeParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00100">100</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00295_source.html#l00373">Yarn.Parser.ShortcutOption.ShortcutOption()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                                       {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                var node = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    <span class="keywordflow">if</span> (node is Node) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        <span class="keywordflow">return</span> node as Node;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    node = node.parent;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                } <span class="keywordflow">while</span> (node</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    != null);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph.png" border="0" usemap="#a00138_a580e520a29444fc23ac3660cbe514a09_icgraph" alt=""/></div>
+<map name="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph" id="a00138_a580e520a29444fc23ac3660cbe514a09_icgraph">
+<area shape="rect" id="node2" href="a00149.html#a2c80b137d65f31b24533987233074605" title="Yarn.Parser.ShortcutOption.\lShortcutOption" alt="" coords="248,5,435,46"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad8c821f5f5671cdbac6e4a6fc0b9174b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string Yarn.Parser.CustomCommand.PrintTree </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indentLevel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="a00138.html#a0d6611653f20c2e4d90a97a96c657137">Yarn.Parser.ParseNode</a>.</p>
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00314">314</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00295_source.html#l00275">Yarn.Parser.CustomCommand.clientCommand</a>, <a class="el" href="a00295_source.html#l00040">Yarn.Parser.Tab()</a>, and <a class="el" href="a00295_source.html#l00272">Yarn.Parser.CustomCommand.type</a>.</p>
+<div class="fragment"><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">type</a>) {</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                <span class="keywordflow">case</span> Type.Expression:</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;Expression: &quot;</span>) + expression.PrintTree (indentLevel + 1);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                <span class="keywordflow">case</span> Type.ClientCommand:</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel, <span class="stringliteral">&quot;Command: &quot;</span> + <a class="code" href="a00073.html#a1a362244273df822233359d8fe4e9f5d">clientCommand</a>);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                }</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            }</div>
+<div class="ttc" id="a00073_html_a5ef3bc96812be224d91548bfcdfd4b92"><div class="ttname"><a href="a00073.html#a5ef3bc96812be224d91548bfcdfd4b92">Yarn.Parser.CustomCommand.type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00272">Parser.cs:272</a></div></div>
+<div class="ttc" id="a00073_html_a1a362244273df822233359d8fe4e9f5d"><div class="ttname"><a href="a00073.html#a1a362244273df822233359d8fe4e9f5d">Yarn.Parser.CustomCommand.clientCommand</a></div><div class="ttdeci">string clientCommand</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00275">Parser.cs:275</a></div></div>
+<div class="ttc" id="a00139_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00040">Parser.cs:40</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b_cgraph.png" border="0" usemap="#a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b_cgraph" alt=""/></div>
+<map name="a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b_cgraph" id="a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b_cgraph">
+<area shape="rect" id="node2" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="259,12,376,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a054f36c80d5eeacd569a8859f599af67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Yarn.Parser.ParseNode.TagsToString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indentLevel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00078">78</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+
+<p>References <a class="el" href="a00295_source.html#l00040">Yarn.Parser.Tab()</a>, and <a class="el" href="a00295_source.html#l00076">Yarn.Parser.ParseNode.tags</a>.</p>
+
+<p>Referenced by <a class="el" href="a00295_source.html#l00226">Yarn.Parser.Statement.PrintTree()</a>, and <a class="el" href="a00295_source.html#l00409">Yarn.Parser.ShortcutOption.PrintTree()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>.Length &gt; 0) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    var s = <span class="keyword">new</span> StringBuilder ();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    s.Append (<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 1, <span class="stringliteral">&quot;Tags:&quot;</span>));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    <span class="keywordflow">foreach</span> (var tag <span class="keywordflow">in</span> this.<a class="code" href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">tags</a>) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        s.Append(<a class="code" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Tab</a> (indentLevel + 2, <span class="stringliteral">&quot;#&quot;</span> + tag));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="keywordflow">return</span> s.ToString ();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            }</div>
+<div class="ttc" id="a00138_html_a58b3a15788fd2d4127d73619dc6d04ae"><div class="ttname"><a href="a00138.html#a58b3a15788fd2d4127d73619dc6d04ae">Yarn.Parser.ParseNode.tags</a></div><div class="ttdeci">string[] tags</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00076">Parser.cs:76</a></div></div>
+<div class="ttc" id="a00139_html_aa8fa36b46de12a1c561d77b99c4b9ae3"><div class="ttname"><a href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3">Yarn.Parser.Tab</a></div><div class="ttdeci">static string Tab(int indentLevel, string input, bool newLine=true)</div><div class="ttdef"><b>Definition:</b> <a href="a00295_source.html#l00040">Parser.cs:40</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph.png" border="0" usemap="#a00138_a054f36c80d5eeacd569a8859f599af67_cgraph" alt=""/></div>
+<map name="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph" id="a00138_a054f36c80d5eeacd569a8859f599af67_cgraph">
+<area shape="rect" id="node2" href="a00139.html#aa8fa36b46de12a1c561d77b99c4b9ae3" title="Yarn.Parser.Tab" alt="" coords="248,12,365,39"/></map>
+</div>
+</p>
+
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph.png" border="0" usemap="#a00138_a054f36c80d5eeacd569a8859f599af67_icgraph" alt=""/></div>
+<map name="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph" id="a00138_a054f36c80d5eeacd569a8859f599af67_icgraph">
+<area shape="rect" id="node2" href="a00156.html#aaac6d1e0c3b31f33e1c6f964c205153e" title="Yarn.Parser.Statement.PrintTree" alt="" coords="249,5,461,32"/><area shape="rect" id="node3" href="a00149.html#a529a2ef1aa6d7226db4ea7f3ea92b8c2" title="Yarn.Parser.ShortcutOption.\lPrintTree" alt="" coords="261,57,448,98"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a18c67cb16090d0889bb9d6c8c6c565f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string Yarn.Parser.ParseNode.ToString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00094">94</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> this.GetType ().Name;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ae8c56ff97c0a797245f2205c486833ea"></a>
+<a class="anchor" id="a18b493382de0fde5b4299c1bd2250075"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -459,23 +574,23 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly <a class="el" href="a00057.html">CsvConfiguration</a> CsvHelper.CsvSerializer.configuration</td>
+          <td class="memname">int Yarn.Parser.ParseNode.lineNumber</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00017">17</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00295_source.html#l00061">61</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00237_source.html#l00040">CsvHelper.CsvSerializer.CsvSerializer()</a>.</p>
+<p>Referenced by <a class="el" href="a00295_source.html#l00065">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2687885dae7f7b0eec3c2db81c05f7e4"></a>
+<a class="anchor" id="af313a82103fcc2ff5a177dbb06b92f7b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -483,23 +598,23 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CsvHelper.CsvSerializer.disposed</td>
+          <td class="memname"><a class="el" href="a00138.html">ParseNode</a> Yarn.Parser.ParseNode.parent</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00016">16</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00295_source.html#l00058">58</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00237_source.html#l00105">CsvHelper.CsvSerializer.CheckDisposed()</a>, and <a class="el" href="a00237_source.html#l00082">CsvHelper.CsvSerializer.Dispose()</a>.</p>
+<p>Referenced by <a class="el" href="a00295_source.html#l00065">Yarn.Parser.ParseNode.ParseNode()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adfb235fa2c868fc79c0376fd12fda767"></a>
+<a class="anchor" id="a58b3a15788fd2d4127d73619dc6d04ae"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -507,24 +622,48 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TextWriter CsvHelper.CsvSerializer.writer</td>
+          <td class="memname">string [] Yarn.Parser.ParseNode.tags = {}</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">package</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00018">18</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00295_source.html#l00076">76</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00237_source.html#l00040">CsvHelper.CsvSerializer.CsvSerializer()</a>, and <a class="el" href="a00237_source.html#l00082">CsvHelper.CsvSerializer.Dispose()</a>.</p>
+<p>Referenced by <a class="el" href="a00295_source.html#l00373">Yarn.Parser.ShortcutOption.ShortcutOption()</a>, <a class="el" href="a00295_source.html#l00186">Yarn.Parser.Statement.Statement()</a>, and <a class="el" href="a00295_source.html#l00078">Yarn.Parser.ParseNode.TagsToString()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ef3bc96812be224d91548bfcdfd4b92"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00073.html#a1d9f9f57c44e1a0d228793b658339576">Type</a> Yarn.Parser.CustomCommand.type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00272">272</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00295_source.html#l00283">Yarn.Parser.CustomCommand.CustomCommand()</a>, and <a class="el" href="a00295_source.html#l00314">Yarn.Parser.CustomCommand.PrintTree()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a2ae1b1a629b707fbfb7d636989442f34"></a>
+<a class="anchor" id="a1a362244273df822233359d8fe4e9f5d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -532,32 +671,56 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00057.html">CsvConfiguration</a> CsvHelper.CsvSerializer.Configuration</td>
+          <td class="memname">string Yarn.Parser.CustomCommand.clientCommand</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the configuration. </p>
+<p>Definition at line <a class="el" href="a00295_source.html#l00275">275</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
 
-<p>Definition at line <a class="el" href="a00237_source.html#l00024">24</a> of file <a class="el" href="a00237_source.html">CsvSerializer.cs</a>.</p>
+<p>Referenced by <a class="el" href="a00295_source.html#l00314">Yarn.Parser.CustomCommand.PrintTree()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4250d192d5b58e2404a14c68eb616f16"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00094.html">Expression</a> Yarn.Parser.CustomCommand.expression</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00295_source.html#l00274">274</a> of file <a class="el" href="a00295_source.html">Parser.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00295_source.html#l00283">Yarn.Parser.CustomCommand.CustomCommand()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00237_source.html">CsvSerializer.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00295_source.html">Parser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00325.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00073.html">CsvSerializer</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:29 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00139.html">Parser</a></li><li class="navelem"><a class="el" href="a00073.html">CustomCommand</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:22 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

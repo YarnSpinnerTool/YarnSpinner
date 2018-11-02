@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/Simple-Dialogue-Example.md Source File</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,10 +105,10 @@ $(document).ready(function(){initNavTree('a00206.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Dialogue/Simple-Dialogue-Example.md</div>  </div>
+<div class="title">Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00206.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Yarn Dialogue - Simple Example</span></div>
+<a href="a00206.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Step by Step to Using Yarn Spinner in your Unity game</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">### Style Guide</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
@@ -124,206 +124,147 @@ $(document).ready(function(){initNavTree('a00206.html','');});
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Tutorial</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note:*** This tutorial assumes that you know nothing about writing code, in particular how to use [Unity](http:<span class="comment">//www.unity3d.com) or the Yarn Editor.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;&gt; You <span class="keywordflow">do</span> not need to know how to use those tools to write Yarn Dialogue. It is required that you know how to create a text file (.txt), which is different to a .doc, .docx, .rtf etc. document, in whatever text editor you are most comfortable <span class="keyword">using</span>. Please refer to your friendly local computer expert <span class="keywordflow">if</span> you are unsure how to <span class="keywordflow">do</span> this.</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;&gt; As you learn more about Yarn Dialogue, you may find the Yarn Editor useful as you progress with your authoring. It is a text editor that is designed to make Yarn Dialogue easier to create.</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;## Introducing Yarn Dialogue</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;Yarn Dialogue is designed <span class="keywordflow">for</span> Authors who have little or no programming knowledge. It makes no assumptions about how your game presents resultant text to the player, or about how the player chooses their responses. These tasks are left to the game production team, <span class="keyword">using</span> programming and design tools such as Unity3D and C#.</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note:*** This tutorial assumes that you know a little bit about [Unity](http:<span class="comment">//www.unity3d.com). In particular, it is helpful that you know how to get around the Unity editor, how to work with game objects, and how to write scripts in C#. If you don&#39;t know these things, please refer to [Unity&#39;s documentation](http://unity3d.com/learn).</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">## Step by Step</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">### Introducing Yarn Spinner</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;Yarn Spinner is designed to be easy to work with in Unity. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;### Simple Example Script</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;To introduce Yarn Spinner, we<span class="stringliteral">&#39;ll create an empty Unity project, and then build it from the ground up to run a sample conversation. If you&#39;</span>d first like to  see the finished project, [download Yarn Spinner](https:<span class="comment">//github.com/thesecretlab/YarnSpinner/releases) and open the [Unity folder](https://github.com/thesecretlab/YarnSpinner/tree/master/Unity) in the Unity editor. To build a standalone version of this loaded project, skip to the end of this documentation.</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;We will create the essential Yarn Dialogue <span class="keywordflow">for</span> the [Simple Example Dialogue](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt). We will start off with the text as presented by the ingame characters, add in choices which are essentially what the player says to the characters, and have the characters react to the choices.</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;To use Yarn Spinner, you use three classes that will exist in the `Yarn.Unity` <span class="keyword">namespace</span>.</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;Each section of text in Yarn Dialogue is known as a ***node***.</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;A ***node*** consists of ***header data*** and ***body data***. The header data provides information about the body data, and the body data contains Yarn Dialogue and options relating to the Dialogue.</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;* `DialogueRunner`, which is responsible <span class="keywordflow">for</span> loading and running your dialogue script;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;* A subclass of `DialogueUIBehaviour`, which is reponsible <span class="keywordflow">for</span> displaying the lines and dialogue choices to the player; and</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;* A subclass of `VariableStorageBehaviour`, which is responsible <span class="keywordflow">for</span> storing the state of the conversation.</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;In <span class="keyword">this</span> example, our first node commences with two characters, A and B.</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;We need to give <span class="keyword">this</span> node a title, and in <span class="keyword">this</span> example we will call it ***start***. There is no <span class="keywordflow">default</span> title, it can be anything you like.</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;```</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;title: start</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;```</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;&gt; Node titles are <span class="keywordflow">case</span> sensitive. The titles ***start***, ***Start***, ***START*** and ***StArT*** are different.</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;&gt; There is no <span class="keywordflow">default</span> title. You will need to ensure that your game programmers know which node your game starts on, as it may not necessarily be the first node in your Yarn Dialogue file.</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;The title tag is part of a collection of data known as ***header data*** that can refer to position, colour and other information about the Dialogue. While the title tag is required, these other header data tags are optional and generally used later in game development when the Dialogue is attached to scenes and graphical characters.</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;To seperate the ***header data*** from the ***body data*** in the node, we then add in three `-` characters, known as a header delimiter.</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;```</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;---</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;```</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;We can now add the starting text <span class="keywordflow">for</span> our characters A and B. Their Dialogue is so:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;```</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;A: Hey, I<span class="stringliteral">&#39;m a character in a script!</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">B: And I am too! You are talking to me!</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">To indicate the end of the node, we add three `=` characters. This is called a ***node delimiter***</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">===</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;To create your subclasses of `DialogueUIBehaviour` and `VariableStorageBehaviour`, you<span class="stringliteral">&#39;ll need to add the following code to the top of your C# code:</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral">    using Yarn.Unity;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="stringliteral">Yarn dialogue is created using the [Yarn Editor](http://github.com/infiniteammoinc/Yarn), and the resulting dialogue is stored as `.json` assets in the Unity project. If you are using Linux and wish to use the Yarn Editor, you will first need to [install](https://nwjs.io/downloads/) or build [NW.js](https://nwjs.io/) then attempt to build the Yarn Editor. **NOTE AT THIS STAGE, BUILDING NW.JS HAS NOT BEEN ATTEMPTED BY US AND MAY SET YOUR COMPUTER ON FIRE**.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="stringliteral">The Yarn dialogue files can be stored anywhere inside the project hierarchy - you simply provide add them to the `DialogueRunner`&#39;</span>s inspector. You can also call `AddScript` on the `DialogueRunner` at runtime; <span class="keyword">this</span> is useful <span class="keywordflow">for</span> cases such as spawning a character who comes with additional dialogue - all that needs to happen is the character then pass their Yarn script to the `DialogueRunner`.</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;### Create the Yarn conversations</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;* In the Yarn Editor, **Create a <span class="keyword">new</span> conversation**, and save it as a <a class="code" href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8">JSON</a> file. (Alternatively, <span class="keywordflow">if</span> you already have a dialogue file you<span class="stringliteral">&#39;d like to use, go ahead and use that instead!). For information on how to create a Yarn conversation, please refer to the Yarn Editor site.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral">### Create the Unity project</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">* **Launch Unity**, and **create a new project**. The name of the project doesn&#39;</span>t matter.</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;### Import the Yarn Spinner package.</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;* **[Import YarnSpinner.unitypackage](https:<span class="comment">//github.com/thesecretlab/YarnSpinner/releases)** into your project. &lt;!-- If you prefer, you can also install the package from the [Asset Store](TODO). --&gt;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    Yarn Spinner is composed of a `yarnspinner.dll` file, and a couple of supporting scripts <span class="keywordflow">for</span> Unity.  This dll file does the heavy lifting involved in parsing your Yarn files, and executing them.</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    To show Yarn dialogue in your game, you will need to add it to your project as well.</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;* **Copy your Yarn <a class="code" href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8">JSON</a> file** into your project.</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;You<span class="stringliteral">&#39;re now ready to start using Yarn Spinner!</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">Your ***node*** should now look like this</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">title: start</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">---</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">A: Hey, I&#39;</span>m a character in a script!</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;B: And I am too! You are talking to me!</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;===</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;```</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;Congratulations, you<span class="stringliteral">&#39;ve just written your very first piece of Yarn Dialogue!</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">### Adding Options and Replies</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">#### Options</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">The next step we&#39;</span>ll take is to add in some options to present to the player.  We wish to present the player with the choice of two options. To <span class="keywordflow">do</span> <span class="keyword">this</span>, we use the `-&gt;` marker as the first characters in our line of text to tell the system the text is an option.</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">&lt;!-- (gif of dragging in the dialogue file) --&gt;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">### Load your conversation with `DialogueRunner`</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">Yarn conversations are loaded and managed by a `DialogueRunner` object. This object is responsible for loading and parsing your Yarn `.json` files. It also runs the script when it&#39;</span>s told to - <span class="keywordflow">for</span> example, when you walk up to a character in your game and talk to them.</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;We<span class="stringliteral">&#39;ll start by creating an empty object, and then we&#39;</span>ll add the `DialogueRunner` component to it.</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;* **Create a <span class="keyword">new</span> empty game <span class="keywordtype">object</span>**.</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;* **Rename it to <span class="stringliteral">&quot;Dialogue Runner&quot;</span>**.</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;* With the Dialogue Runner <span class="keywordtype">object</span> selected, **open the Component menu**, and choose **Scripts → Yarn Spinner → Dialogue Runner**.</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Next you need to add the Yarn files that you want to show. The Dialogue runner can load multiple Yarn files at the same time. The only requirement is that **no nodes are allowed to have the same name**. (This is a requirement that may change in the future.)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;We add <span class="keyword">this</span> after the A and B character Dialogue, but before the ending tag.</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;```</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;-&gt; What<span class="stringliteral">&#39;s going on</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="stringliteral">-&gt; Um ok</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="stringliteral">Our Yarn Dialogue now reads as like this:</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="stringliteral">title: start</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral">---</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral">A: Hey, I&#39;</span>m a character in a script!</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;B: And I am too! You are talking to me!</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;-&gt; What<span class="stringliteral">&#39;s going on</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="stringliteral">-&gt; Um ok</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral">===</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral">#### Replies</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="stringliteral">Options aren&#39;</span>t really that useful without a ***reply***. Replies are indented with four spaces.</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;```</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    A: Why <span class="keyword">this</span> is a demo of the script system!</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    B: And you<span class="stringliteral">&#39;re in it!</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="stringliteral">The reply is placed immediately after the option to which it is connected. We&#39;</span>ll add the above replies to the first option, resulting in our Yarn Dialogue now looking like <span class="keyword">this</span>:</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;```</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;title: start</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;---</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;A: Hey, I<span class="stringliteral">&#39;m a character in a script!</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">B: And I am too! You are talking to me!</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="stringliteral">-&gt; What&#39;</span>s going on</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    A: Why <span class="keyword">this</span> is a demo of the script system!</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    B: And you<span class="stringliteral">&#39;re in it!</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="stringliteral">-&gt; Um ok</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="stringliteral">===</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="stringliteral">&gt; Note: The order of the reply is important. In the above example, Character A replies, then Character B. We could easily reverse these lines if we wanted Character B to reply first.</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="stringliteral">Finishing up here, we&#39;</span>ll end the Dialogue with a pleasantary.</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;```</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;A: How delightful!</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;```</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;We now have:</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;```</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;title: start</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;---</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;A: Hey, I<span class="stringliteral">&#39;m a character in a script!</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">B: And I am too! You are talking to me!</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral">-&gt; What&#39;</span>s going on</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    A: Why <span class="keyword">this</span> is a demo of the script system!</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    B: And you<span class="stringliteral">&#39;re in it!</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">-&gt; Um ok</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral">A: How delightful!</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">===</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">### Branching to New Nodes</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral">Additional nodes can be added to extend the story. These further nodes can introduce new characters, actions or provide different options and replies.</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="stringliteral">We will now present the player with options of selecting what to do next.</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="stringliteral">B: What would you prefer to do next?</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="stringliteral">[[Leave|Leave]]</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral">[[Learn more|LearnMore]]</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral">The square double braces, `[[` and `]]`, indicate a branch to a different node. The vertical bar, ``|``, separates the string to be presented to the player (the option), from the destination ***node name***. Presentation of the new node will commence once the player has selected their chosen option text. Thus, the above code will present the player with two choices, &#39;</span>Leave<span class="stringliteral">&#39; and &#39;</span>Learn More<span class="stringliteral">&#39;. These options will take the player to the &#39;</span>Leave<span class="stringliteral">&#39; and &#39;</span>LearnMore<span class="stringliteral">&#39; nodes respectively.</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral">&gt; Note: ***Node names*** must be a single string, that is to say they cannot have spaces in them.</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral">Our Dialogue now reads like this:</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="stringliteral">title: Start</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="stringliteral">---</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="stringliteral">A: Hey, I&#39;</span>m a character in a script!</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;B: And I am too! You are talking to me!</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;-&gt; What<span class="stringliteral">&#39;s going on</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="stringliteral">    A: Why this is a demo of the script system!</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="stringliteral">    B: And you&#39;</span>re in it!</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;-&gt; Um ok</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;A: How delightful!</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;B: What would you prefer to <span class="keywordflow">do</span> next?</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;[[Leave|Leave]]</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;[[Learn more|LearnMore]]</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;===</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;```</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;All we need to <span class="keywordflow">do</span> now is add in two more nodes, the Leave and LearnMore nodes. We<span class="stringliteral">&#39;ll add a little bit of conversation in to Characters A and B just to differentiate between the two nodes.</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="stringliteral">```</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="stringliteral">title: Leave</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="stringliteral">---</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="stringliteral">A: Oh, goodbye!</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="stringliteral">B: You&#39;</span>ll be back soon!</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;===</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;title: LearnMore</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;---</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;A: HAHAHA</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;===</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;```</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;Our <span class="keyword">final</span> Yarn Dialogue file will read such:</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;```</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;title: Start</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;---</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;A: Hey, I<span class="stringliteral">&#39;m a character in a script!</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="stringliteral">B: And I am too! You are talking to me!</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="stringliteral">-&gt; What&#39;</span>s going on</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    A: Why <span class="keyword">this</span> is a demo of the script system!</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    B: And you<span class="stringliteral">&#39;re in it!</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="stringliteral">-&gt; Um ok</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="stringliteral">A: How delightful!</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="stringliteral">B: What would you prefer to do next?</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="stringliteral">[[Leave|Leave]]</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="stringliteral">[[Learn more|LearnMore]]</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="stringliteral">===</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="stringliteral">title: Leave</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="stringliteral">---</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="stringliteral">A: Oh, goodbye!</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="stringliteral">B: You&#39;</span>ll be back soon!</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;===</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;title: LearnMore</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;---</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;A: HAHAHA</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;===</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;```</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;## Live example</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;We have a fully parsed version of the above Yarn Dialogue available in our Unity examples directory as [Simple Example Script](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt). Please note <span class="keyword">this</span> differs from the above Yarn Dialogue in a couple of minor, yet important points:</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;* Extra header tags <span class="keywordflow">for</span> colour and position of the Dialogue within the Yarn Editor, and not <span class="keywordflow">for</span> within the game environment. <a class="code" href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Text</a> placement, colourising, and font selection is considered to be the domain of design and programming and thus outside the scope of Dialogue.</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;* Translation tags to aide with localization</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;These differences are generally created by programmers. It is envisaged that in the future they will be automatically generated by a Yarn Dialogue editor.</div>
-<div class="ttc" id="a00045_html_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675"><div class="ttname"><a href="a00045.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Yarn.Text</a></div></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;&lt;!-- (gif of adding component) --&gt;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;* **Drag your Yarn JSON file into the `Source Text` array.**</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;&lt;!-- (gif of adding dialogue file) --&gt;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;### Display your conversation with `DialogueUI`</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;Your game<span class="stringliteral">&#39;s dialogue needs to be shown to the user. Additionally, you need a way to let the player choose what their reaction is going to be.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral">Yarn Spinner makes no assumptions about how you want to handle your dialogue&#39;</span>s UI. Want to present as simple list of options? That<span class="stringliteral">&#39;s fine. Want a fancy Mass Effect style radial menu? Totally cool. Want a totally bonkers gesture-based UI with a countdown timer? Oh man that would be sweet.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral">Yarn Spinner leaves all of the work of actually presenting the conversation up to you; all it&#39;</span>s responsible <span class="keywordflow">for</span> is delivering the lines that the player should see, and notifying Yarn Spinner about what response the user selected.</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;Yarn Spinner comes with an example script that uses Unity<span class="stringliteral">&#39;s UI system. It&#39;</span>s a good place to start. </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;&lt;!-- TODO: This needs completion.</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;* **Select the Dialogue Runner,** , and drag the `ExampleDialogueUI` script onto it. </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;The `ExampleDialogueUI` script uses a `<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Text</a>` <span class="keywordtype">object</span> to display the current line of dialogue, and a number of `Button` objects to display the possible choices a player can select. When Yarn Spinner has a line of dialogue, it displays it in the text field; when Yarn Spinner has a collection of choices, each button<span class="stringliteral">&#39;s text is set to the corresponding choice.</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="stringliteral"> --&gt;</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="stringliteral">### Store your conversation state with a `VariableStorageBehaviour`</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="stringliteral">There&#39;</span>s one last necessary component. As you play through a conversation, you<span class="stringliteral">&#39;ll probably want to record the user&#39;</span>s choices somewhere. Yarn Spinner doesn<span class="stringliteral">&#39;t care about the details of how you save your game state; instead, it just expects you to give it an object that conforms to a ***[C# interface](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/index))***, which defines methods like &quot;set variable&quot; and &quot;get value of variable&quot;.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral">The simplest implementation of this is one that just keeps your variables in memory, but it&#39;</span>s pretty straightforward to adapt an existing save game system to use it.</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;* **Create a <span class="keyword">new</span> game <span class="keywordtype">object</span>**, and add the `<a class="code" href="a00079.html">ExampleVariableStorage</a>` script to it.</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;Or:</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;* **Create a <span class="keyword">new</span> game <span class="keywordtype">object</span>**, and add a <span class="keyword">new</span> script to it. Make <span class="keyword">this</span> script subclass `VariableStorageBehaviour`, and the implement the  `SetNumber`, `GetNumber`, `Clear`, and `ResetToDefaults` methods.</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;* Once you<span class="stringliteral">&#39;ve done that, **drag this new object into the Dialoge Runner&#39;</span>s `<a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Variable</a> Storage` slot.**</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">### Run your conversation</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;There<span class="stringliteral">&#39;s only one thing left to do: Yarn Spinner just needs to know what node in the Yarn file to start from. It will default to &quot;Start&quot;, but you can override it.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="stringliteral">* **Change the Dialogue Runner&#39;</span>s `Start Node`** to the **name of the node you<span class="stringliteral">&#39;d like to start run.**</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="stringliteral">* Finally, **run the game.** The conversation will play!</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="stringliteral">### Respond to commands with `YarnCommand`</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="stringliteral">In Yarn, you can create *commands* that tell your game to do something. For example, if you want a character to move to a certain point on the screen, you might have a command that looks like this:</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="stringliteral">    &lt;&lt;move Sally exit&gt;&gt;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="stringliteral">For this to work, the game object named &quot;Sally&quot; needs to have a script component attached to it, and one of those scripts needs to have a method that looks like this:</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="stringliteral">    [YarnCommand(&quot;move&quot;)]</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="stringliteral">    public void MoveCharacter(string destinationName) {</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="stringliteral">        // move to the destination</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="stringliteral">When Yarn encounters a command that contains two or more words, it looks for a game object with the same name as the second word (&quot;Sally&quot;, in the above example), and then searches that object&#39;</span>s scripts <span class="keywordflow">for</span> any method that has a `YarnCommand` with the same name as the first word (in <span class="keyword">this</span> <span class="keywordflow">case</span>, <span class="stringliteral">&quot;move&quot;</span>).</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;Any further words in the command are passed as <span class="keywordtype">string</span> parameters to the method (<span class="stringliteral">&quot;exit&quot;</span>, in <span class="keyword">this</span> <span class="keywordflow">case</span>, which is used as the `destinationName` parameter)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;Note that **all** parameters must be strings. `DialogueRunner` will <span class="keywordflow">throw</span> an error <span class="keywordflow">if</span> it finds a method that has parameters of any other type. It<span class="stringliteral">&#39;s up to your method to convert the strings into other types, like numbers.</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="stringliteral">### Finishing up</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="stringliteral">Save the project</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="stringliteral">Build a stand alone</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="stringliteral"></span></div>
+<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">ExampleVariableStorage</a></div><div class="ttdoc">An extremely simple implementation of DialogueUnityVariableStorage, which just stores everything in a...</div><div class="ttdef"><b>Definition:</b> <a href="a00282_source.html#l00034">ExampleVariableStorage.cs:34</a></div></div>
+<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675">Yarn.Text</a></div></div>
+<div class="ttc" id="a00041_html_ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8"><div class="ttname"><a href="a00041.html#ad7ebb46e7309ead8767383a672b3272fa0ecd11c1d7a287401d148a23bbd7a2f8">Yarn.JSON</a></div></div>
+<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Yarn.Variable</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00206.html">Simple-Dialogue-Example.md</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00206.html">YarnSpinner-with-Unity-StepByStep.md</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

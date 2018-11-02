@@ -1,160 +1,264 @@
-\hypertarget{a00151}{\section{Yarn.\-Run\-Options Class Reference}
-\label{a00151}\index{Yarn.\-Run\-Options@{Yarn.\-Run\-Options}}
+\hypertarget{a00151}{\section{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter Class Reference}
+\label{a00151}\index{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Single\-Converter}}
 }
 
 
-Inheritance diagram for Yarn.\-Run\-Options\-:
+Converts a Float to and from a string.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00729}
+\includegraphics[width=220pt]{a00545}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Run\-Options\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Single\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00730}
+\includegraphics[width=220pt]{a00546}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{a00151_a4b385e83338d14947c4d840d2d1ee266}{wait\-For\-Input}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}{start\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00151_a2222c73ce5366b02490c6123b711f596}{variables}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-int \hyperlink{a00151_a525bb1890b29f86002c2f163ace4a3d8}{run\-Times}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00151_ae21d271c37dabee023771a951f6e774e}{automatically\-Select\-First\-Option}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00097_a7e43c3b73722956cb0f5d507e4eef527}{string\-Table}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-string \hyperlink{a00097_af4c0062a1d46281d377f87084fde374e}{only\-Consider\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00097_ad97950e47ce2aaeb598295b7c3c44b13}{experimental}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00035_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+override object \hyperlink{a00151_a5c8a692325c19551246a589e9ca4a1e1}{Convert\-From\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00151_a49bc7b2d2d399343a21b691a026dbf99}{Can\-Convert\-From} (System.\-Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00078_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00078_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00078_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 81 of file Main.\-cs.
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00151_ae21d271c37dabee023771a951f6e774e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}}
-\index{automatically\-Select\-First\-Option@{automatically\-Select\-First\-Option}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{automatically\-Select\-First\-Option}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-automatically\-Select\-First\-Option\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_ae21d271c37dabee023771a951f6e774e}
-
-
-Definition at line 97 of file Main.\-cs.
-
-\hypertarget{a00097_ad97950e47ce2aaeb598295b7c3c44b13}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!experimental@{experimental}}
-\index{experimental@{experimental}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{experimental}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Execution\-Options.\-experimental\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_ad97950e47ce2aaeb598295b7c3c44b13}
-
-
-Definition at line 61 of file Main.\-cs.
+Converts a Float to and from a string. 
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!files@{files}}
-\index{files@{files}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_aa93cbb1bc1d5328e0a417012621e92d2}
-
-
-Definition at line 47 of file Main.\-cs.
+Definition at line 12 of file Single\-Converter.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00097_af4c0062a1d46281d377f87084fde374e}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!only\-Consider\-Node@{only\-Consider\-Node}}
-\index{only\-Consider\-Node@{only\-Consider\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{only\-Consider\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-only\-Consider\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_af4c0062a1d46281d377f87084fde374e}
-
-
-Definition at line 59 of file Main.\-cs.
-
-\hypertarget{a00151_a525bb1890b29f86002c2f163ace4a3d8}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!run\-Times@{run\-Times}}
-\index{run\-Times@{run\-Times}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{run\-Times}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Run\-Options.\-run\-Times\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a525bb1890b29f86002c2f163ace4a3d8}
+\subsection{Member Function Documentation}
+\hypertarget{a00151_a49bc7b2d2d399343a21b691a026dbf99}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{System.\-Type}]{type}
+\end{DoxyParamCaption}
+)}}\label{a00151_a49bc7b2d2d399343a21b691a026dbf99}
 
 
-Definition at line 94 of file Main.\-cs.
-
-\hypertarget{a00035_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_a89964ea17bd19caf00cb5bff563ed01c}
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
-Definition at line 40 of file Main.\-cs.
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!start\-Node@{start\-Node}}
-\index{start\-Node@{start\-Node}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{start\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Run\-Options.\-start\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a785bd0f1c8b6674e7a1cfbe38c29b961}
+Definition at line 40 of file Single\-Converter.\-cs.
 
 
-Definition at line 88 of file Main.\-cs.
-
-\hypertarget{a00097_a7e43c3b73722956cb0f5d507e4eef527}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!string\-Table@{string\-Table}}
-\index{string\-Table@{string\-Table}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{string\-Table}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Execution\-Options.\-string\-Table\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00097_a7e43c3b73722956cb0f5d507e4eef527}
-
-
-Definition at line 55 of file Main.\-cs.
-
-\hypertarget{a00151_a2222c73ce5366b02490c6123b711f596}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!variables@{variables}}
-\index{variables@{variables}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{variables}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Run\-Options.\-variables\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a2222c73ce5366b02490c6123b711f596}
-
-
-Definition at line 91 of file Main.\-cs.
-
-\hypertarget{a00035_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_ada4d83d1756918f362d55f6649b82b17}
+\begin{DoxyCode}
+41         \{
+42             \textcolor{comment}{// We only care about strings.}
+43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+44         \}
+\end{DoxyCode}
+\hypertarget{a00078_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a470d21adaa704eb281250dbd112ff91a}
 
 
-Definition at line 44 of file Main.\-cs.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
 
-\hypertarget{a00151_a4b385e83338d14947c4d840d2d1ee266}{\index{Yarn\-::\-Run\-Options@{Yarn\-::\-Run\-Options}!wait\-For\-Input@{wait\-For\-Input}}
-\index{wait\-For\-Input@{wait\-For\-Input}!Yarn::RunOptions@{Yarn\-::\-Run\-Options}}
-\subsubsection[{wait\-For\-Input}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Run\-Options.\-wait\-For\-Input\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00151_a4b385e83338d14947c4d840d2d1ee266}
-
-
-Definition at line 85 of file Main.\-cs.
+Implements \hyperlink{a00113_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run().
+Reimplemented in \hyperlink{a00132_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00035_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00088_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00089_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00075_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00074_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00036_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00162_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
 
+
+
+Definition at line 55 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+56         \{
+57             \textcolor{comment}{// The default convert doesn't know how to}
+58             \textcolor{comment}{// convert from any type.}
+59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+60         \}
+\end{DoxyCode}
+\hypertarget{a00078_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\begin{DoxyParamCaption}
+\item[{Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_acb65bd8c8199d88d5b1629ae35d18514}
+
+
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00113_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00089_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
+\end{DoxyCode}
+\hypertarget{a00151_a5c8a692325c19551246a589e9ca4a1e1}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Single\-Converter.\-Convert\-From\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00151_a5c8a692325c19551246a589e9ca4a1e1}
+
+
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00078_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
+
+
+
+Definition at line 20 of file Single\-Converter.\-cs.
+
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
+
+
+\begin{DoxyCode}
+21         \{
+22             var numberStyle = options.NumberStyle ?? NumberStyles.Float;
+23 
+24             \textcolor{keywordtype}{float} f;
+25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{float}.TryParse( text, numberStyle, options.CultureInfo, out f ) )
+26             \{
+27                 \textcolor{keywordflow}{return} f;
+28             \}
+29 
+30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+31         \}
+\end{DoxyCode}
+\hypertarget{a00078_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::SingleConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Single\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00113_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00132_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00089_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00313}{Main.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00268}{Single\-Converter.\-cs}\end{DoxyCompactItemize}

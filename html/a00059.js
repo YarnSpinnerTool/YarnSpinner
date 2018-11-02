@@ -1,10 +1,7 @@
 var a00059 =
 [
-    [ "CreateParser", "a00059.html#a741fb4a1622778af65bfa27606bf6f25", null ],
-    [ "CreateParser", "a00059.html#a07665ae71961a161552189877d11a5be", null ],
-    [ "CreateReader", "a00059.html#a12b1358fc847e407519a76b7fe003a34", null ],
-    [ "CreateReader", "a00059.html#a77bcca4ad5023f5628c519c2914da5bb", null ],
-    [ "CreateReader", "a00059.html#a4e7e06df9265cbd53219c964424cec1e", null ],
-    [ "CreateWriter", "a00059.html#a6bfe534b70ff92ea3809f1a372d160cc", null ],
-    [ "CreateWriter", "a00059.html#a0cec3a639b206f2d88debdc50413202a", null ]
+    [ "CsvParserException", "a00059.html#a4a87a8cbca18790562bab5f571e6e87b", null ],
+    [ "CsvParserException", "a00059.html#a6ac692a1b7bb39afc66a7c701963e9c2", null ],
+    [ "CsvParserException", "a00059.html#a62b6bf7ba1ab79737a049a6ced4555d4", null ],
+    [ "CsvParserException", "a00059.html#a3ce8a09ae6e88787d47f47a108d33f21", null ]
 ];

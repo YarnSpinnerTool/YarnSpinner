@@ -1,3 +1,4 @@
-<map id="CsvHelper.CsvParser" name="CsvHelper.CsvParser">
-<area shape="rect" id="node2" href="$a00107.html" title="Defines methods used the parse a CSV file. " alt="" coords="50,131,160,282"/>
+<map id="CsvHelper.CsvReader" name="CsvHelper.CsvReader">
+<area shape="rect" id="node2" href="$a00104.html" title="Defines methods used to read parsed data from a CSV file. " alt="" coords="95,353,209,474"/>
+<area shape="rect" id="node3" href="$a00105.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
 </map>

@@ -1,28 +1,18 @@
 var a00160 =
 [
-    [ "Type", "a00160.html#a518000e4e6219ce5f9f4229f505cd944", [
-      [ "CustomCommand", "a00160.html#a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe", null ],
-      [ "ShortcutOptionGroup", "a00160.html#a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a", null ],
-      [ "Block", "a00160.html#a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2", null ],
-      [ "IfStatement", "a00160.html#a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d", null ],
-      [ "OptionStatement", "a00160.html#a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7", null ],
-      [ "AssignmentStatement", "a00160.html#a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341", null ],
-      [ "Line", "a00160.html#a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4", null ]
-    ] ],
-    [ "Statement", "a00160.html#acba736ffbcc0f8bf5cee2b23f7733dff", null ],
-    [ "NodeParent", "a00160.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00160.html#aaac6d1e0c3b31f33e1c6f964c205153e", null ],
-    [ "TagsToString", "a00160.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00160.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00160.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00160.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00160.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "assignmentStatement", "a00160.html#a7fa97a80f1b9313bc2bd4194e3f75759", null ],
-    [ "block", "a00160.html#ac14dfc7210974b4cd86402ed011fb0b6", null ],
-    [ "customCommand", "a00160.html#a8a98e7d4c66f9909da865f0e671d69f2", null ],
-    [ "ifStatement", "a00160.html#a9a71577456598af0f25b23ccd02154e4", null ],
-    [ "line", "a00160.html#a37695c7b00776bb292fd64894a70fb72", null ],
-    [ "optionStatement", "a00160.html#a15020b7dab4983adbd185d5c2c2ebe84", null ],
-    [ "shortcutOptionGroup", "a00160.html#a54d73ad69c4af4a0d61edeaea4c8ca4f", null ],
-    [ "type", "a00160.html#aa3fa0eb260e412720562ce06b7dc06fe", null ]
+    [ "ExpectLine", "a00160.html#ac21a5082ddac1da9db17ae54038df44e", null ],
+    [ "HandleResult", "a00160.html#a7b525f85a26d7c942e1cbfa5d6453893", null ],
+    [ "Init", "a00160.html#a357a0dab579f9e45666c10779683dc27", null ],
+    [ "RunStandardTestcase", "a00160.html#abffa134d40d72b21e6b35c3bf05fc53f", null ],
+    [ "dialogue", "a00160.html#a4cff5de56c4b8a91c76b6eb2d622a795", null ],
+    [ "errorsCauseFailures", "a00160.html#ac978fe85db843c51411f5517bdbe0eb8", null ],
+    [ "nextExpectedCommand", "a00160.html#a26fae5694fc06c3cdb12d3108dbc34de", null ],
+    [ "nextExpectedLine", "a00160.html#a3651ffb5425ab15bd1e42749347c1ee7", null ],
+    [ "nextExpectedOptionCount", "a00160.html#aaabaf15249efe42f3d857129bdbc2864", null ],
+    [ "nextOptionToSelect", "a00160.html#a343055fa693e9d5dfc1bdbfcd0f02676", null ],
+    [ "storage", "a00160.html#a23d59ace1516ca72924c6fe3feafd3f7", null ],
+    [ "isExpectingLine", "a00160.html#a47f35b8e8123ed9471883d02b8bc9f3e", null ],
+    [ "ProjectRootPath", "a00160.html#ab1ad614f465a49447da31c4000ec6b3e", null ],
+    [ "TestDataPath", "a00160.html#aa9b4d902d61adad7165154a265f69aa4", null ],
+    [ "UnityDemoScriptsPath", "a00160.html#a39922286f6255e4fd0e433a4fc7521c4", null ]
 ];

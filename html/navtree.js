@@ -4,18 +4,16 @@ var NAVTREE =
     [ "Lets talk about the WIP ANTLR YarnSpinner parser", "a00002.html", null ],
     [ "Contributing to Yarn Spinner", "a00004.html", null ],
     [ "Contributors", "a00006.html", null ],
-    [ "Yarn Dialogue - Advanced Usage", "a00008.html", null ],
-    [ "Yarn Dialogue - Complex Example", "a00010.html", null ],
-    [ "Localisation", "a00012.html", null ],
-    [ "LOCALIZATION", "a00014.html", null ],
-    [ "Yarn Dialogue - Simple Example", "a00016.html", null ],
-    [ "Yarn for Writers", "a00018.html", null ],
-    [ "Writing Yarn Dialogue - Simple Example", "a00020.html", null ],
-    [ "Building Yarn Spinner", "a00022.html", null ],
-    [ "Extending Yarn Spinner", "a00024.html", null ],
-    [ "Quickstart to Using Yarn Spinner in your Unity game", "a00026.html", null ],
-    [ "Step by Step to Using Yarn Spinner in your Unity game", "a00028.html", null ],
-    [ "LICENSE", "a00030.html", null ],
+    [ "Complex Yarn Dialogue - Tutorial", "a00008.html", null ],
+    [ "Localization", "a00010.html", null ],
+    [ "Yarn Dialogue - General Usage Guide", "a00012.html", null ],
+    [ "Simple Yarn Dialogue - Tutorial", "a00014.html", null ],
+    [ "Yarn Quick Reference", "a00016.html", null ],
+    [ "Building Yarn Spinner", "a00018.html", null ],
+    [ "Extending Yarn Spinner", "a00020.html", null ],
+    [ "Quickstart to Using Yarn Spinner in your Unity game", "a00022.html", null ],
+    [ "Step by Step to Using Yarn Spinner in your Unity game", "a00024.html", null ],
+    [ "LICENSE", "a00026.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -53,16 +51,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "a00002.html",
-"a00043.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15",
-"a00062.html#aeb171813d1526839ccd41d60ab6483b2",
-"a00077.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586",
-"a00099.html#aa4db4ccac799c5f047a8b1a9efbe109d",
-"a00111.html#a51b990d9a9615159631494390d8b53b6",
-"a00127.html#a0b09a29edd2ed13d52203f1b71a47081",
-"a00156.html#add28fa9c8a45ca579e84d05920bbc42d",
-"a00181.html#ad5aaf60ee4504608fcc2ffadefa14884ac26f15e86e3de4c398a8273272aba034",
-"a00228.html",
-"a00309.html"
+"a00039.html#af1c9b3d1757d33ad2141c639c3827c97",
+"a00059.html#a3ce8a09ae6e88787d47f47a108d33f21",
+"a00073.html#a4250d192d5b58e2404a14c68eb616f16",
+"a00095.html#af9bd5d832fdd2bcbdc626d9f8632e05c",
+"a00107.html#a6d492491db7fccb8831e782f01b820f0",
+"a00123.html#a6d8296076823c0c082df9024367f4860",
+"a00152.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b",
+"a00177.html#ae1892c1c7a8177537d1caa39a2e51da6",
+"a00223.html",
+"a00303.html#ae3d87b0b748ea892bff48f60862e182d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvReaderException.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00236_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CsvReaderException.cs</div>  </div>
+<div class="title">ICsvParser.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00236.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
@@ -113,40 +113,43 @@ $(document).ready(function(){initNavTree('a00236_source.html','');});
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#if !COREFX</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System.Runtime.Serialization;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#if !COREFX &amp;&amp; !PCL</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span>    [Serializable]</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00072.html">   18</a></span>&#160;<span class="preprocessor"></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00072.html">CsvReaderException</a> : <a class="code" href="a00060.html">CsvHelperException</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00072.html#a92ea35129f92f260c5327bbc3fd330df">   23</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00072.html#a92ea35129f92f260c5327bbc3fd330df">CsvReaderException</a>() {}</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00103.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00103.html">ICsvParser</a> : IDisposable</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00103.html#af1303d18a827bf46a56f9cb6ba05ed64">   18</a></span>&#160;        <a class="code" href="a00053.html">CsvConfiguration</a> <a class="code" href="a00103.html#af1303d18a827bf46a56f9cb6ba05ed64">Configuration</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00103.html#a50c0428defc2ada782c6863d72a990e4">   23</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00103.html#a50c0428defc2ada782c6863d72a990e4">FieldCount</a> { <span class="keyword">get</span>; }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00072.html#abb4803417d6a479385872b608f1791e5">   30</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00072.html#abb4803417d6a479385872b608f1791e5">CsvReaderException</a>( <span class="keywordtype">string</span> message ) : base( message ) {}</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00072.html#a4507583f079e40d454285c1e4f161aeb">   39</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00072.html#a4507583f079e40d454285c1e4f161aeb">CsvReaderException</a>( <span class="keywordtype">string</span> message, Exception innerException ) : base( message, innerException ) { }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#if !PCL &amp;&amp; !COREFX</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>        <span class="keyword">public</span> <a class="code" href="a00072.html#a92ea35129f92f260c5327bbc3fd330df">CsvReaderException</a>( SerializationInfo info, StreamingContext context ) : base( info, context ) { }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span>    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00103.html#aa47c7ce6c764dddc78bb4d3ee83714eb">   28</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00103.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CharPosition</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00103.html#a23dee37412eeb387df1d336e7bf07cc2">   33</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00103.html#a23dee37412eeb387df1d336e7bf07cc2">BytePosition</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00103.html#a0ec83f976594f51a002448fa2fe2e392">   38</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00103.html#a0ec83f976594f51a002448fa2fe2e392">Row</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00103.html#a1b238e3bb053f2f6c122ee0d77bb48d7">   43</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="a00103.html#a1b238e3bb053f2f6c122ee0d77bb48d7">RawRecord</a> { <span class="keyword">get</span>; }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">string</span>[] <a class="code" href="a00103.html#a411461b4cd33dce0b42c81715359f687">Read</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="ttc" id="a00072_html_a92ea35129f92f260c5327bbc3fd330df"><div class="ttname"><a href="a00072.html#a92ea35129f92f260c5327bbc3fd330df">CsvHelper.CsvReaderException.CsvReaderException</a></div><div class="ttdeci">CsvReaderException()</div><div class="ttdoc">Initializes a new instance of the CsvReaderException class. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00023">CsvReaderException.cs:23</a></div></div>
-<div class="ttc" id="a00072_html_a4507583f079e40d454285c1e4f161aeb"><div class="ttname"><a href="a00072.html#a4507583f079e40d454285c1e4f161aeb">CsvHelper.CsvReaderException.CsvReaderException</a></div><div class="ttdeci">CsvReaderException(string message, Exception innerException)</div><div class="ttdoc">Initializes a new instance of the CsvReaderException class with a specified error message and a refer...</div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00039">CsvReaderException.cs:39</a></div></div>
-<div class="ttc" id="a00072_html_abb4803417d6a479385872b608f1791e5"><div class="ttname"><a href="a00072.html#abb4803417d6a479385872b608f1791e5">CsvHelper.CsvReaderException.CsvReaderException</a></div><div class="ttdeci">CsvReaderException(string message)</div><div class="ttdoc">Initializes a new instance of the CsvReaderException class with a specified error message...</div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00030">CsvReaderException.cs:30</a></div></div>
-<div class="ttc" id="a00072_html"><div class="ttname"><a href="a00072.html">CsvHelper.CsvReaderException</a></div><div class="ttdoc">Represents errors that occur while reading a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00018">CsvReaderException.cs:18</a></div></div>
-<div class="ttc" id="a00060_html"><div class="ttname"><a href="a00060.html">CsvHelper.CsvHelperException</a></div><div class="ttdoc">Represents errors that occur in CsvHelper. </div><div class="ttdef"><b>Definition:</b> <a href="a00231_source.html#l00018">CsvHelperException.cs:18</a></div></div>
+<div class="ttc" id="a00103_html_af1303d18a827bf46a56f9cb6ba05ed64"><div class="ttname"><a href="a00103.html#af1303d18a827bf46a56f9cb6ba05ed64">CsvHelper.ICsvParser.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00018">ICsvParser.cs:18</a></div></div>
+<div class="ttc" id="a00103_html_a411461b4cd33dce0b42c81715359f687"><div class="ttname"><a href="a00103.html#a411461b4cd33dce0b42c81715359f687">CsvHelper.ICsvParser.Read</a></div><div class="ttdeci">string[] Read()</div><div class="ttdoc">Reads a record from the CSV file. </div></div>
+<div class="ttc" id="a00103_html"><div class="ttname"><a href="a00103.html">CsvHelper.ICsvParser</a></div><div class="ttdoc">Defines methods used the parse a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00013">ICsvParser.cs:13</a></div></div>
+<div class="ttc" id="a00103_html_a1b238e3bb053f2f6c122ee0d77bb48d7"><div class="ttname"><a href="a00103.html#a1b238e3bb053f2f6c122ee0d77bb48d7">CsvHelper.ICsvParser.RawRecord</a></div><div class="ttdeci">string RawRecord</div><div class="ttdoc">Gets the raw row for the current record that was parsed. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00043">ICsvParser.cs:43</a></div></div>
+<div class="ttc" id="a00103_html_a0ec83f976594f51a002448fa2fe2e392"><div class="ttname"><a href="a00103.html#a0ec83f976594f51a002448fa2fe2e392">CsvHelper.ICsvParser.Row</a></div><div class="ttdeci">int Row</div><div class="ttdoc">Gets the row of the CSV file that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00038">ICsvParser.cs:38</a></div></div>
+<div class="ttc" id="a00103_html_aa47c7ce6c764dddc78bb4d3ee83714eb"><div class="ttname"><a href="a00103.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CsvHelper.ICsvParser.CharPosition</a></div><div class="ttdeci">long CharPosition</div><div class="ttdoc">Gets the character position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00028">ICsvParser.cs:28</a></div></div>
+<div class="ttc" id="a00103_html_a50c0428defc2ada782c6863d72a990e4"><div class="ttname"><a href="a00103.html#a50c0428defc2ada782c6863d72a990e4">CsvHelper.ICsvParser.FieldCount</a></div><div class="ttdeci">int FieldCount</div><div class="ttdoc">Gets the field count. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00023">ICsvParser.cs:23</a></div></div>
+<div class="ttc" id="a00053_html"><div class="ttname"><a href="a00053.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00211_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
+<div class="ttc" id="a00103_html_a23dee37412eeb387df1d336e7bf07cc2"><div class="ttname"><a href="a00103.html#a23dee37412eeb387df1d336e7bf07cc2">CsvHelper.ICsvParser.BytePosition</a></div><div class="ttdeci">long BytePosition</div><div class="ttdoc">Gets the byte position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00236_source.html#l00033">ICsvParser.cs:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00236.html">CsvReaderException.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00236.html">ICsvParser.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

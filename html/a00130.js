@@ -1,9 +1,10 @@
 var a00130 =
 [
-    [ "Clear", "a00130.html#aa6d243e7ef02b91f793a221f509dae69", null ],
-    [ "GetNumber", "a00130.html#a1b7f7f4468b2463e7b47986d99362279", null ],
-    [ "GetValue", "a00130.html#a0ce77e8245c504a777540e359704aa2a", null ],
-    [ "SetNumber", "a00130.html#a48b93de9cd7ae61d0cd9583c8330d3ee", null ],
-    [ "SetValue", "a00130.html#a653a459811e5c19549f4b31269093ef5", null ],
-    [ "variables", "a00130.html#aad18acd95297edb8ed496857337f8071", null ]
+    [ "Position", "a00141.html", "a00141" ],
+    [ "body", "a00130.html#a18a8b97f2173fbcf8f3077582cc6e96e", null ],
+    [ "colorID", "a00130.html#a65f686e0170a9c50b97c4e4eedd1a093", null ],
+    [ "position", "a00130.html#ac368ed021558af21c4abed88042c1aa8", null ],
+    [ "tags", "a00130.html#acd4d4915f6cc14f8b0f1f92d27da8b36", null ],
+    [ "tagsList", "a00130.html#ab5010cc4c731e0da871e6002e5fb99a1", null ],
+    [ "title", "a00130.html#aafc45bbc86a9acb9bdbcf7877695a96c", null ]
 ];

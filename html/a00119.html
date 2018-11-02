@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: IYarnSpinnerParserVisitor&lt; Result &gt; Interface Template Reference</title>
+<title>YarnSpinner: Yarn.Library Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,1377 +108,346 @@ $(document).ready(function(){initNavTree('a00119.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00389.html">List of all members</a>  </div>
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="a00637.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">IYarnSpinnerParserVisitor&lt; Result &gt; Interface Template Reference</div>  </div>
+<div class="title">Yarn.Library Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser.  
- <a href="a00119.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for IYarnSpinnerParserVisitor&lt; Result &gt;:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Library:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00390.png" border="0" usemap="#_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map" id="_i_yarn_spinner_parser_visitor_3_01_result_01_4_inherit__map">
-<area shape="rect" id="node3" href="a00191.html" title="This class provides an empty implementation of IYarnSpinnerParserVisitor{Result}, which can be extend..." alt="" coords="5,435,203,674"/><area shape="rect" id="node4" href="a00038.html" title="{Yarn.BodyVisitor\n|~ compiler\l&#45; tokens\l|+ BodyVisitor()\l+ VisitLine_statement()\l+ VisitOption_statement()\l+ VisitSet_statement()\l+ VisitAction_statement()\l+ VisitFunction_statement()\l+ VisitFunction()\l+ VisitIf_statement()\l+ VisitShortcut_statement()\l+ VisitExpParens()\land 18 more...\l~ generateClause()\l~ genericExpVisitor()\l~ opEquals()\l&#45; HandleFunction()\l&#45; ShortcutText()\l&#45; loadOperators()\l}" alt="" coords="13,723,195,1050"/></map>
+<div class="center"><img src="a00638.png" border="0" usemap="#_yarn_8_library_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_library_inherit__map" id="_yarn_8_library_inherit__map">
+<area shape="rect" id="node2" href="a00154.html" title="The standard, built&#45;in library of functions and operators. " alt="" coords="5,219,203,296"/></map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for IYarnSpinnerParserVisitor&lt; Result &gt;:</div>
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Library:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00391.png" border="0" usemap="#_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map" alt="Collaboration graph"/></div>
-<map name="_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map" id="_i_yarn_spinner_parser_visitor_3_01_result_01_4_coll__map">
+<div class="center"><img src="a00639.png" border="0" usemap="#_yarn_8_library_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_library_coll__map" id="_yarn_8_library_coll__map">
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ac2d13d69995b3a8bf8c0733341d0c72e">VisitDialogue</a> ([NotNull] YarnSpinnerParser.DialogueContext context)</td></tr>
-<tr class="memdesc:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.dialogue.  <a href="#ac2d13d69995b3a8bf8c0733341d0c72e">More...</a><br/></td></tr>
-<tr class="separator:ac2d13d69995b3a8bf8c0733341d0c72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59c84bd2dbaab540b8db77eb20e67be6"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a59c84bd2dbaab540b8db77eb20e67be6">VisitNode</a> ([NotNull] YarnSpinnerParser.NodeContext context)</td></tr>
-<tr class="memdesc:a59c84bd2dbaab540b8db77eb20e67be6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.node.  <a href="#a59c84bd2dbaab540b8db77eb20e67be6">More...</a><br/></td></tr>
-<tr class="separator:a59c84bd2dbaab540b8db77eb20e67be6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a24b0bc51bfd9d2fbdd2a4f0211b92e72">VisitHeader</a> ([NotNull] YarnSpinnerParser.HeaderContext context)</td></tr>
-<tr class="memdesc:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header.  <a href="#a24b0bc51bfd9d2fbdd2a4f0211b92e72">More...</a><br/></td></tr>
-<tr class="separator:a24b0bc51bfd9d2fbdd2a4f0211b92e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f554200966a70217bcb285ad4176d03"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2f554200966a70217bcb285ad4176d03">VisitHeader_title</a> ([NotNull] YarnSpinnerParser.Header_titleContext context)</td></tr>
-<tr class="memdesc:a2f554200966a70217bcb285ad4176d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_title.  <a href="#a2f554200966a70217bcb285ad4176d03">More...</a><br/></td></tr>
-<tr class="separator:a2f554200966a70217bcb285ad4176d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a1489c13aa25b6d92dcc064298e618e"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a0a1489c13aa25b6d92dcc064298e618e">VisitHeader_tag</a> ([NotNull] YarnSpinnerParser.Header_tagContext context)</td></tr>
-<tr class="memdesc:a0a1489c13aa25b6d92dcc064298e618e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_tag.  <a href="#a0a1489c13aa25b6d92dcc064298e618e">More...</a><br/></td></tr>
-<tr class="separator:a0a1489c13aa25b6d92dcc064298e618e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a1a51687aef1d08ea7230e6a41d7cf61a">VisitHeader_line</a> ([NotNull] YarnSpinnerParser.Header_lineContext context)</td></tr>
-<tr class="memdesc:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.header_line.  <a href="#a1a51687aef1d08ea7230e6a41d7cf61a">More...</a><br/></td></tr>
-<tr class="separator:a1a51687aef1d08ea7230e6a41d7cf61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab308423e3e80579ec8bac951788f988b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ab308423e3e80579ec8bac951788f988b">VisitBody</a> ([NotNull] YarnSpinnerParser.BodyContext context)</td></tr>
-<tr class="memdesc:ab308423e3e80579ec8bac951788f988b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.body.  <a href="#ab308423e3e80579ec8bac951788f988b">More...</a><br/></td></tr>
-<tr class="separator:ab308423e3e80579ec8bac951788f988b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2122e68c51db45bb8cb757cfd2af7683"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2122e68c51db45bb8cb757cfd2af7683">VisitStatement</a> ([NotNull] YarnSpinnerParser.StatementContext context)</td></tr>
-<tr class="memdesc:a2122e68c51db45bb8cb757cfd2af7683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.statement.  <a href="#a2122e68c51db45bb8cb757cfd2af7683">More...</a><br/></td></tr>
-<tr class="separator:a2122e68c51db45bb8cb757cfd2af7683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a8a3cc5ecfc9bb6ee595d4b7ef9e59162">VisitShortcut_statement</a> ([NotNull] YarnSpinnerParser.Shortcut_statementContext context)</td></tr>
-<tr class="memdesc:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_statement.  <a href="#a8a3cc5ecfc9bb6ee595d4b7ef9e59162">More...</a><br/></td></tr>
-<tr class="separator:a8a3cc5ecfc9bb6ee595d4b7ef9e59162"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b5a47e26ccf33cd524062dbb98a0830"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a7b5a47e26ccf33cd524062dbb98a0830">VisitShortcut</a> ([NotNull] YarnSpinnerParser.ShortcutContext context)</td></tr>
-<tr class="memdesc:a7b5a47e26ccf33cd524062dbb98a0830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut.  <a href="#a7b5a47e26ccf33cd524062dbb98a0830">More...</a><br/></td></tr>
-<tr class="separator:a7b5a47e26ccf33cd524062dbb98a0830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d05d4bf6c088ca182a3017e1431be72"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2d05d4bf6c088ca182a3017e1431be72">VisitShortcut_conditional</a> ([NotNull] YarnSpinnerParser.Shortcut_conditionalContext context)</td></tr>
-<tr class="memdesc:a2d05d4bf6c088ca182a3017e1431be72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_conditional.  <a href="#a2d05d4bf6c088ca182a3017e1431be72">More...</a><br/></td></tr>
-<tr class="separator:a2d05d4bf6c088ca182a3017e1431be72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7363aa1905c378122a785a4f1a8475"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#adb7363aa1905c378122a785a4f1a8475">VisitShortcut_text</a> ([NotNull] YarnSpinnerParser.Shortcut_textContext context)</td></tr>
-<tr class="memdesc:adb7363aa1905c378122a785a4f1a8475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.shortcut_text.  <a href="#adb7363aa1905c378122a785a4f1a8475">More...</a><br/></td></tr>
-<tr class="separator:adb7363aa1905c378122a785a4f1a8475"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfcb940e3a772f45dcd973da249ab5b9"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#acfcb940e3a772f45dcd973da249ab5b9">VisitIf_statement</a> ([NotNull] YarnSpinnerParser.If_statementContext context)</td></tr>
-<tr class="memdesc:acfcb940e3a772f45dcd973da249ab5b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.if_statement.  <a href="#acfcb940e3a772f45dcd973da249ab5b9">More...</a><br/></td></tr>
-<tr class="separator:acfcb940e3a772f45dcd973da249ab5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3069b103a0f46e9d5353822d5042ecc5"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a3069b103a0f46e9d5353822d5042ecc5">VisitIf_clause</a> ([NotNull] YarnSpinnerParser.If_clauseContext context)</td></tr>
-<tr class="memdesc:a3069b103a0f46e9d5353822d5042ecc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.if_clause.  <a href="#a3069b103a0f46e9d5353822d5042ecc5">More...</a><br/></td></tr>
-<tr class="separator:a3069b103a0f46e9d5353822d5042ecc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a03d1e78faa25780e97fe6e643c0ffe8b">VisitElse_if_clause</a> ([NotNull] YarnSpinnerParser.Else_if_clauseContext context)</td></tr>
-<tr class="memdesc:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.else_if_clause.  <a href="#a03d1e78faa25780e97fe6e643c0ffe8b">More...</a><br/></td></tr>
-<tr class="separator:a03d1e78faa25780e97fe6e643c0ffe8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a0e4ddbac78cfa60c490d8a85f39093fd">VisitElse_clause</a> ([NotNull] YarnSpinnerParser.Else_clauseContext context)</td></tr>
-<tr class="memdesc:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.else_clause.  <a href="#a0e4ddbac78cfa60c490d8a85f39093fd">More...</a><br/></td></tr>
-<tr class="separator:a0e4ddbac78cfa60c490d8a85f39093fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51c0c7cf6e9a284e6764690756fad283"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a51c0c7cf6e9a284e6764690756fad283">VisitSet_statement</a> ([NotNull] YarnSpinnerParser.Set_statementContext context)</td></tr>
-<tr class="memdesc:a51c0c7cf6e9a284e6764690756fad283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.set_statement.  <a href="#a51c0c7cf6e9a284e6764690756fad283">More...</a><br/></td></tr>
-<tr class="separator:a51c0c7cf6e9a284e6764690756fad283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a3f384f2fa7825221a8a78dc8b8b94aae">VisitOption_statement</a> ([NotNull] YarnSpinnerParser.Option_statementContext context)</td></tr>
-<tr class="memdesc:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.option_statement.  <a href="#a3f384f2fa7825221a8a78dc8b8b94aae">More...</a><br/></td></tr>
-<tr class="separator:a3f384f2fa7825221a8a78dc8b8b94aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9b15d1b49c2beaef63929b45bee36d"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#aae9b15d1b49c2beaef63929b45bee36d">VisitFunction</a> ([NotNull] YarnSpinnerParser.FunctionContext context)</td></tr>
-<tr class="memdesc:aae9b15d1b49c2beaef63929b45bee36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.function.  <a href="#aae9b15d1b49c2beaef63929b45bee36d">More...</a><br/></td></tr>
-<tr class="separator:aae9b15d1b49c2beaef63929b45bee36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9f060bd7d1c1c9bd1001815959d085"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a7e9f060bd7d1c1c9bd1001815959d085">VisitFunction_statement</a> ([NotNull] YarnSpinnerParser.Function_statementContext context)</td></tr>
-<tr class="memdesc:a7e9f060bd7d1c1c9bd1001815959d085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.function_statement.  <a href="#a7e9f060bd7d1c1c9bd1001815959d085">More...</a><br/></td></tr>
-<tr class="separator:a7e9f060bd7d1c1c9bd1001815959d085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15d9881bebe28f077c5061af2f021d01"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a15d9881bebe28f077c5061af2f021d01">VisitAction_statement</a> ([NotNull] YarnSpinnerParser.Action_statementContext context)</td></tr>
-<tr class="memdesc:a15d9881bebe28f077c5061af2f021d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.action_statement.  <a href="#a15d9881bebe28f077c5061af2f021d01">More...</a><br/></td></tr>
-<tr class="separator:a15d9881bebe28f077c5061af2f021d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#acd505d5a1c6c6ac264f44d23f0684ffa">VisitText</a> ([NotNull] YarnSpinnerParser.TextContext context)</td></tr>
-<tr class="memdesc:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.text.  <a href="#acd505d5a1c6c6ac264f44d23f0684ffa">More...</a><br/></td></tr>
-<tr class="separator:acd505d5a1c6c6ac264f44d23f0684ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a5d976bc67282e8a1a127a7332c8e5c6d">VisitLine_statement</a> ([NotNull] YarnSpinnerParser.Line_statementContext context)</td></tr>
-<tr class="memdesc:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.line_statement.  <a href="#a5d976bc67282e8a1a127a7332c8e5c6d">More...</a><br/></td></tr>
-<tr class="separator:a5d976bc67282e8a1a127a7332c8e5c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899c6a6b0bf44607a125f5b34cc25263"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a899c6a6b0bf44607a125f5b34cc25263">VisitHashtag_block</a> ([NotNull] YarnSpinnerParser.Hashtag_blockContext context)</td></tr>
-<tr class="memdesc:a899c6a6b0bf44607a125f5b34cc25263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.hashtag_block.  <a href="#a899c6a6b0bf44607a125f5b34cc25263">More...</a><br/></td></tr>
-<tr class="separator:a899c6a6b0bf44607a125f5b34cc25263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a9eb068239ecf7a9f22efcbab257c26"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a5a9eb068239ecf7a9f22efcbab257c26">VisitHashtag</a> ([NotNull] YarnSpinnerParser.HashtagContext context)</td></tr>
-<tr class="memdesc:a5a9eb068239ecf7a9f22efcbab257c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.hashtag.  <a href="#a5a9eb068239ecf7a9f22efcbab257c26">More...</a><br/></td></tr>
-<tr class="separator:a5a9eb068239ecf7a9f22efcbab257c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a013aa5250f60ca4c93643f89efae2477"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a013aa5250f60ca4c93643f89efae2477">VisitExpParens</a> ([NotNull] YarnSpinnerParser.ExpParensContext context)</td></tr>
-<tr class="memdesc:a013aa5250f60ca4c93643f89efae2477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expParens</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a013aa5250f60ca4c93643f89efae2477">More...</a><br/></td></tr>
-<tr class="separator:a013aa5250f60ca4c93643f89efae2477"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2ca29018070dc26e6c6ccd9e278993"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#abe2ca29018070dc26e6c6ccd9e278993">VisitExpMultDivMod</a> ([NotNull] YarnSpinnerParser.ExpMultDivModContext context)</td></tr>
-<tr class="memdesc:abe2ca29018070dc26e6c6ccd9e278993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expMultDivMod</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#abe2ca29018070dc26e6c6ccd9e278993">More...</a><br/></td></tr>
-<tr class="separator:abe2ca29018070dc26e6c6ccd9e278993"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7bbdc8c63543a785416870e72ef6e82"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#aa7bbdc8c63543a785416870e72ef6e82">VisitExpMultDivModEquals</a> ([NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext context)</td></tr>
-<tr class="memdesc:aa7bbdc8c63543a785416870e72ef6e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expMultDivModEquals</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#aa7bbdc8c63543a785416870e72ef6e82">More...</a><br/></td></tr>
-<tr class="separator:aa7bbdc8c63543a785416870e72ef6e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a64d1e4be6cdd7ad2bcff2b268d3909df">VisitExpComparison</a> ([NotNull] YarnSpinnerParser.ExpComparisonContext context)</td></tr>
-<tr class="memdesc:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expComparison</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a64d1e4be6cdd7ad2bcff2b268d3909df">More...</a><br/></td></tr>
-<tr class="separator:a64d1e4be6cdd7ad2bcff2b268d3909df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a13bd33ef64f92e9d8d51cd6ed1ac2943">VisitExpNegative</a> ([NotNull] YarnSpinnerParser.ExpNegativeContext context)</td></tr>
-<tr class="memdesc:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expNegative</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a13bd33ef64f92e9d8d51cd6ed1ac2943">More...</a><br/></td></tr>
-<tr class="separator:a13bd33ef64f92e9d8d51cd6ed1ac2943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2594497afe741de8c8ccd3e4378842"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#aea2594497afe741de8c8ccd3e4378842">VisitExpAndOrXor</a> ([NotNull] YarnSpinnerParser.ExpAndOrXorContext context)</td></tr>
-<tr class="memdesc:aea2594497afe741de8c8ccd3e4378842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expAndOrXor</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#aea2594497afe741de8c8ccd3e4378842">More...</a><br/></td></tr>
-<tr class="separator:aea2594497afe741de8c8ccd3e4378842"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0174004a39264c245bfc326ee2cf84c9"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a0174004a39264c245bfc326ee2cf84c9">VisitExpPlusMinusEquals</a> ([NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext context)</td></tr>
-<tr class="memdesc:a0174004a39264c245bfc326ee2cf84c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expPlusMinusEquals</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a0174004a39264c245bfc326ee2cf84c9">More...</a><br/></td></tr>
-<tr class="separator:a0174004a39264c245bfc326ee2cf84c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a618a7fac4c00e587e3576ac230688896"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a618a7fac4c00e587e3576ac230688896">VisitExpAddSub</a> ([NotNull] YarnSpinnerParser.ExpAddSubContext context)</td></tr>
-<tr class="memdesc:a618a7fac4c00e587e3576ac230688896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expAddSub</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#a618a7fac4c00e587e3576ac230688896">More...</a><br/></td></tr>
-<tr class="separator:a618a7fac4c00e587e3576ac230688896"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6ff9851ca2313ac155711cdce83f617"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ab6ff9851ca2313ac155711cdce83f617">VisitExpNot</a> ([NotNull] YarnSpinnerParser.ExpNotContext context)</td></tr>
-<tr class="memdesc:ab6ff9851ca2313ac155711cdce83f617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expNot</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#ab6ff9851ca2313ac155711cdce83f617">More...</a><br/></td></tr>
-<tr class="separator:ab6ff9851ca2313ac155711cdce83f617"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89121dfc7a63b034449654b5aebbbb3"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ac89121dfc7a63b034449654b5aebbbb3">VisitExpValue</a> ([NotNull] YarnSpinnerParser.ExpValueContext context)</td></tr>
-<tr class="memdesc:ac89121dfc7a63b034449654b5aebbbb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expValue</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#ac89121dfc7a63b034449654b5aebbbb3">More...</a><br/></td></tr>
-<tr class="separator:ac89121dfc7a63b034449654b5aebbbb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#abe38c3f9d0c5b2e7addd31e0b5a97db8">VisitExpEquality</a> ([NotNull] YarnSpinnerParser.ExpEqualityContext context)</td></tr>
-<tr class="memdesc:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>expEquality</code> labeled alternative in YarnSpinnerParser.expression.  <a href="#abe38c3f9d0c5b2e7addd31e0b5a97db8">More...</a><br/></td></tr>
-<tr class="separator:abe38c3f9d0c5b2e7addd31e0b5a97db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fe03a0db2907655b545a46a1df3fd55"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a7fe03a0db2907655b545a46a1df3fd55">VisitValueNumber</a> ([NotNull] YarnSpinnerParser.ValueNumberContext context)</td></tr>
-<tr class="memdesc:a7fe03a0db2907655b545a46a1df3fd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueNumber</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a7fe03a0db2907655b545a46a1df3fd55">More...</a><br/></td></tr>
-<tr class="separator:a7fe03a0db2907655b545a46a1df3fd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74925dab55e607597ea5b6f0917b5779"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a74925dab55e607597ea5b6f0917b5779">VisitValueTrue</a> ([NotNull] YarnSpinnerParser.ValueTrueContext context)</td></tr>
-<tr class="memdesc:a74925dab55e607597ea5b6f0917b5779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueTrue</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a74925dab55e607597ea5b6f0917b5779">More...</a><br/></td></tr>
-<tr class="separator:a74925dab55e607597ea5b6f0917b5779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ac8f01ef410d14f0dbc1cdd1931eea7ab">VisitValueFalse</a> ([NotNull] YarnSpinnerParser.ValueFalseContext context)</td></tr>
-<tr class="memdesc:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueFalse</code> labeled alternative in YarnSpinnerParser.value.  <a href="#ac8f01ef410d14f0dbc1cdd1931eea7ab">More...</a><br/></td></tr>
-<tr class="separator:ac8f01ef410d14f0dbc1cdd1931eea7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14da4b931a15282d4b2634d9265fcffe"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a14da4b931a15282d4b2634d9265fcffe">VisitValueVar</a> ([NotNull] YarnSpinnerParser.ValueVarContext context)</td></tr>
-<tr class="memdesc:a14da4b931a15282d4b2634d9265fcffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueVar</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a14da4b931a15282d4b2634d9265fcffe">More...</a><br/></td></tr>
-<tr class="separator:a14da4b931a15282d4b2634d9265fcffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e535c2b63583902b3517895be63123b"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2e535c2b63583902b3517895be63123b">VisitValueString</a> ([NotNull] YarnSpinnerParser.ValueStringContext context)</td></tr>
-<tr class="memdesc:a2e535c2b63583902b3517895be63123b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueString</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a2e535c2b63583902b3517895be63123b">More...</a><br/></td></tr>
-<tr class="separator:a2e535c2b63583902b3517895be63123b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89486f7b19cc9485eeb85c0a712ce4da"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a89486f7b19cc9485eeb85c0a712ce4da">VisitValueFunc</a> ([NotNull] YarnSpinnerParser.ValueFuncContext context)</td></tr>
-<tr class="memdesc:a89486f7b19cc9485eeb85c0a712ce4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueFunc</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a89486f7b19cc9485eeb85c0a712ce4da">More...</a><br/></td></tr>
-<tr class="separator:a89486f7b19cc9485eeb85c0a712ce4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a99862f42b27b2bb1474ecbd55ab0aac2">VisitValueNull</a> ([NotNull] YarnSpinnerParser.ValueNullContext context)</td></tr>
-<tr class="memdesc:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by the <code>valueNull</code> labeled alternative in YarnSpinnerParser.value.  <a href="#a99862f42b27b2bb1474ecbd55ab0aac2">More...</a><br/></td></tr>
-<tr class="separator:a99862f42b27b2bb1474ecbd55ab0aac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f6cb6458c58c7af89a75abcbec0348"><td class="memItemLeft" align="right" valign="top">Result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ad5f6cb6458c58c7af89a75abcbec0348">VisitVariable</a> ([NotNull] YarnSpinnerParser.VariableContext context)</td></tr>
-<tr class="memdesc:ad5f6cb6458c58c7af89a75abcbec0348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a parse tree produced by YarnSpinnerParser.variable.  <a href="#ad5f6cb6458c58c7af89a75abcbec0348">More...</a><br/></td></tr>
-<tr class="separator:ad5f6cb6458c58c7af89a75abcbec0348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacfb1f00ad8aa3921941b8d8af0960e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00096.html">FunctionInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#aacfb1f00ad8aa3921941b8d8af0960e0">GetFunction</a> (string name)</td></tr>
+<tr class="separator:aacfb1f00ad8aa3921941b8d8af0960e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab42a4fd30a72156cafa685f959deef78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#ab42a4fd30a72156cafa685f959deef78">ImportLibrary</a> (<a class="el" href="a00119.html">Library</a> otherLibrary)</td></tr>
+<tr class="separator:ab42a4fd30a72156cafa685f959deef78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001ab29d21fe7db10fc9c250914287f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (<a class="el" href="a00096.html">FunctionInfo</a> function)</td></tr>
+<tr class="separator:a001ab29d21fe7db10fc9c250914287f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a698de0b528b2bac17bd85f57d45d4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2a698de0b528b2bac17bd85f57d45d4b">RegisterFunction</a> (string name, int parameterCount, <a class="el" href="a00041.html#a5177bf74fbfe7303fac9d8236c2e514b">ReturningFunction</a> implementation)</td></tr>
+<tr class="separator:a2a698de0b528b2bac17bd85f57d45d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6820eaa082077f16496effbc9041b7ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a6820eaa082077f16496effbc9041b7ad">RegisterFunction</a> (string name, int parameterCount, <a class="el" href="a00041.html#ae0be2e5cf13d5779816102439e61ff1a">Function</a> implementation)</td></tr>
+<tr class="separator:a6820eaa082077f16496effbc9041b7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c9a1cc3e25b6aae25e210d8a0d68c09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a6c9a1cc3e25b6aae25e210d8a0d68c09">FunctionExists</a> (string name)</td></tr>
+<tr class="separator:a6c9a1cc3e25b6aae25e210d8a0d68c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47d1b3664733207d5cda15f4a4a7af7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a47d1b3664733207d5cda15f4a4a7af7a">DeregisterFunction</a> (string name)</td></tr>
+<tr class="separator:a47d1b3664733207d5cda15f4a4a7af7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2fcc78a63963be5320cf09783b66fab6"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, <a class="el" href="a00096.html">FunctionInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> = new Dictionary&lt;string, <a class="el" href="a00096.html">FunctionInfo</a>&gt;()</td></tr>
+<tr class="separator:a2fcc78a63963be5320cf09783b66fab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Result</td><td>The return type of the visit operation.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="a00310_source.html#l00033">33</a> of file <a class="el" href="a00310_source.html">YarnSpinnerParserVisitor.cs</a>.</p>
+<div class="textblock">
+<p>Definition at line <a class="el" href="a00293_source.html#l00087">87</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a15d9881bebe28f077c5061af2f021d01"></a>
+<a class="anchor" id="a47d1b3664733207d5cda15f4a4a7af7a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitAction_statement </td>
+          <td class="memname">void Yarn.Library.DeregisterFunction </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Action_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.action_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00129">129</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00038.html#a1974944d85b5250c60a4ffc07f958cd0">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a2007b8ca6078d351b39ad4df496dd00d">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
+<p>References <a class="el" href="a00293_source.html#l00090">Yarn.Library.functions</a>.</p>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                                                    {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a>.ContainsKey(name))</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <a class="code" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a>.Remove (name);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00090">Library.cs:90</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ab308423e3e80579ec8bac951788f988b"></a>
+<a class="anchor" id="a6c9a1cc3e25b6aae25e210d8a0d68c09"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitBody </td>
+          <td class="memname">bool Yarn.Library.FunctionExists </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.BodyContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.body. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a3b84a7518f955a935b1ac327e568f29d">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
+<p>Definition at line <a class="el" href="a00293_source.html#l00125">125</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                                {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">return</span> functions.ContainsKey (name);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ac2d13d69995b3a8bf8c0733341d0c72e"></a>
+<a class="anchor" id="aacfb1f00ad8aa3921941b8d8af0960e0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitDialogue </td>
+          <td class="memname"><a class="el" href="a00096.html">FunctionInfo</a> Yarn.Library.GetFunction </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.DialogueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.dialogue. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00094">94</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00191.html#ad2daefa4c88b72128606682d094e2485">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>References <a class="el" href="a00293_source.html#l00090">Yarn.Library.functions</a>.</p>
+
+<p>Referenced by <a class="el" href="a00298_source.html#l00175">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                                     {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [name];</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (name + <span class="stringliteral">&quot; is not a valid function&quot;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00090">Library.cs:90</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00119_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph.png" border="0" usemap="#a00119_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph" alt=""/></div>
+<map name="a00119_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph" id="a00119_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph">
+<area shape="rect" id="node2" href="a00152.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="222,5,450,32"/><area shape="rect" id="node3" href="a00152.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="499,5,693,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a0e4ddbac78cfa60c490d8a85f39093fd"></a>
+<a class="anchor" id="ab42a4fd30a72156cafa685f959deef78"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitElse_clause </td>
+          <td class="memname">void Yarn.Library.ImportLibrary </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Else_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00119.html">Library</a>&#160;</td>
+          <td class="paramname"><em>otherLibrary</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.else_clause. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00105">105</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00191.html#acb4799ad5491a7c3f35b8851dc4745e3">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
+<p>References <a class="el" href="a00293_source.html#l00090">Yarn.Library.functions</a>.</p>
+<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                                        {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> otherLibrary.functions) {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <a class="code" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [entry.Key] = entry.Value;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00090">Library.cs:90</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a03d1e78faa25780e97fe6e643c0ffe8b"></a>
+<a class="anchor" id="a001ab29d21fe7db10fc9c250914287f9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitElse_if_clause </td>
+          <td class="memname">void Yarn.Library.RegisterFunction </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Else_if_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="a00096.html">FunctionInfo</a>&#160;</td>
+          <td class="paramname"><em>function</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by YarnSpinnerParser.else_if_clause. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00111">111</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00191.html#aa646fda5f6cd91b1e8e6be24e686a25a">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>References <a class="el" href="a00293_source.html#l00090">Yarn.Library.functions</a>.</p>
+
+<p>Referenced by <a class="el" href="a00293_source.html#l00115">Yarn.Library.RegisterFunction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                            {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [function.name] = <span class="keyword">function</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00119.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00090">Library.cs:90</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00119_a001ab29d21fe7db10fc9c250914287f9_icgraph.png" border="0" usemap="#a00119_a001ab29d21fe7db10fc9c250914287f9_icgraph" alt=""/></div>
+<map name="a00119_a001ab29d21fe7db10fc9c250914287f9_icgraph" id="a00119_a001ab29d21fe7db10fc9c250914287f9_icgraph">
+<area shape="rect" id="node2" href="a00119.html#a2a698de0b528b2bac17bd85f57d45d4b" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a618a7fac4c00e587e3576ac230688896"></a>
+<a class="anchor" id="a2a698de0b528b2bac17bd85f57d45d4b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpAddSub </td>
+          <td class="memname">void Yarn.Library.RegisterFunction </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpAddSubContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parameterCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00041.html#a5177bf74fbfe7303fac9d8236c2e514b">ReturningFunction</a>&#160;</td>
+          <td class="paramname"><em>implementation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expAddSub</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00115">115</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00038.html#a5eb6df63b55c3ba8e8568d8b0ebd0369">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#ab13841b276eed71099a86898cccacd99">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>References <a class="el" href="a00293_source.html#l00111">Yarn.Library.RegisterFunction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                                                                                                        {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            var info = <span class="keyword">new</span> FunctionInfo (name, parameterCount, implementation);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <a class="code" href="a00119.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (info);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a001ab29d21fe7db10fc9c250914287f9"><div class="ttname"><a href="a00119.html#a001ab29d21fe7db10fc9c250914287f9">Yarn.Library.RegisterFunction</a></div><div class="ttdeci">void RegisterFunction(FunctionInfo function)</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00111">Library.cs:111</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00119_a2a698de0b528b2bac17bd85f57d45d4b_cgraph.png" border="0" usemap="#a00119_a2a698de0b528b2bac17bd85f57d45d4b_cgraph" alt=""/></div>
+<map name="a00119_a2a698de0b528b2bac17bd85f57d45d4b_cgraph" id="a00119_a2a698de0b528b2bac17bd85f57d45d4b_cgraph">
+<area shape="rect" id="node2" href="a00119.html#a001ab29d21fe7db10fc9c250914287f9" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="aea2594497afe741de8c8ccd3e4378842"></a>
+<a class="anchor" id="a6820eaa082077f16496effbc9041b7ad"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpAndOrXor </td>
+          <td class="memname">void Yarn.Library.RegisterFunction </td>
           <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpAndOrXorContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>parameterCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00041.html#ae0be2e5cf13d5779816102439e61ff1a">Function</a>&#160;</td>
+          <td class="paramname"><em>implementation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expAndOrXor</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00120">120</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00038.html#a19491adb347becea5f216e805763f582">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a39ca6a0cef25c14575a6e28e8e9e8745">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>References <a class="el" href="a00293_source.html#l00111">Yarn.Library.RegisterFunction()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                                                                               {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            var info = <span class="keyword">new</span> FunctionInfo (name, parameterCount, implementation);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <a class="code" href="a00119.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (info);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_a001ab29d21fe7db10fc9c250914287f9"><div class="ttname"><a href="a00119.html#a001ab29d21fe7db10fc9c250914287f9">Yarn.Library.RegisterFunction</a></div><div class="ttdeci">void RegisterFunction(FunctionInfo function)</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00111">Library.cs:111</a></div></div>
+</div><!-- fragment -->
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00119_a6820eaa082077f16496effbc9041b7ad_cgraph.png" border="0" usemap="#a00119_a6820eaa082077f16496effbc9041b7ad_cgraph" alt=""/></div>
+<map name="a00119_a6820eaa082077f16496effbc9041b7ad_cgraph" id="a00119_a6820eaa082077f16496effbc9041b7ad_cgraph">
+<area shape="rect" id="node2" href="a00119.html#a001ab29d21fe7db10fc9c250914287f9" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a64d1e4be6cdd7ad2bcff2b268d3909df"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a2fcc78a63963be5320cf09783b66fab6"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpComparison </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpComparisonContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
+          <td class="memname">Dictionary&lt;string, <a class="el" href="a00096.html">FunctionInfo</a>&gt; Yarn.Library.functions = new Dictionary&lt;string, <a class="el" href="a00096.html">FunctionInfo</a>&gt;()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Visit a parse tree produced by the <code>expComparison</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
+<p>Definition at line <a class="el" href="a00293_source.html#l00090">90</a> of file <a class="el" href="a00293_source.html">Library.cs</a>.</p>
 
-<p>Implemented in <a class="el" href="a00038.html#a3e2bd74ec27b6e603b075e0468db3fb5">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#aa3e8b61abdf6737bb2f2ebbb302f10dc">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
+<p>Referenced by <a class="el" href="a00293_source.html#l00129">Yarn.Library.DeregisterFunction()</a>, <a class="el" href="a00293_source.html#l00094">Yarn.Library.GetFunction()</a>, <a class="el" href="a00293_source.html#l00105">Yarn.Library.ImportLibrary()</a>, and <a class="el" href="a00293_source.html#l00111">Yarn.Library.RegisterFunction()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abe38c3f9d0c5b2e7addd31e0b5a97db8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpEquality </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpEqualityContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expEquality</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ae5da558219f42b518a5483f7f794ed0a">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#ae1ab6fcbc8f14f578dc3e9f2f16be450">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abe2ca29018070dc26e6c6ccd9e278993"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpMultDivMod </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpMultDivModContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expMultDivMod</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a305e4197937bc3b6336592b61ba01eca">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#ae585d346692cb437d1fc433cb3e2070f">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa7bbdc8c63543a785416870e72ef6e82"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpMultDivModEquals </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpMultDivModEqualsContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expMultDivModEquals</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ab073a73cd379ee0130e2588c08573345">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a288f0fef2f1dde71faacfceddee9b954">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a13bd33ef64f92e9d8d51cd6ed1ac2943"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpNegative </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpNegativeContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expNegative</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#aa6e290a205fcacca64071255c1901161">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a6992d2e7a09d1e9e6c3f6f1ebfa686a6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab6ff9851ca2313ac155711cdce83f617"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpNot </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpNotContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expNot</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#af5870b979203df0e9bc78dd3d8c41b27">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a2b3a3e9b5395b0311e644146a896a21a">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a013aa5250f60ca4c93643f89efae2477"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpParens </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpParensContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expParens</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a51f5522367e1b35dbe15abd3363a7c4b">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a55fe0021b48203160ea72d53e2f97dd8">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0174004a39264c245bfc326ee2cf84c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpPlusMinusEquals </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpPlusMinusEqualsContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expPlusMinusEquals</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a573f37ce6260e0f112d3c6210fadf638">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a824ff62e60e13295f2fae5e96c573f0e">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac89121dfc7a63b034449654b5aebbbb3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitExpValue </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ExpValueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>expValue</code> labeled alternative in YarnSpinnerParser.expression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ac820130b8eb85146442f4124d5212877">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a54fd207b9821555dbbd9f41d82ccab00">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aae9b15d1b49c2beaef63929b45bee36d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitFunction </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.FunctionContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.function. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#adaf7ebcc18546fc41a78928606fae5cb">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#aa7cf0de1076cfa2e859cbd0ba92226ab">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7e9f060bd7d1c1c9bd1001815959d085"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitFunction_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Function_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.function_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#aa30d181ed0c8b5ea56912db147b35091">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a41ebea13c8b494629f3854ac3b02acb1">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5a9eb068239ecf7a9f22efcbab257c26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHashtag </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.HashtagContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.hashtag. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a36bcc3e07dedf9354a2c9967cde577d2">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a899c6a6b0bf44607a125f5b34cc25263"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHashtag_block </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Hashtag_blockContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.hashtag_block. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a9400d1b4e26fb2b640320da88ba787d6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a24b0bc51bfd9d2fbdd2a4f0211b92e72"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.HeaderContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a08145c313b49a2c5e1a9d4a607f1a57c">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1a51687aef1d08ea7230e6a41d7cf61a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_line </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_lineContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header_line. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#aa553a267b8ce2984ed2a80a1d28aae9c">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0a1489c13aa25b6d92dcc064298e618e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_tag </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_tagContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header_tag. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a0b88799d0a6f7c51d51403bc6f60c01e">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2f554200966a70217bcb285ad4176d03"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitHeader_title </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Header_titleContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.header_title. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a3c54ba6115ce150b2303f3bd37754269">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3069b103a0f46e9d5353822d5042ecc5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitIf_clause </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.If_clauseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.if_clause. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a6b9c14146ced835495bb48bc5c63ebb5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acfcb940e3a772f45dcd973da249ab5b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitIf_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.If_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.if_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ae2d46c57ab716ded9d7f66cfb7a20a03">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a005f9655da52de2581762a4b61912ecd">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5d976bc67282e8a1a127a7332c8e5c6d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitLine_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Line_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.line_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a8439dc653550b8522eaf97298b54c0c4">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>, and <a class="el" href="a00038.html#a0469d0cd00e8737385144157d7dbc436">Yarn.BodyVisitor</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a59c84bd2dbaab540b8db77eb20e67be6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitNode </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.NodeContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.node. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a45882fee8dd45b1a7a04d000be825dce">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3f384f2fa7825221a8a78dc8b8b94aae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitOption_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Option_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.option_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#abf95a48291ee85c0f9327f0c3ed3dc3c">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a2d06e22c32b7bb86030fe40224f8a3f2">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a51c0c7cf6e9a284e6764690756fad283"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitSet_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Set_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.set_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a8d47becbb77d7c75a2d9e6aa777fd5df">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a8d1aa112df14a3492905930adcb664b5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7b5a47e26ccf33cd524062dbb98a0830"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ShortcutContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a167e9a44ea7d404370390528fdd70115">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d05d4bf6c088ca182a3017e1431be72"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_conditional </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_conditionalContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_conditional. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a4a4adcbdf2ba70878b015aa47d54b398">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8a3cc5ecfc9bb6ee595d4b7ef9e59162"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_statement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_statementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ad1576a22d74304c3155a0c2fa91be5b9">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a8299d25bc796f9c126635cf72aa3ea12">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adb7363aa1905c378122a785a4f1a8475"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitShortcut_text </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.Shortcut_textContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.shortcut_text. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a34e4b7e3d1c1c78dab3d017632cdca1f">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2122e68c51db45bb8cb757cfd2af7683"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitStatement </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.StatementContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.statement. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#a6856fdb64dfc47bb9f1650683a1ccf97">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acd505d5a1c6c6ac264f44d23f0684ffa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitText </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.TextContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.text. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00191.html#ac8a0d095d59f4ef49178ba70353fe9a6">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac8f01ef410d14f0dbc1cdd1931eea7ab"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueFalse </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueFalseContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueFalse</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a35ff313be01c2bb671f4d20917a27aae">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#aec30451186238928bd135298139b94e9">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a89486f7b19cc9485eeb85c0a712ce4da"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueFunc </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueFuncContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueFunc</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#aa2c789583bec673fa64cbf141eae19aa">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a48cbb1894a0d0232f8961361344a6728">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a99862f42b27b2bb1474ecbd55ab0aac2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueNull </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueNullContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueNull</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a888533459a53d98ff4891ca5aa21763c">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#adc657b05087e7cdeff4b38fe7bd440f5">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7fe03a0db2907655b545a46a1df3fd55"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueNumber </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueNumberContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueNumber</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a2acb075ab60f6aca5319dce40074880f">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#abf395acc2fa3c6eab664d211c8afa8fd">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2e535c2b63583902b3517895be63123b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueString </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueStringContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueString</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a33229651713a1b788e8841added0e2db">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a190b9ce38685ffe5b2ce451f9afed24b">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a74925dab55e607597ea5b6f0917b5779"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueTrue </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueTrueContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueTrue</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#ab627c2664656eedcefd9c2be4231cc51">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#ad42a85096cd1000bac437166c879f0ec">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a14da4b931a15282d4b2634d9265fcffe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitValueVar </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.ValueVarContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by the <code>valueVar</code> labeled alternative in YarnSpinnerParser.value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#aa9e7f9f7310448cb44d0acb88512bc71">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a206d2a25cd566e2209fd4cedfae312c9">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad5f6cb6458c58c7af89a75abcbec0348"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Result IYarnSpinnerParserVisitor&lt; Result &gt;.VisitVariable </td>
-          <td>(</td>
-          <td class="paramtype">[NotNull] YarnSpinnerParser.VariableContext&#160;</td>
-          <td class="paramname"><em>context</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Visit a parse tree produced by YarnSpinnerParser.variable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>The parse tree.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>&lt;return&gt;The visitor result.&lt;/return&gt; </p>
-
-<p>Implemented in <a class="el" href="a00038.html#a884faf4566a71978ca12e671988c740b">Yarn.BodyVisitor</a>, and <a class="el" href="a00191.html#a51d3d21fc833b5b4676ac84a46cdef87">YarnSpinnerParserBaseVisitor&lt; Result &gt;</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00310_source.html">YarnSpinnerParserVisitor.cs</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>YarnSpinner/<a class="el" href="a00293_source.html">Library.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00119.html">IYarnSpinnerParserVisitor< Result ></a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00119.html">Library</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:22 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

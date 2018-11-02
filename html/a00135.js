@@ -1,8 +1,6 @@
 var a00135 =
 [
-    [ "Start", "a00135.html#a0bf37075312ea87c2e329cc363a328a6", null ],
-    [ "Update", "a00135.html#ab1bea5afabd1c2e1e991063b1579d062", null ],
-    [ "characterName", "a00135.html#a418ea7095bd8201559ed392f07905ca3", null ],
-    [ "scriptToLoad", "a00135.html#a63145fb6ddf357e604d71bac04ca8a60", null ],
-    [ "talkToNode", "a00135.html#a64f4f1fb66b2046a674e3ebf3b9fdb56", null ]
+    [ "OptionSetResult", "a00135.html#a934c02fb1047ffd05b2b5a9c6fcd7acb", null ],
+    [ "options", "a00135.html#abda9c3047ff9d3c3ec5540566a239315", null ],
+    [ "setSelectedOptionDelegate", "a00135.html#a6f2683598cf0f62b76bb864640cc79dd", null ]
 ];

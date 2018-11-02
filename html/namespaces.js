@@ -1,8 +1,8 @@
 var namespaces =
 [
-    [ "CsvHelper", "a00325.html", "a00325" ],
-    [ "preprocessor", "a00336.html", null ],
-    [ "System", "a00338.html", "a00338" ],
-    [ "Yarn", "a00045.html", "a00045" ],
-    [ "YarnSpinner", "a00359.html", "a00359" ]
+    [ "CsvHelper", "a00319.html", "a00319" ],
+    [ "preprocessor", "a00330.html", null ],
+    [ "System", "a00332.html", "a00332" ],
+    [ "Yarn", "a00041.html", "a00041" ],
+    [ "YarnSpinner", "a00353.html", "a00353" ]
 ];

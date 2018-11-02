@@ -3,24 +3,24 @@
   <compounddef id="dir_1eca966f73ceaf9660884e1398ef38ac" kind="dir">
     <compoundname>YarnSpinner</compoundname>
     <innerdir refid="dir_27b0c1af8c4e705ac80588c758eab39a">YarnSpinner/Properties</innerdir>
-    <innerfile refid="a00293">Analyser.cs</innerfile>
-    <innerfile refid="a00294">AntlrCompiler.cs</innerfile>
-    <innerfile refid="a00295">Compiler.cs</innerfile>
-    <innerfile refid="a00296">Dialogue.cs</innerfile>
-    <innerfile refid="a00297">ErrorListener.cs</innerfile>
-    <innerfile refid="a00298">Lexer.cs</innerfile>
-    <innerfile refid="a00299">Library.cs</innerfile>
-    <innerfile refid="a00300">Loader.cs</innerfile>
-    <innerfile refid="a00301">Parser.cs</innerfile>
-    <innerfile refid="a00302">Program.cs</innerfile>
-    <innerfile refid="a00303">Value.cs</innerfile>
-    <innerfile refid="a00304">VirtualMachine.cs</innerfile>
-    <innerfile refid="a00305">YarnSpinnerLexer.cs</innerfile>
-    <innerfile refid="a00306">YarnSpinnerParser.cs</innerfile>
-    <innerfile refid="a00307">YarnSpinnerParserBaseListener.cs</innerfile>
-    <innerfile refid="a00308">YarnSpinnerParserBaseVisitor.cs</innerfile>
-    <innerfile refid="a00309">YarnSpinnerParserListener.cs</innerfile>
-    <innerfile refid="a00310">YarnSpinnerParserVisitor.cs</innerfile>
+    <innerfile refid="a00287">Analyser.cs</innerfile>
+    <innerfile refid="a00288">AntlrCompiler.cs</innerfile>
+    <innerfile refid="a00289">Compiler.cs</innerfile>
+    <innerfile refid="a00290">Dialogue.cs</innerfile>
+    <innerfile refid="a00291">ErrorListener.cs</innerfile>
+    <innerfile refid="a00292">Lexer.cs</innerfile>
+    <innerfile refid="a00293">Library.cs</innerfile>
+    <innerfile refid="a00294">Loader.cs</innerfile>
+    <innerfile refid="a00295">Parser.cs</innerfile>
+    <innerfile refid="a00296">Program.cs</innerfile>
+    <innerfile refid="a00297">Value.cs</innerfile>
+    <innerfile refid="a00298">VirtualMachine.cs</innerfile>
+    <innerfile refid="a00299">YarnSpinnerLexer.cs</innerfile>
+    <innerfile refid="a00300">YarnSpinnerParser.cs</innerfile>
+    <innerfile refid="a00301">YarnSpinnerParserBaseListener.cs</innerfile>
+    <innerfile refid="a00302">YarnSpinnerParserBaseVisitor.cs</innerfile>
+    <innerfile refid="a00303">YarnSpinnerParserListener.cs</innerfile>
+    <innerfile refid="a00304">YarnSpinnerParserVisitor.cs</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

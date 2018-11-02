@@ -1,17 +1,16 @@
 var a00081 =
 [
-    [ "AutoMap", "a00081.html#aec2097b09baaaac45171f91592af439d", null ],
-    [ "AutoMapInternal", "a00081.html#a16b5bb84064e86c2b319348d8a42693d", null ],
-    [ "CheckForCircularReference", "a00081.html#a4b2f3fc2e0670d17566b4705b7b622aa", null ],
-    [ "ConstructUsing", "a00081.html#a983d792ae80f888958037eea306b143a", null ],
-    [ "CreateMap", "a00081.html#a83de9d28160d0d3da1e017df554a9481", null ],
-    [ "GetMaxIndex", "a00081.html#a708c455aa7f78a26b55dafc46a587ec3", null ],
-    [ "Map", "a00081.html#aa3395a5f657f0dd7c8fe6a0fbf5a03cb", null ],
-    [ "PropertyMap< T >", "a00081.html#abab2b5cd5a290fd5d17116430b084420", null ],
-    [ "References", "a00081.html#a68caeee244e978110a2acae6d3042fc3", null ],
-    [ "References< TClassMap >", "a00081.html#a20365b78c96ac29e3261bcde30e0d746", null ],
-    [ "ReIndex", "a00081.html#ac6c1e8ae1d049bd0ef09e7c2d99fbe55", null ],
-    [ "Constructor", "a00081.html#ae8038b36db7584ef1a73852fcc46404b", null ],
-    [ "PropertyMaps", "a00081.html#a9580e897abcba144f3101eb983348e25", null ],
-    [ "ReferenceMaps", "a00081.html#a6dfbf8f743b16d2ec83edef865ea2d9e", null ]
+    [ "Severity", "a00081.html#a227813cbc8fa03c3448a612ffc909d1c", [
+      [ "Error", "a00081.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
+      [ "Warning", "a00081.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
+      [ "Note", "a00081.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
+    ] ],
+    [ "Diagnosis", "a00081.html#ad3fd818f1be98dc803e5bec959153824", null ],
+    [ "ToString", "a00081.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
+    [ "ToString", "a00081.html#a985dee7ca27aa896332590133606b6a9", null ],
+    [ "columnNumber", "a00081.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
+    [ "lineNumber", "a00081.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
+    [ "message", "a00081.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
+    [ "nodeName", "a00081.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
+    [ "severity", "a00081.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
 ];

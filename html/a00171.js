@@ -1,13 +1,11 @@
 var a00171 =
 [
-    [ "TypeConverterFactory", "a00171.html#aec2f01e01f95ff8c7a69ccaf991b6fa6", null ],
-    [ "AddConverter", "a00171.html#aea523d100f0064672767dfe2c912cfca", null ],
-    [ "AddConverter< T >", "a00171.html#a744e7c3cf7515bb75c21d8b3c3fcff0a", null ],
-    [ "CreateDefaultConverters", "a00171.html#af698f94f4d69a2d9a4f4fa8ad0e21619", null ],
-    [ "GetConverter", "a00171.html#a17b3c37c648e5f760a7724e1445ce7ae", null ],
-    [ "GetConverter< T >", "a00171.html#a0674e190f4bcf27b0bdbc7da7e8f3d0f", null ],
-    [ "RemoveConverter", "a00171.html#a1044dbab9820df273baea7ee68e6a813", null ],
-    [ "RemoveConverter< T >", "a00171.html#ad2d287cebc4bc88d2a6e1423059f05ae", null ],
-    [ "locker", "a00171.html#aae823641d64f44cf1a79573bb55a5090", null ],
-    [ "typeConverters", "a00171.html#a5229fe94e2acf6302b733c3d114f187e", null ]
+    [ "TypeInfo", "a00171.html#ae2bbf4462c274977b6df5c994808cc39", null ],
+    [ "IsAssignableFrom", "a00171.html#a8c74647f572e998dd7e843a752d5234d", null ],
+    [ "BaseType", "a00171.html#a8bb78c2b0377f57dba1a3e2031216029", null ],
+    [ "IsClass", "a00171.html#a6ae2d0f4c557010a075a6fecab18fbb5", null ],
+    [ "IsGenericType", "a00171.html#a6a532f6a581b3280d1837fc242f314af", null ],
+    [ "IsPrimitive", "a00171.html#ab38ba26ebc21ec6fb908b74eede99a5c", null ],
+    [ "IsValueType", "a00171.html#ae2255904b8743c47a185d62909404aed", null ],
+    [ "type", "a00171.html#a71c4f4b000d08808c8965222d4ba1b8d", null ]
 ];

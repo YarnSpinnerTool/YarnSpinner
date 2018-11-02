@@ -1,56 +1,122 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00188" kind="class" prot="public">
-    <compoundname>Yarn::YarnException</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Exception</basecompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00188_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.YarnException.YarnException</definition>
-        <argsstring>(string message)</argsstring>
-        <name>YarnException</name>
-        <param>
-          <type>string</type>
-          <declname>message</declname>
-        </param>
+    <compoundname>YarnSpinnerTests</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00188_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" static="no" mutable="no">
+        <type><ref refid="a00083" kindref="compound">Yarn.Unity.DialogueRunner</ref></type>
+        <definition>Yarn.Unity.DialogueRunner YarnSpinnerTests.dialogueRunner</definition>
+        <argsstring></argsstring>
+        <name>dialogueRunner</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="35" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="35" bodyend="35"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="68" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="68" bodyend="-1"/>
+        <referencedby refid="a00188_1ad6e4c6a92bb5ed6187949264df6aaf1b" compoundref="a00279" startline="73" endline="91">SetUp</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00188_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" static="no" mutable="no">
+        <type><ref refid="a00181" kindref="compound">Yarn.Unity.VariableStorageBehaviour</ref></type>
+        <definition>Yarn.Unity.VariableStorageBehaviour YarnSpinnerTests.variableStorage</definition>
+        <argsstring></argsstring>
+        <name>variableStorage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="a00188_1aace025d2a9a703154a1989c47b0a0737" prot="private" static="no" mutable="no">
+        <type><ref refid="a00161" kindref="compound">TestDialogueUIBehaviour</ref></type>
+        <definition>TestDialogueUIBehaviour YarnSpinnerTests.dialogueUI</definition>
+        <argsstring></argsstring>
+        <name>dialogueUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="70" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="70" bodyend="-1"/>
+        <referencedby refid="a00188_1ad6e4c6a92bb5ed6187949264df6aaf1b" compoundref="a00279" startline="73" endline="91">SetUp</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00188_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.SetUp</definition>
+        <argsstring>()</argsstring>
+        <name>SetUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="73" bodyend="91"/>
+        <references refid="a00188_1a9791840e0b5987e5bd09bce83ce2d8d9" compoundref="a00279" startline="68">dialogueRunner</references>
+        <references refid="a00188_1aace025d2a9a703154a1989c47b0a0737" compoundref="a00279" startline="70">dialogueUI</references>
+      </memberdef>
+      <memberdef kind="function" id="a00188_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void YarnSpinnerTests.EditorTest</definition>
+        <argsstring>()</argsstring>
+        <name>EditorTest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="94" bodyend="116"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Represents things that can go wrong while loading or running a dialogue. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1797">
-        <label>Exception</label>
-      </node>
-      <node id="1796">
-        <label>Yarn.YarnException</label>
+    <collaborationgraph>
+      <node id="1824">
+        <label>YarnSpinnerTests</label>
         <link refid="a00188"/>
-        <childnode refid="1797" relation="public-inheritance">
+        <childnode refid="1825" relation="usage">
+          <edgelabel>-dialogueRunner</edgelabel>
+          <edgelabel>-variableStorage</edgelabel>
+        </childnode>
+        <childnode refid="1826" relation="usage">
+          <edgelabel>-dialogueUI</edgelabel>
         </childnode>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1799">
-        <label>Exception</label>
+      <node id="1828">
+        <label>MonoBehaviour</label>
       </node>
-      <node id="1798">
-        <label>Yarn.YarnException</label>
-        <link refid="a00188"/>
-        <childnode refid="1799" relation="public-inheritance">
+      <node id="1825">
+        <label>Yarn</label>
+      </node>
+      <node id="1826">
+        <label>TestDialogueUIBehaviour</label>
+        <link refid="a00161"/>
+        <childnode refid="1827" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1827">
+        <label>Yarn::Unity::DialogueUIBehaviour</label>
+        <link refid="a00085"/>
+        <childnode refid="1828" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="34" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="34" bodyend="36"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" line="66" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/Editor/YarnSpinnerTests.cs" bodystart="66" bodyend="117"/>
     <listofallmembers>
-      <member refid="a00188_1aa4a1dc51efdfa238aad7f20d76710fd1" prot="public" virt="non-virtual"><scope>Yarn::YarnException</scope><name>YarnException</name></member>
+      <member refid="a00188_1a9791840e0b5987e5bd09bce83ce2d8d9" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueRunner</name></member>
+      <member refid="a00188_1aace025d2a9a703154a1989c47b0a0737" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>dialogueUI</name></member>
+      <member refid="a00188_1a60ab8ed8dc30ec30e74baa1916d47324" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>EditorTest</name></member>
+      <member refid="a00188_1ad6e4c6a92bb5ed6187949264df6aaf1b" prot="public" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>SetUp</name></member>
+      <member refid="a00188_1a27dbc8c3f7f23ce142d1d5d1fd3df8bc" prot="private" virt="non-virtual"><scope>YarnSpinnerTests</scope><name>variableStorage</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,464 +1,3030 @@
-\hypertarget{a00099}{\section{Yarn.\-File\-Format\-Converter Class Reference}
-\label{a00099}\index{Yarn.\-File\-Format\-Converter@{Yarn.\-File\-Format\-Converter}}
+\hypertarget{a00099}{\section{Yarn.\-Graph\-Listener Class Reference}
+\label{a00099}\index{Yarn.\-Graph\-Listener@{Yarn.\-Graph\-Listener}}
 }
 
 
-Collaboration diagram for Yarn.\-File\-Format\-Converter\-:
+Inheritance diagram for Yarn.\-Graph\-Listener\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{a00716}
+\includegraphics[height=550pt]{a00581}
 \end{center}
 \end{figure}
-\subsection*{Static Package Functions}
+
+
+Collaboration diagram for Yarn.\-Graph\-Listener\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{a00582}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00099_aa4db4ccac799c5f047a8b1a9efbe109d}{Convert\-Format} (\hyperlink{a00052}{Convert\-Format\-Options} options)
+override void \hyperlink{a00099_a82f70aaca01b89ceb830d31c001f5666}{Enter\-Header\-\_\-title} (Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. \end{DoxyCompactList}\item 
+override void \hyperlink{a00099_a3741704626660a81593bbede4fd07850}{Exit\-Option\-\_\-statement} (Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aaeec4ce9cbf5b95d429afab145b57953}{Enter\-Dialogue} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_adb3910abdd76dca4b087ccbeda671cad}{Exit\-Dialogue} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a3729f55225c9447ae4add58d2d548917}{Enter\-Node} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-node. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a4a181214b03baf8e44df0d66e25d70f2}{Exit\-Node} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-node. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a78dc9c70370b2ea9432cd42ffb3e9fb4}{Enter\-Header} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a6e202bf625b40c0aae4829c9b7200fe9}{Exit\-Header} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aa6b04ccce84fc37c85731c8d0ab60d1c}{Exit\-Header\-\_\-title} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a7e46ec306ac8412b4f300aec4c3a6a7c}{Enter\-Header\-\_\-tag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a6d2ef3bda1ff771ae9bf39b2842b1f69}{Exit\-Header\-\_\-tag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a7d7c66a57f3b9621cec9eafa103f4a92}{Enter\-Header\-\_\-line} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a5565c81951adcedcdd6a5f1b0fff1dea}{Exit\-Header\-\_\-line} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a0bb84237855d76cd67c0214afeaece3c}{Enter\-Body} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-body. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ab0f6c8acd95f6213546c6f1f8370fd67}{Exit\-Body} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-body. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a0a1a5165215f2eed1a2fdee94218c472}{Enter\-Statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a94c70caf87bdc4c46223b1bfc9031c42}{Exit\-Statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a928af133a0075061959dc54bbcf0d006}{Enter\-Shortcut\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aedbcd5225a20100938edb2b072515b2c}{Exit\-Shortcut\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ad110f7d08dcd1a8fd054ac34f5d42d7a}{Enter\-Shortcut} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a96270a7aa18e456051f1d17a0d391b87}{Exit\-Shortcut} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a476fa99e75445b668cc5bd7a5cf5e3e9}{Enter\-Shortcut\-\_\-conditional} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_af600a0dc2204782118e7050560f37455}{Exit\-Shortcut\-\_\-conditional} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a4d7217dafbfae9f55eefe72a1a5e86f7}{Enter\-Shortcut\-\_\-text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a26bb6f162b0375a1455013d85dff2ddb}{Exit\-Shortcut\-\_\-text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a6a48fc449efd199d13ecacd410b815ad}{Enter\-If\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ac9b0ce9a61afd12bc631e834adc38893}{Exit\-If\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a94adce014a20de8b1a4b82b50d3e3036}{Enter\-If\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ab9705313017584f8f466e481ae4cdcfc}{Exit\-If\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a453eb5ea8f6e44280ab156b771821919}{Enter\-Else\-\_\-if\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a071da0b364f87cb542e2e3dff5d9f9c4}{Exit\-Else\-\_\-if\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a571719b5e04b3e980ab2a05cd2c44989}{Enter\-Else\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a2dcc21a150bdc508c49e81bd10b6964f}{Exit\-Else\-\_\-clause} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aad83c1dbc65e88ec66978ffc6fe96a5f}{Enter\-Set\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a32a780332df7d7104f4816995e3f4970}{Exit\-Set\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a2d0f9144a167601309e785868bc9c4cb}{Enter\-Option\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ae55a7ade788bb17bdb6b52522e181098}{Enter\-Function} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-function. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a1cf7a34cdb2d3604ce59f8428c720013}{Exit\-Function} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-function. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a812a7fc8d3e7d9d94dc0a2919fa19d7a}{Enter\-Function\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a51a618b740ae76bef859c69cf1f35786}{Exit\-Function\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ac4e5829f87772c872d57dfd30e4f0450}{Enter\-Action\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ad2dccfeea09bb2b5cdcd244833b9f584}{Exit\-Action\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_acc7ee2d7db98a4fb7401ceef15333752}{Enter\-Text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-text. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a8d4b310bdc6b8f2d48c6885ca52e35d2}{Exit\-Text} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-text. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_af47d3ec045f331f2f6eb172e3954d504}{Enter\-Line\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_adb3ac6b0a7f40d2f4cf5fcfe84b83eb3}{Exit\-Line\-\_\-statement} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a9ff2355e87f3be1cf750074e9298c3ae}{Enter\-Hashtag\-\_\-block} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a7fec59b76bdec57fbc3dba0cf0977748}{Exit\-Hashtag\-\_\-block} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a0643d47b57d60c3d17fea2e1a883d63c}{Enter\-Hashtag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a7eb067a011e0ba441779489495424912}{Exit\-Hashtag} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a550723908043bb1c5f6e85542710dd8f}{Enter\-Exp\-Parens} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a8e9b149b4b21ac11f38b77ca5eb39df3}{Exit\-Exp\-Parens} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a680b607d4481e92d0b601f2802d93584}{Enter\-Exp\-Mult\-Div\-Mod} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ac874c7fdb818e8f1d4a0ed8cb272804c}{Exit\-Exp\-Mult\-Div\-Mod} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aa9040fe56a7c7b7452c4284a1e13752a}{Enter\-Exp\-Mult\-Div\-Mod\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aac772034f0fc8877ea587dc47e875997}{Exit\-Exp\-Mult\-Div\-Mod\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a246642cc69e5c444342c9856893294db}{Enter\-Exp\-Comparison} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_af8f026d529dcea66d5ac519ce404ed55}{Exit\-Exp\-Comparison} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a85e82341fb00749dcc443062ce7e6cd4}{Enter\-Exp\-Negative} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_accebff941879b7b98517ee172bc88c51}{Exit\-Exp\-Negative} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_abe7e39550dec3976ad45afbd5a00984a}{Enter\-Exp\-And\-Or\-Xor} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a126a1a450281df186411ba708a4f8edb}{Exit\-Exp\-And\-Or\-Xor} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a905bac017e14a6d3aeea293831e3387d}{Enter\-Exp\-Plus\-Minus\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a6fc472ff3937457adf2c286c37a61b7a}{Exit\-Exp\-Plus\-Minus\-Equals} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a63f01bf3112c5c181e607aa954dfbf7a}{Enter\-Exp\-Add\-Sub} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_afb75f12ecf35ef5e3886ada6e5519c28}{Exit\-Exp\-Add\-Sub} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ad89ca0922b0ff190fc532a9ae98d49d3}{Enter\-Exp\-Not} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_afba9f6d1f3ede7b042a34ef3bc7b67bb}{Exit\-Exp\-Not} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a72f405648a0cee5cbd9adf15981fb1ff}{Enter\-Exp\-Value} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a721acce8447553c78f8603381a30295f}{Exit\-Exp\-Value} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a56be9d851c42ae93e2f47e5f8a5d7677}{Enter\-Exp\-Equality} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a95e59996fc8cf316f487c99084228cae}{Exit\-Exp\-Equality} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_afdedf143e349fc3d45837f63bfecc1c8}{Enter\-Value\-Number} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aca49c7a82494d35e3c0035dc2d7f5b02}{Exit\-Value\-Number} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a37726e9d5de13df5a1ff987bca4cbd50}{Enter\-Value\-True} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aa93e3f3a8f522d20d559f2b66bf780ce}{Exit\-Value\-True} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ac84fd7ce4eec5de621fb041b1a863014}{Enter\-Value\-False} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_abb1e92cab5c21a27d277f4f77b50b42a}{Exit\-Value\-False} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ab40a73dd590aa5e9081a131291fd4801}{Enter\-Value\-Var} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ad03e275623c6693c7de931d3f3323f6c}{Exit\-Value\-Var} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a86517c7ed031c5b2608ff7acf8b36ab1}{Enter\-Value\-String} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a0edac722aaa4daaf67b6952f9f323849}{Exit\-Value\-String} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_af8f0ba926e47307649e74f867ac60a46}{Enter\-Value\-Func} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_ac9b0090b8a75d8aa28bcca61fedb5906}{Exit\-Value\-Func} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_aea9d4639edf6d5d016b70057ac8c4759}{Enter\-Value\-Null} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a518cf1ada7b47f37d83e38c2abcc759d}{Exit\-Value\-Null} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_afaa8a2993d94e0e4460a69ef516e5849}{Enter\-Variable} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context context)
+\begin{DoxyCompactList}\small\item\em Enter a parse tree produced by Yarn\-Spinner\-Parser.\-variable. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a2f4cf38483d1c434b0e0225b950f7a66}{Exit\-Variable} (\mbox{[}Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context context)
+\begin{DoxyCompactList}\small\item\em Exit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00186_a891c4119d1a34f4b7fa3994a8ab63188}{Enter\-Every\-Rule} (\mbox{[}Not\-Null\mbox{]} \hyperlink{a00301_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} context)
 \item 
-static string \hyperlink{a00099_a85596df924468279b2dc44a9f31d8bad}{Convert\-Nodes} (I\-Enumerable$<$ \hyperlink{a00134}{Loader.\-Node\-Info} $>$ nodes, \hyperlink{a00045_ad7ebb46e7309ead8767383a672b3272f}{Node\-Format} format)
+virtual void \hyperlink{a00186_adb4bf06fefa70949d705cf1fc4f9eafe}{Exit\-Every\-Rule} (\mbox{[}Not\-Null\mbox{]} \hyperlink{a00301_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} context)
+\item 
+virtual void \hyperlink{a00186_aa1dfd73e68ddef6754237fb33984fcf4}{Visit\-Terminal} (\mbox{[}Not\-Null\mbox{]} \hyperlink{a00301_a72f9ef657b5686a84acec94a9d7302d1}{I\-Terminal\-Node} node)
+\item 
+virtual void \hyperlink{a00186_a23c6fe6f098193795ac42544600dbb1a}{Visit\-Error\-Node} (\mbox{[}Not\-Null\mbox{]} \hyperlink{a00301_af5d51a3c18761c8348444279f29c7007}{I\-Error\-Node} node)
 \end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-delegate string \hyperlink{a00099_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} (I\-Enumerable$<$ \hyperlink{a00134}{Loader.\-Node\-Info} $>$ nodes)
+\hyperlink{a00098}{Graph} \hyperlink{a00099_add71b64dfe7fb107487ec6d15588ff1f}{graph} = new \hyperlink{a00098}{Graph}()
 \end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{a00099_a28a086a7b44ecea7430af40436f38df6}{Convert\-To\-J\-S\-O\-N} (\hyperlink{a00052}{Convert\-Format\-Options} options)
+\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} \hyperlink{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{current\-Node} = null
 \item 
-static int \hyperlink{a00099_a1e6cd39b0c813f21da278367dcff76d2}{Convert\-To\-Yarn} (\hyperlink{a00052}{Convert\-Format\-Options} options)
-\item 
-static string \hyperlink{a00099_a282f283f02c9b1d3e53d813ec2f35233}{Convert\-Nodes\-To\-Yarn\-Text} (I\-Enumerable$<$ \hyperlink{a00134}{Loader.\-Node\-Info} $>$ nodes)
-\item 
-static void \hyperlink{a00099_aa72838be584177b5592c31d73c0febdb}{Convert\-Nodes\-In\-File} (\hyperlink{a00052}{Convert\-Format\-Options} options, string file, string file\-Extension, \hyperlink{a00099_af9bd5d832fdd2bcbdc626d9f8632e05c}{Convert\-Nodes\-To\-Text} convert)
+\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} \hyperlink{a00099_ac450f10ed033a25c205f13c38554faaa}{yarn\-Name} = \char`\"{}G\char`\"{}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 8 of file File\-Format\-Converter.\-cs.
+Definition at line 837 of file Antlr\-Compiler.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00099_aa4db4ccac799c5f047a8b1a9efbe109d}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Format@{Convert\-Format}}
-\index{Convert\-Format@{Convert\-Format}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Format}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-Format (
+\hypertarget{a00186_ac4e5829f87772c872d57dfd30e4f0450}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Action\-\_\-statement@{Enter\-Action\-\_\-statement}}
+\index{Enter\-Action\-\_\-statement@{Enter\-Action\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Action\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Action\-\_\-statement (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00099_aa4db4ccac799c5f047a8b1a9efbe109d}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ac4e5829f87772c872d57dfd30e4f0450}
 
 
-Definition at line 10 of file File\-Format\-Converter.\-cs.
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a3839b1b12e8d4a973671debac1851687}{I\-Yarn\-Spinner\-Parser\-Listener}.
 
 
 
-References Yarn.\-Yarn\-Spinner\-Console.\-A\-L\-L\-O\-W\-E\-D\-\_\-\-E\-X\-T\-E\-N\-S\-I\-O\-N\-S, Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), Yarn.\-Convert\-Format\-Options.\-convert\-To\-J\-S\-O\-N, Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn(), and Yarn.\-Convert\-Format\-Options.\-convert\-To\-Yarn.
-
-
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Main().
+Definition at line 282 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-11         \{
-12 
-13             YarnSpinnerConsole.CheckFileList(options.files, 
-      \hyperlink{a00189_a0979de7ea02c8c0375b8220a12e6575e}{YarnSpinnerConsole.ALLOWED\_EXTENSIONS});
-14 
-15             \textcolor{keywordflow}{if} (options.convertToJSON)
-16             \{
-17                 \textcolor{keywordflow}{return} \hyperlink{a00099_a28a086a7b44ecea7430af40436f38df6}{ConvertToJSON}(options);
-18             \}
-19             \textcolor{keywordflow}{if} (options.convertToYarn)
-20             \{
-21                 \textcolor{keywordflow}{return} \hyperlink{a00099_a1e6cd39b0c813f21da278367dcff76d2}{ConvertToYarn}(options);
-22             \}
-23 
-24             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-25 
-26             YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"You must specify a destination format. Run '\{0\} help
-       convert' to learn more."}, processName));
-27             \textcolor{keywordflow}{return} 1;
-28         \}
+282 \{ \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_aa4db4ccac799c5f047a8b1a9efbe109d_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_aa4db4ccac799c5f047a8b1a9efbe109d_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00099_a85596df924468279b2dc44a9f31d8bad}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes@{Convert\-Nodes}}
-\index{Convert\-Nodes@{Convert\-Nodes}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes (
+\hypertarget{a00186_a0bb84237855d76cd67c0214afeaece3c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Body@{Enter\-Body}}
+\index{Enter\-Body@{Enter\-Body}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Body}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Body (
 \begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes, }
-\item[{{\bf Node\-Format}}]{format}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00099_a85596df924468279b2dc44a9f31d8bad}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a0bb84237855d76cd67c0214afeaece3c}
 
 
-Definition at line 62 of file File\-Format\-Converter.\-cs.
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-body. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a04344d402f94ca1ec699d7d6bcaf6d1a}{I\-Yarn\-Spinner\-Parser\-Listener}.
 
 
 
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text().
+Reimplemented in \hyperlink{a00028_ab28311adb85da00c028c8bc78e0ff848}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 114 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-62                                                                                                    \{
-63             \textcolor{keywordflow}{switch} (format)
-64             \{
-65                 \textcolor{keywordflow}{case} NodeFormat.JSON:
-66                     \textcolor{keywordflow}{return} JsonConvert.SerializeObject(nodes, Formatting.Indented);
-67                 \textcolor{keywordflow}{case} NodeFormat.Text:
-68                     \textcolor{keywordflow}{return} \hyperlink{a00099_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText}(nodes);
-69                 \textcolor{keywordflow}{default}:
-70                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-71             \}
-72         \}
+114 \{ \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a85596df924468279b2dc44a9f31d8bad_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00099_aa72838be584177b5592c31d73c0febdb}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}}
-\index{Convert\-Nodes\-In\-File@{Convert\-Nodes\-In\-File}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-In\-File}]{\setlength{\rightskip}{0pt plus 5cm}static void Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File (
+\hypertarget{a00186_aaeec4ce9cbf5b95d429afab145b57953}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Dialogue@{Enter\-Dialogue}}
+\index{Enter\-Dialogue@{Enter\-Dialogue}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Dialogue (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options, }
-\item[{string}]{file, }
-\item[{string}]{file\-Extension, }
-\item[{{\bf Convert\-Nodes\-To\-Text}}]{convert}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00099_aa72838be584177b5592c31d73c0febdb}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aaeec4ce9cbf5b95d429afab145b57953}
 
 
-Definition at line 143 of file File\-Format\-Converter.\-cs.
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ac614c17efd465d6aebc6f66a8be5802e}{I\-Yarn\-Spinner\-Parser\-Listener}.
 
 
 
-References Yarn.\-Base\-Options.\-verbose.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
+Definition at line 42 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-144         \{
-145             var d = \textcolor{keyword}{new} Dialogue(null);
-146 
-147             var text = File.ReadAllText(file);
-148 
-149             IEnumerable<Loader.NodeInfo> nodes;
-150             \textcolor{keywordflow}{try} \{
-151                 nodes = d.loader.GetNodesFromText(text, Loader.GetFormatFromFileName(file));
-152             \} \textcolor{keywordflow}{catch} (FormatException e) \{
-153                 YarnSpinnerConsole.Error(e.Message);
-154                 \textcolor{keywordflow}{return};
-155             \}
-156 
-157             var serialisedText = convert(nodes);
-158 
-159             var destinationDirectory = options.outputDirectory;
-160 
-161             \textcolor{keywordflow}{if} (destinationDirectory == null)
-162             \{
-163                 destinationDirectory = Path.GetDirectoryName(file);
-164             \}
-165 
-166             var fileName = Path.GetFileName(file);
-167 
-168             \textcolor{comment}{// ChangeExtension thinks that the file "Foo.yarn.txt" has the extension "txt", so}
-169             \textcolor{comment}{// to simplify things, just lop that extension off right away if it's there}
-170             fileName = fileName.Replace(\textcolor{stringliteral}{".yarn.txt"}, \textcolor{stringliteral}{""});
-171 
-172             \textcolor{comment}{// change the filename's extension}
-173             fileName = Path.ChangeExtension(fileName, fileExtension);
-174 
-175             \textcolor{comment}{// figure out where we're writing this file}
-176             var destinationFilePath = Path.Combine(destinationDirectory, fileName);
-177 
-178             File.WriteAllText(destinationFilePath, serialisedText);
-179 
-180             \textcolor{keywordflow}{if} (options.verbose)
-181             \{
-182                 YarnSpinnerConsole.Note(\textcolor{stringliteral}{"Wrote "} + destinationFilePath);
-183             \}
-184         \}
+42 \{ \}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_aa72838be584177b5592c31d73c0febdb_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00099_af9bd5d832fdd2bcbdc626d9f8632e05c}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}}
-\index{Convert\-Nodes\-To\-Text@{Convert\-Nodes\-To\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Text}]{\setlength{\rightskip}{0pt plus 5cm}delegate string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Text (
+\hypertarget{a00186_a571719b5e04b3e980ab2a05cd2c44989}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Else\-\_\-clause@{Enter\-Else\-\_\-clause}}
+\index{Enter\-Else\-\_\-clause@{Enter\-Else\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Else\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Else\-\_\-clause (
 \begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_af9bd5d832fdd2bcbdc626d9f8632e05c}
-\hypertarget{a00099_a282f283f02c9b1d3e53d813ec2f35233}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}}
-\index{Convert\-Nodes\-To\-Yarn\-Text@{Convert\-Nodes\-To\-Yarn\-Text}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-Nodes\-To\-Yarn\-Text}]{\setlength{\rightskip}{0pt plus 5cm}static string Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text (
-\begin{DoxyParamCaption}
-\item[{I\-Enumerable$<$ {\bf Loader.\-Node\-Info} $>$}]{nodes}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00099_a282f283f02c9b1d3e53d813ec2f35233}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a571719b5e04b3e980ab2a05cd2c44989}
 
 
-Definition at line 74 of file File\-Format\-Converter.\-cs.
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a5178ab81cb0e36311cab15c64a6971c1}{I\-Yarn\-Spinner\-Parser\-Listener}.
 
 
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes(), and Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn().
+Definition at line 222 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-75         \{
-76             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-77 
-78             var properties = typeof(Loader.NodeInfo).GetProperties();
-79 
-80             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} nodes) \{
-81 
-82                 \textcolor{keywordflow}{foreach} (var property \textcolor{keywordflow}{in} properties) \{
-83 
-84                     \textcolor{comment}{// ignore the body attribute}
-85                     \textcolor{keywordflow}{if} (property.Name == \textcolor{stringliteral}{"body"}) \{
-86                         \textcolor{keywordflow}{continue};
-87                     \}
-88 
-89                     \textcolor{comment}{// piggy-back off the JsonIgnoreAttribute to sense items that should not be serialised}
-90                     \textcolor{keywordflow}{if} (property.GetCustomAttributes(typeof(JsonIgnoreAttribute), \textcolor{keyword}{false}).Length > 0) \{
-91                         \textcolor{keywordflow}{continue};
-92                     \}
-93 
-94                     var field = property.Name;
-95 
-96                     \textcolor{keywordtype}{string} value;
-97 
-98                     var propertyType = property.PropertyType;
-99                     \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
-100                     \{
-101                         value = (string)property.GetValue(node, null);
-102 
-103                         \textcolor{comment}{// avoid storing nulls when we could store the empty string instead}
-104                         \textcolor{keywordflow}{if} (value == null)
-105                             value = \textcolor{stringliteral}{""};
-106                     \}
-107                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(\textcolor{keywordtype}{int})))
-108                     \{
-109                         value = ((int)property.GetValue(node, null)).ToString();
-110                     \}
-111                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
-112                     \{
-113                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
-114 
-115                         value = string.Format(\textcolor{stringliteral}{"\{0\},\{1\}"}, position.x, position.y);
-116                     \} \textcolor{keywordflow}{else} \{
-117                         YarnSpinnerConsole.Error(string.Format(\textcolor{stringliteral}{"Internal error: Node \{0\}'s property \{1\} has
-       unsupported type \{2\}"}, node.title, property.Name, propertyType.FullName));
-118 
-119                         \textcolor{comment}{// will never be run, but prevents the compiler being mean about us not returning a
-       value}
-120                         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Exception();
-121                     \}
-122 
-123                     var header = string.Format(\textcolor{stringliteral}{"\{0\}: \{1\}"}, field, value);
-124 
-125                     sb.AppendLine(header);
-126 
-127                 \}
-128                 \textcolor{comment}{// now write the body}
-129                 sb.AppendLine(\textcolor{stringliteral}{"---"});
-130 
-131                 sb.AppendLine(node.body);
-132 
-133                 sb.AppendLine(\textcolor{stringliteral}{"==="});
-134 
-135             \}
-136 
-137             \textcolor{keywordflow}{return} sb.ToString();
-138         \}
+222 \{ \}
 \end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a282f283f02c9b1d3e53d813ec2f35233_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00099_a28a086a7b44ecea7430af40436f38df6}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}}
-\index{Convert\-To\-J\-S\-O\-N@{Convert\-To\-J\-S\-O\-N}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-J\-S\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-J\-S\-O\-N (
+\hypertarget{a00186_a453eb5ea8f6e44280ab156b771821919}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Else\-\_\-if\-\_\-clause@{Enter\-Else\-\_\-if\-\_\-clause}}
+\index{Enter\-Else\-\_\-if\-\_\-clause@{Enter\-Else\-\_\-if\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Else\-\_\-if\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Else\-\_\-if\-\_\-clause (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00099_a28a086a7b44ecea7430af40436f38df6}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a453eb5ea8f6e44280ab156b771821919}
 
 
-Definition at line 30 of file File\-Format\-Converter.\-cs.
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a94a29066fb65c1192204be4ffbd9e067}{I\-Yarn\-Spinner\-Parser\-Listener}.
 
 
 
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
+Definition at line 210 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-31         \{
-32             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-33             \{
-34 
-35                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
-36                 \{
-37                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
-       implies it's already in JSON format"}, file));
-38                     \textcolor{keywordflow}{continue};
-39                 \}
-40 
-41                 \hyperlink{a00099_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"json"}, (IEnumerable<Loader.NodeInfo> 
-      nodes) => JsonConvert.SerializeObject(nodes, Formatting.Indented));
-42 
-43             \}
-44             \textcolor{keywordflow}{return} 0;
-45         \}
+210 \{ \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a28a086a7b44ecea7430af40436f38df6_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a28a086a7b44ecea7430af40436f38df6_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00099_a1e6cd39b0c813f21da278367dcff76d2}{\index{Yarn\-::\-File\-Format\-Converter@{Yarn\-::\-File\-Format\-Converter}!Convert\-To\-Yarn@{Convert\-To\-Yarn}}
-\index{Convert\-To\-Yarn@{Convert\-To\-Yarn}!Yarn::FileFormatConverter@{Yarn\-::\-File\-Format\-Converter}}
-\subsubsection[{Convert\-To\-Yarn}]{\setlength{\rightskip}{0pt plus 5cm}static int Yarn.\-File\-Format\-Converter.\-Convert\-To\-Yarn (
+\hypertarget{a00186_a891c4119d1a34f4b7fa3994a8ab63188}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Every\-Rule@{Enter\-Every\-Rule}}
+\index{Enter\-Every\-Rule@{Enter\-Every\-Rule}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Every\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Every\-Rule (
 \begin{DoxyParamCaption}
-\item[{{\bf Convert\-Format\-Options}}]{options}
+\item[{\mbox{[}\-Not\-Null\mbox{]} {\bf Parser\-Rule\-Context}}]{context}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00099_a1e6cd39b0c813f21da278367dcff76d2}
-
-
-Definition at line 47 of file File\-Format\-Converter.\-cs.
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a891c4119d1a34f4b7fa3994a8ab63188}
 
 
 
-References Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-To\-Yarn\-Text(), and Yarn.\-Loader.\-Get\-Format\-From\-File\-Name().
 
+The default implementation does nothing.
 
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Format().
+Definition at line 604 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
 
 
 \begin{DoxyCode}
-48         \{
-49             \textcolor{keywordflow}{foreach} (var file \textcolor{keywordflow}{in} options.files)
-50             \{
-51                 \textcolor{keywordflow}{if} (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
-52                 \{
-53                     YarnSpinnerConsole.Warn(string.Format(\textcolor{stringliteral}{"Not converting file \{0\}, because its name
-       implies it's already in Yarn format"}, file));
-54                     \textcolor{keywordflow}{continue};
-55                 \}
-56 
-57                 \hyperlink{a00099_aa72838be584177b5592c31d73c0febdb}{ConvertNodesInFile}(options, file, \textcolor{stringliteral}{"yarn.txt"}, 
-      \hyperlink{a00099_a282f283f02c9b1d3e53d813ec2f35233}{ConvertNodesToYarnText});
-58             \}
-59             \textcolor{keywordflow}{return} 0;
-60         \}
+604 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a63f01bf3112c5c181e607aa954dfbf7a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Add\-Sub@{Enter\-Exp\-Add\-Sub}}
+\index{Enter\-Exp\-Add\-Sub@{Enter\-Exp\-Add\-Sub}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Add\-Sub}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Add\-Sub (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a63f01bf3112c5c181e607aa954dfbf7a}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a8b86aa4d3d9edf900b6d4a4e4df467cb}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 441 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+441 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_abe7e39550dec3976ad45afbd5a00984a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-And\-Or\-Xor@{Enter\-Exp\-And\-Or\-Xor}}
+\index{Enter\-Exp\-And\-Or\-Xor@{Enter\-Exp\-And\-Or\-Xor}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-And\-Or\-Xor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-And\-Or\-Xor (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_abe7e39550dec3976ad45afbd5a00984a}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ac1f74798608f35aec8e157cf110f281e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 413 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+413 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a246642cc69e5c444342c9856893294db}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Comparison@{Enter\-Exp\-Comparison}}
+\index{Enter\-Exp\-Comparison@{Enter\-Exp\-Comparison}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Comparison}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Comparison (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a246642cc69e5c444342c9856893294db}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a4f8486fce2dec44a1f670a29796e4f53}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 385 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+385 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a56be9d851c42ae93e2f47e5f8a5d7677}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Equality@{Enter\-Exp\-Equality}}
+\index{Enter\-Exp\-Equality@{Enter\-Exp\-Equality}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Equality}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Equality (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a56be9d851c42ae93e2f47e5f8a5d7677}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a28d926bbcba5c2d1ca274026c95f70e0}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 483 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+483 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a680b607d4481e92d0b601f2802d93584}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Mult\-Div\-Mod@{Enter\-Exp\-Mult\-Div\-Mod}}
+\index{Enter\-Exp\-Mult\-Div\-Mod@{Enter\-Exp\-Mult\-Div\-Mod}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Mult\-Div\-Mod}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Mult\-Div\-Mod (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a680b607d4481e92d0b601f2802d93584}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ae358c2b96e0084ef0f64114f9f19a8c4}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 357 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+357 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aa9040fe56a7c7b7452c4284a1e13752a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Mult\-Div\-Mod\-Equals@{Enter\-Exp\-Mult\-Div\-Mod\-Equals}}
+\index{Enter\-Exp\-Mult\-Div\-Mod\-Equals@{Enter\-Exp\-Mult\-Div\-Mod\-Equals}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Mult\-Div\-Mod\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Mult\-Div\-Mod\-Equals (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aa9040fe56a7c7b7452c4284a1e13752a}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aafa5b528841bd88250fbaa73c8f2ad60}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 371 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+371 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a85e82341fb00749dcc443062ce7e6cd4}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Negative@{Enter\-Exp\-Negative}}
+\index{Enter\-Exp\-Negative@{Enter\-Exp\-Negative}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Negative}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Negative (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a85e82341fb00749dcc443062ce7e6cd4}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a4ee9db145a1eb0fa25d1000fb37e234a}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 399 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+399 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ad89ca0922b0ff190fc532a9ae98d49d3}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Not@{Enter\-Exp\-Not}}
+\index{Enter\-Exp\-Not@{Enter\-Exp\-Not}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Not}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Not (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ad89ca0922b0ff190fc532a9ae98d49d3}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a4a4d01bc2bfe6cf94d43df50a90a066f}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 455 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+455 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a550723908043bb1c5f6e85542710dd8f}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Parens@{Enter\-Exp\-Parens}}
+\index{Enter\-Exp\-Parens@{Enter\-Exp\-Parens}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Parens}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Parens (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a550723908043bb1c5f6e85542710dd8f}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aa7f41b472fd98a42ac1ea66f424658bb}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 343 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+343 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a905bac017e14a6d3aeea293831e3387d}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Plus\-Minus\-Equals@{Enter\-Exp\-Plus\-Minus\-Equals}}
+\index{Enter\-Exp\-Plus\-Minus\-Equals@{Enter\-Exp\-Plus\-Minus\-Equals}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Plus\-Minus\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Plus\-Minus\-Equals (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a905bac017e14a6d3aeea293831e3387d}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a75358b577a973d715473a7ff0167106c}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 427 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+427 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a72f405648a0cee5cbd9adf15981fb1ff}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Exp\-Value@{Enter\-Exp\-Value}}
+\index{Enter\-Exp\-Value@{Enter\-Exp\-Value}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Exp\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Exp\-Value (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a72f405648a0cee5cbd9adf15981fb1ff}
+
+
+Enter a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ab93dc49e61f8858882fb30e8bc741039}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 469 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+469 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ae55a7ade788bb17bdb6b52522e181098}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Function@{Enter\-Function}}
+\index{Enter\-Function@{Enter\-Function}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Function}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Function (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ae55a7ade788bb17bdb6b52522e181098}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-function. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a264aa2427b19e8f3ee4259705f78674b}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 258 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+258 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a812a7fc8d3e7d9d94dc0a2919fa19d7a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Function\-\_\-statement@{Enter\-Function\-\_\-statement}}
+\index{Enter\-Function\-\_\-statement@{Enter\-Function\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Function\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Function\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a812a7fc8d3e7d9d94dc0a2919fa19d7a}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a3ebb59c8fcfefbfd325db4925ffc520f}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 270 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+270 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a0643d47b57d60c3d17fea2e1a883d63c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Hashtag@{Enter\-Hashtag}}
+\index{Enter\-Hashtag@{Enter\-Hashtag}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Hashtag}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Hashtag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a0643d47b57d60c3d17fea2e1a883d63c}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a261c83e75cd3c09527cafe01940c8ae9}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 330 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+330 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a9ff2355e87f3be1cf750074e9298c3ae}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Hashtag\-\_\-block@{Enter\-Hashtag\-\_\-block}}
+\index{Enter\-Hashtag\-\_\-block@{Enter\-Hashtag\-\_\-block}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Hashtag\-\_\-block}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Hashtag\-\_\-block (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a9ff2355e87f3be1cf750074e9298c3ae}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a6c4af4391aac18a40ee7a5c492584bc5}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 318 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+318 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a78dc9c70370b2ea9432cd42ffb3e9fb4}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Header@{Enter\-Header}}
+\index{Enter\-Header@{Enter\-Header}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Header}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Header (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a78dc9c70370b2ea9432cd42ffb3e9fb4}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ae1473d4913e3413a34cfd7c663ce1ddd}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_a0744960ec54164401fb06873a5e1e803}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 66 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+66 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a7d7c66a57f3b9621cec9eafa103f4a92}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Header\-\_\-line@{Enter\-Header\-\_\-line}}
+\index{Enter\-Header\-\_\-line@{Enter\-Header\-\_\-line}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Header\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Header\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a7d7c66a57f3b9621cec9eafa103f4a92}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a2f91a36e5f71d6de07c846a9baf46935}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 102 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+102 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a7e46ec306ac8412b4f300aec4c3a6a7c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Header\-\_\-tag@{Enter\-Header\-\_\-tag}}
+\index{Enter\-Header\-\_\-tag@{Enter\-Header\-\_\-tag}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Header\-\_\-tag}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Header\-\_\-tag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a7e46ec306ac8412b4f300aec4c3a6a7c}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_adae18884c84b77963b5941f8f4b02f91}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_a75174a5da66af47a07e0aa0cc85cce74}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 90 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+90 \{ \}
+\end{DoxyCode}
+\hypertarget{a00099_a82f70aaca01b89ceb830d31c001f5666}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Header\-\_\-title@{Enter\-Header\-\_\-title}}
+\index{Enter\-Header\-\_\-title@{Enter\-Header\-\_\-title}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Header\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Graph\-Listener.\-Enter\-Header\-\_\-title (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00099_a82f70aaca01b89ceb830d31c001f5666}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{a00186_a534afa69b1205e9e5a5d1684f3efccf8}{Yarn\-Spinner\-Parser\-Base\-Listener}.
+
+
+
+Definition at line 842 of file Antlr\-Compiler.\-cs.
+
+
+
+References Yarn.\-Graph\-Listener.\-current\-Node.
+
+
+\begin{DoxyCode}
+843         \{
+844             \hyperlink{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{currentNode} = context.HEADER\_TITLE().GetText();
+845             graph.nodes.Add(\hyperlink{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{currentNode});
+846         \}
+\end{DoxyCode}
+\hypertarget{a00186_a94adce014a20de8b1a4b82b50d3e3036}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-If\-\_\-clause@{Enter\-If\-\_\-clause}}
+\index{Enter\-If\-\_\-clause@{Enter\-If\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-If\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-If\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a94adce014a20de8b1a4b82b50d3e3036}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a44c884acd99c90b88fe53fea2c6a1c60}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 198 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+198 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a6a48fc449efd199d13ecacd410b815ad}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-If\-\_\-statement@{Enter\-If\-\_\-statement}}
+\index{Enter\-If\-\_\-statement@{Enter\-If\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-If\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-If\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a6a48fc449efd199d13ecacd410b815ad}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a85594bae18a4106a5765e2a77e319e06}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 186 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+186 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_af47d3ec045f331f2f6eb172e3954d504}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Line\-\_\-statement@{Enter\-Line\-\_\-statement}}
+\index{Enter\-Line\-\_\-statement@{Enter\-Line\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Line\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Line\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_af47d3ec045f331f2f6eb172e3954d504}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a0fd8bb9c70c8d1083c470e568bcf6aec}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 306 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+306 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a3729f55225c9447ae4add58d2d548917}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Node@{Enter\-Node}}
+\index{Enter\-Node@{Enter\-Node}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Node}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Node (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a3729f55225c9447ae4add58d2d548917}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-node. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a95c0796e50be14a2e207bdf3b2e513b1}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_aca7346fa69f7d1ddacca66ae5a2c9133}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 54 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+54 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a2d0f9144a167601309e785868bc9c4cb}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Option\-\_\-statement@{Enter\-Option\-\_\-statement}}
+\index{Enter\-Option\-\_\-statement@{Enter\-Option\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Option\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Option\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a2d0f9144a167601309e785868bc9c4cb}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aa9a510713a013702293e287b9f3464dd}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 246 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+246 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aad83c1dbc65e88ec66978ffc6fe96a5f}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Set\-\_\-statement@{Enter\-Set\-\_\-statement}}
+\index{Enter\-Set\-\_\-statement@{Enter\-Set\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Set\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Set\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aad83c1dbc65e88ec66978ffc6fe96a5f}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a4c8486570851b5c41a632d8e72b7c217}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 234 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+234 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ad110f7d08dcd1a8fd054ac34f5d42d7a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Shortcut@{Enter\-Shortcut}}
+\index{Enter\-Shortcut@{Enter\-Shortcut}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Shortcut}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Shortcut (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ad110f7d08dcd1a8fd054ac34f5d42d7a}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a14f646bcb9c0cbff3851f3a2ef663081}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 150 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+150 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a476fa99e75445b668cc5bd7a5cf5e3e9}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Shortcut\-\_\-conditional@{Enter\-Shortcut\-\_\-conditional}}
+\index{Enter\-Shortcut\-\_\-conditional@{Enter\-Shortcut\-\_\-conditional}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Shortcut\-\_\-conditional}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Shortcut\-\_\-conditional (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a476fa99e75445b668cc5bd7a5cf5e3e9}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a96ef0b02dcc514543f420d0c9663b36e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 162 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+162 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a928af133a0075061959dc54bbcf0d006}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Shortcut\-\_\-statement@{Enter\-Shortcut\-\_\-statement}}
+\index{Enter\-Shortcut\-\_\-statement@{Enter\-Shortcut\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Shortcut\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Shortcut\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a928af133a0075061959dc54bbcf0d006}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a124037a3adf339760ef3e45671412d39}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 138 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+138 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a4d7217dafbfae9f55eefe72a1a5e86f7}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Shortcut\-\_\-text@{Enter\-Shortcut\-\_\-text}}
+\index{Enter\-Shortcut\-\_\-text@{Enter\-Shortcut\-\_\-text}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Shortcut\-\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Shortcut\-\_\-text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a4d7217dafbfae9f55eefe72a1a5e86f7}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a71dcbcd4ee653ea09672d45b9d18be50}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 174 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+174 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a0a1a5165215f2eed1a2fdee94218c472}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Statement@{Enter\-Statement}}
+\index{Enter\-Statement@{Enter\-Statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a0a1a5165215f2eed1a2fdee94218c472}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a07ea6b57012f67c54bae045b1edcb5cd}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 126 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+126 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_acc7ee2d7db98a4fb7401ceef15333752}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Text@{Enter\-Text}}
+\index{Enter\-Text@{Enter\-Text}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Text}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_acc7ee2d7db98a4fb7401ceef15333752}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-text. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ad777cbedbe8331c5c97dc9bbc2480e7c}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 294 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+294 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ac84fd7ce4eec5de621fb041b1a863014}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-False@{Enter\-Value\-False}}
+\index{Enter\-Value\-False@{Enter\-Value\-False}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-False}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-False (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ac84fd7ce4eec5de621fb041b1a863014}
+
+
+Enter a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a0fa7a352e8dfeabc79a44ccc5ae1a0fb}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 525 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+525 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_af8f0ba926e47307649e74f867ac60a46}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-Func@{Enter\-Value\-Func}}
+\index{Enter\-Value\-Func@{Enter\-Value\-Func}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-Func}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-Func (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_af8f0ba926e47307649e74f867ac60a46}
+
+
+Enter a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a844f15d9cb36effe8ac3396a166d1a4e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 567 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+567 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aea9d4639edf6d5d016b70057ac8c4759}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-Null@{Enter\-Value\-Null}}
+\index{Enter\-Value\-Null@{Enter\-Value\-Null}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-Null}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-Null (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aea9d4639edf6d5d016b70057ac8c4759}
+
+
+Enter a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a274050dd891e46a964bd2f5f57a3c745}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 581 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+581 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_afdedf143e349fc3d45837f63bfecc1c8}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-Number@{Enter\-Value\-Number}}
+\index{Enter\-Value\-Number@{Enter\-Value\-Number}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-Number (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_afdedf143e349fc3d45837f63bfecc1c8}
+
+
+Enter a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aae5b3e45fb61b525bc5062316b07f672}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 497 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+497 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a86517c7ed031c5b2608ff7acf8b36ab1}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-String@{Enter\-Value\-String}}
+\index{Enter\-Value\-String@{Enter\-Value\-String}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-String (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a86517c7ed031c5b2608ff7acf8b36ab1}
+
+
+Enter a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aba58b69a50746aa48101bef32a8c0d50}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 553 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+553 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a37726e9d5de13df5a1ff987bca4cbd50}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-True@{Enter\-Value\-True}}
+\index{Enter\-Value\-True@{Enter\-Value\-True}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-True}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-True (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a37726e9d5de13df5a1ff987bca4cbd50}
+
+
+Enter a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ad3ab2c970b95401f6c7c680aadcd6d2e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 511 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+511 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ab40a73dd590aa5e9081a131291fd4801}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Value\-Var@{Enter\-Value\-Var}}
+\index{Enter\-Value\-Var@{Enter\-Value\-Var}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Value\-Var}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Value\-Var (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ab40a73dd590aa5e9081a131291fd4801}
+
+
+Enter a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a10738e8c914ce7e0443a20ae5db8f404}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 539 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+539 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_afaa8a2993d94e0e4460a69ef516e5849}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Enter\-Variable@{Enter\-Variable}}
+\index{Enter\-Variable@{Enter\-Variable}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Enter\-Variable}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Enter\-Variable (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_afaa8a2993d94e0e4460a69ef516e5849}
+
+
+Enter a parse tree produced by Yarn\-Spinner\-Parser.\-variable. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a15e600191882a9157be0da2ac02ed00a}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 594 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+594 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ad2dccfeea09bb2b5cdcd244833b9f584}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Action\-\_\-statement@{Exit\-Action\-\_\-statement}}
+\index{Exit\-Action\-\_\-statement@{Exit\-Action\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Action\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Action\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Action\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ad2dccfeea09bb2b5cdcd244833b9f584}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-action\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a86d9540f994925ecbbb7ecd44f5ba7ac}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 288 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+288 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ab0f6c8acd95f6213546c6f1f8370fd67}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Body@{Exit\-Body}}
+\index{Exit\-Body@{Exit\-Body}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Body}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Body (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Body\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ab0f6c8acd95f6213546c6f1f8370fd67}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-body. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ab0fca0ad01b1619ab492a7ebd8169716}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_a1dbb5e93105b67b0d85fecb068b1b7db}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 120 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+120 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_adb3910abdd76dca4b087ccbeda671cad}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Dialogue@{Exit\-Dialogue}}
+\index{Exit\-Dialogue@{Exit\-Dialogue}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Dialogue}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Dialogue (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Dialogue\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_adb3910abdd76dca4b087ccbeda671cad}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-dialogue. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a11c1e679af4d2acf411d54006b287ce7}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 48 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+48 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a2dcc21a150bdc508c49e81bd10b6964f}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Else\-\_\-clause@{Exit\-Else\-\_\-clause}}
+\index{Exit\-Else\-\_\-clause@{Exit\-Else\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Else\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Else\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a2dcc21a150bdc508c49e81bd10b6964f}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a2741e8e66167003b75c60c2c4b62f33b}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 228 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+228 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a071da0b364f87cb542e2e3dff5d9f9c4}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Else\-\_\-if\-\_\-clause@{Exit\-Else\-\_\-if\-\_\-clause}}
+\index{Exit\-Else\-\_\-if\-\_\-clause@{Exit\-Else\-\_\-if\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Else\-\_\-if\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Else\-\_\-if\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Else\-\_\-if\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a071da0b364f87cb542e2e3dff5d9f9c4}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-else\-\_\-if\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ae70cb4fdf91fbc75483e25a76c01587b}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 216 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+216 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_adb4bf06fefa70949d705cf1fc4f9eafe}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Every\-Rule@{Exit\-Every\-Rule}}
+\index{Exit\-Every\-Rule@{Exit\-Every\-Rule}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Every\-Rule}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Every\-Rule (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} {\bf Parser\-Rule\-Context}}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_adb4bf06fefa70949d705cf1fc4f9eafe}
+
+
+
+
+The default implementation does nothing.
+
+Definition at line 607 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+607 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_afb75f12ecf35ef5e3886ada6e5519c28}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Add\-Sub@{Exit\-Exp\-Add\-Sub}}
+\index{Exit\-Exp\-Add\-Sub@{Exit\-Exp\-Add\-Sub}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Add\-Sub}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Add\-Sub (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Add\-Sub\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_afb75f12ecf35ef5e3886ada6e5519c28}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Add\-Sub} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ad5fc83b8162c27dcacbdc2f57912b4f9}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 448 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+448 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a126a1a450281df186411ba708a4f8edb}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-And\-Or\-Xor@{Exit\-Exp\-And\-Or\-Xor}}
+\index{Exit\-Exp\-And\-Or\-Xor@{Exit\-Exp\-And\-Or\-Xor}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-And\-Or\-Xor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-And\-Or\-Xor (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-And\-Or\-Xor\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a126a1a450281df186411ba708a4f8edb}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-And\-Or\-Xor} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a84c9108af21b88193b6d10b2fd243536}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 420 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+420 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_af8f026d529dcea66d5ac519ce404ed55}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Comparison@{Exit\-Exp\-Comparison}}
+\index{Exit\-Exp\-Comparison@{Exit\-Exp\-Comparison}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Comparison}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Comparison (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Comparison\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_af8f026d529dcea66d5ac519ce404ed55}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Comparison} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a01d06bb48cb39101bba0701250f8731c}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 392 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+392 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a95e59996fc8cf316f487c99084228cae}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Equality@{Exit\-Exp\-Equality}}
+\index{Exit\-Exp\-Equality@{Exit\-Exp\-Equality}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Equality}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Equality (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Equality\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a95e59996fc8cf316f487c99084228cae}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Equality} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a52c662d88cd1722bc251fbf2b2ecb3e1}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 490 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+490 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ac874c7fdb818e8f1d4a0ed8cb272804c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Mult\-Div\-Mod@{Exit\-Exp\-Mult\-Div\-Mod}}
+\index{Exit\-Exp\-Mult\-Div\-Mod@{Exit\-Exp\-Mult\-Div\-Mod}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Mult\-Div\-Mod}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Mult\-Div\-Mod (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ac874c7fdb818e8f1d4a0ed8cb272804c}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ab3ab4f5e37985391b42806a96afcdbc7}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 364 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+364 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aac772034f0fc8877ea587dc47e875997}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Mult\-Div\-Mod\-Equals@{Exit\-Exp\-Mult\-Div\-Mod\-Equals}}
+\index{Exit\-Exp\-Mult\-Div\-Mod\-Equals@{Exit\-Exp\-Mult\-Div\-Mod\-Equals}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Mult\-Div\-Mod\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Mult\-Div\-Mod\-Equals (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Mult\-Div\-Mod\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aac772034f0fc8877ea587dc47e875997}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Mult\-Div\-Mod\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a63259cbd56cf4759add665647c93bb6c}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 378 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+378 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_accebff941879b7b98517ee172bc88c51}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Negative@{Exit\-Exp\-Negative}}
+\index{Exit\-Exp\-Negative@{Exit\-Exp\-Negative}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Negative}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Negative (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Negative\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_accebff941879b7b98517ee172bc88c51}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Negative} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aa766acf2069da7411c0557e2384ab4c3}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 406 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+406 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_afba9f6d1f3ede7b042a34ef3bc7b67bb}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Not@{Exit\-Exp\-Not}}
+\index{Exit\-Exp\-Not@{Exit\-Exp\-Not}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Not}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Not (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Not\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_afba9f6d1f3ede7b042a34ef3bc7b67bb}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Not} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a1052e1bbdd20c45fb466a8d19ca773af}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 462 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+462 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a8e9b149b4b21ac11f38b77ca5eb39df3}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Parens@{Exit\-Exp\-Parens}}
+\index{Exit\-Exp\-Parens@{Exit\-Exp\-Parens}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Parens}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Parens (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Parens\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a8e9b149b4b21ac11f38b77ca5eb39df3}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Parens} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a989e491dc01eaaa74acf8f857c38cac5}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 350 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+350 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a6fc472ff3937457adf2c286c37a61b7a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Plus\-Minus\-Equals@{Exit\-Exp\-Plus\-Minus\-Equals}}
+\index{Exit\-Exp\-Plus\-Minus\-Equals@{Exit\-Exp\-Plus\-Minus\-Equals}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Plus\-Minus\-Equals}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Plus\-Minus\-Equals (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Plus\-Minus\-Equals\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a6fc472ff3937457adf2c286c37a61b7a}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Plus\-Minus\-Equals} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_af9f4c212411203127f6b10f43fb3335a}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 434 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+434 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a721acce8447553c78f8603381a30295f}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Exp\-Value@{Exit\-Exp\-Value}}
+\index{Exit\-Exp\-Value@{Exit\-Exp\-Value}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Exp\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Exp\-Value (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Exp\-Value\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a721acce8447553c78f8603381a30295f}
+
+
+Exit a parse tree produced by the {\ttfamily exp\-Value} labeled alternative in Yarn\-Spinner\-Parser.\-expression. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aeff54e598400f3abf74b9b26aa115ed0}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 476 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+476 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a1cf7a34cdb2d3604ce59f8428c720013}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Function@{Exit\-Function}}
+\index{Exit\-Function@{Exit\-Function}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Function}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Function (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a1cf7a34cdb2d3604ce59f8428c720013}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-function. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a8840a4aa42f14456230c77dd3c88b7ce}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 264 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+264 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a51a618b740ae76bef859c69cf1f35786}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Function\-\_\-statement@{Exit\-Function\-\_\-statement}}
+\index{Exit\-Function\-\_\-statement@{Exit\-Function\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Function\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Function\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Function\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a51a618b740ae76bef859c69cf1f35786}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-function\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a63723d6e3a452bb0a1ec71b497bfd53e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 276 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+276 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a7eb067a011e0ba441779489495424912}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Hashtag@{Exit\-Hashtag}}
+\index{Exit\-Hashtag@{Exit\-Hashtag}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Hashtag}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Hashtag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a7eb067a011e0ba441779489495424912}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a16d78392cd0da28bb8781e18cbcfcb72}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 336 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+336 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a7fec59b76bdec57fbc3dba0cf0977748}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Hashtag\-\_\-block@{Exit\-Hashtag\-\_\-block}}
+\index{Exit\-Hashtag\-\_\-block@{Exit\-Hashtag\-\_\-block}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Hashtag\-\_\-block}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Hashtag\-\_\-block (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Hashtag\-\_\-block\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a7fec59b76bdec57fbc3dba0cf0977748}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-hashtag\-\_\-block. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ac4066af1055eb75ee99a2d9f1a4fc45b}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 324 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+324 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a6e202bf625b40c0aae4829c9b7200fe9}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Header@{Exit\-Header}}
+\index{Exit\-Header@{Exit\-Header}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Header}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Header (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a6e202bf625b40c0aae4829c9b7200fe9}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a5eb5c9874eb6c0152bd9e542e9033e8f}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_a268fc7c3683d7d5d7548e64d59f5f3af}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 72 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+72 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a5565c81951adcedcdd6a5f1b0fff1dea}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Header\-\_\-line@{Exit\-Header\-\_\-line}}
+\index{Exit\-Header\-\_\-line@{Exit\-Header\-\_\-line}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Header\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Header\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-line\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a5565c81951adcedcdd6a5f1b0fff1dea}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-line. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a57f93fb0b7410d4bf7bca57af870b922}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 108 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+108 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a6d2ef3bda1ff771ae9bf39b2842b1f69}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Header\-\_\-tag@{Exit\-Header\-\_\-tag}}
+\index{Exit\-Header\-\_\-tag@{Exit\-Header\-\_\-tag}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Header\-\_\-tag}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Header\-\_\-tag (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-tag\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a6d2ef3bda1ff771ae9bf39b2842b1f69}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-tag. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a4a5d85ca93c74b3413087113782b5599}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 96 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+96 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aa6b04ccce84fc37c85731c8d0ab60d1c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Header\-\_\-title@{Exit\-Header\-\_\-title}}
+\index{Exit\-Header\-\_\-title@{Exit\-Header\-\_\-title}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Header\-\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Header\-\_\-title (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Header\-\_\-title\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aa6b04ccce84fc37c85731c8d0ab60d1c}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-header\-\_\-title. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_acba19587f286a257409442c069ae6770}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 84 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+84 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ab9705313017584f8f466e481ae4cdcfc}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-If\-\_\-clause@{Exit\-If\-\_\-clause}}
+\index{Exit\-If\-\_\-clause@{Exit\-If\-\_\-clause}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-If\-\_\-clause}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-If\-\_\-clause (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-clause\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ab9705313017584f8f466e481ae4cdcfc}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-clause. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ae35a37b5475e93fdf6a9e9e29bc0c2ad}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 204 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+204 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ac9b0ce9a61afd12bc631e834adc38893}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-If\-\_\-statement@{Exit\-If\-\_\-statement}}
+\index{Exit\-If\-\_\-statement@{Exit\-If\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-If\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-If\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-If\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ac9b0ce9a61afd12bc631e834adc38893}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-if\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a495df45108c3ad2853ce2c409a93e5fb}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 192 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+192 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_adb3ac6b0a7f40d2f4cf5fcfe84b83eb3}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Line\-\_\-statement@{Exit\-Line\-\_\-statement}}
+\index{Exit\-Line\-\_\-statement@{Exit\-Line\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Line\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Line\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Line\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_adb3ac6b0a7f40d2f4cf5fcfe84b83eb3}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-line\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a18610b57975ef40d961ba77077c865a3}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 312 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+312 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a4a181214b03baf8e44df0d66e25d70f2}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Node@{Exit\-Node}}
+\index{Exit\-Node@{Exit\-Node}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Node}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Node (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Node\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a4a181214b03baf8e44df0d66e25d70f2}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-node. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a6b7e98d22076af09ea0a41d938e581e2}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Reimplemented in \hyperlink{a00028_a2c509ed2238afcae61e6279554cc7129}{Yarn.\-Antlr\-Compiler}.
+
+
+
+Definition at line 60 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+60 \{ \}
+\end{DoxyCode}
+\hypertarget{a00099_a3741704626660a81593bbede4fd07850}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Option\-\_\-statement@{Exit\-Option\-\_\-statement}}
+\index{Exit\-Option\-\_\-statement@{Exit\-Option\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Option\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}override void Yarn.\-Graph\-Listener.\-Exit\-Option\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{Yarn\-Spinner\-Parser.\-Option\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00099_a3741704626660a81593bbede4fd07850}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-option\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{a00186_a925b4f097ef5e2d7c6ed367bede0bf0d}{Yarn\-Spinner\-Parser\-Base\-Listener}.
+
+
+
+Definition at line 847 of file Antlr\-Compiler.\-cs.
+
+
+
+References Yarn.\-Graph\-Listener.\-current\-Node.
+
+
+\begin{DoxyCode}
+848         \{
+849             var link = context.OPTION\_LINK();
+850             \textcolor{keywordflow}{if} (link != null)
+851             \{
+852                 graph.edge(\hyperlink{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{currentNode},link.GetText());
+853             \}
+854             \textcolor{keywordflow}{else}
+855             \{
+856                 graph.edge(\hyperlink{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{currentNode}, context.OPTION\_TEXT().GetText());
+857             \}
+858         \}
+\end{DoxyCode}
+\hypertarget{a00186_a32a780332df7d7104f4816995e3f4970}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Set\-\_\-statement@{Exit\-Set\-\_\-statement}}
+\index{Exit\-Set\-\_\-statement@{Exit\-Set\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Set\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Set\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Set\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a32a780332df7d7104f4816995e3f4970}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-set\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aeb4689215363ff29e046e3b578167b52}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 240 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+240 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a96270a7aa18e456051f1d17a0d391b87}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Shortcut@{Exit\-Shortcut}}
+\index{Exit\-Shortcut@{Exit\-Shortcut}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Shortcut}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Shortcut (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a96270a7aa18e456051f1d17a0d391b87}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a97d413b300c419d5b837c0f86c9c4e51}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 156 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+156 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_af600a0dc2204782118e7050560f37455}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Shortcut\-\_\-conditional@{Exit\-Shortcut\-\_\-conditional}}
+\index{Exit\-Shortcut\-\_\-conditional@{Exit\-Shortcut\-\_\-conditional}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Shortcut\-\_\-conditional}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Shortcut\-\_\-conditional (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-conditional\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_af600a0dc2204782118e7050560f37455}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-conditional. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a25418f3118840b4649c7f553e6697404}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 168 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+168 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aedbcd5225a20100938edb2b072515b2c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Shortcut\-\_\-statement@{Exit\-Shortcut\-\_\-statement}}
+\index{Exit\-Shortcut\-\_\-statement@{Exit\-Shortcut\-\_\-statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Shortcut\-\_\-statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Shortcut\-\_\-statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aedbcd5225a20100938edb2b072515b2c}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ab7bec42187dabe45b25c8131b1895695}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 144 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+144 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a26bb6f162b0375a1455013d85dff2ddb}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Shortcut\-\_\-text@{Exit\-Shortcut\-\_\-text}}
+\index{Exit\-Shortcut\-\_\-text@{Exit\-Shortcut\-\_\-text}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Shortcut\-\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Shortcut\-\_\-text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Shortcut\-\_\-text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a26bb6f162b0375a1455013d85dff2ddb}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-shortcut\-\_\-text. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_aa6963c7c13fc82d6925c7ac70a64c8f2}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 180 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+180 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a94c70caf87bdc4c46223b1bfc9031c42}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Statement@{Exit\-Statement}}
+\index{Exit\-Statement@{Exit\-Statement}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Statement (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Statement\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a94c70caf87bdc4c46223b1bfc9031c42}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-statement. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_ae1d29c72d14a5a8a15be20e8ec03e886}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 132 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+132 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a8d4b310bdc6b8f2d48c6885ca52e35d2}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Text@{Exit\-Text}}
+\index{Exit\-Text@{Exit\-Text}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Text}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Text (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Text\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a8d4b310bdc6b8f2d48c6885ca52e35d2}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-text. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_adb756716e74178e1a8f293532cd498eb}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 300 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+300 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_abb1e92cab5c21a27d277f4f77b50b42a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-False@{Exit\-Value\-False}}
+\index{Exit\-Value\-False@{Exit\-Value\-False}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-False}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-False (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-False\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_abb1e92cab5c21a27d277f4f77b50b42a}
+
+
+Exit a parse tree produced by the {\ttfamily value\-False} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a0833568babf8a349125a9437d7addf4e}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 532 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+532 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ac9b0090b8a75d8aa28bcca61fedb5906}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-Func@{Exit\-Value\-Func}}
+\index{Exit\-Value\-Func@{Exit\-Value\-Func}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-Func}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-Func (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Func\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ac9b0090b8a75d8aa28bcca61fedb5906}
+
+
+Exit a parse tree produced by the {\ttfamily value\-Func} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_af1147d6a54ffcd90616fed4c7d9be1b5}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 574 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+574 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a518cf1ada7b47f37d83e38c2abcc759d}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-Null@{Exit\-Value\-Null}}
+\index{Exit\-Value\-Null@{Exit\-Value\-Null}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-Null}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-Null (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Null\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a518cf1ada7b47f37d83e38c2abcc759d}
+
+
+Exit a parse tree produced by the {\ttfamily value\-Null} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a88184dc4806c82cefa48f686b51f741f}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 588 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+588 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aca49c7a82494d35e3c0035dc2d7f5b02}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-Number@{Exit\-Value\-Number}}
+\index{Exit\-Value\-Number@{Exit\-Value\-Number}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-Number}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-Number (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Number\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aca49c7a82494d35e3c0035dc2d7f5b02}
+
+
+Exit a parse tree produced by the {\ttfamily value\-Number} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a5e517c3fc152e67cc951b99b2a35bad9}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 504 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+504 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a0edac722aaa4daaf67b6952f9f323849}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-String@{Exit\-Value\-String}}
+\index{Exit\-Value\-String@{Exit\-Value\-String}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-String (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-String\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a0edac722aaa4daaf67b6952f9f323849}
+
+
+Exit a parse tree produced by the {\ttfamily value\-String} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_af20a277d6cc2e1db88544897aca2210c}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 560 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+560 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aa93e3f3a8f522d20d559f2b66bf780ce}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-True@{Exit\-Value\-True}}
+\index{Exit\-Value\-True@{Exit\-Value\-True}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-True}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-True (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-True\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aa93e3f3a8f522d20d559f2b66bf780ce}
+
+
+Exit a parse tree produced by the {\ttfamily value\-True} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a46a6bc7d7dd3b877665eea586a9904e4}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 518 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+518 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_ad03e275623c6693c7de931d3f3323f6c}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Value\-Var@{Exit\-Value\-Var}}
+\index{Exit\-Value\-Var@{Exit\-Value\-Var}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Value\-Var}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Value\-Var (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Value\-Var\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_ad03e275623c6693c7de931d3f3323f6c}
+
+
+Exit a parse tree produced by the {\ttfamily value\-Var} labeled alternative in Yarn\-Spinner\-Parser.\-value. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a049dd8a2eab781135818c03762d697b9}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 546 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+546 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a2f4cf38483d1c434b0e0225b950f7a66}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Exit\-Variable@{Exit\-Variable}}
+\index{Exit\-Variable@{Exit\-Variable}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Exit\-Variable}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Exit\-Variable (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} Yarn\-Spinner\-Parser.\-Variable\-Context}]{context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a2f4cf38483d1c434b0e0225b950f7a66}
+
+
+Exit a parse tree produced by Yarn\-Spinner\-Parser.\-variable. 
+
+The default implementation does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The parse tree.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00114_a88efcd53a74110abd0000e4b7d6c4691}{I\-Yarn\-Spinner\-Parser\-Listener}.
+
+
+
+Definition at line 600 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+600 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_a23c6fe6f098193795ac42544600dbb1a}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Visit\-Error\-Node@{Visit\-Error\-Node}}
+\index{Visit\-Error\-Node@{Visit\-Error\-Node}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Visit\-Error\-Node}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Visit\-Error\-Node (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} {\bf I\-Error\-Node}}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_a23c6fe6f098193795ac42544600dbb1a}
+
+
+
+
+The default implementation does nothing.
+
+Definition at line 613 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+613 \{ \}
+\end{DoxyCode}
+\hypertarget{a00186_aa1dfd73e68ddef6754237fb33984fcf4}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!Visit\-Terminal@{Visit\-Terminal}}
+\index{Visit\-Terminal@{Visit\-Terminal}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{Visit\-Terminal}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Yarn\-Spinner\-Parser\-Base\-Listener.\-Visit\-Terminal (
+\begin{DoxyParamCaption}
+\item[{\mbox{[}\-Not\-Null\mbox{]} {\bf I\-Terminal\-Node}}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00186_aa1dfd73e68ddef6754237fb33984fcf4}
+
+
+
+
+The default implementation does nothing.
+
+Definition at line 610 of file Yarn\-Spinner\-Parser\-Base\-Listener.\-cs.
+
+
+\begin{DoxyCode}
+610 \{ \}
 \end{DoxyCode}
 
 
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a1e6cd39b0c813f21da278367dcff76d2_cgraph}
-\end{center}
-\end{figure}
+\subsection{Member Data Documentation}
+\hypertarget{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!current\-Node@{current\-Node}}
+\index{current\-Node@{current\-Node}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{current\-Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Yarn.\-Graph\-Listener.\-current\-Node = null\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_a1cf5faff80d9ae70d5fef264eb52b0e8}
+
+
+Definition at line 839 of file Antlr\-Compiler.\-cs.
 
 
 
+Referenced by Yarn.\-Graph\-Listener.\-Enter\-Header\-\_\-title(), and Yarn.\-Graph\-Listener.\-Exit\-Option\-\_\-statement().
 
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00099_a1e6cd39b0c813f21da278367dcff76d2_icgraph}
-\end{center}
-\end{figure}
+\hypertarget{a00099_add71b64dfe7fb107487ec6d15588ff1f}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!graph@{graph}}
+\index{graph@{graph}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{graph}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph} Yarn.\-Graph\-Listener.\-graph = new {\bf Graph}()}}\label{a00099_add71b64dfe7fb107487ec6d15588ff1f}
 
+
+Definition at line 840 of file Antlr\-Compiler.\-cs.
+
+\hypertarget{a00099_ac450f10ed033a25c205f13c38554faaa}{\index{Yarn\-::\-Graph\-Listener@{Yarn\-::\-Graph\-Listener}!yarn\-Name@{yarn\-Name}}
+\index{yarn\-Name@{yarn\-Name}!Yarn::GraphListener@{Yarn\-::\-Graph\-Listener}}
+\subsubsection[{yarn\-Name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Yarn.\-Graph\-Listener.\-yarn\-Name = \char`\"{}G\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}}\label{a00099_ac450f10ed033a25c205f13c38554faaa}
+
+
+Definition at line 841 of file Antlr\-Compiler.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00311}{File\-Format\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00288}{Antlr\-Compiler.\-cs}\end{DoxyCompactItemize}

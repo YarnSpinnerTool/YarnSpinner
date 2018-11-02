@@ -1,294 +1,241 @@
-\hypertarget{a00156}{\section{Yarn.\-Virtual\-Machine Class Reference}
-\label{a00156}\index{Yarn.\-Virtual\-Machine@{Yarn.\-Virtual\-Machine}}
+\hypertarget{a00156}{\section{Yarn.\-Parser.\-Statement Class Reference}
+\label{a00156}\index{Yarn.\-Parser.\-Statement@{Yarn.\-Parser.\-Statement}}
 }
 
 
-Collaboration diagram for Yarn.\-Virtual\-Machine\-:
+Inheritance diagram for Yarn.\-Parser.\-Statement\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00712}
+\includegraphics[width=200pt]{a00688}
 \end{center}
 \end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00156_a00369}{Special\-Variables}
-\item 
-class \hyperlink{a00159}{State}
-\end{DoxyCompactItemize}
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-enum \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42d}{Execution\-State} \{ \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2}{Execution\-State.\-Stopped}, 
-\hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b}{Execution\-State.\-Waiting\-On\-Option\-Selection}, 
-\hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09}{Execution\-State.\-Running}
- \}
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Statement\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{a00689}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-delegate void \hyperlink{a00156_aac9ec1011ea2c01460044d7c8355f398}{Line\-Handler} (\hyperlink{a00126}{Dialogue.\-Line\-Result} line)
+string \hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
 \item 
-delegate void \hyperlink{a00156_a78dfd54b743e53078eed19ab7be2b6cf}{Options\-Handler} (\hyperlink{a00139}{Dialogue.\-Option\-Set\-Result} options)
-\item 
-delegate void \hyperlink{a00156_a1b57359378059b134ba76acddafd8d81}{Command\-Handler} (\hyperlink{a00046}{Dialogue.\-Command\-Result} command)
-\item 
-delegate void \hyperlink{a00156_a5bf3aa51578847c18191fec665a840f9}{Node\-Complete\-Handler} (\hyperlink{a00133}{Dialogue.\-Node\-Complete\-Result} complete)
-\item 
-bool \hyperlink{a00156_a6364593ea1115d65e34b343422cfbbbd}{Set\-Node} (string node\-Name)
-\item 
-void \hyperlink{a00156_a78b8c4078471af59ba505c28824d84d1}{Stop} ()
+override string \hyperlink{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Package Types}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00156_aac9ec1011ea2c01460044d7c8355f398}{Line\-Handler} \hyperlink{a00156_a29b30454f068fc7e107d48bff4346fd9}{line\-Handler}
-\item 
-\hyperlink{a00156_a78dfd54b743e53078eed19ab7be2b6cf}{Options\-Handler} \hyperlink{a00156_acd25fe2e3aa90dc87ba25d9af904465b}{options\-Handler}
-\item 
-\hyperlink{a00156_a1b57359378059b134ba76acddafd8d81}{Command\-Handler} \hyperlink{a00156_ab89b02227b92c74552f719afd47848e4}{command\-Handler}
-\item 
-\hyperlink{a00156_a5bf3aa51578847c18191fec665a840f9}{Node\-Complete\-Handler} \hyperlink{a00156_a5129c63e67e2d4e2780d86b8351320a2}{node\-Complete\-Handler}
+enum \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944}{Type} \{ \\*
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{Type.\-Custom\-Command}, 
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{Type.\-Shortcut\-Option\-Group}, 
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Type.\-Block}, 
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{Type.\-If\-Statement}, 
+\\*
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{Type.\-Option\-Statement}, 
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{Type.\-Assignment\-Statement}, 
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Type.\-Line}
+ \}
 \end{DoxyCompactItemize}
 \subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00156_aefa64c4353e5c261f1189649638e49a6}{Virtual\-Machine} (\hyperlink{a00086}{Dialogue} d, \hyperlink{a00146}{Program} p)
+\hyperlink{a00156_acba736ffbcc0f8bf5cee2b23f7733dff}{Statement} (\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00139}{Parser} p)
 \item 
-void \hyperlink{a00156_af3cc0337914b9f66454a3d52208dba5f}{Run\-Next} ()
-\begin{DoxyCompactList}\small\item\em Executes the next instruction in the current node. \end{DoxyCompactList}\item 
-int \hyperlink{a00156_af613c8b2d098678b6ea05b509c0a0cb6}{Find\-Instruction\-Point\-For\-Label} (string label\-Name)
-\begin{DoxyCompactList}\small\item\em Looks up the instruction number for a named label in the current node. \end{DoxyCompactList}\item 
-void \hyperlink{a00156_ad2caf9ca4f00cdcbd58983be7c106971}{Run\-Instruction} (\hyperlink{a00113}{Instruction} i)
+override string \hyperlink{a00156_aaac6d1e0c3b31f33e1c6f964c205153e}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00128}{Node} \hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00138_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00156_ab3afe8360a344c16c21213edb3641481}{current\-Node\-Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944}{Statement.\-Type} \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42d}{Execution\-State} \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{execution\-State}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
+\hyperlink{a00033}{Block} \hyperlink{a00156_ac14dfc7210974b4cd86402ed011fb0b6}{block}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-void \hyperlink{a00156_a3ba945c66cb8ba031357a1771453f82b}{Reset\-State} ()
-\begin{DoxyCompactList}\small\item\em Reset the state of the V\-M. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
+\hyperlink{a00108}{If\-Statement} \hyperlink{a00156_a9a71577456598af0f25b23ccd02154e4}{if\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00086}{Dialogue} \hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue}
+\hyperlink{a00136}{Option\-Statement} \hyperlink{a00156_a15020b7dab4983adbd185d5c2c2ebe84}{option\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00146}{Program} \hyperlink{a00156_a2695dbfe3d9df7ffa3f13ad2231217fb}{program}
+\hyperlink{a00029}{Assignment\-Statement} \hyperlink{a00156_a7fa97a80f1b9313bc2bd4194e3f75759}{assignment\-Statement}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00159}{State} \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state} = new \hyperlink{a00159}{State}()
+\hyperlink{a00073}{Custom\-Command} \hyperlink{a00156_a8a98e7d4c66f9909da865f0e671d69f2}{custom\-Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-Random \hyperlink{a00156_a408485a00c7cc558428c86ed9dd04fca}{random} = new Random()
+string \hyperlink{a00156_a37695c7b00776bb292fd64894a70fb72}{line}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-\hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42d}{Execution\-State} \hyperlink{a00156_a0ae362616d85f028b7ec3230388926f4}{\-\_\-execution\-State}
-\item 
-\hyperlink{a00045_a00367}{Node} \hyperlink{a00156_ab7594e14981ad75cecea3b2e7dcf895c}{current\-Node}
+\hyperlink{a00150}{Shortcut\-Option\-Group} \hyperlink{a00156_a54d73ad69c4af4a0d61edeaea4c8ca4f}{shortcut\-Option\-Group}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 6 of file Virtual\-Machine.\-cs.
+Definition at line 163 of file Parser.\-cs.
 
-
-
-\subsection{Class Documentation}
-\index{Yarn\-::\-Virtual\-Machine\-::\-Special\-Variables@{Yarn\-::\-Virtual\-Machine\-::\-Special\-Variables}}\label{a00369}
-\hypertarget{a00156_a00369}{}
-\subsubsection{class Yarn\-:\-:Virtual\-Machine\-:\-:Special\-Variables}
-
-
-Definition at line 48 of file Virtual\-Machine.\-cs.
-
-
-
-Collaboration diagram for Yarn.\-Virtual\-Machine.\-Special\-Variables\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=220pt]{a00382}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00156_aecbb8ab9becd96457d836100b2818078}{const string}\label{a00156_aecbb8ab9becd96457d836100b2818078}
-&
-Shuffle\-Options&
-\\
-\hline
-
-\end{DoxyFields}
 
 
 \subsection{Member Enumeration Documentation}
-\hypertarget{a00156_add28fa9c8a45ca579e84d05920bbc42d}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Execution\-State@{Execution\-State}}
-\index{Execution\-State@{Execution\-State}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Execution\-State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Virtual\-Machine.\-Execution\-State}}}\label{a00156_add28fa9c8a45ca579e84d05920bbc42d}
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Type@{Type}}
+\index{Type@{Type}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Statement.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_a518000e4e6219ce5f9f4229f505cd944}
 \begin{Desc}
 \item[Enumerator]\par
 \begin{description}
-\index{Stopped@{Stopped}!Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}}\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Stopped@{Stopped}}\item[{\em 
-\hypertarget{a00156_add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2}{Stopped}\label{a00156_add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2}
-}]Stopped. \index{Waiting\-On\-Option\-Selection@{Waiting\-On\-Option\-Selection}!Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}}\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Waiting\-On\-Option\-Selection@{Waiting\-On\-Option\-Selection}}\item[{\em 
-\hypertarget{a00156_add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b}{Waiting\-On\-Option\-Selection}\label{a00156_add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b}
-}]Waiting on option selection. \index{Running@{Running}!Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}}\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Running@{Running}}\item[{\em 
-\hypertarget{a00156_add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09}{Running}\label{a00156_add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09}
-}]Running. \end{description}
+\index{Custom\-Command@{Custom\-Command}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Custom\-Command@{Custom\-Command}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{Custom\-Command}\label{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}
+}]\index{Shortcut\-Option\-Group@{Shortcut\-Option\-Group}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Shortcut\-Option\-Group@{Shortcut\-Option\-Group}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{Shortcut\-Option\-Group}\label{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}
+}]\index{Block@{Block}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Block@{Block}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}\label{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}
+}]\index{If\-Statement@{If\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!If\-Statement@{If\-Statement}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{If\-Statement}\label{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}
+}]\index{Option\-Statement@{Option\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Option\-Statement@{Option\-Statement}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{Option\-Statement}\label{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}
+}]\index{Assignment\-Statement@{Assignment\-Statement}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Assignment\-Statement@{Assignment\-Statement}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{Assignment\-Statement}\label{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}
+}]\index{Line@{Line}!Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}}\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Line@{Line}}\item[{\em 
+\hypertarget{a00156_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Line}\label{a00156_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}
+}]\end{description}
 \end{Desc}
 
 
-Definition at line 87 of file Virtual\-Machine.\-cs.
+Definition at line 165 of file Parser.\-cs.
 
 
 \begin{DoxyCode}
-87                                    \{
-89             \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2}{Stopped},
-91             \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b}{WaitingOnOptionSelection},
-93             \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09}{Running}
-94         \}
+165                                \{
+166                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand},
+167                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup},
+168                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block},
+169                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement},
+170                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement},
+171                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement},
+172                 \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4}{Line}
+173             \}
 \end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00156_aefa64c4353e5c261f1189649638e49a6}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Virtual\-Machine@{Virtual\-Machine}}
-\index{Virtual\-Machine@{Virtual\-Machine}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Virtual\-Machine}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Virtual\-Machine.\-Virtual\-Machine (
+\hypertarget{a00156_acba736ffbcc0f8bf5cee2b23f7733dff}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Statement@{Statement}}
+\index{Statement@{Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Statement}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Statement.\-Statement (
 \begin{DoxyParamCaption}
-\item[{{\bf Dialogue}}]{d, }
-\item[{{\bf Program}}]{p}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_aefa64c4353e5c261f1189649638e49a6}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_acba736ffbcc0f8bf5cee2b23f7733dff}
 
 
-Definition at line 52 of file Virtual\-Machine.\-cs.
+Definition at line 186 of file Parser.\-cs.
 
 
 
-References Yarn.\-Virtual\-Machine.\-dialogue, Yarn.\-Virtual\-Machine.\-program, and Yarn.\-Virtual\-Machine.\-state.
+References Yarn.\-Parser.\-Statement.\-Assignment\-Statement, Yarn.\-Parser.\-Statement.\-assignment\-Statement, Yarn.\-Parser.\-Statement.\-Block, Yarn.\-Parser.\-Statement.\-block, Yarn.\-Parser.\-Custom\-Command.\-Can\-Parse(), Yarn.\-Parser.\-Shortcut\-Option\-Group.\-Can\-Parse(), Yarn.\-Parser.\-Block.\-Can\-Parse(), Yarn.\-Parser.\-Option\-Statement.\-Can\-Parse(), Yarn.\-Parser.\-If\-Statement.\-Can\-Parse(), Yarn.\-Parser.\-Assignment\-Statement.\-Can\-Parse(), Yarn.\-Parser.\-Statement.\-Custom\-Command, Yarn.\-Parser.\-Statement.\-custom\-Command, Yarn.\-Parser.\-Statement.\-If\-Statement, Yarn.\-Parser.\-Statement.\-if\-Statement, Yarn.\-Parser.\-Statement.\-line, Yarn.\-Parser.\-Next\-Symbol\-Is(), Yarn.\-Parser.\-Statement.\-Option\-Statement, Yarn.\-Parser.\-Statement.\-option\-Statement, Yarn.\-Parser.\-Statement.\-Shortcut\-Option\-Group, Yarn.\-Parser.\-Statement.\-shortcut\-Option\-Group, Yarn.\-Parser.\-Parse\-Node.\-tags, Yarn.\-Parser.\-tokens, and Yarn.\-Parser.\-Statement.\-type.
 
 
 \begin{DoxyCode}
-53         \{
-54             \hyperlink{a00156_a2695dbfe3d9df7ffa3f13ad2231217fb}{program} = p;
-55             \hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue} = d;
-56             \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state} = \textcolor{keyword}{new} State ();
-57         \}
+186                                                            : base(\hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+187 
+188                 \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}.CanParse(p)) \{
+189                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.Block;
+190                     \hyperlink{a00156_ac14dfc7210974b4cd86402ed011fb0b6}{block} = \textcolor{keyword}{new} \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2}{Block}(\textcolor{keyword}{this}, p);
+191                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement}.CanParse(p)) \{
+192                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.IfStatement;
+193                     \hyperlink{a00156_a9a71577456598af0f25b23ccd02154e4}{ifStatement} = \textcolor{keyword}{new} \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d}{IfStatement}(\textcolor{keyword}{this}, p);
+194                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement}.CanParse(p)) \{
+195                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.OptionStatement;
+196                     \hyperlink{a00156_a15020b7dab4983adbd185d5c2c2ebe84}{optionStatement} = \textcolor{keyword}{new} \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7}{OptionStatement}(\textcolor{keyword}{this}, p);
+197                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement}.CanParse(p)) \{
+198                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.AssignmentStatement;
+199                     \hyperlink{a00156_a7fa97a80f1b9313bc2bd4194e3f75759}{assignmentStatement} = \textcolor{keyword}{new} 
+      \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341}{AssignmentStatement}(\textcolor{keyword}{this}, p);
+200                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup}.CanParse(p)) \{
+201                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.ShortcutOptionGroup;
+202                     \hyperlink{a00156_a54d73ad69c4af4a0d61edeaea4c8ca4f}{shortcutOptionGroup} = \textcolor{keyword}{new} 
+      \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a}{ShortcutOptionGroup}(\textcolor{keyword}{this}, p);
+203                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand}.CanParse(p)) \{
+204                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.CustomCommand;
+205                     \hyperlink{a00156_a8a98e7d4c66f9909da865f0e671d69f2}{customCommand} = \textcolor{keyword}{new} \hyperlink{a00156_a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe}{CustomCommand}(\textcolor{keyword}{this}, p);
+206                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Text)) \{
+207                     \hyperlink{a00156_a37695c7b00776bb292fd64894a70fb72}{line} = p.ExpectSymbol(TokenType.Text).value as \textcolor{keywordtype}{string};
+208                     \hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type} = Type.Line;
+209                 \} \textcolor{keywordflow}{else} \{
+210                     \textcolor{keywordflow}{throw} ParseException.Make(p.tokens.Peek(), \textcolor{stringliteral}{"Expected a statement here but got "} + p.
+      tokens.Peek().ToString() +\textcolor{stringliteral}{" instead (was there an unbalanced if statement earlier?)"});
+211                 \}
+212 
+213                 \textcolor{comment}{// Parse the optional tags that follow this statement}
+214                 var \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \textcolor{keyword}{new} List<string>();
+215 
+216                 \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.TagMarker)) \{
+217                     p.ExpectSymbol(TokenType.TagMarker);
+218                     var tag = p.ExpectSymbol(TokenType.Identifier).value;
+219                     tags.Add(tag);
+220                 \}
+221 
+222                 \textcolor{keywordflow}{if} (tags.Count > 0)
+223                     this.tags = tags.ToArray();
+224             \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00156_acba736ffbcc0f8bf5cee2b23f7733dff_cgraph}
+\end{center}
+\end{figure}
+
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00156_a1b57359378059b134ba76acddafd8d81}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Command\-Handler@{Command\-Handler}}
-\index{Command\-Handler@{Command\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Virtual\-Machine.\-Command\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Dialogue.\-Command\-Result}}]{command}
-\end{DoxyParamCaption}
-)}}\label{a00156_a1b57359378059b134ba76acddafd8d81}
-\hypertarget{a00156_af613c8b2d098678b6ea05b509c0a0cb6}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Find\-Instruction\-Point\-For\-Label@{Find\-Instruction\-Point\-For\-Label}}
-\index{Find\-Instruction\-Point\-For\-Label@{Find\-Instruction\-Point\-For\-Label}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Find\-Instruction\-Point\-For\-Label}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label (
-\begin{DoxyParamCaption}
-\item[{string}]{label\-Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_af613c8b2d098678b6ea05b509c0a0cb6}
-
-
-Looks up the instruction number for a named label in the current node. 
-
-
-
-Definition at line 163 of file Virtual\-Machine.\-cs.
-
-
-
-References Yarn.\-Virtual\-Machine.\-current\-Node, Yarn.\-Virtual\-Machine.\-State.\-current\-Node\-Name, Yarn.\-Node.\-labels, and Yarn.\-Virtual\-Machine.\-state.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-
-\begin{DoxyCode}
-163                                                                     \{
-164 
-165             \textcolor{keywordflow}{if} (\hyperlink{a00156_ab7594e14981ad75cecea3b2e7dcf895c}{currentNode}.\hyperlink{a00045_a9afa49f4fbc72e806a0210cb4198f12e}{labels}.ContainsKey(labelName) == \textcolor{keyword}{false}) \{
-166                 \textcolor{comment}{// Couldn't find the node..}
-167                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} IndexOutOfRangeException (\textcolor{stringliteral}{"Unknown label "} +
-168                     labelName + \textcolor{stringliteral}{" in node "} + \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_a86f481fad527f719b49f8fee6ff79764}{currentNodeName});
-169             \}
-170 
-171             \textcolor{keywordflow}{return} currentNode.labels [labelName];
-172 
-173         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00156_af613c8b2d098678b6ea05b509c0a0cb6_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00156_aac9ec1011ea2c01460044d7c8355f398}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Line\-Handler@{Line\-Handler}}
-\index{Line\-Handler@{Line\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Virtual\-Machine.\-Line\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Dialogue.\-Line\-Result}}]{line}
-\end{DoxyParamCaption}
-)}}\label{a00156_aac9ec1011ea2c01460044d7c8355f398}
-\hypertarget{a00156_a5bf3aa51578847c18191fec665a840f9}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Node\-Complete\-Handler@{Node\-Complete\-Handler}}
-\index{Node\-Complete\-Handler@{Node\-Complete\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Node\-Complete\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Virtual\-Machine.\-Node\-Complete\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Dialogue.\-Node\-Complete\-Result}}]{complete}
-\end{DoxyParamCaption}
-)}}\label{a00156_a5bf3aa51578847c18191fec665a840f9}
-\hypertarget{a00156_a78dfd54b743e53078eed19ab7be2b6cf}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Options\-Handler@{Options\-Handler}}
-\index{Options\-Handler@{Options\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Yarn.\-Virtual\-Machine.\-Options\-Handler (
-\begin{DoxyParamCaption}
-\item[{{\bf Dialogue.\-Option\-Set\-Result}}]{options}
-\end{DoxyParamCaption}
-)}}\label{a00156_a78dfd54b743e53078eed19ab7be2b6cf}
-\hypertarget{a00156_a3ba945c66cb8ba031357a1771453f82b}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Reset\-State@{Reset\-State}}
-\index{Reset\-State@{Reset\-State}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Reset\-State}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-Reset\-State (
+\hypertarget{a00138_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a3ba945c66cb8ba031357a1771453f82b}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a580e520a29444fc23ac3660cbe514a09}
 
 
-Reset the state of the V\-M. 
-
-
-
-Definition at line 60 of file Virtual\-Machine.\-cs.
+Definition at line 100 of file Parser.\-cs.
 
 
 
-References Yarn.\-Virtual\-Machine.\-state.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Set\-Node().
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-60                           \{
-61             \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state} = \textcolor{keyword}{new} State();
-62         \}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
+110 
+111                 \textcolor{keywordflow}{return} null;
+112             \}
 \end{DoxyCode}
 
 
@@ -297,380 +244,64 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00156_a3ba945c66cb8ba031357a1771453f82b_icgraph}
+\includegraphics[width=350pt]{a00138_a580e520a29444fc23ac3660cbe514a09_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00156_ad2caf9ca4f00cdcbd58983be7c106971}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Run\-Instruction@{Run\-Instruction}}
-\index{Run\-Instruction@{Run\-Instruction}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Run\-Instruction}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-Run\-Instruction (
+\hypertarget{a00156_aaac6d1e0c3b31f33e1c6f964c205153e}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Statement.\-Print\-Tree (
 \begin{DoxyParamCaption}
-\item[{{\bf Instruction}}]{i}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_ad2caf9ca4f00cdcbd58983be7c106971}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00156_aaac6d1e0c3b31f33e1c6f964c205153e}
 
-\begin{DoxyItemize}
-\item Label
-\end{DoxyItemize}
 
-No-\/op, used as a destination for Jump\-To and Jump.
+Implements \hyperlink{a00138_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
 
 
-\begin{DoxyItemize}
-\item Jump\-To
-\end{DoxyItemize}
 
-Jumps to a named label
+Definition at line 226 of file Parser.\-cs.
 
 
-\begin{DoxyItemize}
-\item Run\-Line
-\end{DoxyItemize}
 
-Looks up a string from the string table and passes it to the client as a line
-
-
-\begin{DoxyItemize}
-\item Run\-Command
-\end{DoxyItemize}
-
-Passes a string to the client as a custom command
-
-
-\begin{DoxyItemize}
-\item Push\-String
-\end{DoxyItemize}
-
-Pushes a string value onto the stack. The operand is an index into the string table, so that's looked up first.
-
-
-\begin{DoxyItemize}
-\item Push\-Number
-\end{DoxyItemize}
-
-Pushes a number onto the stack.
-
-
-\begin{DoxyItemize}
-\item Push\-Bool
-\end{DoxyItemize}
-
-Pushes a boolean value onto the stack.
-
-
-\begin{DoxyItemize}
-\item Push\-Null
-\end{DoxyItemize}
-
-Pushes a null value onto the stack.
-
-
-\begin{DoxyItemize}
-\item Jump\-If\-False
-\end{DoxyItemize}
-
-Jumps to a named label if the value on the top of the stack evaluates to the boolean value 'false'.
-
-
-\begin{DoxyItemize}
-\item Jump
-\end{DoxyItemize}
-
-Jumps to a label whose name is on the stack.
-
-
-\begin{DoxyItemize}
-\item Pop
-\end{DoxyItemize}
-
-Pops a value from the stack.
-
-
-\begin{DoxyItemize}
-\item Call\-Func
-\end{DoxyItemize}
-
-Call a function, whose parameters are expected to be on the stack. Pushes the function's return value, if it returns one.
-
-
-\begin{DoxyItemize}
-\item Push\-Variable
-\end{DoxyItemize}
-
-Get the contents of a variable, push that onto the stack.
-
-
-\begin{DoxyItemize}
-\item Store\-Variable
-\end{DoxyItemize}
-
-Store the top value on the stack in a variable.
-
-
-\begin{DoxyItemize}
-\item Stop
-\end{DoxyItemize}
-
-Immediately stop execution, and report that fact.
-
-
-\begin{DoxyItemize}
-\item Run\-Node
-\end{DoxyItemize}
-
-Run a node
-
-
-\begin{DoxyItemize}
-\item Add\-Option
-\end{DoxyItemize}
-
-Add an option to the current state.
-
-
-\begin{DoxyItemize}
-\item Show\-Options
-\end{DoxyItemize}
-
-If we have no options to show, immediately stop.
-
-If we have a single option, and it has no label, select it immediately and continue execution
-
-
-\begin{DoxyItemize}
-\item default
-
-Whoa, no idea what bytecode this is. Stop the program and throw an exception.
-\end{DoxyItemize}
-
-Definition at line 175 of file Virtual\-Machine.\-cs.
-
-
-
-References Yarn.\-Virtual\-Machine.\-command\-Handler, Yarn.\-Dialogue.\-continuity, Yarn.\-Virtual\-Machine.\-State.\-current\-Options, Yarn.\-Virtual\-Machine.\-dialogue, Yarn.\-Virtual\-Machine.\-execution\-State, Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label(), Yarn.\-Library.\-Get\-Function(), Yarn.\-Variable\-Storage.\-Get\-Value(), Yarn.\-Dialogue.\-library, Yarn.\-Virtual\-Machine.\-line\-Handler, Yarn.\-Virtual\-Machine.\-node\-Complete\-Handler, Yarn.\-Value.\-N\-U\-L\-L, Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operation, Yarn.\-Virtual\-Machine.\-options\-Handler, Yarn.\-Virtual\-Machine.\-State.\-Peek\-Value(), Yarn.\-Virtual\-Machine.\-State.\-Pop\-Value(), Yarn.\-Virtual\-Machine.\-random, Yarn.\-Virtual\-Machine.\-Set\-Node(), Yarn.\-Variable\-Storage.\-Set\-Value(), Yarn.\-Virtual\-Machine.\-Special\-Variables.\-Shuffle\-Options, and Yarn.\-Virtual\-Machine.\-state.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Next().
+References Yarn.\-Parser.\-Statement.\-line, Yarn.\-Parser.\-Tab(), Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String(), and Yarn.\-Parser.\-Statement.\-type.
 
 
 \begin{DoxyCode}
-175                                                     \{
-176             \textcolor{keywordflow}{switch} (i.operation) \{
-177             \textcolor{keywordflow}{case} ByteCode.Label:
-179 
-181                 \textcolor{keywordflow}{break};
-182             \textcolor{keywordflow}{case} ByteCode.JumpTo:
-184 
-186                 state.programCounter = \hyperlink{a00156_af613c8b2d098678b6ea05b509c0a0cb6}{FindInstructionPointForLabel} ((\textcolor{keywordtype}{string})i.
-      operandA);
-187 
-188                 \textcolor{keywordflow}{break};
-189             \textcolor{keywordflow}{case} ByteCode.RunLine:
-191 
-194                 var lineText = program.GetString ((string)i.operandA);
-195 
-196                 \textcolor{keywordflow}{if} (lineText == null) \{
-197                     dialogue.LogErrorMessage(\textcolor{stringliteral}{"No loaded string table includes line "} + i.operandA);
-198                     \textcolor{keywordflow}{break};
-199                 \}
-200 
-201                 \hyperlink{a00156_a29b30454f068fc7e107d48bff4346fd9}{lineHandler} (\textcolor{keyword}{new} Dialogue.LineResult (lineText));
-202 
-203                 \textcolor{keywordflow}{break};
-204             \textcolor{keywordflow}{case} ByteCode.RunCommand:
-206 
-208                 \hyperlink{a00156_ab89b02227b92c74552f719afd47848e4}{commandHandler} (
-209                     \textcolor{keyword}{new} Dialogue.CommandResult ((\textcolor{keywordtype}{string})i.operandA)
-210                 );
-211 
-212                 \textcolor{keywordflow}{break};
-213             \textcolor{keywordflow}{case} ByteCode.PushString:
-215 
-218                 state.PushValue (program.GetString ((string)i.operandA));
-219 
-220                 \textcolor{keywordflow}{break};
-221             \textcolor{keywordflow}{case} ByteCode.PushNumber:
-223 
-225                 state.PushValue (Convert.ToSingle(i.operandA));
-226 
-227                 \textcolor{keywordflow}{break};
-228             \textcolor{keywordflow}{case} ByteCode.PushBool:
-230 
-232                 state.PushValue (Convert.ToBoolean(i.operandA));
-233 
-234                 \textcolor{keywordflow}{break};
-235             \textcolor{keywordflow}{case} ByteCode.PushNull:
-237 
-239                 state.PushValue (\hyperlink{a00181_a1ed2964965baca8621c45efa23f37660}{Value.NULL});
-240 
-241                 \textcolor{keywordflow}{break};
-242             \textcolor{keywordflow}{case} ByteCode.JumpIfFalse:
-244 
-247                 \textcolor{keywordflow}{if} (\hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_a54fd5b64ec94e937e771846167242dc2}{PeekValue} ().AsBool == \textcolor{keyword}{false}) \{
-248                     state.programCounter = \hyperlink{a00156_af613c8b2d098678b6ea05b509c0a0cb6}{FindInstructionPointForLabel} ((\textcolor{keywordtype}{
-      string})i.operandA);
-249                 \}
-250                 \textcolor{keywordflow}{break};
-251 
-252             \textcolor{keywordflow}{case} ByteCode.Jump:
+227             \{
+228                 StringBuilder s = \textcolor{keyword}{new} StringBuilder ();
+229                 \textcolor{keywordflow}{switch} (\hyperlink{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{type}) \{
+230                 \textcolor{keywordflow}{case} Type.Block:
+231                     s.Append(block.PrintTree (indentLevel));
+232                     \textcolor{keywordflow}{break};
+233                 \textcolor{keywordflow}{case} Type.IfStatement:
+234                     s.Append (ifStatement.PrintTree (indentLevel));
+235                     \textcolor{keywordflow}{break};
+236                 \textcolor{keywordflow}{case} Type.OptionStatement:
+237                     s.Append (optionStatement.PrintTree (indentLevel));
+238                     \textcolor{keywordflow}{break};
+239                 \textcolor{keywordflow}{case} Type.AssignmentStatement:
+240                     s.Append (assignmentStatement.PrintTree (indentLevel));
+241                     \textcolor{keywordflow}{break};
+242                 \textcolor{keywordflow}{case} Type.ShortcutOptionGroup:
+243                     s.Append (shortcutOptionGroup.PrintTree (indentLevel));
+244                     \textcolor{keywordflow}{break};
+245                 \textcolor{keywordflow}{case} Type.CustomCommand:
+246                     s.Append (customCommand.PrintTree (indentLevel));
+247                     \textcolor{keywordflow}{break};
+248                 \textcolor{keywordflow}{case} Type.Line:
+249                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Line: "} + \hyperlink{a00156_a37695c7b00776bb292fd64894a70fb72}{line}));
+250                     \textcolor{keywordflow}{break};
+251                 \textcolor{keywordflow}{default}:
+252                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException ();
+253                 \}
 254 
-256                 var jumpDestination = state.PeekValue ().AsString;
-257                 state.programCounter = \hyperlink{a00156_af613c8b2d098678b6ea05b509c0a0cb6}{FindInstructionPointForLabel} (
-      jumpDestination);
-258 
-259                 \textcolor{keywordflow}{break};
-260 
-261             \textcolor{keywordflow}{case} ByteCode.Pop:
-263 
-265                 state.PopValue ();
-266                 \textcolor{keywordflow}{break};
-267 
-268             \textcolor{keywordflow}{case} ByteCode.CallFunc:
-270 
-274                 var functionName = (string)i.operandA;
-275 
-276                 var \textcolor{keyword}{function} = \hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue}.\hyperlink{a00086_ae660d4cfb6e296358d2f61d8ee74c66a}{library}.\hyperlink{a00123_aacfb1f00ad8aa3921941b8d8af0960e0}{GetFunction} (functionName);
-277                 \{
-278 
-279                     var paramCount = function.paramCount;
-280 
-281                     \textcolor{comment}{// If this function takes "-1" parameters, it is variadic.}
-282                     \textcolor{comment}{// Expect the compiler to have placed the number of parameters}
-283                     \textcolor{comment}{// actually passed at the top of the stack.}
-284                     \textcolor{keywordflow}{if} (paramCount == -1) \{
-285                         paramCount = (int)\hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_a36881a888ea2839d74c3d4e7c199f4ee}{PopValue} ().AsNumber;
-286                     \}
-287 
-288                     Value result;
-289                     \textcolor{keywordflow}{if} (paramCount == 0) \{
-290                         result = function.Invoke();
-291                     \} \textcolor{keywordflow}{else} \{
-292                         \textcolor{comment}{// Get the parameters, which were pushed in reverse}
-293                         Value[] parameters = \textcolor{keyword}{new} Value[paramCount];
-294                         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} param = paramCount - 1; param >= 0; param--) \{
-295                             parameters [param] = state.PopValue ();
-296                         \}
-297 
-298                         \textcolor{comment}{// Invoke the function}
-299                         result = function.InvokeWithArray (parameters);
-300                     \}
-301 
-302                     \textcolor{comment}{// If the function returns a value, push it}
-303                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue) \{
-304                         state.PushValue (result);
-305                     \}
-306                 \}
-307 
-308                 \textcolor{keywordflow}{break};
-309             \textcolor{keywordflow}{case} ByteCode.PushVariable:
-311 
-313                 var variableName = (string)i.operandA;
-314                 var loadedValue = \hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue}.\hyperlink{a00086_ae94eaa4b03b432422f5d205fabe37ff5}{continuity}.\hyperlink{a00184_accab1fc5c8fc353dbfc53ca0f4029576}{GetValue} (variableName);
-315                 state.PushValue (loadedValue);
-316 
-317                 \textcolor{keywordflow}{break};
-318             \textcolor{keywordflow}{case} ByteCode.StoreVariable:
-320 
-322                 var topValue = state.PeekValue ();
-323                 var destinationVariableName = (string)i.operandA;
-324                 \hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue}.\hyperlink{a00086_ae94eaa4b03b432422f5d205fabe37ff5}{continuity}.\hyperlink{a00184_aa90ff61224432c5ed3ce72199c55f440}{SetValue} (destinationVariableName, topValue);
-325 
-326                 \textcolor{keywordflow}{break};
-327             \textcolor{keywordflow}{case} ByteCode.Stop:
-329 
-331                 \hyperlink{a00156_a5129c63e67e2d4e2780d86b8351320a2}{nodeCompleteHandler} (\textcolor{keyword}{new} Dialogue.NodeCompleteResult (null));
-332                 \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Stopped;
-333 
-334                 \textcolor{keywordflow}{break};
-335             \textcolor{keywordflow}{case} ByteCode.RunNode:
-337 
-339                 \textcolor{keywordtype}{string} nodeName;
-340 
-341                 \textcolor{keywordflow}{if} (\textcolor{keywordtype}{string}.IsNullOrEmpty((\textcolor{keywordtype}{string}) i.operandA)) \{
-342                     \textcolor{comment}{// Get a string from the stack, and jump to a node with that name.}
-343                      nodeName = state.PeekValue ().AsString;
-344                 \} \textcolor{keywordflow}{else} \{
-345                     \textcolor{comment}{// jump straight to the node}
-346                     nodeName = (string)i.operandA;
-347                 \}
-348 
-349                 \hyperlink{a00156_a5129c63e67e2d4e2780d86b8351320a2}{nodeCompleteHandler} (\textcolor{keyword}{new} Dialogue.NodeCompleteResult (nodeName));
-350                 \hyperlink{a00156_a6364593ea1115d65e34b343422cfbbbd}{SetNode} (nodeName);
-351 
-352                 \textcolor{keywordflow}{break};
-353             \textcolor{keywordflow}{case} ByteCode.AddOption:
-355 
-357                 state.currentOptions.Add (\textcolor{keyword}{new} KeyValuePair<string, string> ((string)i.operandA, (\textcolor{keywordtype}{string})
-      i.operandB));
-358 
-359                 \textcolor{keywordflow}{break};
-360             \textcolor{keywordflow}{case} ByteCode.ShowOptions:
-362 
-364                 \textcolor{keywordflow}{if} (\hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_ab816dfea32ecda23282700f01454e0a9}{currentOptions}.Count == 0) \{
-365                     \hyperlink{a00156_a5129c63e67e2d4e2780d86b8351320a2}{nodeCompleteHandler}(\textcolor{keyword}{new} Dialogue.NodeCompleteResult(null));
-366                     executionState = ExecutionState.Stopped;
-367                     \textcolor{keywordflow}{break};
-368                 \}
-369 
-372                 \textcolor{keywordflow}{if} (\hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_ab816dfea32ecda23282700f01454e0a9}{currentOptions}.Count == 1 && \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.
-      \hyperlink{a00159_ab816dfea32ecda23282700f01454e0a9}{currentOptions}[0].Key == null) \{
-373                     var destinationNode = state.currentOptions[0].Value;
-374                     state.PushValue(destinationNode);
-375                     state.currentOptions.Clear();
-376                     \textcolor{keywordflow}{break};
-377                 \}
-378 
-379                 \textcolor{keywordflow}{if} (\hyperlink{a00156_ac506426c503da5f033247c29e11c5e82}{dialogue}.\hyperlink{a00086_ae94eaa4b03b432422f5d205fabe37ff5}{continuity}.\hyperlink{a00184_accab1fc5c8fc353dbfc53ca0f4029576}{GetValue}(SpecialVariables.ShuffleOptions)
-      .AsBool) \{
-380                     \textcolor{comment}{// Shuffle the dialog options if needed}
-381                     var n = state.currentOptions.Count;
-382                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} opt1 = 0; opt1 < n; opt1++) \{
-383                         \textcolor{keywordtype}{int} opt2 = opt1 + (int)(\hyperlink{a00156_a408485a00c7cc558428c86ed9dd04fca}{random}.NextDouble () * (n - opt1)); \textcolor{comment}{// r.Next(0,
-       state.currentOptions.Count-1);}
-384                         var temp = state.currentOptions [opt2];
-385                         state.currentOptions [opt2] = state.currentOptions [opt1];
-386                         state.currentOptions [opt1] = temp;
-387                     \}
-388                 \}
-389 
-390                 \textcolor{comment}{// Otherwise, present the list of options to the user and let them pick}
-391                 var optionStrings = \textcolor{keyword}{new} List<string> ();
-392 
-393                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} \hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_ab816dfea32ecda23282700f01454e0a9}{currentOptions}) \{
-394                     optionStrings.Add (program.GetString (option.Key));
-395                 \}
-396 
-397                 \textcolor{comment}{// We can't continue until our client tell us which option to pick}
-398                 executionState = ExecutionState.WaitingOnOptionSelection;
-399 
-400                 \textcolor{comment}{// Pass the options set to the client, as well as a delegate for them to call when the}
-401                 \textcolor{comment}{// user has made a selection}
-402                 \hyperlink{a00156_acd25fe2e3aa90dc87ba25d9af904465b}{optionsHandler} (\textcolor{keyword}{new} Dialogue.OptionSetResult (optionStrings, delegate (\textcolor{keywordtype}{int} 
-      selectedOption) \{
-403 
-404                     \textcolor{comment}{// we now know what number option was selected; push the corresponding node name}
-405                     \textcolor{comment}{// to the stack}
-406                     var destinationNode = state.currentOptions[selectedOption].Value;
-407                     state.PushValue(destinationNode);
-408 
-409                     \textcolor{comment}{// We no longer need the accumulated list of options; clear it so that it's}
-410                     \textcolor{comment}{// ready for the next one}
-411                     state.currentOptions.Clear();
-412 
-413                     \textcolor{comment}{// We can now also keep running}
-414                     executionState = ExecutionState.Running;
-415 
-416                 \}));
-417 
-418                 \textcolor{keywordflow}{break};
-419             \textcolor{keywordflow}{default}:
-421 
-424                 executionState = ExecutionState.Stopped;
-425                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException ();
-426             \}
-427         \}
+255                 s.Append (\hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{TagsToString} (indentLevel));
+256 
+257                 \textcolor{keywordflow}{return} s.ToString ();
+258             \}
 \end{DoxyCode}
 
 
@@ -679,7 +310,55 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00156_ad2caf9ca4f00cdcbd58983be7c106971_cgraph}
+\includegraphics[width=350pt]{a00156_aaac6d1e0c3b31f33e1c6f964c205153e_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 78 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
+
+
+\begin{DoxyCode}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_cgraph}
 \end{center}
 \end{figure}
 
@@ -691,291 +370,157 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00156_ad2caf9ca4f00cdcbd58983be7c106971_icgraph}
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_icgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00156_af3cc0337914b9f66454a3d52208dba5f}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Run\-Next@{Run\-Next}}
-\index{Run\-Next@{Run\-Next}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Run\-Next}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-Run\-Next (
+\hypertarget{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00156_af3cc0337914b9f66454a3d52208dba5f}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}
 
 
-Executes the next instruction in the current node. 
-
-
-
-Definition at line 137 of file Virtual\-Machine.\-cs.
-
-
-
-References Yarn.\-Virtual\-Machine.\-current\-Node, Yarn.\-Virtual\-Machine.\-execution\-State, Yarn.\-Node.\-instructions, Yarn.\-Virtual\-Machine.\-node\-Complete\-Handler, Yarn.\-Virtual\-Machine.\-State.\-program\-Counter, Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Virtual\-Machine.\-state.
+Definition at line 94 of file Parser.\-cs.
 
 
 \begin{DoxyCode}
-137                                 \{
-138 
-139             \textcolor{keywordflow}{if} (\hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} == \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42d}{ExecutionState}.WaitingOnOptionSelection) \{
-140                 dialogue.LogErrorMessage (\textcolor{stringliteral}{"Cannot continue running dialogue. Still waiting on option
-       selection."});
-141                 \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Stopped;
-142                 \textcolor{keywordflow}{return};
-143             \}
-144 
-145             \textcolor{keywordflow}{if} (\hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} == \hyperlink{a00156_add28fa9c8a45ca579e84d05920bbc42d}{ExecutionState}.Stopped)
-146                 \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Running;
-147 
-148             Instruction currentInstruction = currentNode.instructions [state.programCounter];
-149 
-150             \hyperlink{a00156_ad2caf9ca4f00cdcbd58983be7c106971}{RunInstruction} (currentInstruction);
-151 
-152             state.programCounter++;
-153 
-154             \textcolor{keywordflow}{if} (\hyperlink{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{state}.\hyperlink{a00159_a2c76546b54b4fb573d7f14d79ce230a3}{programCounter} >= \hyperlink{a00156_ab7594e14981ad75cecea3b2e7dcf895c}{currentNode}.
-      \hyperlink{a00045_a156723a9252b62d288ddf611939ea7c3}{instructions}.Count) \{
-155                 \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Stopped;
-156                 \hyperlink{a00156_a5129c63e67e2d4e2780d86b8351320a2}{nodeCompleteHandler}(\textcolor{keyword}{new} Dialogue.NodeCompleteResult(null));
-157                 dialogue.LogDebugMessage (\textcolor{stringliteral}{"Run complete."});
-158             \}
-159 
-160         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00156_af3cc0337914b9f66454a3d52208dba5f_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00156_a6364593ea1115d65e34b343422cfbbbd}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Set\-Node@{Set\-Node}}
-\index{Set\-Node@{Set\-Node}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Set\-Node}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Virtual\-Machine.\-Set\-Node (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00156_a6364593ea1115d65e34b343422cfbbbd}
-
-
-Definition at line 111 of file Virtual\-Machine.\-cs.
-
-
-
-References Yarn.\-Virtual\-Machine.\-current\-Node, Yarn.\-Virtual\-Machine.\-execution\-State, Yarn.\-Program.\-nodes, Yarn.\-Virtual\-Machine.\-program, Yarn.\-Virtual\-Machine.\-Reset\-State(), and Yarn.\-Virtual\-Machine.\-Special\-Variables.\-Shuffle\-Options.
-
-
-
-Referenced by Yarn.\-Dialogue.\-Run(), and Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-
-\begin{DoxyCode}
-111                                              \{
-112             \textcolor{keywordflow}{if} (\hyperlink{a00156_a2695dbfe3d9df7ffa3f13ad2231217fb}{program}.\hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(nodeName) == \textcolor{keyword}{false}) \{
-113 
-114                 var error = \textcolor{stringliteral}{"No node named "} + nodeName;
-115                 dialogue.LogErrorMessage(error);
-116                 \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Stopped;
-117                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-118             \}
-119 
-120             dialogue.LogDebugMessage (\textcolor{stringliteral}{"Running node "} + nodeName);
-121 
-122             \textcolor{comment}{// Clear the special variables}
-123             dialogue.continuity.SetValue(\hyperlink{a00156_aecbb8ab9becd96457d836100b2818078}{SpecialVariables.ShuffleOptions}, \textcolor{keyword}{
-      new} Value(\textcolor{keyword}{false}));
-124 
-125             \hyperlink{a00156_ab7594e14981ad75cecea3b2e7dcf895c}{currentNode} = program.nodes [nodeName];
-126             \hyperlink{a00156_a3ba945c66cb8ba031357a1771453f82b}{ResetState} ();
-127             state.currentNodeName = nodeName;
-128 
-129             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-130         \}
-\end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00156_a6364593ea1115d65e34b343422cfbbbd_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00156_a6364593ea1115d65e34b343422cfbbbd_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00156_a78b8c4078471af59ba505c28824d84d1}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!Stop@{Stop}}
-\index{Stop@{Stop}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{Stop}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Virtual\-Machine.\-Stop (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00156_a78b8c4078471af59ba505c28824d84d1}
-
-
-Definition at line 132 of file Virtual\-Machine.\-cs.
-
-
-
-References Yarn.\-Virtual\-Machine.\-execution\-State.
-
-
-\begin{DoxyCode}
-132                            \{
-133             \hyperlink{a00156_a66491da06023dabfb63d09e6ccbba74f}{executionState} = ExecutionState.Stopped;
-134         \}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00156_a0ae362616d85f028b7ec3230388926f4}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!\-\_\-execution\-State@{\-\_\-execution\-State}}
-\index{\-\_\-execution\-State@{\-\_\-execution\-State}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{\-\_\-execution\-State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Execution\-State} Yarn.\-Virtual\-Machine.\-\_\-execution\-State\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a0ae362616d85f028b7ec3230388926f4}
+\hypertarget{a00138_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a18b493382de0fde5b4299c1bd2250075}
 
 
-Definition at line 96 of file Virtual\-Machine.\-cs.
-
-\hypertarget{a00156_ab89b02227b92c74552f719afd47848e4}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!command\-Handler@{command\-Handler}}
-\index{command\-Handler@{command\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{command\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\-Handler} Yarn.\-Virtual\-Machine.\-command\-Handler}}\label{a00156_ab89b02227b92c74552f719afd47848e4}
-
-
-Definition at line 71 of file Virtual\-Machine.\-cs.
+Definition at line 61 of file Parser.\-cs.
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
 
-\hypertarget{a00156_ab7594e14981ad75cecea3b2e7dcf895c}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!current\-Node@{current\-Node}}
-\index{current\-Node@{current\-Node}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{current\-Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Virtual\-Machine.\-current\-Node\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_ab7594e14981ad75cecea3b2e7dcf895c}
-
-
-Definition at line 109 of file Virtual\-Machine.\-cs.
+\hypertarget{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_af313a82103fcc2ff5a177dbb06b92f7b}
 
 
-
-Referenced by Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label(), Yarn.\-Virtual\-Machine.\-Run\-Next(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
-
-\hypertarget{a00156_ac506426c503da5f033247c29e11c5e82}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!dialogue@{dialogue}}
-\index{dialogue@{dialogue}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn.\-Virtual\-Machine.\-dialogue\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_ac506426c503da5f033247c29e11c5e82}
-
-
-Definition at line 74 of file Virtual\-Machine.\-cs.
+Definition at line 58 of file Parser.\-cs.
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Virtual\-Machine.\-Virtual\-Machine().
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
 
-\hypertarget{a00156_a29b30454f068fc7e107d48bff4346fd9}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!line\-Handler@{line\-Handler}}
-\index{line\-Handler@{line\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{line\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line\-Handler} Yarn.\-Virtual\-Machine.\-line\-Handler}}\label{a00156_a29b30454f068fc7e107d48bff4346fd9}
-
-
-Definition at line 69 of file Virtual\-Machine.\-cs.
+\hypertarget{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a58b3a15788fd2d4127d73619dc6d04ae}
 
 
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-\hypertarget{a00156_a5129c63e67e2d4e2780d86b8351320a2}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!node\-Complete\-Handler@{node\-Complete\-Handler}}
-\index{node\-Complete\-Handler@{node\-Complete\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{node\-Complete\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Complete\-Handler} Yarn.\-Virtual\-Machine.\-node\-Complete\-Handler}}\label{a00156_a5129c63e67e2d4e2780d86b8351320a2}
-
-
-Definition at line 72 of file Virtual\-Machine.\-cs.
+Definition at line 76 of file Parser.\-cs.
 
 
 
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Virtual\-Machine.\-Run\-Next().
-
-\hypertarget{a00156_acd25fe2e3aa90dc87ba25d9af904465b}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!options\-Handler@{options\-Handler}}
-\index{options\-Handler@{options\-Handler}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{options\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Options\-Handler} Yarn.\-Virtual\-Machine.\-options\-Handler}}\label{a00156_acd25fe2e3aa90dc87ba25d9af904465b}
-
-
-Definition at line 70 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-\hypertarget{a00156_a2695dbfe3d9df7ffa3f13ad2231217fb}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!program@{program}}
-\index{program@{program}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{program}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program} Yarn.\-Virtual\-Machine.\-program\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a2695dbfe3d9df7ffa3f13ad2231217fb}
-
-
-Definition at line 76 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Set\-Node(), and Yarn.\-Virtual\-Machine.\-Virtual\-Machine().
-
-\hypertarget{a00156_a408485a00c7cc558428c86ed9dd04fca}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!random@{random}}
-\index{random@{random}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{random}]{\setlength{\rightskip}{0pt plus 5cm}Random Yarn.\-Virtual\-Machine.\-random = new Random()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a408485a00c7cc558428c86ed9dd04fca}
-
-
-Definition at line 79 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction().
-
-\hypertarget{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!state@{state}}
-\index{state@{state}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State} Yarn.\-Virtual\-Machine.\-state = new {\bf State}()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00156_a70f2ce6201cdd2430ceaa764ac614ca0}
-
-
-Definition at line 77 of file Virtual\-Machine.\-cs.
-
-
-
-Referenced by Yarn.\-Virtual\-Machine.\-Find\-Instruction\-Point\-For\-Label(), Yarn.\-Virtual\-Machine.\-Reset\-State(), Yarn.\-Virtual\-Machine.\-Run\-Instruction(), Yarn.\-Virtual\-Machine.\-Run\-Next(), and Yarn.\-Virtual\-Machine.\-Virtual\-Machine().
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00156_ab3afe8360a344c16c21213edb3641481}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!current\-Node\-Name@{current\-Node\-Name}}
-\index{current\-Node\-Name@{current\-Node\-Name}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{current\-Node\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Virtual\-Machine.\-current\-Node\-Name\hspace{0.3cm}{\ttfamily [get]}}}\label{a00156_ab3afe8360a344c16c21213edb3641481}
+\hypertarget{a00156_a7fa97a80f1b9313bc2bd4194e3f75759}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!assignment\-Statement@{assignment\-Statement}}
+\index{assignment\-Statement@{assignment\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{assignment\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Assignment\-Statement} Yarn.\-Parser.\-Statement.\-assignment\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a7fa97a80f1b9313bc2bd4194e3f75759}
 
 
-Definition at line 81 of file Virtual\-Machine.\-cs.
-
-\hypertarget{a00156_a66491da06023dabfb63d09e6ccbba74f}{\index{Yarn\-::\-Virtual\-Machine@{Yarn\-::\-Virtual\-Machine}!execution\-State@{execution\-State}}
-\index{execution\-State@{execution\-State}!Yarn::VirtualMachine@{Yarn\-::\-Virtual\-Machine}}
-\subsubsection[{execution\-State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Execution\-State} Yarn.\-Virtual\-Machine.\-execution\-State\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00156_a66491da06023dabfb63d09e6ccbba74f}
-
-
-Definition at line 97 of file Virtual\-Machine.\-cs.
+Definition at line 181 of file Parser.\-cs.
 
 
 
-Referenced by Yarn.\-Dialogue.\-Run(), Yarn.\-Virtual\-Machine.\-Run\-Instruction(), Yarn.\-Virtual\-Machine.\-Run\-Next(), Yarn.\-Virtual\-Machine.\-Set\-Node(), and Yarn.\-Virtual\-Machine.\-Stop().
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_ac14dfc7210974b4cd86402ed011fb0b6}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!block@{block}}
+\index{block@{block}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block} Yarn.\-Parser.\-Statement.\-block\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_ac14dfc7210974b4cd86402ed011fb0b6}
+
+
+Definition at line 178 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_a8a98e7d4c66f9909da865f0e671d69f2}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!custom\-Command@{custom\-Command}}
+\index{custom\-Command@{custom\-Command}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{custom\-Command}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Custom\-Command} Yarn.\-Parser.\-Statement.\-custom\-Command\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a8a98e7d4c66f9909da865f0e671d69f2}
+
+
+Definition at line 182 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_a9a71577456598af0f25b23ccd02154e4}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!if\-Statement@{if\-Statement}}
+\index{if\-Statement@{if\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{if\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf If\-Statement} Yarn.\-Parser.\-Statement.\-if\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a9a71577456598af0f25b23ccd02154e4}
+
+
+Definition at line 179 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_a37695c7b00776bb292fd64894a70fb72}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!line@{line}}
+\index{line@{line}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{line}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Statement.\-line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a37695c7b00776bb292fd64894a70fb72}
+
+
+Definition at line 183 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_a15020b7dab4983adbd185d5c2c2ebe84}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!option\-Statement@{option\-Statement}}
+\index{option\-Statement@{option\-Statement}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{option\-Statement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Option\-Statement} Yarn.\-Parser.\-Statement.\-option\-Statement\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a15020b7dab4983adbd185d5c2c2ebe84}
+
+
+Definition at line 180 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_a54d73ad69c4af4a0d61edeaea4c8ca4f}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!shortcut\-Option\-Group@{shortcut\-Option\-Group}}
+\index{shortcut\-Option\-Group@{shortcut\-Option\-Group}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{shortcut\-Option\-Group}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shortcut\-Option\-Group} Yarn.\-Parser.\-Statement.\-shortcut\-Option\-Group\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_a54d73ad69c4af4a0d61edeaea4c8ca4f}
+
+
+Definition at line 184 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+\hypertarget{a00156_aa3fa0eb260e412720562ce06b7dc06fe}{\index{Yarn\-::\-Parser\-::\-Statement@{Yarn\-::\-Parser\-::\-Statement}!type@{type}}
+\index{type@{type}!Yarn::Parser::Statement@{Yarn\-::\-Parser\-::\-Statement}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Statement.\-Type} Yarn.\-Parser.\-Statement.\-type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00156_aa3fa0eb260e412720562ce06b7dc06fe}
+
+
+Definition at line 175 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Statement.\-Statement().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00304}{Virtual\-Machine.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}

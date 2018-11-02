@@ -1,7 +1,7 @@
 var a00113 =
 [
-    [ "ToString", "a00113.html#a939d511f211e8a61cfbca902e802564f", null ],
-    [ "operandA", "a00113.html#ab5d386faa0d3dbc23db80f8e62706afd", null ],
-    [ "operandB", "a00113.html#a56348c6fe7eb919b7277afc06e5b224a", null ],
-    [ "operation", "a00113.html#a566bf5f7198cc353ea5c3710cb3a31cb", null ]
+    [ "CanConvertFrom", "a00113.html#ae1ad863656f4fa96bd846a41344c9349", null ],
+    [ "CanConvertTo", "a00113.html#a168b03dad37fcb6882101c93deac8111", null ],
+    [ "ConvertFromString", "a00113.html#ab598e04c22e5a7890b6d21011492283e", null ],
+    [ "ConvertToString", "a00113.html#a90c465c63dbcf913f38aa878f35e77c7", null ]
 ];

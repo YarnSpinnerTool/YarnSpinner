@@ -1,134 +1,153 @@
-\hypertarget{a00070}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data Class Reference}
-\label{a00070}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data}}
+\hypertarget{a00070}{\section{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception Class Reference}
+\label{a00070}\index{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception@{Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception}}
 }
 
 
-The configuration data for the reference map.  
+Represents errors that occur while reading a C\-S\-V file.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data\-:
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=250pt]{a00492}
+\includegraphics[width=236pt]{a00500}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{a00501}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00070_ad6fe2913932a9fe434f8a908dec30e8b}{Csv\-Property\-Reference\-Map\-Data} (Property\-Info property, \hyperlink{a00054}{Csv\-Class\-Map} mapping)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Property\-Reference\-Map\-Data} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-virtual string \hyperlink{a00070_a687fe65f1a2b4301f283e9333c282f9c}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets or sets the header prefix to use. \end{DoxyCompactList}\item 
-virtual Property\-Info \hyperlink{a00070_a5386ac40fb3ea290944f05cbee99bfcb}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the Property\-Info that the data is associated with. \end{DoxyCompactList}\item 
-\hyperlink{a00054}{Csv\-Class\-Map} \hyperlink{a00070_af2343065df03de92b6b9803ed2bb4f87}{Mapping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the mapping this is a reference for. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-string \hyperlink{a00070_a24263cbdacd2dd0db9bbe22676a6d989}{prefix}
-\end{DoxyCompactItemize}
+\hyperlink{a00070_af2278af1cb915e9b8485c005148c430b}{Csv\-Type\-Converter\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00070_a4e4e9bdf9280d14be37fc42d887b7360}{Csv\-Type\-Converter\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00070_afbea8720637f53c27ef4a9ca99c41955}{Csv\-Type\-Converter\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00070_a118ca20beb2ce0c2b4591502a52b0163}{Csv\-Type\-Converter\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The configuration data for the reference map. 
+Represents errors that occur while reading a C\-S\-V file. 
 
 
 
-Definition at line 13 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
+Definition at line 15 of file Csv\-Type\-Converter\-Exception.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00070_ad6fe2913932a9fe434f8a908dec30e8b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}}
-\index{Csv\-Property\-Reference\-Map\-Data@{Csv\-Property\-Reference\-Map\-Data}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Csv\-Property\-Reference\-Map\-Data}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Csv\-Property\-Reference\-Map\-Data (
+\hypertarget{a00070_af2278af1cb915e9b8485c005148c430b}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{{\bf Csv\-Class\-Map}}]{mapping}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00070_ad6fe2913932a9fe434f8a908dec30e8b}
+)}}\label{a00070_af2278af1cb915e9b8485c005148c430b}
 
 
-Initializes a new instance of the \hyperlink{a00070}{Csv\-Property\-Reference\-Map\-Data} class. 
+Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class. 
+
+
+
+Definition at line 20 of file Csv\-Type\-Converter\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+20 \{\}
+\end{DoxyCode}
+\hypertarget{a00070_a4e4e9bdf9280d14be37fc42d887b7360}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00070_a4e4e9bdf9280d14be37fc42d887b7360}
+
+
+Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with a specified error message. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em property} & The property.\\
-\hline
-{\em mapping} & The mapping this is a reference for.\\
+{\em message} & The message that describes the error.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 49 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
+Definition at line 27 of file Csv\-Type\-Converter\-Exception.\-cs.
 
 
 \begin{DoxyCode}
-50         \{
-51             \hyperlink{a00070_a5386ac40fb3ea290944f05cbee99bfcb}{Property} = property;
-52             \hyperlink{a00070_af2343065df03de92b6b9803ed2bb4f87}{Mapping} = mapping;
-53         \}
+27 : base( message ) \{\}
 \end{DoxyCode}
+\hypertarget{a00070_afbea8720637f53c27ef4a9ca99c41955}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00070_afbea8720637f53c27ef4a9ca99c41955}
 
 
-\subsection{Member Data Documentation}
-\hypertarget{a00070_a24263cbdacd2dd0db9bbe22676a6d989}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!prefix@{prefix}}
-\index{prefix@{prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-prefix\hspace{0.3cm}{\ttfamily [private]}}}\label{a00070_a24263cbdacd2dd0db9bbe22676a6d989}
+Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
 
 
-Definition at line 15 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
 
 
-
-\subsection{Property Documentation}
-\hypertarget{a00070_af2343065df03de92b6b9803ed2bb4f87}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Mapping@{Mapping}}
-\index{Mapping@{Mapping}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Mapping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Mapping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_af2343065df03de92b6b9803ed2bb4f87}
+Definition at line 36 of file Csv\-Type\-Converter\-Exception.\-cs.
 
 
-Gets the mapping this is a reference for. 
+\begin{DoxyCode}
+36 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00070_a118ca20beb2ce0c2b4591502a52b0163}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}!Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}}
+\index{Csv\-Type\-Converter\-Exception@{Csv\-Type\-Converter\-Exception}!CsvHelper::TypeConversion::CsvTypeConverterException@{Csv\-Helper\-::\-Type\-Conversion\-::\-Csv\-Type\-Converter\-Exception}}
+\subsubsection[{Csv\-Type\-Converter\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Type\-Conversion.\-Csv\-Type\-Converter\-Exception.\-Csv\-Type\-Converter\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00070_a118ca20beb2ce0c2b4591502a52b0163}
 
 
-
-Definition at line 42 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
-
-\hypertarget{a00070_a687fe65f1a2b4301f283e9333c282f9c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Prefix@{Prefix}}
-\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a687fe65f1a2b4301f283e9333c282f9c}
+Initializes a new instance of the \hyperlink{a00070}{Csv\-Type\-Converter\-Exception} class with serialized data. 
 
 
-Gets or sets the header prefix to use. 
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
 
 
-
-Definition at line 21 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
-
-\hypertarget{a00070_a5386ac40fb3ea290944f05cbee99bfcb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}!Property@{Property}}
-\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyReferenceMapData@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map\-Data}}
-\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}virtual Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-Data.\-Property\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00070_a5386ac40fb3ea290944f05cbee99bfcb}
+Definition at line 45 of file Csv\-Type\-Converter\-Exception.\-cs.
 
 
-Gets the Property\-Info that the data is associated with. 
-
-
-
-Definition at line 37 of file Csv\-Property\-Reference\-Map\-Data.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Can\-Read().
-
+\begin{DoxyCode}
+45 : base( info, context ) \{ \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00225}{Csv\-Property\-Reference\-Map\-Data.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00253}{Csv\-Type\-Converter\-Exception.\-cs}\end{DoxyCompactItemize}

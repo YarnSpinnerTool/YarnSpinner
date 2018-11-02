@@ -1,4 +1,2 @@
-<map id="Yarn.Unity.DialogueUIBehaviour" name="Yarn.Unity.DialogueUIBehaviour">
-<area shape="rect" id="node3" href="$a00165.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="5,346,176,585"/>
-<area shape="rect" id="node4" href="$a00095.html" title="Displays dialogue lines to the player, and sends user choices back to the dialogue system..." alt="" coords="200,331,395,599"/>
+<map id="Yarn.Unity.YarnSpinnerEditorWindow" name="Yarn.Unity.YarnSpinnerEditorWindow">
 </map>

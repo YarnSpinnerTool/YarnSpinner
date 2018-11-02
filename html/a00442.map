@@ -1,3 +1,4 @@
-<map id="CsvHelper.ICsvFactory" name="CsvHelper.ICsvFactory">
-<area shape="rect" id="node2" href="$a00059.html" title="Creates CsvHelper classes. " alt="" coords="6,219,161,384"/>
+<map id="CsvHelper.ICsvReader" name="CsvHelper.ICsvReader">
+<area shape="rect" id="node4" href="$a00067.html" title="Reads data that was parsed from ICsvParser. " alt="" coords="42,523,261,1187"/>
+<area shape="rect" id="node2" href="$a00105.html" title="Defines methods used to read parsed data from a CSV file row. " alt="" coords="5,6,153,303"/>
 </map>

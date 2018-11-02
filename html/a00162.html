@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: CsvHelper.StringHelper Class Reference</title>
+<title>YarnSpinner: CsvHelper.TypeConversion.TimeSpanConverter Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,37 +107,55 @@ $(document).ready(function(){initNavTree('a00162.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="a00461.html">List of all members</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="a00550.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CsvHelper.StringHelper Class Reference</div>  </div>
+<div class="title">CsvHelper.TypeConversion.TimeSpanConverter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Common string tasks.  
+<p>Converts a TimeSpan to and from a string.  
  <a href="a00162.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.StringHelper:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CsvHelper.TypeConversion.TimeSpanConverter:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00462.png" border="0" usemap="#_csv_helper_8_string_helper_coll__map" alt="Collaboration graph"/></div>
-<map name="_csv_helper_8_string_helper_coll__map" id="_csv_helper_8_string_helper_coll__map">
-</map>
+<div class="center"><img src="a00551.png" border="0" usemap="#_csv_helper_8_type_conversion_8_time_span_converter_inherit__map" alt="Inheritance graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_time_span_converter_inherit__map" id="_csv_helper_8_type_conversion_8_time_span_converter_inherit__map">
+<area shape="rect" id="node2" href="a00078.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="a00113.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.TypeConversion.TimeSpanConverter:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00552.png" border="0" usemap="#_csv_helper_8_type_conversion_8_time_span_converter_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_type_conversion_8_time_span_converter_coll__map" id="_csv_helper_8_type_conversion_8_time_span_converter_coll__map">
+<area shape="rect" id="node2" href="a00078.html" title="Converts an object to and from a string. " alt="" coords="23,177,175,298"/><area shape="rect" id="node3" href="a00113.html" title="Converts objects to and from strings. " alt="" coords="23,6,175,127"/></map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00162.html#a40c715a7ebf19c7053c7b10f2b3df80f">IsNullOrWhiteSpace</a> (string s)</td></tr>
-<tr class="memdesc:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests is a string is null or whitespace.  <a href="#a40c715a7ebf19c7053c7b10f2b3df80f">More...</a><br/></td></tr>
-<tr class="separator:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae3f8d46f5176d2ae08ac3fcdda1951e7"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00162.html#ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</a> (Type type)</td></tr>
+<tr class="memdesc:ae3f8d46f5176d2ae08ac3fcdda1951e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert from] the specified type.  <a href="#ae3f8d46f5176d2ae08ac3fcdda1951e7">More...</a><br/></td></tr>
+<tr class="separator:ae3f8d46f5176d2ae08ac3fcdda1951e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2536c88227a94822d0b7730eedf3eb"><td class="memItemLeft" align="right" valign="top">override object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00162.html#a0f2536c88227a94822d0b7730eedf3eb">ConvertFromString</a> (<a class="el" href="a00168.html">TypeConverterOptions</a> options, string text)</td></tr>
+<tr class="memdesc:a0f2536c88227a94822d0b7730eedf3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the string to an object.  <a href="#a0f2536c88227a94822d0b7730eedf3eb">More...</a><br/></td></tr>
+<tr class="separator:a0f2536c88227a94822d0b7730eedf3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36cb2f9b24f15a671293f3a722324c27"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00078.html#a36cb2f9b24f15a671293f3a722324c27">ConvertToString</a> (<a class="el" href="a00168.html">TypeConverterOptions</a> options, object value)</td></tr>
+<tr class="memdesc:a36cb2f9b24f15a671293f3a722324c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the object to a string.  <a href="#a36cb2f9b24f15a671293f3a722324c27">More...</a><br/></td></tr>
+<tr class="separator:a36cb2f9b24f15a671293f3a722324c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb65bd8c8199d88d5b1629ae35d18514"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00078.html#acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</a> (Type type)</td></tr>
+<tr class="memdesc:acb65bd8c8199d88d5b1629ae35d18514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this instance [can convert to] the specified type.  <a href="#acb65bd8c8199d88d5b1629ae35d18514">More...</a><br/></td></tr>
+<tr class="separator:acb65bd8c8199d88d5b1629ae35d18514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Common string tasks. </p>
+<div class="textblock"><p>Converts a TimeSpan to and from a string. </p>
 
-<p>Definition at line <a class="el" href="a00255_source.html#l00010">10</a> of file <a class="el" href="a00255_source.html">StringHelper.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00270_source.html#l00013">13</a> of file <a class="el" href="a00270_source.html">TimeSpanConverter.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a40c715a7ebf19c7053c7b10f2b3df80f"></a>
+<a class="anchor" id="ae3f8d46f5176d2ae08ac3fcdda1951e7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -145,72 +163,230 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool CsvHelper.StringHelper.IsNullOrWhiteSpace </td>
+          <td class="memname">override bool CsvHelper.TypeConversion.TimeSpanConverter.CanConvertFrom </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Tests is a string is null or whitespace. </p>
+<p>Determines whether this instance [can convert from] the specified type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The string to test.</td></tr>
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the string is null or whitespace, otherwise false.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert from] the specified type; otherwise, <code>false</code>. </dd></dl>
 
-<p>Definition at line <a class="el" href="a00255_source.html#l00017">17</a> of file <a class="el" href="a00255_source.html">StringHelper.cs</a>.</p>
+<p>Reimplemented from <a class="el" href="a00078.html#a470d21adaa704eb281250dbd112ff91a">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
 
-<p>Referenced by <a class="el" href="a00235_source.html#l01163">CsvHelper.CsvReader.GetEmtpyStringMethod()</a>, and <a class="el" href="a00235_source.html#l00747">CsvHelper.CsvReader.TryGetField&lt; T &gt;()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">if</span>( s == null )</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; s.Length; i++ )</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span>( !<span class="keywordtype">char</span>.IsWhiteSpace( s[i] ) )</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00270_source.html#l00022">22</a> of file <a class="el" href="a00270_source.html">TimeSpanConverter.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00162_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph.png" border="0" usemap="#a00162_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" alt=""/></div>
-<map name="a00162_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" id="a00162_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph">
-<area shape="rect" id="node2" href="a00071.html#ad1d1cde1588bb56eca326d5d92592956" title="Gets a function to test for an empty string. Will check CsvConfiguration.TrimFields when making its d..." alt="" coords="230,5,447,46"/><area shape="rect" id="node4" href="a00071.html#aa8622306f74940386663fa4020eb8971" title="Gets the field converted to Type T at position (column) index using the specified ITypeConverter..." alt="" coords="239,70,438,111"/><area shape="rect" id="node3" href="a00071.html#a236f07d2376cb1b18e9550ccc3968728" title="Determines whether the current record is empty. A record is considered empty if all fields are empty..." alt="" coords="496,5,707,46"/></map>
 </div>
-</p>
+<a class="anchor" id="acb65bd8c8199d88d5b1629ae35d18514"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
+<p>Determines whether this instance [can convert to] the specified type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if this instance [can convert to] the specified type; otherwise, <code>false</code>. </dd></dl>
+
+<p>Implements <a class="el" href="a00113.html#a168b03dad37fcb6882101c93deac8111">CsvHelper.TypeConversion.ITypeConverter</a>.</p>
+
+<p>Reimplemented in <a class="el" href="a00089.html#a44d625b44f770b945a29cd89e399f90f">CsvHelper.TypeConversion.EnumerableConverter</a>.</p>
+
+<p>Definition at line <a class="el" href="a00257_source.html#l00069">69</a> of file <a class="el" href="a00257_source.html">DefaultTypeConverter.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// We only care about strings.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> type == typeof( <span class="keywordtype">string</span> );</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a0f2536c88227a94822d0b7730eedf3eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override object CsvHelper.TypeConversion.TimeSpanConverter.ConvertFromString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00168.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the string to an object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">text</td><td>The string to convert to an object.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The object created from the string.</dd></dl>
+
+<p>Reimplemented from <a class="el" href="a00078.html#a804ea00060e1de70e5151f90d3bfce9b">CsvHelper.TypeConversion.DefaultTypeConverter</a>.</p>
+
+<p>Definition at line <a class="el" href="a00270_source.html#l00033">33</a> of file <a class="el" href="a00270_source.html">TimeSpanConverter.cs</a>.</p>
+
+<p>References <a class="el" href="a00272_source.html#l00023">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</a>, <a class="el" href="a00272_source.html#l00063">CsvHelper.TypeConversion.TypeConverterOptions.Format</a>, and <a class="el" href="a00272_source.html#l00034">CsvHelper.TypeConversion.TypeConverterOptions.TimeSpanStyle</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            var formatProvider = (IFormatProvider)options.CultureInfo;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            TimeSpan span;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;#<span class="keywordflow">if</span> !NET_2_0 &amp;&amp; !NET_3_5 &amp;&amp; !PCL</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            var timeSpanStyle = options.TimeSpanStyle ?? TimeSpanStyles.None;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span>( !<span class="keywordtype">string</span>.IsNullOrEmpty( options.Format ) &amp;&amp; TimeSpan.TryParseExact( text, options.Format, formatProvider, timeSpanStyle, out span ) )</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">return</span> span;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span>( <span class="keywordtype">string</span>.IsNullOrEmpty( options.Format ) &amp;&amp; TimeSpan.TryParse( text, formatProvider, out span ) )</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordflow">return</span> span;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">if</span>( TimeSpan.TryParse( text, out span ) )</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">return</span> span;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> base.ConvertFromString( options, text );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a36cb2f9b24f15a671293f3a722324c27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00168.html">TypeConverterOptions</a>&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the object to a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options to use when converting.</td></tr>
+    <tr><td class="paramname">value</td><td>The object to convert to a string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The string representation of the object.</dd></dl>
+
+<p>Implements <a class="el" href="a00113.html#a90c465c63dbcf913f38aa878f35e77c7">CsvHelper.TypeConversion.ITypeConverter</a>.</p>
+
+<p>Reimplemented in <a class="el" href="a00132.html#a7205cdb61d2d119582958232b3e63109">CsvHelper.TypeConversion.NullableConverter</a>, and <a class="el" href="a00089.html#a7e07e9532857d748654d37db590a0e11">CsvHelper.TypeConversion.EnumerableConverter</a>.</p>
+
+<p>Definition at line <a class="el" href="a00257_source.html#l00021">21</a> of file <a class="el" href="a00257_source.html">DefaultTypeConverter.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span>( value == null )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">return</span> string.Empty;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            var formattable = value as IFormattable;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span>( formattable != null )</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">return</span> formattable.ToString( options.Format, options.CultureInfo );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> value.ToString();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00255_source.html">StringHelper.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/<a class="el" href="a00270_source.html">TimeSpanConverter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00325.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00162.html">StringHelper</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:29 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00319.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00321.html">TypeConversion</a></li><li class="navelem"><a class="el" href="a00162.html">TimeSpanConverter</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:22 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

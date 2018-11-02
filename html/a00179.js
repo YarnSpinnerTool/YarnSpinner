@@ -1,8 +1,7 @@
 var a00179 =
 [
     [ "Diagnose", "a00179.html#aba4a36cb823b11ee491074e26477d084", null ],
-    [ "Diagnose", "a00179.html#aeac8f333d4dcc85f4d4a716bf8fea01f", null ],
-    [ "GatherDiagnoses", "a00179.html#a107aecf707b130c4b733930a95f9154e", null ],
-    [ "readVariables", "a00179.html#a6b542092ddce1b92c9455d60899518a9", null ],
-    [ "writtenVariables", "a00179.html#a0c2fe6eded1b10b135ca2469f5980a39", null ]
+    [ "Diagnose", "a00179.html#a980f0e64bc5ad171c35ec19bdf838b5c", null ],
+    [ "GatherDiagnoses", "a00179.html#ab84e7a8e68740379dee12a51dca69b07", null ],
+    [ "variables", "a00179.html#a64ed6c3394c474b6cf5804a35f560746", null ]
 ];

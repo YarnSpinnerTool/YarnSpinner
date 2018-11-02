@@ -1,30 +1,6 @@
 var a00087 =
 [
-    [ "AddScript", "a00087.html#a88d161b1be7c99b1e202e6ae9e0d1e73", null ],
-    [ "AddScript", "a00087.html#a2fd7f165afff0b8bc2004f10ce4537dd", null ],
-    [ "AddStringTable", "a00087.html#a2e9d9472b4dba699ef72ab558c89e009", null ],
-    [ "AddStringTable", "a00087.html#a08d4eb5038b23aad6d59d74ac89806a9", null ],
-    [ "AddStringTable", "a00087.html#abc595a490988ca712d37af540c2e0df9", null ],
-    [ "Clear", "a00087.html#a09f5769c0c0921a21e659fed0af09c01", null ],
-    [ "DispatchCommand", "a00087.html#a7b200f8ddcf77f50906a6341aadeb671", null ],
-    [ "NodeExists", "a00087.html#aadf7711b9ba101d6ce8ba491d9c5a4c3", null ],
-    [ "ResetDialogue", "a00087.html#ac08900ac15b3ca90446b9454c7fd117e", null ],
-    [ "RunDialogue", "a00087.html#adf4e816844b7d9ab4ed99265fd3f3ea9", null ],
-    [ "Start", "a00087.html#a18eb3750a0161dbfc20d7eb39e151b6c", null ],
-    [ "StartDialogue", "a00087.html#ab083d0ac60b41958b591c632e3c3a53e", null ],
-    [ "StartDialogue", "a00087.html#abda765c6804853e264282a0f45920cd3", null ],
-    [ "Stop", "a00087.html#af94e66876098f8b187181014973645e6", null ],
-    [ "_dialogue", "a00087.html#a822055443227d3b76c6a8fb509812820", null ],
-    [ "automaticCommands", "a00087.html#a6aac5e877d5396a8141da5e85243f462", null ],
-    [ "dialogueUI", "a00087.html#ac87fdc65b0be57868f80c0fcd62ffd6d", null ],
-    [ "overrideLanguage", "a00087.html#ad12db159fc3df0819d5b594c33fba834", null ],
-    [ "shouldOverrideLanguage", "a00087.html#a3e093d36845924378a8b2fd9ea3ac73d", null ],
-    [ "sourceText", "a00087.html#a71eae33d06990a3aec5d444fae017492", null ],
-    [ "startAutomatically", "a00087.html#a6476a987f9788dba653976bcbe72980c", null ],
-    [ "startNode", "a00087.html#a61c92b8d2228d01d8ac123b73bbb41a0", null ],
-    [ "stringGroups", "a00087.html#a4d00a0671c2966b88d1c806c675fe915", null ],
-    [ "variableStorage", "a00087.html#a6cca3d33f8b0ce3e750caed9fd8fc734", null ],
-    [ "currentNodeName", "a00087.html#a8589c66769e89906eaff3c2263bdad5d", null ],
-    [ "dialogue", "a00087.html#a4f9712a847ca6d53ec8d2dd64dfcffd8", null ],
-    [ "isDialogueRunning", "a00087.html#a9eb0fd7b600a4667595042832af1d655", null ]
+    [ "EmissionTuple", "a00087.html#a79857a881f3e1bab47a2cee5007e62a2", null ],
+    [ "depth", "a00087.html#ad3d26f07b18e91e1ba31ba3b5d6923db", null ],
+    [ "emitted", "a00087.html#a5916dbbd4d2e24ddfd02b0afdea290bf", null ]
 ];

@@ -1,145 +1,232 @@
-\hypertarget{a00102}{\section{Yarn.\-Graph Class Reference}
-\label{a00102}\index{Yarn.\-Graph@{Yarn.\-Graph}}
+\hypertarget{a00102}{\section{Csv\-Helper.\-I\-Csv\-Factory Interface Reference}
+\label{a00102}\index{Csv\-Helper.\-I\-Csv\-Factory@{Csv\-Helper.\-I\-Csv\-Factory}}
 }
 
 
-Collaboration diagram for Yarn.\-Graph\-:
+Defines methods used to create \hyperlink{a00319}{Csv\-Helper} classes.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=156pt]{a00585}
+\includegraphics[width=198pt]{a00436}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-I\-Csv\-Factory\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{a00437}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00102_aeb75730e40484ccdf56e805e6dea22a1}{edge} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} source, \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} target)
-\item 
-\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} \hyperlink{a00102_aa1f89fd1a2dd058002251dfd6411b905}{to\-Dot} ()
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Array\-List$<$ \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00102_a506df6f737a41748c01239bdea5d82b1}{nodes} = new Array\-List$<$\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
-\item 
-Multi\-Map$<$ \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} $>$ \hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges} = new Multi\-Map$<$\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}, \hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String}$>$()
-\item 
-string \hyperlink{a00102_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graph\-Name} = \char`\"{}G\char`\"{}
-\end{DoxyCompactItemize}
+\hyperlink{a00103}{I\-Csv\-Parser} \hyperlink{a00102_a9b68cbd7292c76037959d51ecc7c374d}{Create\-Parser} (Text\-Reader reader, \hyperlink{a00053}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00103}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+\hyperlink{a00103}{I\-Csv\-Parser} \hyperlink{a00102_ab085a057f1b80ebf03ed2247d8759314}{Create\-Parser} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00103}{I\-Csv\-Parser}. \end{DoxyCompactList}\item 
+\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_ade2a6e776fad6aa36c201901d6427058}{Create\-Reader} (Text\-Reader reader, \hyperlink{a00053}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_ae1ebb61244b36ddecb986d047ac9c217}{Create\-Reader} (Text\-Reader reader)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00104}{I\-Csv\-Reader} \hyperlink{a00102_af5b755ba2825f781d501402f1d765b33}{Create\-Reader} (\hyperlink{a00103}{I\-Csv\-Parser} parser)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00104}{I\-Csv\-Reader}. \end{DoxyCompactList}\item 
+\hyperlink{a00107}{I\-Csv\-Writer} \hyperlink{a00102_ae77852d2702bc2caad76c045a538933e}{Create\-Writer} (Text\-Writer writer, \hyperlink{a00053}{Csv\-Configuration} configuration)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Writer}. \end{DoxyCompactList}\item 
+\hyperlink{a00107}{I\-Csv\-Writer} \hyperlink{a00102_ab6df59078b6245e653c06c00358b402a}{Create\-Writer} (Text\-Writer writer)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{a00107}{I\-Csv\-Writer}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Defines methods used to create \hyperlink{a00319}{Csv\-Helper} classes. 
 
 
-Definition at line 796 of file Antlr\-Compiler.\-cs.
+
+Definition at line 14 of file I\-Csv\-Factory.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00102_aeb75730e40484ccdf56e805e6dea22a1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edge@{edge}}
-\index{edge@{edge}!Yarn::Graph@{Yarn\-::\-Graph}}
-\subsubsection[{edge}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Graph.\-edge (
+\hypertarget{a00102_a9b68cbd7292c76037959d51ecc7c374d}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-\item[{{\bf String}}]{source, }
-\item[{{\bf String}}]{target}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
 \end{DoxyParamCaption}
-)}}\label{a00102_aeb75730e40484ccdf56e805e6dea22a1}
+)}}\label{a00102_a9b68cbd7292c76037959d51ecc7c374d}
 
 
-Definition at line 802 of file Antlr\-Compiler.\-cs.
+Creates an \hyperlink{a00103}{I\-Csv\-Parser}. 
 
 
-\begin{DoxyCode}
-803         \{
-804             edges.Map(source, target);
-805         \}
-\end{DoxyCode}
-\hypertarget{a00102_aa1f89fd1a2dd058002251dfd6411b905}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!to\-Dot@{to\-Dot}}
-\index{to\-Dot@{to\-Dot}!Yarn::Graph@{Yarn\-::\-Graph}}
-\subsubsection[{to\-Dot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Yarn.\-Graph.\-to\-Dot (
+\begin{DoxyParams}{Parameters}
+{\em reader} & The text reader to use for the csv parser.\\
+\hline
+{\em configuration} & The configuration to use for the csv parser.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created parser.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a741fb4a1622778af65bfa27606bf6f25}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_ab085a057f1b80ebf03ed2247d8759314}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Parser@{Create\-Parser}}
+\index{Create\-Parser@{Create\-Parser}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Parser} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Parser (
 \begin{DoxyParamCaption}
-{}
+\item[{Text\-Reader}]{reader}
 \end{DoxyParamCaption}
-)}}\label{a00102_aa1f89fd1a2dd058002251dfd6411b905}
+)}}\label{a00102_ab085a057f1b80ebf03ed2247d8759314}
 
 
-Definition at line 806 of file Antlr\-Compiler.\-cs.
+Creates an \hyperlink{a00103}{I\-Csv\-Parser}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & The text reader to use for the csv parser.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created parser.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a07665ae71961a161552189877d11a5be}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_ade2a6e776fad6aa36c201901d6427058}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\begin{DoxyParamCaption}
+\item[{Text\-Reader}]{reader, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)}}\label{a00102_ade2a6e776fad6aa36c201901d6427058}
+
+
+Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & The text reader to use for the csv reader.\\
+\hline
+{\em configuration} & The configuration to use for the reader.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a12b1358fc847e407519a76b7fe003a34}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_ae1ebb61244b36ddecb986d047ac9c217}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\begin{DoxyParamCaption}
+\item[{Text\-Reader}]{reader}
+\end{DoxyParamCaption}
+)}}\label{a00102_ae1ebb61244b36ddecb986d047ac9c217}
+
+
+Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & The text reader to use for the csv reader.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a77bcca4ad5023f5628c519c2914da5bb}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_af5b755ba2825f781d501402f1d765b33}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Reader@{Create\-Reader}}
+\index{Create\-Reader@{Create\-Reader}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Reader} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Reader (
+\begin{DoxyParamCaption}
+\item[{{\bf I\-Csv\-Parser}}]{parser}
+\end{DoxyParamCaption}
+)}}\label{a00102_af5b755ba2825f781d501402f1d765b33}
+
+
+Creates an \hyperlink{a00104}{I\-Csv\-Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parser} & The parser used to create the reader.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created reader.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a4e7e06df9265cbd53219c964424cec1e}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_ae77852d2702bc2caad76c045a538933e}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)}}\label{a00102_ae77852d2702bc2caad76c045a538933e}
+
+
+Creates an \hyperlink{a00107}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+{\em configuration} & The configuration to use for the writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a6bfe534b70ff92ea3809f1a372d160cc}{Csv\-Helper.\-Csv\-Factory}.
+
+\hypertarget{a00102_ab6df59078b6245e653c06c00358b402a}{\index{Csv\-Helper\-::\-I\-Csv\-Factory@{Csv\-Helper\-::\-I\-Csv\-Factory}!Create\-Writer@{Create\-Writer}}
+\index{Create\-Writer@{Create\-Writer}!CsvHelper::ICsvFactory@{Csv\-Helper\-::\-I\-Csv\-Factory}}
+\subsubsection[{Create\-Writer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Csv\-Writer} Csv\-Helper.\-I\-Csv\-Factory.\-Create\-Writer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer}
+\end{DoxyParamCaption}
+)}}\label{a00102_ab6df59078b6245e653c06c00358b402a}
+
+
+Creates an \hyperlink{a00107}{I\-Csv\-Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The text writer to use for the csv writer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created writer.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{a00055_a0cec3a639b206f2d88debdc50413202a}{Csv\-Helper.\-Csv\-Factory}.
 
 
 
-References Yarn.\-Graph.\-edges, Yarn.\-Graph.\-graph\-Name, Yarn.\-Graph.\-nodes, preprocessor.\-output, and Yarn.\-String.
-
-
-\begin{DoxyCode}
-807         \{
-808             StringBuilder buf = \textcolor{keyword}{new} StringBuilder();
-809             buf.AppendFormat(\textcolor{stringliteral}{"digraph \{0\} "},\hyperlink{a00102_a8605f1ec5a4e9cfd07d3ac2be042dac6}{graphName});
-810             buf.Append(\textcolor{stringliteral}{"\{\(\backslash\)n"});
-811             buf.Append(\textcolor{stringliteral}{"  "});
-812             \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} node \textcolor{keywordflow}{in} \hyperlink{a00102_a506df6f737a41748c01239bdea5d82b1}{nodes})
-813             \{ \textcolor{comment}{// print all nodes first}
-814                 buf.Append(node);
-815                 buf.Append(\textcolor{stringliteral}{"; "});
-816             \}
-817             buf.Append(\textcolor{stringliteral}{"\(\backslash\)n"});
-818             \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} src \textcolor{keywordflow}{in} \hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges}.Keys)
-819             \{
-820                 IList<string> \hyperlink{a00336_a3da6d48778c7b08a040bf24377f67792}{output};
-821                 \textcolor{keywordflow}{if} (\hyperlink{a00102_a8adf7c937ab5c584b49698283e3da150}{edges}.TryGetValue(src, out output))
-822                 \{
-823                     \textcolor{keywordflow}{foreach} (\hyperlink{a00045_a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98}{String} trg \textcolor{keywordflow}{in} output)
-824                     \{
-825                         buf.Append(\textcolor{stringliteral}{"  "});
-826                         buf.Append(src);
-827                         buf.Append(\textcolor{stringliteral}{" -> "});
-828                         buf.Append(trg);
-829                         buf.Append(\textcolor{stringliteral}{";\(\backslash\)n"});
-830                     \}
-831                 \}
-832             \}
-833             buf.Append(\textcolor{stringliteral}{"\}\(\backslash\)n"});
-834             \textcolor{keywordflow}{return} buf.ToString();
-835         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00102_a8adf7c937ab5c584b49698283e3da150}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!edges@{edges}}
-\index{edges@{edges}!Yarn::Graph@{Yarn\-::\-Graph}}
-\subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}Multi\-Map$<${\bf String}, {\bf String}$>$ Yarn.\-Graph.\-edges = new Multi\-Map$<${\bf String}, {\bf String}$>$()}}\label{a00102_a8adf7c937ab5c584b49698283e3da150}
-
-
-Definition at line 799 of file Antlr\-Compiler.\-cs.
-
-
-
-Referenced by Yarn.\-Graph.\-to\-Dot().
-
-\hypertarget{a00102_a8605f1ec5a4e9cfd07d3ac2be042dac6}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!graph\-Name@{graph\-Name}}
-\index{graph\-Name@{graph\-Name}!Yarn::Graph@{Yarn\-::\-Graph}}
-\subsubsection[{graph\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Graph.\-graph\-Name = \char`\"{}G\char`\"{}}}\label{a00102_a8605f1ec5a4e9cfd07d3ac2be042dac6}
-
-
-Definition at line 800 of file Antlr\-Compiler.\-cs.
-
-
-
-Referenced by Yarn.\-Graph.\-to\-Dot().
-
-\hypertarget{a00102_a506df6f737a41748c01239bdea5d82b1}{\index{Yarn\-::\-Graph@{Yarn\-::\-Graph}!nodes@{nodes}}
-\index{nodes@{nodes}!Yarn::Graph@{Yarn\-::\-Graph}}
-\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Array\-List$<${\bf String}$>$ Yarn.\-Graph.\-nodes = new Array\-List$<${\bf String}$>$()}}\label{a00102_a506df6f737a41748c01239bdea5d82b1}
-
-
-Definition at line 798 of file Antlr\-Compiler.\-cs.
-
-
-
-Referenced by Yarn.\-Graph.\-to\-Dot().
-
-
-
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this interface was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00294}{Antlr\-Compiler.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00235}{I\-Csv\-Factory.\-cs}\end{DoxyCompactItemize}

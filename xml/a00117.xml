@@ -1,326 +1,265 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00117" kind="interface" prot="public">
-    <compoundname>CsvHelper::TypeConversion::ITypeConverter</compoundname>
-    <derivedcompoundref refid="a00082" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</derivedcompoundref>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00117_1a90c465c63dbcf913f38aa878f35e77c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>string</type>
-        <definition>string CsvHelper.TypeConversion.ITypeConverter.ConvertToString</definition>
-        <argsstring>(TypeConverterOptions options, object value)</argsstring>
-        <name>ConvertToString</name>
-        <reimplementedby refid="a00082_1a36cb2f9b24f15a671293f3a722324c27">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00093_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
-        <reimplementedby refid="a00136_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
-        <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
-        </param>
-        <param>
-          <type>object</type>
-          <declname>value</declname>
-        </param>
+  <compounddef id="a00117" kind="class" prot="package">
+    <compoundname>Yarn::Lexer</compoundname>
+    <innerclass refid="a00118" prot="package">Yarn::Lexer::LexerState</innerclass>
+    <innerclass refid="a00166" prot="package">Yarn::Lexer::TokenRule</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="a00117_1a29c457125cc4876f8571f5d9afa372e2" prot="private" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string Yarn.Lexer.LINE_COMMENT</definition>
+        <argsstring></argsstring>
+        <name>LINE_COMMENT</name>
+        <initializer>= &quot;//&quot;</initializer>
         <briefdescription>
-<para>Converts the object to a string. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The object to convert to a string.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="21" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="304" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="304" bodyend="-1"/>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00117_1ab598e04c22e5a7890b6d21011492283e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>object</type>
-        <definition>object CsvHelper.TypeConversion.ITypeConverter.ConvertFromString</definition>
-        <argsstring>(TypeConverterOptions options, string text)</argsstring>
-        <name>ConvertFromString</name>
-        <reimplementedby refid="a00178_1a1d3e86ea3d34de0d47a365c9b8622eb7">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00177_1a15686325b6bfa7648b65f201ecf50cd2">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00176_1a796e0b7b57d69abee122947166b45a9a">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00161_1a50bf35ff93e01df630a9c5e3c7b7569f">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00155_1a5c8a692325c19551246a589e9ca4a1e1">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00152_1ad16aeb03f418c89b3f78e95b46a46b40">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00116_1a9080b7b6a5abc7d8271ffb6924c31b7c">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00115_1a392314cc9b5f5b4ad176d0f1a99af32f">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00114_1aff576c6ca9bb1942fb17e385befb0197">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00080_1a07444e6f2bb1e49288f9de3b2407dc4f">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00042_1a7cf201b75714eccdc084b6cc3161bf29">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00104_1ad00786c329498785bbb77407ea023877">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00078_1a6b1b54cb2d1b200beb8fa3c63e4c064a">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00040_1a6176d20d761abfc0af4e840553ffae47">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00039_1abc77c631974272fd1dfe3fe4fcc3bf28">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00090_1a0c93a63f9f954646172a65b432c40c69">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00079_1aa69835fc086d80a8eabe7ac50cb92f47">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00093_1a692617638507cd1033728d7f718fcd2a">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00166_1a0f2536c88227a94822d0b7730eedf3eb">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00092_1abbbd7ece803a97b4714445c745918dc9">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00082_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplementedby>
-        <reimplementedby refid="a00136_1addb6dc12d4927204cd2349202db63e74">ConvertFromString</reimplementedby>
+      <memberdef kind="variable" id="a00117_1a2c65c0ba90f973e459583badefef216a" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="a00118" kindref="compound">LexerState</ref> &gt;</type>
+        <definition>Dictionary&lt;string, LexerState&gt; Yarn.Lexer.states</definition>
+        <argsstring></argsstring>
+        <name>states</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="306" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="306" bodyend="-1"/>
+        <referencedby refid="a00117_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00292" startline="321" endline="464">Yarn.Lexer.CreateStates</referencedby>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00117_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" static="no" mutable="no">
+        <type><ref refid="a00118" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.defaultState</definition>
+        <argsstring></argsstring>
+        <name>defaultState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="308" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="308" bodyend="-1"/>
+        <referencedby refid="a00117_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00292" startline="321" endline="464">Yarn.Lexer.CreateStates</referencedby>
+        <referencedby refid="a00117_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00292" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00117_1ac90b7dce8103425a148f9e8588f14137" prot="private" static="no" mutable="no">
+        <type><ref refid="a00118" kindref="compound">LexerState</ref></type>
+        <definition>LexerState Yarn.Lexer.currentState</definition>
+        <argsstring></argsstring>
+        <name>currentState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="309" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="309" bodyend="-1"/>
+        <referencedby refid="a00117_1ad3ef08f822b310d9864774b057b96995" compoundref="a00292" startline="672" endline="677">Yarn.Lexer.EnterState</referencedby>
+        <referencedby refid="a00117_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00292" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00117_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" static="no" mutable="no">
+        <type>Stack&lt; KeyValuePair&lt; int, bool &gt; &gt;</type>
+        <definition>Stack&lt;KeyValuePair&lt;int,bool&gt; &gt; Yarn.Lexer.indentationStack</definition>
+        <argsstring></argsstring>
+        <name>indentationStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="313" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="313" bodyend="-1"/>
+        <referencedby refid="a00117_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00292" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00117_1ac670aac2245cbd4694dfbd5b69313218" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Yarn.Lexer.shouldTrackNextIndentation</definition>
+        <argsstring></argsstring>
+        <name>shouldTrackNextIndentation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="314" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="314" bodyend="-1"/>
+        <referencedby refid="a00117_1ad3ef08f822b310d9864774b057b96995" compoundref="a00292" startline="672" endline="677">Yarn.Lexer.EnterState</referencedby>
+        <referencedby refid="a00117_1a6a09f1bb13f28acd95fd081954b45437" compoundref="a00292" startline="466" endline="494">Yarn.Lexer.Tokenise</referencedby>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00117_1a4bf394bcf675142f33c90541be7dd571" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Lexer.Lexer</definition>
+        <argsstring>()</argsstring>
+        <name>Lexer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="316" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="316" bodyend="319"/>
+        <references refid="a00117_1a646081a52b241abaafe5e0cfaeafd751" compoundref="a00292" startline="321" endline="464">Yarn.Lexer.CreateStates</references>
+      </memberdef>
+      <memberdef kind="function" id="a00117_1a6a09f1bb13f28acd95fd081954b45437" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00165" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.Tokenise</definition>
+        <argsstring>(string title, string text)</argsstring>
+        <name>Tokenise</name>
         <param>
-          <type><ref refid="a00172" kindref="compound">TypeConverterOptions</ref></type>
-          <declname>options</declname>
+          <type>string</type>
+          <declname>title</declname>
         </param>
         <param>
           <type>string</type>
           <declname>text</declname>
         </param>
         <briefdescription>
-<para>Converts the string to an object. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>options</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The options to use when converting.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>text</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The string to convert to an object.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The object created from the string.</para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="29" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="466" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="466" bodyend="494"/>
+        <references refid="a00117_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00292" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00117_1a16b5dbf27a377cde5e8ba0eaa05b5710" compoundref="a00292" startline="308">Yarn.Lexer.defaultState</references>
+        <references refid="a00117_1a6631a1b1a9109258ab18927e7587ff9b" compoundref="a00292" startline="313">Yarn.Lexer.indentationStack</references>
+        <references refid="a00117_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00292" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
       </memberdef>
-      <memberdef kind="function" id="a00117_1ae1ad863656f4fa96bd846a41344c9349" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool CsvHelper.TypeConversion.ITypeConverter.CanConvertFrom</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertFrom</name>
-        <reimplementedby refid="a00166_1ae3f8d46f5176d2ae08ac3fcdda1951e7">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00040_1a74a66b405f6c18e69b9fd23a1dea91b0">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00078_1af44239d3bd014b1423fa80f7440bbd25">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00079_1a82a8cf4b77600ef49da60deb0c24a708">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00093_1af66a7c67041f4c8061aa66e9e36359cf">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00082_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00092_1a31af8209aad64ed11d949586075c244a">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00039_1a0be20573af4ee53409bb437125a64268">CanConvertFrom</reimplementedby>
-        <reimplementedby refid="a00136_1ab9761a9f96be2b41103bb1313611d6f9">CanConvertFrom</reimplementedby>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="a00117_1a646081a52b241abaafe5e0cfaeafd751" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.CreateStates</definition>
+        <argsstring>()</argsstring>
+        <name>CreateStates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="321" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="321" bodyend="464"/>
+        <references refid="a00117_1a16b5dbf27a377cde5e8ba0eaa05b5710" compoundref="a00292" startline="308">Yarn.Lexer.defaultState</references>
+        <references refid="a00117_1a2c65c0ba90f973e459583badefef216a" compoundref="a00292" startline="306">Yarn.Lexer.states</references>
+        <referencedby refid="a00117_1a4bf394bcf675142f33c90541be7dd571" compoundref="a00292" startline="316" endline="319">Yarn.Lexer.Lexer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00165" kindref="compound">TokenList</ref></type>
+        <definition>TokenList Yarn.Lexer.TokeniseLine</definition>
+        <argsstring>(string line, int lineNumber)</argsstring>
+        <name>TokeniseLine</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lineNumber</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="38" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="496" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="496" bodyend="658"/>
+        <references refid="a00117_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00292" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00117_1ad3ef08f822b310d9864774b057b96995" compoundref="a00292" startline="672" endline="677">Yarn.Lexer.EnterState</references>
+        <references refid="a00117_1a6631a1b1a9109258ab18927e7587ff9b" compoundref="a00292" startline="313">Yarn.Lexer.indentationStack</references>
+        <references refid="a00117_1a29c457125cc4876f8571f5d9afa372e2" compoundref="a00292" startline="304">Yarn.Lexer.LINE_COMMENT</references>
+        <references refid="a00117_1a4079b10b099e5d85f5482f9e7eac4179" compoundref="a00292" startline="660" endline="670">Yarn.Lexer.LineIndentation</references>
+        <references refid="a00330_1ade44b858578c3eab7b6f90030a0e3ea1" compoundref="a00190" startline="52">preprocessor.previousIndentation</references>
+        <references refid="a00117_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00292" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
+        <references refid="a00117_1a2c65c0ba90f973e459583badefef216a" compoundref="a00292" startline="306">Yarn.Lexer.states</references>
+        <references refid="a00330_1a0e59365a4aa5811f6495b92a51e23573" compoundref="a00190" startline="47">preprocessor.thisIndentation</references>
+        <references refid="a00118_1adf6563b1dc6f3ef80ed13c2b15b7be03" compoundref="a00292" startline="224">Yarn.Lexer.LexerState.tokenRules</references>
+        <references refid="a00330_1a8b7e5c0b2c6870eaa8f9454b4f33678b" compoundref="a00190" startline="70">preprocessor.topLevel</references>
       </memberdef>
-      <memberdef kind="function" id="a00117_1a168b03dad37fcb6882101c93deac8111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool CsvHelper.TypeConversion.ITypeConverter.CanConvertTo</definition>
-        <argsstring>(Type type)</argsstring>
-        <name>CanConvertTo</name>
-        <reimplementedby refid="a00093_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
-        <reimplementedby refid="a00082_1acb65bd8c8199d88d5b1629ae35d18514">CanConvertTo</reimplementedby>
+      <memberdef kind="function" id="a00117_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Yarn.Lexer.LineIndentation</definition>
+        <argsstring>(string line)</argsstring>
+        <name>LineIndentation</name>
         <param>
-          <type>Type</type>
-          <declname>type</declname>
+          <type>string</type>
+          <declname>line</declname>
         </param>
         <briefdescription>
-<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The type.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="47" column="1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="660" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="660" bodyend="670"/>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="a00117_1ad3ef08f822b310d9864774b057b96995" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Yarn.Lexer.EnterState</definition>
+        <argsstring>(LexerState state)</argsstring>
+        <name>EnterState</name>
+        <param>
+          <type><ref refid="a00118" kindref="compound">LexerState</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="672" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="672" bodyend="677"/>
+        <references refid="a00117_1ac90b7dce8103425a148f9e8588f14137" compoundref="a00292" startline="309">Yarn.Lexer.currentState</references>
+        <references refid="a00118_1ad8b6ccac53bedd9dc202ffe6ac5698b2" compoundref="a00292" startline="275">Yarn.Lexer.LexerState.setTrackNextIndentation</references>
+        <references refid="a00117_1ac670aac2245cbd4694dfbd5b69313218" compoundref="a00292" startline="314">Yarn.Lexer.shouldTrackNextIndentation</references>
+        <referencedby refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" compoundref="a00292" startline="496" endline="658">Yarn.Lexer.TokeniseLine</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Converts objects to and from strings. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1438">
-        <label>CsvHelper.TypeConversion.ByteConverter</label>
-        <link refid="a00040"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1444">
-        <label>CsvHelper.TypeConversion.EnumConverter</label>
-        <link refid="a00092"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1456">
-        <label>CsvHelper.TypeConversion.UInt32Converter</label>
-        <link refid="a00177"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1448">
-        <label>CsvHelper.TypeConversion.Int32Converter</label>
-        <link refid="a00115"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1445">
-        <label>CsvHelper.TypeConversion.EnumerableConverter</label>
-        <link refid="a00093"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1443">
-        <label>CsvHelper.TypeConversion.DoubleConverter</label>
-        <link refid="a00090"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1449">
-        <label>CsvHelper.TypeConversion.Int64Converter</label>
-        <link refid="a00116"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1437">
-        <label>CsvHelper.TypeConversion.BooleanConverter</label>
-        <link refid="a00039"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1442">
-        <label>CsvHelper.TypeConversion.DecimalConverter</label>
-        <link refid="a00080"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1457">
-        <label>CsvHelper.TypeConversion.UInt64Converter</label>
-        <link refid="a00178"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1453">
-        <label>CsvHelper.TypeConversion.StringConverter</label>
-        <link refid="a00161"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1436">
-        <label>CsvHelper.TypeConversion.DefaultTypeConverter</label>
-        <link refid="a00082"/>
-        <childnode refid="1435" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1451">
-        <label>CsvHelper.TypeConversion.SByteConverter</label>
-        <link refid="a00152"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1435">
-        <label>CsvHelper.TypeConversion.ITypeConverter</label>
-        <link refid="a00117"/>
-      </node>
-      <node id="1454">
-        <label>CsvHelper.TypeConversion.TimeSpanConverter</label>
-        <link refid="a00166"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1439">
-        <label>CsvHelper.TypeConversion.CharConverter</label>
-        <link refid="a00042"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1450">
-        <label>CsvHelper.TypeConversion.NullableConverter</label>
-        <link refid="a00136"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1440">
-        <label>CsvHelper.TypeConversion.DateTimeConverter</label>
-        <link refid="a00078"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1447">
-        <label>CsvHelper.TypeConversion.Int16Converter</label>
-        <link refid="a00114"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1441">
-        <label>CsvHelper.TypeConversion.DateTimeOffsetConverter</label>
-        <link refid="a00079"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1446">
-        <label>CsvHelper.TypeConversion.GuidConverter</label>
-        <link refid="a00104"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1455">
-        <label>CsvHelper.TypeConversion.UInt16Converter</label>
-        <link refid="a00176"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1452">
-        <label>CsvHelper.TypeConversion.SingleConverter</label>
-        <link refid="a00155"/>
-        <childnode refid="1436" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <collaborationgraph>
-      <node id="1458">
-        <label>CsvHelper.TypeConversion.ITypeConverter</label>
+      <node id="1486">
+        <label>Yarn.Lexer.LexerState</label>
+        <link refid="a00118"/>
+      </node>
+      <node id="1485">
+        <label>Yarn.Lexer</label>
         <link refid="a00117"/>
+        <childnode refid="1486" relation="usage">
+          <edgelabel>-currentState</edgelabel>
+          <edgelabel>-defaultState</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/ITypeConverter.cs" bodystart="13" bodyend="48"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" line="211" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Lexer.cs" bodystart="211" bodyend="679"/>
     <listofallmembers>
-      <member refid="a00117_1ae1ad863656f4fa96bd846a41344c9349" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>CanConvertFrom</name></member>
-      <member refid="a00117_1a168b03dad37fcb6882101c93deac8111" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>CanConvertTo</name></member>
-      <member refid="a00117_1ab598e04c22e5a7890b6d21011492283e" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>ConvertFromString</name></member>
-      <member refid="a00117_1a90c465c63dbcf913f38aa878f35e77c7" prot="public" virt="non-virtual"><scope>CsvHelper::TypeConversion::ITypeConverter</scope><name>ConvertToString</name></member>
+      <member refid="a00117_1a646081a52b241abaafe5e0cfaeafd751" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>CreateStates</name></member>
+      <member refid="a00117_1ac90b7dce8103425a148f9e8588f14137" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>currentState</name></member>
+      <member refid="a00117_1a16b5dbf27a377cde5e8ba0eaa05b5710" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>defaultState</name></member>
+      <member refid="a00117_1ad3ef08f822b310d9864774b057b96995" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>EnterState</name></member>
+      <member refid="a00117_1a6631a1b1a9109258ab18927e7587ff9b" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>indentationStack</name></member>
+      <member refid="a00117_1a4bf394bcf675142f33c90541be7dd571" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Lexer</name></member>
+      <member refid="a00117_1a29c457125cc4876f8571f5d9afa372e2" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LINE_COMMENT</name></member>
+      <member refid="a00117_1a4079b10b099e5d85f5482f9e7eac4179" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>LineIndentation</name></member>
+      <member refid="a00117_1ac670aac2245cbd4694dfbd5b69313218" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>shouldTrackNextIndentation</name></member>
+      <member refid="a00117_1a2c65c0ba90f973e459583badefef216a" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>states</name></member>
+      <member refid="a00117_1a6a09f1bb13f28acd95fd081954b45437" prot="public" virt="non-virtual"><scope>Yarn::Lexer</scope><name>Tokenise</name></member>
+      <member refid="a00117_1a20b63f6ef434f6a40fd388f262f03fa8" prot="private" virt="non-virtual"><scope>Yarn::Lexer</scope><name>TokeniseLine</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

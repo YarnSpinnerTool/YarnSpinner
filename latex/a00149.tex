@@ -1,160 +1,127 @@
-\hypertarget{a00149}{\section{Csv\-Helper.\-Reflection\-Helper Class Reference}
-\label{a00149}\index{Csv\-Helper.\-Reflection\-Helper@{Csv\-Helper.\-Reflection\-Helper}}
+\hypertarget{a00149}{\section{Yarn.\-Parser.\-Shortcut\-Option Class Reference}
+\label{a00149}\index{Yarn.\-Parser.\-Shortcut\-Option@{Yarn.\-Parser.\-Shortcut\-Option}}
 }
 
 
-Common reflection tasks.  
-
-
-
-
-Collaboration diagram for Csv\-Helper.\-Reflection\-Helper\-:
+Inheritance diagram for Yarn.\-Parser.\-Shortcut\-Option\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=218pt]{a00460}
+\includegraphics[width=216pt]{a00682}
 \end{center}
 \end{figure}
-\subsection*{Static Public Member Functions}
+
+
+Collaboration diagram for Yarn.\-Parser.\-Shortcut\-Option\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{a00683}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static T \hyperlink{a00149_a45f0f552711f33392f33693a88fb20b3}{Create\-Instance$<$ T $>$} (params object\mbox{[}$\,$\mbox{]} args)
-\begin{DoxyCompactList}\small\item\em Creates an instance of type T. \end{DoxyCompactList}\item 
-static object \hyperlink{a00149_a9b8690ff760f41b0a7ef46626949c777}{Create\-Instance} (Type type, params object\mbox{[}$\,$\mbox{]} args)
-\begin{DoxyCompactList}\small\item\em Creates an instance of the specified type. \end{DoxyCompactList}\item 
-static T \hyperlink{a00149_aadf73df00d450ae49ceb8d78ac254b6d}{Get\-Attribute$<$ T $>$} (Property\-Info property, bool inherit)
-\begin{DoxyCompactList}\small\item\em Gets the first attribute of type T on property. \end{DoxyCompactList}\item 
-static T\mbox{[}$\,$\mbox{]} \hyperlink{a00149_adb0641e341c8468906b175f3f982ab6b}{Get\-Attributes$<$ T $>$} (Property\-Info property, bool inherit)
-\begin{DoxyCompactList}\small\item\em Gets the attributes of type T on property. \end{DoxyCompactList}\item 
-static New\-Expression \hyperlink{a00149_a7f2e39949787d37053702e7ea547ee69}{Get\-Constructor$<$ T $>$} (Expression$<$ Func$<$ T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the constructor New\-Expression from the give Expression. \end{DoxyCompactList}\item 
-static Property\-Info \hyperlink{a00149_afaa6e2741145eabea34c625684fb4636}{Get\-Property$<$ T\-Model $>$} (Expression$<$ Func$<$ T\-Model, object $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the property from the expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Private Member Functions}
+string \hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
 \begin{DoxyCompactItemize}
 \item 
-static Member\-Expression \hyperlink{a00149_ab462ff86486973f2eee6785bed535cdc}{Get\-Member\-Expression$<$ T\-Model, T $>$} (Expression$<$ Func$<$ T\-Model, T $>$$>$ expression)
-\begin{DoxyCompactList}\small\item\em Gets the member expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00149_a2c80b137d65f31b24533987233074605}{Shortcut\-Option} (int option\-Index, \hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00139}{Parser} p)
+\item 
+override string \hyperlink{a00149_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00128}{Node} \hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00138_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00149_ab43ec731479a56891389f6ece87f5f62}{label}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00094}{Expression} \hyperlink{a00149_a31ece7f65af1e43961b68ba0275cdfaf}{condition}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{a00128}{Node} \hyperlink{a00149_a33d667370031f58b054b79a39891c3f3}{option\-Node}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Common reflection tasks. 
+
+
+Definition at line 368 of file Parser.\-cs.
 
 
 
-Definition at line 19 of file Reflection\-Helper.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00149_a9b8690ff760f41b0a7ef46626949c777}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance@{Create\-Instance}}
-\index{Create\-Instance@{Create\-Instance}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Create\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static object Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00149_a2c80b137d65f31b24533987233074605}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Shortcut\-Option@{Shortcut\-Option}}
+\index{Shortcut\-Option@{Shortcut\-Option}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Shortcut\-Option}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option (
 \begin{DoxyParamCaption}
-\item[{Type}]{type, }
-\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+\item[{int}]{option\-Index, }
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_a9b8690ff760f41b0a7ef46626949c777}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00149_a2c80b137d65f31b24533987233074605}
 
 
-Creates an instance of the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type of instance to create.\\
-\hline
-{\em args} & The constructor arguments.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A new instance of the specified type.
-\end{DoxyReturn}
-
-
-Definition at line 42 of file Reflection\-Helper.\-cs.
+Definition at line 373 of file Parser.\-cs.
 
 
 
-Referenced by Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Auto\-Map(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map.\-Auto\-Map\-Internal(), Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance$<$ T $>$(), Csv\-Helper.\-Configuration.\-Csv\-Class\-Map$<$ T $>$.\-References(), Csv\-Helper.\-Configuration.\-Csv\-Configuration.\-Register\-Class\-Map(), and Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter$<$ T $>$().
+References Yarn.\-Parser.\-Shortcut\-Option.\-condition, Yarn.\-Parser.\-Shortcut\-Option.\-label, Yarn.\-Parser.\-Next\-Symbol\-Is(), Yarn.\-Parser.\-Next\-Symbols\-Are(), Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent(), Yarn.\-Parser.\-Shortcut\-Option.\-option\-Node, and Yarn.\-Parser.\-Parse\-Node.\-tags.
 
 
 \begin{DoxyCode}
-43         \{
-44 \textcolor{preprocessor}{#if NET\_2\_0}
-45 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance( type, args );
-46 \textcolor{preprocessor}{#else}
-47 \textcolor{preprocessor}{}
-48             var argumentTypes = args.Select( a => a.GetType() ).ToArray();
-49             var argumentExpressions = argumentTypes.Select( ( t, i ) => Expression.Parameter( t, \textcolor{stringliteral}{"var"} + i 
-      ) ).ToArray();
-50             var constructorInfo = type.GetConstructor( argumentTypes );
-51             var constructor = Expression.New( constructorInfo, argumentExpressions );
-52             var compiled = Expression.Lambda( constructor, argumentExpressions ).Compile();
-53             \textcolor{keywordflow}{try}
-54             \{
-55                 \textcolor{keywordflow}{return} compiled.DynamicInvoke( args );
-56             \}
-57             \textcolor{keywordflow}{catch}( TargetInvocationException ex )
-58             \{
-59                 \textcolor{keywordflow}{throw} ex.InnerException;
-60             \}
-61 \textcolor{preprocessor}{#endif}
-62 \textcolor{preprocessor}{}        \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00149_a9b8690ff760f41b0a7ef46626949c777_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00149_a45f0f552711f33392f33693a88fb20b3}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}}
-\index{Create\-Instance$<$ T $>$@{Create\-Instance$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Create\-Instance$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T {\bf Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance}$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_a45f0f552711f33392f33693a88fb20b3}
-
-
-Creates an instance of type T. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of instance to create.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em args} & The constructor arguments.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A new instance of type T.
-\end{DoxyReturn}
-
-
-Definition at line 27 of file Reflection\-Helper.\-cs.
-
-
-
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
-
-
-\begin{DoxyCode}
-28         \{
-29 \textcolor{preprocessor}{#if NET\_2\_0}
-30 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} Activator.CreateInstance<T>();
-31 \textcolor{preprocessor}{#else}
-32 \textcolor{preprocessor}{}            \textcolor{keywordflow}{return} (T)\hyperlink{a00149_a9b8690ff760f41b0a7ef46626949c777}{CreateInstance}( typeof( T ), args );
-33 \textcolor{preprocessor}{#endif}
-34 \textcolor{preprocessor}{}        \}
+373                                                                                  : base(
+      \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+374                 p.ExpectSymbol(TokenType.ShortcutOption);
+375                 \hyperlink{a00149_ab43ec731479a56891389f6ece87f5f62}{label} = p.ExpectSymbol(TokenType.Text).value as \textcolor{keywordtype}{string};
+376 
+377                 \textcolor{comment}{// Parse the conditional ("<<if $foo>>") if it's there}
+378 
+379                 var \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \textcolor{keyword}{new} List<string>();
+380 
+381                 \textcolor{keywordflow}{while} (
+382                     p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.If) ||
+383                     p.NextSymbolIs(TokenType.TagMarker)) \{
+384 
+385                     \textcolor{keywordflow}{if} (p.NextSymbolsAre(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, 
+      \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.If)) \{
+386                         p.ExpectSymbol(TokenType.BeginCommand);
+387                         p.ExpectSymbol(TokenType.If);
+388                         \hyperlink{a00149_a31ece7f65af1e43961b68ba0275cdfaf}{condition} = Expression.Parse(\textcolor{keyword}{this}, p);
+389                         p.ExpectSymbol(TokenType.EndCommand);
+390                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.TagMarker)) \{
+391 
+392                         p.ExpectSymbol(TokenType.TagMarker);
+393                         var tag = p.ExpectSymbol(TokenType.Identifier).value;
+394                         tags.Add(tag);
+395                     \}
+396                 \}
+397 
+398                 this.tags = tags.ToArray();
+399 
+400                 \textcolor{comment}{// Parse the statements belonging to this option if it has any}
+401                 \textcolor{keywordflow}{if} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Indent)) \{
+402                     p.ExpectSymbol(TokenType.Indent);
+403                     \hyperlink{a00149_a33d667370031f58b054b79a39891c3f3}{optionNode} = \textcolor{keyword}{new} Node(\hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{NodeParent}().name + \textcolor{stringliteral}{"."} + optionIndex, \textcolor{keyword}{this}, 
+      p);
+404                     p.ExpectSymbol(TokenType.Dedent);
+405                 \}
+406 
+407             \}
 \end{DoxyCode}
 
 
@@ -163,243 +130,262 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00149_a45f0f552711f33392f33693a88fb20b3_cgraph}
+\includegraphics[width=350pt]{a00149_a2c80b137d65f31b24533987233074605_cgraph}
 \end{center}
 \end{figure}
 
 
-\hypertarget{a00149_aadf73df00d450ae49ceb8d78ac254b6d}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}}
-\index{Get\-Attribute$<$ T $>$@{Get\-Attribute$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Attribute$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T Csv\-Helper.\-Reflection\-Helper.\-Get\-Attribute$<$ T $>$ (
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00138_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{bool}]{inherit}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_aadf73df00d450ae49ceb8d78ac254b6d}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a580e520a29444fc23ac3660cbe514a09}
 
 
-Gets the first attribute of type T on property. 
+Definition at line 100 of file Parser.\-cs.
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of attribute to get.\\
-\hline
-\end{DoxyTemplParams}
 
-\begin{DoxyParams}{Parameters}
-{\em property} & The Property\-Info to get the attribute from.\\
-\hline
-{\em inherit} & True to search inheritance tree, otherwise false.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The first attribute of type T, otherwise null.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T} : {\em Attribute}]\end{description}
-\end{Desc}
-
-
-Definition at line 72 of file Reflection\-Helper.\-cs.
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
 
 
 \begin{DoxyCode}
-72                                                                                        : Attribute
-73         \{
-74             T attribute = null;
-75             var attributes = property.GetCustomAttributes( typeof( T ), inherit ).ToList();
-76             \textcolor{keywordflow}{if}( attributes.Count > 0 )
-77             \{
-78                 attribute = attributes[0] as T;
-79             \}
-80             \textcolor{keywordflow}{return} attribute;
-81         \}
-\end{DoxyCode}
-\hypertarget{a00149_adb0641e341c8468906b175f3f982ab6b}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}}
-\index{Get\-Attributes$<$ T $>$@{Get\-Attributes$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Attributes$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static T \mbox{[}$\,$\mbox{]} Csv\-Helper.\-Reflection\-Helper.\-Get\-Attributes$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{bool}]{inherit}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_adb0641e341c8468906b175f3f982ab6b}
-
-
-Gets the attributes of type T on property. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type of attribute to get.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em property} & The Property\-Info to get the attribute from.\\
-\hline
-{\em inherit} & True to search inheritance tree, otherwise false.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The attributes of type T.
-\end{DoxyReturn}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T} : {\em Attribute}]\end{description}
-\end{Desc}
-
-
-Definition at line 90 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-90                                                                                           : Attribute
-91         \{
-92             var attributes = property.GetCustomAttributes( typeof( T ), inherit );
-93             \textcolor{keywordflow}{return} attributes.Cast<T>().ToArray();
-94         \}
-\end{DoxyCode}
-\hypertarget{a00149_a7f2e39949787d37053702e7ea547ee69}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}}
-\index{Get\-Constructor$<$ T $>$@{Get\-Constructor$<$ T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Constructor$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static New\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Constructor$<$ T $>$ (
-\begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T $>$$>$}]{expression}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_a7f2e39949787d37053702e7ea547ee69}
-
-
-Gets the constructor New\-Expression from the give Expression. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the object that will be constructed.\\
-\hline
-\end{DoxyTemplParams}
-
-\begin{DoxyParams}{Parameters}
-{\em expression} & The constructor Expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A constructor New\-Expression.
-\end{DoxyReturn}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em System.\-Argument\-Exception} & Not a constructor expression.;expression\\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 103 of file Reflection\-Helper.\-cs.
-
-
-\begin{DoxyCode}
-104         \{
-105             var newExpression = expression.Body as NewExpression;
-106             \textcolor{keywordflow}{if}( newExpression == null )
-107             \{
-108                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a constructor expression."}, nameof( expression ) );
-109             \}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
 110 
-111             \textcolor{keywordflow}{return} newExpression;
-112         \}
+111                 \textcolor{keywordflow}{return} null;
+112             \}
 \end{DoxyCode}
-\hypertarget{a00149_ab462ff86486973f2eee6785bed535cdc}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}}
-\index{Get\-Member\-Expression$<$ T\-Model, T $>$@{Get\-Member\-Expression$<$ T\-Model, T $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Member\-Expression$<$ T\-Model, T $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Member\-Expression Csv\-Helper.\-Reflection\-Helper.\-Get\-Member\-Expression$<$ T\-Model, T $>$ (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00149_a529a2ef1aa6d7226db4ea7f3ea92b8c2}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree (
 \begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T\-Model, T $>$$>$}]{expression}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00149_ab462ff86486973f2eee6785bed535cdc}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00149_a529a2ef1aa6d7226db4ea7f3ea92b8c2}
 
 
-Gets the member expression. 
+Implements \hyperlink{a00138_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Model} & The type of the model.\\
-\hline
-{\em T} & \\
-\hline
-\end{DoxyTemplParams}
 
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
+Definition at line 409 of file Parser.\-cs.
 
 
-Definition at line 139 of file Reflection\-Helper.\-cs.
+
+References Yarn.\-Parser.\-Shortcut\-Option.\-condition, Yarn.\-Parser.\-Shortcut\-Option.\-label, Yarn.\-Parser.\-Shortcut\-Option.\-option\-Node, Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
 
 
 \begin{DoxyCode}
-140         \{
-141             MemberExpression memberExpression = null;
-142             \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.Convert )
-143             \{
-144                 var body = (UnaryExpression)expression.Body;
-145                 memberExpression = body.Operand as MemberExpression;
-146             \}
-147             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( expression.Body.NodeType == ExpressionType.MemberAccess )
-148             \{
-149                 memberExpression = expression.Body as MemberExpression;
-150             \}
-151 
-152             \textcolor{keywordflow}{if}( memberExpression == null )
-153             \{
-154                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentException( \textcolor{stringliteral}{"Not a member access"}, nameof( expression ) );
-155             \}
-156 
-157             \textcolor{keywordflow}{return} memberExpression;
-158         \}
+410             \{
+411                 var sb = \textcolor{keyword}{new} StringBuilder ();
+412                 sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Option \(\backslash\)""} +\hyperlink{a00149_ab43ec731479a56891389f6ece87f5f62}{label} + \textcolor{stringliteral}{"\(\backslash\)""}));
+413 
+414                 \textcolor{keywordflow}{if} (\hyperlink{a00149_a31ece7f65af1e43961b68ba0275cdfaf}{condition} != null) \{
+415                     sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"(when:"}));
+416                     sb.Append (condition.PrintTree(indentLevel+2));
+417                     sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"),"}));
+418                 \}
+419 
+420                 \textcolor{keywordflow}{if} (\hyperlink{a00149_a33d667370031f58b054b79a39891c3f3}{optionNode} != null) \{
+421                     sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\{"}));
+422                     sb.Append (optionNode.PrintTree (indentLevel + 1));
+423                     sb.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"\}"}));
+424                 \}
+425 
+426                 sb.Append (\hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{TagsToString} (indentLevel));
+427 
+428                 \textcolor{keywordflow}{return} sb.ToString ();
+429             \}
 \end{DoxyCode}
-\hypertarget{a00149_afaa6e2741145eabea34c625684fb4636}{\index{Csv\-Helper\-::\-Reflection\-Helper@{Csv\-Helper\-::\-Reflection\-Helper}!Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}}
-\index{Get\-Property$<$ T\-Model $>$@{Get\-Property$<$ T\-Model $>$}!CsvHelper::ReflectionHelper@{Csv\-Helper\-::\-Reflection\-Helper}}
-\subsubsection[{Get\-Property$<$ T\-Model $>$}]{\setlength{\rightskip}{0pt plus 5cm}static Property\-Info Csv\-Helper.\-Reflection\-Helper.\-Get\-Property$<$ T\-Model $>$ (
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00149_a529a2ef1aa6d7226db4ea7f3ea92b8c2_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
 \begin{DoxyParamCaption}
-\item[{Expression$<$ Func$<$ T\-Model, object $>$$>$}]{expression}
+\item[{int}]{indent\-Level}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00149_afaa6e2741145eabea34c625684fb4636}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a054f36c80d5eeacd569a8859f599af67}
 
 
-Gets the property from the expression. 
+Definition at line 78 of file Parser.\-cs.
 
 
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T\-Model} & The type of the model.\\
-\hline
-\end{DoxyTemplParams}
 
-\begin{DoxyParams}{Parameters}
-{\em expression} & The expression.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The Property\-Info for the expression.
-\end{DoxyReturn}
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
 
 
-Definition at line 120 of file Reflection\-Helper.\-cs.
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
 
 
 \begin{DoxyCode}
-121         \{
-122             var member = GetMemberExpression( expression ).Member;
-123             var \textcolor{keyword}{property} = member as PropertyInfo;
-124             \textcolor{keywordflow}{if}( property == null )
-125             \{
-126                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} \hyperlink{a00058}{CsvConfigurationException}( $\textcolor{stringliteral}{"'\{member.Name\}' is not a
-       property. Did you try to map a field by accident?"} );
-127             \}
-128 
-129             \textcolor{keywordflow}{return} property;
-130         \}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
 \end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 94 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00138_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a18b493382de0fde5b4299c1bd2250075}
+
+
+Definition at line 61 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_af313a82103fcc2ff5a177dbb06b92f7b}
+
+
+Definition at line 58 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 76 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00149_a31ece7f65af1e43961b68ba0275cdfaf}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!condition@{condition}}
+\index{condition@{condition}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{condition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-Shortcut\-Option.\-condition\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00149_a31ece7f65af1e43961b68ba0275cdfaf}
+
+
+Definition at line 370 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+
+\hypertarget{a00149_ab43ec731479a56891389f6ece87f5f62}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!label@{label}}
+\index{label@{label}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{label}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Shortcut\-Option.\-label\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00149_ab43ec731479a56891389f6ece87f5f62}
+
+
+Definition at line 369 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+
+\hypertarget{a00149_a33d667370031f58b054b79a39891c3f3}{\index{Yarn\-::\-Parser\-::\-Shortcut\-Option@{Yarn\-::\-Parser\-::\-Shortcut\-Option}!option\-Node@{option\-Node}}
+\index{option\-Node@{option\-Node}!Yarn::Parser::ShortcutOption@{Yarn\-::\-Parser\-::\-Shortcut\-Option}}
+\subsubsection[{option\-Node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Shortcut\-Option.\-option\-Node\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00149_a33d667370031f58b054b79a39891c3f3}
+
+
+Definition at line 371 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00254}{Reflection\-Helper.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}

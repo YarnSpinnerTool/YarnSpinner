@@ -1,0 +1,7 @@
+<map id="CsvHelper.CsvWriter.NextRecord" name="CsvHelper.CsvWriter.NextRecord">
+<area shape="rect" id="node2" href="$a00071.html#aa07bcdeb70bf35895fdc51e46afde120" title="Write the Excel seperator record. " alt="" coords="233,5,415,46"/>
+<area shape="rect" id="node3" href="$a00071.html#ab92f8ddaaa2650eafbd9d16b3813d14e" title="Writes the list of records to the CSV file. " alt="" coords="465,63,647,105"/>
+<area shape="rect" id="node4" href="$a00071.html#af2298dcd2934550fd9dd592921f18541" title="Writes the header record from the given properties. " alt="" coords="233,122,415,163"/>
+<area shape="rect" id="node5" href="$a00071.html#ab1bc88015b53d21f6f5746a65180b0ac" title="Writes the record to the CSV file. " alt="" coords="233,187,415,229"/>
+<area shape="rect" id="node6" href="$a00071.html#aec261c2dfe23d6ed84534934e916d8ca" title="Writes the record to the CSV file. " alt="" coords="233,253,415,294"/>
+</map>

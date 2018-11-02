@@ -1,0 +1,8 @@
+<map id="CsvHelper.CsvWriter.CreateWriteRecordAction" name="CsvHelper.CsvWriter.CreateWriteRecordAction">
+<area shape="rect" id="node2" href="$a00071.html#ab5d9f0001c9a24ba6542b2332007c8e1" title="Creates the action for an object. " alt="" coords="246,78,437,119"/>
+<area shape="rect" id="node7" href="$a00071.html#aa1284ea73f69638633a33592beb0b784" title="Creates the action for a primitive. " alt="" coords="246,143,437,185"/>
+<area shape="rect" id="node3" href="$a00071.html#ac913b615ee170ad2b84137c4d5c7eda2" title="Adds the properties from the mapping. This will recursively traverse the mapping tree and add all pro..." alt="" coords="486,5,719,32"/>
+<area shape="rect" id="node4" href="$a00071.html#a6085ddfd5e9c626d1d9f575ff21a0599" title="Checks if the property can be written. " alt="" coords="499,56,706,83"/>
+<area shape="rect" id="node5" href="$a00071.html#ab6cbf58f5e59e5d6091a89e4e778f11b" title="Combines the delegates into a single multicast delegate. This is needed because Silverlight doesn&#39;t h..." alt="" coords="501,107,704,149"/>
+<area shape="rect" id="node6" href="$a00071.html#aada073c07b3fd07dba434855ffb18b75" title="Creates a property expression for the given property on the record. This will recursively traverse th..." alt="" coords="507,173,698,214"/>
+</map>

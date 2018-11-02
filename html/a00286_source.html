@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/CameraFollow.cs Source File</title>
+<title>YarnSpinner: Unity/Assets/YarnSpinner/Examples/DemoScripts/SpriteSwitcher.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('a00286_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">CameraFollow.cs</div>  </div>
+<div class="title">SpriteSwitcher.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00286.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -136,46 +136,52 @@ $(document).ready(function(){initNavTree('a00286_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using</span> UnityEngine;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using</span> System.Collections;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="a00358.html">   30</a></span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>Yarn.Unity.Example {</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00041.html">   37</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00041.html">CameraFollow</a> : MonoBehaviour {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="a00041.html#aa5d6958fb14a14ebb74e21c372fcca8b">   40</a></span>&#160;        <span class="keyword">public</span> Transform <a class="code" href="a00041.html#aa5d6958fb14a14ebb74e21c372fcca8b">target</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    [RequireComponent (typeof (SpriteRenderer))]</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="a00153.html">   34</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="a00153.html">SpriteSwitcher</a> : MonoBehaviour {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        [System.Serializable]</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="a00153.html">   37</a></span>&#160;        <span class="keyword">public</span> <span class="keyword">struct </span><a class="code" href="a00153.html#a00364">SpriteInfo</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00153.html#a3f5bca2fff413dfe075c1fcf7e58369c">   38</a></span>&#160;            <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code" href="a00153.html#a3f5bca2fff413dfe075c1fcf7e58369c">name</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="a00153.html#adc58df011dc2841837b6cf775b372061">   39</a></span>&#160;            <span class="keyword">public</span> Sprite <a class="code" href="a00153.html#adc58df011dc2841837b6cf775b372061">sprite</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00041.html#a08c6f6c0ea423c21af99e4b5467d3c9b">   43</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> minPosition = -5.3f;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00041.html#abb0154dcbc2a7d43795beacd61a56de4">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> maxPosition = 5.3f;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="a00153.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">   42</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="a00153.html#a00364">SpriteInfo</a>[] <a class="code" href="a00153.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">sprites</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        [YarnCommand(<span class="stringliteral">&quot;setsprite&quot;</span>)]</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="a00153.html#ac26718b713f342f3de8f3e569c5b62da">   46</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="a00153.html#ac26718b713f342f3de8f3e569c5b62da">UseSprite</a>(<span class="keywordtype">string</span> spriteName) {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="a00041.html#a3d4f2efe9c2cee8c7ff797cac03f27ec">   49</a></span>&#160;        <span class="keyword">public</span> <span class="keywordtype">float</span> moveSpeed = 1.0f;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Update is called once per frame</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00041.html#a592ddbf8e493bde0a6536c0234869217">   52</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="a00041.html#a592ddbf8e493bde0a6536c0234869217">Update</a> () {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span> (target == null) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            newPosition.y = transform.position.y;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            newPosition.z = transform.position.z;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            transform.position = newPosition;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="ttc" id="a00041_html_a592ddbf8e493bde0a6536c0234869217"><div class="ttname"><a href="a00041.html#a592ddbf8e493bde0a6536c0234869217">Yarn.Unity.Example.CameraFollow.Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00052">CameraFollow.cs:52</a></div></div>
-<div class="ttc" id="a00041_html"><div class="ttname"><a href="a00041.html">Yarn.Unity.Example.CameraFollow</a></div><div class="ttdoc">Control the position of the camera and its behaviour. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00037">CameraFollow.cs:37</a></div></div>
-<div class="ttc" id="a00041_html_aa5d6958fb14a14ebb74e21c372fcca8b"><div class="ttname"><a href="a00041.html#aa5d6958fb14a14ebb74e21c372fcca8b">Yarn.Unity.Example.CameraFollow.target</a></div><div class="ttdeci">Transform target</div><div class="ttdoc">Target of the camera. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00040">CameraFollow.cs:40</a></div></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            Sprite s = null;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">foreach</span>(var info <span class="keywordflow">in</span> sprites) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">if</span> (info.name == spriteName) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    s = info.sprite;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;             }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (s == null) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                Debug.LogErrorFormat(<span class="stringliteral">&quot;Can&#39;t find sprite named {0}!&quot;</span>, spriteName);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            GetComponent&lt;SpriteRenderer&gt;().sprite = s;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="a00153_html_ac26718b713f342f3de8f3e569c5b62da"><div class="ttname"><a href="a00153.html#ac26718b713f342f3de8f3e569c5b62da">Yarn.Unity.Example.SpriteSwitcher.UseSprite</a></div><div class="ttdeci">void UseSprite(string spriteName)</div><div class="ttdoc">Create a command to use on a sprite. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00046">SpriteSwitcher.cs:46</a></div></div>
+<div class="ttc" id="a00153_html_a3f5bca2fff413dfe075c1fcf7e58369c"><div class="ttname"><a href="a00153.html#a3f5bca2fff413dfe075c1fcf7e58369c">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00038">SpriteSwitcher.cs:38</a></div></div>
+<div class="ttc" id="a00153_html_a1e85d9f4f6b33ca7ae638cce2eb704aa"><div class="ttname"><a href="a00153.html#a1e85d9f4f6b33ca7ae638cce2eb704aa">Yarn.Unity.Example.SpriteSwitcher.sprites</a></div><div class="ttdeci">SpriteInfo[] sprites</div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00042">SpriteSwitcher.cs:42</a></div></div>
+<div class="ttc" id="a00153_html_adc58df011dc2841837b6cf775b372061"><div class="ttname"><a href="a00153.html#adc58df011dc2841837b6cf775b372061">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo.sprite</a></div><div class="ttdeci">Sprite sprite</div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00039">SpriteSwitcher.cs:39</a></div></div>
+<div class="ttc" id="a00153_html_a00364"><div class="ttname"><a href="a00153.html#a00364">Yarn.Unity.Example.SpriteSwitcher.SpriteInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00037">SpriteSwitcher.cs:37</a></div></div>
+<div class="ttc" id="a00153_html"><div class="ttname"><a href="a00153.html">Yarn.Unity.Example.SpriteSwitcher</a></div><div class="ttdoc">Attach SpriteSwitcher to game object. </div><div class="ttdef"><b>Definition:</b> <a href="a00286_source.html#l00034">SpriteSwitcher.cs:34</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00286.html">CameraFollow.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_3d328b3dca154a477d99beb656992be2.html">Unity</a></li><li class="navelem"><a class="el" href="dir_3b33dffaa21a2ac6f7978a949ffd4e41.html">Assets</a></li><li class="navelem"><a class="el" href="dir_534ffb376c3707ccb35d3c2c883b31fc.html">YarnSpinner</a></li><li class="navelem"><a class="el" href="dir_cb74ec5eb9eec574588e588dd5bf23e1.html">Examples</a></li><li class="navelem"><a class="el" href="dir_a23f776b0598015baa200eafeed2b13c.html">DemoScripts</a></li><li class="navelem"><a class="el" href="a00286.html">SpriteSwitcher.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

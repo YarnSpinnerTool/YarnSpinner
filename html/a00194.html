@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: ANTLR/preprocessor.py File Reference</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/README.md File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -104,57 +104,19 @@ $(document).ready(function(){initNavTree('a00194.html','');});
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">preprocessor.py File Reference</div>  </div>
+<div class="title">Documentation/YarnSpinner-Dialogue/README.md File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><a href="a00194_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:a00336"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html">preprocessor</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a3766d6a1d728423223fa0743ba62011f"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a3766d6a1d728423223fa0743ba62011f">preprocessor.output_lines</a> = []</td></tr>
-<tr class="separator:a3766d6a1d728423223fa0743ba62011f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00fba9ee9674b2513dbe28eab795b734"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a00fba9ee9674b2513dbe28eab795b734">preprocessor.indents</a> = [(0,False)]</td></tr>
-<tr class="separator:a00fba9ee9674b2513dbe28eab795b734"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa485f45ab87bc0f06c1dfc46737c057"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#afa485f45ab87bc0f06c1dfc46737c057">preprocessor.shouldTrackNextIndentation</a> = False</td></tr>
-<tr class="separator:afa485f45ab87bc0f06c1dfc46737c057"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3f2190a793ab77428838e58e0e83676"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#ae3f2190a793ab77428838e58e0e83676">preprocessor.INDENT</a> = '\a'</td></tr>
-<tr class="separator:ae3f2190a793ab77428838e58e0e83676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83653c3e52fa74614e655a91ad2b7181"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a83653c3e52fa74614e655a91ad2b7181">preprocessor.DEDENT</a> = '\v'</td></tr>
-<tr class="separator:a83653c3e52fa74614e655a91ad2b7181"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ca2dc5371587b21476669a45af013cd"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a7ca2dc5371587b21476669a45af013cd">preprocessor.OPTION</a> = &quot;-&gt;&quot;</td></tr>
-<tr class="separator:a7ca2dc5371587b21476669a45af013cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7b4a28b6670884cd095cd684a452c94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#ac7b4a28b6670884cd095cd684a452c94">preprocessor.line_count</a> = 1</td></tr>
-<tr class="separator:ac7b4a28b6670884cd095cd684a452c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acab50490b6d7a9dc2bb935ad4ffe2eff"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#acab50490b6d7a9dc2bb935ad4ffe2eff">preprocessor.tweaked_line</a> = line.replace('\t',' ')</td></tr>
-<tr class="separator:acab50490b6d7a9dc2bb935ad4ffe2eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e59365a4aa5811f6495b92a51e23573"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a0e59365a4aa5811f6495b92a51e23573">preprocessor.thisIndentation</a> = len(tweaked_line)</td></tr>
-<tr class="separator:a0e59365a4aa5811f6495b92a51e23573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf34284b1c9a00275810e5c13a4dcea2"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#abf34284b1c9a00275810e5c13a4dcea2">preprocessor.is_option</a> = tweaked_line.strip()</td></tr>
-<tr class="separator:abf34284b1c9a00275810e5c13a4dcea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade44b858578c3eab7b6f90030a0e3ea1"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#ade44b858578c3eab7b6f90030a0e3ea1">preprocessor.previousIndentation</a> = indents[-1]</td></tr>
-<tr class="separator:ade44b858578c3eab7b6f90030a0e3ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b7e5c0b2c6870eaa8f9454b4f33678b"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a8b7e5c0b2c6870eaa8f9454b4f33678b">preprocessor.topLevel</a> = indents.pop()</td></tr>
-<tr class="separator:a8b7e5c0b2c6870eaa8f9454b4f33678b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da6d48778c7b08a040bf24377f67792"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00336.html#a3da6d48778c7b08a040bf24377f67792">preprocessor.output</a> = open('processed.yarn', 'w')</td></tr>
-<tr class="separator:a3da6d48778c7b08a040bf24377f67792"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_da166bb68aa2f3e0a3e81a8c24aa3fb7.html">ANTLR</a></li><li class="navelem"><a class="el" href="a00194.html">preprocessor.py</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:28 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00194.html">README.md</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

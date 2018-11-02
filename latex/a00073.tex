@@ -1,297 +1,156 @@
-\hypertarget{a00073}{\section{Csv\-Helper.\-Csv\-Serializer Class Reference}
-\label{a00073}\index{Csv\-Helper.\-Csv\-Serializer@{Csv\-Helper.\-Csv\-Serializer}}
+\hypertarget{a00073}{\section{Yarn.\-Parser.\-Custom\-Command Class Reference}
+\label{a00073}\index{Yarn.\-Parser.\-Custom\-Command@{Yarn.\-Parser.\-Custom\-Command}}
 }
 
 
-Defines methods used to serialize data into a C\-S\-V file.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Csv\-Serializer\-:
+Inheritance diagram for Yarn.\-Parser.\-Custom\-Command\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=204pt]{a00431}
+\includegraphics[width=230pt]{a00657}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Csv\-Serializer\-:
+Collaboration diagram for Yarn.\-Parser.\-Custom\-Command\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00432}
+\includegraphics[width=270pt]{a00658}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00073_a74ea10f7aaea0a478087d8ff6182f38c}{Csv\-Serializer} (Text\-Writer \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer})
-\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer. \end{DoxyCompactList}\item 
-\hyperlink{a00073_ab14fe4a4f630ce97d57c27e2ee050fac}{Csv\-Serializer} (Text\-Writer \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer}, \hyperlink{a00057}{Csv\-Configuration} \hyperlink{a00073_ae8c56ff97c0a797245f2205c486833ea}{configuration})
-\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer and Csv\-Configuration. \end{DoxyCompactList}\item 
-void \hyperlink{a00073_aefad906acd048863d3dd414651a44793}{Write} (string\mbox{[}$\,$\mbox{]} record)
-\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\item 
-void \hyperlink{a00073_a9d0e8b3508b377a7f978da2394b09e36}{Dispose} ()
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
+string \hyperlink{a00138_a054f36c80d5eeacd569a8859f599af67}{Tags\-To\-String} (int indent\-Level)
+\item 
+override string \hyperlink{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{To\-String} ()
+\end{DoxyCompactItemize}
+\subsection*{Package Types}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{a00073_a0be3b74ca7606e27fd16441ecc988f0b}{Dispose} (bool disposing)
-\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\item 
-virtual void \hyperlink{a00073_ae14e1913a4e76faf97484c1bde339143}{Check\-Disposed} ()
-\begin{DoxyCompactList}\small\item\em Checks if the instance has been disposed of. \end{DoxyCompactList}\end{DoxyCompactItemize}
+enum \hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576}{Type} \{ \hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Type.\-Expression}, 
+\hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Type.\-Client\-Command}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00073_a49150c9046dcad61d61ce35c51816313}{Custom\-Command} (\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, \hyperlink{a00139}{Parser} p)
+\item 
+override string \hyperlink{a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b}{Print\-Tree} (int indent\-Level)
+\item 
+\hyperlink{a00128}{Node} \hyperlink{a00138_a580e520a29444fc23ac3660cbe514a09}{Node\-Parent} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{a00073_a02ee2902115c823bdb46715041b3a2f6}{Can\-Parse} (\hyperlink{a00139}{Parser} p)
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576}{Type} \hyperlink{a00073_a5ef3bc96812be224d91548bfcdfd4b92}{type}
+\item 
+\hyperlink{a00138}{Parse\-Node} \hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}
+\item 
+int \hyperlink{a00138_a18b493382de0fde5b4299c1bd2250075}{line\-Number}
+\item 
+string\mbox{[}$\,$\mbox{]} \hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags} = \{\}
+\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00057}{Csv\-Configuration} \hyperlink{a00073_a2ae1b1a629b707fbfb7d636989442f34}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
+\hyperlink{a00094}{Expression} \hyperlink{a00073_a4250d192d5b58e2404a14c68eb616f16}{expression}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \item 
-bool \hyperlink{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed}
-\item 
-readonly \hyperlink{a00057}{Csv\-Configuration} \hyperlink{a00073_ae8c56ff97c0a797245f2205c486833ea}{configuration}
-\item 
-Text\-Writer \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer}
+string \hyperlink{a00073_a1a362244273df822233359d8fe4e9f5d}{client\-Command}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines methods used to serialize data into a C\-S\-V file. 
+
+
+Definition at line 265 of file Parser.\-cs.
 
 
 
-Definition at line 14 of file Csv\-Serializer.\-cs.
+\subsection{Member Enumeration Documentation}
+\hypertarget{a00073_a1d9f9f57c44e1a0d228793b658339576}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Type@{Type}}
+\index{Type@{Type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Yarn.\-Parser.\-Custom\-Command.\-Type}\hspace{0.3cm}{\ttfamily [package]}}}\label{a00073_a1d9f9f57c44e1a0d228793b658339576}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Expression@{Expression}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Expression@{Expression}}\item[{\em 
+\hypertarget{a00073_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression}\label{a00073_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}
+}]\index{Client\-Command@{Client\-Command}!Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}}\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Client\-Command@{Client\-Command}}\item[{\em 
+\hypertarget{a00073_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{Client\-Command}\label{a00073_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}
+}]\end{description}
+\end{Desc}
 
+
+Definition at line 267 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+267                                \{
+268                 \hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043}{Expression},
+269                 \hyperlink{a00073_a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586}{ClientCommand}
+270             \}
+\end{DoxyCode}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00073_a74ea10f7aaea0a478087d8ff6182f38c}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
-\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
+\hypertarget{a00073_a49150c9046dcad61d61ce35c51816313}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Custom\-Command@{Custom\-Command}}
+\index{Custom\-Command@{Custom\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Custom\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command (
 \begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer}
+\item[{{\bf Parse\-Node}}]{parent, }
+\item[{{\bf Parser}}]{p}
 \end{DoxyParamCaption}
-)}}\label{a00073_a74ea10f7aaea0a478087d8ff6182f38c}
+)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00073_a49150c9046dcad61d61ce35c51816313}
 
 
-Creates a new serializer using the given Text\-Writer. 
+Definition at line 283 of file Parser.\-cs.
 
 
-\begin{DoxyParams}{Parameters}
-{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
-\hline
-\end{DoxyParams}
 
-
-Definition at line 32 of file Csv\-Serializer.\-cs.
+References Yarn.\-Parser.\-Custom\-Command.\-expression, Yarn.\-Parser.\-library, Yarn.\-Parser.\-Next\-Symbol\-Is(), Yarn.\-Parser.\-Parser(), and Yarn.\-Parser.\-Custom\-Command.\-type.
 
 
 \begin{DoxyCode}
-32 : \textcolor{keyword}{this}( \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer}, \textcolor{keyword}{new} \hyperlink{a00057}{CsvConfiguration}() ) \{\}
-\end{DoxyCode}
-\hypertarget{a00073_ab14fe4a4f630ce97d57c27e2ee050fac}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
-\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
-\begin{DoxyParamCaption}
-\item[{Text\-Writer}]{writer, }
-\item[{{\bf Csv\-Configuration}}]{configuration}
-\end{DoxyParamCaption}
-)}}\label{a00073_ab14fe4a4f630ce97d57c27e2ee050fac}
-
-
-Creates a new serializer using the given Text\-Writer and Csv\-Configuration. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
-\hline
-{\em configuration} & The configuration.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 40 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-configuration, and Csv\-Helper.\-Csv\-Serializer.\-writer.
-
-
-\begin{DoxyCode}
-41         \{
-42             \textcolor{keywordflow}{if}( \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer} == null )
-43             \{
-44                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"writer"} );
-45             \}
-46 
-47             \textcolor{keywordflow}{if}( configuration == null )
-48             \{
-49                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"configuration"} );
-50             \}
-51 
-52             this.writer = \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer};
-53             this.configuration = \hyperlink{a00073_ae8c56ff97c0a797245f2205c486833ea}{configuration};
-54         \}
-\end{DoxyCode}
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00073_ae14e1913a4e76faf97484c1bde339143}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Check\-Disposed@{Check\-Disposed}}
-\index{Check\-Disposed@{Check\-Disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Check\-Disposed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00073_ae14e1913a4e76faf97484c1bde339143}
-
-
-Checks if the instance has been disposed of. 
-
-
-\begin{DoxyExceptions}{Exceptions}
-{\em Object\-Disposed\-Exception} & \\
-\hline
-\end{DoxyExceptions}
-
-
-Definition at line 105 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-disposed.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Write().
-
-
-\begin{DoxyCode}
-106         \{
-107             \textcolor{keywordflow}{if}( \hyperlink{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
-108             \{
-109                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ObjectDisposedException( GetType().ToString() );
-110             \}
-111         \}
-\end{DoxyCode}
-
-
-Here is the caller graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00073_ae14e1913a4e76faf97484c1bde339143_icgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00073_a9d0e8b3508b377a7f978da2394b09e36}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{a00073_a9d0e8b3508b377a7f978da2394b09e36}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
-
-$<$filterpriority$>$2$<$/filterpriority$>$ 
-
-Definition at line 72 of file Csv\-Serializer.\-cs.
-
-
-\begin{DoxyCode}
-73         \{
-74             \hyperlink{a00073_a9d0e8b3508b377a7f978da2394b09e36}{Dispose}( \textcolor{keyword}{true} );
-75             GC.SuppressFinalize( this );
-76         \}
-\end{DoxyCode}
-\hypertarget{a00073_a0be3b74ca7606e27fd16441ecc988f0b}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
-\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
-\begin{DoxyParamCaption}
-\item[{bool}]{disposing}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00073_a0be3b74ca7606e27fd16441ecc988f0b}
-
-
-Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em disposing} & True if the instance needs to be disposed of.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 82 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-disposed, and Csv\-Helper.\-Csv\-Serializer.\-writer.
-
-
-\begin{DoxyCode}
-83         \{
-84             \textcolor{keywordflow}{if}( \hyperlink{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
-85             \{
-86                 \textcolor{keywordflow}{return};
-87             \}
-88 
-89             \textcolor{keywordflow}{if}( disposing )
-90             \{
-91                 \textcolor{keywordflow}{if}( \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer} != null )
-92                 \{
-93                     writer.Dispose();
-94                 \}
-95             \}
-96 
-97             \hyperlink{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} = \textcolor{keyword}{true};
-98             \hyperlink{a00073_adfb235fa2c868fc79c0376fd12fda767}{writer} = null;
-99         \}
-\end{DoxyCode}
-\hypertarget{a00073_aefad906acd048863d3dd414651a44793}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Write@{Write}}
-\index{Write@{Write}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Write (
-\begin{DoxyParamCaption}
-\item[{string\mbox{[}$\,$\mbox{]}}]{record}
-\end{DoxyParamCaption}
-)}}\label{a00073_aefad906acd048863d3dd414651a44793}
-
-
-Writes a record to the C\-S\-V file. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em record} & The record to write.\\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{a00110_a0b442858eef85b7d933662359646fd0b}{Csv\-Helper.\-I\-Csv\-Serializer}.
-
-
-
-Definition at line 60 of file Csv\-Serializer.\-cs.
-
-
-
-References Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed().
-
-
-\begin{DoxyCode}
-61         \{
-62             \hyperlink{a00073_ae14e1913a4e76faf97484c1bde339143}{CheckDisposed}();
-63 
-64             var recordString = string.Join( configuration.Delimiter, record );
-65             writer.WriteLine( recordString );
-66         \}
+283                                                                : base(\hyperlink{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{parent}, p) \{
+284 
+285                 p.ExpectSymbol(TokenType.BeginCommand);
+286 
+287                 \textcolor{comment}{// Custom commands can have ANY token in them. Read them all until we hit the}
+288                 \textcolor{comment}{// end command token.}
+289                 var commandTokens = \textcolor{keyword}{new} List<Token>();
+290                 \textcolor{keywordflow}{do} \{
+291                     commandTokens.Add(p.ExpectSymbol());
+292                 \} \textcolor{keywordflow}{while} (p.NextSymbolIs(\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.EndCommand) == \textcolor{keyword}{false});
+293                 p.ExpectSymbol(TokenType.EndCommand);
+294 
+295                 \textcolor{comment}{// If the first token is an identifier and the second is}
+296                 \textcolor{comment}{// a left paren, it may be a function call expression;}
+297                 \textcolor{comment}{// evaluate it as such}
+298                 \textcolor{keywordflow}{if} (commandTokens.Count > 1 &&
+299                     commandTokens[0].type == \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier &&
+300                     commandTokens[1].type == \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.LeftParen) \{
+301                     var parser = \textcolor{keyword}{new} \hyperlink{a00139_acd2714b911fb5e7c38f0e07a9dc1af58}{Parser}(commandTokens, p.library);
+302                     var \hyperlink{a00073_a4250d192d5b58e2404a14c68eb616f16}{expression} = Expression.Parse(\textcolor{keyword}{this}, parser);
+303                     \hyperlink{a00073_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.Expression;
+304                     this.expression = \hyperlink{a00073_a4250d192d5b58e2404a14c68eb616f16}{expression};
+305                 \} \textcolor{keywordflow}{else} \{
+306                     \textcolor{comment}{// Otherwise, evaluate it as a command}
+307                     \hyperlink{a00073_a5ef3bc96812be224d91548bfcdfd4b92}{type} = Type.ClientCommand;
+308 
+309                     this.clientCommand = commandTokens[0].value;
+310                 \}
+311 
+312             \}
 \end{DoxyCode}
 
 
@@ -300,63 +159,302 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{a00073_aefad906acd048863d3dd414651a44793_cgraph}
+\includegraphics[width=350pt]{a00073_a49150c9046dcad61d61ce35c51816313_cgraph}
 \end{center}
 \end{figure}
 
 
 
 
+\subsection{Member Function Documentation}
+\hypertarget{a00073_a02ee2902115c823bdb46715041b3a2f6}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Can\-Parse@{Can\-Parse}}
+\index{Can\-Parse@{Can\-Parse}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Can\-Parse}]{\setlength{\rightskip}{0pt plus 5cm}static bool Yarn.\-Parser.\-Custom\-Command.\-Can\-Parse (
+\begin{DoxyParamCaption}
+\item[{{\bf Parser}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [package]}}}\label{a00073_a02ee2902115c823bdb46715041b3a2f6}
+
+
+Definition at line 277 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Next\-Symbols\-Are().
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Statement().
+
+
+\begin{DoxyCode}
+278             \{
+279                 \textcolor{keywordflow}{return} p.NextSymbolsAre (TokenType.BeginCommand, TokenType.Text) ||
+280                     p.NextSymbolsAre (\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.BeginCommand, \hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeace}{TokenType}.Identifier);
+281             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00073_a02ee2902115c823bdb46715041b3a2f6_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00073_a02ee2902115c823bdb46715041b3a2f6_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a580e520a29444fc23ac3660cbe514a09}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Node\-Parent@{Node\-Parent}}
+\index{Node\-Parent@{Node\-Parent}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Node\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Yarn.\-Parser.\-Parse\-Node.\-Node\-Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a580e520a29444fc23ac3660cbe514a09}
+
+
+Definition at line 100 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option().
+
+
+\begin{DoxyCode}
+100                                        \{
+101                 var node = \textcolor{keyword}{this};
+102 
+103                 \textcolor{keywordflow}{do} \{
+104                     \textcolor{keywordflow}{if} (node is Node) \{
+105                         \textcolor{keywordflow}{return} node as Node;
+106                     \}
+107                     node = node.parent;
+108                 \} \textcolor{keywordflow}{while} (node
+109                     != null);
+110 
+111                 \textcolor{keywordflow}{return} null;
+112             \}
+\end{DoxyCode}
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a580e520a29444fc23ac3660cbe514a09_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Print\-Tree@{Print\-Tree}}
+\index{Print\-Tree@{Print\-Tree}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Print\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [virtual]}}}\label{a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b}
+
+
+Implements \hyperlink{a00138_a0d6611653f20c2e4d90a97a96c657137}{Yarn.\-Parser.\-Parse\-Node}.
+
+
+
+Definition at line 314 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Custom\-Command.\-client\-Command, Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Custom\-Command.\-type.
+
+
+\begin{DoxyCode}
+315             \{
+316                 \textcolor{keywordflow}{switch} (\hyperlink{a00073_a5ef3bc96812be224d91548bfcdfd4b92}{type}) \{
+317                 \textcolor{keywordflow}{case} Type.Expression:
+318                     \textcolor{keywordflow}{return} \hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Expression: "}) + expression.PrintTree (indentLevel + 1);
+319                 \textcolor{keywordflow}{case} Type.ClientCommand:
+320                     \textcolor{keywordflow}{return} \hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel, \textcolor{stringliteral}{"Command: "} + \hyperlink{a00073_a1a362244273df822233359d8fe4e9f5d}{clientCommand});
+321                 \}
+322                 \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+323 
+324             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00073_ad8c821f5f5671cdbac6e4a6fc0b9174b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a054f36c80d5eeacd569a8859f599af67}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!Tags\-To\-String@{Tags\-To\-String}}
+\index{Tags\-To\-String@{Tags\-To\-String}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{Tags\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String (
+\begin{DoxyParamCaption}
+\item[{int}]{indent\-Level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a054f36c80d5eeacd569a8859f599af67}
+
+
+Definition at line 78 of file Parser.\-cs.
+
+
+
+References Yarn.\-Parser.\-Tab(), and Yarn.\-Parser.\-Parse\-Node.\-tags.
+
+
+
+Referenced by Yarn.\-Parser.\-Statement.\-Print\-Tree(), and Yarn.\-Parser.\-Shortcut\-Option.\-Print\-Tree().
+
+
+\begin{DoxyCode}
+79             \{
+80                 \textcolor{keywordflow}{if} (\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}.Length > 0) \{
+81                     var s = \textcolor{keyword}{new} StringBuilder ();
+82 
+83                     s.Append (\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 1, \textcolor{stringliteral}{"Tags:"}));
+84                     \textcolor{keywordflow}{foreach} (var tag \textcolor{keywordflow}{in} this.\hyperlink{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{tags}) \{
+85                         s.Append(\hyperlink{a00139_aa8fa36b46de12a1c561d77b99c4b9ae3}{Tab} (indentLevel + 2, \textcolor{stringliteral}{"#"} + tag));
+86                     \}
+87                     \textcolor{keywordflow}{return} s.ToString ();
+88                 \} \textcolor{keywordflow}{else} \{
+89                     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+90                 \}
+91 
+92             \}
+\end{DoxyCode}
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00138_a054f36c80d5eeacd569a8859f599af67_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!To\-String@{To\-String}}
+\index{To\-String@{To\-String}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{To\-String}]{\setlength{\rightskip}{0pt plus 5cm}override string Yarn.\-Parser.\-Parse\-Node.\-To\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}}\label{a00138_a18c67cb16090d0889bb9d6c8c6c565f8}
+
+
+Definition at line 94 of file Parser.\-cs.
+
+
+\begin{DoxyCode}
+95             \{
+96                 \textcolor{keywordflow}{return} this.GetType ().Name;
+97             \}
+\end{DoxyCode}
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00073_ae8c56ff97c0a797245f2205c486833ea}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!configuration@{configuration}}
-\index{configuration@{configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{configuration}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-configuration\hspace{0.3cm}{\ttfamily [private]}}}\label{a00073_ae8c56ff97c0a797245f2205c486833ea}
+\hypertarget{a00138_a18b493382de0fde5b4299c1bd2250075}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!line\-Number@{line\-Number}}
+\index{line\-Number@{line\-Number}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{line\-Number}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Parser.\-Parse\-Node.\-line\-Number\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a18b493382de0fde5b4299c1bd2250075}
 
 
-Definition at line 17 of file Csv\-Serializer.\-cs.
-
-
-
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer().
-
-\hypertarget{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!disposed@{disposed}}
-\index{disposed@{disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Serializer.\-disposed\hspace{0.3cm}{\ttfamily [private]}}}\label{a00073_a2687885dae7f7b0eec3c2db81c05f7e4}
-
-
-Definition at line 16 of file Csv\-Serializer.\-cs.
+Definition at line 61 of file Parser.\-cs.
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
 
-\hypertarget{a00073_adfb235fa2c868fc79c0376fd12fda767}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!writer@{writer}}
-\index{writer@{writer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{writer}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Writer Csv\-Helper.\-Csv\-Serializer.\-writer\hspace{0.3cm}{\ttfamily [private]}}}\label{a00073_adfb235fa2c868fc79c0376fd12fda767}
-
-
-Definition at line 18 of file Csv\-Serializer.\-cs.
+\hypertarget{a00138_af313a82103fcc2ff5a177dbb06b92f7b}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!parent@{parent}}
+\index{parent@{parent}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Parse\-Node} Yarn.\-Parser.\-Parse\-Node.\-parent\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_af313a82103fcc2ff5a177dbb06b92f7b}
 
 
+Definition at line 58 of file Parser.\-cs.
 
-Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
+
+
+Referenced by Yarn.\-Parser.\-Parse\-Node.\-Parse\-Node().
+
+\hypertarget{a00138_a58b3a15788fd2d4127d73619dc6d04ae}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!tags@{tags}}
+\index{tags@{tags}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{tags}]{\setlength{\rightskip}{0pt plus 5cm}string \mbox{[}$\,$\mbox{]} Yarn.\-Parser.\-Parse\-Node.\-tags = \{\}\hspace{0.3cm}{\ttfamily [package]}, {\ttfamily [inherited]}}}\label{a00138_a58b3a15788fd2d4127d73619dc6d04ae}
+
+
+Definition at line 76 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Shortcut\-Option.\-Shortcut\-Option(), Yarn.\-Parser.\-Statement.\-Statement(), and Yarn.\-Parser.\-Parse\-Node.\-Tags\-To\-String().
+
+\hypertarget{a00073_a5ef3bc96812be224d91548bfcdfd4b92}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!type@{type}}
+\index{type@{type}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Type} Yarn.\-Parser.\-Custom\-Command.\-type\hspace{0.3cm}{\ttfamily [package]}}}\label{a00073_a5ef3bc96812be224d91548bfcdfd4b92}
+
+
+Definition at line 272 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command(), and Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree().
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00073_a2ae1b1a629b707fbfb7d636989442f34}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Configuration@{Configuration}}
-\index{Configuration@{Configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
-\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00073_a2ae1b1a629b707fbfb7d636989442f34}
+\hypertarget{a00073_a1a362244273df822233359d8fe4e9f5d}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!client\-Command@{client\-Command}}
+\index{client\-Command@{client\-Command}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{client\-Command}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Parser.\-Custom\-Command.\-client\-Command\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00073_a1a362244273df822233359d8fe4e9f5d}
 
 
-Gets the configuration. 
+Definition at line 275 of file Parser.\-cs.
 
 
 
-Definition at line 24 of file Csv\-Serializer.\-cs.
+Referenced by Yarn.\-Parser.\-Custom\-Command.\-Print\-Tree().
+
+\hypertarget{a00073_a4250d192d5b58e2404a14c68eb616f16}{\index{Yarn\-::\-Parser\-::\-Custom\-Command@{Yarn\-::\-Parser\-::\-Custom\-Command}!expression@{expression}}
+\index{expression@{expression}!Yarn::Parser::CustomCommand@{Yarn\-::\-Parser\-::\-Custom\-Command}}
+\subsubsection[{expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression} Yarn.\-Parser.\-Custom\-Command.\-expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [package]}}}\label{a00073_a4250d192d5b58e2404a14c68eb616f16}
+
+
+Definition at line 274 of file Parser.\-cs.
+
+
+
+Referenced by Yarn.\-Parser.\-Custom\-Command.\-Custom\-Command().
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00237}{Csv\-Serializer.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00295}{Parser.\-cs}\end{DoxyCompactItemize}

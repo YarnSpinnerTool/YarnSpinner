@@ -1,3 +1,3 @@
-<map id="TestDialogueUIBehaviour" name="TestDialogueUIBehaviour">
-<area shape="rect" id="node2" href="$a00089.html" title="Scripts that can act as the UI for the conversation should subclass this. " alt="" coords="5,131,224,282"/>
+<map id="YarnSpinnerParserBaseVisitor&lt; Result &gt;" name="YarnSpinnerParserBaseVisitor&lt; Result &gt;">
+<area shape="rect" id="node3" href="$a00115.html" title="This interface defines a complete generic visitor for a parse tree produced by YarnSpinnerParser. " alt="" coords="198,147,380,386"/>
 </map>

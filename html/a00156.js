@@ -1,35 +1,28 @@
 var a00156 =
 [
-    [ "SpecialVariables", "a00156.html#a00369", [
-      [ "ShuffleOptions", "a00156.html#aecbb8ab9becd96457d836100b2818078", null ]
+    [ "Type", "a00156.html#a518000e4e6219ce5f9f4229f505cd944", [
+      [ "CustomCommand", "a00156.html#a518000e4e6219ce5f9f4229f505cd944af6b081742758e5cbc3a2e679e521a4fe", null ],
+      [ "ShortcutOptionGroup", "a00156.html#a518000e4e6219ce5f9f4229f505cd944ae8a0b2e51320b69d57d378776ee0647a", null ],
+      [ "Block", "a00156.html#a518000e4e6219ce5f9f4229f505cd944ae1e4c8c9ccd9fc39c391da4bcd093fb2", null ],
+      [ "IfStatement", "a00156.html#a518000e4e6219ce5f9f4229f505cd944a69bf1eda358268e97a9d792c0e88b10d", null ],
+      [ "OptionStatement", "a00156.html#a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7", null ],
+      [ "AssignmentStatement", "a00156.html#a518000e4e6219ce5f9f4229f505cd944a4ee9d26530a9c097d63b74d383c48341", null ],
+      [ "Line", "a00156.html#a518000e4e6219ce5f9f4229f505cd944a4803e6b9e63dabf04de980788d6a13c4", null ]
     ] ],
-    [ "State", "a00159.html", "a00159" ],
-    [ "ExecutionState", "a00156.html#add28fa9c8a45ca579e84d05920bbc42d", [
-      [ "Stopped", "a00156.html#add28fa9c8a45ca579e84d05920bbc42dac23e2b09ebe6bf4cb5e2a9abe85c0be2", null ],
-      [ "WaitingOnOptionSelection", "a00156.html#add28fa9c8a45ca579e84d05920bbc42da74a2a0b3a4597e7a50714f9cea34772b", null ],
-      [ "Running", "a00156.html#add28fa9c8a45ca579e84d05920bbc42da5bda814c4aedb126839228f1a3d92f09", null ]
-    ] ],
-    [ "VirtualMachine", "a00156.html#aefa64c4353e5c261f1189649638e49a6", null ],
-    [ "CommandHandler", "a00156.html#a1b57359378059b134ba76acddafd8d81", null ],
-    [ "FindInstructionPointForLabel", "a00156.html#af613c8b2d098678b6ea05b509c0a0cb6", null ],
-    [ "LineHandler", "a00156.html#aac9ec1011ea2c01460044d7c8355f398", null ],
-    [ "NodeCompleteHandler", "a00156.html#a5bf3aa51578847c18191fec665a840f9", null ],
-    [ "OptionsHandler", "a00156.html#a78dfd54b743e53078eed19ab7be2b6cf", null ],
-    [ "ResetState", "a00156.html#a3ba945c66cb8ba031357a1771453f82b", null ],
-    [ "RunInstruction", "a00156.html#ad2caf9ca4f00cdcbd58983be7c106971", null ],
-    [ "RunNext", "a00156.html#af3cc0337914b9f66454a3d52208dba5f", null ],
-    [ "SetNode", "a00156.html#a6364593ea1115d65e34b343422cfbbbd", null ],
-    [ "Stop", "a00156.html#a78b8c4078471af59ba505c28824d84d1", null ],
-    [ "_executionState", "a00156.html#a0ae362616d85f028b7ec3230388926f4", null ],
-    [ "commandHandler", "a00156.html#ab89b02227b92c74552f719afd47848e4", null ],
-    [ "currentNode", "a00156.html#ab7594e14981ad75cecea3b2e7dcf895c", null ],
-    [ "dialogue", "a00156.html#ac506426c503da5f033247c29e11c5e82", null ],
-    [ "lineHandler", "a00156.html#a29b30454f068fc7e107d48bff4346fd9", null ],
-    [ "nodeCompleteHandler", "a00156.html#a5129c63e67e2d4e2780d86b8351320a2", null ],
-    [ "optionsHandler", "a00156.html#acd25fe2e3aa90dc87ba25d9af904465b", null ],
-    [ "program", "a00156.html#a2695dbfe3d9df7ffa3f13ad2231217fb", null ],
-    [ "random", "a00156.html#a408485a00c7cc558428c86ed9dd04fca", null ],
-    [ "state", "a00156.html#a70f2ce6201cdd2430ceaa764ac614ca0", null ],
-    [ "currentNodeName", "a00156.html#ab3afe8360a344c16c21213edb3641481", null ],
-    [ "executionState", "a00156.html#a66491da06023dabfb63d09e6ccbba74f", null ]
+    [ "Statement", "a00156.html#acba736ffbcc0f8bf5cee2b23f7733dff", null ],
+    [ "NodeParent", "a00156.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00156.html#aaac6d1e0c3b31f33e1c6f964c205153e", null ],
+    [ "TagsToString", "a00156.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00156.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "lineNumber", "a00156.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00156.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00156.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
+    [ "assignmentStatement", "a00156.html#a7fa97a80f1b9313bc2bd4194e3f75759", null ],
+    [ "block", "a00156.html#ac14dfc7210974b4cd86402ed011fb0b6", null ],
+    [ "customCommand", "a00156.html#a8a98e7d4c66f9909da865f0e671d69f2", null ],
+    [ "ifStatement", "a00156.html#a9a71577456598af0f25b23ccd02154e4", null ],
+    [ "line", "a00156.html#a37695c7b00776bb292fd64894a70fb72", null ],
+    [ "optionStatement", "a00156.html#a15020b7dab4983adbd185d5c2c2ebe84", null ],
+    [ "shortcutOptionGroup", "a00156.html#a54d73ad69c4af4a0d61edeaea4c8ca4f", null ],
+    [ "type", "a00156.html#aa3fa0eb260e412720562ce06b7dc06fe", null ]
 ];

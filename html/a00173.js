@@ -1,11 +1,8 @@
 var a00173 =
 [
-    [ "AddOptions", "a00173.html#a3f70014574bc374acbe8a152e9e741f2", null ],
-    [ "AddOptions< T >", "a00173.html#ab65b57d4c987d39e33bc136dfd5cb989", null ],
-    [ "GetOptions", "a00173.html#a2958beb79bb066c2b99c9fc97be9043d", null ],
-    [ "GetOptions< T >", "a00173.html#abff68f203e82218e5d9d316a81d90157", null ],
-    [ "RemoveOptions", "a00173.html#af5ceccd212df16bb55cf90cdcd76c286", null ],
-    [ "RemoveOptions< T >", "a00173.html#a201c3cd79a7bfe46424929150f2b84d8", null ],
-    [ "locker", "a00173.html#aeea3952a7ac1a8cb0291db079800ead4", null ],
-    [ "typeConverterOptions", "a00173.html#abef552dcc7a0c631d09fa8f2ea5fead4", null ]
+    [ "CanConvertFrom", "a00173.html#a2acfe170e7562c745bcb0aaff3d74020", null ],
+    [ "CanConvertFrom", "a00173.html#a470d21adaa704eb281250dbd112ff91a", null ],
+    [ "CanConvertTo", "a00173.html#acb65bd8c8199d88d5b1629ae35d18514", null ],
+    [ "ConvertFromString", "a00173.html#a15686325b6bfa7648b65f201ecf50cd2", null ],
+    [ "ConvertToString", "a00173.html#a36cb2f9b24f15a671293f3a722324c27", null ]
 ];

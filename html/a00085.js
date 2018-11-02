@@ -1,16 +1,9 @@
 var a00085 =
 [
-    [ "Severity", "a00085.html#a227813cbc8fa03c3448a612ffc909d1c", [
-      [ "Error", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd", null ],
-      [ "Warning", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa", null ],
-      [ "Note", "a00085.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec", null ]
-    ] ],
-    [ "Diagnosis", "a00085.html#ad3fd818f1be98dc803e5bec959153824", null ],
-    [ "ToString", "a00085.html#a4475eb5890c340da5c0012e25c2c86ae", null ],
-    [ "ToString", "a00085.html#a985dee7ca27aa896332590133606b6a9", null ],
-    [ "columnNumber", "a00085.html#a658e7fb05555c0f9ab5f80057bdc1408", null ],
-    [ "lineNumber", "a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0", null ],
-    [ "message", "a00085.html#ac7ed070dddd2613c08e7874ea5afb3af", null ],
-    [ "nodeName", "a00085.html#a662aca4ad2af5116c2cf6773daf1a847", null ],
-    [ "severity", "a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da", null ]
+    [ "DialogueComplete", "a00085.html#aecc60aee9e9386da1f71fb183f43c52d", null ],
+    [ "DialogueStarted", "a00085.html#af9d88ca81ac536d43046ca6572e3ff54", null ],
+    [ "NodeComplete", "a00085.html#a2900548a0704d39d4502a153945f4bef", null ],
+    [ "RunCommand", "a00085.html#a3dffe84b9e7a10fdec6749baf697d111", null ],
+    [ "RunLine", "a00085.html#a754c6dd0bc67895d11f878fe4477d698", null ],
+    [ "RunOptions", "a00085.html#ac5b29079f638f2ceb078627ef1e60004", null ]
 ];

@@ -1,89 +1,153 @@
-\hypertarget{a00049}{\section{Yarn.\-Compile\-Options Class Reference}
-\label{a00049}\index{Yarn.\-Compile\-Options@{Yarn.\-Compile\-Options}}
+\hypertarget{a00049}{\section{Csv\-Helper.\-Csv\-Bad\-Data\-Exception Class Reference}
+\label{a00049}\index{Csv\-Helper.\-Csv\-Bad\-Data\-Exception@{Csv\-Helper.\-Csv\-Bad\-Data\-Exception}}
 }
 
 
-Inheritance diagram for Yarn.\-Compile\-Options\-:
+Represents errors that occur due to bad data.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{a00732}
+\includegraphics[width=246pt]{a00401}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Compile\-Options\-:
+Collaboration diagram for Csv\-Helper.\-Csv\-Bad\-Data\-Exception\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=190pt]{a00733}
+\includegraphics[width=246pt]{a00402}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00086_a903f18cdcc66c28ceab5a43c41fe074d}{Dialogue.\-Compiled\-Format} \hyperlink{a00049_a9904ccfb1b0ff64df415c4fc9fe6eb1c}{format}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00035_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-bool \hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\item 
-I\-List$<$ string $>$ \hyperlink{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\end{DoxyCompactItemize}
+\hyperlink{a00049_a337ebca212c62127ba837ae726a0cc3a}{Csv\-Bad\-Data\-Exception} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class. \end{DoxyCompactList}\item 
+\hyperlink{a00049_a31da9e807053a75e8bd252aa792269eb}{Csv\-Bad\-Data\-Exception} (string message)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message. \end{DoxyCompactList}\item 
+\hyperlink{a00049_a2c210cf80604e58ffecc177f6f7c2547}{Csv\-Bad\-Data\-Exception} (string message, Exception inner\-Exception)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. \end{DoxyCompactList}\item 
+\hyperlink{a00049_abe956c9c100374953fd899bef2f2489f}{Csv\-Bad\-Data\-Exception} (Serialization\-Info info, Streaming\-Context context)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00056}{Csv\-Helper\-Exception} class with serialized data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 102 of file Main.\-cs.
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!files@{files}}
-\index{files@{files}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_aa93cbb1bc1d5328e0a417012621e92d2}
-
-
-Definition at line 47 of file Main.\-cs.
+Represents errors that occur due to bad data. 
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00049_a9904ccfb1b0ff64df415c4fc9fe6eb1c}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!format@{format}}
-\index{format@{format}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{format}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue.\-Compiled\-Format} Yarn.\-Compile\-Options.\-format\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00049_a9904ccfb1b0ff64df415c4fc9fe6eb1c}
-
-
-Definition at line 105 of file Main.\-cs.
-
-\hypertarget{a00035_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_a89964ea17bd19caf00cb5bff563ed01c}
-
-
-Definition at line 40 of file Main.\-cs.
+Definition at line 18 of file Csv\-Bad\-Data\-Exception.\-cs.
 
 
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00049_a337ebca212c62127ba837ae726a0cc3a}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00049_a337ebca212c62127ba837ae726a0cc3a}
 
-\hypertarget{a00035_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Compile\-Options@{Yarn\-::\-Compile\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::CompileOptions@{Yarn\-::\-Compile\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_ada4d83d1756918f362d55f6649b82b17}
 
-
-Definition at line 44 of file Main.\-cs.
+Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class. 
 
 
 
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+Definition at line 23 of file Csv\-Bad\-Data\-Exception.\-cs.
 
+
+\begin{DoxyCode}
+23 \{\}
+\end{DoxyCode}
+\hypertarget{a00049_a31da9e807053a75e8bd252aa792269eb}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{a00049_a31da9e807053a75e8bd252aa792269eb}
+
+
+Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message that describes the error.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file Csv\-Bad\-Data\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+30 : base( message ) \{\}
+\end{DoxyCode}
+\hypertarget{a00049_a2c210cf80604e58ffecc177f6f7c2547}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{string}]{message, }
+\item[{Exception}]{inner\-Exception}
+\end{DoxyParamCaption}
+)}}\label{a00049_a2c210cf80604e58ffecc177f6f7c2547}
+
+
+Initializes a new instance of the \hyperlink{a00049}{Csv\-Bad\-Data\-Exception} class with a specified error message and a reference to the inner exception that is the cause of this exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message that explains the reason for the exception.\\
+\hline
+{\em inner\-Exception} & The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Csv\-Bad\-Data\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+39 : base( message, innerException ) \{ \}
+\end{DoxyCode}
+\hypertarget{a00049_abe956c9c100374953fd899bef2f2489f}{\index{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}!Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}}
+\index{Csv\-Bad\-Data\-Exception@{Csv\-Bad\-Data\-Exception}!CsvHelper::CsvBadDataException@{Csv\-Helper\-::\-Csv\-Bad\-Data\-Exception}}
+\subsubsection[{Csv\-Bad\-Data\-Exception}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Bad\-Data\-Exception.\-Csv\-Bad\-Data\-Exception (
+\begin{DoxyParamCaption}
+\item[{Serialization\-Info}]{info, }
+\item[{Streaming\-Context}]{context}
+\end{DoxyParamCaption}
+)}}\label{a00049_abe956c9c100374953fd899bef2f2489f}
+
+
+Initializes a new instance of the \hyperlink{a00056}{Csv\-Helper\-Exception} class with serialized data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The Serialization\-Info that holds the serialized object data about the exception being thrown.\\
+\hline
+{\em context} & The Streaming\-Context that contains contextual information about the source or destination.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 48 of file Csv\-Bad\-Data\-Exception.\-cs.
+
+
+\begin{DoxyCode}
+48 : base( info, context ) \{\}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00313}{Main.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00223}{Csv\-Bad\-Data\-Exception.\-cs}\end{DoxyCompactItemize}

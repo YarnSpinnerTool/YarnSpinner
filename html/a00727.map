@@ -1,4 +1,3 @@
-<map id="Yarn.VerifyOptions" name="Yarn.VerifyOptions">
-<area shape="rect" id="node2" href="$a00097.html" title="{ExecutionOptions\n|+ stringTable\l+ onlyConsiderNode\l+ experimental\l|}" alt="" coords="20,160,160,267"/>
-<area shape="rect" id="node3" href="$a00035.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="16,5,164,112"/>
+<map id="Yarn.CompileOptions" name="Yarn.CompileOptions">
+<area shape="rect" id="node2" href="$a00031.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="4,5,152,112"/>
 </map>

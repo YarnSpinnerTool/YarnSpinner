@@ -1,5 +1,4 @@
-<map id="Yarn.ExecutionOptions" name="Yarn.ExecutionOptions">
-<area shape="rect" id="node3" href="$a00151.html" title="{Yarn.RunOptions\n|+ waitForInput\l+ startNode\l+ variables\l+ runTimes\l+ automaticallySelectFirst\lOption\l|}" alt="" coords="5,315,179,466"/>
-<area shape="rect" id="node4" href="$a00186.html" title="{Yarn.VerifyOptions\n|+ showTokensAndExit\l+ showParseTreeAndExit\l+ compileAndExit\l+ listVariables\l|}" alt="" coords="204,330,375,451"/>
-<area shape="rect" id="node2" href="$a00035.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="116,5,264,112"/>
+<map id="Yarn.RunOptions" name="Yarn.RunOptions">
+<area shape="rect" id="node2" href="$a00093.html" title="{ExecutionOptions\n|+ stringTable\l+ onlyConsiderNode\l+ experimental\l|}" alt="" coords="21,160,161,267"/>
+<area shape="rect" id="node3" href="$a00031.html" title="{BaseOptions\n|+ showDebuggingInfo\l+ verbose\l+ files\l|}" alt="" coords="17,5,165,112"/>
 </map>

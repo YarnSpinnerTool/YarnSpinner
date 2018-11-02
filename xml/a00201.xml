@@ -1,68 +1,221 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00201" kind="file">
-    <compoundname>README.md</compoundname>
+    <compoundname>Simple-Dialogue-Tutorial.md</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#<sp/>Yarn<sp/>Spinner</highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Simple<sp/>Yarn<sp/>Dialogue<sp/>-<sp/>Tutorial</highlight></codeline>
 <codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal">&lt;img<sp/>src=</highlight><highlight class="stringliteral">&quot;Documentation/YarnSpinnerLogo.png&quot;</highlight><highlight class="normal"><sp/>alt=</highlight><highlight class="stringliteral">&quot;Yarn<sp/>Spinner<sp/>logo&quot;</highlight><highlight class="normal"><sp/>width=</highlight><highlight class="stringliteral">&quot;100px;&quot;</highlight><highlight class="normal"><sp/>align=</highlight><highlight class="stringliteral">&quot;right&quot;</highlight><highlight class="normal">&gt;</highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">**[Yarn](https:</highlight><highlight class="comment">//github.com/infiniteammoinc/Yarn)**<sp/>is<sp/>a<sp/>language<sp/>that&apos;s<sp/>designed<sp/>to<sp/>make<sp/>it<sp/>*super<sp/>easy*<sp/>to<sp/>create<sp/>interactive<sp/>dialogue<sp/>for<sp/>games.<sp/>Yarn&apos;s<sp/>very<sp/>similar<sp/>in<sp/>style<sp/>to<sp/>[Twine](http://twinery.org),<sp/>so<sp/>if<sp/>you<sp/>already<sp/>know<sp/>that,<sp/>you&apos;ll<sp/>be<sp/>right<sp/>at<sp/>home!<sp/>If<sp/>you<sp/>don&apos;t,<sp/>that&apos;s<sp/>cool<sp/>-<sp/>Yarn&apos;s<sp/>syntax<sp/>is<sp/>extremely<sp/>minimal,<sp/>and<sp/>there&apos;s<sp/>not<sp/>much<sp/>there<sp/>to<sp/>learn.<sp/>The<sp/>Yarn<sp/>language<sp/>is<sp/>used<sp/>in<sp/>a<sp/>number<sp/>of<sp/>cool<sp/>games,<sp/>including<sp/>[Night<sp/>In<sp/>The<sp/>Woods](http://nightinthewoods.com)<sp/>and<sp/>[Knights<sp/>and<sp/>Bikes](https://www.kickstarter.com/projects/foamsword/knights-and-bikes).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">###<sp/>Style<sp/>Guide</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">`Inline<sp/>Code`<sp/>contain<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>snippets<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">&gt;<sp/>**New!**<sp/>Join<sp/>our<sp/>[narrative<sp/>game<sp/>development](http:</highlight><highlight class="comment">//lab.to/narrativegamedev)<sp/>Slack!</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">&gt;<sp/>**New!**<sp/>Continual<sp/>integration<sp/>[API<sp/>documentation](https:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)<sp/>now<sp/>available</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal">**Yarn<sp/>Spinner**<sp/>interprets<sp/>the<sp/>Yarn<sp/>language,<sp/>and<sp/>is<sp/>written<sp/>in<sp/>[C#](https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/C_Sharp_%28programming_language%29).<sp/>Yarn<sp/>Spinner<sp/>is<sp/>designed<sp/>to<sp/>be<sp/>easy<sp/>to<sp/>add<sp/>to<sp/>[Unity](http://www.unity3d.com)<sp/>games,<sp/>but<sp/>it&apos;s<sp/>also<sp/>intended<sp/>for<sp/>use<sp/>in<sp/>other<sp/>contexts<sp/>as<sp/>well.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">&gt;<sp/>***Important:***<sp/>Yarn<sp/>Spinner<sp/>is<sp/>still<sp/>under<sp/>development,<sp/>and<sp/>we<sp/>haven</highlight><highlight class="stringliteral">&apos;t<sp/>made<sp/>our<sp/>1.0<sp/>release<sp/>yet.<sp/>It&apos;</highlight><highlight class="normal">s<sp/>*probably*<sp/>fine<sp/>to<sp/>use<sp/>right<sp/>now,<sp/>but<sp/>there<sp/>are<sp/>a<sp/>few<sp/>bits<sp/>and<sp/>pieces<sp/>that<sp/>might<sp/>change<sp/>between<sp/>now<sp/>and<sp/>first<sp/>release.</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal">[![Build<sp/>Status](https:</highlight><highlight class="comment">//travis-ci.org/thesecretlab/YarnSpinner.svg?branch=master)](https://travis-ci.org/thesecretlab/YarnSpinner)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal">&lt;img<sp/>src=</highlight><highlight class="stringliteral">&quot;https://dl.dropbox.com/s/wcd7rspsdi6ifxk/NITW-Promo-Screenshot.jpg&quot;</highlight><highlight class="normal"><sp/>title=</highlight><highlight class="stringliteral">&quot;Night<sp/>in<sp/>the<sp/>Woods&quot;</highlight><highlight class="normal"><sp/>style=</highlight><highlight class="stringliteral">&quot;width:<sp/>80%;<sp/>margin:<sp/>0<sp/>auto;&quot;</highlight><highlight class="normal"><sp/>/&gt;</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal">&gt;<sp/>(Image<sp/>from<sp/></highlight><highlight class="stringliteral">&quot;[Night<sp/>in<sp/>the<sp/>Woods](http://nightinthewoods.com)&quot;</highlight><highlight class="normal"><sp/>by<sp/>Scott<sp/>Benson,<sp/>Bethany<sp/>Hockenberry<sp/>and<sp/>Alec<sp/>Holowka.<sp/>Used<sp/>with<sp/>permission.)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>Code<sp/>Blocks<sp/>contain<sp/>segments<sp/>or<sp/>chunks<sp/>of<sp/>code<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>your<sp/>project</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">**Bold<sp/>indicates<sp/>actions<sp/>(select<sp/>menu<sp/>item,<sp/>copying<sp/>file,<sp/>etc).**</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">***Bold<sp/>italic<sp/>text<sp/>indicates<sp/>emphasis.***</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">&gt;<sp/>Blockquotes<sp/>contain<sp/>essential<sp/>information</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Tutorial</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">&gt;<sp/>***Note:***<sp/>This<sp/>tutorial<sp/>assumes<sp/>that<sp/>you<sp/>know<sp/>nothing<sp/>about<sp/>writing<sp/>code,<sp/>in<sp/>particular<sp/>how<sp/>to<sp/>use<sp/>[Unity](http:</highlight><highlight class="comment">//www.unity3d.com)<sp/>or<sp/>the<sp/>Yarn<sp/>Editor.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">&gt;<sp/>You<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>not<sp/>need<sp/>to<sp/>know<sp/>how<sp/>to<sp/>use<sp/>those<sp/>tools<sp/>to<sp/>write<sp/>Yarn<sp/>Dialogue.<sp/>It<sp/>is<sp/>required<sp/>that<sp/>you<sp/>know<sp/>how<sp/>to<sp/>create<sp/>a<sp/>text<sp/>file<sp/>(.txt),<sp/>which<sp/>is<sp/>different<sp/>to<sp/>a<sp/>.doc,<sp/>.docx,<sp/>.rtf<sp/>etc.<sp/>document,<sp/>in<sp/>whatever<sp/>text<sp/>editor<sp/>you<sp/>are<sp/>most<sp/>comfortable<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal">.<sp/>Please<sp/>refer<sp/>to<sp/>your<sp/>friendly<sp/>local<sp/>computer<sp/>expert<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>are<sp/>unsure<sp/>how<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>this.</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">&gt;<sp/>As<sp/>you<sp/>learn<sp/>more<sp/>about<sp/>Yarn<sp/>Dialogue,<sp/>you<sp/>may<sp/>find<sp/>the<sp/>Yarn<sp/>Editor<sp/>useful<sp/>as<sp/>you<sp/>progress<sp/>with<sp/>your<sp/>authoring.<sp/>It<sp/>is<sp/>a<sp/>text<sp/>editor<sp/>that<sp/>is<sp/>designed<sp/>to<sp/>make<sp/>Yarn<sp/>Dialogue<sp/>easier<sp/>to<sp/>create.</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Quick<sp/>Start<sp/>-<sp/>Documentation</highlight></codeline>
-<codeline lineno="22"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">*<sp/><ref refid="a00045_1a301aa7c866593a5b625a8fc158bbeacea786887572f6ef1c20f2d8177cb2f1639" kindref="member">If</ref><sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>already<sp/>familiar<sp/>with<sp/>Unity,<sp/>we<sp/>recommend<sp/>you<sp/>head<sp/>straight<sp/>to<sp/>our<sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity<sp/>Quickstart](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-QuickStart.md)<sp/>document.</highlight></codeline>
-<codeline lineno="24"><highlight class="stringliteral">##<sp/>What<sp/>To<sp/>Do<sp/>Next</highlight></codeline>
-<codeline lineno="25"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="26"><highlight class="stringliteral">*<sp/>Learn<sp/>how<sp/>to<sp/>[build<sp/>Yarn<sp/>Spinner<sp/>from<sp/>source.](Documentation/YarnSpinner-Programming/Building.md)</highlight></codeline>
-<codeline lineno="27"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[Yarn](https://github.com/infiniteammoinc/Yarn),<sp/>and<sp/>the<sp/>Yarn<sp/>editor.</highlight></codeline>
-<codeline lineno="28"><highlight class="stringliteral">*<sp/>Learn<sp/>more<sp/>about<sp/>[writing<sp/>dialogue<sp/>in<sp/>Yarn.](Documentation/YarnSpinner-Dialogue/README.md)</highlight></codeline>
-<codeline lineno="29"><highlight class="stringliteral">*<sp/>Learn<sp/>about<sp/>using<sp/>[Yarn<sp/>Spinner<sp/>in<sp/>your<sp/>Unity](Documentation/YarnSpinner-Unity/README.md)<sp/>game.</highlight></codeline>
-<codeline lineno="30"><highlight class="stringliteral">*<sp/>If<sp/>you&apos;</highlight><highlight class="normal">re<sp/>unfamiliar<sp/>with<sp/>Unity,<sp/>refer<sp/>to<sp/>our<sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity<sp/>Step<sp/>by<sp/>Step](Documentation/YarnSpinner-Unity/YarnSpinner-with-Unity-StepByStep.md)<sp/>document.</highlight></codeline>
-<codeline lineno="31"><highlight class="normal">*<sp/>We<sp/>have<sp/>some<sp/>information<sp/>that<sp/>may<sp/>be<sp/>of<sp/>assistance<sp/>in<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>[Yarn<sp/>Spinner<sp/>With<sp/>Unity](Documentation/YarnSpinner-with-Unity/README.md)<sp/>on<sp/>your<sp/>system.</highlight></codeline>
-<codeline lineno="32"><highlight class="normal">*<sp/>Follow<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Twitter:<sp/>[http:</highlight><highlight class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>License</highlight></codeline>
-<codeline lineno="35"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal">Yarn<sp/>Spinner<sp/>is<sp/>available<sp/>under<sp/>the<sp/>[MIT<sp/>License](LICENSE.md).<sp/>This<sp/>means<sp/>that<sp/>you<sp/>can<sp/>use<sp/>it<sp/>in<sp/>any<sp/>commercial<sp/>or<sp/>noncommercial<sp/>project.<sp/>The<sp/>only<sp/>requirement<sp/>is<sp/>that<sp/>you<sp/>need<sp/>to<sp/>include<sp/>attribution<sp/>in<sp/>your<sp/>game</highlight><highlight class="stringliteral">&apos;s<sp/>docs.<sp/>A<sp/>credit<sp/>would<sp/>be<sp/>very,<sp/>very<sp/>nice,<sp/>too,<sp/>but<sp/>isn&apos;</highlight><highlight class="normal">t<sp/>required.<sp/>If<sp/>you</highlight><highlight class="stringliteral">&apos;d<sp/>like<sp/>to<sp/>know<sp/>more<sp/>about<sp/>what<sp/>this<sp/>license<sp/>lets<sp/>you<sp/>do<sp/>tldrlegal.com<sp/>have<sp/>a<sp/>[very<sp/>nice<sp/>write<sp/>up<sp/>about<sp/>the<sp/>MIT<sp/>license](https://tldrlegal.com/license/mit-license)<sp/>that<sp/>you<sp/>might<sp/>find<sp/>useful.</highlight></codeline>
-<codeline lineno="37"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="38"><highlight class="stringliteral">##<sp/>Made<sp/>by<sp/>Secret<sp/>Lab!</highlight></codeline>
-<codeline lineno="39"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="40"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>was<sp/>originally<sp/>created<sp/>by<sp/>[Secret<sp/>Lab](http://secretlab.com.au),<sp/>an<sp/>Australian<sp/>game<sp/>dev<sp/>studio.<sp/>[Come<sp/>say<sp/>hi](https://twitter.com/thesecretlab)!<sp/>You<sp/>can<sp/>visit<sp/>the<sp/>[Yarn<sp/>Spinner<sp/>page](http://www.secretlab.com.au/yarnspinner)<sp/>on<sp/>the<sp/>Secret<sp/>Lab<sp/>website<sp/>for<sp/>a<sp/>little<sp/>more<sp/>info,<sp/>and<sp/>to<sp/>donate<sp/>to<sp/>Yarn<sp/>Spinner<sp/>open<sp/>source<sp/>development<sp/>at<sp/>Secret<sp/>Lab.</highlight></codeline>
-<codeline lineno="41"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="42"><highlight class="stringliteral">The<sp/>awesome<sp/>[logo](Documentation/YarnSpinnerLogo.png)<sp/>was<sp/>made<sp/>by<sp/>the<sp/>excellent<sp/>[Rex<sp/>Smeal](https://twitter.com/RexSmeal),<sp/>and<sp/>is<sp/>under<sp/>the<sp/>[Creative<sp/>Commons<sp/>Attribution-ShareAlike<sp/>4.0<sp/>International<sp/>License](http://creativecommons.org/licenses/by-sa/4.0/).</highlight></codeline>
-<codeline lineno="43"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="44"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="45"><highlight class="stringliteral">##<sp/>Help<sp/>Us<sp/>Make<sp/>Yarn<sp/>Spinner!</highlight></codeline>
-<codeline lineno="46"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="47"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>needs<sp/>your<sp/>help<sp/>to<sp/>be<sp/>as<sp/>awesome<sp/>as<sp/>it<sp/>can<sp/>be!<sp/>You<sp/>don&apos;</highlight><highlight class="normal">t<sp/>have<sp/>to<sp/>be<sp/>a<sp/>coder<sp/>to<sp/>help<sp/>out<sp/>-<sp/>we</highlight><highlight class="stringliteral">&apos;d<sp/>love<sp/>to<sp/>have<sp/>your<sp/>help<sp/>in<sp/>improving<sp/>our<sp/>[documentation](Documentation/README.md),<sp/>in<sp/>spreading<sp/>the<sp/>word,<sp/>and<sp/>in<sp/>finding<sp/>bugs.</highlight></codeline>
-<codeline lineno="48"><highlight class="stringliteral"></highlight></codeline>
-<codeline lineno="49"><highlight class="stringliteral">*<sp/>Our<sp/>[issues<sp/>page](https://github.com/thesecretlab/YarnSpinner/issues)<sp/>contains<sp/>a<sp/>list<sp/>of<sp/>things<sp/>we&apos;</highlight><highlight class="normal">d<sp/>love<sp/>your<sp/>help<sp/>in<sp/>improving.</highlight></codeline>
-<codeline lineno="50"><highlight class="normal">*<sp/>Hop<sp/>into<sp/>our<sp/>IRC<sp/>channel,<sp/>which<sp/>is<sp/>[#yarnspinner<sp/>on<sp/>Freenode](https:</highlight><highlight class="comment">//webchat.freenode.net/?channels=yarnspinner),<sp/>to<sp/>chat<sp/>to<sp/>the<sp/>team,<sp/>lend<sp/>a<sp/>hand,<sp/>or<sp/>ask<sp/>questions.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal">*<sp/>**New!**<sp/>Join<sp/>our<sp/>discussion<sp/>on<sp/>Slack<sp/>by<sp/>requesting<sp/>an<sp/>invite<sp/>to<sp/>our<sp/>[narrative<sp/>game<sp/>development](http:</highlight><highlight class="comment">//lab.to/narrativegamedev)<sp/>channel.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal">*<sp/>**New!**<sp/>Continual<sp/>integration<sp/>[API<sp/>documentation](https:</highlight><highlight class="comment">//thesecretlab.github.io/YarnSpinner/html/)<sp/>now<sp/>available</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal">*<sp/>**New!**<sp/>Follow<sp/>Yarn<sp/>Spinner<sp/>on<sp/>Twitter:<sp/>[http:</highlight><highlight class="comment">//twitter.com/YarnSpinnerTool](http://twitter.com/YarnSpinnerTool)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal">If<sp/>you<sp/>want<sp/>to<sp/>contribute<sp/>to<sp/>Yarn<sp/>Spinner<sp/>(!!),<sp/>[go<sp/>read<sp/>our<sp/>contributor</highlight><highlight class="stringliteral">&apos;s<sp/>guide!](CONTRIBUTING.md)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">##<sp/>Introducing<sp/>Yarn<sp/>Dialogue</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Yarn<sp/>Dialogue<sp/>is<sp/>designed<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Authors<sp/>who<sp/>have<sp/>little<sp/>or<sp/>no<sp/>programming<sp/>knowledge.<sp/>It<sp/>makes<sp/>no<sp/>assumptions<sp/>about<sp/>how<sp/>your<sp/>game<sp/>presents<sp/>resultant<sp/>text<sp/>to<sp/>the<sp/>player,<sp/>or<sp/>about<sp/>how<sp/>the<sp/>player<sp/>chooses<sp/>their<sp/>responses.<sp/>These<sp/>tasks<sp/>are<sp/>left<sp/>to<sp/>the<sp/>game<sp/>production<sp/>team,<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>programming<sp/>and<sp/>design<sp/>tools<sp/>such<sp/>as<sp/>Unity3D<sp/>and<sp/>C#.</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">###<sp/>Simple<sp/>Example<sp/>Script</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">We<sp/>will<sp/>create<sp/>the<sp/>essential<sp/>Yarn<sp/>Dialogue<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>[Simple<sp/>Example<sp/>Dialogue](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt).<sp/>We<sp/>will<sp/>start<sp/>off<sp/>with<sp/>the<sp/>text<sp/>as<sp/>presented<sp/>by<sp/>the<sp/>ingame<sp/>characters,<sp/>add<sp/>in<sp/>choices<sp/>which<sp/>are<sp/>essentially<sp/>what<sp/>the<sp/>player<sp/>says<sp/>to<sp/>the<sp/>characters,<sp/>and<sp/>have<sp/>the<sp/>characters<sp/>react<sp/>to<sp/>the<sp/>choices.</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">Each<sp/>section<sp/>of<sp/>text<sp/>in<sp/>Yarn<sp/>Dialogue<sp/>is<sp/>known<sp/>as<sp/>a<sp/>***node***.</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">A<sp/>***node***<sp/>consists<sp/>of<sp/>***header<sp/>data***<sp/>and<sp/>***body<sp/>data***.<sp/>The<sp/>header<sp/>data<sp/>provides<sp/>information<sp/>about<sp/>the<sp/>body<sp/>data,<sp/>and<sp/>the<sp/>body<sp/>data<sp/>contains<sp/>Yarn<sp/>Dialogue<sp/>and<sp/>options<sp/>relating<sp/>to<sp/>the<sp/>Dialogue.</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">In<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example,<sp/>our<sp/>first<sp/>node<sp/>commences<sp/>with<sp/>two<sp/>characters,<sp/>A<sp/>and<sp/>B.</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">We<sp/>need<sp/>to<sp/>give<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>node<sp/>a<sp/>title,<sp/>and<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>example<sp/>we<sp/>will<sp/>call<sp/>it<sp/>***start***.<sp/>There<sp/>is<sp/>no<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>title,<sp/>it<sp/>can<sp/>be<sp/>anything<sp/>you<sp/>like.</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">title:<sp/>start</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">&gt;<sp/>Node<sp/>titles<sp/>are<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>sensitive.<sp/>The<sp/>titles<sp/>***start***,<sp/>***Start***,<sp/>***START***<sp/>and<sp/>***StArT***<sp/>are<sp/>different.</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">&gt;<sp/>There<sp/>is<sp/>no<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal"><sp/>title.<sp/>You<sp/>will<sp/>need<sp/>to<sp/>ensure<sp/>that<sp/>your<sp/>game<sp/>programmers<sp/>know<sp/>which<sp/>node<sp/>your<sp/>game<sp/>starts<sp/>on,<sp/>as<sp/>it<sp/>may<sp/>not<sp/>necessarily<sp/>be<sp/>the<sp/>first<sp/>node<sp/>in<sp/>your<sp/>Yarn<sp/>Dialogue<sp/>file.</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">The<sp/>title<sp/>tag<sp/>is<sp/>part<sp/>of<sp/>a<sp/>collection<sp/>of<sp/>data<sp/>known<sp/>as<sp/>***header<sp/>data***<sp/>that<sp/>can<sp/>refer<sp/>to<sp/>position,<sp/>colour<sp/>and<sp/>other<sp/>information<sp/>about<sp/>the<sp/>Dialogue.<sp/>While<sp/>the<sp/>title<sp/>tag<sp/>is<sp/>required,<sp/>these<sp/>other<sp/>header<sp/>data<sp/>tags<sp/>are<sp/>optional<sp/>and<sp/>generally<sp/>used<sp/>later<sp/>in<sp/>game<sp/>development<sp/>when<sp/>the<sp/>Dialogue<sp/>is<sp/>attached<sp/>to<sp/>scenes<sp/>and<sp/>graphical<sp/>characters.</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">To<sp/>seperate<sp/>the<sp/>***header<sp/>data***<sp/>from<sp/>the<sp/>***body<sp/>data***<sp/>in<sp/>the<sp/>node,<sp/>we<sp/>then<sp/>add<sp/>in<sp/>three<sp/>`-`<sp/>characters,<sp/>known<sp/>as<sp/>a<sp/>header<sp/>delimiter.</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">We<sp/>can<sp/>now<sp/>add<sp/>the<sp/>starting<sp/>text<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>our<sp/>characters<sp/>A<sp/>and<sp/>B.<sp/>Their<sp/>Dialogue<sp/>is<sp/>so:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="53"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="54"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="55"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="56"><highlight class="stringliteral">To<sp/>indicate<sp/>the<sp/>end<sp/>of<sp/>the<sp/>node,<sp/>we<sp/>add<sp/>three<sp/>`=`<sp/>characters.<sp/>This<sp/>is<sp/>called<sp/>a<sp/>***node<sp/>delimiter***</highlight></codeline>
+<codeline lineno="57"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="58"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="61"><highlight class="stringliteral">Your<sp/>***node***<sp/>should<sp/>now<sp/>look<sp/>like<sp/>this</highlight></codeline>
+<codeline lineno="62"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral">title:<sp/>start</highlight></codeline>
+<codeline lineno="64"><highlight class="stringliteral">---</highlight></codeline>
+<codeline lineno="65"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">Congratulations,<sp/>you</highlight><highlight class="stringliteral">&apos;ve<sp/>just<sp/>written<sp/>your<sp/>very<sp/>first<sp/>piece<sp/>of<sp/>Yarn<sp/>Dialogue!</highlight></codeline>
+<codeline lineno="71"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="72"><highlight class="stringliteral">###<sp/>Adding<sp/>Options<sp/>and<sp/>Replies</highlight></codeline>
+<codeline lineno="73"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="74"><highlight class="stringliteral">####<sp/>Options</highlight></codeline>
+<codeline lineno="75"><highlight class="stringliteral">The<sp/>next<sp/>step<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>take<sp/>is<sp/>to<sp/>add<sp/>in<sp/>some<sp/>options<sp/>to<sp/>present<sp/>to<sp/>the<sp/>player.<sp/>We<sp/>wish<sp/>to<sp/>present<sp/>the<sp/>player<sp/>with<sp/>the<sp/>choice<sp/>of<sp/>two<sp/>options.<sp/>To<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>we<sp/>use<sp/>the<sp/>`-&gt;`<sp/>marker<sp/>as<sp/>the<sp/>first<sp/>characters<sp/>in<sp/>our<sp/>line<sp/>of<sp/>text<sp/>to<sp/>tell<sp/>the<sp/>system<sp/>the<sp/>text<sp/>is<sp/>an<sp/>option.</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">We<sp/>add<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>after<sp/>the<sp/>A<sp/>and<sp/>B<sp/>character<sp/>Dialogue,<sp/>but<sp/>before<sp/>the<sp/>ending<sp/>tag.</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral">Our<sp/>Yarn<sp/>Dialogue<sp/>now<sp/>reads<sp/>as<sp/>like<sp/>this:</highlight></codeline>
+<codeline lineno="84"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="85"><highlight class="stringliteral">title:<sp/>start</highlight></codeline>
+<codeline lineno="86"><highlight class="stringliteral">---</highlight></codeline>
+<codeline lineno="87"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="90"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="91"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="92"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral">####<sp/>Replies</highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral">Options<sp/>aren&apos;</highlight><highlight class="normal">t<sp/>really<sp/>that<sp/>useful<sp/>without<sp/>a<sp/>***reply***.<sp/>Replies<sp/>are<sp/>indented<sp/>with<sp/>four<sp/>spaces.</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
+<codeline lineno="99"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="100"><highlight class="stringliteral">The<sp/>reply<sp/>is<sp/>placed<sp/>immediately<sp/>after<sp/>the<sp/>option<sp/>to<sp/>which<sp/>it<sp/>is<sp/>connected.<sp/>We&apos;</highlight><highlight class="normal">ll<sp/>add<sp/>the<sp/>above<sp/>replies<sp/>to<sp/>the<sp/>first<sp/>option,<sp/>resulting<sp/>in<sp/>our<sp/>Yarn<sp/>Dialogue<sp/>now<sp/>looking<sp/>like<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">title:<sp/>start</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="105"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="106"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
+<codeline lineno="109"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="110"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="111"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="112"><highlight class="stringliteral">&gt;<sp/>Note:<sp/>The<sp/>order<sp/>of<sp/>the<sp/>reply<sp/>is<sp/>important.<sp/>In<sp/>the<sp/>above<sp/>example,<sp/>Character<sp/>A<sp/>replies,<sp/>then<sp/>Character<sp/>B.<sp/>We<sp/>could<sp/>easily<sp/>reverse<sp/>these<sp/>lines<sp/>if<sp/>we<sp/>wanted<sp/>Character<sp/>B<sp/>to<sp/>reply<sp/>first.</highlight></codeline>
+<codeline lineno="113"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="114"><highlight class="stringliteral">Finishing<sp/>up<sp/>here,<sp/>we&apos;</highlight><highlight class="normal">ll<sp/>end<sp/>the<sp/>Dialogue<sp/>with<sp/>a<sp/>pleasantary.</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">A:<sp/>How<sp/>delightful!</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">We<sp/>now<sp/>have:</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">title:<sp/>start</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="124"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="125"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
+<codeline lineno="128"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="129"><highlight class="stringliteral">A:<sp/>How<sp/>delightful!</highlight></codeline>
+<codeline lineno="130"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="131"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="132"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="133"><highlight class="stringliteral">###<sp/>Branching<sp/>to<sp/>New<sp/>Nodes</highlight></codeline>
+<codeline lineno="134"><highlight class="stringliteral">Additional<sp/>nodes<sp/>can<sp/>be<sp/>added<sp/>to<sp/>extend<sp/>the<sp/>story.<sp/>These<sp/>further<sp/>nodes<sp/>can<sp/>introduce<sp/>new<sp/>characters,<sp/>actions<sp/>or<sp/>provide<sp/>different<sp/>options<sp/>and<sp/>replies.</highlight></codeline>
+<codeline lineno="135"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="136"><highlight class="stringliteral">We<sp/>will<sp/>now<sp/>present<sp/>the<sp/>player<sp/>with<sp/>options<sp/>of<sp/>selecting<sp/>what<sp/>to<sp/>do<sp/>next.</highlight></codeline>
+<codeline lineno="137"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="138"><highlight class="stringliteral">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/>do<sp/>next?</highlight></codeline>
+<codeline lineno="139"><highlight class="stringliteral">[[Leave|Leave]]</highlight></codeline>
+<codeline lineno="140"><highlight class="stringliteral">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
+<codeline lineno="141"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="142"><highlight class="stringliteral">The<sp/>square<sp/>double<sp/>braces,<sp/>`[[`<sp/>and<sp/>`]]`,<sp/>indicate<sp/>a<sp/>branch<sp/>to<sp/>a<sp/>different<sp/>node.<sp/>The<sp/>vertical<sp/>bar,<sp/>``|``,<sp/>separates<sp/>the<sp/>string<sp/>to<sp/>be<sp/>presented<sp/>to<sp/>the<sp/>player<sp/>(the<sp/>option),<sp/>from<sp/>the<sp/>destination<sp/>***node<sp/>name***.<sp/>Presentation<sp/>of<sp/>the<sp/>new<sp/>node<sp/>will<sp/>commence<sp/>once<sp/>the<sp/>player<sp/>has<sp/>selected<sp/>their<sp/>chosen<sp/>option<sp/>text.<sp/>Thus,<sp/>the<sp/>above<sp/>code<sp/>will<sp/>present<sp/>the<sp/>player<sp/>with<sp/>two<sp/>choices,<sp/>&apos;</highlight><highlight class="normal">Leave</highlight><highlight class="stringliteral">&apos;<sp/>and<sp/>&apos;</highlight><highlight class="normal">Learn<sp/>More</highlight><highlight class="stringliteral">&apos;.<sp/>These<sp/>options<sp/>will<sp/>take<sp/>the<sp/>player<sp/>to<sp/>the<sp/>&apos;</highlight><highlight class="normal">Leave</highlight><highlight class="stringliteral">&apos;<sp/>and<sp/>&apos;</highlight><highlight class="normal">LearnMore</highlight><highlight class="stringliteral">&apos;<sp/>nodes<sp/>respectively.</highlight></codeline>
+<codeline lineno="143"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral">&gt;<sp/>Note:<sp/>***Node<sp/>names***<sp/>must<sp/>be<sp/>a<sp/>single<sp/>string,<sp/>that<sp/>is<sp/>to<sp/>say<sp/>they<sp/>cannot<sp/>have<sp/>spaces<sp/>in<sp/>them.</highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="146"><highlight class="stringliteral">Our<sp/>Dialogue<sp/>now<sp/>reads<sp/>like<sp/>this:</highlight></codeline>
+<codeline lineno="147"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="148"><highlight class="stringliteral">title:<sp/>Start</highlight></codeline>
+<codeline lineno="149"><highlight class="stringliteral">---</highlight></codeline>
+<codeline lineno="150"><highlight class="stringliteral">A:<sp/>Hey,<sp/>I&apos;</highlight><highlight class="normal">m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">-&gt;<sp/>What</highlight><highlight class="stringliteral">&apos;s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="153"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/>this<sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
+<codeline lineno="154"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you&apos;</highlight><highlight class="normal">re<sp/>in<sp/>it!</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">A:<sp/>How<sp/>delightful!</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>next?</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">[[Leave|Leave]]</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal">All<sp/>we<sp/>need<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>now<sp/>is<sp/>add<sp/>in<sp/>two<sp/>more<sp/>nodes,<sp/>the<sp/>Leave<sp/>and<sp/>LearnMore<sp/>nodes.<sp/>We</highlight><highlight class="stringliteral">&apos;ll<sp/>add<sp/>a<sp/>little<sp/>bit<sp/>of<sp/>conversation<sp/>in<sp/>to<sp/>Characters<sp/>A<sp/>and<sp/>B<sp/>just<sp/>to<sp/>differentiate<sp/>between<sp/>the<sp/>two<sp/>nodes.</highlight></codeline>
+<codeline lineno="164"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="165"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="166"><highlight class="stringliteral">title:<sp/>Leave</highlight></codeline>
+<codeline lineno="167"><highlight class="stringliteral">---</highlight></codeline>
+<codeline lineno="168"><highlight class="stringliteral">A:<sp/>Oh,<sp/>goodbye!</highlight></codeline>
+<codeline lineno="169"><highlight class="stringliteral">B:<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>be<sp/>back<sp/>soon!</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">title:<sp/>LearnMore</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">A:<sp/>HAHAHA</highlight></codeline>
+<codeline lineno="174"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal">Our<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>Yarn<sp/>Dialogue<sp/>file<sp/>will<sp/>read<sp/>such:</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">title:<sp/>Start</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">A:<sp/>Hey,<sp/>I</highlight><highlight class="stringliteral">&apos;m<sp/>a<sp/>character<sp/>in<sp/>a<sp/>script!</highlight></codeline>
+<codeline lineno="182"><highlight class="stringliteral">B:<sp/>And<sp/>I<sp/>am<sp/>too!<sp/>You<sp/>are<sp/>talking<sp/>to<sp/>me!</highlight></codeline>
+<codeline lineno="183"><highlight class="stringliteral">-&gt;<sp/>What&apos;</highlight><highlight class="normal">s<sp/>going<sp/>on</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>A:<sp/>Why<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>is<sp/>a<sp/>demo<sp/>of<sp/>the<sp/>script<sp/>system!</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>B:<sp/>And<sp/>you</highlight><highlight class="stringliteral">&apos;re<sp/>in<sp/>it!</highlight></codeline>
+<codeline lineno="186"><highlight class="stringliteral">-&gt;<sp/>Um<sp/>ok</highlight></codeline>
+<codeline lineno="187"><highlight class="stringliteral">A:<sp/>How<sp/>delightful!</highlight></codeline>
+<codeline lineno="188"><highlight class="stringliteral">B:<sp/>What<sp/>would<sp/>you<sp/>prefer<sp/>to<sp/>do<sp/>next?</highlight></codeline>
+<codeline lineno="189"><highlight class="stringliteral">[[Leave|Leave]]</highlight></codeline>
+<codeline lineno="190"><highlight class="stringliteral">[[Learn<sp/>more|LearnMore]]</highlight></codeline>
+<codeline lineno="191"><highlight class="stringliteral">===</highlight></codeline>
+<codeline lineno="192"><highlight class="stringliteral">title:<sp/>Leave</highlight></codeline>
+<codeline lineno="193"><highlight class="stringliteral">---</highlight></codeline>
+<codeline lineno="194"><highlight class="stringliteral">A:<sp/>Oh,<sp/>goodbye!</highlight></codeline>
+<codeline lineno="195"><highlight class="stringliteral">B:<sp/>You&apos;</highlight><highlight class="normal">ll<sp/>be<sp/>back<sp/>soon!</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">title:<sp/>LearnMore</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">---</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">A:<sp/>HAHAHA</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">===</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal">##<sp/>Live<sp/>example</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal">We<sp/>have<sp/>a<sp/>fully<sp/>parsed<sp/>version<sp/>of<sp/>the<sp/>above<sp/>Yarn<sp/>Dialogue<sp/>available<sp/>in<sp/>our<sp/>Unity<sp/>examples<sp/>directory<sp/>as<sp/>[Simple<sp/>Example<sp/>Script](../Unity/Assets/YarnSpinner/Examples/DemoAssets/SimpleExampleScript.yarn.txt).<sp/>Please<sp/>note<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>differs<sp/>from<sp/>the<sp/>above<sp/>Yarn<sp/>Dialogue<sp/>in<sp/>a<sp/>couple<sp/>of<sp/>minor,<sp/>yet<sp/>important<sp/>points:</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">*<sp/>Extra<sp/>header<sp/>tags<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>colour<sp/>and<sp/>position<sp/>of<sp/>the<sp/>Dialogue<sp/>within<sp/>the<sp/>Yarn<sp/>Editor,<sp/>and<sp/>not<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>within<sp/>the<sp/>game<sp/>environment.<sp/><ref refid="a00041_1a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675" kindref="member">Text</ref><sp/>placement,<sp/>colourising,<sp/>and<sp/>font<sp/>selection<sp/>is<sp/>considered<sp/>to<sp/>be<sp/>the<sp/>domain<sp/>of<sp/>design<sp/>and<sp/>programming<sp/>and<sp/>thus<sp/>outside<sp/>the<sp/>scope<sp/>of<sp/>Dialogue.</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">*<sp/>Translation<sp/>tags<sp/>to<sp/>aide<sp/>with<sp/>localization</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">These<sp/>differences<sp/>are<sp/>generally<sp/>created<sp/>by<sp/>programmers.<sp/>It<sp/>is<sp/>envisaged<sp/>that<sp/>in<sp/>the<sp/>future<sp/>they<sp/>will<sp/>be<sp/>automatically<sp/>generated<sp/>by<sp/>a<sp/>Yarn<sp/>Dialogue<sp/>editor.</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/README.md"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Documentation/YarnSpinner-Dialogue/Simple-Dialogue-Tutorial.md"/>
   </compounddef>
 </doxygen>

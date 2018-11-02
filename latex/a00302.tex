@@ -1,101 +1,32 @@
-\hypertarget{a00302}{\section{Yarn\-Spinner/\-Program.cs File Reference}
-\label{a00302}\index{Yarn\-Spinner/\-Program.\-cs@{Yarn\-Spinner/\-Program.\-cs}}
+\hypertarget{a00302}{\section{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Visitor.cs File Reference}
+\label{a00302}\index{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs@{Yarn\-Spinner/\-Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs}}
 }
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{a00141}{Yarn.\-Parse\-Exception}
-\item 
-struct \hyperlink{a00125}{Yarn.\-Line\-Info}
-\item 
-class \hyperlink{a00146}{Yarn.\-Program}
-\item 
-class \hyperlink{a00045_a00367}{Yarn.\-Node}
-\item 
-struct \hyperlink{a00113}{Yarn.\-Instruction}
-\end{DoxyCompactItemize}
-\subsection*{Namespaces}
+class \hyperlink{a00187}{Yarn\-Spinner\-Parser\-Base\-Visitor$<$ Result $>$}
+\begin{DoxyCompactList}\small\item\em This class provides an empty implementation of I\-Yarn\-Spinner\-Parser\-Visitor\{\-Result\}, which can be extended to create a visitor which only needs to handle a subset of the available methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-package \hyperlink{a00045}{Yarn}
-\end{DoxyCompactItemize}
-\subsection*{Enumerations}
-\begin{DoxyCompactItemize}
+using \hyperlink{a00302_ae3d87b0b748ea892bff48f60862e182d}{I\-Token} = Antlr4.\-Runtime.\-I\-Token
 \item 
-enum \hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894}{Yarn.\-Byte\-Code} \{ \\*
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894ab021df6aac4654c454f46c77646e745f}{Yarn.\-Byte\-Code.\-Label}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894acd664ebca0b52a8f2ece7d0767bacb49}{Yarn.\-Byte\-Code.\-Jump\-To}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a101f693f72287a2819a364f64ca1c0ed}{Yarn.\-Byte\-Code.\-Jump}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a005c6df9c6edea5516e29d96571fbbbc}{Yarn.\-Byte\-Code.\-Run\-Line}, 
-\\*
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a64d231d79e9f7640a4572f7ae75aa226}{Yarn.\-Byte\-Code.\-Run\-Command}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a0e6a6b9eb32a4d55f277d45eff74250d}{Yarn.\-Byte\-Code.\-Add\-Option}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a658963e1a47a5018fd1e6fbc2af804f7}{Yarn.\-Byte\-Code.\-Show\-Options}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a3e7800d36ccb7bfe6c463bbe7db7e41a}{Yarn.\-Byte\-Code.\-Push\-String}, 
-\\*
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a29c8f5d9d5088ada190ccd9c21c31f33}{Yarn.\-Byte\-Code.\-Push\-Number}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894af698d0b66ccf00f7d362c039949d1b80}{Yarn.\-Byte\-Code.\-Push\-Bool}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894acf728db6b8e47e735666156aec7ae755}{Yarn.\-Byte\-Code.\-Push\-Null}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894af8bbf32f00c942d974ade428e24b021f}{Yarn.\-Byte\-Code.\-Jump\-If\-False}, 
-\\*
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a0ae61bd0474e04c9f1195d4baa0213a0}{Yarn.\-Byte\-Code.\-Pop}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a3b5e7e8300dc6e4b78cb865c5b10f01a}{Yarn.\-Byte\-Code.\-Call\-Func}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894ab8c46f65015a178516fadbb5ad6c2038}{Yarn.\-Byte\-Code.\-Push\-Variable}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a872dc050abaff4beb46e70dadd4088c2}{Yarn.\-Byte\-Code.\-Store\-Variable}, 
-\\*
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894a11a755d598c0c417f9a36758c3da7481}{Yarn.\-Byte\-Code.\-Stop}, 
-\hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894ae956bcf888278c168ee9b106927ff6ac}{Yarn.\-Byte\-Code.\-Run\-Node}
- \}
+using \hyperlink{a00302_a7e45f8222713cb764832fd3c69d0268f}{Parser\-Rule\-Context} = Antlr4.\-Runtime.\-Parser\-Rule\-Context
 \end{DoxyCompactItemize}
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Node@{Yarn\-::\-Node}}\label{a00367}
-\hypertarget{a00045_a00367}{}
-\subsubsection{class Yarn\-:\-:Node}
+\subsection{Typedef Documentation}
+\hypertarget{a00302_ae3d87b0b748ea892bff48f60862e182d}{\index{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs@{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs}!I\-Token@{I\-Token}}
+\index{I\-Token@{I\-Token}!YarnSpinnerParserBaseVisitor.cs@{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs}}
+\subsubsection[{I\-Token}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf I\-Token} =  Antlr4.\-Runtime.\-I\-Token}}\label{a00302_ae3d87b0b748ea892bff48f60862e182d}
 
 
-Definition at line 246 of file Program.\-cs.
+Definition at line 24 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
+
+\hypertarget{a00302_a7e45f8222713cb764832fd3c69d0268f}{\index{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs@{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs}!Parser\-Rule\-Context@{Parser\-Rule\-Context}}
+\index{Parser\-Rule\-Context@{Parser\-Rule\-Context}!YarnSpinnerParserBaseVisitor.cs@{Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs}}
+\subsubsection[{Parser\-Rule\-Context}]{\setlength{\rightskip}{0pt plus 5cm}using {\bf Parser\-Rule\-Context} =  Antlr4.\-Runtime.\-Parser\-Rule\-Context}}\label{a00302_a7e45f8222713cb764832fd3c69d0268f}
 
 
+Definition at line 25 of file Yarn\-Spinner\-Parser\-Base\-Visitor.\-cs.
 
-Collaboration diagram for Yarn.\-Node\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=190pt]{a00381}
-\end{center}
-\end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00045_a156723a9252b62d288ddf611939ea7c3}{List$<$ \hyperlink{a00113}{Instruction} $>$}\label{a00045_a156723a9252b62d288ddf611939ea7c3}
-&
-instructions&
-\\
-\hline
-
-\hypertarget{a00045_a9afa49f4fbc72e806a0210cb4198f12e}{Dictionary$<$ string, int $>$}\label{a00045_a9afa49f4fbc72e806a0210cb4198f12e}
-&
-labels&
-\\
-\hline
-
-\hypertarget{a00045_a107b0de3fcfc65e99913edc01b5ce9db}{string}\label{a00045_a107b0de3fcfc65e99913edc01b5ce9db}
-&
-name&
-\\
-\hline
-
-\hypertarget{a00045_a09c6af5b50925d0876283b84281b3ed4}{string}\label{a00045_a09c6af5b50925d0876283b84281b3ed4}
-&
-source\-Text\-String\-I\-D&
-the entry in the program's string table that contains the original text of this node; null if this is not available \\
-\hline
-
-\hypertarget{a00045_a811086feceebbe79a74eba071c1d516b}{List$<$ string $>$}\label{a00045_a811086feceebbe79a74eba071c1d516b}
-&
-tags&
-\\
-\hline
-
-\end{DoxyFields}

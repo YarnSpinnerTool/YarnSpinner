@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Analysis.Diagnosis Class Reference</title>
+<title>YarnSpinner: Yarn.Unity.DialogueUIBehaviour Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,122 +107,232 @@ $(document).ready(function(){initNavTree('a00085.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="a00752.html">List of all members</a>  </div>
+<a href="a00767.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Analysis.Diagnosis Class Reference</div>  </div>
+<div class="title">Yarn.Unity.DialogueUIBehaviour Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Scripts that can act as the UI for the conversation should subclass this.  
+ <a href="a00085.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.Diagnosis:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Unity.DialogueUIBehaviour:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00753.png" border="0" usemap="#_yarn_8_analysis_8_diagnosis_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_analysis_8_diagnosis_coll__map" id="_yarn_8_analysis_8_diagnosis_coll__map">
+<div class="center"><img src="a00768.png" border="0" usemap="#_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map" id="_yarn_8_unity_8_dialogue_u_i_behaviour_inherit__map">
+<area shape="rect" id="node3" href="a00161.html" title="{TestDialogueUIBehaviour\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l&#45; expectedLines\l&#45; expectedOptions\l|+ ExpectLine()\l+ SelectOption()\l+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ RunLine()\l+ RunOptions()\l+ RunCommand()\l}" alt="" coords="5,346,176,585"/><area shape="rect" id="node4" href="a00091.html" title="Displays dialogue lines to the player, and sends user choices back to the dialogue system..." alt="" coords="200,331,395,599"/></map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.DialogueUIBehaviour:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00769.png" border="0" usemap="#_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map" id="_yarn_8_unity_8_dialogue_u_i_behaviour_coll__map">
 </map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a227813cbc8fa03c3448a612ffc909d1c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Severity</a> { <a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd">Severity.Error</a>, 
-<a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa">Severity.Warning</a>, 
-<a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec">Severity.Note</a>
- }</td></tr>
-<tr class="separator:a227813cbc8fa03c3448a612ffc909d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad3fd818f1be98dc803e5bec959153824"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#ad3fd818f1be98dc803e5bec959153824">Diagnosis</a> (string <a class="el" href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">message</a>, <a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Severity</a> <a class="el" href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">severity</a>, string <a class="el" href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">nodeName</a>=null, int <a class="el" href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">lineNumber</a>=-1, int <a class="el" href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">columnNumber</a>=-1)</td></tr>
-<tr class="separator:ad3fd818f1be98dc803e5bec959153824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4475eb5890c340da5c0012e25c2c86ae"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a4475eb5890c340da5c0012e25c2c86ae">ToString</a> ()</td></tr>
-<tr class="separator:a4475eb5890c340da5c0012e25c2c86ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a985dee7ca27aa896332590133606b6a9"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a985dee7ca27aa896332590133606b6a9">ToString</a> (bool showSeverity)</td></tr>
-<tr class="separator:a985dee7ca27aa896332590133606b6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:ac7ed070dddd2613c08e7874ea5afb3af"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">message</a></td></tr>
-<tr class="separator:ac7ed070dddd2613c08e7874ea5afb3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a662aca4ad2af5116c2cf6773daf1a847"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">nodeName</a></td></tr>
-<tr class="separator:a662aca4ad2af5116c2cf6773daf1a847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd73f1c684bfd66ae7b6bef8f2972d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">lineNumber</a></td></tr>
-<tr class="separator:a0bd73f1c684bfd66ae7b6bef8f2972d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a658e7fb05555c0f9ab5f80057bdc1408"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">columnNumber</a></td></tr>
-<tr class="separator:a658e7fb05555c0f9ab5f80057bdc1408"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad90ffa839ce0f568a099bb37b4a6c4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Severity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">severity</a></td></tr>
-<tr class="separator:ad90ffa839ce0f568a099bb37b4a6c4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d88ca81ac536d43046ca6572e3ff54"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#af9d88ca81ac536d43046ca6572e3ff54">DialogueStarted</a> ()</td></tr>
+<tr class="memdesc:af9d88ca81ac536d43046ca6572e3ff54"><td class="mdescLeft">&#160;</td><td class="mdescRight">A conversation has started.  <a href="#af9d88ca81ac536d43046ca6572e3ff54">More...</a><br/></td></tr>
+<tr class="separator:af9d88ca81ac536d43046ca6572e3ff54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a754c6dd0bc67895d11f878fe4477d698"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a754c6dd0bc67895d11f878fe4477d698">RunLine</a> (<a class="el" href="a00041.html#a00359">Yarn.Line</a> line)</td></tr>
+<tr class="memdesc:a754c6dd0bc67895d11f878fe4477d698"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a line.  <a href="#a754c6dd0bc67895d11f878fe4477d698">More...</a><br/></td></tr>
+<tr class="separator:a754c6dd0bc67895d11f878fe4477d698"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b29079f638f2ceb078627ef1e60004"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#ac5b29079f638f2ceb078627ef1e60004">RunOptions</a> (<a class="el" href="a00041.html#a00362">Yarn.Options</a> optionsCollection, <a class="el" href="a00041.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a> optionChooser)</td></tr>
+<tr class="memdesc:ac5b29079f638f2ceb078627ef1e60004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the options, and call the optionChooser when done.  <a href="#ac5b29079f638f2ceb078627ef1e60004">More...</a><br/></td></tr>
+<tr class="separator:ac5b29079f638f2ceb078627ef1e60004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dffe84b9e7a10fdec6749baf697d111"><td class="memItemLeft" align="right" valign="top">abstract IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a3dffe84b9e7a10fdec6749baf697d111">RunCommand</a> (<a class="el" href="a00041.html#a00355">Yarn.Command</a> command)</td></tr>
+<tr class="memdesc:a3dffe84b9e7a10fdec6749baf697d111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform some game-specific command.  <a href="#a3dffe84b9e7a10fdec6749baf697d111">More...</a><br/></td></tr>
+<tr class="separator:a3dffe84b9e7a10fdec6749baf697d111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2900548a0704d39d4502a153945f4bef"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#a2900548a0704d39d4502a153945f4bef">NodeComplete</a> (string nextNode)</td></tr>
+<tr class="memdesc:a2900548a0704d39d4502a153945f4bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">The node has ended.  <a href="#a2900548a0704d39d4502a153945f4bef">More...</a><br/></td></tr>
+<tr class="separator:a2900548a0704d39d4502a153945f4bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc60aee9e9386da1f71fb183f43c52d"><td class="memItemLeft" align="right" valign="top">virtual IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html#aecc60aee9e9386da1f71fb183f43c52d">DialogueComplete</a> ()</td></tr>
+<tr class="memdesc:aecc60aee9e9386da1f71fb183f43c52d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The conversation has ended.  <a href="#aecc60aee9e9386da1f71fb183f43c52d">More...</a><br/></td></tr>
+<tr class="separator:aecc60aee9e9386da1f71fb183f43c52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="a00293_source.html#l00006">6</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="a227813cbc8fa03c3448a612ffc909d1c"></a>
+<div class="textblock"><p>Scripts that can act as the UI for the conversation should subclass this. </p>
+
+<p>Definition at line <a class="el" href="a00277_source.html#l00429">429</a> of file <a class="el" href="a00277_source.html">DialogueRunner.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aecc60aee9e9386da1f71fb183f43c52d"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Yarn.Analysis.Diagnosis.Severity</a></td>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueComplete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd"></a>Error</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa"></a>Warning</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec"></a>Note</em>&#160;</td><td class="fielddoc">
-</td></tr>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
 </table>
+</div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00293_source.html#l00013">13</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                             {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd">Error</a>,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec">Note</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        }</div>
-<div class="ttc" id="a00085_html_a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec"><div class="ttname"><a href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca3b0649c72650c313a357338dcdfb64ec">Yarn.Analysis.Diagnosis.Note</a></div></div>
-<div class="ttc" id="a00085_html_a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa"><div class="ttname"><a href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca0eaadb4fcb48a0a0ed7bc9868be9fbaa">Yarn.Analysis.Diagnosis.Warning</a></div></div>
-<div class="ttc" id="a00085_html_a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd"><div class="ttname"><a href="a00085.html#a227813cbc8fa03c3448a612ffc909d1ca902b0d55fddef6f8d651fe1035b7d4bd">Yarn.Analysis.Diagnosis.Error</a></div></div>
+<p>The conversation has ended. </p>
+
+<p>Reimplemented in <a class="el" href="a00091.html#a1f2a08baacc25aea09af8e60eb5d3eb1">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+<p>Definition at line <a class="el" href="a00277_source.html#l00454">454</a> of file <a class="el" href="a00277_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;                                                       {</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad3fd818f1be98dc803e5bec959153824"></a>
+<a class="anchor" id="af9d88ca81ac536d43046ca6572e3ff54"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Yarn.Analysis.Diagnosis.Diagnosis </td>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.DialogueStarted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A conversation has started. </p>
+
+<p>Reimplemented in <a class="el" href="a00091.html#a313283f6c53354b54f25898eb436eba0">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+<p>Definition at line <a class="el" href="a00277_source.html#l00432">432</a> of file <a class="el" href="a00277_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                                                     {</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2900548a0704d39d4502a153945f4bef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual IEnumerator Yarn.Unity.DialogueUIBehaviour.NodeComplete </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramname"><em>nextNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The node has ended. </p>
+
+<p>Definition at line <a class="el" href="a00277_source.html#l00448">448</a> of file <a class="el" href="a00277_source.html">DialogueRunner.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                                                                 {</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;            <span class="comment">// Default implementation does nothing.</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a3dffe84b9e7a10fdec6749baf697d111"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunCommand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00041.html#a00355">Yarn.Command</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform some game-specific command. </p>
+
+<p>Implemented in <a class="el" href="a00091.html#a7f84b1e7d3c9c1f7507d143e11ba8075">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a754c6dd0bc67895d11f878fe4477d698"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00041.html#a00359">Yarn.Line</a>&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Display a line. </p>
+
+<p>Implemented in <a class="el" href="a00091.html#a109aeedc5206dcbc4f629638b7830030">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac5b29079f638f2ceb078627ef1e60004"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract IEnumerator Yarn.Unity.DialogueUIBehaviour.RunOptions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00041.html#a00362">Yarn.Options</a>&#160;</td>
+          <td class="paramname"><em>optionsCollection</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Severity</a>&#160;</td>
-          <td class="paramname"><em>severity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>nodeName</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lineNumber</em> = <code>-1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>columnNumber</em> = <code>-1</code>&#160;</td>
+          <td class="paramtype"><a class="el" href="a00041.html#a39866cbb03c03a35805d598b5d4ad553">Yarn.OptionChooser</a>&#160;</td>
+          <td class="paramname"><em>optionChooser</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -230,192 +340,29 @@ Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00293_source.html#l00020">20</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            this.message = <a class="code" href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">message</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            this.nodeName = <a class="code" href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">nodeName</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            this.lineNumber = <a class="code" href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">lineNumber</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            this.columnNumber = <a class="code" href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">columnNumber</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            this.severity = <a class="code" href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">severity</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
-<div class="ttc" id="a00085_html_a662aca4ad2af5116c2cf6773daf1a847"><div class="ttname"><a href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">Yarn.Analysis.Diagnosis.nodeName</a></div><div class="ttdeci">string nodeName</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00009">Analyser.cs:9</a></div></div>
-<div class="ttc" id="a00085_html_a658e7fb05555c0f9ab5f80057bdc1408"><div class="ttname"><a href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">Yarn.Analysis.Diagnosis.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00011">Analyser.cs:11</a></div></div>
-<div class="ttc" id="a00085_html_ad90ffa839ce0f568a099bb37b4a6c4da"><div class="ttname"><a href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">Yarn.Analysis.Diagnosis.severity</a></div><div class="ttdeci">Severity severity</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00018">Analyser.cs:18</a></div></div>
-<div class="ttc" id="a00085_html_a0bd73f1c684bfd66ae7b6bef8f2972d0"><div class="ttname"><a href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">Yarn.Analysis.Diagnosis.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00010">Analyser.cs:10</a></div></div>
-<div class="ttc" id="a00085_html_ac7ed070dddd2613c08e7874ea5afb3af"><div class="ttname"><a href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">Yarn.Analysis.Diagnosis.message</a></div><div class="ttdeci">string message</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00008">Analyser.cs:8</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4475eb5890c340da5c0012e25c2c86ae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override string Yarn.Analysis.Diagnosis.ToString </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Display the options, and call the optionChooser when done. </p>
 
-<p>Definition at line <a class="el" href="a00293_source.html#l00029">29</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00085.html#a4475eb5890c340da5c0012e25c2c86ae">ToString</a> (showSeverity: <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
-<div class="ttc" id="a00085_html_a4475eb5890c340da5c0012e25c2c86ae"><div class="ttname"><a href="a00085.html#a4475eb5890c340da5c0012e25c2c86ae">Yarn.Analysis.Diagnosis.ToString</a></div><div class="ttdeci">override string ToString()</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00029">Analyser.cs:29</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a985dee7ca27aa896332590133606b6a9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Analysis.Diagnosis.ToString </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>showSeverity</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00034">34</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordtype">string</span> contextLabel = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">if</span> (showSeverity) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordflow">switch</span> (<a class="code" href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">severity</a>) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordflow">case</span> Severity.Error:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    contextLabel = <span class="stringliteral">&quot;ERROR: &quot;</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordflow">case</span> Severity.Warning:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    contextLabel = <span class="stringliteral">&quot;WARNING: &quot;</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordflow">case</span> Severity.Note:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    contextLabel = <span class="stringliteral">&quot;Note: &quot;</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (this.<a class="code" href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">nodeName</a> != null) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                contextLabel += this.nodeName;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">if</span> (this.<a class="code" href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">lineNumber</a> != -1) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    contextLabel += string.Format (<span class="stringliteral">&quot;: {0}&quot;</span>, this.lineNumber);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                    <span class="keywordflow">if</span> (this.<a class="code" href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">columnNumber</a> != -1) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        contextLabel += string.Format (<span class="stringliteral">&quot;:{0}&quot;</span>, this.columnNumber);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordtype">string</span> <a class="code" href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">message</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(contextLabel)) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                message = this.message;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                message = string.Format (<span class="stringliteral">&quot;{0}: {1}&quot;</span>, contextLabel, this.message);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">message</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="ttc" id="a00085_html_a662aca4ad2af5116c2cf6773daf1a847"><div class="ttname"><a href="a00085.html#a662aca4ad2af5116c2cf6773daf1a847">Yarn.Analysis.Diagnosis.nodeName</a></div><div class="ttdeci">string nodeName</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00009">Analyser.cs:9</a></div></div>
-<div class="ttc" id="a00085_html_a658e7fb05555c0f9ab5f80057bdc1408"><div class="ttname"><a href="a00085.html#a658e7fb05555c0f9ab5f80057bdc1408">Yarn.Analysis.Diagnosis.columnNumber</a></div><div class="ttdeci">int columnNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00011">Analyser.cs:11</a></div></div>
-<div class="ttc" id="a00085_html_ad90ffa839ce0f568a099bb37b4a6c4da"><div class="ttname"><a href="a00085.html#ad90ffa839ce0f568a099bb37b4a6c4da">Yarn.Analysis.Diagnosis.severity</a></div><div class="ttdeci">Severity severity</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00018">Analyser.cs:18</a></div></div>
-<div class="ttc" id="a00085_html_a0bd73f1c684bfd66ae7b6bef8f2972d0"><div class="ttname"><a href="a00085.html#a0bd73f1c684bfd66ae7b6bef8f2972d0">Yarn.Analysis.Diagnosis.lineNumber</a></div><div class="ttdeci">int lineNumber</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00010">Analyser.cs:10</a></div></div>
-<div class="ttc" id="a00085_html_ac7ed070dddd2613c08e7874ea5afb3af"><div class="ttname"><a href="a00085.html#ac7ed070dddd2613c08e7874ea5afb3af">Yarn.Analysis.Diagnosis.message</a></div><div class="ttdeci">string message</div><div class="ttdef"><b>Definition:</b> <a href="a00293_source.html#l00008">Analyser.cs:8</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a658e7fb05555c0f9ab5f80057bdc1408"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Yarn.Analysis.Diagnosis.columnNumber</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00011">11</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0bd73f1c684bfd66ae7b6bef8f2972d0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Yarn.Analysis.Diagnosis.lineNumber</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00010">10</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac7ed070dddd2613c08e7874ea5afb3af"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Analysis.Diagnosis.message</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00008">8</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a662aca4ad2af5116c2cf6773daf1a847"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string Yarn.Analysis.Diagnosis.nodeName</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00009">9</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad90ffa839ce0f568a099bb37b4a6c4da"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00085.html#a227813cbc8fa03c3448a612ffc909d1c">Severity</a> Yarn.Analysis.Diagnosis.severity</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00293_source.html#l00018">18</a> of file <a class="el" href="a00293_source.html">Analyser.cs</a>.</p>
+<p>Implemented in <a class="el" href="a00091.html#aaa93672700a456e66c694636460a58f4">Yarn.Unity.Example.ExampleDialogueUI</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00293_source.html">Analyser.cs</a></li>
+<li>Unity/Assets/YarnSpinner/Code/<a class="el" href="a00277_source.html">DialogueRunner.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00357.html">Analysis</a></li><li class="navelem"><a class="el" href="a00085.html">Diagnosis</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:31 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00125.html">Unity</a></li><li class="navelem"><a class="el" href="a00085.html">DialogueUIBehaviour</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:23 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

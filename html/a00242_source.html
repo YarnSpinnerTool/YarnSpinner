@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/ICsvParser.cs Source File</title>
+<title>YarnSpinner: packages/CsvHelper.2.16.0.0/src/CsvHelper/MissingFrom20/EnumerableExtensions.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,51 +105,119 @@ $(document).ready(function(){initNavTree('a00242_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">ICsvParser.cs</div>  </div>
+<div class="title">EnumerableExtensions.cs</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00242.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2009-2015 Josh Close and Contributors</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// This file is a part of CsvHelper and is dual licensed under MS-PL and Apache 2.0.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// See LICENSE.txt for details or visit http://www.opensource.org/licenses/ms-pl.html for MS-PL and http://opensource.org/licenses/Apache-2.0 for Apache 2.0.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// http://csvhelper.com</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using</span> System;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">using</span> CsvHelper.Configuration;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>CsvHelper</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="a00107.html">   13</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">interface </span><a class="code" href="a00107.html">ICsvParser</a> : IDisposable</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="a00107.html#af1303d18a827bf46a56f9cb6ba05ed64">   18</a></span>&#160;        <a class="code" href="a00057.html">CsvConfiguration</a> <a class="code" href="a00107.html#af1303d18a827bf46a56f9cb6ba05ed64">Configuration</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="a00107.html#a50c0428defc2ada782c6863d72a990e4">   23</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00107.html#a50c0428defc2ada782c6863d72a990e4">FieldCount</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="a00107.html#aa47c7ce6c764dddc78bb4d3ee83714eb">   28</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00107.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CharPosition</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="a00107.html#a23dee37412eeb387df1d336e7bf07cc2">   33</a></span>&#160;        <span class="keywordtype">long</span> <a class="code" href="a00107.html#a23dee37412eeb387df1d336e7bf07cc2">BytePosition</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="a00107.html#a0ec83f976594f51a002448fa2fe2e392">   38</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="a00107.html#a0ec83f976594f51a002448fa2fe2e392">Row</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="a00107.html#a1b238e3bb053f2f6c122ee0d77bb48d7">   43</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="a00107.html#a1b238e3bb053f2f6c122ee0d77bb48d7">RawRecord</a> { <span class="keyword">get</span>; }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">string</span>[] <a class="code" href="a00107.html#a411461b4cd33dce0b42c81715359f687">Read</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="ttc" id="a00107_html_a50c0428defc2ada782c6863d72a990e4"><div class="ttname"><a href="a00107.html#a50c0428defc2ada782c6863d72a990e4">CsvHelper.ICsvParser.FieldCount</a></div><div class="ttdeci">int FieldCount</div><div class="ttdoc">Gets the field count. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00023">ICsvParser.cs:23</a></div></div>
-<div class="ttc" id="a00107_html_a1b238e3bb053f2f6c122ee0d77bb48d7"><div class="ttname"><a href="a00107.html#a1b238e3bb053f2f6c122ee0d77bb48d7">CsvHelper.ICsvParser.RawRecord</a></div><div class="ttdeci">string RawRecord</div><div class="ttdoc">Gets the raw row for the current record that was parsed. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00043">ICsvParser.cs:43</a></div></div>
-<div class="ttc" id="a00107_html_a0ec83f976594f51a002448fa2fe2e392"><div class="ttname"><a href="a00107.html#a0ec83f976594f51a002448fa2fe2e392">CsvHelper.ICsvParser.Row</a></div><div class="ttdeci">int Row</div><div class="ttdoc">Gets the row of the CSV file that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00038">ICsvParser.cs:38</a></div></div>
-<div class="ttc" id="a00107_html_af1303d18a827bf46a56f9cb6ba05ed64"><div class="ttname"><a href="a00107.html#af1303d18a827bf46a56f9cb6ba05ed64">CsvHelper.ICsvParser.Configuration</a></div><div class="ttdeci">CsvConfiguration Configuration</div><div class="ttdoc">Gets the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00018">ICsvParser.cs:18</a></div></div>
-<div class="ttc" id="a00107_html_aa47c7ce6c764dddc78bb4d3ee83714eb"><div class="ttname"><a href="a00107.html#aa47c7ce6c764dddc78bb4d3ee83714eb">CsvHelper.ICsvParser.CharPosition</a></div><div class="ttdeci">long CharPosition</div><div class="ttdoc">Gets the character position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00028">ICsvParser.cs:28</a></div></div>
-<div class="ttc" id="a00107_html_a23dee37412eeb387df1d336e7bf07cc2"><div class="ttname"><a href="a00107.html#a23dee37412eeb387df1d336e7bf07cc2">CsvHelper.ICsvParser.BytePosition</a></div><div class="ttdeci">long BytePosition</div><div class="ttdoc">Gets the byte position that the parser is currently on. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00033">ICsvParser.cs:33</a></div></div>
-<div class="ttc" id="a00107_html_a411461b4cd33dce0b42c81715359f687"><div class="ttname"><a href="a00107.html#a411461b4cd33dce0b42c81715359f687">CsvHelper.ICsvParser.Read</a></div><div class="ttdeci">string[] Read()</div><div class="ttdoc">Reads a record from the CSV file. </div></div>
-<div class="ttc" id="a00057_html"><div class="ttname"><a href="a00057.html">CsvHelper.Configuration.CsvConfiguration</a></div><div class="ttdoc">Configuration used for reading and writing CSV data. </div><div class="ttdef"><b>Definition:</b> <a href="a00217_source.html#l00018">CsvConfiguration.cs:18</a></div></div>
-<div class="ttc" id="a00107_html"><div class="ttname"><a href="a00107.html">CsvHelper.ICsvParser</a></div><div class="ttdoc">Defines methods used the parse a CSV file. </div><div class="ttdef"><b>Definition:</b> <a href="a00242_source.html#l00013">ICsvParser.cs:13</a></div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#if NET_2_0</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"></span><span class="keyword">using</span> System;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">using</span> System.Collections;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>System.Linq</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">internal</span> <span class="keyword">static</span> <span class="keyword">class </span>EnumerableExtensions</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> Contains&lt;T&gt;( <span class="keyword">this</span> IEnumerable&lt;T&gt; enumerable, T value )</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">foreach</span>( var item <span class="keywordflow">in</span> enumerable )</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <span class="keywordflow">if</span>( value.Equals( item ) )</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> Any&lt;TSource&gt;( <span class="keyword">this</span> IEnumerable&lt;TSource&gt; enumerable, Func&lt;TSource, bool&gt; predicate )</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">foreach</span>( var item <span class="keywordflow">in</span> enumerable )</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">if</span>( predicate( item ) )</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> All&lt;TSource&gt;( <span class="keyword">this</span> IEnumerable&lt;TSource&gt; enumerable, Func&lt;TSource, bool&gt; predicate )</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">foreach</span>( var item <span class="keywordflow">in</span> enumerable )</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">if</span>( !predicate( item ) )</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> SequenceEqual( <span class="keyword">this</span> IEnumerable x, IEnumerable y )</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">if</span>( x == null )</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;x&quot;</span> );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span>( y == null )</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentNullException( <span class="stringliteral">&quot;y&quot;</span> );</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            var xEnumerator = x.GetEnumerator();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            var yEnumerator = y.GetEnumerator();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">while</span>( <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                var xMoved = xEnumerator.MoveNext();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                var yMoved = yEnumerator.MoveNext();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">if</span>( xMoved != yMoved )</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">if</span>( xMoved == <span class="keyword">false</span> )</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="keywordflow">if</span>( xEnumerator.Current == null &amp;&amp; yEnumerator.Current != null || </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    xEnumerator.Current != null &amp;&amp; yEnumerator.Current == null )</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">if</span>( xEnumerator.Current == null &amp;&amp; yEnumerator.Current == null )</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">if</span>( !xEnumerator.Current.Equals( yEnumerator.Current ) )</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00242.html">ICsvParser.cs</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_cbf001da7f11668afbeda246aaf560be.html">CsvHelper.2.16.0.0</a></li><li class="navelem"><a class="el" href="dir_10ae67e69e90d32df89e7fed0ac72d4f.html">src</a></li><li class="navelem"><a class="el" href="dir_ff1b7618d87d4a640f5aacfdcf4f24c7.html">CsvHelper</a></li><li class="navelem"><a class="el" href="dir_38e4794d63a36822bec31892cd916c51.html">MissingFrom20</a></li><li class="navelem"><a class="el" href="a00242.html">EnumerableExtensions.cs</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

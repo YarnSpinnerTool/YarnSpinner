@@ -1,344 +1,40 @@
-\hypertarget{a00146}{\section{Yarn.\-Program Class Reference}
-\label{a00146}\index{Yarn.\-Program@{Yarn.\-Program}}
+\hypertarget{a00146}{\section{Yarn.\-Dialogue.\-Runner\-Result Class Reference}
+\label{a00146}\index{Yarn.\-Dialogue.\-Runner\-Result@{Yarn.\-Dialogue.\-Runner\-Result}}
 }
 
 
-Collaboration diagram for Yarn.\-Program\-:
+Represents something for the end user (\char`\"{}client\char`\"{}) of the \hyperlink{a00082}{Dialogue} class to do.  
+
+
+
+
+Inheritance diagram for Yarn.\-Dialogue.\-Runner\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=184pt]{a00705}
+\includegraphics[width=350pt]{a00613}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00146_a977d1ed02e3f6f39d30dfea1663e7927}{Load\-Strings} (Dictionary$<$ string, string $>$ new\-Strings)
-\begin{DoxyCompactList}\small\item\em Loads a new string table into the program. \end{DoxyCompactList}\item 
-string \hyperlink{a00146_a9baf491479375aa8c3aa2b0c31cf0932}{Register\-String} (string the\-String, string node\-Name, string line\-I\-D, int line\-Number, bool localisable)
-\item 
-string \hyperlink{a00146_a14737b93594c4aab25c59cb0a3c918f7}{Get\-String} (string key)
-\item 
-string \hyperlink{a00146_a2f5bb468ce53eb7bbe647e3c11ddbb61}{Dump\-Code} (\hyperlink{a00123}{Library} l)
-\item 
-string \hyperlink{a00146_aad8029f37832ff1985fad6a31e51afd8}{Get\-Text\-For\-Node} (string node\-Name)
-\item 
-void \hyperlink{a00146_afd3385ca1f7589b3b9dae3646e4fee84}{Include} (\hyperlink{a00146}{Program} other\-Program)
-\end{DoxyCompactItemize}
-\subsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-Dictionary$<$ string, string $>$ \hyperlink{a00146_a59263e00cecfe36d9881b4c30b048f09}{strings} = new Dictionary$<$string, string$>$()
-\item 
-Dictionary$<$ string, \hyperlink{a00125}{Line\-Info} $>$ \hyperlink{a00146_a0d4da395947767b4a1eaaff8a9842adc}{line\-Info} = new Dictionary$<$string, \hyperlink{a00125}{Line\-Info}$>$()
-\item 
-Dictionary$<$ string, \hyperlink{a00045_a00367}{Node} $>$ \hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes} = new Dictionary$<$string, \hyperlink{a00045_a00367}{Node}$>$()
-\end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-Dictionary$<$ string, string $>$ \hyperlink{a00146_aa8fedbfceaf931d1da3f600eaab6ae87}{untagged\-Strings}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\end{DoxyCompactItemize}
-\subsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{a00146_a8ef1d10094ef00311aade6715ba78ec7}{string\-Count} = 0
-\end{DoxyCompactItemize}
+
+
+Collaboration diagram for Yarn.\-Dialogue.\-Runner\-Result\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{a00614}
+\end{center}
+\end{figure}
 
 
 \subsection{Detailed Description}
+Represents something for the end user (\char`\"{}client\char`\"{}) of the \hyperlink{a00082}{Dialogue} class to do. 
 
-
-Definition at line 83 of file Program.\-cs.
-
-
-
-\subsection{Member Function Documentation}
-\hypertarget{a00146_a2f5bb468ce53eb7bbe647e3c11ddbb61}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Dump\-Code@{Dump\-Code}}
-\index{Dump\-Code@{Dump\-Code}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Dump\-Code}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Dump\-Code (
-\begin{DoxyParamCaption}
-\item[{{\bf Library}}]{l}
-\end{DoxyParamCaption}
-)}}\label{a00146_a2f5bb468ce53eb7bbe647e3c11ddbb61}
-
-
-Definition at line 161 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-line\-Info, Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-162         \{
-163 
-164             var sb = \textcolor{keyword}{new} System.Text.StringBuilder();
-165 
-166             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes})
-167             \{
-168                 sb.AppendLine(\textcolor{stringliteral}{"Node "} + entry.Key + \textcolor{stringliteral}{":"});
-169 
-170                 \textcolor{keywordtype}{int} instructionCount = 0;
-171                 \textcolor{keywordflow}{foreach} (var instruction \textcolor{keywordflow}{in} entry.Value.instructions)
-172                 \{
-173                     \textcolor{keywordtype}{string} instructionText;
-174 
-175                     \textcolor{keywordflow}{if} (instruction.operation == \hyperlink{a00045_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-176                     \{
-177                         instructionText = instruction.ToString(\textcolor{keyword}{this}, l);
-178                     \}
-179                     \textcolor{keywordflow}{else}
-180                     \{
-181                         instructionText = \textcolor{stringliteral}{"    "} + instruction.ToString(\textcolor{keyword}{this}, l);
-182                     \}
-183 
-184                     \textcolor{keywordtype}{string} preface;
-185 
-186                     \textcolor{keywordflow}{if} (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1
-      )
-187                     \{
-188                         preface = string.Format(\textcolor{stringliteral}{"\{0,6\}   "}, instructionCount);
-189                     \}
-190                     \textcolor{keywordflow}{else}
-191                     \{
-192                         preface = string.Format(\textcolor{stringliteral}{"\{0,6\}   "}, \textcolor{stringliteral}{" "});
-193                     \}
-194 
-195                     sb.AppendLine(preface + instructionText);
-196 
-197                     instructionCount++;
-198                 \}
-199 
-200                 sb.AppendLine();
-201             \}
-202 
-203             sb.AppendLine(\textcolor{stringliteral}{"String table:"});
-204 
-205             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} \hyperlink{a00146_a59263e00cecfe36d9881b4c30b048f09}{strings})
-206             \{
-207                 var \hyperlink{a00146_a0d4da395947767b4a1eaaff8a9842adc}{lineInfo} = this.lineInfo[entry.Key];
-208 
-209                 sb.AppendLine(string.Format(\textcolor{stringliteral}{"\{0\}: \{1\} (\{2\}:\{3\})"}, entry.Key, entry.Value, lineInfo.nodeName
-      , lineInfo.lineNumber));
-210             \}
-211 
-212             \textcolor{keywordflow}{return} sb.ToString();
-213         \}
-\end{DoxyCode}
-\hypertarget{a00146_a14737b93594c4aab25c59cb0a3c918f7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-String@{Get\-String}}
-\index{Get\-String@{Get\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-String (
-\begin{DoxyParamCaption}
-\item[{string}]{key}
-\end{DoxyParamCaption}
-)}}\label{a00146_a14737b93594c4aab25c59cb0a3c918f7}
-
-
-Definition at line 154 of file Program.\-cs.
-
-
-\begin{DoxyCode}
-155         \{
-156             \textcolor{keywordtype}{string} value = null;
-157             strings.TryGetValue(key, out value);
-158             \textcolor{keywordflow}{return} value;
-159         \}
-\end{DoxyCode}
-\hypertarget{a00146_aad8029f37832ff1985fad6a31e51afd8}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Text\-For\-Node@{Get\-Text\-For\-Node}}
-\index{Get\-Text\-For\-Node@{Get\-Text\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Get\-Text\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-Text\-For\-Node (
-\begin{DoxyParamCaption}
-\item[{string}]{node\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00146_aad8029f37832ff1985fad6a31e51afd8}
-
-
-Definition at line 215 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-nodes.
-
-
-\begin{DoxyCode}
-216         \{
-217             \textcolor{keywordflow}{return} this.GetString(\hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes}[nodeName].sourceTextStringID);
-218         \}
-\end{DoxyCode}
-\hypertarget{a00146_afd3385ca1f7589b3b9dae3646e4fee84}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Include@{Include}}
-\index{Include@{Include}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Include}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Include (
-\begin{DoxyParamCaption}
-\item[{{\bf Program}}]{other\-Program}
-\end{DoxyParamCaption}
-)}}\label{a00146_afd3385ca1f7589b3b9dae3646e4fee84}
-
-
-Definition at line 220 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-221         \{
-222             \textcolor{keywordflow}{foreach} (var otherNodeName \textcolor{keywordflow}{in} otherProgram.nodes)
-223             \{
-224 
-225                 \textcolor{keywordflow}{if} (\hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherNodeName.Key))
-226                 \{
-227                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"This program already contains a node
-       named \{0\}"}, otherNodeName.Key));
-228                 \}
-229 
-230                 \hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes}[otherNodeName.Key] = otherNodeName.Value;
-231             \}
-232 
-233             \textcolor{keywordflow}{foreach} (var otherString \textcolor{keywordflow}{in} otherProgram.strings)
-234             \{
-235 
-236                 \textcolor{keywordflow}{if} (\hyperlink{a00146_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherString.Key))
-237                 \{
-238                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"This program already contains a
-       string with key \{0\}"}, otherString.Key));
-239                 \}
-240 
-241                 \hyperlink{a00146_a59263e00cecfe36d9881b4c30b048f09}{strings}[otherString.Key] = otherString.Value;
-242             \}
-243         \}
-\end{DoxyCode}
-\hypertarget{a00146_a977d1ed02e3f6f39d30dfea1663e7927}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Load\-Strings@{Load\-Strings}}
-\index{Load\-Strings@{Load\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Load\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Program.\-Load\-Strings (
-\begin{DoxyParamCaption}
-\item[{Dictionary$<$ string, string $>$}]{new\-Strings}
-\end{DoxyParamCaption}
-)}}\label{a00146_a977d1ed02e3f6f39d30dfea1663e7927}
-
-
-Loads a new string table into the program. 
-
-The string table is merged with any existing strings, with the new table taking precedence over the old. 
-
-Definition at line 124 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-strings.
-
-
-\begin{DoxyCode}
-125         \{
-126             \textcolor{keywordflow}{foreach} (var entry \textcolor{keywordflow}{in} newStrings)
-127             \{
-128                 \hyperlink{a00146_a59263e00cecfe36d9881b4c30b048f09}{strings}[entry.Key] = entry.Value;
-129             \}
-130         \}
-\end{DoxyCode}
-\hypertarget{a00146_a9baf491479375aa8c3aa2b0c31cf0932}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Register\-String@{Register\-String}}
-\index{Register\-String@{Register\-String}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{Register\-String}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Register\-String (
-\begin{DoxyParamCaption}
-\item[{string}]{the\-String, }
-\item[{string}]{node\-Name, }
-\item[{string}]{line\-I\-D, }
-\item[{int}]{line\-Number, }
-\item[{bool}]{localisable}
-\end{DoxyParamCaption}
-)}}\label{a00146_a9baf491479375aa8c3aa2b0c31cf0932}
-
-
-Definition at line 132 of file Program.\-cs.
-
-
-
-References Yarn.\-Program.\-string\-Count.
-
-
-\begin{DoxyCode}
-133         \{
-134 
-135             \textcolor{keywordtype}{string} key;
-136 
-137             \textcolor{keywordflow}{if} (lineID == null)
-138                 key = string.Format(\textcolor{stringliteral}{"\{0\}-\{1\}"}, nodeName, \hyperlink{a00146_a8ef1d10094ef00311aade6715ba78ec7}{stringCount}++);
-139             \textcolor{keywordflow}{else}
-140                 key = lineID;
-141 
-142             \textcolor{comment}{// It's not in the list; append it}
-143             strings.Add(key, theString);
-144 
-145             \textcolor{keywordflow}{if} (localisable)
-146             \{
-147                 \textcolor{comment}{// Additionally, keep info about this string around}
-148                 lineInfo.Add(key, \textcolor{keyword}{new} LineInfo(nodeName, lineNumber));
-149             \}
-150 
-151             \textcolor{keywordflow}{return} key;
-152         \}
-\end{DoxyCode}
-
-
-\subsection{Member Data Documentation}
-\hypertarget{a00146_a0d4da395947767b4a1eaaff8a9842adc}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!line\-Info@{line\-Info}}
-\index{line\-Info@{line\-Info}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{line\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Line\-Info}$>$ Yarn.\-Program.\-line\-Info = new Dictionary$<$string, {\bf Line\-Info}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00146_a0d4da395947767b4a1eaaff8a9842adc}
-
-
-Definition at line 87 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Dump\-Code().
-
-\hypertarget{a00146_a3f4928a577c88263ad016be259b175c4}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!nodes@{nodes}}
-\index{nodes@{nodes}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, {\bf Node}$>$ Yarn.\-Program.\-nodes = new Dictionary$<$string, {\bf Node}$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00146_a3f4928a577c88263ad016be259b175c4}
-
-
-Definition at line 90 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Compiler.\-Compile\-Node(), Yarn.\-Program.\-Dump\-Code(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Program.\-Include(), Yarn.\-Dialogue.\-Node\-Exists(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
-
-\hypertarget{a00146_a8ef1d10094ef00311aade6715ba78ec7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!string\-Count@{string\-Count}}
-\index{string\-Count@{string\-Count}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{string\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Yarn.\-Program.\-string\-Count = 0\hspace{0.3cm}{\ttfamily [private]}}}\label{a00146_a8ef1d10094ef00311aade6715ba78ec7}
-
-
-Definition at line 118 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Register\-String().
-
-\hypertarget{a00146_a59263e00cecfe36d9881b4c30b048f09}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!strings@{strings}}
-\index{strings@{strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-strings = new Dictionary$<$string, string$>$()\hspace{0.3cm}{\ttfamily [package]}}}\label{a00146_a59263e00cecfe36d9881b4c30b048f09}
-
-
-Definition at line 86 of file Program.\-cs.
-
-
-
-Referenced by Yarn.\-Program.\-Dump\-Code(), Yarn.\-Program.\-Include(), and Yarn.\-Program.\-Load\-Strings().
-
-
-
-\subsection{Property Documentation}
-\hypertarget{a00146_aa8fedbfceaf931d1da3f600eaab6ae87}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!untagged\-Strings@{untagged\-Strings}}
-\index{untagged\-Strings@{untagged\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
-\subsubsection[{untagged\-Strings}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, string$>$ Yarn.\-Program.\-untagged\-Strings\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [package]}}}\label{a00146_aa8fedbfceaf931d1da3f600eaab6ae87}
-
-
-Definition at line 102 of file Program.\-cs.
+Definition at line 132 of file Dialogue.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00302}{Program.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner/\hyperlink{a00290}{Dialogue.\-cs}\end{DoxyCompactItemize}

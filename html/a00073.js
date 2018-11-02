@@ -1,13 +1,19 @@
 var a00073 =
 [
-    [ "CsvSerializer", "a00073.html#a74ea10f7aaea0a478087d8ff6182f38c", null ],
-    [ "CsvSerializer", "a00073.html#ab14fe4a4f630ce97d57c27e2ee050fac", null ],
-    [ "CheckDisposed", "a00073.html#ae14e1913a4e76faf97484c1bde339143", null ],
-    [ "Dispose", "a00073.html#a9d0e8b3508b377a7f978da2394b09e36", null ],
-    [ "Dispose", "a00073.html#a0be3b74ca7606e27fd16441ecc988f0b", null ],
-    [ "Write", "a00073.html#aefad906acd048863d3dd414651a44793", null ],
-    [ "configuration", "a00073.html#ae8c56ff97c0a797245f2205c486833ea", null ],
-    [ "disposed", "a00073.html#a2687885dae7f7b0eec3c2db81c05f7e4", null ],
-    [ "writer", "a00073.html#adfb235fa2c868fc79c0376fd12fda767", null ],
-    [ "Configuration", "a00073.html#a2ae1b1a629b707fbfb7d636989442f34", null ]
+    [ "Type", "a00073.html#a1d9f9f57c44e1a0d228793b658339576", [
+      [ "Expression", "a00073.html#a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043", null ],
+      [ "ClientCommand", "a00073.html#a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586", null ]
+    ] ],
+    [ "CustomCommand", "a00073.html#a49150c9046dcad61d61ce35c51816313", null ],
+    [ "CanParse", "a00073.html#a02ee2902115c823bdb46715041b3a2f6", null ],
+    [ "NodeParent", "a00073.html#a580e520a29444fc23ac3660cbe514a09", null ],
+    [ "PrintTree", "a00073.html#ad8c821f5f5671cdbac6e4a6fc0b9174b", null ],
+    [ "TagsToString", "a00073.html#a054f36c80d5eeacd569a8859f599af67", null ],
+    [ "ToString", "a00073.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
+    [ "lineNumber", "a00073.html#a18b493382de0fde5b4299c1bd2250075", null ],
+    [ "parent", "a00073.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
+    [ "tags", "a00073.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
+    [ "type", "a00073.html#a5ef3bc96812be224d91548bfcdfd4b92", null ],
+    [ "clientCommand", "a00073.html#a1a362244273df822233359d8fe4e9f5d", null ],
+    [ "expression", "a00073.html#a4250d192d5b58e2404a14c68eb616f16", null ]
 ];

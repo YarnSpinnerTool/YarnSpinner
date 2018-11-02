@@ -1,93 +1,139 @@
-\hypertarget{a00101}{\section{Yarn.\-Generate\-Table\-Options Class Reference}
-\label{a00101}\index{Yarn.\-Generate\-Table\-Options@{Yarn.\-Generate\-Table\-Options}}
+\hypertarget{a00101}{\section{Yarn.\-Unity.\-Icons Class Reference}
+\label{a00101}\index{Yarn.\-Unity.\-Icons@{Yarn.\-Unity.\-Icons}}
 }
 
 
-Inheritance diagram for Yarn.\-Generate\-Table\-Options\-:
+Collaboration diagram for Yarn.\-Unity.\-Icons\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=216pt]{a00735}
-\end{center}
-\end{figure}
-
-
-Collaboration diagram for Yarn.\-Generate\-Table\-Options\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=216pt]{a00736}
+\includegraphics[width=170pt]{a00781}
 \end{center}
 \end{figure}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}{only\-Use\-Tag}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static Texture \hyperlink{a00101_aec8aea03eb6e31771ebc98e0611fff79}{success\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \item 
-bool \hyperlink{a00035_a89964ea17bd19caf00cb5bff563ed01c}{show\-Debugging\-Info}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static Texture \hyperlink{a00101_aae7cc0e5016db04a90b2aa0e80957626}{failed\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \item 
-bool \hyperlink{a00035_ada4d83d1756918f362d55f6649b82b17}{verbose}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static Texture \hyperlink{a00101_ab8afce565cd2ad1543d1e32e7e589e77}{not\-Tested\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
 \item 
-I\-List$<$ string $>$ \hyperlink{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{files}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+static Texture \hyperlink{a00101_aa78ab016ad041bc36850c8b20ba63972}{window\-Icon}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Texture \hyperlink{a00101_a267896b2c4512f5b17772e7e1e46d6da}{Get\-Texture} (string texture\-Name)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Texture \hyperlink{a00101_a40e137f48495168d4423c103c8935a1b}{\-\_\-success\-Icon}
+\item 
+static Texture \hyperlink{a00101_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\-\_\-failed\-Icon}
+\item 
+static Texture \hyperlink{a00101_a497c5dcdfef75245a24c295f523fb7f7}{\-\_\-not\-Tested\-Icon}
+\item 
+static Texture \hyperlink{a00101_abba8fef6cc12836ea431a8a7c9e2f3db}{\-\_\-window\-Icon}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-Definition at line 109 of file Main.\-cs.
+Definition at line 550 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00101_a267896b2c4512f5b17772e7e1e46d6da}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!Get\-Texture@{Get\-Texture}}
+\index{Get\-Texture@{Get\-Texture}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{Get\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}static Texture Yarn.\-Unity.\-Icons.\-Get\-Texture (
+\begin{DoxyParamCaption}
+\item[{string}]{texture\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00101_a267896b2c4512f5b17772e7e1e46d6da}
+
+
+Definition at line 552 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+
+\begin{DoxyCode}
+552                                                               \{
+553             var guids = AssetDatabase.FindAssets (string.Format (\textcolor{stringliteral}{"\{0\} t:texture"}, textureName));
+554             \textcolor{keywordflow}{if} (guids.Length == 0)
+555                 \textcolor{keywordflow}{return} null;
+556 
+557             var path = AssetDatabase.GUIDToAssetPath(guids[0]);
+558             \textcolor{keywordflow}{return} AssetDatabase.LoadAssetAtPath<Texture>(path);
+559         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00101_a75ef0bcf3f5968f11949e6bfa4fdddd5}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-failed\-Icon@{\-\_\-failed\-Icon}}
+\index{\-\_\-failed\-Icon@{\-\_\-failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00101_a75ef0bcf3f5968f11949e6bfa4fdddd5}
+
+
+Definition at line 571 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00101_a497c5dcdfef75245a24c295f523fb7f7}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}}
+\index{\-\_\-not\-Tested\-Icon@{\-\_\-not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00101_a497c5dcdfef75245a24c295f523fb7f7}
+
+
+Definition at line 581 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00101_a40e137f48495168d4423c103c8935a1b}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-success\-Icon@{\-\_\-success\-Icon}}
+\index{\-\_\-success\-Icon@{\-\_\-success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00101_a40e137f48495168d4423c103c8935a1b}
+
+
+Definition at line 561 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00101_abba8fef6cc12836ea431a8a7c9e2f3db}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!\-\_\-window\-Icon@{\-\_\-window\-Icon}}
+\index{\-\_\-window\-Icon@{\-\_\-window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{\-\_\-window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-\_\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00101_abba8fef6cc12836ea431a8a7c9e2f3db}
+
+
+Definition at line 591 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00035_aa93cbb1bc1d5328e0a417012621e92d2}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!files@{files}}
-\index{files@{files}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
-\subsubsection[{files}]{\setlength{\rightskip}{0pt plus 5cm}I\-List$<$string$>$ Yarn.\-Base\-Options.\-files\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_aa93cbb1bc1d5328e0a417012621e92d2}
+\hypertarget{a00101_aae7cc0e5016db04a90b2aa0e80957626}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!failed\-Icon@{failed\-Icon}}
+\index{failed\-Icon@{failed\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{failed\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-failed\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00101_aae7cc0e5016db04a90b2aa0e80957626}
 
 
-Definition at line 47 of file Main.\-cs.
+Definition at line 572 of file Yarn\-Spinner\-Editor\-Window.\-cs.
+
+\hypertarget{a00101_ab8afce565cd2ad1543d1e32e7e589e77}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!not\-Tested\-Icon@{not\-Tested\-Icon}}
+\index{not\-Tested\-Icon@{not\-Tested\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{not\-Tested\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-not\-Tested\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00101_ab8afce565cd2ad1543d1e32e7e589e77}
 
 
+Definition at line 582 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Run(), and Yarn.\-Yarn\-Spinner\-Console.\-Verify().
-
-\hypertarget{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!only\-Use\-Tag@{only\-Use\-Tag}}
-\index{only\-Use\-Tag@{only\-Use\-Tag}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
-\subsubsection[{only\-Use\-Tag}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Generate\-Table\-Options.\-only\-Use\-Tag\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00101_a8b30c1b7fb1b74eae455a568c1024b3d}
-
-
-Definition at line 112 of file Main.\-cs.
+\hypertarget{a00101_aec8aea03eb6e31771ebc98e0611fff79}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!success\-Icon@{success\-Icon}}
+\index{success\-Icon@{success\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{success\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-success\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00101_aec8aea03eb6e31771ebc98e0611fff79}
 
 
+Definition at line 562 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
-Referenced by Yarn.\-Table\-Generator.\-Generate\-Tables().
-
-\hypertarget{a00035_a89964ea17bd19caf00cb5bff563ed01c}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!show\-Debugging\-Info@{show\-Debugging\-Info}}
-\index{show\-Debugging\-Info@{show\-Debugging\-Info}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
-\subsubsection[{show\-Debugging\-Info}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-show\-Debugging\-Info\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_a89964ea17bd19caf00cb5bff563ed01c}
-
-
-Definition at line 40 of file Main.\-cs.
+\hypertarget{a00101_aa78ab016ad041bc36850c8b20ba63972}{\index{Yarn\-::\-Unity\-::\-Icons@{Yarn\-::\-Unity\-::\-Icons}!window\-Icon@{window\-Icon}}
+\index{window\-Icon@{window\-Icon}!Yarn::Unity::Icons@{Yarn\-::\-Unity\-::\-Icons}}
+\subsubsection[{window\-Icon}]{\setlength{\rightskip}{0pt plus 5cm}Texture Yarn.\-Unity.\-Icons.\-window\-Icon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{a00101_aa78ab016ad041bc36850c8b20ba63972}
 
 
-
-Referenced by Yarn.\-Yarn\-Spinner\-Console.\-Create\-Dialogue().
-
-\hypertarget{a00035_ada4d83d1756918f362d55f6649b82b17}{\index{Yarn\-::\-Generate\-Table\-Options@{Yarn\-::\-Generate\-Table\-Options}!verbose@{verbose}}
-\index{verbose@{verbose}!Yarn::GenerateTableOptions@{Yarn\-::\-Generate\-Table\-Options}}
-\subsubsection[{verbose}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Base\-Options.\-verbose\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [inherited]}}}\label{a00035_ada4d83d1756918f362d55f6649b82b17}
-
-
-Definition at line 44 of file Main.\-cs.
-
-
-
-Referenced by Yarn.\-File\-Format\-Converter.\-Convert\-Nodes\-In\-File(), and Yarn.\-Table\-Generator.\-Generate\-Tables().
+Definition at line 592 of file Yarn\-Spinner\-Editor\-Window.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner\-Console/\hyperlink{a00313}{Main.\-cs}\end{DoxyCompactItemize}
+Unity/\-Assets/\-Yarn\-Spinner/\-Code/\-Editor/\hyperlink{a00278}{Yarn\-Spinner\-Editor\-Window.\-cs}\end{DoxyCompactItemize}

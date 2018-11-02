@@ -1,595 +1,266 @@
-\hypertarget{a00064}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map Class Reference}
-\label{a00064}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Map}}
+\hypertarget{a00064}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection Class Reference}
+\label{a00064}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection}}
 }
 
 
-Mapping info for a property to a C\-S\-V field.  
+A collection that holds property names.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Map\-:
+Inheritance diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{a00477}
+\includegraphics[width=220pt]{a00481}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{a00482}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00064_a7284729e68d85b66d2a4d19975f4382a}{Csv\-Property\-Map} (Property\-Info property)
-\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{a00064}{Csv\-Property\-Map} instance using the specified property. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a0d503e7dfdefa7334f5d04878c37316e}{Name} (params string\mbox{[}$\,$\mbox{]} names)
-\begin{DoxyCompactList}\small\item\em When reading, is used to get the field at the index of the name if there was a header specified. It will look for the first name match in the order listed. When writing, sets the name of the field in the header record. The first name will be used. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a2d6191df96c55bf3d044b31581e2a9b3}{Name\-Index} (int index)
-\begin{DoxyCompactList}\small\item\em When reading, is used to get the index of the name used when there are multiple names that are the same. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_ae4563b0f7c3b3a22b1bea5073d95ddae}{Index} (int index)
-\begin{DoxyCompactList}\small\item\em When reading, is used to get the field at the given index. When writing, the fields will be written in the order of the field indexes. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_aaf29f485feec0bd918ae9911208465e7}{Ignore} ()
-\begin{DoxyCompactList}\small\item\em Ignore the property when reading and writing. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a933c8b6d81e78b5c34fd24cbccf9a4a5}{Ignore} (bool ignore)
-\begin{DoxyCompactList}\small\item\em Ignore the property when reading and writing. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a35815aef1a6aa2692e4b9f7d57a52b60}{Default} (object default\-Value)
-\begin{DoxyCompactList}\small\item\em The default value that will be used when reading when the C\-S\-V field is empty. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} (\hyperlink{a00117}{I\-Type\-Converter} type\-Converter)
-\begin{DoxyCompactList}\small\item\em Specifies the \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} to use when converting the property to and from a C\-S\-V field. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a129110c34e2c12709f25948794390f97}{Type\-Converter$<$ T $>$} ()
-\begin{DoxyCompactList}\small\item\em Specifies the \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} to use when converting the property to and from a C\-S\-V field. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a02e31bd00f62fc495c81d400c00b65cb}{Convert\-Using$<$ T $>$} (Func$<$ \hyperlink{a00109}{I\-Csv\-Reader\-Row}, T $>$ convert\-Expression)
-\begin{DoxyCompactList}\small\item\em Specifies an expression to be used to convert data in the row to the property. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a652b7feb8994aefa43652755d42b3fbf}{Type\-Converter\-Option} (Culture\-Info culture\-Info)
-\begin{DoxyCompactList}\small\item\em The Culture\-Info used when type converting. This will override the global \hyperlink{a00057_ad04ccfdd3cbc265f527ee5baa2e08508}{Csv\-Configuration.\-Culture\-Info} setting. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a20bc1aec3a0054ac9b9c462562f111d2}{Type\-Converter\-Option} (Date\-Time\-Styles date\-Time\-Style)
-\begin{DoxyCompactList}\small\item\em The Date\-Time\-Styles to use when type converting. This is used when doing any Date\-Time conversions. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a16243e8334687160385ed8c589184031}{Type\-Converter\-Option} (Number\-Styles number\-Style)
-\begin{DoxyCompactList}\small\item\em The Number\-Styles to use when type converting. This is used when doing any number conversions. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a4df14f039b706d21e7235eb7050fac2d}{Type\-Converter\-Option} (string format)
-\begin{DoxyCompactList}\small\item\em The string format to be used when type converting. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a957ea50ce91adb642751201e8277949d}{Type\-Converter\-Option} (bool is\-True, params string\mbox{[}$\,$\mbox{]} boolean\-Values)
-\begin{DoxyCompactList}\small\item\em The string values used to represent a boolean when converting. \end{DoxyCompactList}\item 
-virtual \hyperlink{a00064}{Csv\-Property\-Map} \hyperlink{a00064_a6fd25629d769c619b029a6c141ab77c2}{Type\-Converter\-Option} (bool is\-True, bool clear\-Values, params string\mbox{[}$\,$\mbox{]} boolean\-Values)
-\begin{DoxyCompactList}\small\item\em The string values used to represent a boolean when converting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00064_ad7b7d11d5814bcce5ed38e054ef71b4e}{Add} (string name)
+\begin{DoxyCompactList}\small\item\em Adds the given name to the collection. \end{DoxyCompactList}\item 
+void \hyperlink{a00064_abec990435c8dccfb4553602b89f93201}{Clear} ()
+\begin{DoxyCompactList}\small\item\em Clears all names from the collection. \end{DoxyCompactList}\item 
+void \hyperlink{a00064_ac568746273968080890abca50b882802}{Add\-Range} (I\-Enumerable$<$ string $>$ \hyperlink{a00064_a41eb6804d8afe8d674e64d71f66962ce}{names})
+\begin{DoxyCompactList}\small\item\em Adds a range of names to the collection. \end{DoxyCompactList}\item 
+I\-Enumerator$<$ string $>$ \hyperlink{a00064_a61b6a80e51d06f17d0043ec6aef89f1b}{Get\-Enumerator} ()
+\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through the collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00067}{Csv\-Property\-Map\-Data} \hyperlink{a00064_a207637fa121612b618ed1131cb28b8bb}{Data}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the property map data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+string \hyperlink{a00064_acdce91a755be3bec6218e3d82f4dfe82}{this\mbox{[}int index\mbox{]}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the name at the given index. If a prefix is set, it will be prepended to the name. \end{DoxyCompactList}\item 
+string \hyperlink{a00064_ab8f3256d8435a1c93f0280064aa3ff06}{Prefix}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the prefix to use for each name. \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{a00064_a1aa06a47337f6ab576b23fe63854dcbe}{Names}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the raw list of names without the prefix being prepended. \end{DoxyCompactList}\item 
+int \hyperlink{a00064_a4b7b56286ad80183e1a33554a49eefa1}{Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-Enumerator I\-Enumerable. \hyperlink{a00064_a76b5c67fcecf55dbdd4b680cde1a78f7}{Get\-Enumerator} ()
+\begin{DoxyCompactList}\small\item\em Returns an enumerator that iterates through a collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-readonly \hyperlink{a00067}{Csv\-Property\-Map\-Data} \hyperlink{a00064_a2943371f5d55b2fd7313bbb0e87a013c}{data}
+readonly List$<$ string $>$ \hyperlink{a00064_a41eb6804d8afe8d674e64d71f66962ce}{names} = new List$<$string$>$()
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Mapping info for a property to a C\-S\-V field. 
+A collection that holds property names. 
 
 
 
-Definition at line 21 of file Csv\-Property\-Map.\-cs.
+Definition at line 14 of file Csv\-Property\-Name\-Collection.\-cs.
 
-
-
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00064_a7284729e68d85b66d2a4d19975f4382a}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Csv\-Property\-Map@{Csv\-Property\-Map}}
-\index{Csv\-Property\-Map@{Csv\-Property\-Map}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Csv\-Property\-Map}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Csv\-Property\-Map (
-\begin{DoxyParamCaption}
-\item[{Property\-Info}]{property}
-\end{DoxyParamCaption}
-)}}\label{a00064_a7284729e68d85b66d2a4d19975f4382a}
-
-
-Creates a new \hyperlink{a00064}{Csv\-Property\-Map} instance using the specified property. 
-
-
-
-Definition at line 36 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-37         \{
-38             \hyperlink{a00064_a2943371f5d55b2fd7313bbb0e87a013c}{data} = \textcolor{keyword}{new} CsvPropertyMapData( property )
-39             \{
-40                 \textcolor{comment}{// Set some defaults.}
-41                 \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{TypeConverter} = TypeConverterFactory.GetConverter( property.PropertyType )
-42             \};
-43             data.Names.Add( property.Name );
-44         \}
-\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00064_a02e31bd00f62fc495c81d400c00b65cb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Convert\-Using$<$ T $>$@{Convert\-Using$<$ T $>$}}
-\index{Convert\-Using$<$ T $>$@{Convert\-Using$<$ T $>$}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Convert\-Using$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Convert\-Using$<$ T $>$ (
+\hypertarget{a00064_ad7b7d11d5814bcce5ed38e054ef71b4e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add@{Add}}
+\index{Add@{Add}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add (
 \begin{DoxyParamCaption}
-\item[{Func$<$ {\bf I\-Csv\-Reader\-Row}, T $>$}]{convert\-Expression}
+\item[{string}]{name}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a02e31bd00f62fc495c81d400c00b65cb}
+)}}\label{a00064_ad7b7d11d5814bcce5ed38e054ef71b4e}
 
 
-Specifies an expression to be used to convert data in the row to the property. 
+Adds the given name to the collection. 
 
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The type of the property that will be set.\\
-\hline
-\end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em convert\-Expression} & The convert expression.\\
+{\em name} & The name to add.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 154 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-155         \{
-156             data.ConvertExpression = (Expression<Func<ICsvReaderRow, T>>)( x => convertExpression( x ) );
-157             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-158         \}
-\end{DoxyCode}
-\hypertarget{a00064_a35815aef1a6aa2692e4b9f7d57a52b60}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Default@{Default}}
-\index{Default@{Default}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Default}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Default (
-\begin{DoxyParamCaption}
-\item[{object}]{default\-Value}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a35815aef1a6aa2692e4b9f7d57a52b60}
-
-
-The default value that will be used when reading when the C\-S\-V field is empty. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em default\-Value} & The default value.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 119 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-120         \{
-121             data.Default = defaultValue;
-122             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-123         \}
-\end{DoxyCode}
-\hypertarget{a00064_aaf29f485feec0bd918ae9911208465e7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Ignore@{Ignore}}
-\index{Ignore@{Ignore}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Ignore}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Ignore (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_aaf29f485feec0bd918ae9911208465e7}
-
-
-Ignore the property when reading and writing. 
-
-
-
-Definition at line 98 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-99         \{
-100             data.Ignore = \textcolor{keyword}{true};
-101             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-102         \}
-\end{DoxyCode}
-\hypertarget{a00064_a933c8b6d81e78b5c34fd24cbccf9a4a5}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Ignore@{Ignore}}
-\index{Ignore@{Ignore}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Ignore}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Ignore (
-\begin{DoxyParamCaption}
-\item[{bool}]{ignore}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a933c8b6d81e78b5c34fd24cbccf9a4a5}
-
-
-Ignore the property when reading and writing. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ignore} & True to ignore, otherwise false.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 108 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-109         \{
-110             data.Ignore = ignore;
-111             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-112         \}
-\end{DoxyCode}
-\hypertarget{a00064_ae4563b0f7c3b3a22b1bea5073d95ddae}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Index@{Index}}
-\index{Index@{Index}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Index (
-\begin{DoxyParamCaption}
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_ae4563b0f7c3b3a22b1bea5073d95ddae}
-
-
-When reading, is used to get the field at the given index. When writing, the fields will be written in the order of the field indexes. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em index} & The index of the C\-S\-V field.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 88 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-89         \{
-90             data.Index = index;
-91             data.IsIndexSet = \textcolor{keyword}{true};
-92             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-93         \}
-\end{DoxyCode}
-\hypertarget{a00064_a0d503e7dfdefa7334f5d04878c37316e}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Name@{Name}}
-\index{Name@{Name}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Name (
-\begin{DoxyParamCaption}
-\item[{params string\mbox{[}$\,$\mbox{]}}]{names}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a0d503e7dfdefa7334f5d04878c37316e}
-
-
-When reading, is used to get the field at the index of the name if there was a header specified. It will look for the first name match in the order listed. When writing, sets the name of the field in the header record. The first name will be used. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em names} & The possible names of the C\-S\-V field.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 56 of file Csv\-Property\-Map.\-cs.
+Definition at line 56 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 \begin{DoxyCode}
 57         \{
-58             \textcolor{keywordflow}{if}( names == null || names.Length == 0 )
-59             \{
-60                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"names"} );
-61             \}
-62 
-63             data.Names.Clear();
-64             data.Names.AddRange( names );
-65             data.IsNameSet = \textcolor{keyword}{true};
-66             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-67         \}
+58             names.Add( name );
+59         \}
 \end{DoxyCode}
-\hypertarget{a00064_a2d6191df96c55bf3d044b31581e2a9b3}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Name\-Index@{Name\-Index}}
-\index{Name\-Index@{Name\-Index}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Name\-Index}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Name\-Index (
+\hypertarget{a00064_ac568746273968080890abca50b882802}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Add\-Range@{Add\-Range}}
+\index{Add\-Range@{Add\-Range}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Add\-Range}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Add\-Range (
 \begin{DoxyParamCaption}
-\item[{int}]{index}
+\item[{I\-Enumerable$<$ string $>$}]{names}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a2d6191df96c55bf3d044b31581e2a9b3}
+)}}\label{a00064_ac568746273968080890abca50b882802}
 
 
-When reading, is used to get the index of the name used when there are multiple names that are the same. 
+Adds a range of names to the collection. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em index} & The index of the name.\\
+{\em names} & The range to add.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 75 of file Csv\-Property\-Map.\-cs.
+Definition at line 73 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 \begin{DoxyCode}
-76         \{
-77             data.NameIndex = index;
-78             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-79         \}
+74         \{
+75             this.names.AddRange( \hyperlink{a00064_a41eb6804d8afe8d674e64d71f66962ce}{names} );
+76         \}
 \end{DoxyCode}
-\hypertarget{a00064_a4bd41dc4c24fa515854d83ca5f730678}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter@{Type\-Converter}}
-\index{Type\-Converter@{Type\-Converter}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter (
-\begin{DoxyParamCaption}
-\item[{{\bf I\-Type\-Converter}}]{type\-Converter}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a4bd41dc4c24fa515854d83ca5f730678}
-
-
-Specifies the \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} to use when converting the property to and from a C\-S\-V field. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type\-Converter} & The Type\-Converter to use.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 130 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-131         \{
-132             data.TypeConverter = typeConverter;
-133             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-134         \}
-\end{DoxyCode}
-\hypertarget{a00064_a129110c34e2c12709f25948794390f97}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter$<$ T $>$@{Type\-Converter$<$ T $>$}}
-\index{Type\-Converter$<$ T $>$@{Type\-Converter$<$ T $>$}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter$<$ T $>$}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} {\bf Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter}$<$ T $>$ (
+\hypertarget{a00064_abec990435c8dccfb4553602b89f93201}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Clear@{Clear}}
+\index{Clear@{Clear}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a129110c34e2c12709f25948794390f97}
+)}}\label{a00064_abec990435c8dccfb4553602b89f93201}
 
 
-Specifies the \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} to use when converting the property to and from a C\-S\-V field. 
-
-
-\begin{DoxyTemplParams}{Template Parameters}
-{\em T} & The Type of the \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{Type\-Converter} to use.\\
-\hline
-\end{DoxyTemplParams}
-\begin{Desc}
-\item[Type Constraints]\begin{description}
-\item[{\em T} : {\em I\-Type\-Converter}]\end{description}
-\end{Desc}
-
-
-Definition at line 142 of file Csv\-Property\-Map.\-cs.
+Clears all names from the collection. 
 
 
 
-References Csv\-Helper.\-Reflection\-Helper.\-Create\-Instance().
+Definition at line 64 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 \begin{DoxyCode}
-142                                                                  : 
-      \hyperlink{a00117}{ITypeConverter}
-143         \{
-144             \hyperlink{a00064_a4bd41dc4c24fa515854d83ca5f730678}{TypeConverter}( ReflectionHelper.CreateInstance<T>() );
-145             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-146         \}
+65         \{
+66             names.Clear();
+67         \}
 \end{DoxyCode}
-
-
-Here is the call graph for this function\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{a00064_a129110c34e2c12709f25948794390f97_cgraph}
-\end{center}
-\end{figure}
-
-
-\hypertarget{a00064_a652b7feb8994aefa43652755d42b3fbf}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
+\hypertarget{a00064_a61b6a80e51d06f17d0043ec6aef89f1b}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
+\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
 \begin{DoxyParamCaption}
-\item[{Culture\-Info}]{culture\-Info}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a652b7feb8994aefa43652755d42b3fbf}
+)}}\label{a00064_a61b6a80e51d06f17d0043ec6aef89f1b}
 
 
-The Culture\-Info used when type converting. This will override the global \hyperlink{a00057_ad04ccfdd3cbc265f527ee5baa2e08508}{Csv\-Configuration.\-Culture\-Info} setting. 
+Returns an enumerator that iterates through the collection. 
 
+\begin{DoxyReturn}{Returns}
+A T\-:\-System.\-Collections.\-Generic.\-I\-Enumerator`1 that can be used to iterate through the collection. 
+\end{DoxyReturn}
+$<$filterpriority$>$1$<$/filterpriority$>$ 
 
-\begin{DoxyParams}{Parameters}
-{\em culture\-Info} & The culture info.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 166 of file Csv\-Property\-Map.\-cs.
+Definition at line 85 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 \begin{DoxyCode}
-167         \{
-168             data.TypeConverterOptions.CultureInfo = cultureInfo;
-169             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-170         \}
+86         \{
+87             \textcolor{keywordflow}{for}( var i = 0; i < names.Count; i++ )
+88             \{
+89                 yield \textcolor{keywordflow}{return} \textcolor{keyword}{this}[i];
+90             \}
+91         \}
 \end{DoxyCode}
-\hypertarget{a00064_a20bc1aec3a0054ac9b9c462562f111d2}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
+\hypertarget{a00064_a76b5c67fcecf55dbdd4b680cde1a78f7}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Get\-Enumerator@{Get\-Enumerator}}
+\index{Get\-Enumerator@{Get\-Enumerator}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Get\-Enumerator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator I\-Enumerable. Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Get\-Enumerator (
 \begin{DoxyParamCaption}
-\item[{Date\-Time\-Styles}]{date\-Time\-Style}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a20bc1aec3a0054ac9b9c462562f111d2}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{a00064_a76b5c67fcecf55dbdd4b680cde1a78f7}
 
 
-The Date\-Time\-Styles to use when type converting. This is used when doing any Date\-Time conversions. 
+Returns an enumerator that iterates through a collection. 
 
+\begin{DoxyReturn}{Returns}
+An T\-:\-System.\-Collections.\-I\-Enumerator object that can be used to iterate through the collection. 
+\end{DoxyReturn}
+$<$filterpriority$>$2$<$/filterpriority$>$ 
 
-\begin{DoxyParams}{Parameters}
-{\em date\-Time\-Style} & The date time style.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 177 of file Csv\-Property\-Map.\-cs.
+Definition at line 100 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 \begin{DoxyCode}
-178         \{
-179             data.TypeConverterOptions.DateTimeStyle = dateTimeStyle;
-180             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-181         \}
-\end{DoxyCode}
-\hypertarget{a00064_a16243e8334687160385ed8c589184031}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
-\begin{DoxyParamCaption}
-\item[{Number\-Styles}]{number\-Style}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a16243e8334687160385ed8c589184031}
-
-
-The Number\-Styles to use when type converting. This is used when doing any number conversions. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em number\-Style} & \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 188 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-189         \{
-190             data.TypeConverterOptions.NumberStyle = numberStyle;
-191             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-192         \}
-\end{DoxyCode}
-\hypertarget{a00064_a4df14f039b706d21e7235eb7050fac2d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
-\begin{DoxyParamCaption}
-\item[{string}]{format}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a4df14f039b706d21e7235eb7050fac2d}
-
-
-The string format to be used when type converting. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em format} & The format.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 198 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-199         \{
-200             data.TypeConverterOptions.Format = format;
-201             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-202         \}
-\end{DoxyCode}
-\hypertarget{a00064_a957ea50ce91adb642751201e8277949d}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
-\begin{DoxyParamCaption}
-\item[{bool}]{is\-True, }
-\item[{params string\mbox{[}$\,$\mbox{]}}]{boolean\-Values}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a957ea50ce91adb642751201e8277949d}
-
-
-The string values used to represent a boolean when converting. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em is\-True} & A value indicating whether true values or false values are being set.\\
-\hline
-{\em boolean\-Values} & The string boolean values.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 209 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-210         \{
-211             \textcolor{keywordflow}{return} \hyperlink{a00064_a652b7feb8994aefa43652755d42b3fbf}{TypeConverterOption}( isTrue, \textcolor{keyword}{true}, booleanValues );
-212         \}
-\end{DoxyCode}
-\hypertarget{a00064_a6fd25629d769c619b029a6c141ab77c2}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Type\-Converter\-Option@{Type\-Converter\-Option}}
-\index{Type\-Converter\-Option@{Type\-Converter\-Option}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Type\-Converter\-Option}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Csv\-Property\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Type\-Converter\-Option (
-\begin{DoxyParamCaption}
-\item[{bool}]{is\-True, }
-\item[{bool}]{clear\-Values, }
-\item[{params string\mbox{[}$\,$\mbox{]}}]{boolean\-Values}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00064_a6fd25629d769c619b029a6c141ab77c2}
-
-
-The string values used to represent a boolean when converting. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em is\-True} & A value indicating whether true values or false values are being set.\\
-\hline
-{\em clear\-Values} & A value indication if the current values should be cleared before adding the new ones.\\
-\hline
-{\em boolean\-Values} & The string boolean values.\\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 220 of file Csv\-Property\-Map.\-cs.
-
-
-\begin{DoxyCode}
-221         \{
-222             \textcolor{keywordflow}{if}( isTrue )
-223             \{
-224                 \textcolor{keywordflow}{if}( clearValues )
-225                 \{
-226                     data.TypeConverterOptions.BooleanTrueValues.Clear();
-227                 \}
-228                 data.TypeConverterOptions.BooleanTrueValues.AddRange( booleanValues );
-229             \}
-230             \textcolor{keywordflow}{else}
-231             \{
-232                 \textcolor{keywordflow}{if}( clearValues )
-233                 \{
-234                     data.TypeConverterOptions.BooleanFalseValues.Clear();
-235                 \}
-236                 data.TypeConverterOptions.BooleanFalseValues.AddRange( booleanValues );
-237             \}
-238             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-239         \}
+101         \{
+102             \textcolor{keywordflow}{return} names.GetEnumerator();
+103         \}
 \end{DoxyCode}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{a00064_a2943371f5d55b2fd7313bbb0e87a013c}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!data@{data}}
-\index{data@{data}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Property\-Map\-Data} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-data\hspace{0.3cm}{\ttfamily [private]}}}\label{a00064_a2943371f5d55b2fd7313bbb0e87a013c}
+\hypertarget{a00064_a41eb6804d8afe8d674e64d71f66962ce}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!names@{names}}
+\index{names@{names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{names}]{\setlength{\rightskip}{0pt plus 5cm}readonly List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-names = new List$<$string$>$()\hspace{0.3cm}{\ttfamily [private]}}}\label{a00064_a41eb6804d8afe8d674e64d71f66962ce}
 
 
-Definition at line 23 of file Csv\-Property\-Map.\-cs.
+Definition at line 16 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00064_a207637fa121612b618ed1131cb28b8bb}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}!Data@{Data}}
-\index{Data@{Data}!CsvHelper::Configuration::CsvPropertyMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Map}}
-\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Property\-Map\-Data} Csv\-Helper.\-Configuration.\-Csv\-Property\-Map.\-Data\hspace{0.3cm}{\ttfamily [get]}}}\label{a00064_a207637fa121612b618ed1131cb28b8bb}
+\hypertarget{a00064_a4b7b56286ad80183e1a33554a49eefa1}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Count@{Count}}
+\index{Count@{Count}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Count}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Count\hspace{0.3cm}{\ttfamily [get]}}}\label{a00064_a4b7b56286ad80183e1a33554a49eefa1}
 
 
-Gets the property map data. 
-
-
-
-Definition at line 29 of file Csv\-Property\-Map.\-cs.
+Gets the count. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Can\-Read(), and Csv\-Helper.\-Csv\-Writer.\-Can\-Write().
+Definition at line 48 of file Csv\-Property\-Name\-Collection.\-cs.
+
+\hypertarget{a00064_a1aa06a47337f6ab576b23fe63854dcbe}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Names@{Names}}
+\index{Names@{Names}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Names}]{\setlength{\rightskip}{0pt plus 5cm}List$<$string$>$ Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Names\hspace{0.3cm}{\ttfamily [get]}}}\label{a00064_a1aa06a47337f6ab576b23fe63854dcbe}
+
+
+Gets the raw list of names without the prefix being prepended. 
+
+
+
+Definition at line 40 of file Csv\-Property\-Name\-Collection.\-cs.
+
+\hypertarget{a00064_ab8f3256d8435a1c93f0280064aa3ff06}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!Prefix@{Prefix}}
+\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-Prefix\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00064_ab8f3256d8435a1c93f0280064aa3ff06}
+
+
+Gets the prefix to use for each name. 
+
+
+
+Definition at line 33 of file Csv\-Property\-Name\-Collection.\-cs.
+
+\hypertarget{a00064_acdce91a755be3bec6218e3d82f4dfe82}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}!this\mbox{[}int index\mbox{]}@{this[int index]}}
+\index{this\mbox{[}int index\mbox{]}@{this[int index]}!CsvHelper::Configuration::CsvPropertyNameCollection@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Name\-Collection}}
+\subsubsection[{this[int index]}]{\setlength{\rightskip}{0pt plus 5cm}string Csv\-Helper.\-Configuration.\-Csv\-Property\-Name\-Collection.\-this\mbox{[}int index\mbox{]}\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{a00064_acdce91a755be3bec6218e3d82f4dfe82}
+
+
+Gets the name at the given index. If a prefix is set, it will be prepended to the name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 25 of file Csv\-Property\-Name\-Collection.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00219}{Csv\-Property\-Map.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00217}{Csv\-Property\-Name\-Collection.\-cs}\end{DoxyCompactItemize}

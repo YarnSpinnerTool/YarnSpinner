@@ -1,264 +1,475 @@
-\hypertarget{a00116}{\section{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter Class Reference}
-\label{a00116}\index{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter}}
+\hypertarget{a00116}{\section{Yarn\-Spinner.\-Tests.\-Language\-Tests Class Reference}
+\label{a00116}\index{Yarn\-Spinner.\-Tests.\-Language\-Tests@{Yarn\-Spinner.\-Tests.\-Language\-Tests}}
 }
 
 
-Converts an Int64 to and from a string.  
-
-
-
-
-Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter\-:
+Inheritance diagram for Yarn\-Spinner.\-Tests.\-Language\-Tests\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00539}
+\includegraphics[width=232pt]{a00801}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter\-:
+Collaboration diagram for Yarn\-Spinner.\-Tests.\-Language\-Tests\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=220pt]{a00540}
+\includegraphics[width=350pt]{a00802}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-override object \hyperlink{a00116_a9080b7b6a5abc7d8271ffb6924c31b7c}{Convert\-From\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, string text)
-\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
-override bool \hyperlink{a00116_a1aec0ff8b13f9f61240ecf2a337a6340}{Can\-Convert\-From} (System.\-Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual string \hyperlink{a00082_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00172}{Type\-Converter\-Options} options, object value)
-\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00082_a470d21adaa704eb281250dbd112ff91a}{Can\-Convert\-From} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
-virtual bool \hyperlink{a00082_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
-\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00116_a29423f19f442c991bb2323c071980aff}{Language\-Tests} (bool experimental)
+\item 
+new void \hyperlink{a00116_ae0d1fb752df07e24b0d11db25e0c17c4}{Init} ()
+\item 
+void \hyperlink{a00116_a1d044fd44e610a35ef09d486eb06ee37}{Test\-Example\-Script} ()
+\item 
+void \hyperlink{a00116_a4da987e2dbc65b35cc6bd07392f71453}{Test\-Merging\-Nodes} ()
+\item 
+void \hyperlink{a00116_a6cc57344745b5fb315abdeacdd23b659}{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added} ()
+\item 
+void \hyperlink{a00116_a1fb5f217de912475860fcde067418f83}{Test\-Sources} (string file)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static I\-Enumerable$<$ string $>$ \hyperlink{a00116_a81fdcef842cffe4cc0762f7b0b8dd25a}{File\-Sources} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{Run\-Standard\-Testcase} (string node\-Name=\char`\"{}Start\char`\"{})
+\item 
+void \hyperlink{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{Handle\-Result} (\hyperlink{a00146}{Yarn.\-Dialogue.\-Runner\-Result} result)
+\item 
+void \hyperlink{a00160_ac21a5082ddac1da9db17ae54038df44e}{Expect\-Line} (string line)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00180}{Variable\-Storage} \hyperlink{a00160_a23d59ace1516ca72924c6fe3feafd3f7}{storage} = new \hyperlink{a00126}{Memory\-Variable\-Store}()
+\item 
+\hyperlink{a00082}{Dialogue} \hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}
+\item 
+bool \hyperlink{a00160_ac978fe85db843c51411f5517bdbe0eb8}{errors\-Cause\-Failures} = true
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{a00160_ab1ad614f465a49447da31c4000ec6b3e}{Project\-Root\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{Test\-Data\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static string \hyperlink{a00160_a39922286f6255e4fd0e433a4fc7521c4}{Unity\-Demo\-Scripts\-Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+bool \hyperlink{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{is\-Expecting\-Line}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static I\-Enumerable$<$ string $>$ \hyperlink{a00116_ab217b54a696aa8c8b53989f4b71d99e7}{Get\-Files\-In\-Directory} (string path)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{a00116_a5be122cbcc582be64108f4a0a6e2fb53}{experimental\-Mode}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Converts an Int64 to and from a string. 
+
+
+Definition at line 15 of file Language\-Tests.\-cs.
 
 
 
-Definition at line 12 of file Int64\-Converter.\-cs.
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00116_a29423f19f442c991bb2323c071980aff}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Language\-Tests@{Language\-Tests}}
+\index{Language\-Tests@{Language\-Tests}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Language\-Tests}]{\setlength{\rightskip}{0pt plus 5cm}Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Language\-Tests (
+\begin{DoxyParamCaption}
+\item[{bool}]{experimental}
+\end{DoxyParamCaption}
+)}}\label{a00116_a29423f19f442c991bb2323c071980aff}
 
+
+Definition at line 18 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+19         \{
+20             this.experimentalMode = experimental;
+21         \}
+\end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00116_a1aec0ff8b13f9f61240ecf2a337a6340}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00160_ac21a5082ddac1da9db17ae54038df44e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Expect\-Line@{Expect\-Line}}
+\index{Expect\-Line@{Expect\-Line}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Expect\-Line}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Expect\-Line (
 \begin{DoxyParamCaption}
-\item[{System.\-Type}]{type}
+\item[{string}]{line}
 \end{DoxyParamCaption}
-)}}\label{a00116_a1aec0ff8b13f9f61240ecf2a337a6340}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_ac21a5082ddac1da9db17ae54038df44e}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Definition at line 40 of file Int64\-Converter.\-cs.
+Definition at line 171 of file Test\-Base.\-cs.
 
 
 \begin{DoxyCode}
-41         \{
-42             \textcolor{comment}{// We only care about strings.}
-43             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-44         \}
+171                                                \{
+172             \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = line;
+173         \}
 \end{DoxyCode}
-\hypertarget{a00082_a470d21adaa704eb281250dbd112ff91a}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
-\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-From (
+\hypertarget{a00116_a81fdcef842cffe4cc0762f7b0b8dd25a}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!File\-Sources@{File\-Sources}}
+\index{File\-Sources@{File\-Sources}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{File\-Sources}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$string$>$ Yarn\-Spinner.\-Tests.\-Language\-Tests.\-File\-Sources (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_a470d21adaa704eb281250dbd112ff91a}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00116_a81fdcef842cffe4cc0762f7b0b8dd25a}
 
 
-Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_ae1ad863656f4fa96bd846a41344c9349}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00136_ab9761a9f96be2b41103bb1313611d6f9}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, \hyperlink{a00039_a0be20573af4ee53409bb437125a64268}{Csv\-Helper.\-Type\-Conversion.\-Boolean\-Converter}, \hyperlink{a00092_a31af8209aad64ed11d949586075c244a}{Csv\-Helper.\-Type\-Conversion.\-Enum\-Converter}, \hyperlink{a00093_af66a7c67041f4c8061aa66e9e36359cf}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}, \hyperlink{a00079_a82a8cf4b77600ef49da60deb0c24a708}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Offset\-Converter}, \hyperlink{a00078_af44239d3bd014b1423fa80f7440bbd25}{Csv\-Helper.\-Type\-Conversion.\-Date\-Time\-Converter}, \hyperlink{a00040_a74a66b405f6c18e69b9fd23a1dea91b0}{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}, and \hyperlink{a00166_ae3f8d46f5176d2ae08ac3fcdda1951e7}{Csv\-Helper.\-Type\-Conversion.\-Time\-Span\-Converter}.
-
-
-
-Definition at line 55 of file Default\-Type\-Converter.\-cs.
+Definition at line 115 of file Language\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-56         \{
-57             \textcolor{comment}{// The default convert doesn't know how to}
-58             \textcolor{comment}{// convert from any type.}
-59             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-60         \}
+115                                                         \{
+116 
+117             var directory = \textcolor{stringliteral}{"TestCases"};
+118 
+119             var allowedExtensions = \textcolor{keyword}{new}[] \{ \textcolor{stringliteral}{".node"}, \textcolor{stringliteral}{".json"}, \textcolor{stringliteral}{".txt"} \};
+120 
+121             var path = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, directory);
+122 
+123 
+124             var files = \hyperlink{a00116_ab217b54a696aa8c8b53989f4b71d99e7}{GetFilesInDirectory}(path);
+125 
+126             \textcolor{keywordflow}{return} files.Where(p => allowedExtensions.Contains(Path.GetExtension(p)))
+127                         .Select(p => Path.GetFileName(p));
+128         \}
 \end{DoxyCode}
-\hypertarget{a00082_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
-\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
+\hypertarget{a00116_ab217b54a696aa8c8b53989f4b71d99e7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Get\-Files\-In\-Directory@{Get\-Files\-In\-Directory}}
+\index{Get\-Files\-In\-Directory@{Get\-Files\-In\-Directory}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Get\-Files\-In\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}static I\-Enumerable$<$string$>$ Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Get\-Files\-In\-Directory (
 \begin{DoxyParamCaption}
-\item[{Type}]{type}
+\item[{string}]{path}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_acb65bd8c8199d88d5b1629ae35d18514}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{a00116_ab217b54a696aa8c8b53989f4b71d99e7}
 
 
-Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em type} & The type.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00093_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 69 of file Default\-Type\-Converter.\-cs.
+Definition at line 132 of file Language\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-70         \{
-71             \textcolor{comment}{// We only care about strings.}
-72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
-73         \}
+133         \{
+134             \textcolor{keywordflow}{try}
+135             \{
+136                 \textcolor{keywordflow}{return} Directory.EnumerateFiles(path);
+137             \}
+138             \textcolor{keywordflow}{catch} (DirectoryNotFoundException)
+139             \{
+140                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ \};
+141             \}
+142         \}
 \end{DoxyCode}
-\hypertarget{a00116_a9080b7b6a5abc7d8271ffb6924c31b7c}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
-\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Int64\-Converter.\-Convert\-From\-String (
+\hypertarget{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Handle\-Result@{Handle\-Result}}
+\index{Handle\-Result@{Handle\-Result}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Handle\-Result}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Handle\-Result (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{string}]{text}
+\item[{{\bf Yarn.\-Dialogue.\-Runner\-Result}}]{result}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00116_a9080b7b6a5abc7d8271ffb6924c31b7c}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a7b525f85a26d7c942e1cbfa5d6453893}
 
 
-Converts the string to an object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em text} & The string to convert to an object.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The object created from the string.
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{a00082_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
-
-
-
-Definition at line 20 of file Int64\-Converter.\-cs.
-
-
-
-References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
+Definition at line 123 of file Test\-Base.\-cs.
 
 
 \begin{DoxyCode}
-21         \{
-22             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
-23 
-24             \textcolor{keywordtype}{long} l;
-25             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{long}.TryParse( text, numberStyle, options.CultureInfo, out l ) )
-26             \{
-27                 \textcolor{keywordflow}{return} l;
-28             \}
-29 
-30             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
-31         \}
+123                                                                        \{
+124 
+125             \textcolor{keywordflow}{if} (result is Yarn.Dialogue.LineResult) \{
+126                 var text = (result as \hyperlink{a00122}{Yarn.Dialogue.LineResult}).line.text;
+127 
+128                 Console.WriteLine(\textcolor{stringliteral}{"Line: "} + text);
+129 
+130                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{isExpectingLine}) \{
+131                     Assert.AreEqual (text, \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine});
+132                 \}
+133 
+134             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.OptionSetResult) \{
+135                 var options = (result as \hyperlink{a00135}{Yarn.Dialogue.OptionSetResult}).
+      options.options;
+136                 var optionCount = options.Count;
+137                 var resultDelegate = (result as Yarn.Dialogue.OptionSetResult).setSelectedOptionDelegate;
+138 
+139                 Console.WriteLine(\textcolor{stringliteral}{"Options:"});
+140                 \textcolor{keywordflow}{foreach} (var option \textcolor{keywordflow}{in} options) \{
+141                     Console.WriteLine(\textcolor{stringliteral}{" - "} + option);
+142                 \}
+143 
+144                 \textcolor{keywordflow}{if} (\hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} != -1) \{
+145                     Assert.AreEqual (\hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount}, optionCount);
+146                 \}
+147 
+148                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} != -1) \{
+149                     resultDelegate (\hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect});
+150                 \} \textcolor{keywordflow}{else} \{
+151                     resultDelegate(0);
+152                 \}
+153             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (result is Yarn.Dialogue.CommandResult) \{
+154                 var commandText = (result as \hyperlink{a00042}{Yarn.Dialogue.CommandResult}).
+      command.text;
+155 
+156                 Console.WriteLine(\textcolor{stringliteral}{"Command: "} + commandText);
+157 
+158                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} != null) \{
+159                     Assert.AreEqual (\hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand}, commandText);
+160                 \}
+161             \}
+162 
+163             \textcolor{comment}{// Reset all 'expected' stuff}
+164             \hyperlink{a00160_a3651ffb5425ab15bd1e42749347c1ee7}{nextExpectedLine} = null;
+165             \hyperlink{a00160_a26fae5694fc06c3cdb12d3108dbc34de}{nextExpectedCommand} = null;
+166             \hyperlink{a00160_aaabaf15249efe42f3d857129bdbc2864}{nextExpectedOptionCount} = -1;
+167             \hyperlink{a00160_a343055fa693e9d5dfc1bdbfcd0f02676}{nextOptionToSelect} = -1;
+168 
+169         \}
 \end{DoxyCode}
-\hypertarget{a00082_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
-\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::Int64Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Int64\-Converter}}
-\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\hypertarget{a00116_ae0d1fb752df07e24b0d11db25e0c17c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Init@{Init}}
+\index{Init@{Init}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}new void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Init (
 \begin{DoxyParamCaption}
-\item[{{\bf Type\-Converter\-Options}}]{options, }
-\item[{object}]{value}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00082_a36cb2f9b24f15a671293f3a722324c27}
+)}}\label{a00116_ae0d1fb752df07e24b0d11db25e0c17c4}
 
 
-Converts the object to a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em options} & The options to use when converting.\\
-\hline
-{\em value} & The object to convert to a string.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The string representation of the object.
-\end{DoxyReturn}
-
-
-Implements \hyperlink{a00117_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
-
-
-
-Reimplemented in \hyperlink{a00136_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00093_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
-
-
-
-Definition at line 21 of file Default\-Type\-Converter.\-cs.
+Definition at line 24 of file Language\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-22         \{
-23             \textcolor{keywordflow}{if}( value == null )
-24             \{
-25                 \textcolor{keywordflow}{return} string.Empty;
-26             \}
-27 
-28             var formattable = value as IFormattable;
-29             \textcolor{keywordflow}{if}( formattable != null )
-30             \{
-31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
-32             \}
+24                                \{
+25             base.Init();
+26 
+27             dialogue.experimentalMode = this.experimentalMode;
+28 
+29             \textcolor{comment}{// Register some additional functions}
+30             dialogue.library.RegisterFunction(\textcolor{stringliteral}{"add\_three\_operands"}, 3, delegate (
+      \hyperlink{a00177}{Value}[] parameters) \{
+31                 \textcolor{keywordflow}{return} parameters[0] + parameters[1] + parameters[2];
+32             \});
 33 
-34             \textcolor{keywordflow}{return} value.ToString();
-35         \}
+34             dialogue.library.RegisterFunction(\textcolor{stringliteral}{"last\_value"}, -1, delegate (\hyperlink{a00177}{Value}[] parameters)
+35             \{
+36                 \textcolor{keywordflow}{return} parameters[parameters.Length - 1];
+37             \});
+38 
+39             
+40         \}
 \end{DoxyCode}
+\hypertarget{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Run\-Standard\-Testcase@{Run\-Standard\-Testcase}}
+\index{Run\-Standard\-Testcase@{Run\-Standard\-Testcase}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Run\-Standard\-Testcase}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Test\-Base.\-Run\-Standard\-Testcase (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name = {\ttfamily \char`\"{}Start\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_abffa134d40d72b21e6b35c3bf05fc53f}
+
+
+Definition at line 117 of file Test\-Base.\-cs.
+
+
+\begin{DoxyCode}
+117                                                                       \{
+118             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_aead84ee50cb113ca45724894290ce9c2}{Run}(nodeName)) \{
+119                 \hyperlink{a00160_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
+120             \}
+121         \}
+\end{DoxyCode}
+\hypertarget{a00116_a6cc57344745b5fb315abdeacdd23b659}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-End\-Of\-Notes\-With\-Options\-Not\-Added@{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}}
+\index{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added@{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-End\-Of\-Notes\-With\-Options\-Not\-Added}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-End\-Of\-Notes\-With\-Options\-Not\-Added (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00116_a6cc57344745b5fb315abdeacdd23b659}
+
+
+Definition at line 73 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+74         \{
+75             var path = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"SkippedOptions.node"});
+76             dialogue.LoadFile(path);
+77 
+78             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_aead84ee50cb113ca45724894290ce9c2}{Run}())
+79             \{
+80                 Assert.IsNotInstanceOf<\hyperlink{a00135}{Dialogue.OptionSetResult}>(result);
+81             \}
+82 
+83         \}
+\end{DoxyCode}
+\hypertarget{a00116_a1d044fd44e610a35ef09d486eb06ee37}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Example\-Script@{Test\-Example\-Script}}
+\index{Test\-Example\-Script@{Test\-Example\-Script}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Example\-Script}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Example\-Script (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00116_a1d044fd44e610a35ef09d486eb06ee37}
+
+
+Definition at line 43 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+44         \{
+45 
+46             \hyperlink{a00160_ac978fe85db843c51411f5517bdbe0eb8}{errorsCauseFailures} = \textcolor{keyword}{false};
+47             var path = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+48             dialogue.LoadFile(path);
+49             \hyperlink{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{RunStandardTestcase}();
+50         \}
+\end{DoxyCode}
+\hypertarget{a00116_a4da987e2dbc65b35cc6bd07392f71453}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Merging\-Nodes@{Test\-Merging\-Nodes}}
+\index{Test\-Merging\-Nodes@{Test\-Merging\-Nodes}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Merging\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Merging\-Nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00116_a4da987e2dbc65b35cc6bd07392f71453}
+
+
+Definition at line 53 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+54         \{
+55             var sallyPath = Path.Combine(\hyperlink{a00160_a39922286f6255e4fd0e433a4fc7521c4}{UnityDemoScriptsPath}, \textcolor{stringliteral}{"Sally.yarn.txt"});
+56             var examplePath = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+57 
+58             dialogue.LoadFile(sallyPath);
+59             dialogue.LoadFile(examplePath);
+60 
+61             \textcolor{comment}{// Loading code with the same contents should throw}
+62             Assert.Throws<InvalidOperationException>(delegate ()
+63             \{
+64                 var path = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"});
+65                 dialogue.LoadFile(path);
+66                 \textcolor{keywordflow}{return};
+67             \});
+68         \}
+\end{DoxyCode}
+\hypertarget{a00116_a1fb5f217de912475860fcde067418f83}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Sources@{Test\-Sources}}
+\index{Test\-Sources@{Test\-Sources}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Sources}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Language\-Tests.\-Test\-Sources (
+\begin{DoxyParamCaption}
+\item[{string}]{file}
+\end{DoxyParamCaption}
+)}}\label{a00116_a1fb5f217de912475860fcde067418f83}
+
+
+Definition at line 87 of file Language\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+87                                              \{
+88 
+89             storage.Clear();
+90             \textcolor{keywordtype}{bool} runTest = \textcolor{keyword}{true};
+91 
+92             var scriptFilePath = Path.Combine(\hyperlink{a00160_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"TestCases"}, file);
+93 
+94             \textcolor{comment}{// skipping the indentation test when in experimental mode}
+95             \textcolor{comment}{// it can never pass}
+96             \textcolor{keywordflow}{if} (\hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_a2a5ac23441861eef13c59044cc218f09}{experimentalMode} && file == \textcolor{stringliteral}{"Indentation.node"})
+97             \{
+98                 runTest = \textcolor{keyword}{false};
+99             \}
+100 
+101             \textcolor{keywordflow}{if} (runTest)
+102             \{
+103                 dialogue.LoadFile(scriptFilePath);
+104 
+105                 \textcolor{comment}{// If this file contains a Start node, run the test case}
+106                 \textcolor{comment}{// (otherwise, we're just testing its parsability, which}
+107                 \textcolor{comment}{// we did in the last line)}
+108                 \textcolor{keywordflow}{if} (\hyperlink{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00082_a93bb76a1f9a4058f225ff4cee97483c6}{NodeExists}(\textcolor{stringliteral}{"Start"}))
+109                     \hyperlink{a00160_abffa134d40d72b21e6b35c3bf05fc53f}{RunStandardTestcase}();
+110             \}
+111         \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!dialogue@{dialogue}}
+\index{dialogue@{dialogue}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{dialogue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dialogue} Yarn\-Spinner.\-Tests.\-Test\-Base.\-dialogue\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a4cff5de56c4b8a91c76b6eb2d622a795}
+
+
+Definition at line 23 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_ac978fe85db843c51411f5517bdbe0eb8}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!errors\-Cause\-Failures@{errors\-Cause\-Failures}}
+\index{errors\-Cause\-Failures@{errors\-Cause\-Failures}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{errors\-Cause\-Failures}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-errors\-Cause\-Failures = true\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_ac978fe85db843c51411f5517bdbe0eb8}
+
+
+Definition at line 25 of file Test\-Base.\-cs.
+
+\hypertarget{a00116_a5be122cbcc582be64108f4a0a6e2fb53}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!experimental\-Mode@{experimental\-Mode}}
+\index{experimental\-Mode@{experimental\-Mode}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{experimental\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Language\-Tests.\-experimental\-Mode\hspace{0.3cm}{\ttfamily [private]}}}\label{a00116_a5be122cbcc582be64108f4a0a6e2fb53}
+
+
+Definition at line 17 of file Language\-Tests.\-cs.
+
+\hypertarget{a00160_a23d59ace1516ca72924c6fe3feafd3f7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!storage@{storage}}
+\index{storage@{storage}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Variable\-Storage} Yarn\-Spinner.\-Tests.\-Test\-Base.\-storage = new {\bf Memory\-Variable\-Store}()\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a23d59ace1516ca72924c6fe3feafd3f7}
+
+
+Definition at line 22 of file Test\-Base.\-cs.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!is\-Expecting\-Line@{is\-Expecting\-Line}}
+\index{is\-Expecting\-Line@{is\-Expecting\-Line}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{is\-Expecting\-Line}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn\-Spinner.\-Tests.\-Test\-Base.\-is\-Expecting\-Line\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}}\label{a00160_a47f35b8e8123ed9471883d02b8bc9f3e}
+
+
+Definition at line 175 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_ab1ad614f465a49447da31c4000ec6b3e}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Project\-Root\-Path@{Project\-Root\-Path}}
+\index{Project\-Root\-Path@{Project\-Root\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Project\-Root\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Project\-Root\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_ab1ad614f465a49447da31c4000ec6b3e}
+
+
+Definition at line 29 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_aa9b4d902d61adad7165154a265f69aa4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Test\-Data\-Path@{Test\-Data\-Path}}
+\index{Test\-Data\-Path@{Test\-Data\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Test\-Data\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Test\-Data\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_aa9b4d902d61adad7165154a265f69aa4}
+
+
+Definition at line 52 of file Test\-Base.\-cs.
+
+\hypertarget{a00160_a39922286f6255e4fd0e433a4fc7521c4}{\index{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}!Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}}
+\index{Unity\-Demo\-Scripts\-Path@{Unity\-Demo\-Scripts\-Path}!YarnSpinner::Tests::LanguageTests@{Yarn\-Spinner\-::\-Tests\-::\-Language\-Tests}}
+\subsubsection[{Unity\-Demo\-Scripts\-Path}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn\-Spinner.\-Tests.\-Test\-Base.\-Unity\-Demo\-Scripts\-Path\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}, {\ttfamily [inherited]}}}\label{a00160_a39922286f6255e4fd0e433a4fc7521c4}
+
+
+Definition at line 60 of file Test\-Base.\-cs.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00270}{Int64\-Converter.\-cs}\end{DoxyCompactItemize}
+Yarn\-Spinner\-Tests/\hyperlink{a00311}{Language\-Tests.\-cs}\end{DoxyCompactItemize}

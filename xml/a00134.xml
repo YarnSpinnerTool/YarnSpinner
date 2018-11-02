@@ -1,88 +1,79 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00134" kind="struct" prot="public">
-    <compoundname>Yarn::Loader::NodeInfo</compoundname>
-    <innerclass refid="a00145" prot="public">Yarn::Loader::NodeInfo::Position</innerclass>
-      <sectiondef kind="property">
-      <memberdef kind="property" id="a00134_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.title</definition>
+  <compounddef id="a00134" kind="struct" prot="package">
+    <compoundname>Yarn::Parser::Operator::OperatorInfo</compoundname>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00134_1accba40a72d9709ca3c18810b8661afe3" prot="package" static="no" mutable="no">
+        <type><ref refid="a00133_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
+        <definition>Associativity Yarn.Parser.Operator.OperatorInfo.associativity</definition>
         <argsstring></argsstring>
-        <name>title</name>
+        <name>associativity</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="364" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="364" bodyend="-1"/>
-        <referencedby refid="a00127_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00300" startline="217" endline="353">Yarn.Loader.Load</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1155" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1155" bodyend="-1"/>
+        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00134_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.body</definition>
-        <argsstring></argsstring>
-        <name>body</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="365" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="365" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="property" id="a00134_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type>string</type>
-        <definition>string Yarn.Loader.NodeInfo.tags</definition>
-        <argsstring></argsstring>
-        <name>tags</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="369" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="369" bodyend="-1"/>
-        <referencedby refid="a00127_1aa79ba1a47653bfc06ce3ccaf87551ad3" compoundref="a00300" startline="217" endline="353">Yarn.Loader.Load</referencedby>
-      </memberdef>
-      <memberdef kind="property" id="a00134_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+      <memberdef kind="variable" id="a00134_1a0b2921d7b863e268d33aa15213395093" prot="package" static="no" mutable="no">
         <type>int</type>
-        <definition>int Yarn.Loader.NodeInfo.colorID</definition>
+        <definition>int Yarn.Parser.Operator.OperatorInfo.precedence</definition>
         <argsstring></argsstring>
-        <name>colorID</name>
+        <name>precedence</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="371" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="371" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1156" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1156" bodyend="-1"/>
+        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00134_1ac368ed021558af21c4abed88042c1aa8" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
-        <type><ref refid="a00145" kindref="compound">Position</ref></type>
-        <definition>Position Yarn.Loader.NodeInfo.position</definition>
+      <memberdef kind="variable" id="a00134_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.Operator.OperatorInfo.arguments</definition>
         <argsstring></argsstring>
-        <name>position</name>
+        <name>arguments</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="372" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="372" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1157" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1157" bodyend="-1"/>
+        <referencedby refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" compoundref="a00295" startline="1158" endline="1162">Yarn.Parser.Operator.OperatorInfo.OperatorInfo</referencedby>
       </memberdef>
-      <memberdef kind="property" id="a00134_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type>List&lt; string &gt;</type>
-        <definition>List&lt;string&gt; Yarn.Loader.NodeInfo.tagsList</definition>
-        <argsstring></argsstring>
-        <name>tagsList</name>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.Operator.OperatorInfo.OperatorInfo</definition>
+        <argsstring>(Associativity associativity, int precedence, int arguments)</argsstring>
+        <name>OperatorInfo</name>
+        <param>
+          <type><ref refid="a00133_1a83fa1b8db0e6678006920812b6f33f62" kindref="member">Associativity</ref></type>
+          <declname>associativity</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>precedence</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arguments</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="376" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="377" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1158" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1158" bodyend="1162"/>
+        <references refid="a00134_1a0758c6f7dac4b205f616b43b1af95b95" compoundref="a00295" startline="1157">Yarn.Parser.Operator.OperatorInfo.arguments</references>
+        <references refid="a00134_1accba40a72d9709ca3c18810b8661afe3" compoundref="a00295" startline="1155">Yarn.Parser.Operator.OperatorInfo.associativity</references>
+        <references refid="a00134_1a0b2921d7b863e268d33aa15213395093" compoundref="a00295" startline="1156">Yarn.Parser.Operator.OperatorInfo.precedence</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -90,19 +81,17 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1538">
-        <label>Yarn.Loader.NodeInfo</label>
+      <node id="1555">
+        <label>Yarn.Parser.Operator.OperatorInfo</label>
         <link refid="a00134"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" line="358" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Loader.cs" bodystart="358" bodyend="389"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="1154" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="1154" bodyend="1163"/>
     <listofallmembers>
-      <member refid="a00134_1a18a8b97f2173fbcf8f3077582cc6e96e" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>body</name></member>
-      <member refid="a00134_1a65f686e0170a9c50b97c4e4eedd1a093" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>colorID</name></member>
-      <member refid="a00134_1ac368ed021558af21c4abed88042c1aa8" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>position</name></member>
-      <member refid="a00134_1acd4d4915f6cc14f8b0f1f92d27da8b36" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tags</name></member>
-      <member refid="a00134_1ab5010cc4c731e0da871e6002e5fb99a1" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>tagsList</name></member>
-      <member refid="a00134_1aafc45bbc86a9acb9bdbcf7877695a96c" prot="public" virt="non-virtual"><scope>Yarn::Loader::NodeInfo</scope><name>title</name></member>
+      <member refid="a00134_1a0758c6f7dac4b205f616b43b1af95b95" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>arguments</name></member>
+      <member refid="a00134_1accba40a72d9709ca3c18810b8661afe3" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>associativity</name></member>
+      <member refid="a00134_1a25faca62235c9f8542e4a071ba8ebc0b" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>OperatorInfo</name></member>
+      <member refid="a00134_1a0b2921d7b863e268d33aa15213395093" prot="package" virt="non-virtual"><scope>Yarn::Parser::Operator::OperatorInfo</scope><name>precedence</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

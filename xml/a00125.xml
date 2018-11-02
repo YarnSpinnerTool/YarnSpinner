@@ -1,77 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00125" kind="struct" prot="package">
-    <compoundname>Yarn::LineInfo</compoundname>
-      <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="a00125_1a7165cafce64a3deafc41b2090ddf8d0e" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int Yarn.LineInfo.lineNumber</definition>
-        <argsstring></argsstring>
-        <name>lineNumber</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="72" bodyend="-1"/>
-        <referencedby refid="a00125_1a15924fb79c648f2089ff0db955679dd9" compoundref="a00302" startline="75" endline="79">Yarn.LineInfo.LineInfo</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00125_1a5a91331fb123e29d71d69e096f943c2f" prot="public" static="no" mutable="no">
-        <type>string</type>
-        <definition>string Yarn.LineInfo.nodeName</definition>
-        <argsstring></argsstring>
-        <name>nodeName</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="73" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="73" bodyend="-1"/>
-        <referencedby refid="a00125_1a15924fb79c648f2089ff0db955679dd9" compoundref="a00302" startline="75" endline="79">Yarn.LineInfo.LineInfo</referencedby>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00125_1a15924fb79c648f2089ff0db955679dd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>Yarn.LineInfo.LineInfo</definition>
-        <argsstring>(string nodeName, int lineNumber)</argsstring>
-        <name>LineInfo</name>
-        <param>
-          <type>string</type>
-          <declname>nodeName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>lineNumber</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="75" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="75" bodyend="79"/>
-        <references refid="a00125_1a7165cafce64a3deafc41b2090ddf8d0e" compoundref="a00302" startline="72">Yarn.LineInfo.lineNumber</references>
-        <references refid="a00125_1a5a91331fb123e29d71d69e096f943c2f" compoundref="a00302" startline="73">Yarn.LineInfo.nodeName</references>
-      </memberdef>
-      </sectiondef>
+  <compounddef id="a00125" kind="namespace">
+    <compoundname>Yarn::Unity</compoundname>
+    <innerclass refid="a00360" prot="public">Yarn::Unity::LocalisedStringGroup</innerclass>
+    <innerclass refid="a00083" prot="public">Yarn::Unity::DialogueRunner</innerclass>
+    <innerclass refid="a00183" prot="public">Yarn::Unity::YarnCommandAttribute</innerclass>
+    <innerclass refid="a00085" prot="public">Yarn::Unity::DialogueUIBehaviour</innerclass>
+    <innerclass refid="a00181" prot="public">Yarn::Unity::VariableStorageBehaviour</innerclass>
+    <innerclass refid="a00176" prot="public">Yarn::Unity::YarnSpinnerEditorWindow</innerclass>
+    <innerclass refid="a00101" prot="package">Yarn::Unity::Icons</innerclass>
+    <innernamespace refid="a00352">Yarn::Unity::Example</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1497">
-        <label>Yarn.LineInfo</label>
-        <link refid="a00125"/>
-      </node>
-    </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="71" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="70" bodyend="80"/>
-    <listofallmembers>
-      <member refid="a00125_1a15924fb79c648f2089ff0db955679dd9" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>LineInfo</name></member>
-      <member refid="a00125_1a7165cafce64a3deafc41b2090ddf8d0e" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>lineNumber</name></member>
-      <member refid="a00125_1a5a91331fb123e29d71d69e096f943c2f" prot="public" virt="non-virtual"><scope>Yarn::LineInfo</scope><name>nodeName</name></member>
-    </listofallmembers>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="34" column="1"/>
   </compounddef>
 </doxygen>

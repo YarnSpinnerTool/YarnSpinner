@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00226" kind="file">
-    <compoundname>DefaultCsvClassMap`1.cs</compoundname>
-    <innerclass refid="a00081" prot="public">CsvHelper::Configuration::DefaultCsvClassMap&lt; T &gt;</innerclass>
-    <innernamespace refid="a00326">CsvHelper::Configuration</innernamespace>
+    <compoundname>CsvMissingFieldException.cs</compoundname>
+    <innerclass refid="a00057" prot="public">CsvHelper::CsvMissingFieldException</innerclass>
+    <innernamespace refid="a00319">CsvHelper</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -13,17 +13,30 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>a<sp/>part<sp/>of<sp/>CsvHelper<sp/>and<sp/>is<sp/>dual<sp/>licensed<sp/>under<sp/>MS-PL<sp/>and<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>LICENSE.txt<sp/>for<sp/>details<sp/>or<sp/>visit<sp/>http://www.opensource.org/licenses/ms-pl.html<sp/>for<sp/>MS-PL<sp/>and<sp/>http://opensource.org/licenses/Apache-2.0<sp/>for<sp/>Apache<sp/>2.0.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://csvhelper.com</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!NET_2_0</highlight></codeline>
-<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper.Configuration</highlight></codeline>
-<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14" refid="a00081" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">DefaultCsvClassMap&lt;T&gt;<sp/>:<sp/><ref refid="a00054" kindref="compound">CsvClassMap</ref>&lt;T&gt;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>!NET_2_0</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!COREFX</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Runtime.Serialization;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">CsvHelper</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor">#if<sp/>!COREFX<sp/>&amp;&amp;<sp/>!PCL</highlight></codeline>
+<codeline lineno="17"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>[Serializable]</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="19" refid="a00057" refkind="compound"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="a00057" kindref="compound">CsvMissingFieldException</ref><sp/>:<sp/><ref refid="a00068" kindref="compound">CsvReaderException</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24" refid="a00057_1ac65429fd7aadcadd7d362722f7a3cab7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00057_1ac65429fd7aadcadd7d362722f7a3cab7" kindref="member">CsvMissingFieldException</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="a00057_1aa0b611d59d2c9c47047de427b35cf6a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00057_1aa0b611d59d2c9c47047de427b35cf6a7" kindref="member">CsvMissingFieldException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message<sp/>)<sp/>:<sp/>base(<sp/>message<sp/>)<sp/>{}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="a00057_1a1a6eb7ea392bc14d0da95e447ac001dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00057_1a1a6eb7ea392bc14d0da95e447ac001dc" kindref="member">CsvMissingFieldException</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>message,<sp/>Exception<sp/>innerException<sp/>)<sp/>:<sp/>base(<sp/>message,<sp/>innerException<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!PCL<sp/>&amp;&amp;<sp/>!COREFX</highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="a00057_1ac65429fd7aadcadd7d362722f7a3cab7" kindref="member">CsvMissingFieldException</ref>(<sp/>SerializationInfo<sp/>info,<sp/>StreamingContext<sp/>context<sp/>)<sp/>:<sp/>base(<sp/>info,<sp/>context<sp/>)<sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="51"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
     </programlisting>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/DefaultCsvClassMap`1.cs"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvMissingFieldException.cs"/>
   </compounddef>
 </doxygen>

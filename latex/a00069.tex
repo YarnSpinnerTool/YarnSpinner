@@ -1,209 +1,362 @@
-\hypertarget{a00069}{\section{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map Class Reference}
-\label{a00069}\index{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map@{Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map}}
+\hypertarget{a00069}{\section{Csv\-Helper.\-Csv\-Serializer Class Reference}
+\label{a00069}\index{Csv\-Helper.\-Csv\-Serializer@{Csv\-Helper.\-Csv\-Serializer}}
 }
 
 
-Mapping info for a reference property mapping to a class.  
+Defines methods used to serialize data into a C\-S\-V file.  
 
 
 
 
-Collaboration diagram for Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map\-:
+Inheritance diagram for Csv\-Helper.\-Csv\-Serializer\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=250pt]{a00490}
+\includegraphics[width=204pt]{a00425}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Csv\-Helper.\-Csv\-Serializer\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{a00426}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00069_a02823d2439667bca75233abbe81651ff}{Csv\-Property\-Reference\-Map} (Property\-Info property, \hyperlink{a00054}{Csv\-Class\-Map} mapping)
-\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{a00069}{Csv\-Property\-Reference\-Map} class. \end{DoxyCompactList}\item 
-\hyperlink{a00069}{Csv\-Property\-Reference\-Map} \hyperlink{a00069_a0ed653de99ec2251fd99837740693789}{Prefix} (string prefix=null)
-\begin{DoxyCompactList}\small\item\em Appends a prefix to the header of each field of the reference property \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Package Functions}
+\hyperlink{a00069_a74ea10f7aaea0a478087d8ff6182f38c}{Csv\-Serializer} (Text\-Writer \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer})
+\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer. \end{DoxyCompactList}\item 
+\hyperlink{a00069_ab14fe4a4f630ce97d57c27e2ee050fac}{Csv\-Serializer} (Text\-Writer \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer}, \hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00069_ae8c56ff97c0a797245f2205c486833ea}{configuration})
+\begin{DoxyCompactList}\small\item\em Creates a new serializer using the given Text\-Writer and Csv\-Configuration. \end{DoxyCompactList}\item 
+void \hyperlink{a00069_aefad906acd048863d3dd414651a44793}{Write} (string\mbox{[}$\,$\mbox{]} record)
+\begin{DoxyCompactList}\small\item\em Writes a record to the C\-S\-V file. \end{DoxyCompactList}\item 
+void \hyperlink{a00069_a9d0e8b3508b377a7f978da2394b09e36}{Dispose} ()
+\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00069_a1e879f9a6ed84415ac52c44f1f086606}{Get\-Max\-Index} ()
-\begin{DoxyCompactList}\small\item\em Get the largest index for the properties and references. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{a00069_a0be3b74ca7606e27fd16441ecc988f0b}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. \end{DoxyCompactList}\item 
+virtual void \hyperlink{a00069_ae14e1913a4e76faf97484c1bde339143}{Check\-Disposed} ()
+\begin{DoxyCompactList}\small\item\em Checks if the instance has been disposed of. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-Property\-Info \hyperlink{a00069_a1bf8b55373206c0dc378c8f7247bf149}{Property}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the property. \end{DoxyCompactList}\item 
-\hyperlink{a00054}{Csv\-Class\-Map} \hyperlink{a00069_a555d8d59960792aa556002a1a1b942f9}{Mapping}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the mapping. \end{DoxyCompactList}\item 
-\hyperlink{a00070}{Csv\-Property\-Reference\-Map\-Data} \hyperlink{a00069_aa83ef91c4eb293a9d035013c8b4af016}{Data}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Gets the property reference map data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00069_a2ae1b1a629b707fbfb7d636989442f34}{Configuration}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-readonly \\*
-\hyperlink{a00070}{Csv\-Property\-Reference\-Map\-Data} \hyperlink{a00069_aa6926229eec915aa6a71c9ee603064f5}{data}
+bool \hyperlink{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed}
+\item 
+readonly \hyperlink{a00053}{Csv\-Configuration} \hyperlink{a00069_ae8c56ff97c0a797245f2205c486833ea}{configuration}
+\item 
+Text\-Writer \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Mapping info for a reference property mapping to a class. 
+Defines methods used to serialize data into a C\-S\-V file. 
 
 
 
-Definition at line 14 of file Csv\-Property\-Reference\-Map.\-cs.
+Definition at line 14 of file Csv\-Serializer.\-cs.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{a00069_a02823d2439667bca75233abbe81651ff}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Csv\-Property\-Reference\-Map@{Csv\-Property\-Reference\-Map}}
-\index{Csv\-Property\-Reference\-Map@{Csv\-Property\-Reference\-Map}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Csv\-Property\-Reference\-Map}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Csv\-Property\-Reference\-Map (
+\hypertarget{a00069_a74ea10f7aaea0a478087d8ff6182f38c}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
+\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
 \begin{DoxyParamCaption}
-\item[{Property\-Info}]{property, }
-\item[{{\bf Csv\-Class\-Map}}]{mapping}
+\item[{Text\-Writer}]{writer}
 \end{DoxyParamCaption}
-)}}\label{a00069_a02823d2439667bca75233abbe81651ff}
+)}}\label{a00069_a74ea10f7aaea0a478087d8ff6182f38c}
 
 
-Initializes a new instance of the \hyperlink{a00069}{Csv\-Property\-Reference\-Map} class. 
+Creates a new serializer using the given Text\-Writer. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em property} & The property.\\
-\hline
-{\em mapping} & The \hyperlink{a00054}{Csv\-Class\-Map} to use for the reference map.\\
+{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 49 of file Csv\-Property\-Reference\-Map.\-cs.
+Definition at line 32 of file Csv\-Serializer.\-cs.
 
 
 \begin{DoxyCode}
-50         \{
-51             \textcolor{keywordflow}{if}( mapping == null )
-52             \{
-53                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"mapping"} );
-54             \}
-55 
-56             \hyperlink{a00069_aa6926229eec915aa6a71c9ee603064f5}{data} = \textcolor{keyword}{new} CsvPropertyReferenceMapData( property, mapping );
-57         \}
+32 : \textcolor{keyword}{this}( \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer}, \textcolor{keyword}{new} \hyperlink{a00053}{CsvConfiguration}() ) \{\}
+\end{DoxyCode}
+\hypertarget{a00069_ab14fe4a4f630ce97d57c27e2ee050fac}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Csv\-Serializer@{Csv\-Serializer}}
+\index{Csv\-Serializer@{Csv\-Serializer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Csv\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer (
+\begin{DoxyParamCaption}
+\item[{Text\-Writer}]{writer, }
+\item[{{\bf Csv\-Configuration}}]{configuration}
+\end{DoxyParamCaption}
+)}}\label{a00069_ab14fe4a4f630ce97d57c27e2ee050fac}
+
+
+Creates a new serializer using the given Text\-Writer and Csv\-Configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The Text\-Writer to write the C\-S\-V file data to.\\
+\hline
+{\em configuration} & The configuration.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file Csv\-Serializer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Serializer.\-configuration, and Csv\-Helper.\-Csv\-Serializer.\-writer.
+
+
+\begin{DoxyCode}
+41         \{
+42             \textcolor{keywordflow}{if}( \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer} == null )
+43             \{
+44                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"writer"} );
+45             \}
+46 
+47             \textcolor{keywordflow}{if}( configuration == null )
+48             \{
+49                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentNullException( \textcolor{stringliteral}{"configuration"} );
+50             \}
+51 
+52             this.writer = \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer};
+53             this.configuration = \hyperlink{a00069_ae8c56ff97c0a797245f2205c486833ea}{configuration};
+54         \}
 \end{DoxyCode}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00069_a1e879f9a6ed84415ac52c44f1f086606}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Get\-Max\-Index@{Get\-Max\-Index}}
-\index{Get\-Max\-Index@{Get\-Max\-Index}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Get\-Max\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Get\-Max\-Index (
+\hypertarget{a00069_ae14e1913a4e76faf97484c1bde339143}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Check\-Disposed@{Check\-Disposed}}
+\index{Check\-Disposed@{Check\-Disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Check\-Disposed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [package]}}}\label{a00069_a1e879f9a6ed84415ac52c44f1f086606}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00069_ae14e1913a4e76faf97484c1bde339143}
 
 
-Get the largest index for the properties and references. 
-
-\begin{DoxyReturn}{Returns}
-The max index.
-\end{DoxyReturn}
+Checks if the instance has been disposed of. 
 
 
-Definition at line 81 of file Csv\-Property\-Reference\-Map.\-cs.
+\begin{DoxyExceptions}{Exceptions}
+{\em Object\-Disposed\-Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 105 of file Csv\-Serializer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Serializer.\-disposed.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Serializer.\-Write().
 
 
 \begin{DoxyCode}
-82         \{
-83             \textcolor{keywordflow}{return} data.Mapping.GetMaxIndex();
-84         \}
+106         \{
+107             \textcolor{keywordflow}{if}( \hyperlink{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
+108             \{
+109                 \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ObjectDisposedException( GetType().ToString() );
+110             \}
+111         \}
 \end{DoxyCode}
-\hypertarget{a00069_a0ed653de99ec2251fd99837740693789}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Prefix@{Prefix}}
-\index{Prefix@{Prefix}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Prefix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Property\-Reference\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Prefix (
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00069_ae14e1913a4e76faf97484c1bde339143_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00069_a9d0e8b3508b377a7f978da2394b09e36}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
 \begin{DoxyParamCaption}
-\item[{string}]{prefix = {\ttfamily null}}
+{}
 \end{DoxyParamCaption}
-)}}\label{a00069_a0ed653de99ec2251fd99837740693789}
+)}}\label{a00069_a9d0e8b3508b377a7f978da2394b09e36}
 
 
-Appends a prefix to the header of each field of the reference property 
+Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+
+$<$filterpriority$>$2$<$/filterpriority$>$ 
+
+Definition at line 72 of file Csv\-Serializer.\-cs.
+
+
+\begin{DoxyCode}
+73         \{
+74             \hyperlink{a00069_a9d0e8b3508b377a7f978da2394b09e36}{Dispose}( \textcolor{keyword}{true} );
+75             GC.SuppressFinalize( this );
+76         \}
+\end{DoxyCode}
+\hypertarget{a00069_a0be3b74ca7606e27fd16441ecc988f0b}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Csv\-Helper.\-Csv\-Serializer.\-Dispose (
+\begin{DoxyParamCaption}
+\item[{bool}]{disposing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{a00069_a0be3b74ca7606e27fd16441ecc988f0b}
+
+
+Performs application-\/defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em prefix} & The prefix to be prepended to headers of each reference property\\
+{\em disposing} & True if the instance needs to be disposed of.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The current \hyperlink{a00069}{Csv\-Property\-Reference\-Map}
-\end{DoxyReturn}
 
 
-Definition at line 64 of file Csv\-Property\-Reference\-Map.\-cs.
+Definition at line 82 of file Csv\-Serializer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Serializer.\-disposed, and Csv\-Helper.\-Csv\-Serializer.\-writer.
 
 
 \begin{DoxyCode}
-65         \{
-66             \textcolor{keywordflow}{if}( \textcolor{keywordtype}{string}.IsNullOrEmpty( prefix ) )
-67             \{
-68                 prefix = data.Property.Name + \textcolor{stringliteral}{"."};
-69             \}
-70 
-71             data.Prefix = prefix;
-72 
-73             \textcolor{keywordflow}{return} \textcolor{keyword}{this};
-74         \}
+83         \{
+84             \textcolor{keywordflow}{if}( \hyperlink{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} )
+85             \{
+86                 \textcolor{keywordflow}{return};
+87             \}
+88 
+89             \textcolor{keywordflow}{if}( disposing )
+90             \{
+91                 \textcolor{keywordflow}{if}( \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer} != null )
+92                 \{
+93                     writer.Dispose();
+94                 \}
+95             \}
+96 
+97             \hyperlink{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}{disposed} = \textcolor{keyword}{true};
+98             \hyperlink{a00069_adfb235fa2c868fc79c0376fd12fda767}{writer} = null;
+99         \}
+\end{DoxyCode}
+\hypertarget{a00069_aefad906acd048863d3dd414651a44793}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Write@{Write}}
+\index{Write@{Write}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void Csv\-Helper.\-Csv\-Serializer.\-Write (
+\begin{DoxyParamCaption}
+\item[{string\mbox{[}$\,$\mbox{]}}]{record}
+\end{DoxyParamCaption}
+)}}\label{a00069_aefad906acd048863d3dd414651a44793}
+
+
+Writes a record to the C\-S\-V file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em record} & The record to write.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{a00106_a0b442858eef85b7d933662359646fd0b}{Csv\-Helper.\-I\-Csv\-Serializer}.
+
+
+
+Definition at line 60 of file Csv\-Serializer.\-cs.
+
+
+
+References Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed().
+
+
+\begin{DoxyCode}
+61         \{
+62             \hyperlink{a00069_ae14e1913a4e76faf97484c1bde339143}{CheckDisposed}();
+63 
+64             var recordString = string.Join( configuration.Delimiter, record );
+65             writer.WriteLine( recordString );
+66         \}
 \end{DoxyCode}
 
 
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00069_aefad906acd048863d3dd414651a44793_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
 \subsection{Member Data Documentation}
-\hypertarget{a00069_aa6926229eec915aa6a71c9ee603064f5}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!data@{data}}
-\index{data@{data}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Property\-Reference\-Map\-Data} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-data\hspace{0.3cm}{\ttfamily [private]}}}\label{a00069_aa6926229eec915aa6a71c9ee603064f5}
+\hypertarget{a00069_ae8c56ff97c0a797245f2205c486833ea}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!configuration@{configuration}}
+\index{configuration@{configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{configuration}]{\setlength{\rightskip}{0pt plus 5cm}readonly {\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-configuration\hspace{0.3cm}{\ttfamily [private]}}}\label{a00069_ae8c56ff97c0a797245f2205c486833ea}
 
 
-Definition at line 16 of file Csv\-Property\-Reference\-Map.\-cs.
+Definition at line 17 of file Csv\-Serializer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer().
+
+\hypertarget{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!disposed@{disposed}}
+\index{disposed@{disposed}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Csv\-Helper.\-Csv\-Serializer.\-disposed\hspace{0.3cm}{\ttfamily [private]}}}\label{a00069_a2687885dae7f7b0eec3c2db81c05f7e4}
+
+
+Definition at line 16 of file Csv\-Serializer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Serializer.\-Check\-Disposed(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
+
+\hypertarget{a00069_adfb235fa2c868fc79c0376fd12fda767}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!writer@{writer}}
+\index{writer@{writer}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{writer}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Writer Csv\-Helper.\-Csv\-Serializer.\-writer\hspace{0.3cm}{\ttfamily [private]}}}\label{a00069_adfb235fa2c868fc79c0376fd12fda767}
+
+
+Definition at line 18 of file Csv\-Serializer.\-cs.
+
+
+
+Referenced by Csv\-Helper.\-Csv\-Serializer.\-Csv\-Serializer(), and Csv\-Helper.\-Csv\-Serializer.\-Dispose().
 
 
 
 \subsection{Property Documentation}
-\hypertarget{a00069_aa83ef91c4eb293a9d035013c8b4af016}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Data@{Data}}
-\index{Data@{Data}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Property\-Reference\-Map\-Data} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Data\hspace{0.3cm}{\ttfamily [get]}}}\label{a00069_aa83ef91c4eb293a9d035013c8b4af016}
+\hypertarget{a00069_a2ae1b1a629b707fbfb7d636989442f34}{\index{Csv\-Helper\-::\-Csv\-Serializer@{Csv\-Helper\-::\-Csv\-Serializer}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!CsvHelper::CsvSerializer@{Csv\-Helper\-::\-Csv\-Serializer}}
+\subsubsection[{Configuration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Configuration} Csv\-Helper.\-Csv\-Serializer.\-Configuration\hspace{0.3cm}{\ttfamily [get]}}}\label{a00069_a2ae1b1a629b707fbfb7d636989442f34}
 
 
-Gets the property reference map data. 
-
-
-
-Definition at line 40 of file Csv\-Property\-Reference\-Map.\-cs.
+Gets the configuration. 
 
 
 
-Referenced by Csv\-Helper.\-Csv\-Reader.\-Can\-Read().
-
-\hypertarget{a00069_a555d8d59960792aa556002a1a1b942f9}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Mapping@{Mapping}}
-\index{Mapping@{Mapping}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Mapping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Csv\-Class\-Map} Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Mapping\hspace{0.3cm}{\ttfamily [get]}}}\label{a00069_a555d8d59960792aa556002a1a1b942f9}
-
-
-Gets the mapping. 
-
-
-
-Definition at line 32 of file Csv\-Property\-Reference\-Map.\-cs.
-
-\hypertarget{a00069_a1bf8b55373206c0dc378c8f7247bf149}{\index{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}!Property@{Property}}
-\index{Property@{Property}!CsvHelper::Configuration::CsvPropertyReferenceMap@{Csv\-Helper\-::\-Configuration\-::\-Csv\-Property\-Reference\-Map}}
-\subsubsection[{Property}]{\setlength{\rightskip}{0pt plus 5cm}Property\-Info Csv\-Helper.\-Configuration.\-Csv\-Property\-Reference\-Map.\-Property\hspace{0.3cm}{\ttfamily [get]}}}\label{a00069_a1bf8b55373206c0dc378c8f7247bf149}
-
-
-Gets the property. 
-
-
-
-Definition at line 23 of file Csv\-Property\-Reference\-Map.\-cs.
+Definition at line 24 of file Csv\-Serializer.\-cs.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Configuration/\hyperlink{a00224}{Csv\-Property\-Reference\-Map.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\hyperlink{a00231}{Csv\-Serializer.\-cs}\end{DoxyCompactItemize}

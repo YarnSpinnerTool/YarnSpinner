@@ -1,290 +1,300 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00073" kind="class" prot="public">
-    <compoundname>CsvHelper::CsvSerializer</compoundname>
-    <basecompoundref refid="a00110" prot="public" virt="non-virtual">CsvHelper.ICsvSerializer</basecompoundref>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="a00073_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool CsvHelper.CsvSerializer.disposed</definition>
-        <argsstring></argsstring>
-        <name>disposed</name>
+  <compounddef id="a00073" kind="class" prot="package">
+    <compoundname>Yarn::Parser::CustomCommand</compoundname>
+    <basecompoundref refid="a00138" prot="public" virt="non-virtual">Yarn.Parser.ParseNode</basecompoundref>
+      <sectiondef kind="package-type">
+      <memberdef kind="enum" id="a00073_1a1d9f9f57c44e1a0d228793b658339576" prot="package" static="no">
+        <name>Type</name>
+        <enumvalue id="a00073_1a1d9f9f57c44e1a0d228793b658339576aa1a6657be79cc0fc1e9b23b9e108f043" prot="public">
+          <name>Expression</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="a00073_1a1d9f9f57c44e1a0d228793b658339576a278e9647d033d0df032a22caa7265586" prot="public">
+          <name>ClientCommand</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="16" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="16" bodyend="-1"/>
-        <referencedby refid="a00073_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00237" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</referencedby>
-        <referencedby refid="a00073_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00237" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="267" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="267" bodyend="270"/>
       </memberdef>
-      <memberdef kind="variable" id="a00073_1ae8c56ff97c0a797245f2205c486833ea" prot="private" static="no" mutable="no">
-        <type>readonly <ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
-        <definition>readonly CsvConfiguration CsvHelper.CsvSerializer.configuration</definition>
+      </sectiondef>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="a00073_1a5ef3bc96812be224d91548bfcdfd4b92" prot="package" static="no" mutable="no">
+        <type><ref refid="a00073_1a1d9f9f57c44e1a0d228793b658339576" kindref="member">Type</ref></type>
+        <definition>Type Yarn.Parser.CustomCommand.type</definition>
         <argsstring></argsstring>
-        <name>configuration</name>
+        <name>type</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="17" bodyend="-1"/>
-        <referencedby refid="a00073_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00237" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="272" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="272" bodyend="-1"/>
+        <referencedby refid="a00073_1a49150c9046dcad61d61ce35c51816313" compoundref="a00295" startline="283" endline="312">Yarn.Parser.CustomCommand.CustomCommand</referencedby>
+        <referencedby refid="a00073_1ad8c821f5f5671cdbac6e4a6fc0b9174b" compoundref="a00295" startline="314" endline="324">Yarn.Parser.CustomCommand.PrintTree</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="a00073_1adfb235fa2c868fc79c0376fd12fda767" prot="private" static="no" mutable="no">
-        <type>TextWriter</type>
-        <definition>TextWriter CsvHelper.CsvSerializer.writer</definition>
+      <memberdef kind="variable" id="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" static="no" mutable="no">
+        <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
+        <definition>ParseNode Yarn.Parser.ParseNode.parent</definition>
         <argsstring></argsstring>
-        <name>writer</name>
+        <name>parent</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="18" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="18" bodyend="-1"/>
-        <referencedby refid="a00073_1ab14fe4a4f630ce97d57c27e2ee050fac" compoundref="a00237" startline="40" endline="54">CsvHelper.CsvSerializer.CsvSerializer</referencedby>
-        <referencedby refid="a00073_1a0be3b74ca7606e27fd16441ecc988f0b" compoundref="a00237" startline="82" endline="99">CsvHelper.CsvSerializer.Dispose</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="58" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="58" bodyend="-1"/>
+        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Yarn.Parser.ParseNode.lineNumber</definition>
+        <argsstring></argsstring>
+        <name>lineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="61" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="61" bodyend="-1"/>
+        <referencedby refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" compoundref="a00295" startline="65" endline="71">Yarn.Parser.ParseNode.ParseNode</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] Yarn.Parser.ParseNode.tags</definition>
+        <argsstring></argsstring>
+        <name>tags</name>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="76" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="76" bodyend="-1"/>
+        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
+        <referencedby refid="a00156_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00295" startline="186" endline="224">Yarn.Parser.Statement.Statement</referencedby>
+        <referencedby refid="a00138_1a054f36c80d5eeacd569a8859f599af67" compoundref="a00295" startline="78" endline="92">Yarn.Parser.ParseNode.TagsToString</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="property">
-      <memberdef kind="property" id="a00073_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
-        <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
-        <definition>CsvConfiguration CsvHelper.CsvSerializer.Configuration</definition>
+      <memberdef kind="property" id="a00073_1a4250d192d5b58e2404a14c68eb616f16" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="a00094" kindref="compound">Expression</ref></type>
+        <definition>Expression Yarn.Parser.CustomCommand.expression</definition>
         <argsstring></argsstring>
-        <name>Configuration</name>
+        <name>expression</name>
         <briefdescription>
-<para>Gets the configuration. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="23" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="24" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="274" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="274" bodyend="-1"/>
+        <referencedby refid="a00073_1a49150c9046dcad61d61ce35c51816313" compoundref="a00295" startline="283" endline="312">Yarn.Parser.CustomCommand.CustomCommand</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="a00073_1a1a362244273df822233359d8fe4e9f5d" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string Yarn.Parser.CustomCommand.clientCommand</definition>
+        <argsstring></argsstring>
+        <name>clientCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="275" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="275" bodyend="-1"/>
+        <referencedby refid="a00073_1ad8c821f5f5671cdbac6e4a6fc0b9174b" compoundref="a00295" startline="314" endline="324">Yarn.Parser.CustomCommand.PrintTree</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="a00073_1a02ee2902115c823bdb46715041b3a2f6" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Yarn.Parser.CustomCommand.CanParse</definition>
+        <argsstring>(Parser p)</argsstring>
+        <name>CanParse</name>
+        <param>
+          <type><ref refid="a00139" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="277" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="277" bodyend="281"/>
+        <references refid="a00139_1afaa7e96d4cdaf6b1fde9ecd273c00c34" compoundref="a00295" startline="1290" endline="1297">Yarn.Parser.NextSymbolsAre</references>
+        <referencedby refid="a00156_1acba736ffbcc0f8bf5cee2b23f7733dff" compoundref="a00295" startline="186" endline="224">Yarn.Parser.Statement.Statement</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="a00073_1a49150c9046dcad61d61ce35c51816313" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Yarn.Parser.CustomCommand.CustomCommand</definition>
+        <argsstring>(ParseNode parent, Parser p)</argsstring>
+        <name>CustomCommand</name>
+        <param>
+          <type><ref refid="a00138" kindref="compound">ParseNode</ref></type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="a00139" kindref="compound">Parser</ref></type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="283" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="283" bodyend="312"/>
+        <references refid="a00073_1a4250d192d5b58e2404a14c68eb616f16" compoundref="a00295" startline="274">Yarn.Parser.CustomCommand.expression</references>
+        <references refid="a00139_1a1313951b09177a1c83b6cf035139197a" compoundref="a00295" startline="1259">Yarn.Parser.library</references>
+        <references refid="a00139_1a666a945da1a7845b02b92592fccac291" compoundref="a00295" startline="1276" endline="1285">Yarn.Parser.NextSymbolIs</references>
+        <references refid="a00139_1acd2714b911fb5e7c38f0e07a9dc1af58" compoundref="a00295" startline="1264" endline="1267">Yarn.Parser.Parser</references>
+        <references refid="a00073_1a5ef3bc96812be224d91548bfcdfd4b92" compoundref="a00295" startline="272">Yarn.Parser.CustomCommand.type</references>
+      </memberdef>
+      <memberdef kind="function" id="a00073_1ad8c821f5f5671cdbac6e4a6fc0b9174b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.CustomCommand.PrintTree</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>PrintTree</name>
+        <reimplements refid="a00138_1a0d6611653f20c2e4d90a97a96c657137">PrintTree</reimplements>
+        <param>
+          <type>int</type>
+          <declname>indentLevel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="314" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="314" bodyend="324"/>
+        <references refid="a00073_1a1a362244273df822233359d8fe4e9f5d" compoundref="a00295" startline="275">Yarn.Parser.CustomCommand.clientCommand</references>
+        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
+        <references refid="a00073_1a5ef3bc96812be224d91548bfcdfd4b92" compoundref="a00295" startline="272">Yarn.Parser.CustomCommand.type</references>
+      </memberdef>
+      <memberdef kind="function" id="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="a00128" kindref="compound">Node</ref></type>
+        <definition>Node Yarn.Parser.ParseNode.NodeParent</definition>
+        <argsstring>()</argsstring>
+        <name>NodeParent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="100" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="100" bodyend="112"/>
+        <referencedby refid="a00149_1a2c80b137d65f31b24533987233074605" compoundref="a00295" startline="373" endline="407">Yarn.Parser.ShortcutOption.ShortcutOption</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="a00073_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
-        <argsstring>(TextWriter writer)</argsstring>
-        <name>CsvSerializer</name>
+      <memberdef kind="function" id="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Yarn.Parser.ParseNode.TagsToString</definition>
+        <argsstring>(int indentLevel)</argsstring>
+        <name>TagsToString</name>
         <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
+          <type>int</type>
+          <declname>indentLevel</declname>
         </param>
         <briefdescription>
-<para>Creates a new serializer using the given TextWriter. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>writer</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="32" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="32" bodyend="32"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="78" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="78" bodyend="92"/>
+        <references refid="a00139_1aa8fa36b46de12a1c561d77b99c4b9ae3" compoundref="a00295" startline="40" endline="52">Yarn.Parser.Tab</references>
+        <references refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" compoundref="a00295" startline="76">Yarn.Parser.ParseNode.tags</references>
+        <referencedby refid="a00156_1aaac6d1e0c3b31f33e1c6f964c205153e" compoundref="a00295" startline="226" endline="258">Yarn.Parser.Statement.PrintTree</referencedby>
+        <referencedby refid="a00149_1a529a2ef1aa6d7226db4ea7f3ea92b8c2" compoundref="a00295" startline="409" endline="429">Yarn.Parser.ShortcutOption.PrintTree</referencedby>
       </memberdef>
-      <memberdef kind="function" id="a00073_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>CsvHelper.CsvSerializer.CsvSerializer</definition>
-        <argsstring>(TextWriter writer, CsvConfiguration configuration)</argsstring>
-        <name>CsvSerializer</name>
-        <param>
-          <type>TextWriter</type>
-          <declname>writer</declname>
-        </param>
-        <param>
-          <type><ref refid="a00057" kindref="compound">CsvConfiguration</ref></type>
-          <declname>configuration</declname>
-        </param>
-        <briefdescription>
-<para>Creates a new serializer using the given TextWriter and CsvConfiguration. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>writer</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The TextWriter to write the CSV file data to.</para></parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>configuration</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The configuration.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="40" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="40" bodyend="54"/>
-        <references refid="a00073_1ae8c56ff97c0a797245f2205c486833ea" compoundref="a00237" startline="17">CsvHelper.CsvSerializer.configuration</references>
-        <references refid="a00073_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00237" startline="18">CsvHelper.CsvSerializer.writer</references>
-      </memberdef>
-      <memberdef kind="function" id="a00073_1aefad906acd048863d3dd414651a44793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.CsvSerializer.Write</definition>
-        <argsstring>(string[] record)</argsstring>
-        <name>Write</name>
-        <reimplements refid="a00110_1a0b442858eef85b7d933662359646fd0b">Write</reimplements>
-        <param>
-          <type>string[]</type>
-          <declname>record</declname>
-        </param>
-        <briefdescription>
-<para>Writes a record to the CSV file. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>record</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The record to write.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="60" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="60" bodyend="66"/>
-        <references refid="a00073_1ae14e1913a4e76faf97484c1bde339143" compoundref="a00237" startline="105" endline="111">CsvHelper.CsvSerializer.CheckDisposed</references>
-      </memberdef>
-      <memberdef kind="function" id="a00073_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void CsvHelper.CsvSerializer.Dispose</definition>
+      <memberdef kind="function" id="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string Yarn.Parser.ParseNode.ToString</definition>
         <argsstring>()</argsstring>
-        <name>Dispose</name>
+        <name>ToString</name>
         <briefdescription>
-<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
+        </briefdescription>
         <detaileddescription>
-<para>&lt;filterpriority&gt;2&lt;/filterpriority&gt; </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="72" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="72" bodyend="76"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
-      <memberdef kind="function" id="a00073_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.CsvSerializer.Dispose</definition>
-        <argsstring>(bool disposing)</argsstring>
-        <name>Dispose</name>
-        <param>
-          <type>bool</type>
-          <declname>disposing</declname>
-        </param>
-        <briefdescription>
-<para>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>disposing</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>True if the instance needs to be disposed of.</para></parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="82" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="82" bodyend="99"/>
-        <references refid="a00073_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00237" startline="16">CsvHelper.CsvSerializer.disposed</references>
-        <references refid="a00073_1adfb235fa2c868fc79c0376fd12fda767" compoundref="a00237" startline="18">CsvHelper.CsvSerializer.writer</references>
-      </memberdef>
-      <memberdef kind="function" id="a00073_1ae14e1913a4e76faf97484c1bde339143" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>void</type>
-        <definition>virtual void CsvHelper.CsvSerializer.CheckDisposed</definition>
-        <argsstring>()</argsstring>
-        <name>CheckDisposed</name>
-        <briefdescription>
-<para>Checks if the instance has been disposed of. </para>        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>ObjectDisposedException</parametername>
-</parameternamelist>
-<parameterdescription>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="105" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="105" bodyend="111"/>
-        <references refid="a00073_1a2687885dae7f7b0eec3c2db81c05f7e4" compoundref="a00237" startline="16">CsvHelper.CsvSerializer.disposed</references>
-        <referencedby refid="a00073_1aefad906acd048863d3dd414651a44793" compoundref="a00237" startline="60" endline="66">CsvHelper.CsvSerializer.Write</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="94" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="94" bodyend="97"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Defines methods used to serialize data into a CSV file. </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1162">
-        <label>CsvHelper.CsvSerializer</label>
+      <node id="1192">
+        <label>ParseNode</label>
+        <link refid="a00138"/>
+      </node>
+      <node id="1191">
+        <label>Yarn.Parser.CustomCommand</label>
         <link refid="a00073"/>
-        <childnode refid="1163" relation="public-inheritance">
+        <childnode refid="1192" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="1163">
-        <label>ICsvSerializer</label>
-        <link refid="a00110"/>
-        <childnode refid="1164" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1164">
-        <label>IDisposable</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="1168">
-        <label>CsvHelper.Configuration.CsvConfiguration</label>
-        <link refid="a00057"/>
-        <childnode refid="1169" relation="usage">
-          <edgelabel>-maps</edgelabel>
+      <node id="1195">
+        <label>Yarn.Parser.ParseNode</label>
+        <link refid="a00138"/>
+        <childnode refid="1195" relation="usage">
+          <edgelabel>~parent</edgelabel>
         </childnode>
       </node>
-      <node id="1165">
-        <label>CsvHelper.CsvSerializer</label>
+      <node id="1194">
+        <label>ParseNode</label>
+        <link refid="a00138"/>
+        <childnode refid="1195" relation="usage">
+          <edgelabel>~parent</edgelabel>
+        </childnode>
+      </node>
+      <node id="1193">
+        <label>Yarn.Parser.CustomCommand</label>
         <link refid="a00073"/>
-        <childnode refid="1166" relation="public-inheritance">
+        <childnode refid="1194" relation="public-inheritance">
         </childnode>
-        <childnode refid="1168" relation="usage">
-          <edgelabel>-configuration</edgelabel>
-        </childnode>
-      </node>
-      <node id="1166">
-        <label>ICsvSerializer</label>
-        <link refid="a00110"/>
-        <childnode refid="1167" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1167">
-        <label>IDisposable</label>
-      </node>
-      <node id="1169">
-        <label>CsvHelper.Configuration.CsvClassMapCollection</label>
-        <link refid="a00056"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" line="15" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/CsvSerializer.cs" bodystart="14" bodyend="112"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" line="265" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Parser.cs" bodystart="265" bodyend="325"/>
     <listofallmembers>
-      <member refid="a00073_1ae14e1913a4e76faf97484c1bde339143" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>CheckDisposed</name></member>
-      <member refid="a00073_1ae8c56ff97c0a797245f2205c486833ea" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>configuration</name></member>
-      <member refid="a00073_1a2ae1b1a629b707fbfb7d636989442f34" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Configuration</name></member>
-      <member refid="a00073_1a74ea10f7aaea0a478087d8ff6182f38c" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
-      <member refid="a00073_1ab14fe4a4f630ce97d57c27e2ee050fac" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>CsvSerializer</name></member>
-      <member refid="a00073_1a9d0e8b3508b377a7f978da2394b09e36" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
-      <member refid="a00073_1a0be3b74ca7606e27fd16441ecc988f0b" prot="protected" virt="virtual"><scope>CsvHelper::CsvSerializer</scope><name>Dispose</name></member>
-      <member refid="a00073_1a2687885dae7f7b0eec3c2db81c05f7e4" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>disposed</name></member>
-      <member refid="a00073_1aefad906acd048863d3dd414651a44793" prot="public" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>Write</name></member>
-      <member refid="a00073_1adfb235fa2c868fc79c0376fd12fda767" prot="private" virt="non-virtual"><scope>CsvHelper::CsvSerializer</scope><name>writer</name></member>
+      <member refid="a00073_1a02ee2902115c823bdb46715041b3a2f6" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>CanParse</name></member>
+      <member refid="a00073_1a1a362244273df822233359d8fe4e9f5d" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>clientCommand</name></member>
+      <member refid="a00073_1a49150c9046dcad61d61ce35c51816313" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>CustomCommand</name></member>
+      <member refid="a00073_1a4250d192d5b58e2404a14c68eb616f16" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>expression</name></member>
+      <member refid="a00138_1a18b493382de0fde5b4299c1bd2250075" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>lineNumber</name></member>
+      <member refid="a00138_1a580e520a29444fc23ac3660cbe514a09" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>NodeParent</name></member>
+      <member refid="a00138_1af313a82103fcc2ff5a177dbb06b92f7b" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>parent</name></member>
+      <member refid="a00138_1a9e7e90bbaed268529230512e4b5a2f77" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>ParseNode</name></member>
+      <member refid="a00073_1ad8c821f5f5671cdbac6e4a6fc0b9174b" prot="package" virt="virtual"><scope>Yarn::Parser::CustomCommand</scope><name>PrintTree</name></member>
+      <member refid="a00138_1a58b3a15788fd2d4127d73619dc6d04ae" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>tags</name></member>
+      <member refid="a00138_1a054f36c80d5eeacd569a8859f599af67" prot="public" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>TagsToString</name></member>
+      <member refid="a00138_1a18c67cb16090d0889bb9d6c8c6c565f8" prot="public" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>ToString</name></member>
+      <member refid="a00073_1a1d9f9f57c44e1a0d228793b658339576" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>Type</name></member>
+      <member refid="a00073_1a5ef3bc96812be224d91548bfcdfd4b92" prot="package" virt="non-virtual"><scope>Yarn::Parser::CustomCommand</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

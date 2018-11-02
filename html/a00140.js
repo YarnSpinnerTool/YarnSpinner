@@ -1,14 +1,11 @@
 var a00140 =
 [
-    [ "OptionStatement", "a00140.html#ad18938712d01cf71edbc75d4974cd0e0", null ],
-    [ "CanParse", "a00140.html#a1ffeca22df52451120cb362f90fd4e9f", null ],
-    [ "NodeParent", "a00140.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00140.html#aafba8c941dbd3d0ef841ac9d472e1ba3", null ],
-    [ "TagsToString", "a00140.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00140.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00140.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00140.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00140.html#a58b3a15788fd2d4127d73619dc6d04ae", null ],
-    [ "destination", "a00140.html#abbe56fba06169901508e6c659f06c236", null ],
-    [ "label", "a00140.html#a7f27d78e67fed6992767e995e70fc468", null ]
+    [ "CheckForNearbyNPC", "a00140.html#a574b6d984b8671c7a780d3d10e040a9b", null ],
+    [ "OnDrawGizmosSelected", "a00140.html#a9e83ec3c6e45ee4dd17215e3030f6403", null ],
+    [ "Update", "a00140.html#a8e78b2dc1cd221fb9d05b89e70155df4", null ],
+    [ "interactionRadius", "a00140.html#af89807d2195915ee9a0c42317e110fc6", null ],
+    [ "maxPosition", "a00140.html#ada9dd748a1d89a7f9b12ac8967a07ae6", null ],
+    [ "minPosition", "a00140.html#ac025d4f4afaf854f8256e0d2d03e5b52", null ],
+    [ "moveSpeed", "a00140.html#adc602a4b2c7e44e4b15a11f1ffcf07e4", null ],
+    [ "movementFromButtons", "a00140.html#a7bcde19f080bfd09bbc833b8fb555cf7", null ]
 ];

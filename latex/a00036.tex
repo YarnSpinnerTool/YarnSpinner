@@ -1,140 +1,227 @@
-\hypertarget{a00036}{\section{Yarn.\-Base\-Variable\-Storage Class Reference}
-\label{a00036}\index{Yarn.\-Base\-Variable\-Storage@{Yarn.\-Base\-Variable\-Storage}}
+\hypertarget{a00036}{\section{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter Class Reference}
+\label{a00036}\index{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter@{Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter}}
 }
 
 
-Inheritance diagram for Yarn.\-Base\-Variable\-Storage\-:
+Converts a Byte to and from a string.  
+
+
+
+
+Inheritance diagram for Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=214pt]{a00598}
+\includegraphics[width=220pt]{a00494}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Yarn.\-Base\-Variable\-Storage\-:
+Collaboration diagram for Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=210pt]{a00599}
+\includegraphics[width=220pt]{a00495}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{Set\-Number} (string variable\-Name, float number)
-\item 
-float \hyperlink{a00036_a1b7f7f4468b2463e7b47986d99362279}{Get\-Number} (string variable\-Name)
-\item 
-abstract void \hyperlink{a00036_a1c57d6d208b78abec0a670396771448e}{Set\-Value} (string variable\-Name, \hyperlink{a00181}{Value} value)
-\item 
-abstract \hyperlink{a00181}{Value} \hyperlink{a00036_a13b142df804d9842e97e628e252928e8}{Get\-Value} (string variable\-Name)
-\item 
-abstract void \hyperlink{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}{Clear} ()
-\end{DoxyCompactItemize}
+override object \hyperlink{a00036_a6176d20d761abfc0af4e840553ffae47}{Convert\-From\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, string text)
+\begin{DoxyCompactList}\small\item\em Converts the string to an object. \end{DoxyCompactList}\item 
+override bool \hyperlink{a00036_a74a66b405f6c18e69b9fd23a1dea91b0}{Can\-Convert\-From} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. \end{DoxyCompactList}\item 
+virtual string \hyperlink{a00078_a36cb2f9b24f15a671293f3a722324c27}{Convert\-To\-String} (\hyperlink{a00168}{Type\-Converter\-Options} options, object value)
+\begin{DoxyCompactList}\small\item\em Converts the object to a string. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{a00078_acb65bd8c8199d88d5b1629ae35d18514}{Can\-Convert\-To} (Type type)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+Converts a Byte to and from a string. 
 
 
-Definition at line 66 of file Dialogue.\-cs.
+
+Definition at line 13 of file Byte\-Converter.\-cs.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Clear@{Clear}}
-\index{Clear@{Clear}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Clear (
+\hypertarget{a00036_a74a66b405f6c18e69b9fd23a1dea91b0}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}!Can\-Convert\-From@{Can\-Convert\-From}}
+\index{Can\-Convert\-From@{Can\-Convert\-From}!CsvHelper::TypeConversion::ByteConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}}
+\subsubsection[{Can\-Convert\-From}]{\setlength{\rightskip}{0pt plus 5cm}override bool Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter.\-Can\-Convert\-From (
 \begin{DoxyParamCaption}
-{}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a7e45c37f3662ce9f2643e306bb2b3adc}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00036_a74a66b405f6c18e69b9fd23a1dea91b0}
 
 
-Implements \hyperlink{a00184_af98c1e41f351cb96e13f668ca2fd9d92}{Yarn.\-Variable\-Storage}.
+Determines whether this instance \mbox{[}can convert from\mbox{]} the specified type. 
 
 
-
-Implemented in \hyperlink{a00130_aa6d243e7ef02b91f793a221f509dae69}{Yarn.\-Memory\-Variable\-Store}.
-
-\hypertarget{a00036_a1b7f7f4468b2463e7b47986d99362279}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Number@{Get\-Number}}
-\index{Get\-Number@{Get\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Get\-Number}]{\setlength{\rightskip}{0pt plus 5cm}float Yarn.\-Base\-Variable\-Storage.\-Get\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
-\end{DoxyParamCaption}
-)}}\label{a00036_a1b7f7f4468b2463e7b47986d99362279}
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert from\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-Implements \hyperlink{a00184_a04b061c52d8ac814ce559da5286fbc71}{Yarn.\-Variable\-Storage}.
+Reimplemented from \hyperlink{a00078_a470d21adaa704eb281250dbd112ff91a}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Definition at line 73 of file Dialogue.\-cs.
+Definition at line 41 of file Byte\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-73                                                     \{
-74             \textcolor{keywordflow}{return} this.GetValue(variableName).AsNumber;
-75         \}
+42         \{
+43             \textcolor{comment}{// We only care about strings.}
+44             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+45         \}
 \end{DoxyCode}
-\hypertarget{a00036_a13b142df804d9842e97e628e252928e8}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Get\-Value@{Get\-Value}}
-\index{Get\-Value@{Get\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract {\bf Value} Yarn.\-Base\-Variable\-Storage.\-Get\-Value (
+\hypertarget{a00078_acb65bd8c8199d88d5b1629ae35d18514}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}!Can\-Convert\-To@{Can\-Convert\-To}}
+\index{Can\-Convert\-To@{Can\-Convert\-To}!CsvHelper::TypeConversion::ByteConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}}
+\subsubsection[{Can\-Convert\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Can\-Convert\-To (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name}
+\item[{Type}]{type}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a13b142df804d9842e97e628e252928e8}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_acb65bd8c8199d88d5b1629ae35d18514}
 
 
-Implements \hyperlink{a00184_accab1fc5c8fc353dbfc53ca0f4029576}{Yarn.\-Variable\-Storage}.
+Determines whether this instance \mbox{[}can convert to\mbox{]} the specified type. 
 
 
-
-Implemented in \hyperlink{a00130_a0ce77e8245c504a777540e359704aa2a}{Yarn.\-Memory\-Variable\-Store}.
-
-\hypertarget{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Number@{Set\-Number}}
-\index{Set\-Number@{Set\-Number}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Set\-Number}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn.\-Base\-Variable\-Storage.\-Set\-Number (
-\begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{float}]{number}
-\end{DoxyParamCaption}
-)}}\label{a00036_a48b93de9cd7ae61d0cd9583c8330d3ee}
+\begin{DoxyParams}{Parameters}
+{\em type} & The type.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance \mbox{[}can convert to\mbox{]} the specified type; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
 
 
-Implements \hyperlink{a00184_aa28c3694f985cf73489efc301b9d41dd}{Yarn.\-Variable\-Storage}.
+Implements \hyperlink{a00113_a168b03dad37fcb6882101c93deac8111}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
 
 
 
-Definition at line 68 of file Dialogue.\-cs.
+Reimplemented in \hyperlink{a00089_a44d625b44f770b945a29cd89e399f90f}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 69 of file Default\-Type\-Converter.\-cs.
 
 
 \begin{DoxyCode}
-68                                                                  \{
-69             this.SetValue(variableName, \textcolor{keyword}{new} Value(number));
-70         \}
+70         \{
+71             \textcolor{comment}{// We only care about strings.}
+72             \textcolor{keywordflow}{return} type == typeof( \textcolor{keywordtype}{string} );
+73         \}
 \end{DoxyCode}
-\hypertarget{a00036_a1c57d6d208b78abec0a670396771448e}{\index{Yarn\-::\-Base\-Variable\-Storage@{Yarn\-::\-Base\-Variable\-Storage}!Set\-Value@{Set\-Value}}
-\index{Set\-Value@{Set\-Value}!Yarn::BaseVariableStorage@{Yarn\-::\-Base\-Variable\-Storage}}
-\subsubsection[{Set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Yarn.\-Base\-Variable\-Storage.\-Set\-Value (
+\hypertarget{a00036_a6176d20d761abfc0af4e840553ffae47}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}!Convert\-From\-String@{Convert\-From\-String}}
+\index{Convert\-From\-String@{Convert\-From\-String}!CsvHelper::TypeConversion::ByteConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}}
+\subsubsection[{Convert\-From\-String}]{\setlength{\rightskip}{0pt plus 5cm}override object Csv\-Helper.\-Type\-Conversion.\-Byte\-Converter.\-Convert\-From\-String (
 \begin{DoxyParamCaption}
-\item[{string}]{variable\-Name, }
-\item[{{\bf Value}}]{value}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{string}]{text}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00036_a1c57d6d208b78abec0a670396771448e}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{a00036_a6176d20d761abfc0af4e840553ffae47}
 
 
-Implements \hyperlink{a00184_aa90ff61224432c5ed3ce72199c55f440}{Yarn.\-Variable\-Storage}.
+Converts the string to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em text} & The string to convert to an object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The object created from the string.
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{a00078_a804ea00060e1de70e5151f90d3bfce9b}{Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter}.
 
 
 
-Implemented in \hyperlink{a00130_a653a459811e5c19549f4b31269093ef5}{Yarn.\-Memory\-Variable\-Store}.
+Definition at line 21 of file Byte\-Converter.\-cs.
 
+
+
+References Csv\-Helper.\-Type\-Conversion.\-Type\-Converter\-Options.\-Culture\-Info.
+
+
+\begin{DoxyCode}
+22         \{
+23             var numberStyle = options.NumberStyle ?? NumberStyles.Integer;
+24 
+25             byte b;
+26             \textcolor{keywordflow}{if}( byte.TryParse( text, numberStyle, options.CultureInfo, out b ) )
+27             \{
+28                 \textcolor{keywordflow}{return} b;
+29             \}
+30 
+31             \textcolor{keywordflow}{return} base.ConvertFromString( options, text );
+32         \}
+\end{DoxyCode}
+\hypertarget{a00078_a36cb2f9b24f15a671293f3a722324c27}{\index{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}!Convert\-To\-String@{Convert\-To\-String}}
+\index{Convert\-To\-String@{Convert\-To\-String}!CsvHelper::TypeConversion::ByteConverter@{Csv\-Helper\-::\-Type\-Conversion\-::\-Byte\-Converter}}
+\subsubsection[{Convert\-To\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Csv\-Helper.\-Type\-Conversion.\-Default\-Type\-Converter.\-Convert\-To\-String (
+\begin{DoxyParamCaption}
+\item[{{\bf Type\-Converter\-Options}}]{options, }
+\item[{object}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [inherited]}}}\label{a00078_a36cb2f9b24f15a671293f3a722324c27}
+
+
+Converts the object to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & The options to use when converting.\\
+\hline
+{\em value} & The object to convert to a string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string representation of the object.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{a00113_a90c465c63dbcf913f38aa878f35e77c7}{Csv\-Helper.\-Type\-Conversion.\-I\-Type\-Converter}.
+
+
+
+Reimplemented in \hyperlink{a00132_a7205cdb61d2d119582958232b3e63109}{Csv\-Helper.\-Type\-Conversion.\-Nullable\-Converter}, and \hyperlink{a00089_a7e07e9532857d748654d37db590a0e11}{Csv\-Helper.\-Type\-Conversion.\-Enumerable\-Converter}.
+
+
+
+Definition at line 21 of file Default\-Type\-Converter.\-cs.
+
+
+\begin{DoxyCode}
+22         \{
+23             \textcolor{keywordflow}{if}( value == null )
+24             \{
+25                 \textcolor{keywordflow}{return} string.Empty;
+26             \}
+27 
+28             var formattable = value as IFormattable;
+29             \textcolor{keywordflow}{if}( formattable != null )
+30             \{
+31                 \textcolor{keywordflow}{return} formattable.ToString( options.Format, options.CultureInfo );
+32             \}
+33 
+34             \textcolor{keywordflow}{return} value.ToString();
+35         \}
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-Yarn\-Spinner/\hyperlink{a00296}{Dialogue.\-cs}\end{DoxyCompactItemize}
+packages/\-Csv\-Helper.\-2.\-16.\-0.\-0/src/\-Csv\-Helper/\-Type\-Conversion/\hyperlink{a00251}{Byte\-Converter.\-cs}\end{DoxyCompactItemize}

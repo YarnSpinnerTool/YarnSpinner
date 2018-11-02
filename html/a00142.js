@@ -1,11 +1,14 @@
 var a00142 =
 [
-    [ "ParseNode", "a00142.html#a9e7e90bbaed268529230512e4b5a2f77", null ],
-    [ "NodeParent", "a00142.html#a580e520a29444fc23ac3660cbe514a09", null ],
-    [ "PrintTree", "a00142.html#a0d6611653f20c2e4d90a97a96c657137", null ],
-    [ "TagsToString", "a00142.html#a054f36c80d5eeacd569a8859f599af67", null ],
-    [ "ToString", "a00142.html#a18c67cb16090d0889bb9d6c8c6c565f8", null ],
-    [ "lineNumber", "a00142.html#a18b493382de0fde5b4299c1bd2250075", null ],
-    [ "parent", "a00142.html#af313a82103fcc2ff5a177dbb06b92f7b", null ],
-    [ "tags", "a00142.html#a58b3a15788fd2d4127d73619dc6d04ae", null ]
+    [ "DumpCode", "a00142.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
+    [ "GetString", "a00142.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
+    [ "GetTextForNode", "a00142.html#aad8029f37832ff1985fad6a31e51afd8", null ],
+    [ "Include", "a00142.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
+    [ "LoadStrings", "a00142.html#a977d1ed02e3f6f39d30dfea1663e7927", null ],
+    [ "RegisterString", "a00142.html#a9baf491479375aa8c3aa2b0c31cf0932", null ],
+    [ "lineInfo", "a00142.html#a0d4da395947767b4a1eaaff8a9842adc", null ],
+    [ "nodes", "a00142.html#a3f4928a577c88263ad016be259b175c4", null ],
+    [ "stringCount", "a00142.html#a8ef1d10094ef00311aade6715ba78ec7", null ],
+    [ "strings", "a00142.html#a59263e00cecfe36d9881b4c30b048f09", null ],
+    [ "untaggedStrings", "a00142.html#aa8fedbfceaf931d1da3f600eaab6ae87", null ]
 ];

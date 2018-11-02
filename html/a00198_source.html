@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/README.md Source File</title>
+<title>YarnSpinner: Documentation/YarnSpinner-Dialogue/Complex-Dialogue-Tutorial.md Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -105,35 +105,286 @@ $(document).ready(function(){initNavTree('a00198.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Documentation/YarnSpinner-Dialogue/README.md</div>  </div>
+<div class="title">Documentation/YarnSpinner-Dialogue/Complex-Dialogue-Tutorial.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00198.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Writing Yarn Dialogue - README</span></div>
+<a href="a00198.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor"># Complex Yarn Dialogue - Tutorial</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">## Introducing Yarn Dialogue</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">### Style Guide</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;Yarn Dialogue is designed <span class="keywordflow">for</span> Authors who have little or no programming knowledge. It makes no assumptions about how your game presents dialogue to the player, or about how the player chooses their responses. These tasks are left to the game production team, <span class="keyword">using</span> programming and design tools such as Unity3D and C#.</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;`Inline Code` contain <span class="keywordtype">short</span> snippets of code <span class="keywordflow">for</span> your project</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;### Simple Example Dialogue</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;In [our simple example](Simple-Dialogue-Example.md), we will create a very simple Dialogue that demonstrates the very basic usage of Yarn. </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;### Complex Example Dialogue</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;In the [complex example](Complex-Dialogue-Example.md), we will create a slightly more complex Dialogue to the simple example above. This example demonstrates more advanced possibilities that exist within telling stories in a narrative game environment. </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Code Blocks contain segments or chunks of code <span class="keywordflow">for</span> your project</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;**Bold indicate actions (Select menu item, copying file, etc.)**</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;***Bold italic text indicates emphasis***</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">### Localisation</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span>Our [localisation](Dialogue-Localisation.md) document describes how localisation,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;or translating the text into other languages, takes place.</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;&gt; ***Note:*** At the moment, it is a requirement that a programmer run a special tool across the Dialogue to produce the files to be translated.</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;### General Usage</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;We have a page of [general usage](Advanced-Dialogue-Usage.md), describing many further features of the Yarn Language. It also containins small Dialogue snippets as well as tips and suggestions you might find useful.</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;&gt; Blockquotes contain essential information</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">## Tutorial</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;&gt; ***Note*** This document talks about how to use Yarn <span class="keywordflow">if</span> you<span class="stringliteral">&#39;re using it to write Yarn Dialogue. It is strongly suggested you have first read through the [Simple Example](Simple-Dialogue-Tutorial.md) document. Neither the Simple Example or this document talk about how to integrate Yarn Spinner into your project; for that, see [&quot;Using Yarn Spinner in your Unity game&quot;](../YarnSpinner-Unity).</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">## Complex Example</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">In our Complex Example, we will establish a multiple files of Yarn Dialogue. This Dialogue will take place between three characters: the Player, an NPC called Sally and an NPC called Ship.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">A limited amount of programming knowledge is required for narrative adventure Yarn Dialogue creation, otherwise we cannot tell what is required to for the desired plot sequences to take place. In this example, we will introduce ***[commands](https://en.wikipedia.org/wiki/Command_(computing))*** as well as ***[conditionals](https://en.wikipedia.org/wiki/Conditional_(computer_programming))*** along with ***[tests](https://en.wikipedia.org/wiki/Relational_operator)*** and ***[functions](https://en.wikipedia.org/wiki/Function_composition_(computer_science))*** to produce a more reactive narrative. We shall also discuss ***[variables](https://en.wikipedia.org/wiki/Variable_(computer_science))*** and how to use them to influence Dialogue interaction.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">* ***Commands*** instruct the game engine to execute specific code, such as making a noise in sequence with some text or generating a graphic or both (for example, displaying lightning and making the noise of thunder).</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">* ***Conditionals*** are a form of [branches](https://en.wikipedia.org/wiki/Branch_(computer_science)). By following the [simple example](Simple-Dialogue-Tutorial.md), you&#39;</span>ve already learned a little about [control flow](https:<span class="comment">//en.wikipedia.org/wiki/Branch_(computer_science)), in that how selecting certain text determines which nodes to ***jump*** to. Conditionals are only slightly more complex than jumps, as they are simply a method to determine which jumps may become available and when.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;* ***Tests*** utilise a combination of variables, functions to contruct a ***conditional***.</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;* ***Functions***, also known in other programming languages as subroutines, procedures, or subprograms, are an external set of commands that perform a specific task. In <span class="keyword">this</span> example, we use a <span class="keyword">function</span> called <span class="stringliteral">&#39;Visited&#39;</span> to see <span class="keywordflow">if</span> a node has been reached by a player in the context of a narrative story. Based upon <span class="keyword">this</span> visit, or lack thereof, different narrative events take place.</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;* ***Variables*** hold pieces of information relating to the state of the game that may change depending on events happening in the game. For example, <span class="keywordflow">if</span> a player picks up sticks the number of sticks can be stored in a variable called <span class="stringliteral">&#39;$sticks_collected&#39;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;&gt; ***Note*** <a class="code" href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Variable</a> names ***MUST*** always start with the $ character otherwise Yarn Spinner will freak the crap out.</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;## First Dialogue File</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;First off, we<span class="stringliteral">&#39;ll create an initial scene. Because our Complex Example is set inside a space ship, we&#39;</span>ll give the name of the node <span class="stringliteral">&#39;Ship&#39;</span>. We<span class="stringliteral">&#39;ll give this node some initial Dialogue.</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="stringliteral">Ship: Hey, friend.</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="stringliteral">Player: Hi, Ship.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="stringliteral">Player: How&#39;</span>s space?</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;Ship: Oh, man.</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;```</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">### Commands</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span>Next, we<span class="stringliteral">&#39;ll add a ***command*** to make the face of the ship change, the ship to say some text, then the ship return to neutral.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral">&lt;&lt;setsprite ShipFace happy&gt;&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="stringliteral">    Ship: It&#39;</span>s HUGE!</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;&lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;```</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;Do not be concerned that you <span class="keywordflow">do</span> not have any graphics <span class="keywordflow">for</span> the ShipFace. Nor, in fact, don<span class="stringliteral">&#39;t be too concerned if you&#39;</span>d rather call the graphic FaceOfShip. In fact, the name can be anything. However to be compatible with the existing example, <span class="keywordflow">for</span> comparison sake we are <span class="keyword">using</span> ShipFace.</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;Our Dialogue now reads</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;```</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;Ship: Hey, <span class="keyword">friend</span>.</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;Player: Hi, Ship.</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;Player: How<span class="stringliteral">&#39;s space?</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">Ship: Oh, man.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">&lt;&lt;setsprite ShipFace happy&gt;&gt;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">    Ship: It&#39;</span>s HUGE!</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;&lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;```</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;This is some simple introductory text <span class="keywordflow">for</span> our Ship character, but it wouldn<span class="stringliteral">&#39;t make much sense to repeat this if our player has already visited Ship. So we will need to write a little bit of code to ensure that the second time we visit Ship, it acts differently. We need to check the state of having ***visited*** the ship.</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">### Conditionals and Functions</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">Yarn Spinner has an inbuilt ***function*** called `visited`. This function checks to see if a node has previously been accessed by the player. We can combine this function with a ***conditional*** to see whether a node has been previously displayed to the player. The basic syntax of such a conditional is:</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">&lt;&lt;if visted(&quot;NodeName&quot;) is true&gt;&gt;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">    NPC: You have visited me before, player</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">&lt;&lt;else&gt;&gt;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">    NPC: You have not visited me before, player</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">&lt;&lt;endif&gt;&gt;</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">&gt; ***Note:*** The above can be re-written to provide the same outcome by reversing the test from true to false and inverting the NPC text:</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral">&lt;&lt;if visted(&quot;NodeName&quot;) is false&gt;&gt;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">    NPC: You have not visited me before, player</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">&lt;&lt;else&gt;&gt;</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="stringliteral">    NPC: You have visited me before, player</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="stringliteral">&lt;&lt;endif&gt;&gt;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="stringliteral">From this basic understanding of the ***&#39;</span><span class="keywordflow">if</span> then <span class="keywordflow">else</span><span class="stringliteral">&#39;*** conditional, and usage of the `visited` function, we can then establish whether a player has visited Ship and change the Dialogue that Ship presents:</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="stringliteral">&lt;&lt;if visited(&quot;Ship&quot;) is false&gt;&gt;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="stringliteral">    Ship: Hey, friend.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="stringliteral">    Player: Hi, Ship.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="stringliteral">    Player: How&#39;</span>s space?</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    Ship: Oh, man.</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    &lt;&lt;setsprite ShipFace happy&gt;&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        Ship: It<span class="stringliteral">&#39;s HUGE!</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="stringliteral">&lt;&lt;else&gt;&gt;</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace happy&gt;&gt;</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="stringliteral">        Ship: Hey!!</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="stringliteral">&lt;&lt;endif&gt;&gt;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="stringliteral">&gt;***Note:*** Remember, if we have `if visited(&quot;Ship&quot;) is true`, the order of the content of the ***&#39;</span><span class="keywordflow">if</span> then <span class="keywordflow">else</span><span class="stringliteral">&#39;*** would need to be reversed to ensure the correct text is presented for when Player has previously visited Ship.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="stringliteral">We will now add in some Dialogue that responds to whether we&#39;</span>ve interacted with another NPC, Sally. Sally<span class="stringliteral">&#39;s nodes will be contained within a seperate text file for ease of editing purposes. You can contain all Yarn Dialogue nodes in the same file but you will find that it becomes increasingly difficult to maintain as your file grows longer, so we strongly encourage this separation of characters. This is the remainder of the text required for the Ship Node of Yarn Dialogue.</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="stringliteral">```</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral">&lt;&lt;if $should_see_ship is true and $sally_warning is false&gt;&gt;</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="stringliteral">    Player: Sally said you wanted to see me?</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace happy&gt;&gt;</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="stringliteral">    Ship: She totally did!!</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="stringliteral">    Ship: She wanted me to tell you...</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="stringliteral">    Ship: If you ever go off-watch without resetting the console again...</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral">    &lt;&lt;setsprite ShipFace happy&gt;&gt;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">    Ship: She&#39;</span>ll flay you alive!</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    &lt;&lt;set $sally_warning to <span class="keyword">true</span>&gt;&gt;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    Player: Uh.</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;===</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;```</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">### Variables and Tests</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor"></span>We can see from <span class="keyword">this</span> code that there a couple of <span class="keyword">new</span> things in <span class="keyword">this</span> code snippet. They are `$should_see_ship is <span class="keyword">true</span>` and `$sally_warning is <span class="keyword">false</span>`.</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;`$should_see_ship` and `$sally_warning` are examples of what are known as a ***variable***. In <span class="keyword">this</span> <span class="keywordflow">case</span>, they are a variable of [<span class="keywordtype">boolean</span> data type](https:<span class="comment">//en.wikipedia.org/wiki/Boolean_data_type) and both `$should_see_ship is true` and `$sally_warning is false` are known as [boolean expressions](https://en.wikipedia.org/wiki/Boolean_expression). In simple terms, a boolean data type can hold one of two different states, true or false. By setting the variable to either of these two states and later evaluating it, determinations can be made as to which section of Yarn Dialogue should be displayed.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;We shall address the setting on the first boolean, `$should_see_ship`, in the nodes <span class="keywordflow">for</span> the Sally character contained in the file [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt). The <span class="keywordtype">boolean</span> `$sally_warning` is set to `<span class="keyword">true</span>` via the code `&lt;&lt;set $sally_warning to <span class="keyword">true</span>&gt;&gt;` after Ship warns us that sally will flay us alive.</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;&gt; ***Note:*** We have now completed the Yarn Dialogue <span class="keywordflow">for</span> the Ship node. The source <span class="keywordflow">for</span> <span class="keyword">this</span> node can be found in the example file [Ship.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Ship.yarn.txt). It is replicated below so as to be easily read here as a complete file.</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;```</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;title: Ship</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;---</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;&lt;&lt;<span class="keywordflow">if</span> visited(<span class="stringliteral">&quot;Ship&quot;</span>) is false&gt;&gt;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    Ship: Hey, friend.</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    Player: Hi, Ship.</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    Player: How&#39;s space?</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    Ship: Oh, man.</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    &lt;&lt;setsprite ShipFace happy&gt;&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        Ship: It&#39;s HUGE!</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;&lt;&lt;else&gt;&gt;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    &lt;&lt;setsprite ShipFace happy&gt;&gt;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        Ship: Hey!!</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;&lt;&lt;if $should_see_ship is true and $sally_warning is false&gt;&gt;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    Player: Sally said you wanted to see me?</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    &lt;&lt;setsprite ShipFace happy&gt;&gt;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    Ship: She totally did!!</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    Ship: She wanted me to tell you...</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    Ship: If you ever go off-watch without resetting the console again...</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    &lt;&lt;setsprite ShipFace happy&gt;&gt;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    Ship: She&#39;ll flay you alive!</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    &lt;&lt;set $sally_warning to true&gt;&gt;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    Player: Uh.</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    &lt;&lt;setsprite ShipFace neutral&gt;&gt;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;===</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;```</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">### Second Yarn Dialogue file</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor"></span>Our Yarn Dialogue <span class="keywordflow">for</span> Sally will start out as simply as before, with her words changing depending on whether the player has previously `visited` her.</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;```</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;&lt;&lt;<span class="keywordflow">if</span> visited(<span class="stringliteral">&quot;Sally&quot;</span>) is false&gt;&gt;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    Sally: Oh! Hi.</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    Sally: You snuck up on me.</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    Sally: Don&#39;t do that.</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;&lt;&lt;else&gt;&gt;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    Player: Hey.</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    Sally: Hi.</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;```</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;The next step is to have Sally react to whether we&#39;ve visited her Watch node, and if not perform a ***jump*** to that node.. We do this by constructing a ***conditional*** that ***tests*** to see if the player has ***visited*** the `Sally.Watch` node.</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;```</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;&lt;&lt;if not visited(&quot;Sally.Watch&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    [[Anything exciting happen on your watch?|Sally.Watch]]</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;```</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;The next section of the Sally node will be to have Sally scold us about going off watch, but only if we&#39;ve received the warning from the Ship about her as well as only if she has not scolded us previously.</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;```</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;&lt;&lt;if $sally_warning and not visited(&quot;Sally.Sorry&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    [[Sorry about the console.|Sally.Sorry]]</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;```</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;&gt; ***Note:*** We&#39;re using the `visited` state of a singular node, `Sally.Sorry`. We could set a singular additional <span class="keywordtype">boolean</span> value in the node, but as it would provide no increased functionality over usage of the built in `visited` command, it is written this way.</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;After all the above Yarn Dialogue is executed, and the nodes are visited, we will jump to the final node.</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;```</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;[[See you later.|Sally.Exit]]</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;```</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;The first node in our Yarn Dialogue for Sally now reads:</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;```</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;title: Sally</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;---</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;&lt;&lt;if visited(&quot;Sally&quot;) is false&gt;&gt;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    Sally: Oh! Hi.</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    Sally: You snuck up on me.</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    Sally: Don&#39;t do that.</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;&lt;&lt;else&gt;&gt;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    Player: Hey.</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    Sally: Hi.</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;&lt;&lt;if not visited(&quot;Sally.Watch&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    [[Anything exciting happen on your watch?|Sally.Watch]]</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;&lt;&lt;if $sally_warning and not visited(&quot;Sally.Sorry&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    [[Sorry about the console.|Sally.Sorry]]</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;[[See you later.|Sally.Exit]]</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;```</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;We&#39;re near the end, as all we have to do now is write the `Sally.Watch`, `Sally.Exit` and `Sally.Sorry` nodes.</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;`Sally.Watch` is rather straight forward Yarn Dialogue. It sets a ***variable*** `$should_see_ship` when Sally tells us to go visit the ship. It also tests to see if we&#39;ve visited already visited the ship and if so, presents some additional Dialogue.</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;```</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;Sally: Not really.</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;Sally: Same old nebula, doing the same old thing.</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;Sally: Oh, Ship wanted to see you. Go say hi to it.</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;&lt;&lt;set $should_see_ship to true&gt;&gt;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;&lt;&lt;if visited(&quot;Ship&quot;) is true&gt;&gt;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    Player: Already done!</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    Sally: Go say hi again.</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;```</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;&gt; ***Note:*** There are no new concepts in Yarn Dialogue in the previous code snippet. If you are having difficulties understanding this snippet, please re-read the sub-sections on Variables and Conditionals.</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;Finally, we have two <span class="keywordtype">short</span> nodes. Firstly, the node containing the text</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;as the Dialogue completes:</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;```</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;Sally: Bye.</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;```</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;And the text containing the Dialogue containing the text of Sally scolding the player:</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;```</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;Sally: Yeah. Don&#39;t do it again.</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;```</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;We now have our completed [Sally.yarn.txt](../../Unity/Assets/YarnSpinner/Examples/DemoAssets/Space/Sally.yarn.txt) file, and have finished creating the Yarn Dialogue for our Complex Example.</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;```</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;title: Sally</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;---</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;&lt;&lt;if visited(&quot;Sally&quot;) is false&gt;&gt;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    Sally: Oh! Hi.</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    Sally: You snuck up on me.</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    Sally: Don&#39;t do that.</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;&lt;&lt;else&gt;&gt;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    Player: Hey.</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    Sally: Hi.</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;&lt;&lt;if not visited(&quot;Sally.Watch&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    [[Anything exciting happen on your watch?|Sally.Watch]]</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;&lt;&lt;if $sally_warning and not visited(&quot;Sally.Sorry&quot;)&gt;&gt;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    [[Sorry about the console.|Sally.Sorry]]</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;[[See you later.|Sally.Exit]]</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;===</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;title: Sally.Watch</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;---</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;Sally: Not really.</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;Sally: Same old nebula, doing the same old thing.</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;Sally: Oh, Ship wanted to see you. Go say hi to it.</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;&lt;&lt;set $should_see_ship to true&gt;&gt;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;&lt;&lt;if visited(&quot;Ship&quot;) is true&gt;&gt;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    Player: Already done!</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    Sally: Go say hi again.</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;&lt;&lt;endif&gt;&gt;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;===</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;title: Sally.Exit</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;---</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;Sally: Bye.</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;===</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;title: Sally.Sorry</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;---</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;Sally: Yeah. Don&#39;t do it again.</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;===</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;```</div>
+<div class="ttc" id="a00041_html_a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9"><div class="ttname"><a href="a00041.html#a301aa7c866593a5b625a8fc158bbeacea47c14840d8e15331fa420b9b2f757cd9">Yarn.Variable</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00198.html">README.md</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:27 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00198.html">Complex-Dialogue-Tutorial.md</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:19 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

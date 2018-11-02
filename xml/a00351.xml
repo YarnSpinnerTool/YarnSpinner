@@ -1,11 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="a00351" kind="namespace">
-    <compoundname>System::Text</compoundname>
+    <compoundname>Yarn::Analysis</compoundname>
+    <innerclass refid="a00081" prot="public">Yarn::Analysis::Diagnosis</innerclass>
+    <innerclass refid="a00047" prot="public">Yarn::Analysis::Context</innerclass>
+    <innerclass refid="a00030" prot="package">Yarn::Analysis::ASTAnalyser</innerclass>
+    <innerclass refid="a00043" prot="package">Yarn::Analysis::CompiledProgramAnalyser</innerclass>
+    <innerclass refid="a00179" prot="package">Yarn::Analysis::VariableLister</innerclass>
+    <innerclass refid="a00175" prot="package">Yarn::Analysis::UnusedVariableChecker</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/Configuration/CsvConfiguration.cs" line="10" column="1"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Analyser.cs" line="5" column="1"/>
   </compounddef>
 </doxygen>

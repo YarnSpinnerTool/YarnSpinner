@@ -1,50 +1,192 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
-  <compounddef id="a00162" kind="class" prot="package">
-    <compoundname>CsvHelper::StringHelper</compoundname>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="a00162_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>static bool CsvHelper.StringHelper.IsNullOrWhiteSpace</definition>
-        <argsstring>(string s)</argsstring>
-        <name>IsNullOrWhiteSpace</name>
+  <compounddef id="a00162" kind="class" prot="public">
+    <compoundname>CsvHelper::TypeConversion::TimeSpanConverter</compoundname>
+    <basecompoundref refid="a00078" prot="public" virt="non-virtual">CsvHelper.TypeConversion.DefaultTypeConverter</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="a00162_1ae3f8d46f5176d2ae08ac3fcdda1951e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool CsvHelper.TypeConversion.TimeSpanConverter.CanConvertFrom</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertFrom</name>
+        <reimplements refid="a00078_1a470d21adaa704eb281250dbd112ff91a">CanConvertFrom</reimplements>
         <param>
-          <type>string</type>
-          <declname>s</declname>
+          <type>Type</type>
+          <declname>type</declname>
         </param>
         <briefdescription>
-<para>Tests is a string is null or whitespace. </para>        </briefdescription>
+<para>Determines whether this instance [can convert from] the specified type. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>s</parametername>
+<parametername>type</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The string to test.</para></parameterdescription>
+<para>The type.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>True if the string is null or whitespace, otherwise false.</para></simplesect>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert from] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="17" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="17" bodyend="33"/>
-        <referencedby refid="a00071_1ad1d1cde1588bb56eca326d5d92592956" compoundref="a00235" startline="1163" endline="1175">CsvHelper.CsvReader.GetEmtpyStringMethod</referencedby>
-        <referencedby refid="a00071_1aa8622306f74940386663fa4020eb8971" compoundref="a00235" startline="747" endline="777">CsvHelper.CsvReader.TryGetField&lt; T &gt;</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" line="22" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="a00162_1a0f2536c88227a94822d0b7730eedf3eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override object</type>
+        <definition>override object CsvHelper.TypeConversion.TimeSpanConverter.ConvertFromString</definition>
+        <argsstring>(TypeConverterOptions options, string text)</argsstring>
+        <name>ConvertFromString</name>
+        <reimplements refid="a00078_1a804ea00060e1de70e5151f90d3bfce9b">ConvertFromString</reimplements>
+        <param>
+          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Converts the string to an object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The string to convert to an object.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The object created from the string.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" line="33" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" bodystart="33" bodyend="58"/>
+        <references refid="a00168_1af6bc545680b477abf9178eb4755572b1" compoundref="a00272" startline="23">CsvHelper.TypeConversion.TypeConverterOptions.CultureInfo</references>
+        <references refid="a00168_1aadc0730de90844e29da6e1ae7fddc4bb" compoundref="a00272" startline="63">CsvHelper.TypeConversion.TypeConverterOptions.Format</references>
+        <references refid="a00168_1a5b94fd91ed938c9d0515a5ab419de8b8" compoundref="a00272" startline="34">CsvHelper.TypeConversion.TypeConverterOptions.TimeSpanStyle</references>
+      </memberdef>
+      <memberdef kind="function" id="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>string</type>
+        <definition>virtual string CsvHelper.TypeConversion.DefaultTypeConverter.ConvertToString</definition>
+        <argsstring>(TypeConverterOptions options, object value)</argsstring>
+        <name>ConvertToString</name>
+        <reimplements refid="a00113_1a90c465c63dbcf913f38aa878f35e77c7">ConvertToString</reimplements>
+        <reimplementedby refid="a00089_1a7e07e9532857d748654d37db590a0e11">ConvertToString</reimplementedby>
+        <reimplementedby refid="a00132_1a7205cdb61d2d119582958232b3e63109">ConvertToString</reimplementedby>
+        <param>
+          <type><ref refid="a00168" kindref="compound">TypeConverterOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Converts the object to a string. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options to use when converting.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to convert to a string.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The string representation of the object.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="21" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="21" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool CsvHelper.TypeConversion.DefaultTypeConverter.CanConvertTo</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>CanConvertTo</name>
+        <reimplements refid="a00113_1a168b03dad37fcb6882101c93deac8111">CanConvertTo</reimplements>
+        <reimplementedby refid="a00089_1a44d625b44f770b945a29cd89e399f90f">CanConvertTo</reimplementedby>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether this instance [can convert to] the specified type. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if this instance [can convert to] the specified type; otherwise, <computeroutput>false</computeroutput>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" line="69" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/DefaultTypeConverter.cs" bodystart="69" bodyend="73"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Common string tasks. </para>    </briefdescription>
+<para>Converts a TimeSpan to and from a string. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <collaborationgraph>
-      <node id="1674">
-        <label>CsvHelper.StringHelper</label>
+    <inheritancegraph>
+      <node id="1698">
+        <label>ITypeConverter</label>
+        <link refid="a00113"/>
+      </node>
+      <node id="1697">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00078"/>
+        <childnode refid="1698" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1696">
+        <label>CsvHelper.TypeConversion.TimeSpanConverter</label>
         <link refid="a00162"/>
+        <childnode refid="1697" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1701">
+        <label>ITypeConverter</label>
+        <link refid="a00113"/>
+      </node>
+      <node id="1700">
+        <label>DefaultTypeConverter</label>
+        <link refid="a00078"/>
+        <childnode refid="1701" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1699">
+        <label>CsvHelper.TypeConversion.TimeSpanConverter</label>
+        <link refid="a00162"/>
+        <childnode refid="1700" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" line="11" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/StringHelper.cs" bodystart="10" bodyend="34"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" line="14" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/packages/CsvHelper.2.16.0.0/src/CsvHelper/TypeConversion/TimeSpanConverter.cs" bodystart="13" bodyend="59"/>
     <listofallmembers>
-      <member refid="a00162_1a40c715a7ebf19c7053c7b10f2b3df80f" prot="public" virt="non-virtual"><scope>CsvHelper::StringHelper</scope><name>IsNullOrWhiteSpace</name></member>
+      <member refid="a00162_1ae3f8d46f5176d2ae08ac3fcdda1951e7" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::TimeSpanConverter</scope><name>CanConvertFrom</name></member>
+      <member refid="a00078_1acb65bd8c8199d88d5b1629ae35d18514" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::TimeSpanConverter</scope><name>CanConvertTo</name></member>
+      <member refid="a00162_1a0f2536c88227a94822d0b7730eedf3eb" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::TimeSpanConverter</scope><name>ConvertFromString</name></member>
+      <member refid="a00078_1a36cb2f9b24f15a671293f3a722324c27" prot="public" virt="virtual"><scope>CsvHelper::TypeConversion::TimeSpanConverter</scope><name>ConvertToString</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

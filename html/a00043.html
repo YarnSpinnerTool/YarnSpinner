@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult Class Reference</title>
+<title>YarnSpinner: Yarn.Analysis.CompiledProgramAnalyser Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,212 +107,101 @@ $(document).ready(function(){initNavTree('a00043.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="a00782.html">List of all members</a>  </div>
+<a href="a00752.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult Class Reference</div>  </div>
+<div class="title">Yarn.Analysis.CompiledProgramAnalyser Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Analysis.CompiledProgramAnalyser:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00783.png" border="0" usemap="#_yarn_8_unity_8_yarn_spinner_editor_window_8_checker_result_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_unity_8_yarn_spinner_editor_window_8_checker_result_coll__map" id="_yarn_8_unity_8_yarn_spinner_editor_window_8_checker_result_coll__map">
-<area shape="rect" id="node2" href="a00180.html#a00371" title="{Yarn.Unity.YarnSpinnerEditor\lWindow.ValidationMessage\n|+ message\l+ type\l|}" alt="" coords="5,5,197,112"/></map>
+<div class="center"><img src="a00753.png" border="0" usemap="#_yarn_8_analysis_8_compiled_program_analyser_inherit__map" alt="Inheritance graph"/></div>
+<map name="_yarn_8_analysis_8_compiled_program_analyser_inherit__map" id="_yarn_8_analysis_8_compiled_program_analyser_inherit__map">
+<area shape="rect" id="node2" href="a00175.html" title="{Yarn.Analysis.UnusedVariable\lChecker\n|&#45; readVariables\l&#45; writtenVariables\l|+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="5,161,203,282"/><area shape="rect" id="node3" href="a00179.html" title="{Yarn.Analysis.VariableLister\n|&#45; variables\l|+ Diagnose()\l+ GatherDiagnoses()\l}" alt="" coords="228,175,415,267"/></map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Analysis.CompiledProgramAnalyser:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="a00754.png" border="0" usemap="#_yarn_8_analysis_8_compiled_program_analyser_coll__map" alt="Collaboration graph"/></div>
+<map name="_yarn_8_analysis_8_compiled_program_analyser_coll__map" id="_yarn_8_analysis_8_compiled_program_analyser_coll__map">
+</map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:ab24848d7951ce44eb3c7768c6ee10385"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385">State</a> { <a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5">State.NotTested</a>, 
-<a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15">State.Passed</a>, 
-<a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca">State.Failed</a>
- }</td></tr>
-<tr class="separator:ab24848d7951ce44eb3c7768c6ee10385"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1e653caad5ab99847c26ff8f67da8f45"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#a1e653caad5ab99847c26ff8f67da8f45">Equals</a> (object obj)</td></tr>
-<tr class="separator:a1e653caad5ab99847c26ff8f67da8f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85d50993390cdd8ba30ac44043b18de7"><td class="memItemLeft" align="right" valign="top">override int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#a85d50993390cdd8ba30ac44043b18de7">GetHashCode</a> ()</td></tr>
-<tr class="separator:a85d50993390cdd8ba30ac44043b18de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1c9b3d1757d33ad2141c639c3827c97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#af1c9b3d1757d33ad2141c639c3827c97">CheckerResult</a> (TextAsset <a class="el" href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">script</a>)</td></tr>
-<tr class="separator:af1c9b3d1757d33ad2141c639c3827c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a7202b24bd068da24d7e28bec5668b13a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#a7202b24bd068da24d7e28bec5668b13a">state</a></td></tr>
-<tr class="separator:a7202b24bd068da24d7e28bec5668b13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c852f7521c0a91b519aa3d391f63e6b"><td class="memItemLeft" align="right" valign="top">TextAsset&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">script</a></td></tr>
-<tr class="separator:a6c852f7521c0a91b519aa3d391f63e6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a808a039e280cf875cb3c9e9385148498"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00180.html#a00371">ValidationMessage</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#a808a039e280cf875cb3c9e9385148498">messages</a> = new <a class="el" href="a00180.html#a00371">ValidationMessage</a>[0]</td></tr>
-<tr class="separator:a808a039e280cf875cb3c9e9385148498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba4a36cb823b11ee491074e26477d084"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#aba4a36cb823b11ee491074e26477d084">Diagnose</a> (<a class="el" href="a00142.html">Yarn.Program</a> program)</td></tr>
+<tr class="separator:aba4a36cb823b11ee491074e26477d084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe059a2ceeabe50380b000420e512bd6"><td class="memItemLeft" align="right" valign="top">abstract IEnumerable&lt; <a class="el" href="a00081.html">Diagnosis</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00043.html#afe059a2ceeabe50380b000420e512bd6">GatherDiagnoses</a> ()</td></tr>
+<tr class="separator:afe059a2ceeabe50380b000420e512bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00284_source.html#l00035">35</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="ab24848d7951ce44eb3c7768c6ee10385"></a>
+<p>Definition at line <a class="el" href="a00287_source.html#l00150">150</a> of file <a class="el" href="a00287_source.html">Analyser.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aba4a36cb823b11ee491074e26477d084"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.State</a></td>
+          <td class="memname">abstract void Yarn.Analysis.CompiledProgramAnalyser.Diagnose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00142.html">Yarn.Program</a>&#160;</td>
+          <td class="paramname"><em>program</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5"></a>NotTested</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15"></a>Passed</em>&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca"></a>Failed</em>&#160;</td><td class="fielddoc">
-</td></tr>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
 </table>
-
-<p>Definition at line <a class="el" href="a00284_source.html#l00036">36</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                              {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <a class="code" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5">NotTested</a>,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <a class="code" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15">Passed</a>,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <a class="code" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca">Failed</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            }</div>
-<div class="ttc" id="a00043_html_ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca"><div class="ttname"><a href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385ad7c8c85bf79bbe1b7188497c32c3b0ca">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Failed</a></div></div>
-<div class="ttc" id="a00043_html_ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15"><div class="ttname"><a href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385aa0d0628f6b4e4d78d2ffef4d4d1c4b15">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Passed</a></div></div>
-<div class="ttc" id="a00043_html_ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5"><div class="ttname"><a href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385a0197c47523ba5a2bdfef705786687de5">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.NotTested</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af1c9b3d1757d33ad2141c639c3827c97"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult </td>
-          <td>(</td>
-          <td class="paramtype">TextAsset&#160;</td>
-          <td class="paramname"><em>script</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00284_source.html#l00060">60</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                                   {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                this.script = <a class="code" href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">script</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                this.state = State.NotTested;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
-<div class="ttc" id="a00043_html_a6c852f7521c0a91b519aa3d391f63e6b"><div class="ttname"><a href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</a></div><div class="ttdeci">TextAsset script</div><div class="ttdef"><b>Definition:</b> <a href="a00284_source.html#l00043">YarnSpinnerEditorWindow.cs:43</a></div></div>
-</div><!-- fragment -->
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1e653caad5ab99847c26ff8f67da8f45"></a>
+<a class="anchor" id="afe059a2ceeabe50380b000420e512bd6"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">override bool Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.Equals </td>
-          <td>(</td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00284_source.html#l00047">47</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">if</span> (obj is <a class="code" href="a00043.html#af1c9b3d1757d33ad2141c639c3827c97">CheckerResult</a> &amp;&amp; ((<a class="code" href="a00043.html#af1c9b3d1757d33ad2141c639c3827c97">CheckerResult</a>)obj).<a class="code" href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">script</a> == this.<a class="code" href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">script</a>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            }</div>
-<div class="ttc" id="a00043_html_af1c9b3d1757d33ad2141c639c3827c97"><div class="ttname"><a href="a00043.html#af1c9b3d1757d33ad2141c639c3827c97">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.CheckerResult</a></div><div class="ttdeci">CheckerResult(TextAsset script)</div><div class="ttdef"><b>Definition:</b> <a href="a00284_source.html#l00060">YarnSpinnerEditorWindow.cs:60</a></div></div>
-<div class="ttc" id="a00043_html_a6c852f7521c0a91b519aa3d391f63e6b"><div class="ttname"><a href="a00043.html#a6c852f7521c0a91b519aa3d391f63e6b">Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</a></div><div class="ttdeci">TextAsset script</div><div class="ttdef"><b>Definition:</b> <a href="a00284_source.html#l00043">YarnSpinnerEditorWindow.cs:43</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a85d50993390cdd8ba30ac44043b18de7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">override int Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.GetHashCode </td>
+          <td class="memname">abstract IEnumerable&lt;<a class="el" href="a00081.html">Diagnosis</a>&gt; Yarn.Analysis.CompiledProgramAnalyser.GatherDiagnoses </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00284_source.html#l00055">55</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span> this.script.GetHashCode();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a808a039e280cf875cb3c9e9385148498"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00180.html#a00371">ValidationMessage</a> [] Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.messages = new <a class="el" href="a00180.html#a00371">ValidationMessage</a>[0]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00284_source.html#l00045">45</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00284_source.html#l00314">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6c852f7521c0a91b519aa3d391f63e6b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TextAsset Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.script</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00284_source.html#l00043">43</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7202b24bd068da24d7e28bec5668b13a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00043.html#ab24848d7951ce44eb3c7768c6ee10385">State</a> Yarn.Unity.YarnSpinnerEditorWindow.CheckerResult.state</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00284_source.html#l00042">42</a> of file <a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a>.</p>
-
-<p>Referenced by <a class="el" href="a00284_source.html#l00314">Yarn.Unity.YarnSpinnerEditorWindow.DrawScriptGUI()</a>.</p>
+<p>Implemented in <a class="el" href="a00175.html#a107aecf707b130c4b733930a95f9154e">Yarn.Analysis.UnusedVariableChecker</a>, and <a class="el" href="a00179.html#ab84e7a8e68740379dee12a51dca69b07">Yarn.Analysis.VariableLister</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Unity/Assets/YarnSpinner/Code/Editor/<a class="el" href="a00284_source.html">YarnSpinnerEditorWindow.cs</a></li>
+<li>YarnSpinner/<a class="el" href="a00287_source.html">Analyser.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00129.html">Unity</a></li><li class="navelem"><a class="el" href="a00180.html">YarnSpinnerEditorWindow</a></li><li class="navelem"><a class="el" href="a00043.html">CheckerResult</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:31 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00041.html">Yarn</a></li><li class="navelem"><a class="el" href="a00351.html">Analysis</a></li><li class="navelem"><a class="el" href="a00043.html">CompiledProgramAnalyser</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:23 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

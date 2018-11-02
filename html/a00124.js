@@ -1,6 +1,6 @@
 var a00124 =
 [
-    [ "AddLines", "a00124.html#aa2b8af349e709b8a45d42af5146ca848", null ],
-    [ "GenerateString", "a00124.html#a91ad68b679bd3b0bd89fe92ea5068688", null ],
-    [ "random", "a00124.html#ad887744b1b813fc081be814958742c37", null ]
+    [ "Comment", "a00124.html#afbfb834bb1623653fa73945c221c4b9d", null ],
+    [ "LineCode", "a00124.html#aad88f588cbbe2df9bb83da59eeff3d3c", null ],
+    [ "LineText", "a00124.html#ab0b4fa82cfa7693ff3c96fe5c3837fff", null ]
 ];

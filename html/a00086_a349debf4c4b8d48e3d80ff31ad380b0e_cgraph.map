@@ -1,6 +1,0 @@
-<map id="Yarn.Dialogue.Dialogue" name="Yarn.Dialogue.Dialogue">
-<area shape="rect" id="node2" href="$a00045.html#a5177bf74fbfe7303fac9d8236c2e514b" title="Yarn.ReturningFunction" alt="" coords="227,5,386,32"/>
-<area shape="rect" id="node3" href="$a00086.html#a1ab129bd84381928531d503304ca08d6" title="A Yarn function that returns true if the named node, or the current node if no parameters were provid..." alt="" coords="214,57,399,98"/>
-<area shape="rect" id="node4" href="$a00086.html#a10c9f22d3f55e74f091cd6069c431094" title="A function exposed to Yarn that returns the number of times a node has been run. " alt="" coords="449,86,634,127"/>
-<area shape="rect" id="node5" href="$a00086.html#a93bb76a1f9a4058f225ff4cee97483c6" title="Yarn.Dialogue.NodeExists" alt="" coords="683,93,859,120"/>
-</map>

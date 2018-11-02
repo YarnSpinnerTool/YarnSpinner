@@ -1,59 +1,88 @@
-\hypertarget{a00129}{\section{Package Yarn.\-Unity}
-\label{a00129}\index{Yarn.\-Unity@{Yarn.\-Unity}}
+\hypertarget{a00129}{\section{Yarn.\-Dialogue.\-Node\-Complete\-Result Class Reference}
+\label{a00129}\index{Yarn.\-Dialogue.\-Node\-Complete\-Result@{Yarn.\-Dialogue.\-Node\-Complete\-Result}}
 }
-\subsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-package \hyperlink{a00358}{Example}
-\begin{DoxyCompactList}\small\item\em attached to the non-\/player characters, and stores the name of the \hyperlink{a00045}{Yarn} node that should be run when you talk to them. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{a00129_a00366}{Localised\-String\-Group}
-\item 
-class \hyperlink{a00087}{Dialogue\-Runner}
-\begin{DoxyCompactList}\small\item\em Dialogue\-Runners act as the interface between your game and \hyperlink{a00359}{Yarn\-Spinner}. \end{DoxyCompactList}\item 
-class \hyperlink{a00187}{Yarn\-Command\-Attribute}
-\begin{DoxyCompactList}\small\item\em Apply this attribute to methods in your scripts to expose them to \hyperlink{a00045}{Yarn}. \end{DoxyCompactList}\item 
-class \hyperlink{a00089}{Dialogue\-U\-I\-Behaviour}
-\begin{DoxyCompactList}\small\item\em Scripts that can act as the U\-I for the conversation should subclass this. \end{DoxyCompactList}\item 
-class \hyperlink{a00185}{Variable\-Storage\-Behaviour}
-\begin{DoxyCompactList}\small\item\em Scripts that can act as a variable storage should subclass this. \end{DoxyCompactList}\item 
-class \hyperlink{a00180}{Yarn\-Spinner\-Editor\-Window}
-\item 
-class \hyperlink{a00105}{Icons}
-\end{DoxyCompactItemize}
 
 
-\subsection{Class Documentation}
-\index{Yarn\-::\-Unity\-::\-Localised\-String\-Group@{Yarn\-::\-Unity\-::\-Localised\-String\-Group}}\label{a00366}
-\hypertarget{a00129_a00366}{}
-\subsubsection{class Yarn\-:\-:Unity\-:\-:Localised\-String\-Group}
-
-
-Definition at line 37 of file Dialogue\-Runner.\-cs.
+We've reached the end of this node.  
 
 
 
-Collaboration diagram for Yarn.\-Unity.\-Localised\-String\-Group\-:
+
+Inheritance diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{a00372}
+\includegraphics[width=226pt]{a00608}
 \end{center}
 \end{figure}
-\begin{DoxyFields}{Class Members}
-\hypertarget{a00129_a395d808fa32cb4fe68a62d7852534e1a}{System\-Language}\label{a00129_a395d808fa32cb4fe68a62d7852534e1a}
-&
-language&
-\\
-\hline
 
-\hypertarget{a00129_a636624112fd57fedda96d485d20e6b9e}{Text\-Asset\mbox{[}$\,$\mbox{]}}\label{a00129_a636624112fd57fedda96d485d20e6b9e}
-&
-string\-Files&
-\\
-\hline
 
-\end{DoxyFields}
+Collaboration diagram for Yarn.\-Dialogue.\-Node\-Complete\-Result\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{a00609}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00129_a88c81469a69987c05aa92780c5a5c1f9}{Node\-Complete\-Result} (string \hyperlink{a00129_ad48b37b51066b94cd48c58626ac0e774}{next\-Node})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{a00129_ad48b37b51066b94cd48c58626ac0e774}{next\-Node}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+We've reached the end of this node. 
+
+Definition at line 176 of file Dialogue.\-cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00129_a88c81469a69987c05aa92780c5a5c1f9}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!Node\-Complete\-Result@{Node\-Complete\-Result}}
+\index{Node\-Complete\-Result@{Node\-Complete\-Result}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
+\subsubsection[{Node\-Complete\-Result}]{\setlength{\rightskip}{0pt plus 5cm}Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result (
+\begin{DoxyParamCaption}
+\item[{string}]{next\-Node}
+\end{DoxyParamCaption}
+)}}\label{a00129_a88c81469a69987c05aa92780c5a5c1f9}
+
+
+Definition at line 179 of file Dialogue.\-cs.
+
+
+
+References Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node.
+
+
+\begin{DoxyCode}
+179                                                         \{
+180                 this.nextNode = \hyperlink{a00129_ad48b37b51066b94cd48c58626ac0e774}{nextNode};
+181             \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{a00129_ad48b37b51066b94cd48c58626ac0e774}{\index{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}!next\-Node@{next\-Node}}
+\index{next\-Node@{next\-Node}!Yarn::Dialogue::NodeCompleteResult@{Yarn\-::\-Dialogue\-::\-Node\-Complete\-Result}}
+\subsubsection[{next\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Dialogue.\-Node\-Complete\-Result.\-next\-Node}}\label{a00129_ad48b37b51066b94cd48c58626ac0e774}
+
+
+Definition at line 177 of file Dialogue.\-cs.
+
+
+
+Referenced by Yarn.\-Dialogue.\-Node\-Complete\-Result.\-Node\-Complete\-Result().
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Yarn\-Spinner/\hyperlink{a00290}{Dialogue.\-cs}\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>YarnSpinner: Yarn.Dialogue.StandardLibrary Class Reference</title>
+<title>YarnSpinner: CsvHelper.StringHelper Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -107,470 +107,110 @@ $(document).ready(function(){initNavTree('a00158.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="a00621.html">List of all members</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="a00455.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Yarn.Dialogue.StandardLibrary Class Reference</div>  </div>
+<div class="title">CsvHelper.StringHelper Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The standard, built-in library of functions and operators.  
+<p>Common string tasks.  
  <a href="a00158.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Yarn.Dialogue.StandardLibrary:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for CsvHelper.StringHelper:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00622.png" border="0" usemap="#_yarn_8_dialogue_8_standard_library_inherit__map" alt="Inheritance graph"/></div>
-<map name="_yarn_8_dialogue_8_standard_library_inherit__map" id="_yarn_8_dialogue_8_standard_library_inherit__map">
-<area shape="rect" id="node2" href="a00123.html" title="{Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="28,5,180,171"/></map>
+<div class="center"><img src="a00456.png" border="0" usemap="#_csv_helper_8_string_helper_coll__map" alt="Collaboration graph"/></div>
+<map name="_csv_helper_8_string_helper_coll__map" id="_csv_helper_8_string_helper_coll__map">
+</map>
 </div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Yarn.Dialogue.StandardLibrary:</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00158.html#a40c715a7ebf19c7053c7b10f2b3df80f">IsNullOrWhiteSpace</a> (string s)</td></tr>
+<tr class="memdesc:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests is a string is null or whitespace.  <a href="#a40c715a7ebf19c7053c7b10f2b3df80f">More...</a><br/></td></tr>
+<tr class="separator:a40c715a7ebf19c7053c7b10f2b3df80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Common string tasks. </p>
+
+<p>Definition at line <a class="el" href="a00249_source.html#l00010">10</a> of file <a class="el" href="a00249_source.html">StringHelper.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a40c715a7ebf19c7053c7b10f2b3df80f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool CsvHelper.StringHelper.IsNullOrWhiteSpace </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tests is a string is null or whitespace. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The string to test.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the string is null or whitespace, otherwise false.</dd></dl>
+
+<p>Definition at line <a class="el" href="a00249_source.html#l00017">17</a> of file <a class="el" href="a00249_source.html">StringHelper.cs</a>.</p>
+
+<p>Referenced by <a class="el" href="a00229_source.html#l01163">CsvHelper.CsvReader.GetEmtpyStringMethod()</a>, and <a class="el" href="a00229_source.html#l00747">CsvHelper.CsvReader.TryGetField&lt; T &gt;()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">if</span>( s == null )</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">for</span>( var i = 0; i &lt; s.Length; i++ )</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">if</span>( !<span class="keywordtype">char</span>.IsWhiteSpace( s[i] ) )</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00623.png" border="0" usemap="#_yarn_8_dialogue_8_standard_library_coll__map" alt="Collaboration graph"/></div>
-<map name="_yarn_8_dialogue_8_standard_library_coll__map" id="_yarn_8_dialogue_8_standard_library_coll__map">
-<area shape="rect" id="node2" href="a00123.html" title="{Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="28,5,180,171"/></map>
-</div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a1bf2ea2b59a842bafffec78667a86b19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00158.html#a1bf2ea2b59a842bafffec78667a86b19">StandardLibrary</a> ()</td></tr>
-<tr class="separator:a1bf2ea2b59a842bafffec78667a86b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacfb1f00ad8aa3921941b8d8af0960e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00100.html">FunctionInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#aacfb1f00ad8aa3921941b8d8af0960e0">GetFunction</a> (string name)</td></tr>
-<tr class="separator:aacfb1f00ad8aa3921941b8d8af0960e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab42a4fd30a72156cafa685f959deef78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#ab42a4fd30a72156cafa685f959deef78">ImportLibrary</a> (<a class="el" href="a00123.html">Library</a> otherLibrary)</td></tr>
-<tr class="separator:ab42a4fd30a72156cafa685f959deef78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a001ab29d21fe7db10fc9c250914287f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (<a class="el" href="a00100.html">FunctionInfo</a> function)</td></tr>
-<tr class="separator:a001ab29d21fe7db10fc9c250914287f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a698de0b528b2bac17bd85f57d45d4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#a2a698de0b528b2bac17bd85f57d45d4b">RegisterFunction</a> (string name, int parameterCount, <a class="el" href="a00045.html#a5177bf74fbfe7303fac9d8236c2e514b">ReturningFunction</a> implementation)</td></tr>
-<tr class="separator:a2a698de0b528b2bac17bd85f57d45d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6820eaa082077f16496effbc9041b7ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#a6820eaa082077f16496effbc9041b7ad">RegisterFunction</a> (string name, int parameterCount, <a class="el" href="a00045.html#ae0be2e5cf13d5779816102439e61ff1a">Function</a> implementation)</td></tr>
-<tr class="separator:a6820eaa082077f16496effbc9041b7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9a1cc3e25b6aae25e210d8a0d68c09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#a6c9a1cc3e25b6aae25e210d8a0d68c09">FunctionExists</a> (string name)</td></tr>
-<tr class="separator:a6c9a1cc3e25b6aae25e210d8a0d68c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47d1b3664733207d5cda15f4a4a7af7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html#a47d1b3664733207d5cda15f4a4a7af7a">DeregisterFunction</a> (string name)</td></tr>
-<tr class="separator:a47d1b3664733207d5cda15f4a4a7af7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The standard, built-in library of functions and operators. </p>
-
-<p>Definition at line <a class="el" href="a00296_source.html#l00598">598</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1bf2ea2b59a842bafffec78667a86b19"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Yarn.Dialogue.StandardLibrary.StandardLibrary </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00296_source.html#l00600">600</a> of file <a class="el" href="a00296_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;                                     {</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;<span class="preprocessor">                #region Operators</span></div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                    <span class="keywordflow">return</span> parameters[0] + parameters[1];</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                });</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                    <span class="keywordflow">return</span> parameters[0] - parameters[1];</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                });</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                    <span class="keywordflow">return</span> -parameters[0];</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                });</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                    <span class="keywordflow">return</span> parameters[0] / parameters[1];</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                });</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                    <span class="keywordflow">return</span> parameters[0] * parameters[1];</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                });</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                    <span class="keywordflow">return</span> parameters[0] % parameters[1];</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                });</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                    <span class="keywordflow">return</span> parameters[0].Equals( parameters[1] );</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                });</div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                    <span class="comment">// Return the logical negative of the == operator&#39;s result</span></div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                    var equalTo = this.GetFunction(TokenType.EqualTo.ToString());</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                    <span class="keywordflow">return</span> !equalTo.Invoke(parameters).AsBool;</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                });</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                    <span class="keywordflow">return</span> parameters[0] &gt; parameters[1];</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                });</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                    <span class="keywordflow">return</span> parameters[0] &gt;= parameters[1];</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                });</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                    <span class="keywordflow">return</span> parameters[0] &lt; parameters[1];</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                });</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;                    <span class="keywordflow">return</span> parameters[0] &lt;= parameters[1];</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;                });</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;                    <span class="keywordflow">return</span> parameters[0].AsBool &amp;&amp; parameters[1].AsBool;</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                });</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;                this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;                    <span class="keywordflow">return</span> parameters[0].AsBool || parameters[1].AsBool;</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;                });</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;                this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;                    <span class="keywordflow">return</span> parameters[0].AsBool ^ parameters[1].AsBool;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;                });</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;                this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) {</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                    <span class="keywordflow">return</span> !parameters[0].AsBool;</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;                });</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;<span class="preprocessor">                #endregion Operators</span></div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;<span class="preprocessor"></span>            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a47d1b3664733207d5cda15f4a4a7af7a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.Library.DeregisterFunction </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00129">129</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00090">Yarn.Library.functions</a>.</p>
-<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                                                    {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">functions</a>.ContainsKey(name))</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <a class="code" href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">functions</a>.Remove (name);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00090">Library.cs:90</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a6c9a1cc3e25b6aae25e210d8a0d68c09"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Yarn.Library.FunctionExists </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00125">125</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                                {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">return</span> functions.ContainsKey (name);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aacfb1f00ad8aa3921941b8d8af0960e0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00100.html">FunctionInfo</a> Yarn.Library.GetFunction </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00094">94</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00090">Yarn.Library.functions</a>.</p>
-
-<p>Referenced by <a class="el" href="a00304_source.html#l00175">Yarn.VirtualMachine.RunInstruction()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                                     {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [name];</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            } <span class="keywordflow">catch</span> (KeyNotFoundException) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException (name + <span class="stringliteral">&quot; is not a valid function&quot;</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00090">Library.cs:90</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00123_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph.png" border="0" usemap="#a00123_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph" alt=""/></div>
-<map name="a00123_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph" id="a00123_aacfb1f00ad8aa3921941b8d8af0960e0_icgraph">
-<area shape="rect" id="node2" href="a00156.html#ad2caf9ca4f00cdcbd58983be7c106971" title="Yarn.VirtualMachine.RunInstruction" alt="" coords="222,5,450,32"/><area shape="rect" id="node3" href="a00156.html#af3cc0337914b9f66454a3d52208dba5f" title="Executes the next instruction in the current node. " alt="" coords="499,5,693,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ab42a4fd30a72156cafa685f959deef78"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.Library.ImportLibrary </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00123.html">Library</a>&#160;</td>
-          <td class="paramname"><em>otherLibrary</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00105">105</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00090">Yarn.Library.functions</a>.</p>
-<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                                        {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">foreach</span> (var entry <span class="keywordflow">in</span> otherLibrary.functions) {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <a class="code" href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [entry.Key] = entry.Value;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00090">Library.cs:90</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a001ab29d21fe7db10fc9c250914287f9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.Library.RegisterFunction </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00100.html">FunctionInfo</a>&#160;</td>
-          <td class="paramname"><em>function</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00111">111</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00090">Yarn.Library.functions</a>.</p>
-
-<p>Referenced by <a class="el" href="a00299_source.html#l00115">Yarn.Library.RegisterFunction()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                            {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">functions</a> [function.name] = <span class="keyword">function</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a2fcc78a63963be5320cf09783b66fab6"><div class="ttname"><a href="a00123.html#a2fcc78a63963be5320cf09783b66fab6">Yarn.Library.functions</a></div><div class="ttdeci">Dictionary&lt; string, FunctionInfo &gt; functions</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00090">Library.cs:90</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00123_a001ab29d21fe7db10fc9c250914287f9_icgraph.png" border="0" usemap="#a00123_a001ab29d21fe7db10fc9c250914287f9_icgraph" alt=""/></div>
-<map name="a00123_a001ab29d21fe7db10fc9c250914287f9_icgraph" id="a00123_a001ab29d21fe7db10fc9c250914287f9_icgraph">
-<area shape="rect" id="node2" href="a00123.html#a2a698de0b528b2bac17bd85f57d45d4b" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a2a698de0b528b2bac17bd85f57d45d4b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.Library.RegisterFunction </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>parameterCount</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00045.html#a5177bf74fbfe7303fac9d8236c2e514b">ReturningFunction</a>&#160;</td>
-          <td class="paramname"><em>implementation</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00115">115</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00111">Yarn.Library.RegisterFunction()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                                                                                                        {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            var info = <span class="keyword">new</span> FunctionInfo (name, parameterCount, implementation);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <a class="code" href="a00123.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (info);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a001ab29d21fe7db10fc9c250914287f9"><div class="ttname"><a href="a00123.html#a001ab29d21fe7db10fc9c250914287f9">Yarn.Library.RegisterFunction</a></div><div class="ttdeci">void RegisterFunction(FunctionInfo function)</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00111">Library.cs:111</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00123_a2a698de0b528b2bac17bd85f57d45d4b_cgraph.png" border="0" usemap="#a00123_a2a698de0b528b2bac17bd85f57d45d4b_cgraph" alt=""/></div>
-<map name="a00123_a2a698de0b528b2bac17bd85f57d45d4b_cgraph" id="a00123_a2a698de0b528b2bac17bd85f57d45d4b_cgraph">
-<area shape="rect" id="node2" href="a00123.html#a001ab29d21fe7db10fc9c250914287f9" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a6820eaa082077f16496effbc9041b7ad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Yarn.Library.RegisterFunction </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>parameterCount</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00045.html#ae0be2e5cf13d5779816102439e61ff1a">Function</a>&#160;</td>
-          <td class="paramname"><em>implementation</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00299_source.html#l00120">120</a> of file <a class="el" href="a00299_source.html">Library.cs</a>.</p>
-
-<p>References <a class="el" href="a00299_source.html#l00111">Yarn.Library.RegisterFunction()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                                                                               {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            var info = <span class="keyword">new</span> FunctionInfo (name, parameterCount, implementation);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <a class="code" href="a00123.html#a001ab29d21fe7db10fc9c250914287f9">RegisterFunction</a> (info);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="ttc" id="a00123_html_a001ab29d21fe7db10fc9c250914287f9"><div class="ttname"><a href="a00123.html#a001ab29d21fe7db10fc9c250914287f9">Yarn.Library.RegisterFunction</a></div><div class="ttdeci">void RegisterFunction(FunctionInfo function)</div><div class="ttdef"><b>Definition:</b> <a href="a00299_source.html#l00111">Library.cs:111</a></div></div>
-</div><!-- fragment -->
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="a00123_a6820eaa082077f16496effbc9041b7ad_cgraph.png" border="0" usemap="#a00123_a6820eaa082077f16496effbc9041b7ad_cgraph" alt=""/></div>
-<map name="a00123_a6820eaa082077f16496effbc9041b7ad_cgraph" id="a00123_a6820eaa082077f16496effbc9041b7ad_cgraph">
-<area shape="rect" id="node2" href="a00123.html#a001ab29d21fe7db10fc9c250914287f9" title="Yarn.Library.RegisterFunction" alt="" coords="248,5,443,32"/></map>
+<div class="center"><img src="a00158_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph.png" border="0" usemap="#a00158_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" alt=""/></div>
+<map name="a00158_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph" id="a00158_a40c715a7ebf19c7053c7b10f2b3df80f_icgraph">
+<area shape="rect" id="node2" href="a00067.html#ad1d1cde1588bb56eca326d5d92592956" title="Gets a function to test for an empty string. Will check CsvConfiguration.TrimFields when making its d..." alt="" coords="230,5,447,46"/><area shape="rect" id="node4" href="a00067.html#aa8622306f74940386663fa4020eb8971" title="Gets the field converted to Type T at position (column) index using the specified ITypeConverter..." alt="" coords="239,70,438,111"/><area shape="rect" id="node3" href="a00067.html#a236f07d2376cb1b18e9550ccc3968728" title="Determines whether the current record is empty. A record is considered empty if all fields are empty..." alt="" coords="496,5,707,46"/></map>
 </div>
 </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>YarnSpinner/<a class="el" href="a00296_source.html">Dialogue.cs</a></li>
+<li>packages/CsvHelper.2.16.0.0/src/CsvHelper/<a class="el" href="a00249_source.html">StringHelper.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="a00045.html">Yarn</a></li><li class="navelem"><a class="el" href="a00086.html">Dialogue</a></li><li class="navelem"><a class="el" href="a00158.html">StandardLibrary</a></li>
-    <li class="footer">Generated on Fri Nov 2 2018 09:37:30 for YarnSpinner by
+    <li class="navelem"><a class="el" href="a00319.html">CsvHelper</a></li><li class="navelem"><a class="el" href="a00158.html">StringHelper</a></li>
+    <li class="footer">Generated on Fri Nov 2 2018 09:43:21 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
