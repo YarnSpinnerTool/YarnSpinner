@@ -37,7 +37,7 @@ We need to give this node a title, and in this example we will call it ***start*
 title: start
 ```
 
-> Node titles are case insensitive. The titles ***start***, ***Start***, ***START*** and ***StArT*** are different.
+> Node titles are case sensitive. The titles ***start***, ***Start***, ***START*** and ***StArT*** are different.
 
 > There is no default title. You will need to ensure that your game programmers know which node your game starts on, as it may not necessarily be the first node in your Yarn Dialogue file.
 
