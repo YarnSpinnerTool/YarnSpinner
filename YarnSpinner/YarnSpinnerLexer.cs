@@ -61,7 +61,7 @@ public partial class YarnSpinnerLexer : Lexer {
     public const int Shortcuts = 6;
     public const int Command = 7;
     new public const int Action = 8;
-    public const int Option =9;
+    public const int Option = 9;
     public const int OptionLink = 10;
 
 	public static string[] channelNames = {
