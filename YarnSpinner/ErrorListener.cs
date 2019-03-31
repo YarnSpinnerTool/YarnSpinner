@@ -2,6 +2,7 @@
 using Antlr4.Runtime;
 using System.Text;
 using System.IO;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -23,7 +24,7 @@ namespace Yarn
 
             // the human readable message
             object[] format = new object[] { line, charPositionInLine + 1 };
-            builder.AppendFormat("Error on line {0} at position {1}:\n", format);
+            builder.AppendFormat(CultureInfo.CurrentCulture, "Error on line {0} at position {1}:\n", format);
             // the actual error message
             builder.AppendLine(msg);
 

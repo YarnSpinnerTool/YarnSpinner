@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -222,14 +223,14 @@ namespace Yarn
                 /// - PushNumber
                 /** Pushes a number onto the stack.
                  */
-                state.PushValue (Convert.ToSingle(i.operandA));
+                state.PushValue (Convert.ToSingle(i.operandA, CultureInfo.InvariantCulture));
 
                 break;
             case ByteCode.PushBool:
                 /// - PushBool
                 /** Pushes a boolean value onto the stack.
                  */
-                state.PushValue (Convert.ToBoolean(i.operandA));
+                state.PushValue (Convert.ToBoolean(i.operandA, CultureInfo.InvariantCulture));
 
                 break;
             case ByteCode.PushNull:

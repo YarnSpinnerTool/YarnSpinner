@@ -29,11 +29,13 @@ using System.Collections;
 using System.Collections.Generic;
 using CsvHelper;
 using CommandLine;
+using System.Globalization;
 
 namespace Yarn
 {
 
     // Shared options for all commands
+#pragma warning disable CA1812 // Avoid uninstantiated internal classes. Justification: These are used dynamically.
     class BaseOptions
     {
         [Option('d', "debug", HelpText = "Show debugging information.")]
@@ -54,12 +56,12 @@ namespace Yarn
         [Option('T', "string-table", HelpText = "The string table to use.")]
         public string stringTable { get; set; }
 
-		[Option('o', "only-node", HelpText = "Only consider this node.")]
+        [Option('o', "only-node", HelpText = "Only consider this node.")]
 
-		public string onlyConsiderNode { get; set; }
-		[Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
-		public bool experimental { get; set; }
-	}
+        public string onlyConsiderNode { get; set; }
+        [Option('e', "exprimental-mode", HelpText = "Use the experimental compiler, results may be inconsistent")]
+        public bool experimental { get; set; }
+    }
 
     [Verb("verify", HelpText = "Verifies files.")]
     class VerifyOptions : ExecutionOptions
@@ -73,9 +75,9 @@ namespace Yarn
         [Option('c', "dump-bytecode", HelpText = "Show program bytecode and exit.")]
         public bool compileAndExit { get; set; }
 
-		[Option('v', "list-variables", HelpText = "List the variables used in the program.")]
-		public bool listVariables { get; set; }
-	}
+        [Option('v', "list-variables", HelpText = "List the variables used in the program.")]
+        public bool listVariables { get; set; }
+    }
 
     [Verb("run", HelpText = "Runs files.")]
     class RunOptions : ExecutionOptions
@@ -135,6 +137,7 @@ namespace Yarn
         [Option('o', "output-dir", HelpText = "The destination directory. Defaults to each file's source folder.")]
         public string outputDirectory { get; set; }
     }
+#pragma warning restore CA1812 // Avoid uninstantiated internal classes
 
     class YarnSpinnerConsole
     {
@@ -218,18 +221,18 @@ namespace Yarn
 
                 // Does this file have the right extension?
 
-                var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item)) != -1;
+                var hasAllowedExtension = allowedExtensions.FindIndex(item => path.EndsWith(item, StringComparison.InvariantCulture)) != -1;
 
                 if (!exists || !hasAllowedExtension)
                 {
-                    invalid.Add(string.Format("\"{0}\"", path));
+                    invalid.Add(string.Format(CultureInfo.CurrentCulture, "\"{0}\"", path));
                 }
             }
 
             if (invalid.Count != 0)
             {
 
-                var message = string.Format("The file{0} {1} {2}.",
+                var message = string.Format(CultureInfo.CurrentCulture, "The file{0} {1} {2}.",
                     invalid.Count == 1 ? "" : "s",
                                             string.Join(", ", invalid.ToArray()),
                     invalid.Count == 1 ? "is not valid" : "are not valid"
@@ -286,7 +289,7 @@ namespace Yarn
                 // If there aren't two parts to this or the second part isn't a float, fail
                 if (entry.Length != 2 || float.TryParse(entry[1], out value) == false)
                 {
-                    Warn(string.Format("Skipping invalid variable {0}", variable));
+                    Warn(string.Format(CultureInfo.CurrentCulture, "Skipping invalid variable {0}", variable));
                     continue;
                 }
                 var name = entry[0];
@@ -342,10 +345,12 @@ namespace Yarn
             {
                 dialogue = CreateDialogue(options, null);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch
             {
                 return 1;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             if (options.compileAndExit)
             {
@@ -386,17 +391,17 @@ namespace Yarn
             // Load nodes
             var dialogue = new Dialogue(impl);
 
-			if (options.experimental)
-			{
-				Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
-				dialogue.experimentalMode = true;
-			}
+            if (options.experimental)
+            {
+                Warn("Running YarnSpinner in experimental mode may have unexpected behaviour.");
+                dialogue.experimentalMode = true;
+            }
 
-			// Add some methods for testing
-			dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
-			{
-				return parameters[0] + parameters[1] + parameters[2];
-			});
+            // Add some methods for testing
+            dialogue.library.RegisterFunction("add_three_operands", 3, delegate (Value[] parameters)
+            {
+                return parameters[0] + parameters[1] + parameters[2];
+            });
 
             dialogue.library.RegisterFunction("last_value", -1, delegate (Value[] parameters)
             {
@@ -420,7 +425,8 @@ namespace Yarn
                     {
                         dialogue.LogErrorMessage("ASSERTION FAILED: " + parameters[1].AsString);
                     }
-                    else {
+                    else
+                    {
                         dialogue.LogErrorMessage("ASSERTION FAILED");
                     }
                     Environment.Exit(1);
@@ -454,7 +460,8 @@ namespace Yarn
                     Note(message);
                 };
             }
-            else {
+            else
+            {
                 dialogue.LogDebugMessage = delegate (string message) { };
             }
 
@@ -463,12 +470,18 @@ namespace Yarn
                 Warn("Yarn Error: " + message);
             };
 
-            foreach (var file in options.files) {
-                try {
+            foreach (var file in options.files)
+            {
+                try
+                {
                     dialogue.LoadFile(file, false, false, options.onlyConsiderNode);
-                } catch (Yarn.TokeniserException e) {
+                }
+                catch (Yarn.TokeniserException e)
+                {
                     Warn(e.Message);
-                } catch (Yarn.ParseException e) {
+                }
+                catch (Yarn.ParseException e)
+                {
                     Warn(e.Message);
                 }
 
@@ -486,7 +499,7 @@ namespace Yarn
                     {
                         if (csvReader.ReadHeader() == false)
                         {
-                            Error(string.Format("{0} is not a valid string table", options.stringTable));
+                            Error(string.Format(CultureInfo.CurrentCulture, "{0} is not a valid string table", options.stringTable));
                         }
 
                         foreach (var row in csvReader.GetRecords<LocalisedLine>())
@@ -536,7 +549,7 @@ namespace Yarn
                 if (expectedNextLine != null && expectedNextLine != lineText.text)
                 {
                     // TODO: Output diagnostic info here
-                    Error(string.Format("Unexpected line.\nExpected: {0}\nReceived: {1}",
+                    Error(string.Format(CultureInfo.CurrentCulture, "Unexpected line.\nExpected: {0}\nReceived: {1}",
                         expectedNextLine, lineText.text));
 
                 }
@@ -556,7 +569,7 @@ namespace Yarn
                 Console.WriteLine("Options:");
                 for (int i = 0; i < optionsGroup.options.Count; i++)
                 {
-                    var optionDisplay = string.Format("{0}. {1}", i + 1, optionsGroup.options[i]);
+                    var optionDisplay = string.Format(CultureInfo.CurrentCulture, "{0}. {1}", i + 1, optionsGroup.options[i]);
                     Console.WriteLine(optionDisplay);
                 }
 
@@ -567,14 +580,14 @@ namespace Yarn
                     optionsGroup.options.Count != numberOfExpectedOptions)
                 {
                     // TODO: Output diagnostic info here
-                    Error(string.Format("[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
+                    Error(string.Format(CultureInfo.CurrentCulture, "[ERROR: Expected {0} options, but received {1}]", numberOfExpectedOptions, optionsGroup.options.Count));
 
                 }
 
                 // If we were told to automatically select an option, do so
                 if (autoSelectOptionNumber != -1)
                 {
-                    Note(string.Format("[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
+                    Note(string.Format(CultureInfo.CurrentCulture, "[Received {0} options, choosing option {1}]", optionsGroup.options.Count, autoSelectOptionNumber));
 
                     optionChooser(autoSelectOptionNumber);
 
@@ -601,7 +614,7 @@ namespace Yarn
                     Console.Write("? ");
                     try
                     {
-                        var selectedKey = Console.ReadKey().KeyChar.ToString();
+                        var selectedKey = Console.ReadKey().KeyChar.ToString(CultureInfo.InvariantCulture);
                         int selection;
 
                         if (int.TryParse(selectedKey, out selection) == true)
@@ -616,7 +629,8 @@ namespace Yarn
                             {
                                 Console.WriteLine("Invalid option.");
                             }
-                            else {
+                            else
+                            {
                                 optionChooser(selection);
                                 break;
                             }
@@ -634,7 +648,7 @@ namespace Yarn
                 if (expectedNextCommand != null && expectedNextCommand != command)
                 {
                     // TODO: Output diagnostic info here
-                    Error(string.Format("Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
+                    Error(string.Format(CultureInfo.CurrentCulture, "Unexpected command.\n\tExpected: {0}\n\tReceived: {1}",
                                         expectedNextCommand, command));
                 }
 

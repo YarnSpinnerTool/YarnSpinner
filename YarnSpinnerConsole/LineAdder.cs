@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Yarn;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -35,7 +36,7 @@ namespace Yarn
                     case NodeFormat.Text:
                         break;
                     default:
-                        YarnSpinnerConsole.Warn(string.Format("Skipping file {0}, which is in unsupported format '{1}'", file, fileFormat));
+                        YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Skipping file {0}, which is in unsupported format '{1}'", file, fileFormat));
                         continue;
                 }
 
@@ -47,18 +48,20 @@ namespace Yarn
                     // First, we need to ensure that this file compiles.
                     d.LoadFile(file);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch
                 {
-                    YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
+                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Skipping file {0} due to compilation errors.", file));
                     continue;
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
 
                 Dictionary<string, LineInfo> linesWithNoTag = new Dictionary<string, LineInfo>();
 
                 // Filter the string info table to exclude lines that have a line code
                 foreach (var entry in d.GetStringInfoTable())
                 {
-                    if (entry.Key.StartsWith("line:") == false)
+                    if (entry.Key.StartsWith("line:", StringComparison.InvariantCulture) == false)
                     {
                         linesWithNoTag[entry.Key] = entry.Value;
                     }
@@ -66,7 +69,7 @@ namespace Yarn
 
                 if (linesWithNoTag.Count == 0)
                 {
-                    var message = string.Format("{0} had no untagged lines. Either they're all tagged already, or it has no localisable text.", file);
+                    var message = string.Format(CultureInfo.CurrentCulture, "{0} had no untagged lines. Either they're all tagged already, or it has no localisable text.", file);
                     YarnSpinnerConsole.Note(message);
                     continue;
                 }
@@ -143,11 +146,11 @@ namespace Yarn
 
                     if (options.verbose)
                     {
-                        YarnSpinnerConsole.Note(string.Format("Tagged line with ID \"{0}\" in node {1}: {2}", newTag, nodeInfo.title, existingLine));
+                        YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, "Tagged line with ID \"{0}\" in node {1}: {2}", newTag, nodeInfo.title, existingLine));
                     }
 
                     // Re-write the line.
-                    var newLine = string.Format("{0} #{1}", existingLine, newTag);
+                    var newLine = string.Format(CultureInfo.InvariantCulture, "{0} #{1}", existingLine, newTag);
                     lines[line.Value.lineNumber - 1] = newLine;
 
 
@@ -216,7 +219,7 @@ namespace Yarn
             bool isUnique = true;
             do
             {
-                tag = String.Format("line:{0:x6}", random.Next(0x1000000));
+                tag = string.Format(CultureInfo.InvariantCulture, "line:{0:x6}", random.Next(0x1000000));
 
                 isUnique = existingKeys.FindIndex(i => i == tag) == -1;
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -75,7 +76,7 @@ namespace Yarn
                 foreach (var hashtag in context.hashtag())
                 {
                     string tagText = hashtag.GetText().Trim('#');
-                    if (tagText.StartsWith("line:"))
+                    if (tagText.StartsWith("line:", StringComparison.InvariantCulture))
                     {
                         return tagText;
                     }
@@ -102,7 +103,7 @@ namespace Yarn
             if (currentNode != null)
             {
                 string newNode = context.header().header_title().TITLE_TEXT().GetText().Trim();
-                string message = string.Format("Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.name);
+                string message = string.Format(CultureInfo.CurrentCulture, "Discovered a new node {0} while {1} is still being parsed", newNode, currentNode.name);
 				throw new Yarn.ParseException(message);
             }
             currentNode = new Node();
@@ -125,7 +126,7 @@ namespace Yarn
         {
             if (context.header_tag().Length > 1)
             {
-                string message = string.Format("Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
+                string message = string.Format(CultureInfo.CurrentCulture, "Too many header tags defined inside {0}", context.header_title().TITLE_TEXT().GetText().Trim());
                 throw new Yarn.ParseException(message);
             }
         }
@@ -711,7 +712,7 @@ namespace Yarn
         }
         public override int VisitValueNumber(YarnSpinnerParser.ValueNumberContext context)
         {
-            float number = float.Parse(context.BODY_NUMBER().GetText());
+            float number = float.Parse(context.BODY_NUMBER().GetText(), CultureInfo.InvariantCulture);
             compiler.Emit(ByteCode.PushNumber, number);
 
             return 0;

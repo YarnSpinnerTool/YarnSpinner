@@ -1,5 +1,6 @@
 
 using System;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -9,7 +10,9 @@ namespace Yarn
 
         public enum Type {
             Number,  // a constant number
+#pragma warning disable CA1720 // Identifier contains type name
             String,  // a string
+#pragma warning restore CA1720 // Identifier contains type name
             Bool,    // a boolean value
             Variable, // the name of a variable; will be expanded at runtime
             Null,    // the null value
@@ -32,7 +35,7 @@ namespace Yarn
                     case Type.Bool: return this.boolValue;
                 }
                 throw new InvalidOperationException(
-                    string.Format("Can't get good backing type for {0}", this.type)
+                    string.Format(CultureInfo.CurrentCulture, "Can't get good backing type for {0}", this.type)
                 );
             }
         }
@@ -44,7 +47,7 @@ namespace Yarn
                     return numberValue;
                 case Type.String:
                     try {
-                        return float.Parse (stringValue);
+                        return float.Parse (stringValue, CultureInfo.InvariantCulture);
                     }  catch (FormatException) {
                         return 0.0f;
                     }
@@ -82,11 +85,11 @@ namespace Yarn
                     if (float.IsNaN(numberValue) ) {
                         return "NaN";
                     }
-                    return numberValue.ToString ();
+                    return numberValue.ToString (CultureInfo.InvariantCulture);
                 case Type.String:
                     return stringValue;
                 case Type.Bool:
-                    return boolValue.ToString ();
+                    return boolValue.ToString (CultureInfo.InvariantCulture);
                 case Type.Null:
                     return "null";
                 default:
@@ -131,23 +134,23 @@ namespace Yarn
             }
             if (value.GetType() == typeof(string) ) {
                 type = Type.String;
-                stringValue = System.Convert.ToString(value);
+                stringValue = System.Convert.ToString(value, CultureInfo.InvariantCulture);
                 return;
             }
             if (value.GetType() == typeof(int) ||
                 value.GetType() == typeof(float) ||
                 value.GetType() == typeof(double)) {
                 type = Type.Number;
-                numberValue = System.Convert.ToSingle(value);
+                numberValue = System.Convert.ToSingle(value, CultureInfo.InvariantCulture);
 
                 return;
             }
             if (value.GetType() == typeof(bool) ) {
                 type = Type.Bool;
-                boolValue = System.Convert.ToBoolean(value);
+                boolValue = System.Convert.ToBoolean(value, CultureInfo.InvariantCulture);
                 return;
             }
-            var error = string.Format("Attempted to create a Value using a {0}; currently, " +
+            var error = string.Format(CultureInfo.CurrentCulture, "Attempted to create a Value using a {0}; currently, " +
                 "Values can only be numbers, strings, bools or null.", value.GetType().Name);
             throw new YarnException(error);
         }
@@ -175,7 +178,7 @@ namespace Yarn
                 case Type.Null:
                     return 0;
                 case Type.String:
-                    return this.stringValue.CompareTo (other.stringValue);
+                    return string.Compare(this.stringValue, other.stringValue, StringComparison.InvariantCulture);
                 case Type.Number:
                     return this.numberValue.CompareTo (other.numberValue);
                 case Type.Bool:
@@ -184,7 +187,7 @@ namespace Yarn
             }
 
             // try to do a string test at that point!
-            return this.AsString.CompareTo(other.AsString);
+            return string.Compare(this.AsString, other.AsString, StringComparison.InvariantCulture);
         }
 
         public override bool Equals (object obj)
@@ -225,7 +228,7 @@ namespace Yarn
 
         public override string ToString ()
         {
-            return string.Format ("[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]", type, AsNumber, AsBool, AsString);
+            return string.Format (CultureInfo.CurrentCulture, "[Value: type={0}, AsNumber={1}, AsBool={2}, AsString={3}]", type, AsNumber, AsBool, AsString);
         }
 
         public static Value operator+ (Value a, Value b) {
@@ -254,7 +257,7 @@ namespace Yarn
             }
 
             throw new System.ArgumentException(
-                string.Format("Cannot add types {0} and {1}.", a.type, b.type )
+                string.Format(CultureInfo.CurrentCulture, "Cannot add types {0} and {1}.", a.type, b.type )
             );
         }
 
@@ -266,7 +269,7 @@ namespace Yarn
             }
 
             throw new System.ArgumentException(
-                string.Format("Cannot subtract types {0} and {1}.", a.type, b.type )
+                string.Format(CultureInfo.CurrentCulture, "Cannot subtract types {0} and {1}.", a.type, b.type )
             );
         }
 
@@ -278,7 +281,7 @@ namespace Yarn
             }
 
             throw new System.ArgumentException(
-                string.Format("Cannot multiply types {0} and {1}.", a.type, b.type )
+                string.Format(CultureInfo.CurrentCulture, "Cannot multiply types {0} and {1}.", a.type, b.type )
             );
         }
 
@@ -290,7 +293,7 @@ namespace Yarn
             }
 
             throw new System.ArgumentException(
-                string.Format("Cannot divide types {0} and {1}.", a.type, b.type )
+                string.Format(CultureInfo.CurrentCulture, "Cannot divide types {0} and {1}.", a.type, b.type )
             );
         }
 
@@ -300,7 +303,7 @@ namespace Yarn
                 return new Value (a.AsNumber % b.AsNumber);
             }
             throw new System.ArgumentException(
-                string.Format("Cannot modulo types {0} and {1}.", a.type, b.type )
+                string.Format(CultureInfo.CurrentCulture, "Cannot modulo types {0} and {1}.", a.type, b.type )
             );
         }
 
