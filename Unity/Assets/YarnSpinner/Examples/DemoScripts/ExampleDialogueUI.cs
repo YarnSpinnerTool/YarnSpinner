@@ -116,6 +116,9 @@ namespace Yarn.Unity.Example {
                 yield return null;
             }
 
+            // Avoid skipping lines if textSpeed == 0
+            yield return new WaitForEndOfFrame();
+
             // Hide the text and prompt
             lineText.gameObject.SetActive (false);
 
