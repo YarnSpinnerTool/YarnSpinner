@@ -508,6 +508,34 @@ namespace Yarn {
             }
         }
 
+		public Dictionary<string, IEnumerable<string>> GetTagsForAllNodes() {
+			var d = new Dictionary<string,IEnumerable<string>>();
+
+			foreach (var node in program.nodes) {
+				var tags = program.GetTagsForNode(node.Key);
+
+				if (tags == null)
+					continue;
+
+				d [node.Key] = tags;
+			}
+
+			return d;
+		}
+
+		/// Returns the tags for the node 'nodeName'.
+		public IEnumerable<string> GetTagsForNode(string nodeName) {
+			if (program.nodes.Count == 0) {
+				LogErrorMessage ("No nodes are loaded!");
+				return null;
+			} else if (program.nodes.ContainsKey(nodeName)) {
+				return program.GetTagsForNode (nodeName);
+			} else {
+				LogErrorMessage ("No node named " + nodeName);
+				return null;
+			}
+		}
+
         public void AddStringTable(Dictionary<string, string> stringTable)
         {
             program.LoadStrings(stringTable);

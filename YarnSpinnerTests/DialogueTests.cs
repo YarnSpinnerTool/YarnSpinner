@@ -137,6 +137,19 @@ namespace YarnSpinner.Tests
 
             Assert.AreEqual (source, "A: HAHAHA");
         }
+		[Test]
+		public void TestGettingTags() {
+
+			dialogue.LoadFile (Path.Combine(TestDataPath, "Example.yarn.txt"));
+
+			var source = dialogue.GetTagsForNode ("LearnMore");
+
+			Assert.IsNotNull (source);
+
+			Assert.IsNotEmpty (source);
+
+			Assert.AreEqual (source.First(), "rawText");
+		}
 
         [Test]
         public void TestNodeVistation() {

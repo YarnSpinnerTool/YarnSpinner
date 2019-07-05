@@ -218,6 +218,11 @@ namespace Yarn
 			return this.GetString(nodes[nodeName].sourceTextStringID);
 		}
 
+		public IEnumerable<string> GetTagsForNode(string nodeName)
+		{
+			return nodes[nodeName].tags;
+		}
+
 		public void Include(Program otherProgram)
 		{
 			foreach (var otherNodeName in otherProgram.nodes)
