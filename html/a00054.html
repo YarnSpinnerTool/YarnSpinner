@@ -356,7 +356,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="ttc" id="a00054_html_a8b49bb7763ff477cba21d7c771ef3ed0"><div class="ttname"><a href="a00054.html#a8b49bb7763ff477cba21d7c771ef3ed0">Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</a></div><div class="ttdeci">bool DisableShuffleOptionsAfterNextSet</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00012">Compiler.cs:12</a></div></div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
 <div class="ttc" id="a00054_html_aa1737da428ec7d597009661dd8a47829"><div class="ttname"><a href="a00054.html#aa1737da428ec7d597009661dd8a47829">Yarn.Compiler.program</a></div><div class="ttdeci">Program program</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00017">Compiler.cs:17</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 <div class="ttc" id="a00054_html_a1bae0d8b701a59708641aa36ea971fa5"><div class="ttname"><a href="a00054.html#a1bae0d8b701a59708641aa36ea971fa5">Yarn.Compiler.RegisterLabel</a></div><div class="ttdeci">string RegisterLabel(string commentary=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00106">Compiler.cs:106</a></div></div>
 <div class="ttc" id="a00054_html_a541022d89bcf9bc8f794eb6d6b438d08"><div class="ttname"><a href="a00054.html#a541022d89bcf9bc8f794eb6d6b438d08">Yarn.Compiler.flags</a></div><div class="ttdeci">CompileFlags flags</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00015">Compiler.cs:15</a></div></div>
@@ -421,7 +421,7 @@ DisableShuffleOptionsAfterNextSet</td>
 
 <p>Definition at line <a class="el" href="a00304_source.html#l00110">110</a> of file <a class="el" href="a00304_source.html">Compiler.cs</a>.</p>
 
-<p>References <a class="el" href="a00314_source.html#l00250">Yarn.Node.instructions</a>.</p>
+<p>References <a class="el" href="a00314_source.html#l00255">Yarn.Node.instructions</a>.</p>
 
 <p>Referenced by <a class="el" href="a00304_source.html#l00024">Yarn.Compiler.CompileNode()</a>, and <a class="el" href="a00304_source.html#l00164">Yarn.Compiler.GenerateCode()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                                                                            {</div>
@@ -437,7 +437,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                node.labels.Add ((string)instruction.operandA, node.instructions.Count - 1);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -601,7 +601,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -669,7 +669,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a5117b9c2253de15d3fd3557c8b037235"><div class="ttname"><a href="a00054.html#a5117b9c2253de15d3fd3557c8b037235">Yarn.Compiler.GetLineIDFromNodeTags</a></div><div class="ttdeci">string GetLineIDFromNodeTags(Parser.ParseNode node)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00190">Compiler.cs:190</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -790,7 +790,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="ttc" id="a00054_html_a8b49bb7763ff477cba21d7c771ef3ed0"><div class="ttname"><a href="a00054.html#a8b49bb7763ff477cba21d7c771ef3ed0">Yarn.Compiler.CompileFlags.DisableShuffleOptionsAfterNextSet</a></div><div class="ttdeci">bool DisableShuffleOptionsAfterNextSet</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00012">Compiler.cs:12</a></div></div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
 <div class="ttc" id="a00054_html_a5117b9c2253de15d3fd3557c8b037235"><div class="ttname"><a href="a00054.html#a5117b9c2253de15d3fd3557c8b037235">Yarn.Compiler.GetLineIDFromNodeTags</a></div><div class="ttdeci">string GetLineIDFromNodeTags(Parser.ParseNode node)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00190">Compiler.cs:190</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 <div class="ttc" id="a00054_html_a1bae0d8b701a59708641aa36ea971fa5"><div class="ttname"><a href="a00054.html#a1bae0d8b701a59708641aa36ea971fa5">Yarn.Compiler.RegisterLabel</a></div><div class="ttdeci">string RegisterLabel(string commentary=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00106">Compiler.cs:106</a></div></div>
 <div class="ttc" id="a00054_html_a541022d89bcf9bc8f794eb6d6b438d08"><div class="ttname"><a href="a00054.html#a541022d89bcf9bc8f794eb6d6b438d08">Yarn.Compiler.flags</a></div><div class="ttdeci">CompileFlags flags</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00015">Compiler.cs:15</a></div></div>
@@ -934,7 +934,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            <a class="code" href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Emit</a> (node, <a class="code" href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">ByteCode</a>.Label, endOfIfStatementLabel);</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 <div class="ttc" id="a00054_html_a1bae0d8b701a59708641aa36ea971fa5"><div class="ttname"><a href="a00054.html#a1bae0d8b701a59708641aa36ea971fa5">Yarn.Compiler.RegisterLabel</a></div><div class="ttdeci">string RegisterLabel(string commentary=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00106">Compiler.cs:106</a></div></div>
 </div><!-- fragment -->
@@ -1004,7 +1004,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a5117b9c2253de15d3fd3557c8b037235"><div class="ttname"><a href="a00054.html#a5117b9c2253de15d3fd3557c8b037235">Yarn.Compiler.GetLineIDFromNodeTags</a></div><div class="ttdeci">string GetLineIDFromNodeTags(Parser.ParseNode node)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00190">Compiler.cs:190</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1106,7 +1106,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 <div class="ttc" id="a00051_html_a301aa7c866593a5b625a8fc158bbeace"><div class="ttname"><a href="a00051.html#a301aa7c866593a5b625a8fc158bbeace">Yarn.TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdef"><b>Definition:</b> <a href="a00310_source.html#l00080">Lexer.cs:80</a></div></div>
 </div><!-- fragment -->
@@ -1157,7 +1157,7 @@ DisableShuffleOptionsAfterNextSet</td>
 
 <p>Definition at line <a class="el" href="a00304_source.html#l00392">392</a> of file <a class="el" href="a00304_source.html">Compiler.cs</a>.</p>
 
-<p>References <a class="el" href="a00304_source.html#l00110">Yarn.Compiler.Emit()</a>, <a class="el" href="a00304_source.html#l00125">Yarn.Compiler.GenerateCode()</a>, and <a class="el" href="a00314_source.html#l00252">Yarn.Node.name</a>.</p>
+<p>References <a class="el" href="a00304_source.html#l00110">Yarn.Compiler.Emit()</a>, <a class="el" href="a00304_source.html#l00125">Yarn.Compiler.GenerateCode()</a>, and <a class="el" href="a00314_source.html#l00257">Yarn.Node.name</a>.</p>
 <div class="fragment"><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                                                                   {</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <span class="comment">// Expressions are either plain values, or function calls</span></div>
@@ -1184,7 +1184,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            }</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        }</div>
 <div class="ttc" id="a00054_html_a006f3becd521cc179ba3d3352f6f930b"><div class="ttname"><a href="a00054.html#a006f3becd521cc179ba3d3352f6f930b">Yarn.Compiler.GenerateCode</a></div><div class="ttdeci">void GenerateCode(Node node, Parser.Statement statement)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00125">Compiler.cs:125</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1262,7 +1262,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException ();</div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            }</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        }</div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00054_html_a774e8c143cdda0584fcfdda98626a83c"><div class="ttname"><a href="a00054.html#a774e8c143cdda0584fcfdda98626a83c">Yarn.Compiler.Emit</a></div><div class="ttdeci">void Emit(Node node, ByteCode code, object operandA=null, object operandB=null)</div><div class="ttdef"><b>Definition:</b> <a href="a00304_source.html#l00110">Compiler.cs:110</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1456,7 +1456,7 @@ DisableShuffleOptionsAfterNextSet</td>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00054.html">Compiler</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:06:47 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:13:21 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

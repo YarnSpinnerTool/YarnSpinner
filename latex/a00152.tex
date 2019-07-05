@@ -8,7 +8,7 @@ Collaboration diagram for Yarn.\-Program\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=184pt]{a00717}
+\includegraphics[width=186pt]{a00717}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -23,6 +23,8 @@ string \hyperlink{a00152_a14737b93594c4aab25c59cb0a3c918f7}{Get\-String} (string
 string \hyperlink{a00152_a2f5bb468ce53eb7bbe647e3c11ddbb61}{Dump\-Code} (\hyperlink{a00129}{Library} l)
 \item 
 string \hyperlink{a00152_aad8029f37832ff1985fad6a31e51afd8}{Get\-Text\-For\-Node} (string node\-Name)
+\item 
+I\-Enumerable$<$ string $>$ \hyperlink{a00152_a116312a32b20bc18e09f90c9c92a079f}{Get\-Tags\-For\-Node} (string node\-Name)
 \item 
 void \hyperlink{a00152_afd3385ca1f7589b3b9dae3646e4fee84}{Include} (\hyperlink{a00152}{Program} other\-Program)
 \end{DoxyCompactItemize}
@@ -147,6 +149,27 @@ Definition at line 155 of file Program.\-cs.
 159             \textcolor{keywordflow}{return} value;
 160         \}
 \end{DoxyCode}
+\hypertarget{a00152_a116312a32b20bc18e09f90c9c92a079f}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}}
+\index{Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
+\subsubsection[{Get\-Tags\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$string$>$ Yarn.\-Program.\-Get\-Tags\-For\-Node (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00152_a116312a32b20bc18e09f90c9c92a079f}
+
+
+Definition at line 221 of file Program.\-cs.
+
+
+
+References Yarn.\-Program.\-nodes.
+
+
+\begin{DoxyCode}
+222         \{
+223             \textcolor{keywordflow}{return} \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[nodeName].tags;
+224         \}
+\end{DoxyCode}
 \hypertarget{a00152_aad8029f37832ff1985fad6a31e51afd8}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Get\-Text\-For\-Node@{Get\-Text\-For\-Node}}
 \index{Get\-Text\-For\-Node@{Get\-Text\-For\-Node}!Yarn::Program@{Yarn\-::\-Program}}
 \subsubsection[{Get\-Text\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}string Yarn.\-Program.\-Get\-Text\-For\-Node (
@@ -177,7 +200,7 @@ References Yarn.\-Program.\-nodes.
 )}}\label{a00152_afd3385ca1f7589b3b9dae3646e4fee84}
 
 
-Definition at line 221 of file Program.\-cs.
+Definition at line 226 of file Program.\-cs.
 
 
 
@@ -185,31 +208,31 @@ References Yarn.\-Program.\-nodes, and Yarn.\-Program.\-strings.
 
 
 \begin{DoxyCode}
-222         \{
-223             \textcolor{keywordflow}{foreach} (var otherNodeName \textcolor{keywordflow}{in} otherProgram.nodes)
-224             \{
-225 
-226                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherNodeName.Key))
-227                 \{
-228                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
-       program already contains a node named \{0\}"}, otherNodeName.Key));
-229                 \}
+227         \{
+228             \textcolor{keywordflow}{foreach} (var otherNodeName \textcolor{keywordflow}{in} otherProgram.nodes)
+229             \{
 230 
-231                 \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[otherNodeName.Key] = otherNodeName.Value;
-232             \}
-233 
-234             \textcolor{keywordflow}{foreach} (var otherString \textcolor{keywordflow}{in} otherProgram.strings)
-235             \{
-236 
-237                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherString.Key))
-238                 \{
-239                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
-       program already contains a string with key \{0\}"}, otherString.Key));
-240                 \}
+231                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherNodeName.Key))
+232                 \{
+233                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
+       program already contains a node named \{0\}"}, otherNodeName.Key));
+234                 \}
+235 
+236                 \hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}[otherNodeName.Key] = otherNodeName.Value;
+237             \}
+238 
+239             \textcolor{keywordflow}{foreach} (var otherString \textcolor{keywordflow}{in} otherProgram.strings)
+240             \{
 241 
-242                 \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings}[otherString.Key] = otherString.Value;
-243             \}
-244         \}
+242                 \textcolor{keywordflow}{if} (\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(otherString.Key))
+243                 \{
+244                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} InvalidOperationException(\textcolor{keywordtype}{string}.Format(CultureInfo.CurrentCulture, \textcolor{stringliteral}{"This
+       program already contains a string with key \{0\}"}, otherString.Key));
+245                 \}
+246 
+247                 \hyperlink{a00152_a59263e00cecfe36d9881b4c30b048f09}{strings}[otherString.Key] = otherString.Value;
+248             \}
+249         \}
 \end{DoxyCode}
 \hypertarget{a00152_a977d1ed02e3f6f39d30dfea1663e7927}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!Load\-Strings@{Load\-Strings}}
 \index{Load\-Strings@{Load\-Strings}!Yarn::Program@{Yarn\-::\-Program}}
@@ -305,7 +328,7 @@ Definition at line 91 of file Program.\-cs.
 
 
 
-Referenced by Yarn.\-Compiler.\-Compile\-Node(), Yarn.\-Program.\-Dump\-Code(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Program.\-Include(), Yarn.\-Dialogue.\-Node\-Exists(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
+Referenced by Yarn.\-Compiler.\-Compile\-Node(), Yarn.\-Program.\-Dump\-Code(), Yarn.\-Dialogue.\-Get\-Tags\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Program.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Program.\-Include(), Yarn.\-Dialogue.\-Node\-Exists(), and Yarn.\-Virtual\-Machine.\-Set\-Node().
 
 \hypertarget{a00152_a8ef1d10094ef00311aade6715ba78ec7}{\index{Yarn\-::\-Program@{Yarn\-::\-Program}!string\-Count@{string\-Count}}
 \index{string\-Count@{string\-Count}!Yarn::Program@{Yarn\-::\-Program}}

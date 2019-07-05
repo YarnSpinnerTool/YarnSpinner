@@ -4,7 +4,7 @@ var searchData=
   ['rawrecord',['RawRecord',['../a00068.html#ae2c14a3790234029587b817784bdd158',1,'CsvHelper.CsvParser.RawRecord()'],['../a00113.html#a1b238e3bb053f2f6c122ee0d77bb48d7',1,'CsvHelper.ICsvParser.RawRecord()']]],
   ['rawrow',['RawRow',['../a00068.html#a87a7563b2835f1ccd09dbf0185b1b66c',1,'CsvHelper::CsvParser']]],
   ['rawtextnode',['rawTextNode',['../a00038.html#ac72e8a2a8207103d34b3d564e78fae93',1,'Yarn::AntlrCompiler']]],
-  ['read',['read',['../a00068.html#aad0c78d3f0233589a8657e2aa22677c2',1,'CsvHelper.CsvParser.read()'],['../a00068.html#a8e938842c6267343128babd111df9710',1,'CsvHelper.CsvParser.Read()'],['../a00077.html#af1f0d4d722e93df9da30fe60b89ff2d6',1,'CsvHelper.CsvReader.Read()'],['../a00113.html#a411461b4cd33dce0b42c81715359f687',1,'CsvHelper.ICsvParser.Read()'],['../a00114.html#a260a692346cfbfaaa23a1075def81898',1,'CsvHelper.ICsvReader.Read()']]],
+  ['read',['Read',['../a00068.html#a8e938842c6267343128babd111df9710',1,'CsvHelper.CsvParser.Read()'],['../a00077.html#af1f0d4d722e93df9da30fe60b89ff2d6',1,'CsvHelper.CsvReader.Read()'],['../a00113.html#a411461b4cd33dce0b42c81715359f687',1,'CsvHelper.ICsvParser.Read()'],['../a00114.html#a260a692346cfbfaaa23a1075def81898',1,'CsvHelper.ICsvReader.Read()'],['../a00068.html#aad0c78d3f0233589a8657e2aa22677c2',1,'CsvHelper.CsvParser.read()']]],
   ['reader',['reader',['../a00068.html#a6ab23daf45e84a211b4010c213504f7e',1,'CsvHelper::CsvParser']]],
   ['readerbuffer',['readerBuffer',['../a00068.html#ad8b27f20be101a15ef390fcc37f8631b',1,'CsvHelper::CsvParser']]],
   ['readerbufferposition',['readerBufferPosition',['../a00068.html#a76b0cbb3c14e0397d2ca1144e538a33c',1,'CsvHelper::CsvParser']]],

@@ -21,7 +21,7 @@ var searchData=
   ['updateyarnscriptlist',['UpdateYarnScriptList',['../a00186.html#a406febf62d77eaabc235f6316e537345',1,'Yarn::Unity::YarnSpinnerEditorWindow']]],
   ['usagenotes',['usageNotes',['../a00090.html#ac23509be7ae6b43a3e2154dd430954a7',1,'Yarn::Unity::YarnSpinnerEditorWindow::Deprecation']]],
   ['useexcelleadingzerosformatfornumerics',['UseExcelLeadingZerosFormatForNumerics',['../a00063.html#a5d2eed13b8836f0397f8c39a709de1cc',1,'CsvHelper::Configuration::CsvConfiguration']]],
-  ['usenewobjectfornullreferenceproperties',['useNewObjectForNullReferenceProperties',['../a00063.html#a764e14e2b3a5620f5598393c746a8df3',1,'CsvHelper.Configuration.CsvConfiguration.useNewObjectForNullReferenceProperties()'],['../a00063.html#a87c533a0dbaf65dca68233356310cab0',1,'CsvHelper.Configuration.CsvConfiguration.UseNewObjectForNullReferenceProperties()']]],
+  ['usenewobjectfornullreferenceproperties',['UseNewObjectForNullReferenceProperties',['../a00063.html#a87c533a0dbaf65dca68233356310cab0',1,'CsvHelper.Configuration.CsvConfiguration.UseNewObjectForNullReferenceProperties()'],['../a00063.html#a764e14e2b3a5620f5598393c746a8df3',1,'CsvHelper.Configuration.CsvConfiguration.useNewObjectForNullReferenceProperties()']]],
   ['usesprite',['UseSprite',['../a00163.html#ac26718b713f342f3de8f3e569c5b62da',1,'Yarn::Unity::Example::SpriteSwitcher']]],
   ['usetoken',['UseToken',['../a00188.html#a7be6a979ee21b2d07ce541fb9c5b52df',1,'Yarn::Parser::ValueNode']]]
 ];

@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('a00092.html','');});
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="a00618.png" border="0" usemap="#_yarn_8_dialogue_coll__map" alt="Collaboration graph"/></div>
 <map name="_yarn_8_dialogue_coll__map" id="_yarn_8_dialogue_coll__map">
-<area shape="rect" id="node2" href="a00162.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="264,761,472,1087"/><area shape="rect" id="node7" href="a00133.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; preprocessor()\l}" alt="" coords="535,841,725,1007"/><area shape="rect" id="node3" href="a00051.html#a00379" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="5,420,152,556"/><area shape="rect" id="node4" href="a00152.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ Include()\l}" alt="" coords="181,6,320,215"/><area shape="rect" id="node5" href="a00165.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,405,455,571"/><area shape="rect" id="node6" href="a00129.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="364,28,516,193"/><area shape="rect" id="node8" href="a00190.html" title="Where we turn to for storing and loading variable data. " alt="" coords="541,43,685,179"/></map>
+<area shape="rect" id="node2" href="a00162.html" title="{Yarn.VirtualMachine\n|+ lineHandler\l+ optionsHandler\l+ commandHandler\l+ nodeCompleteHandler\l+ currentNodeName\l+ executionState\l&#45; random\l&#45; _executionState\l|+ LineHandler()\l+ OptionsHandler()\l+ CommandHandler()\l+ NodeCompleteHandler()\l+ SetNode()\l+ Stop()\l~ VirtualMachine()\l~ RunNext()\l~ FindInstructionPointForLabel()\l~ RunInstruction()\l&#45; ResetState()\l}" alt="" coords="264,774,472,1101"/><area shape="rect" id="node7" href="a00133.html" title="{Yarn.Loader\n|+ program\l|+ Loader()\l+ Load()\l~ GetNodesFromText()\l~ GetFormatFromFileName()\l&#45; PrintTokenList()\l&#45; PrintParseTree()\l&#45; preprocessor()\l}" alt="" coords="535,855,725,1020"/><area shape="rect" id="node3" href="a00051.html#a00379" title="{Yarn.Node\n|+ instructions\l+ name\l+ sourceTextStringID\l+ labels\l+ tags\l|}" alt="" coords="5,433,152,569"/><area shape="rect" id="node4" href="a00152.html" title="{Yarn.Program\n|+ untaggedStrings\l~ strings\l~ lineInfo\l~ nodes\l&#45; stringCount\l|+ LoadStrings()\l+ RegisterString()\l+ GetString()\l+ DumpCode()\l+ GetTextForNode()\l+ GetTagsForNode()\l+ Include()\l}" alt="" coords="178,5,320,229"/><area shape="rect" id="node5" href="a00165.html" title="{Yarn.VirtualMachine.State\n|+ currentNodeName\l+ programCounter\l+ currentOptions\l&#45; stack\l|+ PushValue()\l+ PopValue()\l+ PeekValue()\l+ ClearStack()\l}" alt="" coords="281,419,455,584"/><area shape="rect" id="node6" href="a00129.html" title="{Yarn.Library\n|&#45; functions\l|+ GetFunction()\l+ ImportLibrary()\l+ RegisterFunction()\l+ RegisterFunction()\l+ RegisterFunction()\l+ FunctionExists()\l+ DeregisterFunction()\l}" alt="" coords="364,35,516,200"/><area shape="rect" id="node8" href="a00190.html" title="Where we turn to for storing and loading variable data. " alt="" coords="541,49,685,185"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -184,6 +184,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a594641914a2b59cc5231645273d18e82"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#a594641914a2b59cc5231645273d18e82">GetTextForNode</a> (string nodeName)</td></tr>
 <tr class="memdesc:a594641914a2b59cc5231645273d18e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the source code for the node 'nodeName', if that node was tagged with rawText.  <a href="#a594641914a2b59cc5231645273d18e82">More...</a><br/></td></tr>
 <tr class="separator:a594641914a2b59cc5231645273d18e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ef38a17e4a346de3b572b85052c1d1"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, <br class="typebreak"/>
+IEnumerable&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#a20ef38a17e4a346de3b572b85052c1d1">GetTagsForAllNodes</a> ()</td></tr>
+<tr class="separator:a20ef38a17e4a346de3b572b85052c1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab85166316a6c5aadce336316406ed164"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#ab85166316a6c5aadce336316406ed164">GetTagsForNode</a> (string nodeName)</td></tr>
+<tr class="memdesc:ab85166316a6c5aadce336316406ed164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the tags for the node 'nodeName'.  <a href="#ab85166316a6c5aadce336316406ed164">More...</a><br/></td></tr>
+<tr class="separator:ab85166316a6c5aadce336316406ed164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfb8561e08dc85c6d9a855ad07d18783"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#acfb8561e08dc85c6d9a855ad07d18783">AddStringTable</a> (Dictionary&lt; string, string &gt; stringTable)</td></tr>
 <tr class="separator:acfb8561e08dc85c6d9a855ad07d18783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5fe57ebd11c41208070972f06a31b9d"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#af5fe57ebd11c41208070972f06a31b9d">GetStringTable</a> ()</td></tr>
@@ -286,10 +292,10 @@ Private Attributes</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00524">524</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        {</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;            <a class="code" href="a00092.html#a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6">V1</a></div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00552">552</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;        {</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;            <a class="code" href="a00092.html#a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6">V1</a></div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6"><div class="ttname"><a href="a00092.html#a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6">Yarn.Dialogue.V1</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -364,10 +370,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00511">511</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        {</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;            program.LoadStrings(stringTable);</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00539">539</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        {</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;            program.LoadStrings(stringTable);</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -385,12 +391,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00589">589</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                                                      {</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            context.AddProgramToAnalysis (this.program);</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00617">617</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                                                      {</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;            context.AddProgramToAnalysis (this.program);</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -407,12 +413,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00567">567</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00595">595</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
 <p>References <a class="el" href="a00305_source.html#l00206">Yarn.Dialogue.library</a>.</p>
-<div class="fragment"><div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                                {</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;            <span class="keywordflow">return</span> program.DumpCode (<a class="code" href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">library</a>);</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                                {</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;            <span class="keywordflow">return</span> program.DumpCode (<a class="code" href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">library</a>);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_ae660d4cfb6e296358d2f61d8ee74c66a"><div class="ttname"><a href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">Yarn.Dialogue.library</a></div><div class="ttdeci">Library library</div><div class="ttdoc">The library contains all of the functions and operators we know about. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00206">Dialogue.cs:206</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -430,12 +436,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00571">571</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00599">599</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
 <p>References <a class="el" href="a00305_source.html#l00206">Yarn.Dialogue.library</a>.</p>
-<div class="fragment"><div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                                    {</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;            <span class="keywordflow">return</span> program.DumpCode (<a class="code" href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">library</a>);</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                                    {</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            <span class="keywordflow">return</span> program.DumpCode (<a class="code" href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">library</a>);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_ae660d4cfb6e296358d2f61d8ee74c66a"><div class="ttname"><a href="a00092.html#ae660d4cfb6e296358d2f61d8ee74c66a">Yarn.Dialogue.library</a></div><div class="ttdeci">Library library</div><div class="ttdoc">The library contains all of the functions and operators we know about. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00206">Dialogue.cs:206</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -454,20 +460,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00531">531</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00559">559</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>References <a class="el" href="a00305_source.html#l00543">Yarn.Dialogue.GetCompiledProgramV1()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        {</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;            <span class="keywordflow">switch</span> (format)</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;            {</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;                <span class="keywordflow">case</span> CompiledFormat.V1:</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00092.html#a070898dbc07fd7d0a74d7c3ac1848beb">GetCompiledProgramV1</a>();</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException();</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;            }</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        }</div>
-<div class="ttc" id="a00092_html_a070898dbc07fd7d0a74d7c3ac1848beb"><div class="ttname"><a href="a00092.html#a070898dbc07fd7d0a74d7c3ac1848beb">Yarn.Dialogue.GetCompiledProgramV1</a></div><div class="ttdeci">byte[] GetCompiledProgramV1()</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00543">Dialogue.cs:543</a></div></div>
+<p>References <a class="el" href="a00305_source.html#l00571">Yarn.Dialogue.GetCompiledProgramV1()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        {</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;            <span class="keywordflow">switch</span> (format)</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;            {</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;                <span class="keywordflow">case</span> CompiledFormat.V1:</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="a00092.html#a070898dbc07fd7d0a74d7c3ac1848beb">GetCompiledProgramV1</a>();</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> ArgumentOutOfRangeException();</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;            }</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        }</div>
+<div class="ttc" id="a00092_html_a070898dbc07fd7d0a74d7c3ac1848beb"><div class="ttname"><a href="a00092.html#a070898dbc07fd7d0a74d7c3ac1848beb">Yarn.Dialogue.GetCompiledProgramV1</a></div><div class="ttdeci">byte[] GetCompiledProgramV1()</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00571">Dialogue.cs:571</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -503,21 +509,21 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00543">543</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00571">571</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00305_source.html#l00531">Yarn.Dialogue.GetCompiledProgram()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;        {</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            <span class="keyword">using</span> (var outputStream = <span class="keyword">new</span> System.IO.MemoryStream())</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;            {</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                <span class="keyword">using</span> (var bsonWriter = <span class="keyword">new</span> Newtonsoft.Json.Bson.BsonWriter(outputStream))</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                {</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                    var s = <span class="keyword">new</span> Newtonsoft.Json.JsonSerializer();</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;                    s.Serialize(bsonWriter, this.program);</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;                }</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                <span class="keywordflow">return</span> outputStream.ToArray();</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;            }</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        }</div>
+<p>Referenced by <a class="el" href="a00305_source.html#l00559">Yarn.Dialogue.GetCompiledProgram()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;        {</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;            <span class="keyword">using</span> (var outputStream = <span class="keyword">new</span> System.IO.MemoryStream())</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;            {</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                <span class="keyword">using</span> (var bsonWriter = <span class="keyword">new</span> Newtonsoft.Json.Bson.BsonWriter(outputStream))</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                {</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                    var s = <span class="keyword">new</span> Newtonsoft.Json.JsonSerializer();</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                    s.Serialize(bsonWriter, this.program);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                }</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                <span class="keywordflow">return</span> outputStream.ToArray();</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;            }</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -553,10 +559,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00520">520</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                                                                  {</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;            <span class="keywordflow">return</span> program.lineInfo;</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00548">548</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                                                                  {</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;            <span class="keywordflow">return</span> program.lineInfo;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -573,10 +579,81 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00516">516</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;                                                          {</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;            <span class="keywordflow">return</span> program.strings;</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00544">544</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                                                          {</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            <span class="keywordflow">return</span> program.strings;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a20ef38a17e4a346de3b572b85052c1d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;string, IEnumerable&lt;string&gt; &gt; Yarn.Dialogue.GetTagsForAllNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00305_source.html#l00511">511</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+
+<p>References <a class="el" href="a00314_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00305_source.html#l00203">Yarn.Dialogue.program</a>.</p>
+<div class="fragment"><div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;                                                                            {</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;            var d = <span class="keyword">new</span> Dictionary&lt;string,IEnumerable&lt;string&gt;&gt;();</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;            <span class="keywordflow">foreach</span> (var node <span class="keywordflow">in</span> <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>) {</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;                var tags = program.GetTagsForNode(node.Key);</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;                <span class="keywordflow">if</span> (tags == null)</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                d [node.Key] = tags;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;            }</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;            <span class="keywordflow">return</span> d;</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        }</div>
+<div class="ttc" id="a00092_html_a0a1cca92325f430425d784d416cb5c2b"><div class="ttname"><a href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">Yarn.Dialogue.program</a></div><div class="ttdeci">Program program</div><div class="ttdoc">The Program is the compiled Yarn program. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00203">Dialogue.cs:203</a></div></div>
+<div class="ttc" id="a00152_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00152.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00091">Program.cs:91</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab85166316a6c5aadce336316406ed164"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;string&gt; Yarn.Dialogue.GetTagsForNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the tags for the node 'nodeName'. </p>
+
+<p>Definition at line <a class="el" href="a00305_source.html#l00527">527</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+
+<p>References <a class="el" href="a00305_source.html#l00194">Yarn.Dialogue.LogErrorMessage</a>, <a class="el" href="a00314_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00305_source.html#l00203">Yarn.Dialogue.program</a>.</p>
+<div class="fragment"><div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;                                                                   {</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count == 0) {</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;No nodes are loaded!&quot;</span>);</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;                <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(nodeName)) {</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;                <span class="keywordflow">return</span> program.GetTagsForNode (nodeName);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;                <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;No node named &quot;</span> + nodeName);</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;                <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;            }</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        }</div>
+<div class="ttc" id="a00092_html_a0a1cca92325f430425d784d416cb5c2b"><div class="ttname"><a href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">Yarn.Dialogue.program</a></div><div class="ttdeci">Program program</div><div class="ttdoc">The Program is the compiled Yarn program. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00203">Dialogue.cs:203</a></div></div>
+<div class="ttc" id="a00092_html_a9801e83dd044d6498fdf6ebcc6bec5ac"><div class="ttname"><a href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">Yarn.Dialogue.LogErrorMessage</a></div><div class="ttdeci">Logger LogErrorMessage</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00194">Dialogue.cs:194</a></div></div>
+<div class="ttc" id="a00152_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00152.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00091">Program.cs:91</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -996,24 +1073,24 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00575">575</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00603">603</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
 <p>References <a class="el" href="a00305_source.html#l00193">Yarn.Dialogue.LogDebugMessage</a>, <a class="el" href="a00305_source.html#l00194">Yarn.Dialogue.LogErrorMessage</a>, <a class="el" href="a00314_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00305_source.html#l00203">Yarn.Dialogue.program</a>.</p>
 
 <p>Referenced by <a class="el" href="a00305_source.html#l00215">Yarn.Dialogue.YarnFunctionNodeVisitCount()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                                                {</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a> == null) {</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;Tried to call NodeExists, but no nodes &quot;</span> +</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                                 <span class="stringliteral">&quot;have been compiled!&quot;</span>);</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            }</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a> == null || <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count == 0) {</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                <a class="code" href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">LogDebugMessage</a> (<span class="stringliteral">&quot;Called NodeExists, but there are zero nodes. &quot;</span> +</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                                 <span class="stringliteral">&quot;This may be an error.&quot;</span>);</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;            }</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;            <span class="keywordflow">return</span> program.nodes.ContainsKey(nodeName);</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                                                {</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a> == null) {</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;Tried to call NodeExists, but no nodes &quot;</span> +</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                                 <span class="stringliteral">&quot;have been compiled!&quot;</span>);</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;            }</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a> == null || <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count == 0) {</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                <a class="code" href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">LogDebugMessage</a> (<span class="stringliteral">&quot;Called NodeExists, but there are zero nodes. &quot;</span> +</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                                 <span class="stringliteral">&quot;This may be an error.&quot;</span>);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;            }</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;            <span class="keywordflow">return</span> program.nodes.ContainsKey(nodeName);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_a0a1cca92325f430425d784d416cb5c2b"><div class="ttname"><a href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">Yarn.Dialogue.program</a></div><div class="ttdeci">Program program</div><div class="ttdoc">The Program is the compiled Yarn program. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00203">Dialogue.cs:203</a></div></div>
 <div class="ttc" id="a00092_html_a381f48bb0fbb294f8cf44ca57f11be31"><div class="ttname"><a href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">Yarn.Dialogue.LogDebugMessage</a></div><div class="ttdeci">Logger LogDebugMessage</div><div class="ttdoc">Delegates used for logging. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00193">Dialogue.cs:193</a></div></div>
 <div class="ttc" id="a00092_html_a9801e83dd044d6498fdf6ebcc6bec5ac"><div class="ttname"><a href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">Yarn.Dialogue.LogErrorMessage</a></div><div class="ttdeci">Logger LogErrorMessage</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00194">Dialogue.cs:194</a></div></div>
@@ -1186,16 +1263,16 @@ Private Attributes</h2></td></tr>
 
 <p>Unloads ALL nodes. </p>
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00558">558</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00586">586</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
 <p>References <a class="el" href="a00305_source.html#l00203">Yarn.Dialogue.program</a>.</p>
-<div class="fragment"><div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;                                                             {</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;            <span class="keywordflow">if</span> (clearVisitedNodes)</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;                visitedNodeCount.Clear();</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;            <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a> = null;</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                                                             {</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;            <span class="keywordflow">if</span> (clearVisitedNodes)</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                visitedNodeCount.Clear();</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a> = null;</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_a0a1cca92325f430425d784d416cb5c2b"><div class="ttname"><a href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">Yarn.Dialogue.program</a></div><div class="ttdeci">Program program</div><div class="ttdoc">The Program is the compiled Yarn program. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00203">Dialogue.cs:203</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -1285,7 +1362,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00305_source.html#l00215">215</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>References <a class="el" href="a00305_source.html#l00194">Yarn.Dialogue.LogErrorMessage</a>, and <a class="el" href="a00305_source.html#l00575">Yarn.Dialogue.NodeExists()</a>.</p>
+<p>References <a class="el" href="a00305_source.html#l00194">Yarn.Dialogue.LogErrorMessage</a>, and <a class="el" href="a00305_source.html#l00603">Yarn.Dialogue.NodeExists()</a>.</p>
 
 <p>Referenced by <a class="el" href="a00305_source.html#l00254">Yarn.Dialogue.Dialogue()</a>, and <a class="el" href="a00305_source.html#l00249">Yarn.Dialogue.YarnFunctionIsNodeVisited()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        {</div>
@@ -1319,7 +1396,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">return</span> visitCount;</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_a9801e83dd044d6498fdf6ebcc6bec5ac"><div class="ttname"><a href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">Yarn.Dialogue.LogErrorMessage</a></div><div class="ttdeci">Logger LogErrorMessage</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00194">Dialogue.cs:194</a></div></div>
-<div class="ttc" id="a00092_html_a93bb76a1f9a4058f225ff4cee97483c6"><div class="ttname"><a href="a00092.html#a93bb76a1f9a4058f225ff4cee97483c6">Yarn.Dialogue.NodeExists</a></div><div class="ttdeci">bool NodeExists(string nodeName)</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00575">Dialogue.cs:575</a></div></div>
+<div class="ttc" id="a00092_html_a93bb76a1f9a4058f225ff4cee97483c6"><div class="ttname"><a href="a00092.html#a93bb76a1f9a4058f225ff4cee97483c6">Yarn.Dialogue.NodeExists</a></div><div class="ttdeci">bool NodeExists(string nodeName)</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00603">Dialogue.cs:603</a></div></div>
 </div><!-- fragment -->
 <p><div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -1412,7 +1489,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00529">529</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00305_source.html#l00557">557</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
 </div>
 </div>
@@ -1430,7 +1507,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00305_source.html#l00206">206</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00305_source.html#l00567">Yarn.Dialogue.Compile()</a>, <a class="el" href="a00305_source.html#l00254">Yarn.Dialogue.Dialogue()</a>, <a class="el" href="a00305_source.html#l00571">Yarn.Dialogue.GetByteCode()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, and <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
+<p>Referenced by <a class="el" href="a00305_source.html#l00595">Yarn.Dialogue.Compile()</a>, <a class="el" href="a00305_source.html#l00254">Yarn.Dialogue.Dialogue()</a>, <a class="el" href="a00305_source.html#l00599">Yarn.Dialogue.GetByteCode()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, and <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>.</p>
 
 </div>
 </div>
@@ -1474,7 +1551,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00305_source.html#l00193">193</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00305_source.html#l00295">Yarn.Dialogue.LoadCompiledProgram()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00575">Yarn.Dialogue.NodeExists()</a>, and <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>.</p>
+<p>Referenced by <a class="el" href="a00305_source.html#l00295">Yarn.Dialogue.LoadCompiledProgram()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00603">Yarn.Dialogue.NodeExists()</a>, and <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>.</p>
 
 </div>
 </div>
@@ -1490,7 +1567,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00305_source.html#l00194">194</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00295">Yarn.Dialogue.LoadCompiledProgram()</a>, <a class="el" href="a00305_source.html#l00319">Yarn.Dialogue.LoadCompiledProgramV1()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00575">Yarn.Dialogue.NodeExists()</a>, <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>, and <a class="el" href="a00305_source.html#l00215">Yarn.Dialogue.YarnFunctionNodeVisitCount()</a>.</p>
+<p>Referenced by <a class="el" href="a00305_source.html#l00527">Yarn.Dialogue.GetTagsForNode()</a>, <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00295">Yarn.Dialogue.LoadCompiledProgram()</a>, <a class="el" href="a00305_source.html#l00319">Yarn.Dialogue.LoadCompiledProgramV1()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00603">Yarn.Dialogue.NodeExists()</a>, <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>, and <a class="el" href="a00305_source.html#l00215">Yarn.Dialogue.YarnFunctionNodeVisitCount()</a>.</p>
 
 </div>
 </div>
@@ -1516,7 +1593,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00305_source.html#l00203">203</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00305_source.html#l00483">Yarn.Dialogue.GetTextForAllNodes()</a>, <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00319">Yarn.Dialogue.LoadCompiledProgramV1()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00575">Yarn.Dialogue.NodeExists()</a>, <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>, and <a class="el" href="a00305_source.html#l00558">Yarn.Dialogue.UnloadAll()</a>.</p>
+<p>Referenced by <a class="el" href="a00305_source.html#l00511">Yarn.Dialogue.GetTagsForAllNodes()</a>, <a class="el" href="a00305_source.html#l00527">Yarn.Dialogue.GetTagsForNode()</a>, <a class="el" href="a00305_source.html#l00483">Yarn.Dialogue.GetTextForAllNodes()</a>, <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00319">Yarn.Dialogue.LoadCompiledProgramV1()</a>, <a class="el" href="a00305_source.html#l00352">Yarn.Dialogue.LoadString()</a>, <a class="el" href="a00305_source.html#l00603">Yarn.Dialogue.NodeExists()</a>, <a class="el" href="a00305_source.html#l00387">Yarn.Dialogue.Run()</a>, and <a class="el" href="a00305_source.html#l00586">Yarn.Dialogue.UnloadAll()</a>.</p>
 
 </div>
 </div>
@@ -1638,7 +1715,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00092.html">Dialogue</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:06:47 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:13:21 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

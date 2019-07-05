@@ -14,9 +14,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="265" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="265" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="270" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="270" bodyend="-1"/>
         <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="269" endline="358">Yarn.Instruction.ToString</referencedby>
+        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="274" endline="363">Yarn.Instruction.ToString</referencedby>
       </memberdef>
       <memberdef kind="variable" id="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" static="no" mutable="no">
         <type>object</type>
@@ -29,9 +29,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="266" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="266" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="271" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="271" bodyend="-1"/>
         <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
-        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="269" endline="358">Yarn.Instruction.ToString</referencedby>
+        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="274" endline="363">Yarn.Instruction.ToString</referencedby>
       </memberdef>
       <memberdef kind="variable" id="a00119_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" static="no" mutable="no">
         <type>object</type>
@@ -44,8 +44,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="267" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="267" bodyend="-1"/>
-        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="269" endline="358">Yarn.Instruction.ToString</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="272" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="272" bodyend="-1"/>
+        <referencedby refid="a00119_1a939d511f211e8a61cfbca902e802564f" compoundref="a00314" startline="274" endline="363">Yarn.Instruction.ToString</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -68,10 +68,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="269" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="269" bodyend="358"/>
-        <references refid="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00314" startline="266">Yarn.Instruction.operandA</references>
-        <references refid="a00119_1a56348c6fe7eb919b7277afc06e5b224a" compoundref="a00314" startline="267">Yarn.Instruction.operandB</references>
-        <references refid="a00119_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00314" startline="265">Yarn.Instruction.operation</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="274" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="274" bodyend="363"/>
+        <references refid="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00314" startline="271">Yarn.Instruction.operandA</references>
+        <references refid="a00119_1a56348c6fe7eb919b7277afc06e5b224a" compoundref="a00314" startline="272">Yarn.Instruction.operandB</references>
+        <references refid="a00119_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00314" startline="270">Yarn.Instruction.operation</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -84,7 +84,7 @@
         <link refid="a00119"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="264" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="263" bodyend="359"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="269" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="268" bodyend="364"/>
     <listofallmembers>
       <member refid="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandA</name></member>
       <member refid="a00119_1a56348c6fe7eb919b7277afc06e5b224a" prot="public" virt="non-virtual"><scope>Yarn::Instruction</scope><name>operandB</name></member>

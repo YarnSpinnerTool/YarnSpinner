@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="525" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="524" bodyend="527"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="553" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="552" bodyend="555"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-attrib">
@@ -69,13 +69,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="203" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="203" bodyend="-1"/>
+        <referencedby refid="a00092_1a20ef38a17e4a346de3b572b85052c1d1" compoundref="a00305" startline="511" endline="524">Yarn.Dialogue.GetTagsForAllNodes</referencedby>
+        <referencedby refid="a00092_1ab85166316a6c5aadce336316406ed164" compoundref="a00305" startline="527" endline="537">Yarn.Dialogue.GetTagsForNode</referencedby>
         <referencedby refid="a00092_1a7c83b1fe5474a6610d39eb525f6fc9ce" compoundref="a00305" startline="483" endline="496">Yarn.Dialogue.GetTextForAllNodes</referencedby>
         <referencedby refid="a00092_1a594641914a2b59cc5231645273d18e82" compoundref="a00305" startline="499" endline="509">Yarn.Dialogue.GetTextForNode</referencedby>
         <referencedby refid="a00092_1a706df08e842c2419f7a66fd40c0a544f" compoundref="a00305" startline="319" endline="347">Yarn.Dialogue.LoadCompiledProgramV1</referencedby>
         <referencedby refid="a00092_1a7b66187877ec8a2bfee2298d3dd16706" compoundref="a00305" startline="352" endline="379">Yarn.Dialogue.LoadString</referencedby>
-        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="587">Yarn.Dialogue.NodeExists</referencedby>
+        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="603" endline="615">Yarn.Dialogue.NodeExists</referencedby>
         <referencedby refid="a00092_1aead84ee50cb113ca45724894290ce9c2" compoundref="a00305" startline="387" endline="447">Yarn.Dialogue.Run</referencedby>
-        <referencedby refid="a00092_1a7acfe32f91b36ee812059f2ad3011133" compoundref="a00305" startline="558" endline="564">Yarn.Dialogue.UnloadAll</referencedby>
+        <referencedby refid="a00092_1a7acfe32f91b36ee812059f2ad3011133" compoundref="a00305" startline="586" endline="592">Yarn.Dialogue.UnloadAll</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -107,7 +109,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="193" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="193" bodyend="-1"/>
         <referencedby refid="a00092_1a4bc1ceca26754dc3ec0a2281dfee26ce" compoundref="a00305" startline="295" endline="317">Yarn.Dialogue.LoadCompiledProgram</referencedby>
         <referencedby refid="a00092_1a7b66187877ec8a2bfee2298d3dd16706" compoundref="a00305" startline="352" endline="379">Yarn.Dialogue.LoadString</referencedby>
-        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="587">Yarn.Dialogue.NodeExists</referencedby>
+        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="603" endline="615">Yarn.Dialogue.NodeExists</referencedby>
         <referencedby refid="a00092_1aead84ee50cb113ca45724894290ce9c2" compoundref="a00305" startline="387" endline="447">Yarn.Dialogue.Run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="a00092_1a9801e83dd044d6498fdf6ebcc6bec5ac" prot="public" static="no" mutable="no">
@@ -122,11 +124,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="194" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="194" bodyend="-1"/>
+        <referencedby refid="a00092_1ab85166316a6c5aadce336316406ed164" compoundref="a00305" startline="527" endline="537">Yarn.Dialogue.GetTagsForNode</referencedby>
         <referencedby refid="a00092_1a594641914a2b59cc5231645273d18e82" compoundref="a00305" startline="499" endline="509">Yarn.Dialogue.GetTextForNode</referencedby>
         <referencedby refid="a00092_1a4bc1ceca26754dc3ec0a2281dfee26ce" compoundref="a00305" startline="295" endline="317">Yarn.Dialogue.LoadCompiledProgram</referencedby>
         <referencedby refid="a00092_1a706df08e842c2419f7a66fd40c0a544f" compoundref="a00305" startline="319" endline="347">Yarn.Dialogue.LoadCompiledProgramV1</referencedby>
         <referencedby refid="a00092_1a7b66187877ec8a2bfee2298d3dd16706" compoundref="a00305" startline="352" endline="379">Yarn.Dialogue.LoadString</referencedby>
-        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="587">Yarn.Dialogue.NodeExists</referencedby>
+        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="603" endline="615">Yarn.Dialogue.NodeExists</referencedby>
         <referencedby refid="a00092_1aead84ee50cb113ca45724894290ce9c2" compoundref="a00305" startline="387" endline="447">Yarn.Dialogue.Run</referencedby>
         <referencedby refid="a00092_1a10c9f22d3f55e74f091cd6069c431094" compoundref="a00305" startline="215" endline="245">Yarn.Dialogue.YarnFunctionNodeVisitCount</referencedby>
       </memberdef>
@@ -156,9 +159,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="206" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="206" bodyend="-1"/>
-        <referencedby refid="a00092_1a7a8a3a461011172f5624da3a8ffa875f" compoundref="a00305" startline="567" endline="569">Yarn.Dialogue.Compile</referencedby>
+        <referencedby refid="a00092_1a7a8a3a461011172f5624da3a8ffa875f" compoundref="a00305" startline="595" endline="597">Yarn.Dialogue.Compile</referencedby>
         <referencedby refid="a00092_1a349debf4c4b8d48e3d80ff31ad380b0e" compoundref="a00305" startline="254" endline="270">Yarn.Dialogue.Dialogue</referencedby>
-        <referencedby refid="a00092_1aade6c069db8f01572060d25a963d2a14" compoundref="a00305" startline="571" endline="573">Yarn.Dialogue.GetByteCode</referencedby>
+        <referencedby refid="a00092_1aade6c069db8f01572060d25a963d2a14" compoundref="a00305" startline="599" endline="601">Yarn.Dialogue.GetByteCode</referencedby>
         <referencedby refid="a00092_1a7b66187877ec8a2bfee2298d3dd16706" compoundref="a00305" startline="352" endline="379">Yarn.Dialogue.LoadString</referencedby>
         <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
       </memberdef>
@@ -189,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="529" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="529" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="557" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="557" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -268,7 +271,7 @@
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="215" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="215" bodyend="245"/>
         <references refid="a00092_1a9801e83dd044d6498fdf6ebcc6bec5ac" compoundref="a00305" startline="194">Yarn.Dialogue.LogErrorMessage</references>
-        <references refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="587">Yarn.Dialogue.NodeExists</references>
+        <references refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="603" endline="615">Yarn.Dialogue.NodeExists</references>
         <referencedby refid="a00092_1a349debf4c4b8d48e3d80ff31ad380b0e" compoundref="a00305" startline="254" endline="270">Yarn.Dialogue.Dialogue</referencedby>
         <referencedby refid="a00092_1a1ab129bd84381928531d503304ca08d6" compoundref="a00305" startline="249" endline="252">Yarn.Dialogue.YarnFunctionIsNodeVisited</referencedby>
       </memberdef>
@@ -322,8 +325,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="543" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="543" bodyend="555"/>
-        <referencedby refid="a00092_1a5b664d4bbe7c47c246fe0beca9648687" compoundref="a00305" startline="531" endline="541">Yarn.Dialogue.GetCompiledProgram</referencedby>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="571" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="571" bodyend="583"/>
+        <referencedby refid="a00092_1a5b664d4bbe7c47c246fe0beca9648687" compoundref="a00305" startline="559" endline="569">Yarn.Dialogue.GetCompiledProgram</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -531,6 +534,41 @@
         <references refid="a00152_1a3f4928a577c88263ad016be259b175c4" compoundref="a00314" startline="91">Yarn.Program.nodes</references>
         <references refid="a00092_1a0a1cca92325f430425d784d416cb5c2b" compoundref="a00305" startline="203">Yarn.Dialogue.program</references>
       </memberdef>
+      <memberdef kind="function" id="a00092_1a20ef38a17e4a346de3b572b85052c1d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Dictionary&lt; string, IEnumerable&lt; string &gt; &gt;</type>
+        <definition>Dictionary&lt;string, IEnumerable&lt;string&gt; &gt; Yarn.Dialogue.GetTagsForAllNodes</definition>
+        <argsstring>()</argsstring>
+        <name>GetTagsForAllNodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="511" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="511" bodyend="524"/>
+        <references refid="a00152_1a3f4928a577c88263ad016be259b175c4" compoundref="a00314" startline="91">Yarn.Program.nodes</references>
+        <references refid="a00092_1a0a1cca92325f430425d784d416cb5c2b" compoundref="a00305" startline="203">Yarn.Dialogue.program</references>
+      </memberdef>
+      <memberdef kind="function" id="a00092_1ab85166316a6c5aadce336316406ed164" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; string &gt;</type>
+        <definition>IEnumerable&lt;string&gt; Yarn.Dialogue.GetTagsForNode</definition>
+        <argsstring>(string nodeName)</argsstring>
+        <name>GetTagsForNode</name>
+        <param>
+          <type>string</type>
+          <declname>nodeName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the tags for the node &apos;nodeName&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="527" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="527" bodyend="537"/>
+        <references refid="a00092_1a9801e83dd044d6498fdf6ebcc6bec5ac" compoundref="a00305" startline="194">Yarn.Dialogue.LogErrorMessage</references>
+        <references refid="a00152_1a3f4928a577c88263ad016be259b175c4" compoundref="a00314" startline="91">Yarn.Program.nodes</references>
+        <references refid="a00092_1a0a1cca92325f430425d784d416cb5c2b" compoundref="a00305" startline="203">Yarn.Dialogue.program</references>
+      </memberdef>
       <memberdef kind="function" id="a00092_1acfb8561e08dc85c6d9a855ad07d18783" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void Yarn.Dialogue.AddStringTable</definition>
@@ -546,7 +584,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="511" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="511" bodyend="514"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="539" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="539" bodyend="542"/>
       </memberdef>
       <memberdef kind="function" id="a00092_1af5fe57ebd11c41208070972f06a31b9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>Dictionary&lt; string, string &gt;</type>
@@ -559,7 +597,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="516" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="516" bodyend="518"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="544" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="544" bodyend="546"/>
       </memberdef>
       <memberdef kind="function" id="a00092_1a5b664d4bbe7c47c246fe0beca9648687" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>byte[]</type>
@@ -577,8 +615,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="531" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="531" bodyend="541"/>
-        <references refid="a00092_1a070898dbc07fd7d0a74d7c3ac1848beb" compoundref="a00305" startline="543" endline="555">Yarn.Dialogue.GetCompiledProgramV1</references>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="559" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="559" bodyend="569"/>
+        <references refid="a00092_1a070898dbc07fd7d0a74d7c3ac1848beb" compoundref="a00305" startline="571" endline="583">Yarn.Dialogue.GetCompiledProgramV1</references>
       </memberdef>
       <memberdef kind="function" id="a00092_1a7acfe32f91b36ee812059f2ad3011133" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -596,7 +634,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="558" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="558" bodyend="564"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="586" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="586" bodyend="592"/>
         <references refid="a00092_1a0a1cca92325f430425d784d416cb5c2b" compoundref="a00305" startline="203">Yarn.Dialogue.program</references>
       </memberdef>
       <memberdef kind="function" id="a00092_1a7a8a3a461011172f5624da3a8ffa875f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -610,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="567" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="567" bodyend="569"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="595" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="595" bodyend="597"/>
         <references refid="a00092_1ae660d4cfb6e296358d2f61d8ee74c66a" compoundref="a00305" startline="206">Yarn.Dialogue.library</references>
       </memberdef>
       <memberdef kind="function" id="a00092_1aade6c069db8f01572060d25a963d2a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -624,7 +662,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="571" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="571" bodyend="573"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="599" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="599" bodyend="601"/>
         <references refid="a00092_1ae660d4cfb6e296358d2f61d8ee74c66a" compoundref="a00305" startline="206">Yarn.Dialogue.library</references>
       </memberdef>
       <memberdef kind="function" id="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -642,7 +680,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="575" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="575" bodyend="587"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="603" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="603" bodyend="615"/>
         <references refid="a00092_1a381f48bb0fbb294f8cf44ca57f11be31" compoundref="a00305" startline="193">Yarn.Dialogue.LogDebugMessage</references>
         <references refid="a00092_1a9801e83dd044d6498fdf6ebcc6bec5ac" compoundref="a00305" startline="194">Yarn.Dialogue.LogErrorMessage</references>
         <references refid="a00152_1a3f4928a577c88263ad016be259b175c4" compoundref="a00314" startline="91">Yarn.Program.nodes</references>
@@ -664,7 +702,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="589" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="589" bodyend="593"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="617" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="617" bodyend="621"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="package-func">
@@ -679,7 +717,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="520" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="520" bodyend="522"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="548" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="548" bodyend="550"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -750,7 +788,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="130" bodyend="674"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" line="130" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Dialogue.cs" bodystart="130" bodyend="702"/>
     <listofallmembers>
       <member refid="a00092_1acfb8561e08dc85c6d9a855ad07d18783" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>AddStringTable</name></member>
       <member refid="a00092_1a0ee573e3d072bccf98ba1d975612d42c" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>allNodes</name></member>
@@ -767,6 +805,8 @@
       <member refid="a00092_1a070898dbc07fd7d0a74d7c3ac1848beb" prot="private" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetCompiledProgramV1</name></member>
       <member refid="a00092_1a5c5117de678626ebcfb9a6f875e6e53a" prot="package" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetStringInfoTable</name></member>
       <member refid="a00092_1af5fe57ebd11c41208070972f06a31b9d" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetStringTable</name></member>
+      <member refid="a00092_1a20ef38a17e4a346de3b572b85052c1d1" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetTagsForAllNodes</name></member>
+      <member refid="a00092_1ab85166316a6c5aadce336316406ed164" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetTagsForNode</name></member>
       <member refid="a00092_1a7c83b1fe5474a6610d39eb525f6fc9ce" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetTextForAllNodes</name></member>
       <member refid="a00092_1a594641914a2b59cc5231645273d18e82" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>GetTextForNode</name></member>
       <member refid="a00092_1a3bc83587462ade6a2f7f42cb7576e50e" prot="public" virt="non-virtual"><scope>Yarn::Dialogue</scope><name>LATEST_FORMAT</name></member>

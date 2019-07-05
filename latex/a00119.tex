@@ -30,7 +30,7 @@ object \hyperlink{a00119_a56348c6fe7eb919b7277afc06e5b224a}{operand\-B}
 \subsection{Detailed Description}
 
 
-Definition at line 263 of file Program.\-cs.
+Definition at line 268 of file Program.\-cs.
 
 
 
@@ -45,7 +45,7 @@ Definition at line 263 of file Program.\-cs.
 )}}\label{a00119_a939d511f211e8a61cfbca902e802564f}
 
 
-Definition at line 269 of file Program.\-cs.
+Definition at line 274 of file Program.\-cs.
 
 
 
@@ -53,99 +53,99 @@ References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and
 
 
 \begin{DoxyCode}
-270         \{
-271 
-272             \textcolor{comment}{// Labels are easy: just dump out the name}
-273             \textcolor{keywordflow}{if} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00051_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
-274             \{
-275                 \textcolor{keywordflow}{return} \hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
-276             \}
-277 
-278             \textcolor{comment}{// Convert the operands to strings}
-279             var opAString = \hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
+275         \{
+276 
+277             \textcolor{comment}{// Labels are easy: just dump out the name}
+278             \textcolor{keywordflow}{if} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation} == \hyperlink{a00051_ad5dfb6ee68ca7469623ad3e459f98894}{ByteCode}.Label)
+279             \{
+280                 \textcolor{keywordflow}{return} \hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} + \textcolor{stringliteral}{":"};
+281             \}
+282 
+283             \textcolor{comment}{// Convert the operands to strings}
+284             var opAString = \hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA} != null ? Convert.ToString(\hyperlink{a00119_ab5d386faa0d3dbc23db80f8e62706afd}{operandA}, 
       CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-280             var opBString = \hyperlink{a00119_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00119_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
+285             var opBString = \hyperlink{a00119_a56348c6fe7eb919b7277afc06e5b224a}{operandB} != null ? Convert.ToString(\hyperlink{a00119_a56348c6fe7eb919b7277afc06e5b224a}{operandB}, 
       CultureInfo.InvariantCulture) : \textcolor{stringliteral}{""};
-281 
-282             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
-283             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
-284 
-285             \textcolor{comment}{// Stack manipulation comments}
-286             var pops = 0;
-287             var pushes = 0;
-288 
-289             \textcolor{keywordflow}{switch} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-290             \{
-291 
-292                 \textcolor{comment}{// These operations all push a single value to the stack}
-293                 \textcolor{keywordflow}{case} ByteCode.PushBool:
-294                 \textcolor{keywordflow}{case} ByteCode.PushNull:
-295                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
-296                 \textcolor{keywordflow}{case} ByteCode.PushString:
-297                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
-298                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
-299                     pushes = 1;
-300                     \textcolor{keywordflow}{break};
-301 
-302                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
-303                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
-304                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
-305 
-306                     pops = function.paramCount;
-307 
-308                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
-309                         pushes = 1;
+286 
+287             \textcolor{comment}{// Generate a comment, if the instruction warrants it}
+288             \textcolor{keywordtype}{string} comment = \textcolor{stringliteral}{""};
+289 
+290             \textcolor{comment}{// Stack manipulation comments}
+291             var pops = 0;
+292             var pushes = 0;
+293 
+294             \textcolor{keywordflow}{switch} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+295             \{
+296 
+297                 \textcolor{comment}{// These operations all push a single value to the stack}
+298                 \textcolor{keywordflow}{case} ByteCode.PushBool:
+299                 \textcolor{keywordflow}{case} ByteCode.PushNull:
+300                 \textcolor{keywordflow}{case} ByteCode.PushNumber:
+301                 \textcolor{keywordflow}{case} ByteCode.PushString:
+302                 \textcolor{keywordflow}{case} ByteCode.PushVariable:
+303                 \textcolor{keywordflow}{case} ByteCode.ShowOptions:
+304                     pushes = 1;
+305                     \textcolor{keywordflow}{break};
+306 
+307                 \textcolor{comment}{// Functions pop 0 or more values, and pop 0 or 1}
+308                 \textcolor{keywordflow}{case} ByteCode.CallFunc:
+309                     var \textcolor{keyword}{function} = l.GetFunction((string)operandA);
 310 
-311 
-312                     \textcolor{keywordflow}{break};
-313 
-314                 \textcolor{comment}{// Pop always pops a single value}
-315                 \textcolor{keywordflow}{case} ByteCode.Pop:
-316                     pops = 1;
+311                     pops = function.paramCount;
+312 
+313                     \textcolor{keywordflow}{if} (\textcolor{keyword}{function}.returnsValue)
+314                         pushes = 1;
+315 
+316 
 317                     \textcolor{keywordflow}{break};
 318 
-319                 \textcolor{comment}{// Switching to a different node will always clear the stack}
-320                 \textcolor{keywordflow}{case} ByteCode.RunNode:
-321                     comment += \textcolor{stringliteral}{"Clears stack"};
+319                 \textcolor{comment}{// Pop always pops a single value}
+320                 \textcolor{keywordflow}{case} ByteCode.Pop:
+321                     pops = 1;
 322                     \textcolor{keywordflow}{break};
-323             \}
-324 
-325             \textcolor{comment}{// If we had any pushes or pops, report them}
-326 
-327             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
-328                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
+323 
+324                 \textcolor{comment}{// Switching to a different node will always clear the stack}
+325                 \textcolor{keywordflow}{case} ByteCode.RunNode:
+326                     comment += \textcolor{stringliteral}{"Clears stack"};
+327                     \textcolor{keywordflow}{break};
+328             \}
+329 
+330             \textcolor{comment}{// If we had any pushes or pops, report them}
+331 
+332             \textcolor{keywordflow}{if} (pops > 0 && pushes > 0)
+333                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}, Pushes \{1\}"}, pops, pushes
       );
-329             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
-330                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
-331             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
-332                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
-333 
-334             \textcolor{comment}{// String lookup comments}
-335             \textcolor{keywordflow}{switch} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
-336             \{
-337                 \textcolor{keywordflow}{case} ByteCode.PushString:
-338                 \textcolor{keywordflow}{case} ByteCode.RunLine:
-339                 \textcolor{keywordflow}{case} ByteCode.AddOption:
-340 
-341                     \textcolor{comment}{// Add the string for this option, if it has one}
-342                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
-343                     \{
-344                         var text = p.GetString((string)operandA);
-345                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
-346                     \}
-347 
-348                     \textcolor{keywordflow}{break};
-349 
-350             \}
-351 
-352             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
-353             \{
-354                 comment = \textcolor{stringliteral}{"; "} + comment;
+334             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pops > 0)
+335                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pops \{0\}"}, pops);
+336             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pushes > 0)
+337                 comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"Pushes \{0\}"}, pushes);
+338 
+339             \textcolor{comment}{// String lookup comments}
+340             \textcolor{keywordflow}{switch} (\hyperlink{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}{operation})
+341             \{
+342                 \textcolor{keywordflow}{case} ByteCode.PushString:
+343                 \textcolor{keywordflow}{case} ByteCode.RunLine:
+344                 \textcolor{keywordflow}{case} ByteCode.AddOption:
+345 
+346                     \textcolor{comment}{// Add the string for this option, if it has one}
+347                     \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{string})operandA != null)
+348                     \{
+349                         var text = p.GetString((string)operandA);
+350                         comment += string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\(\backslash\)"\{0\}\(\backslash\)""}, text);
+351                     \}
+352 
+353                     \textcolor{keywordflow}{break};
+354 
 355             \}
 356 
-357             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
+357             \textcolor{keywordflow}{if} (comment != \textcolor{stringliteral}{""})
+358             \{
+359                 comment = \textcolor{stringliteral}{"; "} + comment;
+360             \}
+361 
+362             \textcolor{keywordflow}{return} string.Format(CultureInfo.InvariantCulture, \textcolor{stringliteral}{"\{0,-15\} \{1,-10\} \{2,-10\} \{3, -10\}"}, 
       operation.ToString(), opAString, opBString, comment);
-358         \}
+363         \}
 \end{DoxyCode}
 
 
@@ -155,7 +155,7 @@ References Yarn.\-Instruction.\-operand\-A, Yarn.\-Instruction.\-operand\-B, and
 \subsubsection[{operand\-A}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-A}}\label{a00119_ab5d386faa0d3dbc23db80f8e62706afd}
 
 
-Definition at line 266 of file Program.\-cs.
+Definition at line 271 of file Program.\-cs.
 
 
 
@@ -166,7 +166,7 @@ Referenced by Yarn.\-Virtual\-Machine.\-Run\-Instruction(), and Yarn.\-Instructi
 \subsubsection[{operand\-B}]{\setlength{\rightskip}{0pt plus 5cm}object Yarn.\-Instruction.\-operand\-B}}\label{a00119_a56348c6fe7eb919b7277afc06e5b224a}
 
 
-Definition at line 267 of file Program.\-cs.
+Definition at line 272 of file Program.\-cs.
 
 
 
@@ -177,7 +177,7 @@ Referenced by Yarn.\-Instruction.\-To\-String().
 \subsubsection[{operation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Byte\-Code} Yarn.\-Instruction.\-operation}}\label{a00119_a566bf5f7198cc353ea5c3710cb3a31cb}
 
 
-Definition at line 265 of file Program.\-cs.
+Definition at line 270 of file Program.\-cs.
 
 
 

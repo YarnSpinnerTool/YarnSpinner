@@ -140,7 +140,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="a00314_source.html#l00263">263</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00268">268</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a939d511f211e8a61cfbca902e802564f"></a>
 <div class="memitem">
@@ -166,102 +166,102 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00314_source.html#l00269">269</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00274">274</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>References <a class="el" href="a00314_source.html#l00266">Yarn.Instruction.operandA</a>, <a class="el" href="a00314_source.html#l00267">Yarn.Instruction.operandB</a>, and <a class="el" href="a00314_source.html#l00265">Yarn.Instruction.operation</a>.</p>
-<div class="fragment"><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        {</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="comment">// Labels are easy: just dump out the name</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a> == <a class="code" href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">ByteCode</a>.Label)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            {</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a> + <span class="stringliteral">&quot;:&quot;</span>;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            }</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="comment">// Convert the operands to strings</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            var opAString = <a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a> != null ? Convert.ToString(<a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a>, CultureInfo.InvariantCulture) : <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            var opBString = <a class="code" href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">operandB</a> != null ? Convert.ToString(<a class="code" href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">operandB</a>, CultureInfo.InvariantCulture) : <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="comment">// Generate a comment, if the instruction warrants it</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="keywordtype">string</span> comment = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="comment">// Stack manipulation comments</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            var pops = 0;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            var pushes = 0;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keywordflow">switch</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a>)</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            {</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <span class="comment">// These operations all push a single value to the stack</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushBool:</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushNull:</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushNumber:</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushString:</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushVariable:</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                <span class="keywordflow">case</span> ByteCode.ShowOptions:</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                    pushes = 1;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                <span class="comment">// Functions pop 0 or more values, and pop 0 or 1</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <span class="keywordflow">case</span> ByteCode.CallFunc:</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    var <span class="keyword">function</span> = l.GetFunction((string)operandA);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    pops = function.paramCount;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                    <span class="keywordflow">if</span> (<span class="keyword">function</span>.returnsValue)</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                        pushes = 1;</div>
+<p>References <a class="el" href="a00314_source.html#l00271">Yarn.Instruction.operandA</a>, <a class="el" href="a00314_source.html#l00272">Yarn.Instruction.operandB</a>, and <a class="el" href="a00314_source.html#l00270">Yarn.Instruction.operation</a>.</p>
+<div class="fragment"><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <span class="comment">// Labels are easy: just dump out the name</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a> == <a class="code" href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">ByteCode</a>.Label)</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            {</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a> + <span class="stringliteral">&quot;:&quot;</span>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            }</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="comment">// Convert the operands to strings</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            var opAString = <a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a> != null ? Convert.ToString(<a class="code" href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">operandA</a>, CultureInfo.InvariantCulture) : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            var opBString = <a class="code" href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">operandB</a> != null ? Convert.ToString(<a class="code" href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">operandB</a>, CultureInfo.InvariantCulture) : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="comment">// Generate a comment, if the instruction warrants it</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            <span class="keywordtype">string</span> comment = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            <span class="comment">// Stack manipulation comments</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            var pops = 0;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            var pushes = 0;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keywordflow">switch</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a>)</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                <span class="comment">// These operations all push a single value to the stack</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushBool:</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushNull:</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushNumber:</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushString:</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushVariable:</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <span class="keywordflow">case</span> ByteCode.ShowOptions:</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    pushes = 1;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                <span class="comment">// Functions pop 0 or more values, and pop 0 or 1</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                <span class="keywordflow">case</span> ByteCode.CallFunc:</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                    var <span class="keyword">function</span> = l.GetFunction((string)operandA);</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                <span class="comment">// Pop always pops a single value</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                <span class="keywordflow">case</span> ByteCode.Pop:</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                    pops = 1;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                    pops = function.paramCount;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                    <span class="keywordflow">if</span> (<span class="keyword">function</span>.returnsValue)</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                        pushes = 1;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                <span class="comment">// Switching to a different node will always clear the stack</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                <span class="keywordflow">case</span> ByteCode.RunNode:</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                    comment += <span class="stringliteral">&quot;Clears stack&quot;</span>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                <span class="comment">// Pop always pops a single value</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                <span class="keywordflow">case</span> ByteCode.Pop:</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                    pops = 1;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            }</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            <span class="comment">// If we had any pushes or pops, report them</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="keywordflow">if</span> (pops &gt; 0 &amp;&amp; pushes &gt; 0)</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pops {0}, Pushes {1}&quot;</span>, pops, pushes);</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pops &gt; 0)</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pops {0}&quot;</span>, pops);</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pushes &gt; 0)</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pushes {0}&quot;</span>, pushes);</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="comment">// String lookup comments</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keywordflow">switch</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a>)</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushString:</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <span class="keywordflow">case</span> ByteCode.RunLine:</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                <span class="keywordflow">case</span> ByteCode.AddOption:</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                    <span class="comment">// Add the string for this option, if it has one</span></div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                    <span class="keywordflow">if</span> ((<span class="keywordtype">string</span>)operandA != null)</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                    {</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                        var text = p.GetString((string)operandA);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                        comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;\&quot;{0}\&quot;&quot;</span>, text);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                    }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keywordflow">if</span> (comment != <span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                comment = <span class="stringliteral">&quot;; &quot;</span> + comment;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <span class="comment">// Switching to a different node will always clear the stack</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <span class="keywordflow">case</span> ByteCode.RunNode:</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                    comment += <span class="stringliteral">&quot;Clears stack&quot;</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            }</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="comment">// If we had any pushes or pops, report them</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keywordflow">if</span> (pops &gt; 0 &amp;&amp; pushes &gt; 0)</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pops {0}, Pushes {1}&quot;</span>, pops, pushes);</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pops &gt; 0)</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pops {0}&quot;</span>, pops);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pushes &gt; 0)</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;Pushes {0}&quot;</span>, pushes);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            <span class="comment">// String lookup comments</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <span class="keywordflow">switch</span> (<a class="code" href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">operation</a>)</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                <span class="keywordflow">case</span> ByteCode.PushString:</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                <span class="keywordflow">case</span> ByteCode.RunLine:</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                <span class="keywordflow">case</span> ByteCode.AddOption:</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                    <span class="comment">// Add the string for this option, if it has one</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                    <span class="keywordflow">if</span> ((<span class="keywordtype">string</span>)operandA != null)</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    {</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                        var text = p.GetString((string)operandA);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                        comment += string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;\&quot;{0}\&quot;&quot;</span>, text);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    }</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            }</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keywordflow">return</span> string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0,-15} {1,-10} {2,-10} {3, -10}&quot;</span>, operation.ToString(), opAString, opBString, comment);</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        }</div>
-<div class="ttc" id="a00119_html_ab5d386faa0d3dbc23db80f8e62706afd"><div class="ttname"><a href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">Yarn.Instruction.operandA</a></div><div class="ttdeci">object operandA</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00266">Program.cs:266</a></div></div>
-<div class="ttc" id="a00119_html_a566bf5f7198cc353ea5c3710cb3a31cb"><div class="ttname"><a href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">Yarn.Instruction.operation</a></div><div class="ttdeci">ByteCode operation</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00265">Program.cs:265</a></div></div>
-<div class="ttc" id="a00119_html_a56348c6fe7eb919b7277afc06e5b224a"><div class="ttname"><a href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">Yarn.Instruction.operandB</a></div><div class="ttdeci">object operandB</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00267">Program.cs:267</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keywordflow">if</span> (comment != <span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            {</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                comment = <span class="stringliteral">&quot;; &quot;</span> + comment;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            }</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <span class="keywordflow">return</span> string.Format(CultureInfo.InvariantCulture, <span class="stringliteral">&quot;{0,-15} {1,-10} {2,-10} {3, -10}&quot;</span>, operation.ToString(), opAString, opBString, comment);</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        }</div>
+<div class="ttc" id="a00119_html_ab5d386faa0d3dbc23db80f8e62706afd"><div class="ttname"><a href="a00119.html#ab5d386faa0d3dbc23db80f8e62706afd">Yarn.Instruction.operandA</a></div><div class="ttdeci">object operandA</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00271">Program.cs:271</a></div></div>
+<div class="ttc" id="a00119_html_a566bf5f7198cc353ea5c3710cb3a31cb"><div class="ttname"><a href="a00119.html#a566bf5f7198cc353ea5c3710cb3a31cb">Yarn.Instruction.operation</a></div><div class="ttdeci">ByteCode operation</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00270">Program.cs:270</a></div></div>
+<div class="ttc" id="a00119_html_a56348c6fe7eb919b7277afc06e5b224a"><div class="ttname"><a href="a00119.html#a56348c6fe7eb919b7277afc06e5b224a">Yarn.Instruction.operandB</a></div><div class="ttdeci">object operandB</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00272">Program.cs:272</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -276,9 +276,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00314_source.html#l00266">266</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00271">271</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00314_source.html#l00269">Yarn.Instruction.ToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00314_source.html#l00274">Yarn.Instruction.ToString()</a>.</p>
 
 </div>
 </div>
@@ -292,9 +292,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00314_source.html#l00267">267</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00272">272</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00314_source.html#l00269">Yarn.Instruction.ToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00314_source.html#l00274">Yarn.Instruction.ToString()</a>.</p>
 
 </div>
 </div>
@@ -308,9 +308,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00314_source.html#l00265">265</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00270">270</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00314_source.html#l00269">Yarn.Instruction.ToString()</a>.</p>
+<p>Referenced by <a class="el" href="a00316_source.html#l00176">Yarn.VirtualMachine.RunInstruction()</a>, and <a class="el" href="a00314_source.html#l00274">Yarn.Instruction.ToString()</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00119.html">Instruction</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:06:47 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:13:22 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -139,6 +139,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2f5bb468ce53eb7bbe647e3c11ddbb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad8029f37832ff1985fad6a31e51afd8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00152.html#aad8029f37832ff1985fad6a31e51afd8">GetTextForNode</a> (string nodeName)</td></tr>
 <tr class="separator:aad8029f37832ff1985fad6a31e51afd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116312a32b20bc18e09f90c9c92a079f"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00152.html#a116312a32b20bc18e09f90c9c92a079f">GetTagsForNode</a> (string nodeName)</td></tr>
+<tr class="separator:a116312a32b20bc18e09f90c9c92a079f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd3385ca1f7589b3b9dae3646e4fee84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00152.html#afd3385ca1f7589b3b9dae3646e4fee84">Include</a> (<a class="el" href="a00152.html">Program</a> otherProgram)</td></tr>
 <tr class="separator:afd3385ca1f7589b3b9dae3646e4fee84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -236,7 +238,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
 <div class="ttc" id="a00152_html_a0d4da395947767b4a1eaaff8a9842adc"><div class="ttname"><a href="a00152.html#a0d4da395947767b4a1eaaff8a9842adc">Yarn.Program.lineInfo</a></div><div class="ttdeci">Dictionary&lt; string, LineInfo &gt; lineInfo</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00088">Program.cs:88</a></div></div>
 <div class="ttc" id="a00152_html_a59263e00cecfe36d9881b4c30b048f09"><div class="ttname"><a href="a00152.html#a59263e00cecfe36d9881b4c30b048f09">Yarn.Program.strings</a></div><div class="ttdeci">Dictionary&lt; string, string &gt; strings</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00087">Program.cs:87</a></div></div>
-<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00361">Program.cs:361</a></div></div>
+<div class="ttc" id="a00051_html_ad5dfb6ee68ca7469623ad3e459f98894"><div class="ttname"><a href="a00051.html#ad5dfb6ee68ca7469623ad3e459f98894">Yarn.ByteCode</a></div><div class="ttdeci">ByteCode</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00366">Program.cs:366</a></div></div>
 <div class="ttc" id="a00152_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00152.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00091">Program.cs:91</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -261,6 +263,30 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            strings.TryGetValue(key, out value);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">return</span> value;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a116312a32b20bc18e09f90c9c92a079f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;string&gt; Yarn.Program.GetTagsForNode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00314_source.html#l00221">221</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+
+<p>References <a class="el" href="a00314_source.html#l00091">Yarn.Program.nodes</a>.</p>
+<div class="fragment"><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[nodeName].tags;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        }</div>
+<div class="ttc" id="a00152_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00152.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00091">Program.cs:91</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -302,32 +328,32 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00314_source.html#l00221">221</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
+<p>Definition at line <a class="el" href="a00314_source.html#l00226">226</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
 <p>References <a class="el" href="a00314_source.html#l00091">Yarn.Program.nodes</a>, and <a class="el" href="a00314_source.html#l00087">Yarn.Program.strings</a>.</p>
-<div class="fragment"><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">foreach</span> (var otherNodeName <span class="keywordflow">in</span> otherProgram.nodes)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherNodeName.Key))</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                {</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a node named {0}&quot;</span>, otherNodeName.Key));</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                }</div>
+<div class="fragment"><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">foreach</span> (var otherNodeName <span class="keywordflow">in</span> otherProgram.nodes)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            {</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                <a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[otherNodeName.Key] = otherNodeName.Value;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordflow">foreach</span> (var otherString <span class="keywordflow">in</span> otherProgram.strings)</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherString.Key))</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a string with key {0}&quot;</span>, otherString.Key));</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherNodeName.Key))</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a node named {0}&quot;</span>, otherNodeName.Key));</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                <a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>[otherNodeName.Key] = otherNodeName.Value;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">foreach</span> (var otherString <span class="keywordflow">in</span> otherProgram.strings)</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            {</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <a class="code" href="a00152.html#a59263e00cecfe36d9881b4c30b048f09">strings</a>[otherString.Key] = otherString.Value;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.ContainsKey(otherString.Key))</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="keywordtype">string</span>.Format(CultureInfo.CurrentCulture, <span class="stringliteral">&quot;This program already contains a string with key {0}&quot;</span>, otherString.Key));</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <a class="code" href="a00152.html#a59263e00cecfe36d9881b4c30b048f09">strings</a>[otherString.Key] = otherString.Value;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
 <div class="ttc" id="a00152_html_a59263e00cecfe36d9881b4c30b048f09"><div class="ttname"><a href="a00152.html#a59263e00cecfe36d9881b4c30b048f09">Yarn.Program.strings</a></div><div class="ttdeci">Dictionary&lt; string, string &gt; strings</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00087">Program.cs:87</a></div></div>
 <div class="ttc" id="a00152_html_a3f4928a577c88263ad016be259b175c4"><div class="ttname"><a href="a00152.html#a3f4928a577c88263ad016be259b175c4">Yarn.Program.nodes</a></div><div class="ttdeci">Dictionary&lt; string, Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> <a href="a00314_source.html#l00091">Program.cs:91</a></div></div>
 </div><!-- fragment -->
@@ -477,7 +503,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00314_source.html#l00091">91</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00304_source.html#l00024">Yarn.Compiler.CompileNode()</a>, <a class="el" href="a00314_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00305_source.html#l00483">Yarn.Dialogue.GetTextForAllNodes()</a>, <a class="el" href="a00314_source.html#l00216">Yarn.Program.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00314_source.html#l00221">Yarn.Program.Include()</a>, <a class="el" href="a00305_source.html#l00575">Yarn.Dialogue.NodeExists()</a>, and <a class="el" href="a00316_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>.</p>
+<p>Referenced by <a class="el" href="a00304_source.html#l00024">Yarn.Compiler.CompileNode()</a>, <a class="el" href="a00314_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00305_source.html#l00511">Yarn.Dialogue.GetTagsForAllNodes()</a>, <a class="el" href="a00314_source.html#l00221">Yarn.Program.GetTagsForNode()</a>, <a class="el" href="a00305_source.html#l00527">Yarn.Dialogue.GetTagsForNode()</a>, <a class="el" href="a00305_source.html#l00483">Yarn.Dialogue.GetTextForAllNodes()</a>, <a class="el" href="a00314_source.html#l00216">Yarn.Program.GetTextForNode()</a>, <a class="el" href="a00305_source.html#l00499">Yarn.Dialogue.GetTextForNode()</a>, <a class="el" href="a00314_source.html#l00226">Yarn.Program.Include()</a>, <a class="el" href="a00305_source.html#l00603">Yarn.Dialogue.NodeExists()</a>, and <a class="el" href="a00316_source.html#l00112">Yarn.VirtualMachine.SetNode()</a>.</p>
 
 </div>
 </div>
@@ -525,7 +551,7 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="a00314_source.html#l00087">87</a> of file <a class="el" href="a00314_source.html">Program.cs</a>.</p>
 
-<p>Referenced by <a class="el" href="a00314_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00314_source.html#l00221">Yarn.Program.Include()</a>, and <a class="el" href="a00314_source.html#l00125">Yarn.Program.LoadStrings()</a>.</p>
+<p>Referenced by <a class="el" href="a00314_source.html#l00162">Yarn.Program.DumpCode()</a>, <a class="el" href="a00314_source.html#l00226">Yarn.Program.Include()</a>, and <a class="el" href="a00314_source.html#l00125">Yarn.Program.LoadStrings()</a>.</p>
 
 </div>
 </div>
@@ -561,7 +587,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00152.html">Program</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:06:47 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:13:22 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

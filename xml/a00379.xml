@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="250" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="250" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="255" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="255" bodyend="-1"/>
         <referencedby refid="a00038_1a3204aa5b87eaee776b32742df1ee28f9" compoundref="a00303" startline="46" endline="60">Yarn.AntlrCompiler.Emit</referencedby>
         <referencedby refid="a00038_1a1dbb5e93105b67b0d85fecb068b1b7db" compoundref="a00303" startline="203" endline="246">Yarn.AntlrCompiler.ExitBody</referencedby>
         <referencedby refid="a00054_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00304" startline="110" endline="122">Yarn.Compiler.Emit</referencedby>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="252" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="252" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="257" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="257" bodyend="-1"/>
         <referencedby refid="a00054_1a5c762915320958c3a03b193b06a7e279" compoundref="a00304" startline="392" endline="416">Yarn.Compiler.GenerateCode</referencedby>
       </memberdef>
       <memberdef kind="variable" id="a00379_1a09c6af5b50925d0876283b84281b3ed4" prot="public" static="no" mutable="no">
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="256" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="256" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="261" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="261" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="a00379_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" static="no" mutable="no">
         <type>Dictionary&lt; string, int &gt;</type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="258" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="258" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="263" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="263" bodyend="-1"/>
         <referencedby refid="a00162_1af613c8b2d098678b6ea05b509c0a0cb6" compoundref="a00316" startline="164" endline="174">Yarn.VirtualMachine.FindInstructionPointForLabel</referencedby>
       </memberdef>
       <memberdef kind="variable" id="a00379_1a811086feceebbe79a74eba071c1d516b" prot="public" static="no" mutable="no">
@@ -75,7 +75,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="260" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="260" bodyend="-1"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="265" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="265" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -88,7 +88,7 @@
         <link refid="a00379"/>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="248" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="247" bodyend="261"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" line="253" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Program.cs" bodystart="252" bodyend="266"/>
     <listofallmembers>
       <member refid="a00379_1a156723a9252b62d288ddf611939ea7c3" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>instructions</name></member>
       <member refid="a00379_1a9afa49f4fbc72e806a0210cb4198f12e" prot="public" virt="non-virtual"><scope>Yarn::Node</scope><name>labels</name></member>

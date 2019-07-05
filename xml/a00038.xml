@@ -239,7 +239,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="46" bodyend="60"/>
-        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="250">Yarn.Node.instructions</references>
+        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="255">Yarn.Node.instructions</references>
         <referencedby refid="a00038_1a1dbb5e93105b67b0d85fecb068b1b7db" compoundref="a00303" startline="203" endline="246">Yarn.AntlrCompiler.ExitBody</referencedby>
         <referencedby refid="a00038_1a268fc7c3683d7d5d7548e64d59f5f3af" compoundref="a00303" startline="157" endline="164">Yarn.AntlrCompiler.ExitHeader</referencedby>
       </memberdef>
@@ -466,7 +466,7 @@
         <references refid="a00374_1ae27568d71aa82edfd7841d425969a4fb" compoundref="a00303" startline="17">Yarn.AntlrCompiler.CompileFlags.DisableShuffleOptionsAfterNextSet</references>
         <references refid="a00038_1a3204aa5b87eaee776b32742df1ee28f9" compoundref="a00303" startline="46" endline="60">Yarn.AntlrCompiler.Emit</references>
         <references refid="a00038_1aeba873449ff9fb1c6d731ff7eb25f0a0" compoundref="a00303" startline="20">Yarn.AntlrCompiler.flags</references>
-        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="250">Yarn.Node.instructions</references>
+        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="255">Yarn.Node.instructions</references>
         <references refid="a00038_1ac72e8a2a8207103d34b3d564e78fae93" compoundref="a00303" startline="32">Yarn.AntlrCompiler.rawTextNode</references>
       </memberdef>
       <memberdef kind="function" id="a00196_1aaeec4ce9cbf5b95d429afab145b57953" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">

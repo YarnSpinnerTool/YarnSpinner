@@ -9,6 +9,7 @@ var a00094 =
     [ "TestDumpingCode", "a00094.html#a111f0f8418baaeaf83cfb422c90210e0", null ],
     [ "TestGettingCurrentNodeName", "a00094.html#afbb342ea64e33ee19d42a6a2c949592a", null ],
     [ "TestGettingRawSource", "a00094.html#a16ed34de323da529e1a17670f556791c", null ],
+    [ "TestGettingTags", "a00094.html#abb7bc5876ca4f37e93c6ac40bbd0e3b7", null ],
     [ "TestMissingNode", "a00094.html#a013d5e3847b9d716b39aa925d70b99fd", null ],
     [ "TestNodeExists", "a00094.html#a9d4171827bf3eba4c6ae52760a475f45", null ],
     [ "TestNodeVistation", "a00094.html#a9c0d2732044b273929dbce35358a1906", null ],

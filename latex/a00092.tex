@@ -57,6 +57,11 @@ Dictionary$<$ string, string $>$ \hyperlink{a00092_a7c83b1fe5474a6610d39eb525f6f
 \item 
 string \hyperlink{a00092_a594641914a2b59cc5231645273d18e82}{Get\-Text\-For\-Node} (string node\-Name)
 \begin{DoxyCompactList}\small\item\em Returns the source code for the node 'node\-Name', if that node was tagged with raw\-Text. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \\*
+I\-Enumerable$<$ string $>$ $>$ \hyperlink{a00092_a20ef38a17e4a346de3b572b85052c1d1}{Get\-Tags\-For\-All\-Nodes} ()
+\item 
+I\-Enumerable$<$ string $>$ \hyperlink{a00092_ab85166316a6c5aadce336316406ed164}{Get\-Tags\-For\-Node} (string node\-Name)
+\begin{DoxyCompactList}\small\item\em Returns the tags for the node 'node\-Name'. \end{DoxyCompactList}\item 
 void \hyperlink{a00092_acfb8561e08dc85c6d9a855ad07d18783}{Add\-String\-Table} (Dictionary$<$ string, string $>$ string\-Table)
 \item 
 Dictionary$<$ string, string $>$ \hyperlink{a00092_af5fe57ebd11c41208070972f06a31b9d}{Get\-String\-Table} ()
@@ -151,13 +156,13 @@ Definition at line 130 of file Dialogue.\-cs.
 \end{Desc}
 
 
-Definition at line 524 of file Dialogue.\-cs.
+Definition at line 552 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-525         \{
-526             \hyperlink{a00092_a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6}{V1}
-527         \}
+553         \{
+554             \hyperlink{a00092_a903f18cdcc66c28ceab5a43c41fe074dab4daca084ad9eabfc8de231929477ed6}{V1}
+555         \}
 \end{DoxyCode}
 
 
@@ -223,13 +228,13 @@ Here is the call graph for this function\-:
 )}}\label{a00092_acfb8561e08dc85c6d9a855ad07d18783}
 
 
-Definition at line 511 of file Dialogue.\-cs.
+Definition at line 539 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-512         \{
-513             program.LoadStrings(stringTable);
-514         \}
+540         \{
+541             program.LoadStrings(stringTable);
+542         \}
 \end{DoxyCode}
 \hypertarget{a00092_a6b67b239f50c062160666e54592c433f}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Analyse@{Analyse}}
 \index{Analyse@{Analyse}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -240,15 +245,15 @@ Definition at line 511 of file Dialogue.\-cs.
 )}}\label{a00092_a6b67b239f50c062160666e54592c433f}
 
 
-Definition at line 589 of file Dialogue.\-cs.
+Definition at line 617 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-589                                                       \{
-590 
-591             context.AddProgramToAnalysis (this.program);
-592 
-593         \}
+617                                                       \{
+618 
+619             context.AddProgramToAnalysis (this.program);
+620 
+621         \}
 \end{DoxyCode}
 \hypertarget{a00092_a7a8a3a461011172f5624da3a8ffa875f}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Compile@{Compile}}
 \index{Compile@{Compile}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -259,7 +264,7 @@ Definition at line 589 of file Dialogue.\-cs.
 )}}\label{a00092_a7a8a3a461011172f5624da3a8ffa875f}
 
 
-Definition at line 567 of file Dialogue.\-cs.
+Definition at line 595 of file Dialogue.\-cs.
 
 
 
@@ -267,9 +272,9 @@ References Yarn.\-Dialogue.\-library.
 
 
 \begin{DoxyCode}
-567                                 \{
-568             \textcolor{keywordflow}{return} program.DumpCode (\hyperlink{a00092_ae660d4cfb6e296358d2f61d8ee74c66a}{library});
-569         \}
+595                                 \{
+596             \textcolor{keywordflow}{return} program.DumpCode (\hyperlink{a00092_ae660d4cfb6e296358d2f61d8ee74c66a}{library});
+597         \}
 \end{DoxyCode}
 \hypertarget{a00092_aade6c069db8f01572060d25a963d2a14}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-Byte\-Code@{Get\-Byte\-Code}}
 \index{Get\-Byte\-Code@{Get\-Byte\-Code}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -280,7 +285,7 @@ References Yarn.\-Dialogue.\-library.
 )}}\label{a00092_aade6c069db8f01572060d25a963d2a14}
 
 
-Definition at line 571 of file Dialogue.\-cs.
+Definition at line 599 of file Dialogue.\-cs.
 
 
 
@@ -288,9 +293,9 @@ References Yarn.\-Dialogue.\-library.
 
 
 \begin{DoxyCode}
-571                                     \{
-572             \textcolor{keywordflow}{return} program.DumpCode (\hyperlink{a00092_ae660d4cfb6e296358d2f61d8ee74c66a}{library});
-573         \}
+599                                     \{
+600             \textcolor{keywordflow}{return} program.DumpCode (\hyperlink{a00092_ae660d4cfb6e296358d2f61d8ee74c66a}{library});
+601         \}
 \end{DoxyCode}
 \hypertarget{a00092_a5b664d4bbe7c47c246fe0beca9648687}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-Compiled\-Program@{Get\-Compiled\-Program}}
 \index{Get\-Compiled\-Program@{Get\-Compiled\-Program}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -301,7 +306,7 @@ References Yarn.\-Dialogue.\-library.
 )}}\label{a00092_a5b664d4bbe7c47c246fe0beca9648687}
 
 
-Definition at line 531 of file Dialogue.\-cs.
+Definition at line 559 of file Dialogue.\-cs.
 
 
 
@@ -309,16 +314,16 @@ References Yarn.\-Dialogue.\-Get\-Compiled\-Program\-V1().
 
 
 \begin{DoxyCode}
-532         \{
-533 
-534             \textcolor{keywordflow}{switch} (format)
-535             \{
-536                 \textcolor{keywordflow}{case} CompiledFormat.V1:
-537                     \textcolor{keywordflow}{return} \hyperlink{a00092_a070898dbc07fd7d0a74d7c3ac1848beb}{GetCompiledProgramV1}();
-538                 \textcolor{keywordflow}{default}:
-539                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
-540             \}
-541         \}
+560         \{
+561 
+562             \textcolor{keywordflow}{switch} (format)
+563             \{
+564                 \textcolor{keywordflow}{case} CompiledFormat.V1:
+565                     \textcolor{keywordflow}{return} \hyperlink{a00092_a070898dbc07fd7d0a74d7c3ac1848beb}{GetCompiledProgramV1}();
+566                 \textcolor{keywordflow}{default}:
+567                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} ArgumentOutOfRangeException();
+568             \}
+569         \}
 \end{DoxyCode}
 
 
@@ -341,7 +346,7 @@ Here is the call graph for this function\-:
 )\hspace{0.3cm}{\ttfamily [private]}}}\label{a00092_a070898dbc07fd7d0a74d7c3ac1848beb}
 
 
-Definition at line 543 of file Dialogue.\-cs.
+Definition at line 571 of file Dialogue.\-cs.
 
 
 
@@ -349,18 +354,18 @@ Referenced by Yarn.\-Dialogue.\-Get\-Compiled\-Program().
 
 
 \begin{DoxyCode}
-544         \{
-545             \textcolor{keyword}{using} (var outputStream = \textcolor{keyword}{new} System.IO.MemoryStream())
-546             \{
-547                 \textcolor{keyword}{using} (var bsonWriter = \textcolor{keyword}{new} Newtonsoft.Json.Bson.BsonWriter(outputStream))
-548                 \{
-549                     var s = \textcolor{keyword}{new} Newtonsoft.Json.JsonSerializer();
-550                     s.Serialize(bsonWriter, this.program);
-551                 \}
-552 
-553                 \textcolor{keywordflow}{return} outputStream.ToArray();
-554             \}
-555         \}
+572         \{
+573             \textcolor{keyword}{using} (var outputStream = \textcolor{keyword}{new} System.IO.MemoryStream())
+574             \{
+575                 \textcolor{keyword}{using} (var bsonWriter = \textcolor{keyword}{new} Newtonsoft.Json.Bson.BsonWriter(outputStream))
+576                 \{
+577                     var s = \textcolor{keyword}{new} Newtonsoft.Json.JsonSerializer();
+578                     s.Serialize(bsonWriter, this.program);
+579                 \}
+580 
+581                 \textcolor{keywordflow}{return} outputStream.ToArray();
+582             \}
+583         \}
 \end{DoxyCode}
 
 
@@ -383,13 +388,13 @@ Here is the caller graph for this function\-:
 )\hspace{0.3cm}{\ttfamily [package]}}}\label{a00092_a5c5117de678626ebcfb9a6f875e6e53a}
 
 
-Definition at line 520 of file Dialogue.\-cs.
+Definition at line 548 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-520                                                                   \{
-521             \textcolor{keywordflow}{return} program.lineInfo;
-522         \}
+548                                                                   \{
+549             \textcolor{keywordflow}{return} program.lineInfo;
+550         \}
 \end{DoxyCode}
 \hypertarget{a00092_af5fe57ebd11c41208070972f06a31b9d}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-String\-Table@{Get\-String\-Table}}
 \index{Get\-String\-Table@{Get\-String\-Table}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -400,13 +405,78 @@ Definition at line 520 of file Dialogue.\-cs.
 )}}\label{a00092_af5fe57ebd11c41208070972f06a31b9d}
 
 
-Definition at line 516 of file Dialogue.\-cs.
+Definition at line 544 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-516                                                           \{
-517             \textcolor{keywordflow}{return} program.strings;
-518         \}
+544                                                           \{
+545             \textcolor{keywordflow}{return} program.strings;
+546         \}
+\end{DoxyCode}
+\hypertarget{a00092_a20ef38a17e4a346de3b572b85052c1d1}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-Tags\-For\-All\-Nodes@{Get\-Tags\-For\-All\-Nodes}}
+\index{Get\-Tags\-For\-All\-Nodes@{Get\-Tags\-For\-All\-Nodes}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
+\subsubsection[{Get\-Tags\-For\-All\-Nodes}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<$string, I\-Enumerable$<$string$>$ $>$ Yarn.\-Dialogue.\-Get\-Tags\-For\-All\-Nodes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00092_a20ef38a17e4a346de3b572b85052c1d1}
+
+
+Definition at line 511 of file Dialogue.\-cs.
+
+
+
+References Yarn.\-Program.\-nodes, and Yarn.\-Dialogue.\-program.
+
+
+\begin{DoxyCode}
+511                                                                             \{
+512             var d = \textcolor{keyword}{new} Dictionary<string,IEnumerable<string>>();
+513 
+514             \textcolor{keywordflow}{foreach} (var node \textcolor{keywordflow}{in} \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}) \{
+515                 var tags = program.GetTagsForNode(node.Key);
+516 
+517                 \textcolor{keywordflow}{if} (tags == null)
+518                     \textcolor{keywordflow}{continue};
+519 
+520                 d [node.Key] = tags;
+521             \}
+522 
+523             \textcolor{keywordflow}{return} d;
+524         \}
+\end{DoxyCode}
+\hypertarget{a00092_ab85166316a6c5aadce336316406ed164}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}}
+\index{Get\-Tags\-For\-Node@{Get\-Tags\-For\-Node}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
+\subsubsection[{Get\-Tags\-For\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerable$<$string$>$ Yarn.\-Dialogue.\-Get\-Tags\-For\-Node (
+\begin{DoxyParamCaption}
+\item[{string}]{node\-Name}
+\end{DoxyParamCaption}
+)}}\label{a00092_ab85166316a6c5aadce336316406ed164}
+
+
+Returns the tags for the node 'node\-Name'. 
+
+
+
+Definition at line 527 of file Dialogue.\-cs.
+
+
+
+References Yarn.\-Dialogue.\-Log\-Error\-Message, Yarn.\-Program.\-nodes, and Yarn.\-Dialogue.\-program.
+
+
+\begin{DoxyCode}
+527                                                                    \{
+528             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count == 0) \{
+529                 \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"No nodes are loaded!"});
+530                 \textcolor{keywordflow}{return} null;
+531             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.ContainsKey(nodeName)) \{
+532                 \textcolor{keywordflow}{return} program.GetTagsForNode (nodeName);
+533             \} \textcolor{keywordflow}{else} \{
+534                 \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"No node named "} + nodeName);
+535                 \textcolor{keywordflow}{return} null;
+536             \}
+537         \}
 \end{DoxyCode}
 \hypertarget{a00092_a7c83b1fe5474a6610d39eb525f6fc9ce}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Get\-Text\-For\-All\-Nodes@{Get\-Text\-For\-All\-Nodes}}
 \index{Get\-Text\-For\-All\-Nodes@{Get\-Text\-For\-All\-Nodes}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -746,7 +816,7 @@ Here is the caller graph for this function\-:
 )}}\label{a00092_a93bb76a1f9a4058f225ff4cee97483c6}
 
 
-Definition at line 575 of file Dialogue.\-cs.
+Definition at line 603 of file Dialogue.\-cs.
 
 
 
@@ -758,19 +828,19 @@ Referenced by Yarn.\-Dialogue.\-Yarn\-Function\-Node\-Visit\-Count().
 
 
 \begin{DoxyCode}
-575                                                 \{
-576             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program} == null) \{
-577                 \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"Tried to call NodeExists, but no nodes "} +
-578                                  \textcolor{stringliteral}{"have been compiled!"});
-579                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-580             \}
-581             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes} == null || \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count == 0) \{
-582                 \hyperlink{a00092_a381f48bb0fbb294f8cf44ca57f11be31}{LogDebugMessage} (\textcolor{stringliteral}{"Called NodeExists, but there are zero nodes. "} +
-583                                  \textcolor{stringliteral}{"This may be an error."});
-584                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-585             \}
-586             \textcolor{keywordflow}{return} program.nodes.ContainsKey(nodeName);
-587         \}
+603                                                 \{
+604             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program} == null) \{
+605                 \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"Tried to call NodeExists, but no nodes "} +
+606                                  \textcolor{stringliteral}{"have been compiled!"});
+607                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+608             \}
+609             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes} == null || \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count == 0) \{
+610                 \hyperlink{a00092_a381f48bb0fbb294f8cf44ca57f11be31}{LogDebugMessage} (\textcolor{stringliteral}{"Called NodeExists, but there are zero nodes. "} +
+611                                  \textcolor{stringliteral}{"This may be an error."});
+612                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+613             \}
+614             \textcolor{keywordflow}{return} program.nodes.ContainsKey(nodeName);
+615         \}
 \end{DoxyCode}
 
 
@@ -931,7 +1001,7 @@ Unloads A\-L\-L nodes.
 
 
 
-Definition at line 558 of file Dialogue.\-cs.
+Definition at line 586 of file Dialogue.\-cs.
 
 
 
@@ -939,13 +1009,13 @@ References Yarn.\-Dialogue.\-program.
 
 
 \begin{DoxyCode}
-558                                                              \{
-559             \textcolor{keywordflow}{if} (clearVisitedNodes)
-560                 visitedNodeCount.Clear();
-561 
-562             \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program} = null;
-563 
-564         \}
+586                                                              \{
+587             \textcolor{keywordflow}{if} (clearVisitedNodes)
+588                 visitedNodeCount.Clear();
+589 
+590             \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program} = null;
+591 
+592         \}
 \end{DoxyCode}
 \hypertarget{a00092_a1ab129bd84381928531d503304ca08d6}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Yarn\-Function\-Is\-Node\-Visited@{Yarn\-Function\-Is\-Node\-Visited}}
 \index{Yarn\-Function\-Is\-Node\-Visited@{Yarn\-Function\-Is\-Node\-Visited}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -1123,7 +1193,7 @@ Definition at line 135 of file Dialogue.\-cs.
 \subsubsection[{L\-A\-T\-E\-S\-T\-\_\-\-F\-O\-R\-M\-A\-T}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Compiled\-Format} Yarn.\-Dialogue.\-L\-A\-T\-E\-S\-T\-\_\-\-F\-O\-R\-M\-A\-T = Compiled\-Format.\-V1}}\label{a00092_a3bc83587462ade6a2f7f42cb7576e50e}
 
 
-Definition at line 529 of file Dialogue.\-cs.
+Definition at line 557 of file Dialogue.\-cs.
 
 \hypertarget{a00092_ae660d4cfb6e296358d2f61d8ee74c66a}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!library@{library}}
 \index{library@{library}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -1179,7 +1249,7 @@ Definition at line 194 of file Dialogue.\-cs.
 
 
 
-Referenced by Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Load\-Compiled\-Program(), Yarn.\-Dialogue.\-Load\-Compiled\-Program\-V1(), Yarn.\-Dialogue.\-Load\-String(), Yarn.\-Dialogue.\-Node\-Exists(), Yarn.\-Dialogue.\-Run(), and Yarn.\-Dialogue.\-Yarn\-Function\-Node\-Visit\-Count().
+Referenced by Yarn.\-Dialogue.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Load\-Compiled\-Program(), Yarn.\-Dialogue.\-Load\-Compiled\-Program\-V1(), Yarn.\-Dialogue.\-Load\-String(), Yarn.\-Dialogue.\-Node\-Exists(), Yarn.\-Dialogue.\-Run(), and Yarn.\-Dialogue.\-Yarn\-Function\-Node\-Visit\-Count().
 
 \hypertarget{a00092_a0a1cca92325f430425d784d416cb5c2b}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!program@{program}}
 \index{program@{program}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -1194,7 +1264,7 @@ Definition at line 203 of file Dialogue.\-cs.
 
 
 
-Referenced by Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Load\-Compiled\-Program\-V1(), Yarn.\-Dialogue.\-Load\-String(), Yarn.\-Dialogue.\-Node\-Exists(), Yarn.\-Dialogue.\-Run(), and Yarn.\-Dialogue.\-Unload\-All().
+Referenced by Yarn.\-Dialogue.\-Get\-Tags\-For\-All\-Nodes(), Yarn.\-Dialogue.\-Get\-Tags\-For\-Node(), Yarn.\-Dialogue.\-Get\-Text\-For\-All\-Nodes(), Yarn.\-Dialogue.\-Get\-Text\-For\-Node(), Yarn.\-Dialogue.\-Load\-Compiled\-Program\-V1(), Yarn.\-Dialogue.\-Load\-String(), Yarn.\-Dialogue.\-Node\-Exists(), Yarn.\-Dialogue.\-Run(), and Yarn.\-Dialogue.\-Unload\-All().
 
 \hypertarget{a00092_aae9e64354066a1e2fa130629959d772b}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!visited\-Node\-Count@{visited\-Node\-Count}}
 \index{visited\-Node\-Count@{visited\-Node\-Count}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}

@@ -40,6 +40,8 @@ void \hyperlink{a00094_afbb342ea64e33ee19d42a6a2c949592a}{Test\-Getting\-Current
 \item 
 void \hyperlink{a00094_a16ed34de323da529e1a17670f556791c}{Test\-Getting\-Raw\-Source} ()
 \item 
+void \hyperlink{a00094_abb7bc5876ca4f37e93c6ac40bbd0e3b7}{Test\-Getting\-Tags} ()
+\item 
 void \hyperlink{a00094_a9c0d2732044b273929dbce35358a1906}{Test\-Node\-Vistation} ()
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
@@ -351,6 +353,32 @@ Definition at line 130 of file Dialogue\-Tests.\-cs.
 138             Assert.AreEqual (source, \textcolor{stringliteral}{"A: HAHAHA"});
 139         \}
 \end{DoxyCode}
+\hypertarget{a00094_abb7bc5876ca4f37e93c6ac40bbd0e3b7}{\index{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests}!Test\-Getting\-Tags@{Test\-Getting\-Tags}}
+\index{Test\-Getting\-Tags@{Test\-Getting\-Tags}!YarnSpinner::Tests::DialogueTests@{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests}}
+\subsubsection[{Test\-Getting\-Tags}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Dialogue\-Tests.\-Test\-Getting\-Tags (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00094_abb7bc5876ca4f37e93c6ac40bbd0e3b7}
+
+
+Definition at line 141 of file Dialogue\-Tests.\-cs.
+
+
+\begin{DoxyCode}
+141                                       \{
+142 
+143             dialogue.LoadFile (Path.Combine(\hyperlink{a00170_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"}));
+144 
+145             var source = dialogue.GetTagsForNode (\textcolor{stringliteral}{"LearnMore"});
+146 
+147             Assert.IsNotNull (source);
+148 
+149             Assert.IsNotEmpty (source);
+150 
+151             Assert.AreEqual (source.First(), \textcolor{stringliteral}{"rawText"});
+152         \}
+\end{DoxyCode}
 \hypertarget{a00094_a013d5e3847b9d716b39aa925d70b99fd}{\index{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests@{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests}!Test\-Missing\-Node@{Test\-Missing\-Node}}
 \index{Test\-Missing\-Node@{Test\-Missing\-Node}!YarnSpinner::Tests::DialogueTests@{Yarn\-Spinner\-::\-Tests\-::\-Dialogue\-Tests}}
 \subsubsection[{Test\-Missing\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void Yarn\-Spinner.\-Tests.\-Dialogue\-Tests.\-Test\-Missing\-Node (
@@ -414,26 +442,26 @@ Definition at line 33 of file Dialogue\-Tests.\-cs.
 )}}\label{a00094_a9c0d2732044b273929dbce35358a1906}
 
 
-Definition at line 142 of file Dialogue\-Tests.\-cs.
+Definition at line 155 of file Dialogue\-Tests.\-cs.
 
 
 \begin{DoxyCode}
-142                                         \{
-143 
-144             dialogue.LoadFile(Path.Combine(\hyperlink{a00170_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"}));
-145 
-146             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00170_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00092_aead84ee50cb113ca45724894290ce9c2}{Run}(\textcolor{stringliteral}{"Leave"})) \{
-147                 \hyperlink{a00170_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
-148             \}
-149 
-150             Assert.Contains(\textcolor{stringliteral}{"Leave"}, dialogue.visitedNodes.ToList());
-151 
-152             \textcolor{comment}{// Override the visitedNodes list}
-153             dialogue.visitedNodes = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]\{ \textcolor{stringliteral}{"LearnMore"} \};
-154 
-155             Assert.Contains(\textcolor{stringliteral}{"LearnMore"}, dialogue.visitedNodes.ToList());
+155                                         \{
 156 
-157         \}
+157             dialogue.LoadFile(Path.Combine(\hyperlink{a00170_aa9b4d902d61adad7165154a265f69aa4}{TestDataPath}, \textcolor{stringliteral}{"Example.yarn.txt"}));
+158 
+159             \textcolor{keywordflow}{foreach} (var result \textcolor{keywordflow}{in} \hyperlink{a00170_a4cff5de56c4b8a91c76b6eb2d622a795}{dialogue}.\hyperlink{a00092_aead84ee50cb113ca45724894290ce9c2}{Run}(\textcolor{stringliteral}{"Leave"})) \{
+160                 \hyperlink{a00170_a7b525f85a26d7c942e1cbfa5d6453893}{HandleResult} (result);
+161             \}
+162 
+163             Assert.Contains(\textcolor{stringliteral}{"Leave"}, dialogue.visitedNodes.ToList());
+164 
+165             \textcolor{comment}{// Override the visitedNodes list}
+166             dialogue.visitedNodes = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]\{ \textcolor{stringliteral}{"LearnMore"} \};
+167 
+168             Assert.Contains(\textcolor{stringliteral}{"LearnMore"}, dialogue.visitedNodes.ToList());
+169 
+170         \}
 \end{DoxyCode}
 
 

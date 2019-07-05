@@ -2,6 +2,7 @@ var a00152 =
 [
     [ "DumpCode", "a00152.html#a2f5bb468ce53eb7bbe647e3c11ddbb61", null ],
     [ "GetString", "a00152.html#a14737b93594c4aab25c59cb0a3c918f7", null ],
+    [ "GetTagsForNode", "a00152.html#a116312a32b20bc18e09f90c9c92a079f", null ],
     [ "GetTextForNode", "a00152.html#aad8029f37832ff1985fad6a31e51afd8", null ],
     [ "Include", "a00152.html#afd3385ca1f7589b3b9dae3646e4fee84", null ],
     [ "LoadStrings", "a00152.html#a977d1ed02e3f6f39d30dfea1663e7927", null ],

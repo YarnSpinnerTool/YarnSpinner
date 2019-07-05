@@ -263,7 +263,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="138" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="138" bodyend="161"/>
         <references refid="a00162_1ab7594e14981ad75cecea3b2e7dcf895c" compoundref="a00316" startline="110">Yarn.VirtualMachine.currentNode</references>
         <references refid="a00162_1a66491da06023dabfb63d09e6ccbba74f" compoundref="a00316" startline="98">Yarn.VirtualMachine.executionState</references>
-        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="250">Yarn.Node.instructions</references>
+        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="255">Yarn.Node.instructions</references>
         <references refid="a00162_1a5129c63e67e2d4e2780d86b8351320a2" compoundref="a00316" startline="73">Yarn.VirtualMachine.nodeCompleteHandler</references>
         <references refid="a00165_1a2c76546b54b4fb573d7f14d79ce230a3" compoundref="a00316" startline="16">Yarn.VirtualMachine.State.programCounter</references>
         <references refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</references>
@@ -287,7 +287,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" line="164" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/VirtualMachine.cs" bodystart="164" bodyend="174"/>
         <references refid="a00162_1ab7594e14981ad75cecea3b2e7dcf895c" compoundref="a00316" startline="110">Yarn.VirtualMachine.currentNode</references>
         <references refid="a00165_1a86f481fad527f719b49f8fee6ff79764" compoundref="a00316" startline="13">Yarn.VirtualMachine.State.currentNodeName</references>
-        <references refid="a00379_1a9afa49f4fbc72e806a0210cb4198f12e" compoundref="a00314" startline="258">Yarn.Node.labels</references>
+        <references refid="a00379_1a9afa49f4fbc72e806a0210cb4198f12e" compoundref="a00314" startline="263">Yarn.Node.labels</references>
         <references refid="a00162_1a70f2ce6201cdd2430ceaa764ac614ca0" compoundref="a00316" startline="78">Yarn.VirtualMachine.state</references>
         <referencedby refid="a00162_1ad2caf9ca4f00cdcbd58983be7c106971" compoundref="a00316" startline="176" endline="428">Yarn.VirtualMachine.RunInstruction</referencedby>
       </memberdef>
@@ -357,8 +357,8 @@
         <references refid="a00162_1a29b30454f068fc7e107d48bff4346fd9" compoundref="a00316" startline="70">Yarn.VirtualMachine.lineHandler</references>
         <references refid="a00162_1a5129c63e67e2d4e2780d86b8351320a2" compoundref="a00316" startline="73">Yarn.VirtualMachine.nodeCompleteHandler</references>
         <references refid="a00187_1a1ed2964965baca8621c45efa23f37660" compoundref="a00315" startline="9">Yarn.Value.NULL</references>
-        <references refid="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00314" startline="266">Yarn.Instruction.operandA</references>
-        <references refid="a00119_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00314" startline="265">Yarn.Instruction.operation</references>
+        <references refid="a00119_1ab5d386faa0d3dbc23db80f8e62706afd" compoundref="a00314" startline="271">Yarn.Instruction.operandA</references>
+        <references refid="a00119_1a566bf5f7198cc353ea5c3710cb3a31cb" compoundref="a00314" startline="270">Yarn.Instruction.operation</references>
         <references refid="a00162_1acd25fe2e3aa90dc87ba25d9af904465b" compoundref="a00316" startline="71">Yarn.VirtualMachine.optionsHandler</references>
         <references refid="a00165_1a54fd5b64ec94e937e771846167242dc2" compoundref="a00316" startline="39" endline="41">Yarn.VirtualMachine.State.PeekValue</references>
         <references refid="a00165_1a36881a888ea2839d74c3d4e7c199f4ee" compoundref="a00316" startline="34" endline="36">Yarn.VirtualMachine.State.PopValue</references>

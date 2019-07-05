@@ -18,6 +18,8 @@ var a00092 =
     [ "GetCompiledProgramV1", "a00092.html#a070898dbc07fd7d0a74d7c3ac1848beb", null ],
     [ "GetStringInfoTable", "a00092.html#a5c5117de678626ebcfb9a6f875e6e53a", null ],
     [ "GetStringTable", "a00092.html#af5fe57ebd11c41208070972f06a31b9d", null ],
+    [ "GetTagsForAllNodes", "a00092.html#a20ef38a17e4a346de3b572b85052c1d1", null ],
+    [ "GetTagsForNode", "a00092.html#ab85166316a6c5aadce336316406ed164", null ],
     [ "GetTextForAllNodes", "a00092.html#a7c83b1fe5474a6610d39eb525f6fc9ce", null ],
     [ "GetTextForNode", "a00092.html#a594641914a2b59cc5231645273d18e82", null ],
     [ "LoadCompiledProgram", "a00092.html#a4bc1ceca26754dc3ec0a2281dfee26ce", null ],

@@ -50,7 +50,7 @@ void \hyperlink{a00129_a47d1b3664733207d5cda15f4a4a7af7a}{Deregister\-Function} 
 \subsection{Detailed Description}
 The standard, built-\/in library of functions and operators. 
 
-Definition at line 596 of file Dialogue.\-cs.
+Definition at line 624 of file Dialogue.\-cs.
 
 
 
@@ -64,86 +64,86 @@ Definition at line 596 of file Dialogue.\-cs.
 )}}\label{a00164_a1bf2ea2b59a842bafffec78667a86b19}
 
 
-Definition at line 598 of file Dialogue.\-cs.
+Definition at line 626 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-598                                      \{
-599 
-600 \textcolor{preprocessor}{                #region Operators}
-601 \textcolor{preprocessor}{}
-602                 this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) \{
-603                     \textcolor{keywordflow}{return} parameters[0] + parameters[1];
-604                 \});
-605 
-606                 this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) \{
-607                     \textcolor{keywordflow}{return} parameters[0] - parameters[1];
-608                 \});
-609 
-610                 this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) \{
-611                     \textcolor{keywordflow}{return} -parameters[0];
-612                 \});
-613 
-614                 this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) \{
-615                     \textcolor{keywordflow}{return} parameters[0] / parameters[1];
-616                 \});
-617 
-618                 this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) \{
-619                     \textcolor{keywordflow}{return} parameters[0] * parameters[1];
-620                 \});
-621 
-622                 this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) \{
-623                     \textcolor{keywordflow}{return} parameters[0] % parameters[1];
-624                 \});
-625 
-626                 this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) \{
-627                     \textcolor{keywordflow}{return} parameters[0].Equals( parameters[1] );
-628                 \});
-629 
-630                 this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) \{
-631 
-632                     \textcolor{comment}{// Return the logical negative of the == operator's result}
-633                     var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
-634 
-635                     \textcolor{keywordflow}{return} !equalTo.Invoke(parameters).AsBool;
+626                                      \{
+627 
+628 \textcolor{preprocessor}{                #region Operators}
+629 \textcolor{preprocessor}{}
+630                 this.RegisterFunction(TokenType.Add.ToString(), 2, delegate(Value[] parameters) \{
+631                     \textcolor{keywordflow}{return} parameters[0] + parameters[1];
+632                 \});
+633 
+634                 this.RegisterFunction(TokenType.Minus.ToString(), 2, delegate(Value[] parameters) \{
+635                     \textcolor{keywordflow}{return} parameters[0] - parameters[1];
 636                 \});
 637 
-638                 this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) \{
-639                     \textcolor{keywordflow}{return} parameters[0] > parameters[1];
+638                 this.RegisterFunction(TokenType.UnaryMinus.ToString(), 1, delegate(Value[] parameters) \{
+639                     \textcolor{keywordflow}{return} -parameters[0];
 640                 \});
 641 
-642                 this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] 
-      parameters) \{
-643                     \textcolor{keywordflow}{return} parameters[0] >= parameters[1];
+642                 this.RegisterFunction(TokenType.Divide.ToString(), 2, delegate(Value[] parameters) \{
+643                     \textcolor{keywordflow}{return} parameters[0] / parameters[1];
 644                 \});
 645 
-646                 this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) \{
-647                     \textcolor{keywordflow}{return} parameters[0] < parameters[1];
+646                 this.RegisterFunction(TokenType.Multiply.ToString(), 2, delegate(Value[] parameters) \{
+647                     \textcolor{keywordflow}{return} parameters[0] * parameters[1];
 648                 \});
 649 
-650                 this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] 
-      parameters) \{
-651                     \textcolor{keywordflow}{return} parameters[0] <= parameters[1];
+650                 this.RegisterFunction(TokenType.Modulo.ToString(), 2, delegate(Value[] parameters) \{
+651                     \textcolor{keywordflow}{return} parameters[0] % parameters[1];
 652                 \});
 653 
-654                 this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) \{
-655                     \textcolor{keywordflow}{return} parameters[0].AsBool && parameters[1].AsBool;
+654                 this.RegisterFunction(TokenType.EqualTo.ToString(), 2, delegate(Value[] parameters) \{
+655                     \textcolor{keywordflow}{return} parameters[0].Equals( parameters[1] );
 656                 \});
 657 
-658                 this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) \{
-659                     \textcolor{keywordflow}{return} parameters[0].AsBool || parameters[1].AsBool;
-660                 \});
-661 
-662                 this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) \{
-663                     \textcolor{keywordflow}{return} parameters[0].AsBool ^ parameters[1].AsBool;
+658                 this.RegisterFunction(TokenType.NotEqualTo.ToString(), 2, delegate(Value[] parameters) \{
+659 
+660                     \textcolor{comment}{// Return the logical negative of the == operator's result}
+661                     var equalTo = this.GetFunction(TokenType.EqualTo.ToString());
+662 
+663                     \textcolor{keywordflow}{return} !equalTo.Invoke(parameters).AsBool;
 664                 \});
 665 
-666                 this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) \{
-667                     \textcolor{keywordflow}{return} !parameters[0].AsBool;
+666                 this.RegisterFunction(TokenType.GreaterThan.ToString(), 2, delegate(Value[] parameters) \{
+667                     \textcolor{keywordflow}{return} parameters[0] > parameters[1];
 668                 \});
 669 
-670 \textcolor{preprocessor}{                #endregion Operators}
-671 \textcolor{preprocessor}{}            \}
+670                 this.RegisterFunction(TokenType.GreaterThanOrEqualTo.ToString(), 2, delegate(Value[] 
+      parameters) \{
+671                     \textcolor{keywordflow}{return} parameters[0] >= parameters[1];
+672                 \});
+673 
+674                 this.RegisterFunction(TokenType.LessThan.ToString(), 2, delegate(Value[] parameters) \{
+675                     \textcolor{keywordflow}{return} parameters[0] < parameters[1];
+676                 \});
+677 
+678                 this.RegisterFunction(TokenType.LessThanOrEqualTo.ToString(), 2, delegate(Value[] 
+      parameters) \{
+679                     \textcolor{keywordflow}{return} parameters[0] <= parameters[1];
+680                 \});
+681 
+682                 this.RegisterFunction(TokenType.And.ToString(), 2, delegate(Value[] parameters) \{
+683                     \textcolor{keywordflow}{return} parameters[0].AsBool && parameters[1].AsBool;
+684                 \});
+685 
+686                 this.RegisterFunction(TokenType.Or.ToString(), 2, delegate(Value[] parameters) \{
+687                     \textcolor{keywordflow}{return} parameters[0].AsBool || parameters[1].AsBool;
+688                 \});
+689 
+690                 this.RegisterFunction(TokenType.Xor.ToString(), 2, delegate(Value[] parameters) \{
+691                     \textcolor{keywordflow}{return} parameters[0].AsBool ^ parameters[1].AsBool;
+692                 \});
+693 
+694                 this.RegisterFunction(TokenType.Not.ToString(), 1, delegate(Value[] parameters) \{
+695                     \textcolor{keywordflow}{return} !parameters[0].AsBool;
+696                 \});
+697 
+698 \textcolor{preprocessor}{                #endregion Operators}
+699 \textcolor{preprocessor}{}            \}
 \end{DoxyCode}
 
 

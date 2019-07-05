@@ -45,6 +45,8 @@ var searchData=
   ['getstring',['GetString',['../a00152.html#a14737b93594c4aab25c59cb0a3c918f7',1,'Yarn::Program']]],
   ['getstringinfotable',['GetStringInfoTable',['../a00092.html#a5c5117de678626ebcfb9a6f875e6e53a',1,'Yarn::Dialogue']]],
   ['getstringtable',['GetStringTable',['../a00092.html#af5fe57ebd11c41208070972f06a31b9d',1,'Yarn::Dialogue']]],
+  ['gettagsforallnodes',['GetTagsForAllNodes',['../a00092.html#a20ef38a17e4a346de3b572b85052c1d1',1,'Yarn::Dialogue']]],
+  ['gettagsfornode',['GetTagsForNode',['../a00092.html#ab85166316a6c5aadce336316406ed164',1,'Yarn.Dialogue.GetTagsForNode()'],['../a00152.html#a116312a32b20bc18e09f90c9c92a079f',1,'Yarn.Program.GetTagsForNode()']]],
   ['gettextforallnodes',['GetTextForAllNodes',['../a00092.html#a7c83b1fe5474a6610d39eb525f6fc9ce',1,'Yarn::Dialogue']]],
   ['gettextfornode',['GetTextForNode',['../a00092.html#a594641914a2b59cc5231645273d18e82',1,'Yarn.Dialogue.GetTextForNode()'],['../a00152.html#aad8029f37832ff1985fad6a31e51afd8',1,'Yarn.Program.GetTextForNode()']]],
   ['gettexture',['GetTexture',['../a00111.html#a267896b2c4512f5b17772e7e1e46d6da',1,'Yarn::Unity::Icons']]],

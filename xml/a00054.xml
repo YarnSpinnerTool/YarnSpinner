@@ -148,7 +148,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="110" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="110" bodyend="122"/>
-        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="250">Yarn.Node.instructions</references>
+        <references refid="a00379_1a156723a9252b62d288ddf611939ea7c3" compoundref="a00314" startline="255">Yarn.Node.instructions</references>
         <referencedby refid="a00054_1a10b52c5694f78285d087a455e3654eaa" compoundref="a00304" startline="24" endline="101">Yarn.Compiler.CompileNode</referencedby>
         <referencedby refid="a00054_1a656b6c7fcd08d24300ec592465274f66" compoundref="a00304" startline="164" endline="188">Yarn.Compiler.GenerateCode</referencedby>
       </memberdef>
@@ -384,7 +384,7 @@
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" line="392" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/Compiler.cs" bodystart="392" bodyend="416"/>
         <references refid="a00054_1a774e8c143cdda0584fcfdda98626a83c" compoundref="a00304" startline="110" endline="122">Yarn.Compiler.Emit</references>
         <references refid="a00054_1a006f3becd521cc179ba3d3352f6f930b" compoundref="a00304" startline="125" endline="162">Yarn.Compiler.GenerateCode</references>
-        <references refid="a00379_1a107b0de3fcfc65e99913edc01b5ce9db" compoundref="a00314" startline="252">Yarn.Node.name</references>
+        <references refid="a00379_1a107b0de3fcfc65e99913edc01b5ce9db" compoundref="a00314" startline="257">Yarn.Node.name</references>
       </memberdef>
       <memberdef kind="function" id="a00054_1a41438a0b25f2668a180372d05127d891" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>

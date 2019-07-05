@@ -876,6 +876,8 @@
     <member refid="a00092_1a7a6cabe5612fdcdc4619460431f85112" kind="function"><name>Stop</name></member>
     <member refid="a00092_1a7c83b1fe5474a6610d39eb525f6fc9ce" kind="function"><name>GetTextForAllNodes</name></member>
     <member refid="a00092_1a594641914a2b59cc5231645273d18e82" kind="function"><name>GetTextForNode</name></member>
+    <member refid="a00092_1a20ef38a17e4a346de3b572b85052c1d1" kind="function"><name>GetTagsForAllNodes</name></member>
+    <member refid="a00092_1ab85166316a6c5aadce336316406ed164" kind="function"><name>GetTagsForNode</name></member>
     <member refid="a00092_1acfb8561e08dc85c6d9a855ad07d18783" kind="function"><name>AddStringTable</name></member>
     <member refid="a00092_1af5fe57ebd11c41208070972f06a31b9d" kind="function"><name>GetStringTable</name></member>
     <member refid="a00092_1a5b664d4bbe7c47c246fe0beca9648687" kind="function"><name>GetCompiledProgram</name></member>
@@ -925,6 +927,7 @@
     <member refid="a00094_1a013d5e3847b9d716b39aa925d70b99fd" kind="function"><name>TestMissingNode</name></member>
     <member refid="a00094_1afbb342ea64e33ee19d42a6a2c949592a" kind="function"><name>TestGettingCurrentNodeName</name></member>
     <member refid="a00094_1a16ed34de323da529e1a17670f556791c" kind="function"><name>TestGettingRawSource</name></member>
+    <member refid="a00094_1abb7bc5876ca4f37e93c6ac40bbd0e3b7" kind="function"><name>TestGettingTags</name></member>
     <member refid="a00094_1a9c0d2732044b273929dbce35358a1906" kind="function"><name>TestNodeVistation</name></member>
     <member refid="a00170_1a23d59ace1516ca72924c6fe3feafd3f7" kind="variable"><name>storage</name></member>
     <member refid="a00170_1a4cff5de56c4b8a91c76b6eb2d622a795" kind="variable"><name>dialogue</name></member>
@@ -1754,6 +1757,7 @@
     <member refid="a00152_1a14737b93594c4aab25c59cb0a3c918f7" kind="function"><name>GetString</name></member>
     <member refid="a00152_1a2f5bb468ce53eb7bbe647e3c11ddbb61" kind="function"><name>DumpCode</name></member>
     <member refid="a00152_1aad8029f37832ff1985fad6a31e51afd8" kind="function"><name>GetTextForNode</name></member>
+    <member refid="a00152_1a116312a32b20bc18e09f90c9c92a079f" kind="function"><name>GetTagsForNode</name></member>
     <member refid="a00152_1afd3385ca1f7589b3b9dae3646e4fee84" kind="function"><name>Include</name></member>
   </compound>
   <compound refid="a00153" kind="class"><name>Yarn::ProgramExporter</name>

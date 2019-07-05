@@ -8,6 +8,7 @@ var searchData=
   ['testexamplescript',['TestExampleScript',['../a00126.html#a1d044fd44e610a35ef09d486eb06ee37',1,'YarnSpinner::Tests::LanguageTests']]],
   ['testgettingcurrentnodename',['TestGettingCurrentNodeName',['../a00094.html#afbb342ea64e33ee19d42a6a2c949592a',1,'YarnSpinner::Tests::DialogueTests']]],
   ['testgettingrawsource',['TestGettingRawSource',['../a00094.html#a16ed34de323da529e1a17670f556791c',1,'YarnSpinner::Tests::DialogueTests']]],
+  ['testgettingtags',['TestGettingTags',['../a00094.html#abb7bc5876ca4f37e93c6ac40bbd0e3b7',1,'YarnSpinner::Tests::DialogueTests']]],
   ['testloadingsinglefile',['TestLoadingSingleFile',['../a00154.html#a7d3dccb3f5ddf0b24e65782b7af15369',1,'YarnSpinner::Tests::ProjectTests']]],
   ['testmergingnodes',['TestMergingNodes',['../a00126.html#a4da987e2dbc65b35cc6bd07392f71453',1,'YarnSpinner::Tests::LanguageTests']]],
   ['testmissingnode',['TestMissingNode',['../a00094.html#a013d5e3847b9d716b39aa925d70b99fd',1,'YarnSpinner::Tests::DialogueTests']]],
