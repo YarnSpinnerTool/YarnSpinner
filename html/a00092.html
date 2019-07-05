@@ -385,12 +385,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00305_source.html#l00599">599</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                                                      {</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;            context.AddProgramToAnalysis (this.program);</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;        }</div>
+<p>Definition at line <a class="el" href="a00305_source.html#l00589">589</a> of file <a class="el" href="a00305_source.html">Dialogue.cs</a>.</p>
+<div class="fragment"><div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                                                      {</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            context.AddProgramToAnalysis (this.program);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1003,27 +1003,17 @@ Private Attributes</h2></td></tr>
 <p>Referenced by <a class="el" href="a00305_source.html#l00215">Yarn.Dialogue.YarnFunctionNodeVisitCount()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                                                {</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a> == null) {</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count &gt; 0) {</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                    <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;Internal consistency error: Called NodeExists, and &quot;</span> +</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                                     <span class="stringliteral">&quot;there are nodes loaded, but the program hasn&#39;t &quot;</span> +</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                                     <span class="stringliteral">&quot;been compiled yet, somehow?&quot;</span>);</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                    <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;Tried to call NodeExists, but no nodes &quot;</span> +</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                                     <span class="stringliteral">&quot;have been compiled!&quot;</span>);</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                }</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            }</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a> == null || <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count == 0) {</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                <a class="code" href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">LogDebugMessage</a> (<span class="stringliteral">&quot;Called NodeExists, but there are zero nodes. &quot;</span> +</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                                 <span class="stringliteral">&quot;This may be an error.&quot;</span>);</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;            }</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;            <span class="keywordflow">return</span> program.nodes.ContainsKey(nodeName);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        }</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                <a class="code" href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">LogErrorMessage</a> (<span class="stringliteral">&quot;Tried to call NodeExists, but no nodes &quot;</span> +</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                                 <span class="stringliteral">&quot;have been compiled!&quot;</span>);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            }</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a> == null || <a class="code" href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">program</a>.<a class="code" href="a00152.html#a3f4928a577c88263ad016be259b175c4">nodes</a>.Count == 0) {</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                <a class="code" href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">LogDebugMessage</a> (<span class="stringliteral">&quot;Called NodeExists, but there are zero nodes. &quot;</span> +</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                                 <span class="stringliteral">&quot;This may be an error.&quot;</span>);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;            }</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;            <span class="keywordflow">return</span> program.nodes.ContainsKey(nodeName);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;        }</div>
 <div class="ttc" id="a00092_html_a0a1cca92325f430425d784d416cb5c2b"><div class="ttname"><a href="a00092.html#a0a1cca92325f430425d784d416cb5c2b">Yarn.Dialogue.program</a></div><div class="ttdeci">Program program</div><div class="ttdoc">The Program is the compiled Yarn program. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00203">Dialogue.cs:203</a></div></div>
 <div class="ttc" id="a00092_html_a381f48bb0fbb294f8cf44ca57f11be31"><div class="ttname"><a href="a00092.html#a381f48bb0fbb294f8cf44ca57f11be31">Yarn.Dialogue.LogDebugMessage</a></div><div class="ttdeci">Logger LogDebugMessage</div><div class="ttdoc">Delegates used for logging. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00193">Dialogue.cs:193</a></div></div>
 <div class="ttc" id="a00092_html_a9801e83dd044d6498fdf6ebcc6bec5ac"><div class="ttname"><a href="a00092.html#a9801e83dd044d6498fdf6ebcc6bec5ac">Yarn.Dialogue.LogErrorMessage</a></div><div class="ttdeci">Logger LogErrorMessage</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00194">Dialogue.cs:194</a></div></div>
@@ -1648,7 +1638,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00092.html">Dialogue</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:05:16 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:06:47 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

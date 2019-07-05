@@ -54,7 +54,7 @@
         <referencedby refid="a00152_1aad8029f37832ff1985fad6a31e51afd8" compoundref="a00314" startline="216" endline="219">Yarn.Program.GetTextForNode</referencedby>
         <referencedby refid="a00092_1a594641914a2b59cc5231645273d18e82" compoundref="a00305" startline="499" endline="509">Yarn.Dialogue.GetTextForNode</referencedby>
         <referencedby refid="a00152_1afd3385ca1f7589b3b9dae3646e4fee84" compoundref="a00314" startline="221" endline="244">Yarn.Program.Include</referencedby>
-        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="597">Yarn.Dialogue.NodeExists</referencedby>
+        <referencedby refid="a00092_1a93bb76a1f9a4058f225ff4cee97483c6" compoundref="a00305" startline="575" endline="587">Yarn.Dialogue.NodeExists</referencedby>
         <referencedby refid="a00162_1a6364593ea1115d65e34b343422cfbbbd" compoundref="a00316" startline="112" endline="131">Yarn.VirtualMachine.SetNode</referencedby>
       </memberdef>
       </sectiondef>

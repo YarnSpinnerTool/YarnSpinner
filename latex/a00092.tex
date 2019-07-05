@@ -240,15 +240,15 @@ Definition at line 511 of file Dialogue.\-cs.
 )}}\label{a00092_a6b67b239f50c062160666e54592c433f}
 
 
-Definition at line 599 of file Dialogue.\-cs.
+Definition at line 589 of file Dialogue.\-cs.
 
 
 \begin{DoxyCode}
-599                                                       \{
-600 
-601             context.AddProgramToAnalysis (this.program);
-602 
-603         \}
+589                                                       \{
+590 
+591             context.AddProgramToAnalysis (this.program);
+592 
+593         \}
 \end{DoxyCode}
 \hypertarget{a00092_a7a8a3a461011172f5624da3a8ffa875f}{\index{Yarn\-::\-Dialogue@{Yarn\-::\-Dialogue}!Compile@{Compile}}
 \index{Compile@{Compile}!Yarn::Dialogue@{Yarn\-::\-Dialogue}}
@@ -760,27 +760,17 @@ Referenced by Yarn.\-Dialogue.\-Yarn\-Function\-Node\-Visit\-Count().
 \begin{DoxyCode}
 575                                                 \{
 576             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program} == null) \{
-577 
-578                 \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count > 0) \{
-579                     \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"Internal consistency error: Called NodeExists, and "} +
-580                                      \textcolor{stringliteral}{"there are nodes loaded, but the program hasn't "} +
-581                                      \textcolor{stringliteral}{"been compiled yet, somehow?"});
-582 
-583                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-584 
-585                 \} \textcolor{keywordflow}{else} \{
-586                     \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"Tried to call NodeExists, but no nodes "} +
-587                                      \textcolor{stringliteral}{"have been compiled!"});
-588                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-589                 \}
-590             \}
-591             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes} == null || \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count == 0) \{
-592                 \hyperlink{a00092_a381f48bb0fbb294f8cf44ca57f11be31}{LogDebugMessage} (\textcolor{stringliteral}{"Called NodeExists, but there are zero nodes. "} +
-593                                  \textcolor{stringliteral}{"This may be an error."});
-594                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-595             \}
-596             \textcolor{keywordflow}{return} program.nodes.ContainsKey(nodeName);
-597         \}
+577                 \hyperlink{a00092_a9801e83dd044d6498fdf6ebcc6bec5ac}{LogErrorMessage} (\textcolor{stringliteral}{"Tried to call NodeExists, but no nodes "} +
+578                                  \textcolor{stringliteral}{"have been compiled!"});
+579                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+580             \}
+581             \textcolor{keywordflow}{if} (\hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes} == null || \hyperlink{a00092_a0a1cca92325f430425d784d416cb5c2b}{program}.\hyperlink{a00152_a3f4928a577c88263ad016be259b175c4}{nodes}.Count == 0) \{
+582                 \hyperlink{a00092_a381f48bb0fbb294f8cf44ca57f11be31}{LogDebugMessage} (\textcolor{stringliteral}{"Called NodeExists, but there are zero nodes. "} +
+583                                  \textcolor{stringliteral}{"This may be an error."});
+584                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+585             \}
+586             \textcolor{keywordflow}{return} program.nodes.ContainsKey(nodeName);
+587         \}
 \end{DoxyCode}
 
 
