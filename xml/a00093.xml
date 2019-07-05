@@ -388,14 +388,18 @@
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="284" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="284" bodyend="286"/>
       </memberdef>
-      <memberdef kind="function" id="a00093_1a7b200f8ddcf77f50906a6341aadeb671" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool Yarn.Unity.DialogueRunner.DispatchCommand</definition>
-        <argsstring>(string command)</argsstring>
+      <memberdef kind="function" id="a00093_1a83e4b881e8359b22d2d9efc3237699b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator Yarn.Unity.DialogueRunner.DispatchCommand</definition>
+        <argsstring>(string command, System.Action&lt; bool &gt; hasValidCommand)</argsstring>
         <name>DispatchCommand</name>
         <param>
           <type>string</type>
           <declname>command</declname>
+        </param>
+        <param>
+          <type>System.Action&lt; bool &gt;</type>
+          <declname>hasValidCommand</declname>
         </param>
         <briefdescription>
 <para>commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ... </para>        </briefdescription>
@@ -405,7 +409,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="303" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="303" bodyend="406"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="303" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="303" bodyend="428"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -513,7 +517,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="45" bodyend="408"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" line="46" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/Unity/Assets/YarnSpinner/Code/DialogueRunner.cs" bodystart="45" bodyend="430"/>
     <listofallmembers>
       <member refid="a00093_1a822055443227d3b76c6a8fb509812820" prot="private" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>_dialogue</name></member>
       <member refid="a00093_1a88d161b1be7c99b1e202e6ae9e0d1e73" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>AddScript</name></member>
@@ -526,7 +530,7 @@
       <member refid="a00093_1a8589c66769e89906eaff3c2263bdad5d" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>currentNodeName</name></member>
       <member refid="a00093_1a4f9712a847ca6d53ec8d2dd64dfcffd8" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>dialogue</name></member>
       <member refid="a00093_1ac87fdc65b0be57868f80c0fcd62ffd6d" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>dialogueUI</name></member>
-      <member refid="a00093_1a7b200f8ddcf77f50906a6341aadeb671" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>DispatchCommand</name></member>
+      <member refid="a00093_1a83e4b881e8359b22d2d9efc3237699b6" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>DispatchCommand</name></member>
       <member refid="a00093_1a9eb0fd7b600a4667595042832af1d655" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>isDialogueRunning</name></member>
       <member refid="a00093_1aadf7711b9ba101d6ce8ba491d9c5a4c3" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>NodeExists</name></member>
       <member refid="a00093_1ad12db159fc3df0819d5b594c33fba834" prot="public" virt="non-virtual"><scope>Yarn::Unity::DialogueRunner</scope><name>overrideLanguage</name></member>

@@ -174,9 +174,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aadf7711b9ba101d6ce8ba491d9c5a4c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#aadf7711b9ba101d6ce8ba491d9c5a4c3">NodeExists</a> (string nodeName)</td></tr>
 <tr class="memdesc:aadf7711b9ba101d6ce8ba491d9c5a4c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test to see if a node name exists.  <a href="#aadf7711b9ba101d6ce8ba491d9c5a4c3">More...</a><br/></td></tr>
 <tr class="separator:aadf7711b9ba101d6ce8ba491d9c5a4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b200f8ddcf77f50906a6341aadeb671"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#a7b200f8ddcf77f50906a6341aadeb671">DispatchCommand</a> (string command)</td></tr>
-<tr class="memdesc:a7b200f8ddcf77f50906a6341aadeb671"><td class="mdescLeft">&#160;</td><td class="mdescRight">commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ...  <a href="#a7b200f8ddcf77f50906a6341aadeb671">More...</a><br/></td></tr>
-<tr class="separator:a7b200f8ddcf77f50906a6341aadeb671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e4b881e8359b22d2d9efc3237699b6"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#a83e4b881e8359b22d2d9efc3237699b6">DispatchCommand</a> (string command, System.Action&lt; bool &gt; hasValidCommand)</td></tr>
+<tr class="memdesc:a83e4b881e8359b22d2d9efc3237699b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ...  <a href="#a83e4b881e8359b22d2d9efc3237699b6">More...</a><br/></td></tr>
+<tr class="separator:a83e4b881e8359b22d2d9efc3237699b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -401,16 +401,26 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a7b200f8ddcf77f50906a6341aadeb671"></a>
+<a class="anchor" id="a83e4b881e8359b22d2d9efc3237699b6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Yarn.Unity.DialogueRunner.DispatchCommand </td>
+          <td class="memname">IEnumerator Yarn.Unity.DialogueRunner.DispatchCommand </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>command</em></td><td>)</td>
+          <td class="paramname"><em>command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">System.Action&lt; bool &gt;&#160;</td>
+          <td class="paramname"><em>hasValidCommand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -424,110 +434,132 @@ Private Attributes</h2></td></tr>
 </ol>
 
 <p>Definition at line <a class="el" href="a00292_source.html#l00303">303</a> of file <a class="el" href="a00292_source.html">DialogueRunner.cs</a>.</p>
-<div class="fragment"><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                                                    {</div>
+<div class="fragment"><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                                                                                                {</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            var words = command.Split(<span class="charliteral">&#39; &#39;</span>);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            <span class="comment">// need 2 parameters in order to have both a command name</span></div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="comment">// and the name of an object to find</span></div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordflow">if</span> (words.Length &lt; 2)</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            var commandName = words[0];</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            var objectName = words[1];</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            var sceneObject = GameObject.Find(objectName);</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="comment">// If we can&#39;t find an object, we can&#39;t dispatch a command</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">if</span> (sceneObject == null)</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordtype">int</span> numberOfMethodsFound = 0;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            List&lt;string[]&gt; errorValues = <span class="keyword">new</span> List&lt;string[]&gt;();</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            List&lt;string&gt; parameters;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="keywordflow">if</span> (words.Length &gt; 2) {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                parameters = <span class="keyword">new</span> List&lt;string&gt;(words);</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                parameters.RemoveRange(0, 2);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                parameters = <span class="keyword">new</span> List&lt;string&gt;();</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            }</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="comment">// Find every MonoBehaviour (or subclass) on the object</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keywordflow">foreach</span> (var component <span class="keywordflow">in</span> sceneObject.GetComponents&lt;MonoBehaviour&gt;()) {</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                var type = component.GetType();</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <span class="comment">// Find every method in this component</span></div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                <span class="keywordflow">foreach</span> (var method <span class="keywordflow">in</span> type.GetMethods()) {</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                    <span class="comment">// Find the YarnCommand attributes on this method</span></div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                    var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(YarnCommandAttribute), <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                hasValidCommand(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            var commandName = words[0];</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            var objectName = words[1];</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            var sceneObject = GameObject.Find(objectName);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            <span class="comment">// If we can&#39;t find an object, we can&#39;t dispatch a command</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordflow">if</span> (sceneObject == null)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                hasValidCommand(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                yield <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordtype">int</span> numberOfMethodsFound = 0;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            List&lt;string[]&gt; errorValues = <span class="keyword">new</span> List&lt;string[]&gt;();</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            List&lt;string&gt; parameters;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keywordflow">if</span> (words.Length &gt; 2) {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                parameters = <span class="keyword">new</span> List&lt;string&gt;(words);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                parameters.RemoveRange(0, 2);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                parameters = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <span class="comment">// Find every MonoBehaviour (or subclass) on the object</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keywordflow">foreach</span> (var component <span class="keywordflow">in</span> sceneObject.GetComponents&lt;MonoBehaviour&gt;()) {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                var type = component.GetType();</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                    <span class="comment">// Find the YarnCommand whose commandString is equal to the command name</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                    <span class="keywordflow">foreach</span> (var attribute <span class="keywordflow">in</span> attributes) {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                        <span class="keywordflow">if</span> (attribute.commandString == commandName) {</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                            var methodParameters = method.GetParameters();</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                            <span class="keywordtype">bool</span> paramsMatch = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                            <span class="comment">// Check if this is a params array</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                            <span class="keywordflow">if</span> (methodParameters.Length == 1 &amp;&amp; methodParameters[0].ParameterType.IsAssignableFrom(typeof(<span class="keywordtype">string</span>[])))</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                                {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                                    <span class="comment">// Cool, we can send the command!</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                                    <span class="keywordtype">string</span>[][] paramWrapper = <span class="keyword">new</span> <span class="keywordtype">string</span>[1][];</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                                    paramWrapper[0] = parameters.ToArray();</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                                    method.Invoke(component, paramWrapper);</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                                    numberOfMethodsFound++;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                                    paramsMatch = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                            }</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                            <span class="comment">// Otherwise, verify that this method has the right number of parameters</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (methodParameters.Length == parameters.Count)</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                            {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                                paramsMatch = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                                <span class="keywordflow">foreach</span> (var paramInfo <span class="keywordflow">in</span> methodParameters)</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                                {</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                                    <span class="keywordflow">if</span> (!paramInfo.ParameterType.IsAssignableFrom(typeof(<span class="keywordtype">string</span>)))</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                <span class="comment">// Find every method in this component</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                <span class="keywordflow">foreach</span> (var method <span class="keywordflow">in</span> type.GetMethods()) {</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                    <span class="comment">// Find the YarnCommand attributes on this method</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                    var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(YarnCommandAttribute), <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                    <span class="comment">// Find the YarnCommand whose commandString is equal to the command name</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                    <span class="keywordflow">foreach</span> (var attribute <span class="keywordflow">in</span> attributes) {</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        <span class="keywordflow">if</span> (attribute.commandString == commandName) {</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                            var methodParameters = method.GetParameters();</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                            <span class="keywordtype">bool</span> paramsMatch = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                            <span class="comment">// Check if this is a params array</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                            <span class="keywordflow">if</span> (methodParameters.Length == 1 &amp;&amp; methodParameters[0].ParameterType.IsAssignableFrom(typeof(<span class="keywordtype">string</span>[])))</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                                {</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                                    <span class="comment">// Cool, we can send the command!</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                                    <span class="comment">// Yield if this is a Coroutine</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                                    <span class="keywordtype">string</span>[][] paramWrapper = <span class="keyword">new</span> <span class="keywordtype">string</span>[1][];</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                                    paramWrapper[0] = parameters.ToArray();</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                                    <span class="keywordflow">if</span> (method.ReturnType == typeof(IEnumerator))</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                                    {</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                                        yield <span class="keywordflow">return</span> StartCoroutine((IEnumerator)method.Invoke(component, paramWrapper));</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                                    }</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                                    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                                    {</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                                        Debug.LogErrorFormat(sceneObject, <span class="stringliteral">&quot;Method \&quot;{0}\&quot; wants to respond to Yarn command \&quot;{1}\&quot;, but not all of its parameters are strings!&quot;</span>, method.Name, commandName);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                                        paramsMatch = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                                    }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                                }</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                                <span class="keywordflow">if</span> (paramsMatch)</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                                {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                                    <span class="comment">// Cool, we can send the command!</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                                    method.Invoke(component, parameters.ToArray());</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                                    numberOfMethodsFound++;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                                }</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                            }</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                            <span class="comment">//parameters are invalid, but name matches.</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                            <span class="keywordflow">if</span> (!paramsMatch)</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                            {</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                                <span class="comment">//save this error in case a matching command is never found.</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                                errorValues.Add(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { method.Name, commandName, methodParameters.Length.ToString(), parameters.Count.ToString() });</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                            }</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                        }</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                    }</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                }</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            }</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            <span class="comment">// Warn if we found multiple things that could respond</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <span class="comment">// to this command.</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            <span class="keywordflow">if</span> (numberOfMethodsFound &gt; 1) {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                Debug.LogWarningFormat(sceneObject, <span class="stringliteral">&quot;The command \&quot;{0}\&quot; found {1} targets. &quot;</span> +</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                    <span class="stringliteral">&quot;You should only have one - check your scripts.&quot;</span>, command, numberOfMethodsFound);</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (numberOfMethodsFound == 0) {</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                <span class="comment">//list all of the near-miss methods only if a proper match is not found, but correctly-named methods are.</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <span class="keywordflow">foreach</span> (<span class="keywordtype">string</span>[] errorVal <span class="keywordflow">in</span> errorValues) {</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                    Debug.LogErrorFormat(sceneObject, <span class="stringliteral">&quot;Method \&quot;{0}\&quot; wants to respond to Yarn command \&quot;{1}\&quot;, but it has a different number of parameters ({2}) to those provided ({3}), or is not a string array!&quot;</span>, errorVal[0], errorVal[1], errorVal[2], errorVal[3]);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                }</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            }</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <span class="keywordflow">return</span> numberOfMethodsFound &gt; 0;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        }</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                                        method.Invoke(component, paramWrapper);</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                                    }</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                                    numberOfMethodsFound++;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                                    paramsMatch = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                            }</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                            <span class="comment">// Otherwise, verify that this method has the right number of parameters</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (methodParameters.Length == parameters.Count)</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                            {</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                                paramsMatch = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                                <span class="keywordflow">foreach</span> (var paramInfo <span class="keywordflow">in</span> methodParameters)</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                                {</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                                    <span class="keywordflow">if</span> (!paramInfo.ParameterType.IsAssignableFrom(typeof(<span class="keywordtype">string</span>)))</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                                    {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                                        Debug.LogErrorFormat(sceneObject, <span class="stringliteral">&quot;Method \&quot;{0}\&quot; wants to respond to Yarn command \&quot;{1}\&quot;, but not all of its parameters are strings!&quot;</span>, method.Name, commandName);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                                        paramsMatch = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                                    }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                                }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                                <span class="keywordflow">if</span> (paramsMatch)</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                                {</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                                    <span class="comment">// Cool, we can send the command!</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                                    <span class="comment">// Yield if this is a Coroutine</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                                    <span class="keywordflow">if</span> (method.ReturnType == typeof(IEnumerator))</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                                    {</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                                        yield <span class="keywordflow">return</span> StartCoroutine((IEnumerator)method.Invoke(component, parameters.ToArray()));</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                                    }</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                                    {</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;                                        method.Invoke(component, parameters.ToArray());</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                                    }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                                    numberOfMethodsFound++;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                                }</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                            }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                            <span class="comment">//parameters are invalid, but name matches.</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                            <span class="keywordflow">if</span> (!paramsMatch)</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                            {</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                                <span class="comment">//save this error in case a matching command is never found.</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                errorValues.Add(<span class="keyword">new</span> <span class="keywordtype">string</span>[] { method.Name, commandName, methodParameters.Length.ToString(), parameters.Count.ToString() });</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                            }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                        }</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                    }</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                }</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            }</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            <span class="comment">// Warn if we found multiple things that could respond</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            <span class="comment">// to this command.</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            <span class="keywordflow">if</span> (numberOfMethodsFound &gt; 1) {</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                Debug.LogWarningFormat(sceneObject, <span class="stringliteral">&quot;The command \&quot;{0}\&quot; found {1} targets. &quot;</span> +</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                    <span class="stringliteral">&quot;You should only have one - check your scripts.&quot;</span>, command, numberOfMethodsFound);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (numberOfMethodsFound == 0) {</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                <span class="comment">//list all of the near-miss methods only if a proper match is not found, but correctly-named methods are.</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                <span class="keywordflow">foreach</span> (<span class="keywordtype">string</span>[] errorVal <span class="keywordflow">in</span> errorValues) {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                    Debug.LogErrorFormat(sceneObject, <span class="stringliteral">&quot;Method \&quot;{0}\&quot; wants to respond to Yarn command \&quot;{1}\&quot;, but it has a different number of parameters ({2}) to those provided ({3}), or is not a string array!&quot;</span>, errorVal[0], errorVal[1], errorVal[2], errorVal[3]);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                }</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            }</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            hasValidCommand(numberOfMethodsFound &gt; 0);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -634,12 +666,12 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                    var commandResult = step as <a class="code" href="a00052.html">Yarn.Dialogue.CommandResult</a>;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="a00093.html#a7b200f8ddcf77f50906a6341aadeb671">DispatchCommand</a>(commandResult.command.text) == <span class="keyword">true</span>) {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                        <span class="comment">// command was dispatched</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        yield <span class="keywordflow">return</span> StartCoroutine (this.<a class="code" href="a00093.html#ac87fdc65b0be57868f80c0fcd62ffd6d">dialogueUI</a>.<a class="code" href="a00095.html#a3dffe84b9e7a10fdec6749baf697d111">RunCommand</a> (commandResult.command));</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                    }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="keywordtype">bool</span> hasValidCommand = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    yield <span class="keywordflow">return</span> <a class="code" href="a00093.html#a83e4b881e8359b22d2d9efc3237699b6">DispatchCommand</a>(commandResult.command.text, (status) =&gt; { hasValidCommand = status; });</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    <span class="keywordflow">if</span> (!hasValidCommand)</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                        yield <span class="keywordflow">return</span> StartCoroutine(this.<a class="code" href="a00093.html#ac87fdc65b0be57868f80c0fcd62ffd6d">dialogueUI</a>.<a class="code" href="a00095.html#a3dffe84b9e7a10fdec6749baf697d111">RunCommand</a>(commandResult.command));</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                    }</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(step is Yarn.Dialogue.NodeCompleteResult) {</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
@@ -657,20 +689,20 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="comment">// out of a conversation (ie letterboxing going away, etc)</span></div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            <a class="code" href="a00093.html#a9eb0fd7b600a4667595042832af1d655">isDialogueRunning</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        }</div>
-<div class="ttc" id="a00095_html_aecc60aee9e9386da1f71fb183f43c52d"><div class="ttname"><a href="a00095.html#aecc60aee9e9386da1f71fb183f43c52d">Yarn.Unity.DialogueUIBehaviour.DialogueComplete</a></div><div class="ttdeci">virtual IEnumerator DialogueComplete()</div><div class="ttdoc">The conversation has ended. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00454">DialogueRunner.cs:454</a></div></div>
+<div class="ttc" id="a00095_html_aecc60aee9e9386da1f71fb183f43c52d"><div class="ttname"><a href="a00095.html#aecc60aee9e9386da1f71fb183f43c52d">Yarn.Unity.DialogueUIBehaviour.DialogueComplete</a></div><div class="ttdeci">virtual IEnumerator DialogueComplete()</div><div class="ttdoc">The conversation has ended. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00476">DialogueRunner.cs:476</a></div></div>
 <div class="ttc" id="a00139_html"><div class="ttname"><a href="a00139.html">Yarn.Dialogue.NodeCompleteResult</a></div><div class="ttdoc">We&#39;ve reached the end of this node. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00184">Dialogue.cs:184</a></div></div>
 <div class="ttc" id="a00095_html_a3dffe84b9e7a10fdec6749baf697d111"><div class="ttname"><a href="a00095.html#a3dffe84b9e7a10fdec6749baf697d111">Yarn.Unity.DialogueUIBehaviour.RunCommand</a></div><div class="ttdeci">abstract IEnumerator RunCommand(Yarn.Command command)</div><div class="ttdoc">Perform some game-specific command. </div></div>
 <div class="ttc" id="a00093_html_a9eb0fd7b600a4667595042832af1d655"><div class="ttname"><a href="a00093.html#a9eb0fd7b600a4667595042832af1d655">Yarn.Unity.DialogueRunner.isDialogueRunning</a></div><div class="ttdeci">bool isDialogueRunning</div><div class="ttdoc">Tests to see if the dialogue is running. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00071">DialogueRunner.cs:71</a></div></div>
 <div class="ttc" id="a00093_html_a61c92b8d2228d01d8ac123b73bbb41a0"><div class="ttname"><a href="a00093.html#a61c92b8d2228d01d8ac123b73bbb41a0">Yarn.Unity.DialogueRunner.startNode</a></div><div class="ttdeci">string startNode</div><div class="ttdoc">Which node to start from. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00065">DialogueRunner.cs:65</a></div></div>
+<div class="ttc" id="a00093_html_a83e4b881e8359b22d2d9efc3237699b6"><div class="ttname"><a href="a00093.html#a83e4b881e8359b22d2d9efc3237699b6">Yarn.Unity.DialogueRunner.DispatchCommand</a></div><div class="ttdeci">IEnumerator DispatchCommand(string command, System.Action&lt; bool &gt; hasValidCommand)</div><div class="ttdoc">commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ...</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00303">DialogueRunner.cs:303</a></div></div>
 <div class="ttc" id="a00092_html_aead84ee50cb113ca45724894290ce9c2"><div class="ttname"><a href="a00092.html#aead84ee50cb113ca45724894290ce9c2">Yarn.Dialogue.Run</a></div><div class="ttdeci">IEnumerable&lt; Yarn.Dialogue.RunnerResult &gt; Run(string startNode=DEFAULT_START)</div><div class="ttdoc">Use this in a for-each construct; each time you iterate over it, you&#39;ll get a line, command, or set of options. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00387">Dialogue.cs:387</a></div></div>
 <div class="ttc" id="a00093_html_ac87fdc65b0be57868f80c0fcd62ffd6d"><div class="ttname"><a href="a00093.html#ac87fdc65b0be57868f80c0fcd62ffd6d">Yarn.Unity.DialogueRunner.dialogueUI</a></div><div class="ttdeci">Yarn.Unity.DialogueUIBehaviour dialogueUI</div><div class="ttdoc">The object that will handle the actual display and user input. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00062">DialogueRunner.cs:62</a></div></div>
-<div class="ttc" id="a00093_html_a7b200f8ddcf77f50906a6341aadeb671"><div class="ttname"><a href="a00093.html#a7b200f8ddcf77f50906a6341aadeb671">Yarn.Unity.DialogueRunner.DispatchCommand</a></div><div class="ttdeci">bool DispatchCommand(string command)</div><div class="ttdoc">commands that can be automatically dispatched look like this: COMMANDNAME OBJECTNAME    ...</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00303">DialogueRunner.cs:303</a></div></div>
-<div class="ttc" id="a00095_html_af9d88ca81ac536d43046ca6572e3ff54"><div class="ttname"><a href="a00095.html#af9d88ca81ac536d43046ca6572e3ff54">Yarn.Unity.DialogueUIBehaviour.DialogueStarted</a></div><div class="ttdeci">virtual IEnumerator DialogueStarted()</div><div class="ttdoc">A conversation has started. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00432">DialogueRunner.cs:432</a></div></div>
+<div class="ttc" id="a00095_html_af9d88ca81ac536d43046ca6572e3ff54"><div class="ttname"><a href="a00095.html#af9d88ca81ac536d43046ca6572e3ff54">Yarn.Unity.DialogueUIBehaviour.DialogueStarted</a></div><div class="ttdeci">virtual IEnumerator DialogueStarted()</div><div class="ttdoc">A conversation has started. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00454">DialogueRunner.cs:454</a></div></div>
 <div class="ttc" id="a00132_html"><div class="ttname"><a href="a00132.html">Yarn.Dialogue.LineResult</a></div><div class="ttdoc">The client should run a line of dialogue. </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00143">Dialogue.cs:143</a></div></div>
 <div class="ttc" id="a00093_html_a4f9712a847ca6d53ec8d2dd64dfcffd8"><div class="ttname"><a href="a00093.html#a4f9712a847ca6d53ec8d2dd64dfcffd8">Yarn.Unity.DialogueRunner.dialogue</a></div><div class="ttdeci">Dialogue dialogue</div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00079">DialogueRunner.cs:79</a></div></div>
 <div class="ttc" id="a00052_html"><div class="ttname"><a href="a00052.html">Yarn.Dialogue.CommandResult</a></div><div class="ttdoc">The client should run a command (it&#39;s up to them to parse the string) </div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00156">Dialogue.cs:156</a></div></div>
 <div class="ttc" id="a00145_html"><div class="ttname"><a href="a00145.html">Yarn.Dialogue.OptionSetResult</a></div><div class="ttdoc">The client should show a list of options, and call setSelectedOptionDelegate before asking for the ne...</div><div class="ttdef"><b>Definition:</b> <a href="a00305_source.html#l00170">Dialogue.cs:170</a></div></div>
-<div class="ttc" id="a00095_html_a2900548a0704d39d4502a153945f4bef"><div class="ttname"><a href="a00095.html#a2900548a0704d39d4502a153945f4bef">Yarn.Unity.DialogueUIBehaviour.NodeComplete</a></div><div class="ttdeci">virtual IEnumerator NodeComplete(string nextNode)</div><div class="ttdoc">The node has ended. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00448">DialogueRunner.cs:448</a></div></div>
+<div class="ttc" id="a00095_html_a2900548a0704d39d4502a153945f4bef"><div class="ttname"><a href="a00095.html#a2900548a0704d39d4502a153945f4bef">Yarn.Unity.DialogueUIBehaviour.NodeComplete</a></div><div class="ttdeci">virtual IEnumerator NodeComplete(string nextNode)</div><div class="ttdoc">The node has ended. </div><div class="ttdef"><b>Definition:</b> <a href="a00292_source.html#l00470">DialogueRunner.cs:470</a></div></div>
 <div class="ttc" id="a00095_html_ac5b29079f638f2ceb078627ef1e60004"><div class="ttname"><a href="a00095.html#ac5b29079f638f2ceb078627ef1e60004">Yarn.Unity.DialogueUIBehaviour.RunOptions</a></div><div class="ttdeci">abstract IEnumerator RunOptions(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser)</div><div class="ttdoc">Display the options, and call the optionChooser when done. </div></div>
 <div class="ttc" id="a00095_html_a754c6dd0bc67895d11f878fe4477d698"><div class="ttname"><a href="a00095.html#a754c6dd0bc67895d11f878fe4477d698">Yarn.Unity.DialogueUIBehaviour.RunLine</a></div><div class="ttdeci">abstract IEnumerator RunLine(Yarn.Line line)</div><div class="ttdoc">Display a line. </div></div>
 </div><!-- fragment -->
@@ -1078,7 +1110,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="a00051.html">Yarn</a></li><li class="navelem"><a class="el" href="a00135.html">Unity</a></li><li class="navelem"><a class="el" href="a00093.html">DialogueRunner</a></li>
-    <li class="footer">Generated on Fri Jul 5 2019 02:29:14 for YarnSpinner by
+    <li class="footer">Generated on Fri Jul 5 2019 02:43:20 for YarnSpinner by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

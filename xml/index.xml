@@ -915,7 +915,7 @@
     <member refid="a00093_1a09f5769c0c0921a21e659fed0af09c01" kind="function"><name>Clear</name></member>
     <member refid="a00093_1af94e66876098f8b187181014973645e6" kind="function"><name>Stop</name></member>
     <member refid="a00093_1aadf7711b9ba101d6ce8ba491d9c5a4c3" kind="function"><name>NodeExists</name></member>
-    <member refid="a00093_1a7b200f8ddcf77f50906a6341aadeb671" kind="function"><name>DispatchCommand</name></member>
+    <member refid="a00093_1a83e4b881e8359b22d2d9efc3237699b6" kind="function"><name>DispatchCommand</name></member>
   </compound>
   <compound refid="a00094" kind="class"><name>YarnSpinner::Tests::DialogueTests</name>
     <member refid="a00094_1a5c830001442a7fe18fdc06452682477e" kind="variable"><name>experimentalMode</name></member>

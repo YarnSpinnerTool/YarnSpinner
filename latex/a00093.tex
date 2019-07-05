@@ -51,7 +51,7 @@ void \hyperlink{a00093_af94e66876098f8b187181014973645e6}{Stop} ()
 \begin{DoxyCompactList}\small\item\em Stop the dialogue. \end{DoxyCompactList}\item 
 bool \hyperlink{a00093_aadf7711b9ba101d6ce8ba491d9c5a4c3}{Node\-Exists} (string node\-Name)
 \begin{DoxyCompactList}\small\item\em Test to see if a node name exists. \end{DoxyCompactList}\item 
-bool \hyperlink{a00093_a7b200f8ddcf77f50906a6341aadeb671}{Dispatch\-Command} (string command)
+I\-Enumerator \hyperlink{a00093_a83e4b881e8359b22d2d9efc3237699b6}{Dispatch\-Command} (string command, System.\-Action$<$ bool $>$ has\-Valid\-Command)
 \begin{DoxyCompactList}\small\item\em commands that can be automatically dispatched look like this\-: C\-O\-M\-M\-A\-N\-D\-N\-A\-M\-E O\-B\-J\-E\-C\-T\-N\-A\-M\-E    ... \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -256,13 +256,14 @@ Definition at line 268 of file Dialogue\-Runner.\-cs.
 274             dialogue.UnloadAll();
 275         \}
 \end{DoxyCode}
-\hypertarget{a00093_a7b200f8ddcf77f50906a6341aadeb671}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Dispatch\-Command@{Dispatch\-Command}}
+\hypertarget{a00093_a83e4b881e8359b22d2d9efc3237699b6}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Dispatch\-Command@{Dispatch\-Command}}
 \index{Dispatch\-Command@{Dispatch\-Command}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
-\subsubsection[{Dispatch\-Command}]{\setlength{\rightskip}{0pt plus 5cm}bool Yarn.\-Unity.\-Dialogue\-Runner.\-Dispatch\-Command (
+\subsubsection[{Dispatch\-Command}]{\setlength{\rightskip}{0pt plus 5cm}I\-Enumerator Yarn.\-Unity.\-Dialogue\-Runner.\-Dispatch\-Command (
 \begin{DoxyParamCaption}
-\item[{string}]{command}
+\item[{string}]{command, }
+\item[{System.\-Action$<$ bool $>$}]{has\-Valid\-Command}
 \end{DoxyParamCaption}
-)}}\label{a00093_a7b200f8ddcf77f50906a6341aadeb671}
+)}}\label{a00093_a83e4b881e8359b22d2d9efc3237699b6}
 
 
 commands that can be automatically dispatched look like this\-: C\-O\-M\-M\-A\-N\-D\-N\-A\-M\-E O\-B\-J\-E\-C\-T\-N\-A\-M\-E    ... 
@@ -278,117 +279,141 @@ Definition at line 303 of file Dialogue\-Runner.\-cs.
 
 
 \begin{DoxyCode}
-303                                                     \{
+303                                                                                                 \{
 304 
 305             var words = command.Split(\textcolor{charliteral}{' '});
 306 
 307             \textcolor{comment}{// need 2 parameters in order to have both a command name}
 308             \textcolor{comment}{// and the name of an object to find}
 309             \textcolor{keywordflow}{if} (words.Length < 2)
-310                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-311 
-312             var commandName = words[0];
-313 
-314             var objectName = words[1];
-315 
-316             var sceneObject = GameObject.Find(objectName);
-317 
-318             \textcolor{comment}{// If we can't find an object, we can't dispatch a command}
-319             \textcolor{keywordflow}{if} (sceneObject == null)
-320                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-321 
-322             \textcolor{keywordtype}{int} numberOfMethodsFound = 0;
-323             List<string[]> errorValues = \textcolor{keyword}{new} List<string[]>();
-324 
-325             List<string> parameters;
-326 
-327             \textcolor{keywordflow}{if} (words.Length > 2) \{
-328                 parameters = \textcolor{keyword}{new} List<string>(words);
-329                 parameters.RemoveRange(0, 2);
-330             \} \textcolor{keywordflow}{else} \{
-331                 parameters = \textcolor{keyword}{new} List<string>();
-332             \}
-333 
-334             \textcolor{comment}{// Find every MonoBehaviour (or subclass) on the object}
-335             \textcolor{keywordflow}{foreach} (var component \textcolor{keywordflow}{in} sceneObject.GetComponents<MonoBehaviour>()) \{
-336                 var type = component.GetType();
-337 
-338                 \textcolor{comment}{// Find every method in this component}
-339                 \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods()) \{
-340 
-341                     \textcolor{comment}{// Find the YarnCommand attributes on this method}
-342                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(
-      YarnCommandAttribute), \textcolor{keyword}{true});
+310             \{
+311                 hasValidCommand(\textcolor{keyword}{false});
+312                 yield \textcolor{keywordflow}{break};
+313             \}
+314 
+315             var commandName = words[0];
+316 
+317             var objectName = words[1];
+318 
+319             var sceneObject = GameObject.Find(objectName);
+320 
+321             \textcolor{comment}{// If we can't find an object, we can't dispatch a command}
+322             \textcolor{keywordflow}{if} (sceneObject == null)
+323             \{
+324                 hasValidCommand(\textcolor{keyword}{false});
+325                 yield \textcolor{keywordflow}{break};
+326             \}
+327 
+328             \textcolor{keywordtype}{int} numberOfMethodsFound = 0;
+329             List<string[]> errorValues = \textcolor{keyword}{new} List<string[]>();
+330 
+331             List<string> parameters;
+332 
+333             \textcolor{keywordflow}{if} (words.Length > 2) \{
+334                 parameters = \textcolor{keyword}{new} List<string>(words);
+335                 parameters.RemoveRange(0, 2);
+336             \} \textcolor{keywordflow}{else} \{
+337                 parameters = \textcolor{keyword}{new} List<string>();
+338             \}
+339 
+340             \textcolor{comment}{// Find every MonoBehaviour (or subclass) on the object}
+341             \textcolor{keywordflow}{foreach} (var component \textcolor{keywordflow}{in} sceneObject.GetComponents<MonoBehaviour>()) \{
+342                 var type = component.GetType();
 343 
-344                     \textcolor{comment}{// Find the YarnCommand whose commandString is equal to the command name}
-345                     \textcolor{keywordflow}{foreach} (var attribute \textcolor{keywordflow}{in} attributes) \{
-346                         \textcolor{keywordflow}{if} (attribute.commandString == commandName) \{
-347 
-348 
-349                             var methodParameters = method.GetParameters();
-350                             \textcolor{keywordtype}{bool} paramsMatch = \textcolor{keyword}{false};
-351                             \textcolor{comment}{// Check if this is a params array}
-352                             \textcolor{keywordflow}{if} (methodParameters.Length == 1 && methodParameters[0].ParameterType.
+344                 \textcolor{comment}{// Find every method in this component}
+345                 \textcolor{keywordflow}{foreach} (var method \textcolor{keywordflow}{in} type.GetMethods()) \{
+346 
+347                     \textcolor{comment}{// Find the YarnCommand attributes on this method}
+348                     var attributes = (YarnCommandAttribute[]) method.GetCustomAttributes(typeof(
+      YarnCommandAttribute), \textcolor{keyword}{true});
+349 
+350                     \textcolor{comment}{// Find the YarnCommand whose commandString is equal to the command name}
+351                     \textcolor{keywordflow}{foreach} (var attribute \textcolor{keywordflow}{in} attributes) \{
+352                         \textcolor{keywordflow}{if} (attribute.commandString == commandName) \{
+353 
+354 
+355                             var methodParameters = method.GetParameters();
+356                             \textcolor{keywordtype}{bool} paramsMatch = \textcolor{keyword}{false};
+357                             \textcolor{comment}{// Check if this is a params array}
+358                             \textcolor{keywordflow}{if} (methodParameters.Length == 1 && methodParameters[0].ParameterType.
       IsAssignableFrom(typeof(\textcolor{keywordtype}{string}[])))
-353                                 \{
-354                                     \textcolor{comment}{// Cool, we can send the command!}
-355                                     \textcolor{keywordtype}{string}[][] paramWrapper = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[1][];
-356                                     paramWrapper[0] = parameters.ToArray();
-357                                     method.Invoke(component, paramWrapper);
-358                                     numberOfMethodsFound++;
-359                                     paramsMatch = \textcolor{keyword}{true};
-360 
-361                             \}
-362                             \textcolor{comment}{// Otherwise, verify that this method has the right number of parameters}
-363                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (methodParameters.Length == parameters.Count)
-364                             \{
-365                                 paramsMatch = \textcolor{keyword}{true};
-366                                 \textcolor{keywordflow}{foreach} (var paramInfo \textcolor{keywordflow}{in} methodParameters)
-367                                 \{
-368                                     \textcolor{keywordflow}{if} (!paramInfo.ParameterType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
+359                                 \{
+360                                     \textcolor{comment}{// Cool, we can send the command!}
+361                                     \textcolor{comment}{// Yield if this is a Coroutine}
+362                                     \textcolor{keywordtype}{string}[][] paramWrapper = \textcolor{keyword}{new} \textcolor{keywordtype}{string}[1][];
+363                                     paramWrapper[0] = parameters.ToArray();
+364                                     \textcolor{keywordflow}{if} (method.ReturnType == typeof(IEnumerator))
+365                                     \{
+366                                         yield \textcolor{keywordflow}{return} StartCoroutine((IEnumerator)method.Invoke(component, 
+      paramWrapper));
+367                                     \}
+368                                     \textcolor{keywordflow}{else}
 369                                     \{
-370                                         Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond
+370                                         method.Invoke(component, paramWrapper);
+371                                     \}
+372                                     numberOfMethodsFound++;
+373                                     paramsMatch = \textcolor{keyword}{true};
+374 
+375                             \}
+376                             \textcolor{comment}{// Otherwise, verify that this method has the right number of parameters}
+377                             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (methodParameters.Length == parameters.Count)
+378                             \{
+379                                 paramsMatch = \textcolor{keyword}{true};
+380                                 \textcolor{keywordflow}{foreach} (var paramInfo \textcolor{keywordflow}{in} methodParameters)
+381                                 \{
+382                                     \textcolor{keywordflow}{if} (!paramInfo.ParameterType.IsAssignableFrom(typeof(\textcolor{keywordtype}{string})))
+383                                     \{
+384                                         Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond
        to Yarn command \(\backslash\)"\{1\}\(\backslash\)", but not all of its parameters are strings!"}, method.Name, commandName);
-371                                         paramsMatch = \textcolor{keyword}{false};
-372                                         \textcolor{keywordflow}{break};
-373                                     \}
-374                                 \}
-375                                 \textcolor{keywordflow}{if} (paramsMatch)
-376                                 \{
-377                                     \textcolor{comment}{// Cool, we can send the command!}
-378                                     method.Invoke(component, parameters.ToArray());
-379                                     numberOfMethodsFound++;
-380                                 \}
-381                             \}
-382                             \textcolor{comment}{//parameters are invalid, but name matches.}
-383                             \textcolor{keywordflow}{if} (!paramsMatch)
-384                             \{
-385                                 \textcolor{comment}{//save this error in case a matching command is never found.}
-386                                 errorValues.Add(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ method.Name, commandName, 
+385                                         paramsMatch = \textcolor{keyword}{false};
+386                                         \textcolor{keywordflow}{break};
+387                                     \}
+388                                 \}
+389                                 \textcolor{keywordflow}{if} (paramsMatch)
+390                                 \{
+391                                     \textcolor{comment}{// Cool, we can send the command!}
+392                                     \textcolor{comment}{// Yield if this is a Coroutine}
+393                                     \textcolor{keywordflow}{if} (method.ReturnType == typeof(IEnumerator))
+394                                     \{
+395                                         yield \textcolor{keywordflow}{return} StartCoroutine((IEnumerator)method.Invoke(component, 
+      parameters.ToArray()));
+396                                     \}
+397                                     \textcolor{keywordflow}{else}
+398                                     \{
+399                                         method.Invoke(component, parameters.ToArray());
+400                                     \}
+401                                     numberOfMethodsFound++;
+402                                 \}
+403                             \}
+404                             \textcolor{comment}{//parameters are invalid, but name matches.}
+405                             \textcolor{keywordflow}{if} (!paramsMatch)
+406                             \{
+407                                 \textcolor{comment}{//save this error in case a matching command is never found.}
+408                                 errorValues.Add(\textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{ method.Name, commandName, 
       methodParameters.Length.ToString(), parameters.Count.ToString() \});
-387                             \}
-388                         \}
-389                     \}
-390                 \}
-391             \}
-392 
-393             \textcolor{comment}{// Warn if we found multiple things that could respond}
-394             \textcolor{comment}{// to this command.}
-395             \textcolor{keywordflow}{if} (numberOfMethodsFound > 1) \{
-396                 Debug.LogWarningFormat(sceneObject, \textcolor{stringliteral}{"The command \(\backslash\)"\{0\}\(\backslash\)" found \{1\} targets. "} +
-397                     \textcolor{stringliteral}{"You should only have one - check your scripts."}, command, numberOfMethodsFound);
-398             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (numberOfMethodsFound == 0) \{
-399                 \textcolor{comment}{//list all of the near-miss methods only if a proper match is not found, but
+409                             \}
+410                         \}
+411                     \}
+412                 \}
+413             \}
+414 
+415             \textcolor{comment}{// Warn if we found multiple things that could respond}
+416             \textcolor{comment}{// to this command.}
+417             \textcolor{keywordflow}{if} (numberOfMethodsFound > 1) \{
+418                 Debug.LogWarningFormat(sceneObject, \textcolor{stringliteral}{"The command \(\backslash\)"\{0\}\(\backslash\)" found \{1\} targets. "} +
+419                     \textcolor{stringliteral}{"You should only have one - check your scripts."}, command, numberOfMethodsFound);
+420             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (numberOfMethodsFound == 0) \{
+421                 \textcolor{comment}{//list all of the near-miss methods only if a proper match is not found, but
        correctly-named methods are.}
-400                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{string}[] errorVal \textcolor{keywordflow}{in} errorValues) \{
-401                     Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to Yarn command \(\backslash\)"
+422                 \textcolor{keywordflow}{foreach} (\textcolor{keywordtype}{string}[] errorVal \textcolor{keywordflow}{in} errorValues) \{
+423                     Debug.LogErrorFormat(sceneObject, \textcolor{stringliteral}{"Method \(\backslash\)"\{0\}\(\backslash\)" wants to respond to Yarn command \(\backslash\)"
       \{1\}\(\backslash\)", but it has a different number of parameters (\{2\}) to those provided (\{3\}), or is not a string array!"}, 
       errorVal[0], errorVal[1], errorVal[2], errorVal[3]);
-402                 \}
-403             \}
-404 
-405             \textcolor{keywordflow}{return} numberOfMethodsFound > 0;
-406         \}
+424                 \}
+425             \}
+426 
+427             hasValidCommand(numberOfMethodsFound > 0);
+428         \}
 \end{DoxyCode}
 \hypertarget{a00093_aadf7711b9ba101d6ce8ba491d9c5a4c3}{\index{Yarn\-::\-Unity\-::\-Dialogue\-Runner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}!Node\-Exists@{Node\-Exists}}
 \index{Node\-Exists@{Node\-Exists}!Yarn::Unity::DialogueRunner@{Yarn\-::\-Unity\-::\-Dialogue\-Runner}}
@@ -483,13 +508,14 @@ Definition at line 209 of file Dialogue\-Runner.\-cs.
 240 
 241                     var commandResult = step as \hyperlink{a00052}{Yarn.Dialogue.CommandResult};
 242 
-243                     \textcolor{keywordflow}{if} (\hyperlink{a00093_a7b200f8ddcf77f50906a6341aadeb671}{DispatchCommand}(commandResult.command.text) == \textcolor{keyword}{true}) \{
-244                         \textcolor{comment}{// command was dispatched}
-245                     \} \textcolor{keywordflow}{else} \{
-246                         yield \textcolor{keywordflow}{return} StartCoroutine (this.\hyperlink{a00093_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
-      \hyperlink{a00095_a3dffe84b9e7a10fdec6749baf697d111}{RunCommand} (commandResult.command));
-247                     \}
-248 
+243                     \textcolor{keywordtype}{bool} hasValidCommand = \textcolor{keyword}{false};
+244                     yield \textcolor{keywordflow}{return} \hyperlink{a00093_a83e4b881e8359b22d2d9efc3237699b6}{DispatchCommand}(commandResult.command.text, (status) => \{ 
+      hasValidCommand = status; \});
+245                     \textcolor{keywordflow}{if} (!hasValidCommand)
+246                     \{
+247                         yield \textcolor{keywordflow}{return} StartCoroutine(this.\hyperlink{a00093_ac87fdc65b0be57868f80c0fcd62ffd6d}{dialogueUI}.
+      \hyperlink{a00095_a3dffe84b9e7a10fdec6749baf697d111}{RunCommand}(commandResult.command));
+248                     \}
 249 
 250                 \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(step is Yarn.Dialogue.NodeCompleteResult) \{
 251 

@@ -6,7 +6,7 @@ var a00093 =
     [ "AddStringTable", "a00093.html#a08d4eb5038b23aad6d59d74ac89806a9", null ],
     [ "AddStringTable", "a00093.html#abc595a490988ca712d37af540c2e0df9", null ],
     [ "Clear", "a00093.html#a09f5769c0c0921a21e659fed0af09c01", null ],
-    [ "DispatchCommand", "a00093.html#a7b200f8ddcf77f50906a6341aadeb671", null ],
+    [ "DispatchCommand", "a00093.html#a83e4b881e8359b22d2d9efc3237699b6", null ],
     [ "NodeExists", "a00093.html#aadf7711b9ba101d6ce8ba491d9c5a4c3", null ],
     [ "ResetDialogue", "a00093.html#ac08900ac15b3ca90446b9454c7fd117e", null ],
     [ "RunDialogue", "a00093.html#adf4e816844b7d9ab4ed99265fd3f3ea9", null ],
