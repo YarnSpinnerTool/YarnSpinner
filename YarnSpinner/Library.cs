@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Yarn
 {
     public delegate Object ReturningFunction (params Value[] parameters);
+#pragma warning disable CA1716 // Identifiers should not match keywords
     public delegate void Function (params Value[] parameters);
+#pragma warning restore CA1716 // Identifiers should not match keywords
 
     public class FunctionInfo {
 
@@ -50,7 +53,7 @@ namespace Yarn
                     return Value.NULL; // a null Value
                 }
             } else {
-                string error = string.Format (
+                string error = string.Format (CultureInfo.CurrentCulture,
                     "Incorrect number of parameters for function {0} (expected {1}, got {2}",
                     this.name,
                     this.paramCount,

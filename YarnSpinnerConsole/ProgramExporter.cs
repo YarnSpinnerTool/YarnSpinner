@@ -1,14 +1,11 @@
 ﻿using System;
-
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace Yarn
 {
-    public class ProgramExporter
+    public static class ProgramExporter
     {
-        public ProgramExporter()
-        {
-        }
 
         internal static int Export(CompileOptions options)
         {
@@ -24,11 +21,13 @@ namespace Yarn
                     // First, we need to ensure that this file compiles.
                     dialogue.LoadFile(file);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch
                 {
-                    YarnSpinnerConsole.Warn(string.Format("Skipping file {0} due to compilation errors.", file));
+                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Skipping file {0} due to compilation errors.", file));
                     continue;
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
 
                 // Convert the program into BSON
                 var compiledProgram = dialogue.GetCompiledProgram(options.format);
@@ -37,9 +36,11 @@ namespace Yarn
 
                 try {
                     System.IO.File.WriteAllBytes(outputPath, compiledProgram);
+#pragma warning disable CA1031 // Do not catch general exception types
                 } catch (Exception e) {
-                    YarnSpinnerConsole.Error(string.Format("Error writing {0}: {1}", outputPath, e.Message));
+                    YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "Error writing {0}: {1}", outputPath, e.Message));
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
 
 
 

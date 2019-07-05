@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
+using System.Globalization;
 
 namespace Yarn
 {
@@ -24,7 +25,7 @@ namespace Yarn
 			}
 
 			string possibleValues = string.Join(",", expectedTypeNames.ToArray());
-			string message = string.Format("Line {0}:{1}: Expected {2}, but found {3}",
+			string message = string.Format(CultureInfo.CurrentCulture, "Line {0}:{1}: Expected {2}, but found {3}",
 										   lineNumber,
 										   foundToken.columnNumber,
 										   possibleValues,
@@ -38,7 +39,7 @@ namespace Yarn
 		internal static ParseException Make(Token mostRecentToken, string message)
 		{
 			var lineNumber = mostRecentToken.lineNumber + 1;
-			string theMessage = string.Format("Line {0}:{1}: {2}",
+			string theMessage = string.Format(CultureInfo.CurrentCulture, "Line {0}:{1}: {2}",
 								 lineNumber,
 								mostRecentToken.columnNumber,
 								 message);
@@ -56,7 +57,7 @@ namespace Yarn
 			int end = context.Stop.StopIndex;
             string body = context.Start.InputStream.GetText(new Antlr4.Runtime.Misc.Interval(start, end));
 
-            string theMessage = String.Format("Error on line {0}\n{1}\n{2}",line,body,message);
+            string theMessage = string.Format(CultureInfo.CurrentCulture, "Error on line {0}\n{1}\n{2}", line,body,message);
 
             var e = new ParseException(theMessage);
             e.lineNumber = line;
@@ -105,7 +106,7 @@ namespace Yarn
 				var result = new Dictionary<string, string>();
 				foreach (var line in strings)
 				{
-					if (line.Key.StartsWith("line:"))
+					if (line.Key.StartsWith("line:", StringComparison.InvariantCulture))
 					{
 						continue;
 					}
@@ -135,7 +136,7 @@ namespace Yarn
 			string key;
 
 			if (lineID == null)
-				key = string.Format("{0}-{1}", nodeName, stringCount++);
+				key = string.Format(CultureInfo.InvariantCulture, "{0}-{1}", nodeName, stringCount++);
 			else
 				key = lineID;
 
@@ -185,11 +186,11 @@ namespace Yarn
 
 					if (instructionCount % 5 == 0 || instructionCount == entry.Value.instructions.Count - 1)
 					{
-						preface = string.Format("{0,6}   ", instructionCount);
+						preface = string.Format(CultureInfo.InvariantCulture, "{0,6}   ", instructionCount);
 					}
 					else
 					{
-						preface = string.Format("{0,6}   ", " ");
+						preface = string.Format(CultureInfo.InvariantCulture, "{0,6}   ", " ");
 					}
 
 					sb.AppendLine(preface + instructionText);
@@ -206,7 +207,7 @@ namespace Yarn
 			{
 				var lineInfo = this.lineInfo[entry.Key];
 
-                sb.AppendLine(string.Format("{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
+                sb.AppendLine(string.Format(CultureInfo.InvariantCulture, "{0}: {1} ({2}:{3})", entry.Key, entry.Value, lineInfo.nodeName, lineInfo.lineNumber));
 			}
 
 			return sb.ToString();
@@ -224,7 +225,7 @@ namespace Yarn
 
 				if (nodes.ContainsKey(otherNodeName.Key))
 				{
-					throw new InvalidOperationException(string.Format("This program already contains a node named {0}", otherNodeName.Key));
+					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a node named {0}", otherNodeName.Key));
 				}
 
 				nodes[otherNodeName.Key] = otherNodeName.Value;
@@ -235,7 +236,7 @@ namespace Yarn
 
 				if (nodes.ContainsKey(otherString.Key))
 				{
-					throw new InvalidOperationException(string.Format("This program already contains a string with key {0}", otherString.Key));
+					throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "This program already contains a string with key {0}", otherString.Key));
 				}
 
 				strings[otherString.Key] = otherString.Value;
@@ -275,8 +276,8 @@ namespace Yarn
 			}
 
 			// Convert the operands to strings
-			var opAString = operandA != null ? operandA.ToString() : "";
-			var opBString = operandB != null ? operandB.ToString() : "";
+			var opAString = operandA != null ? Convert.ToString(operandA, CultureInfo.InvariantCulture) : "";
+			var opBString = operandB != null ? Convert.ToString(operandB, CultureInfo.InvariantCulture) : "";
 
 			// Generate a comment, if the instruction warrants it
 			string comment = "";
@@ -324,11 +325,11 @@ namespace Yarn
 			// If we had any pushes or pops, report them
 
 			if (pops > 0 && pushes > 0)
-				comment += string.Format("Pops {0}, Pushes {1}", pops, pushes);
+				comment += string.Format(CultureInfo.InvariantCulture, "Pops {0}, Pushes {1}", pops, pushes);
 			else if (pops > 0)
-				comment += string.Format("Pops {0}", pops);
+				comment += string.Format(CultureInfo.InvariantCulture, "Pops {0}", pops);
 			else if (pushes > 0)
-				comment += string.Format("Pushes {0}", pushes);
+				comment += string.Format(CultureInfo.InvariantCulture, "Pushes {0}", pushes);
 
 			// String lookup comments
 			switch (operation)
@@ -341,7 +342,7 @@ namespace Yarn
 					if ((string)operandA != null)
 					{
 						var text = p.GetString((string)operandA);
-						comment += string.Format("\"{0}\"", text);
+						comment += string.Format(CultureInfo.InvariantCulture, "\"{0}\"", text);
 					}
 
 					break;
@@ -353,7 +354,7 @@ namespace Yarn
 				comment = "; " + comment;
 			}
 
-			return string.Format("{0,-15} {1,-10} {2,-10} {3, -10}", operation.ToString(), opAString, opBString, comment);
+			return string.Format(CultureInfo.InvariantCulture, "{0,-15} {1,-10} {2,-10} {3, -10}", operation.ToString(), opAString, opBString, comment);
 		}
 	}
 

@@ -6,3 +6,4 @@ The following people have contributed to the development of Yarn Spinner. If you
 * 2017: Rev Peter Lawler <relwalretep@gmail.com>
 * 2017: Dr Tim 'McJones' Nugent <tim@lonely.coffee>
 * 2018: Damon 'demanrisu' Reece <de@coy.ninja>
+* 2019: Tamme Schichler <tamme@schichler.dev>

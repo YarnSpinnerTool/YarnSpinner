@@ -2,10 +2,11 @@
 using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Yarn
 {
-    public class FileFormatConverter
+    public static class FileFormatConverter
     {
         static internal int ConvertFormat(ConvertFormatOptions options)
         {
@@ -23,7 +24,7 @@ namespace Yarn
 
             var processName = System.IO.Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
-            YarnSpinnerConsole.Error(string.Format("You must specify a destination format. Run '{0} help convert' to learn more.", processName));
+            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "You must specify a destination format. Run '{0} help convert' to learn more.", processName));
             return 1;
         }
 
@@ -34,7 +35,7 @@ namespace Yarn
 
                 if (Loader.GetFormatFromFileName(file) == NodeFormat.JSON)
                 {
-                    YarnSpinnerConsole.Warn(string.Format("Not converting file {0}, because its name implies it's already in JSON format", file));
+                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Not converting file {0}, because its name implies it's already in JSON format", file));
                     continue;
                 }
 
@@ -50,7 +51,7 @@ namespace Yarn
             {
                 if (Loader.GetFormatFromFileName(file) == NodeFormat.Text)
                 {
-                    YarnSpinnerConsole.Warn(string.Format("Not converting file {0}, because its name implies it's already in Yarn format", file));
+                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Not converting file {0}, because its name implies it's already in Yarn format", file));
                     continue;
                 }
 
@@ -106,21 +107,21 @@ namespace Yarn
                     }
                     else if (propertyType.IsAssignableFrom(typeof(int)))
                     {
-                        value = ((int)property.GetValue(node, null)).ToString();
+                        value = ((int)property.GetValue(node, null)).ToString(CultureInfo.InvariantCulture);
                     }
                     else if (propertyType.IsAssignableFrom(typeof(Loader.NodeInfo.Position)))
                     {
                         var position = (Loader.NodeInfo.Position)property.GetValue(node, null);
 
-                        value = string.Format("{0},{1}", position.x, position.y);
+                        value = string.Format(CultureInfo.InvariantCulture, "{0},{1}", position.x, position.y);
                     } else {
-                        YarnSpinnerConsole.Error(string.Format("Internal error: Node {0}'s property {1} has unsupported type {2}", node.title, property.Name, propertyType.FullName));
+                        YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "Internal error: Node {0}'s property {1} has unsupported type {2}", node.title, property.Name, propertyType.FullName));
 
                         // will never be run, but prevents the compiler being mean about us not returning a value
                         throw new Exception();
                     }
 
-                    var header = string.Format("{0}: {1}", field, value);
+                    var header = string.Format(CultureInfo.InvariantCulture, "{0}: {1}", field, value);
 
                     sb.AppendLine(header);
 

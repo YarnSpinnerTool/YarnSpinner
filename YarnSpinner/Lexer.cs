@@ -27,6 +27,7 @@ SOFTWARE.
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Yarn {
 
@@ -37,7 +38,7 @@ namespace Yarn {
 
         public TokeniserException (string message) : base (message) {}
         public TokeniserException (int lineNumber, int columnNumber, string message)
-            : base(string.Format ("{0}:{1}: {2}", lineNumber, columnNumber, message))
+            : base(string.Format (CultureInfo.CurrentCulture, "{0}:{1}: {2}", lineNumber, columnNumber, message))
         {
             this.lineNumber = lineNumber;
             this.columnNumber = columnNumber;
@@ -59,7 +60,7 @@ namespace Yarn {
                 nameList = names [0];
             }
 
-            var message = string.Format ("Expected {0}", nameList);
+            var message = string.Format (CultureInfo.CurrentCulture, "Expected {0}", nameList);
 
             return new TokeniserException (lineNumber, columnNumber, message);
         }
@@ -201,9 +202,9 @@ namespace Yarn {
 
         public override string ToString() {
             if (this.value != null) {
-                return string.Format("{0} ({1}) at {2}:{3} (state: {4})", type.ToString(), value.ToString(), lineNumber, columnNumber, lexerState);
+                return string.Format(CultureInfo.CurrentCulture, "{0} ({1}) at {2}:{3} (state: {4})", type.ToString(), value, lineNumber, columnNumber, lexerState);
             } else {
-                return string.Format ("{0} at {1}:{2} (state: {3})", type, lineNumber, columnNumber, lexerState);
+                return string.Format (CultureInfo.CurrentCulture, "{0} at {1}:{2} (state: {3})", type, lineNumber, columnNumber, lexerState);
             }
         }
     }
@@ -225,7 +226,7 @@ namespace Yarn {
 
             public TokenRule AddTransition(TokenType type, string entersState = null, bool delimitsText = false) {
 
-                var pattern = string.Format (@"\G{0}", patterns [type]);
+                var pattern = string.Format (CultureInfo.InvariantCulture, @"\G{0}", patterns [type]);
 
                 var rule = new TokenRule (type, new Regex(pattern), entersState, delimitsText);
 
@@ -246,12 +247,12 @@ namespace Yarn {
 
                 foreach (var otherRule in tokenRules) {
                     if (otherRule.delimitsText == true)
-                        delimiterRules.Add (string.Format ("({0})", otherRule.regex.ToString().Substring(2)));
+                        delimiterRules.Add (string.Format (CultureInfo.InvariantCulture, "({0})", otherRule.regex.ToString().Substring(2)));
                 }
 
                 // Create a regex that matches all text up to but not including
                 // any of the delimiter rules
-                var pattern = string.Format (@"\G((?!{0}).)*",
+                var pattern = string.Format (CultureInfo.InvariantCulture, @"\G((?!{0}).)*",
                     string.Join ("|", delimiterRules.ToArray()));
 
                 var rule = AddTransition(type, entersState);
@@ -295,7 +296,7 @@ namespace Yarn {
 
             public override string ToString ()
             {
-                return string.Format (string.Format ("[TokenRule: {0} - {1}]", type, this.regex));
+                return string.Format(CultureInfo.InvariantCulture, "[TokenRule: {0} - {1}]", type, this.regex);
             }
 
         }
@@ -549,7 +550,7 @@ namespace Yarn {
 
                 // If we're about to hit a line comment, abort processing line
                 // immediately
-                if (line.Substring(columnNumber).StartsWith(LINE_COMMENT)) {
+                if (line.Substring(columnNumber).StartsWith(LINE_COMMENT, StringComparison.InvariantCulture)) {
                     break;
                 }
 

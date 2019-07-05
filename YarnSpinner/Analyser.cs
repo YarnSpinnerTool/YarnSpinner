@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Yarn.Analysis
 {
@@ -56,10 +57,10 @@ namespace Yarn.Analysis
 
                 contextLabel += this.nodeName;
                 if (this.lineNumber != -1) {
-                    contextLabel += string.Format (": {0}", this.lineNumber);
+                    contextLabel += string.Format (CultureInfo.CurrentCulture, ": {0}", this.lineNumber);
 
                     if (this.columnNumber != -1) {
-                        contextLabel += string.Format (":{0}", this.columnNumber);
+                        contextLabel += string.Format (CultureInfo.CurrentCulture, ":{0}", this.columnNumber);
                     }
                 }
             }
@@ -69,7 +70,7 @@ namespace Yarn.Analysis
             if (string.IsNullOrEmpty(contextLabel)) {
                 message = this.message;
             } else {
-                message = string.Format ("{0}: {1}", contextLabel, this.message);
+                message = string.Format (CultureInfo.CurrentCulture, "{0}: {1}", contextLabel, this.message);
             }
 
             return message;
@@ -235,12 +236,12 @@ namespace Yarn.Analysis
             var diagnoses = new List<Diagnosis>();
 
             foreach (var readOnlyVariable in readOnlyVariables) {
-                var message = string.Format ("Variable {0} is read from, but never assigned", readOnlyVariable);
+                var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is read from, but never assigned", readOnlyVariable);
                 diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));
             }
 
             foreach (var writeOnlyVariable in writeOnlyVariables) {
-                var message = string.Format ("Variable {0} is assigned, but never read from", writeOnlyVariable);
+                var message = string.Format (CultureInfo.CurrentCulture, "Variable {0} is assigned, but never read from", writeOnlyVariable);
                 diagnoses.Add(new Diagnosis (message, Diagnosis.Severity.Warning));
             }
 
