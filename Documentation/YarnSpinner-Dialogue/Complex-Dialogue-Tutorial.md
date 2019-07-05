@@ -60,7 +60,7 @@ This is some simple introductory text for our Ship character, but it wouldn't ma
 ### Conditionals and Functions
 Yarn Spinner has an inbuilt ***function*** called `visited`. This function checks to see if a node has previously been accessed by the player. We can combine this function with a ***conditional*** to see whether a node has been previously displayed to the player. The basic syntax of such a conditional is:
 ```
-<<if visted("NodeName") is true>>
+<<if visited("NodeName") is true>>
     NPC: You have visited me before, player
 <<else>>
     NPC: You have not visited me before, player
@@ -68,7 +68,7 @@ Yarn Spinner has an inbuilt ***function*** called `visited`. This function check
 ```
 > ***Note:*** The above can be re-written to provide the same outcome by reversing the test from true to false and inverting the NPC text:
 ```
-<<if visted("NodeName") is false>>
+<<if visited("NodeName") is false>>
     NPC: You have not visited me before, player
 <<else>>
     NPC: You have visited me before, player
