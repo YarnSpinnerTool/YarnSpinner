@@ -38,6 +38,7 @@ show_help () {
 init_build () {
     CONFIGURATION="Release"
     VERBOSITY="quiet"
+    if [ -z "$@" ] ; then HELP=true; fi
     while getopts "bcdnuvh" opt; do
         case $opt in
             b)
@@ -54,7 +55,8 @@ init_build () {
                 VERBOSITY=normal ;;
             h)
                 HELP=true ;;
-            \?) echo; show_help ; exit 0 ;;
+	    \?)
+		HELP=true ;;
         esac
     XBUILD_ARGS="/verbosity:${VERBOSITY} /p:Configuration=${CONFIGURATION}"
     if [ "${OSTYPE}" = "linux-gnu" ]; then
