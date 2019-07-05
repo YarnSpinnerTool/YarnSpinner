@@ -27,6 +27,7 @@ SOFTWARE.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -523,9 +524,9 @@ namespace Yarn {
             internal override string PrintTree (int indentLevel)
             {
                 if (label != null) {
-                    return Tab (indentLevel, string.Format ("Option: \"{0}\" -> {1}", label, destination));
+                    return Tab (indentLevel, string.Format (CultureInfo.CurrentCulture, "Option: \"{0}\" -> {1}", label, destination));
                 } else {
-                    return Tab (indentLevel, string.Format ("Option: -> {0}", destination));
+                    return Tab (indentLevel, string.Format (CultureInfo.CurrentCulture, "Option: -> {0}", destination));
                 }
             }
         }
@@ -678,7 +679,7 @@ namespace Yarn {
                 switch (t.type) {
                 case TokenType.Number:
 
-                    value = new Value (float.Parse (t.value as String));
+                    value = new Value (float.Parse (t.value as string, CultureInfo.InvariantCulture));
 
                     break;
                 case TokenType.String:
@@ -726,11 +727,11 @@ namespace Yarn {
             {
                 switch (value.type) {
                 case Value.Type.Number:
-                    return Tab (indentLevel, value.numberValue.ToString());
+                    return Tab (indentLevel, value.numberValue.ToString(CultureInfo.CurrentCulture));
                 case Value.Type.String:
-                    return Tab(indentLevel, String.Format("\"{0}\"", value.stringValue));
+                    return Tab(indentLevel, string.Format(CultureInfo.CurrentCulture, "\"{0}\"", value.stringValue));
                 case Value.Type.Bool:
-                    return Tab (indentLevel, value.boolValue.ToString());
+                    return Tab (indentLevel, value.boolValue.ToString(CultureInfo.CurrentCulture));
                 case Value.Type.Variable:
                     return Tab (indentLevel, value.variableName);
                 case Value.Type.Null:
@@ -995,7 +996,7 @@ namespace Yarn {
 
                             // Ensure that this call has the right number of params
                             if (info.IsParameterCountCorrect(next.parameterCount) == false) {
-                                string error = string.Format("Error parsing expression: " +
+                                string error = string.Format(CultureInfo.CurrentCulture, "Error parsing expression: " +
                                     "Unsupported number of parameters for function {0} (expected {1}, got {2})",
                                     next.value as String,
                                     info.paramCount,

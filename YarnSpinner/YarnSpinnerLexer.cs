@@ -52,9 +52,18 @@ public partial class YarnSpinnerLexer : Lexer {
 		LPAREN=64, RPAREN=65, COMMA=66, VAR_ID=67, BODY_NUMBER=68, FUNC_ID=69, 
 		COMMAND_UNKNOWN=70, ACTION=71, OPTION_SEPARATOR=72, OPTION_TEXT=73, OPTION_CLOSE=74, 
 		OPTION_LINK=75;
-	public const int
-		Title=1, Tags=2, HeaderText=3, Body=4, Text=5, Shortcuts=6, Command=7, 
-		Action=8, Option=9, OptionLink=10;
+
+    public const int Title = 1;
+    public const int Tags = 2;
+    public const int HeaderText = 3;
+    public const int Body = 4;
+    new public const int Text = 5;
+    public const int Shortcuts = 6;
+    public const int Command = 7;
+    new public const int Action = 8;
+    public const int Option = 9;
+    public const int OptionLink = 10;
+
 	public static string[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};

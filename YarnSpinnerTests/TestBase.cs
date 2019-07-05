@@ -6,6 +6,7 @@ using Yarn;
 using System.Reflection;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 
 namespace YarnSpinner.Tests
 {
@@ -39,9 +40,7 @@ namespace YarnSpinner.Tests
 
                 var testDataDirectory = path.Take(index).ToList();
 
-                var pathToTestData = string.Join(Path.DirectorySeparatorChar.ToString(), testDataDirectory.ToArray());
-
-                pathToTestData = Path.DirectorySeparatorChar + pathToTestData;
+                var pathToTestData = string.Join(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture), testDataDirectory.ToArray());
 
                 return pathToTestData;
             }

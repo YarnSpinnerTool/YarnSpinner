@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Yarn;
 using CsvHelper;
+using System.Globalization;
+using System;
 
 namespace Yarn
 {
 
-    class TableGenerator
+    static class TableGenerator
     {
         static internal int GenerateTables (GenerateTableOptions options)
         {
@@ -13,7 +15,7 @@ namespace Yarn
             YarnSpinnerConsole.CheckFileList(options.files, YarnSpinnerConsole.ALLOWED_EXTENSIONS);
 
             if (options.verbose && options.onlyUseTag != null) {
-                YarnSpinnerConsole.Note(string.Format("Only using lines from nodes tagged \"{0}\"", options.onlyUseTag));
+                YarnSpinnerConsole.Note(string.Format(CultureInfo.CurrentCulture, "Only using lines from nodes tagged \"{0}\"", options.onlyUseTag));
             }
 
             bool linesWereUntagged = false;
@@ -42,7 +44,7 @@ namespace Yarn
                         try {
                             stringInfo = dialogue.program.lineInfo[entry.Key];
                         } catch (KeyNotFoundException) {
-                            YarnSpinnerConsole.Error(string.Format("{0}: lineInfo table does not contain an entry for line {1} (\"{2}\")", file, entry.Key, entry.Value));
+                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "{0}: lineInfo table does not contain an entry for line {1} (\"{2}\")", file, entry.Key, entry.Value));
                             return 1;
                         }
 
@@ -51,7 +53,7 @@ namespace Yarn
                         try {
                             node = dialogue.program.nodes[stringInfo.nodeName];
                         } catch (KeyNotFoundException) {
-                            YarnSpinnerConsole.Error(string.Format("{0}: Line {1}'s lineInfo claims that the line originates in node {2}, but this node is not present in this program.", file, entry.Key, stringInfo.nodeName));
+                            YarnSpinnerConsole.Error(string.Format(CultureInfo.CurrentCulture, "{0}: Line {1}'s lineInfo claims that the line originates in node {2}, but this node is not present in this program.", file, entry.Key, stringInfo.nodeName));
                             return 1;
                         }
 
@@ -66,7 +68,7 @@ namespace Yarn
 
                     }
 
-                    if (entry.Key.StartsWith("line:") == false) {
+                    if (entry.Key.StartsWith("line:", StringComparison.InvariantCulture) == false) {
                         anyLinesAreUntagged = true;
                     } else {
                         emittedStringTable [entry.Key] = entry.Value;
@@ -74,7 +76,7 @@ namespace Yarn
                 }
 
                 if (anyLinesAreUntagged) {
-                    YarnSpinnerConsole.Warn(string.Format("Untagged lines in {0}", file));
+                    YarnSpinnerConsole.Warn(string.Format(CultureInfo.CurrentCulture, "Untagged lines in {0}", file));
                     linesWereUntagged = true;
                 }
 
@@ -121,11 +123,11 @@ namespace Yarn
 
         }
 
-        string CreateCSVRow (params string[] entries) {
+        static string CreateCSVRow (params string[] entries) {
             return string.Join (",", entries);
         }
 
-        string CreateCSVRow (KeyValuePair<string,string> entry) {
+        static string CreateCSVRow (KeyValuePair<string,string> entry) {
             return CreateCSVRow (new string[] { entry.Key, entry.Value });
         }
     }

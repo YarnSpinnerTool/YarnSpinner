@@ -36,6 +36,7 @@ using Antlr4.Runtime.Tree;
 using System.Text;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 
 namespace Yarn {
 
@@ -62,7 +63,7 @@ namespace Yarn {
             // Sum up the result
             var sb = new System.Text.StringBuilder();
             foreach (var t in tokenList) {
-                sb.AppendLine (string.Format("{0} ({1} line {2})", t.ToString (), t.context, t.lineNumber));
+                sb.AppendLine (string.Format(CultureInfo.CurrentCulture, "{0} ({1} line {2})", t.ToString (), t.context, t.lineNumber));
             }
 
             // Let's see what we got
@@ -81,7 +82,7 @@ namespace Yarn {
         // Prepares a loader. 'implementation' is used for logging.
         public Loader(Dialogue dialogue) {
             if (dialogue == null)
-                throw new ArgumentNullException ("dialogue");
+                throw new ArgumentNullException (nameof(dialogue));
 
             this.dialogue = dialogue;
 
@@ -140,7 +141,7 @@ namespace Yarn {
                     int lineIndent = tweakedLine.TakeWhile(Char.IsWhiteSpace).Count();
 
                     // working out if it is an option (ie does it start with ->)
-                    bool isOption = tweakedLine.TrimStart(' ').StartsWith(OPTION);
+                    bool isOption = tweakedLine.TrimStart(' ').StartsWith(OPTION, StringComparison.InvariantCulture);
 
                     // are we in a state where we need to track indents?
                     var previous = indents.Peek();
@@ -320,17 +321,17 @@ namespace Yarn {
                     catch (Yarn.TokeniserException t)
                     {
                         // Add file information
-                        var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
+                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, t.Message);
                         throw new Yarn.TokeniserException(message);
                     }
                     catch (Yarn.ParseException p)
                     {
-                        var message = string.Format("In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
+                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error parsing node {1}: {2}", fileName, nodeInfo.title, p.Message);
                         throw new Yarn.ParseException(message);
                     }
                     catch (InvalidOperationException e)
                     {
-                        var message = string.Format("In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
+                        var message = string.Format(CultureInfo.CurrentCulture, "In file {0}: Error reading node {1}: {2}", fileName, nodeInfo.title, e.Message);
                         throw new InvalidOperationException(message);
                     }
 #endif
@@ -404,7 +405,7 @@ namespace Yarn {
                 format = NodeFormat.SingleNodeText;
             }
             else {
-                throw new FormatException(string.Format("Unknown file format for file '{0}'", fileName));
+                throw new FormatException(string.Format(CultureInfo.CurrentCulture, "Unknown file format for file '{0}'", fileName));
             }
 
             return format;
@@ -480,7 +481,7 @@ namespace Yarn {
 
                                 if (headerMatches == null)
                                 {
-                                    dialogue.LogErrorMessage(string.Format("Line {0}: Can't parse header '{1}'", lineNumber, line));
+                                    dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, "Line {0}: Can't parse header '{1}'", lineNumber, line));
                                     continue;
                                 }
 
@@ -509,7 +510,7 @@ namespace Yarn {
                                         }
                                         else if (propertyType.IsAssignableFrom(typeof(int)))
                                         {
-                                            convertedValue = int.Parse(value);
+                                            convertedValue = int.Parse(value, CultureInfo.InvariantCulture);
                                         }
                                         else if (propertyType.IsAssignableFrom(typeof(NodeInfo.Position)))
                                         {
@@ -522,8 +523,8 @@ namespace Yarn {
                                             }
 
                                             var position = new NodeInfo.Position();
-                                            position.x = int.Parse(components[0]);
-                                            position.y = int.Parse(components[1]);
+                                            position.x = int.Parse(components[0], CultureInfo.InvariantCulture);
+                                            position.y = int.Parse(components[1], CultureInfo.InvariantCulture);
 
                                             convertedValue = position;
                                         }
@@ -539,11 +540,11 @@ namespace Yarn {
                                     }
                                     catch (FormatException)
                                     {
-                                        dialogue.LogErrorMessage(string.Format("{0}: Error setting '{1}': invalid value '{2}'", lineNumber, field, value));
+                                        dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, "{0}: Error setting '{1}': invalid value '{2}'", lineNumber, field, value));
                                     }
                                     catch (NotSupportedException)
                                     {
-                                        dialogue.LogErrorMessage(string.Format("{0}: Error setting '{1}': This property cannot be set", lineNumber, field));
+                                        dialogue.LogErrorMessage(string.Format(CultureInfo.CurrentCulture, "{0}: Error setting '{1}': This property cannot be set", lineNumber, field));
                                     }
                                 }
                             } while ((line = reader.ReadLine()) != "---");

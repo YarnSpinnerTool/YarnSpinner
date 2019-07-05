@@ -191,7 +191,7 @@ namespace Yarn
             // TODO: This will use only the first #line: tag, ignoring all others
             foreach (var tag in node.tags)
             {
-                if (tag.StartsWith("line:"))
+                if (tag.StartsWith("line:", StringComparison.InvariantCulture))
                 {
                     return tag;
                 }

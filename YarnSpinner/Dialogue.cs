@@ -27,12 +27,17 @@ SOFTWARE.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace Yarn {
 
     /// Represents things that can go wrong while loading or running a dialogue.
+    [Serializable]
     public  class YarnException : Exception {
         public YarnException(string message) : base(message) {}
+
+        protected YarnException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(serializationInfo, streamingContext) {}
     }
 
     // Delegates, which are used by the client.
@@ -45,13 +50,16 @@ namespace Yarn {
     /// and error logging.
     public delegate void Logger(string message);
 
+
     /// Information about stuff that the client should handle.
     /** (Currently this just wraps a single field, but doing it like this
      * gives us the option to add more stuff later without breaking the API.)
      */
+#pragma warning disable CA1815 // Override equals and operator equals on value types. Justification: None. This should be fixed eventually to prevent unexpected behaviour down the line.
     public struct Line { public string text; }
     public struct Options { public IList<string> options; }
     public struct Command { public string text; }
+#pragma warning restore CA1815 // Override equals and operator equals on value types
 
     /// Where we turn to for storing and loading variable data.
     public interface VariableStorage {
@@ -218,13 +226,13 @@ namespace Yarn {
 
                 // Ensure this node exists
                 if (NodeExists (nodeName) == false) {
-                    var errorMessage = string.Format ("The node {0} does not " + "exist.", nodeName);
+                    var errorMessage = string.Format (CultureInfo.CurrentCulture, "The node {0} does not " + "exist.", nodeName);
                     LogErrorMessage (errorMessage);
                     return 0;
                 }
             } else {
                 // We got too many parameters
-                var errorMessage = string.Format ("Incorrect number of parameters to " + "visitCount (expected 0 or 1, got {0})", parameters.Length);
+                var errorMessage = string.Format (CultureInfo.CurrentCulture, "Incorrect number of parameters to " + "visitCount (expected 0 or 1, got {0})", parameters.Length);
                 LogErrorMessage (errorMessage);
                 return 0;
             }
@@ -265,7 +273,7 @@ namespace Yarn {
         public void LoadFile(string fileName, bool showTokens = false, bool showParseTree = false, string onlyConsiderNode=null) {
 
             // Is this a compiled program file?
-            if (fileName.EndsWith(".yarn.bytes")) {
+            if (fileName.EndsWith(".yarn.bytes", StringComparison.InvariantCulture)) {
 
                 var bytes = System.IO.File.ReadAllBytes(fileName);
                 LoadCompiledProgram(bytes, fileName);
@@ -332,7 +340,7 @@ namespace Yarn {
                     }
                     catch (Newtonsoft.Json.JsonReaderException e)
                     {
-                        LogErrorMessage(string.Format("Cannot load compiled program: {0}", e.Message));
+                        LogErrorMessage(string.Format(CultureInfo.CurrentCulture, "Cannot load compiled program: {0}", e.Message));
                     }
                 }
             }
