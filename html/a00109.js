@@ -93,6 +93,5 @@ var a00109 =
     [ "VisitErrorNode", "a00109.html#a23c6fe6f098193795ac42544600dbb1a", null ],
     [ "VisitTerminal", "a00109.html#aa1dfd73e68ddef6754237fb33984fcf4", null ],
     [ "currentNode", "a00109.html#a1cf5faff80d9ae70d5fef264eb52b0e8", null ],
-    [ "graph", "a00109.html#add71b64dfe7fb107487ec6d15588ff1f", null ],
-    [ "yarnName", "a00109.html#ac450f10ed033a25c205f13c38554faaa", null ]
+    [ "graph", "a00109.html#add71b64dfe7fb107487ec6d15588ff1f", null ]
 ];

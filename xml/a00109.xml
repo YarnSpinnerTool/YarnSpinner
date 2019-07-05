@@ -17,22 +17,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="840" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="840" bodyend="-1"/>
-        <referencedby refid="a00109_1a82f70aaca01b89ceb830d31c001f5666" compoundref="a00303" startline="843" endline="847">Yarn.GraphListener.EnterHeader_title</referencedby>
-        <referencedby refid="a00109_1a3741704626660a81593bbede4fd07850" compoundref="a00303" startline="848" endline="859">Yarn.GraphListener.ExitOption_statement</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="a00109_1ac450f10ed033a25c205f13c38554faaa" prot="private" static="no" mutable="no">
-        <type><ref refid="a00051_1a301aa7c866593a5b625a8fc158bbeacea27118326006d3829667a400ad23d5d98" kindref="member">String</ref></type>
-        <definition>String Yarn.GraphListener.yarnName</definition>
-        <argsstring></argsstring>
-        <name>yarnName</name>
-        <initializer>= &quot;G&quot;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="842" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="842" bodyend="-1"/>
+        <referencedby refid="a00109_1a82f70aaca01b89ceb830d31c001f5666" compoundref="a00303" startline="842" endline="846">Yarn.GraphListener.EnterHeader_title</referencedby>
+        <referencedby refid="a00109_1a3741704626660a81593bbede4fd07850" compoundref="a00303" startline="847" endline="858">Yarn.GraphListener.ExitOption_statement</referencedby>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -76,7 +62,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="843" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="843" bodyend="847"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="842" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="842" bodyend="846"/>
         <references refid="a00109_1a1cf5faff80d9ae70d5fef264eb52b0e8" compoundref="a00303" startline="840">Yarn.GraphListener.currentNode</references>
       </memberdef>
       <memberdef kind="function" id="a00109_1a3741704626660a81593bbede4fd07850" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
@@ -103,7 +89,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="848" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="848" bodyend="859"/>
+        <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="847" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="847" bodyend="858"/>
         <references refid="a00109_1a1cf5faff80d9ae70d5fef264eb52b0e8" compoundref="a00303" startline="840">Yarn.GraphListener.currentNode</references>
       </memberdef>
       <memberdef kind="function" id="a00196_1aaeec4ce9cbf5b95d429afab145b57953" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
@@ -2565,7 +2551,7 @@
         <label>IParseTreeListener</label>
       </node>
     </collaborationgraph>
-    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="839" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="838" bodyend="860"/>
+    <location file="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" line="839" column="1" bodyfile="/home/travis/build/thesecretlab/YarnSpinner/YarnSpinner/AntlrCompiler.cs" bodystart="838" bodyend="859"/>
     <listofallmembers>
       <member refid="a00109_1a1cf5faff80d9ae70d5fef264eb52b0e8" prot="private" virt="non-virtual"><scope>Yarn::GraphListener</scope><name>currentNode</name></member>
       <member refid="a00196_1ac4e5829f87772c872d57dfd30e4f0450" prot="public" virt="virtual"><scope>Yarn::GraphListener</scope><name>EnterAction_statement</name></member>
@@ -2661,7 +2647,6 @@
       <member refid="a00109_1add71b64dfe7fb107487ec6d15588ff1f" prot="public" virt="non-virtual"><scope>Yarn::GraphListener</scope><name>graph</name></member>
       <member refid="a00196_1a23c6fe6f098193795ac42544600dbb1a" prot="public" virt="virtual"><scope>Yarn::GraphListener</scope><name>VisitErrorNode</name></member>
       <member refid="a00196_1aa1dfd73e68ddef6754237fb33984fcf4" prot="public" virt="virtual"><scope>Yarn::GraphListener</scope><name>VisitTerminal</name></member>
-      <member refid="a00109_1ac450f10ed033a25c205f13c38554faaa" prot="private" virt="non-virtual"><scope>Yarn::GraphListener</scope><name>yarnName</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

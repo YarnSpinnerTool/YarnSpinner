@@ -37,7 +37,7 @@ var searchData=
   ['optionshandler',['OptionsHandler',['../a00171.html#a7fe2e6bc2d5471d9af14a9d35de821bd',1,'TestDialogueUIBehaviour.OptionsHandler()'],['../a00162.html#a78dfd54b743e53078eed19ab7be2b6cf',1,'Yarn.VirtualMachine.OptionsHandler()'],['../a00171.html#adcbea72eb6f5ab305b3757789919f961',1,'TestDialogueUIBehaviour.optionsHandler()'],['../a00162.html#acd25fe2e3aa90dc87ba25d9af904465b',1,'Yarn.VirtualMachine.optionsHandler()']]],
   ['optionstart',['OptionStart',['../a00051.html#a301aa7c866593a5b625a8fc158bbeaceaf6500edfd37e45de2894dc48866dca81',1,'Yarn']]],
   ['optionstatement',['OptionStatement',['../a00146.html',1,'Yarn::Parser']]],
-  ['optionstatement',['optionStatement',['../a00166.html#a15020b7dab4983adbd185d5c2c2ebe84',1,'Yarn.Parser.Statement.optionStatement()'],['../a00146.html#ad18938712d01cf71edbc75d4974cd0e0',1,'Yarn.Parser.OptionStatement.OptionStatement()'],['../a00166.html#a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7',1,'Yarn.Parser.Statement.OptionStatement()']]],
+  ['optionstatement',['OptionStatement',['../a00146.html#ad18938712d01cf71edbc75d4974cd0e0',1,'Yarn.Parser.OptionStatement.OptionStatement()'],['../a00166.html#a518000e4e6219ce5f9f4229f505cd944a7e5b9e4625bac525ed765621cb074ef7',1,'Yarn.Parser.Statement.OptionStatement()'],['../a00166.html#a15020b7dab4983adbd185d5c2c2ebe84',1,'Yarn.Parser.Statement.optionStatement()']]],
   ['or',['Or',['../a00051.html#a301aa7c866593a5b625a8fc158bbeacea3a2d5fe857d8f9541136a124c2edec6c',1,'Yarn']]],
   ['output',['output',['../a00348.html#a3da6d48778c7b08a040bf24377f67792',1,'preprocessor']]],
   ['output_5flines',['output_lines',['../a00348.html#a3766d6a1d728423223fa0743ba62011f',1,'preprocessor']]],

@@ -1078,7 +1078,6 @@
   </compound>
   <compound refid="a00109" kind="class"><name>Yarn::GraphListener</name>
     <member refid="a00109_1a1cf5faff80d9ae70d5fef264eb52b0e8" kind="variable"><name>currentNode</name></member>
-    <member refid="a00109_1ac450f10ed033a25c205f13c38554faaa" kind="variable"><name>yarnName</name></member>
     <member refid="a00109_1add71b64dfe7fb107487ec6d15588ff1f" kind="variable"><name>graph</name></member>
     <member refid="a00109_1a82f70aaca01b89ceb830d31c001f5666" kind="function"><name>EnterHeader_title</name></member>
     <member refid="a00109_1a3741704626660a81593bbede4fd07850" kind="function"><name>ExitOption_statement</name></member>

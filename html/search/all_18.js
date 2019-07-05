@@ -15,7 +15,6 @@ var searchData=
   ['yarnexception',['YarnException',['../a00194.html#aa4a1dc51efdfa238aad7f20d76710fd1',1,'Yarn.YarnException.YarnException(string message)'],['../a00194.html#a4230584809bc10d063385a96cc23aeb8',1,'Yarn.YarnException.YarnException(SerializationInfo serializationInfo, StreamingContext streamingContext)']]],
   ['yarnfunctionisnodevisited',['YarnFunctionIsNodeVisited',['../a00092.html#a1ab129bd84381928531d503304ca08d6',1,'Yarn::Dialogue']]],
   ['yarnfunctionnodevisitcount',['YarnFunctionNodeVisitCount',['../a00092.html#a10c9f22d3f55e74f091cd6069c431094',1,'Yarn::Dialogue']]],
-  ['yarnname',['yarnName',['../a00109.html#ac450f10ed033a25c205f13c38554faaa',1,'Yarn::GraphListener']]],
   ['yarnspinner',['YarnSpinner',['../a00371.html',1,'']]],
   ['yarnspinner_2dwith_2dunity_2dquickstart_2emd',['YarnSpinner-with-Unity-QuickStart.md',['../a00215.html',1,'']]],
   ['yarnspinner_2dwith_2dunity_2dstepbystep_2emd',['YarnSpinner-with-Unity-StepByStep.md',['../a00216.html',1,'']]],
