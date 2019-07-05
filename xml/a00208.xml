@@ -69,7 +69,7 @@
 <codeline lineno="60"><highlight class="stringliteral">###<sp/>Conditionals<sp/>and<sp/>Functions</highlight></codeline>
 <codeline lineno="61"><highlight class="stringliteral">Yarn<sp/>Spinner<sp/>has<sp/>an<sp/>inbuilt<sp/>***function***<sp/>called<sp/>`visited`.<sp/>This<sp/>function<sp/>checks<sp/>to<sp/>see<sp/>if<sp/>a<sp/>node<sp/>has<sp/>previously<sp/>been<sp/>accessed<sp/>by<sp/>the<sp/>player.<sp/>We<sp/>can<sp/>combine<sp/>this<sp/>function<sp/>with<sp/>a<sp/>***conditional***<sp/>to<sp/>see<sp/>whether<sp/>a<sp/>node<sp/>has<sp/>been<sp/>previously<sp/>displayed<sp/>to<sp/>the<sp/>player.<sp/>The<sp/>basic<sp/>syntax<sp/>of<sp/>such<sp/>a<sp/>conditional<sp/>is:</highlight></codeline>
 <codeline lineno="62"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="63"><highlight class="stringliteral">&lt;&lt;if<sp/>visted(&quot;NodeName&quot;)<sp/>is<sp/>true&gt;&gt;</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral">&lt;&lt;if<sp/>visited(&quot;NodeName&quot;)<sp/>is<sp/>true&gt;&gt;</highlight></codeline>
 <codeline lineno="64"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
 <codeline lineno="65"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
 <codeline lineno="66"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>not<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
@@ -77,7 +77,7 @@
 <codeline lineno="68"><highlight class="stringliteral">```</highlight></codeline>
 <codeline lineno="69"><highlight class="stringliteral">&gt;<sp/>***Note:***<sp/>The<sp/>above<sp/>can<sp/>be<sp/>re-written<sp/>to<sp/>provide<sp/>the<sp/>same<sp/>outcome<sp/>by<sp/>reversing<sp/>the<sp/>test<sp/>from<sp/>true<sp/>to<sp/>false<sp/>and<sp/>inverting<sp/>the<sp/>NPC<sp/>text:</highlight></codeline>
 <codeline lineno="70"><highlight class="stringliteral">```</highlight></codeline>
-<codeline lineno="71"><highlight class="stringliteral">&lt;&lt;if<sp/>visted(&quot;NodeName&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
+<codeline lineno="71"><highlight class="stringliteral">&lt;&lt;if<sp/>visited(&quot;NodeName&quot;)<sp/>is<sp/>false&gt;&gt;</highlight></codeline>
 <codeline lineno="72"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>not<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
 <codeline lineno="73"><highlight class="stringliteral">&lt;&lt;else&gt;&gt;</highlight></codeline>
 <codeline lineno="74"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>NPC:<sp/>You<sp/>have<sp/>visited<sp/>me<sp/>before,<sp/>player</highlight></codeline>
