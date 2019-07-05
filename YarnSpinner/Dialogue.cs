@@ -574,19 +574,9 @@ namespace Yarn {
 
         public bool NodeExists(string nodeName) {
             if (program == null) {
-
-                if (program.nodes.Count > 0) {
-                    LogErrorMessage ("Internal consistency error: Called NodeExists, and " +
-                                     "there are nodes loaded, but the program hasn't " +
-                                     "been compiled yet, somehow?");
-
-                    return false;
-
-                } else {
-                    LogErrorMessage ("Tried to call NodeExists, but no nodes " +
-                                     "have been compiled!");
-                    return false;
-                }
+                LogErrorMessage ("Tried to call NodeExists, but no nodes " +
+                                 "have been compiled!");
+                return false;
             }
             if (program.nodes == null || program.nodes.Count == 0) {
                 LogDebugMessage ("Called NodeExists, but there are zero nodes. " +
