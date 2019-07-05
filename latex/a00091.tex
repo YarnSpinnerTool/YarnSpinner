@@ -126,24 +126,24 @@ Reimplemented from \hyperlink{a00085_aecc60aee9e9386da1f71fb183f43c52d}{Yarn.\-U
 
 
 
-Definition at line 198 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 201 of file Example\-Dialogue\-U\-I.\-cs.
 
 
 \begin{DoxyCode}
-199         \{
-200             Debug.Log (\textcolor{stringliteral}{"Complete!"});
-201 
-202             \textcolor{comment}{// Hide the dialogue interface.}
-203             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-204                 dialogueContainer.SetActive(\textcolor{keyword}{false});
-205 
-206             \textcolor{comment}{// Show the game controls.}
-207             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-208                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{true});
-209             \}
-210 
-211             yield \textcolor{keywordflow}{break};
-212         \}
+202         \{
+203             Debug.Log (\textcolor{stringliteral}{"Complete!"});
+204 
+205             \textcolor{comment}{// Hide the dialogue interface.}
+206             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
+207                 dialogueContainer.SetActive(\textcolor{keyword}{false});
+208 
+209             \textcolor{comment}{// Show the game controls.}
+210             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
+211                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{true});
+212             \}
+213 
+214             yield \textcolor{keywordflow}{break};
+215         \}
 \end{DoxyCode}
 \hypertarget{a00091_a313283f6c53354b54f25898eb436eba0}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Dialogue\-Started@{Dialogue\-Started}}
 \index{Dialogue\-Started@{Dialogue\-Started}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
@@ -162,24 +162,24 @@ Reimplemented from \hyperlink{a00085_af9d88ca81ac536d43046ca6572e3ff54}{Yarn.\-U
 
 
 
-Definition at line 181 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 184 of file Example\-Dialogue\-U\-I.\-cs.
 
 
 \begin{DoxyCode}
-182         \{
-183             Debug.Log (\textcolor{stringliteral}{"Dialogue starting!"});
-184 
-185             \textcolor{comment}{// Enable the dialogue controls.}
-186             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
-187                 dialogueContainer.SetActive(\textcolor{keyword}{true});
-188 
-189             \textcolor{comment}{// Hide the game controls.}
-190             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
-191                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{false});
-192             \}
-193 
-194             yield \textcolor{keywordflow}{break};
-195         \}
+185         \{
+186             Debug.Log (\textcolor{stringliteral}{"Dialogue starting!"});
+187 
+188             \textcolor{comment}{// Enable the dialogue controls.}
+189             \textcolor{keywordflow}{if} (\hyperlink{a00091_a2eaebc844d2ca982ec078708d070dbd3}{dialogueContainer} != null)
+190                 dialogueContainer.SetActive(\textcolor{keyword}{true});
+191 
+192             \textcolor{comment}{// Hide the game controls.}
+193             \textcolor{keywordflow}{if} (\hyperlink{a00091_a8344106eb22a0ad00e2400c2941b3e5f}{gameControlsContainer} != null) \{
+194                 gameControlsContainer.gameObject.SetActive(\textcolor{keyword}{false});
+195             \}
+196 
+197             yield \textcolor{keywordflow}{break};
+198         \}
 \end{DoxyCode}
 \hypertarget{a00085_a2900548a0704d39d4502a153945f4bef}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Node\-Complete@{Node\-Complete}}
 \index{Node\-Complete@{Node\-Complete}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
@@ -220,16 +220,16 @@ Implements \hyperlink{a00085_a3dffe84b9e7a10fdec6749baf697d111}{Yarn.\-Unity.\-D
 
 
 
-Definition at line 172 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 175 of file Example\-Dialogue\-U\-I.\-cs.
 
 
 \begin{DoxyCode}
-173         \{
-174             \textcolor{comment}{// "Perform" the command}
-175             Debug.Log (\textcolor{stringliteral}{"Command: "} + command.text);
-176 
-177             yield \textcolor{keywordflow}{break};
-178         \}
+176         \{
+177             \textcolor{comment}{// "Perform" the command}
+178             Debug.Log (\textcolor{stringliteral}{"Command: "} + command.text);
+179 
+180             yield \textcolor{keywordflow}{break};
+181         \}
 \end{DoxyCode}
 \hypertarget{a00091_a109aeedc5206dcbc4f629638b7830030}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Line@{Run\-Line}}
 \index{Run\-Line@{Run\-Line}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
@@ -279,13 +279,16 @@ Definition at line 91 of file Example\-Dialogue\-U\-I.\-cs.
 116                 yield \textcolor{keywordflow}{return} null;
 117             \}
 118 
-119             \textcolor{comment}{// Hide the text and prompt}
-120             lineText.gameObject.SetActive (\textcolor{keyword}{false});
+119             \textcolor{comment}{// Avoid skipping lines if textSpeed == 0}
+120             yield \textcolor{keywordflow}{return} \textcolor{keyword}{new} WaitForEndOfFrame();
 121 
-122             \textcolor{keywordflow}{if} (\hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
-123                 continuePrompt.SetActive (\textcolor{keyword}{false});
+122             \textcolor{comment}{// Hide the text and prompt}
+123             lineText.gameObject.SetActive (\textcolor{keyword}{false});
 124 
-125         \}
+125             \textcolor{keywordflow}{if} (\hyperlink{a00091_a74367b77a6a5218fa47dbe1d6266e4c6}{continuePrompt} != null)
+126                 continuePrompt.SetActive (\textcolor{keyword}{false});
+127 
+128         \}
 \end{DoxyCode}
 \hypertarget{a00091_aaa93672700a456e66c694636460a58f4}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Run\-Options@{Run\-Options}}
 \index{Run\-Options@{Run\-Options}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
@@ -305,7 +308,7 @@ Implements \hyperlink{a00085_ac5b29079f638f2ceb078627ef1e60004}{Yarn.\-Unity.\-D
 
 
 
-Definition at line 128 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 131 of file Example\-Dialogue\-U\-I.\-cs.
 
 
 
@@ -313,34 +316,34 @@ References Yarn.\-Text.
 
 
 \begin{DoxyCode}
-130         \{
-131             \textcolor{comment}{// Do a little bit of safety checking}
-132             \textcolor{keywordflow}{if} (optionsCollection.options.Count > \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}.Count) \{
-133                 Debug.LogWarning(\textcolor{stringliteral}{"There are more options to present than there are"} +
-134                                  \textcolor{stringliteral}{"buttons to present them in. This will cause problems."});
-135             \}
-136 
-137             \textcolor{comment}{// Display each option in a button, and make it visible}
-138             \textcolor{keywordtype}{int} i = 0;
-139             \textcolor{keywordflow}{foreach} (var optionString \textcolor{keywordflow}{in} optionsCollection.options) \{
-140                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].gameObject.SetActive (\textcolor{keyword}{true});
-141                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].GetComponentInChildren<\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}> ().text = optionString;
-142                 i++;
-143             \}
-144 
-145             \textcolor{comment}{// Record that we're using it}
-146             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = optionChooser;
+133         \{
+134             \textcolor{comment}{// Do a little bit of safety checking}
+135             \textcolor{keywordflow}{if} (optionsCollection.options.Count > \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}.Count) \{
+136                 Debug.LogWarning(\textcolor{stringliteral}{"There are more options to present than there are"} +
+137                                  \textcolor{stringliteral}{"buttons to present them in. This will cause problems."});
+138             \}
+139 
+140             \textcolor{comment}{// Display each option in a button, and make it visible}
+141             \textcolor{keywordtype}{int} i = 0;
+142             \textcolor{keywordflow}{foreach} (var optionString \textcolor{keywordflow}{in} optionsCollection.options) \{
+143                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].gameObject.SetActive (\textcolor{keyword}{true});
+144                 \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons} [i].GetComponentInChildren<\hyperlink{a00041_a301aa7c866593a5b625a8fc158bbeacea9dffbf69ffba8bc38bc4e01abf4b1675}{Text}> ().text = optionString;
+145                 i++;
+146             \}
 147 
-148             \textcolor{comment}{// Wait until the chooser has been used and then removed (see SetOption below)}
-149             \textcolor{keywordflow}{while} (\hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} != null) \{
-150                 yield \textcolor{keywordflow}{return} null;
-151             \}
-152 
-153             \textcolor{comment}{// Hide all the buttons}
-154             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
-155                 button.gameObject.SetActive (\textcolor{keyword}{false});
-156             \}
-157         \}
+148             \textcolor{comment}{// Record that we're using it}
+149             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = optionChooser;
+150 
+151             \textcolor{comment}{// Wait until the chooser has been used and then removed (see SetOption below)}
+152             \textcolor{keywordflow}{while} (\hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} != null) \{
+153                 yield \textcolor{keywordflow}{return} null;
+154             \}
+155 
+156             \textcolor{comment}{// Hide all the buttons}
+157             \textcolor{keywordflow}{foreach} (var button \textcolor{keywordflow}{in} \hyperlink{a00091_a090b7693e7ec6ec43c8c8e2b6b20b015}{optionButtons}) \{
+158                 button.gameObject.SetActive (\textcolor{keyword}{false});
+159             \}
+160         \}
 \end{DoxyCode}
 \hypertarget{a00091_ad1ac5781ded20d2950d8dd3af506df37}{\index{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}!Set\-Option@{Set\-Option}}
 \index{Set\-Option@{Set\-Option}!Yarn::Unity::Example::ExampleDialogueUI@{Yarn\-::\-Unity\-::\-Example\-::\-Example\-Dialogue\-U\-I}}
@@ -355,19 +358,19 @@ Called by buttons to make a selection.
 
 
 
-Definition at line 160 of file Example\-Dialogue\-U\-I.\-cs.
+Definition at line 163 of file Example\-Dialogue\-U\-I.\-cs.
 
 
 \begin{DoxyCode}
-161         \{
-162 
-163             \textcolor{comment}{// Call the delegate to tell the dialogue system that we've}
-164             \textcolor{comment}{// selected an option.}
-165             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} (selectedOption);
-166 
-167             \textcolor{comment}{// Now remove the delegate so that the loop in RunOptions will exit}
-168             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = null; 
-169         \}
+164         \{
+165 
+166             \textcolor{comment}{// Call the delegate to tell the dialogue system that we've}
+167             \textcolor{comment}{// selected an option.}
+168             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} (selectedOption);
+169 
+170             \textcolor{comment}{// Now remove the delegate so that the loop in RunOptions will exit}
+171             \hyperlink{a00091_a558f60ef9a7bcf887f015ba0d27aa6ef}{SetSelectedOption} = null; 
+172         \}
 \end{DoxyCode}
 
 
